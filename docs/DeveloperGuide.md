@@ -4,96 +4,96 @@ title: Developer Guide
 ---
 # **Table of Contents**
 1. [Introduction](#1-introduction)
-    * [Software Overview](#software-overview)
-    * [Intended Audience](#intended-audience)
-    * [Using the Guide](#using-the-guide)
-    * [Content Overview](#content-overview)
-    * [About Us](#about-us)
-    * [Getting Help](#getting-help)
-    * [Core Technologies](#core-technologies)
-    * [Acknowledgements](#acknowledgements)
-    * [Version Control](#version-control)
-    * [Issue Tracker](#issue-tracker)
+   * [Software Overview](#software-overview)
+   * [Intended Audience](#intended-audience)
+   * [Using the Guide](#using-the-guide)
+   * [Content Overview](#content-overview)
+   * [About Us](#about-us)
+   * [Getting Help](#getting-help)
+   * [Core Technologies](#core-technologies)
+   * [Acknowledgements](#acknowledgements)
+   * [Version Control](#version-control)
+   * [Issue Tracker](#issue-tracker)
 2. [Development Environment](#2-development-environment)
 3. [Tips](#3-tips)
-    * [Sample Data](#sample-data)
+   * [Sample Data](#sample-data)
 4. [Design](#4-design)
-    * [Architecture](#architecture)
-        * [Main Components of the Architecture](#main-components-of-the-architecture)
-        * [How the Architecture Components Interact with Each Other](#how-the-architecture-components-interact-with-each-other)
-    * [UI Component](#ui-component)
-    * [Key_Mapping](#key-mapping)
-    * [Model Component](#model-component)
-        * [Person](#person)
-            * [Name](#name)
-            * [Address](#address)
-            * [Phone](#phone)
-            * [Email](#email)
-            * [Telegram Handle](#telegram-handle)
-            * [Group Tag Set](#group-tag-set)
-            * [Module Tag Set](#module-tag-set)
-        * [Tag](#tag)
-            * [Group Tag](#group-tag)
-            * [Module Tag](#module-tag)
-        * [Time](#time)
-            * [Day](#day)
-            * [TimePeriod](#timeperiod)
-        * [Timetable](#timetable)
-            * [Module](#module)
-        * [Utils](#utils)
-            * [Sample Data Util](#sample-data-util)
-    * [Logic Component](#logic-component)
-        * [Commands](#commands)
-            * [Add Command](#add-command)
-            * [Edit Command](#edit-command)
-            * [Delete Command](#delete-command)
-            * [Tag Command](#tag-command)
-            * [View Command](#view-command)
-            * [Find Command](#find-command)
-            * [Sort Command](#sort-command)
-            * [List Command](#list-command)
-            * [Exit Command](#exit-command)
-            * [Meet Command](#meet-command)
-        * [Parsers](#parsers)
-            * [Argument Multimap](#argument-multimap)
-            * [Prefix](#prefix)
-        * [Recommenders](#recommenders)
-            * [Timing Recommender](#timingRecommender)
-            * [Location Recommender](#location-recommender)
-    * [Storage Component](#storage-component)
-    * [Commons Component](#common-classes)
-        * [MathUtil](#math-util)
+   * [Architecture](#architecture)
+     * [Main Components of the Architecture](#main-components-of-the-architecture)
+     * [How the Architecture Components Interact with Each Other](#how-the-architecture-components-interact-with-each-other)
+   * [UI Component](#ui-component)
+   * [Key_Mapping](#key-mapping)
+   * [Model Component](#model-component)
+     * [Person](#person)
+         * [Name](#name)
+         * [Address](#address)
+         * [Phone](#phone)
+         * [Email](#email)
+         * [Telegram Handle](#telegram-handle)
+         * [Group Tag Set](#group-tag-set)
+         * [Module Tag Set](#module-tag-set)
+     * [Tag](#tag)
+         * [Group Tag](#group-tag)
+         * [Module Tag](#module-tag)
+     * [Time](#time)
+       * [Day](#day)
+       * [TimePeriod](#timeperiod)
+     * [Timetable](#timetable)
+       * [Module](#module)
+     * [Utils](#utils)
+       * [Sample Data Util](#sample-data-util)
+   * [Logic Component](#logic-component)
+     * [Commands](#commands)
+         * [Add Command](#add-command)
+         * [Edit Command](#edit-command)
+         * [Delete Command](#delete-command)
+         * [Tag Command](#tag-command)
+         * [View Command](#view-command)
+         * [Find Command](#find-command)
+         * [Sort Command](#sort-command)
+         * [List Command](#list-command)
+         * [Exit Command](#exit-command)
+         * [Meet Command](#meet-command)
+     * [Parsers](#parsers)
+       * [Argument Multimap](#argument-multimap)
+       * [Prefix](#prefix)
+     * [Recommenders](#recommenders)
+       * [Timing Recommender](#timingRecommender)
+       * [Location Recommender](#location-recommender)
+   * [Storage Component](#storage-component)
+   * [Commons Component](#common-classes)
+     * [MathUtil](#math-util)
 5. [Testing](#5-testing)
-    * [Unit Tests](#unit-tests)
-    * [Testing Models](#testing-models)
-    * [Testing Commands](#testing-commands)
-    * [Testing Parsers](#testing-parsers)
-    * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
-    * [Create Code Coverage Report](#create-code-coverage-report)
-    * [Read Code Coverage Report](#read-code-coverage-report)
-    * [Continuous Integration](#continuous-integration)
+   * [Unit Tests](#unit-tests)
+   * [Testing Models](#testing-models)
+   * [Testing Commands](#testing-commands)
+   * [Testing Parsers](#testing-parsers)
+   * [Measuring Coverage of Integration Tests](#measuring-coverage-of-integration-tests)
+   * [Create Code Coverage Report](#create-code-coverage-report)
+   * [Read Code Coverage Report](#read-code-coverage-report)
+   * [Continuous Integration](#continuous-integration)
 6. [Documentation](#6-documentation)
-    * [Using PlantUML](#using-plantuml)
+   * [Using PlantUML](#using-plantuml)
 7. [Appendix](#7-appendix)
-    * [Project Requirements](#project-requirements)
-    * [Product Scope](#product-scope)
-        * [Target User Profile](#target-user-profile)
-        * [Value Proposition](#value-proposition)
-    * [Use Cases](#use-cases)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Instructions for Manual Testing](#instructions-for-manual-testing)
-        * [Launch and shutdown](#launch-and-shutdown)
-        * [Add a new person to EduMate](#add-a-new-person-to-edumate)
-        * [View a person in EduMate](#view-a-person-in-edumate)
-        * [Edit a person in EduMate](#edit-a-person-in-edumate)
-        * [Delete a person in EduMate](#delete-a-person-in-edumate)
-        * [Add a tag to a person](#add-a-tag-to-a-person)
-        * [Remove a tag from a person](#remove-a-tag-from-a-person)
-        * [Filter persons by keywords](#filter-persons-by-keywords)
-        * [Arrange persons by criteria](#arrange-persons-by-criteria)
-        * [Generate a sample EduMate](#generate-a-sample-edumate)
-    * [Glossary](#glossary)
-    * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+   * [Project Requirements](#project-requirements)
+   * [Product Scope](#product-scope)
+     * [Target User Profile](#target-user-profile)
+     * [Value Proposition](#value-proposition)
+   * [Use Cases](#use-cases)
+   * [Non-Functional Requirements](#non-functional-requirements)
+   * [Instructions for Manual Testing](#instructions-for-manual-testing)
+     * [Launch and shutdown](#launch-and-shutdown)
+     * [Add a new person to EduMate](#add-a-new-person-to-edumate)
+     * [View a person in EduMate](#view-a-person-in-edumate)
+     * [Edit a person in EduMate](#edit-a-person-in-edumate)
+     * [Delete a person in EduMate](#delete-a-person-in-edumate)
+     * [Add a tag to a person](#add-a-tag-to-a-person)
+     * [Remove a tag from a person](#remove-a-tag-from-a-person)
+     * [Filter persons by keywords](#filter-persons-by-keywords)
+     * [Arrange persons by criteria](#arrange-persons-by-criteria)
+     * [Generate a sample EduMate](#generate-a-sample-edumate)
+   * [Glossary](#glossary)
+   * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 
 # **1. Introduction**
 
@@ -250,10 +250,10 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 | Name            | Bee Shan                                |
 | Phone           | 81121128                                |
 | Email           | beeshan@gmail.com                       |
-| Address         | 200 Bishan Road                         |
-| Telegram Handle | @beeshan                                |
-| Groups          | NS, CCA                                 |
-| Modules         | CS3242, BT3101, CS1010E, CS3219, CE3165 |
+ | Address         | 200 Bishan Road                         |
+ | Telegram Handle | @beeshan                                |
+ | Groups          | NS, CCA                                 |
+ | Modules         | CS3242, BT3101, CS1010E, CS3219, CE3165 |
 
 <div markdown="span" class="alert alert-info">
 
@@ -336,11 +336,11 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `UserProfilePanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework.
+The `UI` component uses the JavaFx UI framework. 
 
 To start making changes to the UI:
 
-- The layout of these UI parts can be found in matching `.fxml` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder.
+- The layout of these UI parts can be found in matching `.fxml` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder. 
 - The controller classes of these UI parts can be found in matching `.java` files in the [`src/main/java/seedu/address/ui`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui)folder.
 - The stylesheets for these UI parts can be found in `Extensions.css` and `MainWindow.css`, except `UserProfilePanel` and `HelpWindow` with separate CSS files in matching `.css` files in the [`src/main/resources/view`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view) folder.
 - For example, the layout of `UserProfilePanel` is specified in [`UserProfilePanel.fxml`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/UserProfilePanel.fxml), with controller class at [`UserProfilePanel.java`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/ui/UserProfilePanel.java) and stylesheet at [`UserProfilePanel.css`](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/view/UserProfilePanel.css).
@@ -503,7 +503,7 @@ The `add` command allows users to create a new person and insert them into the a
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:**
+:bulb: **Tip:** 
 The arguments for `AddCommand` are unordered, so the user can type them in any order. They are all handled in [Argument Multimap](#argument-multimap).
 
 </div>
@@ -602,7 +602,7 @@ The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but 
 
 #### **Tag Command**
 
-Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/EditCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/EditCommandParser.java)
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/EditCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/EditCommandParser.java) 
 
 The `tag` command allows user to tag a ModuleTag and Lessons to an existing contact in EduMate.
 
@@ -651,10 +651,10 @@ The last viewed profile will remain displayed on the profile panel should there 
 </div>
 
 **Parsing the inputs** - When the user enters the input, the `ViewCommandParser` will first check if the arguments are empty.
-- If it is not empty, then `ViewCommandParser` will try to extract tokens that were prefixed `n/` (for the name).
+- If it is not empty, then `ViewCommandParser` will try to extract tokens that were prefixed `n/` (for the name). 
 - If a name is not present in the arguments, it will search for an index (of `int` type) instead in the preamble. <br>
 
-  The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
+    The parser, using the arguments (if they exist), creates the `ViewCommand` to be executed.
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
 
@@ -673,7 +673,7 @@ Below is an Activity Diagram for the execution of the `ViewCommand`.
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/FindCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/FindCommandParser.java)
 
-The `find` command allows users to search for their contacts with partial information.
+The `find` command allows users to search for their contacts with partial information. 
 
 For example, if the user wants to search for a person but does not know the full name, they can simply search the name and get a list of people matching the name. This applies to all information a Person contains. Additionally, it can accept multiple keywords for the search but is limited to the same type of information.
 
@@ -690,7 +690,7 @@ For example, if the user wants to search for a person but does not know the full
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
-This command can be used before the other commands to return a list of contacts the user wants to work with.
+This command can be used before the other commands to return a list of contacts the user wants to work with. 
 
 </div>
 
@@ -708,7 +708,7 @@ In summary, the activity diagram is as such:
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SortCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SortCommandParser.java)
 
-The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties.
+The `sort` command allows users to arrange their contacts in the order they desire. To be more robust in their arrangement, users are allowed to chain comparators together to break ties. 
 
 For example, if the user wants to sort by groups, and break ties with name, they can simply type `sort g/ n/`.
 
@@ -1325,12 +1325,12 @@ Expected Output in the Command Output Box: Error message for invalid command for
 
 ### **Add a tag to a person**
 
-The following commands work under the assumption that there are no clashes in the timetable. In the scenario where a
+The following commands work under the assumption that there are no clashes in the timetable. In the scenario where a 
 `tag` command results in any `ModuleTag` having a clash, the entire command will be aborted.
 
 `tag 1 m/CS1234`
 
-Expected Output in the PersonList: The first person has a new `ModuleTag` added to its
+Expected Output in the PersonList: The first person has a new `ModuleTag` added to its 
 `ModuleTagSet` with `tagName` of `CS1234`, if a `ModuleTag` with the same `tagName` does not already exist
 in the person's `ModuleTagSet`.
 
@@ -1338,7 +1338,7 @@ in the person's `ModuleTagSet`.
 
 Expected Output in the PersonList: The second person has a new `ModuleTag` added to its `ModuleTagSet`
 with `tagName` of `CS1234`, if a `ModuleTag` with the same `TagName` does not already exist in the person's
-`ModuleTagSet`. A `Lesson` is added to the `ModuleTag`.
+`ModuleTagSet`. A `Lesson` is added to the `ModuleTag`. 
 
 `tag 3 g/Friend`
 
@@ -1350,18 +1350,18 @@ Expected Output in the PersonList: The third person has a new `GroupTag` added t
 
 `untag 1 m/CS1234`
 
-Expected Output in the PersonList: The first person has the `ModuleTag` with `tagName` of `CS1234` removed from its
+Expected Output in the PersonList: The first person has the `ModuleTag` with `tagName` of `CS1234` removed from its 
 `ModuleTagSet`. All lessons belonging to the `ModuleTag` will be dropped.
 
 `untag 2 m/CS2345 mon 12 13`
 
-Expected Output in the PersonList: the second person has the lesson with the corresponding timeslot dropped from
+Expected Output in the PersonList: the second person has the lesson with the corresponding timeslot dropped from 
 `ModuleTag` WITH `tagName` of `CS2345`.
 
 `untag 3 g/Enemy`
 
-Expected Output in the PersonList: the third person has the `GroupTag` with `tagName` of `Enemy` removed from its
-`GroupTagSet`.
+Expected Output in the PersonList: the third person has the `GroupTag` with `tagName` of `Enemy` removed from its 
+`GroupTagSet`. 
 
 ### **Filter persons by keywords**
 
