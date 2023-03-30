@@ -1,4 +1,4 @@
-package trackr.ui;
+package trackr.ui.cards;
 
 
 import javafx.fxml.FXML;
@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import trackr.model.order.Order;
+import trackr.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Order}.
