@@ -839,7 +839,7 @@ All `Person` must have a `Name`, `Email`, `Course` and `Year`.
 ##### Handling Duplicates
 For duplicate persons, instead of checking whether they had the same `Name`, we decided to check if they had the same `Email`, since students can have the same name but their emails are always different.
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The class is design in such a way where no two person can have the same email.
+:information_source: **Note:** CoDoc is design in such a way where no two person can have the same email.
 </div>
 
 ##### Skills Attribute
