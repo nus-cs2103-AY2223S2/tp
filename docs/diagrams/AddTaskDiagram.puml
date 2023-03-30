@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TaskAddCommandParser" as TaskAddCommandParser LOGIC_COLOR
+participant "d:TaskAddCommand" as TaskAddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("task add 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("task add d/feed fish")
+activate AddressBookParser
+
+create TaskAddCommandParser
+AddressBookParser -> TaskAddCommandParser
+activate TaskAddCommandParser
+
+TaskAddCommandParser --> AddressBookParser
+deactivate TaskAddCommandParser
+
+AddressBookParser -> TaskAddCommandParser : parse("feed fish")
+activate TaskAddCommandParser
+
+create TaskAddCommand
+TaskAddCommandParser -> TaskAddCommand
+activate TaskAddCommand
+
+TaskAddCommand --> TaskAddCommandParser : d
+deactivate TaskAddCommand
+
+TaskAddCommandParser --> AddressBookParser : d
+deactivate TaskAddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TaskAddCommandParser -[hidden]-> AddressBookParser
+destroy TaskAddCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> TaskAddCommand : execute()
+activate TaskAddCommand
+
+TaskAddCommand -> Model : addTask(new Task("feed fish"))
+activate Model
+
+Model --> TaskAddCommand
+deactivate Model
+
+create CommandResult
+TaskAddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TaskAddCommand
+deactivate CommandResult
+
+TaskAddCommand --> LogicManager : result
+deactivate TaskAddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+
+

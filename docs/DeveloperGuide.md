@@ -231,7 +231,7 @@ Step 2. The user executes `fish sort n`. `FishParser` receives the `sort` keywor
 in which the keyword `n` is used to select a Comparator. In this case, the `NameComparator`, which compares the names between fish,
 is passed to `FishSortCommand` and returned.
 
-![FishSortCommmandDiagram](images/FishSortDiagram.png)
+![FishSortCommandDiagram](images/FishSortDiagram.png)
 
 Step 3. `FishSortCommand#execute()` first calls `Model#sortFilteredFishList()`, which in turn calls `SortedList#setComparator()`.
 This call triggers the SortedList to sort the current list using the given comparator. In this case, `Marlin, Nemo, Dory` sorts into `Dory, Marlin, Nemo`.
@@ -249,6 +249,39 @@ Step 4. `FishSortCommand#execute()` then calls `Model#setGuiMode()`, which trigg
 * **Alternative 2:** Sorts a list externally before replacing the `AddressBook` list.
     * Pros: More customization and control over sorting.
     * Cons: Requires a duplicate list to be made each time.
+
+### TaskAddCommand feature
+#### Motivation
+As a FishTracker application, on top of tracking fishes, we provide a way for fishkeepers to keep track of
+their tasks such as changing of tank water or repairing certain tank equipments
+
+#### Implementation
+Adding a task can be done via the command "task add".
+You are able to specify paramters like:
+* Description
+* Tank Index (to relate task to a tank)
+* Priority Level (Low / Medium / High)
+
+#### How `TaskAddCommand` is executed
+When the command `task add <description>` is invoked it first goes through the main parser `AddressBookParser`, after
+which it is delegated to command-specific parsers, namely TaskCommandParser -> TaskAddCommandParser.
+
+Thus, `LogicManager` will invoke `execute` on `TaskAddCommand` with the following code
+`command.execute(model);`, where `model.addTask(taskToAdd)` will be called.
+
+![TaskAddDiagram](images/TaskAddDiagram.png)
+
+#### Design Considerations
+* Alternative 1 (current choice): Create a parser for task commands and a taskAdd parser for add-specific task commands
+    * Pros: Easy to manage TaskList functionalities. 
+    * Cons: May have performance issues due to numerous calls down command-specific parsers
+
+* Alternative 2 : Use a simple
+    * Pros: Easy to implement
+    * Cons: Not well abstracted. Difficult to implement other task commands in the future like marking / deleting of
+    tasks
+
+
 
 ### TankFeedCommand feature
 #### Motivation
