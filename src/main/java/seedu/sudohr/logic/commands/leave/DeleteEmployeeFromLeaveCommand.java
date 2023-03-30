@@ -25,7 +25,7 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Employee %1$s is deleted from %2$s \n";
 
-    public static final String MESSAGE_INVALID_DATE = "The employee has not taken a leave";
+    public static final String MESSAGE_INVALID_DATE = "The employee has not taken leave on the input date ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a employee from leave in SudoHR. \n"
             + "Parameters: "
