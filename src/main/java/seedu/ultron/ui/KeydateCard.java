@@ -24,7 +24,7 @@ public class KeydateCard extends Label {
     public KeydateCard(Keydate keydate) {
         super(keydate.fullKey + ": " + keydate.fullDate);
         this.keydate = keydate;
-        this.getStyleClass().add("date");
+        this.getStyleClass().add("keydate");
         if (keydate.isPastKeydate()) {
             this.getStyleClass().add("past");
         }
