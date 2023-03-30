@@ -56,6 +56,8 @@ public class ListingCard extends UiPart<Region> {
         description.setText(listing.getDescription().fullDescription);
         if (listing.getPlatformCount() > 0) {
             platformsHeader.setText("Platforms released: " + listing.getPlatformCount());
+        } else {
+            platformsHeader.setText("No platforms released");
         }
 
         Stream<String> platformsDisplayed = listing.getPlatforms().stream()
