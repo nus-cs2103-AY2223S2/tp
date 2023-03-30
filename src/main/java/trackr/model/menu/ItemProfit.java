@@ -14,7 +14,7 @@ public class ItemProfit {
     public static final String MESSAGE_CONSTRAINTS =
             "Profit should only contain numbers, and it should be at most 2 decimal place";
     public static final String VALIDATION_REGEX = "^-?\\d+(.\\d{0,2})?$";
-    public static final DecimalFormat df = new DecimalFormat("0.00");
+    public static final DecimalFormat DF = new DecimalFormat("0.00");
     public final String value;
 
     /**
@@ -23,7 +23,7 @@ public class ItemProfit {
     public ItemProfit(ItemPrice itemPrice, ItemCost itemCost) {
         requireNonNull(itemPrice);
         requireNonNull(itemCost);
-        this.value = df.format(itemPrice.getValue() - itemCost.getValue());
+        this.value = DF.format(itemPrice.getValue() - itemCost.getValue());
         System.out.println(value);
         checkArgument(isValidProfit(value), MESSAGE_CONSTRAINTS);
     }
