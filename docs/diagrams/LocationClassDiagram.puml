@@ -1,0 +1,15 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+
+package Location MODEL_COLOR_BACKGROUND {
+    class Location MODEL_COLOR
+    class DistanceUtil MODEL_COLOR
+    class LocationDataUtil MODEL_COLOR
+}
+
+DistanceUtil .[MODEL_COLOR].> Location
+LocationDataUtil -[MODEL_COLOR]-> Location
+
+@enduml
