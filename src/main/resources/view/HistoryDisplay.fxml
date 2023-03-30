@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.text.TextFlow?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
     xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="historyDisplay" VBox.vgrow="ALWAYS" editable="false" styleClass="history-display"/>
+  <TextFlow fx:id="historyDisplay" minWidth="120" VBox.vgrow="ALWAYS" styleClass="history-display"/>
 </StackPane>

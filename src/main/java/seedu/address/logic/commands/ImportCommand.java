@@ -24,7 +24,9 @@ public class ImportCommand extends Command {
     public static List<String> commandWords = new ArrayList<String>(Arrays.asList("import", "i"));
     //CHECKSTYLE.ON: VisibilityModifier
 
-    public static final String MESSAGE_USAGE = commandWords + ": Imports customer data from an existing dataset.";
+    public static final String MESSAGE_USAGE = commandWords + ": Imports customer data from an existing dataset.\n"
+            + "Type \"import\" or \"import combine\" to combine the existing data with the imported dataset.\n"
+            + "Type \"import reset\" to reset the existing data to the imported dataset.";
 
     public static final String MESSAGE_SUCCESS = "Imported data from file";
 

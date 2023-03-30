@@ -9,18 +9,19 @@ import java.util.Optional;
 
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.TxtUtil;
+import seedu.address.model.history.InputHistory;
 
 /**
  * This class implements {@code HistoryStorage}, represent as a
  * manager for the .txt file that storing executed commands.
  */
-public class TxtHistoryStorage implements HistoryStorage {
+public class TxtInputHistoryStorage implements InputHistoryStorage {
 
-    private Path filePath = Paths.get("data", "history.txt");
+    private Path filePath = Paths.get("data", "inputHistory.txt");
 
-    public TxtHistoryStorage() {}
+    public TxtInputHistoryStorage() {}
 
-    public TxtHistoryStorage(Path filePath) {
+    public TxtInputHistoryStorage(Path filePath) {
         this.filePath = filePath;
     }
 
@@ -30,12 +31,12 @@ public class TxtHistoryStorage implements HistoryStorage {
     }
 
     @Override
-    public Optional<String> readHistoryString() throws IOException {
-        return readHistoryString(filePath);
+    public Optional<InputHistory> readInputHistory() throws IOException {
+        return readInputHistory(filePath);
     }
 
     @Override
-    public Optional<String> readHistoryString(Path filePath) throws IOException {
+    public Optional<InputHistory> readInputHistory(Path filePath) throws IOException {
         requireNonNull(filePath);
 
         Optional<String> historyString = TxtUtil.readTxtFile(filePath);
@@ -43,19 +44,19 @@ public class TxtHistoryStorage implements HistoryStorage {
             return Optional.empty();
         }
 
-        return historyString;
+        return Optional.of(InputHistory.fromDataString(historyString.get()));
     }
 
     @Override
-    public void saveHistoryString(String historyString) throws IOException {
-        saveHistoryString(historyString, filePath);
+    public void saveInputHistory(InputHistory history) throws IOException {
+        saveInputHistory(history, filePath);
     }
 
     @Override
-    public void saveHistoryString(String historyString, Path filePath) throws IOException {
+    public void saveInputHistory(InputHistory history, Path filePath) throws IOException {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        TxtUtil.saveTxtFile(historyString, filePath);
+        TxtUtil.saveTxtFile(history.toDataString(), filePath);
     }
 }

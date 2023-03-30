@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_INCOME + "INCOME "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + commandWords + " "
+            + "Example: " + commandWords.get(0) + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "

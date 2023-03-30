@@ -14,7 +14,7 @@ public abstract class Command {
      *
      * @param history StateHistory to use
      */
-    public void setHistory(StateHistory history) {
+    public void setStateHistory(StateHistory history) {
         // Do nothing
     }
 

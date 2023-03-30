@@ -18,7 +18,7 @@ public class StateHistoryTest {
         for (int i = 0; i < 5; i++) {
             AddCommand addCommand = new AddCommand(new PersonBuilder().withName(Integer.toString(i)).build());
             CommandResult result = addCommand.execute(model);
-            stateHistory.addCommand(addCommand, model, result);
+            stateHistory.offerCommand(addCommand, model, result);
         }
         assertEquals(stateHistory.undo(4), 4);
         assertEquals(stateHistory.undo(3), 1);
@@ -35,7 +35,7 @@ public class StateHistoryTest {
         for (int i = 0; i < 5; i++) {
             AddCommand addCommand = new AddCommand(new PersonBuilder().withName(Integer.toString(i)).build());
             CommandResult result = addCommand.execute(model);
-            stateHistory.addCommand(addCommand, model, result);
+            stateHistory.offerCommand(addCommand, model, result);
         }
         assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), 5);
         for (int i = 0; i < 5; ++i) {
@@ -52,7 +52,7 @@ public class StateHistoryTest {
         for (int i = 0; i < n; i++) {
             AddCommand addCommand = new AddCommand(new PersonBuilder().withName(Integer.toString(i)).build());
             CommandResult result = addCommand.execute(model);
-            stateHistory.addCommand(addCommand, model, result);
+            stateHistory.offerCommand(addCommand, model, result);
         }
         assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), n);
         for (int i = 0; i < n; ++i) {
@@ -68,14 +68,14 @@ public class StateHistoryTest {
         for (int i = 0; i < 16; i++) {
             AddCommand addCommand = new AddCommand(new PersonBuilder().withName(Integer.toString(i)).build());
             CommandResult result = addCommand.execute(model);
-            stateHistory.addCommand(addCommand, model, result);
+            stateHistory.offerCommand(addCommand, model, result);
         }
         assertEquals(stateHistory.undo(8), 8);
         model = stateHistory.presentModel();
         for (int i = 8; i < 10; i++) {
             AddCommand addCommand = new AddCommand(new PersonBuilder().withName(Integer.toString(i)).build());
             CommandResult result = addCommand.execute(model);
-            stateHistory.addCommand(addCommand, model, result);
+            stateHistory.offerCommand(addCommand, model, result);
         }
         assertEquals(stateHistory.presentModel().getAddressBook().getPersonList().size(), 10);
         assertEquals(stateHistory.redo(1), 0);

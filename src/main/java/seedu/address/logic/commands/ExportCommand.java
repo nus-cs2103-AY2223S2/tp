@@ -22,7 +22,9 @@ public class ExportCommand extends Command {
     //CHECKSTYLE.ON: VisibilityModifier
 
     public static final String MESSAGE_USAGE = commandWords + ": Exports data into a csv file at "
-            + "a location of your choice.";
+            + "a location of your choice.\n"
+            + "Type \"export\" or \"export shown\" to export only the filtered contacts shown.\n"
+            + "Type \"export all\" to export all contacts, even if they are not shown in the filtered list.";
 
     public static final String MESSAGE_SUCCESS = "Exported to file";
 
