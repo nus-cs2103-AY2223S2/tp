@@ -9,19 +9,18 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.control.TextArea?>
-<fx:root resizable="false" title="Editing remarks" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="true" title="Editing remarks" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/help_icon.png" />
+    <Image url="@/images/remarkWindowIcon.png" />
   </icons>
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@HelpWindow.css" />
+        <URL value="@RemarkWindow.css" />
       </stylesheets>
-
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <HBox alignment="CENTER" fx:id="helpMessageContainer" maxHeight="500" maxWidth="500" >
         <children>
-          <TextArea fx:id="textArea"></TextArea>
+          <TextArea fx:id="textArea" wrapText="true" HBox.hgrow="SOMETIMES"/>
         </children>
         <opaqueInsets>
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />

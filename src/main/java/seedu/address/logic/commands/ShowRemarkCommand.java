@@ -1,14 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.INDEX_PLACEHOLDER;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.predicates.NameContainsKeywordsPredicate;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.FullNamePredicate;
 import seedu.address.model.person.Person;
@@ -20,9 +22,15 @@ import seedu.address.model.person.Remark;
 public class ShowRemarkCommand extends Command {
 
     public static final String COMMAND_WORD = "show";
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
+            INDEX_PLACEHOLDER));
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the remarks added to a person.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: show 2";
+            + "Parameters: "
+            + ARGUMENT_PREFIXES.stream()
+                    .map(Prefix::toString)
+                    .collect(Collectors.joining(" "))
+            + "\nExample: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SHOWN_REMARK_SUCCESS = "Remarks: %1$s";
     public static final String MESSAGE_SHOWN_REMARK_EMPTY = "No remarks yet...";

@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 
@@ -11,6 +14,7 @@ import seedu.address.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>();
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
     private final boolean isModifying = true;

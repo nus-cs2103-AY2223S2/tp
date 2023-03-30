@@ -6,14 +6,24 @@ package seedu.address.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_NAME = new Prefix("n/");
-    public static final Prefix PREFIX_PHONE = new Prefix("p/");
-    public static final Prefix PREFIX_EMAIL = new Prefix("e/");
-    public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_EDUCATION = new Prefix("edu/");
-    public static final Prefix PREFIX_REMARK = new Prefix("r/");
-    public static final Prefix PREFIX_TAG = new Prefix("t/");
-    public static final Prefix PREFIX_SUBJECT = new Prefix("s/");
+    public static final Prefix PREFIX_NAME = new Prefix("n/", "NAME");
+    public static final Prefix PREFIX_PHONE = new Prefix("p/", "PHONE");
+    public static final Prefix PREFIX_EMAIL = new Prefix("e/", "EMAIL");
+    public static final Prefix PREFIX_ADDRESS = new Prefix("a/", "ADDRESS");
+    public static final Prefix PREFIX_EDUCATION = new Prefix("edu/", "EDUCATION");
+    public static final Prefix PREFIX_REMARK = new Prefix("r/", "REMARK");
+    public static final Prefix PREFIX_TAG = new Prefix("t/", "TAG");
+    public static final Prefix PREFIX_SUBJECT = new Prefix("s/", "SUBJECT");
+
+    /** Not a prefix, but a placeholder for a keyword argument. */
+    public static final Prefix KEYWORD_PLACEHOLDER = new Prefix("", "KEYWORD");
+
+    /** Not a prefix, but a placeholder for a index argument. */
+    public static final Prefix INDEX_PLACEHOLDER = new Prefix("", "INDEX");
+
+    /** Not a prefix, but a placeholder for a index argument. */
+    public static final Prefix REMARK_PLACEHOLDER = new Prefix("", PREFIX_REMARK.getPlaceholderText());
+
     private static final Prefix[] prefixList = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
         PREFIX_ADDRESS, PREFIX_EDUCATION, PREFIX_REMARK, PREFIX_TAG, PREFIX_SUBJECT};
 

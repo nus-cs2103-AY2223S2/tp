@@ -10,7 +10,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -20,18 +25,23 @@ import seedu.address.model.person.Person;
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
+    public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
+            PREFIX_NAME,
+            PREFIX_PHONE.asOptional(),
+            PREFIX_EMAIL.asOptional(),
+            PREFIX_ADDRESS.asOptional(),
+            PREFIX_EDUCATION.asOptional(),
+            PREFIX_REMARK.asOptional(),
+            PREFIX_TAG.asOptional().asRepeatable(),
+            PREFIX_SUBJECT.asOptional().asRepeatable()
+    ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_EDUCATION + "EDUCATION] "
-            + "[" + PREFIX_REMARK + "REMARK] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "[" + PREFIX_SUBJECT + "SUBJECT]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + ARGUMENT_PREFIXES.stream()
+                    .map(Prefix::toString)
+                    .collect(Collectors.joining(" "))
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "

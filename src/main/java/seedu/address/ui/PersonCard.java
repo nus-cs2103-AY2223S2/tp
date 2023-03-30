@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -69,7 +68,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getOptionalPhone().map(Phone::toString).orElse(null));
         address.setText(person.getOptionalAddress().map(Address::toString).orElse(null));
         email.setText(person.getOptionalEmail().map(Email::toString).orElse(null));
-        remark.setText(person.getOptionalRemark().map(Remark::toString).orElse(null));
+        remark.setText(person.getOptionalRemark().map(Remark::truncateRemark).orElse(null));
         person.getOptionalEducation()
                 .map(education -> new Label("Education: " + education.value))
                 .ifPresent(label -> tags.getChildren().add(setStyleEducationLabel(label)));
@@ -79,7 +78,6 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
         List<Label> labels = Arrays.asList(phone, address, email, remark);
         resizeLabels(labels);
         resizeFlowPane(tags);
@@ -112,7 +110,7 @@ public class PersonCard extends UiPart<Region> {
             flowpane.setVisible(false);
             flowpane.setManaged(false);
         } else {
-            Image tagIcon = new Image(getClass().getResourceAsStream("/images/tag.png"));
+            Image tagIcon = new Image(getClass().getResourceAsStream("/images/books.png"));
             ImageView tagIconView = new ImageView(tagIcon);
             tagIconView.setFitWidth(16);
             tagIconView.setFitHeight(16);

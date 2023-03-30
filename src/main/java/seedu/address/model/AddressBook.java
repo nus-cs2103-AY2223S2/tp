@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -91,6 +92,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    /**
+     * Returns a list of all existing tag values (without duplicates) contained
+     * in the person list.
+     */
+    public ArrayList<String> getExistingTagValues() {
+        return persons.getExistingTagValues();
     }
 
     //// util methods

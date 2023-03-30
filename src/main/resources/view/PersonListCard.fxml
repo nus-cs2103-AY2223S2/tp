@@ -17,7 +17,7 @@
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="TOP_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="TOP_LEFT" minHeight="50" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
@@ -33,28 +33,28 @@
         <FlowPane fx:id="tags" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
         <graphic>
-        <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
-          <Image url="@/images/phone.png"/>
+        <ImageView fitHeight="17" fitWidth="17" preserveRatio="true">
+          <Image url="@/images/smartphone.png"/>
         </ImageView>
         </graphic>
       </Label>
       <Label fx:id="address" styleClass="cell_small_label" text="\$address">
           <graphic>
-              <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
-                  <Image url="@/images/address.png"/>
+              <ImageView fitHeight="17" fitWidth="17" preserveRatio="true">
+                  <Image url="@/images/house.png"/>
               </ImageView>
           </graphic>
       </Label>
       <Label fx:id="email" styleClass="cell_small_label" text="\$email">
           <graphic>
-              <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+              <ImageView fitHeight="17" fitWidth="17" preserveRatio="true">
                   <Image url="@/images/email.png"/>
               </ImageView>
           </graphic>
       </Label>
-      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" wrapText="true">
+      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" wrapText="true" >
           <graphic>
-              <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
+              <ImageView fitHeight="17" fitWidth="17" preserveRatio="true">
                   <Image url="@/images/remark.png"/>
               </ImageView>
           </graphic>
