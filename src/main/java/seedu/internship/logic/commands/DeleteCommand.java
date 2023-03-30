@@ -8,6 +8,8 @@ import seedu.internship.commons.core.Messages;
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.model.Model;
+import seedu.internship.model.event.Event;
+import seedu.internship.model.event.EventByInternship;
 import seedu.internship.model.internship.Internship;
 
 /**
@@ -46,7 +48,19 @@ public class DeleteCommand extends Command {
             model.clearSelectedInternship();
         }
         model.deleteInternship(internshipToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete), ResultType.HOME);
+
+        // After Deleting Internship , it is important to delete all the events associated.
+        model.updateFilteredEventList(new EventByInternship(internshipToDelete));
+        List<Event> eventListToDelete = model.getFilteredEventList();
+        // Necessary to create an unmofifable array , as eventListToDelete() is getting updated with deletion
+        Event[] eventListToDeleteArray = eventListToDelete.toArray(new Event[eventListToDelete.size()]);
+
+        for (int i = 0; i < eventListToDeleteArray.length ; i++) {
+            Event e  = eventListToDeleteArray[i];
+            // Delete the Events associated with that iternship
+            model.deleteEvent(e);
+        }
+         return new CommandResult(String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, internshipToDelete), ResultType.HOME);
     }
 
     @Override

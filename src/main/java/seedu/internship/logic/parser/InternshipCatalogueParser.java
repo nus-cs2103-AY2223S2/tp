@@ -20,6 +20,8 @@ import seedu.internship.logic.commands.HomeCommand;
 import seedu.internship.logic.commands.ListCommand;
 import seedu.internship.logic.commands.SelectCommand;
 import seedu.internship.logic.commands.StatsCommand;
+import seedu.internship.logic.commands.ListCommand;
+import seedu.internship.logic.commands.SelectCommand;
 import seedu.internship.logic.commands.event.EventCommand;
 import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
@@ -47,7 +49,7 @@ public class InternshipCatalogueParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
 
 

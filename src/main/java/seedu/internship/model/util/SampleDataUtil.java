@@ -27,19 +27,19 @@ public class SampleDataUtil {
     // Sample Internships
     private static Internship internship1 = new Internship(new Position("Machine Learning"),
             new Company("Tiktok"), new Status(0),
-            new Description("This is a dummy internship"), getTagSet("important"));
+            new Description("This is a dummy internship"), getTagSet("Important"));
     private static Internship internship2 = new Internship(new Position("Software Engineer"),
             new Company("Grab"), new Status(1),
             new Description("This is a dummy internship"), getTagSet());
     private static Internship internship3 = new Internship(new Position("Data Analytics"),
             new Company("Google"), new Status(2),
-            new Description("This is a dummy internship"), getTagSet("important"));
+            new Description("This is a dummy internship"), getTagSet("Important"));
     private static Internship internship4 = new Internship(new Position("Machine Learning"),
             new Company("GovTech"), new Status(3),
-            new Description("This is a dummy internship"), getTagSet("important", "priority"));
+            new Description("This is a dummy internship"), getTagSet("Important", "Priority"));
     private static Internship internship5 = new Internship(new Position("Software Engineer"),
             new Company("GovTech"), new Status(3),
-            new Description("This is a dummy internship"), getTagSet("interesting"));
+            new Description("This is a dummy internship"), getTagSet("Interesting"));
     private static Internship internship6 = new Internship(new Position("Software Testing"),
             new Company("Razor"), new Status(0),
             new Description("This is a dummy internship"), getTagSet());
