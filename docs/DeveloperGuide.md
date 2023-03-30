@@ -508,7 +508,7 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-   1. Make sure that `DengueHotspotTracker` is currently not running.
+   1. Ensure that `DengueHotspotTracker` is currently not running.
    1. Open `data/denguehotspottracker.csv` file with your favourite text editor.
    1. Remove any of the quotation marks.
    1.Run `DengueHotspotTracker`. Since the data file is not in the correct format, `DengueHotspotTracker` should start without any data.
