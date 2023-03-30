@@ -33,7 +33,8 @@ public class FindDeliveryJobCommand extends DeliveryJobCommand {
         requireNonNull(model);
         model.updateFilteredDeliveryJobList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_DELIVERY_JOB_LISTED_OVERVIEW,
+                String.format(
+                        Messages.MESSAGE_DELIVERY_JOB_LISTED_OVERVIEW + "\nQuery options: " + predicate.toString(),
                         model.getFilteredDeliveryJobList().size()),
                 false, false, false, false, false, false, false, true, false);
     }

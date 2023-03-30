@@ -21,5 +21,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_DELIVERY_DATE = new Prefix("date/");
     public static final Prefix PREFIX_DELIVERY_SLOT = new Prefix("slot/");
     public static final Prefix PREFIX_EARNING = new Prefix("earn/");
-    public static final Prefix PREFIX_IS_DELIVERED = new Prefix("isd/");
+    public static final Prefix PREFIX_IS_DELIVERED = new Prefix("done/");
 }
