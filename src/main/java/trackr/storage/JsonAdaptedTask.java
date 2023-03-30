@@ -1,5 +1,8 @@
 package trackr.storage;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,10 +20,14 @@ import trackr.model.task.TaskStatus;
 class JsonAdaptedTask {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
+    public static final String MESSAGE_PARSE_TIME_ADDED_ERROR =
+            "Unexpected error encountered when parsing Task's `timeAdded` "
+                    + "field that was read from storage file";
 
     private final String taskName;
     private final String taskDeadline;
     private final String taskStatus;
+    private final String timeAdded;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given task details.
@@ -28,10 +35,12 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
                            @JsonProperty("taskDeadline") String taskDeadline,
-                           @JsonProperty("taskStatus") String taskStatus) {
+                           @JsonProperty("taskStatus") String taskStatus,
+                           @JsonProperty("timeAdded") String timeAdded) {
         this.taskName = taskName;
         this.taskDeadline = taskDeadline;
         this.taskStatus = taskStatus;
+        this.timeAdded = timeAdded;
     }
 
     /**
@@ -41,6 +50,7 @@ class JsonAdaptedTask {
         taskName = source.getTaskName().getName();
         taskDeadline = source.getTaskDeadline().toJsonString();
         taskStatus = source.getTaskStatus().toJsonString();
+        timeAdded = source.getTimeAdded().toString();
     }
 
     /**
@@ -76,7 +86,14 @@ class JsonAdaptedTask {
         }
         final TaskStatus modelTaskStatus = new TaskStatus(taskStatus);
 
-        return new Task(modelTaskName, modelTaskDeadline, modelTaskStatus);
+        final LocalDateTime modelTimeAdded;
+        try {
+            modelTimeAdded = LocalDateTime.parse(timeAdded);
+        } catch (DateTimeParseException | NullPointerException e) {
+            throw new IllegalValueException(MESSAGE_PARSE_TIME_ADDED_ERROR);
+        }
+
+        return new Task(modelTaskName, modelTaskDeadline, modelTaskStatus, modelTimeAdded);
     }
 
 }
