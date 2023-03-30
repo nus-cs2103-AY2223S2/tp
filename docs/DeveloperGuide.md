@@ -920,7 +920,7 @@ in our `Storage` as well as the courses displayed in the application.
 <br>
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** User preference is saved and retrieved in a similar fashion.
+:information_source: **Note:** User preference data are saved and retrieved in a similar fashion.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
