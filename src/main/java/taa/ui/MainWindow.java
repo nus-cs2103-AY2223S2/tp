@@ -4,12 +4,18 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import taa.Main;
 import taa.commons.core.GuiSettings;
 import taa.commons.core.LogsCenter;
 import taa.logic.Logic;
@@ -49,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Scene mainScene;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -121,6 +130,24 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        mainScene.setOnKeyPressed(event -> {
+            System.out.println("Woomy");
+            String newCmd=null;
+            switch (event.getCode()){
+                case UP:
+                newCmd= logic.getPrevCmd();
+                break;
+                case DOWN:
+                newCmd= logic.getNextCmd();
+                break;
+                default:
+            }
+            if(newCmd!=null){
+                commandBox.setCommand(newCmd);
+            }
+        });
+        primaryStage.setScene(mainScene);
     }
 
     /**

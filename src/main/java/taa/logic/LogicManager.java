@@ -2,6 +2,7 @@ package taa.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -27,7 +28,8 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final TaaParser taaParser;
-
+    private final ArrayList<String> cmdHistory;
+    private int cmdCnt;
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
@@ -35,11 +37,16 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         taaParser = new TaaParser();
+        cmdHistory=new ArrayList<>();
+        cmdCnt=0;
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        cmdHistory.add(commandText);
+        cmdCnt=cmdHistory.size();
 
         CommandResult commandResult;
         Command command = taaParser.parseCommand(commandText);
@@ -77,5 +84,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public String getPrevCmd() {
+        return cmdCnt<=0?null:cmdHistory.get(++cmdCnt);
+    }
+
+    @Override
+    public String getNextCmd() {
+        return cmdCnt>=cmdHistory.size()-1?null:cmdHistory.get(--cmdCnt);
     }
 }
