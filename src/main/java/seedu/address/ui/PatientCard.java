@@ -60,6 +60,11 @@ public class PatientCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
+    public PatientCard(Patient patient) {
+        super(FXML);
+        this.patient = patient;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

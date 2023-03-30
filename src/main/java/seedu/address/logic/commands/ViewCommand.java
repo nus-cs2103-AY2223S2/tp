@@ -41,7 +41,8 @@ public class ViewCommand extends Command {
         String entityInformation;
         Patient patientToDisplay = lastShownList.get(targetIndex.getZeroBased());
         entityInformation = patientToDisplay.toString();
-        return new CommandResult(String.format(MESSAGE_SHOW_ENTITY_SUCCESS, entityInformation));
+        System.out.println(entityInformation);
+        return new CommandResult(String.format(MESSAGE_SHOW_ENTITY_SUCCESS, entityInformation), true, targetIndex.getZeroBased());
     }
 
     @Override
