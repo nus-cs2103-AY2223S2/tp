@@ -6,7 +6,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
@@ -23,13 +22,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import seedu.recipe.commons.core.LogsCenter;
-import seedu.recipe.logic.commands.CommandResult;
-import seedu.recipe.logic.commands.exceptions.CommandException;
-import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
-import seedu.recipe.ui.CommandBox.CommandExecutor;
 import seedu.recipe.ui.util.FieldsUtil;
 
 /**
@@ -42,9 +36,6 @@ public class RecipeForm extends UiPart<Region> {
     //Data fields
     private final int displayedIndex;
     private final Recipe recipe;
-    //Logic executors and system logging
-    private final CommandExecutor commandExecutor;
-    private final Logger logger = LogsCenter.getLogger(getClass());
     private final StringBuilder data;
     //UI child elements
     @FXML
@@ -77,10 +68,9 @@ public class RecipeForm extends UiPart<Region> {
      * @param recipe         The recipe to edit or null for creating a new recipe.
      * @param displayedIndex The index of the recipe in the displayed list.
      */
-    public RecipeForm(Recipe recipe, int displayedIndex, CommandExecutor commandExecutor, StringBuilder data) {
+    public RecipeForm(Recipe recipe, int displayedIndex, StringBuilder data) {
         super(FXML);
         this.recipe = recipe;
-        this.commandExecutor = commandExecutor;
         this.displayedIndex = displayedIndex;
         this.data = data;
         if (recipe != null) {
@@ -136,16 +126,11 @@ public class RecipeForm extends UiPart<Region> {
                 changedValues.put(key, currentValue);
             }
         }
-        try {
-            // Add Recipe
-            if (initialValues.isEmpty()) {
-                handleAddRecipeEvent(changedValues);
-            }
+
+        if (!changedValues.isEmpty()) {
             handleEditRecipeEvent(displayedIndex, changedValues);
-            closeForm();
-        } catch (Exception e) {
-            throw e;
         }
+        closeForm();
     }
 
     /**
@@ -274,31 +259,31 @@ public class RecipeForm extends UiPart<Region> {
      *
      * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
-    public StringBuilder collectFields(StringBuilder commands, Map<String, String> changedValues) {
+    public void collectFields(Map<String, String> changedValues) {
         // Check if the name has been changed and append the name prefix and value.
         if (changedValues.containsKey("name")) {
-            commands.append(" n/");
-            commands.append(changedValues.get("name"));
+            data.append(" n/");
+            data.append(changedValues.get("name"));
         }
 
         // Check if the duration has been changed and append the duration prefix and value.
         if (changedValues.containsKey("duration")) {
-            commands.append(" d/");
-            commands.append(changedValues.get("duration"));
+            data.append(" d/");
+            data.append(changedValues.get("duration"));
         }
 
         // Check if the portion has been changed and append the portion prefix and value.
         if (changedValues.containsKey("portion")) {
-            commands.append(" p/");
-            commands.append(changedValues.get("portion"));
+            data.append(" p/");
+            data.append(changedValues.get("portion"));
         }
 
         // Check if the ingredients have been changed and append the ingredients prefix and value.
         if (changedValues.containsKey("ingredients")) {
             String[] ingredients = changedValues.get("ingredients").split(", ");
             for (String ingredient : ingredients) {
-                commands.append(" i/");
-                commands.append(ingredient);
+                data.append(" i/");
+                data.append(ingredient);
             }
         }
 
@@ -306,8 +291,8 @@ public class RecipeForm extends UiPart<Region> {
         if (changedValues.containsKey("steps")) {
             String[] steps = changedValues.get("steps").split(", ");
             for (String step : steps) {
-                commands.append(" s/");
-                commands.append(step);
+                data.append(" s/");
+                data.append(step);
             }
         }
 
@@ -315,26 +300,9 @@ public class RecipeForm extends UiPart<Region> {
         if (changedValues.containsKey("tags")) {
             String[] tags = changedValues.get("tags").split(", ");
             for (String tag : tags) {
-                commands.append(" t/");
-                commands.append(tag);
+                data.append(" t/");
+                data.append(tag);
             }
-        }
-        return commands;
-    }
-
-    /**
-     * Handles the add recipe event by adding the recipe with the changed values.
-     *
-     * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
-     */
-    private void handleAddRecipeEvent(Map<String, String> changedValues) {
-        try {
-            StringBuilder commands = new StringBuilder();
-            commands = collectFields(commands, changedValues);
-            String commandText = "add " + commands.toString();
-            executeCommand(commandText);
-        } catch (CommandException | ParseException e) {
-            logger.info("Failed to edit recipe: ");
         }
     }
 
@@ -345,38 +313,8 @@ public class RecipeForm extends UiPart<Region> {
      * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
     private void handleEditRecipeEvent(int index, Map<String, String> changedValues) {
-        StringBuilder commands = new StringBuilder();
-
-        // Add the index of the item to edit.
-        commands.append(index);
-        commands = collectFields(commands, changedValues);
-        String commandText = "edit " + commands.toString();
-
-        data.append(commandText);
-    }
-
-    /**
-     * Executes the command based on the given {@code commandText} and returns the result.
-     * Updates the UI components based on the command result.
-     *
-     * @param commandText the command text to execute.
-     * @return the resulting {@code CommandResult} after executing the command.
-     * @throws CommandException if the command execution fails.
-     * @throws ParseException   if the command text cannot be parsed.
-     */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        try {
-            CommandResult commandResult = commandExecutor.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            return commandResult;
-        } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            throw e;
-        }
-    }
-
-    @FunctionalInterface
-    interface CustomFocusChangeListener {
-        void onFocusChange(boolean newValue);
+        data.append("edit ");
+        data.append(index);
+        collectFields(changedValues);
     }
 }

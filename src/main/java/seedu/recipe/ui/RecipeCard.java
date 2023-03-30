@@ -137,15 +137,16 @@ public class RecipeCard extends UiPart<Region> {
                 RecipePopup popup = new RecipePopup(recipe, displayedIndex);
                 popup.display();
             } else if (event.getCode() == KeyCode.F) {
-                try {
-                    StringBuilder data = new StringBuilder();
-                    RecipeForm form = new RecipeForm(recipe, displayedIndex, commandExecutor, data);
-                    form.display();
-                    EditRecipeEvent editEvent = new EditRecipeEvent(data.toString());
+                // create and display form
+                StringBuilder data = new StringBuilder();
+                RecipeForm form = new RecipeForm(recipe, displayedIndex, data);
+                form.display();
+
+                // trigger EditRecipeEvent with form data
+                String commandText = data.toString();
+                if (!commandText.isEmpty()) {
+                    EditRecipeEvent editEvent = new EditRecipeEvent(commandText);
                     cardPane.fireEvent(editEvent);
-                } catch (Exception e) {
-                    // catch-em-all is bad!
-                    System.out.println(e);
                 }
             }
         });
