@@ -98,6 +98,7 @@ public class SummaryCard extends UiPart<Region> {
         setGoalCondition(client, goal);
         setCalorieCondition(client, calorie);
         setRoutineCondition(client, routines);
+        //routines.setText(client.getRoutines().toString());
         client.getAppointments().stream()
                 .sorted(Comparator.comparing(appointment -> appointment.appointmentTime))
                 .forEach(appointment -> appointments.getChildren().add(new Label(appointment.appointmentTime)));
@@ -150,6 +151,7 @@ public class SummaryCard extends UiPart<Region> {
             routines.setManaged(false);
             subTitle.setManaged(false);
             routineIcon.setManaged(false);
+            routines.setText("No routines");
         }
     }
 
@@ -162,7 +164,6 @@ public class SummaryCard extends UiPart<Region> {
      */
     private void setCalorieCondition(Client client, Label calorie) {
         if (!client.getCalorie().value.equals("0000")) {
-            logger.info("The calorie is invalid.");
             calorie.setText(client.getCalorie().value + " cal");
             caloriesIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/caloriesIcon.png")));
         } else {

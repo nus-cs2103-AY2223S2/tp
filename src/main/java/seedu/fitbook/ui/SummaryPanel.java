@@ -1,5 +1,6 @@
 package seedu.fitbook.ui;
 
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -22,10 +23,16 @@ public class SummaryPanel extends UiPart<Region> {
     /**
      * Creates a {@code ClientListPanel} with the given {@code ObservableList}.
      */
-    public SummaryPanel(ObservableList<Client> clientList) {
+    public SummaryPanel(ObservableList<Client> clientList, Client clientToView) {
         super(FXML);
-        clientListView.setItems(clientList);
+        clientListView.setItems(clientList.filtered(new Predicate<Client>() {
+            @Override
+            public boolean test(Client client) {
+                return client.isSameClient(clientToView);
+            }
+        }));
         clientListView.setCellFactory(listView -> new SummaryPanel.SummaryViewCell());
+
     }
 
     /**

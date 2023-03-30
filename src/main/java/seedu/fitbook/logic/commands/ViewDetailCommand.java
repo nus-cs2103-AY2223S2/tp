@@ -19,7 +19,7 @@ public class ViewDetailCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": View a client in the FitBook. "
             + "Parameters: " + "Index\n"
-            + "Example: " + COMMAND_WORD + "1";
+            + "Example: " + COMMAND_WORD + " 1";
 
 
     public static final String MESSAGE_SUCCESS = "Client viewed";

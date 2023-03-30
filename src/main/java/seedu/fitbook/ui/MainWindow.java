@@ -329,7 +329,7 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.setManaged(false);
 
         ObservableList<Client> list = FXCollections.observableArrayList();
-        summaryPanel = new SummaryPanel(list);
+        summaryPanel = new SummaryPanel(list, null);
         rightPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
 
         summaryListPanel = new SummaryListPanel(logic.getFilteredClientList());
@@ -350,8 +350,7 @@ public class MainWindow extends UiPart<Stage> {
         summaryListPanel = new SummaryListPanel(logic.getFilteredClientList());
         leftPanelPlaceholder.getChildren().add(summaryListPanel.getRoot());
 
-        ObservableList<Client> list = FXCollections.observableArrayList(clientToView);
-        summaryPanel = new SummaryPanel(list);
+        summaryPanel = new SummaryPanel(logic.getFilteredClientList(), clientToView);
         rightPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
 
         rightPanelPlaceholder.setManaged(true);
@@ -379,7 +378,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleCommand(CommandResult commandResult) {
         if (commandResult.equals("view")) {
-            summaryPanel = new SummaryPanel(logic.getFilteredClientList());
+            summaryPanel = new SummaryPanel(logic.getFilteredClientList(), null);
             rightPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
         }
     }
