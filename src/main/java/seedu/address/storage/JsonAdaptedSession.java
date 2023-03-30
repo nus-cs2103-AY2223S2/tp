@@ -8,10 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.session.Location;
-import seedu.address.model.session.NameBooleanPair;
-import seedu.address.model.session.Session;
-import seedu.address.model.session.SessionName;
+import seedu.address.model.session.*;
 
 
 /**
@@ -25,6 +22,7 @@ public class JsonAdaptedSession {
     private final String id;
     private final String location;
     private final List<JsonAdaptedNameBooleanPair> attendanceMap = new ArrayList<>();
+    private final List<JsonAdaptedNamePayRatePair> payRateMap = new ArrayList<>();
     /**
      * Constructs a {@code JsonAdaptedSession} with the given session details.
      */
@@ -54,7 +52,7 @@ public class JsonAdaptedSession {
         endDateTime = source.getEndDateTime();
         location = source.getLocation().toString();
         id = source.getId();
-        attendanceMap.addAll(source.getMap().stream()
+        attendanceMap.addAll(source.getNameBooleanMap().stream()
                 .map(JsonAdaptedNameBooleanPair::new)
                 .collect(Collectors.toList()));
 
@@ -107,7 +105,13 @@ public class JsonAdaptedSession {
             modelAttendanceList.add(pair);
         }
 
+        ArrayList<NamePayRatePair> modelPayRateList = new ArrayList<>();
+        for (JsonAdaptedNamePayRatePair jsonAdaptedPair: payRateMap) {
+            NamePayRatePair pair = jsonAdaptedPair.toModelType();
+            modelPayRateList.add(pair);
+        }
+
         return new Session(modelStartDateTime, modelEndDateTime,
-                modelName, modelLocation, modelId, modelAttendanceList);
+                modelName, modelLocation, modelId, modelAttendanceList, modelPayRateList);
     }
 }

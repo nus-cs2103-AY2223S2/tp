@@ -52,7 +52,7 @@ public class SessionCard extends UiPart<Region> {
         locationField.setText(session.getLocation().toString());
         startDate.setText(session.getStartDateTime());
         endDate.setText(session.getEndDateTime());
-        session.getMap().stream()
+        session.getNameBooleanMap().stream()
                 .forEach(
                         pair -> attendanceList
                                 .getChildren()
