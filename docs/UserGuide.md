@@ -331,7 +331,7 @@ patient clear
 
 #### `add` - Add an appointment
 
-Adds an appointment to the appointment manager
+Adds a new appointment to the appointment manager
 
 ```text
 appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
@@ -349,6 +349,7 @@ appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 ##### Restrictions
 
 * The patient id must be an existing index in the patient manager.
+* The patient id must for a patient that does not already have an upcoming appointment.
 * The starting time must be after the current locale time.
 * The ending time must be after the given starting time.
 * The vaccination must be an existing vaccination type in the vaxtype manager.
