@@ -91,7 +91,7 @@ If you need to switch to a new device, you can also export and import your previ
 
 Prompts the help page link.
 
-<img width="793" alt="Screenshot 2023-03-30 at 3 08 08 PM" src="https://user-images.githubusercontent.com/97392685/228756824-377ceb52-0585-4eed-ae6e-62c4b4394ab9.png">
+<img width="796" alt="Screenshot 2023-03-30 at 3 37 34 PM" src="https://user-images.githubusercontent.com/97392685/228764298-dccce25c-662f-41c6-9c91-6db2a8b44df7.png">
 
 Format: `help`
 
@@ -298,7 +298,6 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
-
 
 ### Saving the data
 
