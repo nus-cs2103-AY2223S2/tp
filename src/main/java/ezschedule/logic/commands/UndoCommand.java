@@ -2,11 +2,11 @@ package ezschedule.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.model.Model;
 import ezschedule.model.event.Event;
-
-import java.util.ArrayList;
 
 /**
  * Deletes an event identified using it's displayed index from the scheduler.
@@ -41,9 +41,10 @@ public class UndoCommand extends Command {
             break;
         case "recur":
             ArrayList<Event> recurEventList = model.recentEvent();
-            for (Event event: recurEventList) {
+            for (Event event : recurEventList) {
                 model.deleteEvent(event);
             }
+            break;
         default:
             break;
         }
