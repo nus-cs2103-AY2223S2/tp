@@ -26,6 +26,6 @@ public class HelpCommandParser implements Parser<HelpCommand> {
 
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String input) {
-        return new AutocompleteResult(null, false);
+        return new AutocompleteResult();
     }
 }

@@ -44,7 +44,8 @@ public class QuickContactsParser {
         AddCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
         ExportPersonsCommand.COMMAND_WORD, ImportPersonsCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
         AddMeetingCommand.COMMAND_WORD, EditMeetingsCommand.COMMAND_WORD, DeleteMeetingCommand.COMMAND_WORD,
-        ExportMeetingsCommand.COMMAND_WORD, ImportMeetingsCommand.COMMAND_WORD, ViewMeetingsCommand.COMMAND_WORD,
+        ExportMeetingsCommand.COMMAND_WORD, ImportMeetingsCommand.COMMAND_WORD, MarkAsDoneCommand.COMMAND_WORD,
+        MarkAsNotDoneCommand.COMMAND_WORD, ShowNotDoneCommand.COMMAND_WORD,
         ClearCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD};
 
     /**
