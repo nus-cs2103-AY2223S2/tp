@@ -98,10 +98,10 @@ public class UniquePolicyList implements Iterable<Policy> {
     */
 
 
-    /*
+    /**
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
-     *
+     */
     public void setPolicies(List<Policy> policies) {
         requireAllNonNull(policies);
         if (!policiesAreUnique(policies)) {
@@ -109,7 +109,7 @@ public class UniquePolicyList implements Iterable<Policy> {
         }
         internalList.setAll(policies);
     }
-    */
+
 
     /**
      * Removes the equivalent person from the list.

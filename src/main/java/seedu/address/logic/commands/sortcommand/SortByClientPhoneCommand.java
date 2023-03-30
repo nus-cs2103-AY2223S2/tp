@@ -20,7 +20,7 @@ public class SortByClientPhoneCommand extends SortCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort the client by their phone number.\n"
             + "Parameters: Integer value, 0 means reverse order and any other value means in order\n"
-            + "Example: " + COMMAND_WORD + "1";
+            + "Example: " + COMMAND_WORD + " 1";
     public static final String MESSAGE_SORT_BY_CLIENT_PHONE_SUCCESS = "Sort By Client Phone Number ";
     private boolean inOrder;
 

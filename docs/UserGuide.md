@@ -401,4 +401,9 @@ the data of your previous AddressBook home folder.
  **Redo**            | `redo`                                                                                                                                                                
  **Help**            | `help`                                                                                                                                                                
  **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`               
- **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`                                                                                                    
+ **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1` 
+ **Edit a Policy**   | `editPolicy INDEX pi/POLICY INDEX[pn/POLICY NAME] [pd/START DATE] [pp/PREMIUM] [pf/FREQUENCY]` <br> e.g., `editPolicy 1 pn/Travel Insurance pp/2000`
+ **Select**          | `select INDEX`<br> e.g.,`select 1`
+ **Sort Client by Email** | `sortClientEmail INDEX(Any Integer)`<br> e.g.,`sortClientEmail 1`
+ **Sort Client by Name** | `sortClientName INDEX(Any Integer)`<br> e.g.,`sortClientName 1`
+ **Sort Client by Phone** | `sortClientPhone INDEX(Any Integer)`<br> e.g.,`sortClientPhone 1`

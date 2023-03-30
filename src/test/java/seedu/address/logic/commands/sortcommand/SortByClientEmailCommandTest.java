@@ -3,6 +3,7 @@ package seedu.address.logic.commands.sortcommand;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.ClientBuilder.DEFAULT_EMAIL;
 import static seedu.address.testutil.TypicalClients.getTypicalAddressBook;
 
 import java.util.ArrayList;
@@ -17,11 +18,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.Email;
+import seedu.address.testutil.ClientBuilder;
 
 public class SortByClientEmailCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    // ==================== Valid Input Test Case ==============================================================
     @Test
     public void execute_validInputNotInOrder_success() {
         boolean inOrder = false;
@@ -67,6 +69,65 @@ public class SortByClientEmailCommandTest {
 
         assertCommandSuccess(sortCommand, originalModel, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_sameEmailSortInOrder_success() {
+        boolean inOrder = true;
+        SortByClientEmailCommand sortCommand = new SortByClientEmailCommand(inOrder);
+        String expectedMessage = SortByClientEmailCommand.MESSAGE_SORT_BY_CLIENT_EMAIL_SUCCESS
+                + "in ascending order";
+        ModelManager originalModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        List<String> namesList = new ArrayList<>();
+        namesList.add("Alice");
+        namesList.add("Bob");
+        namesList.add("Charlie");
+        namesList.add("David");
+        namesList.add("Emma");
+        namesList.add("Frank");
+        namesList.add("Grace");
+        int index = 0;
+        for (Client c : originalModel.getFilteredClientList()) {
+            Client editedClient = new ClientBuilder().withName(namesList.get(index)).build();
+            originalModel.setClient(c, editedClient);
+            index++;
+        }
+        Email test = new Email(DEFAULT_EMAIL);
+        for (Client c : originalModel.getFilteredClientList()) {
+            assertEquals(c.getEmail(), test);
+        }
+        assertCommandSuccess(sortCommand, originalModel, expectedMessage, originalModel);
+    }
+
+    @Test
+    public void execute_sameEmailSortReverseOrder_success() {
+        boolean inOrder = false;
+        SortByClientEmailCommand sortCommand = new SortByClientEmailCommand(inOrder);
+        String expectedMessage = SortByClientEmailCommand.MESSAGE_SORT_BY_CLIENT_EMAIL_SUCCESS
+                + "in descending order";
+        ModelManager originalModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        List<String> namesList = new ArrayList<>();
+        namesList.add("Alice");
+        namesList.add("Bob");
+        namesList.add("Charlie");
+        namesList.add("David");
+        namesList.add("Emma");
+        namesList.add("Frank");
+        namesList.add("Grace");
+        int index = 0;
+        for (Client c : originalModel.getFilteredClientList()) {
+            Client editedClient = new ClientBuilder().withName(namesList.get(index)).build();
+            originalModel.setClient(c, editedClient);
+            index++;
+        }
+        Email test = new Email(DEFAULT_EMAIL);
+        for (Client c : originalModel.getFilteredClientList()) {
+            assertEquals(c.getEmail(), test);
+        }
+        assertCommandSuccess(sortCommand, originalModel, expectedMessage, originalModel);
+    }
+
 
     @Test
     public void emptyClientTest_throwsCommandException() {
