@@ -23,7 +23,7 @@ public class ViewDetailCommand extends Command {
 
 
     public static final String MESSAGE_SUCCESS = "Client viewed";
-    public static final String MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX = "This client is fail to display ";
+    public static final String MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX = "This client index is invalid. ";
 
     private final Index index;
 

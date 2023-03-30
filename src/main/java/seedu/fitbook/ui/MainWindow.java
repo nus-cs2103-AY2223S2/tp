@@ -33,7 +33,6 @@ import seedu.fitbook.logic.commands.CommandResult;
 import seedu.fitbook.logic.commands.exceptions.CommandException;
 import seedu.fitbook.logic.parser.exceptions.ParseException;
 import seedu.fitbook.model.client.Client;
-import seedu.fitbook.model.client.Weight;
 import seedu.fitbook.model.client.WeightHistory;
 
 /**
@@ -44,9 +43,9 @@ public class MainWindow extends UiPart<Stage> {
     private static final String TITLE = "FitBook";
     private static final String EXERCISE = "Exercise";
     private static final String SCHEDULE = "Schedule";
-    private static final String STATISTIC = "Statistic";
     private static final String SUMMARY = "Summary";
     private static final String FXML = "MainWindow.fxml";
+    private static final String ICON_APPLICATION = "/images/FitBook.png";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -80,7 +79,6 @@ public class MainWindow extends UiPart<Stage> {
     private Pane pane;
     private List<Double> graphYAxis;
     private List<String> graphXAxis;
-    private final static String ICON_APPLICATION = "/images/FitBook.png";
 
     @FXML
     private Label exercisePanelTitle;

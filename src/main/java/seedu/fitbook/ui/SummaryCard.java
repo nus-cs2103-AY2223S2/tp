@@ -107,7 +107,7 @@ public class SummaryCard extends UiPart<Region> {
         genderList.setImage(
                 new Image(this.getClass().getResourceAsStream("/images/genderList/" + genderText + ".png")));
         phoneIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/phoneIcon.png")));
-        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/addressIcon.png")));
+        addressIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/AddressIcon.png")));
         emailIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/emailIcon.png")));
         weightIcon.setImage(new Image(this.getClass().getResourceAsStream("/images/weightIcon.png")));
     }
