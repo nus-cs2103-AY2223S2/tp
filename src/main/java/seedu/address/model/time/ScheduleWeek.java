@@ -1,4 +1,4 @@
-package seedu.address.model.timeSlot;
+package seedu.address.model.time;
 
 import static java.util.Arrays.asList;
 
@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
  * Class to generate the entire week of schedule
  */
 public class ScheduleWeek {
-    private final int DAYS_IN_A_WEEK = 7;
+    private static final int DAYS_IN_A_WEEK = 7;
     private static final ObservableList<ScheduleDay> internalList = FXCollections.observableArrayList();
 
     public void setInternalList(ArrayList<ArrayList<Integer>> timetable, DayOfWeek startDay) {
@@ -53,7 +53,7 @@ public class ScheduleWeek {
             }
         }
 
-//        System.out.println(timeSlot.toString());
+        //  System.out.println(timeSlot.toString());
         return timeSlot;
     }
 

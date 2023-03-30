@@ -20,7 +20,7 @@ import seedu.address.model.event.IsolatedEventList;
 import seedu.address.model.event.RecurringEvent;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
-import seedu.address.model.timeSlot.TimeMask;
+import seedu.address.model.time.TimeMask;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -32,8 +32,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Group> filteredGroups;
-
-//    private FilteredList<String> filteredTimeSlots;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -48,7 +46,6 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredGroups = new FilteredList<>(this.addressBook.getGroupList());
         ObservableList<String> emptyList = FXCollections.observableArrayList();
-//        filteredTimeSlots = new FilteredList<>(emptyList);
     }
 
     public ModelManager() {
@@ -222,14 +219,6 @@ public class ModelManager implements Model {
     public ObservableList<Group> getFilteredGroupList() {
         return filteredGroups;
     }
-
-//    /**
-//     * Returns an unmodifiable view of the filtered time slot list
-//     */
-//    @Override
-//    public ObservableList<String> getFilteredTimeSlotList() {
-//        return filteredTimeSlots;
-//    }
 
     @Override
     public void updateFilteredGroupList(Predicate<Group> predicate) {

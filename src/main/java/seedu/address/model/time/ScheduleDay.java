@@ -1,8 +1,6 @@
-package seedu.address.model.timeSlot;
+package seedu.address.model.time;
 
 import java.util.ArrayList;
-
-import seedu.address.model.timeSlot.Status;
 
 /**
  * Represents the status of each timeslots of the day.

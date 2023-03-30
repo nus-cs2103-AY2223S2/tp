@@ -1,4 +1,4 @@
-package seedu.address.model.timeSlot;
+package seedu.address.model.time;
 
 import java.time.DayOfWeek;
 import java.util.ArrayList;
@@ -122,14 +122,6 @@ public class TimeMask {
             freeSlots(dayIndex, startHourIndex, endHourIndex);
         }
     }
-
-//   public static ObservableList<Integer> getTimetable(TimeMask timeMask) {
-//        ObservableList<Integer> linearTimetable = FXCollections.observableArrayList();
-//        for (int offset = 0; offset < WINDOW_RANGE; offset++) {
-//            linearTimetable.addAll(getTimeSlotIndexes(timeMask.getDayMask(offset), offset));
-//        }
-//        return linearTimetable;
-//    }
 
     public static ArrayList<ArrayList<Integer>> getTimeSlotIndexes(TimeMask mask) {
         ArrayList<ArrayList<Integer>> twoDimensionalSlotList = new ArrayList<>();
