@@ -2,7 +2,6 @@ package seedu.connectus.model.socialmedia;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_WHATSAPP;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
