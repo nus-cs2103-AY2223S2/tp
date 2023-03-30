@@ -11,11 +11,11 @@ import seedu.address.model.event.Note;
  * Command class for editing notes
  */
 public class EditNoteCommand extends Command {
-    public static final String COMMAND_WORD = "edit-note";
+    public static final String COMMAND_WORD = "editNote";
 
-    public static final String MESSAGE_USAGE = "Edit syntax: edit-note -index INDEX (must be a positive integer)"
+    public static final String MESSAGE_USAGE = "Edit syntax: editNote -index INDEX (must be a positive integer)"
             + " -content updated-note -name name-of-event -type type-of-event";
-    public static final String MESSAGE_EXAMPLE = "edit-note -index 1 -content this is my updated notes -name "
+    public static final String MESSAGE_EXAMPLE = "editNote -index 1 -content this is my updated notes -name "
             + "tutorial 1 -type Tutorial";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + " cannot be recognized!";

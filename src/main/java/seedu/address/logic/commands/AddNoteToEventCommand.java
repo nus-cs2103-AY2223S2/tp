@@ -10,14 +10,13 @@ import seedu.address.model.event.Note;
  * Allows TA to add a note by checking if the command input matches add-note
  */
 public class AddNoteToEventCommand extends Command {
-    public static final String COMMAND_WORD = "add-note";
+    public static final String COMMAND_WORD = "addNote";
     public static final String MESSAGE_SUCCESS = "Note specified has been successfully added";
-    public static final String MESSAGE_USAGE = "add-note -content add-your-note-here -name name-of-event "
+    public static final String MESSAGE_USAGE = "addNote-content add-your-note-here -name name-of-event "
             + "-type type-of-event";
-    public static final String MESSAGE_EXAMPLE = "add-note note -content this is a new note -name dijkstraReview "
+    public static final String MESSAGE_EXAMPLE = "addNote note -content this is a new note -name dijkstraReview "
             + "-type Tutorial";
 
-    // JThh: below fields are temporarily not used due to code refactoring.
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + " cannot be recognized!";
     public static final String TUTORIAL_STRING = "Tutorial";

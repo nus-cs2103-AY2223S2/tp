@@ -30,7 +30,6 @@ public class EditNoteCommandParser implements Parser<EditNoteCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NOTE_CONTENT, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE,
                         PREFIX_NOTE_EVENT_NAME);
 
-        // The case of adding note without event
         if (!arePrefixesPresent(argMultimap, PREFIX_NOTE_CONTENT, PREFIX_NOTE_INDEX, PREFIX_NOTE_EVENT_TYPE,
                 PREFIX_NOTE_EVENT_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
