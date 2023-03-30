@@ -664,13 +664,17 @@ Hence, we removed the implementation of the old and new prefixes.
 
 [Scroll back to top](#table-of-contents)
 
-#### Find Command
+#### **Find Command**
 
-Finding i.e filtering a person by their attributes is implemented such that the user can find people by their name, year, course, modules and/or skills, such that he/she is able to reach out to them for collaboration more quickly.
+Finding i.e. filtering a person by their attributes is implemented such that the user can find people by their `name`, `year`, `course`, `modules` and/or `skills`, such that he/she is able to reach out to them for collaboration more quickly.
 
 - `FilteredList` contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user.
 - **Can check for multiple predicates within each prefix** i.e. `find s/python java` finds people that have both `python` and `java` skills.
-- Checks if the attributes of the person **contain** the keywords specified by the user (uses contain, not containWord).
+- Checks if the attributes of the person **contain** the keywords specified by the user(uses contain, not containWord).
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Uses contain, not containWord.
+</div>
+
 - Case-insensitive.
 - If the user types duplicate prefixes in the query i.e. `find s/java python s/javascript s/c sql`, only the last occurrence of the prefix will be taken i.e. `find s/c sql` will be taken.
 
