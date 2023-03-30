@@ -15,17 +15,18 @@ title: Developer Guide
   - [Model Component](#model-component)
   - [Storage Component](#storage-component)
 - [Implementation](#implementation)
-  - [Model](#model-implementation)
-    - [Person Class](#person-class)
-    - [Module Class](#module-class)
-    - [Course and CourseList Class](#course-and-courselist-class)
-  - [Logic](#logic-implementation)
-    - [Edit Command](#edit-command)
-    - [Find Command](#find-command)
   - [UI](#ui-implementation)
     - [Main Section](#main-section)
     - [Info Panel](#info-panel)
     - [Theme](#theme)
+  - [Logic](#logic-implementation)
+    - [Edit Command](#edit-command)
+    - [Find Command](#find-command)
+  - [Model](#model-implementation)
+    - [Person Class](#person-class)
+    - [Module Class](#module-class)
+    - [Course and CourseList Class](#course-and-courselist-class)
+  - [Storage](#storage-implementation)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product Scope](#product-scope-)
@@ -398,9 +399,7 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
 <br>
-
 
 ### **UI Implementation**
 
@@ -903,6 +902,10 @@ in our `Storage` as well as the courses displayed in the application.
 <div style="page-break-after: always;"></div>
 
 [Scroll back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Storage Implementation
 
 --------------------------------------------------------------------------------------------------------------------
 
