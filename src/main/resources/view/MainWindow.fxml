@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.stage.Stage?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.stage.*?>
 
-<fx:root minHeight="350.0" minWidth="1000.0" onCloseRequest="#handleExit" title="LoyaltyLift" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="350.0" minWidth="1000.0" onCloseRequest="#handleExit" title="LoyaltyLift" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -39,9 +31,9 @@
                         <VBox prefHeight="73.0" prefWidth="52.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <VBox id="commandBoxContainer" fx:id="userCommandBox" stylesheets="@CommandBoxContainer.css" />
-                              <TabPane prefHeight="200.0" prefWidth="150.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                              <TabPane fx:id="tableTabPane" prefHeight="200.0" prefWidth="150.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                                 <tabs>
-                                  <Tab text="Customer">
+                                  <Tab fx:id="customerTab" text="Customer">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="150.0">
                                              <children>
@@ -52,7 +44,7 @@
                                           </AnchorPane>
                                     </content>
                                   </Tab>
-                                  <Tab text="Orders">
+                                  <Tab fx:id="orderTab" text="Orders">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="150.0">
                                              <children>

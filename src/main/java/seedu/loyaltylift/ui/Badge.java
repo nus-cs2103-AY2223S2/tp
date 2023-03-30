@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import seedu.loyaltylift.model.customer.CustomerType;
+import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.order.Status;
 
 /**
@@ -54,6 +55,15 @@ public class Badge extends UiPart<StackPane> {
         default:
             throw new IllegalArgumentException();
         }
+    }
+
+    /**
+     * Constructs a {@code Badge} based on the {@code Points}.
+     * @param points The points of the customer.
+     * @return An instance of the Badge.
+     */
+    public static Badge createPointsBadge(Points points) {
+        return new Badge(Color.valueOf("#f09030"), Color.WHITE, points.value.toString() + " pts");
     }
 
     /**

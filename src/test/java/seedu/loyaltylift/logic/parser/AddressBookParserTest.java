@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.loyaltylift.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_FILTER;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_POINTS;
 import static seedu.loyaltylift.logic.parser.CliSyntax.PREFIX_SORT;
+import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
+import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_ORDERS;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -41,6 +44,8 @@ import seedu.loyaltylift.model.customer.CustomerNameContainsKeywordsPredicate;
 import seedu.loyaltylift.model.customer.Points;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.OrderNameContainsKeywordsPredicate;
+import seedu.loyaltylift.model.order.OrderStatusPredicate;
+import seedu.loyaltylift.model.order.StatusValue;
 import seedu.loyaltylift.testutil.CustomerBuilder;
 import seedu.loyaltylift.testutil.CustomerUtil;
 import seedu.loyaltylift.testutil.EditCustomerDescriptorBuilder;
@@ -103,12 +108,24 @@ public class AddressBookParserTest {
     public void parseCommand_listc() throws Exception {
         ListCustomerCommand parsedCommand;
 
+        // no args
         parsedCommand = (ListCustomerCommand) parser.parseCommand(ListCustomerCommand.COMMAND_WORD);
-        assertEquals(new ListCustomerCommand(Customer.SORT_NAME), parsedCommand);
+        assertEquals(new ListCustomerCommand(), parsedCommand);
 
+        // sort points
         parsedCommand = (ListCustomerCommand) parser.parseCommand(
                 ListCustomerCommand.COMMAND_WORD + " " + PREFIX_SORT + "points");
-        assertEquals(new ListCustomerCommand(Customer.SORT_POINTS), parsedCommand);
+        assertEquals(new ListCustomerCommand(Customer.SORT_POINTS, PREDICATE_SHOW_ALL_CUSTOMERS), parsedCommand);
+
+        // filter marked
+        parsedCommand = (ListCustomerCommand) parser.parseCommand(
+                ListCustomerCommand.COMMAND_WORD + " " + PREFIX_FILTER + "marked");
+        assertEquals(new ListCustomerCommand(Customer.SORT_NAME, Customer.FILTER_SHOW_MARKED), parsedCommand);
+
+        // sort points and filter marked
+        parsedCommand = (ListCustomerCommand) parser.parseCommand(ListCustomerCommand.COMMAND_WORD + " "
+                + PREFIX_SORT + "points" + " " + PREFIX_FILTER + "marked");
+        assertEquals(new ListCustomerCommand(Customer.SORT_POINTS, Customer.FILTER_SHOW_MARKED), parsedCommand);
     }
 
     @Test
@@ -184,13 +201,26 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_listo() throws Exception {
         ListOrderCommand parsedCommand;
+        OrderStatusPredicate pendingPredicate = new OrderStatusPredicate(StatusValue.PENDING);
 
+        // no args
         parsedCommand = (ListOrderCommand) parser.parseCommand(ListOrderCommand.COMMAND_WORD);
-        assertEquals(new ListOrderCommand(Order.SORT_CREATED_DATE), parsedCommand);
+        assertEquals(new ListOrderCommand(), parsedCommand);
 
+        // sort status
         parsedCommand = (ListOrderCommand) parser.parseCommand(
                 ListOrderCommand.COMMAND_WORD + " " + PREFIX_SORT + "status");
-        assertEquals(new ListOrderCommand(Order.SORT_STATUS), parsedCommand);
+        assertEquals(new ListOrderCommand(Order.SORT_STATUS, PREDICATE_SHOW_ALL_ORDERS), parsedCommand);
+
+        // filter pending
+        parsedCommand = (ListOrderCommand) parser.parseCommand(
+                ListOrderCommand.COMMAND_WORD + " " + PREFIX_FILTER + "pending");
+        assertEquals(new ListOrderCommand(Order.SORT_CREATED_DATE, pendingPredicate), parsedCommand);
+
+        // sort name and filter pending
+        parsedCommand = (ListOrderCommand) parser.parseCommand(
+                ListOrderCommand.COMMAND_WORD + " " + PREFIX_SORT + "name " + PREFIX_FILTER + "pending");
+        assertEquals(new ListOrderCommand(Order.SORT_NAME, pendingPredicate), parsedCommand);
     }
 
     @Test

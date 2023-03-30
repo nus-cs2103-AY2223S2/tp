@@ -80,7 +80,7 @@ Adds a customer to the current list.
 Format: `addc [ct/{ind/ent}] n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Customers are 'Individiuals' by default!
+Customers are 'Individuals' by default!
 ind - Individuals
 ent - Enterprise
 </div>
@@ -94,14 +94,17 @@ Examples:
 
 Shows a list of all customers.
 
-Format: `listc [s/{name|points}]`
+Format: `listc [s/{name|points}] [f/{marked|ind|ent}]`
 
 * Lists all customer with the specified sorting option.
 * Be default, customers are sorted by name
+* If `f/marked` is provided, then shows only bookmarked customers.
+* If `f/ind` or `f/ent` is provided, then shows only individual or enterprise customers respectively.
 
 Examples:
 * `listc` lists all customers sorted by name
 * `listc s/points` lists all customers sorted by points
+* `listc f/marked` lists all bookmarked customers. 
 
 ### View a customer : `viewc`
 
@@ -307,15 +310,16 @@ Examples:
 * addo 4 n/Strawberry ice cream
   * Adds the order 1 x Strawberry ice cream, tags it to customer 4, and sets status to "pending", address is the customer's address.
 
-### Listing all customers : `listo`
+### Listing all orders : `listo`
 
 Shows a list of all orders.
 
 Format: `listo [s/{created|name|status}] [f/STATUS]`
 
 * Lists all orders with the specified sorting option.
-* By default, orders are sorted by their created date
-* If `listo f/STATUS` then show only the given status
+* By default, orders are sorted by their created date.
+* If `f/STATUS` is provided, then show only the given status.
+* `STATUS` is case-insensitive and can be one of: pending, paid, shipped, completed, cancelled.
 
 Examples:
 * `listo` lists all orders sorted by created date.
