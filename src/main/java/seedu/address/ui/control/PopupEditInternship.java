@@ -147,11 +147,21 @@ public class PopupEditInternship extends UiPart<Stage> {
      * Populate the text field and child of javaFX node with initial internship values.
      */
     private void populateNode() {
-        companyName.setText(internship.getCompanyName().fullName);
-        jobTitle.setText(internship.getJobTitle().fullName);
-        place.setText(internship.getLocation().value);
-        salary.setText(internship.getSalary().value);
-        rating.setText(internship.getRating().value);
+        if (internship.getCompanyName().fullName != null) {
+            companyName.setText(internship.getCompanyName().fullName);
+        }
+        if (internship.getJobTitle().fullName != null) {
+            jobTitle.setText(internship.getJobTitle().fullName);
+        }
+        if (internship.getLocation().value != null) {
+            place.setText(internship.getLocation().value);
+        }
+        if (internship.getSalary().value != null) {
+            salary.setText(internship.getSalary().value);
+        }
+        if (internship.getRating().value != null) {
+            rating.setText(internship.getRating().value);
+        }
 
         if (!internship.getQualifications().isEmpty()) {
             qualificationVBox.getChildren().remove(1);
@@ -270,52 +280,111 @@ public class PopupEditInternship extends UiPart<Stage> {
             commandText += " " + CliSyntax.PREFIX_JOB_TITLE.getPrefix() + jobTitle.getText();
         }
 
-        if (!place.getText().isBlank()) {
-            commandText += " " + CliSyntax.PREFIX_LOCATION.getPrefix() + place.getText();
-        }
+        commandText += " " + CliSyntax.PREFIX_LOCATION.getPrefix() + place.getText();
+        commandText += " " + CliSyntax.PREFIX_SALARY.getPrefix() + salary.getText();
+        commandText += " " + CliSyntax.PREFIX_RATING.getPrefix() + rating.getText();
 
-        if (!salary.getText().isBlank()) {
-            commandText += " " + CliSyntax.PREFIX_SALARY.getPrefix() + salary.getText();
-        }
 
-        if (!rating.getText().isBlank()) {
-            commandText += " " + CliSyntax.PREFIX_RATING.getPrefix() + rating.getText();
-        }
-
+        int validQualification = 0;
         for (int i = 1; i < qualificationVBox.getChildren().size(); i += 1) {
             TextField q = (TextField) qualificationVBox.getChildren().get(i);
             if (!q.getText().isBlank()) {
+                validQualification += 1;
                 commandText += " " + CliSyntax.PREFIX_QUALIFICATION.getPrefix() + q.getText();
             }
         }
 
-        for (int i = 1; i < programmingLanguageVBox.getChildren().size(); i += 1) {
-            TextField pl = (TextField) programmingLanguageVBox.getChildren().get(i);
-            if (!pl.getText().isBlank()) {
-                commandText += " " + CliSyntax.PREFIX_PROGRAMMING_LANGUAGE.getPrefix() + pl.getText();
+        if (validQualification == 0) {
+            commandText += " " + CliSyntax.PREFIX_QUALIFICATION.getPrefix();
+        } else {
+            for (int i = 1; i < qualificationVBox.getChildren().size(); i += 1) {
+                TextField q = (TextField) qualificationVBox.getChildren().get(i);
+                if (!q.getText().isBlank()) {
+                    commandText += " " + CliSyntax.PREFIX_QUALIFICATION.getPrefix() + q.getText();
+                }
             }
         }
 
+        int validProgrammingLanguage = 0;
+        for (int i = 1; i < programmingLanguageVBox.getChildren().size(); i += 1) {
+            TextField p = (TextField) programmingLanguageVBox.getChildren().get(i);
+            if (!p.getText().isBlank()) {
+                validProgrammingLanguage += 1;
+                commandText += " " + CliSyntax.PREFIX_PROGRAMMING_LANGUAGE.getPrefix() + p.getText();
+            }
+        }
+
+        if (validProgrammingLanguage == 0) {
+            commandText += " " + CliSyntax.PREFIX_PROGRAMMING_LANGUAGE.getPrefix();
+        } else {
+            for (int i = 1; i < programmingLanguageVBox.getChildren().size(); i += 1) {
+                TextField p = (TextField) programmingLanguageVBox.getChildren().get(i);
+                if (!p.getText().isBlank()) {
+                    commandText += " " + CliSyntax.PREFIX_PROGRAMMING_LANGUAGE.getPrefix() + p.getText();
+                }
+            }
+        }
+
+        int validReview = 0;
         for (int i = 1; i < reviewVBox.getChildren().size(); i += 1) {
             TextField r = (TextField) reviewVBox.getChildren().get(i);
             if (!r.getText().isBlank()) {
+                validReview += 1;
                 commandText += " " + CliSyntax.PREFIX_REVIEW.getPrefix() + r.getText();
             }
         }
 
+        if (validReview == 0) {
+            commandText += " " + CliSyntax.PREFIX_REVIEW.getPrefix();
+        } else {
+            for (int i = 1; i < reviewVBox.getChildren().size(); i += 1) {
+                TextField r = (TextField) reviewVBox.getChildren().get(i);
+                if (!r.getText().isBlank()) {
+                    commandText += " " + CliSyntax.PREFIX_REVIEW.getPrefix() + r.getText();
+                }
+            }
+        }
+
+        int validNote = 0;
         for (int i = 1; i < noteVBox.getChildren().size(); i += 1) {
             TextField n = (TextField) noteVBox.getChildren().get(i);
             if (!n.getText().isBlank()) {
+                validNote += 1;
                 commandText += " " + CliSyntax.PREFIX_NOTE.getPrefix() + n.getText();
             }
         }
 
+        if (validNote == 0) {
+            commandText += " " + CliSyntax.PREFIX_NOTE.getPrefix();
+        } else {
+            for (int i = 1; i < noteVBox.getChildren().size(); i += 1) {
+                TextField n = (TextField) noteVBox.getChildren().get(i);
+                if (!n.getText().isBlank()) {
+                    commandText += " " + CliSyntax.PREFIX_NOTE.getPrefix() + n.getText();
+                }
+            }
+        }
+
+        int validReflection = 0;
         for (int i = 1; i < reflectionVBox.getChildren().size(); i += 1) {
             TextField rf = (TextField) reflectionVBox.getChildren().get(i);
             if (!rf.getText().isBlank()) {
+                validReflection += 1;
                 commandText += " " + CliSyntax.PREFIX_REFLECTION.getPrefix() + rf.getText();
             }
         }
+
+        if (validReflection == 0) {
+            commandText += " " + CliSyntax.PREFIX_REFLECTION.getPrefix();
+        } else {
+            for (int i = 1; i < reflectionVBox.getChildren().size(); i += 1) {
+                TextField rf = (TextField) reflectionVBox.getChildren().get(i);
+                if (!rf.getText().isBlank()) {
+                    commandText += " " + CliSyntax.PREFIX_REFLECTION.getPrefix() + rf.getText();
+                }
+            }
+        }
+
         return commandText;
     }
 
@@ -331,6 +400,7 @@ public class PopupEditInternship extends UiPart<Stage> {
         String commandText = makeCommandText();
 
         try {
+            System.out.println(commandText);
             mainWindow.executeCommand(commandText);
         } catch (CommandException e) {
             e.printStackTrace();

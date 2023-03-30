@@ -78,7 +78,7 @@ public class ViewContentPanel extends UiPart<Region> {
     }
 
     private void addLabel(String labelString, InternshipApplicationAttribute attribute) {
-        if (attribute != null && attribute.toString() != null) {
+        if (attribute != null && attribute.toString() != null && !attribute.toString().isBlank()) {
             Label label = new Label(labelString + ": " + attribute.toString());
             label.getStyleClass().add("cell_small_label");
             label.setWrapText(true);

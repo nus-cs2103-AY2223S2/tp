@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
@@ -171,7 +172,12 @@ public class ApplicationCard extends UiPart<Region> {
      * Make archive command.
      */
     private String makeArchiveCommand() {
-        String commandText = ArchiveCommand.COMMAND_WORD + " " + index;
+        String commandText;
+        if (application.isArchived()) {
+            commandText = UnarchiveCommand.COMMAND_WORD + " " + index;
+        } else {
+            commandText = ArchiveCommand.COMMAND_WORD + " " + index;
+        }
         return commandText;
     }
 }

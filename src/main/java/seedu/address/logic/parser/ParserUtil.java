@@ -172,7 +172,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code location} is invalid.
      */
     public static Location parseLocation(String location) throws ParseException {
-        if (location == null) {
+        if (location == null | location == "") {
             return new Location(null);
         }
         String trimmedLocation = location.trim();
