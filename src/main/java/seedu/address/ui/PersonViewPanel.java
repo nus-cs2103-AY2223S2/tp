@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
+import seedu.address.model.prescription.Prescription;
 
 //code reuse https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/112/files
 /**
@@ -89,7 +90,14 @@ public class PersonViewPanel extends UiPart<Region> {
         if (person.isPatient()) {
             Patient patient = (Patient) person;
             prescriptionBox.setVisible(true);
-            medication.setText(patient.getMedication().toString());
+            //medication.setText(patient.getMedication().toString());
+            StringBuilder prescriptionText = new StringBuilder("Prescription:\n");
+
+            int i = 1;
+            for (Prescription prescription: patient.getPrescriptions()) {
+                prescriptionText.append(String.format("%d. %s\n", i++, prescription.toString()));
+            }
+            medication.setText(prescriptionText.toString());
         }
         if (person.isDoctor()) {
             prescriptionBox.setVisible(false);
