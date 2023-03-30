@@ -34,13 +34,13 @@ public class HelpTutorialCommand extends HelpCommand {
             + "deleteStudent STUDENT_INDEX_IN_LIST Tutorial/TUTORIAL_NAME";
 
     public static final String ADD_NOTE = "Add Note:         "
-            + "add-note -content NOTE ?????";
+            + "addNote note -content [NOTE] -type Tutorial -name [TUTORIAL_NAME]";
 
     public static final String EDIT_NOTE = "Edit Note:          "
-            + "edit-note -content NOTE ?????";
+            + "editNote -content [NEW_NOTE] -type Tutorial -name [TUTORIAL_NAME] -index [NOTE_INDEX]";
 
     public static final String DELETE_NOTE = "Delete Note:      "
-            + "rm-note -type Tutorial -name STUDENT_NAME_OR_INDEX -index NOTE_INDEX";
+            + "deleteNote -type Tutorial -name [TUTORIAL_NAME_OR_INDEX] -index [NOTE_INDEX]";
 
     @Override
     public CommandResult execute(Model model) {
