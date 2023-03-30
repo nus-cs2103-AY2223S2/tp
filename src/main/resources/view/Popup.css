@@ -1,0 +1,48 @@
+* { /* ROOT COLOR VARIABLES */
+    -fx-bg: #3f3f46;
+    -fx-mctr: #e4e4e7;
+    -fx-ctr: #d4d4d8;
+    -fx-gry: #71717a;
+    -fx-rd: #f70d1a;
+    -fx-rsd: derive(-fx-bg, 40%);
+}
+
+.root-layout {
+    -fx-background-color: -fx-bg;
+}
+
+.cell_big_label {
+    -fx-font-family: "IBM Plex Sans Bold";
+    -fx-font-size: 20px;
+    -fx-text-fill: -fx-mctr;
+}
+
+.cell_small_label {
+    -fx-font-family: "IBM Plex Sans Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: -fx-ctr;
+}
+
+.list-container {
+    -fx-pref-width: 500;
+}
+
+.list-container .label {
+    -fx-font-family: "IBM Plex Sans Light";
+    -fx-font-size: 14px;
+    -fx-text-fill: -fx-ctr;
+}
+
+.tag-container {
+    -fx-spacing: 5;
+}
+
+.tag-container .label {
+    -fx-padding: 1 4 1 4;
+    -fx-background-color: #047857;
+    -fx-text-fill: -fx-ctr;
+    -fx-font-size: 12px;
+    -fx-font-family: "IBM Plex Sans Medium";
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}

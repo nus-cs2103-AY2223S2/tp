@@ -1,28 +1,31 @@
 package seedu.recipe.ui;
 
-import static seedu.recipe.model.util.IngredientUtil.ingredientKeyValuePairToString;
-
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
+import seedu.recipe.model.util.IngredientUtil;
 
 
 /**
  * Represents the UI component that pops up and displays the detailed view of a Recipe.
  */
 public class RecipePopup extends UiPart<Region> {
-    private static final String FXML = "RecipeListCard.fxml";
+    private static final String FXML = "RecipePopup.fxml";
 
     public final Recipe recipe;
 
@@ -40,13 +43,16 @@ public class RecipePopup extends UiPart<Region> {
     private Label portion;
 
     @FXML
-    private FlowPane tags;
+    private VBox ingredients;
 
     @FXML
-    private FlowPane ingredients;
+    private VBox steps;
 
     @FXML
-    private FlowPane steps;
+    private HBox tags;
+
+    @FXML
+    private HBox emptyTags;
 
     /**
      * Generates and returns the UI instance for this Recipe card.
@@ -72,22 +78,49 @@ public class RecipePopup extends UiPart<Region> {
                         .map(Object::toString)
                         .orElse("Portion was not added."));
 
+        // Ingredients
+        createIngredientList(recipe);
+
+        // Steps
+        createStepList(recipe);
+
         //Tags
         recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (recipe.getTags().size() == 0) {
+            emptyTags.getChildren().add(new Label("No Tags were added. Add some!"));
+        }
 
-        //Ingredients
-        recipe.getIngredients()
-            .forEach((ingredient, information) -> ingredients
-                .getChildren()
-                .add(
-                    new Label(ingredientKeyValuePairToString(ingredient, information))
-                )
+    }
+
+    private void createIngredientList(Recipe recipe) {
+        HashMap<Ingredient, IngredientInformation> ingredientTable = recipe.getIngredients();
+        if (ingredientTable.size() == 0) {
+            ingredients.getChildren().add(new Label("No Ingredients were added. Add some!"));
+            return;
+        }
+        ingredientTable.forEach((ingredient, information) -> {
+            String ingredientLabelText = IngredientUtil.ingredientKeyValuePairToString(ingredient, information);
+            Label ingredientLabel = new Label("• " + ingredientLabelText);
+            ingredientLabel.setWrapText(true);
+            ingredients.getChildren().add(ingredientLabel);
+        });
+    }
+
+    private void createStepList(Recipe recipe) {
+        List<Step> stepList = recipe.getSteps();
+        if (stepList.size() == 0) {
+            steps.getChildren().add(new Label("No steps were added. Add some!"));
+            return;
+        }
+        for (int i = 0; i < stepList.size(); i++) {
+            Label stepLabel = new Label((
+                i + 1) + ". " + stepList.get(i).toString()
             );
-        //Steps
-        recipe.getSteps()
-                .forEach(step -> steps.getChildren().add(new Label(step.toString())));
+            stepLabel.setWrapText(true);
+            steps.getChildren().add(stepLabel);
+        }
     }
 
     /**
@@ -98,9 +131,8 @@ public class RecipePopup extends UiPart<Region> {
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Recipe Details");
-        window.setMinWidth(500);
-        window.setMinHeight(300);
         VBox vbox = new VBox(getRoot());
+        vbox.setStyle("-fx-background-color: #3f3f46");
         Scene scene = new Scene(vbox);
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
