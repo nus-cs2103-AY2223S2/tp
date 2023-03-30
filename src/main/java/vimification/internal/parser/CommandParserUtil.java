@@ -41,14 +41,19 @@ public class CommandParserUtil {
             new LiteralArgumentFlag("-d", "--deadline");
     public static final LiteralArgumentFlag KEYWORD_FLAG =
             new LiteralArgumentFlag("-w", "--keyword");
+
     public static final LiteralArgumentFlag BEFORE_FLAG = new LiteralArgumentFlag(null, "--before");
     public static final LiteralArgumentFlag AFTER_FLAG = new LiteralArgumentFlag(null, "--after");
 
-    public static final LiteralArgumentFlag ADD_MACRO_FLAG = new LiteralArgumentFlag("-a", "--add");
+    public static final LiteralArgumentFlag ADD_MACRO_FLAG =
+            new LiteralArgumentFlag("-a", "--add");
     public static final LiteralArgumentFlag DELETE_MACRO_FLAG =
             new LiteralArgumentFlag("-d", "--delete");
     public static final ComposedArgumentFlag MACRO_FLAG =
             new ComposedArgumentFlag(ADD_MACRO_FLAG, DELETE_MACRO_FLAG);
+
+    public static final LiteralArgumentFlag OR_FLAG = new LiteralArgumentFlag("-o", "--or");
+    public static final LiteralArgumentFlag AND_FLAG = new LiteralArgumentFlag("-a", "--and");
 
     public static final ApplicativeParser<LiteralArgumentFlag> TITLE_FLAG_PARSER =
             parseFlag(TITLE_FLAG);
@@ -66,12 +71,20 @@ public class CommandParserUtil {
             parseFlag(BEFORE_FLAG);
     public static final ApplicativeParser<LiteralArgumentFlag> AFTER_FLAG_PARSER =
             parseFlag(AFTER_FLAG);
+
     public static final ApplicativeParser<ComposedArgumentFlag> MACRO_FLAG_PARSER =
             parseFlag(MACRO_FLAG);
 
+    public static final ApplicativeParser<LiteralArgumentFlag> OR_FLAG_PARSER =
+            parseFlag(OR_FLAG);
+    public static final ApplicativeParser<LiteralArgumentFlag> AND_FLAG_PARSER =
+            parseFlag(AND_FLAG);
+
+
     public static final ApplicativeParser<String> TITLE_PARSER = STRING_PARSER;
     public static final ApplicativeParser<String> LABEL_PARSER = STRING_PARSER;
-    public static final ApplicativeParser<Status> STATUS_PARSER = INT_PARSER.map(Status::fromInt);
+    public static final ApplicativeParser<Status> STATUS_PARSER =
+            INT_PARSER.map(Status::fromInt);
     public static final ApplicativeParser<Priority> PRIORITY_PARSER =
             INT_PARSER.map(Priority::fromInt);
     public static final ApplicativeParser<LocalDateTime> DEADLINE_PARSER = DATE_TIME_PARSER;
