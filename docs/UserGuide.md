@@ -20,6 +20,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - [Navigate Relatively](#navigate-relatively)
   - [Navigate Directly](#navigate-directly)
   - [Navigate Backwards](#navigate-backwards)
+  - [List Modules or Lectures or Videos](#list-modules-or-lectures-or-videos)
   - [List Modules](#list-modules)
   - [List Lectures of Modules](#list-lectures-of-modules)
   - [List Videos of Lectures](#list-videos-of-lectures)
@@ -30,9 +31,9 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - [Edit a Lecture](#edit-a-lecture)
   - [Edit a Video](#edit-a-video)
   - [Mark or Unmark a Video](#mark-or-unmark-a-video)
-  - [Delete a Module](#delete-a-module)
-  - [Delete a Lecture](#delete-a-lecture)
-  - [Delete a Video](#delete-a-video)
+  - [Delete Module](#delete-module)
+  - [Delete Lecture](#delete-lecture)
+  - [Delete Video](#delete-video)
   - [Tag a module](#tag-a-module)
   - [Tag a lecture](#tag-a-lecture)
   - [Tag a video](#tag-a-video)
@@ -69,6 +70,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 ### List
 
 - `list`: Lists all modules/lectures/videos based on context
+- `list /r`: Lists all modules from any context
 - `list [/mod {module_code}]`: Lists all the lectures in a specified module
 - `list [/lec {lecture_name}]`: Lists all the videos in a navigated module and specified lecture (:exclamation: only works if you are in `module` context)
 - `list [/mod {module_code} /lec {lecture_name}]`: Lists all the videos in a specified module and lecture
@@ -174,11 +176,17 @@ Format: `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`
 
 Format: `navb`
 
+### List Modules or Lectures or Videos
+
+> Root context: modules, Module context: lectures, Lecture context: videos
+
+Format: `list`
+
 ### List Modules
 
 > Lists all modules
 
-Format: `list`
+Format: `list /r`
 
 ### List Lectures of Modules
 
@@ -338,7 +346,7 @@ Examples:
 - `mark /module CS2040 /lecture 1 /video lecture_01-part-1`
 - `unmark /module CS2040 /lecture 1 /video lecture_01-part-1`
 
-### Delete Module(s)
+### Delete Module
 
 > Deletes the specified module(s) and all its embodied content from the application
 
@@ -353,7 +361,7 @@ Examples:
 - `delete CS2040`
 - `delete CS2040, ST2334`
 
-### Delete Lecture(s)
+### Delete Lecture
 
 > Deletes the specified lecture(s) and all its embodied content from the same specified module
 
@@ -369,7 +377,7 @@ Examples:
 - `delete lecture 1 /mod CS2040` deletes `lecture 1` lecture found in module `CS2040`
 - `delete lecture 1, lecture 2 /mod ST2334` deletes `lecture 1` and `lecture 2` lectures found in module `ST2334`
 
-### Delete Video(s)
+### Delete Video
 
 > Deletes the specified video(s) and all its embodied content from the same specified lecture of the specified module
 
