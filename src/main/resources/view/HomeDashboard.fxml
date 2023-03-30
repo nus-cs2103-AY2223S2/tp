@@ -84,6 +84,6 @@
             <Font size="26.0" />
          </font>
       </Text>
-      <StackPane fx:id="ordersPlaceholder1" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <StackPane fx:id="menuPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
    </children>
 </GridPane>
