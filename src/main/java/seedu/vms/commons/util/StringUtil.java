@@ -7,6 +7,10 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+
+import seedu.vms.model.IdData;
+import seedu.vms.model.appointment.Appointment;
 
 /**
  * Helper functions for handling strings.
@@ -119,4 +123,74 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Formats the error messages in a nice string
+     *
+     * @param errMessages
+     * @param formatInvalidMessage
+     * @return formatted Strings
+     */
+    public static String formatErrorMessage(List<String> errMessages, String formatInvalidMessage) {
+        final String formatConstrain = "- %s\n";
+
+        StringBuilder builder = new StringBuilder();
+
+        for (String message : errMessages) {
+            builder.append(String.format(formatConstrain, message));
+        }
+
+        return String.format(formatInvalidMessage, builder.toString());
+    }
+
+
+    /**
+     * Formats the given collection of appointment data.
+     */
+    public static String formatAppointmentListing(Collection<IdData<Appointment>> appointments) {
+        StringBuilder builder = new StringBuilder();
+
+        int count = 0;
+        for (IdData<Appointment> appointment : appointments) {
+            if (count % 25 == 0) {
+                builder.append("\n");
+            }
+            builder.append(String.format(" #%04d,", appointment.getId() + 1));
+            count++;
+        }
+
+        String message = builder.toString().stripTrailing();
+        return message.substring(0, message.length() - 1);
+    }
+
+
+    /**
+     * Wraps the text to the specified length.
+     */
+    public static String wrapText(String text, int wrapAt) {
+        String[] lines = text.split("[\n\r]");
+        StringBuilder builder = new StringBuilder();
+        for (String line : lines) {
+            builder.append(wrapLine(line, wrapAt));
+        }
+        return builder.toString().strip();
+    }
+
+
+    /**
+     * Wraps the line to the specified length. An additional new line will
+     * always be present at the end.
+     */
+    public static String wrapLine(String line, int wrapAt) {
+        int cur = 0;
+        StringBuilder builder = new StringBuilder();
+        while (cur < line.length()) {
+            int nextCur = Math.min(cur + wrapAt, line.length());
+            builder.append(line.substring(cur, nextCur));
+            builder.append("\n");
+            cur = nextCur;
+        }
+        return builder.toString();
+    }
+
 }

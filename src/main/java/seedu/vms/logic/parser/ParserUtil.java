@@ -32,6 +32,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_DATE = "Date is of an invalid format";
     public static final String MESSAGE_BLANK_ELEMENT = "Trailing or leading delimiters are not allowed";
+    public static final String MESSAGE_BLANK_ARGUMENT = "Argument is blank";
 
     public static final String KEYWORD_EMPTY_LIST = "<EMPTY>";
 
@@ -141,6 +142,21 @@ public class ParserUtil {
             return parseCustomDate(dateString);
         } catch (DateTimeParseException dateParseEx) {
             throw new ParseException(dateParseEx.getMessage());
+        }
+    }
+
+    /**
+     * Checks if given string is a valid datetime format
+     *
+     * @param dateString - the String to check.
+     * @return True if {@code dateString} is a valid datetime format
+     */
+    public static boolean isValidDateTimeFormat(String dateString) {
+        try {
+            parseDate(dateString);
+            return true;
+        } catch (ParseException e) {
+            return false;
         }
     }
 
@@ -310,6 +326,9 @@ public class ParserUtil {
     }
 
     private static List<String> splitArgs(String arg, String delimiter) throws ParseException {
+        if (arg.isBlank()) {
+            throw new ParseException(MESSAGE_BLANK_ARGUMENT);
+        }
         arg = " " + arg + " ";
         List<String> rawArgs = List.of(arg.split(delimiter));
         ArrayList<String> splitArgs = new ArrayList<>();
@@ -366,5 +385,13 @@ public class ParserUtil {
         }
 
         return groups;
+    }
+
+
+    /**
+     * Parses a String to a boolean.
+     */
+    public static boolean parseBoolean(String input) {
+        return Boolean.parseBoolean(input);
     }
 }

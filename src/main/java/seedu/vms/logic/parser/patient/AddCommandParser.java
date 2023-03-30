@@ -8,6 +8,7 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -37,8 +38,7 @@ public class AddCommandParser implements CommandParser {
      */
     @Override
     public AddCommand parse(ArgumentMultimap argsMap) throws ParseException {
-        if (!arePrefixesPresent(argsMap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DOB, PREFIX_BLOODTYPE)
-                || !argsMap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argsMap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DOB, PREFIX_BLOODTYPE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -48,6 +48,11 @@ public class AddCommandParser implements CommandParser {
         BloodType bloodType = ParserUtil.parseBloodType(argsMap.getValue(PREFIX_BLOODTYPE).get());
         Set<GroupName> allergies = ParserUtil.parseGroups(argsMap.getAllValues(PREFIX_ALLERGY));
         Set<GroupName> vaccines = ParserUtil.parseGroups(argsMap.getAllValues(PREFIX_VACCINATION));
+
+        Optional<String> errMessage = Patient.validateParams(Optional.of(allergies), Optional.of(vaccines));
+        if (errMessage.isPresent()) {
+            throw new ParseException(errMessage.get());
+        }
 
         Patient patient = new Patient(name, phone, dateOfBirth, bloodType, allergies, vaccines);
 
@@ -61,5 +66,4 @@ public class AddCommandParser implements CommandParser {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

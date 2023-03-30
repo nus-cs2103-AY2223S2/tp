@@ -15,7 +15,7 @@ import seedu.vms.model.GroupName;
 public class VaxType implements Comparable<VaxType> {
     public static final int LIMIT_GROUPS = 10;
     public static final int LIMIT_INGREDIENTS = 30;
-    public static final int LIMIT_HISTORY_REQ = 300;
+    public static final int LIMIT_HISTORY_REQ = 10;
 
     public static final String MESSAGE_GROUPS_CONSTRAINTS =
             String.format("Only a maximum of %d groups are allowed", LIMIT_GROUPS);
@@ -49,10 +49,10 @@ public class VaxType implements Comparable<VaxType> {
     public VaxType(GroupName name, HashSet<GroupName> groups,
                 Age minAge, Age maxAge,
                 HashSet<GroupName> ingredients, List<Requirement> historyReqs) {
-        AppUtil.checkArgument(isValidGroups(groups), MESSAGE_GROUPS_CONSTRAINTS);
+        AppUtil.checkArgument(AppUtil.isWithinLimit(groups, LIMIT_GROUPS), MESSAGE_GROUPS_CONSTRAINTS);
         AppUtil.checkArgument(isValidRange(minAge, maxAge), MESSAGE_AGE_CONSTRAINTS);
-        AppUtil.checkArgument(isValidIngredients(ingredients), MESSAGE_INGREDIENTS_CONSTRAINTS);
-        AppUtil.checkArgument(isValidHistoryReq(historyReqs), MESSAGE_HISTORY_REQ_CONSTRAINTS);
+        AppUtil.checkArgument(AppUtil.isWithinLimit(ingredients, LIMIT_INGREDIENTS), MESSAGE_INGREDIENTS_CONSTRAINTS);
+        AppUtil.checkArgument(AppUtil.isWithinLimit(historyReqs, LIMIT_HISTORY_REQ), MESSAGE_HISTORY_REQ_CONSTRAINTS);
 
         this.name = name;
         this.groups = groups;
@@ -62,22 +62,9 @@ public class VaxType implements Comparable<VaxType> {
         this.historyReqs = historyReqs;
     }
 
-    public static boolean isValidGroups(HashSet<GroupName> groups) {
-        return groups.size() <= LIMIT_GROUPS;
-    }
-
     public static boolean isValidRange(Age minAge, Age maxAge) {
         return maxAge.compareTo(minAge) >= 0;
     }
-
-    public static boolean isValidIngredients(HashSet<GroupName> ingredients) {
-        return ingredients.size() <= LIMIT_INGREDIENTS;
-    }
-
-    public static boolean isValidHistoryReq(List<Requirement> historyReqs) {
-        return historyReqs.size() <= LIMIT_HISTORY_REQ;
-    }
-
 
     public String getName() {
         return name.getName();

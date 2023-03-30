@@ -1,10 +1,12 @@
 package seedu.vms.logic;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -13,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.LogsCenter;
+import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
 import seedu.vms.logic.parser.ParseResult;
@@ -192,12 +195,18 @@ public class LogicManager implements Logic {
 
 
     @Override
-    public void loadManagers() {
-        new Thread(this::performLoadSequence).start();
+    public void loadManagers(BiConsumer<String, String> beyondDeathErrHandler) {
+        new Thread(() -> performLoadSequence(beyondDeathErrHandler)).start();
     }
 
 
-    private void performLoadSequence() {
+    private void performLoadSequence(BiConsumer<String, String> beyondDeathErrHandler) {
+        if (Path.of("data").toFile().isFile()) {
+            beyondDeathErrHandler.accept(
+                    "[data] already exists and is not a directory",
+                    "Close the application and remove [data] file before restarting.");
+        }
+
         ReadOnlyPatientManager patientManager = new PatientManager();
         try {
             patientManager = storage.readPatientManager();
@@ -244,6 +253,7 @@ public class LogicManager implements Logic {
                     "appointments", deathEx.getMessage()));
             sendLoadInfo(String.format(LOAD_EMPTY_FORMAT, "appointments"));
         }
+        validateAppointments(appointmentManager, patientManager, vaxTypeManager);
         model.setAppointmentManager(appointmentManager);
 
         KeywordManager keywordManager = new KeywordManager();
@@ -262,6 +272,18 @@ public class LogicManager implements Logic {
         model.setKeywordManager(keywordManager);
 
         isExecuting = false;
+    }
+
+
+    private void validateAppointments(AppointmentManager manager,
+                ReadOnlyPatientManager patientManager, VaxTypeManager vaxTypeManager) {
+        List<IdData<Appointment>> invalidAppointments = manager.validate(patientManager, vaxTypeManager);
+        if (invalidAppointments.isEmpty()) {
+            sendLoadInfo("Appointments validated");
+            return;
+        }
+        sendLoadWarning(String.format("The following appointments are invalid and have been deleted:%s",
+                StringUtil.formatAppointmentListing(invalidAppointments)));
     }
 
 

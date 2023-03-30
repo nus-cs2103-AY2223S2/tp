@@ -18,10 +18,12 @@ import seedu.vms.commons.core.index.Index;
 import seedu.vms.logic.commands.patient.EditCommand;
 import seedu.vms.logic.commands.patient.EditCommand.EditPatientDescriptor;
 import seedu.vms.logic.parser.ArgumentMultimap;
+import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.GroupName;
+import seedu.vms.model.patient.Patient;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -66,7 +68,17 @@ public class EditCommandParser implements CommandParser {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPatientDescriptor);
+        Optional<String> errMessage = Patient.validateParams(editPatientDescriptor.getAllergies(),
+                editPatientDescriptor.getVaccines());
+        if (errMessage.isPresent()) {
+            throw new ParseException(errMessage.get());
+        }
+
+        boolean isSet = argsMap.getValue(CliSyntax.PREFIX_SET)
+                .map(input -> ParserUtil.parseBoolean(input))
+                .orElse(false);
+
+        return new EditCommand(index, editPatientDescriptor, isSet);
     }
 
     /**

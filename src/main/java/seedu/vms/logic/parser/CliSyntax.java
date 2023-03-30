@@ -8,11 +8,12 @@ public class CliSyntax {
 
     /*
      * ========================================================================
-     * Vaccination
+     * Misc
      * ========================================================================
      */
 
     public static final Prefix PREFIX_FORCE = new Prefix("force");
+    public static final Prefix PREFIX_SET = new Prefix("set");
 
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n");
@@ -43,6 +44,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PATIENT = new Prefix("p");
     public static final Prefix PREFIX_STARTTIME = new Prefix("s");
     public static final Prefix PREFIX_ENDTIME = new Prefix("e");
+    public static final Prefix PREFIX_COMPLETED = new Prefix("c");
 
     /*
      * ========================================================================

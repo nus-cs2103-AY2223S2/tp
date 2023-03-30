@@ -19,6 +19,7 @@ import seedu.vms.commons.core.Messages;
 import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.index.Index;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.exceptions.LimitExceededException;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
@@ -50,7 +51,7 @@ public class AddCommand extends Command {
             + DELIMITER + PREFIX_PATIENT + " 1 "
             + DELIMITER + PREFIX_STARTTIME + " 2024-01-01 1330 "
             + DELIMITER + PREFIX_ENDTIME + " 2024-01-01 1400 "
-            + DELIMITER + PREFIX_VACCINATION + " Dose 1 (Mordena)\n";
+            + DELIMITER + PREFIX_VACCINATION + " Dose 1 (Moderna)\n";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists"
@@ -132,7 +133,11 @@ public class AddCommand extends Command {
 
         Appointment toAdd = new Appointment(patientId, startTime, endTime, toTake.getGroupName());
 
-        model.addAppointment(toAdd);
+        try {
+            model.addAppointment(toAdd);
+        } catch (LimitExceededException limitEx) {
+            throw new CommandException(String.format("Appointment: %s", limitEx.getMessage()));
+        }
         return new CommandMessage(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

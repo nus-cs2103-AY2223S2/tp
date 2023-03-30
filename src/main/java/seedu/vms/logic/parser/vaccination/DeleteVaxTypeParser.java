@@ -3,6 +3,7 @@ package seedu.vms.logic.parser.vaccination;
 import seedu.vms.commons.core.Retriever;
 import seedu.vms.logic.commands.vaccination.DeleteVaxTypeCommand;
 import seedu.vms.logic.parser.ArgumentMultimap;
+import seedu.vms.logic.parser.CliSyntax;
 import seedu.vms.logic.parser.CommandParser;
 import seedu.vms.logic.parser.ParserUtil;
 import seedu.vms.logic.parser.exceptions.ParseException;
@@ -15,7 +16,12 @@ import seedu.vms.model.vaccination.VaxType;
 public class DeleteVaxTypeParser implements CommandParser {
     public static final String COMMAND_WORD = "delete";
 
-    private static final String FIELD_NAME_VAX_NAME = "Vaccination name";
+    public static final String MESSAGE_USAGE = VaccinationParser.FEATURE_NAME + " " + COMMAND_WORD
+            + ": Deletes the specified vaccination\n"
+            + "Syntax: "
+            + "vaccination delete VACCINATION\n"
+            + "Example: "
+            + "vaccination delete INDEX::1";
 
 
     @Override
@@ -24,8 +30,12 @@ public class DeleteVaxTypeParser implements CommandParser {
         try {
             retriever = ParserUtil.parseVaxRetriever(argsMap.getPreamble());
         } catch (ParseException parseEx) {
-            throw new ParseException(String.format("%s: %s", FIELD_NAME_VAX_NAME, parseEx.getMessage()));
+            throw new ParseException(String.format("VACCINATION: %s\n%s", parseEx.getMessage(), MESSAGE_USAGE));
         }
-        return new DeleteVaxTypeCommand(retriever);
+        boolean isForce = argsMap
+                .getValue(CliSyntax.PREFIX_FORCE)
+                .map(input -> ParserUtil.parseBoolean(input))
+                .orElse(false);
+        return new DeleteVaxTypeCommand(retriever, isForce);
     }
 }

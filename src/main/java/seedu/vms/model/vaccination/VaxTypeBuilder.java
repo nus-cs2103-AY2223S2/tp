@@ -1,11 +1,14 @@
 package seedu.vms.model.vaccination;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.util.AppUtil;
+import seedu.vms.commons.util.StringUtil;
 import seedu.vms.model.Age;
 import seedu.vms.model.GroupName;
 
@@ -15,7 +18,6 @@ import seedu.vms.model.GroupName;
  */
 public class VaxTypeBuilder {
     private static final String FORMAT_IVE_MESSAGE = "The following vaccination constraints have been violated\n%s";
-    private static final String FORMAT_CONSTRAINTS = "- %s\n";
 
     private final Optional<GroupName> setName;
     private final Optional<HashSet<GroupName>> setGrps;
@@ -98,13 +100,15 @@ public class VaxTypeBuilder {
      *      to illegally set parameters.
      */
     public VaxType create(GroupName name) throws IllegalValueException {
-        return build(new VaxType(
-                name,
-                VaxType.DEFAULT_GROUP_SET,
-                VaxType.DEFAULT_MIN_AGE,
-                VaxType.DEFAULT_MAX_AGE,
-                VaxType.DEFAULT_INGREDIENTS,
-                VaxType.DEFAULT_HISTORY_REQS));
+        return build(
+                new VaxType(
+                        name,
+                        VaxType.DEFAULT_GROUP_SET,
+                        VaxType.DEFAULT_MIN_AGE,
+                        VaxType.DEFAULT_MAX_AGE,
+                        VaxType.DEFAULT_INGREDIENTS,
+                        VaxType.DEFAULT_HISTORY_REQS),
+                true);
     }
 
 
@@ -116,18 +120,29 @@ public class VaxTypeBuilder {
      * @throws IllegalValueException if the vaccination cannot be created due
      *      to illegally set parameters.
      */
-    public VaxType update(VaxType reference) throws IllegalValueException {
-        return build(reference);
+    public VaxType update(VaxType reference, boolean isSet) throws IllegalValueException {
+        return build(reference, isSet);
     }
 
 
-    private VaxType build(VaxType reference) throws IllegalValueException {
+    private VaxType build(VaxType reference, boolean isSet) throws IllegalValueException {
         GroupName name = setName.orElse(reference.getGroupName());
-        HashSet<GroupName> grps = setGrps.orElse(reference.getGroups());
         Age minAge = setMinAge.orElse(reference.getMinAge());
         Age maxAge = setMaxAge.orElse(reference.getMaxAge());
-        HashSet<GroupName> ingredients = setIngredients.orElse(reference.getIngredients());
-        List<Requirement> historyReqs = setHistoryReqs.orElse(reference.getHistoryReqs());
+
+        HashSet<GroupName> grps = reference.getGroups();
+        HashSet<GroupName> ingredients = reference.getIngredients();
+        List<Requirement> historyReqs = reference.getHistoryReqs();
+
+        if (isSet) {
+            setGrps.ifPresent(grpSet -> setAll(grps, grpSet));
+            setIngredients.ifPresent(ingredientSet -> setAll(ingredients, ingredientSet));
+            setHistoryReqs.ifPresent(historyReqSet -> setAll(historyReqs, historyReqSet));
+        } else {
+            setGrps.ifPresent(grpSet -> grps.addAll(grpSet));
+            setIngredients.ifPresent(ingredientSet -> ingredients.addAll(ingredientSet));
+            setHistoryReqs.ifPresent(historyReqSet -> historyReqs.addAll(historyReqSet));
+        }
 
         Optional<String> errMessage = validateParams(grps, minAge, maxAge, ingredients, historyReqs);
         if (errMessage.isPresent()) {
@@ -138,39 +153,34 @@ public class VaxTypeBuilder {
     }
 
 
+    private <T> void setAll(Collection<T> to, Collection<T> from) {
+        to.clear();
+        to.addAll(from);
+    }
+
+
     private Optional<String> validateParams(HashSet<GroupName> groups,
                 Age minAge, Age maxAge,
                 HashSet<GroupName> ingredients,
                 List<Requirement> historyReq) {
         ArrayList<String> errMessages = new ArrayList<>();
 
-        if (!VaxType.isValidGroups(groups)) {
+        if (!AppUtil.isWithinLimit(groups, VaxType.LIMIT_GROUPS)) {
             errMessages.add(VaxType.MESSAGE_GROUPS_CONSTRAINTS);
         }
         if (!VaxType.isValidRange(minAge, maxAge)) {
             errMessages.add(VaxType.MESSAGE_AGE_CONSTRAINTS);
         }
-        if (!VaxType.isValidIngredients(ingredients)) {
+        if (!AppUtil.isWithinLimit(ingredients, VaxType.LIMIT_INGREDIENTS)) {
             errMessages.add(VaxType.MESSAGE_INGREDIENTS_CONSTRAINTS);
         }
-        if (!VaxType.isValidHistoryReq(historyReq)) {
+        if (!AppUtil.isWithinLimit(historyReq, VaxType.LIMIT_HISTORY_REQ)) {
             errMessages.add(VaxType.MESSAGE_HISTORY_REQ_CONSTRAINTS);
         }
 
         if (errMessages.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.ofNullable(formatErrorMessage(errMessages));
-    }
-
-
-    private String formatErrorMessage(List<String> errMessages) {
-        StringBuilder builder = new StringBuilder();
-
-        for (String message : errMessages) {
-            builder.append(String.format(FORMAT_CONSTRAINTS, message));
-        }
-
-        return String.format(FORMAT_IVE_MESSAGE, builder.toString());
+        return Optional.ofNullable(StringUtil.formatErrorMessage(errMessages, FORMAT_IVE_MESSAGE));
     }
 }

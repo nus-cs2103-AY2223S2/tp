@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.exceptions.LimitExceededException;
 import seedu.vms.logic.CommandMessage;
 import seedu.vms.logic.commands.Command;
 import seedu.vms.logic.commands.exceptions.CommandException;
@@ -42,6 +43,8 @@ public class AddVaxTypeCommand extends Command {
             return new CommandMessage(String.format(MESSAGE_SUCCESS, change.toString()));
         } catch (IllegalValueException ive) {
             throw new CommandException(ive.getMessage(), ive);
+        } catch (LimitExceededException limitEx) {
+            throw new CommandException(String.format("Vaccination: %s", limitEx.getMessage()));
         }
     }
 }

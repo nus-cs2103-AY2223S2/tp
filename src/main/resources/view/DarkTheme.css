@@ -107,7 +107,7 @@
 .result-message-box .scroll-pane .content {
   -fx-background-color: transparent;
   -fx-border-color: transparent;
-  -fx-font-size: 11;
+  -fx-font-size: 12;
 }
 
 .result-message-death-color {
@@ -115,11 +115,11 @@
 }
 
 .result-message-error-color {
-  -fx-text-fill: #d22121;
+  -fx-text-fill: #bc5050;
 }
 
 .result-message-warning-color {
-  -fx-text-fill: #cfc018;
+  -fx-text-fill: #bcb750;
 }
 
 .result-message-info-color {
@@ -144,12 +144,22 @@
   -fx-font-size: 11;
 }
 
-.label.card-attribute-label {
-  -fx-font-size: 11;
+.label.card-attribute-label,
+.label.card-attribute-title-label {
   -fx-text-fill: #707070;
 }
 
-.detailed-view-card {
+.label.card-attribute-label {
+  -fx-font-size: 11;
+}
+
+.label.card-attribute-title-label {
+  -fx-font-size: 13;
+  -fx-font-weight: bold;
+}
+
+.detailed-view-card,
+.detailed-scroll-pane .viewport {
   -fx-background-color: -fx-color;
 }
 
@@ -179,4 +189,31 @@
 
 .label.tag.tag-color-red {
   -fx-background-color: #901515;
+}
+
+/* ===== Dialog pane ======================================================= */
+
+.dialog-pane {
+  -fx-background-color: #1d1d1d;
+}
+
+.dialog-pane > *.button-bar > *.container {
+  -fx-background-color: #1d1d1d;
+}
+
+.dialog-pane > *.label.content {
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-text-fill: white;
+}
+
+.dialog-pane:header *.header-panel {
+  -fx-background-color: derive(#1d1d1d, 25%);
+}
+
+.dialog-pane:header *.header-panel *.label {
+  -fx-font-size: 18px;
+  -fx-font-style: italic;
+  -fx-fill: white;
+  -fx-text-fill: white;
 }

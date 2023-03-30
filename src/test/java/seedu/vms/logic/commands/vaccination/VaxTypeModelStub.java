@@ -11,6 +11,7 @@ import seedu.vms.commons.core.GuiSettings;
 import seedu.vms.commons.core.Retriever;
 import seedu.vms.commons.core.ValueChange;
 import seedu.vms.commons.exceptions.IllegalValueException;
+import seedu.vms.commons.exceptions.UnexpectedChangeException;
 import seedu.vms.logic.parser.ParseResult;
 import seedu.vms.logic.parser.exceptions.ParseException;
 import seedu.vms.model.FilteredMapView;
@@ -72,11 +73,6 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public void deletePatient(int id) {
-        throw new UnsupportedOperationException("Unimplemented method 'deletePatient'");
-    }
-
-    @Override
     public void deleteAppointment(int id) {
         throw new UnsupportedOperationException("Unimplemented method 'deleteAppointment'");
     }
@@ -127,6 +123,11 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
+    public void setAppointmentFilters(Collection<Predicate<Appointment>> filters) {
+        throw new UnsupportedOperationException("Unimplemented method 'setAppointmentFilters'");
+    }
+
+    @Override
     public VaxTypeManager getVaxTypeManager() {
         throw new UnsupportedOperationException("Unimplemented method 'getVaxTypeManager'");
     }
@@ -150,7 +151,7 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public ValueChange<VaxType> deleteVaccination(GroupName vaxName) throws IllegalValueException {
+    public ValueChange<VaxType> deleteVaccination(GroupName vaxName, boolean isForced) throws IllegalValueException {
         VaxType oldValue = manager.remove(vaxName.toString())
                 .orElseThrow(() -> new IllegalValueException(String.format(
                         "Vaccination type does not exist: %s", vaxName.toString())));
@@ -218,7 +219,7 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public List<String> validatePatientChange(ValueChange<IdData<Patient>> change) {
+    public List<IdData<Appointment>> validatePatientChange(ValueChange<IdData<Patient>> change) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'validatePatientChange'");
     }
@@ -230,7 +231,7 @@ public class VaxTypeModelStub implements Model {
     }
 
     @Override
-    public List<String> validateVaccinationChange(ValueChange<VaxType> change) {
+    public List<IdData<Appointment>> validateVaccinationChange(ValueChange<VaxType> change) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'validateVaccinationChange'");
     }
@@ -287,6 +288,12 @@ public class VaxTypeModelStub implements Model {
     public ValueChange<VaxType> editVaccination(String name, VaxType newValue) throws IllegalValueException {
         ValueChange<VaxType> change = manager.set(name, newValue);
         return change;
+    }
+
+    @Override
+    public void deletePatient(int id, boolean isForce) throws UnexpectedChangeException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deletePatient'");
     }
 
 }

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import seedu.vms.commons.util.StringUtil;
 import seedu.vms.logic.CommandMessage;
 
 
@@ -39,18 +40,19 @@ public class ResultMessageBox extends UiPart<Region> {
 
 
     private void setMessage(String message) {
-        // listener block adapted from https://stackoverflow.com/a/25643696
+        String displayMessage = StringUtil.wrapText(message, 180);
+        // listener block adapted from https://stackoverflow.com/a/25643696 and modified
         messageArea.textProperty().addListener((ob, oldText, newText) -> {
             Platform.runLater(() -> {
                 Text text = new Text(newText);
                 text.setFont(messageArea.getFont());
-                double height = text.getLayoutBounds().getHeight()
+                double height = text.getLayoutBounds().getHeight() * 1.07
                         + messageArea.getPadding().getTop() + messageArea.getPadding().getBottom()
-                        + 16D;
+                        + 14D;
                 messageArea.setPrefHeight(height);
             });
         });
-        messageArea.setText(message);
+        messageArea.setText(displayMessage);
     }
 
 

@@ -16,17 +16,21 @@ import static seedu.vms.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.vms.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.vms.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.vms.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_ALLERGY_GLUTEN;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_ALLERGY_SEAFOOD;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_BLOODTYPE_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.vms.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_ALLERGY;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 import static seedu.vms.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.vms.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.vms.testutil.TypicalPatients.AMY;
 import static seedu.vms.testutil.TypicalPatients.BOB;
+
+import java.util.HashSet;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,6 +42,7 @@ import seedu.vms.model.patient.Name;
 import seedu.vms.model.patient.Patient;
 import seedu.vms.model.patient.Phone;
 import seedu.vms.testutil.PatientBuilder;
+import seedu.vms.testutil.TestUtil;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
@@ -133,10 +138,31 @@ public class AddCommandParserTest {
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + DOB_DESC_BOB + INVALID_BLOODTYPE_DESC,
                 Name.MESSAGE_CONSTRAINTS);
+    }
+    @Test
+    public void execute_groupOverLimit_exceptionThrown() {
+        HashSet<GroupName> allergyOverLimitSet = TestUtil.generateGroupSet(Patient.LIMIT_ALLERGIES + 1);
+        Optional<String> allergyErrorMessage = Patient.validateParams(Optional.of(allergyOverLimitSet),
+                Optional.empty());
+        assertParseFailure(parser,
+                NAME_DESC_AMY + PHONE_DESC_AMY + DOB_DESC_AMY + BLOODTYPE_DESC_AMY
+                        + TestUtil.toParseStrings(allergyOverLimitSet, PREFIX_ALLERGY),
+                allergyErrorMessage.get());
 
-        // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + DOB_DESC_BOB
-                + BLOODTYPE_DESC_BOB + ALLERGY_DESC_SEAFOOD + ALLERGY_DESC_GLUTEN,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        HashSet<GroupName> vaccineOverLimitSet = TestUtil.generateGroupSet(Patient.LIMIT_VACCINES + 1);
+        Optional<String> vaccineErrorMessage = Patient.validateParams(Optional.empty(),
+                Optional.of(vaccineOverLimitSet));
+        assertParseFailure(parser,
+                NAME_DESC_AMY + PHONE_DESC_AMY + DOB_DESC_AMY + BLOODTYPE_DESC_AMY
+                        + TestUtil.toParseStrings(vaccineOverLimitSet, PREFIX_VACCINATION),
+                vaccineErrorMessage.get());
+
+        Optional<String> bothErrorMessage = Patient.validateParams(Optional.of(allergyOverLimitSet),
+                Optional.of(vaccineOverLimitSet));
+        assertParseFailure(parser,
+                NAME_DESC_AMY + PHONE_DESC_AMY + DOB_DESC_AMY + BLOODTYPE_DESC_AMY
+                        + TestUtil.toParseStrings(vaccineOverLimitSet, PREFIX_VACCINATION)
+                        + TestUtil.toParseStrings(allergyOverLimitSet, PREFIX_ALLERGY),
+                bothErrorMessage.get());
     }
 }

@@ -90,4 +90,14 @@ public class UiManager implements Ui {
         System.exit(1);
     }
 
+
+    @Override
+    public void showErrorDialogAndShutdown(String mainMessage, String additionalMessage) {
+        Platform.runLater(() -> {
+            showAlertDialogAndWait(Alert.AlertType.ERROR, "ERROR", mainMessage, additionalMessage);
+            Platform.exit();
+            System.exit(1);
+        });
+    }
+
 }

@@ -123,25 +123,47 @@ How the parsing works:
 3. The resultant `CommandParser` parses the remaining user input to create a `Command` object, such as `AddCommand`, and optionally a `CommandMessage`. Both of which are encapsulated into a `ParseResult` and returned.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+The responsibilities of `Model` component,
 
-The `Model` component,
+* stores the runtime state of the other managers:
+  * `PatientManager`
+  * `VaxTypeManager`
+  * `AppointmentManager`
+  * `KeywordManager`
+* stores the objects to be displayed as a separate filtered map which is exposed to outsiders as an unmodifiable `ObservableMap<K, V>` where `V` is the type of object being stored (eg. `IdData<Patient>`) and `K` is the type of the key the stored object is mapped to (for `Patient` and `Appointment`, this is an `Integer` and as for `VaxType`, this is a `String`).
+* stores the object to be detailed as a `ObjectProperty<V>` where `V` is the type of the object to be displayed (eg. `IdData<Patient>`).
+* store a `UserPref` object that represents the user's preferences. This is exposed to the outside as a `ReadOnlyUserPref` object.
 
-* stores the patient manager data i.e., all `Patient` objects (which are contained in a `UniquePatientList` object).
-* stores the currently 'selected' `Patient` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Patient>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+### Patient component
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Vms`, which `Patient` references. This allows `Vms` to only require one `Tag` object per unique tag, instead of each `Patient` needing their own `Tag` objects.<br>
+<!-- TODO -->
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+### Vaccination component
 
-</div>
+Vaccinations are represented as `VaxType` objects and stored within `VaxTypeManager`.
+
+#### VaxType
+
+To represent a vaccination, `VaxType` contains the following attributes:
+
+* A name represented as a `GroupName` object.
+* A set of groups which the vaccination classifies under as a set of `GroupName` objects.
+* A minimum age as an `Age` object.
+* A maximum age as an `Age` object.
+* A set ingredients of the vaccination as a set of `GroupName` objects.
+* A list of requirements of vaccination groups that will have to be taken before this vaccination can be taken as a list of `Requirement` objects.
+
+#### VaxTypeManager
+
+On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of `VaxType`. It also ensures that there are at most 30 `VaxType` objects stored.
 
 ### Appointment component
+
 **API** : [`Appointment.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/Appointment.java)
 
 The `Appointment` component,
@@ -158,10 +180,11 @@ The `Appointment` component,
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-The `Storage` component,
-* can save both patient manager data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `VmsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+The `Storage` component is responsible for the reading and writing of the states of the different managers in `Model` to and from the hard disk. As shown in the diagram above, it inherits from `PatientManagerStorage`, `UserPrefsStorage`, `VaxTypeStorage`, `AppointmentStorage` and `KeywordStorage`. As such, it can be treated as either one (if only the functionality of only one is needed).
+
+### Keyword component
+
+<!-- TODO -->
 
 ### Common classes
 
@@ -173,7 +196,9 @@ Classes used by multiple components are in the `seedu.vms.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Adding a Patient
+### Patient
+
+#### Adding a Patient
 
 The **Adding a Patient** mechanism is facilitated by `VMS`. The Patient created is stored inside `PatientManager` object.
 
@@ -203,7 +228,7 @@ Given below is an sequence diagram that illustrates the **Adding a Patient** mec
 
 <img src="images/patient/AddPatientSequenceDiagram.png" width="550" />
 
-### Listing Patients
+#### Listing Patients
 
 The **Listing Patients** mechanism is facilitated by `VMS`. It will list all the Patients that are stored in the `PatientManager`.
 
@@ -213,7 +238,7 @@ Given below is an example usage scenario when a user enter `patient list` as a c
 
 1. The user enters the command in the `UI component`
 2. It will be passed to the `Logic component`
-3. `PatientParser` will invoke `ListCommand` directly without intemediary parser commands as `ListCommand` does not accept any argument.
+3. `PatientParser` will invoke `ListCommandParser`, which will create `ListCommand` directly as they do not use any args.
 4. When `ListCommand#execute` is called, `model#updateFilteredPatientList` will be called to update the list with the `PREDICATE_SHOW_ALL_PATIENTS` to display all Patients.
 
 The activity diagram below illustrates the workflow of patient `ListCommand` that is described above.
@@ -224,7 +249,7 @@ Given below is an sequence diagram that illustrates the **Listing Patients** mec
 
 <img src="images/patient/ListPatientsSequenceDiagram.png" width="550" />
 
-### Finding a Patient
+#### Finding a Patient
 
 The **Finding a Patient** mechanism is facilitated by `VMS`. It will find specific list of Patient objects from `PatientManager` inside `VMS` object with the keywords provided.
 
@@ -232,11 +257,11 @@ The user can choose to add flags when searching, to search for the specific attr
 
 ##### Execution Sequence
 
-Given below is an example usage scenario when a user enter `patient find --n John Doee --p 98765431 --d 2001-03-19 --b B+ --a catfur --v covax` as a command.
+Given below is an example usage scenario when a user enter `patient find --n John Deer --p 98765431 --d 2001-03-19 --b B+ --a catfur --v covax` as a command.
 
 1. The user enters the command in the `UI component`
 2. It will be passed to the `Logic component`
-3. When `FindCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing. It will throw a `ParseExeception` if there are no args present.
+3. When `FindCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing. It will throw a `ParseException` if there are no args present.
     1. `ParserUtil#parseName` will be called to create a Name object using "John Doe".
     2. `ParserUtil#parsePhone` will be called to create a Phone object using "98765432".
     3. `ParserUtil#parseDob` will be called to create a Dob object using "2001-03-19".
@@ -244,7 +269,7 @@ Given below is an example usage scenario when a user enter `patient find --n Joh
     5. `ParserUtil#parseGroups` will be called to create GroupName[] object named allergies using ["catfur", "pollen"].
     6. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
 4. After successfully parsing the args, the following will happen
-    1. `FindCommandParser` will create an FindPatientDescriptor using the new Name, PhoNameContainsKeywordsPredicatene, Dob, BloodType, Allergies `<GroupName>`, Vaccines `<GroupName>`.
+    1. `FindCommandParser` will create an FindPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies `<GroupName>`, Vaccines `<GroupName>`.
     1a. If none of the flags are present, it will take the entire arg as a `setNameSearch`.
     2. Then it will create an `FindCommand` with the new FindPatientDescriptor object.
 5. When `FindCommand#execute` is called, the following will happen.
@@ -263,17 +288,17 @@ Given below is an sequence diagram that illustrates the **Finding a Patient** me
 
 `FindCommandParser#parse` will call `String#trim` to trim the search request. If there is no additional flags, it will fall back to the default of using the search term to find Names.
 
-### Editing a Patient
+#### Editing a Patient
 
 The **Editing a Patient** mechanism is facilitated by `VMS`. It will read and modify a target Patient object from `PatientManger` inside `VMS` object.
 
 ##### Execution Sequence
 
-Given below is an example usage scenario when a user enter `patient edit 5 --n John Doee --p 98765431 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax` as a command.
+Given below is an example usage scenario when a user enter `patient edit 5 --n John Deer --p 98765431 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax` as a command.
 
 1. The user enters the command in the `UI component`
 2. It will be passed to the `Logic component`
-3. When `EditCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing. It will short circuit and throw a `ParseExeception` if 1. is not fulfilled.
+3. When `EditCommandParser` receives the information from `PatientParser`, it will invoke the following methods to help with the parsing. It will short circuit and throw a `ParseException` if 1. is not fulfilled.
     1. `ParserUtil#parseIndex` will be called to create a Index object using "5".
     2. `ParserUtil#parseName` will be called to create a Name object using "John Doe".
     3. `ParserUtil#parsePhone` will be called to create a Phone object using "98765432".
@@ -281,10 +306,10 @@ Given below is an example usage scenario when a user enter `patient edit 5 --n J
     5. `ParserUtil#parseBloodType` will be called to create a BloodType object using "B+".
     6. `ParserUtil#parseGroups` will be called to create GroupName[] object named allergies using ["catfur", "pollen"].
     7. `ParserUtil#parseGroups` will be called to create GroupName[] object named vaccines using ["covax"].
-4. After successfully parsing the args, `EditCommandParser` will create an editPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies<GroupName>, Vaccines<GroupName>. Then it will create an `EditCommand` with the new editPatientDescriptor object with the index.
+4. After successfully parsing the args, `EditCommandParser` will create an editPatientDescriptor using the new Name, Phone, Dob, BloodType, Allergies `<GroupName>`, Vaccines `<GroupName>`. Then it will create an `EditCommand` with the new editPatientDescriptor object with the index.
 5. When `EditCommand#execute` is called, the following will happen.
-    1. It will ensure that the Index given is within the list, else it will throw a CommandExeception
-    2. It will edit the patient by creating a new patient with the new values from the Parser as Patients are Immuttable
+    1. It will ensure that the Index given is within the list, else it will throw a CommandException
+    2. It will edit the patient by creating a new patient with the new values from the Parser as Patients are Immutable
     3. Then `model#setPatient` will be called to add the new Patient into the model.
     4. `EditCommand` will then return `CommandMessage` to indicate it's success.
 
@@ -296,7 +321,7 @@ Given below is an example usage scenario and how **Editing a Patient** mechanism
 
 <img src="images/patient/EditPatientSequenceDiagram.png" width="550" />
 
-### Deleting a Patient
+#### Deleting a Patient
 
 The **Deleting a Patients** mechanism is facilitated by `VMS`. It will delete specific Patient objects from `PatientManager` inside `VMS` object with using the index provided.
 
@@ -309,7 +334,7 @@ Given below is an example usage scenario when a user enter `patient delete 5` as
 <img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
 <img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
 
-### Clearing Patients
+#### Clearing Patients
 
 The **Clearing Patients** mechanism is facilitated by `VMS`. It will set the patient manager with a new empty patient manager, effectively clearing all the Patients
 
@@ -319,7 +344,7 @@ Given below is an example usage scenario when a user enter `patient clear` as a 
 
 1. The user enters the command in the `UI component`
 2. It will be passed to the `Logic component`
-3. `PatientParser` will invoke `ClearCommand` directly without intemediary parser commands as `ClearCommand` does not accept any argument.
+3. `PatientParser` will invoke `ClearCommand` which will create `ClearCommand` as they do not use any args.
 4. When `ClearCommand#execute` is called, `model#setPatientManager` will be called to update the list a new PatientManger() with no patients.
 
 The activity diagram below illustrates the workflow of patient `ClearCommand` that is described above.
@@ -330,7 +355,97 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 <img src="images/patient/ClearPatientSequenceDiagram.png" width="550" />
 
-### \[Proposed\] Undo/redo feature
+### Appointment
+
+#### Adding a Appointment
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/appointment/AddAppointmentActivityDiagram.png" width="550" />
+<img src="images/appointment/AddAppointmentSequenceDiagram.png" width="550" />
+-->
+
+#### Listing a Appointment
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/appointment/ListAppointmentActivityDiagram.png" width="550" />
+<img src="images/appointment/ListAppointmentSequenceDiagram.png" width="550" />
+-->
+
+#### Finding a Appointment
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/appointment/FindAppointmentActivityDiagram.png" width="550" />
+<img src="images/appointment/FindAppointmentSequenceDiagram.png" width="550" />
+-->
+
+### Vaccination
+
+#### Adding a VaxType
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/vaccination/AddVaxTypeActivityDiagram.png" width="550" />
+<img src="images/vaccination/AddVaxTypeSequenceDiagram.png" width="550" />
+-->
+
+#### Listing a VaxType
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/vaccination/ListVaxTypeActivityDiagram.png" width="550" />
+<img src="images/vaccination/ListVaxTypeSequenceDiagram.png" width="550" />
+-->
+
+#### Finding a VaxType
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/vaccination/FindVaxTypeActivityDiagram.png" width="550" />
+<img src="images/vaccination/FindVaxTypeSequenceDiagram.png" width="550" />
+-->
+
+### Keyword
+
+#### Adding a Keyword
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/keyword/AddKeywordActivityDiagram.png" width="550" />
+<img src="images/keyword/AddKeywordSequenceDiagram.png" width="550" />
+-->
+
+#### Listing a Keyword
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/keyword/ListKeywordActivityDiagram.png" width="550" />
+<img src="images/keyword/ListKeywordSequenceDiagram.png" width="550" />
+-->
+
+#### Finding a Keyword
+
+##### Execution Sequence
+
+<!-- TODO 
+<img src="images/keyword/FindKeywordActivityDiagram.png" width="550" />
+<img src="images/keyword/FindKeywordSequenceDiagram.png" width="550" />
+-->
+
+
+
+<!-- Below is given from AB3, commented out for ur own ref, our product does not have these features. -->
+<!-- ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -387,7 +502,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitVms()`. Since the `currentStatePointer` is not pointing at the end of the `patientManagerStateList`, all patient manager states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitVms()`. Since the `currentStatePointer` is not pointing at the end of the `patientManagerStateList`, all patient manager states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behaviour that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -412,7 +527,7 @@ _{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+_{Explain here how the data archiving feature will be implemented}_ -->
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -710,11 +825,13 @@ For all use cases below, the **System** is the `VMS` and the **Actor** is the `u
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to handle the following limits without any noticeable sluggishness in performance on typical usage:
-   1. 1000 patients.
+   1. 1000 patients, each with a limit of:
+      1. 100 allergies
+      2. 30 vaccines
    2. 30 vaccination types, each with a limit of:
       1. 10 groups
       2. 30 ingredients
-      3. 300 requirements
+      3. 10 requirements
    3. 1000 appointments.
 3. On top of 2, should also be able to handle these names up to 30 characters without any noticeable sluggishness in performance on typical usage:
    1. Allergy
@@ -786,6 +903,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. _{explain how to simulate a missing/corrupted file, and the expected behaviour}_
 
 1. _{ more test cases …​ }_
