@@ -13,11 +13,12 @@ public class HomeCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Back to homepage, listed all courses";
 
     public HomeCommand() {
-        super(false);
+        super(true);
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) {
+    public CommandResult execute(Model model) {
+        CurrentSelection currentSelection = model.getCurrentSelection();
         ShowAllListedPredicate.resetAllFilters(model, currentSelection);
         currentSelection.getSelectedGroup().unMarkAllSessions();
         currentSelection.getSelectedGroup().unMarkAllTasks();

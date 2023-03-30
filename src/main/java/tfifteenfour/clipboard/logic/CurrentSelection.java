@@ -176,4 +176,21 @@ public class CurrentSelection {
     public void emptySelectedStudent() {
         selectedStudent = emptyStudentBuilder();
     }
+
+    /**
+     * Creates a copy of this instance. Used for saving states for undo command.
+     * @return a copy of this instance.
+     */
+    public CurrentSelection copy() {
+        CurrentSelection copy = new CurrentSelection();
+
+        copy.selectCourse(this.selectedCourse.copy());
+        copy.selectGroup(this.selectedGroup.copy());
+        copy.selectStudent(this.selectedStudent.copy());
+        copy.selectSession(this.selectedSession);
+        copy.selectTask(this.selectedTask);
+        copy.setCurrentPage(this.currentPage);
+
+        return copy;
+    }
 }

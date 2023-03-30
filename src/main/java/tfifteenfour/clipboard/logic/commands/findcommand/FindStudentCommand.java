@@ -5,12 +5,10 @@ import static java.util.Objects.requireNonNull;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.predicates.*;
+import tfifteenfour.clipboard.logic.predicates.ShowAllListedPredicate;
+import tfifteenfour.clipboard.logic.predicates.StudentParticularsContainsPredicate;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.course.Group;
-import tfifteenfour.clipboard.model.student.Student;
-
-import java.util.function.Predicate;
 
 /**
  * Finds a student in a group.
@@ -52,10 +50,10 @@ public class FindStudentCommand extends FindCommand {
      * Executes the command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
-     * @param currentSelection The CurrentSelection object to get the selected group from.
      * @throws CommandException If an error occurs during command execution.
      */
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Group selectedGroup = currentSelection.getSelectedGroup();
 

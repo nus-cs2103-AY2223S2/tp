@@ -4,13 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
-import tfifteenfour.clipboard.logic.commands.findcommand.FindCourseCommand;
-import tfifteenfour.clipboard.logic.commands.findcommand.FindStudentCommand;
-import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
 import tfifteenfour.clipboard.model.student.Student;
-
-import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.
@@ -26,10 +20,12 @@ public class StudentParticularsContainsPredicate implements Predicate<Student> {
     public boolean test(Student student) {
         if (isValidStudentIdKeyword(keywords)) {
             return keywords.stream()
-                    .anyMatch(keyword -> student.getStudentId().toString().toLowerCase().contains(keyword.toLowerCase()));
+                    .anyMatch(keyword -> student.getStudentId()
+                    .toString().toLowerCase().contains(keyword.toLowerCase()));
         } else {
             return keywords.stream()
-                    .anyMatch(keyword -> student.getName().toString().toLowerCase().contains(keyword.toLowerCase()));
+                    .anyMatch(keyword -> student.getName().toString()
+                    .toLowerCase().contains(keyword.toLowerCase()));
         }
     }
 
@@ -43,7 +39,7 @@ public class StudentParticularsContainsPredicate implements Predicate<Student> {
         if (firstKeyword.length() < 7) {
             return false;
         }
-        return isNumeric(firstKeyword.substring(1,7));
+        return isNumeric(firstKeyword.substring(1, 7));
     }
 
     public boolean isNumeric(String string) {

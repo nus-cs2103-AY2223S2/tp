@@ -2,7 +2,6 @@ package tfifteenfour.clipboard.logic.commands.findcommand;
 
 import static java.util.Objects.requireNonNull;
 
-import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.predicates.CourseNameContainsPredicate;
@@ -39,10 +38,10 @@ public class FindCourseCommand extends FindCommand {
     /**
      * Executes the command and returns the result message.
      * @param model {@code Model} which the command should operate on.
-     * @param currentSelection of the {@code LogicManager}.
      * @throws CommandException If an error occurs during command execution.
      */
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Roster roster = model.getRoster();
         roster.updateFilteredCourses(predicate);

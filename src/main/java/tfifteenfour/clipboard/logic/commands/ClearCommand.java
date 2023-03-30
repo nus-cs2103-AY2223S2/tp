@@ -24,12 +24,13 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_SUCCESS = "%1$s of %2$s have been cleared!";
 
     public ClearCommand() {
-        super(false);
+        super(true);
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         PageType currentPage = currentSelection.getCurrentPage();
         Course selectedCourse = currentSelection.getSelectedCourse();

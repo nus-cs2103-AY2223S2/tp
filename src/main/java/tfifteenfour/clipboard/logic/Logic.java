@@ -6,6 +6,7 @@ import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
+import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
 
 /**
@@ -43,5 +44,5 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    CurrentSelection getCurrentSelection();
+    Model getModel();
 }
