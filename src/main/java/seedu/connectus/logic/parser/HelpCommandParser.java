@@ -1,6 +1,6 @@
 package seedu.connectus.logic.parser;
 
-import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT_HELP;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,7 +55,7 @@ public class HelpCommandParser implements Parser<HelpCommand> {
 
         String commandUsage = COMMAND_USAGE_MESSAGES.get(args.trim());
         if (commandUsage == null) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT_HELP, HelpCommand.MESSAGE_USAGE));
         }
 
         return new HelpCommand(commandUsage);

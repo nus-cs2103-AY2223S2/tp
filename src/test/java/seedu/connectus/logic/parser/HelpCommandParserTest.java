@@ -1,6 +1,6 @@
 package seedu.connectus.logic.parser;
 
-import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT_HELP;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_COMMAND_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADD;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADDT;
@@ -76,7 +76,7 @@ public class HelpCommandParserTest {
     @Test
     public void parseHelp_invalidArgs_throwsParseException() {
         assertParseFailure(parser, INVALID_COMMAND_DESC,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT_HELP, HelpCommand.MESSAGE_USAGE));
     }
 
     @Test
