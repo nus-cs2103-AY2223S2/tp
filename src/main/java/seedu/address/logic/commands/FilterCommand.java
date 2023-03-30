@@ -20,29 +20,19 @@ public class FilterCommand extends Command {
             + "and the desired threshold value (0 to 100)\n"
             + "For example, 'filter all performance 40' is a command you can type";
 
-    private static String group;
     private static String metric;
     private static int threshold;
 
     /**
      * Constructor for a FilterCommand
-     * @param group the relevant group to be filtered
      * @param metric the metric to be used for sorting
      * @param threshold the threshold value as the cutoff
      */
-    public FilterCommand(String group, String metric, int threshold) {
-        this.group = group;
+    public FilterCommand(String metric, int threshold) {
         this.metric = metric;
         this.threshold = threshold;
     }
 
-    /**
-     * Getter method for the group
-     * @return the group input by the user
-     */
-    private String getGroup() {
-        return this.group;
-    }
 
     /**
      * Getter method for the metric

@@ -256,4 +256,10 @@ public interface Model {
      * @param note The note to add
      */
     void addNoteToConsultation(Note note, String nameOfEvent);
+
+    void updateSortTutorialPersonList(String metric, boolean isIncreasing);
+
+    void updateSortLabPersonList(String metric, boolean isIncreasing);
+
+    void updateSortConsultationPersonList(String metric, boolean isIncreasing);
 }

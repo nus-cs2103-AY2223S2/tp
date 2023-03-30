@@ -428,21 +428,20 @@ Examples:
 
 ### Filter students in recurring events: `Filter Students`
 
-Filters the students in recurring events depending on the metric specified by the TA. The metric can either be by a cut-off participation level (out of 100%) or minimum urgency level (out of 100). If the TA wishes to filter all students under his supervision (regardless of type), he can specify type to be “all”.
+Filters all students depending on the metric specified by the TA. The metric can either be by a cut-off participation level (out of 100%) or minimum urgency level (out of 100).
 
 The filtered list should be a secondary list and does not replace the existing, non-sorted one. Additional features to replace the existing one may be added in the future if deemed useful.
 
-Format: `filter [TYPE] [METRIC] [THRESHOLD]`
-For the [group], it can be only lab, tutorial, consultation, or all.
+Format: `filter [METRIC] [THRESHOLD]`
 For the [metric], it can be only performance or urgency.
 The [threshold] value must be an integer between 0 to 100 (inclusive).
 
 Examples:
 
-* `filter lab performance 60 `
-* `filter tutorial performance 50`
-* `filter consultation urgency 20`
-* `filter all urgency 90`
+* `filter performance 60 `
+* `filter performance 50`
+* `filter urgency 20`
+* `filter urgency 90`
 
 --------------------------------------------------------------------
 ## Help Features
