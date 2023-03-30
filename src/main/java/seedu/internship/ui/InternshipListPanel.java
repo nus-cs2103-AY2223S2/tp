@@ -34,10 +34,14 @@ public class InternshipListPanel extends UiPart<Region> {
         internshipListView.setCellFactory(listView -> new InternshipListViewCell());
         model = selectedModel;
         mainWindow = selectedMainWindow;
+        // @@author potty10-reused
+        // Reused from https://stackoverflow.com/a/34646172
+        // with minor modifications
         internshipListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             model.updateSelectedInternship(newValue);
             mainWindow.updateRightPanel();
         });
+        // @@author
     }
 
     /**
