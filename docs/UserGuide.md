@@ -6,7 +6,9 @@ title: User Guide
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+
 ## **Introducing InternBuddy**
 
 InternBuddy is a desktop application for university undergraduates to manage their internship applications.
@@ -22,14 +24,14 @@ InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux
   <img width="400" height="255" src="images/internbuddy-computer.png">
 </p>
 
+<div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ## **About the User Guide**
 
 ### Objectives of the User Guide
-This user guide aims to provide comprehensive instructions for users to learn how to use InternBuddy,
-providing details on the installation process and features provided by InternBuddy. It also contains information
-for advanced users to customise the usage of InternBuddy for a tailored user experience.
+This user guide aims to provide comprehensive instructions for you to learn how to use InternBuddy,
+providing details on the installation process and features provided by InternBuddy. If you are a more
+advanced user of InternBuddy, this user guide would help to further customise your experience.
 
 ### Using the User Guide
 This uses guide uses a set of formatting standards and visuals to better communicate information.
@@ -66,34 +68,36 @@ Keyboard keys are indicated using rounded buttons.
 
 <button>Ctrl</button> <button>Alt</button> <button>Space</button> <button>Enter</button> <button>&uarr;</button>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 
 ## **Quick Start**
 
 1. Ensure you have Java `11` or above installed in your computer
-<div markdown="span" class="alert alert-primary">
-
-:information_source: **Info:** If you are unsure of whether you have Java 11 installed, or need help installing
-it, you can refer to <a href="#appendix-a-installing-java-11">Appendix A</a>.
-
-</div>
+   <br/><br/>
+   <div markdown="span" class="alert alert-primary">
+   :information_source: **Info:** If you are unsure of whether you have Java 11 installed, or need help installing
+   it, you can refer to <a href="#appendix-a-installing-java-11">Appendix A</a>.
+   </div>
 
 2. Download the latest `internbuddy.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-3/tp/releases).
 
 3. Copy the file `internbuddy.jar` to the folder you want to use as the _home folder_ for InternBuddy.
-<div markdown="span" class="alert alert-primary">
-
-:information_source: **Info:** The home folder is the folder where you will navigate to in order to launch
-InternBuddy, and it is where your InternBuddy data file will be stored in.
-
-</div>
+   <br/><br/>
+   <div markdown="span" class="alert alert-primary">
+   :information_source: **Info:** The home folder is the folder where you will navigate to in order to launch
+   InternBuddy, and it is where your InternBuddy data file will be stored in.
+   </div>
+   <br/>
 
 4. Double-click on the file `internbuddy.jar` to launch InternBuddy. A GUI similar to Figure 1 should
-   appear in a few seconds. Note how the app contains some sample data.<br/><br/>
-   ![Ui](images/Ui.png)
+   appear in a few seconds. Note how the app contains some sample data.<br/>
+   <p align="center">
+    <img src="images/Ui.png" width="450" />
+   </p>
+   
    <p style="text-align: center;">Figure 1: InternBuddy's GUI</p>
-
-<br/>
+    <div style="page-break-after: always;"></div>
 
 5. You can interact with InternBuddy by typing into the box with the text `Enter command here...`, then pressing
    <button>Enter</button> to execute your command. For example, typing help and pressing <button>Enter</button> will open
@@ -102,18 +106,24 @@ InternBuddy, and it is where your InternBuddy data file will be stored in.
 
 6. Here are some other example commands you can try:
 
-    - `list`: List all internship entries stored in InternBuddy
-    - `add n/Food Panda r/Web Developer s/Applied d/2023-04-01`: Adds a new internship entry into InternBuddy.
-    - `delete 3` : Deletes the 3rd internship entry of the current list displayed in InternBuddy.
+    - `list`: List all internships stored in InternBuddy
+    - `add n/Food Panda r/Web Developer s/Applied d/2023-04-01`: Adds a new internship into InternBuddy.
+    - `delete 3` : Deletes the 3rd internship of the current list displayed in InternBuddy.
     - `exit` : Exits InternBuddy.
 
 
 Do refer to [Features](#features) below for a comprehensive list of supported features and their associated details.
 
---------------------------------------------------------------------------------------------------------------------
-## **Exploring the Graphical User Interface**
+<div style="page-break-after: always;"></div>
 
-![Graphical User Interface](images/gui-markup.png)
+## **Exploring the Graphical User Interface**
+Figure 2 provides a visual representation of the different parts of InternBuddy's GUI, while
+Table 1 explains what each part is used for.
+
+<p align="center">
+  <img src="images/gui-markup.png" width="600" />
+</p>
+
 <p style="text-align: center;">Figure 2: Different parts of InternBuddy's GUI</p>
 <br/>
 
@@ -125,14 +135,8 @@ Do refer to [Features](#features) below for a comprehensive list of supported fe
 | View Panel      | Displays either the welcome message or detailed information of a specified internship entry. |
 | Location Bar    | States where your InternBuddy data file is located on your computer.                         |
 
-<p style="text-align: center;">Figure 3: Explanation of the different parts of InternBuddy's GUI</p>
+<p style="text-align: center;">Table 1: Explanation of the different parts of InternBuddy's GUI</p>
 
-<div markdown="span" class="alert alert-primary">
-
-:information_source: You can click on any entry in the List Panel to display more information about it.
-Note that commands in InternBuddy do not update the selection in the List Panel, where you have to manually
-click on it to change your selection.
-</div>
 
 <div markdown="span" class="alert alert-success">
 
@@ -140,8 +144,24 @@ click on it to change your selection.
 
 </div>
 
+<div markdown="span" class="alert alert-success">
 
---------------------------------------------------------------------------------------------------------------------
+:bulb: **Tip:**  You can left-click on any of the entries displayed in the List Panel to view more information
+about an entry. Your selected entry will be highlighted blue. You can also use <button>&uarr;</button>
+and <button>&darr;</button> to change your selected entry.
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** Commands in InternBuddy will not change your selected entry in the
+List Panel. To change your selected entry, you will have to manually change it either via
+left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
+</div>
+
+<div style="page-break-after: always;"></div>
+
+
 ## **Command Information**
 
 ### Notes about Commands and Fields
@@ -171,7 +191,7 @@ click on it to change your selection.
   e.g. If the command format is `help`, typing in `help 123` will cause your input to be interpreted as `help`.
 
 
-### Descriptions, Prefixes and Constraints for Fields
+### Descriptions, Prefixes and Rules for Fields
 In InternBuddy's commands, we refer to a range of fields that you can replace with values to input information that
 is customised to your internship applications.
 
@@ -179,21 +199,22 @@ There are 2 important things that you should note:
 1. Most fields have associated **prefixes**. Prefixes are convenient shorthands that allow you to easily identify
    which field does a value belong to. For example, in `add n/Apple`, the value `Apple` is associated with the
    field `COMPANY_NAME` since the `n/` prefix is used.
-2. There are **constraints** to the values that you can replace fields with. The constraints differ based on
-   the fields. If you do not adhere to these constraints in your input, your input will be valid and an error
-   message will be shown in the Results Display when you type the input in and press <button>Enter</button>.
+2. There are **rules** that you must adhere to when replacing fields with values. The rules differ based on
+   the fields. If you do not adhere to these rules, your input will be invalid and an error message will be shown
+   in the [Results Display](#exploring-the-graphical-user-interface) when you type the input in and
+   press <button>Enter</button>.
 
 
-Figure 4 provides a summary of the fields with their descriptions, prefixes and constraints.
+Figure 4 provides a summary of the fields with their descriptions, prefixes and rules.
 
 | Field          | Description                                                                    | Prefix | Constraints                                                                                                                                             |
 |----------------|--------------------------------------------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `COMPANY_NAME` | The name of the company                                                        | `n/`   | Cannot be blank and must be at most 50 characters                                                                                                       |
-| `ROLE`         | The role that you applied for                                                  | `r/`   | Cannot be blank and must be at most 50 characters                                                                                                       |
+| `COMPANY_NAME` | The name of the company                                                        | `n/`   | Cannot be blank and must be at most 50 characters.                                                                                                      |
+| `ROLE`         | The role that you applied for                                                  | `r/`   | Cannot be blank and must be at most 50 characters.                                                                                                      |
 | `STATUS`       | The status of the internship application                                       | `s/`   | Must be one of the following: `New`, `Applied`, `Assessment`, `Interview`, `Offered`, `Accepted`, `Rejected`. Note that this is **not** case-sensitive. |
-| `DATE`         | The date associated with the internship application                            | `d/`   | Must be a valid date in the format `YYYY-MM-DD `                                                                                                        |
-| `COMMENT`      | A comment that you can make on an internship application                       | `c/`   | Cannot be blank                                                                                                                                         |
-| `TAG`          | A label that you can give to an internship application                         | `t/`   | Cannot be blank and must be at most 30 characters                                                                                                       |
+| `DATE`         | The date associated with the internship application                            | `d/`   | Must be a valid date in the format `YYYY-MM-DD`.                                                                                                        |
+| `COMMENT`      | A comment that you can make on an internship application                       | `c/`   | Cannot be blank.                                                                                                                                        |
+| `TAG`          | A label that you can give to an internship application                         | `t/`   | Cannot be blank and must be at most 30 characters.                                                                                                      |
 | `INDEX`        | The index number of the internship entry as displayed in the List Panel        | -      | A positive integer that is smaller than or equal to the largest index number shown in the List Panel. Note that 0 is not a positive integer.            |
 
 <p style="text-align: center;">Figure 4: Fields with their descriptions, prefixes and constraints</p>
@@ -204,15 +225,15 @@ of the following values: `New`, `Applied`, `Assessment`, `Interview`, `Offered`,
 Note that this is not case-sensitive. Figure 5 explains the meaning of each status.
 
 
-| `STATUS` | Description                                                                                                                       |
-|-------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| `New`             | You have recently saw this internship opportunity and would like to record it in InternBuddy. Also, you have yet to apply for it. |
-| `Applied`         | You have applied for this internship opportunity and you are currently waiting for the company's response.                        |
-| `Assessment`      | You are currently in the technical assessment stage of the application process.                                                   |
-| `Interview`       | You are currently in the behavioral interview stage of the application process.                                                   |
-| `Offered`         | You have been offered the internship opportunity.                                                                                 |
-| `Accepted`        | You have accepted the internship opportunity.                                                                                     |
-| `Rejected`        | You have either been rejected by the company, or that you have rejected the internshop offer.                                     |
+| `STATUS`     | Description                                                                                                                       |
+|--------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| `New`        | You have recently saw this internship opportunity and would like to record it in InternBuddy. Also, you have yet to apply for it. |
+| `Applied`    | You have applied for this internship opportunity and you are currently waiting for the company's response.                        |
+| `Assessment` | You are currently in the technical assessment stage of the application process.                                                   |
+| `Interview`  | You are currently in the behavioral interview stage of the application process.                                                   |
+| `Offered`    | You have been offered the internship opportunity.                                                                                 |
+| `Accepted`   | You have accepted the internship opportunity.                                                                                     |
+| `Rejected`   | You have either been rejected by the company, or that you have rejected the internship offer.                                     |
 
 <p style="text-align: center;">Figure 5: Description of statuses</p>
 
@@ -233,16 +254,16 @@ documents the meaning of `DATE` with respect to each `STATUS` value.
 <p style="text-align: center;">Figure 6: Description of dates</p>
 
 
-### Duplicate internships
+### Duplicate Internships
 InternBuddy does not allow for the storage of duplicate internships. Should you enter a command that attempts to store 
 a duplicate internship, InternBuddy will remind you that the internship already exists.
 
-A duplicate internship is defined as 2 internships that have the matching `COMPANY_NAME`, `STATUS`, `DATE` and `ROLE`. The comparison 
-will be case-insensitive. Please refer to the examples below for further explanation.
+2 internships are considered to be duplicates if they have matching `COMPANY_NAME`, `STATUS`,`ROLE` **and**
+`DATE`. The comparison is case-insensitive.
 
-In the table below, Internship A and Internship B will be considered as duplicate internships, because they have the same `COMPANY_NAME`, `STATUS`, `DATE` and `ROLE`
-even though the capitalization of certain fields may be different.
-
+In Figure XX, internships A and B are considered as duplicate internships, because they have the same
+`COMPANY_NAME`, `STATUS`, `DATE` and `ROLE`. Note how the capitalisation differences in `COMPANY_NAME`
+and `ROLE` do not affect the comparison.
 
 | `Field`        | Internship A      | Internship B      |
 |----------------|-------------------|-------------------|
@@ -253,23 +274,39 @@ even though the capitalization of certain fields may be different.
 | `COMMENT`      | NA                | NA                |
 | `TAGS`         | C++               | Java              |
 
-Meanwhile, Internship C and Internship D are not considered duplicate internships, because they have different `COMPANY_NAME`.
+<p style="text-align: center;">Figure 7: Duplicate internships</p>
+
+<div style="page-break-after: always;"></div>
+
+Meanwhile, as shown in Figure XX, internships C and Internship D are not considered as duplicate
+internships, because they have different values for `COMPANY_NAME`.
 
 
-| `field`    | Internship C      | Internship D     |
-|----------------|-------------------|------------------|
-| `COMPANY_NAME` | Apple             | Apple Inc        |
+| `Field`        | Internship C      | Internship D      |
+|----------------|-------------------|-------------------|
+| `COMPANY_NAME` | Apple             | Apple Inc         |
 | `ROLE`         | Frontend Engineer | frontend engineer |
-| `STATUS`       | New               | New              |
-| `DATE`         | 2023-02-02        | 2023-02-02       |
-| `COMMENT`      | NA                | NA               |
-| `TAGS`         | Java              | Java             |
+| `STATUS`       | New               | New               |
+| `DATE`         | 2023-02-02        | 2023-02-02        |
+| `COMMENT`      | NA                | NA                |
+| `TAGS`         | Java              | Java              |
 
---------------------------------------------------------------------------------------------------------------------
+<p style="text-align: center;">Figure 8: Non-duplicate internships</p>
+
+<div style="page-break-after: always;"></div>
+
+
 ## **Features**
 
 ### Listing all Internships : `list`
 Shows the list of all internship entries that you have stored in InternBuddy.
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** `list` will always reset the
+[View Panel](#exploring-the-graphical-user-interface) to display the welcome message.
+</div>
+
 
 Format: `list`
 
