@@ -267,7 +267,10 @@ Examples:
   *Above is a situation where some of the student's information is not given!
 * `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 imgS/C:// eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T `
 
-Imagesource will be displayed in decreasing priority: <br>
+**Expected Outcome:**
+* `New student added:`
+
+Image source will be displayed in decreasing priority: <br>
 * Absolute or relative file path
 * images/<STUDENT_NAME><STUDENT_CLASS>.png
 * Default Image (?) <br>
@@ -293,7 +296,10 @@ Format : `attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`
 
 Examples:
 * `student 3A attendance in/25 att/T`
-* `student 3A attendance in/25 att/25/02/2023
+* `student 3A attendance in/25 att/25/02/2023`
+
+**Expected Outcome:**
+* `Attendance marked as present`
 
 Date is in DD/MM/YYYY format <br>
 This date can be set to:
@@ -313,14 +319,17 @@ This date can be set to:
 
 Adds a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
 
-Duplicate test/homework  is checked through having the same name
+You cannot have different test/homework with the same name
 
 Format: `grade in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>] [score/<score> deadline/<DEADLINE(DD/MM/YYYY)> weightage/<WEIGHTAGE>] [hwdone/<HOMEWORK_DONE(true/false)>]`
 
 Examples:
-* `student 3A grade 25 test/Mid-Terms`
 * `student 1A grade in/13 test/CA1 score/75 weightage/10`
-* `student 1A grade in/13 hww/homework1 score/75 deadline/25/04/2023 weightage/10 hwdone/true`<br><br>
+* `student 1A grade in/13 hw/homework1 score/75 deadline/25/04/2023 weightage/10 hwdone/true`<br><br>
+
+**Expected Outcome:**
+* `New test added:`
+* `New homework added:`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 1. Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.
@@ -346,8 +355,10 @@ Duplicate test/homework  is checked through having the same name
 Format: `gradedelete in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>]`
 
 Examples:
-* `student 3A gradedelete 25 test/Mid-Terms`
 * `student 1A gradedelete in/13 test/CA1`
+
+**Expected Outcome:**
+* `Test deleted successfully`
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -413,12 +424,8 @@ Examples:
 * `student 1A edit in/03 cca/badminton ageS/23`
 
 **Expected Outcome:**
-* Edited student: TanAhCow; Student Class: 1A; Index Number: 03; Sex: M;
-* Student Age: Insert student age here!; Image Path: Insert student image here!;
-* Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
-* Edited student: TanAhCow; Student Class: 1B; Index Number: 03; Sex: M;
-* Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!;
-* Student Phone: Insert student phone number here!; CCA: badminton
+* Edited student: TanAhCow; Student Class: 1A; Index Number: 03; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
+* Edited student: TanAhCow; Student Class: 1B; Index Number: 03; Sex: M; Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: badminton
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -461,8 +468,9 @@ Examples:
 * `student 1B delete in/23`
 
 **Expected Outcome:**
-Deleted Student: TanAhCow; Student Class: 1A; Index Number: 14; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
-Deleted Student: TanAhCow; Student Class: 1B; Index Number: 23; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+
+* Deleted Student: TanAhCow; Student Class: 1A; Index Number: 14; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+* Deleted Student: TanAhCow; Student Class: 1B; Index Number: 23; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
 
 [Back to Table of Contents](#table-of-contents)
 
