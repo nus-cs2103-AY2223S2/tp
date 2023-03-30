@@ -58,7 +58,7 @@ public class LogicManager implements Logic {
         FilteredList<Task> filteredTaskList = new FilteredList<>(observableTaskList);
         SortedList<Task> sortedTaskList = new SortedList<>(filteredTaskList);
 
-        logicTaskList.setInternalList(sortedTaskList);
+        logicTaskList.setInternalList(observableTaskList);
         this.logicTaskList = logicTaskList;
         this.macroMap = macroMap;
         this.commandStack = commandStack;

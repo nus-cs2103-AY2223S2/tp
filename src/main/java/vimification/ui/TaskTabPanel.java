@@ -33,10 +33,10 @@ public class TaskTabPanel extends UiPart<VBox> {
 
     // TODO: Refactor this.
     protected void loadTaskListPanel() {
-        ongoingTaskListPanel = new TaskListPanel(logic.getViewTaskList());
+        ongoingTaskListPanel = new TaskListPanel(logic.getUiTaskList());
         ongoingTaskListPanel.setMainScreen(mainScreen);
 
-        completedTaskListPanel = new TaskListPanel(logic.getViewTaskList());
+        completedTaskListPanel = new TaskListPanel(logic.getUiTaskList());
         completedTaskListPanel.setMainScreen(mainScreen);
 
         ongoingTaskListComponent.getChildren().clear();

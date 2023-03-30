@@ -22,7 +22,7 @@ public class UiTaskList {
     }
 
     public ObservableList<Task> getInternalList() {
-        return sortedTasks;
+        return filteredTasks;
     }
 
     public Predicate<? super Task> getPredicate() {
