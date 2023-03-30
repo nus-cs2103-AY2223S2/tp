@@ -43,8 +43,10 @@ public class AddTaskCommand extends AddCommand {
      * @return The result of the command execution.
      * @throws CommandException If the task already exists in the group or if the user is not on the task page.
      */
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
 
         if (currentSelection.getCurrentPage() != PageType.TASK_PAGE) {
             throw new CommandException("Wrong page. Navigate to task page to add tasks");

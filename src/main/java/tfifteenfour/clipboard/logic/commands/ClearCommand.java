@@ -2,7 +2,6 @@ package tfifteenfour.clipboard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.Roster;
 
@@ -19,7 +18,7 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) {
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setRoster(new Roster());
         return new CommandResult(this, MESSAGE_SUCCESS, willModifyState);

@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import tfifteenfour.clipboard.commons.core.GuiSettings;
+import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.model.student.Student;
 
@@ -64,4 +65,6 @@ public interface Model {
     public void setCommandExecuted(Command command);
 
     public Command getCommandExecuted();
+
+    public CurrentSelection getCurrentSelection();
 }

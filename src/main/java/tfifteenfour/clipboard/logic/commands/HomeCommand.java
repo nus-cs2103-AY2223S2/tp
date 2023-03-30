@@ -17,7 +17,8 @@ public class HomeCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) {
+    public CommandResult execute(Model model) {
+        CurrentSelection currentSelection = model.getCurrentSelection();
         ShowAllListedPredicate.resetAllFilters(model, currentSelection);
         currentSelection.getSelectedGroup().unMarkAllSessions();
         currentSelection.getSelectedGroup().unMarkAllTasks();

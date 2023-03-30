@@ -22,7 +22,7 @@ public class BackCommand extends Command {
      * Creates a BackCommand to select a student at the specified index
      */
     public BackCommand(CurrentSelection currentSelection) {
-        super(false);
+        super(true);
         this.currentSelection = currentSelection;
     }
 
@@ -31,7 +31,7 @@ public class BackCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         switch (currentSelection.getCurrentPage()) {

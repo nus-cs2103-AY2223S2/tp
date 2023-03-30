@@ -54,8 +54,10 @@ public class RemarkCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, CurrentSelection currentSelection) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        CurrentSelection currentSelection = model.getCurrentSelection();
+
         Group selectedGroup = currentSelection.getSelectedGroup();
         List<Student> lastShownList = selectedGroup.getUnmodifiableFilteredStudentList();
         List<Session> sessions = selectedGroup.getModifiableSessionList();

@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import tfifteenfour.clipboard.commons.core.GuiSettings;
 import tfifteenfour.clipboard.commons.core.LogsCenter;
+import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.commands.Command;
 
 /**
@@ -21,6 +22,7 @@ public class ModelManager implements Model {
 
     private String commandTextExecuted;
     private Command commandExecuted;
+    private final CurrentSelection currentSelection;
 
     /**
      * Initializes a ModelManager with the given roster and userPrefs.
@@ -32,6 +34,7 @@ public class ModelManager implements Model {
 
         this.roster = new Roster(roster);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.currentSelection = new CurrentSelection();
     }
 
     public ModelManager() {
@@ -45,10 +48,13 @@ public class ModelManager implements Model {
      * @param userPrefs The user preferences to use in the ModelManager.
      * @param commandTextExecuted The previous state modifying command to use in the ModelManager.
      */
-    public ModelManager(Roster roster, UserPrefs userPrefs, String commandTextExecuted) {
+    public ModelManager(Roster roster, UserPrefs userPrefs, String commandTextExecuted,
+            Command commandExecuted, CurrentSelection currentSelection) {
         this.roster = roster;
         this.userPrefs = userPrefs;
         this.commandTextExecuted = commandTextExecuted;
+        this.commandExecuted = commandExecuted;
+        this.currentSelection = currentSelection;
     }
 
     @Override
@@ -120,7 +126,7 @@ public class ModelManager implements Model {
 
     @Override
     public Model copy() {
-        return new ModelManager(this.roster.copy(), this.userPrefs, commandTextExecuted);
+        return new ModelManager(this.roster.copy(), this.userPrefs, this.commandTextExecuted, this.commandExecuted, this.currentSelection);
     }
 
     @Override
@@ -139,6 +145,10 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return roster.equals(other.roster)
                 && userPrefs.equals(other.userPrefs);
+    }
+
+    public CurrentSelection getCurrentSelection() {
+        return currentSelection;
     }
 }
 
