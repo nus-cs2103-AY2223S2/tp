@@ -317,7 +317,7 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 [Scroll back to top](#table-of-contents)
 
-### Logic component
+### Logic Component
 
 The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/logic/Logic.java)
 
@@ -906,6 +906,8 @@ in our `Storage` as well as the courses displayed in the application.
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Storage Implementation**
+This section describes implementation of features within `storage` package. Refer to [Storage Component](#storage-component)
+for more information about this package.
 
 #### Saving Data
 <img src="images/SaveSequenceDiagram.png" />
