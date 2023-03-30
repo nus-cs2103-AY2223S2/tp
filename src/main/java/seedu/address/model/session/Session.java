@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-//import seedu.address.model.calendar.CalendarEvent;
-import seedu.address.model.AddressBook;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PayRate;
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Session in the address book.
@@ -33,6 +33,7 @@ public class Session implements Comparable<Session> {
     private final int id;
     private final Location location;
     private HashMap<String, Boolean> attendanceMap = new HashMap<>();
+    private HashMap<String, PayRate> payRateMap = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -81,8 +82,13 @@ public class Session implements Comparable<Session> {
      * Represents a session in the sports tracker.
      * Guarantees: details are present and not null, field values are validated, immutable.
      */
-    public Session(String startDateTime, String endDateTime, SessionName name,
-                   Location location, int id, List<NameBooleanPair> nameBooleanPairs) {
+    public Session(String startDateTime,
+                   String endDateTime,
+                   SessionName name,
+                   Location location,
+                   int id,
+                   List<NameBooleanPair> nameBooleanPairs,
+                   List<NamePayRatePair> namePayRatePairs) {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.name = name;
@@ -91,6 +97,10 @@ public class Session implements Comparable<Session> {
 
         for (NameBooleanPair pair : nameBooleanPairs) {
             attendanceMap.put(pair.getName(), pair.isPresent());
+        }
+
+        for (NamePayRatePair pair : namePayRatePairs) {
+            payRateMap.put(pair.getName(), pair.getPayRate());
         }
 
         if (!isValidDateTimeFormat(this.startDateTime) || !isValidDateTimeFormat(this.endDateTime)) {
@@ -103,10 +113,13 @@ public class Session implements Comparable<Session> {
 
     /**
      * adds person to a session
-     * @param name String name of person
+     * @param person Person to add
      */
-    public void addPersonToSession(String name) {
+    public void addPersonToSession(Person person) {
+        String name = person.getName().formattedName;
+        PayRate payRate = person.getPayRate();
         attendanceMap.put(name, false);
+        payRateMap.put(name, payRate);
     }
 
     /**
@@ -115,6 +128,7 @@ public class Session implements Comparable<Session> {
      */
     public void removePersonFromSession(String name) {
         attendanceMap.remove(name);
+        payRateMap.remove(name);
     }
 
     /**
@@ -201,12 +215,15 @@ public class Session implements Comparable<Session> {
         return endDateTime;
     }
 
+    public SessionName getSessionName() {
+        return name;
+    }
     public String getName() {
         return name.toString();
     }
 
-    public String getLocation() {
-        return location.toString();
+    public Location getLocation() {
+        return location;
     }
 
     /**
@@ -262,7 +279,7 @@ public class Session implements Comparable<Session> {
                         .ofPattern("dd-MM-yyyy HH:mm"))
                 .isBefore(LocalDateTime.parse(endDateTime, DateTimeFormatter
                         .ofPattern("dd-MM-yyyy HH:mm")))
-                && Name.isValidName(getName()) && Location.isValidLocation(getLocation());
+                && Name.isValidName(getName()) && Location.isValidLocation(getLocation().toString());
     }
 
     /**
@@ -301,19 +318,18 @@ public class Session implements Comparable<Session> {
     }
 
     /**
-     * Calculates the total pay for a session based on the pay rates of the attendees in the given address book
+     * Calculates the total pay for a session based on the pay rates of the attendees
      * and the duration of the session.
      *
-     * @param addressBook the address book containing the details of the attendees
      * @return the total pay for the session
      */
-    public float getTotalPay(AddressBook addressBook) {
+    public float getTotalPay() {
         float totalPay = 0;
         long durationInMins = getSessionDuration().toMinutes();
 
         for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
             if (entry.getValue()) {
-                float indivPay = addressBook.getPayRateFromName(entry.getKey());
+                float indivPay = payRateMap.get(entry.getKey()).toInt();
                 totalPay += indivPay / 60 * durationInMins;
             }
         }
@@ -418,7 +434,7 @@ public class Session implements Comparable<Session> {
         return String.valueOf(id);
     }
 
-    public ArrayList<NameBooleanPair> getMap() {
+    public ArrayList<NameBooleanPair> getNameBooleanMap() {
         ArrayList<NameBooleanPair> map = new ArrayList<>();
         for (Map.Entry<String, Boolean> set
                 : attendanceMap.entrySet()) {
@@ -431,12 +447,20 @@ public class Session implements Comparable<Session> {
         return map;
     }
 
-    public HashMap<String, Boolean> getHashMap() {
-        return attendanceMap;
+    public ArrayList<NamePayRatePair> getNamePayRateMap() {
+        ArrayList<NamePayRatePair> map = new ArrayList<>();
+        for (Map.Entry<String, PayRate> set
+                : payRateMap.entrySet()) {
+            NamePayRatePair toAdd =
+                    new NamePayRatePair(
+                            set.getKey(),
+                            set.getValue());
+            map.add(toAdd);
+        }
+        return map;
     }
 
     /**
-     * Returns a new Session object that is a copy of this session.
      * @return A new Session object that is a copy of this session.
      */
     public Session copy() {
@@ -445,7 +469,8 @@ public class Session implements Comparable<Session> {
                 this.name,
                 this.location,
                 this.id,
-                this.getMap());
+                this.getNameBooleanMap(),
+                this.getNamePayRateMap());
     }
 
     public HashMap<String, Boolean> getAttendanceMap() {

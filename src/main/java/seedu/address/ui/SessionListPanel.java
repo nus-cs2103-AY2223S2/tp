@@ -67,6 +67,7 @@ public class SessionListPanel extends UiPart<Region> {
         sessionListView.setItems(sessionList);
         sessionListView.setCellFactory(listView -> new SessionListViewCell());
 
+        updateDisplay(sessionListView.getItems().get(0));
         setClickEventListener();
         setUpdateEventListener(logic);
     }
@@ -104,7 +105,7 @@ public class SessionListPanel extends UiPart<Region> {
      */
     public void updateDisplay(Session selectedSession) {
         Label[] fields = new Label[]{dateField, locationField, studentsField};
-        Label[] details = new Label[]{selectedName, selectedDate, selectedLocation, selectedStudents};
+        Label[] details = new Label[]{selectedName, selectedDate, selectedLocation};
         setupStyle();
         setSessionFieldDisplay(fields);
         updateDisplayedSessionDetail(selectedSession, details);
@@ -135,7 +136,7 @@ public class SessionListPanel extends UiPart<Region> {
         selectedName.setText(selectedSession.getName());
         selectedName.setPadding(new Insets(0, -10, 0, -10));
         selectedDate.setText(selectedSession.getStartDateTime());
-        selectedLocation.setText(selectedSession.getLocation());
+        selectedLocation.setText(selectedSession.getLocation().toString());
 
         attendanceChart.setData(SessionPieChart.generateAttendancePieChart(selectedSession.getAttendanceMap()));
         attendanceChart.setLabelsVisible(false);
