@@ -13,6 +13,8 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.appointment.AppointmentName;
+import seedu.address.model.client.appointment.MeetupDate;
 import seedu.address.model.client.policy.CustomDate;
 import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.PolicyName;
@@ -124,6 +126,40 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String appointmentName} into an {@code AppointmentName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static AppointmentName parseAppointmentName(String appointmentName) throws ParseException {
+        requireNonNull(appointmentName);
+        String trimmedAppointmentName = appointmentName.trim();
+        if (!AppointmentName.isValidName(trimmedAppointmentName)) {
+            throw new ParseException(AppointmentName.MESSAGE_CONSTRAINTS);
+        }
+        return new AppointmentName(trimmedAppointmentName);
+    }
+
+
+    /**
+     * Parses a {@code String meetupDate} into an {@code MeetupDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static MeetupDate parseMeetupDate(String meetupDate) throws ParseException {
+        requireNonNull(meetupDate);
+        String trimmedMeetupDate = meetupDate.trim();
+        if (!MeetupDate.isValidDate(trimmedMeetupDate)) {
+            throw new ParseException(MeetupDate.MESSAGE_CONSTRAINTS);
+        }
+        if (MeetupDate.isFutureDate(trimmedMeetupDate)) {
+            throw new ParseException(MeetupDate.MESSAGE_PAST_DATE);
+        }
+        return new MeetupDate(trimmedMeetupDate);
     }
 
     /**
