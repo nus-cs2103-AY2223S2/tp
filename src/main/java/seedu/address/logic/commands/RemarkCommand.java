@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -25,9 +26,9 @@ public class RemarkCommand extends Command {
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "r/ [REMARK]\n"
+            + "[" + PREFIX_REMARK + "REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + "r/ Likes to swim.";
+            + PREFIX_REMARK + "Likes to swim.";
 
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
@@ -39,7 +40,7 @@ public class RemarkCommand extends Command {
      * Constructor for RemarkCommand
      */
     public RemarkCommand(Index index, Remark remark) {
-        requireAllNonNull(index, remark);
+        requireAllNonNull(index);
 
         this.index = index;
         this.remark = remark;
@@ -54,6 +55,10 @@ public class RemarkCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        if (this.remark == null) {
+            return new CommandResult("Editing remark...", false, false,
+                    personToEdit.getOptionalRemark().map(String::valueOf).orElse(""));
+        }
         Person editedPerson = new Person(
                 personToEdit.getName(),
                 personToEdit.getOptionalPhone().orElse(null),
