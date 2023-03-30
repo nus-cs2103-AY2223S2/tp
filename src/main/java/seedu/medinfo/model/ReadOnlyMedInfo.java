@@ -1,0 +1,24 @@
+package seedu.medinfo.model;
+
+import java.util.Comparator;
+
+import javafx.collections.ObservableList;
+import seedu.medinfo.model.patient.Patient;
+import seedu.medinfo.model.ward.Ward;
+
+
+/**
+ * Unmodifiable view of an medinfo book
+ */
+public interface ReadOnlyMedInfo {
+
+    void sortPatients(Comparator<Patient> comparator);
+
+    /**
+     * Returns an unmodifiable view of the patients list.
+     * This list will not contain any duplicate patients.
+     */
+    ObservableList<Patient> getPatientList();
+
+    ObservableList<Ward> getWardList();
+}
