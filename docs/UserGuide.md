@@ -218,7 +218,7 @@ Examples:
 respectively.
 * `edit 2 n/Betsy Crower v/` Edits the name of the 2nd case to be `Betsy Crower` and clears all tagged dengue variants.
 
-### Finding cases by prefixes: 
+### Finding cases by prefixes: `find` 
 
 Find cases which matches the given prefixes. Date ranges and age ranges are also supported using new prefixes
 `sd/` `ed/` `sa/` `ea/`.
@@ -262,7 +262,7 @@ Examples:
 * `find v/denv1` finds all cases with `DENV1` in their variant tags.
   ![result for find v/denv1](images/findExample.png)
 
-### Listing all cases : `list`
+### Listing all cases: `list`
 
 Shows a list of all cases in the Dengue Hotspot Tracker.
 
