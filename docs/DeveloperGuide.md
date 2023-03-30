@@ -153,8 +153,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-{TODO update link}
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/ui/Ui.java)
 
 {TODO update diagram}
 ![Structure of the UI Component](images/UiClassDiagram.png)
@@ -162,7 +161,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 ### Logic component
 
 {TODO update link}
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -228,10 +227,9 @@ list.
 
 ### Storage component
 
-{TODO update diagram and link}
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/storage/Storage.java)
 
-<img src="images/storage/StorageClassDiagram.png" width="550" />
+![Structure of the Storage Component](images/storage/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
