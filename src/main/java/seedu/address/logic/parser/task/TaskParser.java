@@ -8,6 +8,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.task.TaskAddCommand;
 import seedu.address.logic.commands.task.TaskCommand;
 import seedu.address.logic.commands.task.TaskDeleteCommand;
+import seedu.address.logic.commands.task.TaskEditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -42,6 +43,8 @@ public class TaskParser {
         case TaskDeleteCommand.TASK_COMMAND_WORD:
             return new TaskDeleteCommandParser().parse(arguments);
 
+        case TaskEditCommand.TASK_COMMAND_WORD:
+            return new TaskEditCommandParser().parse(arguments);
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
         }

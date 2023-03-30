@@ -20,6 +20,7 @@ import seedu.address.model.tank.readings.AmmoniaLevel;
 import seedu.address.model.tank.readings.FullReadingLevels;
 import seedu.address.model.tank.readings.PH;
 import seedu.address.model.tank.readings.ReadOnlyReadingLevels;
+import seedu.address.model.tank.readings.Reading;
 import seedu.address.model.tank.readings.Temperature;
 import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
 import seedu.address.model.task.Task;
@@ -431,6 +432,11 @@ public class ModelManager implements Model {
     @Override
     public void deleteIndividualReadingLevels(UniqueIndividualReadingLevels target) {
         fullReadingLevels.removeIndividualReadingLevel(target);
+    }
+
+    @Override
+    public Reading[] deleteLastEntryFromIndividualReadings(UniqueIndividualReadingLevels target) {
+        return target.removeLastReadings();
     }
 
     @Override
