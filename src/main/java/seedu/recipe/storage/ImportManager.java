@@ -1,5 +1,9 @@
 package seedu.recipe.storage;
 
+import static seedu.recipe.logic.commands.ImportCommand.EMPTY_COMMAND;
+import static seedu.recipe.logic.commands.ImportCommand.INVALID_VALUES;
+import static seedu.recipe.logic.commands.ImportCommand.NOT_JSON_FILE;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -8,11 +12,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.commons.exceptions.DataConversionException;
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.ReadOnlyRecipeBook;
@@ -29,6 +35,7 @@ public class ImportManager {
 
     private final Path recipeBookFilePath = Paths.get("data", "recipebook.json");
     private final Stage owner;
+    private final Logger logger = LogsCenter.getLogger(getClass());
 
     public ImportManager(Stage owner) {
         this.owner = owner;
@@ -39,26 +46,22 @@ public class ImportManager {
      * parsed from the selected file.
      *
      * @return An ObservableList of Recipe parsed from the selected JSON file.
-     * @throws IOException if an I/O error occurs.
-     * @throws DataConversionException if the JSON data in the file cannot be converted into a RecipeBook object.
      * @throws IllegalValueException if there were any data constraints violated during the conversion.
      */
-    public ObservableList<Recipe> execute() throws IOException, DataConversionException, IllegalValueException {
+    public ObservableList<Recipe> execute() throws IllegalValueException {
         File importedFile = this.selectFile();
         if (importedFile == null) {
             return null;
         }
-        ObservableList<Recipe> importedRecipes = importRecipes(importedFile);
-        return importedRecipes;
+        return importRecipes(importedFile);
     }
 
     /**
      * Prompts the user to select a JSON file to import and returns the selected File object.
      *
      * @return The File object representing the selected JSON file.
-     * @throws IOException if an I/O error occurs.
      */
-    public File selectFile() throws IOException {
+    public File selectFile() {
         FileChooser fileChooser = new FileChooser();
 
         // Set filter to only show JSON files
@@ -76,13 +79,13 @@ public class ImportManager {
 
         // User canceled the file chooser dialog
         if (selectedFile == null) {
-            System.out.println("No file selected.");
+            logger.warning(EMPTY_COMMAND);
             return null;
         }
 
         // Check if the file is a JSON file
         if (!selectedFile.getName().endsWith(".json")) {
-            System.out.println("Selected file is not a JSON file.");
+            logger.warning(String.format(NOT_JSON_FILE, selectedFile.getName()));
             return null;
         }
 
@@ -94,18 +97,18 @@ public class ImportManager {
      *
      * @param selectedFile The File object representing the JSON file to parse.
      * @return An ObservableList of Recipe objects parsed from the specified JSON file.
-     * @throws DataConversionException if the JSON data in the file cannot be converted into a RecipeBook object.
+     * @throws IllegalValueException if the JSON data in the file cannot be converted into a RecipeBook object.
      */
-    public ObservableList<Recipe> importRecipes(File selectedFile) throws DataConversionException {
+    public ObservableList<Recipe> importRecipes(File selectedFile) throws IllegalValueException {
         Path filePath = selectedFile.toPath();
-        System.out.println("Selected file: " + filePath.toString());
+        logger.info("Selected file: " + filePath.toString());
 
-        JsonRecipeBookStorage importedStorage = new JsonRecipeBookStorage((filePath));
+        JsonRecipeBookStorage importedStorage = new JsonRecipeBookStorage(filePath);
         Optional<ReadOnlyRecipeBook> importedRecipeBook;
         try {
             importedRecipeBook = importedStorage.readRecipeBook();
         } catch (DataConversionException e) {
-            throw e;
+            throw new IllegalValueException(String.format(INVALID_VALUES, filePath));
         }
         return importedRecipeBook.get().getRecipeList();
     }

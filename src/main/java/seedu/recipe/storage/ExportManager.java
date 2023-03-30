@@ -30,16 +30,14 @@ public class ExportManager {
     }
 
     /**
-     * Displays a file chooser dialog and exports the recipebook to a JSON file.
+     * Displays a file chooser dialog and exports the RecipeBook to a JSON file.
      * If file exists, there will be a prompt asking whether to overwrite it.
      *
      * @throws IOException if there is an error while writing to the file.
      */
-
     public void execute() throws IOException {
         FileChooser fileChooser = createFile();
         File selectedFile = fileChooser.showSaveDialog(this.owner);
-
         if (selectedFile != null) {
             writeToFile(selectedFile);
         }
@@ -59,7 +57,7 @@ public class ExportManager {
     }
 
     /**
-     * Writes the contents of the recipebook JSON file to the selected file.
+     * Writes the contents of the RecipeBook JSON file to the selected file.
      *
      * @param selectedFile the selected file to write to.
      * @throws IOException if there is an error while writing to the file.
