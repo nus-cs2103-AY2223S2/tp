@@ -666,8 +666,17 @@ The command can also be used with multiple prefixes to refine your search. The r
 </div>
 
 What you should see:<br>
-{GUI}<br>
-{Explanation}
+
+<img src="images/ug_cmds_pics/find_cmd.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 14: Only contacts tagged with CCA and CS2100 are shown.</center>
+
+<br>
+
+##### Explanation:
+
+Say you want to filter out contacts who are in the same CCA as you to study for the upcoming finals for CS2100. `find g/CCA m/CS2100`
+will filter out contacts who have are tagged with CCA and CS2100.
 
 <div markdown="block" class="alert alert-success">
 
@@ -725,8 +734,18 @@ We will now teach you how to effectively use the `sort` command.
 </div>
 
 What you should see:<br>
-{GUI}<br>
-{Explanation}
+
+<img src="images/ug_cmds_pics/sort_cmd.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 16: Contacts ranked according to sorting criteria specified in the Command Box</center>
+
+<br>
+
+##### Explanation:
+
+The command `sort m/d n/a` would mean that `EduMate` would first sort contacts by decreasing number of common modules with you, and tie-break by increasing alphabetical order.
+
+Hence, Alex Quinn is ranked higher than Astrid Holland as Alex's name is lexicographically smaller than Astrid even though they share the same common modules as you.
 
 <div markdown="block" class="alert alert-success">
 
@@ -762,9 +781,6 @@ Using the `save` command in EduMate, you can easily save your data into a file w
 
 </div>
 
-What you should see:<br>
-{GUI}<br>
-{Explanation}
 
 <div markdown="block" class="alert alert-success">
 
@@ -783,11 +799,6 @@ Using the `load` command in EduMate, you can easily load a previously saved data
 * `load FILENAME`: Loads the EduMate from a file at `FILENAME.json`.
 
 </div>
-
-
-What you should see:<br>
-{GUI}<br>
-{Explanation}
 
 <div markdown="block" class="alert alert-success">
 
@@ -810,8 +821,17 @@ The `meet` command in EduMate is used to suggest suitable meet-up locations and 
 </div>
 
 What you should see:<br>
-{GUI}<br>
-{Explanation}
+
+<img src="images/ug_cmds_pics/meet_cmd.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 17: Recommended study spots and the common available days and timings displayed</center>
+
+<br>
+
+##### Explanation:
+
+After sorting your contacts, you decided to ask Astrid, Grover, Kevin and Alex from your CCA to study for CS2100. You can execute the `meet` command
+whilst referring to their index on the Person List and find out what are the most optimal places and the best possible time to meet and study for the final.
 
 <div markdown="block" class="alert alert-success">
 
