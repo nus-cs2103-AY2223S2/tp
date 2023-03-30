@@ -15,7 +15,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 - [Features](#features)
 - [Main Features](#main-features-tracking-applied-internships)
-    - [View guide](###view-help--help)
+    - [View guide](#view-help--help)
     - [Add an internship application](#)
         - [Add](#)
     - [List currently ongoing internship applications](#display-a-list-of-ongoing-internship-applications--list)
