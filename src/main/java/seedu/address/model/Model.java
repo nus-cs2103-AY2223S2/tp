@@ -3,8 +3,10 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.RecurringExpenseManager;
@@ -56,6 +58,14 @@ public interface Model {
     /** Returns the ExpenseTracker */
     ReadOnlyExpenseTracker getExpenseTracker();
 
+    SimpleObjectProperty<ParserUtil.Timespan> getAppliedTimeSpanFilter();
+
+    SimpleObjectProperty<Category> getAppliedCategoryFilter();
+
+    void updateTimeSpanFilter(ParserUtil.Timespan timeSpan);
+
+    void updateCategoryFilter(Category category);
+
     // Expense accessor functions
 
     /**
@@ -75,6 +85,7 @@ public interface Model {
      * Delete all expense.
      */
     void clearExpense();
+
 
     /**
      * Replaces the Expense in the expense list at the given index.
@@ -177,6 +188,11 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate);
+
+    /**
+     * Delete all recurring expense generators.
+     */
+    void clearRecurringExpenseGenerator();
 
     /**
      * Deletes the target {@code RecurringExpense} from the recurring expense list.

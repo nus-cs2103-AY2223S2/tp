@@ -2,15 +2,18 @@ package seedu.address.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyExpenseTracker;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * API of the Logic component
@@ -36,6 +39,13 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of expenses */
     ObservableList<Expense> getFilteredExpenseList();
+
+    /** Returns an unmodifiable view of the list of recurring expenses */
+    ObservableList<RecurringExpenseManager> getRecurringExpenseManagerList();
+
+    SimpleObjectProperty<ParserUtil.Timespan> getAppliedTimeSpanFilter();
+
+    SimpleObjectProperty<Category> getAppliedCategoryFilter();
 
     /**
      * Returns the user prefs' address book file path.

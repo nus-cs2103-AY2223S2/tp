@@ -5,27 +5,24 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
-import java.util.logging.Logger;
 
 /**
- * Panel containing the list of expenses.
+ * Panel containing the list of recurring expenses.
  */
 public class RecurringExpensePanel extends UiPart<Region> {
     private static final String FXML = "RecurringExpenseListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(RecurringExpensePanel.class);
 
     @FXML
-    private ListView<Expense> recurringExpenseListView;
+    private ListView<RecurringExpenseManager> recurringExpenseListView;
 
     /**
-     * Creates a {@code ExpenseListPanel} with the given {@code ObservableList}.
+     * Creates a {@code RecurringExpensePanel} with the given {@code ObservableList}.
      */
-    public RecurringExpensePanel(ObservableList<Expense> expenseList) {
+    public RecurringExpensePanel(ObservableList<RecurringExpenseManager> recurringExpenseList) {
         super(FXML);
-        recurringExpenseListView.setItems(expenseList);
+        recurringExpenseListView.setItems(recurringExpenseList);
         recurringExpenseListView.setCellFactory(listView -> new RecurringExpenseListViewCell());
     }
 
@@ -37,11 +34,12 @@ public class RecurringExpensePanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Expense} using a {@code ExpenseCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code RecurringExpenseManager}
+     * using a {@code RecurringExpenseCard}.
      */
-    class RecurringExpenseListViewCell extends ListCell<Expense> {
+    class RecurringExpenseListViewCell extends ListCell<RecurringExpenseManager> {
         @Override
-        protected void updateItem(Expense expense, boolean empty) {
+        protected void updateItem(RecurringExpenseManager expense, boolean empty) {
             super.updateItem(expense, empty);
 
             if (empty || expense == null) {

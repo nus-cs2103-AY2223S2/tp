@@ -4,17 +4,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 import seedu.address.model.util.UserInterfaceUtil;
 
 /**
- * A UI component that displays information of a {@code Expense}.
+ * A UI component that displays information of a {@code RecurringExpenseManager}.
  */
 public class RecurringExpenseCard extends UiPart<Region> {
 
     private static final String FXML = "RecurringExpenseListCard.fxml";
 
-    public final Expense expense;
+    public final RecurringExpenseManager recurringExpenseManager;
 
     @FXML
     private HBox cardPane;
@@ -27,23 +27,21 @@ public class RecurringExpenseCard extends UiPart<Region> {
     @FXML
     private Label category;
     @FXML
-    private Label dateRange;
-    @FXML
     private Label frequency;
 
     /**
-     * Creates a {@code ExpenseCard} with the given {@code Expense} and index to display.
+     * Creates a {@code RecurringExpenseCard} with the given {@code RecurringExpenseManager} and index to display.
      */
-    public RecurringExpenseCard(Expense expense, int displayedIndex) {
+    public RecurringExpenseCard(RecurringExpenseManager recurringExpenseManager, int displayedIndex) {
         super(FXML);
-        this.expense = expense;
+        this.recurringExpenseManager = recurringExpenseManager;
         id.setText(displayedIndex + ". ");
-        expenseName.setText(UserInterfaceUtil.capitalizeFirstLetter(expense.getName()));
-        String categoryName = expense.getCategory().getCategoryName();
+        expenseName.setText(UserInterfaceUtil.capitalizeFirstLetter(recurringExpenseManager.getExpenseName()));
+        String categoryName = recurringExpenseManager.getExpenseCategory().getCategoryName();
         category.setText(UserInterfaceUtil.capitalizeFirstLetter(categoryName));
-        dateRange.setText(UserInterfaceUtil.parseDate(expense.getDate()) + " - " + UserInterfaceUtil.parseDate(expense.getDate()));
-        price.setText(UserInterfaceUtil.parsePrice(expense.getAmount()));
-        frequency.setText("Weekly");
+        price.setText(UserInterfaceUtil.parsePrice(recurringExpenseManager.getExpenseAmount()));
+        String recurringExpenseFrequency = recurringExpenseManager.getRecurringExpenseType().name();
+        frequency.setText(UserInterfaceUtil.capitalizeFirstLetter(recurringExpenseFrequency.toLowerCase()));
     }
 
     @Override
@@ -52,15 +50,13 @@ public class RecurringExpenseCard extends UiPart<Region> {
         if (other == this) {
             return true;
         }
-
         // instanceof handles nulls
         if (!(other instanceof RecurringExpenseCard)) {
             return false;
         }
-
         // state check
         RecurringExpenseCard card = (RecurringExpenseCard) other;
         return id.getText().equals(card.id.getText())
-                && expense.equals(card.expense);
+                && recurringExpenseManager.equals(card.recurringExpenseManager);
     }
 }

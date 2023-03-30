@@ -13,6 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.RecurringExpenseManager;
+import seedu.address.ui.ScreenType;
 
 /**
  * Adds a category to the Expense Tracker.
@@ -66,7 +67,7 @@ public class AddRecurringExpenseCommand extends Command {
 
         dataModel.addRecurringGenerator(toAdd);
         dataModel.addRetroactiveExpenses();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ScreenType.RECURRING_EXPENSE_SCREEN);
     }
 
     @Override

@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
+import seedu.address.ui.ScreenType;
 
 /**
  * Displays the summary of an expense
@@ -42,7 +43,7 @@ public class CategorySummaryCommand extends Command {
 
         Category targetCategory = lastShownList.get(targetIndex.getZeroBased());
         String toDisplay = targetCategory.getCategoryName() + " summary:\n" + targetCategory.getSummary();
-        return new CommandResult(toDisplay, false);
+        return new CommandResult(toDisplay, ScreenType.CATEGORY_SCREEN);
     }
 
     @Override

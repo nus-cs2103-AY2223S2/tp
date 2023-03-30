@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.ui.ScreenType;
 
 
 /**
@@ -53,7 +54,7 @@ public class AddExpenseCommand extends Command {
             dataModel.addCategory(newCategory);
         }
         dataModel.addExpense(newExpense);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newExpense), true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newExpense), ScreenType.EXPENSE_SCREEN);
     }
 
     @Override

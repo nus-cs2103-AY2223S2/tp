@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.UserDefinedCategory;
+import seedu.address.ui.ScreenType;
 
 
 /**
@@ -58,21 +59,21 @@ public class EditCategory extends Command {
             categoryToEdit.setDescription(newSummaryName);
             return new CommandResult(
                     String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
-                            categoryToEdit), false);
+                            categoryToEdit), ScreenType.CATEGORY_SCREEN);
         }
 
         if (newCategoryName != null) {
             categoryToEdit.setCategoryName(newCategoryName);
             return new CommandResult(
                     String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
-                            categoryToEdit), false);
+                            categoryToEdit), ScreenType.CATEGORY_SCREEN);
         }
 
         //Only other possible outcome is that summary is the only field being changed.
         categoryToEdit.setDescription(newSummaryName);
         return new CommandResult(
                 String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
-                        categoryToEdit), false);
+                        categoryToEdit), ScreenType.CATEGORY_SCREEN);
     }
 
     @Override

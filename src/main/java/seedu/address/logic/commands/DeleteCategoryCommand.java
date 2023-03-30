@@ -9,9 +9,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
+import seedu.address.ui.ScreenType;
 
 /**
- * Deletes a category identified using it's displayed index from the address book.
+ * Deletes a category identified using it's displayed index from the expense tracker.
  */
 public class DeleteCategoryCommand extends Command {
 
@@ -45,7 +46,9 @@ public class DeleteCategoryCommand extends Command {
 
         Category categoryToDelete = lastShownList.get(targetIndex.getZeroBased());
         dataModel.deleteCategory(categoryToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CATEGORY_SUCCESS, categoryToDelete), false);
+        return new CommandResult(
+            String.format(MESSAGE_DELETE_CATEGORY_SUCCESS, categoryToDelete),
+            ScreenType.CATEGORY_SCREEN);
     }
 
     @Override

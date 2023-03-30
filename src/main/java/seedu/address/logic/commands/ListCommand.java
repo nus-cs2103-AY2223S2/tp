@@ -6,11 +6,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
+import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.ExpenseInCategoryPredicate;
 import seedu.address.model.expense.ExpenseInTimespanPredicate;
+import seedu.address.ui.ScreenType;
 
 /**
  * List all the expenses in the expense tracker.
@@ -44,19 +48,26 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
-
-        if (categoryPredicate.isPresent() && timespanPredicate.isPresent()) {
-            model.updateFilteredExpensesList(categoryPredicate.get().and(timespanPredicate.get()));
-        } else if (categoryPredicate.isPresent()) {
+        categoryPredicate.ifPresentOrElse(filter -> model.updateCategoryFilter(
+                filter.getCategory()), () -> model.updateCategoryFilter(null));
+        timespanPredicate.ifPresentOrElse(filter -> model.updateTimeSpanFilter(
+                filter.getTimespan()), () -> model.updateTimeSpanFilter(ParserUtil.Timespan.ALL));
+        Predicate<Expense> combinedPredicate = PREDICATE_SHOW_ALL_EXPENSES;
+        if (categoryPredicate.isPresent()) {
+            combinedPredicate = combinedPredicate.and(categoryPredicate.get());
             model.updateFilteredExpensesList(categoryPredicate.get());
-        } else if (timespanPredicate.isPresent()) {
+        }
+        if (timespanPredicate.isPresent()) {
+            combinedPredicate = combinedPredicate.and(timespanPredicate.get());
             model.updateFilteredExpensesList(timespanPredicate.get());
         }
-
+        model.updateFilteredExpensesList(combinedPredicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW, model.getFilteredExpenseList().size()), true);
+                String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW, model.getFilteredExpenseList().size()),
+                ScreenType.EXPENSE_SCREEN);
+
     }
+
 
     @Override
     public boolean equals(Object other) {

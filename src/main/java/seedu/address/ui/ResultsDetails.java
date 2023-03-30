@@ -4,16 +4,20 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.util.StringConverter;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * A UI component that displays information of a {@code Expense} or {@code Category}
- * such as the number of results and the filter applied if any.
+ * such as the number of results and the time range filter applied.
  */
 public class ResultsDetails extends UiPart<Region> {
 
@@ -21,6 +25,7 @@ public class ResultsDetails extends UiPart<Region> {
     private final IntegerProperty count;
     private final ObservableList<Expense> expenseList;
     private final ObservableList<Category> categoryList;
+    private final ObservableList<RecurringExpenseManager> recurringExpenseManagersList;
 
     @FXML
     private Label resultsCount;
@@ -30,40 +35,45 @@ public class ResultsDetails extends UiPart<Region> {
     private Label dateLabel;
 
     /**
-     * Creates a {@code ResultDetails} with the given details of the data in the Expense or Category list
+     * Creates a new ResultsDetails pane to display the details of each data
+     * @param expenseList the list of expenses to display
+     * @param recurringExpenseManagersList the list of recurring expense managers to display
+     * @param categoryList the list of categories to display
+     * @param timeFilter the filter to apply to expense based on month, week, year
      */
-    //TODO add new constructor parameter with RecurringExpense List
-    public ResultsDetails(ObservableList<Expense> expenseList, ObservableList<Category> categoryList) {
+    public ResultsDetails(ObservableList<Expense> expenseList,
+                          ObservableList<RecurringExpenseManager> recurringExpenseManagersList,
+                          ObservableList<Category> categoryList,
+                          SimpleObjectProperty<ParserUtil.Timespan> timeFilter) {
         super(FXML);
         this.count = new SimpleIntegerProperty();
         this.expenseList = expenseList;
         this.categoryList = categoryList;
-        bindResultsCount(ScreenType.EXPENSE_SCREEN);
+        this.recurringExpenseManagersList = recurringExpenseManagersList;
         dateLabel.setText("Date:");
-        dateFilter.setText("All");
+        bindResultsCount(ScreenType.EXPENSE_SCREEN);
+        dateFilter.textProperty().bindBidirectional(timeFilter, new CustomStringConverter());
     }
 
 
     /**
-     * Switches the details displayed on the GUI based on a time filter and a boolean flag indicating
-     * whether expenses or categories is being displayed.
-     * @param timeFilter a string representing the time filter to be applied to the details.
+     * Switches the details displayed on the GUI based on an enum indicating
+     * which screen is being displayed.
      * @param screenType an enum indicating which screen is being displayed.
      */
-    public void switchDetails(String timeFilter, ScreenType screenType) {
+    public void switchDetails(ScreenType screenType) {
         bindResultsCount(screenType);
         if (screenType == ScreenType.EXPENSE_SCREEN) {
-            dateFilter.setText(timeFilter);
-            dateLabel.setText("Date:");
-        } else if (screenType == ScreenType.CATEGORY_SCREEN || screenType == ScreenType.RECURRING_EXPENSE_SCREEN){
-            dateFilter.setText("");
+            dateLabel.setText("Time:");
+        } else if (screenType == ScreenType.CATEGORY_SCREEN || screenType == ScreenType.RECURRING_EXPENSE_SCREEN) {
             dateLabel.setText("");
+            dateFilter.setText("");
         }
     }
 
     /**
      * Helper method used by the switchDetails method to bind the count of the number of items
-     * in the expenseList or categoryList to the count variable,
+     * in the expenseList, categoryList or recurringExpenseManagerList to the count variable,
      * which is then displayed in the GUI.
      * @param screenType an enum indicating which screen is being displayed.
      */
@@ -71,15 +81,34 @@ public class ResultsDetails extends UiPart<Region> {
         if (screenType == ScreenType.EXPENSE_SCREEN) {
             IntegerBinding expenseListSizeBinding = Bindings.size(expenseList);
             count.bind(expenseListSizeBinding);
-        } else if (screenType == ScreenType.CATEGORY_SCREEN){
+        } else if (screenType == ScreenType.CATEGORY_SCREEN) {
             IntegerBinding categoryListSizeBinding = Bindings.size(categoryList);
             count.bind(categoryListSizeBinding);
         } else if (screenType == ScreenType.RECURRING_EXPENSE_SCREEN) {
-            //TODO add new RecurringExpense
-            IntegerBinding recurringExpenseListSizeBinding = Bindings.size(expenseList);
+            IntegerBinding recurringExpenseListSizeBinding = Bindings.size(recurringExpenseManagersList);
             count.bind(recurringExpenseListSizeBinding);
         }
         resultsCount.textProperty().bind(count.asString());
+    }
+
+
+    /**
+     * A custom string converter for the date filter.
+     */
+    private static class CustomStringConverter extends StringConverter<ParserUtil.Timespan> {
+        @Override
+        public String toString(ParserUtil.Timespan myEnum) {
+            return myEnum.toString();
+        }
+        /**
+         * Not implemented for this class, always returns null.
+         * @param string the string to convert
+         * @return null
+         */
+        @Override
+        public ParserUtil.Timespan fromString(String string) {
+            return null;
+        }
     }
 
     @Override

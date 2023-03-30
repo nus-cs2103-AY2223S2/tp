@@ -72,6 +72,25 @@ public interface AnalyticModel {
     DoubleProperty getBudgetPercentage();
 
     /**
+     * Updates the currently referenced monthly budget in the GUI
+     * This method is called when the BudgetProperty in {@code ExpenseTracker} has changed.
+     * @param newBudget the new Budget object value which changed
+     */
+    void updateMonthlyBudgetProperty(Budget newBudget);
+
+    /**
+     * Updates the currently referenced weekly budget in the GUI
+     * This method is called when the BudgetProperty in {@code ExpenseTracker} has changed.
+     * @param newBudget the new Budget object value which changed
+     */
+    void updateWeeklyBudgetProperty(Budget newBudget);
+
+    /**
+     * Gets the value of the users current monthly budget
+     */
+    double getBudget();
+
+    /**
      * A convenience method to re-calculate and update all statistics
      */
     void updateAllStatistics();

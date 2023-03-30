@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.ui.ScreenType;
 
 public class ExitCommandTest {
     private Model dataModel = new ModelManager();
@@ -14,7 +15,8 @@ public class ExitCommandTest {
 
     @Test
     public void execute_exit_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, true);
+        CommandResult expectedCommandResult = new CommandResult(
+                MESSAGE_EXIT_ACKNOWLEDGEMENT, ScreenType.EXPENSE_SCREEN);
         assertCommandSuccess(new ExitCommand(), dataModel, expectedCommandResult, expectedDataModel);
     }
 }

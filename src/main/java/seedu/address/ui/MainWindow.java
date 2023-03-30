@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -132,10 +133,12 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        resultsHeader = new ResultsHeader();
+        resultsHeader = new ResultsHeader(logic.getAppliedCategoryFilter());
         resultsHeaderPlaceholder.getChildren().add(resultsHeader.getRoot());
 
-        resultsDetails = new ResultsDetails(logic.getFilteredExpenseList(), logic.getFilteredCategoryList());
+        resultsDetails = new ResultsDetails(logic.getFilteredExpenseList(),
+                logic.getRecurringExpenseManagerList(),
+                logic.getFilteredCategoryList(), logic.getAppliedTimeSpanFilter());
         resultsDetailsPlaceholder.getChildren().add(resultsDetails.getRoot());
 
         statisticsPanel = new StatisticsPanel(new AnalyticModelManager(logic.getExpenseTracker()));
@@ -189,52 +192,28 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Toggles the display between the expense list and the category list.
-     * @param isExpenseList true if the expense list should be shown, false if the category list should be shown
+     * Toggles the display between the different screens
+     * @param screenType the screen to be shown
      */
-//    public void switchListPanel(boolean isExpenseList) {
-//        listPanelPlaceholder.getChildren().clear();
-//        if (isExpenseList) {
-//            resultsHeader.setHeader(true, "All");
-//            resultsDetails.switchDetails("All", true);
-//            expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
-//            listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
-//        } else {
-//            resultsHeader.setHeader(false, "");
-//            resultsDetails.switchDetails("All", false);
-//            categoryListPanel = new CategoryListPanel(logic.getFilteredCategoryList(), logic.getFilteredExpenseList());
-//            listPanelPlaceholder.getChildren().add(categoryListPanel.getRoot());
-//        }
-//    }
-
-    /**
-     * Toggles the display between the expense list and the category list.
-     * @param screenType if the expense list should be shown, false if the category list should be shown
-     */
-    public void switchTemp(ScreenType screenType) {
-        listPanelPlaceholder.getChildren().clear();
+    public void switchListPanel(ScreenType screenType) {
+        resultsHeader.setHeader(screenType);
+        resultsDetails.switchDetails(screenType);
+        Parent listPanelRoot;
         switch (screenType) {
-            case EXPENSE_SCREEN:
-                resultsHeader.setHeader(ScreenType.EXPENSE_SCREEN, "All");
-                resultsDetails.switchDetails("All", ScreenType.EXPENSE_SCREEN);
-                expenseListPanel = new ExpenseListPanel(logic.getFilteredExpenseList());
-                listPanelPlaceholder.getChildren().add(expenseListPanel.getRoot());
-                break;
-            case CATEGORY_SCREEN:
-                resultsHeader.setHeader(ScreenType.CATEGORY_SCREEN, "");
-                resultsDetails.switchDetails("All", ScreenType.CATEGORY_SCREEN);
-                categoryListPanel = new CategoryListPanel(logic.getFilteredCategoryList(), logic.getFilteredExpenseList());
-                listPanelPlaceholder.getChildren().add(categoryListPanel.getRoot());
-                break;
-            case RECURRING_EXPENSE_SCREEN:
-                resultsHeader.setHeader(ScreenType.RECURRING_EXPENSE_SCREEN, "");
-                resultsDetails.switchDetails("All", ScreenType.RECURRING_EXPENSE_SCREEN);
-                recurringExpensePanel = new RecurringExpensePanel(logic.getFilteredExpenseList());
-                listPanelPlaceholder.getChildren().add(recurringExpensePanel.getRoot());
-                break;
-            default:
-                break;
+        case EXPENSE_SCREEN:
+            listPanelRoot = new ExpenseListPanel(logic.getFilteredExpenseList()).getRoot();
+            break;
+        case CATEGORY_SCREEN:
+            listPanelRoot = new CategoryListPanel(logic.getFilteredCategoryList(),
+                    logic.getFilteredExpenseList()).getRoot();
+            break;
+        case RECURRING_EXPENSE_SCREEN:
+            listPanelRoot = new RecurringExpensePanel(logic.getRecurringExpenseManagerList()).getRoot();
+            break;
+        default:
+            throw new IllegalArgumentException("Screen type does not exist");
         }
+        listPanelPlaceholder.getChildren().setAll(listPanelRoot);
     }
 
     /**
@@ -248,17 +227,13 @@ public class MainWindow extends UiPart<Stage> {
             expenseListPanel.refreshList();
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-//            switchListPanel(commandResult.isExpenseCommand());
-            switchTemp(ScreenType.RECURRING_EXPENSE_SCREEN);
-
+            switchListPanel(commandResult.getScreenType());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

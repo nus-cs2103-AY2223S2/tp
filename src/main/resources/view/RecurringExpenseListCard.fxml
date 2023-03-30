@@ -31,13 +31,7 @@
          </HBox>
          <Label fx:id="price" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefWidth="80.0" styleClass="cell_label" text="\$price" />
          <Label fx:id="category" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="90.0" styleClass="category_tag" text="\$category" />
-            <Label fx:id="dateRange" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="\$dateRange">
-               <styleClass>
-                  <String fx:value="cell_label" />
-                  <String fx:value="label_dark" />
-               </styleClass>
-            </Label>
-            <Label fx:id="frequency" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="\$frequency">
+            <Label fx:id="frequency" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" text="\$frequency">
                <styleClass>
                   <String fx:value="cell_label" />
                   <String fx:value="label_dark" />

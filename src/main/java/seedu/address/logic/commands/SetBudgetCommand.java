@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import seedu.address.model.Budget;
 import seedu.address.model.Model;
+import seedu.address.ui.ScreenType;
 
 /**
  * Sets the monthly budget for FastTrack.
@@ -28,6 +29,6 @@ public class SetBudgetCommand extends Command {
     @Override
     public CommandResult execute(Model dataModel) {
         dataModel.setBudget(budget);
-        return new CommandResult(MESSAGE_SUCCESS + this.budget, true);
+        return new CommandResult(MESSAGE_SUCCESS + this.budget, ScreenType.EXPENSE_SCREEN);
     }
 }
