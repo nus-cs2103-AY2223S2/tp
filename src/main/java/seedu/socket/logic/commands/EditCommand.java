@@ -55,7 +55,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in SOCket.";
-    public static final String MESSAGE_EXCEED_TAG = "There are %1$s tags and it exceeds our restriction of 10 tags";
+    public static final String MESSAGE_EXCEED_TAG = "There are %1$s tags which exceeds the limit of 10 tags";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;

@@ -14,7 +14,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Sorted by: ";
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Sorts the list of contacts by the given category. "
-        + "Sorts by name if none is given.\n"
+        + "Sorts by name if no category is given.\n"
         + "Parameters: [KEYWORD]\n"
         + "Example: \"" + COMMAND_WORD + " address\"\n"
         + "The following are the available categories:\n"

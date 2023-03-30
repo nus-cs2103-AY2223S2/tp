@@ -11,23 +11,23 @@ import org.junit.jupiter.api.Test;
 
 import seedu.socket.testutil.PersonBuilder;
 
-public class EmailContainsKeywordsPredicateTest {
+public class FindCommandNamePredicateTest {
 
     @Test
-    public void testEquals() {
+    public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        FindCommandEmailPredicate firstPredicate = new FindCommandEmailPredicate(
+        FindCommandNamePredicate firstPredicate = new FindCommandNamePredicate(
                 firstPredicateKeywordList);
-        FindCommandEmailPredicate secondPredicate = new FindCommandEmailPredicate(
+        FindCommandNamePredicate secondPredicate = new FindCommandNamePredicate(
                 secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        FindCommandEmailPredicate firstPredicateCopy = new FindCommandEmailPredicate(
+        FindCommandNamePredicate firstPredicateCopy = new FindCommandNamePredicate(
                 firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -42,48 +42,49 @@ public class EmailContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_emailContainsKeywords_returnsTrue() {
+    public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        FindCommandEmailPredicate predicate = new FindCommandEmailPredicate(
-                Collections.singletonList("Alice@gmail.com"));
+        FindCommandNamePredicate predicate = new FindCommandNamePredicate(
+                Collections.singletonList("Alice"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
-                .withEmail("Alice@gmail.com")
+                .build()));
+
+        // Multiple keywords
+        predicate = new FindCommandNamePredicate(Arrays.asList("Alice", "Bob"));
+        assertTrue(predicate.test(new PersonBuilder()
+                .withName("Alice Bob")
                 .build()));
 
         // Only one matching keyword
-        predicate = new FindCommandEmailPredicate(Arrays.asList("Alice@gmail.com", "Carol"));
+        predicate = new FindCommandNamePredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Carol")
-                .withEmail("Alice@gmail.com")
                 .build()));
 
         // Mixed-case keywords
-        predicate = new FindCommandEmailPredicate(Arrays.asList("ALICE@GMaiL.cOm"));
+        predicate = new FindCommandNamePredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
-                .withEmail("Alice@gmail.com")
                 .build()));
     }
 
     @Test
-    public void test_emailDoesNotContainKeywords_returnsFalse() {
+    public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        FindCommandEmailPredicate predicate = new FindCommandEmailPredicate(Collections.emptyList());
+        FindCommandNamePredicate predicate = new FindCommandNamePredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice")
-                .withEmail("Alice@gmail.com")
                 .build()));
 
         // Non-matching keyword
-        predicate = new FindCommandEmailPredicate(Arrays.asList("Carol"));
+        predicate = new FindCommandNamePredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
-                .withEmail("Alice@gmail.com")
                 .build()));
 
-        // Keywords match phone, name and address, but does not match email
-        predicate = new FindCommandEmailPredicate(Arrays.asList("12345", "Alice", "Main", "Street"));
+        // Keywords match phone, email and address, but does not match name
+        predicate = new FindCommandNamePredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice")
                 .withPhone("12345")

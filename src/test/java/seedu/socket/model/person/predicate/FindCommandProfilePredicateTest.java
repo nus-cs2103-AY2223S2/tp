@@ -11,23 +11,23 @@ import org.junit.jupiter.api.Test;
 
 import seedu.socket.testutil.PersonBuilder;
 
-public class LanguageContainsKeywordsPredicateTest {
+public class FindCommandProfilePredicateTest {
 
     @Test
     public void testEquals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        FindCommandLanguagePredicate firstPredicate = new FindCommandLanguagePredicate(
+        FindCommandProfilePredicate firstPredicate = new FindCommandProfilePredicate(
                 firstPredicateKeywordList);
-        FindCommandLanguagePredicate secondPredicate = new FindCommandLanguagePredicate(
+        FindCommandProfilePredicate secondPredicate = new FindCommandProfilePredicate(
                 secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        FindCommandLanguagePredicate firstPredicateCopy = new FindCommandLanguagePredicate(
+        FindCommandProfilePredicate firstPredicateCopy = new FindCommandProfilePredicate(
                 firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -42,62 +42,55 @@ public class LanguageContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_languageContainsKeywords_returnsTrue() {
+    public void test_profileContainsKeywords_returnsTrue() {
         // One keyword
-        FindCommandLanguagePredicate predicate = new FindCommandLanguagePredicate(
-                Collections.singletonList("java"));
+        FindCommandProfilePredicate predicate = new FindCommandProfilePredicate(
+                Collections.singletonList("alice-nus"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
-                .withLanguages("java", "python")
-                .build()));
-
-        // Multiple keywords
-        predicate = new FindCommandLanguagePredicate(Arrays.asList("java", "python"));
-        assertTrue(predicate.test(new PersonBuilder()
-                .withName("Alice Bob")
-                .withLanguages("java", "python")
+                .withProfile("alice-nus")
                 .build()));
 
         // Only one matching keyword
-        predicate = new FindCommandLanguagePredicate(Arrays.asList("java", "Carol"));
+        predicate = new FindCommandProfilePredicate(Arrays.asList("alice-nus", "Carol-nus"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Carol")
-                .withLanguages("java", "python")
+                .withProfile("alice-nus")
                 .build()));
 
         // Mixed-case keywords
-        predicate = new FindCommandLanguagePredicate(Arrays.asList("JaVa", "pyTHon"));
+        predicate = new FindCommandProfilePredicate(Arrays.asList("ALiCE-NuS"));
         assertTrue(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
-                .withLanguages("java", "python")
+                .withProfile("alice-nus")
                 .build()));
     }
 
     @Test
-    public void test_languageDoesNotContainKeywords_returnsFalse() {
+    public void test_profileDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        FindCommandLanguagePredicate predicate = new FindCommandLanguagePredicate(Collections.emptyList());
+        FindCommandProfilePredicate predicate = new FindCommandProfilePredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice")
-                .withLanguages("java", "python")
+                .withProfile("alice-nus")
                 .build()));
 
         // Non-matching keyword
-        predicate = new FindCommandLanguagePredicate(Arrays.asList("Carol"));
+        predicate = new FindCommandProfilePredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice Bob")
-                .withLanguages("java", "python")
+                .withProfile("alice-nus")
                 .build()));
 
-        // Keywords match name, phone, email and address, but does not match language
-        predicate = new FindCommandLanguagePredicate(Arrays.asList(
-                "alice", "12345", "alice@email.com", "Main", "Street"));
+        // Keywords match name, phone, email and address, but does not match profile
+        predicate = new FindCommandProfilePredicate(Arrays.asList(
+                "Alice", "12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder()
                 .withName("Alice")
+                .withProfile("alice-nus")
                 .withPhone("12345")
                 .withEmail("alice@email.com")
                 .withAddress("Main Street")
-                .withLanguages("java", "python")
                 .build()));
     }
 }
