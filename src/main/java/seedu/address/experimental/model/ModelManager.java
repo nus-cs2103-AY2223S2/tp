@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
@@ -106,6 +107,11 @@ public class ModelManager implements Model {
         userPrefs.setRerollFilePath(rerollFilePath);
     }
 
+    @Override
+    public Predicate<Entity> getClassificationPredicate(Classification classification) {
+        return null;
+    }
+
     //=====================================Rerollllll==============================
 
     @Override
@@ -129,6 +135,20 @@ public class ModelManager implements Model {
         requireNonNull(entity);
         reroll.addEntity(entity);
         updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+    }
+
+    @Override
+    public Entity getEntityFromName(String name) {
+        requireNonNull(name);
+        Entity toReturn = null;
+        ObservableList<Entity> entities = reroll.getEntities().getEntityList();
+        for (Entity entity : entities) {
+            if (entity.getName().fullName.equals(name)) {
+                toReturn = entity;
+                break;
+            }
+        }
+        return toReturn;
     }
 
     @Override

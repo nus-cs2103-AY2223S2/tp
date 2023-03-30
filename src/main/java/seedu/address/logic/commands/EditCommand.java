@@ -8,7 +8,7 @@ import seedu.address.logic.parser.UiSwitchMode;
 import seedu.address.model.entity.Entity;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Enters edit mode to edit the details of a given entity.
  */
 public class EditCommand extends Command {
 

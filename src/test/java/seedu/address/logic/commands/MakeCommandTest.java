@@ -20,9 +20,9 @@ import seedu.address.experimental.model.ReadOnlyReroll;
 import seedu.address.experimental.model.ReadOnlyUserPrefs;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.testutil.EntityBuilder;
-
 
 public class MakeCommandTest {
 
@@ -48,8 +48,8 @@ public class MakeCommandTest {
         MakeCommand makeCommand = new MakeCommand(validEntity);
         ModelStub modelStub = new ModelStubWithEntity(validEntity);
 
-        assertThrows(CommandException.class, MakeCommand.MESSAGE_DUPLICATE_ENTITY, () ->
-                makeCommand.execute(modelStub));
+        assertThrows(CommandException.class, MakeCommand.MESSAGE_DUPLICATE_ENTITY, (
+        )-> makeCommand.execute(modelStub));
     }
 
     @Test
@@ -111,6 +111,11 @@ public class MakeCommandTest {
         }
 
         @Override
+        public Predicate<Entity> getClassificationPredicate(Classification classification) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addEntity(Entity entity) {
             throw new AssertionError("This method should not be called.");
         }
@@ -146,6 +151,11 @@ public class MakeCommandTest {
         }
 
         @Override
+        public Entity getEntityFromName(String name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public List<Entity> getSnapshotEntities(Predicate<? super Entity> predicate) {
             return null;
         }
@@ -166,7 +176,8 @@ public class MakeCommandTest {
         }
 
         /**
-         * Adds the predicate of the filtered entity list to filter by the given {@code predicate}.
+         * Adds the predicate of the filtered entity list to filter by the given
+         * {@code predicate}.
          *
          * @param predicate
          * @throws NullPointerException if {@code predicate} is null.
@@ -175,7 +186,6 @@ public class MakeCommandTest {
         public void addPredicate(Predicate<Entity> predicate) {
 
         }
-
 
         @Override
         public void resetFilteredEntityList() {
