@@ -31,8 +31,6 @@ public class JsonSerializableTeamBuilderTest {
                 JsonSerializableTeamBuilder.class).get();
         TeamBuilder addressBookFromFile = dataFromFile.toModelType();
         TeamBuilder typicalPersonsAddressBook = TypicalPersons.getTypicalAddressBook();
-        typicalPersonsAddressBook.addTeam(new Team(new TeamName("Hacker Gang"),
-                new Desc("Hackathon group for ABC company"), new HashSet<Tag>()));
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

@@ -15,10 +15,15 @@ import static teambuilder.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import teambuilder.model.TeamBuilder;
 import teambuilder.model.person.Person;
+import teambuilder.model.tag.Tag;
+import teambuilder.model.team.Desc;
+import teambuilder.model.team.Team;
+import teambuilder.model.team.TeamName;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -29,17 +34,17 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withMajor("computer science")
-            .withTags("friends").build();
+            .withTags("Python").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withMajor("computer science")
-            .withTags("owesMoney", "friends").build();
+            .withTags("C", "PgSQL").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withMajor("computer science")
             .withTeams("TeamA").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withMajor("computer science")
-            .withTags("friends").build();
+            .withTags("React Native").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withMajor("computer science")
             .withTeams("TeamB").build();
@@ -64,6 +69,13 @@ public class TypicalPersons {
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
             .build();
 
+    public static final Team TEAM_A = new Team(new TeamName("TeamA"), new Desc("This is Team A"),
+            new HashSet<Tag>(Arrays.asList(new Tag("Python"), new Tag("ReactNative"))));
+    public static final Team TEAM_B  = new Team(new TeamName("TeamB"), new Desc("This is Team B"),
+            new HashSet<Tag>(Arrays.asList(new Tag("Java"), new Tag("ReactNative"))));
+    public static final Team TEAM_C  = new Team(new TeamName("TeamC"), new Desc("This is Team C"),
+            new HashSet<Tag>(Arrays.asList(new Tag("PgSQL"), new Tag("C"))));
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalPersons() {} // prevents instantiation
@@ -73,6 +85,10 @@ public class TypicalPersons {
      */
     public static TeamBuilder getTypicalAddressBook() {
         TeamBuilder ab = new TeamBuilder();
+
+        for (Team team : getTypicalTeams()) {
+            ab.addTeam(team);
+        }
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
@@ -81,5 +97,9 @@ public class TypicalPersons {
 
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Team> getTypicalTeams() {
+        return new ArrayList<>(Arrays.asList(TEAM_A, TEAM_B, TEAM_C));
     }
 }
