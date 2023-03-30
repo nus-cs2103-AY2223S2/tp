@@ -190,6 +190,8 @@ public class SudoHr implements ReadOnlySudoHr {
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
         employees.setEmployee(target, editedEmployee);
+        refreshDepartments();
+        refreshLeaves();
     }
 
     /**
@@ -198,6 +200,8 @@ public class SudoHr implements ReadOnlySudoHr {
      */
     public void removeEmployee(Employee key) {
         employees.remove(key);
+        refreshDepartments();
+        refreshLeaves();
     }
 
     // =========== Department-Level Operations
