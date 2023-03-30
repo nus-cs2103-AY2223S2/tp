@@ -78,11 +78,11 @@ public class AutocompleteEngine {
                 .filter(argPrefix -> argPrefix.contains(KEYWORD_PLACEHOLDER))
                 .allMatch(argPrefix -> argPrefix.size() == 1);
 
-        // All commands are assume to only have at most 1 prefix-less arguments (eg. index/keywords).
+        // All prefix-less arguments (eg. index/keywords) are assumed to come before prefixed args.
         assert ARGUMENT_PREFIX_MAP.values().stream()
                 .allMatch(argPrefix -> argPrefix.stream()
-                        .filter(Prefix::isPlaceholder)
-                        .count() <= 1);
+                        .dropWhile(Prefix::isPlaceholder)
+                        .noneMatch(Prefix::isPlaceholder));
     }
 
     /**
@@ -174,8 +174,9 @@ public class AutocompleteEngine {
             return leadingPadding + allArgs;
         }
 
-        String[] splitArr = commmandBody.trim().split(" ");
-        assert splitArr.length > 0;
+        String[] splitArr = commmandBody.trim().split(" +");
+        int numOfWords = splitArr.length;
+        assert numOfWords > 0;
         String firstWord = splitArr[0];
         String lastWord = splitArr[splitArr.length - 1];
         assert !firstWord.isBlank();
@@ -244,10 +245,10 @@ public class AutocompleteEngine {
         }
 
         String remainingArgs = argPrefixes.stream()
-                // Excludes prefix-less arguments like index/keywords.
-                .filter(prefix -> !prefix.isPlaceholder())
-                // Get only unfilled arguments.
-                .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
+                // Skip the filled prefix-less arguments.
+                .skip(numOfWords)
+                // Remove filled prefixed arguments.
+                .filter(prefix -> prefix.isPlaceholder() || argumentMultimap.getValue(prefix).isEmpty())
                 .map(prefix -> prefix.getPrefix() + prefix.getPlaceholderText())
                 .collect(Collectors.joining(" "));
         return remainingArgs;
