@@ -6,16 +6,10 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
-
-import javafx.util.Pair;
 import seedu.connectus.commons.core.Messages;
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.exceptions.CommandException;
@@ -25,7 +19,6 @@ import seedu.connectus.model.tag.Cca;
 import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
-import seedu.connectus.model.tag.Tag;
 
 /**
  * Adds a tag to a person identified using its displayed index from ConnectUS.
@@ -49,7 +42,7 @@ public class AddTagToPersonCommand extends Command {
         + PREFIX_REMARK + "friends "
         + PREFIX_REMARK + "owesMoney";
 
-    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added %2$s to Person: %1$s";
+    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to Person: %1$s";
 
     private final Index index;
     private final AddTagDescriptor addTagDescriptor;
@@ -80,37 +73,7 @@ public class AddTagToPersonCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson, getTagSuccessDetailsMessage()));
-    }
-
-    private String getTagSuccessDetailsMessage() {
-        Field[] fields = AddTagDescriptor.class.getDeclaredFields();
-        StringBuilder sb = new StringBuilder(MESSAGE_ADD_TAG_SUCCESS.length() * 2);
-
-        Arrays.stream(fields).map(f -> {
-            try {
-                @SuppressWarnings("unchecked")
-                Set<? extends Tag> set = (Set<? extends Tag>) f.get(addTagDescriptor);
-                return new Pair<String, Set<? extends Tag>>(transformFieldName(f.getName()), set);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-        }).filter(p -> !p.getValue().isEmpty()).forEach(p -> addFieldToSuccessMessage(sb, p.getValue(), p.getKey()));
-
-        return sb.toString();
-    }
-
-    private static void addFieldToSuccessMessage(StringBuilder sb, Set<? extends Tag> field, String fieldName) {
-        sb.append(sb.length() == 0 ? "" : " and ");
-        sb.append(fieldName);
-        sb.append(field.size() > 1 ? "s " : " ");
-        sb.append(field.stream().map(f -> f.tagName)
-            .collect(Collectors.joining(", ")));
-    }
-
-    private static String transformFieldName(String fieldName) {
-        return fieldName.replaceAll("([a-z])([A-Z])", "$1 \\l$2")
-            .replaceFirst("s$", "");
+        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson));
     }
 
     private Person createEditedPerson(Person personToEdit, AddTagDescriptor addTagDescriptor) {
