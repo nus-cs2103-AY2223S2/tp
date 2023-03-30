@@ -1,6 +1,6 @@
 package seedu.vms.logic.parser.patient;
 
-import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.vms.commons.core.Messages.MESSAGE_MISSING_PARAMETER_FORMAT;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_ALLERGY;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_DOB;
@@ -39,7 +39,7 @@ public class AddCommandParser implements CommandParser {
     @Override
     public AddCommand parse(ArgumentMultimap argsMap) throws ParseException {
         if (!arePrefixesPresent(argsMap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DOB, PREFIX_BLOODTYPE)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_MISSING_PARAMETER_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argsMap.getValue(PREFIX_NAME).get());

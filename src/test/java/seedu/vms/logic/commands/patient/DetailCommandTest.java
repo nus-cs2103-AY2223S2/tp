@@ -31,7 +31,8 @@ public class DetailCommandTest {
         Patient patientToDetail = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased()).getValue();
         DetailCommand detailCommand = new DetailCommand(INDEX_FIRST_PATIENT);
 
-        String expectedMessage = String.format(DetailCommand.MESSAGE_SUCCESS, patientToDetail);
+        String expectedMessage = String.format(DetailCommand.MESSAGE_SUCCESS, INDEX_FIRST_PATIENT.getOneBased(),
+                patientToDetail);
 
         assertCommandSuccess(detailCommand, model, expectedMessage, model);
     }
@@ -51,7 +52,8 @@ public class DetailCommandTest {
         Patient patientToDetail = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased()).getValue();
         DetailCommand detailCommand = new DetailCommand(INDEX_FIRST_PATIENT);
 
-        String expectedMessage = String.format(DetailCommand.MESSAGE_SUCCESS, patientToDetail);
+        String expectedMessage = String.format(DetailCommand.MESSAGE_SUCCESS, INDEX_FIRST_PATIENT.getOneBased(),
+                patientToDetail);
 
         assertCommandSuccess(detailCommand, model, expectedMessage, model);
     }
