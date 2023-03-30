@@ -4,7 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -14,22 +14,32 @@ import seedu.dengue.commons.core.LogsCenter;
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-
-    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103-w17-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "The following are the available commands for this application:\n"
-            + "add, list, edit, find, delete, clear, help, exit\n"
-            + "Formatting:\n"
-            + "add: add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]...\n"
-            + "list: list\n"
-            + "edit: edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]...\n"
-            + "find: find KEYWORD [MORE_KEYWORDS]\n"
-            + "delete: delete INDEX\n"
-            + "clear: clear\n"
-            + "help: help\n"
-            + "exit: exit\n"
-            + "If you want more information, you can refer to the user guide:\n"
-            + USERGUIDE_URL;
-
+    private static final String USERGUIDE_URL = "https://ay2223s2-cs2103-w17-2.github.io/tp/UserGuide.html";
+    private static final String INDENT = "    ";
+    private static final String HELP_MESSAGE = "For more information, please refer to the user guide:\n"
+            + INDENT + USERGUIDE_URL + "\n"
+            + "\nThe available commands for this application are:\n"
+            + INDENT + "add, list, edit, find, delete, clear, undo, redo, sort.\n"
+            + INDENT + "overview, import, export, checkout, help, exit\n"
+            + "\nFormatting:\n"
+            + INDENT + "add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]...\n\n"
+            + INDENT + "list\n\n"
+            + INDENT + "edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]...\n\n"
+            + INDENT + "find [n/NAME] [p/POSTAL] [v/DENGUE_VARIANT]... \\\n"
+            + INDENT + "        { [d/DATE] | [sd/START_DATE] [ed/END_DATE] } \\\n"
+            + INDENT + "        { [a/AGE] | [sa/START_AGE] [ea/END_AGE] }\n\n"
+            + INDENT + "delete INDEX...\n"
+            + INDENT + "delete { d/DATE | [sd/START_DATE] [ed/END_DATE] }\n\n"
+            + INDENT + "clear\n\n"
+            + INDENT + "undo [INTEGER]\n\n"
+            + INDENT + "redo [INTEGER]\n\n"
+            + INDENT + "sort { n/ | a/ | d/ }\n\n"
+            + INDENT + "overview { p/ | a/ | v/ }\n\n"
+            + INDENT + "import [FILENAME]\n\n"
+            + INDENT + "export [FILENAME]\n\n"
+            + INDENT + "checkout [FILENAME]\n\n"
+            + INDENT + "help\n\n"
+            + INDENT + "exit";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -37,7 +47,7 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
-    private Label helpMessage;
+    private TextArea helpMessage;
 
     /**
      * Creates a new HelpWindow.
