@@ -381,7 +381,7 @@ dictates the behaviour of the command box on input change and on submit.
 
 The following is class diagram of the command box.
 
-![CommandBox class diagram](images/CommandBoxClassDiagram.png)
+![CommandBox class diagram](images/commandbox/CommandBoxClassDiagram.png)
 
 #### Changing Modes
 
