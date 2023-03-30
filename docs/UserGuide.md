@@ -530,6 +530,8 @@ Examples:
   </p>
 
 
+<div style="page-break-after: always;"></div>
+
 * After Assigning:<br/><br/>
   <p align="center"><img src="images/AssignAfter.png" width="600"/></p>
   <p align="center">
