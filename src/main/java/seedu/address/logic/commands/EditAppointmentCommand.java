@@ -20,6 +20,7 @@ import seedu.address.model.appointment.Description;
 import seedu.address.model.appointment.Doctor;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.patient.Name;
+import seedu.address.ui.CalendarCard;
 
 /**
  * Edits the details of an existing appointment in the address book.
@@ -85,6 +86,7 @@ public class EditAppointmentCommand extends Command {
 
         model.setAppointment(appointmentToEdit, editedAppointment);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+        CalendarCard.addAppointmentsToCalendar(model.getAppointmentList());
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment));
     }
 

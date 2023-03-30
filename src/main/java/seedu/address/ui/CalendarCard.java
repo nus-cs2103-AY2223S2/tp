@@ -45,12 +45,18 @@ public class CalendarCard extends UiPart<Region> {
      * @param appointmentList The appointment list to be added to the calendar.
      */
     public static void addAppointmentsToCalendar(ReadOnlyAppointmentList appointmentList) {
+        if (source.getCalendars() != null) {
+            source.getCalendars().clear();
+        }
+        Calendar calendar = new Calendar("Task");
         for (int i = 0; i < appointmentList.getAppointmentList().size(); i++) {
             Entry<String> entry = new Entry<>(appointmentList.getAppointmentList().get(i).getDescription().description);
             entry.setInterval(appointmentList.getAppointmentList().get(i).getTimeslot().startingDateTime,
                     appointmentList.getAppointmentList().get(i).getTimeslot().endingDateTime);
             calendar.addEntry(entry);
         }
+        source.getCalendars().add(calendar);
+
     }
 
     @Override

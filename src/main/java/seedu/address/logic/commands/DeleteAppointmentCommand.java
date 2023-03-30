@@ -8,6 +8,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.ui.CalendarCard;
 
 /**
  * Deletes the appointment identified by user.
@@ -37,6 +38,7 @@ public class DeleteAppointmentCommand extends Command {
         }
         Appointment appointmentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteAppointment(appointmentToDelete);
+        CalendarCard.addAppointmentsToCalendar(model.getAppointmentList());
         return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete));
     }
     @Override
