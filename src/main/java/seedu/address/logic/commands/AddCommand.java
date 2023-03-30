@@ -50,18 +50,16 @@ public class AddCommand extends Command {
     public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
-
-        // caches the common modules in each ModuleTagSet as running set
-        // intersection is expensive if we only use it in the compareTo method
-        this.candidatePerson.setCommonModules(userModuleTags);
-
         if (model.hasPerson(this.candidatePerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
         Person indexedPerson = model.addPerson(candidatePerson);
         model.updateObservablePersonList();
+
+        Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
+        indexedPerson.setCommonModules(userModuleTags);
+
         return new ViewCommandResult(
                 String.format(MESSAGE_SUCCESS, indexedPerson), indexedPerson);
     }

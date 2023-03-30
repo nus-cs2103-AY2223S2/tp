@@ -117,8 +117,6 @@ public class TagCommand extends Command {
         editedPerson.setCommonModules(userModuleTags);
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
-        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
 
         return new ViewCommandResult(MESSAGE_MODULE_TAG_PERSON_SUCCESS, editedPerson);
     }
@@ -134,8 +132,6 @@ public class TagCommand extends Command {
         }
 
         personToEdit.addGroupTags(this.groupTags);
-        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
-        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
 
         return (personToEdit instanceof User)
                 ? new ViewCommandResult(MESSAGE_GROUP_TAG_USER_SUCCESS, personToEdit)
@@ -153,7 +149,8 @@ public class TagCommand extends Command {
 
         model.getObservablePersonList().forEach(person ->
                 person.setCommonModules(userModuleTags));
-        model.updateObservablePersonList();
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
+        model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
 
         return new ViewCommandResult(MESSAGE_MODULE_TAG_USER_SUCCESS, editedUser);
     }
