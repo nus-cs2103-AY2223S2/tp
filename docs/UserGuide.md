@@ -116,7 +116,7 @@ Format: `help`
 
 Reverts the patient records to the state before the previous command was executed.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** The initial starting state will be upon
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
 
 Format: `undo`
@@ -125,7 +125,7 @@ Format: `undo`
 
 Reverts the patient records to the state before the previous undo was executed. 
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Redo can only be executed if undo command
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Redo can only be executed if undo command
 has run.
 
 Format: `redo`
@@ -134,7 +134,7 @@ Format: `redo`
 
 Adds a person to the patient records.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Do take note which patient details are 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Do take note which patient details are 
 optional
 
 Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
@@ -154,7 +154,7 @@ Examples:
 Edits an existing patient in the patient records.
 
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Only include the prefixes for the specific
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only include the prefixes for the specific
 patient detail you would like to edit.
 
 Format: `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
@@ -172,7 +172,7 @@ Examples:
 
 Deletes the specified patient from the patient records.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Only include the prefixes for the specific
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only include the prefixes for the specific
 patient detail you would like to edit.
 
 Format: `delete i/NRIC…​`
@@ -185,7 +185,7 @@ Examples:
 
 Shows a list of all patients in the patient records.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** List returns the entire current database
+<div markdown="span" class="alert alert-info">:information_source: **Note:** List returns the entire current database
 that you have loaded.
 
 Format: `list`
@@ -196,7 +196,7 @@ Find patients according to a particular attribute stated followed by the change.
 
 Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`), doctor(`ad/`)
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Find searches by full strings and not 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Find searches by full strings and not 
 substrings. You may only search for a few attributes.
 
 Format: `find (n/NAME | i/NRIC | m/MEDICINE | t/TAG) [MORE_KEYWORDS]`
@@ -224,7 +224,7 @@ Examples (The following results are based of the sample data provided):
 
 Backs up the patient records to a specified slot represented by an index.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Backups need to access and are not 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Backups need to access and are not 
 automatically loaded on launch of application.
 
 Format: `backup INDEX_NO`
@@ -239,7 +239,7 @@ Tip: INDEX_NO can only be an integer between 1 and 10 inclusive.
 
 Loads the data from a specified slot represented by an index.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Allows access to a specific backup.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Allows access to a specific backup.
 
 Format: `load INDEX_NO`
 
@@ -257,7 +257,7 @@ Format: `viewbackup`
 
 Deletes the data from a specified slot represented by an index.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Deleted backups cannot be retrieved after 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Deleted backups cannot be retrieved after 
 deletion.
 
 Format: `deletebackup INDEX_NO`
@@ -270,7 +270,7 @@ Example:
 
 Purges all data from the database.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Data cannot be retrieved after clearing.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Data cannot be retrieved after clearing.
 
 Format: `clear`
 
