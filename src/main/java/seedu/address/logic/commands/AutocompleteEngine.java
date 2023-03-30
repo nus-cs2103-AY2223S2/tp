@@ -44,18 +44,19 @@ public class AutocompleteEngine {
             RemarkCommand.COMMAND_WORD,
             ShowRemarkCommand.COMMAND_WORD
     ));
-    private static final HashMap<String, ArrayList<Prefix>> ARGUMENT_PREFIX_MAP = new HashMap<>(Map.of(
-            AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES,
-            ClearCommand.COMMAND_WORD, ClearCommand.ARGUMENT_PREFIXES,
-            DeleteCommand.COMMAND_WORD, DeleteCommand.ARGUMENT_PREFIXES,
-            EditCommand.COMMAND_WORD, EditCommand.ARGUMENT_PREFIXES,
-            ExitCommand.COMMAND_WORD, ExitCommand.ARGUMENT_PREFIXES,
-            FindCommand.COMMAND_WORD, FindCommand.ARGUMENT_PREFIXES,
-            HelpCommand.COMMAND_WORD, HelpCommand.ARGUMENT_PREFIXES,
-            ListCommand.COMMAND_WORD, ListCommand.ARGUMENT_PREFIXES,
-            RemarkCommand.COMMAND_WORD, RemarkCommand.ARGUMENT_PREFIXES,
-            ShowRemarkCommand.COMMAND_WORD, ShowRemarkCommand.ARGUMENT_PREFIXES
-    ));
+    private static final Map<String, ArrayList<Prefix>> ARGUMENT_PREFIX_MAP = Map.ofEntries(
+            Map.entry(AddCommand.COMMAND_WORD, AddCommand.ARGUMENT_PREFIXES),
+            Map.entry(ClearCommand.COMMAND_WORD, ClearCommand.ARGUMENT_PREFIXES),
+            Map.entry(DeleteCommand.COMMAND_WORD, DeleteCommand.ARGUMENT_PREFIXES),
+            Map.entry(EditCommand.COMMAND_WORD, EditCommand.ARGUMENT_PREFIXES),
+            Map.entry(ExitCommand.COMMAND_WORD, ExitCommand.ARGUMENT_PREFIXES),
+            Map.entry(FindCommand.COMMAND_WORD, FindCommand.ARGUMENT_PREFIXES),
+            Map.entry(HelpCommand.COMMAND_WORD, HelpCommand.ARGUMENT_PREFIXES),
+            Map.entry(ListCommand.COMMAND_WORD, ListCommand.ARGUMENT_PREFIXES),
+            Map.entry(RemarkCommand.COMMAND_WORD, RemarkCommand.ARGUMENT_PREFIXES),
+            Map.entry(ShowRemarkCommand.COMMAND_WORD, ShowRemarkCommand.ARGUMENT_PREFIXES)
+    );
+
 
     private final Model model;
 
