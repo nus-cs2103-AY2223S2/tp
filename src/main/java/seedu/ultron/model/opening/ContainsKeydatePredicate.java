@@ -11,12 +11,12 @@ public class ContainsKeydatePredicate implements Predicate<Opening> {
 
     @Override
     public boolean test(Opening opening) {
-        if (opening.getDates() == null || opening.getDates().isEmpty()) {
+        if (opening.getKeydates() == null || opening.getKeydates().isEmpty()) {
             return false;
         }
         LocalDate today = LocalDate.now();
-        for (Date date : opening.getDates()) {
-            LocalDate curr = LocalDate.parse(date.fullDate);
+        for (Keydate keydate : opening.getKeydates()) {
+            LocalDate curr = LocalDate.parse(keydate.fullDate);
             if (curr.compareTo(today) >= 0) {
                 return true;
             }

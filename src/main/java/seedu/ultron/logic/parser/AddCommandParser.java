@@ -15,8 +15,8 @@ import java.util.stream.Stream;
 import seedu.ultron.logic.commands.AddCommand;
 import seedu.ultron.logic.parser.exceptions.ParseException;
 import seedu.ultron.model.opening.Company;
-import seedu.ultron.model.opening.Date;
 import seedu.ultron.model.opening.Email;
+import seedu.ultron.model.opening.Keydate;
 import seedu.ultron.model.opening.Opening;
 import seedu.ultron.model.opening.Position;
 import seedu.ultron.model.opening.Remark;
@@ -43,16 +43,20 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
         if (!isCompanyPresent(argMultimap, PREFIX_COMPANY)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Company is missing\nExample: " + PREFIX_COMPANY + "Shopee "));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Company is missing\nExample: "
+                    + PREFIX_COMPANY + "Shopee "));
         }
         if (!isPositionPresent(argMultimap, PREFIX_POSITION)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Position is missing\nExample: " + PREFIX_POSITION + "Backend Developer "));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Position is missing\nExample: "
+                    + PREFIX_POSITION + "Backend Developer "));
         }
         if (!isStatusPresent(argMultimap, PREFIX_STATUS)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Status is missing\nExample: " + PREFIX_STATUS + "APPLIED "));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Status is missing\nExample: "
+                    + PREFIX_STATUS + "APPLIED "));
         }
         if (!isEmailPresent(argMultimap, PREFIX_EMAIL)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Email is missing\nExample: " + PREFIX_EMAIL + "hr@shopee.com "));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, "Email is missing\nExample: "
+                    + PREFIX_EMAIL + "hr@shopee.com "));
         }
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -63,9 +67,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Optional<Remark> remark = argMultimap.getValue(PREFIX_REMARK).map(ParserUtil::parseRemark);
-        List<Date> dateList = ParserUtil.parseDates(argMultimap.getAllValues(PREFIX_KEYDATE));
+        List<Keydate> keydateList = ParserUtil.parseKeydates(argMultimap.getAllValues(PREFIX_KEYDATE));
 
-        Opening opening = new Opening(position, company, email, status, remark.orElse(null), dateList);
+        Opening opening = new Opening(position, company, email, status, remark.orElse(null), keydateList);
 
         return new AddCommand(opening);
     }

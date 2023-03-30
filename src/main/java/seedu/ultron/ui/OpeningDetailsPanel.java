@@ -42,8 +42,8 @@ public class OpeningDetailsPanel extends UiPart<Region> {
         status.setText("Status: " + opening.getStatus().fullStatus);
         email.setText("Email: " + opening.getEmail().value);
         remark.setText(String.format("Remark: %s", opening.getRemark().value));
-        opening.getDates().stream()
-                .forEach(date -> dates.getChildren().add(new DateCard(date)));
+        opening.getKeydates().stream()
+                .forEach(date -> dates.getChildren().add(new KeydateCard(date)));
 
         remark.setWrapText(true);
     }

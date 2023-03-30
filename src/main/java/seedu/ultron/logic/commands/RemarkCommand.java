@@ -58,7 +58,7 @@ public class RemarkCommand extends Command {
         Opening openingToEdit = lastShownList.get(index.getZeroBased());
         Opening editedOpening = new Opening(
                 openingToEdit.getPosition(), openingToEdit.getCompany(), openingToEdit.getEmail(),
-                openingToEdit.getStatus(), remark, openingToEdit.getDates());
+                openingToEdit.getStatus(), remark, openingToEdit.getKeydates());
 
         model.setOpening(openingToEdit, editedOpening);
         model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);

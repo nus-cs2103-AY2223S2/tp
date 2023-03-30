@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.ultron.commons.exceptions.IllegalValueException;
 import seedu.ultron.model.opening.Company;
-import seedu.ultron.model.opening.Date;
 import seedu.ultron.model.opening.Email;
+import seedu.ultron.model.opening.Keydate;
 import seedu.ultron.model.opening.Opening;
 import seedu.ultron.model.opening.Position;
 import seedu.ultron.model.opening.Remark;
@@ -29,7 +29,7 @@ class JsonAdaptedOpening {
     private final String email;
     private final String status;
     private final String remark;
-    private final List<JsonAdaptedDate> dates = new ArrayList<>();
+    private final List<JsonAdaptedKeydate> keydates = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedOpening} with the given Opening details.
@@ -38,14 +38,14 @@ class JsonAdaptedOpening {
     public JsonAdaptedOpening(@JsonProperty("position") String position, @JsonProperty("company") String company,
                               @JsonProperty("email") String email, @JsonProperty("status") String status,
                               @JsonProperty("remark") String remark,
-                              @JsonProperty("dates") List<JsonAdaptedDate> dates) {
+                              @JsonProperty("dates") List<JsonAdaptedKeydate> keydates) {
         this.position = position;
         this.company = company;
         this.email = email;
         this.status = status;
         this.remark = remark == null ? "" : remark;
-        if (dates != null) {
-            this.dates.addAll(dates);
+        if (keydates != null) {
+            this.keydates.addAll(keydates);
         }
     }
 
@@ -58,8 +58,8 @@ class JsonAdaptedOpening {
         email = source.getEmail().value;
         status = source.getStatus().fullStatus;
         remark = source.getRemark() == null ? null : source.getRemark().value;
-        dates.addAll(source.getDates().stream()
-                .map(JsonAdaptedDate::new)
+        keydates.addAll(source.getKeydates().stream()
+                .map(JsonAdaptedKeydate::new)
                 .collect(Collectors.toList()));
     }
 
@@ -69,9 +69,9 @@ class JsonAdaptedOpening {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Opening.
      */
     public Opening toModelType() throws IllegalValueException {
-        final List<Date> openingDates = new ArrayList<>();
-        for (JsonAdaptedDate date : dates) {
-            openingDates.add(date.toModelType());
+        final List<Keydate> openingKeydates = new ArrayList<>();
+        for (JsonAdaptedKeydate keydate : keydates) {
+            openingKeydates.add(keydate.toModelType());
         }
 
         if (position == null) {
@@ -113,9 +113,8 @@ class JsonAdaptedOpening {
         }
         final Remark modelRemark = new Remark(remark);
 
-
-        final List<Date> modelDates = new ArrayList<>(openingDates);
-        return new Opening(modelPosition, modelCompany, modelEmail, modelStatus, modelRemark, modelDates);
+        final List<Keydate> modelKeydates = new ArrayList<>(openingKeydates);
+        return new Opening(modelPosition, modelCompany, modelEmail, modelStatus, modelRemark, modelKeydates);
     }
 
 }
