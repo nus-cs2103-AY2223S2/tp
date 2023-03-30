@@ -98,11 +98,11 @@ public class ParserUtil {
      * Parses a String {@code userInput} into an {@code Integer} and returns it. Leading and trailing whitespaces
      * will be trimmed.
      * @throws ParseException if the specified String is invalid (not non-zero unsigned integer or
-     *      not the String "all").
+     *      not the String "none").
      */
-    public static int parseNumCardsPerReview(String userInput) throws ParseException {
+    public static int parseReviewLimit(String userInput) throws ParseException {
         String trimmedUserInput = userInput.trim();
-        if (trimmedUserInput.equalsIgnoreCase("all")) {
+        if (trimmedUserInput.equalsIgnoreCase("none")) {
             return -1;
         } else if (trimmedUserInput.matches("\\d+")) {
             if (!StringUtil.isNonZeroUnsignedInteger(trimmedUserInput)) {

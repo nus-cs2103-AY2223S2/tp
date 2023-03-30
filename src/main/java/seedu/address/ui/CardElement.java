@@ -11,9 +11,9 @@ import seedu.address.model.tag.Tag;
 /**
  * A UI component that displays information of a {@code Card}.
  */
-public class PersonCard extends UiPart<Region> {
+public class CardElement extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "CardElement.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -37,9 +37,9 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Card} and index to display.
+     * Creates a {@code CardCode} with the given {@code Card} and index to display.
      */
-    public PersonCard(Card card, int displayedIndex) {
+    public CardElement(Card card, int displayedIndex) {
         super(FXML);
         this.card = card;
         id.setText(displayedIndex + ". ");
@@ -72,12 +72,12 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof CardElement)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        CardElement card = (CardElement) other;
         return id.getText().equals(card.id.getText())
                 && this.card.equals(card.card);
     }
