@@ -91,6 +91,15 @@ public class PopupAddInternship extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing add internship popup");
+        cleanNode();
+        getRoot().show();
+        getRoot().centerOnScreen();
+    }
+
+    /**
+     * Clean the text field and child of javaFX node.
+     */
+    private void cleanNode() {
         companyName.setText("");
         jobTitle.setText("");
         place.setText("");
@@ -126,9 +135,6 @@ public class PopupAddInternship extends UiPart<Stage> {
         if (rfVBoxSize > 2) {
             reflectionVBox.getChildren().remove(2, rfVBoxSize);
         }
-
-        getRoot().show();
-        getRoot().centerOnScreen();
     }
 
     /**
@@ -204,19 +210,14 @@ public class PopupAddInternship extends UiPart<Stage> {
     }
 
     /**
-     * Handles the add internship button clicked event.
+     * Constructing command text.
      */
-    @FXML
-    private void handleAddInternship() {
-        if (!isValid()) {
-            return;
-        }
-
+    private String makeCommandText() {
         String commandText = AddCommand.COMMAND_WORD
-                + " " + CliSyntax.PREFIX_COMPANY_NAME.getPrefix()
-                + companyName.getText()
-                + " " + CliSyntax.PREFIX_JOB_TITLE.getPrefix()
-                + jobTitle.getText();
+                 + " " + CliSyntax.PREFIX_COMPANY_NAME.getPrefix()
+                 + companyName.getText()
+                 + " " + CliSyntax.PREFIX_JOB_TITLE.getPrefix()
+                 + jobTitle.getText();
 
         if (!place.getText().isBlank()) {
             commandText += " " + CliSyntax.PREFIX_LOCATION.getPrefix() + place.getText();
@@ -264,6 +265,19 @@ public class PopupAddInternship extends UiPart<Stage> {
                 commandText += " " + CliSyntax.PREFIX_REFLECTION.getPrefix() + rf.getText();
             }
         }
+        return commandText;
+    }
+
+    /**
+    * Handles the add internship button clicked event.
+    */
+    @FXML
+    private void handleAddInternship() {
+        if (!isValid()) {
+            return;
+        }
+
+        String commandText = makeCommandText();
 
         try {
             mainWindow.executeCommand(commandText);
