@@ -1,5 +1,9 @@
 ---
-# User guide
+layout: page
+title: User Guide
+---
+
+# User Guide
 
 MATHUTORING is a **centralised desktop application used for private Math tuition teachers** to manage their students' contacts and performances which subsequently allows the tutors to plan their lesson plan for future lessons and overall view of their schedule for ease of planning. While the user interactions are conducted through using a CLI, it still has the benefits of a Graphical User Interface (GUI). If you can type fast, MATHUTORING can get your contact management tasks done faster than traditional GUI apps.
 ## Table of Contents
