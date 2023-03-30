@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
             + ": Deletes the keyword identified by the string used in the keyword map.\n"
             + "Parameters: KEYWORD (must be a string)\n"
-            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " appt";
 
     public static final String MESSAGE_DELETE_KEYWORD_SUCCESS = "Deleted keyword: %1$s";
 

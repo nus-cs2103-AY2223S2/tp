@@ -20,7 +20,7 @@ public class DeleteCommandParser implements CommandParser {
     @Override
     public DeleteCommand parse(ArgumentMultimap argsMap) throws ParseException {
         try {
-            String keyword = ParserUtil.parseKeyword(argsMap.getPreamble());
+            String keyword = ParserUtil.parseDeleteKeyword(argsMap.getPreamble());
             return new DeleteCommand(keyword);
         } catch (ParseException pe) {
             throw new ParseException(

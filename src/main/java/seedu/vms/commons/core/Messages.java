@@ -22,6 +22,8 @@ public class Messages {
             + "Only %s, %s, and %s are allowed. \n";
     public static final String MESSAGE_INVALID_SUB_KEYWORD = "Invalid new keyword! %s, %s, %s, %s, %s, "
             + "and %s are NOT allowed. \n";
+    public static final String MESSAGE_KEYWORD_DOES_NOT_EXIST = "There is not a existing "
+            + "keyword mapping for %s! \n";
 
     public static final String FORMAT_UNEXPECTED_APPOINTMENT_CHANGE = "Unexpected change detected!\n"
             + "The following appointments will become invalid if the change were to happen:%s";

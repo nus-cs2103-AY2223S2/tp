@@ -1,9 +1,7 @@
 package seedu.vms.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.vms.commons.core.Messages.MESSAGE_EXISTING_KEYWORD_EXISTS;
-import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_MAIN_KEYWORD;
-import static seedu.vms.commons.core.Messages.MESSAGE_INVALID_SUB_KEYWORD;
+import static seedu.vms.commons.core.Messages.*;
 import static seedu.vms.model.keyword.Keyword.MAIN_APPOINTMENT_STRING;
 import static seedu.vms.model.keyword.Keyword.MAIN_BASIC_STRING;
 import static seedu.vms.model.keyword.Keyword.MAIN_EXIT_STRING;
@@ -271,6 +269,21 @@ public class ParserUtil {
         }
         if (KeywordManager.existingMappingExists(trimmedKeyword)) {
             throw new ParseException(String.format(MESSAGE_EXISTING_KEYWORD_EXISTS, trimmedKeyword, trimmedKeyword));
+        }
+        return trimmedKeyword;
+    }
+
+    /**
+     * Parses a {@code String keyword} into a {@code String keyword}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code keyword} is invalid.
+     */
+    public static String parseDeleteKeyword(String keyword) throws ParseException {
+        requireNonNull(keyword);
+        String trimmedKeyword = keyword.trim();
+        if (!KeywordManager.existingMappingExists(trimmedKeyword)) {
+            throw new ParseException(String.format(MESSAGE_KEYWORD_DOES_NOT_EXIST, trimmedKeyword));
         }
         return trimmedKeyword;
     }
