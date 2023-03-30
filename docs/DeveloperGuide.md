@@ -942,7 +942,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 **API** : `Recommender.java`
 
-<img src="images/RecommenderClass.svg" style="width:80%;margin:0 10%">
+<img src="images/RecommenderClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.6</b> Class Diagram for Recommender Module
 </div>
