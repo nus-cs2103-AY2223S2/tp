@@ -15,7 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes multiple persons identified using their displayed indexes from the address book.
  */
 public class DeleteCommand extends Command {
 
@@ -24,19 +24,19 @@ public class DeleteCommand extends Command {
             INDEX_PLACEHOLDER));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Delete the persons identified by the index numbers used in the displayed person list.\n"
             + "Parameters: "
             + ARGUMENT_PREFIXES.stream()
                     .map(Prefix::toString)
                     .collect(Collectors.joining(" "))
-            + "\nExample: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 1 2 3";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons: %1$s";
 
-    private final Index targetIndex;
+    private final List<Index> targetIndexes;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(List<Index> targetIndexes) {
+        this.targetIndexes = targetIndexes;
     }
 
     @Override
@@ -44,19 +44,30 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        List<Person> personsToDelete = new ArrayList<>();
+
+        for (Index targetIndex : targetIndexes) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+            personsToDelete.add(lastShownList.get(targetIndex.getZeroBased()));
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        for (Person personToDelete : personsToDelete) {
+            model.deletePerson(personToDelete);
+        }
+
+        String deletedPersons = String.join(", ", personsToDelete.stream()
+                .map(Person::toString)
+                .toArray(String[]::new));
+
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedPersons));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+        return other == this
+                || (other instanceof DeleteCommand
+                && targetIndexes.equals(((DeleteCommand) other).targetIndexes));
     }
 }
