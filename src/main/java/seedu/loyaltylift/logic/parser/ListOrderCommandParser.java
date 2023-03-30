@@ -11,8 +11,6 @@ import java.util.stream.Stream;
 import seedu.loyaltylift.logic.commands.ListOrderCommand;
 import seedu.loyaltylift.logic.parser.exceptions.ParseException;
 import seedu.loyaltylift.model.order.Order;
-import seedu.loyaltylift.model.order.OrderStatusPredicate;
-import seedu.loyaltylift.model.order.StatusValue;
 
 /**
  * Parses input arguments and creates a new ListOrderCommand object
@@ -34,8 +32,7 @@ public class ListOrderCommandParser implements Parser<ListOrderCommand> {
 
         Predicate<Order> predicate = PREDICATE_SHOW_ALL_ORDERS;
         if (arePrefixesPresent(argMultimap, PREFIX_FILTER)) {
-            StatusValue status = ParserUtil.parseStatusValue(argMultimap.getValue(PREFIX_FILTER).orElse(""));
-            predicate = new OrderStatusPredicate(status);
+            predicate = ParserUtil.parseOrderFilterOption(argMultimap.getValue(PREFIX_FILTER).orElse(""));
         }
 
         return new ListOrderCommand(comparator, predicate);

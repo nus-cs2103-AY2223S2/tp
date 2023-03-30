@@ -18,10 +18,10 @@ public class ListCustomerCommand extends Command {
 
     public static final String COMMAND_WORD = "listc";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all customers with an optional sort option "
-            + "(name by default) and displays them as a list with index numbers.\n"
-            + "Parameters: [" + PREFIX_SORT + "{name|points}] + [" + PREFIX_FILTER + "STATUS\n"
-            + "Example: " + COMMAND_WORD + " s/points f/marked";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all customers with an optional sort "
+            + "(name by default) and filter option and displays them as a list with index numbers.\n"
+            + "Parameters: [" + PREFIX_SORT + "{name|points}] + [" + PREFIX_FILTER + "{marked|ind|ent}]\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_SORT + "points " + PREFIX_FILTER + "marked";
 
     public static final String MESSAGE_SUCCESS = "Listed all customers";
     public static final String MESSAGE_INVALID_SORT = "Unrecognized sort option";

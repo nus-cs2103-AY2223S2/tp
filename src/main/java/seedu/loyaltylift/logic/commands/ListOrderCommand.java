@@ -18,10 +18,10 @@ public class ListOrderCommand extends Command {
 
     public static final String COMMAND_WORD = "listo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all orders with an optional sort option "
-        + "(created date by default) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all orders with an optional sort "
+        + "(created date by default) and filter option and displays them as a list with index numbers.\n"
         + "Parameters: [" + PREFIX_SORT + "{created|name|status}] + [" + PREFIX_FILTER + "STATUS]\n"
-        + "Example: " + COMMAND_WORD + " s/name f/pending";
+        + "Example: " + COMMAND_WORD + " " + PREFIX_SORT + "name " + PREFIX_FILTER + "pending";
 
     public static final String MESSAGE_SUCCESS = "Listed all orders";
     public static final String MESSAGE_INVALID_SORT = "Unrecognized sort option";
