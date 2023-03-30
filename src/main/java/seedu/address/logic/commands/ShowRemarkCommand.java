@@ -35,6 +35,8 @@ public class ShowRemarkCommand extends Command {
     public static final String MESSAGE_SHOWN_REMARK_SUCCESS = "Remarks: %1$s";
     public static final String MESSAGE_SHOWN_REMARK_EMPTY = "No remarks yet...";
 
+    private final boolean isModifying = false;
+
     private final Index index;
 
     /**
@@ -48,7 +50,12 @@ public class ShowRemarkCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public boolean checkModifiable() {
+        return isModifying;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -60,6 +67,7 @@ public class ShowRemarkCommand extends Command {
         model.updateShowPerson(new FullNamePredicate(personToShow.getName().toString()));
         Remark toBeShown = personToShow.getOptionalRemark().orElse(new Remark(""));
         String message = !toBeShown.value.isEmpty() ? MESSAGE_SHOWN_REMARK_SUCCESS : MESSAGE_SHOWN_REMARK_EMPTY;
+        commandHistory.updateCommandHistory(COMMAND_WORD);
         return new CommandResult(String.format(message, toBeShown));
 
     }

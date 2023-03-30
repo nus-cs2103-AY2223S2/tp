@@ -90,6 +90,16 @@ public interface Model {
 
     ObservableList<Person> getShowPerson();
 
+    boolean checkUndoable();
+
+    boolean checkRedoable();
+
+    void undoAddressBook();
+
+    void redoAddressBook();
+
+    void commitAddressBook();
+
     /**
      * Returns a list of all existing tag values (without duplicates) contained
      * in the person list.

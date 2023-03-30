@@ -55,6 +55,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
+    private final boolean isModifying = true;
     private final Person toAdd;
 
     /**
@@ -66,7 +67,12 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public boolean checkModifiable() {
+        return isModifying;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
@@ -74,6 +80,8 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.commitAddressBook();
+        commandHistory.updateAsModifyingHistory(COMMAND_WORD);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

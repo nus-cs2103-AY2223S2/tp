@@ -42,6 +42,8 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
 
+    private final boolean isModifying = true;
+
     private final Index index;
     private final Remark remark;
 
@@ -56,7 +58,12 @@ public class RemarkCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public boolean checkModifiable() {
+        return isModifying;
+    }
+
+    @Override
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -81,7 +88,8 @@ public class RemarkCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
+        model.commitAddressBook();
+        commandHistory.updateAsModifyingHistory(COMMAND_WORD);
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 
