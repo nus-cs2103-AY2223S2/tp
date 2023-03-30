@@ -13,9 +13,9 @@ see in your career.
 
 ## Table of Contents
 
-* ### How to Get Started
-* ### Features
-    * #### General Management
+* #### [How to Get Started](#how-to-get-started)
+* #### [Features](#features)
+    * #### [General Management](#general-management)
         * Viewing help : `help`
         * Undo previous operation : `undo`
         * Redo previous operation : `redo`
@@ -23,7 +23,7 @@ see in your career.
         * Exiting the program : `exit`
         * Saving the data
         * Editing the data file
-    * #### Client Management
+    * #### [Client Management](#client-management)
         * Adding a client: `add`
         * Selecting a client: `select`
         * Listing all clients : `list`
@@ -33,12 +33,12 @@ see in your career.
         * Sorting Clients by Email address : `sortClientEmail`
         * Sorting Clients by Name : `sortClientName`
         * Sorting Clients by Phone Number : `sortClientPhone`
-    * #### Policy Management
+    * #### [Policy Management](#policy-management)
         * Adding a policy: `addPolicy`
         * Editing a policy : `editPolicy`
         * Deleting a policy : `deletePolicy`
-* ### FAQ
-* ### Command Summary
+* #### [FAQ](#faq)
+* #### [Command Summary](#command-summary)
 
 ## How to Get Started
 
@@ -143,7 +143,6 @@ Thus following commands can't be called to Undo/Redo
 * List
 * Select
 
-
 ### Redo previous command : `redo`
 
 Redo one previous command and restore that version of address book
@@ -210,7 +209,6 @@ Examples:
 
 ![result for 'find alex david'](images/selectexample.png)
 
-
 ### Listing all clients: `list`
 
 Shows a list of all client profiles.
@@ -273,20 +271,16 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the list of clients list.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
+## Policy Management
 
-
-
-
-
-## Policy Management 
-
-While you can manage your clients, we also provide a way to manage the client's policies. 
+While you can manage your clients, we also provide a way to manage the client's policies.
 
 Policy refers to the insurance plan/contract that the client has purchased from you.
 
 The policy contains the following fields:
+
 - Policy Name
-- Policy Start Date 
+- Policy Start Date
 - Policy Premium (The amount of money the client pays you for the policy)
 - Policy Frequency (The frequency of the premium payment)
 
@@ -299,12 +293,12 @@ Adds a policy to a specific client
 Format: `addPolicy INDEX pn/POLICY_NAME pd/START_DATE pp/PREMIUM pf/FREQUENCY`
 
 * Do note that the Policy Name should be from the following list:
-  - Health Insurance
-  - Life Insurance
-  - Medical Insurance
-  - Fire Insurance
-  - Car Insurance
-  - Travel Insurance
+    - Health Insurance
+    - Life Insurance
+    - Medical Insurance
+    - Fire Insurance
+    - Car Insurance
+    - Travel Insurance
 
 * The Policy Start Date should be in the following format: `dd.mm.yyyy`
 
@@ -314,11 +308,9 @@ Format: `addPolicy INDEX pn/POLICY_NAME pd/START_DATE pp/PREMIUM pf/FREQUENCY`
 
 Examples: `addPolicy 1 pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
 
-
 You will then be able to view the policies on the right side under 'Policies'
 
 ![img.png](img.png)
-
 
 ### Editing a policy : `editPolicy`
 
@@ -326,14 +318,16 @@ Format: `editPolicy INDEX pi/POLICY_INDEX [pn/POLICY_NAME] [pd/START_DATE] [pp/P
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client
   list. The index **must be a positive integer** 1, 2, 3, …​
-* The `POLICY_INDEX` refers to the index number shown in the displayed policy list. The same constraints as `INDEX` apply. 
+* The `POLICY_INDEX` refers to the index number shown in the displayed policy list. The same constraints as `INDEX`
+  apply.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
+
 - `editpolicy 1 pi/1 pn/Fire Insurance` edits the 1st client's 1st policy's name to `Fire Insurance`
-- `editpolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd 
-policy information`
+- `editpolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd
+  policy information`
 
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
@@ -416,7 +410,6 @@ Deletes the indexed policy from a specific client
 
 Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
-
 Examples: `deletePolicy 1 pi/2` deletes the 1st client's 2nd policy in the list
 
 
@@ -425,45 +418,56 @@ Examples: `deletePolicy 1 pi/2` deletes the 1st client's 2nd policy in the list
 ## FAQ
 
 **Q**: My computer doesn't have Java 11 installed, what should I do?<br>
-**A**: You can install Java 11 from [Oracle](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html). All you have to do now is find your operating systems and follow the steps given! Alternatively, you can also install Java 11 from [OpenJDK](https://openjdk.org). 
+**A**: You can install Java 11
+from [Oracle](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html). All you have to do now
+is find your operating systems and follow the steps given! Alternatively, you can also install Java 11
+from [OpenJDK](https://openjdk.org).
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AddressBook home folder.
 
 **Q**: Do I need an internet connection use Advisio?<br>
-**A**: Advisio is a local application that does not require an internet connection! Feel free to use our application anywhere and anytime as you see fit!
+**A**: Advisio is a local application that does not require an internet connection! Feel free to use our application
+anywhere and anytime as you see fit!
 
 **Q**: Is my data stored on the cloud? How can I ensure that I do not lose such critical information?<br>
-**A**:Unfortunately, Advisio does not  support cloud support. However, you can follow these steps to store your data safely in existing cloud services such as Icloud or Google Drive. Firstly, locate the data file `<JAR file location>/data/clientbook.json`. Secondly, copy the file into your preferred cloud service. 
+**A**:Unfortunately, Advisio does not support cloud support. However, you can follow these steps to store your data
+safely in existing cloud services such as Icloud or Google Drive. Firstly, locate the data
+file `<JAR file location>/data/clientbook.json`. Secondly, copy the file into your preferred cloud service.
 
-**Q**: I would like to add a new policy, however the application doesn't allow me to add a policy other than those that are supported by the application. What should I do?<br>
-**A**: We restricted the policies to a limited few for the convenience of Financial Advisors so that they wouldn't find themselves in a situation where they can't remember the policy that was added. The engineering team for your company should be able to add a new general policy if it's required.
+**Q**: I would like to add a new policy, however the application doesn't allow me to add a policy other than those that
+are supported by the application. What should I do?<br>
+**A**: We restricted the policies to a limited few for the convenience of Financial Advisors so that they wouldn't find
+themselves in a situation where they can't remember the policy that was added. The engineering team for your company
+should be able to add a new general policy if it's required.
 
 **Q**: Is there a limit to the number of clients or policies that I can add?<br>
-**A**: There is approximately a 2 million limit for both clients and policies separately. We have analysed and interviewed verteran Financial Adivsors and have concluded that it is very unlikely for a Financial Advisor to to exceed those thresholds. However, the limit can be expanded in the future if necessary.
+**A**: There is approximately a 2 million limit for both clients and policies separately. We have analysed and
+interviewed verteran Financial Adivsors and have concluded that it is very unlikely for a Financial Advisor to to exceed
+those thresholds. However, the limit can be expanded in the future if necessary.
 
 **Q**: If I
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
- Action              | Format, Examples                                                                                                                                                  
----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
- **Select**          | `select INDEX` <br> e.g., `select 3`                                                                                                                                 
- **Clear**           | `clear`                                                                                                                                                               
- **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
- **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
- **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
- **List**            | `list`                                                                                                                                                                
- **Undo**            | `undo`                                                                                                                                                                
- **Redo**            | `redo`                                                                                                                                                                
- **Help**            | `help`                                                                                                                                                                
- **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`               
- **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1` 
- **Edit a Policy**   | `editPolicy INDEX pi/POLICY INDEX[pn/POLICY NAME] [pd/START DATE] [pp/PREMIUM] [pf/FREQUENCY]` <br> e.g., `editPolicy 1 pn/Travel Insurance pp/2000`
- **Select**          | `select INDEX`<br> e.g.,`select 1`
- **Sort Client by Email** | `sortClientEmail INDEX(Any Integer)`<br> e.g.,`sortClientEmail 1`
- **Sort Client by Name** | `sortClientName INDEX(Any Integer)`<br> e.g.,`sortClientName 1`
- **Sort Client by Phone** | `sortClientPhone INDEX(Any Integer)`<br> e.g.,`sortClientPhone 1`
+ Action                   | Format, Examples                                                                                                                                                      
+--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ **Add**                  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
+ **Select**               | `select INDEX` <br> e.g., `select 3`                                                                                                                                  
+ **Clear**                | `clear`                                                                                                                                                               
+ **Delete**               | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
+ **Edit**                 | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
+ **Find**                 | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
+ **List**                 | `list`                                                                                                                                                                
+ **Undo**                 | `undo`                                                                                                                                                                
+ **Redo**                 | `redo`                                                                                                                                                                
+ **Help**                 | `help`                                                                                                                                                                
+ **Add a Policy**         | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`               
+ **Delete a Policy**      | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`                                                                                                    
+ **Edit a Policy**        | `editPolicy INDEX pi/POLICY INDEX[pn/POLICY NAME] [pd/START DATE] [pp/PREMIUM] [pf/FREQUENCY]` <br> e.g., `editPolicy 1 pn/Travel Insurance pp/2000`                  
+ **Select**               | `select INDEX`<br> e.g.,`select 1`                                                                                                                                    
+ **Sort Client by Email** | `sortClientEmail INDEX(Any Integer)`<br> e.g.,`sortClientEmail 1`                                                                                                     
+ **Sort Client by Name**  | `sortClientName INDEX(Any Integer)`<br> e.g.,`sortClientName 1`                                                                                                       
+ **Sort Client by Phone** | `sortClientPhone INDEX(Any Integer)`<br> e.g.,`sortClientPhone 1`                                                                                                     

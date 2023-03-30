@@ -14,8 +14,7 @@ available on PC, and is optimized for use via a Command Line Interface (CLI) whi
 a Graphical User Interface (GUI). If you can type fast, AIO will be the biggest boost in your productivity that you'll
 see in your career.
 
-* If you are interested in using Advis.io, head over to the [_How to Get Started_ section of the **User Guide
-  **](UserGuide.html#how-to-get-started).
+* If you are interested in using Advis.io, head over to the [**User Guide**](UserGuide.html#how-to-get-started).
 * If you are interested about developing Advis.io, the [**Developer Guide**](DeveloperGuide.html) is a good place to
   start.
 
