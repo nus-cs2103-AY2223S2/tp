@@ -292,6 +292,24 @@ Examples:
 
 - `listtxn` followed by `deletetxn 2` deletes the 2nd transaction record in the sales book.
 
+### Adding a task: `addtask`
+
+Adds a task to the specific person in the address book.
+
+Format: `addtask INDEX [at/TASK_DESCRIPTION]`
+
+* Adds a task to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* The task added to the person will have the description `TASK_DESCRIPTION`
+
+### Clearing all tasks: `cleartask` 
+
+Clears all tasks to the specific person in the address book.
+
+Format: `cleartask INDEX`
+
+* Clears all tasks to the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
