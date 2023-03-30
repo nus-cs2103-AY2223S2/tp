@@ -83,6 +83,7 @@ public class LogicManager implements Logic {
             model.updateViewedPerson(getFilteredPersonList().get(index));
         }
     }
+
     @Override
     public Path getSocketFilePath() {
         return model.getSocketFilePath();

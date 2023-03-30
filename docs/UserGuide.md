@@ -114,6 +114,8 @@ Displays window showing the list of commands and a clickable URL to access help 
 
 Format: `help`
 
+Shortcut Key: `F1`
+
 <div style="page-break-after: always;"></div>
 
 #### Undoing a change : `undo`
@@ -121,6 +123,11 @@ Format: `help`
 Undoes the last change made to SOCket.
 
 Format: `undo`
+
+Shortcut Key:
+1. `Ctrl+Z` for __Window user__.
+2. `Command+Z` for __Mac user__.
+
 * A message is shown if no changes were made to SOCket.
 
 #### Redoing an undone change : `redo`
@@ -128,6 +135,11 @@ Format: `undo`
 Restores a previously undone change made to SOCket.
 
 Format: `redo`
+
+Shortcut Key: 
+1. `Ctrl+Shift+Z` for __Window user__.
+2. `Command+Shift+Z` for __Mac user__.
+
 * A message is shown if no undone changes exist.
 
 <div markdown="span" class="alert alert-primary"> :bulb: Tip
@@ -139,6 +151,10 @@ Changes made to SOCket are **not** saved upon exit.
 Exits the program.
 
 Format: `exit`
+
+Shortcut key: 
+1. `Ctrl+Q` for __Window user__.
+2. `Command+Q` for __Mac user__.
 
 <div style="page-break-after: always;"></div>
 
@@ -591,7 +607,7 @@ If your changes to the data file makes its format invalid, SOCket will discard a
 | **Unassign**    | `unassign INDEX n/NAME` <br> e.g. `unassign 1 n/John Doe`                                                                                                                                                   |
 | **Sort Projects** | `sortpj [CATEGORY]`<br> e.g. `sortpj reponame`                                                                                                                                                              | 
 | **View**        | `view INDEX`                                                                                                                                                                                                |
-| **Undo**        | `undo`                                                                                                                                                                                                      |
-| **Redo**        | `redo`                                                                                                                                                                                                      |
-| **Help**        | `help`                                                                                                                                                                                                      |
-| **Exit**        | `exit`                                                                                                                                                                                                      |
+| **Undo**        | `undo`<br> Shortcut Key: `Ctrl+Z`/ `Command+Z`                                                                                                                                                              |
+| **Redo**        | `redo`<br> Shortcut Key: `Ctrl+Shift+Z`/ `Command+Shift+Z`                                                                                                                                                  |
+| **Help**        | `help`<br> Shortcut Key: `F1`                                                                                                                                                                               |
+| **Exit**        | `exit`<br> Shortcut Key: `Ctrl+Q`/ `Command+Q`                                                                                                                                                              |
