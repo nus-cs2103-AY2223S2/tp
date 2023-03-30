@@ -32,9 +32,10 @@
 
 .table-view .table-cell {
   -fx-padding: 2 4 2 4px;
-  -fx-font-size: 12pt;
+  -fx-font-size: 10pt;
   -fx-text-fill: white;
   -fx-opacity: 1;
+  -fx-wrap-text: true;
 }
 
 .table-view .scroll-bar * {

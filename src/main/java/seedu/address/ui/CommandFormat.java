@@ -16,13 +16,14 @@ public class CommandFormat {
     private static final CommandFormat ADD_COMMAND_FORMAT = new CommandFormat(
             "add",
             "Adds a person to ExecutivePro.",
-            "n/NAME p/PHONE e/EMAIL a/ADDRESS d/DEPARTMENT pr/PAYROLL l/LEAVE COUNT dob/DATE OF BIRTH " +
-                    "doj/DATE OF JOINING [t/TAG]...");
+            "n/NAME p/PHONE [e/EMAIL] [a/ADDRESS] d/DEPARTMENT pr/PAYROLL [l/LEAVE COUNT] [dob/DATE OF BIRTH] " +
+                    "[doj/DATE OF JOINING] [t/TAG]...");
 
     private static final CommandFormat EDIT_COMMAND_FORMAT = new CommandFormat(
             "edit",
             "Edits an employee's details.",
-            "edit EMPLOYEE_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]…");
+            "edit EMPLOYEE_ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [pr/PAYROLL] [l/LEAVE COUNT]"
+                    + " [dob/DATE OF BIRTH] [doj/DATE OF JOINING] [t/TAG]...");
 
     private static final CommandFormat DELETE_COMMAND_FORMAT = new CommandFormat(
             "delete",
