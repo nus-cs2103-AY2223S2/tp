@@ -11,7 +11,7 @@ You can reach us at the email `PetPal[at]comp.nus.edu.sg`
 
 ### Lin Yuan Xun
 
-<img src="images/team/yuanxun9834.png" width="200px">
+<img src="images/yuanxun9834.png" width="200px">
 
 [[github](https://github.com/YuanXun9834)]
 [[portfolio](team/YuanXun9834.md)]
@@ -20,7 +20,7 @@ You can reach us at the email `PetPal[at]comp.nus.edu.sg`
 
 ### Soo Weng Kit
 
-<img src="images/team/wengkit1.png" width="200px">
+<img src="images/wengkit1.png" width="200px">
 
 [[github](http://github.com/wengkit1)]
 [[portfolio](team/wengkit1.md)]
@@ -30,7 +30,7 @@ You can reach us at the email `PetPal[at]comp.nus.edu.sg`
 
 ### He Shuimei
 
-<img src="images/team/shuimeihe.png" width="200px">
+<img src="images/shuimeihe.png" width="200px">
 
 [[homepage](https://shuimeihe.github.io/)]
 [[github](http://github.com/shuimeihe)]
@@ -41,7 +41,7 @@ You can reach us at the email `PetPal[at]comp.nus.edu.sg`
 
 ### Daniel Kur
 
-<img src="images/team/daniel-kur.png" width="200px">
+<img src="images/daniel-kur.png" width="200px">
 
 [[github](http://github.com/daniel-kur)]
 [[portfolio](team/daniel-kur.md)]
