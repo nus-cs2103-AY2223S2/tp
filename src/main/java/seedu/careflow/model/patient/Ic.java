@@ -8,8 +8,7 @@ import static seedu.careflow.commons.util.AppUtil.checkArgument;
  */
 public class Ic {
     public static final String MESSAGE_CONSTRAINTS =
-            "IC number should only contain alphanumeric characters,"
-                    + " and it should be exactly 8 digits and characters long";
+            "The IC number begins with a letter followed by 7 digits and concludes with another letter";
 
     private static final String VALIDATION_REGEX = "[a-zA-Z]\\d{7}[a-zA-Z]";
     public final String value;
