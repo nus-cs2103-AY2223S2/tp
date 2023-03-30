@@ -6,10 +6,10 @@ title: User Guide
 
 Mycelium is a desktop application aimed at helping **freelance web developers
 manage clients and projects** from multiple online sources like [Upstack](https://upstackhq.com/),
-[Fiverr](fiverr.com), and [Toptal](https://www.toptal.com/). All interactions
+[Fiverr](https://www.fiverr.com/), and [Toptal](https://www.toptal.com/). All interactions
 with Mycelium are done through text commands or HotKeys, enabling one to efficiently
 manipulate data while availing oneself to the convenience of viewing, offered by the
-Graphical User Interface (GUI). You can expect to navigate its interface seamlessly and 
+Graphical User Interface (GUI). You can expect to navigate its interface seamlessly and
 access its functions with a mere keystroke or two.
 
 ## Using this Guide
@@ -169,7 +169,7 @@ p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com
 <div markdown="span" class="alert alert-success">
 :bulb: You will also discover that all command names in Mycelium are at most
 two characters long. This terseness is *intentional* to allow for faster
-keystrokes. Also note that all commands and argument flags are case sensitive.
+keystrokes. Also note that all commands and argument flags are case-sensitive.
 </div>
 
 <div markdown="span" class="alert alert-info">
@@ -206,8 +206,8 @@ on the Projects tab, Mycelium will automatically display the Clients tab.
 
 ### Creating a client contact: `c`
 
-To create a new client contact, use the **`c`** command followed by the client's name and email. 
-The year of birth, platform source, and mobile number can also be added as optional arguments. 
+To create a new client contact, use the **`c`** command followed by the client's name and email.
+The year of birth, platform source, and mobile number can also be added as optional arguments.
 Once successfully created, the interface will display the new client's name and email.
 
 **Compulsory Arguments**
@@ -250,7 +250,7 @@ In fact, *X Æ A-12* is also a valid name in Mycelium.
 
 ### Deleting a client contact: `dc`
 
-To delete an existing client contact, use the **`dc`** command followed 
+To delete an existing client contact, use the **`dc`** command followed
 by the client's email address. Once the contact is deleted, the interface will display the name and email of the deleted client.
 
 **Compulsory Arguments**
@@ -275,8 +275,8 @@ client with an existing email in Mycelium.
 
 ### Updating a client: `uc`
 
-To update an existing client contact, use the **`uc`** command 
-followed by the client's email address. 
+To update an existing client contact, use the **`uc`** command
+followed by the client's email address.
 You can then add one or more optional arguments to specify the updated information such as the client's new name, email, year of birth, platform source, or mobile number.
 The interface will display the updated client's name and email once the update is successful.
 
@@ -325,16 +325,16 @@ on the Clients tab, Mycelium will automatically display the Projects tab.
 
 ### Creating a project: `p`
 
-Creating a project requires specifying the project's name, which must be unique, and the 
-email of the client who submitted the project. 
-There are several optional arguments available, such as the project's status, 
-source, description, accepted and deadline date. 
+Creating a project requires specifying the project's name, which must be unique, and the
+email of the client who submitted the project.
+There are several optional arguments available, such as the project's status,
+source, description, accepted and deadline date.
 If the project is added successfully, a message confirming the addition will be displayed.
 
 **Compulsory Arguments**
 
 * `-pn project_name`
-    * The project’s name, which must be *unique*. Case sensitive.
+    * The project’s name, which must be *unique*. Case-sensitive.
 * `-e client_email`
     * The email of the client who submitted this project. Note that this client
       does not need to exist in Mycelium.
@@ -363,7 +363,7 @@ If the project is added successfully, a message confirming the addition will be 
 
 The following command creates a new project whose name is *Mycelium Desktop*,
 submitted from the client *spiderman@gmail.com* and sourced from *fiverr.com*,
-with a deadline on *14 March, 2075*.
+with a deadline on *14 March 2075*.
 
 ```bash
 p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com -dd 14/03/2075
@@ -377,7 +377,7 @@ New project added: Mycelium Desktop from client spiderman@gmail.com
 ```
 
 <div markdown="span" class="alert alert-success">
-:bulb: The project's status is not case sensitive. Meaning you may key in
+:bulb: The project's status is not case-sensitive. Meaning you may key in
 `not_started` as `NOT_STARTED` or `nOT_sTArtED`.
 </div>
 
@@ -393,13 +393,13 @@ in Mycelium, an error will be displayed to block the operation.
 
 ### Deleting a project: `dp`
 
-Deleting a project requires specifying the project's name, which is case-sensitive. If the project is deleted successfully, 
+Deleting a project requires specifying the project's name, which is case-sensitive. If the project is deleted successfully,
 a message confirming the deletion will be displayed.
 
 **Compulsory Arguments**
 
 - `-pn project_name`
-    - Name of the project to delete. Case sensitive.
+    - Name of the project to delete. Case-sensitive.
 
 **Example**
 
@@ -429,13 +429,13 @@ undo deletions.
 ### Updating a project: `up`
 
 Updating a project allows users to partially update the target project using optional arguments.
-The user must specify the project name, and each argument, if specified, 
+The user must specify the project name, and each argument, if specified,
 will be used to partially update the project. The output will confirm the update's success.
 
 **Compulsory Arguments**
 
 * `-pn project_name`
-    * Name of the project to update. Case sensitive.
+    * Name of the project to update. Case-sensitive.
 
 **Optional Arguments**
 
@@ -636,7 +636,7 @@ If the right Statistics panel is in focus, then the tabs will be the Overdue and
 
 This shortcut allows you to quickly select the next item on the list in the currently selected tab
 in the currently selected panel.
-This could be the either the Projects tab or Clients tab in the Entity panel or the Overdue tab or Due soon tab in the Statistics panel.
+This could be either the Projects tab or Clients tab in the Entity panel or the Overdue tab or Due soon tab in the Statistics panel.
 
 If the last item is selected, then the next item will be the first item in the list.
 If there was no item originally selected, then the first item in the list will be selected.
@@ -645,7 +645,7 @@ If there was no item originally selected, then the first item in the list will b
 
 This shortcut allows you to quickly select the previous item on the list in the currently selected tab
 in the currently selected panel.
-This could be the either the Projects tab or Clients tab in the Entity panel or the Overdue tab or Due soon tab in the Statistics panel.
+This could be either the Projects tab or Clients tab in the Entity panel or the Overdue tab or Due soon tab in the Statistics panel.
 
 If the first item is selected, then the previous item will be the last item in the list.
 If there was no item originally selected, then the last item in the list will be selected.
@@ -676,7 +676,7 @@ You can then press (ENTER) to switch back to **command mode** and append the pro
 This way you can quickly reference a project or client in your command, without having to type out the full name or email.
 
 <div markdown="span" class="alert alert-danger">
-:warning: You cannot execute any commands while in **search mode**. Similary,
+:warning: You cannot execute any commands while in **search mode**. Similarly,
 no searching can be done while in **command mode**.
 </div>
 
