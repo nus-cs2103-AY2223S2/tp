@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private Person personToView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private WardListPanel wardListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -47,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane wardListPanelPlaceholder;
 
     @FXML
     private StackPane detailsPopupPlaceholder;
@@ -120,6 +124,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        wardListPanel = new WardListPanel(logic.getPatientist().getWardList());
+
         detailsPopup = new DetailsPopup(personToView);
         detailsPopupPlaceholder.getChildren().add(detailsPopup.getRoot());
 
@@ -153,6 +159,17 @@ public class MainWindow extends UiPart<Stage> {
         personToView = logic.getFilteredPersonList().get(index);
         detailsPopup = new DetailsPopup(personToView);
         detailsPopupPlaceholder.getChildren().add(detailsPopup.getRoot());
+    }
+
+    /**
+     * Opens the details window.
+     */
+    public void handleWards(boolean showWards) {
+        if (showWards) {
+            personListPanelPlaceholder.getChildren().setAll(wardListPanel.getRoot());
+        } else {
+            personListPanelPlaceholder.getChildren().setAll(personListPanel.getRoot());
+        }
     }
 
     /**
@@ -201,6 +218,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowDetails()) {
                 handleDetails(commandResult.getShowDetailsIndex());
             }
+
+            handleWards(commandResult.isShowWards());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
