@@ -273,20 +273,24 @@ Examples:
 
 ### Changing the UI theme : `theme`
 
-Applies the specified theme to ExecutivePro's UI (either `dark` or `light`).
+Want to tweak the look of ExecutivePro?
+This feature allows you choose one of two appearances for ExecutivePro to suit your needs.
 
+The `light` theme (black text on light background) improves readability in well-lit surroundings.
+![](images/UserGuide/ThemeCommandLight.png)
+
+The `dark` theme (white text on dark background) can reduce eye strain in low-light conditions.
+![](images/UserGuide/ThemeCommandDark.png)
 Format: `theme THEME_NAME`
-
-* Applies the theme with the specified `THEME_NAME` to ExecutivePro's UI.
 * `THEME_NAME` is either `dark` (white text on dark background) or `light` (black text on white background).
 
 Examples:
-`theme light` applies the Light theme to ExecutivePro's UI.
+`theme light` applies the `light` theme to ExecutivePro.
 
 ### Setting an employee's picture : `setpicture`
 
-Opens the file explorer for the user to select a picture,
-then sets the selected picture for the specified employee.
+This feature allows you to set a picture for the specified employee, so that you can upload ID photos for each employee.
+
 
 Format: `setpicture EMPLOYEE_ID`
 
@@ -295,8 +299,16 @@ Format: `setpicture EMPLOYEE_ID`
 * The `EMPLOYEE_ID` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-`setpicture 2` sets the picture for the employee with EMPLOYEE_ID 2 in ExecutivePro.
+To set the picture for the employee with EMPLOYEE_ID 2, enter `setpicture 2` into the command bar.
+A file selector should appear, as shown below:
+![](images/UserGuide/SetPictureCommand1.png)
 
+Search through your computer for the picture you want to set.
+Select it by clicking the "Open" button on the file selector or by pressing the "Enter" key on your keyboard.
+![](images/UserGuide/SetPictureCommand2.png)
+
+Click on the specified employee on the left, and your ExecutivePro should display their photo on the right like this.
+![](images/UserGuide/SetPictureCommand3.png)
 
 ### Exiting the program : `exit`
 
