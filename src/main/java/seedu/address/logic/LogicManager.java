@@ -16,6 +16,7 @@ import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.injector.Injector;
 import seedu.address.logic.injector.NavigationInjector;
+import seedu.address.logic.parser.ArchiveParser;
 import seedu.address.logic.parser.TrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.trackereventsystem.TrackerEventSystem;
@@ -41,6 +42,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final TrackerParser trackerParser;
+    private final ArchiveParser archiveParser;
     private final Injector navigationInjector;
     private final TrackerEventSystem trackerEventSystem;
 
@@ -54,6 +56,7 @@ public class LogicManager implements Logic {
         this.navigationInjector = new NavigationInjector();
         trackerParser = new TrackerParser();
         trackerEventSystem = new TrackerEventSystem();
+        archiveParser = new ArchiveParser(storage);
     }
 
     @Override
@@ -68,12 +71,20 @@ public class LogicManager implements Logic {
 
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        commandText = navigationInjector.inject(commandText, model);
+        CommandResult commandResult;
+        Command command;
 
-        logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
 
-        Command command = trackerParser.parseCommand(commandText);
-        CommandResult commandResult = command.execute(model);
+        if (archiveParser.isArchiveCommand(commandText)) {
+            logger.info("----------------[ARCHIVE COMMAND][" + commandText + "]");
+            command = archiveParser.parseCommand(commandText);
+        } else {
+            commandText = navigationInjector.inject(commandText, model);
+            logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
+            command = trackerParser.parseCommand(commandText);
+        }
+
+        commandResult = command.execute(model);
 
         triggerTrackerEvents(commandResult);
 
@@ -81,6 +92,9 @@ public class LogicManager implements Logic {
         this.trackerEventSystem.removeOnModuleModifiedObserver(navObserver, listObserver);
         this.trackerEventSystem.removeOnLectureModifiedObserver(navObserver, listObserver);
         this.trackerEventSystem.removeOnVideoModifiedObserver(listObserver);
+
+        commandResult = command.execute(model);
+
 
         try {
             storage.saveTracker(model.getTracker());
