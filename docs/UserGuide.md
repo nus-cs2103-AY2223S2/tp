@@ -183,11 +183,11 @@ Examples:
 * `check 2` checks the 2nd student in the student list.
 
 
-### 8. Adding a task for a student: `addTask`
+### 8. Adding a task for a student: `addtask`
 
 Adds a task to a specific student.
 
-Format: `addTask INDEX t/TASK_NAME`
+Format: `addtask INDEX t/TASK_NAME`
 
 * Adds the given task to the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -197,17 +197,17 @@ Format: `addTask INDEX t/TASK_NAME`
 
 Examples:
 
-* `list` followed by `addTask 2 t/finish Math Paper 1` adds the task `finish Math Paper 1` to the 2nd student of the
+* `list` followed by `addtask 2 t/finish Math Paper 1` adds the task `finish Math Paper 1` to the 2nd student of the
   student list.
-* `check 2` followed by `addTask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
+* `check 2` followed by `addtask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
   being checked.
 
 
-### 9. Deleting a task of a student: `deleteTask`
+### 9. Deleting a task of a student: `deletetask`
 
 Deletes the specified task from the task list of a student.
 
-Format: `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`
+Format: `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`
 
 * Deletes the task at the specified `INDEX_OF_TASK` of a specified student (`INDEX_OF_STUDENT`).
 * The first index refers to the index number shown in the displayed student list and
@@ -216,19 +216,19 @@ Format: `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`
 
 Examples:
 
-* `list` followed by `deleteTask 2 3` deletes the third task of the 2nd student in the student list.
-* `find Betsy` followed by `deleteTask 1 6` deletes the sixth task of the 1st student in the results of the 
+* `list` followed by `deletetask 2 3` deletes the third task of the 2nd student in the student list.
+* `find Betsy` followed by `deletetask 1 6` deletes the sixth task of the 1st student in the results of the 
 `find` command.
 
 
-### 10. Marking a task of a student: `markComplete`, `markInProgress`, `markLate`
+### 10. Marking a task of a student: `markcomplete`, `markinprogress`, `marklate`
 
 Marks the specified task from the task list of a student as complete, in progress or late.
 
 Format:
-<br> Mark task as complete: `markComplete INDEX_OF_STUDENT INDEX_OF_TASK`
-<br> Mark task as in progress: `markInProgress INDEX_OF_STUDENT INDEX_OF_TASK`
-<br> Mark task as late: `markLate INDEX_OF_STUDENT INDEX_OF_TASK`
+<br> Mark task as complete: `markcomplete INDEX_OF_STUDENT INDEX_OF_TASK`
+<br> Mark task as in progress: `markinprogress INDEX_OF_STUDENT INDEX_OF_TASK`
+<br> Mark task as late: `marklate INDEX_OF_STUDENT INDEX_OF_TASK`
 
 * Marks the task at the specified `INDEX_OF_TASK` of a specified student (`INDEX_OF_STUDENT`) as complete, in progress or late, depending on the command called.
 * The first index refers to the index number shown in the displayed student list and
@@ -237,16 +237,16 @@ Format:
 
 Examples:
 
-* `list` followed by `markComplete 2 3` marks the third task of the 2nd student in the student list as complete.
-* `find Betsy` followed by `markLate 1 6` marks the sixth task of the 1st student in the results of the
+* `list` followed by `markcomplete 2 3` marks the third task of the 2nd student in the student list as complete.
+* `find Betsy` followed by `marklate 1 6` marks the sixth task of the 1st student in the results of the
   `find` command as late.
 
 
-### 11. Adding a score for a student: `addScore`
+### 11. Adding a score for a student: `addscore`
 
 Adds a score to a specific student.
 
-Format: `addScore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
+Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 
 * Adds the given score to the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -269,11 +269,11 @@ Examples:
   value of `50` and dated `2021-09-09` to the student being checked.
 
 
-### 12. Deleting a score of a student: `deleteScore`
+### 12. Deleting a score of a student: `deletescore`
 
 Deletes the specified score from the score list of a student.
 
-Format: `deleteScore INDEX_OF_STUDENT INDEX_OF_SCORE `
+Format: `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE `
 
 * Deletes the score at the specified `INDEX_OF_SCORE` of a specified student (`INDEX_OF_STUDENT`).
 * The first index refers to the index number shown in the displayed student list and
@@ -282,8 +282,8 @@ Format: `deleteScore INDEX_OF_STUDENT INDEX_OF_SCORE `
 
 Examples:
 
-* `list` followed by `deleteScore 2 1` deletes first score of the 2nd student in the student list.
-* `find Betsy` followed by `deleteScore 1 2` deletes second score of the 1st student in the results of the `find` command.
+* `list` followed by `deletescore 2 1` deletes first score of the 2nd student in the student list.
+* `find Betsy` followed by `deletescore 1 2` deletes second score of the 1st student in the results of the `find` command.
 
 
 ### 13. Clearing all entries : `clear`
@@ -318,7 +318,7 @@ Examples:
 * `filter primary primary4` returns `primary`, `primary4`
 
 
-### 16. Switch between tabs : `switch`
+### 16. Switch between tabs :`switch`
 
 Switchs between the score list and score chart tabs.
 
@@ -327,7 +327,7 @@ CLI - `switch`
 Mouse - click the tab.
 
 
-### 16. Export the student data out : `export`
+### 17. Export the student data out:`export`
 
 Exports all the student's data out. User can export with or without specifing the path.
 The default exported position for CLI will be under the _home folder_.
@@ -346,7 +346,7 @@ Examples:
   * `export` p//Users/username/Desktop export `data.json` to desktop.
 
 
-### 17. Import the student data in : `import`
+### 18. Import the student data in: `import`
 
 Imports student data into the application. User can import the file by dragging the file in or choose file path.
 The imported file must be in `.json` format.
@@ -359,7 +359,11 @@ Examples:
 * For Windows user
   * `import` p/C:\bin\data.json
 * For Mac user
-  * `import` p//Users/carrieli/Desktop/data.json.
+  * `import` p//Users/username/Desktop/data.json.
+
+**:information_source: Note about format of `FILE_PATH`:**<br>
+* For Windows user, the format of `FILE_PATH` must be `p/C:\bin\[FILE_NAME]`.
+* For Mac user, the format of `FILE_PATH` must be `p//Users/username/Desktop/[FILE_NAME]`.
 
 
 ### Saving the data
