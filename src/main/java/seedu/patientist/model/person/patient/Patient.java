@@ -105,6 +105,8 @@ public class Patient extends Person {
         StringBuilder sb = new StringBuilder(super.toString());
         sb.append("; Details: ")
                 .append(details.toString())
+                .append("; Todos: ")
+                .append(toDos.toString())
                 .append("; Type: Patient ");
         return sb.toString();
     }
