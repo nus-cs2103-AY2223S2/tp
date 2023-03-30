@@ -15,7 +15,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -25,7 +25,7 @@ OfficeConnect offers a solution to these problems by providing better visibility
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar officeconnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/improvedUI.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -70,13 +70,19 @@ OfficeConnect offers a solution to these problems by providing better visibility
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>
+### Quickstart Guide: `quickstart`
+
+Gives you a simple and brief initial run-through of the OfficeConnect app.
+
+If this is your first time using OfficeConnect, this window will be the first window to pop up. After being closed by the user, it is reaccesible by the calling the command `quickstart`.
+
+![image](https://user-images.githubusercontent.com/99934242/228518988-11e1aecd-6a5a-4bf9-bee1-9b0a7f62ea3f.png)
 
 ### Viewing help : `help`
 
 Displays a comprehensive window detailing the outline of executable commands by user.
 
-A hierarchical view on the left window lists the different available commands, with the description of the command on the right.
+Presents a hierarchical view which lists the different available commands, along with the description of each of the commands.
 
 ![image](https://user-images.githubusercontent.com/99934242/225213208-f94de7e4-2085-41e7-9325-9ecef5fe246f.png)
 
@@ -384,6 +390,7 @@ _Details coming soon ..._
 | **Mark Task**                | `mark INDEX`<br/> e.g. `mark 3`                                                                                                                                               |
 | **Unmark Task**              | `unmark INDEX` <br/> e.g. `unmark 2`                                                                                                                                          |
 | **Help**                     | `help`                                                                                                                                                                        |
+| **Quickstart**                     | `quickstart`                                                                                                                                                                        |
 | **List**                     | `list`                                                                                                                                                                        |
 | **List All**                 | `listall`                                                                                                                                                                     |
 | **List Task**                | `listtask`                                                                                                                                                                    |
