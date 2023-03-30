@@ -107,7 +107,7 @@ class JsonAdaptedFood {
         if (!ExpiryDateValidator.isValidDateFormat(expiryDate)) {
             throw new IllegalValueException(ExpiryDateValidator.MESSAGE_FORMAT_CONSTRAINTS);
         }
-        final ExpiryDate modelExpiryDate = new ExpiryDate(expiryDate);
+        final ExpiryDate modelExpiryDate = ExpiryDate.of(expiryDate);
 
         final Set<Tag> modelTags = new HashSet<>(foodTags);
         return new Food(modelName, modelUnit, modelQuantity, modelExpiryDate, modelTags);
