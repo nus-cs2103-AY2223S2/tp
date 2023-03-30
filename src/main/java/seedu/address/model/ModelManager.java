@@ -14,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.Policy;
@@ -28,7 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
     private final VersionedAddressBook versionedAddressBook;
-    private Client selectedClient = null;
+    private Index selectedClientIndex;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -42,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         versionedAddressBook = new VersionedAddressBook(this.addressBook);
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
+        selectedClientIndex = Index.fromZeroBased(0);
     }
 
     public ModelManager() {
@@ -164,7 +166,6 @@ public class ModelManager implements Model {
     @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
-
         addressBook.setClient(target, editedClient);
         commit();
     }
@@ -188,6 +189,8 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Policy> getFilteredPolicyList() {
+        Client selectedClient = getSelectedClient();
+
         if (selectedClient == null) {
             return FXCollections.observableArrayList();
         }
@@ -201,6 +204,7 @@ public class ModelManager implements Model {
 
     @Override
     public double getWeeklyEarnings() {
+        Client selectedClient = getSelectedClient();
         double totalEarnings = 0;
 
         for (int i = 0; i < filteredClients.size(); i++) {
@@ -236,12 +240,26 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Updates the selected Client
+     * Returns the selected Client
+     */
+    public Client getSelectedClient() {
+        ObservableList<Client> updatedClientList = this.addressBook.getClientList();
+        return updatedClientList.get(selectedClientIndex.getZeroBased());
+    }
+
+    /**
+     * Returns the selected Client index
+     */
+    public int getSelectedClientIndex() {
+        return this.selectedClientIndex.getOneBased();
+    }
+
+    /**
+     * Sets the selected Client
      */
     @Override
-    public void updateSelectedClient(Client targetClient) {
-        this.selectedClient = targetClient;
-        //commit();
+    public void setSelectedClientIndex(Index targetIndex) {
+        this.selectedClientIndex = targetIndex;
     }
 
     @Override

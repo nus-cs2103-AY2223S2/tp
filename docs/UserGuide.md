@@ -2,67 +2,86 @@
 
 # User Guide
 
-Advis.io (AIO) is a desktop app for Financial Advisors to manage their clients' information and their respective policy information. It is optimized for use via a Command Line Interface (CLI)
-while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AIO can get your contact
-management tasks done faster than traditional GUI apps. 
+---
 
-* Table of Contents
-    * Quick start
-    * Features
-        * General Management
-            * Viewing help : `help`
-            * Undo previous operation : `undo`
-            * Redo previous operation : `redo`
-            * Exiting the program : `exit`
-            * Saving the data
-            * Editing the data file
-        * Client Management
-            * Adding a client: `add`
-            * Listing all clients : `list`
-            * Editing a client : `edit`
-            * Locating clients by name: `find`
-            * Deleting a client : `delete`
-            * Policy Management
-            * Adding a policy: `addPolicy`
-            * Deleting a policy : `deletePolicy`
-        * FAQ
-        * Command summary
+## What is Advis.io?
+
+Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently
+available on PC, and is optimized for use via a Command Line Interface (CLI) while still having the benefits of having
+a Graphical User Interface (GUI). If you can type fast, AIO will be the biggest boost in your productivity that you'll
+see in your career.
+
+---
+
+## Table of Contents
+
+* ### How to Get Started
+* ### Features
+    * #### General Management
+        * Viewing help : `help`
+        * Undo previous operation : `undo`
+        * Redo previous operation : `redo`
+        * Clear all entries : `clear`
+        * Exiting the program : `exit`
+        * Saving the data
+        * Editing the data file
+    * #### Client Management
+        * Adding a client: `add`
+        * Selecting a client: `select`
+        * Listing all clients : `list`
+        * Editing a client : `edit`
+        * Filtering clients by name: `find`
+        * Deleting a client : `delete`
+    * #### Policy Management
+        * Adding a policy: `addPolicy`
+        * Listing all policies : `listPolicy`
+        * Editing a policy : `editPolicy`
+        * Deleting a policy : `deletePolicy`
+* ### FAQ
+* ### Command Summary
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## How to Get Started
 
-1. Ensure you have Java `11` or above installed in your Computer.
+#### 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `advisio.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+#### 2. Download the latest `advisio.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+#### 3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar advisio.jar` command to
-   run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+#### 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-   open the help window.<br>
-   Some example commands you can try:
+```
+java -jar advisio.jar
+``` 
 
-    * `list` : Lists all contacts.
+#### command to run the application.<br>
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
-      to the Address Book.
+A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
+![Ui](images/UiPreview.png)
 
-    * `undo` : Undo the previous command `delete 3`. Thus original 3rd contact shown in list will come back
+#### 5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
 
-    * `redo` : Redo the previous command `delete 3`. Thus 3rd contact will be deleted again from list
+Some example commands you can try:
 
-    * `clear` : Deletes all contacts.
+* `list` : Lists all contacts.
 
-    * `exit` : Exits the app.
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe`
+  to the Address Book.
 
-1. Refer to the [Features](#features) below for details of each command.
+* `delete 3` : Deletes the 3rd contact shown in the current list.
+
+* `undo` : Undo the previous command `delete 3`. Thus original 3rd contact shown in list will come back
+
+* `redo` : Redo the previous command `delete 3`. Thus 3rd contact will be deleted again from list
+
+* `clear` : Deletes all contacts.
+
+* `exit` : Exits the app.
+
+#### 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -70,7 +89,7 @@ management tasks done faster than traditional GUI apps.
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Some notes about the command format**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -94,86 +113,7 @@ management tasks done faster than traditional GUI apps.
 
 </div>
 
-## Client Management
-
-### Adding a client: `add`
-
-Adds a client to the list of client profiles.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
-
-Examples:
-
-- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Selecting a client: `select`
-
-Selects a client to display on the client dashboard.
-
-Format: `select INDEX`
-
-### Listing all clients: `list`
-
-Shows a list of all client profiles.
-
-Format: `list`
-
-### Editing a client : `edit`
-
-Edits an existing client in the list of client profiles.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
-
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client
-  list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-  specifying any tags after it.
-
-Examples:
-
-- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be 91234567
-  and johndoe@example.com respectively.
-- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be Betsy Crower and clears all existing tags.
-
-### Locating clients by name: find
-
-Finds clients whose names contain any of the given keywords.
-
-Format: `find KEYWORD \[MORE_KEYWORDS\]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Clients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-- `find John` returns `john` and `John Doe`
-
-- `find alex david` returns `Alex Yeoh, David Li`
-
-![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a client : `delete`
-
-Deletes the specified client from the list of client profiles.
-
-Format: `delete INDEX`
-
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-
-* `list` followed by `delete 2` deletes the 2nd client in the list of clients list.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+## General Management
 
 ### Viewing help : `help`
 
@@ -182,81 +122,6 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
-### Adding a client: `add`
-
-Adds a client to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A client can have any number of tags (including 0)
-</div>
-
-Examples:
-
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
-
-### Listing all clients : `list`
-
-Shows a list of all clients in the address book.
-
-Format: `list`
-
-### Editing a client : `edit`
-
-Edits an existing client in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
-  The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-  specifying any tags after it.
-
-Examples:
-
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
-  and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
-
-### Locating clients by name: `find`
-
-Finds clients whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a client : `delete`
-
-Deletes the specified client from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-
-* `list` followed by `delete 2` deletes the 2nd client in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 ### Undo previous command : `undo`
 
@@ -310,13 +175,170 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
-### Policy Management (todo)
+## Client Management
 
-### Adding a policy.
+### Adding a client: `add`
+
+Adds a client to the list of client profiles.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+
+Examples:
+
+- `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+- `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Selecting a client: `select`
+
+Selects a client to display on the client dashboard.
+
+Format: `select INDEX`
+
+### Listing all clients: `list`
+
+Shows a list of all client profiles.
+
+Format: `list`
+
+### Editing a client : `edit`
+
+Edits an existing client in the list of client profiles.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client
+  list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+
+- `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be 91234567
+  and johndoe@example.com respectively.
+- `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be Betsy Crower and clears all existing tags.
+
+### Filtering clients by name: `find`
+
+Finds clients whose names contain any of the given keywords.
+
+Format: `find KEYWORD \[MORE_KEYWORDS\]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Clients matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+
+- `find John` returns `john` and `John Doe`
+
+- `find alex david` returns `Alex Yeoh, David Li`
+
+![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Deleting a client : `delete`
+
+Deletes the specified client from the list of client profiles.
+
+Format: `delete INDEX`
+
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+* `list` followed by `delete 2` deletes the 2nd client in the list of clients list.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+### Adding a client: `add`
+
+Adds a client to the address book.
+
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A client can have any number of tags (including 0)
+</div>
+
+Examples:
+
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### Listing all clients : `list`
+
+Shows a list of all clients in the address book.
+
+Format: `list`
+
+### Editing a client : `edit`
+
+Edits an existing client in the address book.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
+  The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
+* You can remove all the client’s tags by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
+  and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+
+### Filtering clients by name: `find`
+
+Finds clients whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Deleting a client : `delete`
+
+Deletes the specified client from the address book.
+
+Format: `delete INDEX`
+
+* Deletes the client at the specified `INDEX`.
+* The index refers to the index number shown in the displayed client list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+
+* `list` followed by `delete 2` deletes the 2nd client in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+## Policy Management (todo)
+
+### Adding a policy : `addPolicy`
 
 Adds a policy to a specific client
 
 Do note that the Policy Name should be from the following list:
+
 - Health Insurance
 - Life Insurance
 - Medical Insurance
@@ -324,25 +346,25 @@ Do note that the Policy Name should be from the following list:
 - Car Insurance
 - Travel Insurance
 
-The frequency should be one of the following: `weekly`, `monthly`,`yearly` 
+The frequency should be one of the following: `weekly`, `monthly`,`yearly`
 
 Format: `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY`
 
 Examples: `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
 
-### Listing all policies.
+### Listing all policies : `listPolicy`
 
 Format: `listPolicy`
 
-### Editing a policy.
+### Editing a policy : `editPolicy`
 
 Format: `editPolicy`
 
-### Locating policies by name.
+### Filtering policies by name : `findPolicy`
 
 Format: `findPolicy`
 
-### Deleting a policy.
+### Deleting a policy `deletePolicy`
 
 Deletes the indexed policy from a specific client
 
@@ -350,10 +372,9 @@ Format: `deletePolicy n/NAME INDEX`
 
 Examples: `deletePolicy n/John Doe 1`
 
-### Adding a claim.
+### Adding a claim. `[coming in v2.0]`
 
-Format: `claimPolicy`
-
+_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -395,5 +416,5 @@ the data of your previous AddressBook home folder.
  **Undo**            | `undo`                                                                                                                                                                
  **Redo**            | `redo`                                                                                                                                                                
  **Help**            | `help`                                                                                                                                                                
- **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`                         
+ **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`               
  **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`                                                                                                    

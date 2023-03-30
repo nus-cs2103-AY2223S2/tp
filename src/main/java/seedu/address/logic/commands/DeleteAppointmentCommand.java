@@ -55,7 +55,7 @@ public class DeleteAppointmentCommand extends Command {
         model.setClient(clientToDeleteAppointment, editedClient);
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
 
-        return new CommandResult(MESSAGE_DELETE_APPOINTMENT_SUCCESS, deleteAppointmentClient, true, false, false);
+        return new CommandResult(MESSAGE_DELETE_APPOINTMENT_SUCCESS);
     }
 
     @Override

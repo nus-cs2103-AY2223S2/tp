@@ -67,28 +67,6 @@ public class EditCommand extends Command {
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        List<Client> lastShownList = model.getFilteredClientList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
-        }
-
-        Client clientToEdit = lastShownList.get(index.getZeroBased());
-        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
-
-        if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
-        }
-
-        model.setClient(clientToEdit, editedClient);
-        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient),
-                editedClient, true, false, false);
-    }
-
     /**
      * Creates and returns a {@code Client} with the details of {@code clientToEdit}
      * edited with {@code editClientDescriptor}.
@@ -107,6 +85,27 @@ public class EditCommand extends Command {
         Appointment appointment = clientToEdit.getAppointment();
         return new Client(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, policyList,
                 appointment);
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        List<Client> lastShownList = model.getFilteredClientList();
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        }
+
+        Client clientToEdit = lastShownList.get(index.getZeroBased());
+        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
+
+        if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+        }
+
+        model.setClient(clientToEdit, editedClient);
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
     }
 
     @Override
@@ -138,7 +137,8 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
 
-        public EditClientDescriptor() {}
+        public EditClientDescriptor() {
+        }
 
         /**
          * Copy constructor.

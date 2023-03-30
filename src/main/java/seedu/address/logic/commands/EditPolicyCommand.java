@@ -90,6 +90,7 @@ public class EditPolicyCommand extends Command {
         }
 
         clientPolicyList.setPolicy(policyToEdit, editedPolicy);
+        model.setClient(clientToEditPolicy, clientToEditPolicy);
         return new CommandResult(generateSuccessMessage(clientToEditPolicy, policyToEdit));
     }
 

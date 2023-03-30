@@ -61,13 +61,11 @@ public class JsonAdaptedAppointment {
         }
 
         if (!AppointmentName.isValidName(appointmentName)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    AppointmentName.class.getSimpleName()));
+            throw new IllegalValueException(AppointmentName.MESSAGE_CONSTRAINTS);
         }
 
         if (!MeetupDate.isValidDate(meetupDate)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    MeetupDate.class.getSimpleName()));
+            throw new IllegalValueException(MeetupDate.MESSAGE_CONSTRAINTS);
         }
 
         modelAppointmentName = new AppointmentName(appointmentName);

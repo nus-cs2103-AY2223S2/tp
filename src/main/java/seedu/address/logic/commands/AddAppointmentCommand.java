@@ -60,8 +60,7 @@ public class AddAppointmentCommand extends Command {
         model.setClient(clientToAddAppointment, editedClient);
         model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
 
-        return new CommandResult(generateSuccessMessage(),
-                addedAppointmentClient, true, false, false);
+        return new CommandResult(generateSuccessMessage());
     }
 
     /**

@@ -40,7 +40,7 @@ public class TypicalClients {
             .withPolicyList(
                     new PolicyBuilder().withPolicyName("Health Insurance").withStartDate("31.01.2023")
                             .withPremium("1000").withFrequency("weekly").build()
-            ).build();
+            ).withAppointment(new AppointmentBuilder().build()).build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")
