@@ -47,26 +47,35 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_DATE_OF_JOINING, PREFIX_TAG);
 
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_DEPARTMENT, PREFIX_PAYROLL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_DEPARTMENT, PREFIX_PAYROLL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        // Mandatory fields
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
+        Payroll payroll = ParserUtil.parsePayroll(argMultimap.getValue(PREFIX_PAYROLL).get());
 
+
+        // Optional fields
         Address address = new Address();
+        Email email = Email.getNullEmail();
+
+        // Setting values for optional fields
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         }
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
-        Payroll payroll = ParserUtil.parsePayroll(argMultimap.getValue(PREFIX_PAYROLL).get());
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        }
+
         LeaveCounter leaveCount = ParserUtil.parseLeaveCount(argMultimap.getValue(PREFIX_LEAVE_COUNT));
         Optional<LocalDate> dateOfBirth = ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DATE_OF_BIRTH));
         Optional<LocalDate> dateOfJoining = ParserUtil.parseDateOfJoining(argMultimap.getValue(PREFIX_DATE_OF_JOINING));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
         EmployeeId employeeId = new EmployeeId();
         Employee employee = new Employee(name, employeeId, phone, email, address, department, payroll, leaveCount,
                 dateOfBirth, dateOfJoining, Optional.empty(), tagList);

@@ -22,7 +22,7 @@ public class LeaveCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Helps the employee identified by the EMPLOYEE_ID take leave.\n"
             + "Parameters: EMPLOYEE_ID (must be a positive integer)\n"
-            + PREFIX_LEAVE_COUNT + "LEAVE COUNT "
+            + PREFIX_LEAVE_COUNT + "LEAVE_COUNT "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LEAVE_COUNT + "3";
 

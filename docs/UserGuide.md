@@ -18,8 +18,8 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
         - If you are using Windows, open up command prompt and type `java -version` and enter.
         - If you are using Mac, open up terminal and type `java -version` and enter.
     2. If you do not have Java `11`:
-        - If you are using Windows, you can install it from [here](https://www.oracle.com/java/technologies/downloads/).
-        - If you are using Mac, you can install the Azul build of OpenJDK 11 version 
+        - If you are using Windows/Linux/Intel-based Mac, you can download the latest version of Java from [here](https://www.oracle.com/java/technologies/downloads/).
+        - If you are using an Apple Silicon Mac, you can install the Azul build of OpenJDK 11 version 
        from [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
 2. Download the latest `ExecutivePro.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-4/tp/releases).
 
@@ -30,7 +30,7 @@ ExecutivePro (EP) is a **desktop app for Human Resource managers to manage their
 
   <img class="centerImage" src="./images/UserGuide/Ui.png"/>
 
-5. Type the command in the command panel and press Enter to execute it. e.g. 
+5. You can start by typing a command in the command panel and presssing Enter to execute it. e.g. 
    typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -65,7 +65,7 @@ Here are some of the symbols to take note of when going through this user guide:
 * Tags are optional.<br>
   e.g. `[n/NAME] [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…` after them can be used multiple times including zero times.<br>
+* Items with `…` after them can either be omitted or used one or more times.<br>
   e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 </div>
@@ -97,26 +97,26 @@ database, and you are free to access and modify the particulars with other comma
 
 However, this function could fail (and ExecutivePro simply does not add any employee), if:
 
-1. There are missing particulars which are compulsory. These mandatory details are listed below.
-2. The particulars keyed in are in the wrong format. 
+1. There are missing particulars which are compulsory, you can find these listed below.
+2. The particulars are in the wrong format, the program will prompt you on the correct format. 
 3. The new employee added is a duplicate, i.e. there is someone in the database who already shares the same name and
     details.
 
-Format: `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...`
+Format: `add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [pr/PAYROLL] [l/LEAVE COUNT] [dob/DATE OF BIRTH] [doj/DATE OF JOINING] [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">
 :bulb: **For Tags:**
 A person can have any number of tags (including 0)
 </div>
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing`
-* `add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate street, block 576, #01-02 d/Sales t/friend`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing pr/1000 15`
+* `add n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate street, block 576, #01-02 d/Sales pr/4000 1 dob/2000-04-21 doj/2022-01-04 t/friend`
 
 
 ### Adding multiple employees at once: `batchadd`
 
 Tired of adding new employees one by one?
-ExecutivePro allows you to add multiple employees altogether from a `.csv` file.
+ExecutivePro allows you to add multiple employees at once from a `.csv` file.
 This feature will come in handy when:
 
 1. You are a new user and have your employee data stored in a `.csv` file.
@@ -139,14 +139,18 @@ Things to note:
 
 Order of headers is as such (**Order must be followed**):
 
-| Index | Field          | Requirement     | 
-|-------| -------------- |-----------------|
-| 1.    | `NAME`         | **Compulsory**  | 
-| 2.    | `PHONE`        | **Compulsory**  |
-| 3.    | `EMAIL`        | **Compulsory**  | 
-| 4.    | `ADDRESS`      | **Compulsory**  | 
-| 5.    | `DEPARTMENT`   | **Compulsory**  | 
-| 6.    | `TAGS`         | Optional        | 
+| Index | Field           | Requirement    | 
+|-------|-----------------|----------------|
+| 1.    | `NAME`          | **Compulsory** | 
+| 2.    | `PHONE`         | **Compulsory** |
+| 3.    | `EMAIL`         | **Compulsory** | 
+| 4.    | `ADDRESS`       | **Compulsory** | 
+| 5.    | `DEPARTMENT`    | **Compulsory** | 
+| 6.    | `PAYROLL`       | **Compulsory** | 
+| 7.    | `LEAVECOUNT`    | Optional       | 
+| 8.    | `DATEOFBIRTH`   | Optional       |
+| 9.    | `DATEOFJOINING` | Optional       |
+| 10.   | `TAGS`          | Optional       | 
 
 Sample `.csv` file:
 ![](images/UserGuide/sampleCSV.png)
@@ -194,7 +198,6 @@ In the upcoming versions, we will expand `batchadd` feature to:
 2. Include more fields like performance and leaves
 
 
-
 ### Adding multiple employees at once: `batchexport`
 
 ExecutivePro allows you to export the employees' data into a `.csv` file.
@@ -228,7 +231,7 @@ Format: `list`
 
 Edits an employee’s details in the ExecutivePro database.
 
-Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...`
+Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [pr/PAYROLL] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`
 
 * Edits the details of the employee with the specified `EMPLOYEE_ID`. If such an employee doesn’t exist, an error message will be shown.
 * At least one of the optional fields must be provided.
@@ -239,6 +242,19 @@ Format: `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEP
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Changes the phone number and email address of the employee with ID `1` to be `91234567` and `johndoe@example.com` respectively.
+
+### Taking Leave : `leave`
+
+Helps an employee take leave.
+
+Format: `leave EMPLOYEE_ID l/LEAVE_COUNT`
+
+* Helps the employee with the specified `EMPLOYEE_ID` take leave. If such an employee doesn’t exist, an error message will be shown.
+* Number of days of leave is specified by `LEAVE_COUNT`. If the employee does not have enough remaining leave, an error message will be shown.
+* Existing leave count will decrease by the number of leave taken.
+
+Examples:
+*  `leave 1 l/3` Helps the employee with ID `1` take `3` days of leave.
 
 ### Locating employees by keyword: `find`
 
@@ -273,20 +289,24 @@ Examples:
 
 ### Changing the UI theme : `theme`
 
-Applies the specified theme to ExecutivePro's UI (either `dark` or `light`).
+Want to tweak the look of ExecutivePro?
+This feature allows you choose one of two appearances for ExecutivePro to suit your needs.
 
+The `light` theme (black text on light background) improves readability in well-lit surroundings.
+![](images/UserGuide/ThemeCommandLight.png)
+
+The `dark` theme (white text on dark background) can reduce eye strain in low-light conditions.
+![](images/UserGuide/ThemeCommandDark.png)
 Format: `theme THEME_NAME`
-
-* Applies the theme with the specified `THEME_NAME` to ExecutivePro's UI.
 * `THEME_NAME` is either `dark` (white text on dark background) or `light` (black text on white background).
 
 Examples:
-`theme light` applies the Light theme to ExecutivePro's UI.
+`theme light` applies the `light` theme to ExecutivePro.
 
 ### Setting an employee's picture : `setpicture`
 
-Opens the file explorer for the user to select a picture,
-then sets the selected picture for the specified employee.
+This feature allows you to set a picture for the specified employee, so that you can upload ID photos for each employee.
+
 
 Format: `setpicture EMPLOYEE_ID`
 
@@ -295,8 +315,16 @@ Format: `setpicture EMPLOYEE_ID`
 * The `EMPLOYEE_ID` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-`setpicture 2` sets the picture for the employee with EMPLOYEE_ID 2 in ExecutivePro.
+To set the picture for the employee with EMPLOYEE_ID 2, enter `setpicture 2` into the command bar.
+A file selector should appear, as shown below:
+![](images/UserGuide/SetPictureCommand1.png)
 
+Search through your computer for the picture you want to set.
+Select it by clicking the "Open" button on the file selector or by pressing the "Enter" key on your keyboard.
+![](images/UserGuide/SetPictureCommand2.png)
+
+Click on the specified employee on the left, and your ExecutivePro should display their photo on the right like this.
+![](images/UserGuide/SetPictureCommand3.png)
 
 ### Exiting the program : `exit`
 
@@ -332,17 +360,18 @@ _Details coming soon ..._
 ## Command summary
 
 
-| Action          | Format, Examples                                                                                                                                                                                                |
-|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**        | `help`                                                                                                                                                                                                          |
-| **Add**         | `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...` <br> e.g., `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing t/friends` |
-| **BatchAdd**    | `batchadd FILENAME` <br> e.g., `batchadd executivepro.csv`                                                                                                                                                      |
-| **BatchExport** | `batchexport FILENAME` <br> e.g., `batchexport exported_database.csv`                                                                                                                                           |
-| **List**        | `list`                                                                                                                                                                                                          |
-| **Edit**        | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                 |
-| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                      |
-| **Delete**      | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                       |
-| **Theme**       | `theme THEME_NAME` <br> e.g., `theme light`                                                                                                                                                                     |
-| **SetPicture**  | `setpicture EMPLOYEEID` <br> e.g., `setpicture 2`                                                                                                                                                               |
-| **Exit**        | `exit`                                                                                                                                                                                                          |
+| Action          | Format, Examples                                                                                                                                                                                                                                                                                                                      |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**        | `help`                                                                                                                                                                                                                                                                                                                                |
+| **Add**         | `add EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [pr/PAYROLL] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...` <br> e.g., `add 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Marketing pr/4000 15 l/19 dob/2000-04-21 doj/2022-01-04 t/friends ` |
+| **BatchAdd**    | `batchadd FILENAME` <br> e.g., `batchadd executivepro.csv`                                                                                                                                                                                                                                                                            |
+| **BatchExport** | `batchexport FILENAME` <br> e.g., `batchexport exported_database.csv`                                                                                                                                                                                                                                                                 |
+| **List**        | `list`                                                                                                                                                                                                                                                                                                                                |
+| **Edit**        | `edit EMPLOYEE_ID [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [d/DEPARTMENT] [pr/PAYROLL] [l/LEAVE_COUNT] [dob/DATE_OF_BIRTH] [doj/DATE_OF_JOINING] [t/TAG]...`<br> e.g.,`edit 1 p/91234567 e/johndoe@example.com`                                                                                                                |
+| **Leave**       | `leave EMPLOYEE_ID l/LEAVE_COUNT`<br> e.g.,`leave 1 l/3`                                                                                                                                                                                                                                                                              |
+| **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                            |
+| **Delete**      | `delete EMPLOYEE_ID`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                             |
+| **Theme**       | `theme THEME_NAME` <br> e.g., `theme light`                                                                                                                                                                                                                                                                                           |
+| **SetPicture**  | `setpicture EMPLOYEEID` <br> e.g., `setpicture 2`                                                                                                                                                                                                                                                                                     |
+| **Exit**        | `exit`                                                                                                                                                                                                                                                                                                                                |
 
