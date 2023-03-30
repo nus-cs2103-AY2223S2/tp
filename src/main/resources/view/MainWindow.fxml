@@ -55,6 +55,7 @@
           </padding>
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
         </VBox>
+
             <Pane prefHeight="16.0" prefWidth="340.0" styleClass="pane-group-label">
                <children>
                   <Label styleClass="label-sub-header" text="Groups:" textFill="WHITE">
@@ -78,6 +79,7 @@
           <Pane prefHeight="16.0" prefWidth="340.0" styleClass="pane-group-label">
               <children>
                   <Label styleClass="label-sub-header" text="Free Time Slots:" textFill="WHITE">
+
                       <padding>
                           <Insets left="10.0" />
                       </padding>
@@ -87,9 +89,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
               </padding>
           </Pane>
-
           <StackPane fx:id="whereGotTimePlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS" prefWidth="700" />
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

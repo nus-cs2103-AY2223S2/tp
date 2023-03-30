@@ -1,8 +1,6 @@
-package seedu.address.model.event;
+package seedu.address.model.timeslot;
 
 import java.util.ArrayList;
-
-import seedu.address.ui.Status;
 
 /**
  * Represents the status of each timeslots of the day.
@@ -15,6 +13,25 @@ public class ScheduleDay {
     private Status time2;
     private Status time3;
     private Status time4;
+    private Status time5;
+    private Status time6;
+    private Status time7;
+    private Status time8;
+    private Status time9;
+    private Status time10;
+    private Status time11;
+    private Status time12;
+    private Status time13;
+    private Status time14;
+    private Status time15;
+    private Status time16;
+    private Status time17;
+    private Status time18;
+    private Status time19;
+    private Status time20;
+    private Status time21;
+    private Status time22;
+    private Status time23;
 
     private ArrayList<Status> timeSlots;
 
