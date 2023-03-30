@@ -211,6 +211,8 @@ Step 1. The user launches the application for the first time. The `VersionedSock
 
 <p align="center"><img src="images/UndoRedoState0.png" /></p>
 
+<div style="page-break-after: always;"></div>
+
 Step 2. The user executes `delete 5` command to delete the 5th person in 'Socket'. The `delete` command calls `Model#commitSocket()`, causing the modified state of `Socket` after the `delete 5` command executes to be saved in the `socketStateList`, and the `currentStatePointer` is shifted to the newly inserted `Socket` state.
 
 <p align="center"><img src="images/UndoRedoState1.png" /></p>
@@ -859,6 +861,8 @@ Use case ends.
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC14 Redo recent undone changes**
 
 **MSS:**
@@ -875,8 +879,6 @@ Use case ends.
     * 1a1. SOCket shows an error message.
 
       Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC15 Tagging a contact**
 
@@ -913,6 +915,8 @@ Use case ends.
 
    Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC17 Removing tag/language(s)**
 
 **MSS**
@@ -930,8 +934,6 @@ Use case ends.
     * 2a1. SOCket removes all tags associated to it.
 
       Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC18 Viewing a person's detail**
 
@@ -957,6 +959,8 @@ Similar to **UC04 Sort Contacts**, except,
 2. SOCket removes the member from the project.
 
    Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
