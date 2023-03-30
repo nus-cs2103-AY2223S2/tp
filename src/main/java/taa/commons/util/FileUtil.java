@@ -10,6 +10,9 @@ import java.nio.file.Paths;
  * Writes and reads files
  */
 public class FileUtil {
+    public static final String MSG_FILE_IS_DIR = "The specified file path is a directory.";
+    public static final String MSG_FILE_ACCESS_DENIED = "Access to the specified file is denied by system.";
+    public static final String MSG_FILE_IO_EXCEPTION = "An IOException occurred while reading specified file.";
 
     private static final String CHARSET = "UTF-8";
 

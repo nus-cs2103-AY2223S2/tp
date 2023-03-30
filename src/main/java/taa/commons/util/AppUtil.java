@@ -2,6 +2,9 @@ package taa.commons.util;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.Closeable;
+import java.io.IOException;
+
 import javafx.scene.image.Image;
 import taa.MainApp;
 
@@ -37,6 +40,16 @@ public class AppUtil {
     public static void checkArgument(Boolean condition, String errorMessage) {
         if (!condition) {
             throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    public static void closeIfClosable(Closeable c) {
+        if (c != null) {
+            try {
+                c.close();
+            } catch (IOException ignored) {
+                // Can't help if closing failed.
+            }
         }
     }
 }
