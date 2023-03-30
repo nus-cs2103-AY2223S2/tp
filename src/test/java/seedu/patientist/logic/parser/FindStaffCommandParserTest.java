@@ -11,35 +11,35 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.patientist.logic.commands.FindPatientCommand;
-import seedu.patientist.model.person.patient.PatientIdContainsKeywordsPredicate;
-import seedu.patientist.model.person.patient.PatientNameContainsKeywordsPredicate;
+import seedu.patientist.logic.commands.FindStaffCommand;
+import seedu.patientist.model.person.staff.StaffIdContainsKeywordsPredicate;
+import seedu.patientist.model.person.staff.StaffNameContainsKeywordsPredicate;
 
-public class FindPatientCommandParserTest {
-    private FindPatientCommandParser parser = new FindPatientCommandParser();
+public class FindStaffCommandParserTest {
+    private FindStaffCommandParser parser = new FindStaffCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindStaffCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindPatientCommand() {
         // no leading and trailing whitespaces
-        FindPatientCommand expectedFindCommand =
-                new FindPatientCommand(new PatientNameContainsKeywordsPredicate(List.of("Alice")));
+        FindStaffCommand expectedFindCommand =
+                new FindStaffCommand(new StaffNameContainsKeywordsPredicate(List.of("Alice")));
         assertParseSuccess(parser, " " + PREFIX_NAME + "Alice", expectedFindCommand);
 
         // no leading and trailing whitespaces
         expectedFindCommand =
-                new FindPatientCommand(new PatientIdContainsKeywordsPredicate(Arrays.asList("A123")));
+                new FindStaffCommand(new StaffIdContainsKeywordsPredicate(Arrays.asList("A123")));
         assertParseSuccess(parser, " " + PREFIX_ID + "A123", expectedFindCommand);
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, PREFIX_NAME + "Alice " + PREFIX_ID + "A123",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindStaffCommand.MESSAGE_USAGE));
     }
 }

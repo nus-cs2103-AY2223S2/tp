@@ -8,27 +8,27 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.patientist.logic.commands.FindPatientCommand;
+import seedu.patientist.logic.commands.FindStaffCommand;
 import seedu.patientist.logic.parser.exceptions.ParseException;
-import seedu.patientist.model.person.patient.PatientIdContainsKeywordsPredicate;
-import seedu.patientist.model.person.patient.PatientNameContainsKeywordsPredicate;
+import seedu.patientist.model.person.staff.StaffIdContainsKeywordsPredicate;
+import seedu.patientist.model.person.staff.StaffNameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindPatientCommand object
+ * Parses input arguments and creates a new FindStaffCommand object
  */
-public class FindPatientCommandParser implements Parser<FindPatientCommand> {
+public class FindStaffCommandParser implements Parser<FindStaffCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindPatientCommand
-     * and returns a FindPatientCommand object for execution.
+     * and returns a FindStaffCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindPatientCommand parse(String args) throws ParseException {
+    public FindStaffCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID);
 
         if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID) || !argMultimap.getPreamble().isEmpty()
                 || areBothPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ID)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindStaffCommand.MESSAGE_USAGE));
         }
 
         Optional<String> name = argMultimap.getValue(PREFIX_NAME);
@@ -36,10 +36,10 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
         if (idNumber.isEmpty()) {
             String[] nameKeywords = name.get().trim().split("\\s+");
-            return new FindPatientCommand(new PatientNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            return new FindStaffCommand(new StaffNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         } else {
             String[] pidKeywords = idNumber.get().trim().split("\\s+");
-            return new FindPatientCommand(new PatientIdContainsKeywordsPredicate(Arrays.asList(pidKeywords)));
+            return new FindStaffCommand(new StaffIdContainsKeywordsPredicate(Arrays.asList(pidKeywords)));
         }
     }
 

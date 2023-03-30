@@ -21,6 +21,7 @@ import seedu.patientist.logic.commands.EditCommand;
 import seedu.patientist.logic.commands.ExitCommand;
 import seedu.patientist.logic.commands.FindCommand;
 import seedu.patientist.logic.commands.FindPatientCommand;
+import seedu.patientist.logic.commands.FindStaffCommand;
 import seedu.patientist.logic.commands.HelpCommand;
 import seedu.patientist.logic.commands.ListCommand;
 import seedu.patientist.logic.commands.ListPatientsCommand;
@@ -97,6 +98,9 @@ public class PatientistParser {
 
         case FindPatientCommand.COMMAND_WORD:
             return new FindPatientCommandParser().parse(arguments);
+
+        case FindStaffCommand.COMMAND_WORD:
+            return new FindStaffCommandParser().parse(arguments);
 
         case AddWardCommand.COMMAND_WORD:
             return new AddWardCommandParser().parse(arguments);
