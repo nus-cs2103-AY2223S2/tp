@@ -27,7 +27,6 @@ public class RankTest {
         // invalid rank
         assertFalse(Rank.isValidRank("")); // empty string
         assertFalse(Rank.isValidRank(" ")); // spaces only
-        assertFalse(Rank.isValidRank("pte")); // not in valid ranks list
         assertFalse(Rank.isValidRank("hello")); // not in valid ranks list
 
         // valid rank
@@ -36,5 +35,9 @@ public class RankTest {
         assertTrue(Rank.isValidRank("CPL"));
         assertTrue(Rank.isValidRank("3SG"));
         assertTrue(Rank.isValidRank("2LT"));
+
+        // valid ranks (testing case insensitivity)
+        assertTrue(Rank.isValidRank("pte"));
+        assertTrue(Rank.isValidRank("cPl"));
     }
 }
