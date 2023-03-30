@@ -30,7 +30,7 @@ import seedu.address.testutil.PairBuilder;
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
-public class DeletePairTest {
+public class DeletePairCommandTest {
 
     @Test
     public void execute_validPair_success() throws Exception {
@@ -48,7 +48,7 @@ public class DeletePairTest {
     }
 
     @Test
-    public void execute_invalidPerson_failure() throws Exception {
+    public void execute_invalidPerson_failure() {
         Pair pair = new PairBuilder().withElderly(ALICE).withVolunteer(BOB).build();
         Model model = new ModelStubWithDeletablePair(pair);
         assertTrue(model.hasPair(pair));
