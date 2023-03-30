@@ -123,8 +123,18 @@ class JsonAdaptedModule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
         }
         final Remark modelRemark = new Remark(remark);
+
+        if (deadline == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Deadline.class.getSimpleName()));
+        }
+        if (!Deadline.isValidDeadline(deadline)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        }
         final Deadline modelDeadline = new Deadline(deadline);
+
         final Teacher modelTeacher = new Teacher(teacher);
+
         return new Module(modelName, modelResource, modelTimeSlot, modelAddress, modelTags, modelRemark,
                 modelDeadline, modelTeacher);
     }
