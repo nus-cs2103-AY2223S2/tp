@@ -25,14 +25,14 @@ public class EditContactCommand extends EditPersonCommand {
                     "Edits the details of the contact specified by the given index.",
                     "Existing values will be overwritten by the input values for all fields except Modules and Tags.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
-                    "INDEX (must be a positive integer)",
-                    "{SPECIFIER}/{INPUT}...")
+                    "INDEX",
+                    "[PREFIX/INPUT]...")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
-                    "For more information on specifiers, refer to the user guide using the help command.",
-                    "Note that editing Modules and Tags have a different behaviour from editing the other fields.",
+                    "Note that INDEX must be a positive integer.",
+                    "For more information on prefixes, refer to the user guide using the help command.",
+                    "Editing Modules and Tags have a different behaviour from editing the other fields.",
                     "If a module or tag already exists in the contact, it will be removed.",
-                    "Otherwise, it will be added to the contact.",
-                    "For more information, refer to the user guide using the help command.");
+                    "Otherwise, it will be added to the contact.");
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited contact: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
