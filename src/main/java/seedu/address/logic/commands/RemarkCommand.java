@@ -82,6 +82,7 @@ public class RemarkCommand extends Command {
                 personToEdit.getOptionalAddress().orElse(null),
                 personToEdit.getOptionalEducation().orElse(null),
                 remark,
+                personToEdit.getOptionalTelegram().orElse(null),
                 personToEdit.getModules(),
                 personToEdit.getTags()
         );
