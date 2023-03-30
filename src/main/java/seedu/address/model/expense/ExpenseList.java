@@ -3,7 +3,6 @@ package seedu.address.model.expense;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -104,6 +103,9 @@ public class ExpenseList implements Iterable<Expense> {
         internalUnmodifiableList.clear();
     }
 
+    /**
+     * Sorts the internal list of expenses by date.
+     */
     public void sortList() {
         internalListOfExpenses.sort((o1, o2) -> o1.getDate().isAfter(o2.getDate()) ? -1
                 : o1.getDate().isEqual(o2.getDate()) ? 0 : 1);
