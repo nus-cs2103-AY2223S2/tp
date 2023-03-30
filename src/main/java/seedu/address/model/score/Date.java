@@ -28,7 +28,7 @@ public class Date {
     public Date(String date) {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-
+        checkArgument(isFutureDate(date), MESSAGE_INVALID_DATE);
         this.date = LocalDate.parse(date);
     }
 
