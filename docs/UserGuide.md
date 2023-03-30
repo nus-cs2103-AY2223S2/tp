@@ -315,7 +315,7 @@ Updated Client: Bobby Baker (alice_baker@bakers.com)
 
 ## Managing Projects
 
-This section of the user guide explains how to _create_, _delete_, and _update_ a project using commands that allows users to manage their projects efficiently.
+This section of the user guide explains how to _create_, _delete_, and _update_ a project using commands that allow you to manage your projects.
 
 <div markdown="span" class="alert alert-success">
 :bulb: After executing a command listed in this section, if you are currently
