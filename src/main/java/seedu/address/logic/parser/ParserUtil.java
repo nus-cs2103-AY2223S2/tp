@@ -152,8 +152,6 @@ public class ParserUtil {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             dueDate = LocalDateTime.parse(date, formatter);
             checkDateExist(dueDate, date.substring(0,2));
-            System.out.println(dueDate);
-            System.out.println(date.substring(0,2));
         } catch (DateTimeException e) {
             throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
         }
