@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.testutil.OpeningBuilder;
 import seedu.ultron.commons.core.GuiSettings;
+import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.logic.commands.AddCommand;
 import seedu.ultron.logic.commands.CommandResult;
 import seedu.ultron.logic.commands.exceptions.CommandException;
@@ -153,6 +154,21 @@ public class AddCommandTest {
 
         @Override
         public void sortFilteredOpeningList(KeydateSort direction) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Opening getSelectedOpening() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Index getSelectedIndex() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSelectedIndex(Index index) {
             throw new AssertionError("This method should not be called.");
         }
     }

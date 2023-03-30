@@ -18,8 +18,8 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all openings that have a keydate and "
             + "sorts them by their earliest keydate in either ascending or descending order\n"
-            + "Parameters: ASC or DESC\n"
-            + "Example: " + COMMAND_WORD + " ASC";
+            + "Parameters: asc or desc\n"
+            + "Example: " + COMMAND_WORD + " asc";
 
     private final KeydateSort direction;
     private final ContainsKeydatePredicate predicate;

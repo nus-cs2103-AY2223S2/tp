@@ -13,7 +13,7 @@ import java.util.function.Predicate;
  */
 public class KeydateSort implements Predicate<Opening> {
     public static final String MESSAGE_CONSTRAINTS =
-            "ORDER should only either be ASC or DESC";
+            "ORDER should only either be asc or desc";
 
     private final String direction;
 

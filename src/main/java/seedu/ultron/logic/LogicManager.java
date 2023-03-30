@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.ultron.commons.core.GuiSettings;
+import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.commons.core.LogsCenter;
 import seedu.ultron.logic.commands.Command;
 import seedu.ultron.logic.commands.CommandResult;
@@ -62,6 +63,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Opening> getFilteredOpeningList() {
         return model.getFilteredOpeningList();
+    }
+
+    @Override
+    public Opening getSelectedOpening() {
+        return model.getSelectedOpening();
+    }
+
+    @Override
+    public void setSelectedOpening(Index index) {
+        model.setSelectedIndex(index);
     }
 
     @Override

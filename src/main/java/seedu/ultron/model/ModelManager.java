@@ -11,8 +11,9 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.ultron.commons.core.GuiSettings;
+import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.commons.core.LogsCenter;
-import seedu.ultron.model.opening.DateComparator;
+import seedu.ultron.model.opening.OpeningByDateComparator;
 import seedu.ultron.model.opening.KeydateSort;
 import seedu.ultron.model.opening.Opening;
 
@@ -25,6 +26,7 @@ public class ModelManager implements Model {
     private final Ultron ultron;
     private final UserPrefs userPrefs;
     private ObservableList<Opening> filteredOpenings;
+    private Index selectedIndex;
 
     /**
      * Initializes a ModelManager with the given ultron and userPrefs.
@@ -141,10 +143,30 @@ public class ModelManager implements Model {
     @Override
     public void sortFilteredOpeningList(KeydateSort direction) {
         if (direction.getDirection().equals("ASC")) {
-            FXCollections.sort(filteredOpenings, new DateComparator());
+            FXCollections.sort(filteredOpenings, new OpeningByDateComparator());
         } else if (direction.getDirection().equals("DESC")) {
-            FXCollections.sort(filteredOpenings, new DateComparator().reversed());
+            FXCollections.sort(filteredOpenings, new OpeningByDateComparator().reversed());
         }
+    }
+
+    //=========== Selected Opening Accessors=======================================================================
+
+    @Override
+    public Opening getSelectedOpening() {
+        if (selectedIndex == null) {
+            return null;
+        }
+        return filteredOpenings.get(selectedIndex.getZeroBased());
+    }
+
+    @Override
+    public Index getSelectedIndex() {
+        return selectedIndex;
+    }
+
+    @Override
+    public void setSelectedIndex(Index index) {
+        selectedIndex = index;
     }
 
     @Override

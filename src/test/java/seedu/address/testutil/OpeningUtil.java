@@ -7,7 +7,7 @@ import static seedu.ultron.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_KEYDATE;
 
-import java.util.Set;
+import java.util.List;
 
 import seedu.ultron.logic.commands.AddCommand;
 import seedu.ultron.logic.commands.EditCommand.EditOpeningDescriptor;
@@ -52,7 +52,7 @@ public class OpeningUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.fullStatus).append(" "));
         if (descriptor.getDates().isPresent()) {
-            Set<Date> dates = descriptor.getDates().get();
+            List<Date> dates = descriptor.getDates().get();
             if (dates.isEmpty()) {
                 sb.append(PREFIX_KEYDATE);
             } else {

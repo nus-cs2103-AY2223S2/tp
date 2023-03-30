@@ -6,7 +6,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.ultron.commons.core.LogsCenter;
 import seedu.ultron.model.opening.Opening;
 
@@ -38,8 +40,9 @@ public class OpeningListPanel extends UiPart<Region> {
             super.updateItem(opening, empty);
 
             if (empty || opening == null) {
-                setGraphic(null);
-                setText(null);
+                StackPane sp = new StackPane();
+                sp.setPrefHeight(105);
+                setGraphic(sp);
             } else {
                 setGraphic(new OpeningCard(opening, getIndex() + 1).getRoot());
             }

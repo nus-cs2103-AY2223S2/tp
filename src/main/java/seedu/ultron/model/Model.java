@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.ultron.commons.core.GuiSettings;
+import seedu.ultron.commons.core.index.Index;
 import seedu.ultron.model.opening.KeydateSort;
 import seedu.ultron.model.opening.Opening;
 
@@ -92,4 +93,20 @@ public interface Model {
      * @param direction
      */
     public void sortFilteredOpeningList(KeydateSort direction);
+
+    /**
+     * Returns the currently selected opening in the filtered opening list.
+     */
+    Opening getSelectedOpening();
+
+    /**
+     * Returns the index of currently selected opening in the filtered opening list.
+     */
+    Index getSelectedIndex();
+
+    /**
+     * Sets the index of currently selected opening in the filtered opening list.
+     */
+    void setSelectedIndex(Index index);
+
 }

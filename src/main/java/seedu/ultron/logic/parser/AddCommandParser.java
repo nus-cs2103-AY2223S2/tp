@@ -9,7 +9,7 @@ import static seedu.ultron.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.ultron.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.Optional;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.ultron.logic.commands.AddCommand;
@@ -63,7 +63,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Optional<Remark> remark = argMultimap.getValue(PREFIX_REMARK).map(ParserUtil::parseRemark);
-        Set<Date> dateList = ParserUtil.parseDates(argMultimap.getAllValues(PREFIX_KEYDATE));
+        List<Date> dateList = ParserUtil.parseDates(argMultimap.getAllValues(PREFIX_KEYDATE));
 
         Opening opening = new Opening(position, company, email, status, remark.orElse(null), dateList);
 

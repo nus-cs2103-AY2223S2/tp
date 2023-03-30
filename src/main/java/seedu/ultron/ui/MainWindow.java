@@ -23,7 +23,7 @@ import seedu.ultron.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindowNew.fxml";
+    private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private OpeningListPanel openingListPanel;
+    private OpeningDetailsPanel openingDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane openingListPanelPlaceholder;
+
+    @FXML
+    private StackPane openingDetailsPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,6 +117,8 @@ public class MainWindow extends UiPart<Stage> {
         openingListPanel = new OpeningListPanel(logic.getFilteredOpeningList());
         openingListPanelPlaceholder.getChildren().add(openingListPanel.getRoot());
 
+        handleShow();
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -168,6 +174,19 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates the opening details panel with the selected opening.
+     */
+    public void handleShow() {
+        openingDetailsPanelPlaceholder.getChildren().clear();
+        if (logic.getSelectedOpening() == null) {
+            openingDetailsPanel = null;
+            return;
+        }
+        openingDetailsPanel = new OpeningDetailsPanel(logic.getSelectedOpening());
+        openingDetailsPanelPlaceholder.getChildren().add(openingDetailsPanel.getRoot());
+    };
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.ultron.logic.Logic#execute(String)
@@ -184,6 +203,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            handleShow();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
