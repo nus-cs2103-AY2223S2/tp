@@ -43,4 +43,19 @@ public class ProjectWithinTimeframePredicate implements Predicate<Project> {
     public int hashCode() {
         return Objects.hash(start, end);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        if (start.isPresent()) {
+            sb.append("Start of timeframe: " + start.get().toString());
+        }
+        if (start.isPresent() && end.isPresent()) {
+            sb.append(", ");
+        }
+        if (end.isPresent()) {
+            sb.append("End of timeframe: " + end.get().toString());
+        }
+        return sb.toString();
+    }
 }

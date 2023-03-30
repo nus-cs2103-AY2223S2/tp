@@ -35,4 +35,9 @@ public class IsOfStatusPredicate implements Predicate<Project> {
     public int hashCode() {
         return statusToCheck.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return "Status: " + statusToCheck.toString();
+    }
 }

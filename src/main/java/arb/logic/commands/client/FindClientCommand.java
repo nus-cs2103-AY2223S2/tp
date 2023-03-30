@@ -44,7 +44,8 @@ public class FindClientCommand extends Command {
         requireNonNull(model);
         model.updateFilteredClientList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size()),
+                String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, model.getFilteredClientList().size())
+                + "\n" + predicate,
                 ListType.CLIENT);
     }
 

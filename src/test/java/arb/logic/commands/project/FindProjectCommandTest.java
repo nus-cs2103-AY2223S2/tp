@@ -15,10 +15,12 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import arb.commons.core.predicate.CombinedPredicate;
 import arb.model.ListType;
 import arb.model.Model;
 import arb.model.ModelManager;
 import arb.model.UserPrefs;
+import arb.model.project.Project;
 import arb.model.project.predicates.TitleContainsKeywordsPredicate;
 
 /**
@@ -57,20 +59,22 @@ public class FindProjectCommandTest {
 
     @Test
     public void execute_zeroKeywords_noProjectFound() {
-        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 0);
         TitleContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindProjectCommand command = new FindProjectCommand(predicate);
-        expectedModel.updateFilteredProjectList(predicate);
+        CombinedPredicate<Project> finalPredicate = new CombinedPredicate<>(Arrays.asList(predicate));
+        FindProjectCommand command = new FindProjectCommand(finalPredicate);
+        expectedModel.updateFilteredProjectList(finalPredicate);
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 0) + "\n" + finalPredicate;
         assertCommandSuccess(command, ListType.PROJECT, ListType.PROJECT, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredProjectList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleProjectsFound() {
-        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3);
         TitleContainsKeywordsPredicate predicate = preparePredicate("Crayon Digital Sculpture");
-        FindProjectCommand command = new FindProjectCommand(predicate);
-        expectedModel.updateFilteredProjectList(predicate);
+        CombinedPredicate<Project> finalPredicate = new CombinedPredicate<>(Arrays.asList(predicate));
+        FindProjectCommand command = new FindProjectCommand(finalPredicate);
+        expectedModel.updateFilteredProjectList(finalPredicate);
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3) + "\n" + finalPredicate;
         assertCommandSuccess(command, ListType.PROJECT, ListType.PROJECT, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CRAYON_PROJECT, DIGITAL_PROJECT, SCULPTURE_PROJECT), model.getFilteredProjectList());
     }

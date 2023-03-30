@@ -1,6 +1,7 @@
 package arb.model.client.predicates;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -36,4 +37,11 @@ public class NameContainsKeywordsPredicate implements Predicate<Client> {
         return keywords.hashCode();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Name keywords: ");
+        Iterator<String> iterator = keywords.iterator();
+        iterator.forEachRemaining(k -> sb.append(k + ", "));
+        return sb.delete(sb.length() - 2, sb.length() + 1).toString();
+    }
 }
