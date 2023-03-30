@@ -43,9 +43,10 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
             + ": Edits the details of the appointment identified "
-            + "by the index number used in the displayed appointment list. "
+            + "by the index number used in the displayed appointment list.\n"
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Syntax: " + COMMAND_GROUP + " " + COMMAND_WORD
+            + " INDEX (must be a positive integer) "
             + "[" + DELIMITER + PREFIX_STARTTIME + " START_TIME] "
             + "[" + DELIMITER + PREFIX_ENDTIME + " END_TIME] "
             + "[" + DELIMITER + PREFIX_VACCINATION + " VAX_GROUP]\n"

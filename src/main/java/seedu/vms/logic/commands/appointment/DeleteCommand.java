@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
             + ": Deletes the appointment identified by the index number used in the displayed appointment list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Syntax: " + COMMAND_GROUP + " " + COMMAND_WORD + " INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";

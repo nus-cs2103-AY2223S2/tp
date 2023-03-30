@@ -1,6 +1,7 @@
 package seedu.vms.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.vms.logic.parser.CliSyntax.*;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -36,7 +37,12 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
             + ": Finds all appointments that matches the specified keywords (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Either a keyword or flag must be provided.\n"
+            + "Syntax: " + COMMAND_GROUP + " " + COMMAND_WORD
+            + " [...KEYWORDS...] "
+            + "[" + DELIMITER + PREFIX_STARTTIME + " START_TIME] "
+            + "[" + DELIMITER + PREFIX_ENDTIME + " END_TIME] "
+            + "[" + DELIMITER + PREFIX_VACCINATION + " VAX_GROUP]\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " Dose 1\n"
             + "(List all appointments that uses \"Dose 1')\"";
 
