@@ -1,5 +1,7 @@
 package seedu.vms.storage.keyword;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,8 +21,8 @@ public class JsonAdaptedKeyword {
     @JsonCreator
     public JsonAdaptedKeyword(@JsonProperty("keyword") String keyword,
                               @JsonProperty("mainKeyword") String mainKeyword) {
-        this.keyword = keyword;
-        this.mainKeyword = mainKeyword;
+        this.keyword = Objects.requireNonNull(keyword);
+        this.mainKeyword = Objects.requireNonNull(mainKeyword);
 
     }
 
