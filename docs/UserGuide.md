@@ -249,11 +249,12 @@ Table 1. Symbols and formats used in this User Guide.
 ### View help : `g help`
 * Shows all valid command formats and their functionalities.
   <p align="center">
-    <img src="images/UIscreenshots/helpMessage.png" style="zoom:80%">
+    <img src="images/UIscreenshots/helpMessage.png" style="zoom:100%">
   </p>
   <br>
 * **Format:** `g help`
 
+<br>
 
 [🠉 Back to top](#top)
 
@@ -264,6 +265,8 @@ Table 1. Symbols and formats used in this User Guide.
   \
   &nbsp;
 * **Format:** `g exit`
+
+<br>
 
 [🠉 Back to top](#top)
 
