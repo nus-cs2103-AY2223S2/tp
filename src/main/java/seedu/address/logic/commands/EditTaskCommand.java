@@ -71,7 +71,11 @@ public class EditTaskCommand extends ApplicationCommand {
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         model.commitInternshipBookChange();
         commandHistory.setLastCommandAsModify();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedApplication.getTask()));
+        String displayMessage = MESSAGE_SUCCESS;
+        if (editedApplication.hasOutdatedTask()) {
+            displayMessage = Deadline.DEADLINE_HAS_PASSED + displayMessage;
+        }
+        return new CommandResult(String.format(displayMessage, editedApplication.getTask()));
     }
 
     @Override

@@ -27,6 +27,10 @@ public class Task {
         return this.deadline;
     }
 
+    public boolean hasValidDeadline() {
+        return !deadline.isOutdated();
+    }
+
     public Description getDescription() {
         return this.description;
     }

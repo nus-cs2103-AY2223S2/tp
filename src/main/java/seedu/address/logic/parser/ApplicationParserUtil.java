@@ -174,9 +174,6 @@ public class ApplicationParserUtil {
         if (!Deadline.isValidDate(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        if (!Deadline.isValidDeadline(trimmedDeadline)) {
-            throw new ParseException(Deadline.DEADLINE_HAS_PASSED);
-        }
         return new Deadline(trimmedDeadline);
     }
 
