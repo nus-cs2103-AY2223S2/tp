@@ -247,6 +247,7 @@ public class ModelManager implements Model {
         // TODO: Potential bugs
         ArrayList<ArrayList<Integer>> timetable = TimeMask.getTimeSlotIndexes(baseMask);
         addressBook.getScheduleWeek().setInternalList(timetable, date.getDayOfWeek());
+        logger.info("Timetable generation finished. Rendering expected.");
     }
 
     @Override
