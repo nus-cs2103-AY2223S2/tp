@@ -312,6 +312,8 @@ public class SudoHr implements ReadOnlySudoHr {
                 dept.removeEmployee(employeeToDelete);
             }
         }
+        refreshDepartments(); // defensive programming
+        refreshLeaves(); // defensive programming
     }
 
     /**
@@ -327,6 +329,8 @@ public class SudoHr implements ReadOnlySudoHr {
                 dept.setEmployee(employeeToEdit, editedEmployee);
             }
         }
+        refreshDepartments(); // defensive programming
+        refreshLeaves(); // defensive programming
     }
 
     // =========== Leave-Level Operations
@@ -453,6 +457,8 @@ public class SudoHr implements ReadOnlySudoHr {
                 leave.setEmployee(employeeToEdit, editedEmployee);
             }
         }
+        refreshDepartments();
+        refreshLeaves();
     }
 
     /**
@@ -465,6 +471,8 @@ public class SudoHr implements ReadOnlySudoHr {
                 leave.deleteEmployee(employeeToDelete);
             }
         }
+        refreshDepartments();
+        refreshLeaves();
     }
 
     /**
