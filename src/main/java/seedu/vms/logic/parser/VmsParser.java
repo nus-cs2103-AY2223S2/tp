@@ -53,6 +53,7 @@ public class VmsParser {
         }
 
         final String featureName = matcher.group("featureName");
+        System.out.println(featureName);
         final String arguments = matcher.group("arguments");
         switch (ALTERNATIVE_FEATURE_NAME_MAPPINGS.getOrDefault(featureName, featureName)) {
 
@@ -69,7 +70,7 @@ public class VmsParser {
             return keywordParser.parse(arguments);
 
         case BasicParser.FEATURE_NAME:
-            return basicParser.parse(userInput);
+            return basicParser.parse(arguments);
 
         default:
             return basicParser.parse(userInput);
