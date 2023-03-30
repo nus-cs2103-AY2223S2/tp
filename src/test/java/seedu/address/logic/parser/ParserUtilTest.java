@@ -114,22 +114,20 @@ public class ParserUtilTest {
     }
 
     @Test
-    void parseNumCardsPerReview_validValues_returnsNumCardInteger() throws Exception {
-        String inputAll = "all";
-        assertEquals(-1, ParserUtil.parseNumCardsPerReview(inputAll));
+    void parseReviewLimit_validValues_returnsNumCardInteger() throws Exception {
+        String inputAll = "none";
+        assertEquals(-1, ParserUtil.parseReviewLimit(inputAll));
 
         String inputTen = "10";
-        assertEquals(10, ParserUtil.parseNumCardsPerReview(inputTen));
+        assertEquals(10, ParserUtil.parseReviewLimit(inputTen));
     }
 
     @Test
-    void parseNumCardsPerReview_invalidValues_throwsParseException() throws Exception {
+    void parseReviewLimit_invalidValues_throwsParseException() throws Exception {
         String inputString = "helloWorld";
-        assertThrows(ParseException.class, () -> ParserUtil.parseNumCardsPerReview(inputString));
+        assertThrows(ParseException.class, () -> ParserUtil.parseReviewLimit(inputString));
 
         String inputFloat = "10.5";
-        assertThrows(ParseException.class, () -> ParserUtil.parseNumCardsPerReview(inputFloat));
+        assertThrows(ParseException.class, () -> ParserUtil.parseReviewLimit(inputFloat));
     }
-
-
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 
 <HBox alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <ImageView fitHeight="350.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true">
+   <ImageView fitHeight="300.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
       <HBox.margin>
          <Insets/>
       </HBox.margin>

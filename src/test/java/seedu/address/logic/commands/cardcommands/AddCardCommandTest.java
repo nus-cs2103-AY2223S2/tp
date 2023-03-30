@@ -22,11 +22,11 @@ import seedu.address.model.deck.Deck;
 import seedu.address.testutil.AddCardDescriptorBuilder;
 import seedu.address.testutil.CardBuilder;
 
-public class AddCommandTest {
+public class AddCardCommandTest {
 
     @Test
     public void constructor_nullCard_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCardCommand(null));
     }
 
     @Test
@@ -34,9 +34,9 @@ public class AddCommandTest {
         ModelStubAcceptingCardAdded modelStub = new ModelStubAcceptingCardAdded();
         Card validCard = new CardBuilder().build(); // Default Card
         AddCardDescriptorBuilder cardDescBuilder = new AddCardDescriptorBuilder(validCard);
-        CommandResult commandResult = new AddCommand(cardDescBuilder.build()).execute(modelStub);
+        CommandResult commandResult = new AddCardCommand(cardDescBuilder.build()).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validCard), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCardCommand.MESSAGE_SUCCESS, validCard), commandResult.getFeedbackToUser());
         assertEquals(List.of(validCard), modelStub.cardsAdded);
     }
 
@@ -45,8 +45,9 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithDuplicatedCard();
         Card validCard = new CardBuilder().build();
         AddCardDescriptorBuilder cardDescBuilder = new AddCardDescriptorBuilder(validCard);
-        AddCommand addCommand = new AddCommand(cardDescBuilder.build());
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_CARD, () -> addCommand.execute(modelStub));
+        AddCardCommand addCardCommand = new AddCardCommand(cardDescBuilder.build());
+        assertThrows(CommandException.class, AddCardCommand.MESSAGE_DUPLICATE_CARD, ()
+                -> addCardCommand.execute(modelStub));
     }
 
     @Test
@@ -54,24 +55,25 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithoutSelectedDeck();
         Card validCard = new CardBuilder().build();
         AddCardDescriptorBuilder cardDescBuilder = new AddCardDescriptorBuilder(validCard);
-        AddCommand addCommand = new AddCommand(cardDescBuilder.build());
-        assertThrows(AssertionError.class, AddCommand.MESSAGE_NO_SELECTED_DECK, () -> addCommand.execute(modelStub));
+        AddCardCommand addCardCommand = new AddCardCommand(cardDescBuilder.build());
+        assertThrows(AssertionError.class, AddCardCommand.MESSAGE_NO_SELECTED_DECK, ()
+                -> addCardCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        AddCommand.AddCardDescriptor questionGravity = new AddCardDescriptorBuilder()
+        AddCardCommand.AddCardDescriptor questionGravity = new AddCardDescriptorBuilder()
                 .withQuestion("What is gravity").withAnswer("Not sure").withTag("easy").build();
-        AddCommand.AddCardDescriptor questionPhoto = new AddCardDescriptorBuilder()
+        AddCardCommand.AddCardDescriptor questionPhoto = new AddCardDescriptorBuilder()
                 .withQuestion("What is photosynthesis").withAnswer("Not sure either").withTag("hard").build();
-        AddCommand addACommand = new AddCommand(questionGravity);
-        AddCommand addBCommand = new AddCommand(questionPhoto);
+        AddCardCommand addACommand = new AddCardCommand(questionGravity);
+        AddCardCommand addBCommand = new AddCardCommand(questionPhoto);
 
         // same object -> returns true
         assertEquals(addACommand, addACommand);
 
         // same values -> returns true
-        AddCommand addGravityCommandCopy = new AddCommand(questionGravity);
+        AddCardCommand addGravityCommandCopy = new AddCardCommand(questionGravity);
         assertEquals(addACommand, addGravityCommandCopy);
 
         // different types -> returns false

@@ -113,17 +113,17 @@
 #cardPane #question {
     -fx-font-size: 23px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial";
+    -fx-font-family: "Segoe UI Semibold";
 }
 
 /* id number of the cards */
 #cardPane #id {
     -fx-font-size: 23px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial";
+    -fx-font-family: "Segoe UI Semibold";
 }
 
-#personListView {
+#cardListView {
     -fx-background-color: #e6eaeb;
     -fx-background-radius: 0 0 15 15;
     -fx-border-radius: 0 0 15 15;
@@ -234,6 +234,29 @@
     -fx-font-size: 20px;
 }
 
+#ReviewCardPane {
+    -fx-background-color: #524cd1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+#ReviewCardPane .label{
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-padding: 5;
+}
+
+#ReviewCardPane #question {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
+#ReviewCardPane #id {
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Segoe UI Semibold";
+}
+
 /* ============ MODE TITLE ========== */
 #titlePanel{
     -fx-background-color: #f4f8f9;
@@ -241,6 +264,12 @@
     -fx-font-weight: bold;
     -fx-padding: 10 0 0 25;
 }
+
+/* ============ BOTTOM SPLIT PANE ========== */
+
+/*#commandBox .split-pane-divider {*/
+/*    -fx-vertical-zero-line-visible: true;*/
+/*}*/
 
 /* ============ COMMAND INPUT BOX ========== */
 #commandTextField {

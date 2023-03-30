@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.cardcommands.EditCommand.EditCardDescriptor;
+import seedu.address.logic.commands.cardcommands.EditCardCommand.EditCardDescriptor;
 import seedu.address.model.MasterDeck;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -28,9 +28,9 @@ import seedu.address.testutil.CardBuilder;
 import seedu.address.testutil.EditCardDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditCardCommand.
  */
-public class EditCommandTest {
+public class EditCardCommandTest {
 
     private final Model model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
 
@@ -41,10 +41,10 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Card editedCard = new CardBuilder().build(); // in DEFAULT deck
-        EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder(editedCard).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST, descriptor); // edited card has the same deck as LOOP
+        EditCardCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder(editedCard).build();
+        EditCardCommand editCardCommand = new EditCardCommand(INDEX_FIRST, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
+        String expectedMessage = String.format(EditCardCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
 
         Model expectedModel = new ModelManager(new MasterDeck(model.getMasterDeck()), new UserPrefs());
         expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
@@ -53,7 +53,7 @@ public class EditCommandTest {
                 editedCard.getTag(), toEdit.getDeck()); // new card is in the same deck as old card
         expectedModel.setCard(toEdit, toReplace);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCardCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -67,28 +67,28 @@ public class EditCommandTest {
 
         EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).withTag(VALID_TAG_HARD).build();
-        EditCommand editCommand = new EditCommand(indexLastCard, descriptor);
+        EditCardCommand editCardCommand = new EditCardCommand(indexLastCard, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
+        String expectedMessage = String.format(EditCardCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
 
         Model expectedModel = new ModelManager(new MasterDeck(model.getMasterDeck()), new UserPrefs());
         expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
         expectedModel.setCard(lastCard, editedCard);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCardCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST, new EditCommand.EditCardDescriptor());
+        EditCardCommand editCardCommand = new EditCardCommand(INDEX_FIRST, new EditCardCommand.EditCardDescriptor());
         Card editedCard = model.getFilteredCardList().get(INDEX_FIRST.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
+        String expectedMessage = String.format(EditCardCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
 
         Model expectedModel = new ModelManager(new MasterDeck(model.getMasterDeck()), new UserPrefs());
         expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCardCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -97,24 +97,24 @@ public class EditCommandTest {
 
         Card cardInFilteredList = model.getFilteredCardList().get(INDEX_FIRST.getZeroBased());
         Card editedCard = new CardBuilder(cardInFilteredList).withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST,
+        EditCardCommand editCardCommand = new EditCardCommand(INDEX_FIRST,
                 new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
+        String expectedMessage = String.format(EditCardCommand.MESSAGE_EDIT_CARD_SUCCESS, editedCard);
 
         Model expectedModel = new ModelManager(new MasterDeck(model.getMasterDeck()), new UserPrefs());
         expectedModel.setCard(model.getFilteredCardList().get(0), editedCard);
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCardCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateCardUnfilteredList_failure() {
         Card firstCard = model.getFilteredCardList().get(INDEX_FIRST.getZeroBased());
-        EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder(firstCard).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND, descriptor);
+        EditCardCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder(firstCard).build();
+        EditCardCommand editCardCommand = new EditCardCommand(INDEX_SECOND, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CARD);
+        assertCommandFailure(editCardCommand, model, EditCardCommand.MESSAGE_DUPLICATE_CARD);
     }
 
     @Test
@@ -123,20 +123,20 @@ public class EditCommandTest {
 
         // edit card in filtered list into a duplicate in master deck
         Card cardInList = model.getMasterDeck().getCardList().get(INDEX_SECOND.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST,
+        EditCardCommand editCardCommand = new EditCardCommand(INDEX_FIRST,
                 new EditCardDescriptorBuilder(cardInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_CARD);
+        assertCommandFailure(editCardCommand, model, EditCardCommand.MESSAGE_DUPLICATE_CARD);
     }
 
     @Test
     public void execute_invalidCardIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCardList().size() + 1);
-        EditCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
+        EditCardCommand.EditCardDescriptor descriptor = new EditCardDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        EditCardCommand editCardCommand = new EditCardCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
+        assertCommandFailure(editCardCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
     }
 
     /**
@@ -150,19 +150,19 @@ public class EditCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMasterDeck().getCardList().size());
 
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+        EditCardCommand editCardCommand = new EditCardCommand(outOfBoundIndex,
                 new EditCardDescriptorBuilder().withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
+        assertCommandFailure(editCardCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST, DESC_GRAVITY);
+        final EditCardCommand standardCommand = new EditCardCommand(INDEX_FIRST, DESC_GRAVITY);
 
         // same values -> returns true
         EditCardDescriptor copyDescriptor = new EditCardDescriptor(DESC_GRAVITY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST, copyDescriptor);
+        EditCardCommand commandWithSameValues = new EditCardCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -175,10 +175,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND, DESC_GRAVITY)));
+        assertFalse(standardCommand.equals(new EditCardCommand(INDEX_SECOND, DESC_GRAVITY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST, DESC_PHOTOSYNTHESIS)));
+        assertFalse(standardCommand.equals(new EditCardCommand(INDEX_FIRST, DESC_PHOTOSYNTHESIS)));
     }
 
 }

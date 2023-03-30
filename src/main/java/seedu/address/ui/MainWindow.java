@@ -42,7 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private CardListPanel cardListPanel;
     private UiPart<Region> leftPanel;
     private UiPart<Region> rightTitle;
     private ResultDisplay resultDisplay;
@@ -137,20 +137,20 @@ public class MainWindow extends UiPart<Stage> {
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
 
-        personListPanel = new PersonListPanel(logic.getFilteredCardList(), false);
-        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
+        rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
 
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMasterDeckFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -219,11 +219,10 @@ public class MainWindow extends UiPart<Stage> {
         leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
-        leftPanelPlaceholder.setMinWidth(500); // Resize to fit navigation guide
 
-        personListPanel = new PersonListPanel(logic.getReviewCardList(), true);
+        cardListPanel = new CardListPanel(logic.getReviewCardList(), true);
         rightPanelPlaceholder.getChildren().clear();
-        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(REVIEW_TITLE);
@@ -242,11 +241,11 @@ public class MainWindow extends UiPart<Stage> {
         leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
-        leftPanelPlaceholder.setMinWidth(300);
 
-        personListPanel = new PersonListPanel(logic.getFilteredCardList(), false);
+
+        cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().clear();
-        rightPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(MAIN_TITLE);

@@ -20,9 +20,9 @@ import seedu.address.model.card.Card;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteCardCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteCardCommandTest {
 
     private Model model = new ModelManager(getTypicalMasterDeck(), new UserPrefs());
 
@@ -33,23 +33,23 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Card cardToDelete = model.getFilteredCardList().get(INDEX_FIRST.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
+        DeleteCardCommand deleteCardCommand = new DeleteCardCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CARD_SUCCESS, cardToDelete);
+        String expectedMessage = String.format(DeleteCardCommand.MESSAGE_DELETE_CARD_SUCCESS, cardToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
         expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
         expectedModel.deleteCard(cardToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCardCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCardList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCardCommand deleteCardCommand = new DeleteCardCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCardCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
     }
 
     @Test
@@ -57,14 +57,14 @@ public class DeleteCommandTest {
         showCardAtIndex(model, INDEX_FIRST);
         Card cardToDelete = model.getFilteredCardList().get(INDEX_FIRST.getZeroBased());
 
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
+        DeleteCardCommand deleteCardCommand = new DeleteCardCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_CARD_SUCCESS, cardToDelete);
+        String expectedMessage = String.format(DeleteCardCommand.MESSAGE_DELETE_CARD_SUCCESS, cardToDelete);
 
         Model expectedModel = new ModelManager(model.getMasterDeck(), new UserPrefs());
         expectedModel.deleteCard(cardToDelete);
         showNoCard(expectedModel);
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCardCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -75,21 +75,21 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of master deck list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMasterDeck().getCardList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
+        DeleteCardCommand deleteCardCommand = new DeleteCardCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCardCommand, model, Messages.MESSAGE_INVALID_CARD_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND);
+        DeleteCardCommand deleteFirstCommand = new DeleteCardCommand(INDEX_FIRST);
+        DeleteCardCommand deleteSecondCommand = new DeleteCardCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST);
+        DeleteCardCommand deleteFirstCommandCopy = new DeleteCardCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

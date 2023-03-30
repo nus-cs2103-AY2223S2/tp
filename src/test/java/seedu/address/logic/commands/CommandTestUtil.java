@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.cardcommands.EditCommand;
+import seedu.address.logic.commands.cardcommands.EditCardCommand;
 import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MasterDeck;
@@ -53,8 +53,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditCardDescriptor DESC_GRAVITY;
-    public static final EditCommand.EditCardDescriptor DESC_PHOTOSYNTHESIS;
+    public static final EditCardCommand.EditCardDescriptor DESC_GRAVITY;
+    public static final EditCardCommand.EditCardDescriptor DESC_PHOTOSYNTHESIS;
 
     static {
         DESC_GRAVITY = new EditCardDescriptorBuilder()

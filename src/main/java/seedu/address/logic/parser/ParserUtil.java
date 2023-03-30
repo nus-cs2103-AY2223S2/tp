@@ -19,6 +19,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_N_INPUT = "Input must be an integer between 1 and 2147483647"
             + " inclusive or the String 'all'";
     public static final String MESSAGE_INVALID_INTEGER = "Input must be an integer between 1 and 2147483647 inclusive";
+    public static final String MESSAGE_MUST_BE_EMPTY = "No inputs allowed";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -97,11 +98,11 @@ public class ParserUtil {
      * Parses a String {@code userInput} into an {@code Integer} and returns it. Leading and trailing whitespaces
      * will be trimmed.
      * @throws ParseException if the specified String is invalid (not non-zero unsigned integer or
-     *      not the String "all").
+     *      not the String "none").
      */
-    public static int parseNumCardsPerReview(String userInput) throws ParseException {
+    public static int parseReviewLimit(String userInput) throws ParseException {
         String trimmedUserInput = userInput.trim();
-        if (trimmedUserInput.equalsIgnoreCase("all")) {
+        if (trimmedUserInput.equalsIgnoreCase("none")) {
             return -1;
         } else if (trimmedUserInput.matches("\\d+")) {
             if (!StringUtil.isNonZeroUnsignedInteger(trimmedUserInput)) {
@@ -110,6 +111,21 @@ public class ParserUtil {
             return Integer.parseInt(trimmedUserInput);
         } else {
             throw new ParseException(MESSAGE_INVALID_N_INPUT);
+        }
+    }
+
+    /**
+     * Parses a String {@code userInput} and returns an empty string if input is empty. Leading and trailing whitespaces
+     * will be trimmed.
+     *
+     * @throws ParseException if the user input contains any characters (excluding whitespaces)
+     */
+    public static String parseEmptyInput(String userInput) throws ParseException {
+        String trimmedUserInput = userInput.trim();
+        if (trimmedUserInput.isEmpty()) {
+            return "";
+        } else {
+            throw new ParseException(MESSAGE_MUST_BE_EMPTY);
         }
     }
 

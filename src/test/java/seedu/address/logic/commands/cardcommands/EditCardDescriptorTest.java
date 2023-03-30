@@ -17,7 +17,8 @@ public class EditCardDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditCardDescriptor descriptorWithSameValues = new EditCommand.EditCardDescriptor(DESC_GRAVITY);
+        EditCardCommand.EditCardDescriptor descriptorWithSameValues =
+                new EditCardCommand.EditCardDescriptor(DESC_GRAVITY);
         assertTrue(DESC_GRAVITY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -33,7 +34,7 @@ public class EditCardDescriptorTest {
         assertFalse(DESC_GRAVITY.equals(DESC_PHOTOSYNTHESIS));
 
         // different name -> returns false
-        EditCommand.EditCardDescriptor editedGravity = new EditCardDescriptorBuilder(DESC_GRAVITY)
+        EditCardCommand.EditCardDescriptor editedGravity = new EditCardDescriptorBuilder(DESC_GRAVITY)
                 .withQuestion(VALID_QUESTION_PHOTOSYNTHESIS).build();
         assertFalse(DESC_GRAVITY.equals(editedGravity));
 

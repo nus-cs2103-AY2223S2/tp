@@ -11,8 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.text.TextFlow?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="PowerCard" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" maximized="true" onCloseRequest="#handleExit" title="PowerCard" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -36,14 +37,14 @@
         <TextFlow fx:id="titlePanel" />
 
         <SplitPane fx:id="masterDeckList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-         <StackPane fx:id="leftPanelPlaceholder" styleClass="panel" minWidth="300"/>
-          <VBox prefHeight="0.0" prefWidth="0.0" minWidth="300" >
-            <StackPane fx:id="rightPanelTitlePlaceholder" minHeight="110" prefHeight="110" />
-            <StackPane fx:id="rightPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
+         <StackPane fx:id="leftPanelPlaceholder" styleClass="panel" minWidth="400" maxWidth="400"/>
+          <VBox prefHeight="0.0" prefWidth="0.0" >
+            <StackPane fx:id="rightPanelTitlePlaceholder" minHeight="110" prefHeight="110" minWidth="300"/>
+            <StackPane fx:id="rightPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" minWidth="300" />
           </VBox>
         </SplitPane>
 
-        <SplitPane fx:id="commandBox" dividerPositions="0.5" VBox.vgrow="NEVER">
+        <SplitPane fx:id="commandBox" dividerPositions="0.5" VBox.vgrow="NEVER" >
           <StackPane fx:id="commandBoxPlaceholder" prefWidth="340.0" styleClass="pane-with-border" />
           <StackPane fx:id="resultDisplayPlaceholder" alignment="TOP_LEFT" maxHeight="100" minHeight="100" prefHeight="100" prefWidth="317.0" styleClass="pane-with-border" />
         </SplitPane>

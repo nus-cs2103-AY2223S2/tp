@@ -8,23 +8,23 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.deckcommands.FindDeckCommand;
+import seedu.address.logic.commands.deckcommands.FindDecksCommand;
 
-public class FindDeckCommandParserTest {
+public class FindDecksCommandParserTest {
 
-    private FindDeckCommandParser parser = new FindDeckCommandParser();
+    private FindDecksCommandParser parser = new FindDecksCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindDeckCommand.MESSAGE_USAGE));
+                FindDecksCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindDeckCommand expectedFindCommand =
-                new FindDeckCommand(Arrays.asList("What's", "gravity"));
+        FindDecksCommand expectedFindCommand =
+                new FindDecksCommand(Arrays.asList("What's", "gravity"));
         assertParseSuccess(parser, "What's gravity", expectedFindCommand);
 
         // multiple whitespaces between keywords

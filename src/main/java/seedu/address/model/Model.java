@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -12,6 +13,8 @@ import seedu.address.model.card.Card;
 import seedu.address.model.deck.Deck;
 import seedu.address.model.review.Review;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.Tag.TagName;
+
 
 /**
  * The API of the Model component.
@@ -138,7 +141,9 @@ public interface Model {
 
     /* ==================================== Review Operations ==================================== */
 
-    void reviewDeck(Index idx);
+    int getDeckSizeFilteredTag(int deckIndex, List<TagName> difficulties);
+
+    void reviewDeck(Index idx, List<TagName> difficulties);
 
     Optional<Review> getReview();
 
