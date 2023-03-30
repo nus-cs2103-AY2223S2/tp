@@ -32,14 +32,6 @@ public class TaskList {
         return newTasks;
     }
 
-    public Task get(int index) throws TaskNotFoundException {
-        try {
-            return get(index - 1);
-        } catch (IndexOutOfBoundsException e) {
-            throw new TaskNotFoundException();
-        }
-    }
-
     public TaskList add(Task task) {
         ArrayList<Task> newTasks = getTaskList();
         newTasks.add(task);
@@ -58,14 +50,22 @@ public class TaskList {
         return tasks.isEmpty();
     }
 
+    private Task get(int index) throws TaskNotFoundException {
+        try {
+            return get(index - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new TaskNotFoundException();
+        }
+    }
+
     @Override
     public String toString() {
         if (tasks.size() == 0) {
             return EMPTY_TASKLIST_MESSAGE;
         }
         String returnString = "Tasks:\n";
-        for (int i = 1; i <= tasks.size(); i++) {
-            returnString += String.format("%d. %s\n", i, this.get(i));
+        for (int i = 0; i < tasks.size(); i++) {
+            returnString += String.format("%d. %s\n", i + 1, tasks.get(i));
         }
         return returnString;
     }
@@ -89,7 +89,7 @@ public class TaskList {
         }
 
         for (int i = 1; i <= tasks.size(); i++) {
-            Task originalTask = tasks.get(i);
+            Task originalTask = this.get(i);
             Task otherTask = otherTasks.get(i);
             if (!originalTask.equals(otherTask)) {
                 return false;
