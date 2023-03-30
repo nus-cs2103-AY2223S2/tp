@@ -34,9 +34,16 @@ public class MarkAsNotDoneCommand extends Command {
         try {
             indexes.forEach(model::markMeetingAsNotDone);
         } catch (IndexOutOfBoundsException e) {
-            return new CommandResult(INDEX_NOT_FOUND);
+            throw new CommandException(INDEX_NOT_FOUND);
         }
         return new CommandResult(String.format(SUCCESS_FORMAT,
                 indexes.stream().map(Index::getOneBased).collect(Collectors.toList())));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o == this // short circuit if same object
+                || (o instanceof MarkAsNotDoneCommand
+                && indexes.equals(((MarkAsNotDoneCommand) o).indexes));
     }
 }

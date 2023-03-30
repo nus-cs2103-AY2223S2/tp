@@ -26,6 +26,7 @@ public class MeetingBuilder {
     private Set<Person> attendees;
     private Location location;
     private Description description;
+    private boolean isDone;
 
     /**
      * Creates a {@code MeetingBuilder} with the default details.
@@ -90,7 +91,15 @@ public class MeetingBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isDone} of the {@code Meeting}
+     */
+    public MeetingBuilder withIsDone(boolean isDone) {
+        this.isDone = isDone;
+        return this;
+    }
+
     public Meeting build() {
-        return new Meeting(title, dateTime, attendees, location, description);
+        return new Meeting(title, dateTime, attendees, location, description, isDone);
     }
 }

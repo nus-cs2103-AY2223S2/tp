@@ -24,7 +24,8 @@ public class MarkAsNotDoneParser implements Parser<MarkAsNotDoneCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIXES);
         List<String> indexStrings = argMultimap.getAllValues(PREFIX_MEETING_TITLE);
         if (indexStrings.size() < 1) {
-            throw new ParseException("No index found!");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MarkAsNotDoneCommand.MESSAGE_USAGE));
         }
         List<Index> indexes = new ArrayList<>();
         for (String s : indexStrings) {
