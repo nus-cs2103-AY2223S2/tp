@@ -187,6 +187,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ArrayList<String> getExistingEducationValues() {
+        return addressBook.getExistingEducationValues();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
