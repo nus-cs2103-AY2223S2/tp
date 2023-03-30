@@ -22,7 +22,7 @@ import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.socialmedia.Telegram;
 import seedu.connectus.model.socialmedia.WhatsApp;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -174,13 +174,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code cca} is invalid.
      */
-    public static CcaPosition parseCcaPosition(String ccaPosition) throws ParseException {
-        requireNonNull(ccaPosition);
-        String trimmedCcaPosition = ccaPosition.trim();
-        if (!Cca.isValidTagName(trimmedCcaPosition)) {
-            throw new ParseException(CcaPosition.MESSAGE_CONSTRAINTS);
+    public static Major parseMajor(String major) throws ParseException {
+        requireNonNull(major);
+        String trimmedMajor = major.trim();
+        if (!Cca.isValidTagName(trimmedMajor)) {
+            throw new ParseException(Major.MESSAGE_CONSTRAINTS);
         }
-        return new CcaPosition(trimmedCcaPosition);
+        return new Major(trimmedMajor);
     }
 
     /**
@@ -222,13 +222,17 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> ccaPositions} into a {@code Set<CcaPosition>}.
      */
-    public static Set<CcaPosition> parseCcaPositions(Collection<String> ccaPositions) throws ParseException {
-        requireNonNull(ccaPositions);
-        final Set<CcaPosition> ccaPositionSet = new HashSet<>();
-        for (String ccaPositionName : ccaPositions) {
-            ccaPositionSet.add(parseCcaPosition(ccaPositionName));
+    public static Set<Major> parseMajors(Collection<String> majors) throws ParseException {
+        requireNonNull(majors);
+        final Set<Major> majorSet = new HashSet<>();
+        int counter = 0;
+        for (String majorName : majors) {
+            if(counter < Major.MAX_MAJOR_COUNT) {
+                majorSet.add(parseMajor(majorName));
+            }
+            counter++;
         }
-        return ccaPositionSet;
+        return majorSet;
     }
 
     private static Instagram parseInstagram(String instagram) throws ParseException {

@@ -30,7 +30,7 @@ import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -172,11 +172,11 @@ public class EditCommand extends Command {
             }
         }
 
-        if (editPersonDescriptor.getCcaPositions().isPresent()) {
-            p.setCcaPositions(editPersonDescriptor.getCcaPositions().get());
+        if (editPersonDescriptor.getMajors().isPresent()) {
+            p.setMajors(editPersonDescriptor.getMajors().get());
         } else {
-            if (!personToEdit.getCcaPositions().isEmpty()) {
-                p.setCcaPositions(personToEdit.getCcaPositions());
+            if (!personToEdit.getMajors().isEmpty()) {
+                p.setMajors(personToEdit.getMajors());
             }
         }
 
@@ -216,7 +216,7 @@ public class EditCommand extends Command {
         private Birthday birthday;
         private Set<Module> modules;
         private Set<Cca> ccas;
-        private Set<CcaPosition> ccaPositions;
+        private Set<Major> majors;
 
         public EditPersonDescriptor() {
         }
@@ -234,7 +234,7 @@ public class EditCommand extends Command {
             setRemarks(toCopy.remarks);
             setModules(toCopy.modules);
             setCcas(toCopy.ccas);
-            setCcaPositions(toCopy.ccaPositions);
+            setMajors(toCopy.majors);
             setBirthday(toCopy.birthday);
         }
 
@@ -354,8 +354,8 @@ public class EditCommand extends Command {
          * Sets {@code ccaPositions} to this object's {@code ccaPositions}.
          * A defensive copy of {@code ccaPositions} is used internally.
          */
-        public void setCcaPositions(Set<CcaPosition> ccaPositions) {
-            this.ccaPositions = (ccaPositions != null) ? new HashSet<>(ccaPositions) : null;
+        public void setMajors(Set<Major> majors) {
+            this.majors = (majors != null) ? new HashSet<>(majors) : null;
         }
 
         /**
@@ -364,8 +364,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code ccaPositions} is null.
          */
-        public Optional<Set<CcaPosition>> getCcaPositions() {
-            return (ccaPositions != null) ? Optional.of(Collections.unmodifiableSet(ccaPositions)) : Optional.empty();
+        public Optional<Set<Major>> getMajors() {
+            return (majors != null) ? Optional.of(Collections.unmodifiableSet(majors)) : Optional.empty();
         }
 
         @Override

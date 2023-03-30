@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MAJOR_COMPUTER_SCIENCE;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_REMARK_HUSBAND;
 import static seedu.connectus.testutil.Assert.assertThrows;
@@ -47,7 +47,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withRemarks(VALID_REMARK_HUSBAND)
                 .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_ICS)
-                .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
+                .withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
@@ -91,7 +91,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withRemarks(VALID_REMARK_HUSBAND)
                 .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_ICS)
-                .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
+                .withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
         expectedUniquePersonList.add(editedAlice);

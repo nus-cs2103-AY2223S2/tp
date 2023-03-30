@@ -14,7 +14,7 @@ public class CcaTest {
     @Test
     public void constructor_invalidCcaName_throwsIllegalArgumentException() {
         String invalidCcaName = "";
-        assertThrows(IllegalArgumentException.class, () -> new CcaPosition(invalidCcaName));
+        assertThrows(IllegalArgumentException.class, () -> new Major(invalidCcaName));
     }
 
     @Test

@@ -4,23 +4,23 @@ import static seedu.connectus.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class CcaPositionTest {
+public class MajorTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CcaPosition(null));
+        assertThrows(NullPointerException.class, () -> new Major(null));
     }
 
     @Test
     public void constructor_invalidCcaName_throwsIllegalArgumentException() {
-        String invalidCcaPositionName = "";
-        assertThrows(IllegalArgumentException.class, () -> new CcaPosition(invalidCcaPositionName));
+        String invalidMajor = "";
+        assertThrows(IllegalArgumentException.class, () -> new Major(invalidMajor));
     }
 
     @Test
     public void isValidCcaName() {
         // null module name
-        assertThrows(NullPointerException.class, () -> CcaPosition.isValidCcaPositionName(null));
+        assertThrows(NullPointerException.class, () -> Major.isValidMajorName(null));
     }
 
 }

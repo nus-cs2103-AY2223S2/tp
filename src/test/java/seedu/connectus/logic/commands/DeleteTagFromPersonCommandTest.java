@@ -33,7 +33,7 @@ public class DeleteTagFromPersonCommandTest {
         List<Module> modifiedModules = convertSetToList(personToFiddle.getModules());
         modifiedModules.remove(0);
         Person expectedPerson = new Person(personToFiddle, personToFiddle.getRemarks(), new HashSet<>(modifiedModules),
-            personToFiddle.getCcas(), personToFiddle.getCcaPositions());
+            personToFiddle.getCcas(), personToFiddle.getMajors());
         DeleteTagFromPersonCommand command = new DeleteTagFromPersonCommand(INDEX_FIRST_PERSON, Index.fromOneBased(1),
             null, null, null
         );

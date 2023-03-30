@@ -4,8 +4,8 @@ import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_NES;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_PRESIDENT;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MAJOR_COMPUTER_SCIENCE;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MAJOR_BBA;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
@@ -35,18 +35,18 @@ public class TypicalPersons {
             .withRemarks("friends")
             .withModules("CS2101")
             .withCcas("NES")
-            .withCcaPositions("President").build();
+            .withMajors("President").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withRemarks("owesMoney", "friends").withBirthday("30/04/2004")
             .withModules("CS2103T").withCcas("ICS")
-            .withCcaPositions("President").build();
+            .withMajors("President").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withRemarks("friends").withCcas("ICS")
-            .withCcaPositions("President").build();
+            .withMajors("President").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
@@ -79,12 +79,12 @@ public class TypicalPersons {
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
             .withRemarks(VALID_REMARK_FRIEND)
             .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_ICS)
-            .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
+            .withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withRemarks(VALID_REMARK_HUSBAND, VALID_REMARK_FRIEND)
             .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_NES)
-            .withCcaPositions(VALID_CCA_POSITION_PRESIDENT).build();
+            .withMajors(VALID_MAJOR_BBA).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

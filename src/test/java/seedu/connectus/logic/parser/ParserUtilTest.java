@@ -26,7 +26,7 @@ import seedu.connectus.model.socialmedia.Instagram;
 import seedu.connectus.model.socialmedia.Telegram;
 import seedu.connectus.model.socialmedia.WhatsApp;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -38,7 +38,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_MODULE = "CS2!03T";
     private static final String INVALID_CCA = "!NES";
-    private static final String INVALID_CCA_POSITION = "*President*";
+    private static final String INVALID_MAJOR = "*President*";
     private static final String INVALID_INSTAGRAM = "inst...agram";
     private static final String INVALID_TELEGRAM = "tele";
     private static final String INVALID_BIRTHDAY = "Hello/01/2000";
@@ -52,8 +52,8 @@ public class ParserUtilTest {
     private static final String VALID_MODULE_2 = "CS2101";
     private static final String VALID_CCA_1 = "NES";
     private static final String VALID_CCA_2 = "ICS";
-    private static final String VALID_CCA_POSITION_1 = "PRESIDENT";
-    private static final String VALID_CCA_POSITION_2 = "DIRECTOR";
+    private static final String VALID_MAJOR_1 = "COMPUTER SCIENCE";
+    private static final String VALID_MAJOR_2 = "BBA";
     private static final String VALID_INSTAGRAM = "john.doe";
     private static final String VALID_TELEGRAM = "some_tele123gram";
     private static final String VALID_BIRTHDAY = "01/01/2000";
@@ -360,52 +360,52 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseCcaPosition_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseCcaPosition(null));
+    public void parseMajor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMajor(null));
     }
 
     @Test
-    public void parseCcaPosition_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCcaPosition(INVALID_CCA));
+    public void parseMajor_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMajor(INVALID_CCA));
     }
 
     @Test
-    public void parseCcaPosition_validValueWithoutWhitespace_returnsCca() throws Exception {
-        CcaPosition expectedCcaPosition = new CcaPosition(VALID_CCA_POSITION_1);
-        assertEquals(expectedCcaPosition, ParserUtil.parseCca(VALID_CCA_POSITION_1));
+    public void parseMajor_validValueWithoutWhitespace_returnsMajor() throws Exception {
+        Major expectedMajor = new Major(VALID_MAJOR_1);
+        assertEquals(expectedMajor, ParserUtil.parseCca(VALID_MAJOR_1));
     }
 
     @Test
-    public void parseCcaPosition_validValueWithWhitespace_returnsTrimmedCcaPosition() throws Exception {
-        String ccaPositionWithWhitespace = WHITESPACE + VALID_CCA_POSITION_1 + WHITESPACE;
-        Module expectedCcaPosition = new Module(VALID_CCA_POSITION_1);
-        assertEquals(expectedCcaPosition, ParserUtil.parseCca(ccaPositionWithWhitespace));
+    public void parseMajor_validValueWithWhitespace_returnsTrimmedMajor() throws Exception {
+        String majorWithWhitespace = WHITESPACE + VALID_MAJOR_1 + WHITESPACE;
+        Major expectedMajor = new Major(VALID_MAJOR_1);
+        assertEquals(expectedMajor, ParserUtil.parseCca(majorWithWhitespace));
     }
 
     @Test
     public void parseCcaPositions_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseCcaPositions(null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMajors(null));
     }
 
     @Test
-    public void parseCcaPositions_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCcaPositions(Arrays.asList(VALID_CCA_POSITION_1,
-                INVALID_CCA_POSITION)));
+    public void parseMajors_collectionWithInvalidTags_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMajors(Arrays.asList(VALID_MAJOR_1,
+                INVALID_MAJOR)));
     }
 
     @Test
-    public void parseCcaPositions_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseCcaPositions(Collections.emptyList()).isEmpty());
+    public void parseMajors_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseMajors(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseCcaPositions_collectionWithValidCcaPositions_returnsCcaPositionSet() throws Exception {
-        Set<CcaPosition> actualCcaPositionSet = ParserUtil.parseCcaPositions(Arrays
-                .asList(VALID_CCA_POSITION_1, VALID_CCA_POSITION_2));
-        Set<CcaPosition> expectedCcaPositionSet = new HashSet<>(Arrays.asList(new CcaPosition(VALID_CCA_POSITION_1),
-                new CcaPosition(VALID_CCA_POSITION_2)));
+    public void parseMajors_collectionWithValidMajors_returnsMajorSet() throws Exception {
+        Set<Major> actualMajorSet = ParserUtil.parseMajors(Arrays
+                .asList(VALID_MAJOR_1, VALID_MAJOR_2));
+        Set<Major> expectedMajorSet = new HashSet<>(Arrays.asList(new Major(VALID_MAJOR_1),
+                new Major(VALID_MAJOR_2)));
 
-        assertEquals(expectedCcaPositionSet, actualCcaPositionSet);
+        assertEquals(expectedMajorSet, actualMajorSet);
     }
 
     @Test
