@@ -51,6 +51,7 @@ public class UniquePatientList implements Iterable<Patient> {
      * Replaces the patient {@code target} in the list with {@code editedPatient}.
      * {@code target} must exist in the list.
      * The patient identity of {@code editedPatient} must not be the same as another existing patient in the list.
+     * Does not change the name of the patient.
      */
     public void setPatient(Patient target, Patient editedPatient) {
         requireAllNonNull(target, editedPatient);

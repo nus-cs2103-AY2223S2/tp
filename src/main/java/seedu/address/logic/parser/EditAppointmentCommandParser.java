@@ -42,10 +42,12 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             editAppointmentDescriptor.setPatientName(
                     ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
+
         if (argMultimap.getValue(PREFIX_TIMESLOT).isPresent()) {
             editAppointmentDescriptor.setTimeslot(
                     ParserUtil.parseTimeslot(argMultimap.getValue(PREFIX_TIMESLOT).get()));
         }
+
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editAppointmentDescriptor.setDescription(
                     ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
