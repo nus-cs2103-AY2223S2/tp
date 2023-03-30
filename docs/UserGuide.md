@@ -240,7 +240,7 @@ Examples:
 
 ### Select patient
 - Command format: `sp INDEX`
-- What it does: This command filters the doctors list and displays only the doctors associated with the patient at `INDEX`.
+- What it does: This command displays the information of the patient at `INDEX`, as well as the doctors assigned to said patient.
 - Note to user:
   - The index refers to the index number shown in the displayed patient list.
   - The index **must be a positive integer** 1, 2, 3, …​
