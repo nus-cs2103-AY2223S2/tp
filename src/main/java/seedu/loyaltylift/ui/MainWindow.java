@@ -244,11 +244,17 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowCustomerSelection()) {
                 tableTabPane.getSelectionModel().select(customerTab);
-                customerListPanel.getSelectionModel().select(commandResult.getCustomerIndex());
             }
 
             if (commandResult.isShowOrderSelection()) {
                 tableTabPane.getSelectionModel().select(orderTab);
+            }
+
+            if (commandResult.hasCustomerIndex()) {
+                customerListPanel.getSelectionModel().select(commandResult.getCustomerIndex());
+            }
+
+            if (commandResult.hasOrderIndex()) {
                 orderListPanel.getSelectionModel().select(commandResult.getOrderIndex());
             }
 

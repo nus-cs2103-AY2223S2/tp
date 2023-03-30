@@ -50,7 +50,8 @@ public class ListCustomerCommand extends Command {
         requireNonNull(model);
         model.sortFilteredCustomerList(comparator);
         model.updateFilteredCustomerList(predicate);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false,
+                true, false);
     }
 
     @Override

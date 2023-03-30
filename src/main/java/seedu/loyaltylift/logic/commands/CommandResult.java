@@ -23,24 +23,61 @@ public class CommandResult {
     /** The application should select & view a specific order */
     private final Integer orderIndex;
 
-    /**
-     * Constructs a {@code CommandResult} with the specified fields.
-     */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         Integer customerIndex, Integer orderIndex) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.customerIndex = customerIndex;
-        this.orderIndex = orderIndex;
-    }
+    /** The application should show the customer list */
+    private final boolean showCustomerSelection;
+
+    /** The application should show the order list */
+    private final boolean showOrderSelection;
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, null, null);
+        this(feedbackToUser, false, false, false, false, null, null);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code showHelp}, and {@code exit}, and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, exit, false, false, null, null);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} to show the customer/order list.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean showCustomerSelection, boolean showOrderSelection) {
+        this(requireNonNull(feedbackToUser), showHelp, exit,
+                showCustomerSelection, showOrderSelection,
+                null, null);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} show a specific customer/order index.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         Integer customerIndex, Integer orderIndex) {
+        this(requireNonNull(feedbackToUser), showHelp, exit,
+                false, false,
+                customerIndex, orderIndex);
+    }
+
+    /**
+     * Private constructor for a {@code CommandResult} with all fields.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean showCustomerSelection, boolean showOrderSelection,
+                         Integer customerIndex, Integer orderIndex) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.customerIndex = customerIndex;
+        this.orderIndex = orderIndex;
+        this.showCustomerSelection = showCustomerSelection;
+        this.showOrderSelection = showOrderSelection;
     }
 
     public String getFeedbackToUser() {
@@ -63,6 +100,22 @@ public class CommandResult {
         return orderIndex;
     }
 
+    /**
+     * Returns {@code true} if the customer index is set.
+     * @return {@code true} if the customer index is set.
+     */
+    public boolean hasCustomerIndex() {
+        return customerIndex != null;
+    }
+
+    /**
+     * Returns {@code false} if the order index is set.
+     * @return {@code false} if the order index is set.
+     */
+    public boolean hasOrderIndex() {
+        return orderIndex != null;
+    }
+
     public boolean isShowHelp() {
         return showHelp;
     }
@@ -72,11 +125,11 @@ public class CommandResult {
     }
 
     public boolean isShowCustomerSelection() {
-        return customerIndex != null;
+        return showCustomerSelection || hasCustomerIndex();
     }
 
     public boolean isShowOrderSelection() {
-        return orderIndex != null;
+        return showOrderSelection || hasOrderIndex();
     }
 
     @Override
@@ -95,7 +148,9 @@ public class CommandResult {
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && Objects.equals(customerIndex, otherCommandResult.customerIndex)
-                && Objects.equals(orderIndex, otherCommandResult.orderIndex);
+                && Objects.equals(orderIndex, otherCommandResult.orderIndex)
+                && Objects.equals(showCustomerSelection, otherCommandResult.showCustomerSelection)
+                && Objects.equals(showOrderSelection, otherCommandResult.showOrderSelection);
     }
 
     @Override
