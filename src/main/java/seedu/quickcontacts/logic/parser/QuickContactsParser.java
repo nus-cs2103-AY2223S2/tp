@@ -28,7 +28,6 @@ import seedu.quickcontacts.logic.commands.MarkAsDoneCommand;
 import seedu.quickcontacts.logic.commands.MarkAsNotDoneCommand;
 import seedu.quickcontacts.logic.commands.ShowNotDoneCommand;
 import seedu.quickcontacts.logic.commands.SortMeetingCommand;
-import seedu.quickcontacts.logic.commands.ViewMeetingsCommand;
 import seedu.quickcontacts.logic.parser.exceptions.ParseException;
 import seedu.quickcontacts.model.command.CommandHistory;
 
@@ -88,10 +87,6 @@ public class QuickContactsParser {
 
         case FindMeetingCommand.COMMAND_WORD:
             return new FindMeetingCommandParser().parse(arguments);
-
-        case ViewMeetingsCommand.COMMAND_WORD:
-            return new ViewMeetingsCommand();
-
         case EditMeetingsCommand.COMMAND_WORD:
             return new EditMeetingParser().parse(arguments);
 
