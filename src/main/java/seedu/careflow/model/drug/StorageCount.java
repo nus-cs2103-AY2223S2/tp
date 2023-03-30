@@ -11,6 +11,7 @@ public class StorageCount {
                     + "it should be at least 1 digit long but no more than 7 digits";
     public static final String VALIDATION_REGEX = "[\\d][\\d]{0,6}";
 
+    private static final int THRESHOLD_VALUE = 10;
     private Integer count;
 
     /**
@@ -48,6 +49,13 @@ public class StorageCount {
      */
     public void incStorage(Integer amount) {
         count += amount;
+    }
+
+    /**
+     * Checks whether the current storage count is below a set threshold value
+     */
+    public boolean isBelowThreshold() {
+        return getCount() < THRESHOLD_VALUE;
     }
 
     @Override
