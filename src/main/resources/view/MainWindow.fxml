@@ -45,7 +45,7 @@
             <center>
                <SplitPane dividerPositions="0.3" orientation="VERTICAL" BorderPane.alignment="CENTER">
                   <items>
-                      <StackPane fx:id="resultDisplayPlaceholder" maxHeight="250.0" minHeight="-Infinity" prefHeight="130.0" style="-fx-border-width: 0;" styleClass="pane-with-border">
+                      <StackPane fx:id="resultDisplayPlaceholder" maxHeight="300.0" minHeight="-Infinity" prefHeight="120.0" style="-fx-border-width: 0;" styleClass="pane-with-border">
                    <padding>
                      <Insets bottom="5" left="10" right="10" top="5" />
                    </padding>

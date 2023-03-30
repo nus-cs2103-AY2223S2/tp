@@ -3,9 +3,10 @@ layout: page
 title: User Guide
 ---
 
-Fast Army Internal Lookup System (FAILS) is a **desktop app for managing the personal information of military personnel,
-optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (
-GUI). If you can type fast, FAILS can get your contact management tasks done faster than traditional GUI apps.
+Army Information Management System (AIMS) is a **desktop app for managing the personal information of military personnel,
+optimized for use via a Command Line Interface** (**CLI**) while still having the benefits of a Graphical User Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI apps.
+
+This user guide shows you how to get started using AIMS and how to make use of the features by following the easy-to-understand explanations and examples. 
 
 <!-- omit from toc -->
 
@@ -19,7 +20,7 @@ GUI). If you can type fast, FAILS can get your contact management tasks done fas
   - [Copy information to clipboard : `copy`](#copy-information-to-clipboard--copy)
   - [Editing a person : `edit`](#editing-a-person--edit)
   - [Locating persons by name: `find`](#locating-persons-by-name--find)
-  - [Locating persons using filters on fields: `filter`](#locating-persons-using-filters--filter)
+  - [Locating persons using filters on fields: `filter`](#locating-persons-using-filters-on-fields-filter)
   - [Deleting a person : `delete`](#deleting-a-person--delete)
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Undo last modification : `undo`](#undo-last-modification--undo)
@@ -36,12 +37,11 @@ GUI). If you can type fast, FAILS can get your contact management tasks done fas
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `fails.jar` from [~~here~~](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases) (_coming
-   soon_).
+1. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your FAILS.
+1. Copy the file to the folder you want to use as the _home folder_ for AIMS.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar fails.jar` command to
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -52,18 +52,18 @@ GUI). If you can type fast, FAILS can get your contact management tasks done fas
 
    - `list` : Lists all contacts.
 
-    - `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to FAILS with the following information:
+    - `add r/3SG n/Jaden Ng u/3 SIR c/Alpha pl/4 p/91297723 e/jadend@gmail.com a/Smith Street, Block 13, #07-04 \` adds a new person `Jaden Ng` to AIMS with the following information:
 
      | Field        | Value                          |
      | ------------ | ------------------------------ |
+     | rank         | 3SG                            |
      | name         | Jaden Ng                       |
+     | unit         | 3 SIR                          |
+     | company      | Alpha                          |
+     | platoon      | 4                              |
      | phone number | 91297723                       |
      | email        | jadend@gmail.com               |
-     | address      | Smith street, block 13, #07-04 |
-     | rank         | 3SG                            |
-     | unit         | alpha                          |
-     | company      | SIR                            |
-     | platoon      | 4                              |
+     | address      | Smith Street, Block 13, #07-04 |
 
    - `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -107,13 +107,13 @@ GUI). If you can type fast, FAILS can get your contact management tasks done fas
 
 Shows a message explaining how to access the help page.
 
-<!-- ![help message](images/helpMessage.png) -->
-
 Format: `help`
+
+![help message](images/helpMessage.png)
 
 ### Adding a person : `add`
 
-Adds a person to FAILS.
+Adds a person to AIMS.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…​ `
 
@@ -125,35 +125,22 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY]
 
 Examples:
 
-- `add n/Jaden Ng p/91297723 e/jadend@gmail.com a/Smith street, block 13, #07-04 r/3SG u/alpha c/SIR pl/4` adds a new person `Jaden Ng` to FAILS with the following information:
-
-  | Field        | Value                          |
-  | ------------ | ------------------------------ |
-  | name         | Jaden Ng                       |
-  | phone number | 91297723                       |
-  | email        | jadend@gmail.com               |
-  | address      | Smith street, block 13, #07-04 |
-  | rank         | 3SG                            |
-  | unit         | alpha                          |
-  | company      | SIR                            |
-  | platoon      | 4                              |
-
-- `add n/Lawrence Tay t/platoon-leader e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 r/3SG u/801 t/allergy-seafood` adds a new person `Lawrence Tay` to FAILS with the following information:
+- `add n/Lawrence Tay t/platoon-sergeant e/lawrencetay@gmail.com a/124 Drummond Street p/91649723 r/3SG u/1 GDS t/allergy-seafood` adds a new person `Lawrence Tay` to AIMS with the following information:
 
   | Field        | Value                 |
   | ------------ | --------------------- |
+  | rank         | 3SG                   |
   | name         | Lawrence Tay          |
+  | unit         | 1 GDS                 |
   | phone number | 91649723              |
   | email        | lawrencetay@gmail.com |
   | address      | 124 Drummond Street   |
-  | rank         | 3SG                   |
-  | unit         | 801                   |
-  | tag          | platoon-leader        |
+  | tag          | platoon-sergeant      |
   | tag          | allergy-seafood       |
 
 ### Listing all persons : `list`
 
-Shows a list of all persons in FAILS.
+Shows a list of all persons in AIMS.
 
 Format: `list`
 
@@ -161,15 +148,16 @@ Format: `list`
 
 Copies the information of a person to the user's clipboard.
 
-Format: `copy INDEX`
+Format: `copy INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]`
 
-- Copies the information of the person at the specified `INDEX` to the user's clipboard.
+- Copies the required information of the person at the specified `INDEX` to the user's clipboard.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- If no fields are specified, all information will be copied.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** If FAILS fails to access your clipboard, the information will be displayed in the result display box instead. You can then highlight the text using your mouse and copy it to your clipboard by using `Ctrl + C` on Windows/Linux or `Command + C` on Mac.
+:information_source: **Note:** If AIMS fails to access your clipboard, the information will be displayed in the result display box instead. You can then highlight the text using your mouse and copy it to your clipboard by using `Ctrl + C` on Windows/Linux or `Command + C` on Mac. The display window is extendable if you find that more space is required to see all the text.
 
 </div>
 
@@ -180,15 +168,19 @@ Examples:
 
 After running the command, the following text is copied into your clipboard.
 ```
-  Name: Bernice Yu
-  Phone: 99272758
-  Email: berniceyu@example.com
-  Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
-  Rank: CPL
-  Unit: Bravo
-  Company: Charlie
-  Platoon: Tiger 123
+Rank: CPL
+Name: Bernice Yu
+Unit: 1 GDS
+Company: Charlie
+Platoon: 2
+Phone: 99272758
+Email: berniceyu@example.com
+Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
+Tags: [colleagues][friends]
  ```
+
+- In the scenario where your clipboard is not accessible by AIMS, the information will be displayed so that you can manually select and copy it instead.
+![no clipboard for `copy 2` width=800](images/copy2_noclipboard.png)
 
 <div markdown="span" class="alert alert-primary">
 
@@ -198,7 +190,7 @@ After running the command, the following text is copied into your clipboard.
 
 ### Editing a person : `edit`
 
-Edits an existing person in FAILS.
+Edits an existing person in AIMS.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…​`
 
@@ -256,7 +248,7 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from FAILS.
+Deletes the specified person from AIMS.
 
 Format: `delete INDEX`
 
@@ -266,22 +258,22 @@ Format: `delete INDEX`
 
 Examples:
 
-- `list` followed by `delete 2` deletes the 2nd person in FAILS.
+- `list` followed by `delete 2` deletes the 2nd person in AIMS.
 - `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from FAILS.
+Clears all entries from AIMS.
 
 Format: `clear`
 
 ### Undo last modification : `undo`
 
-Undoes the last modification done to FAILS.
+Undoes the last modification done to AIMS.
 
 <div markdown="block" class="alert alert-warning">
 
-:exclamation: **Caution:** Once FAILS is closed, the undo history will be lost.
+:exclamation: **Caution:** Once AIMS is closed, the undo history will be lost.
 
 </div>
 
@@ -295,17 +287,17 @@ Format: `exit`
 
 ### Saving the data
 
-FAILS data is saved in the hard disk automatically after any command that changes the data. There is no need to save
+AIMS data is saved in the hard disk automatically after any command that changes the data. There is no need to save
 manually.
 
 ### Editing the data file
 
-FAILS data is saved as a JSON file `[JAR file location]/data/fails.json`. Advanced users are welcome to update data
+AIMS data is saved as a JSON file `[JAR file location]/data/aims.json`. Advanced users are welcome to update data
 directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:** If your changes to the data file makes its format invalid, FAILS will discard all data and
+:exclamation: **Caution:** If your changes to the data file makes its format invalid, AIMS will discard all data and
 start with an empty data file at the next run.
 
 </div>
@@ -320,7 +312,7 @@ start with an empty data file at the next run.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous FAILS home folder.
+the data of your previous AIMS home folder.
 
 ---
 
@@ -328,9 +320,9 @@ the data of your previous FAILS home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]… ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/RCT u/BRAVO c/207 pl/1 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]… ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/3SG u/9 SIR c/Charlie pl/1 t/friend t/colleague`
 **Clear** | `clear`
-**Copy** | `copy INDEX`<br> e.g., `copy 1`
+**Copy** | `copy INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]`<br> e.g., `copy 1 n/ e/ t/`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
