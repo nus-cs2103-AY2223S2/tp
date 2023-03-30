@@ -6,10 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.connectus.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.connectus.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.connectus.testutil.TypicalPersons.BENSON;
-import static seedu.connectus.testutil.TypicalPersons.CARL;
 import static seedu.connectus.testutil.TypicalPersons.DANIEL;
 import static seedu.connectus.testutil.TypicalPersons.ELLE;
-import static seedu.connectus.testutil.TypicalPersons.FIONA;
 import static seedu.connectus.testutil.TypicalPersons.getTypicalConnectUs;
 
 import java.util.Arrays;
