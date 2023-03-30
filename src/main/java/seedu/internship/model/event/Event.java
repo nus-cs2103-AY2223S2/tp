@@ -3,6 +3,9 @@ package seedu.internship.model.event;
 import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import seedu.internship.model.internship.Internship;
@@ -72,9 +75,9 @@ public class Event {
     /**
      * Returns True if both events have the same start, end and internship
      */
-    public boolean isSameInternship(Internship internship) {
+    public boolean isSameInternship(Internship intern) {
         return internship != null
-                && this.internship.equals(internship);
+                && this.internship.equals(intern);
     }
 
     /**
@@ -92,14 +95,31 @@ public class Event {
                 && otherEvent.getInternship().equals(getInternship());
     }
 
-    public boolean isClash(Event otherEvent) {
+    private boolean isClash(Event otherEvent) {
         return !this.equals(otherEvent) &&
                 (this.start.isEqualTime(otherEvent.start) || this.end.isEqualTime(otherEvent.end)
                 || this.start.isBetween(otherEvent.start, otherEvent.end)
                 || this.end.isBetween(otherEvent.start, otherEvent.end));
     }
 
-
+    public List<LocalDateTime> clashingTimings(Event otherEvent) {
+        if (!this.isClash(otherEvent)) {
+            return null;
+        } else {
+            List<LocalDateTime> timings = new ArrayList<>();
+            if (this.start.compareTo(otherEvent.start) >= 0) {
+                timings.add(this.start.getLdt());
+            } else {
+                timings.add(otherEvent.start.getLdt());
+            }
+            if (this.end.compareTo(otherEvent.end) <= 0) {
+                timings.add(this.end.getLdt());
+            } else {
+                timings.add(otherEvent.end.getLdt());
+            }
+            return timings;
+        }
+    }
 
     /**
      * Returns true if start date of event lies between the specified date inclusive.

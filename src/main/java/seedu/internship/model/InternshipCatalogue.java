@@ -115,12 +115,6 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
         return this.currentInternship;
     }
 
-    //// util methods
-
-    public Statistics calculateStatistics() {
-        return new Statistics(getInternshipList());
-    }
-
     @Override
     public String toString() {
         return internships.asUnmodifiableObservableList().size() + " internships";
