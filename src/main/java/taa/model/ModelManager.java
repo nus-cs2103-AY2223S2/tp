@@ -16,6 +16,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.control.Alert;
 import javafx.util.Duration;
 import taa.assignment.AssignmentList;
 import taa.commons.core.GuiSettings;
@@ -23,6 +24,8 @@ import taa.commons.core.LogsCenter;
 import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.logic.commands.exceptions.CommandException;
+import taa.model.alarm.Alarm;
+import taa.model.alarm.AlarmList;
 import taa.model.student.Name;
 import taa.model.student.SameStudentPredicate;
 import taa.model.student.Student;
@@ -39,6 +42,7 @@ public class ModelManager implements Model {
     private final Tutor tutor;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<ClassList> filteredClassLists;
+    private final AlarmList alarmList;
 
     private final AssignmentList assignmentList = new AssignmentList();
     private Predicate<ClassList> activeClassListPredicate;
@@ -58,6 +62,7 @@ public class ModelManager implements Model {
         this.filteredStudents = new FilteredList<>(this.classList.getStudentList());
         this.filteredClassLists = new FilteredList<ClassList>(this.tutor.getClassList());
         this.activeClassListPredicate = null;
+        this.alarmList = new AlarmList();
 
         for (Student student : this.classList.getUniqueStudentList()) {
             addStudentToTaggedClasses(student);
@@ -283,7 +288,32 @@ public class ModelManager implements Model {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            String alertString = AlarmList.getAlarmAlert(alarm);
+            AlarmList.deleteTheAlarm(alarm); //when the alarm is sounded, it's deleted from the alarm list
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Alarm Warning");
+            alert.setHeaderText("Hey, your time's up!");
+            alert.setContentText("Note: " + alertString);
+            alert.show();
+
         }));
+        timeline.setCycleCount(1);
         timeline.play();
+        alarm.addTimeline(timeline);
+        this.alarmList.addAlarm(alarm);
+    }
+
+    //Solution below adapted from ChatGPT
+    @Override
+    public String listAlarms() {
+        if (AlarmList.getAlarmCount() == 0) {
+            return "There is no alarm as of now.";
+        }
+        return this.alarmList.list();
+    }
+
+    @Override
+    public void deleteAlarm(int index) {
+        AlarmList.deleteTheAlarm(index);
     }
 }

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import taa.commons.core.GuiSettings;
 import taa.logic.commands.exceptions.CommandException;
+import taa.model.alarm.Alarm;
 import taa.model.student.Student;
 
 /**
@@ -124,4 +125,8 @@ public interface Model {
     void ungrade(String assignmentName, int studentId) throws CommandException;
 
     void addAlarm(Alarm alarm) throws CommandException;
+
+    String listAlarms();
+
+    void deleteAlarm(int index) throws CommandException;
 }
