@@ -21,7 +21,7 @@ import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.person.TaskList;
+import seedu.address.model.person.Task;
 import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Owner;
@@ -31,7 +31,7 @@ import seedu.address.model.transaction.status.TxnStatus;
 
 public class SampleDataUtilTest {
     public static final Remark EMPTY_REMARK = new Remark("");
-    public static final TaskList EMPTY_TASK = new TaskList();
+    public static final Task EMPTY_TASK = new Task("");
     private static Person[] samplePersons = new Person[] {
         new Person(new Name("Alex Yeoh"),
             new Gender("male"),

@@ -31,7 +31,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/wpx12011.png" width="200px">
 
-[[github](http://github.com/wpx12011)]
+[[github](http://github.com/wpx12011)] 
 [[portfolio](team/wpx12011.md)]
 
 * Role: Developer
