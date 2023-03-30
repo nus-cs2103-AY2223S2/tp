@@ -26,14 +26,14 @@
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
                 <graphic>
                     <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
-                        <Image url="@/images/phone.png"/>
+                        <Image url="@/images/smartphone.png"/>
                     </ImageView>
                 </graphic>
             </Label>
             <Label fx:id="address" styleClass="cell_small_label" text="\$address">
                 <graphic>
                     <ImageView fitHeight="16" fitWidth="16" preserveRatio="true">
-                        <Image url="@/images/address.png"/>
+                        <Image url="@/images/house.png"/>
                     </ImageView>
                 </graphic>
             </Label>

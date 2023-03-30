@@ -18,7 +18,7 @@ import seedu.address.commons.core.LogsCenter;
 public class RemarkWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "RemarkWindow.fxml";
-    private final KeyCodeCombination ctrlZ = new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
+    private final KeyCodeCombination ctrlS = new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_DOWN);
 
     @FXML
     private TextArea textArea;
@@ -58,23 +58,24 @@ public class RemarkWindow extends UiPart<Stage> {
      *     </ul>
      */
     public String showAndGetText(String existingRemark) {
+        final String[] content = new String[1];
         logger.fine("Showing help page about the application.");
         textArea.setText(existingRemark);
         textArea.positionCaret(existingRemark.length());
-        textArea.setOnKeyPressed(ctrlZHandler);
+        EventHandler<KeyEvent> ctrlSHandler = new EventHandler<>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (ctrlS.match(event)) {
+                    event.consume();
+                    getRoot().close();
+                }
+            }
+        };
+        textArea.setOnKeyPressed(ctrlSHandler);
         getRoot().showAndWait();
         return textArea.getText();
     }
 
-    EventHandler<KeyEvent> ctrlZHandler = new EventHandler<>() {
-        @Override
-        public void handle(KeyEvent event) {
-            if (ctrlZ.match(event)) {
-                event.consume();
-                getRoot().close();
-            }
-        }
-    };
 
     /**
      * Returns true if the help window is currently being shown.
