@@ -19,6 +19,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.*;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -119,6 +120,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Technician> getFilteredTechnicianList() {
         return model.getFilteredTechnicianList();
+    }
+
+    @Override
+    public PartMap getPartMap() {
+        return model.getPartMap();
     }
 
     @Override

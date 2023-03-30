@@ -514,3 +514,9 @@
     -fx-background-radius: 5;
     -fx-font-family: "Nunito Sans Bold";
 }
+
+.part-box {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: white;
+    -fx-padding: 5 0 5 0;
+}

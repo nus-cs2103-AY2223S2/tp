@@ -109,10 +109,10 @@ public class AddressBookParser {
         case ListAppointmentsCommand.COMMAND_WORD:
             return new ListAppointmentsCommand();
 
-        // View
+        case ListPartsCommand.COMMAND_WORD:
+            return new ListPartsCommand();
 
-        case ViewPartCommand.COMMAND_WORD:
-            return new ViewPartCommand(arguments.trim());
+        // View
 
         case ViewVehicleCommand.COMMAND_WORD:
             return new ViewVehicleCommandParser().parse(arguments.trim());

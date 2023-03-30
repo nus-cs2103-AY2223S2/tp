@@ -41,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private ServiceListPanel serviceListPanel;
     private AppointmentListPanel appointmentListPanel;
     private TechnicianListPanel technicianListPanel;
+    private PartListPanel partListPanel;
     private CustomerDetailsPanel customerDetailsPanel;
     private VehicleDetailsPanel vehicleDetailsPanel;
     private ServiceDetailsPanel serviceDetailsPanel;
@@ -69,6 +70,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane technicianListPanelPlaceholder;
+    @FXML
+    private StackPane partListPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -176,12 +179,18 @@ public class MainWindow extends UiPart<Stage> {
         technicianListPanelPlaceholder.getChildren().add(technicianListPanel.getRoot());
     }
 
+    private void initPartListPanel() {
+        partListPanel = new PartListPanel(logic.getPartMap());
+        partListPlaceholder.getChildren().add(partListPanel.getRoot());
+    }
+
     private void initTabResultDisplayMessages() {
         tabResultDisplayMessages[Tab.CUSTOMERS.ordinal()] = ListCustomersCommand.MESSAGE_SUCCESS;
         tabResultDisplayMessages[Tab.VEHICLES.ordinal()] = ListVehiclesCommand.MESSAGE_SUCCESS;
         tabResultDisplayMessages[Tab.SERVICES.ordinal()] = ListServicesCommand.MESSAGE_SUCCESS;
         tabResultDisplayMessages[Tab.APPOINTMENTS.ordinal()] = ListAppointmentsCommand.MESSAGE_SUCCESS;
         tabResultDisplayMessages[Tab.TECHNICIANS.ordinal()] = ListTechniciansCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.PARTS.ordinal()] = ListPartsCommand.MESSAGE_SUCCESS;
     }
 
     /**
@@ -195,6 +204,7 @@ public class MainWindow extends UiPart<Stage> {
         initServiceListPanel();
         initAppointmentListPanel();
         initTechnicianListPanel();
+        initPartListPanel();
 
         initSelected();
 
@@ -210,6 +220,9 @@ public class MainWindow extends UiPart<Stage> {
 
         tabs.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             resultDisplay.setFeedbackToUser(tabResultDisplayMessages[newValue.intValue()]);
+            if(newValue.intValue() == Tab.PARTS.ordinal()) {
+                initPartListPanel();
+            }
         });
     }
 
@@ -300,6 +313,11 @@ public class MainWindow extends UiPart<Stage> {
             updateSelectedTab(commandResult);
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             initSelected();
+
+            // TODO: Hack to display updated parts on ui, need to make parts into observable map/list
+            if (commandResult.getType() == Tab.PARTS) {
+                initPartListPanel();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

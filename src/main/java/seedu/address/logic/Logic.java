@@ -12,6 +12,7 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.mapping.*;
+import seedu.address.model.service.PartMap;
 import seedu.address.model.service.Service;
 import seedu.address.model.service.Vehicle;
 import seedu.address.model.service.appointment.Appointment;
@@ -75,6 +76,11 @@ public interface Logic {
      * @return Unmodifiable view of the filtered list of technicians
      */
     ObservableList<Technician> getFilteredTechnicianList();
+
+    /**
+     * @return parts
+     */
+    PartMap getPartMap();
 
     /** Returns a map of customers and their respective vehicle(s) */
     CustomerVehicleMap getCustomerVehicleMap();
