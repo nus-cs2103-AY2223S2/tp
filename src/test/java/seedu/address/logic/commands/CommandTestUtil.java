@@ -14,13 +14,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.contact.EditContactCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.contact.Contact;
 import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.EditContactDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -32,12 +32,22 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_PHONE_COMPANY_A = "33333333";
-    public static final String VALID_PHONE_COMPANY_B = "55555555";
+    public static final String VALID_COMPANY_NAME_BANK_OF_AMERICA = "Bank of America";
+    public static final String VALID_COMPANY_NAME_DEUTSCHE_BANK = "Deutsche Bank";
+    public static final String VALID_COMPANY_NAME_META = "Meta";
+    public static final String VALID_JOB_TITLE_SOFTWARE_ENGINEER = "Software Engineer";
+    public static final String VALID_JOB_TITLE_SOFTWARE_TESTER = "Software Tester";
+    public static final String VALID_JOB_TITLE_CLOUD_ENGINEER = "Cloud Engineer";
+    public static final String VALID_COMPANY_NAME_AMAZON = "Amazon";
+    public static final String VALID_JOB_TITLE_META = "Software Tester";
+    public static final String VALID_PHONE_BANK_OF_AMERICA = "33333333";
+    public static final String VALID_PHONE_META = "55555555";
+    public static final String VALID_PHONE_AMAZON = "66666666";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_EMAIL_COMPANY_A = "companya@example.com";
-    public static final String VALID_EMAIL_COMPANY_B = "companyb@example.com";
+    public static final String VALID_EMAIL_BANK_OF_AMERICA = "example@bankofamerica.com";
+    public static final String VALID_EMAIL_META = "meta@example.com";
+    public static final String VALID_EMAIL_AMAZON = "example@amazon.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -48,17 +58,17 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String PHONE_DESC_PLACEHOLDER = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
+    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_BANK_OF_AMERICA;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String EMAIL_DESC_PLACEHOLDER = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
+    public static final String EMAIL_DESC_PLACEHOLDER = " " + PREFIX_EMAIL + VALID_EMAIL_BANK_OF_AMERICA;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-    public static final String PHONE_DESC_COMPANY_A = " " + PREFIX_PHONE + VALID_PHONE_COMPANY_A;
-    public static final String EMAIL_DESC_COMPANY_A = " " + PREFIX_EMAIL + VALID_EMAIL_COMPANY_A;
-    public static final String PHONE_DESC_COMPANY_B = " " + PREFIX_PHONE + VALID_PHONE_COMPANY_B;
-    public static final String EMAIL_DESC_COMPANY_B = " " + PREFIX_EMAIL + VALID_EMAIL_COMPANY_B;
+    public static final String PHONE_DESC_BANK_OF_AMERICA = " " + PREFIX_PHONE + VALID_PHONE_BANK_OF_AMERICA;
+    public static final String EMAIL_DESC_BANK_OF_AMERICA = " " + PREFIX_EMAIL + VALID_EMAIL_BANK_OF_AMERICA;
+    public static final String PHONE_DESC_META = " " + PREFIX_PHONE + VALID_PHONE_META;
+    public static final String EMAIL_DESC_META = " " + PREFIX_EMAIL + VALID_EMAIL_META;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -69,12 +79,14 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final Contact DESC_COMPANY_A;
-    public static final Contact DESC_COMPANY_B;
+    public static final EditContactCommand.EditContactDescriptor DESC_BANK_OF_AMERICA_CONTACT;
+    public static final EditContactCommand.EditContactDescriptor DESC_META_CONTACT;
 
     static {
-        DESC_COMPANY_A = new ContactBuilder().withPhone(VALID_PHONE_COMPANY_A).withEmail(VALID_EMAIL_COMPANY_A).build();
-        DESC_COMPANY_B = new ContactBuilder().withPhone(VALID_PHONE_COMPANY_B).withEmail(VALID_EMAIL_COMPANY_B).build();
+        DESC_BANK_OF_AMERICA_CONTACT = new EditContactDescriptorBuilder().withPhone(VALID_PHONE_BANK_OF_AMERICA)
+                .withEmail(VALID_EMAIL_BANK_OF_AMERICA).build();
+        DESC_META_CONTACT = new EditContactDescriptorBuilder().withPhone(VALID_PHONE_META)
+                .withEmail(VALID_EMAIL_META).build();
     }
 
     /**
@@ -86,8 +98,6 @@ public class CommandTestUtil {
                                             Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            System.out.println(result.getFeedbackToUser());
-            System.out.println(expectedCommandResult.getFeedbackToUser());
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
