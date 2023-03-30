@@ -34,7 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
 
-    private DetailsPopup detailsPopup;
+    private DetailsPopup detailsPopup = new DetailsPopup(null);;
     private Person personToView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -158,7 +158,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleDetails(int index) {
         personToView = logic.getFilteredPersonList().get(index);
         detailsPopup = new DetailsPopup(personToView);
-        detailsPopupPlaceholder.getChildren().add(detailsPopup.getRoot());
+        detailsPopupPlaceholder.getChildren().setAll(detailsPopup.getRoot());
     }
 
     /**

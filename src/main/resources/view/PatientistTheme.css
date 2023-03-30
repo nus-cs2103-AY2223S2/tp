@@ -96,24 +96,38 @@
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-margin: 5 5 5 5;
+    -fx-background-radius: 18 18 18 18;
+    -fx-background-insets: 5, 5 ;
+
 }
 
 .list-cell:filled:even {
     -fx-background-color: #d4d4d4;
+    -fx-margin: 5 5 5 5;
+    -fx-background-radius: 18 18 18 18;
+    -fx-background-insets: 5, 5 ;
+
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #ebebeb;
+    -fx-background-color: #ababab;
+    -fx-margin: 5 5 5 5;
+    -fx-background-radius: 18 18 18 18;
+    -fx-background-insets: 5, 5 ;
+
 }
 
 .list-cell:filled:selected {
     -fx-background-color: #a7ccd9;
+    -fx-margin: 5 5 5 5;
+    -fx-background-radius: 18 18 18 18;
+    -fx-background-insets: 5, 5 ;
 }
 
 .list-cell:filled:selected #cardPane {
-    -fx-border-color: #2e7087;
-    -fx-border-width: 1;
+    -fx-background-radius: 18 18 18 18;
+    -fx-background-insets: 5, 5 ;
 }
 
 .list-cell .label {
@@ -282,12 +296,12 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#dbdbdb, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
     -fx-background-color: derive(#dbdbdb, 50%);
-    -fx-background-insets: 3;
+    -fx-background-insets: 5;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -334,7 +348,7 @@
 
 #resultDisplay .content {
     -fx-background-color: transparent, #ababab, transparent, #ababab;
-    -fx-background-radius: 0;
+    -fx-background-radius: 18 18 18 18;
 }
 
 #tags {
@@ -356,3 +370,18 @@
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
+
+.details {
+   -fx-background-color: transparent, #ababab, transparent, #ababab;
+   -fx-background-radius: 18 18 18 18;}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent
+}
+
+.text-field {
+     -fx-background-color: transparent, #ababab, transparent, #ababab;
+     -fx-background-radius: 15;
+     -fx-border-radius: 15;
+     -fx-border-color: transparent;
+ }

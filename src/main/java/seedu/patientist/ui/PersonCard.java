@@ -3,10 +3,15 @@ package seedu.patientist.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.patientist.model.person.Person;
 
 /**
@@ -48,6 +53,7 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
+
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
