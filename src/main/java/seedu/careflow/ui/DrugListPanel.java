@@ -80,7 +80,9 @@ public class DrugListPanel extends UiPart<Region> {
             @Override
             public void onChanged(Change<? extends Drug> c) {
                 Drug selectedDrug = drugListView.getSelectionModel().getSelectedItem();
-                updateDisplay(selectedDrug);
+                if (selectedDrug != null) {
+                    updateDisplay(selectedDrug);
+                }
             }
         });
     }
