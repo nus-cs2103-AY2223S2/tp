@@ -51,6 +51,12 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task book.";
 
+    public static final String MESSAGE_DEADLINE_ON_TASK = "A deadline cannot be added to a simple task.";
+    public static final String MESSAGE_FROM_ON_TASK = "A from date cannot be added to a simple task.";
+    public static final String MESSAGE_TO_ON_TASK = "A to date date cannot be added to a simple task.";
+    public static final String MESSAGE_FROM_ON_DEADLINE = "A from date cannot be added to a deadline.";
+    public static  final String MESSAGE_TO_ON_DEADLINE = "A to date cannot be added to a deadline.";
+    public static final String MESSAGE_DEADLINE_ON_EVENT = "A deadline cannot be added to an event.";
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -96,18 +102,39 @@ public class EditCommand extends Command {
 
         assert taskToEdit != null;
 
+        boolean deadlinePresent = editTaskDescriptor.getDeadline().isPresent();
+        boolean fromPresent = editTaskDescriptor.getFrom().isPresent();
+        boolean toPresent = editTaskDescriptor.getTo().isPresent();
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         Effort updatedEffort = editTaskDescriptor.getEffort().orElse(taskToEdit.getEffort());
         ObservableList<Subtask> subtaskList = taskToEdit.getSubtasks();
         if (taskToEdit instanceof SimpleTask) {
+            if (deadlinePresent) {
+                throw new CommandException(MESSAGE_DEADLINE_ON_TASK);
+            }
+            else if (fromPresent) {
+                throw new CommandException(MESSAGE_FROM_ON_TASK);
+            }
+            else if (toPresent) {
+                throw new CommandException(MESSAGE_TO_ON_TASK);
+            }
             return new SimpleTask(updatedName, updatedDescription, updatedTags, updatedEffort, subtaskList);
         } else if (taskToEdit instanceof Deadline) {
+            if (fromPresent) {
+                throw new CommandException(MESSAGE_FROM_ON_DEADLINE);
+            }
+            else if (toPresent) {
+                throw new CommandException(MESSAGE_TO_ON_DEADLINE);
+            }
             Date updatedDeadline = editTaskDescriptor.getDeadline().orElse(((Deadline) taskToEdit).getDeadline());
             return new Deadline(updatedName, updatedDescription, updatedTags, updatedDeadline, updatedEffort,
                 subtaskList);
         } else {
+            if (deadlinePresent) {
+                throw new CommandException(MESSAGE_DEADLINE_ON_EVENT);
+            }
             Date updatedFrom = editTaskDescriptor.getFrom().orElse(((Event) taskToEdit).getFrom());
             Date updatedTo = editTaskDescriptor.getTo().orElse(((Event) taskToEdit).getTo());
             if (!updatedFrom.isValidEvent(updatedTo)) {
