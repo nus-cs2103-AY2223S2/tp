@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AlarmList {
 
-    private static List<Alarm> alarms = new ArrayList<Alarm>();
+    private static final List<Alarm> alarms = new ArrayList<Alarm>();
 
     //// alarm-level operation
 
@@ -64,7 +64,7 @@ public class AlarmList {
         StringBuilder sb = new StringBuilder();
         int i = 1;
         for (Alarm a : alarms) {
-            sb.append(i + ". Alarm " + a + "\n");
+            sb.append("Alarm " + i + ">>>>> " + a + "\n");
             i++;
         }
         return sb.toString();

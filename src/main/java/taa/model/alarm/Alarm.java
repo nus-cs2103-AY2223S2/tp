@@ -2,6 +2,8 @@ package taa.model.alarm;
 
 import javafx.animation.Timeline;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 /**
@@ -29,17 +31,15 @@ public class Alarm {
     }
 
     public double getRemainingTime() {
-        return this.timeline.getTotalDuration().
+        DecimalFormat df = new DecimalFormat("#.##");
+        df.setRoundingMode(RoundingMode.HALF_UP);
+        Double timeLeft = this.timeline.getTotalDuration().
                 subtract(this.timeline.getCurrentTime()).toMinutes();
+        return Double.parseDouble(df.format(timeLeft));
     }
 
     public void stopTimeLine() {
         this.timeline.stop();
-    }
-
-    public double getRemainingTimeSec() {
-        return this.timeline.getTotalDuration().
-                subtract(this.timeline.getCurrentTime()).toSeconds();
     }
 
     public String getMessage() {
@@ -57,8 +57,8 @@ public class Alarm {
 
     @Override
     public String toString() {
-        return "time left:" + this.getRemainingTime()
-                + " minutes | notes: " + this.message;
+        return "Time left: " + this.getRemainingTime()
+                + " mins | Note: " + this.message;
     }
 
     @Override

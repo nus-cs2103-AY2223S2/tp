@@ -34,7 +34,6 @@ public class MainWindow extends UiPart<Stage> {
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private AlarmWindow alarmWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -67,7 +66,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        alarmWindow = new AlarmWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -149,20 +147,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    /**
-     * Opens the alarm window or focuses on it if it's already opened.'
-     */
-    @FXML
-    public void handleAlarm() {
-        if (!alarmWindow.isShowing()) {
-            alarmWindow.show();
-        } else {
-            alarmWindow.focus();
-        }
-    }
-
-
-
     void show() {
         primaryStage.show();
     }
@@ -196,10 +180,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
-            }
-
-            if (commandResult.isAlarm()) {
-                handleAlarm();
             }
 
             if (commandResult.isExit()) {
