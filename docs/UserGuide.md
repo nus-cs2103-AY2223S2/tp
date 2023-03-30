@@ -30,6 +30,9 @@ see in your career.
         * Editing a client : `edit`
         * Filtering clients by name: `find`
         * Deleting a client : `delete`
+        * Sorting Clients by Email address : `sortClientEmail`
+        * Sorting Clients by Name : `sortClientName`
+        * Sorting Clients by Phone Number : `sortClientPhone`
     * #### Policy Management
         * Adding a policy: `addPolicy`
         * Editing a policy : `editPolicy`
@@ -49,7 +52,7 @@ see in your career.
 
 ```
 java -jar advisio.jar
-``` 
+```
 
 #### command to run the application.<br>
 
@@ -128,6 +131,18 @@ Format: `undo`
 * `Undo Success` will be shown in the display
 * If current address book is **already the newest**, `There is no more operations to undo!` will be shown in display to
   remind of undo failure
+
+#### **Special Note for undo and redo**
+
+Undo/Redo Command will only work if previous command **modifies the data of Clients or Policies**.
+
+Thus following commands can't be called to Undo/Redo
+
+* Exit
+* Help
+* List
+* Select
+
 
 ### Redo previous command : `redo`
 
@@ -320,6 +335,80 @@ Examples:
 - `editpolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd 
 policy information`
 
+* `list` followed by `delete 2` deletes the 2nd client in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
+
+### Sorting clients by their email : `sortClientEmail`
+
+Format: `sortClientEmail INDEX`
+
+* Sort list of clients based on their email
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number
+
+Examples:
+
+* `sortClientEmail 1` sorts the client list based on client's email address in **ascending** order
+* `sortClientEmail 0` sorts the client list based on client's email address in **descending** order
+
+### Sorting clients by their name : `sortClientName`
+
+Format: `sortClientName INDEX`
+
+* Sort list of clients based on their name
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number
+
+Examples:
+
+* `sortClientName 1` sorts the client list based on client's name in **ascending** order
+* `sortClientName 0` sorts the client list based on client's name in **descending** order
+
+### Sorting clients by their email : `sortClientPhone`
+
+Format: `sortClientPhone INDEX`
+
+* Sort list of clients based on their phone number
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number
+
+Examples:
+
+* `sortClientPhone 1` sorts the client list based on client's phone number in **ascending** order
+* `sortClientPhone 0` sorts the client list based on client's phone number in **descending** order
+
+## Policy Management (todo)
+
+### Adding a policy : `addPolicy`
+
+Adds a policy to a specific client
+
+Do note that the Policy Name should be from the following list:
+
+- Health Insurance
+- Life Insurance
+- Medical Insurance
+- Fire Insurance
+- Car Insurance
+- Travel Insurance
+
+The frequency should be one of the following: `weekly`, `monthly`,`yearly`
+
+Format: `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY`
+
+Examples: `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
+
+### Listing all policies : `listPolicy`
+
+Format: `listPolicy`
+
+### Editing a policy : `editPolicy`
+
+Format: `editPolicy`
+
+### Filtering policies by name : `findPolicy`
+
+Format: `findPolicy`
 
 ### Deleting a policy `deletePolicy`
 
@@ -359,10 +448,10 @@ the data of your previous AddressBook home folder.
 
 ## Command summary
 
- Action              | Format, Examples                                                                                                                                                      
+ Action              | Format, Examples                                                                                                                                                  
 ---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
- **Select**          | `select INDEX` <br> e.g., `select 3`                                                                                                                                  
+ **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+ **Select**          | `select INDEX` <br> e.g., `select 3`                                                                                                                                 
  **Clear**           | `clear`                                                                                                                                                               
  **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
  **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
@@ -372,4 +461,9 @@ the data of your previous AddressBook home folder.
  **Redo**            | `redo`                                                                                                                                                                
  **Help**            | `help`                                                                                                                                                                
  **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`               
- **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`                                                                                                    
+ **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1` 
+ **Edit a Policy**   | `editPolicy INDEX pi/POLICY INDEX[pn/POLICY NAME] [pd/START DATE] [pp/PREMIUM] [pf/FREQUENCY]` <br> e.g., `editPolicy 1 pn/Travel Insurance pp/2000`
+ **Select**          | `select INDEX`<br> e.g.,`select 1`
+ **Sort Client by Email** | `sortClientEmail INDEX(Any Integer)`<br> e.g.,`sortClientEmail 1`
+ **Sort Client by Name** | `sortClientName INDEX(Any Integer)`<br> e.g.,`sortClientName 1`
+ **Sort Client by Phone** | `sortClientPhone INDEX(Any Integer)`<br> e.g.,`sortClientPhone 1`
