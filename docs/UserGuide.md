@@ -74,6 +74,28 @@ Examples:
 - `filter a/clementi s/math` returns tutees whose address are in `clementi` and being tutored `math` subject.
 ![img.png](images/filterExampleResult.png)
 
+## Add a new lesson <a name="learn"></a>
+
+Add a lesson taught to a student.
+
+Format: ```learn [INDEX] [l/LESSON]```
+
+Examples:
+
+* ```learn 1 l/Rational number```
+![learn.png](images/learnExample.PNG)
+
+## Remove a lesson <a name="unlearn"></a>
+
+Remove a lesson taught to a student.
+
+Format: ```unlearn [INDEX] [l/LESSON]```
+
+Examples:
+
+* ```unlearn 1 l/Rational number```
+  ![unlearn.png](images/unlearnExample.PNG)
+
 ## Local save <a name="save"></a>
 
 Saves the current state of the program on the hard disk upon exit.
