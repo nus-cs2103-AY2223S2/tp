@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.session.Session;
 
+
 /**
  * Creates session and adds it to the session list
  */
@@ -19,7 +20,7 @@ public class CreateSessionCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_SESSION + "SESSION "
-            + PREFIX_LOCATION + "LOCATION "
+            + PREFIX_LOCATION + "LOCATION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Hall "
             + PREFIX_SESSION + "10-03-2022 10:00 to 10-03-2022 11:00 "

@@ -189,12 +189,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void addPersonToSession(Person person, Session session) {
         requireAllNonNull(person, session);
         Session newSession = session;
-        String name = person.getName().toString();
         if (!sessions.contains(session)) {
             throw new SessionNotFoundException();
         }
 
-        newSession.addPersonToSession(name);
+        newSession.addPersonToSession(person);
         sessions.setSession(session, newSession);
     }
     /**
