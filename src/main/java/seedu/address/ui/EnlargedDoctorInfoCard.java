@@ -86,7 +86,12 @@ public class EnlargedDoctorInfoCard extends UiPart<Region> {
         tags.getChildren().clear();
         selectedDoctor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.setWrapText(true);
+                    tagLabel.setMaxWidth(150);
+                    tags.getChildren().add(tagLabel);
+                });
     }
 
     /**

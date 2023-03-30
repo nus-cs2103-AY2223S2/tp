@@ -26,7 +26,7 @@
       <Label styleClass="description-label" text="Years of Experience:" />
       <Label fx:id="yearsOfExperience" styleClass="value-label" text="\$yearsOfExperience" />
       <Label styleClass="description-label" text="Tags:" />
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="tags" minWidth="150"/>
     </VBox>
   </ScrollPane>
 </VBox>

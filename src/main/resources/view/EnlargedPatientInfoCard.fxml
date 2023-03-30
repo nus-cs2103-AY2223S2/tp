@@ -32,7 +32,7 @@
       <Label styleClass="description-label" text="Remark:" />
       <Label fx:id="remark" styleClass="value-label" text="\$remark" />
       <Label styleClass="description-label" text="Tags:" />
-      <FlowPane fx:id="tags" />
+      <FlowPane fx:id="tags" minWidth="150"/>
     </VBox>
   </ScrollPane>
 </VBox>
