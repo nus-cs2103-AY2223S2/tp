@@ -20,6 +20,7 @@ import seedu.address.experimental.model.ReadOnlyReroll;
 import seedu.address.experimental.model.ReadOnlyUserPrefs;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Template;
 import seedu.address.testutil.EntityBuilder;
@@ -111,6 +112,11 @@ public class MakeCommandTest {
         }
 
         @Override
+        public Predicate<Entity> getClassificationPredicate(Classification classification) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addEntity(Entity entity) {
             throw new AssertionError("This method should not be called.");
         }
@@ -142,6 +148,11 @@ public class MakeCommandTest {
 
         @Override
         public void setEntity(Entity target, Entity editedEntity) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Entity getEntityWithName(String name) {
             throw new AssertionError("This method should not be called.");
         }
 
