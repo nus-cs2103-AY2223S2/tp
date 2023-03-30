@@ -441,3 +441,8 @@
 .event-card-h1 {
     -fx-font-weight: bold;
 }
+
+.default-color0.chart-pie { -fx-pie-color: #9bd2ec; }
+.default-color1.chart-pie { -fx-pie-color: #268fb5; }
+.default-color2.chart-pie { -fx-pie-color: #82f78a; }
+.default-color3.chart-pie { -fx-pie-color: #f5d0da; }
