@@ -40,7 +40,7 @@ public class JsonAdaptedNusMod {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public NusMod toModelType() throws IllegalValueException {
-        if (!NusMod.isValidModName(this.modName)) {
+        if (!NusMod.isModuleCodeValid(this.modName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new NusMod(this.modName);
