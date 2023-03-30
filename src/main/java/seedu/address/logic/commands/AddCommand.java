@@ -57,6 +57,7 @@ public class AddCommand extends Command {
         }
         model.resetPersonHiddenStatus();
         model.addPerson(toAdd);
+        model.resetPersonHiddenStatus();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
