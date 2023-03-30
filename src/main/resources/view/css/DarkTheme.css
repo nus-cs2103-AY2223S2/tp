@@ -82,8 +82,8 @@
     -fx-background-color: #001E3C;
 }
 
-.enlarged-contacts-details-container {
-    -fx-background-color: #001E3C;
+.enlarged-contacts-details-scroll-pane {
+    -fx-background: #001E3C;
 }
 
 .enlarged-contacts-details-pane {
@@ -104,6 +104,14 @@
     -fx-wrap-text: true;
     -fx-min-width: 250;
 }
+
+/*
+ * Scroll Pane styles
+
+.scroll-pane .viewport {
+    -fx-control-inner-background: #FFFFFF;
+}
+*/
 
 /*
  * Scroll Bar styles

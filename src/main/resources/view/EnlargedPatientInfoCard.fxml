@@ -12,8 +12,9 @@
   <HBox alignment="CENTER" styleClass="only-bottom-primary-border">
     <Label fx:id="name" text="\$first" styleClass="label-header-3"/>
   </HBox>
-  <ScrollPane fitToWidth="true" styleClass="enlarged-contacts-details-container">
-    <VBox VBox.vgrow="ALWAYS" styleClass="enlarged-contacts-details-pane">
+  <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS"
+              styleClass="enlarged-contacts-details-scroll-pane, edge-to-edge">
+    <VBox styleClass="enlarged-contacts-details-pane">
       <padding>
         <Insets top="15" right="15" bottom="15" left="15"/>
       </padding>
