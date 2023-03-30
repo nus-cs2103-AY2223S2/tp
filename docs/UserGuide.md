@@ -455,6 +455,15 @@ Use this command to exit the application!
 ## Events Features
 <hr style="border:2px solid gray">
 
+Events have 4 components to them
+- Description
+- StartDateTime
+- EndDateTime
+- Recurrence
+
+Events will auto-update to their next earliest occurrence for recurring events and will be automatically grayed out once
+the event has been passed.
+
 ### Adding an Event : `addevent`
 
 Want to keep track of current events?
