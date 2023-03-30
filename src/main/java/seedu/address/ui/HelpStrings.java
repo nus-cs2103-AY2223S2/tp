@@ -77,6 +77,14 @@ public class HelpStrings {
             + "Example: filterp tag/Logistics , shows all persons with the Logistics tag.";
     public static final String VIEWMETHODS_HELP = "View commands provide many different ways to change"
             + " the persons and views within OfficeConnect.";
+    public static final String VIEWPERSON_HELP = "Shows a list of tasks assigned to a person"
+            + " according to the displayed index.\n\n"
+            + "Format: pi INDEX\n"
+            + "Example: pi 2 , displays person 2 and all tasks assigned to that person";
+    public static final String VIEWTASK_HELP = "Shows a list of persons assigned to a task"
+            + " according to the displayed index.\n\n"
+            + "Format: ti INDEX\n"
+            + "Example: ti 1 , displays task 1 and all persons assigned to that task";
     public static final String VIEWASSIGNEDALL_HELP = "Displays a list of all persons who have been assigned to"
             + " a task and all tasks that have been assigned to a person.\n\n"
             + "Format: viewassignedall";
