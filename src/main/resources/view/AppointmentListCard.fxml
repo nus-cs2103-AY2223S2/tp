@@ -2,8 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -13,13 +11,25 @@
             <children>
                 <HBox>
                     <children>
-                        <Label fx:id="id" styleClass="cell_big_label" text="\$id" />
-                        <Label fx:id="booking" styleClass="cell_big_label" text="\$booking" />
+                        <Label fx:id="id" styleClass="cell_big_label" text="\$id">
+                     <HBox.margin>
+                        <Insets left="3.0" />
+                     </HBox.margin></Label>
+                        <Label fx:id="booking" styleClass="cell_big_label" text="\$booking">
+                     <HBox.margin>
+                        <Insets left="3.0" />
+                     </HBox.margin></Label>
+                      <Label fx:id="nric" styleClass="cell_small_label" text="\$drNric">
+                     <HBox.margin>
+                        <Insets left="45.0" />
+                     </HBox.margin>
+                  </Label>
                     </children>
                 </HBox>
-                <Label fx:id="drNric" styleClass="cell_small_label" text="\$drNric" GridPane.columnIndex="2" />
-                <Label fx:id="patientNric" styleClass="cell_small_label" text="\$patientNric" GridPane.columnIndex="3" />
             </children>
+         <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+         </padding>
         </VBox>
     </children>
 </HBox>

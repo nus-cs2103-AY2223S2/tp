@@ -46,6 +46,12 @@ public class PersonViewPanel extends UiPart<Region> {
     @FXML
     private VBox prescriptionBox;
 
+    @FXML
+    private Label date;
+
+    @FXML
+    private Label appmtWith;
+
     /**
      * Generates a Person View Panel.
      * @param person Person to generate the panel about.
@@ -61,8 +67,13 @@ public class PersonViewPanel extends UiPart<Region> {
         setPersonalDetails();
         setAppointmentDetails();
          */
+        String sname = "";
         this.person = person;
-        String sname = person.getName().toString();
+        if (person.isDoctor()) {
+            sname = "[Dr] " + person.getName().toString();
+        } else {
+            sname = person.getName().toString();
+        }
         name.setText(sname);
         phone.setText(person.getPhone().toString());
         email.setText(person.getEmail().toString());
@@ -80,6 +91,11 @@ public class PersonViewPanel extends UiPart<Region> {
     }
 
     private void setAppointmentDetails() {
+        if (person.isPatient()) {
+            appmtWith.setText("Doctor");
+        } else {
+            appmtWith.setText("Patient");
+        }
         ObservableList<Appointment> appointmentsObservableList =
                 new ObservableListWrapper<>(person.getPatientAppointments());
         appointments.setItems(appointmentsObservableList);
@@ -108,12 +124,11 @@ public class PersonViewPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Appointment appointment, boolean empty) {
             super.updateItem(appointment, empty);
-
             if (empty || appointment == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new AppointmentCard(appointment, getIndex() + 1).getRoot());
+                setGraphic(new AppointmentCard(person, appointment, getIndex() + 1).getRoot());
             }
         }
     }
