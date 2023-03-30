@@ -60,27 +60,32 @@ public class ExportMeetingsParser implements Parser<ExportMeetingsCommand> {
 
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String input) {
-        String[] argsSplit = input.split(" ");
-        if (argsSplit.length == 0) {
+        if (input.isEmpty()) {
             return new AutocompleteResult(PREFIXES[0], false);
         }
+
+        String[] argsSplit = input.split(" ");
+        assert argsSplit.length >= 1;
+
         String lastPrefix = argsSplit[argsSplit.length - 1];
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(" " + lastPrefix, PREFIXES);
-        boolean returnNext = false;
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(input, PREFIXES);
+        ArgumentMultimap lastPrefixMap = ArgumentTokenizer.tokenize(" " + lastPrefix, PREFIXES);
+        boolean isMeetingSpecified = argumentMultimap.getValue(PREFIXES[0]).isPresent();
+        boolean isLastPrefixMeetingPrefix = lastPrefixMap.getValue(PREFIXES[0]).isPresent();
 
-        for (Prefix p : PREFIXES) {
-            if (returnNext) {
-                return new AutocompleteResult(p, true);
-            }
-
-            if (argMultimap.getValue(p).isPresent() && p.toString().equals(lastPrefix)) {
-                returnNext = true;
-            }
+        if (!isMeetingSpecified || (isLastPrefixMeetingPrefix && !lastPrefix.endsWith("/"))) {
+            return new AutocompleteResult(PREFIXES[0], false);
         }
 
-        return new AutocompleteResult(PREFIXES[0], true);
+        boolean isStartSpecified = argumentMultimap.getValue(PREFIXES[1]).isPresent();
+        boolean isEndSpecified = argumentMultimap.getValue(PREFIXES[2]).isPresent();
+        if (!isStartSpecified) {
+            return new AutocompleteResult(PREFIXES[1], true);
+        } else if (!isEndSpecified) {
+            return new AutocompleteResult(PREFIXES[2], true);
+        } else {
+            return new AutocompleteResult();
+        }
     }
-
 }
-
