@@ -172,8 +172,9 @@ public class RecurringEventList {
                 continue;
             }
 
-            if(curRecurringEvent.getDayOfWeek().equals(newlyEditedRecurringEvent.getDayOfWeek())) {
-                boolean isEventInFront = curRecurringEvent.getStartTime().isBefore(newlyEditedRecurringEvent.getStartTime())
+            if (curRecurringEvent.getDayOfWeek().equals(newlyEditedRecurringEvent.getDayOfWeek())) {
+                boolean isEventInFront = curRecurringEvent.getStartTime().isBefore(newlyEditedRecurringEvent
+                        .getStartTime())
                         && !curRecurringEvent.getEndTime().isAfter(newlyEditedRecurringEvent.getStartTime());
 
                 boolean isEventBack = curRecurringEvent.getEndTime().isAfter(newlyEditedRecurringEvent.getEndTime())
