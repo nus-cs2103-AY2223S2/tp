@@ -400,12 +400,16 @@ If your changes to the data file makes its format invalid, MATHUTORING will disc
 | **Check**          | `check INDEX`<br> e.g. `check 1`                                                                                                                                                              |
 | **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/PARENT_PHONE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/12348888`                                       |
 | **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                    |
+| **Filter**         | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter friends colleagues`                                                                                                                        |
 | **List Students**  | `list`                                                                                                                                                                                        |
 | **Add Task**       | `addTask INDEX t/TITLE`<br> e.g `addTask 2 t/Homework Assignment 1`                                                                                                                           |
 | **Delete Task**    | `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`<br> e.g `deleteTask 2 1`                                                                                                                          |
 | **Mark Task**      | `mark(STATUS) INDEX_OF_STUDENT INDEX_OF_TASK` (`mark(STATUS)` can be either `markComplete`, `markLate` or `markInProgress`)<br> e.g. `markComplete 1 2`<br>                                   |
 | **Add Score**      | `addScore l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addScore l/CA2 A Math v/70 d/2022-03-03`                                                                                                  |
 | **Delete Score**   | `deleteScore INDEX_OF_STUDENT INDEX_OF_SCORE`<br> e.g. `deleteScore 3 4`                                                                                                                      |
+| **Import Data**   | `import p/FILE_PATH`<br> e.g. `import p//Users/John/data.json`                                                                                                                      |
+| **Export Data**   | `export [p/FILE_PATH]`<br> e.g. `export p//Users/John`                                                                                                                      |
+| **Export Progress**   | `exportp INDEX [p/FILE_PATH]`<br> e.g. `export 1 p//Users/John`                                                                                                                      |
 | **Help**           | `help`                                                                                                                                                                                        |
 
 
