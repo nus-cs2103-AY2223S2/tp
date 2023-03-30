@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 * **New Feature** [Coming soon]:
     * ...
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=dsja612&breakdown=true)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=ryanqiu1&breakdown=true)
 
 * **Project management** [Coming soon]:
     * ..
