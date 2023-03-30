@@ -20,7 +20,6 @@ import mycelium.mycelium.commons.core.GuiSettings;
 import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.model.client.Client;
 import mycelium.mycelium.model.client.exceptions.DuplicateClientException;
-import mycelium.mycelium.model.person.Person;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.project.exceptions.DuplicateProjectException;
@@ -36,7 +35,6 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Project> filteredProjects;
 
@@ -50,7 +48,6 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
     }
@@ -104,49 +101,6 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
-    }
-
-    // =========== Person ================================================================================
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
     }
 
     //=========== Client ==================================================================================
@@ -258,8 +212,8 @@ public class ModelManager implements Model {
     public ObservableList<Project> getDueProjectList() {
         ObservableList<Project> sortedProjectList;
         sortedProjectList = filteredProjects.filtered(p -> p.getDeadline().isPresent()
-                && p.getStatus() != ProjectStatus.DONE && isWithinThisAndNextWeek(p.getDeadline().get())
-                && !isBeforeToday(p.getDeadline().get())).sorted((p1, p2) -> p1.compareToWithDeadline(p2));
+            && p.getStatus() != ProjectStatus.DONE && isWithinThisAndNextWeek(p.getDeadline().get())
+            && !isBeforeToday(p.getDeadline().get())).sorted((p1, p2) -> p1.compareToWithDeadline(p2));
 
         return sortedProjectList;
     }
@@ -269,7 +223,7 @@ public class ModelManager implements Model {
         ObservableList<Project> overdueProjectList;
         overdueProjectList = filteredProjects.filtered(p -> p.getDeadline().isPresent()
                 && p.getStatus() != ProjectStatus.DONE && isBeforeToday(p.getDeadline().get()))
-                .sorted((p1, p2) -> p1.compareToWithDeadline(p2));
+            .sorted((p1, p2) -> p1.compareToWithDeadline(p2));
 
         return overdueProjectList;
     }
@@ -283,15 +237,15 @@ public class ModelManager implements Model {
         long inProgress = 0;
 
         notStarted = this.filteredProjects.stream().filter(project ->
-                project.getStatus() == ProjectStatus.NOT_STARTED).count();
+            project.getStatus() == ProjectStatus.NOT_STARTED).count();
         projectStatusWithCount.put("Not Started", notStarted);
 
         done = this.filteredProjects.stream().filter(project ->
-                project.getStatus() == ProjectStatus.DONE).count();
+            project.getStatus() == ProjectStatus.DONE).count();
         projectStatusWithCount.put("Done", done);
 
         inProgress = this.filteredProjects.stream().filter(project ->
-                project.getStatus() == ProjectStatus.IN_PROGRESS).count();
+            project.getStatus() == ProjectStatus.IN_PROGRESS).count();
         projectStatusWithCount.put("In Progress", inProgress);
 
         return projectStatusWithCount;
@@ -314,14 +268,13 @@ public class ModelManager implements Model {
         ModelManager that = (ModelManager) o;
         return Objects.equals(addressBook, that.addressBook)
             && Objects.equals(userPrefs, that.userPrefs)
-            && Objects.equals(filteredPersons, that.filteredPersons)
             && Objects.equals(filteredClients, that.filteredClients)
             && Objects.equals(filteredProjects, that.filteredProjects);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(addressBook, userPrefs, filteredPersons, filteredClients, filteredProjects);
+        return Objects.hash(addressBook, userPrefs, filteredClients, filteredProjects);
     }
 
 

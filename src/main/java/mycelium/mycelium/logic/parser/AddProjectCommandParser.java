@@ -14,7 +14,7 @@ import java.util.Optional;
 
 import mycelium.mycelium.logic.commands.AddProjectCommand;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.util.NonEmptyString;

@@ -15,10 +15,10 @@ import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.UpdateClientCommand;
+import mycelium.mycelium.model.client.Email;
+import mycelium.mycelium.model.client.Name;
+import mycelium.mycelium.model.client.Phone;
 import mycelium.mycelium.model.client.YearOfBirth;
-import mycelium.mycelium.model.person.Email;
-import mycelium.mycelium.model.person.Name;
-import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.testutil.UpdateClientDescriptorBuilder;
 
 public class UpdateClientCommandParserTest {

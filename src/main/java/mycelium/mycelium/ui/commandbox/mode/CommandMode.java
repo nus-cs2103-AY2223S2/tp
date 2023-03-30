@@ -22,8 +22,6 @@ public class CommandMode extends Mode {
 
     /**
      * Creates a new CommandMode.
-     *
-     * @param mainWindow
      */
     public CommandMode(MainWindow mainWindow) {
         requireAllNonNull(mainWindow);

@@ -10,7 +10,7 @@ import mycelium.mycelium.logic.parser.CliSyntax;
 import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.client.Client;
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.UpdateProjectCommand;
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.project.ProjectStatus;
 import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.testutil.UpdateProjectDescriptorBuilder;

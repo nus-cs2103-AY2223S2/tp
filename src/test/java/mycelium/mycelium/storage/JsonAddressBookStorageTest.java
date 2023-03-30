@@ -1,9 +1,7 @@
 package mycelium.mycelium.storage;
 
 import static mycelium.mycelium.testutil.Assert.assertThrows;
-import static mycelium.mycelium.testutil.TypicalEntities.ALICE;
-import static mycelium.mycelium.testutil.TypicalEntities.HOON;
-import static mycelium.mycelium.testutil.TypicalEntities.IDA;
+import static mycelium.mycelium.testutil.TypicalEntities.WEST;
 import static mycelium.mycelium.testutil.TypicalEntities.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -51,11 +49,6 @@ public class JsonAddressBookStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
-    }
-
-    @Test
     public void readAddressBook_invalidClientAddressBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAddressBook("invalidClientAddressBook.json"));
     }
@@ -63,11 +56,6 @@ public class JsonAddressBookStorageTest {
     @Test
     public void readAddressBook_invalidProjectAddressBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAddressBook("invalidProjectAddressBook.json"));
-    }
-
-    @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
     }
 
     @Test
@@ -93,14 +81,13 @@ public class JsonAddressBookStorageTest {
         assertEquals(original, new AddressBook(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.removeClient(WEST);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new AddressBook(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addClient(WEST);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new AddressBook(readBack));

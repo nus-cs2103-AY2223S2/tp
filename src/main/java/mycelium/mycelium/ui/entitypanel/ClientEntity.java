@@ -8,8 +8,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import mycelium.mycelium.commons.core.LogsCenter;
 import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.Phone;
 import mycelium.mycelium.model.client.YearOfBirth;
-import mycelium.mycelium.model.person.Phone;
 import mycelium.mycelium.model.util.NonEmptyString;
 import mycelium.mycelium.ui.UiPart;
 

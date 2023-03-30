@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.commands.DeleteClientCommand;
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 
 public class DeleteClientCommandParserTest {
     // This command is simple, as it should look like this:

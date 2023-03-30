@@ -8,7 +8,7 @@ import java.time.format.ResolverStyle;
 import java.util.Objects;
 import java.util.Optional;
 
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.model.util.FuzzyComparable;
 import mycelium.mycelium.model.util.IsSame;
 import mycelium.mycelium.model.util.NonEmptyString;

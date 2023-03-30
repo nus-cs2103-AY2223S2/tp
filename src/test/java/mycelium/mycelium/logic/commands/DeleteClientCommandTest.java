@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import mycelium.mycelium.commons.core.Messages;
 import mycelium.mycelium.logic.uiaction.TabSwitchAction;
 import mycelium.mycelium.model.ModelManager;
-import mycelium.mycelium.model.person.Email;
+import mycelium.mycelium.model.client.Email;
 import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.testutil.Pair;
 

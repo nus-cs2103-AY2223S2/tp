@@ -1,11 +1,7 @@
 package mycelium.mycelium.logic;
 
-import static mycelium.mycelium.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static mycelium.mycelium.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static mycelium.mycelium.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static mycelium.mycelium.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static mycelium.mycelium.testutil.Assert.assertThrows;
-import static mycelium.mycelium.testutil.TypicalEntities.AMY;
+import static mycelium.mycelium.testutil.TypicalEntities.WEST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -16,20 +12,20 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import mycelium.mycelium.commons.core.Messages;
-import mycelium.mycelium.logic.commands.AddCommand;
+import mycelium.mycelium.logic.commands.AddClientCommand;
 import mycelium.mycelium.logic.commands.CommandResult;
-import mycelium.mycelium.logic.commands.ListCommand;
 import mycelium.mycelium.logic.commands.exceptions.CommandException;
 import mycelium.mycelium.logic.parser.exceptions.ParseException;
 import mycelium.mycelium.model.Model;
 import mycelium.mycelium.model.ModelManager;
 import mycelium.mycelium.model.ReadOnlyAddressBook;
 import mycelium.mycelium.model.UserPrefs;
-import mycelium.mycelium.model.person.Person;
+import mycelium.mycelium.model.client.Client;
+import mycelium.mycelium.model.client.Email;
+import mycelium.mycelium.model.client.Name;
 import mycelium.mycelium.storage.JsonAddressBookStorage;
 import mycelium.mycelium.storage.JsonUserPrefsStorage;
 import mycelium.mycelium.storage.StorageManager;
-import mycelium.mycelium.testutil.PersonBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -59,14 +55,14 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String cmd = "dp -pn apsdoifapfwoi";
+        assertCommandException(cmd, Messages.MESSAGE_INVALID_PROJECT);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String cmd = String.format("c -cn %s -e %s", WEST.getName(), WEST.getEmail());
+        assertCommandSuccess(cmd, String.format(AddClientCommand.MESSAGE_SUCCESS, WEST), model);
     }
 
     @Test
@@ -79,14 +75,15 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
-        // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-            + ADDRESS_DESC_AMY;
-        Person expectedPerson = new PersonBuilder(AMY).withTags().build();
-        ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedPerson);
+        // Execute add client command
+        var name = "Alice";
+        var email = "alice@baker.org";
+        var client = new Client(new Name(name), new Email(email));
+        var addCmd = AddClientCommand.COMMAND_ACRONYM + " -cn " + name + " -e " + email;
+        var expModel = new ModelManager();
+        expModel.addClient(client);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
-        assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
+        assertCommandFailure(addCmd, CommandException.class, expectedMessage, expModel);
     }
 
     @Test
