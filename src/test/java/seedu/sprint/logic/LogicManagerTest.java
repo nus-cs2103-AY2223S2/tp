@@ -22,9 +22,7 @@ import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.person.Person;
-import seedu.sprint.storage.JsonAddressBookStorage;
 import seedu.sprint.storage.JsonUserPrefsStorage;
-import seedu.sprint.storage.StorageManager;
 import seedu.sprint.testutil.PersonBuilder;
 
 public class LogicManagerTest {

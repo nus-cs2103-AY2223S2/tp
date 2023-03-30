@@ -22,7 +22,7 @@ import seedu.sprint.model.ReadOnlyInternshipBook;
 import seedu.sprint.model.ReadOnlyUserPrefs;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.util.SampleDataUtil;
-import seedu.sprint.storage.ApplicationStorage;
+import seedu.sprint.storage.Storage;
 import seedu.sprint.storage.ApplicationStorageManager;
 import seedu.sprint.storage.InternshipBookStorage;
 import seedu.sprint.storage.JsonInternshipBookStorage;
@@ -43,7 +43,7 @@ public class ApplicationMainApp extends Application {
 
     protected Ui ui;
     protected Logic logic;
-    protected ApplicationStorage storage;
+    protected Storage storage;
     protected Model model;
     protected Config config;
 
@@ -78,7 +78,7 @@ public class ApplicationMainApp extends Application {
      * The data from the sample internship book will be used instead if {@code storage}'s internship book is not found,
      * or an empty internship book will be used instead if errors occur when reading {@code storage}'s internship book.
      */
-    private Model initModelManager(ApplicationStorage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyInternshipBook> internshipBookOptional;
         ReadOnlyInternshipBook initialData;
         try {

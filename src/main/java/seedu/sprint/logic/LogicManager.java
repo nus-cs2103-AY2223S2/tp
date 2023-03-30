@@ -15,7 +15,7 @@ import seedu.sprint.logic.parser.exceptions.ParseException;
 import seedu.sprint.model.Model;
 import seedu.sprint.model.ReadOnlyInternshipBook;
 import seedu.sprint.model.application.Application;
-import seedu.sprint.storage.ApplicationStorage;
+import seedu.sprint.storage.Storage;
 
 /**
  * The main LogicManager of the app.
@@ -25,14 +25,14 @@ public class LogicManager implements Logic {
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
-    private final ApplicationStorage storage;
+    private final Storage storage;
     private final InternshipBookParser internshipBookParser;
     private final CommandHistory commandHistory;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, ApplicationStorage storage) {
+    public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
         this.internshipBookParser = new InternshipBookParser();
