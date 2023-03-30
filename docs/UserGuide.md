@@ -76,6 +76,7 @@ Congratulations, you just added your first item!
 To see what the command format means, you can refer to the [Features](#features) below for details of each command to maximise your productivity with WIFE.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -420,7 +421,7 @@ There is no support for mobile devices yet.
 **A**: No, you can use WIFE without a wifi connection.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Command summary
 
 ### Food Commands
