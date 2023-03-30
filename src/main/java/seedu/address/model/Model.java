@@ -92,4 +92,6 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedListingBook(ListingComparator comparator);
+
+    void undo();
 }
