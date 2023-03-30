@@ -41,8 +41,8 @@ public class SearchCommand extends Command {
             + "[" + PREFIX_CCA + "CCA]... "
             + "[" + PREFIX_CCA_POSITION + "CCA_POSITION]... "
             + "[" + PREFIX_REMARK + "REMARK]...\n"
-            + "Example: " + COMMAND_WORD
-            + PREFIX_MODULE + "CS"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_MODULE + "CS" + " "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_NO_KEYWORDS = "At least one keyword must be provided.";

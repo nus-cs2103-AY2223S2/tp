@@ -139,7 +139,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
         if (!predicate.isFieldKeywordPresent()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SearchCommand.MESSAGE_NO_KEYWORDS));
+                    SearchCommand.MESSAGE_NO_KEYWORDS + "\n" + SearchCommand.MESSAGE_USAGE));
         }
 
         return new SearchCommand(predicate);
