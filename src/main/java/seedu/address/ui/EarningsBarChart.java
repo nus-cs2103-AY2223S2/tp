@@ -11,9 +11,15 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import seedu.address.model.session.Session;
 
+/**
+ * Constructs a barchart for earnings the past 6 months
+ */
 public class EarningsBarChart extends BarChart<String, Number> {
     private static final int NUM_MONTHS = 6;
 
+    /**
+     * @param sessionList sessions of the coach
+     */
     public EarningsBarChart(ObservableList<Session> sessionList) {
         super(new CategoryAxis(), new NumberAxis());
 
@@ -58,9 +64,11 @@ public class EarningsBarChart extends BarChart<String, Number> {
         float totalEarnings = 0;
 
         for (Session session : sessionList) {
-            LocalDate sessionDate = LocalDate.parse(session.getStartDateTime().split(" ")[0],
+            LocalDate sessionDate = LocalDate.parse(session
+                            .getStartDateTime().split(" ")[0],
                     DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            if (sessionDate.isEqual(startDate) || (sessionDate.isAfter(startDate) && sessionDate.isBefore(endDate.plusDays(1)))) {
+            if (sessionDate.isEqual(startDate)
+                    || (sessionDate.isAfter(startDate) && sessionDate.isBefore(endDate.plusDays(1)))) {
                 totalEarnings += session.getTotalPay();
             }
         }

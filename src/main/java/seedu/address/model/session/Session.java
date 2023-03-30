@@ -26,10 +26,10 @@ import seedu.address.model.person.Person;
  */
 public class Session implements Comparable<Session> {
 
-    private final Logger logger = LogsCenter.getLogger(getClass());
     public static final String MESSAGE_CONSTRAINTS = "Start date time should be before end date time.";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     private String command;
+    private final Logger logger = LogsCenter.getLogger(getClass());
     private final String startDateTime;
     private final String endDateTime;
     private final SessionName name;

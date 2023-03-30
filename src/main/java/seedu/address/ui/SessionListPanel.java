@@ -9,7 +9,6 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -68,7 +67,7 @@ public class SessionListPanel extends UiPart<Region> {
     @FXML
     private Label earningsField;
 
-//Statistics
+    //Statistics
     @FXML
     private Label todayField;
     @FXML
@@ -108,7 +107,7 @@ public class SessionListPanel extends UiPart<Region> {
     }
 
     private void getStatistics(ObservableList<Session> sessionList) {
-        Label[] fields = new Label[]{todayField, thisWeekField,thisMonthField, lifetimeField};
+        Label[] fields = new Label[]{todayField, thisWeekField, thisMonthField, lifetimeField};
         Label[] details = new Label[]{today, thisWeek, thisMonth, lifetime};
 
         setStatisticsFieldDisplay(fields);
@@ -186,7 +185,8 @@ public class SessionListPanel extends UiPart<Region> {
         for (Session session : sessionList) {
             LocalDate sessionDate = LocalDate.parse(session.getStartDateTime().split(" ")[0],
                     DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-            if (sessionDate.isEqual(now) || (sessionDate.isAfter(startOfMonth) && sessionDate.isBefore(now.plusDays(1)))) {
+            if (sessionDate.isEqual(now) || (sessionDate.isAfter(startOfMonth)
+                    && sessionDate.isBefore(now.plusDays(1)))) {
                 totalEarnings += session.getTotalPay();
             }
         }
