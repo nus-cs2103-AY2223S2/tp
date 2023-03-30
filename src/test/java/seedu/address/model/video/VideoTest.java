@@ -12,7 +12,7 @@ import seedu.address.testutil.VideoBuilder;
 
 public class VideoTest {
 
-    private final Video video = new VideoBuilder(TypicalVideos.ANALYSIS_VIDEO).build();
+    private final Video video = TypicalVideos.ANALYSIS_VIDEO;
 
     @Test
     public void getTags_modifySet_throwsUnsupportedOperationException() {
@@ -31,15 +31,14 @@ public class VideoTest {
 
     @Test
     public void isSameVideo_sameName_returnsTrue() {
-        Video editedVideo = new VideoBuilder(video).withTags().withHasWatched(false).build();
-
+        Video editedVideo = new VideoBuilder(video).withWatched(!video.hasWatched())
+                .withTimestamp("02:42:42").withTags().build();
         assertTrue(video.isSameVideo(editedVideo));
     }
 
     @Test
     public void isSameVideo_differentName_returnsFalse() {
         Video editedVideo = new VideoBuilder(video).withName("Life is Bleak").build();
-
         assertFalse(video.isSameVideo(editedVideo));
     }
 
@@ -61,6 +60,14 @@ public class VideoTest {
 
         // different name -> returns false
         Video editedVideo = new VideoBuilder(video).withName("Life is Bleak").build();
+        assertFalse(video.equals(editedVideo));
+
+        // different watched -> returns false
+        editedVideo = new VideoBuilder(video).withWatched(!video.hasWatched()).build();
+        assertFalse(video.equals(editedVideo));
+
+        // different timestamp -> returns false
+        editedVideo = new VideoBuilder(video).withTimestamp("02:42:42").build();
         assertFalse(video.equals(editedVideo));
 
         // diferent tags -> returns false

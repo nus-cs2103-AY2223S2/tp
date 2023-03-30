@@ -29,7 +29,8 @@
         <Label fx:id="videoName" styleClass="cell_big_label" text="\$videoName" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="watchedStatus" styleClass="cell_small_label" text="\$watchedStatus" />
+      <Label fx:id="videoTimestamp" styleClass="cell_small_label" text="\$videoTimestamp" />
+         <Label fx:id="watchedStatus" styleClass="cell_small_label" text="\$watchedStatus" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

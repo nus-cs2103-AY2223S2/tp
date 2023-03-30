@@ -77,13 +77,13 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 - `add {module_code} [/name {module_name}] [/tags {tag_1}, [{tag_2}, ...]]`: Adds a module to Le Tracker
 - `add {lecture_name} [/mod {module_code}] [/tags {tag_1}, [{tag_2}, ...]]`: Adds a lecture to a module
-- `add {video_name} [/mod {module_code}] [/lec {lecture_name}] [/watch] [/tags {tag_1}, [{tag_2}, ...]]`: Adds a video to a lecture
+- `add {video_name} [/mod {module_code}] [/lec {lecture_name}] [/timestamp {timestamp}] [/watch] [/tags {tag_1}, [{tag_2}, ...]]`: Adds a video to a lecture
 
 ### Edit
 
 - `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a module in Le Tracker
 - `edit {lecture_name} [/mod {module_code}] [/name {updated_name}] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a lecture
-- `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}] [/watch] [/unwatch] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a video
+- `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}] [/timestamp {updated_timestamp}] [/watch] [/unwatch] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a video
 
 ### Mark/Unmark
   - `mark /module {module_code} /lecture {lecture_index} /video {video_name}`: Marks a video as watched
@@ -249,7 +249,7 @@ Examples:
 
 > Adds a video to a lecture.
 
-Format: `add {video_name} [/mod {module_code}] [/lec {lecture_name}] [/watch] [/tags {tag_1}, [{tag_2}, ...]]`
+Format: `add {video_name} [/mod {module_code}] [/lec {lecture_name}] [/timestamp {timestamp}] [/watch] [/tags {tag_1}, [{tag_2}, ...]]`
 
 - `video_name` must be a valid video name
 - `video_name` must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
@@ -257,6 +257,7 @@ Format: `add {video_name} [/mod {module_code}] [/lec {lecture_name}] [/watch] [/
 - `module_code` if not specified, defaults to the module code of the module in the current context (if any)
 - `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
 - `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
+- `timestamp` must be a valid timestamp
 - `watch` is a flag that when specified will mark the video as watched
 - `tag_1`, `tag_2`, ... must be valid tags
 - `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
@@ -303,7 +304,7 @@ Examples:
 
 > Edits the details of a video
 
-Format: `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}] [/watch] [/unwatch] [/tags {tag_1}, [{tag_2}, ...]]`
+Format: `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}] [/timestamp {updated_timestamp}] [/watch] [/unwatch] [/tags {tag_1}, [{tag_2}, ...]]`
 
 - `/watch` if specified, then `/unwatch` cannot be specified
 - `/unwatch` if specified, then `/watch` cannot be specified
@@ -314,6 +315,7 @@ Format: `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {up
 - `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
 - `updated_name` must be a valid video name
 - `updated_name` must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
+- `updated_timestamp` must be a valid timestamp
 - `tag_1`, `tag_2`, ... must be valid tags
 - `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
 

@@ -13,6 +13,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.VideoEditInfo;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
@@ -22,6 +23,7 @@ import seedu.address.model.module.ReadOnlyModule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 
 /**
  * Edits the details of a video in a lecture.
@@ -82,7 +84,8 @@ public class EditVideoCommand extends EditCommand {
         }
 
         model.setVideo(lecture, videoToEdit, editedVideo);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName, moduleCode, editedVideo));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, lectureName, moduleCode, editedVideo),
+                new VideoEditInfo(moduleCode, lectureName, videoToEdit, editedVideo));
     }
 
     private Video createEditedVideo(Video videoToEdit) {
@@ -90,9 +93,10 @@ public class EditVideoCommand extends EditCommand {
 
         VideoName updatedName = editVideoDescriptor.getName().orElse(videoToEdit.getName());
         boolean hasWatchedUpdated = editVideoDescriptor.hasWatched().orElse(videoToEdit.hasWatched());
+        VideoTimestamp updatedTimestamp = editVideoDescriptor.getTimestamp().orElse(videoToEdit.getTimestamp());
         Set<Tag> updatedTags = editVideoDescriptor.getTags().orElse(videoToEdit.getTags());
 
-        return new Video(updatedName, hasWatchedUpdated, updatedTags);
+        return new Video(updatedName, hasWatchedUpdated, updatedTimestamp, updatedTags);
     }
 
     @Override
@@ -120,6 +124,7 @@ public class EditVideoCommand extends EditCommand {
     public static class EditVideoDescriptor {
         private VideoName name;
         private Boolean hasWatched;
+        private VideoTimestamp timestamp;
         private Set<Tag> tags;
 
         public EditVideoDescriptor() {}
@@ -132,6 +137,7 @@ public class EditVideoCommand extends EditCommand {
         public EditVideoDescriptor(EditVideoDescriptor toCopy) {
             setName(toCopy.name);
             setWatched(toCopy.hasWatched);
+            setTimestamp(toCopy.timestamp);
             setTags(toCopy.tags);
         }
 
@@ -141,7 +147,7 @@ public class EditVideoCommand extends EditCommand {
          * @return True if at least one field is edited. Otherwise, false.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, hasWatched, tags);
+            return CollectionUtil.isAnyNonNull(name, hasWatched, timestamp, tags);
         }
 
         public Optional<VideoName> getName() {
@@ -158,6 +164,14 @@ public class EditVideoCommand extends EditCommand {
 
         public void setWatched(Boolean hasWatched) {
             this.hasWatched = hasWatched;
+        }
+
+        public Optional<VideoTimestamp> getTimestamp() {
+            return Optional.ofNullable(timestamp);
+        }
+
+        public void setTimestamp(VideoTimestamp timestamp) {
+            this.timestamp = timestamp;
         }
 
         /**
@@ -196,6 +210,7 @@ public class EditVideoCommand extends EditCommand {
 
             return getName().equals(descriptor.getName())
                     && hasWatched().equals(descriptor.hasWatched())
+                    && getTimestamp().equals(descriptor.getTimestamp())
                     && getTags().equals(descriptor.getTags());
         }
     }

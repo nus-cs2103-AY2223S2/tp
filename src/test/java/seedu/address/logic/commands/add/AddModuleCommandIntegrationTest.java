@@ -5,6 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.CommandResult.ModuleEditInfo;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,8 +27,10 @@ public class AddModuleCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getTracker(), new UserPrefs());
         expectedModel.addModule(validModule);
 
-        assertCommandSuccess(new AddModuleCommand(validModule), model,
-                String.format(AddModuleCommand.MESSAGE_SUCCESS, validModule), expectedModel);
+        String expectedMessage = String.format(AddModuleCommand.MESSAGE_SUCCESS, validModule);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                new ModuleEditInfo(null, validModule));
+        assertCommandSuccess(new AddModuleCommand(validModule), model, expectedCommandResult, expectedModel);
     }
 
     @Test

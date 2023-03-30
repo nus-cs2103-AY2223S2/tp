@@ -7,6 +7,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 
 /**
  * A utility class to help with building {@code Video} objects.
@@ -18,6 +19,7 @@ public class VideoBuilder {
 
     private VideoName name;
     private boolean hasWatched;
+    private VideoTimestamp timestamp;
     private Set<Tag> tags;
 
     /**
@@ -26,6 +28,7 @@ public class VideoBuilder {
     public VideoBuilder() {
         name = new VideoName(DEFAULT_NAME);
         hasWatched = DEFAULT_HAS_WATCHED;
+        timestamp = new VideoTimestamp();
         tags = new HashSet<>();
     }
 
@@ -37,6 +40,7 @@ public class VideoBuilder {
     public VideoBuilder(Video videoToCopy) {
         name = videoToCopy.getName();
         hasWatched = videoToCopy.hasWatched();
+        timestamp = videoToCopy.getTimestamp();
         tags = new HashSet<>(videoToCopy.getTags());
     }
 
@@ -57,8 +61,19 @@ public class VideoBuilder {
      * @param hasWatched The watch status to set to.
      * @return This {@code VideoBuilder}.
      */
-    public VideoBuilder withHasWatched(boolean hasWatched) {
+    public VideoBuilder withWatched(boolean hasWatched) {
         this.hasWatched = hasWatched;
+        return this;
+    }
+
+    /**
+     * Sets the {@code timestamp} of the {@code Video} that we are building.
+     *
+     * @param timestamp The timestamp to set to.
+     * @return This {@code VideoBuilder}.
+     */
+    public VideoBuilder withTimestamp(String timestamp) {
+        this.timestamp = new VideoTimestamp(timestamp);
         return this;
     }
 
@@ -79,7 +94,7 @@ public class VideoBuilder {
      * @return A {@code Video} object with values set to those of this object.
      */
     public Video build() {
-        return new Video(name, hasWatched, tags);
+        return new Video(name, hasWatched, timestamp, tags);
     }
 
 }

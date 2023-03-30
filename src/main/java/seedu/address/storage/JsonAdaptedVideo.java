@@ -13,6 +13,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.video.Video;
 import seedu.address.model.video.VideoName;
+import seedu.address.model.video.VideoTimestamp;
 
 /**
  * Jackson-friendly version of {@link Video}.
@@ -23,6 +24,7 @@ public class JsonAdaptedVideo {
 
     private final String name;
     private final boolean hasWatched;
+    private final String timestamp;
 
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -36,9 +38,11 @@ public class JsonAdaptedVideo {
     @JsonCreator
     public JsonAdaptedVideo(@JsonProperty("name") String name,
             @JsonProperty("hasWatched") boolean hasWatched,
+            @JsonProperty("timestamp") String timestamp,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.hasWatched = hasWatched;
+        this.timestamp = timestamp;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -52,6 +56,7 @@ public class JsonAdaptedVideo {
     public JsonAdaptedVideo(Video source) {
         name = source.getName().name;
         hasWatched = source.hasWatched();
+        timestamp = source.getTimestamp().toString();
         tagged.addAll(source
                 .getTags()
                 .stream()
@@ -83,6 +88,16 @@ public class JsonAdaptedVideo {
         }
         final VideoName videoName = new VideoName(name);
 
-        return new Video(videoName, hasWatched, videoTags);
+        if (timestamp == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "timestamp"));
+        }
+        try {
+            VideoTimestamp.validateTimestamp(timestamp);
+        } catch (IllegalArgumentException iae) {
+            throw new IllegalValueException(iae.getMessage());
+        }
+        final VideoTimestamp videoTimestamp = new VideoTimestamp(timestamp);
+
+        return new Video(videoName, hasWatched, videoTimestamp, videoTags);
     }
 }
