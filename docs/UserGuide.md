@@ -91,7 +91,9 @@ The UI is split into 4 main parts
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-    * Run `java -version` to display current version of java installed.
+    * If you think that you have Java installed. you can input command `java -version` into the command terminal to display current version of java installed.
+      * If the command is not recognized, you can install Java `11` from this link [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
+      * Any version that is under the Java version `11` will work. (E.G. `11.0.1`, `11.1.5`).
     * Mac Users are encouraged to use to use the Azul build of OpenJDK11 version found
       [here](https://www.azul.com/downloads/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx).
     * Choose the `JDK FX` version and not any other version.
