@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TreeItem?>
@@ -60,33 +59,68 @@
                       <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                           <TreeItem expanded="true" value="User's Methods">
                               <children>
-                                  <TreeItem fx:id="addmethods" value="Add methods">
+                                  <TreeItem fx:id="addcommands" value="Add commands">
                                       <children>
-                                          <TreeItem fx:id="addperson" value="addperson" />
-                                          <TreeItem fx:id="addtask" value="addtask" />
+                                          <TreeItem fx:id="addperson" value="addp" />
+                                          <TreeItem fx:id="addtask" value="addt" />
                                       </children>
                                   </TreeItem>
-                                  <TreeItem fx:id="deletemethods" value="Delete methods">
+                                  <TreeItem fx:id="deletecommands" value="Delete commands">
                                       <children>
-                                          <TreeItem fx:id="deleteperson" value="deleteperson" />
-                                          <TreeItem fx:id="deletetask" value="deletetask" />
+                                          <TreeItem fx:id="deleteperson" value="deletep" />
+                                          <TreeItem fx:id="deletetask" value="deletet" />
                                       </children>
                                   </TreeItem>
-                                  <TreeItem fx:id="listmethods" value="List methods">
+                                  <TreeItem fx:id="editcommands" value="Edit commands">
                                       <children>
-                                          <TreeItem fx:id="listperson" value="listperson" />
-                                          <TreeItem fx:id="listtask" value="listtask" />
+                                          <TreeItem fx:id="editperson" value="editp" />
+                                          <TreeItem fx:id="edittask" value="editt" />
                                       </children>
                                   </TreeItem>
-                                  <TreeItem fx:id="findmethods" value="Find methods">
+                                  <TreeItem fx:id="listcommands" value="List commands">
                                       <children>
-                                          <TreeItem fx:id="findperson" value="findperson" />
-                                          <TreeItem fx:id="findtask" value="findtask" />
+                                          <TreeItem fx:id="listperson" value="listp" />
+                                          <TreeItem fx:id="listtask" value="listt" />
+                                          <TreeItem fx:id="listall" value="listall" />
                                       </children>
                                   </TreeItem>
-                                  <TreeItem fx:id="assignmethods" value="Assign methods">
+                                  <TreeItem fx:id="findcommands" value="Find commands">
+                                      <children>
+                                          <TreeItem fx:id="findperson" value="findp" />
+                                          <TreeItem fx:id="findtask" value="findt" />
+                                      </children>
+                                  </TreeItem>
+                                  <TreeItem fx:id="markcommands" value="Mark commands">
+                                      <children>
+                                          <TreeItem fx:id="mark" value="mark" />
+                                          <TreeItem fx:id="unmark" value="unmark" />
+                                      </children>
+                                  </TreeItem>
+                                  <TreeItem fx:id="assigncommands" value="Assign commands">
                                       <children>
                                           <TreeItem fx:id="assign" value="assign" />
+                                          <TreeItem fx:id="unassign" value="unassign" />
+                                      </children>
+                                  </TreeItem>
+                                  <TreeItem fx:id="filtercommands" value="Filter commands">
+                                      <children>
+                                          <TreeItem fx:id="filterperson" value="filterp" />
+                                      </children>
+                                  </TreeItem>
+                                  <TreeItem fx:id="viewcommands" value="View commands">
+                                      <children>
+                                          <TreeItem fx:id="viewassignedall" value="viewassignedall" />
+                                          <TreeItem fx:id="viewassignedap" value="viewassignedp" />
+                                          <TreeItem fx:id="viewassignedt" value="viewassignedt" />
+                                          <TreeItem fx:id="viewunassignedall" value="viewunassignedall" />
+                                          <TreeItem fx:id="viewunassignedp" value="viewunassignedp" />
+                                          <TreeItem fx:id="viewunassignedt" value="viewunassignedt" />
+                                      </children>
+                                  </TreeItem>
+                                  <TreeItem fx:id="guide" value="Guide commands">
+                                      <children>
+                                          <TreeItem fx:id="help" value="mark" />
+                                          <TreeItem fx:id="quickstart" value="unmark" />
                                       </children>
                                   </TreeItem>
                               </children>
