@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W12-1/tp/branch/master/graph/badge.svg?token=RHIRHCXSMR)](https://codecov.io/gh/AY2223S2-CS2103T-W12-1/tp)
 [![CodeFactor](https://www.codefactor.io/repository/github/ay2223s2-cs2103t-w12-1/tp/badge)](https://www.codefactor.io/repository/github/ay2223s2-cs2103t-w12-1/tp)
 
-![Ui](docs/images/readMe/Ui.png)
+![Ui](docs/images/Ui.png)
 
 ## Introducing FriendlyLink
 
