@@ -6,8 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.Optional;
 
-import seedu.address.logic.commands.MarkAsUnwatchedCommand;
-import seedu.address.logic.commands.MarkCommand;
+import seedu.address.logic.commands.mark.MarkAsUnwatchedCommand;
+import seedu.address.logic.commands.mark.MarkCommand;
+import seedu.address.logic.commands.mark.MarkMultipleAsUnwatchedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.module.ModuleCode;
@@ -16,14 +17,14 @@ import seedu.address.model.video.VideoName;
 /**
  * Parses input arguments and creates a new MarkAsUnwatchedCommand executable object
  */
-public class MarkAsUnwatchedCommandParser implements Parser<MarkAsUnwatchedCommand> {
+public class MarkAsUnwatchedCommandParser implements Parser<MarkCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the MarkAsUnwatchedCommand
      * and returns a MarkAsUnwatchedCommand object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
-    public MarkAsUnwatchedCommand parse(String args) throws ParseException {
+    public MarkCommand parse(String args) throws ParseException {
 
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_LECTURE);
 
@@ -42,9 +43,13 @@ public class MarkAsUnwatchedCommandParser implements Parser<MarkAsUnwatchedComma
             }
             ModuleCode moduleCode = ParserUtil.parseModuleCode(moduleCodeOptional.get());
             LectureName lectureName = ParserUtil.parseLectureName(lectureNameOptional.get());
-            VideoName videoName = ParserUtil.parseVideoName(preamble);
+            VideoName[] videoNames = MultipleEventsParser.parseVideoNames(preamble);
 
-            return new MarkAsUnwatchedCommand(videoName, moduleCode, lectureName);
+            if (videoNames.length == 1) {
+                return new MarkAsUnwatchedCommand(videoNames[0], moduleCode, lectureName);
+            } else {
+                return new MarkMultipleAsUnwatchedCommand(videoNames, moduleCode, lectureName);
+            }
 
         } catch (ParseException pe) {
             throw new ParseException(

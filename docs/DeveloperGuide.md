@@ -281,6 +281,86 @@ The following table below depicts the consideration of inputs  against the user'
 
 ### Mark / UnMARK
 
+The proposed mark command supports:
+1. Marking unmarked videos as watched
+2. Marking marked videos as unwatched
+3. Marking multiple videos in 1. and 2.
+
+      - E.g.: User wishes to mark a video "Vid 1" in lecture "Week 1" of module "CS2040S" as watched.
+         Executing `mark Vid 1 /mod CS2040S /lec Week 1` would allow the user to do so, unless either one of the following conditions are true:
+            1. the module (CS2040S) does not exist in the Tracker
+            2. the lecture (Week 1) does not exist in the module (CS2040S)
+            3. the video (Vid 1) does not exist in the lecture of the module (CS2040S > Week 1)
+            4. the video (CS2040S > Week 1 > Vid 1) has already been marked as watched
+      - E.g.: User wishes to mark multiple videos "Vid 3", "Vid 4" and "Lecture Summary" in lecture "Topic 4" of module "ST2334" as unwatched.
+         Executing `unmark Vid 3, Vid 4, Lecture Summary /mod ST2334 /lec Topic 1` would allow the user to do so, unless either on of the following conditions are true:
+            1. the module (ST2334) doese not exist in the Tracker
+            2. the lecture (Topic 1) does not exist in the module (ST2334)
+            3. either of the videos (Vid 3, Vid 4, Lecture Summary) does not exist in the lecture of the module (ST2334 > Topic 1)
+            4. either of the videos (Vid 3, Vid 4, Lecture Summary) has already been marked as unwatched
+
+This feature's behaviour is dependent on the arguments provided by the user, as well as the state of Le Tracker.
+
+#### Implementation Details
+
+The feature utilises the following classes:
+   - `MarkCommand`: Abstract class extending from `Command` for commands that mark a specified video as watched or unwatched
+   - `MarkAsWatchedCommandParser`: parses arguments appropriately for `MarkAsWatchedCommand` to be returned to be executed
+   - `MarkAsWatchedCommand`: Subclass of `MarkCommand` which handles marking a video as watched. Can handle marking multiple videos as well
+
+   - `MarkAsUnwatchedCommandParser`: parses arguments appropriately for `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` to be returned to be executed
+   - `MarkAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking a video as unwatched
+   - `MarkMultipleAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking multiple videos as unwatched
+
+The following diagram shows the Sequence Diagram of executing a `MarkAsWatchedCommand`:
+
+![MarkAsWatched](diagrams/MarkAsWatchedSequenceDiagram.png)
+
+The following is a description of the code execution flow
+1. `MarkAsWatchedCommandParser#parse(String)` / `MarkAsUnwatchedCommandParser#parse(String` takes the user's input as a `String` argument and determines the target video to be marked. The following table below depicts the command returned against the user's intent
+
+| Parser | Has Multiple Videos | Command |
+| --- | --- | --- |
+| `MarkAsWatchedCommandParser` | -- | `MarkAsWatchedCommand` |
+| `MarkAsUnwatchedCommandParser` | Yes | `MarkAsUnwatchedCommand` |
+| | No | `MarkMultipleAsUnwatchedCommand` |
+| --- | --- | --- |
+
+2. The argument values are then checked on as such:
+      - ModuleCode: valid module code that complies with the module code format
+      - LectureName: valid lecture name that does not containt symbols
+      - VideoName: valid lecture name that does not contain symbols
+
+   Note: LectureName and VideoName should not contain commas (","). Rather than throwing errors, Le Tracker will treat it as though the user intended to delete multiple videos
+
+3. The appropriate `MarkCommand` subclass object is created then returned to its caller
+
+4. Upon execution, the argument values in the `MarkCommand` subclass object are then checked on as such:
+      - ModuleCode: if module with ModuleCode exists in Le Tracker
+      - LectureName: if lecture with LectureName exists in module ModuleCode
+      - VideoName: if video(s) with VideoName exists in lecture LectureName of module ModuleCode and whether the video(s) is/are marked or unmarked (differs according to whether `mark` or `unmark` is called)
+
+5. If no exceptions are thrown, Le Tracker has successfully managed to mark/unmark the specified video(s)
+
+#### Reasons for such implementation:
+
+   1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification
+   2. Having abstract classes to group mark commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as success message formats in every class
+
+#### Alternatives considered:
+   1. Combine all featured classes into one large single class
+      Pros:
+      - all file content in one single place
+      - easily adheres to DRY since there would be no need to repeat information across multiple files
+      Cons:
+      - violates Open-Close Principle
+      - creates a large file that needs to be edited. Hard to search through
+
+#### Possible further implementation
+   - Collate `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` into one class, similar to `MarkAsWatchedCommand`
+
+
+
 ### Find command feature
 
 The proposed find command supports:

@@ -333,18 +333,28 @@ Examples:
 
 - `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /watch /tags Intro, Short`
 
-### Mark or Unmark a Video
+### Mark or Unmark Video(s)
 
-> Marks/Unmarks a video as watched/unwatched in a lecture of its specified module
+> Marks/Unmarks a video as watched/unwatched in a lecture of its specified module.
 
-Format: `mark /module {module_name} /lecture {lecture_index} /video {video_name}`
+Format:
+- `mark {video_name} /mod {module_name} /lec {lecture_index}`
+- `unmark {video_name} /mod {module_name} /lec {lecture_index}`
 
-Format: `unmark /module {module_name} /lecture {lecture_index} /video {video_name}`
+Parameters:
+- `mark` marks `{video_name}` as watched
+- `unmark` marks `{video_name}` as unwatched
+- `{video_name}` can be names of multiple videos, separated by commas (",")
+- if `{video_name}` contains repeated names, the repeats will be ignored
+
+Note: Calling mark or unmark would only prompt an error for already marked or unmarked videos if calling on a single video, not when calling on multiple videos in one command
 
 Examples:
 
-- `mark /module CS2040 /lecture 1 /video lecture_01-part-1`
-- `unmark /module CS2040 /lecture 1 /video lecture_01-part-1`
+- `mark Vid 1 /mod CS2040 /lec Week 1`
+- `mark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
+- `unmark Vid 2 /mod CS2040 /lec Week 1`
+- `unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
 
 ### Delete Module
 
