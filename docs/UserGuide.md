@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-FAid is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAid can get your contact management tasks done faster than traditional GUI apps.
+FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, FAid can get your client and meeting management tasks done faster than traditional GUI apps, so you won't ever worry about missing a meeting or forgetting about a client!
 
 * Table of Contents
 {:toc}
@@ -12,7 +13,16 @@ FAid is a **desktop app for managing contacts, optimized for use via a Command L
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your operating system.
+
+1. To check if you have Java `11` installed and configured correctly, open a command terminal and type in the command: `java --version`. <br>
+   If java is installed successfully, your output should be similar to the following (Note that it may look slightly different depending on your exact version and operating system): <br>
+   `openjdk 11.0.17 2022-10-18 LTS` <br>
+   `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
+   `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
+   Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
+   `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
+   If you see an error message like this even after installing Java `11`, consider restarting your computer or reinstalling Java.
 
 1. Download the latest `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
 
@@ -202,22 +212,22 @@ Notes:
 * Edits the meetings of person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-### Find meeting : `meeting find`
+### Find meeting : `meetingFind`
 
 Gets meetings from the address book
 
-Format: `meeting find DATE [PERSON_INDEX]`
+Format: `meetingFind DATE [PERSON_INDEX]`
 
 Required Information:
 * Date (dd/mm/yyyy)
 * Index of a person already in address book
 
 Examples:
-* `meeting find 12/02/2023` Lists out all meetings that start on 12/02/2023
-* `meeting find 12/02/2023 5` Lists out all meetings that start on 12/02/2023 with the fifth person in the address book
+* `meetingFind 12/02/2023` Lists out all meetings that start on 12/02/2023
+* `meetingFind 12/02/2023 5` Lists out all meetings that start on 12/02/2023 with the fifth person in the address book
 
 
-### List meeting : `meeting list`
+### List meeting : `meetingList`
 
 Lists all meetings scheduled for the day from address book
 
@@ -230,7 +240,7 @@ Required information:
 * Region specified should be a valid region
 
 Examples:
-* `find Central` Finds people from Central region in the address book
+* `listRegion Central` lists all people from the Central region in the address book
 
 ### Find people by policy name : `findPolicy`
 
@@ -296,6 +306,6 @@ _Details coming soon ..._
 | **Help**               | `help`                                                                                                                                                                |
 | **Add Meeting**        | `meetingAdd PERSON_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`                                                                                              |
 | **Remove Meeting**     | `meetingRemove PERSON_INDEX MEETING_INDEX`                                                                                                                            |
-| **Find Meeting**       | ` meeting find DATE [PERSON_INDEX]`                                                                                                                                   |
-| **List all meetings**  | `meeting list`                                                                                                                                                        |
-| **List all in Region** | `region find REGION [PERSON_INDEX]`                                                                                                                                   |
+| **Find Meeting**       | ` meetingFind DATE [PERSON_INDEX]`                                                                                                                                   |
+| **List all meetings**  | `meetingList`                                                                                                                                                        |
+| **List all in Region** | `listRegion REGION`                                                                                                                                   |
