@@ -2,6 +2,9 @@ package mycelium.mycelium.logic.uievent;
 
 import javafx.event.EventHandler;
 import javafx.event.EventType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import mycelium.mycelium.logic.Logic;
 import mycelium.mycelium.logic.uievent.key.ClearKey;
@@ -14,7 +17,6 @@ import mycelium.mycelium.logic.uievent.key.QuitKey;
 import mycelium.mycelium.logic.uievent.key.StartOfLineKey;
 import mycelium.mycelium.logic.uievent.key.SwitchPanelKey;
 import mycelium.mycelium.logic.uievent.key.SwitchTabKey;
-import mycelium.mycelium.logic.uievent.key.TabKey;
 import mycelium.mycelium.ui.MainWindow;
 
 /**
@@ -22,6 +24,16 @@ import mycelium.mycelium.ui.MainWindow;
  */
 public class UiEventManager implements UiEvent {
     public static final EventType<KeyEvent> TYPE = KeyEvent.KEY_PRESSED;
+    private static final KeyCombination[] IGNORED_KEYS = {
+        new KeyCodeCombination(
+            KeyCode.TAB,
+            KeyCombination.CONTROL_ANY,
+            KeyCombination.SHIFT_ANY,
+            KeyCombination.ALT_ANY,
+            KeyCombination.META_ANY,
+            KeyCombination.SHORTCUT_ANY)
+    };
+
     private Logic logic;
     private MainWindow mainWindow;
 
@@ -36,12 +48,31 @@ public class UiEventManager implements UiEvent {
     }
 
     /**
+     * Check if the key event should be ignored.
+     * This performs and early exit of the event handler,
+     * to guard against problematic key combinations.
+     *
+     * @param event the key event
+     * @return whether the key event should be ignored
+     */
+    public boolean isIgnored(KeyEvent event) {
+        for (KeyCombination ignoredKey : IGNORED_KEYS) {
+            if (ignoredKey.match(event)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Catch and execute the key event if it matches any of the key combinations.
      *
      * @param event the key event
      */
     public void catchAndExecute(KeyEvent event) {
-        if (HelpKey.KEY_COMBINATION.match(event)) {
+        if (isIgnored(event)) {
+
+        } else if (HelpKey.KEY_COMBINATION.match(event)) {
             new HelpKey().execute(logic, mainWindow);
         } else if (FindKey.KEY_COMBINATION.match(event)) {
             new FindKey().execute(logic, mainWindow);
@@ -55,8 +86,6 @@ public class UiEventManager implements UiEvent {
             new PrevItemKey().execute(logic, mainWindow);
         } else if (ClearKey.KEY_COMBINATION.match(event)) {
             new ClearKey().execute(logic, mainWindow);
-        } else if (TabKey.KEY_COMBINATION.match(event)) {
-            new TabKey().execute(logic, mainWindow);
         } else if (StartOfLineKey.KEY_COMBINATION.match(event)) {
             new StartOfLineKey().execute(logic, mainWindow);
         } else if (EndOfLineKey.KEY_COMBINATION.match(event)) {

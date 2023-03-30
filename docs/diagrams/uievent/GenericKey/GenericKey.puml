@@ -1,5 +1,5 @@
 @startuml
-!define sdName event action
+!define sdName handle event
 !define typeName Key
 !define keyName key
 !define refName execute event action
