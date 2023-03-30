@@ -4,10 +4,10 @@ title: User Guide
 
 ---
 
-:mushroom:Mycelium is a desktop application aimed at helping **freelance web developers
+Mycelium is a desktop application aimed at helping **freelance web developers
 manage clients and projects** from multiple online sources like [Upstack](https://upstackhq.com/),
 [Fiverr](fiverr.com), and [Toptal](https://www.toptal.com/). All interactions
-with :mushroom:Mycelium are done through text commands or HotKeys, enabling one to efficiently
+with Mycelium are done through text commands or HotKeys, enabling one to efficiently
 manipulate data while availing oneself to the convenience of viewing, offered by the
 Graphical User Interface (GUI). You can expect to navigate its interface seamlessly and 
 access its functions with a mere keystroke or two.
@@ -49,7 +49,7 @@ The following typographical conventions are used in this guide.
 
 ## Quick Start
 
-:mushroom:Mycelium runs on Java 11, so you should first head over to [Oracle's
+Mycelium runs on Java 11, so you should first head over to [Oracle's
 website](https://www.oracle.com/java/technologies/downloads/) to install Java
 11 if your system does not already have it installed. Alternatively, you might
 be able to install Java 11 from your preferred package manager, such as
@@ -57,7 +57,7 @@ be able to install Java 11 from your preferred package manager, such as
 [Pacman](https://archlinux.org/packages/extra/x86_64/jdk11-openjdk/) for Arch
 Linux.
 
-Once you have Java 11, we can get started with our first steps using :mushroom:Mycelium.
+Once you have Java 11, we can get started with our first steps using Mycelium.
 
 1. Download the latest release from our [releases
    page](https://github.com/AY2223S2-CS2103T-W14-1/tp/releases)
@@ -69,7 +69,7 @@ java -jar mycelium.jar
 ```
 
 If you see a window like the one shown below, then you have successfully
-installed and launched :mushroom:Mycelium! Notice that some mock data has been populated
+installed and launched Mycelium! Notice that some mock data has been populated
 to help you get a feel for the application. Feel free to delete them later.
 
 <img src="images/OnStartupScreenshot.png" />
@@ -77,8 +77,8 @@ to help you get a feel for the application. Feel free to delete them later.
 You may resize the window to your liking. At this point, we recommend that you
 jump over to the [UI Overview](#ui-overview) or [Command
 Summary](#command-summary) sections to get an overview of the commands which
-are the bread and butter of :mushroom:Mycelium. Alternatively, you may continue reading
-the guide for a guided tour of how :mushroom:Mycelium is intended to be used.
+are the bread and butter of Mycelium. Alternatively, you may continue reading
+the guide for a guided tour of how Mycelium is intended to be used.
 
 ## Glossary
 | Term| Definition |
@@ -92,7 +92,7 @@ the guide for a guided tour of how :mushroom:Mycelium is intended to be used.
 
 ## UI Overview
 
-This screenshot below highlights the four main components in :mushroom:Mycelium's window.
+This screenshot below highlights the four main components in Mycelium's window.
 
 <img src="images/UiOverview.png" />
 
@@ -145,9 +145,9 @@ The bottom portion shows a pie chart that displays the relative proportions of p
 
 ## Command Layout
 
-Commands in :mushroom:Mycelium take the general form of `command_name [arguments...]`.
+Commands in Mycelium take the general form of `command_name [arguments...]`.
 Arguments may be compulsory or optional. If you do not provide the optional
-arguments, :mushroom:Mycelium will use sensible defaults in their place.
+arguments, Mycelium will use sensible defaults in their place.
 
 All arguments take the structure of `-arg_flag arg_data`; the argument flag is
 always followed by a space. Some commands may also take multiple arguments, in
@@ -166,14 +166,14 @@ p -pn Mycelium Desktop -e spiderman@gmail.com -src fiverr.com
 ```
 
 <div markdown="span" class="alert alert-success">
-:bulb: You will also discover that all command names in :mushroom:Mycelium are at most
+:bulb: You will also discover that all command names in Mycelium are at most
 two characters long. This terseness is *intentional* to allow for faster
 keystrokes. Also note that all commands and argument flags are case sensitive.
 </div>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **A note on dates:** some arguments are in the form of
-dates. For these, :mushroom:Mycelium only accepts input of the format dd/MM/yyyy. For
+dates. For these, Mycelium only accepts input of the format dd/MM/yyyy. For
 example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
 
 The range of valid years is from -9999 to 9999.
@@ -196,7 +196,7 @@ overrides *Mycelium*. So we end up with a project named *Desktop*.
 
 ## Managing Clients
 
-This user guide section outlines how to _create_, _update_, and _delete_ client contacts using command line arguments in :mushroom:Mycelium.
+This user guide section outlines how to _create_, _update_, and _delete_ client contacts using command line arguments in Mycelium.
 
 <div markdown="span" class="alert alert-success">
 :bulb: After executing a command listed in this section, if you are currently
@@ -214,7 +214,7 @@ Once successfully created, the interface will display the new client's name and 
 - `-cn client_name`
     - The client’s name.
 - `-e email`
-    - The client’s email. Must be unique in :mushroom:Mycelium. Case sensitive.
+    - The client’s email. Must be unique in Mycelium. Case sensitive.
 
 **Optional Arguments**
 
@@ -242,9 +242,9 @@ You should see the following output if the client is created successfully.
 New client added: Alice Baker (alice_baker@bakers.com)
 ```
 <div markdown="span" class="alert alert-info">
-:information_source: **A note on names:** :mushroom:Mycelium supports names with *s/o*
+:information_source: **A note on names:** Mycelium supports names with *s/o*
 and *d/o* in them. For example, *Alice Baker s/o Bob Baker* is a valid name.
-In fact, *X Æ A-12* is also a valid name in :mushroom:Mycelium.
+In fact, *X Æ A-12* is also a valid name in Mycelium.
 </div>
 
 ### Deleting a client contact: `dc`
@@ -269,7 +269,7 @@ Deleted Client: Alice Baker (alice_baker@bakers.com)
 
 <div markdown="span" class="alert alert-info">
 :information_source: An error message will be shown with an attempt to create a
-client with an existing email in :mushroom:Mycelium.
+client with an existing email in Mycelium.
 </div>
 
 ### Updating a client: `uc`
@@ -290,7 +290,7 @@ At least one of the following arguments must be provided:
   - The client’s new name.
   - **Default:** *null*
 - `-e2 new email`
-  - The client's new email. Must be unique in :mushroom:Mycelium. Case sensitive.
+  - The client's new email. Must be unique in Mycelium. Case sensitive.
   - **Default:** *null*
 - `-y year_of_birth`
   - The client’s new year of birth.
@@ -336,7 +336,7 @@ If the project is added successfully, a message confirming the addition will be 
     * The project’s name, which must be *unique*. Case sensitive.
 * `-e client_email`
     * The email of the client who submitted this project. Note that this client
-      does not need to exist in :mushroom:Mycelium.
+      does not need to exist in Mycelium.
 
 **Optional Arguments**
 
@@ -382,12 +382,12 @@ New project added: Mycelium Desktop from client spiderman@gmail.com
 
 <div markdown="span" class="alert alert-info">
 :information_source: The client specified by the `-e` argument does not need to
-exist in :mushroom:Mycelium. You can add them later if you wish.
+exist in Mycelium. You can add them later if you wish.
 </div>
 
 <div markdown="span" class="alert alert-info">
 :information_source: If you attempt to create a project with a name which already exists
-in :mushroom:Mycelium, an error will be displayed to block the operation.
+in Mycelium, an error will be displayed to block the operation.
 </div>
 
 ### Deleting a project: `dp`
@@ -417,11 +417,11 @@ Deleted Project: Mycelium Desktop from client spiderman@gmail.com
 
 <div markdown="span" class="alert alert-info">
 :information_source: If you attempt to delete a project which does not exist in
-:mushroom:Mycelium, an error will be displayed and no changes will be made to your data.
+Mycelium, an error will be displayed and no changes will be made to your data.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-:warning: Deletion is irreversible. :mushroom:Mycelium does not provide a mechanism to
+:warning: Deletion is irreversible. Mycelium does not provide a mechanism to
 undo deletions.
 </div>
 
@@ -498,13 +498,13 @@ blocked.
 </div>
 
 <div markdown="span" class="alert alert-info">
-:information_source: The target project should already exist in :mushroom:Mycelium.
+:information_source: The target project should already exist in Mycelium.
 Otherwise, an error will be displayed and no changes are made to the data.
 </div>
 
 <div markdown="span" class="alert alert-danger">
 :warning: It is not possible to "unset" an optional field. For example,
-:mushroom:Mycelium allows projects to have deadlines. Suppose that you have a project,
+Mycelium allows projects to have deadlines. Suppose that you have a project,
 which currently has a deadline. Then it is not possible to use the `up` command
 to unset the deadline.
 </div>
@@ -516,7 +516,7 @@ some query, rather than *exactly*. This is useful if you are, for instance,
 trying to find a project whose name you only remember partial bits of, or how
 it sounds in your head.
 
-:mushroom:Mycelium supports fuzzy finding for both projects and clients. For projects,
+Mycelium supports fuzzy finding for both projects and clients. For projects,
 the query is matched against the project's name, while for clients, the query
 is matched against the client's email. Furthermore, the search is
 *interactive*. This means that the UI automatically updates as you type your
@@ -540,12 +540,12 @@ project or client will be listed (although possibly ranked very low).
 ### Fuzzy searching projects
 
 We will now demonstrate fuzzy searching through an example. Let us assume we
-have the following projects in :mushroom:Mycelium:
+have the following projects in Mycelium:
 
 <img src="images/FuzzyDemoInitial.png" />
 
 <div markdown="span" class="alert alert-info">
-:information_source: Recall that :mushroom:Mycelium supports fuzzy search for projects by
+:information_source: Recall that Mycelium supports fuzzy search for projects by
 their *names* only!
 </div>
 
@@ -583,7 +583,7 @@ emails, and not their names.
 
 ### Fuzzy search Gotchas
 
-In general, fuzzy search in :mushroom:Mycelium should feel familiar to most developers,
+In general, fuzzy search in Mycelium should feel familiar to most developers,
 since it is similar to, for example, finding files in IDEs, or the well known
 [fzf](https://github.com/junegunn/fzf) tool. However, here are a few things you
 might wish to note:
@@ -598,7 +598,7 @@ might wish to note:
 
 ## HotKeys
 
-HotKeys are keyboard shortcuts supported by :mushroom:Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported HotKeys:
+HotKeys are keyboard shortcuts supported by Mycelium to enable faster navigation and editing of commands with the keyboard. This allows for Mycelium to be fully keyboard driven. The following are the supported HotKeys:
 
 ### (F1) Help
 
@@ -606,7 +606,7 @@ This shortcut allows you to quickly access the help page.
 
 ### (CTRL+Q) Quit
 
-This shortcut allows you to quickly quit :mushroom:Mycelium.
+This shortcut allows you to quickly quit Mycelium.
 
 ### (CTRL+W) Start of Line
 
@@ -681,7 +681,7 @@ no searching can be done while in **command mode**.
 
 # Command summary
 
-The table below summarizes the layout of all the commands in :mushroom:Mycelium. You may
+The table below summarizes the layout of all the commands in Mycelium. You may
 read the statement `q -a foo [-b bar]` like so:
 
 * `q` is the command,
