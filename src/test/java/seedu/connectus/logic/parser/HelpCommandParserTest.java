@@ -5,6 +5,7 @@ import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_COMMAND_DES
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADD;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADD_T;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_CLEAR;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_CLEAR_WITH_WHITESPACE;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_DELETE;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_DELETE_T;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_EDIT;
@@ -14,7 +15,6 @@ import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_LIST;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_SEARCH;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_WHITESPACE;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_CLEAR_WITH_WHITESPACE;
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.connectus.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.connectus.testutil.Assert.assertThrows;

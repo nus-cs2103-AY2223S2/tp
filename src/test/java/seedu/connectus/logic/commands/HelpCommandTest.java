@@ -2,7 +2,6 @@ package seedu.connectus.logic.commands;
 
 import static seedu.connectus.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.connectus.logic.commands.HelpCommand.SHOWING_HELP_WINDOW;
-import static seedu.connectus.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
