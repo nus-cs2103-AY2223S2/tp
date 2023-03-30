@@ -127,6 +127,12 @@ Do refer to [Features](#features) below for a comprehensive list of supported fe
 
 <p style="text-align: center;">Figure 3: Explanation of the different parts of InternBuddy's GUI</p>
 
+<div markdown="span" class="alert alert-primary">
+
+:information_source: You can click on any entry in the List Panel to display more information about it.
+Note that commands in InternBuddy do not update the selection in the List Panel, where you have to manually
+click on it to change your selection.
+</div>
 
 <div markdown="span" class="alert alert-success">
 
@@ -346,6 +352,8 @@ than the maximum index shown in the [List Panel](#exploring-the-graphical-user-i
 
 <br/>
 
+
+
 ### Copying an Internship to Clipboard : `copy`
 Want to copy the content of a specific internship to somewhere else? You can do so using the `copy` command.
 
@@ -500,6 +508,33 @@ the hyperlink does not work, you can click on the <Button>Copy URL</Button> butt
 Done with tracking your internships for the day? Exit InternBuddy using the `exit` command.
 
 Format: `exit`
+
+### Navigating through Past Commands
+
+You can easily navigate through your past commands without having to manually type them in again.
+To do so, follow the steps below:
+1. Left-click onto the [Input Box](#exploring-the-graphical-user-interface).
+2. Press  <button>&uarr;</button> to restore a previous command. Press <button>&darr;</button> to move
+   forward one command. Diagram XX illustrates how this works.
+
+![Navigate Command](images/ug-navigate-commands.png)
+
+ <p style="text-align: center;">Figure XX: Navigate Through Past Commands</p>
+
+<br/>
+
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: InternBuddy only remembers the commands that you entered for the current run of
+InternBuddy. In other words, when you restart InternBuddy, InternBuddy will no longer remember the commands
+entered previously. Also, once the first entered command is reached, pressing <button>&uarr;</button> will
+not have any effect.
+</div>
+
+
+
+
 
 ### Saving your Internship Data
 
