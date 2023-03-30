@@ -219,5 +219,9 @@ public interface Model {
 
     void updateObservableMeetUpList();
 
+    Optional<MeetUp> getMeetUpByIndex(MeetUpIndex meetUpIndex);
+
+    void deleteMeetUp(MeetUpIndex meetUpIndex);
+
     void setParticipants(Set<ContactIndex> indices);
 }
