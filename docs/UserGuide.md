@@ -158,6 +158,7 @@ A contact can have any number of languages/tags (including 0).
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/johndoe l/Python`
+<br/><br/>
   ![result for `add n/John Doe ...`](images/addJohnDoeResult.png)
   <p align="center">
   <i>Result of the <code>add n/John Doe ...</code> command</i>
@@ -205,6 +206,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPRO
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
+<br/><br/>
    ![result for `edit 1 ...`](images/edit1Result.png)
    <p align="center">
    <i>Result of the <code>edit 1 ...</code> command</i>
@@ -241,6 +243,7 @@ Format: `find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GITHUBPROFILE] 
 
 Example:
 * `find n/alex david` returns `Alex Yeoh`, `David Li`.
+<br/><br/>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
   <p align="center">
   <i>Result of the <code>find n/alex david</code> command</i>
@@ -278,6 +281,7 @@ Format: `remove INDEX [p/[PHONE]] [p/[GITHUBPROFILE]] [e/[EMAIL]] [a/[ADDRESS]] 
 
 Examples: 
 * `remove 1 p/ l/Java` Removes the phone number and `Java` from the languages from the first contact in the list.
+<br/><br/>
   ![remove.png](images/remove.png)
   <p align="center">
   <i>Result of the <code>remove 1 p/ l/Java</code> command</i>
@@ -314,6 +318,7 @@ Format: `sort [CATEGORY]`
 
 Examples: 
 * `sort` Sort contacts by **Name**.
+<br/><br/>
 ![result for `sort`](images/SortByName.png)
   <p align="center">
   <i>Result of the <code>sort</code> command</i>
@@ -322,6 +327,7 @@ Examples:
 
 
 * `sort address` Sort the contacts by **Address**.
+<br/><br/>
 ![result for `sort address`](images/SortByAddress.png)
   <p align="center">
   <i>Result of the <code>sort address</code> command</i>
@@ -368,7 +374,8 @@ Format: `addpj n/PROJECT_NAME h/REPO_HOST r/REPO_NAME d/DEADLINE [m/MEETING]`
 * A project is considered to be the same if it has the same project name (case-insensitive).
 
 Examples:
-* `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`<br>
+* `addpj n/test proj h/t-proj r/test_proj d/ 30/03/22-2045`
+<br/><br/>
   ![result for `addpj`](images/addpjResult.png)
     <p align="center">
   <i>Result of the <code>addpj n/test ...</code> command</i>
@@ -391,6 +398,7 @@ Format: `editpj INDEX [n/NAME] [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/meeti
 
 Examples:
 * `editpj 1 n/Project Alpha d/02/01/23-2359`Edits the project name and deadline of the first project to be `Project Alpha` and `02/01/2023-2359` respectively.
+<br/><br/>
 ![result for `editpj`](images/editpj.png)
   <p align="center">
   <i>Result of the <code>editpj 1 ...</code> command</i>
@@ -427,6 +435,7 @@ Format: `removepj INDEX [h/REPO HOST] [r/REPO NAME] [d/DEADLINE] [m/MEETING]`
 
 Examples: 
 * `removepj 1 r/` Removes repository name from first project in the project list.
+<br/><br/>
   ![result for `removepj`](images/removepj.png)
   <p align="center">
   <i>Result of the <code>removepj 1 r/</code> command</i>
@@ -434,10 +443,11 @@ Examples:
   </p>
 
 
-* `removepj 1 d/02/01/23-2359 m/` Removes deadline `02/01/23-2359` and meeting from first project in the project list.
+* `removepj 1 d/01/01/23-2359 m/` Removes deadline `01/01/23-2359` and meeting from first project in the project list.
+  <br/><br/>
   ![result for `removepj2`](images/removepj2.png)
   <p align="center">
-  <i>Result of the <code>removpj 1 d/-2/-1/23-2359 m/</code> command</i>
+  <i>Result of the <code>removpj 1 d/01/01/23-2359 m/</code> command</i>
   <br>
   </p>
 
@@ -462,13 +472,16 @@ Format: `sortpj [CATEGORY]`
 
 Examples:
 * `sortpj deadline` Sort the project list by **Deadline**.
+<br/><br/>
   ![result for `sortpj deadline`](images/SortpjByDeadline.png)
   <p align="center">
   <i>Result of the <code>sortpj deadline</code> command</i>
   <br>
   </p>
 
+
 * `sortpj name` Sort the project list by **Project Name**.
+<br/><br/>
   ![result for `sortpj deadline`](images/SortpjByName.png)
   <p align="center">
   <i>Result of the <code>sortpj name</code> command</i>
@@ -486,7 +499,7 @@ Format: `assign CONTACT_INDEX PROJECT_INDEX`
 * `PROJECT_INDEX` refers to the index number shown in the displayed project list.
 
 Examples:
-* Before Assigning:
+* Before Assigning:<br/><br/>
   ![result for before assigned](images/AssignBefore.png)
   <p align="center">
   <i>Before the <code>assign 1 1</code> command</i>
@@ -494,7 +507,7 @@ Examples:
   </p>
 
 
-* After Assigning:
+* After Assigning:<br/><br/>
   ![result for after assigned](images/AssignAfter.png)
   <p align="center">
   <i>After the <code>assign 1 1</code> command</i>
@@ -516,7 +529,7 @@ Format: `unassign INDEX n/NAME`
 * `NAME` must match in full.
 
 Examples:
-* Before Unassigning
+* Before Unassigning:<br/><br/>
   ![result for before unassigned](images/UnassignBefore.png)
   <p align="center">
   <i>Before the <code>unassign 1 n/Alex Yeoh</code> command</i>
@@ -524,7 +537,7 @@ Examples:
   </p>
 
 
-* After Unassigning
+* After Unassigning:<br/><br/>
   ![result for after unassigned](images/UnassignAfter.png)
   <p align="center">
   <i>After the <code>unassign 1 n/Alex Yeoh</code> command</i>
