@@ -16,6 +16,7 @@ improving the efficiency of grocery shopping.
     * [Add a food](#adding-a-food-add)
     * [Listing all food items](#listing-all-food-items--list)
     * [Edit a food](#edit-a-food-edit)
+    * [Find a food](#find-a-food-find)
     * [Increase the quantity of a food](#increasing-the-quantity-of-a-food-inc)
     * [Decrease the quantity of a food](#decreasing-the-quantity-of-a-food-dec)
     * [Delete a food](#delete-a-food-delete)
@@ -104,7 +105,7 @@ To see what the command format means, you can refer to the [Features](#features)
 ## Food-related Commands
 
 ### Add a food: `add`
-Add a new food into your fridge. (This is the command when you tried out your first command!)
+Add a new food into WIFE. (This is the command when you tried out your first command!)
 
 Format: `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]...`
 
@@ -114,7 +115,7 @@ Example:
 
 `add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` returns
 ```markdown
-New foood added: Coca Cola (expires on: 01-01-2099)
+New food added: Coca Cola (expires on: 01-01-2099)
 ```
 
 ![AddFood](images/UG/AddFood.png)
@@ -134,7 +135,7 @@ Example:
 
 ### Edit a food: `edit`
 
-Edit food items in your fridge.
+Edit food items in WIFE.
 
 Format: `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]...`
 
@@ -145,7 +146,18 @@ Example: <br/>
 ```markdown
 Edited food item: Cauliflower (expires on: 03-04-2033)
 ```
-![EditFood](images/UG/EditFood.png)
+
+### Find a food: `find`
+
+Find food items in WIFE.
+
+Format: `find KEYWORD`
+
+Example: <br/>
+`find Broccoli` returns
+```markdown
+1 food item(s) found!
+```
 
 ### Increasing the quantity of a food: `inc`
 
@@ -329,28 +341,26 @@ Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view genera
 ##### List of COMMAND_NAME
 - Food Commands:
   * add
-  * delete
-  * delbytag
+  * list
   * edit
+  * find
   * inc
   * dec
-  * find
-  * list
-  * listbytag
-  * view
+  * delete
 
 - Tag Commands:
+  * createtag
   * tag
   * untag
-  * createtag
-  * deltag
   * listtag
+  * listbytag
+  * delbytag
+  * deltag
 
 - General Commands:
+  * help
   * clear
   * exit
-  * help
-
 
 Example 1:
 `help` displays a general help message
@@ -414,32 +424,32 @@ There is no support for mobile devices yet.
 
 ### Food Commands
 | Feature  | Action                                | Command Format                                                         | Example                                                           |
-|----------|---------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
-| Add      | Adds a food item to the food list     | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]... `               | `add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` |
-| List     | Lists all food items                  | `list`                                                                 | `list`                                                            |
-| Find     | Finds a food item                     | `find n/NAME`                                                          | `find Broccoli`                                                   |
-| Edit     | Edits a food item                     | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]...` | `edit 1 n/Cauliflower q/20`                                       |
+|:--------:|:--------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
+|   Add    | Adds a food item to the food list     | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]... `               | `add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` |
+|   List   | Lists all food items                  | `list`                                                                 | `list`                                                            |
+|   Find   | Finds a food item                     | `find KEYWORD`                                                         | `find Broccoli`                                                   |
+|   Edit   | Edits a food item                     | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]...` | `edit 1 n/Cauliflower q/20`                                       |
 | Increase | Increases the quantity of a food item | `inc INDEX [q/QUANTITY]`                                               | `inc 1 q/100`                                                     |
 | Decrease | Decreases the quantity of a food item | `dec INDEX [q/QUANTITY]`                                               | `dec 1 q/100`                                                     |
-| Delete   | Deletes a food item                   | `delete INDEX`                                                         | `del 3`                                                           |
+|  Delete  | Deletes a food item                   | `delete INDEX`                                                         | `del 3`                                                           |
 
 ### Tag Commands
-| Feature        | Action                                                                              | Command Format                         | Example                            |
-|----------------|-------------------------------------------------------------------------------------|----------------------------------------|------------------------------------|
-| Create Tag     | Creates a new pre-defined tag in WIFE                                               | `createtag n/TAG NAME [n/TAG NAME]...` | `createtag n/Dairy`                |
-| Tag            | Tags a food item with a pre-defined tag <br/>                                       | `tag INDEX n/TAG NAME`                 | `tag 3 n/Fresh`                    |
-| Untag          | Remove a tag from a food item                                                       | `untag INDEX n/TAG NAME`               | `untag 3 n/Fresh`                  |  
-| List tags      | List all the tags created                                                           | `listtag`                              | `listbytag n/Vegetables n/Healthy` |
-| Delete by tags | Delete food items by their tags                                                     | `delbytag n/TAG NAME [n/TAG NAME]...`  | `delbytag n/Healthy n/Dairy`       |
-| Delete tags    | Delete specified tags. Removes tag from food items that originally contain that tag | `deltag n/TAG NAME [n/TAG NAME]...`    | `deltag n/Healthy n/Dairy`         |
+|    Feature     | Action                                        | Command Format                         | Example                            |
+|:--------------:|-----------------------------------------------|----------------------------------------|------------------------------------|
+|   Create Tag   | Creates a new pre-defined tag in WIFE         | `createtag n/TAG NAME [n/TAG NAME]...` | `createtag n/Dairy`                |
+|      Tag       | Tags a food item with a pre-defined tag <br/> | `tag INDEX n/TAG NAME`                 | `tag 3 n/Fresh`                    |
+|     Untag      | Remove a tag from a food item                 | `untag INDEX n/TAG NAME`               | `untag 3 n/Fresh`                  |  
+|   List tags    | List all the tags created                     | `listtag`                              | `listbytag n/Vegetables n/Healthy` |
+| Delete by tags | Delete food items by their tags               | `delbytag n/TAG NAME [n/TAG NAME]...`  | `delbytag n/Healthy n/Dairy`       |
+|  Delete tags   | Delete specified tags.                        | `deltag n/TAG NAME [n/TAG NAME]...`    | `deltag n/Healthy n/Dairy`         |
 
 
 ### General Commands
 | Feature | Action                                                | Command Format | Example    |
-|---------|-------------------------------------------------------|----------------|------------|
-| Help    | Shows a help message                                  | `help`         | `help add` |
-| Clear   | Resets all food items <br/>(**Destructive command!**) | `clear`        | `clear`    |
-| Exit    | Exits WIFE                                            | `exit`         | `exit`     |
+|:-------:|-------------------------------------------------------|----------------|------------|
+|  Help   | Shows a help message                                  | `help`         | `help add` |
+|  Clear  | Resets all food items <br/>(**Destructive command!**) | `clear`        | `clear`    |
+|  Exit   | Exits WIFE                                            | `exit`         | `exit`     |
 
 
 --------------------------------------------------------------------------------------------------------------------

@@ -1,8 +1,8 @@
 package seedu.wife.logic.commands.foodcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.wife.commons.core.Messages.MESSAGE_FOODS_LISTED_OVERVIEW;
 
-import seedu.wife.commons.core.Messages;
 import seedu.wife.logic.commands.Command;
 import seedu.wife.logic.commands.CommandResult;
 import seedu.wife.model.Model;
@@ -32,7 +32,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredFoodList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredFoodList().size()));
+                String.format(MESSAGE_FOODS_LISTED_OVERVIEW, model.getFilteredFoodList().size()));
     }
 
     @Override
