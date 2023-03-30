@@ -18,6 +18,7 @@ import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
+import seedu.patientist.model.person.patient.PatientToDo;
 import seedu.patientist.model.tag.Tag;
 
 /**
@@ -33,6 +34,7 @@ class JsonAdaptedPatient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedStatus> details = new ArrayList<>();
+    private final List<JsonAdaptedToDo> toDos = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -43,6 +45,7 @@ class JsonAdaptedPatient {
                               @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                               @JsonProperty("address") String address,
                               @JsonProperty("status") List<JsonAdaptedStatus> details,
+                              @JsonProperty("todo") List<JsonAdaptedToDo> toDos,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.id = id;
@@ -51,6 +54,9 @@ class JsonAdaptedPatient {
         this.address = address;
         if (details != null) {
             this.details.addAll(details);
+        }
+        if (toDos != null) {
+            this.toDos.addAll(toDos);
         }
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -69,6 +75,9 @@ class JsonAdaptedPatient {
         address = patient.getAddress().value;
         details.addAll(((Patient) source).getPatientStatusDetails().stream()
                 .map(JsonAdaptedStatus::new)
+                .collect(Collectors.toList()));
+        toDos.addAll(((Patient) source).getPatientToDoList().stream()
+                .map(JsonAdaptedToDo::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -89,7 +98,10 @@ class JsonAdaptedPatient {
         for (JsonAdaptedStatus detail : details) {
             personDetails.add(detail.toModelType());
         }
-
+        final List<PatientToDo> personToDos = new ArrayList<>();
+        for (JsonAdaptedToDo toDo : toDos) {
+            personToDos.add(toDo.toModelType());
+        }
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -134,7 +146,10 @@ class JsonAdaptedPatient {
 
         final List<PatientStatusDetails> modelDetails = new ArrayList<>(personDetails);
 
-        return new Patient(modelId, modelName, modelPhone, modelEmail, modelAddress, modelDetails, modelTags);
+        final List<PatientToDo> modelToDos = new ArrayList<>(personToDos);
+
+        return new Patient(modelId, modelName, modelPhone, modelEmail,
+                modelAddress, modelDetails, modelToDos, modelTags);
 
     }
 

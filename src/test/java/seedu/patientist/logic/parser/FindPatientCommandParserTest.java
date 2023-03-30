@@ -12,8 +12,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.patientist.logic.commands.FindPatientCommand;
+import seedu.patientist.model.person.patient.PatientIdContainsKeywordsPredicate;
 import seedu.patientist.model.person.patient.PatientNameContainsKeywordsPredicate;
-import seedu.patientist.model.person.patient.PidContainsKeywordsPredicate;
 
 public class FindPatientCommandParserTest {
     private FindPatientCommandParser parser = new FindPatientCommandParser();
@@ -33,7 +33,7 @@ public class FindPatientCommandParserTest {
 
         // no leading and trailing whitespaces
         expectedFindCommand =
-                new FindPatientCommand(new PidContainsKeywordsPredicate(Arrays.asList("A123")));
+                new FindPatientCommand(new PatientIdContainsKeywordsPredicate(Arrays.asList("A123")));
         assertParseSuccess(parser, " " + PREFIX_ID + "A123", expectedFindCommand);
     }
 
