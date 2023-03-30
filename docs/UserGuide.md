@@ -81,6 +81,10 @@ Let's clear a little confusion that might arise:
   - [UPPER_CASE], i.e upper case letters in [], are parameters to be supplied by the user
   - So, if the command is `rm [INDEX]`, it can be `rm 1`. Of course, the parameters have to abide by TrAcker's restrictions
   - Other than -date and -file in the event features, there are no other optional parameters
+- What do the symbols mean?
+  - :information_source: - are important information to note
+  - :bulb: - are usage tips/shortcuts
+  - :exclamation: - are some warnings about certain actions
 
 **Features**
 --------------------------------------------------------------------
@@ -103,6 +107,9 @@ Adds a tutorial to the TA’s schedule. Tutorial is assumed to be 1 hour long (a
 
 Format: `touch Tutorial/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
 
+:information_source
+
+TrAcker only accepts the following date format
 ```
 date format: dd/MM/yyyy HH:mm
 ```
@@ -127,6 +134,10 @@ Adds a lab to the TA’s schedule. Lab is assumed to be 1 hour long (adhering to
 - date and attachment is optional. Date will assume the current time if not specified
 
 Format: `vim Lab/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
+
+:information_source
+
+TrAcker only accepts the following date format
 
 ```
 date format: dd/MM/yyyy HH:mm
@@ -188,6 +199,8 @@ Edits an event current in the TA’s schedule.
 - index starts from 1
 - Consultation does not allow attachments as mentioned in add consultation section
 
+:bulb You can use the pwd in unix terminal to get the full path of the folder which the pdf file is in
+
 Format: `editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]`
 
 Examples:
@@ -197,6 +210,8 @@ Examples:
 * `editEvent 1 Consultation/ConsultWithEmily -date 10/10/2023 16:00`
 
 ### Delete events: `delete events`
+
+:exclamation You will not be able to undo the deletion
 
 Deletes valid indexed events from TA's schedule.
 
@@ -250,6 +265,9 @@ Examples:
 * `add student n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100`
 
 ### Deleting student: `delete student`
+
+:exclamation You will not be able to undo the deletion
+
 
 Removes a student from the student list.
 
@@ -325,6 +343,8 @@ Examples:
 
 ### Delete note from event: `delete note`
 
+:exclamation You will not be able to undo the deletion
+
 Delete notes for events that are both normal and recurring, or for students in the classes this TA is in charge of.
 
 Format: `deletNote [EVENT_TYPE] [EVENT_NAME or EVENT_INDEX] [NOTE_INDEX]`
@@ -344,8 +364,6 @@ Update notes with the new note for events that are both normal and recurring, or
 Note that when a particular note index does not exist, it does nothing.
 
 Format:
-
-
 
 * `editNote [EVENT_TYPE] [EVENT_NAME or EVENT_INDEX] [NOTE_INDEX] [NEW_CONTENT]`
 
