@@ -30,7 +30,7 @@ public class SortMeetingParser implements Parser<SortMeetingCommand> {
 
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String args) {
-        return new AutocompleteResult(null, false);
+        return new AutocompleteResult();
     }
 
     @Override

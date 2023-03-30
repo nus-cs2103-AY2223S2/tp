@@ -82,6 +82,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             }
         }
 
-        return new AutocompleteResult(null, false);
+        return new AutocompleteResult();
     }
 }

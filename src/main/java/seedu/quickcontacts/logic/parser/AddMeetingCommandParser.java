@@ -83,6 +83,6 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
             }
         }
 
-        return new AutocompleteResult(null, false);
+        return new AutocompleteResult();
     }
 }

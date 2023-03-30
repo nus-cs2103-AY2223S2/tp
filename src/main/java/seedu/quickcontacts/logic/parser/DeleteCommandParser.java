@@ -30,6 +30,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String args) {
-        return new AutocompleteResult(null, false);
+        return new AutocompleteResult();
     }
 }

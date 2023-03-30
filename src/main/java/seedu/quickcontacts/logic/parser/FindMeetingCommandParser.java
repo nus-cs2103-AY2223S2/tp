@@ -37,6 +37,6 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
 
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String args) {
-        return new AutocompleteResult(null, false);
+        return new AutocompleteResult();
     }
 }
