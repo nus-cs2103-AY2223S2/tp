@@ -5,11 +5,13 @@ import static seedu.dengue.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
 
 import seedu.dengue.logic.commands.SortCommand;
 import seedu.dengue.logic.comparators.PersonAgeComparator;
 import seedu.dengue.logic.comparators.PersonDateComparator;
 import seedu.dengue.logic.comparators.PersonNameComparator;
+import seedu.dengue.logic.comparators.PersonPostalComparator;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 
 /**
@@ -29,6 +31,8 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortCommand(new PersonNameComparator(), "NAME");
         } else if (trimmedArgs.equals(PREFIX_AGE.getPrefix())) {
             return new SortCommand(new PersonAgeComparator(), "AGE");
+        } else if (trimmedArgs.equals(PREFIX_POSTAL.getPrefix())) {
+            return new SortCommand(new PersonPostalComparator(), "POSTAL");
         } else if (trimmedArgs.equals(PREFIX_DATE.getPrefix())) {
             return new SortCommand(new PersonDateComparator(), "DATE");
         } else {

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.dengue.logic.parser.CliSyntax.PREFIX_POSTAL;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -23,7 +24,8 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts the view by one of the following: "
             + "'" + PREFIX_NAME + "' for Name, "
-            + "'" + PREFIX_AGE + "' for Age, or "
+            + "'" + PREFIX_AGE + "' for Age, "
+            + "'" + PREFIX_POSTAL + "' for Postal, or "
             + "'" + PREFIX_DATE + "' for Date."
             + "Example: " + COMMAND_WORD + " d/ ";
 
