@@ -270,12 +270,12 @@ public class ParserUtil {
     public static Set<Major> parseMajors(Collection<String> majors) throws ParseException {
         requireNonNull(majors);
         final Set<Major> majorSet = new HashSet<>();
-        int counter = 0;
+        int counter = majors.size();
         for (String majorName : majors) {
-            if (counter < Major.MAX_MAJOR_COUNT) {
+            if (counter <= Major.MAX_MAJOR_COUNT) {
                 majorSet.add(parseMajor(majorName));
             }
-            counter++;
+            counter--;
         }
         return majorSet;
     }
