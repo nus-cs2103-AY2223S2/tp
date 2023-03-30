@@ -51,9 +51,6 @@ public class UltronParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case UpcomingCommand.COMMAND_WORD:
-                return new UpcomingCommandParser().parse(arguments);
-
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -87,8 +84,11 @@ public class UltronParser {
         case StatusCommand.COMMAND_WORD:
             return new StatusCommandParser().parse(arguments);
 
-        case SortCommand.COMMAND_WORD:
-            return new SortCommandParser().parse(arguments);
+        case UpcomingCommand.COMMAND_WORD:
+                return new UpcomingCommandParser().parse(arguments);
+
+        // case SortCommand.COMMAND_WORD:
+        //     return new SortCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
