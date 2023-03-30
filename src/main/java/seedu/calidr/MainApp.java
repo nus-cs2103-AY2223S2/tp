@@ -15,18 +15,16 @@ import seedu.calidr.commons.util.ConfigUtil;
 import seedu.calidr.commons.util.StringUtil;
 import seedu.calidr.logic.Logic;
 import seedu.calidr.logic.LogicManager;
-import seedu.calidr.model.AddressBook;
 import seedu.calidr.model.Model;
 import seedu.calidr.model.ModelManager;
-import seedu.calidr.model.ReadOnlyAddressBook;
+import seedu.calidr.model.ReadOnlyTaskList;
 import seedu.calidr.model.ReadOnlyUserPrefs;
 import seedu.calidr.model.UserPrefs;
-import seedu.calidr.model.util.SampleDataUtil;
-import seedu.calidr.storage.AddressBookStorage;
-import seedu.calidr.storage.JsonAddressBookStorage;
+import seedu.calidr.model.tasklist.TaskList;
+import seedu.calidr.storage.IcsCalendarStorage;
 import seedu.calidr.storage.JsonUserPrefsStorage;
-import seedu.calidr.storage.Storage;
 import seedu.calidr.storage.StorageManager;
+import seedu.calidr.storage.TaskListStorage;
 import seedu.calidr.storage.UserPrefsStorage;
 import seedu.calidr.ui.Ui;
 import seedu.calidr.ui.UiManager;
@@ -42,7 +40,7 @@ public class MainApp extends Application {
 
     protected Ui ui;
     protected Logic logic;
-    protected Storage storage;
+    protected StorageManager storageManager;
     protected Model model;
     protected Config config;
 
@@ -56,14 +54,14 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaskListStorage taskListStorage = new IcsCalendarStorage(userPrefs.getAddressBookFilePath());
+        storageManager = new StorageManager(taskListStorage, userPrefsStorage);
 
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        model = initModelManager(storageManager, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        logic = new LogicManager(model, storageManager);
 
         ui = new UiManager(logic);
     }
@@ -73,21 +71,23 @@ public class MainApp extends Application {
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+    private Model initModelManager(StorageManager storageManager, ReadOnlyUserPrefs userPrefs) {
+        Optional<ReadOnlyTaskList> taskListOptional;
+        ReadOnlyTaskList initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (addressBookOptional.isEmpty()) {
+            taskListOptional = storageManager.readTaskList();
+            if (taskListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            // TODO
+            // initialData = taskListOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = taskListOptional.orElseGet(TaskList::new);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty TaskList");
+            initialData = new TaskList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty TaskList");
+            initialData = new TaskList();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -175,7 +175,7 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping Address Book ] =============================");
         try {
-            storage.saveUserPrefs(model.getUserPrefs());
+            storageManager.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

@@ -1,5 +1,6 @@
 package seedu.calidr.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -12,9 +13,7 @@ import seedu.calidr.logic.commands.exceptions.CommandException;
 import seedu.calidr.logic.parser.CalidrParser;
 import seedu.calidr.logic.parser.exceptions.ParseException;
 import seedu.calidr.model.Model;
-import seedu.calidr.model.ReadOnlyAddressBook;
 import seedu.calidr.model.ReadOnlyTaskList;
-import seedu.calidr.model.person.Person;
 import seedu.calidr.model.task.Task;
 import seedu.calidr.storage.Storage;
 
@@ -49,26 +48,13 @@ public class LogicManager implements Logic {
         Command command = calidrParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
-        // TODO Storage integration
-        /*
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaskList(model.getTaskList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-         */
 
         return commandResult;
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
     }
 
     @Override
