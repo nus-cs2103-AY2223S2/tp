@@ -37,7 +37,7 @@ public class LeaveCard extends UiPart<Region> {
         super(FXMl);
         this.leave = leave;
         date.setText(leave.getDate().toString());
-        totalNumber.setText("Number of Employees:" + Integer.toString(leave.getEmployees().size()));
+        totalNumber.setText("Number of Employees: " + leave.getEmployees().size());
         leave.getEmployees().stream()
                 .sorted(Comparator.comparing(employee-> employee.getName().toString()))
                 .forEach(employee -> employees.getChildren().add(new Label(employee.getName().toString())));
