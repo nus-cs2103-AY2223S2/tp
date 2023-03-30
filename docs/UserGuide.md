@@ -366,6 +366,9 @@ Examples:
 * For Mac user, the format of `FILE_PATH` must be `p//Users/username/Desktop/[FILE_NAME]`.
 
 
+### 19. Export student progress out as PDF file: `exportp`
+
+
 ### Saving the data
 
 MATHUTORING data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
