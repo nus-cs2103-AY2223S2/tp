@@ -1,15 +1,18 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.Optional;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.meetup.MeetUpIndex;
 
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Removes a meeting from the address book
+ */
 public class UnorganiseCommand extends Command {
 
     public static final String COMMAND_WORD = "unorganise";

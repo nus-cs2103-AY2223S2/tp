@@ -38,7 +38,8 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
     private static final String MESSAGE_NO_LOCATION_GIVEN = "Location should not be empty";
     private static final String MESSAGE_WRONG_TIME_FORMAT = "Time should have start hour and end hour";
     private static final String MESSAGE_WRONG_DATE_FORMAT = "Date should be MONDAY to FRIDAY";
-    private static final String MESSAGE_INVALID_RECOMMENDATION_INDEX = "Recommendation index should be a positive number";
+    private static final String MESSAGE_INVALID_RECOMMENDATION_INDEX = "Recommendation index "
+            + "should be a positive number";
 
     /**
      * Parses the given {@code String} of arguments in the context of the OrganiseCommand
@@ -73,7 +74,8 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
             ContactIndex contactIndex = new ContactIndex(Integer.parseInt(args.trim()));
             return new OrganiseCommand(contactIndex);
         } catch (NumberFormatException | InvalidMeetUpIndexException | InvalidContactIndexException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_RECOMMENDATION_INDEX));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    MESSAGE_INVALID_RECOMMENDATION_INDEX));
         }
     }
 
@@ -134,7 +136,7 @@ public class OrganiseCommandParser implements Parser<OrganiseCommand> {
             startHour = ParserUtil.parseStartHour(Integer.parseInt(time.get(0)));
             endHour = ParserUtil.parseEndHour(Integer.parseInt(time.get(1)));
         } catch (NumberFormatException | IllegalFieldValueException | AssertionError e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,MESSAGE_WRONG_TIME_FORMAT));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_WRONG_TIME_FORMAT));
         }
 
         Day day = parseDay(argumentMultimap);

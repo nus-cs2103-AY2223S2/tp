@@ -9,7 +9,7 @@ import seedu.address.model.meetup.MeetUpIndex;
  */
 public class UnorganiseCommandParser implements Parser<UnorganiseCommand> {
 
-    private final static String MESSAGE_INVALID_DELETE_COMMAND_FORMAT = "Invalid index given";
+    private static final String MESSAGE_INVALID_DELETE_COMMAND_FORMAT = "Invalid index given";
 
     /**
      * Parses the given {@code String} of arguments in the context of the UnorganiseCommand
