@@ -389,6 +389,7 @@ Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Or
 * List out the item fields in the next row. (i.e. `OrderName`, `Quanity`, `Deadline`, etc.)
 * Fill in the valid values for each field. (i.e. `Chocolate Cookies`, `10`, `10/01/2023`, etc.)
 * If there are any optional fields (i.e. `Suppler`'s `Tag` field), indicate it with a '-' if you don't wish to put any values in that particular field.
+
 Below is an example of a valid csv file
 ![Valid csv file](images/ValidCsvFile.png)
 
