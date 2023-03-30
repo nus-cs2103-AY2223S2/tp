@@ -52,7 +52,6 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
             1. [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
             2. [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
         3. [**Meet Commands**](#meet-commands)
-            1. [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
     5. [**Other Commands**](#other-commands)
         1. [**Exit the application**](#exit-the-application)
 8. [**FAQ**](#faq)
