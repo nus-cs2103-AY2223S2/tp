@@ -338,13 +338,13 @@ Note that there can be an unlimited amount of notes to be created for each event
 
 Each addition increases node index by one.
 
-Format: `addNote -content [CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME]`
+Format: `addNote note -content [CONTENT] -type [EVENT_TYPE] -name [EVENT_NAME]`
 
 Examples:
 
-* `add-note -content rmb to bring along apple pencil\n -type Tutorial -name 2`
-* `add-note -content grade student labs timely\n -type Lab -name 2`
-* `add-note -content solve this student's query via email\n -type Recur -name 2`
+* `addNote note -content rmb to bring along apple pencil\n -type Tutorial -name 2`
+* `addNote note -content grade student labs timely\n -type Lab -name 2`
+* `addNote note -content solve this student's query via email\n -type Recur -name 2`
 
 <div id='delete-note-from-event'></div>
 
@@ -358,9 +358,9 @@ Format: `deletNote [EVENT_TYPE] [EVENT_NAME or EVENT_INDEX] [NOTE_INDEX]`
 
 Examples:
 
-* `rm-note -type Tutorial -name 2 -index 3`
-* `rm-note -type Lab -name 2 -index 1`
-* `rm-note -type Recur -name 2 -index 0`
+* `deleteNote -type Tutorial -name 2 -index 3`
+* `deleteNote -type Lab -name 2 -index 1`
+* `deleteNote -type Recur -name 2 -index 0`
 
 <div id='edit-note-in-event'></div>
 
@@ -377,9 +377,9 @@ Format:
 Examples:
 
 
-* `edit-note -content rmb to bring along apple pencil\n -type Tutorial -name 2 -index 3`
-* `edit-note -content grade student labs timely\n -type Lab -name 2 -index 1`
-* `edit-note -content solve this student's query via email\n -type Recur -name 2 -index 0`
+* `editNote -content rmb to bring along apple pencil\n -type Tutorial -name 2 -index 3`
+* `editNote -content grade student labs timely\n -type Lab -name 2 -index 1`
+* `editNote -content solve this student's query via email\n -type Recur -name 2 -index 0`
 
 --------------------------------------------------------------------
 <div id='help'></div>
@@ -655,9 +655,9 @@ Examples:
       </td>
       <td>
          <ul>
-            <li><code>addNote -content rmb to bring along apple pencil\n -type Tutorial -name 2</code>
-            <li><code>addNote -content grade student labs timely\n -type Lab -name 2</code></li>
-            <li><code>addNote -content solve this student's query via email\n -type Recur -name 2</code></li>
+            <li><code>addNote note -content rmb to bring along apple pencil\n -type Tutorial -name 2</code>
+            <li><code>addNote note -content grade student labs timely\n -type Lab -name 2</code></li>
+            <li><code>addNote note -content solve this student's query via email\n -type Recur -name 2</code></li>
          </ul>
       </td>
    </tr>
