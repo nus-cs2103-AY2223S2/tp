@@ -23,7 +23,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE =
             ResultDisplay.formatMessage(COMMAND_WORD, "Adds a contact to the address book.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
-                    PREFIX_NAME + "NAME [PREFIX/INPUT]...")
+                    PREFIX_NAME + "NAME [PREFIX/PARAMETER]...")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
                     PREFIX_NAME + "John Doe",
                     PREFIX_PHONE + "98765432",

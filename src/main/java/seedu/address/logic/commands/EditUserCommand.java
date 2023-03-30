@@ -23,10 +23,11 @@ public class EditUserCommand extends EditPersonCommand {
     public static final String MESSAGE_USAGE =
             ResultDisplay.formatMessage(COMMAND_WORD,
                     "Edits the details of the user.",
-                    "Existing values will be overwritten by the input values for all fields except Modules and Tags.")
+                    "Existing values will be overwritten by the given parameters",
+                    "for all fields except Modules and Tags.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
                     "INDEX",
-                    "[PREFIX/INPUT]...")
+                    "[PREFIX/PARAMETER]...")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
                     "Note that INDEX must be a positive integer.",
                     "For more information on prefixes, refer to the user guide using the help command.",
