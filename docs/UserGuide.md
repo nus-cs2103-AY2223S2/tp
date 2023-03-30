@@ -118,6 +118,7 @@ Reverts the patient records to the state before the previous command was execute
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
+</div>
 
 Format: `undo`
 
@@ -127,6 +128,7 @@ Reverts the patient records to the state before the previous undo was executed.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Redo can only be executed if undo command
 has run.
+</div>
 
 Format: `redo`
 
@@ -135,7 +137,8 @@ Format: `redo`
 Adds a person to the patient records.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Do take note which patient details are 
-optional
+optional.
+</div>
 
 Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
@@ -156,6 +159,7 @@ Edits an existing patient in the patient records.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only include the prefixes for the specific
 patient detail you would like to edit.
+</div>
 
 Format: `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
 
@@ -174,6 +178,7 @@ Deletes the specified patient from the patient records.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only include the prefixes for the specific
 patient detail you would like to edit.
+</div>
 
 Format: `delete i/NRIC…​`
 
@@ -187,6 +192,7 @@ Shows a list of all patients in the patient records.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** List returns the entire current database
 that you have loaded.
+</div>
 
 Format: `list`
 
@@ -198,6 +204,7 @@ Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`), doctor(`ad/`)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Find searches by full strings and not 
 substrings. You may only search for a few attributes.
+</div>
 
 Format: `find (n/NAME | i/NRIC | m/MEDICINE | t/TAG) [MORE_KEYWORDS]`
 
@@ -226,6 +233,7 @@ Backs up the patient records to a specified slot represented by an index.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Backups need to access and are not 
 automatically loaded on launch of application.
+</div>
 
 Format: `backup INDEX_NO`
 
@@ -240,6 +248,7 @@ Tip: INDEX_NO can only be an integer between 1 and 10 inclusive.
 Loads the data from a specified slot represented by an index.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Allows access to a specific backup.
+</div>
 
 Format: `load INDEX_NO`
 
@@ -259,6 +268,7 @@ Deletes the data from a specified slot represented by an index.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Deleted backups cannot be retrieved after 
 deletion.
+</div>
 
 Format: `deletebackup INDEX_NO`
 
@@ -271,6 +281,7 @@ Example:
 Purges all data from the database.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Data cannot be retrieved after clearing.
+</div>
 
 Format: `clear`
 
