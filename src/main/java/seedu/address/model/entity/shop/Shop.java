@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyShop;
@@ -188,7 +189,7 @@ public class Shop implements ReadOnlyShop {
      * @throws PartLessThanZeroException If part insufficient
      */
     public void addPartToService(int serviceId, String partName, int quantity)
-            throws NoSuchElementException, PartNotFoundException, PartLessThanZeroException {
+        throws NoSuchElementException, PartNotFoundException, PartLessThanZeroException {
         Optional<Service> serviceOption = this.getServiceList()
             .stream()
             .filter(s -> s.getId() == serviceId)
@@ -200,7 +201,8 @@ public class Shop implements ReadOnlyShop {
 
     /**
      * Assigns existing technician to existing service
-     * @param serviceId ID of service
+     *
+     * @param serviceId    ID of service
      * @param technicianId ID of technician
      * @throws NoSuchElementException If service or technician doesn't exist
      */
@@ -296,6 +298,12 @@ public class Shop implements ReadOnlyShop {
      * {@code key} must exist in the address book.
      */
     public void removeCustomer(Customer key) {
+        this.getAppointmentList().stream()
+            .filter(a -> a.getCustomerId() == key.getId())
+            .forEach(this::removeAppointment);
+        key.getVehicleIds().stream()
+            .flatMap(i -> this.getVehicle(i).stream())
+            .forEach(this::removeVehicle);
         customers.remove(key);
     }
 
@@ -436,6 +444,9 @@ public class Shop implements ReadOnlyShop {
      * {@code key} must exist in the address book.
      */
     public void removeVehicle(Vehicle key) {
+        key.getServiceIds().stream()
+            .flatMap(i -> getService(i).stream())
+            .forEach(this::removeService);
         vehicles.remove(key);
     }
 
@@ -460,6 +471,26 @@ public class Shop implements ReadOnlyShop {
         setTechnicians(newData.getTechnicianList());
         setAppointments(newData.getAppointmentList());
         setTechnicians(newData.getTechnicianList());
+    }
+
+    // Private getters to help in cascading removal
+
+    private Optional<Customer> getCustomer(int customerId) {
+        return this.getCustomerList().stream()
+            .filter(c -> c.getId() == customerId)
+            .findFirst();
+    }
+
+    private Optional<Vehicle> getVehicle(int vehicleId) {
+        return this.getVehicleList().stream()
+            .filter(v -> v.getId() == vehicleId)
+            .findFirst();
+    }
+
+    private Optional<Service> getService(int serviceId) {
+        return this.getServiceList().stream()
+            .filter(v -> v.getId() == serviceId)
+            .findFirst();
     }
 
     //// Delete operations
