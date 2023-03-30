@@ -391,6 +391,7 @@ Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Or
 * If there are any optional fields (i.e. `Suppler`'s `Tag` field), indicate it with a '-' if you don't wish to put any values in that particular field.
 
 Below is an example of a valid csv file
+
 ![Valid csv file](images/ValidCsvFile.png)
 
 # Exit
