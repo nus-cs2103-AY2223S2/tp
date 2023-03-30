@@ -111,8 +111,7 @@ public class Roster implements ReadOnlyRoster {
      */
     public Roster copy() {
         Roster copy = new Roster();
-        copy.setCourses(courses.asUnmodifiableObservableList());
-
+        copy.setCourses(courses.copy().asUnmodifiableObservableList());
         return copy;
     }
 }

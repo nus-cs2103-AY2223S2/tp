@@ -161,6 +161,13 @@ public class Session {
         System.out.println("Marked student " + student.getName() + " absent in session " + sessionName);
     }
 
+    public Session copy() {
+        Session copy = new Session(this.sessionName);
+        copy.setAttendance(new HashMap<>(attendance));
+
+        return copy;
+    }
+
     public void selectSession() {
         isSelected = true;
     }

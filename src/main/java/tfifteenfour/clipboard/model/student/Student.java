@@ -38,6 +38,10 @@ public class Student {
         this.remark = remark;
     }
 
+    public Student copy() {
+        return new Student(this.name, this.phone, this.email, this.studentId, this.remark);
+    }
+
     public Name getName() {
         return name;
     }

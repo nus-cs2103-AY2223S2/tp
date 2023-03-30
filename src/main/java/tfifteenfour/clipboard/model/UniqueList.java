@@ -31,6 +31,8 @@ public abstract class UniqueList<T> implements Iterable<T> {
      */
     public abstract boolean contains(T toCheck);
 
+    public abstract UniqueList<T> copy();
+
     /**
      * Adds a course to the list.
      * The course must not already exist in the list.

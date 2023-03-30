@@ -35,6 +35,20 @@ public class Group {
         tasks = new UniqueTasksList();
     }
 
+    public Group copy() {
+        Group copy = new Group(this.groupName);
+        UniqueStudentList studentsCopy = new UniqueStudentList();
+        students.asUnmodifiableObservableList().forEach(student -> studentsCopy.add(student.copy()));
+        copy.setStudents(studentsCopy);
+
+        return copy;
+
+    }
+
+    public void setStudents(UniqueStudentList students) {
+        this.students.setInternalList(students.asUnmodifiableObservableList());;
+    }
+
     /**
      * Constructs a group with the given group name.
      * @param groupName A valid group name.
