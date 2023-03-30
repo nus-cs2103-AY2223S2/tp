@@ -44,19 +44,4 @@ public class PostalAnalyst extends Analyst {
     List<DataBin> getBins() {
         return new ArrayList<>(this.bins.values());
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-
-        if (!(obj instanceof PostalAnalyst)) {
-            return false;
-        }
-
-        PostalAnalyst other = (PostalAnalyst) obj;
-        return this.bins.equals(other.bins)
-                && (this.total == other.total);
-    }
 }

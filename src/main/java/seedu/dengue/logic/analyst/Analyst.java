@@ -46,4 +46,19 @@ public abstract class Analyst {
                 .sorted(Comparator.reverseOrder())
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Analyst)) {
+            return false;
+        }
+
+        Analyst other = (Analyst) obj;
+        return getBins().equals(other.getBins())
+                && getTotal() == other.getTotal();
+    }
 }
