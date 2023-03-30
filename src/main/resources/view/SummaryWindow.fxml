@@ -21,6 +21,7 @@
             <children>
                     <Label fx:id="countMessage" text="Label" />
                     <Label fx:id="tagMessage" text="Label" />
+                    <Label fx:id="companies" text="Label" />
                     <Label fx:id="potentialEarnings" text="Label" />
             </children>
             <padding>

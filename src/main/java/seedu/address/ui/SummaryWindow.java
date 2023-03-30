@@ -17,11 +17,13 @@ public class SummaryWindow extends UiPart<Stage> {
     public static final String COUNT_MESSAGE = "Contact Counts: ";
     public static final String TAG_MESSAGE = "Existing tags: ";
     public static final String POTENTIAL_EARNINGS_MESSAGE = "Total Potential Earnings: ";
+    public static final String COMPANIES_MESSAGE = "Existing companies: ";
 
     private static final Logger logger = LogsCenter.getLogger(SummaryWindow.class);
     private static final String FXML = "SummaryWindow.fxml";
     private static int SIZE;
     private static int POTENTIAL_EARNINGS;
+    private static String COMPANIES;
     private static String TAGS;
     @FXML
     private Label countMessage;
@@ -31,7 +33,8 @@ public class SummaryWindow extends UiPart<Stage> {
 
     @FXML
     private Label potentialEarnings;
-
+    @FXML
+    private Label companies;
     @FXML
     private Label tags;
     /**
@@ -41,9 +44,10 @@ public class SummaryWindow extends UiPart<Stage> {
      */
     public SummaryWindow(Stage root) {
         super(FXML, root);
-        countMessage.setText(COUNT_MESSAGE + String.valueOf(SummaryWindow.SIZE));
-        tagMessage.setText(TAG_MESSAGE + String.valueOf(SummaryWindow.SIZE));
-        potentialEarnings.setText(POTENTIAL_EARNINGS_MESSAGE + String.valueOf(SummaryWindow.POTENTIAL_EARNINGS));
+        countMessage.setText(COUNT_MESSAGE + SummaryWindow.SIZE);
+        tagMessage.setText(TAG_MESSAGE + SummaryWindow.SIZE);
+        potentialEarnings.setText(POTENTIAL_EARNINGS_MESSAGE + SummaryWindow.POTENTIAL_EARNINGS);
+        companies.setText(COMPANIES_MESSAGE + SummaryWindow.COMPANIES);
     }
 
     /**
@@ -73,6 +77,13 @@ public class SummaryWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the value of companies.
+     */
+    public static void setCompanies(String companies) {
+        SummaryWindow.COMPANIES = companies;
+    }
+
+    /**
      * Shows the help window.
      * @throws IllegalStateException
      *     <ul>
@@ -95,6 +106,7 @@ public class SummaryWindow extends UiPart<Stage> {
         countMessage.setText(COUNT_MESSAGE + SummaryWindow.SIZE);
         tagMessage.setText(TAG_MESSAGE + SummaryWindow.TAGS);
         potentialEarnings.setText(POTENTIAL_EARNINGS_MESSAGE + SummaryWindow.POTENTIAL_EARNINGS);
+        companies.setText(COMPANIES_MESSAGE + SummaryWindow.COMPANIES);
         getRoot().show();
         getRoot().centerOnScreen();
     }

@@ -29,4 +29,9 @@ public interface ReadOnlyAddressBook {
      */
     String getTags();
 
+    /**
+     * Returns the a string containing all companies.
+     */
+    String getCompanies();
+
 }
