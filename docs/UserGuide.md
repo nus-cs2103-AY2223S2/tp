@@ -10,12 +10,16 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 # TABLE OF CONTENT
 
 [FEATURES](#features)
-1. [Add student](#add)
-2. [Delete student](#delete)
-3. [List student](#list)
-4. [Local save](#save)
-5. [Local load](#load)
-6. [Exit program](#exit)
+- [TABLE OF CONTENT](#table-of-content)
+- [FEATURES ](#features-)
+  - [Add student ](#add-student-)
+  - [Delete student ](#delete-student-)
+  - [List students ](#list-students-)
+  - [Local save ](#local-save-)
+  - [Local load ](#local-load-)
+  - [Exit program ](#exit-program-)
+  - [Mark/Unmark attendance](#markunmark-attendance)
+  - [Query Command](#query-command)
 
 # FEATURES <a name="features"></a>
 
@@ -72,3 +76,15 @@ Exit the program.
 
 Format: ```exit```
 
+## Mark/Unmark attendance
+Use `mark` to indicate that the tutee was present on the given dates, `unmark` to indicate that
+they were absent. If a date is not specified, the current date is used.\
+If the tutee was already absent or present, the command will have no effect.
+
+Format: `mark/unmark <index> [date...]`
+
+## Query Command
+Use this command to check the tutee's attendance. If no date is given, all of the dates that tutee was present on.\
+Otherwise, the command will return if the tutee was present on the given date.
+
+Format: `query <index> [date]`
