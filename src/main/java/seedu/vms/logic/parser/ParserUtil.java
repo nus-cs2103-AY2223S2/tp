@@ -261,15 +261,16 @@ public class ParserUtil {
      */
     public static String parseKeyword(String keyword) throws ParseException {
         requireNonNull(keyword);
-        String trimmedKeyword = keyword.trim();
+        String trimmedKeyword = keyword.strip();
+        if (trimmedKeyword.isBlank()) {
+            throw new ParseException(MESSAGE_KEYWORD_IS_EMPTY);
+        }
         if (!Keyword.isNotMainKeyword(trimmedKeyword)) {
             throw new ParseException(String.format(MESSAGE_INVALID_SUB_KEYWORD,
             MAIN_APPOINTMENT_STRING, MAIN_PATIENT_STRING, MAIN_VACCINATION_STRING,
             MAIN_HELP_STRING, MAIN_BASIC_STRING, MAIN_EXIT_STRING));
         }
-        if (KeywordManager.existingMappingExists(trimmedKeyword)) {
-            throw new ParseException(String.format(MESSAGE_EXISTING_KEYWORD_EXISTS, trimmedKeyword, trimmedKeyword));
-        }
+
         return trimmedKeyword;
     }
 
@@ -281,10 +282,12 @@ public class ParserUtil {
      */
     public static String parseDeleteKeyword(String keyword) throws ParseException {
         requireNonNull(keyword);
-        String trimmedKeyword = keyword.trim();
-        if (!KeywordManager.existingMappingExists(trimmedKeyword)) {
-            throw new ParseException(String.format(MESSAGE_KEYWORD_DOES_NOT_EXIST, trimmedKeyword));
+
+        String trimmedKeyword = keyword.strip();
+        if (trimmedKeyword.isBlank()) {
+            throw new ParseException(MESSAGE_KEYWORD_IS_EMPTY);
         }
+
         return trimmedKeyword;
     }
 
@@ -296,7 +299,7 @@ public class ParserUtil {
      */
     public static String parseMainKeyword(String mainKeyword) throws ParseException {
         requireNonNull(mainKeyword);
-        String trimmedMainKeyword = mainKeyword.trim();
+        String trimmedMainKeyword = mainKeyword.strip();
         if (!Keyword.isValidMainKeyword(trimmedMainKeyword)) {
             throw new ParseException(String.format(MESSAGE_INVALID_MAIN_KEYWORD,
             MAIN_APPOINTMENT_STRING, MAIN_PATIENT_STRING, MAIN_VACCINATION_STRING));

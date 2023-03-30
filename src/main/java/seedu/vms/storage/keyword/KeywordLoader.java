@@ -74,6 +74,8 @@ public class KeywordLoader {
             if (Keyword.isNotMainKeyword(keyword.getKeyword())
                     && Keyword.isValidMainKeyword(keyword.getMainKeyword())) {
                 manager.add(keyword);
+            } else {
+                throw new IllegalValueException("Illegal values present.");
             }
         }
         return manager;
