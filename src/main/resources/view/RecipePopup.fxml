@@ -21,8 +21,6 @@
             AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
 
         <VBox
-                HBox.hgrow="ALWAYS"
-                VBox.vgrow="ALWAYS"
                 styleClass="root-box"
                 spacing="8">
             <stylesheets>

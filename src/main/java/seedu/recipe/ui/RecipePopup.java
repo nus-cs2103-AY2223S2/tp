@@ -104,6 +104,7 @@ public class RecipePopup extends UiPart<Region> {
             String ingredientLabelText = IngredientUtil.ingredientKeyValuePairToString(ingredient, information);
             Label ingredientLabel = new Label("• " + ingredientLabelText);
             ingredientLabel.setWrapText(true);
+            ingredientLabel.setMinHeight(Region.USE_PREF_SIZE);
             ingredients.getChildren().add(ingredientLabel);
         });
     }
@@ -119,8 +120,10 @@ public class RecipePopup extends UiPart<Region> {
                 i + 1) + ". " + stepList.get(i).toString()
             );
             stepLabel.setWrapText(true);
+            stepLabel.setMinHeight(Region.USE_PREF_SIZE);
             steps.getChildren().add(stepLabel);
         }
+
     }
 
     /**
@@ -130,7 +133,7 @@ public class RecipePopup extends UiPart<Region> {
         Stage window = new Stage();
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Recipe dshjkahdska Details");
+        window.setTitle("Recipe Details");
         double maxHeight = Screen.getPrimary().getBounds().getMaxY();
         window.setMaxHeight(maxHeight);
         window.setHeight(Math.min(maxHeight, DEFAULT_HEIGHT));
