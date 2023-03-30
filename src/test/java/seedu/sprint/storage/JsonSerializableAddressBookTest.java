@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.sprint.commons.exceptions.IllegalValueException;
 import seedu.sprint.commons.util.JsonUtil;
-import seedu.sprint.model.AddressBook;
 import seedu.sprint.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {

@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import seedu.sprint.commons.core.Messages;
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.ApplicationModelManager;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.application.Application;
@@ -24,7 +24,7 @@ import seedu.sprint.model.application.Application;
  * {@code DeleteApplicationCommand}.
  */
 public class DeleteApplicationCommandTest {
-    private ApplicationModel model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private Model model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
 
@@ -66,7 +66,7 @@ public class DeleteApplicationCommandTest {
         String expectedMessage = String.format(DeleteApplicationCommand.MESSAGE_DELETE_APPLICATION_SUCCESS,
                 applicationToDelete);
 
-        ApplicationModel expectedModel = new ApplicationModelManager(model.getInternshipBook(), new UserPrefs());
+        Model expectedModel = new ApplicationModelManager(model.getInternshipBook(), new UserPrefs());
         expectedModel.deleteApplication(applicationToDelete);
         expectedModel.commitInternshipBookChange();
         showNoApplication(expectedModel);
@@ -114,7 +114,7 @@ public class DeleteApplicationCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no application.
      */
-    private void showNoApplication(ApplicationModel model) {
+    private void showNoApplication(Model model) {
         model.updateFilteredApplicationList(p -> false);
 
         assertTrue(model.getFilteredApplicationList().isEmpty());

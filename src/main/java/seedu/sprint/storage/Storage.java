@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.sprint.commons.exceptions.DataConversionException;
-import seedu.sprint.model.ReadOnlyAddressBook;
 import seedu.sprint.model.ReadOnlyUserPrefs;
 import seedu.sprint.model.UserPrefs;
 

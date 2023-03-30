@@ -7,6 +7,7 @@ import seedu.sprint.commons.core.GuiSettings;
 import seedu.sprint.logic.commands.CommandResult;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.exceptions.ParseException;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.ReadOnlyInternshipBook;
 import seedu.sprint.model.application.Application;
 
@@ -26,7 +27,7 @@ public interface Logic {
     /**
      * Returns the InternshipBook.
      *
-     * @see seedu.sprint.model.ApplicationModel#getInternshipBook()
+     * @see Model#getInternshipBook()
      */
     ReadOnlyInternshipBook getInternshipBook();
 

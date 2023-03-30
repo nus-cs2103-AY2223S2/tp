@@ -6,12 +6,12 @@ import static seedu.sprint.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.CommandHistory;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.ApplicationModelManager;
 
 public class HelpCommandTest {
-    private ApplicationModel model = new ApplicationModelManager();
-    private ApplicationModel expectedModel = new ApplicationModelManager();
+    private Model model = new ApplicationModelManager();
+    private Model expectedModel = new ApplicationModelManager();
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test

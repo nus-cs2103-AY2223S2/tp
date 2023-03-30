@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 
 import seedu.sprint.commons.core.LogsCenter;
 import seedu.sprint.commons.exceptions.DataConversionException;
-import seedu.sprint.model.ReadOnlyAddressBook;
 import seedu.sprint.model.ReadOnlyUserPrefs;
 import seedu.sprint.model.UserPrefs;
 

@@ -15,13 +15,13 @@ import seedu.sprint.commons.util.ConfigUtil;
 import seedu.sprint.commons.util.StringUtil;
 import seedu.sprint.logic.Logic;
 import seedu.sprint.logic.LogicManager;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.ApplicationModelManager;
 import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.ReadOnlyInternshipBook;
 import seedu.sprint.model.ReadOnlyUserPrefs;
 import seedu.sprint.model.UserPrefs;
-import seedu.sprint.model.util.ApplicationSampleDataUtil;
+import seedu.sprint.model.util.SampleDataUtil;
 import seedu.sprint.storage.ApplicationStorage;
 import seedu.sprint.storage.ApplicationStorageManager;
 import seedu.sprint.storage.InternshipBookStorage;
@@ -44,7 +44,7 @@ public class ApplicationMainApp extends Application {
     protected Ui ui;
     protected Logic logic;
     protected ApplicationStorage storage;
-    protected ApplicationModel model;
+    protected Model model;
     protected Config config;
 
     @Override
@@ -78,7 +78,7 @@ public class ApplicationMainApp extends Application {
      * The data from the sample internship book will be used instead if {@code storage}'s internship book is not found,
      * or an empty internship book will be used instead if errors occur when reading {@code storage}'s internship book.
      */
-    private ApplicationModel initModelManager(ApplicationStorage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(ApplicationStorage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyInternshipBook> internshipBookOptional;
         ReadOnlyInternshipBook initialData;
         try {
@@ -86,7 +86,7 @@ public class ApplicationMainApp extends Application {
             if (!internshipBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample InternshipBook");
             }
-            initialData = internshipBookOptional.orElseGet(ApplicationSampleDataUtil::getSampleInternshipBook);
+            initialData = internshipBookOptional.orElseGet(SampleDataUtil::getSampleInternshipBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty InternshipBook");
             initialData = new InternshipBook();

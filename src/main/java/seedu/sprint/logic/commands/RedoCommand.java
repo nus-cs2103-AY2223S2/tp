@@ -1,11 +1,11 @@
 package seedu.sprint.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.sprint.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
+import static seedu.sprint.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.exceptions.CommandException;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 
 /**
  * Reverts the {@code model}'s sprint book to its previously undone state.
@@ -19,7 +19,7 @@ public class RedoCommand extends Command {
             + " The command to be redone needs to previously modified the internship book.";
 
     @Override
-    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
 
         if (!model.canRedoInternshipBook()) {

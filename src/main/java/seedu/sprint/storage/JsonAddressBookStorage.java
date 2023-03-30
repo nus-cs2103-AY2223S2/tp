@@ -12,7 +12,6 @@ import seedu.sprint.commons.exceptions.DataConversionException;
 import seedu.sprint.commons.exceptions.IllegalValueException;
 import seedu.sprint.commons.util.FileUtil;
 import seedu.sprint.commons.util.JsonUtil;
-import seedu.sprint.model.ReadOnlyAddressBook;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.

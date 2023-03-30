@@ -15,8 +15,6 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.sprint.model.Model;
-import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.person.NameContainsKeywordsPredicate;
 

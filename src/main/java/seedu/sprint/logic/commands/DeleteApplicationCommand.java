@@ -8,7 +8,7 @@ import seedu.sprint.commons.core.Messages;
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.exceptions.CommandException;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.application.Application;
 
 /**
@@ -30,7 +30,7 @@ public class DeleteApplicationCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         List<Application> lastShownList = model.getSortedApplicationList();
 

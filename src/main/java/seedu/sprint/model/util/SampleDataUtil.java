@@ -1,51 +1,73 @@
 package seedu.sprint.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.sprint.model.AddressBook;
-import seedu.sprint.model.ReadOnlyAddressBook;
-import seedu.sprint.model.person.Address;
-import seedu.sprint.model.person.Email;
-import seedu.sprint.model.person.Name;
-import seedu.sprint.model.person.Person;
-import seedu.sprint.model.person.Phone;
+import seedu.sprint.model.InternshipBook;
+import seedu.sprint.model.ReadOnlyInternshipBook;
+import seedu.sprint.model.application.Application;
+import seedu.sprint.model.application.CompanyEmail;
+import seedu.sprint.model.application.CompanyName;
+import seedu.sprint.model.application.Role;
+import seedu.sprint.model.application.Status;
 import seedu.sprint.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
-    public static Person[] getSamplePersons() {
-        return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
-        };
+    public static ArrayList<Application> getSampleApplications() {
+        ArrayList<Application> sampleApplications = new ArrayList<>();
+        sampleApplications.add(new Application(
+                new Role("Software Engineer"),
+                new CompanyName("Google"),
+                new CompanyEmail("googlehires@gmail.com"),
+                new Status("interested"),
+                null,
+                getTagSet("highSalary")));
+        sampleApplications.add(new Application(new Role("Cloud Engineer Intern"),
+                new CompanyName("Amazon"),
+                new CompanyEmail("amazonhires@amazon.com"),
+                new Status("applied"),
+                null,
+                getTagSet("cloudTechnology")));
+        sampleApplications.add(new Application(new Role("Design and Innovation Intern"),
+                new CompanyName("Apple"),
+                new CompanyEmail("applehires@apple.com"),
+                new Status("applied"),
+                null,
+                getTagSet("employeeDiscounts")));
+        sampleApplications.add(new Application(new Role("Software Testing Intern"),
+                new CompanyName("Microsoft"),
+                new CompanyEmail("microsofthires@microsoft.com"),
+                new Status("interested"),
+                null,
+                getTagSet("windowsSupremacy")));
+        sampleApplications.add(new Application(new Role("Junior Trader Analyst"),
+                new CompanyName("Hudson River Trading"),
+                new CompanyEmail("hrthires@hrt.com"),
+                new Status("offered"),
+                null,
+                getTagSet("flexRights")));
+        sampleApplications.add(new Application(new Role("Data Analyst Intern"),
+                new CompanyName("Bloomberg"),
+                new CompanyEmail("bloomberghires@bloomberg.com"),
+                new Status("rejected"),
+                null,
+                getTagSet("analytics")));
+        return sampleApplications;
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
-        for (Person samplePerson : getSamplePersons()) {
-            sampleAb.addPerson(samplePerson);
-        }
-        return sampleAb;
+    /**
+     * Creates a new internship book populated with sample data.
+     * @return the new internship book with sample data.
+     */
+    public static ReadOnlyInternshipBook getSampleInternshipBook() {
+        InternshipBook sampleIb = new InternshipBook();
+        sampleIb.setApplications(getSampleApplications());
+        return sampleIb;
     }
 
     /**

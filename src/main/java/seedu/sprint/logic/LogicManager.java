@@ -12,7 +12,7 @@ import seedu.sprint.logic.commands.CommandResult;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.InternshipBookParser;
 import seedu.sprint.logic.parser.exceptions.ParseException;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.ReadOnlyInternshipBook;
 import seedu.sprint.model.application.Application;
 import seedu.sprint.storage.ApplicationStorage;
@@ -24,7 +24,7 @@ public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-    private final ApplicationModel model;
+    private final Model model;
     private final ApplicationStorage storage;
     private final InternshipBookParser internshipBookParser;
     private final CommandHistory commandHistory;
@@ -32,7 +32,7 @@ public class LogicManager implements Logic {
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(ApplicationModel model, ApplicationStorage storage) {
+    public LogicManager(Model model, ApplicationStorage storage) {
         this.model = model;
         this.storage = storage;
         this.internshipBookParser = new InternshipBookParser();

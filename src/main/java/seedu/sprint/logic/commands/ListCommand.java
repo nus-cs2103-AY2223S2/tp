@@ -1,11 +1,11 @@
 package seedu.sprint.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.sprint.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
+import static seedu.sprint.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.exceptions.CommandException;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.application.DefaultComparator;
 
 /**
@@ -18,7 +18,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all applications in default order!";
     @Override
-    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
         model.updateSortedApplicationList(new DefaultComparator(model.getFilteredApplicationList()));

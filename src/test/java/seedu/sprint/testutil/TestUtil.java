@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import seedu.sprint.commons.core.index.Index;
-import seedu.sprint.model.Model;
 import seedu.sprint.model.person.Person;
 
 /**

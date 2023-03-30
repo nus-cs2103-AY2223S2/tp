@@ -8,7 +8,7 @@ import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.exceptions.CommandException;
 import seedu.sprint.logic.parser.SortCommandParser.SortingOrder;
 import seedu.sprint.logic.parser.SortCommandParser.SortingSequence;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.application.AlphabeticalComparator;
 import seedu.sprint.model.application.Application;
 import seedu.sprint.model.application.ApplicationHasTaskPredicate;
@@ -63,7 +63,7 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         if (this.sortingOrder == SortingOrder.DEADLINE) {
             model.updateFilteredApplicationList(new ApplicationHasTaskPredicate());

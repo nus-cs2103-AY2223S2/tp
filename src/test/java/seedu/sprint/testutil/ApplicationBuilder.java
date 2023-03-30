@@ -12,7 +12,7 @@ import seedu.sprint.model.tag.Tag;
 import seedu.sprint.model.task.Deadline;
 import seedu.sprint.model.task.Description;
 import seedu.sprint.model.task.Task;
-import seedu.sprint.model.util.ApplicationSampleDataUtil;
+import seedu.sprint.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Application objects.
@@ -61,7 +61,7 @@ public class ApplicationBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Application} that we are building.
      */
     public ApplicationBuilder withTags(String ... tags) {
-        this.tags = ApplicationSampleDataUtil.getTagSet(tags);
+        this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
 

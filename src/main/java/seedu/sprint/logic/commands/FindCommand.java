@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.sprint.commons.core.Messages;
 import seedu.sprint.logic.CommandHistory;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.application.NameContainsKeywordsPredicate;
 
 /**
@@ -28,7 +28,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) {
+    public CommandResult execute(Model model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.updateFilteredApplicationList(predicate);
         return new CommandResult(String.format(Messages.MESSAGE_APPLICATIONS_LISTED_OVERVIEW,

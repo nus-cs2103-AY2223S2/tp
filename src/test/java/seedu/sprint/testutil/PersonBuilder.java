@@ -9,7 +9,6 @@ import seedu.sprint.model.person.Name;
 import seedu.sprint.model.person.Person;
 import seedu.sprint.model.person.Phone;
 import seedu.sprint.model.tag.Tag;
-import seedu.sprint.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Person objects.

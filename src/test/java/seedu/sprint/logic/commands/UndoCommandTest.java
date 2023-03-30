@@ -10,13 +10,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.CommandHistory;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.ApplicationModelManager;
 import seedu.sprint.model.UserPrefs;
 
 
 public class UndoCommandTest {
-    private ApplicationModel model;
+    private Model model;
     private ApplicationModelManager expectedModel;
     private CommandHistory commandHistory;
 

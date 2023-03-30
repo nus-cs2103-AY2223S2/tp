@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sprint.logic.commands.EditApplicationCommand.createEditedApplication;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.sprint.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
+import static seedu.sprint.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +14,7 @@ import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.commons.util.CollectionUtil;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.exceptions.CommandException;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.application.Application;
 import seedu.sprint.model.task.Deadline;
 import seedu.sprint.model.task.Description;
@@ -51,7 +51,7 @@ public class EditTaskCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         List<Application> lastShownList = model.getSortedApplicationList();
 

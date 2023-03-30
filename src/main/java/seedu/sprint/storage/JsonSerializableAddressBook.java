@@ -9,8 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.sprint.commons.exceptions.IllegalValueException;
-import seedu.sprint.model.AddressBook;
-import seedu.sprint.model.ReadOnlyAddressBook;
 import seedu.sprint.model.person.Person;
 
 /**

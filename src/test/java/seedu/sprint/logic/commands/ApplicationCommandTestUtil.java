@@ -18,7 +18,7 @@ import java.util.List;
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.exceptions.CommandException;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.application.Application;
 import seedu.sprint.model.application.NameContainsKeywordsPredicate;
@@ -93,9 +93,9 @@ public class ApplicationCommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertCommandSuccess(Command command, ApplicationModel actualModel,
+    public static void assertCommandSuccess(Command command, Model actualModel,
                                             CommandHistory actualCommandHistory,
-                                            CommandResult expectedCommandResult, ApplicationModel expectedModel) {
+                                            CommandResult expectedCommandResult, Model expectedModel) {
         actualCommandHistory.addCommand(command.toString());
         CommandHistory expectedCommandHistory = new CommandHistory(actualCommandHistory);
 
@@ -124,13 +124,13 @@ public class ApplicationCommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, ApplicationModel, CommandHistory,
-     * CommandResult, ApplicationModel)}
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandHistory,
+     * CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, ApplicationModel actualModel,
+    public static void assertCommandSuccess(Command command, Model actualModel,
                                             CommandHistory actualCommandHistory,
-                                            String expectedMessage, ApplicationModel expectedModel) {
+                                            String expectedMessage, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, actualCommandHistory, expectedCommandResult, expectedModel);
     }
@@ -141,7 +141,7 @@ public class ApplicationCommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the internship book, filtered application list and selected application in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(Command command, ApplicationModel actualModel,
+    public static void assertCommandFailure(Command command, Model actualModel,
                                             CommandHistory actualCommandHistory, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
@@ -158,7 +158,7 @@ public class ApplicationCommandTestUtil {
      * Updates {@code model}'s filtered list to show only the application at the given {@code targetIndex} in the
      * {@code model}'s internship book.
      */
-    public static void showApplicationAtIndex(ApplicationModel model, Index targetIndex) {
+    public static void showApplicationAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredApplicationList().size());
 
         Application application = model.getFilteredApplicationList().get(targetIndex.getZeroBased());
@@ -172,7 +172,7 @@ public class ApplicationCommandTestUtil {
     /**
      * Update {@code model}'s so that it only shows the first internship.
      */
-    public static void findFirstInternship(ApplicationModel model) {
+    public static void findFirstInternship(Model model) {
         Application firstInternship = model.getFilteredApplicationList().get(0);
         model.updateFilteredApplicationList(x -> x.equals(firstInternship));
     }
@@ -180,7 +180,7 @@ public class ApplicationCommandTestUtil {
     /**
      * Deletes the first internship in {@code model}'s filtered list from {@code model}'s sprint book.
      */
-    public static void deleteFirstInternship(ApplicationModel model) {
+    public static void deleteFirstInternship(Model model) {
         Application firstInternship = model.getFilteredApplicationList().get(0);
         model.deleteApplication(firstInternship);
         model.commitInternshipBookChange();
@@ -189,7 +189,7 @@ public class ApplicationCommandTestUtil {
     /**
      * Deletes the first internship in {@code model}'s filtered list from {@code model}'s sprint book.
      */
-    public static void deleteFirstInternship(ApplicationModel model, CommandHistory commandHistory) {
+    public static void deleteFirstInternship(Model model, CommandHistory commandHistory) {
         deleteFirstInternship(model);
         commandHistory.addCommand("delete 1");
         commandHistory.setLastCommandAsModify();
@@ -198,14 +198,14 @@ public class ApplicationCommandTestUtil {
     /**
      * Undo previous commands in {@code model}.
      */
-    public static void undoPreviousCommand(ApplicationModel model) {
+    public static void undoPreviousCommand(Model model) {
         model.undoInternshipBook();
     }
 
     /**
      * Undo previous commands in {@code model}.
      */
-    public static void undoPreviousCommand(ApplicationModel model, CommandHistory commandHistory) {
+    public static void undoPreviousCommand(Model model, CommandHistory commandHistory) {
         undoPreviousCommand(model);
         commandHistory.addCommand("undo");
         commandHistory.getPreviousModifyCommand();

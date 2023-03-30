@@ -19,7 +19,7 @@ import seedu.sprint.commons.core.Messages;
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.EditApplicationCommand.EditApplicationDescriptor;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.ApplicationModelManager;
 //import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.UserPrefs;
@@ -28,7 +28,7 @@ import seedu.sprint.testutil.ApplicationBuilder;
 import seedu.sprint.testutil.EditApplicationDescriptorBuilder;
 
 public class AddTaskCommandTest {
-    private ApplicationModel model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+    private Model model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 
     @Test

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.sprint.model.AddressBook;
 import seedu.sprint.model.person.Person;
 
 /**

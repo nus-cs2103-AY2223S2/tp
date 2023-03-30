@@ -11,8 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.sprint.commons.core.GuiSettings;
-import seedu.sprint.model.AddressBook;
-import seedu.sprint.model.ReadOnlyAddressBook;
 import seedu.sprint.model.UserPrefs;
 
 public class StorageManagerTest {

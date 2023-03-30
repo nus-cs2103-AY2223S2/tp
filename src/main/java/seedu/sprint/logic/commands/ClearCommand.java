@@ -3,7 +3,7 @@ package seedu.sprint.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.sprint.logic.CommandHistory;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.InternshipBook;
 
 
@@ -17,7 +17,7 @@ public class ClearCommand extends Command {
             + "If this was a mistake, you can enter the undo command.";;
 
     @Override
-    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) {
+    public CommandResult execute(Model model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.setInternshipBook(new InternshipBook());
         model.commitInternshipBookChange();

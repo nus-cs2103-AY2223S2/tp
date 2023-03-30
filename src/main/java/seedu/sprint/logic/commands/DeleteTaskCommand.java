@@ -2,7 +2,7 @@ package seedu.sprint.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sprint.logic.commands.EditApplicationCommand.createEditedApplicationWithoutTask;
-import static seedu.sprint.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
+import static seedu.sprint.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import seedu.sprint.commons.core.Messages;
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.exceptions.CommandException;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.application.Application;
 
 /**
@@ -34,7 +34,7 @@ public class DeleteTaskCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         List<Application> lastShownList = model.getSortedApplicationList();
 

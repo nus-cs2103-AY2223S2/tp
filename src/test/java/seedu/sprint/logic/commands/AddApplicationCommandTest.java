@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
 import seedu.sprint.commons.core.GuiSettings;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.exceptions.CommandException;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.ReadOnlyInternshipBook;
 import seedu.sprint.model.ReadOnlyUserPrefs;
@@ -82,7 +82,7 @@ public class AddApplicationCommandTest {
     /**
      * A default application model stub that have all the methods failing.
      */
-    private class ModelStub implements ApplicationModel {
+    private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");

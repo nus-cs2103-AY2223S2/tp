@@ -14,7 +14,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.CommandHistory;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.ApplicationModelManager;
 import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.application.NameContainsKeywordsPredicate;
@@ -23,9 +23,9 @@ import seedu.sprint.model.application.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Application Model) for {@code FindApplicationCommand}.
  */
 public class FindCommandTest {
-    private ApplicationModel model = new ApplicationModelManager(
+    private Model model = new ApplicationModelManager(
             getTypicalInternshipBook(), new UserPrefs());
-    private ApplicationModel expectedModel = new ApplicationModelManager(
+    private Model expectedModel = new ApplicationModelManager(
             getTypicalInternshipBook(), new UserPrefs());
     private CommandHistory commandHistory = new CommandHistory();
 

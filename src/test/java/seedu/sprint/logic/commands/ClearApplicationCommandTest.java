@@ -6,7 +6,7 @@ import static seedu.sprint.testutil.TypicalApplications.getTypicalInternshipBook
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.CommandHistory;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.ApplicationModelManager;
 import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.UserPrefs;
@@ -16,8 +16,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_emptyInternshipBook_success() {
-        ApplicationModel model = new ApplicationModelManager();
-        ApplicationModel expectedModel = new ApplicationModelManager();
+        Model model = new ApplicationModelManager();
+        Model expectedModel = new ApplicationModelManager();
         expectedModel.commitInternshipBookChange();
 
         assertCommandSuccess(new ClearCommand(), model, commandHistory,
@@ -26,8 +26,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyInternshipBook_success() {
-        ApplicationModel model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
-        ApplicationModel expectedModel = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+        Model model = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
+        Model expectedModel = new ApplicationModelManager(getTypicalInternshipBook(), new UserPrefs());
         expectedModel.setInternshipBook(new InternshipBook());
         expectedModel.commitInternshipBookChange();
 

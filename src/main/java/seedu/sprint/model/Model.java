@@ -1,18 +1,21 @@
 package seedu.sprint.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.sprint.commons.core.GuiSettings;
-import seedu.sprint.model.person.Person;
+import seedu.sprint.model.application.Application;
 
 /**
- * The API of the Model component.
+ * The API of the ApplicationModel component.
+ * This class should replace (i.e. be renamed to) Model eventually.
+ * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Application> PREDICATE_SHOW_ALL_APPLICATIONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,53 +38,103 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' sprint book file path.
+     * Returns the user prefs' internship book file path.
      */
-    Path getAddressBookFilePath();
+    Path getInternshipBookFilePath();
 
     /**
-     * Sets the user prefs' sprint book file path.
+     * Sets the user prefs' internship book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setInternshipBookFilePath(Path internshipBookFilePath);
 
     /**
-     * Replaces sprint book data with the data in {@code addressBook}.
+     * Replaces internship book data with the data in {@code internshipBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setInternshipBook(ReadOnlyInternshipBook internshipBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the InternshipBook */
+    ReadOnlyInternshipBook getInternshipBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the sprint book.
+     * Returns true if a duplicate Application exists in the internship book.
      */
-    boolean hasPerson(Person person);
+    boolean hasApplication(Application application);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the sprint book.
+     * Deletes the given application.
+     * The Application must exist in the internship book.
      */
-    void deletePerson(Person target);
+    void deleteApplication(Application target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the sprint book.
+     * Adds the given application.
+     * {@code application} must not already exist in the internship book.
      */
-    void addPerson(Person person);
+    void addApplication(Application application);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the sprint book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the sprint book.
+     * Replaces the given application {@code target} with {@code editedApplication}.
+     * {@code target} must exist in the internship book.
+     * {@code editedApplication} must not be the same as another existing application in the internship book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setApplication(Application target, Application editedApplication);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered application list */
+    ObservableList<Application> getFilteredApplicationList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered application list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredApplicationList(Predicate<Application> predicate);
+
+    /** Returns an unmodifiable view of the sorted application list */
+    ObservableList<Application> getSortedApplicationList();
+
+    /**
+     * Updates the sorting of the application list using the given comparator {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedApplicationList(Comparator<Application> comparator);
+
+    /**
+     * Check if user can undo the internship book of the model.
+     *
+     * @return true if user can undo the internship book of the model; false otherwise.
+     */
+    boolean canUndoInternshipBook();
+
+    /**
+     * Check if user can redo the internship book of the model.
+     *
+     * @return true if user can redo the internship book of the model; false otherwise.
+     */
+    boolean canRedoInternshipBook();
+
+    /**
+     * Undo the internship book of the model.
+     */
+    void undoInternshipBook();
+
+    /**
+     * Redo the internship book of the model.
+     */
+    void redoInternshipBook();
+
+    /**
+     * Save change in internship book of the model.
+     */
+    void commitInternshipBookChange();
+
+    /**
+     * Checks if given application already has an existing task attached to it.
+     */
+    boolean applicationHasTask(Application application);
+
+    /**
+     * Creates a new Application with the Task we want to add.
+     * @param target the application to add the task to.
+     * @param editedApplication the new application with task added.
+     */
+    void addTaskToApplication(Application target, Application editedApplication);
 }

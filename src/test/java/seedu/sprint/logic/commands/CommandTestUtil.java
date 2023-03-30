@@ -15,8 +15,6 @@ import java.util.List;
 
 import seedu.sprint.commons.core.index.Index;
 import seedu.sprint.logic.commands.exceptions.CommandException;
-import seedu.sprint.model.AddressBook;
-import seedu.sprint.model.Model;
 import seedu.sprint.model.person.NameContainsKeywordsPredicate;
 import seedu.sprint.model.person.Person;
 import seedu.sprint.testutil.EditPersonDescriptorBuilder;

@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.sprint.commons.exceptions.DataConversionException;
-import seedu.sprint.model.ReadOnlyAddressBook;
 
 /**
  * Represents a storage for {@link seedu.sprint.model.AddressBook}.

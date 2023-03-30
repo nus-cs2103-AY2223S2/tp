@@ -4,40 +4,46 @@ import static java.util.Objects.requireNonNull;
 import static seedu.sprint.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.sprint.commons.core.GuiSettings;
 import seedu.sprint.commons.core.LogsCenter;
-import seedu.sprint.model.person.Person;
+import seedu.sprint.model.application.Application;
 
 /**
  * Represents the in-memory model of the sprint book data.
+ * This class should replace (i.e. be renamed to) ModelManager eventually.
+ * Comment to let merge operation detect file. To be deleted subsequently.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedInternshipBook versionedInternshipBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Application> filteredApplications;
+    private final SortedList<Application> sortedApplications;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given applicationBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyInternshipBook internshipBook, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(internshipBook, userPrefs);
 
-        logger.fine("Initializing with sprint book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with application book: " + internshipBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.versionedInternshipBook = new VersionedInternshipBook(internshipBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredApplications = new FilteredList<>(versionedInternshipBook.getApplicationList());
+        sortedApplications = new SortedList<>(filteredApplications);
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new InternshipBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,69 +71,118 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        // return userPrefs.getAddressBookFilePath();
+    public Path getInternshipBookFilePath() {
         return userPrefs.getInternshipBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        // userPrefs.setAddressBookFilePath(addressBookFilePath);
-        userPrefs.setInternshipBookFilePath(addressBookFilePath);
+    public void setInternshipBookFilePath(Path internshipBookFilePath) {
+        requireNonNull(internshipBookFilePath);
+        userPrefs.setInternshipBookFilePath(internshipBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== InternshipBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setInternshipBook(ReadOnlyInternshipBook internshipBook) {
+        versionedInternshipBook.resetData(internshipBook);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyInternshipBook getInternshipBook() {
+        return versionedInternshipBook;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasApplication(Application application) {
+        requireNonNull(application);
+        return versionedInternshipBook.hasApplication(application);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteApplication(Application target) {
+        versionedInternshipBook.removeApplication(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addApplication(Application application) {
+        versionedInternshipBook.addApplication(application);
+        updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setApplication(Application target, Application editedApplication) {
+        requireAllNonNull(target, editedApplication);
+        versionedInternshipBook.setApplication(target, editedApplication);
+    }
+
+    @Override
+    public boolean applicationHasTask(Application application) {
+        return application.hasTask();
+    }
+
+    @Override
+    public void addTaskToApplication(Application target, Application editedApplication) {
+        versionedInternshipBook.setApplication(target, editedApplication);
+    }
+
+    //=========== Filtered Application List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Application} backed by the internal list of
+     * {@code versionedInternshipBook}.
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Application> getFilteredApplicationList() {
+        return filteredApplications;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredApplicationList(Predicate<Application> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredApplications.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the sorted list of {@code Application} backed by the internal list of
+     * {@code versionedInternshipBook}.
+     */
+    @Override
+    public ObservableList<Application> getSortedApplicationList() {
+        return sortedApplications;
+    }
+
+    @Override
+    public void updateSortedApplicationList(Comparator<Application> comparator) {
+        requireNonNull(comparator);
+        sortedApplications.setComparator(comparator);
+    }
+
+    //=========== Handle undo and redo commands =============================================================
+
+    @Override
+    public boolean canUndoInternshipBook() {
+        return versionedInternshipBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoInternshipBook() {
+        return versionedInternshipBook.canRedo();
+    }
+
+    @Override
+    public void undoInternshipBook() {
+        versionedInternshipBook.undo();
+    }
+
+    @Override
+    public void redoInternshipBook() {
+        versionedInternshipBook.redo();
+    }
+
+    @Override
+    public void commitInternshipBookChange() {
+        versionedInternshipBook.commit();
     }
 
     @Override
@@ -144,9 +199,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return versionedInternshipBook.equals(other.versionedInternshipBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredApplications.equals(other.filteredApplications)
+                && sortedApplications.equals(other.sortedApplications);
     }
-
 }

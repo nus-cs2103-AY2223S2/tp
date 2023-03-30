@@ -6,7 +6,7 @@ import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.sprint.model.ApplicationModel.PREDICATE_SHOW_ALL_APPLICATIONS;
+import static seedu.sprint.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -20,7 +20,7 @@ import seedu.sprint.commons.util.CollectionUtil;
 import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.sprint.logic.commands.exceptions.CommandException;
-import seedu.sprint.model.ApplicationModel;
+import seedu.sprint.model.Model;
 import seedu.sprint.model.application.Application;
 import seedu.sprint.model.application.CompanyEmail;
 import seedu.sprint.model.application.CompanyName;
@@ -71,7 +71,7 @@ public class EditApplicationCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(ApplicationModel model, CommandHistory commandHistory) throws CommandException {
+    public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
         requireNonNull(model);
         List<Application> lastShownList = model.getSortedApplicationList();
 

@@ -1,6 +1,5 @@
 package seedu.sprint.testutil;
 
-import seedu.sprint.model.AddressBook;
 import seedu.sprint.model.person.Person;
 
 /**
