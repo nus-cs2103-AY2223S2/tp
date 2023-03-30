@@ -104,7 +104,7 @@ public class InputHistory {
      * @param commandResult the result of executing {@code commandString}
      */
     public void offerCommand(String commandString, CommandResult commandResult) {
-        if (!commandResult.isDeterministic()) { // not exactly accurate, <exportCommand> - to fix
+        if (!commandResult.affectsModel()) {
             return;
         }
         future.clear();

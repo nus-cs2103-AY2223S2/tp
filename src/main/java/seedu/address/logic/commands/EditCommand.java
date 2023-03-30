@@ -85,6 +85,7 @@ public class EditCommand extends Command {
         }
 
         personToEdit.editTo(editPersonDescriptor);
+        model.refreshFilteredPersonList();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), true, true);
     }
 
