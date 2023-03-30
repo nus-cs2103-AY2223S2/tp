@@ -296,7 +296,7 @@ The UI consists of a `MainWindow` that is made up of parts such as `InfoTab`, `C
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+**The `UI` component:**
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -342,7 +342,7 @@ The **API** of this component is specified in [`Model.java`](https://github.com/
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
-The `Model` component,
+**The `Model` component:**
 
 * stores CoDoc data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
@@ -364,7 +364,7 @@ The **API** of this component is specified in [`Storage.java`](https://github.co
 <img src="images/StorageClassDiagram.png" width="550" />
 <br>
 
-The `Storage` component, 
+**The `Storage` component:** 
 * can save both CoDoc data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `CodocStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`) the notable being
