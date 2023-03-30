@@ -703,7 +703,7 @@ program. Essentially you do not need a mouse to run this program at all!
 | **Find**    | `find <NAME> `                                                                                                                                                                                                                                                                                                         |
 | **Delete**  | `delete in/<INDEX_NUMBER>`                                                                                                                                                                                                                                                                                             |
 
-## Command Summary for Parent / NOK `parent`
+### Command Summary for Parent / NOK `parent`
 
 | Action     | Format, Examples                                                                                                                                 |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
