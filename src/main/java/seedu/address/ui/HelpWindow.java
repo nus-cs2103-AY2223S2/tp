@@ -20,6 +20,38 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103-w17-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide:\n" + USERGUIDE_URL;
 
+    public static final String USER_GUIDE = "Greeting! There is a quick and easy guide for you to use the MATHUTORING. "
+            + "Below are the functions supported.\n"
+            + "Commands with parameter(s):\n"
+            + "1. add: Add a student to the student list. \n"
+            + "2. addScore: Add a score for a selected student.\n"
+            + "3. deleteScore: Delete a score for a selected student.\n"
+            + "4. addTask: Add a task for a selected student.\n"
+            + "5. deleteTask: Delete a task for a selected student.\n"
+            + "6. check: Check the task(s) and score(s) for a selected student.\n"
+            + "7. delete: Delete a student from the student list.\n"
+            + "8. edit: Edit the student’s information.\n"
+            + "9. find: Find student(s) from the student list by their name(s).\n"
+            + "10. filter: Filter out the matching result based on tag(s).\n"
+            + "11. markComplete: Mark task as complete.\n"
+            + "12. markInProgress: Mark task as in progress\n"
+            + "13. markLate: Mark task as late\n"
+            + "14. exportP: Export a student's progress as PDF file\n"
+            + "15. import: Import .json file in\n"
+            + "16. export: Export .json file in\n"
+            + "\n"
+            + "Commands without parameter(s):\n"
+            + "Please note that the commands below are used without parameters. "
+            + "These commands will ignore all things that follow behind the command keyword. \n"
+            + "1. list: List all students \n"
+            + "2. switch: Switch between the score list tab and score chart tab.\n"
+            + "3. help: Open the help window. \n"
+            + "4. clear: Clear all items on the student list."
+            + "5. exit: Close the application. \n"
+            + "\n"
+            + "Addition: The student’s avatar will change if they have a male or female tag. "
+            + "If a student has both tags, his or her avatar will remain as the default.\n";
+
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -28,6 +60,8 @@ public class HelpWindow extends UiPart<Stage> {
 
     @FXML
     private Label helpMessage;
+    @FXML
+    private Label userGuide;
 
     /**
      * Creates a new HelpWindow.
@@ -37,6 +71,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        userGuide.setText(USER_GUIDE);
         root.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent we) {
                 copyButton.setText("Copy Link");

@@ -26,7 +26,7 @@ class CheckCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_validCheckIndexList_success() {
+    public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToCheck = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -38,6 +38,19 @@ class CheckCommandTest {
         expectedModel.checkPerson(personToCheck);
 
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
+
+        assertCommandSuccess(checkCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
+        Person personToCheck = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        CheckCommand checkCommand = new CheckCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(CheckCommand.MESSAGE_CHECK_PERSON_SUCCESS, personToCheck);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.checkPerson(personToCheck);
 
         assertCommandSuccess(checkCommand, model, expectedMessage, expectedModel);
     }
