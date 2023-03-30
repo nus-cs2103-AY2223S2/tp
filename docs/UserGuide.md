@@ -473,7 +473,7 @@ patient delete <PATIENT_ID>
 
 ##### Example
 
-* `patent delete 7`
+* `patient delete 7`
 
 Output:
 
@@ -493,7 +493,7 @@ patient clear
 
 ##### Example
 
-* `patent clear`
+* `patient clear`
 
 Output:
 
