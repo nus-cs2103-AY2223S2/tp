@@ -45,6 +45,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code name} is longer than 50 characters.
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
