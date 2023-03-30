@@ -1,8 +1,5 @@
 package seedu.address.model.entity;
 
-import seedu.address.model.entity.exceptions.DuplicateTemplateException;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -10,12 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import seedu.address.model.entity.exceptions.DuplicateTemplateException;
+
 /**
- * A template class to create new Characters.
+ * Class which stores a list of pre-determined character templates
  */
 public class Template {
     private final ArrayList<Character> templates;
 
+    /**
+     * Initialize list of character templates
+     */
+    private Template() {
+        this.templates = new ArrayList<>();
+    }
+
+    /**
+     * Fill with pre-determined templates
+     * @return The wrapper class
+     */
     public static Template getPresetTemplates() {
         Template presetTemplates = new Template();
         Stats orcStats = new Stats(15, 6, 1);
@@ -29,24 +39,33 @@ public class Template {
         presetTemplates.addTemplate(humanTemplate);
         return presetTemplates;
     }
-    /**
-     * Initialize list of character templates
-     */
-    private Template() {
-        this.templates = new ArrayList<>();
-    }
 
+    /**
+     * Checks if a template with the given name exists
+     * @param toCheck name of template
+     * @return existence check
+     */
     public boolean contains(Name toCheck) {
         requireNonNull(toCheck);
         return templates.stream().anyMatch(t -> t.getName().equals(toCheck));
     }
 
+    /**
+     * Checks if a character template with the same name exists
+     * @param toCheck Character to be added
+     * @return existence check
+     */
     public boolean contains(Character toCheck) {
         requireAllNonNull(toCheck);
-        return templates.stream().anyMatch(toCheck::isSameEntity);
+        return contains(toCheck.getName());
     }
 
-    public void addTemplate(Character toAdd) throws DuplicatePersonException {
+    /**
+     * Adds a new character template
+     * @param toAdd template to add
+     * @throws DuplicateTemplateException if template with same name already exists
+     */
+    public void addTemplate(Character toAdd) throws DuplicateTemplateException {
         requireNonNull(toAdd);
         if (this.contains(toAdd)) {
             throw new DuplicateTemplateException();
@@ -55,6 +74,10 @@ public class Template {
         }
     }
 
+    /**
+     * Returns a list of all template names
+     * @return the list
+     */
     public List<String> list() {
         ArrayList<String> list = new ArrayList<>();
         this.templates.forEach(t -> list.add(t.getName().fullName));

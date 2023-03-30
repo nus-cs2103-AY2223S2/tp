@@ -8,8 +8,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.model.entity.*;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Entity;
+import seedu.address.model.entity.Item;
+import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Name;
+import seedu.address.model.entity.Template;
 
 /**
  * Wraps all data at Reroll level.
@@ -78,7 +82,9 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     @Override
-    public List<String> getTemplates() { return templates.list(); }
+    public List<String> getTemplates() {
+        return templates.list();
+    }
 
     // Entity level operations ===============
 

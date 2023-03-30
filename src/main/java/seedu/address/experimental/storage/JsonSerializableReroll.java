@@ -14,7 +14,6 @@ import seedu.address.experimental.model.Reroll;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
-import seedu.address.model.entity.Template;
 
 /**
  * An Immutable Reroll that is serializable to JSON format.

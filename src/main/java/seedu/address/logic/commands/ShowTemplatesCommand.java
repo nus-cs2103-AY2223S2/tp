@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import seedu.address.commons.util.StringUtil;
+
 import seedu.address.experimental.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
 
