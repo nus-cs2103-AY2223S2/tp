@@ -34,7 +34,6 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private WardListPanel wardListPanel;
     private ResultDisplay resultDisplay;
-    private MedInfoStats medInfoStats;
     private HelpWindow helpWindow;
 
     @FXML
@@ -53,8 +52,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
-    @FXML
-    private StackPane medInfoStatsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -125,11 +122,19 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMedInfoFilePath(), "20/20", "900");
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMedInfoFilePath(), logic.getStatsInfo());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Updates Stats placeholder.
+     */
+    void updateStats() {
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMedInfoFilePath(), logic.getStatsInfo());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
     /**
@@ -188,6 +193,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
 
             CommandResult commandResult = logic.execute(commandText);
+            updateStats();
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

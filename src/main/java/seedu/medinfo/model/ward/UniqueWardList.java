@@ -54,6 +54,18 @@ public class UniqueWardList implements Iterable<Ward> {
     }
 
     /**
+     * Returns total capacity of all wards.
+     */
+    public int capacity() {
+        int capacity = 0;
+        for (Ward ward: internalList) {
+            Capacity cap = ward.getCapacity();
+            capacity += cap.getValue();
+        }
+        return capacity;
+    }
+
+    /**
      * Returns specified ward to edit.
      */
     public Ward getWard(String wardName) {

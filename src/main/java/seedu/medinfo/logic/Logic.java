@@ -1,6 +1,7 @@
 package seedu.medinfo.logic;
 
 import java.nio.file.Path;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.medinfo.commons.core.GuiSettings;
@@ -30,6 +31,8 @@ public interface Logic {
      * @see seedu.medinfo.model.Model#getMedInfo()
      */
     ReadOnlyMedInfo getMedInfo();
+
+    List<String> getStatsInfo();
 
     /** Returns an unmodifiable view of the filtered list of patients */
     ObservableList<Patient> getFilteredPatientList();

@@ -2,6 +2,7 @@ package seedu.medinfo.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -111,6 +112,8 @@ public interface Model {
      * existing ward in the medinfo book.
      */
     void setWard(Ward target, Ward editedWard);
+
+    List<String> getStatsInfo();
 
     /** Returns an unmodifiable view of the filtered patient list */
     ObservableList<Patient> getFilteredPatientList();

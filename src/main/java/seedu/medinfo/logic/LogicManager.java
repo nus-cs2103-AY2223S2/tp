@@ -2,6 +2,7 @@ package seedu.medinfo.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -36,6 +37,11 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         medInfoParser = new MedInfoParser();
+    }
+
+    @Override
+    public List<String> getStatsInfo() {
+        return model.getStatsInfo();
     }
 
     @Override
