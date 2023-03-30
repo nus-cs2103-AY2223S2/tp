@@ -346,7 +346,7 @@ Example:
 
 ![DeleteBackUp](images/command_result/Deletebackup.png)
 
-Above is the execution result of the input `deletebackup 1`
+Above is the execution result of the input `deletebackup 1`.
 
 ### Clearing all data: `clear`
 
