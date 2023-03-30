@@ -9,7 +9,7 @@ public class StorageCount {
     public static final String MESSAGE_CONSTRAINTS =
             "Storage Count should only contain positive integers, "
                     + "it should be at least 1 digit long but no more than 3 digits";
-    public static final String VALIDATION_REGEX = "[1-4][0-9][0-9]";
+    public static final String VALIDATION_REGEX = "[1-4]?[0-9]?[0-9]";
 
     private static final int THRESHOLD_VALUE = 10;
     private static final int UPPER_LIMIT = 499;
