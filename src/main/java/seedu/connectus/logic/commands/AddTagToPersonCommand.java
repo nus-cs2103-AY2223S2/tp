@@ -1,6 +1,8 @@
 package seedu.connectus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -9,13 +11,14 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.connectus.commons.core.Messages;
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.exceptions.CommandException;
 import seedu.connectus.model.Model;
 import seedu.connectus.model.person.Person;
+import seedu.connectus.model.tag.Cca;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -23,18 +26,25 @@ import seedu.connectus.model.tag.Remark;
  * Adds a tag to a person identified using its displayed index from ConnectUS.
  */
 public class AddTagToPersonCommand extends Command {
-    public static final String COMMAND_WORD = "addt";
+    public static final String COMMAND_WORD = "add-t";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag to the person identified "
         + "by the index number used in the displayed person list. \n"
         + "Parameters: INDEX (must be a positive integer) "
-        + "[" + PREFIX_REMARK + "REMARK] "
-        + "[" + PREFIX_MODULE + "MODULE]"
-        + "\n"
+        + "[" + PREFIX_MODULE + "MODULE]... "
+        + "[" + PREFIX_CCA + "CCA]... "
+        + "[" + PREFIX_CCA_POSITION + "CCA POSITION]... "
+        + "[" + PREFIX_REMARK + "REMARK]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_REMARK + "friend "
-        + PREFIX_MODULE + "CS1231";
+        + PREFIX_MODULE + "CS2103T "
+        + PREFIX_MODULE + "CS2101 "
+        + PREFIX_CCA + "NES "
+        + PREFIX_CCA + "ICS "
+        + PREFIX_CCA_POSITION + "Director "
+        + PREFIX_CCA_POSITION + "President "
+        + PREFIX_REMARK + "friends "
+        + PREFIX_REMARK + "owesMoney";
 
-    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added %2$s to Person: %1$s";
+    public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to Person: %1$s";
 
     private final Index index;
     private final AddTagDescriptor addTagDescriptor;
@@ -65,37 +75,21 @@ public class AddTagToPersonCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson, getTagSuccessDetailsMessage()));
-    }
-
-    private String getTagSuccessDetailsMessage() {
-        StringBuilder sb = new StringBuilder(MESSAGE_ADD_TAG_SUCCESS.length() * 2);
-        if (!addTagDescriptor.remarks.isEmpty()) {
-            sb.append("remark");
-            sb.append(addTagDescriptor.remarks.size() > 1 ? "s " : " ");
-            sb.append(addTagDescriptor.remarks.stream().map(remark -> remark.remarkName)
-                .collect(Collectors.joining(", ")));
-        }
-
-        if (!addTagDescriptor.modules.isEmpty()) {
-            sb.append(sb.length() == 0 ? "" : " and ");
-            sb.append("module");
-            sb.append(addTagDescriptor.modules.size() > 1 ? "s " : " ");
-            sb.append(addTagDescriptor.modules.stream().map(module -> module.moduleName)
-                .collect(Collectors.joining(", ")));
-        }
-
-        return sb.toString();
+        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson));
     }
 
     private Person createEditedPerson(Person personToEdit, AddTagDescriptor addTagDescriptor) {
-        var remarks = new HashSet<>(personToEdit.getRemarks());
         var modules = new HashSet<>(personToEdit.getModules());
+        var ccas = new HashSet<>(personToEdit.getCcas());
+        var ccaPositions = new HashSet<>(personToEdit.getCcaPositions());
+        var remarks = new HashSet<>(personToEdit.getRemarks());
 
-        remarks.addAll(addTagDescriptor.remarks);
         modules.addAll(addTagDescriptor.modules);
+        ccas.addAll(addTagDescriptor.ccas);
+        ccaPositions.addAll(addTagDescriptor.ccaPositions);
+        remarks.addAll(addTagDescriptor.remarks);
 
-        return new Person(personToEdit, remarks, modules);
+        return new Person(personToEdit, remarks, modules, ccas, ccaPositions);
     }
 
     @Override
@@ -122,28 +116,35 @@ public class AddTagToPersonCommand extends Command {
      * corresponding field value of the person.
      */
     public static class AddTagDescriptor {
-        private final Set<Remark> remarks;
-        private final Set<Module> modules;
+        protected final Set<Module> modules;
+        protected final Set<Cca> ccas;
+        protected final Set<CcaPosition> ccaPositions;
+        protected final Set<Remark> remarks;
 
 
         /**
          * Constructor.
          */
-        public AddTagDescriptor(Set<Remark> remarks, Set<Module> modules) {
-            this.remarks = remarks;
+        public AddTagDescriptor(Set<Remark> remarks, Set<Module> modules,
+                                Set<Cca> ccas, Set<CcaPosition> ccaPositions) {
             this.modules = modules;
+            this.ccas = ccas;
+            this.ccaPositions = ccaPositions;
+            this.remarks = remarks;
         }
 
         /**
          * Copy constructor.
          */
         public AddTagDescriptor(AddTagDescriptor addTagDescriptor) {
-            remarks = addTagDescriptor.remarks;
             modules = addTagDescriptor.modules;
+            ccas = addTagDescriptor.ccas;
+            ccaPositions = addTagDescriptor.ccaPositions;
+            remarks = addTagDescriptor.remarks;
         }
 
         /**
-         * Returns an unmodifiable remark set, which throws
+         * Returns an unmodifiable Remark set, which throws
          * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code remarks} is null.
@@ -153,7 +154,7 @@ public class AddTagToPersonCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable modules set, which throws
+         * Returns an unmodifiable Module set, which throws
          * {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code modules} is null.
@@ -162,8 +163,29 @@ public class AddTagToPersonCommand extends Command {
             return (modules != null) ? Optional.of(Collections.unmodifiableSet(modules)) : Optional.empty();
         }
 
+        /**
+         * Returns an unmodifiable CCA set, which throws
+         * {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code ccas} is null.
+         */
+        public Optional<Set<Cca>> getCcas() {
+            return (ccas != null) ? Optional.of(Collections.unmodifiableSet(ccas)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable CCA set, which throws
+         * {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code ccaPositions} is null.
+         */
+        public Optional<Set<CcaPosition>> getCcaPositions() {
+            return (ccaPositions != null) ? Optional.of(Collections.unmodifiableSet(ccaPositions)) : Optional.empty();
+        }
+
         public boolean isEmpty() {
-            return (remarks == null || remarks.isEmpty()) && (modules == null || modules.isEmpty());
+            return (remarks == null || remarks.isEmpty()) && (modules == null || modules.isEmpty())
+                && (ccas == null || ccas.isEmpty()) && (ccaPositions == null || ccaPositions.isEmpty());
         }
 
         @Override
@@ -181,7 +203,8 @@ public class AddTagToPersonCommand extends Command {
             // state check
             var e = (AddTagDescriptor) other;
 
-            return getRemarks().equals(e.getRemarks()) && getModules().equals(e.getModules());
+            return getRemarks().equals(e.getRemarks()) && getModules().equals(e.getModules())
+                && getCcas().equals(e.getCcas()) && getCcaPositions().equals(e.getCcaPositions());
         }
     }
 }

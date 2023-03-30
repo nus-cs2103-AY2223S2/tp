@@ -2,6 +2,7 @@ package seedu.connectus.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 
 /**
  * Represents a Person's address in ConnectUS.
@@ -9,8 +10,8 @@ import static seedu.connectus.commons.util.AppUtil.checkArgument;
  */
 public class Address {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
-
+    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank\n"
+            + "Format: " + PREFIX_ADDRESS + "ADDRESS";
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
