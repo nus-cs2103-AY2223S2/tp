@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an internship's salary in the tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidSalary(String)}
  */
-public class Salary {
+public class Salary extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Salaries must be in the form [number] [CURRENCY] "
         + "and should not be blank";

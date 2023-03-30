@@ -3,11 +3,13 @@ package seedu.address.model.contact;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.person.InternshipApplicationAttribute;
+
 /**
  * Represents a company's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
-public class Phone {
+public class Phone extends InternshipApplicationAttribute {
 
 
     public static final String MESSAGE_CONSTRAINTS =

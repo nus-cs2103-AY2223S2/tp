@@ -94,7 +94,7 @@ public class ArchiveCommand extends Command {
         Documents documents = internshipApplication.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, InternshipStatus.ARCHIVED, true, interviewDate,
+                salary, notes, rating, reflections, contact, status, true, interviewDate,
                 documents);
     }
 

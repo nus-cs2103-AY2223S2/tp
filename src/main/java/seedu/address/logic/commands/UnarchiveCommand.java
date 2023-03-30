@@ -94,7 +94,7 @@ public class UnarchiveCommand extends Command {
         Documents documents = internshipApplication.getDocuments();
 
         return new InternshipApplication(companyName, jobTitle, reviews, programmingLanguages, qualifications, location,
-                salary, notes, rating, reflections, contact, InternshipStatus.ARCHIVED, false, interviewDate,
+                salary, notes, rating, reflections, contact, status, false, interviewDate,
                 documents);
     }
 
