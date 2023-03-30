@@ -147,6 +147,7 @@ public class EditModeParser {
             tags.ifPresent(realTags -> outData.setTags(realTags));
             break;
         case "str":
+        case "strength":
             outData.setStats(new Stats(Integer.valueOf(value),
                     toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
             break;

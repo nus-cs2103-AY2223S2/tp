@@ -8,8 +8,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.util.Pair;
+import org.apache.commons.lang3.StringUtils;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -85,8 +87,11 @@ public abstract class Entity {
         return Arrays.hashCode(getFields().toArray());
     }
 
-    @Override
-    public String toString() {
+    /**
+     * Return alternate string representation of entities
+     * @return
+     */
+    public String toDetailedString() {
         final StringBuilder builder = new StringBuilder();
         List<Pair<String, String>> fields = getFields();
         for (Pair<String, String> p : fields) {
@@ -94,6 +99,16 @@ public abstract class Entity {
             builder.append(field);
         }
         return builder.toString();
+    }
+
+    @Override
+    public String toString() {
+        List<Pair<String, String>> fields = getFields();
+        List<String> details = fields
+                .stream()
+                .map(p -> p.getKey() + ": " + p.getValue())
+                .collect(Collectors.toList());
+        return StringUtils.join(details, " | ");
     }
 
     public abstract boolean isSameEntity(Entity otherEntity);
