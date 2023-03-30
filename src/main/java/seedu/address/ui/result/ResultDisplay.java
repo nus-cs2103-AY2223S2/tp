@@ -40,7 +40,7 @@ public class ResultDisplay extends UiPart<Region> {
 
     private static final String FXML = "result/ResultDisplay.fxml";
     private static final List<String> KEYWORDS = List.of(AddCommand.COMMAND_WORD, AddEventCommand.COMMAND_WORD,
-            ClearCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, DeleteEventCommand.MESSAGE_USAGE,
+            ClearCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, DeleteEventCommand.COMMAND_WORD,
             EditContactCommand.COMMAND_WORD, EditUserCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
             UnfavoriteCommand.COMMAND_WORD, FavoriteCommand.COMMAND_WORD, TabCommand.COMMAND_WORD,
