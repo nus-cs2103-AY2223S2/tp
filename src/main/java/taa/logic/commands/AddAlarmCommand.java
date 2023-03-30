@@ -2,9 +2,9 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
 import taa.model.alarm.Alarm;
-import taa.logic.commands.exceptions.CommandException;
 
 /**
  * Defines the add alarm command

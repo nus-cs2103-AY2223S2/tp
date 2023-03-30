@@ -1,12 +1,10 @@
 package taa.model.alarm;
 
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
 import javafx.animation.Timeline;
-
-import java.math.RoundingMode;
-
 /**
  * Defines the Alarm class
  */

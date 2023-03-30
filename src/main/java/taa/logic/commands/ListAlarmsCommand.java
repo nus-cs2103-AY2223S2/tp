@@ -1,8 +1,8 @@
 package taa.logic.commands;
 
-import taa.model.Model;
-
 import static java.util.Objects.requireNonNull;
+
+import taa.model.Model;
 
 /**
  * Defines the command class for listing of alarms.

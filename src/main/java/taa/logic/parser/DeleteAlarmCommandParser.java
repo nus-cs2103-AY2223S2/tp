@@ -8,7 +8,7 @@ import taa.logic.parser.exceptions.ParseException;
 /**
  * Defines a parser for delete alarm command
  */
-public class DeleteAlarmCommandParser implements Parser<DeleteAlarmCommand>{
+public class DeleteAlarmCommandParser implements Parser<DeleteAlarmCommand> {
 
     /**
      * Parses the command line arguments and identify the alarm that is to be deleted/
