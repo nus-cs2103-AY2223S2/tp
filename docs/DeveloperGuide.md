@@ -154,6 +154,40 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### 1.Making appointment
+This feature servers as one of the core features of Medimate, so how is it implemented?
+
+This feature is achieved by the following classes:
+* `AddAppointmentCommand` - when executed, will add a new appointment to a specified patient
+* `AddAppointmentCommandParser` - will parser user's input and return a valid `AddAppointmentCommand` for execution
+
+The format of commandline input is as follows:
+`makeApp {patientIndex} /from {startTime} /to {endTime}`
+
+Initially, when the input is received, it is processed by the UI layer, which calls the
+logic.execute(input) function and transfers the control to the logic layer. The execute(input)
+function in the logic layer then utilizes the `AddressBookParser` to break down the input into tokens,
+determine the commandʼs mode and calls relevant commandParser for further parsing. In this feature, specifically, 
+`AddAppointmentCommandParser` will be called.
+
+Then, inside this parser, there are mainly three information being parsed:
+* patientIndex - parsed by `parserIndex` method in `ParserUtil` class
+* startTime - parsed by `parserDate` methond in `ParserUtil` class
+* endTime - parsed by `parserDate` methond in `ParserUtil` class
+
+After all these pieces of information is being parserd, the parser class will create a new `AddAppointmentCommand` class
+and transfer all information to it for further execution.
+
+Then inside this command class, it will use all the information input by user to create a new patient with all other 
+details the same and only change in its `appointment` and calls model manager to substitute previous patient
+with the new one by calling `model.setPerson(previousPerson, newPerson)`
+
+Finally, `ModelManager` will be connected to storage and save this change accordingly. Also, UI will detect this change
+and refresh the whole patient list with new appointment added.
+
+![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
