@@ -12,6 +12,10 @@ src/main/resources/docs/
 /data/
 /config.json
 /preferences.json
+
+#Remove this after first commit
+/userData.json
+
 /*.log.*
 
 # Test sandbox files

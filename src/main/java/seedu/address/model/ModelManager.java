@@ -25,11 +25,12 @@ public class ModelManager implements Model, Undoable {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final UndoManager undoManager;
+    private final UserData userData;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyUserData userData) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -38,10 +39,11 @@ public class ModelManager implements Model, Undoable {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.undoManager = new UndoManager(this.addressBook, 5);
+        this.userData = new UserData();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new UserData());
     }
 
     //=========== UserPrefs ==================================================================================
