@@ -18,6 +18,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.supplier.FindSupplierCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -61,7 +62,7 @@ public class FindSupplierCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noPersonFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0,
                 ModelEnum.SUPPLIER.toString().toLowerCase());
         PersonNameContainsKeywordsPredicate predicate = preparePredicate(" ");
@@ -72,7 +73,7 @@ public class FindSupplierCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
+    public void execute_multipleKeywords_multiplePersonsFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 3,
                 ModelEnum.SUPPLIER.toString().toLowerCase());
         PersonNameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.task.DeleteTaskCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -32,7 +33,7 @@ public class DeleteTaskCommandTest {
             getTypicalOrderList(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredTaskList_success() {
+    public void execute_validIndexUnfilteredTaskList_success() throws ParseException {
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_OBJECT);
 
@@ -57,7 +58,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredTaskList_success() {
+    public void execute_validIndexFilteredTaskList_success() throws ParseException {
         showTaskAtIndex(model, INDEX_FIRST_OBJECT);
 
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());

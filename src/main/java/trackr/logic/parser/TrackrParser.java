@@ -10,6 +10,7 @@ import trackr.logic.commands.Command;
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.HelpCommand;
 import trackr.logic.commands.TabCommand;
+import trackr.logic.commands.UploadCsvCommand;
 import trackr.logic.commands.order.AddOrderCommand;
 import trackr.logic.commands.order.ClearOrderCommand;
 import trackr.logic.commands.order.DeleteOrderCommand;
@@ -155,6 +156,9 @@ public class TrackrParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case UploadCsvCommand.COMMAND_WORD:
+            return new UploadCsvCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
