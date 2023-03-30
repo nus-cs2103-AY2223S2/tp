@@ -13,7 +13,7 @@ import java.util.stream.Stream;
  */
 public class DateOfBirth {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date of birth should only contain numeric characters and spaces, "
+            "Date of birth should only contain numeric characters and spaces, the format of date should be dd/mm/yyyy"
                     + "and the date should fall between 01/01/1900 and current date";
     private static final DateTimeFormatter[] FORMATS =
             Stream.of("dd.MM.yyyy", "dd/MM/yyyy", "dd-MM-yyyy",
