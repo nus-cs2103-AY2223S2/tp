@@ -9,8 +9,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, MedInfo can get your patient management tasks done faster than traditional GUI apps.
 
 This is a User Guide for MedInfo that will guide you through installing the app to getting familiarised
-with its features and using it. You are a **hospital staff member** with decent typing ability and
-some idea of how a **CLI**-powered app works.
+with its features and using it. You are a **hospital staff member** with decent typing ability and prefer typing
+over voice or mouse commands to do your tasks.
 
 Navigating this User Guide is simple with the Table of Contents with hyperlinks to every segment below, and a hyperlink
 on every page to take you back to the Table of Contents. To further augment your navigation, press
