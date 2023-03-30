@@ -12,7 +12,7 @@ import seedu.address.model.entity.person.Technician;
 /**
  * Manages Sorting of technicians
  */
-public class SortTechniciansCommand extends RedoableCommand {
+public class SortTechniciansCommand extends Command {
     public static final String COMMAND_WORD = "sorttechnicians";
     public static final String MESSAGE_SUCCESS = "Sorted technicians";
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Sorts technicians by attribute. "
@@ -34,7 +34,7 @@ public class SortTechniciansCommand extends RedoableCommand {
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         model.updateTechnicianComparator(cmp);
         return new CommandResult(MESSAGE_SUCCESS, Tab.STAFF);
     }

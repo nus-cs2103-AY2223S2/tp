@@ -12,7 +12,7 @@ import seedu.address.model.service.Vehicle;
 /**
  * Manages Sorting of vehicles
  */
-public class SortVehiclesCommand extends RedoableCommand {
+public class SortVehiclesCommand extends Command {
     public static final String COMMAND_WORD = "sortvehicles";
     public static final String MESSAGE_SUCCESS = "Sorted Vehicles";
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Sorts vehicles by attribute. "
@@ -34,7 +34,7 @@ public class SortVehiclesCommand extends RedoableCommand {
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         model.updateVehicleComparator(cmp);
         return new CommandResult(MESSAGE_SUCCESS, Tab.VEHICLES);
     }

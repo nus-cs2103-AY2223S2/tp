@@ -12,7 +12,7 @@ import seedu.address.model.service.Service;
 /**
  * Manages Sorting of services
  */
-public class SortServicesCommand extends RedoableCommand {
+public class SortServicesCommand extends Command {
     public static final String COMMAND_WORD = "sortservices";
     public static final String MESSAGE_SUCCESS = "Sorted services";
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Sorts services by attribute. "
@@ -34,7 +34,7 @@ public class SortServicesCommand extends RedoableCommand {
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult executeUndoableCommand(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException {
         model.updateServiceComparator(cmp);
         return new CommandResult(MESSAGE_SUCCESS, Tab.SERVICES);
     }
