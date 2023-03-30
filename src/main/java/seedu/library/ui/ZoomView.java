@@ -151,7 +151,6 @@ public class ZoomView extends UiPart<Region> {
         }
         catch (IOException e) {
             throw new AssertionError(e);
-
         }
 
     }
