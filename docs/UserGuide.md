@@ -274,8 +274,44 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 
+### Sorting clients by their email : `sortClientEmail`
 
+Format: `sortClientEmail INDEX`
 
+* Sort list of clients based on their email
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number
+
+Examples:
+
+* `sortClientEmail 1` sorts the client list based on client's email address in **ascending** order
+* `sortClientEmail 0` sorts the client list based on client's email address in **descending** order
+
+### Sorting clients by their name : `sortClientName`
+
+Format: `sortClientName INDEX`
+
+* Sort list of clients based on their name
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number
+
+Examples:
+
+* `sortClientName 1` sorts the client list based on client's name in **ascending** order
+* `sortClientName 0` sorts the client list based on client's name in **descending** order
+
+### Sorting clients by their email : `sortClientPhone`
+
+Format: `sortClientPhone INDEX`
+
+* Sort list of clients based on their phone number
+* The index refers to whether sorting will be done in ascending order or descending order
+* The index can be any number
+
+Examples:
+
+* `sortClientPhone 1` sorts the client list based on client's phone number in **ascending** order
+* `sortClientPhone 0` sorts the client list based on client's phone number in **descending** order
 
 
 ## Policy Management 
@@ -317,8 +353,7 @@ Examples: `addPolicy 1 pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
 
 You will then be able to view the policies on the right side under 'Policies'
 
-![img.png](img.png)
-
+![img_1.png](img_1.png)
 
 ### Editing a policy : `editPolicy`
 
@@ -331,84 +366,10 @@ Format: `editPolicy INDEX pi/POLICY_INDEX [pn/POLICY_NAME] [pd/START_DATE] [pp/P
 * Existing values will be updated to the input values.
 
 Examples:
-- `editpolicy 1 pi/1 pn/Fire Insurance` edits the 1st client's 1st policy's name to `Fire Insurance`
-- `editpolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd 
+- `editPolicy 1 pi/1 pn/Fire Insurance` edits the 1st client's 1st policy's name to `Fire Insurance`
+- `editPolicy 1 pi/2 pn/Car Insurance pd/28.05.2023 pp/300 pf/yearly` edits the 1st client's 2nd 
 policy information`
 
-* `list` followed by `delete 2` deletes the 2nd client in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
-
-### Sorting clients by their email : `sortClientEmail`
-
-Format: `sortClientEmail INDEX`
-
-* Sort list of clients based on their email
-* The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number
-
-Examples:
-
-* `sortClientEmail 1` sorts the client list based on client's email address in **ascending** order
-* `sortClientEmail 0` sorts the client list based on client's email address in **descending** order
-
-### Sorting clients by their name : `sortClientName`
-
-Format: `sortClientName INDEX`
-
-* Sort list of clients based on their name
-* The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number
-
-Examples:
-
-* `sortClientName 1` sorts the client list based on client's name in **ascending** order
-* `sortClientName 0` sorts the client list based on client's name in **descending** order
-
-### Sorting clients by their email : `sortClientPhone`
-
-Format: `sortClientPhone INDEX`
-
-* Sort list of clients based on their phone number
-* The index refers to whether sorting will be done in ascending order or descending order
-* The index can be any number
-
-Examples:
-
-* `sortClientPhone 1` sorts the client list based on client's phone number in **ascending** order
-* `sortClientPhone 0` sorts the client list based on client's phone number in **descending** order
-
-## Policy Management (todo)
-
-### Adding a policy : `addPolicy`
-
-Adds a policy to a specific client
-
-Do note that the Policy Name should be from the following list:
-
-- Health Insurance
-- Life Insurance
-- Medical Insurance
-- Fire Insurance
-- Car Insurance
-- Travel Insurance
-
-The frequency should be one of the following: `weekly`, `monthly`,`yearly`
-
-Format: `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY`
-
-Examples: `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
-
-### Listing all policies : `listPolicy`
-
-Format: `listPolicy`
-
-### Editing a policy : `editPolicy`
-
-Format: `editPolicy`
-
-### Filtering policies by name : `findPolicy`
-
-Format: `findPolicy`
 
 ### Deleting a policy `deletePolicy`
 
