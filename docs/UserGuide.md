@@ -205,6 +205,12 @@ _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
   * `INDEX` must be a **positive integer**.
 
+Here's how NeoBook would look like after you favourite a contact!
+![Fav](images/userguide/fav.png)
+
+1. The contact will appear in the `Favourites` section.
+2. A :star: will appear next to the index in the detail panel.
+
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
