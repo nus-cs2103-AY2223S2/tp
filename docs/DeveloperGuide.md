@@ -669,6 +669,7 @@ Hence, we removed the implementation of the old and new prefixes.
 Finding i.e. filtering a person by their attributes is implemented such that the user can find people by their `name`, `year`, `course`, `modules` and/or `skills`, such that he/she is able to reach out to them for collaboration more quickly.
 
 - `FilteredList` contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user.
+- Predicates will continue to stack and will be cleared after a successful execution of `add`, `edit` or `list`.
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** Logical AND not logical OR.
 </div>
