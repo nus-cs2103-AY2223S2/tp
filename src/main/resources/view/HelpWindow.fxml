@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -25,9 +25,9 @@
         <URL value="@../css/HelpWindow.css" />
       </stylesheets>
 
-      <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="302.0" prefWidth="632.0">
+      <HBox fx:id="helpMessageContainer" alignment="CENTER" prefHeight="397.0" prefWidth="678.0">
         <children>
-               <BorderPane prefHeight="314.0" prefWidth="614.0">
+               <BorderPane prefHeight="396.0" prefWidth="663.0">
                   <top>
                      <VBox BorderPane.alignment="CENTER">
                         <children>
@@ -56,7 +56,7 @@
                      </VBox>
                   </top>
                   <left>
-                      <TreeView fx:id="treeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                      <TreeView fx:id="treeView" prefHeight="290.0" prefWidth="194.0" BorderPane.alignment="CENTER">
                           <TreeItem expanded="true" value="User's Methods">
                               <children>
                                   <TreeItem fx:id="addcommands" value="Add commands">
@@ -90,7 +90,7 @@
                                           <TreeItem fx:id="findtask" value="findt" />
                                       </children>
                                   </TreeItem>
-                                  <TreeItem fx:id="markcommands" value="Mark commands">
+                                  <TreeItem fx:id="markcommands" value="Marking commands">
                                       <children>
                                           <TreeItem fx:id="mark" value="mark" />
                                           <TreeItem fx:id="unmark" value="unmark" />
@@ -119,8 +119,8 @@
                                   </TreeItem>
                                   <TreeItem fx:id="guide" value="Guide commands">
                                       <children>
-                                          <TreeItem fx:id="help" value="mark" />
-                                          <TreeItem fx:id="quickstart" value="unmark" />
+                                          <TreeItem fx:id="help" value="help" />
+                                          <TreeItem fx:id="quickstart" value="quickstart" />
                                       </children>
                                   </TreeItem>
                               </children>
@@ -134,7 +134,7 @@
                       </TreeView>
                   </left>
                   <center>
-                     <TextArea fx:id="methodDescription" editable="false" prefHeight="200.0" prefWidth="200.0" text="" BorderPane.alignment="CENTER">
+                     <TextArea fx:id="methodDescription" editable="false" prefHeight="279.0" prefWidth="440.0" text="" BorderPane.alignment="CENTER">
                         <BorderPane.margin>
                            <Insets bottom="4.0" left="4.0" right="4.0" />
                         </BorderPane.margin></TextArea>

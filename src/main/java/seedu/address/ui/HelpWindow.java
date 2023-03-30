@@ -106,13 +106,13 @@ public class HelpWindow extends UiPart<Stage> {
             return HelpStrings.FINDPERSON_HELP;
         case "findt":
             return HelpStrings.FINDTASK_HELP;
-        case "Mark commands":
+        case "Marking commands":
             return HelpStrings.MARKMETHODS_HELP;
         case "mark":
             return HelpStrings.MARK_HELP;
         case "unmark":
             return HelpStrings.UNMARK_HELP;
-        case "Assign methods":
+        case "Assign commands":
             return HelpStrings.ASSIGNMETHODS_HELP;
         case "assign":
             return HelpStrings.ASSIGN_HELP;
