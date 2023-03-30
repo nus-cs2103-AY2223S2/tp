@@ -50,6 +50,9 @@ class JsonAdaptedListing {
         applicants.addAll(source.getApplicants().stream()
                 .map(JsonAdaptedApplicants::new)
                 .collect(Collectors.toList()));
+        platforms.addAll(source.getPlatforms().stream()
+                .map(JsonAdaptedPlatform::new)
+                .collect(Collectors.toList()));
     }
 
 
