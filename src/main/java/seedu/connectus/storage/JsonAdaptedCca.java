@@ -25,7 +25,7 @@ class JsonAdaptedCca {
      * Converts a given {@code Cca} into this class for Jackson use.
      */
     public JsonAdaptedCca(Cca source) {
-        this.ccaName = source.ccaName;
+        this.ccaName = source.decoupledCcaName;
     }
 
     @JsonValue
@@ -39,10 +39,20 @@ class JsonAdaptedCca {
      * @throws IllegalValueException if there were any data constraints violated in the adapted cca.
      */
     public Cca toModelType() throws IllegalValueException {
-        if (!Cca.isValidCcaName(ccaName)) {
+        if (!Cca.isValidCcaName(couple(ccaName))) {
             throw new IllegalValueException(Cca.MESSAGE_CONSTRAINTS);
         }
-        return new Cca(ccaName);
+        return new Cca(couple(ccaName));
+    }
+
+    public String couple(String str) {
+        String[] arr = str.split("-");
+        if (arr.length == 2) {
+            return arr[0] + "#" + arr[1];
+        }
+        else {
+            return arr[0];
+        }
     }
 
 }
