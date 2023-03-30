@@ -36,26 +36,26 @@ public class DeleteTagFromPersonCommand extends Command {
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag from Person: %1$s";
 
     private final Index personIndex;
-    private final Index remarkIndex;
     private final Index moduleIndex;
     private final Index ccaIndex;
     private final Index ccaPositionIndex;
+    private final Index remarkIndex;
 
     /**
      * @param personIndex      of the person in the filtered person list to edit
-     * @param remarkIndex      of the remark in the remark list to delete
      * @param moduleIndex      of the module in the module list to delete
      * @param ccaIndex         of the CCA in the CCA list to delete
      * @param ccaPositionIndex of the CCA Position in the CCA Position list to delete
+     * @param remarkIndex      of the remark in the remark list to delete
      */
-    public DeleteTagFromPersonCommand(Index personIndex, Index remarkIndex, Index moduleIndex, Index ccaIndex,
-                                      Index ccaPositionIndex) {
-        this.ccaIndex = ccaIndex;
-        this.ccaPositionIndex = ccaPositionIndex;
+    public DeleteTagFromPersonCommand(Index personIndex, Index moduleIndex, Index ccaIndex, Index ccaPositionIndex,
+                                      Index remarkIndex) {
         requireNonNull(personIndex);
         this.personIndex = personIndex;
-        this.remarkIndex = remarkIndex;
         this.moduleIndex = moduleIndex;
+        this.ccaIndex = ccaIndex;
+        this.ccaPositionIndex = ccaPositionIndex;
+        this.remarkIndex = remarkIndex;
     }
 
     @Override
@@ -69,18 +69,10 @@ public class DeleteTagFromPersonCommand extends Command {
 
         var personToEdit = lastShownList.get(personIndex.getZeroBased());
 
-        var editedRemarks = personToEdit.getRemarks();
         var editedModules = personToEdit.getModules();
         var editedCcas = personToEdit.getCcas();
         var editedCcaPositions = personToEdit.getCcaPositions();
-
-        if (remarkIndex != null) {
-            var originalRemarks = convertSetToList(personToEdit.getRemarks());
-            if (!isIndexValid(remarkIndex, originalRemarks)) {
-                throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "tag"));
-            }
-            editedRemarks = createEditedTagList(originalRemarks, remarkIndex);
-        }
+        var editedRemarks = personToEdit.getRemarks();
 
         if (moduleIndex != null) {
             var originalModules = convertSetToList(personToEdit.getModules());
@@ -104,6 +96,14 @@ public class DeleteTagFromPersonCommand extends Command {
                 throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "CCA position"));
             }
             editedCcaPositions = createEditedTagList(originalCcaPositions, ccaPositionIndex);
+        }
+
+        if (remarkIndex != null) {
+            var originalRemarks = convertSetToList(personToEdit.getRemarks());
+            if (!isIndexValid(remarkIndex, originalRemarks)) {
+                throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "tag"));
+            }
+            editedRemarks = createEditedTagList(originalRemarks, remarkIndex);
         }
 
         var editedPerson = new Person(personToEdit, editedRemarks, editedModules, editedCcas, editedCcaPositions);
@@ -133,9 +133,9 @@ public class DeleteTagFromPersonCommand extends Command {
         // state check
         var e = (DeleteTagFromPersonCommand) other;
         return Objects.equals(personIndex, e.personIndex)
-            && Objects.equals(remarkIndex, e.remarkIndex)
             && Objects.equals(moduleIndex, e.moduleIndex)
             && Objects.equals(ccaIndex, e.ccaIndex)
-            && Objects.equals(ccaPositionIndex, e.ccaPositionIndex);
+            && Objects.equals(ccaPositionIndex, e.ccaPositionIndex)
+            && Objects.equals(remarkIndex, e.remarkIndex);
     }
 }

@@ -6,10 +6,12 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
 import seedu.connectus.commons.core.Messages;
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.exceptions.CommandException;
@@ -77,15 +79,15 @@ public class AddTagToPersonCommand extends Command {
     }
 
     private Person createEditedPerson(Person personToEdit, AddTagDescriptor addTagDescriptor) {
-        var remarks = new HashSet<>(personToEdit.getRemarks());
         var modules = new HashSet<>(personToEdit.getModules());
         var ccas = new HashSet<>(personToEdit.getCcas());
         var ccaPositions = new HashSet<>(personToEdit.getCcaPositions());
+        var remarks = new HashSet<>(personToEdit.getRemarks());
 
-        remarks.addAll(addTagDescriptor.remarks);
         modules.addAll(addTagDescriptor.modules);
         ccas.addAll(addTagDescriptor.ccas);
         ccaPositions.addAll(addTagDescriptor.ccaPositions);
+        remarks.addAll(addTagDescriptor.remarks);
 
         return new Person(personToEdit, remarks, modules, ccas, ccaPositions);
     }
@@ -114,10 +116,10 @@ public class AddTagToPersonCommand extends Command {
      * corresponding field value of the person.
      */
     public static class AddTagDescriptor {
-        protected final Set<Remark> remarks;
         protected final Set<Module> modules;
         protected final Set<Cca> ccas;
         protected final Set<CcaPosition> ccaPositions;
+        protected final Set<Remark> remarks;
 
 
         /**
@@ -125,20 +127,20 @@ public class AddTagToPersonCommand extends Command {
          */
         public AddTagDescriptor(Set<Remark> remarks, Set<Module> modules,
                                 Set<Cca> ccas, Set<CcaPosition> ccaPositions) {
-            this.remarks = remarks;
             this.modules = modules;
             this.ccas = ccas;
             this.ccaPositions = ccaPositions;
+            this.remarks = remarks;
         }
 
         /**
          * Copy constructor.
          */
         public AddTagDescriptor(AddTagDescriptor addTagDescriptor) {
-            remarks = addTagDescriptor.remarks;
             modules = addTagDescriptor.modules;
             ccas = addTagDescriptor.ccas;
             ccaPositions = addTagDescriptor.ccaPositions;
+            remarks = addTagDescriptor.remarks;
         }
 
         /**
