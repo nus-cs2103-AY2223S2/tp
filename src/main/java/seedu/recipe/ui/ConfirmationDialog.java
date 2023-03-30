@@ -7,8 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -59,8 +63,15 @@ public class ConfirmationDialog {
         HBox buttons = new HBox(10);
         buttons.getChildren().addAll(confirmButton, cancelButton);
         buttons.setAlignment(Pos.CENTER);
+        // set background and text colors
+        label.setTextFill(Color.WHITE);
+        label.setStyle("-fx-font-size: 14px;");
+        confirmButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        cancelButton.setStyle("-fx-background-color: #f44336; -fx-text-fill: white;");
+        buttons.setBackground(new Background(new BackgroundFill(Color.rgb(0, 0, 0), CornerRadii.EMPTY, null)));        
         // initialize VBox layout
         VBox layout = new VBox(10);
+        layout.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, null)));
         layout.getChildren().addAll(label, buttons);
         layout.setAlignment(Pos.CENTER);
         // initialize scene
