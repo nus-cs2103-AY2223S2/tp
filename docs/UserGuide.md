@@ -9,7 +9,7 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 ## **Introducing InternBuddy**
 
-InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
+InternBuddy is a desktop application for university undergraduates to manage their internship applications.
 It is optimized for typing where it allows you to complete internship management tasks much more efficiently via
 the keyboard as compared to using traditional Graphical User Interface (GUI) applications. If you are a fast typist
 who is seeking for a one-stop platform to systematically organise your internship applications,
@@ -55,9 +55,9 @@ carefully before committing
 
 **Syntax Highlighting**
 
-Commands, parameters, file paths and class names are highlighted.
+Commands, fields, file paths and class names are highlighted.
 
-`command`, `PARAMETER`, `filepath.json`, `ClassName`
+`command`, `FIELD`, `filepath.json`, `ClassName`
 
 
 **Keyboard Actions**
@@ -138,49 +138,49 @@ Do refer to [Features](#features) below for a comprehensive list of supported fe
 --------------------------------------------------------------------------------------------------------------------
 ## **Command Information**
 
-### Notes about Commands and Parameters
+### Notes about Commands and Fields
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the fields to be supplied by the user.<br>
   e.g. If the command format is `add n/COMPANY_NAME`, you may input the command as `add n/Apple` where you supply the
-  value `Apple` to the parameter `COMPANY_NAME`.
+  value `Apple` to the field `COMPANY_NAME`.
 
 * Items in square brackets are optional.<br>
   e.g. If the command format is `edit INDEX [n/NAME] [c/COMMENT]`, you may input the command as `edit 2 n/Apple` where
-  you omit the value for the parameter `COMMENT`.
+  you omit the value for the field `COMMENT`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
-* Parameters can be in any order.<br>
+* Fields can be in any order.<br>
   e.g. If the command format is `n/NAME r/ROLE`, both `n/Apple r/Software Engineer` and `r/Software Engineer n/Apple`
   are acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
-  the parameter will be taken.<br>
+* If a field is expected only once in the command, but you specified it multiple times, only the last occurrence of
+  the field will be taken.<br>
   e.g. If the command format is `r/ROLE`, typing in `r/Front-end Developer r/Back-end Developer` will cause your
   input to be interpreted as `r/Back-end Developer`.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, and `exit`) will be
+* Extraneous values for commands that do not take in fields (such as `help`, `list`, and `exit`) will be
   ignored.<br>
   e.g. If the command format is `help`, typing in `help 123` will cause your input to be interpreted as `help`.
 
 
-### Descriptions, Prefixes and Constraints for Parameters
-In InternBuddy's commands, we refer to a range of parameters that you can replace with values to input information that
+### Descriptions, Prefixes and Constraints for Fields
+In InternBuddy's commands, we refer to a range of fields that you can replace with values to input information that
 is customised to your internship applications.
 
 There are 2 important things that you should note:
-1. Most parameters have associated **prefixes**. Prefixes are convenient shorthands that allow you to easily identify
-   which parameter does a value belong to. For example, in `add n/Apple`, the value `Apple` is associated with the
-   parameter `COMPANY_NAME` since the `n/` prefix is used.
-2. There are **constraints** to the values that you can replace parameters with. The constraints differ based on
-   the parameters. If you do not adhere to these constraints in your input, your input will be valid and an error
+1. Most fields have associated **prefixes**. Prefixes are convenient shorthands that allow you to easily identify
+   which field does a value belong to. For example, in `add n/Apple`, the value `Apple` is associated with the
+   field `COMPANY_NAME` since the `n/` prefix is used.
+2. There are **constraints** to the values that you can replace fields with. The constraints differ based on
+   the fields. If you do not adhere to these constraints in your input, your input will be valid and an error
    message will be shown in the Results Display when you type the input in and press <button>Enter</button>.
 
 
-Figure 4 provides a summary of the parameters with their descriptions, prefixes and constraints.
+Figure 4 provides a summary of the fields with their descriptions, prefixes and constraints.
 
-| Parameter      | Description                                                                    | Prefix | Constraints                                                                                                                                             |
+| Field          | Description                                                                    | Prefix | Constraints                                                                                                                                             |
 |----------------|--------------------------------------------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `COMPANY_NAME` | The name of the company                                                        | `n/`   | Cannot be blank and must be at most 50 characters                                                                                                       |
 | `ROLE`         | The role that you applied for                                                  | `r/`   | Cannot be blank and must be at most 50 characters                                                                                                       |
@@ -190,10 +190,10 @@ Figure 4 provides a summary of the parameters with their descriptions, prefixes 
 | `TAG`          | A label that you can give to an internship application                         | `t/`   | Cannot be blank and must be at most 30 characters                                                                                                       |
 | `INDEX`        | The index number of the internship entry as displayed in the List Panel        | -      | A positive integer that is smaller than or equal to the largest index number shown in the List Panel. Note that 0 is not a positive integer.            |
 
-<p style="text-align: center;">Figure 4: Parameters with their descriptions, prefixes and constraints</p>
+<p style="text-align: center;">Figure 4: Fields with their descriptions, prefixes and constraints</p>
 
 ### Details on `STATUS` and `DATE`
-The parameter `STATUS` is used to represent the current status of an internship application. It can only take on one
+The field `STATUS` is used to represent the current status of an internship application. It can only take on one
 of the following values: `New`, `Applied`, `Assessment`, `Interview`, `Offered`, `Accepted` and `Rejected`.
 Note that this is not case-sensitive. Figure 5 explains the meaning of each status.
 
@@ -211,7 +211,7 @@ Note that this is not case-sensitive. Figure 5 explains the meaning of each stat
 <p style="text-align: center;">Figure 5: Description of statuses</p>
 
 
-Depending on the status of the internship application, the `DATE` parameter will be interpreted differently. Figure 6
+Depending on the status of the internship application, the `DATE` field will be interpreted differently. Figure 6
 documents the meaning of `DATE` with respect to each `STATUS` value.
 
 | `STATUS`     | Interpretation of `DATE`     |
@@ -235,10 +235,10 @@ A duplicate internship is defined as 2 internships that have the matching `COMPA
 will be case-insensitive. Please refer to the examples below for further explanation.
 
 In the table below, Internship A and Internship B will be considered as duplicate internships, because they have the same `COMPANY_NAME`, `STATUS`, `DATE` and `ROLE`
-even though the capitalization of certain parameters may be different.
+even though the capitalization of certain fields may be different.
 
 
-| `PARAMETER`    | Internship A      | Internship B      |
+| `Field`        | Internship A      | Internship B      |
 |----------------|-------------------|-------------------|
 | `COMPANY_NAME` | Google            | google            |
 | `ROLE`         | Frontend Engineer | frontend engineer |
@@ -250,7 +250,7 @@ even though the capitalization of certain parameters may be different.
 Meanwhile, Internship C and Internship D are not considered duplicate internships, because they have different `COMPANY_NAME`.
 
 
-| `PARAMETER`    | Internship C      | Internship D     |
+| `field`    | Internship C      | Internship D     |
 |----------------|-------------------|------------------|
 | `COMPANY_NAME` | Apple             | Apple Inc        |
 | `ROLE`         | Frontend Engineer | frontend engineer |
@@ -274,9 +274,9 @@ Do you have a new internship to track? Add it to InternBuddy using the `add` com
 
 Format: `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE [c/COMMENT] [t/TAG]...`
 
-* The optional `COMMENT` parameter has a default value of `NA`. This means that if you do not specify any value for it,
+* The optional `COMMENT` field has a default value of `NA`. This means that if you do not specify any value for it,
   the comment for the newly added internship will be `NA`.
-* The optional `TAG` parameter will be empty by default. This means that if you do not specify any value for it, there
+* The optional `TAG` field will be empty by default. This means that if you do not specify any value for it, there
   will be no tags associated with the newly added internship.
 
 Examples:
@@ -286,7 +286,7 @@ Examples:
 * `add n/Food Panda r/Web Developer s/New d/2023-02-01 c/I love Food Panda! t/React t/Front-end` Adds a new internship entry
   with company name `Food Panda`, role `Web Developer`, status `New`, deadline of application `2023-02-01`,
   comment `I love Food Panda` and tags `React` and `Front-End`.
-* `add n/Food Panda s/new d/2023-02-01` Displays an error because the `ROLE` parameter is missing.
+* `add n/Food Panda s/new d/2023-02-01` Displays an error because the `ROLE` field is missing.
 
 
 ![Add Command](images/ug-add-example.png)
@@ -302,7 +302,7 @@ Made a mistake, or wish to update your internship entry? The `edit` command modi
 Format: `edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] [t/TAG]...`
 
 * The internship entry whose entry number is `INDEX` would be updated. `INDEX` needs to be a valid entry number as specified in the [List Panel](#exploring-the-graphical-user-interface)  displayed using the `list` command.
-* You have to provide at least one of the optional parameters
+* You have to provide at least one of the optional fields
 * You can remove all of an internship’s tags by typing `t/` without specifying any other tags after it. 
 * You can reset the comment of an internship to the default value of `NA` by typing `c/` without specifying any comments after it.
 
@@ -314,7 +314,7 @@ Format: `edit INDEX [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] [
 
 Examples:
 * `edit 2 s/assessment r/Software Developer` Sets the status and role of the second internship entry as `Assessment` and `Software Developer` respectively.
-* `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional parameter.
+* `edit 2` Displays an error because the command does not satisfy the criteria of having at least one optional field.
 * `edit 2 t/Java t/Go` Sets the tags of the second internship entry as Java and Go. (Existing tags will be removed)
 * `edit 2 t/` Removes all the tags of the second internship entry.
 
@@ -368,8 +368,8 @@ Are you an experienced internship hunter with tons of internship entries? Our `f
 
 Format: `find [n/COMPANY_NAME] [r/ROLE] [s/STATUS ] [d/DATE] [c/COMMENT] [t/TAG]...`
 
-* You have to provide at least one of the optional parameters. A `find` command without any parameters will result in an invalid command format error.
-* The find command works through an exact match, regardless of upper or lower case, of the parameter and the internship entry's corresponding attributes.
+* You have to provide at least one of the optional fields. A `find` command without any fields will result in an invalid command format error.
+* The find command works through an exact match, regardless of upper or lower case, of the field and the internship entry's corresponding attributes.
 * When multiple instances of the same type of field exists in user input (e.g. multiple `n/COMPANY_NAME` fields or multiple `r/ROLE` fields), only internships containing at least one of these fields of the same type will be filtered out.
 * When different types of fields, each with multiple instances, exist in user input (e.g. multiple `n/COMPANY_NAME` and multiple `r/ROLE` fields), only internships containing at least one of the inputs from every different type of field will be filtered out. 
 
@@ -422,12 +422,12 @@ Examples:
    <p style="text-align: center;">Figure XX: Example of the delete command in action</p>
 
 ### Deleting Internships by Fields : `delete-field`
-Wish that you could delete internships using parameters instead of indices? You can
+Wish that you could delete internships using fields instead of indices? You can
 certainly do so using `delete-field`.
 
 Format: `delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... [t/TAG]...`
 
-* You have to provide at least one of the optional parameters.
+* You have to provide at least one of the optional fields.
 * The `delete-field` command is case-insensitive. For example, `delete-field n/Google` deletes all internships with the company name 'google', 'Google' or 'gOOgle' and so on.
 
 * `delete-field` deletes entries with exact matches only. For example, `delete-field n/Google Ltd` will not delete an entry with company name `Google` because
@@ -435,7 +435,7 @@ Format: `delete-field [n/COMPANY_NAME]... [r/ROLE]... [s/STATUS]... [d/DATE]... 
 
 There are 2 possible scenarios when using the `delete-field` command. 
 
-**Method 1: Use a single parameter type**
+**Method 1: Use a single field type**
 
 e.g., `delete-field s/Applied`, `delete-field s/Applied s/New`,
 `delete-field n/Google n/Apple n/Meta`
@@ -447,13 +447,13 @@ Examples:
   `Applied` **or** `New`.
 
 
-**Method 2: Use 2 or more different parameter types**
+**Method 2: Use 2 or more different field types**
 
 e.g., `delete-field n/Google n/Apple s/New`, `delete-field n/Google n/Apple s/Applied s/New`,
 `delete-field n/Google r/Engineer t/Python t/Java`
 
 * The `delete-field` command deletes all internship entries that matches with **at least one** value for
-  **every** parameter type that is specified.
+  **every** field type that is specified.
 
 Examples:
 * `delete-field n/Google n/Apple s/new` Delete internship entries that have a status `New` and have
@@ -598,7 +598,7 @@ The following steps outline how you can properly edit the `internbuddy.json` fil
    the file, you can choose any text editor such as `Notepad`.
 2. Once opened, you will see the JSON data file in a format as shown in Figure XX. Each box contains the data for one
    specific internship entry.
-3. Within each box, you can see that there are pairings where each pair is made up of a `PARAMETER` and `VALUE`.
+3. Within each box, you can see that there are pairings where each pair is made up of a `FIELD` and `VALUE`.
 
 ![Json Example](images/ug-appendix-b-json-example.png)
    <p style="text-align: center;">Figure XX: Sample JSON data file</p>
@@ -607,12 +607,12 @@ The following steps outline how you can properly edit the `internbuddy.json` fil
 
 
 
-4. To manually change the value of a parameter, simply replace the text for `VALUE`. Figure XX illustrates an example
+4. To manually change the value of a field, simply replace the text for `VALUE`. Figure XX illustrates an example
    where we change the value of `STATUS` from `assessment` to `interview` for the internship entry with company name
    `Google`. Once your changes have been made, you can save the file by pressing <button>CTRL</button> + <button>S</button>.
 <div markdown="span" class="alert alert-danger">
 
-:warning: **Warning:**  Make sure that you follow the [constraints](#descriptions-prefixes-and-constraints-for-parameters)
+:warning: **Warning:**  Make sure that you follow the [constraints](#descriptions-prefixes-and-constraints-for-fields)
 when substituting in your own values. If the constraints are not satisfied, InternBuddy would not be able to
 read your data in `internbuddy.json` file and would restart with a new sample data file instead.
 
@@ -634,14 +634,14 @@ read your data in `internbuddy.json` file and would restart with a new sample da
 ## **Glossary**
 
 
-| Term                           | Definition                                                                                                                                                                                                                                                                                                                           |
-|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command                        | An instruction for InternBuddy to perform an action.                                                                                                                                                                                                                                                                                 |
-| Command Line Interface (CLI)   | A CLI is the text-based interface that you can use to provide instructions to your computer. Examples of instructions include opening files and running programs.                                                                                                                                                                    |
-| Graphical User Interface (GUI) | A GUI is the visual interface that you see when an application launches, allowing you to interact with it by clicking on its various buttons and components.                                                                                                                                                                         |
-| Mainstream OS                  | Includes Windows, macOS, Linux and Unix.                                                                                                                                                                                                                                                                                             |
-| Parameter                      | A part of the command where you have to supply a value for the command to be valid.                                                                                                                                                                                                                                                  |
-| Prefix                         | A short form for the name of a parameter. It indicates which parameter does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the parameter `COMPANY_NAME` since the `n/` prefix is used.                                                                                                              |
+| Term                           | Definition                                                                                                                                                                                                  |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command                        | An instruction for InternBuddy to perform an action.                                                                                                                                                        |
+| Command Line Interface (CLI)   | A CLI is the text-based interface that you can use to provide instructions to your computer. Examples of instructions include opening files and running programs.                                           |
+| Graphical User Interface (GUI) | A GUI is the visual interface that you see when an application launches, allowing you to interact with it by clicking on its various buttons and components.                                                |
+| Mainstream OS                  | Includes Windows, macOS, Linux and Unix.                                                                                                                                                                    |
+| Field                          | A part of the command where you have to supply a value for the command to be valid.                                                                                                                         |
+| Prefix                         | A short form for the name of a field. It indicates which field does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the field `COMPANY_NAME` since the `n/` prefix is used. |
 
 <p style="text-align: center;">Figure XX: Glossary for InternBuddy's User Guide</p>
 
