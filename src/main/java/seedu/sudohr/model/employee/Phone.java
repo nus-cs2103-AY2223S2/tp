@@ -11,8 +11,8 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Phone numbers should only contain numbers, XXXX<SPACE>XXXX, and it should has strictly 8 digits";
+    public static final String VALIDATION_REGEX = "^\\s*\\d{4}\\s*\\d{4}\\s*$";;
     public final String value;
 
     /**
@@ -23,7 +23,16 @@ public class Phone {
     public Phone(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+        value = removeWhitespaces(phone);
+    }
+
+    /**
+     * Removes leading zeroes from any given string
+     */
+    public static String removeWhitespaces(String str) {
+        String strPattern = " ";
+        str = str.replaceAll(strPattern, "");
+        return str;
     }
 
     /**
