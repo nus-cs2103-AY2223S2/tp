@@ -578,14 +578,16 @@ The search commands in EduMate help you to efficiently navigate and manage your 
 
 #### Filter contacts by keywords `find`
 
-EduMate's `find` command allows you to quickly locate specific contacts by searching for keywords within their fields. This can be useful when you need to find someone with a specific tag or shared module, or when you want to obtain specific information about a particular contact. 
+EduMate's `find` command helps you quickly locate specific contacts by searching for keywords within their fields. This tool allows you to generate a list of contacts that meet certain criteria and manage your contacts more efficiently. 
 
-Additionally, you can use the `find` command to generate a list of contacts that meet certain criteria, which can help you manage your contacts more efficiently. To use the `find` command, simply type `find` followed by the relevant keywords or criteria you want to search for.
+To use the `find` command, simply type `find` followed by the relevant keywords or criteria. 
+
+The command can also be used with multiple prefixes to refine your search. The results returned will contain at least one keyword from each specified field. Use the `find` command to save time and easily locate the information you need.
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `find z/KEYWORD [MORE_KEYWORDS]​`
+* `find z/KEYWORD [MORE_KEYWORDS]... z/KEYWORD [MORE_KEYWORDS]...`
 
 </div>
 
