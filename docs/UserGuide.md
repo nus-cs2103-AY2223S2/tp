@@ -37,7 +37,7 @@ The purpose of this user guide document is to provide staff with a clear underst
   - [Backup patient records](#backing-up-patient-records-backup): `backup`  
   - [Load backups](#loading-data-load): `load`  
   - [View backups](#viewing-backup-data-viewbackups): `viewbackups`  
-  - [Delete backup](#deleting-backup-data-deletebackup): `deletebackup`  
+  - [Delete backups](#deleting-backup-data-deletebackup): `deletebackup`  
   - [Clear all data](#clearing-all-data-clear): `clear`  
   - [Light mode](#switching-to-light-mode-light): `light`  
   - [Dark mode](#switching-to-dark-mode-dark): `dark`  
