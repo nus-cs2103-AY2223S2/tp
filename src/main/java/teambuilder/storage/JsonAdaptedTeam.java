@@ -95,8 +95,11 @@ public class JsonAdaptedTeam {
 
         final Set<Tag> modelSkillTags = new HashSet<>(skilltags);
 
-        return new Team(modelName, modelDesc, modelSkillTags);
-
+        Team modelTeam = new Team(modelName, modelDesc, modelSkillTags);
+        for (Name member : teamMembers) {
+            modelTeam.addPerson(member);
+        }
+        return modelTeam;
     }
 
 }
