@@ -10,8 +10,10 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_VIEW_PERSON_CONTACT_DETAILS = "%s's contact details displayed";
-    public static final String MESSAGE_VIEW_INVALID_PERSON_CONTACT_DETAILS =
+    public static final String MESSAGE_INVALID_INDEX =
             "The person index provided is invalid. Please enter \"list\" again to retrieve the list and try again.";
     public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW = "%1$d contacts listed!";
+    public static final String MESSAGE_IOEXCEPTION = "Unable to create \"ModCheck\" file to write";
+    public static final String MESSAGE_EXPORT_PERSON_CONTACT_DETAILS = "%s's contact details exported";
 }
 

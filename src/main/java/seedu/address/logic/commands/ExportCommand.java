@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.io.*;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -18,12 +19,12 @@ import seedu.address.model.person.Person;
 /**
  * Views a person's contact details
  */
-public class ViewCommand extends Command {
-    public static final String COMMAND_WORD = "view";
+public class ExportCommand extends Command {
+    public static final String COMMAND_WORD = "export";
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": views the contact details of the person identified "
+            + ": exports the contact details of the person identified "
             + "by the index number used in the last person listing. "
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
@@ -31,16 +32,17 @@ public class ViewCommand extends Command {
     private final List<Index> index;
 
     /**
-     * Constructor for viewCommand
+     * Constructor for ExportCommand
      * @param index index of the person in the list to display their contacts
      */
-    public ViewCommand(List<Index> index) {
+    public ExportCommand(List<Index> index) {
         requireNonNull(index);
         this.index = index;
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.resetPersonHiddenStatus();
         List<Person> lastShownList = model.getFilteredPersonList();
 
         Optional<Index> maxIndex = this.index.stream().max(Comparator.naturalOrder());
@@ -52,11 +54,19 @@ public class ViewCommand extends Command {
 
         List<Name> nameList = index.stream().filter(x -> validateIndex(x, lastShownList))
                 .map(x -> lastShownList.get(x.getZeroBased()).getName()).collect(Collectors.toList());
+        model.resetPersonHiddenStatus();
         MatchNamePredicate predicate = new MatchNamePredicate(nameList);
         model.updateFilteredPersonList(predicate);
         StringBuilder sb = new StringBuilder();
         nameList.stream().forEach(x -> sb.append(
-                String.format(Messages.MESSAGE_VIEW_PERSON_CONTACT_DETAILS, x) + "\n"));
+                String.format(Messages.MESSAGE_EXPORT_PERSON_CONTACT_DETAILS, x) + "\n"));
+
+        List<Person> updatedPersonList = model.getFilteredPersonList();
+        try {
+            writeToFile(updatedPersonList);
+        } catch (IOException e) {
+            throw new CommandException(Messages.MESSAGE_IOEXCEPTION);
+        }
         return new CommandResult(sb.toString());
     }
 
@@ -67,13 +77,38 @@ public class ViewCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ViewCommand)) {
+        if (!(other instanceof ExportCommand)) {
             return false;
         }
 
         // state check
-        ViewCommand v = (ViewCommand) other;
+        ExportCommand v = (ExportCommand) other;
         return index.equals(v.index);
+    }
+
+    /**
+     * Method to write person contact details to text file
+     * @param personList list of person's contact details
+     * @throws IOException read/write exception
+     */
+    public void writeToFile(List<Person> personList) throws IOException {
+        File dir = new File("export");
+        dir.mkdir();
+
+        File file = new File("export/ModCheck_contact_list.txt");
+
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        if (file.exists() && !file.isDirectory()) {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            for (Person p : personList) {
+                writer.write(p.toString());
+                writer.newLine();
+            }
+            writer.close();
+        }
     }
 
     private boolean validateIndex(Index index, List<Person> lastShownList) {

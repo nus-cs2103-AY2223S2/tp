@@ -12,6 +12,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_ADDRESS = new Prefix("d/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_MODULE_TAG = new Prefix("m/");
-    public static final Prefix PREFIX_VIEW = new Prefix("v/");
 
 }
