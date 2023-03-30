@@ -17,7 +17,7 @@ public class DateTime {
                     + "The following format must be adhered: YYYY-MM-DD HHMM e.g. 2023-03-23 1200!";
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
-    private final LocalDateTime dateTime;
+    private LocalDateTime dateTime;
 
     /**
      * Creates a {@code DateTime} with the given {@code LocalDateTime}.
@@ -53,6 +53,13 @@ public class DateTime {
 
     public static long getIntervalDuration(DateTime startDateTime, DateTime endDateTime, ChronoUnit unit) {
         return startDateTime.getDateTime().until(endDateTime.getDateTime(), unit);
+    }
+
+    /**
+     * Increments {@code dateTime} by 1 unit of {@code incrementalUnit}.
+     */
+    public void plus(ChronoUnit incrementalUnit) {
+        this.dateTime = this.dateTime.plus(1, incrementalUnit);
     }
 
     public String toString(DateTimeFormatter formatter) {

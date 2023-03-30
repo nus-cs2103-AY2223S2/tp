@@ -434,20 +434,20 @@ Use this command to exit the application!
 
 ### NeoBook Command Summary
 
-| Action      | Format, Examples                                                                                                                                                      |
-|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**   | `clear`                                                                                                                                                               |
-| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |  
-| **Fav**     | `fav INDEX`<br> e.g., `fav 2`                                                                                                                                         |
-| **Unfav**   | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                                     |
-| **Find**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **Select**  | `select INDEX` <br> e.g., `select 2`                                                                                                                                  |
-| **List**    | `list`                                                                                                                                                                |
-| **Help**    | `help`                                                                                                                                                                |
-| **Tab**     | `tab INDEX`<br> e.g., `tab 2`                                                                                                                                         |
-| **Exit**    | `exit`                                                                                                                                                                |                                                                                                                                |
+| Action      | Format, Examples                                                                                                                                 |
+|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**     | `add n/NAME [PREFIX/PARAMETERS]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**   | `clear`                                                                                                                                          |
+| **Delete**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                              |
+| **Edit**    | `edit INDEX [PREFIX/PARAMETERS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                          |  
+| **Fav**     | `fav INDEX`<br> e.g., `fav 2`                                                                                                                    |
+| **Unfav**   | `unfav INDEX`<br> e.g., `unfav 2`                                                                                                                |
+| **Find**    | `find [PREFIX/PARAMETERS]…`<br> e.g., `find n/James Jake mt/CS2103T a/Serangon Central`                                                          |
+| **Select**  | `select INDEX` <br> e.g., `select 2`                                                                                                             |
+| **List**    | `list`                                                                                                                                           |
+| **Help**    | `help`                                                                                                                                           |
+| **Tab**     | `tab INDEX`<br> e.g., `tab 2`                                                                                                                    |
+| **Exit**    | `exit`                                                                                                                                           |                                                                                                                                |
 
 [Back To Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------

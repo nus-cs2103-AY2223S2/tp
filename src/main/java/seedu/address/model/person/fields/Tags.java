@@ -9,7 +9,7 @@ import seedu.address.model.person.fields.subfields.Tag;
  */
 public class Tags extends SuperField<Tag> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric and space";
 
     public Tags(Set<Tag> values) {
         super(values);
