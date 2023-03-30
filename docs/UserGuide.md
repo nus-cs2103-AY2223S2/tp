@@ -4,10 +4,10 @@ title: User Guide
 
 ---
 
-Mycelium is a desktop application aimed at helping **freelance web developers
+**Mycelium** is a desktop application aimed at helping **freelance web developers
 manage clients and projects** from multiple online sources like [Upstack](https://upstackhq.com/),
 [Fiverr](fiverr.com), and [Toptal](https://www.toptal.com/). All interactions
-with Mycelium are done through text commands or HotKeys, enabling one to efficiently
+with **Mycelium** are done through text commands or HotKeys, enabling one to efficiently
 manipulate data while availing oneself to the convenience of viewing, offered by the
 Graphical User Interface (GUI). You can expect to navigate its interface seamlessly and 
 access its functions with a mere keystroke or two.
@@ -31,15 +31,15 @@ The following typographical conventions are used in this guide.
   combination of the 'Control' and 'F' keys.
 
 <div markdown="span" class="alert alert-success">
-:bulb: This box signifies a tip or suggestion.
+:bulb: This signifies a tip or suggestion.
 </div>
 
 <div markdown="span" class="alert alert-info">
-:information_source: This box signifies a general note.
+:information_source: This signifies a general note.
 </div>
 
 <div markdown="span" class="alert alert-danger">
-:warning: This box indicates a warning or caution.
+:warning: This indicates a warning or caution.
 </div>
 
 ## Table of Contents
@@ -114,7 +114,7 @@ The Entity panel is where you will be able to view your projects and clients. It
 
 #### Projects Tab
 
-The Projects tab lists all the projects you've created. Each project block contains the project’s
+The Projects tab lists all the projects you have created. Each project block contains the project’s
 
 - Name
 - Status
@@ -126,7 +126,7 @@ The Projects tab lists all the projects you've created. Each project block conta
 
 #### Clients Tab
 
-The Clients tab lists all the clients you've created. Each client block contains the client’s
+The Clients tab lists all the clients you have created. Each client block contains the client’s
 
 - Name or username
 - Email
@@ -138,7 +138,12 @@ The Clients tab lists all the clients you've created. Each client block contains
 
 The Statistics panel is where you will be able to view statistics about your projects. It is vertically split into 2 portions.
 
-The top portion is composed of two tabs, one that lists the projects that are due within this week or the next and the other tab lists projects that are overdue.
+The top portion is composed of two tabs. One lists the projects that are due within this week or the next (Week starts from Sunday).
+For example, if the current date is 11/04/2023, all projects with deadlines from 09/04/2023 to 22/04/2023 will appear on the **Due soon project list**.
+
+The other tab lists projects that are overdue. For example, if the current date is 11/04/2023, projects with deadlines on 11/04/2023
+will not appear in **Overdue project list**, but projects with deadlines on 10/04/2023 will appear in the **Overdue
+project list**.
 
 The bottom portion shows a pie chart that displays the relative proportions of projects that are not started, in progress, and done.
 
@@ -206,7 +211,7 @@ on the Projects tab, Mycelium will automatically display the Clients tab.
 
 ### Creating a client contact: `c`
 
-To create a new client contact, use the **`c`** command followed by the client's name and email. 
+To create a new client contact, you can use the **`c`** command followed by the client's name and email. 
 The year of birth, platform source, and mobile number can also be added as optional arguments. 
 Once successfully created, the interface will display the new client's name and email.
 
@@ -250,7 +255,7 @@ In fact, *X Æ A-12* is also a valid name in Mycelium.
 
 ### Deleting a client contact: `dc`
 
-To delete an existing client contact, use the **`dc`** command followed 
+To delete an existing client contact, you can use the **`dc`** command followed 
 by the client's email address. Once the contact is deleted, the interface will display the name and email of the deleted client.
 
 **Compulsory Arguments**
@@ -275,7 +280,7 @@ client with an existing email in Mycelium.
 
 ### Updating a client: `uc`
 
-To update an existing client contact, use the **`uc`** command 
+To update an existing client contact, you can use the **`uc`** command 
 followed by the client's email address. 
 You can then add one or more optional arguments to specify the updated information such as the client's new name, email, year of birth, platform source, or mobile number.
 The interface will display the updated client's name and email once the update is successful.
