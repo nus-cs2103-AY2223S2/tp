@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_FISHES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TANKS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
@@ -18,15 +19,21 @@ public abstract class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_TANKS = "Listed all tanks";
 
+    public static final String MESSAGE_SUCCESS_TASKS = "Listed all tasks";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " fishes: lists all fishes.\n"
-            + COMMAND_WORD + " tanks: lists all tanks.";
+            + COMMAND_WORD + " tanks: lists all tanks.\n"
+            + COMMAND_WORD + " tasks: lists all tasks.";
 
     /* Singleton for ListFishCommand */
     public static final ListCommand LIST_FISHES = new ListFishCommand();
 
     /* Singleton for ListTankCommand */
     public static final ListCommand LIST_TANKS = new ListTankCommand();
+
+    /* Singleton for ListTaskCommand */
+    public static final ListCommand LIST_TASKS = new ListTaskCommand();
 
     private static class ListFishCommand extends ListCommand {
 
@@ -45,6 +52,15 @@ public abstract class ListCommand extends Command {
             requireNonNull(model);
             model.updateFilteredTankList(PREDICATE_SHOW_ALL_TANKS);
             return new CommandResult(MESSAGE_SUCCESS_TANKS);
+        }
+    }
+
+    private static class ListTaskCommand extends ListCommand {
+        @Override
+        public CommandResult execute(Model model) {
+            requireNonNull(model);
+            model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+            return new CommandResult(MESSAGE_SUCCESS_TASKS);
         }
     }
 }
