@@ -122,7 +122,7 @@
 }
 
 .table-row-cell:filled:selected {
-  -fx-background: -derive(#828282, 30%);
+  -fx-background: derive(#828282, 30%);
   -fx-background-color: derive(#828282, 30%);
   -fx-background-insets: 0, 0 0 1 0 ;
   -fx-table-cell-border-color: derive(#828282, 30%);

@@ -25,7 +25,7 @@ public class SampleDataUtil {
 
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("e1234567@u.nus.edu"),
+            new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("e6611228@u.nus.edu"),
                 new Photo("/images/studentProfiles/student_1.png"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK,
                 new Performance("30"),

@@ -8,7 +8,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Control;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -90,9 +89,10 @@ public class PersonListPanel extends UiPart<Region> {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        //Credit to P113305A009D8M in https://stackoverflow.com/questions/22732013/javafx-tablecolumn-text-wrapping
+                        //Credit to P113305A009D8M
+                        //https://stackoverflow.com/questions/22732013/javafx-tablecolumn-text-wrapping
                         Text text = new Text(item);
-                        text.setStyle("-fx-text-alignment:justify;");
+                        text.setStyle("-fx-text-alignment:justify; -fx-fill:derive(#828282, -50%)");
                         text.wrappingWidthProperty().bind(getTableColumn().widthProperty().subtract(35));
                         setGraphic(text);
                     }
