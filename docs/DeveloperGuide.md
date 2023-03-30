@@ -379,7 +379,7 @@ dictates the behaviour of the command box on input change and on submit.
 
 The following is class diagram of the command box.
 
-![CommandBox class diagram](images/commandbox/CommandBoxClassDiagram.png)
+![CommandBox class diagram](images/CommandBoxClassDiagram.png)
 
 #### Changing Modes
 
@@ -699,7 +699,7 @@ Here are the steps to create a new release.
   which will log messages according to the specified logging level.
 * Log messages are output through the console and to a `.log` file.
 * The output logging level can be controlled using the `logLevel` setting in
-  the configuration file (See the [Configuration guide](Configuration.md)
+  the configuration file (See the [Configurations](#configurations)
   section).
 * **When choosing a level for a log message**, follow the conventions given in
   [_[se-edu/guides] Java: Logging
@@ -740,6 +740,10 @@ files.
 * The `docs/images` directory contains ready-for-use pictures in PNG format
 * The `docs/diagrams` directory contains `.puml` files (for PlantUML) and
   `.xml` files (for draw.io) which allow editing and regenerating of diagrams
+
+## Configurations
+
+Certain properties of the application can be controlled (e.g user preferences file location, logging level) through the configuration file (default: `config.json`). The configuration file is created the first time the application is run. It is in JSON format and contains name-value pairs.
 
 --------------------------------------------------------------------------------------------------------------------
 
