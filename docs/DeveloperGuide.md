@@ -495,8 +495,6 @@ Purpose: Allows new users to better understand how OfficeConnect works.
 Similar to Help Window in section 3.7, this window is maintained by `QuickstartWindow` class, which also maintains 
 similarly named `fxml` and `css` to display the relevant quickstart information.
 
-Users will be shown a guide 
-
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Documentation, logging, testing, configuration, dev-ops
 
