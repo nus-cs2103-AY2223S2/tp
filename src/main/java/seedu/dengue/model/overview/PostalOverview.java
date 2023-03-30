@@ -13,6 +13,7 @@ import seedu.dengue.model.person.Person;
  * @see PostalAnalyst
  */
 public class PostalOverview extends Overview {
+    private static final String POSTAL_DELIMITER = ", ";
     private static final String POSTAL_TITLE = "Overview by Location";
     private static final int MAX_NAME_LENGTH = 17; // Hong Leong Garden
 
@@ -52,7 +53,7 @@ public class PostalOverview extends Overview {
     }
 
     private static String[] splitLocationName(String locationName) {
-        return locationName.split(", ");
+        return locationName.split(POSTAL_DELIMITER);
     }
 
     @Override
