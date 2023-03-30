@@ -348,7 +348,7 @@ Examples:
 * `delete_menu 2` deletes the first task
 * `find_i cupcake` followed by `delete_m 3` deletes the 1st menu item in the result of the `find_i` command
 
-# Switch
+# Sort
 
 ### Sorting a task: `sort_task` / `sort_t`
 
@@ -365,8 +365,30 @@ Syntax: `sort_task [c/CRITERIA]`
 * Sorting by `Name` sorts the tasks in a lexicographical order (ignoring-case) 
 (i.e. A task with the task name "a" will be placed on top of a different task with the task name"B").
 * Sorting by `Status_and_deadline` puts the tasks that are not done and have the earliest deadlines 
-on top and tasks done and have the furthest deadlines below.
-(i.e. Not done and earliest deadline > Not done and latest deadline > Done and earliest deadline > Not Done and latest deadline)
+on top and tasks done and have the furthest deadlines below.<br>
+(i.e. The tasks will be sorted in the order:
+Not done and earliest deadline > Not done and latest deadline > Done and earliest deadline > Not Done and latest deadline)
+
+### Sorting a order: `sort_order` / `sort_o`
+
+Syntax: `sort_order [c/CRITERIA]`
+
+* Sorts all the orders according to a criteria.
+* Criteria available are: `Time_added`, `Deadline`, `Status`, `Name` and `Status_and_deadline`.
+* Criteria is case-insensitive (i.e. `time_added`, `TIME_ADDED` `Time_Added` are all valid).
+* The default criteria (when no criteria is specified) is `Status_and_deadline`.
+
+* Sorting by `Time_added` puts the orders added first at the top and tasks added later below.
+* Sorting by `Deadline` puts the orders with the earlier deadlines on the top of tasks with further deadlines.
+* Sorting by `Status` puts the orders in the order of "Not Delivered" > "In Progress" > "Delivered" (with orders that are "Not Delivered" placed on top).
+* Sorting by `Name` sorts the orders in a lexicographical order (ignoring-case)
+  (i.e. A order with the order name "a" will be placed on top of a different order with the order name "B").
+* Sorting by `Status_and_deadline` first sorts the orders using their status and then sort them with deadlines.<br>
+  (i.e. The orders will first be sorted in the order of: Not delivered > In progress > Delivered,<br>
+  then, among orders of the same status, they will be sorted in the order of: earliest deadline to furthest deadline)
+
+
+# Switch
 
 ### Switching tabs: `tab`
 
@@ -388,6 +410,9 @@ Exits the program.
 
 Syntax: `exit`
 
+
+# Data
+
 ### Saving the data
 
 Save changes after any command executed successfully. There is no need to save manually.
@@ -405,12 +430,9 @@ If your changes to the data file makes its format invalid, Trackr will discard a
 Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Order` and `Suppliers`, and adds them to their respective lists. Below is an example of a valid csv file
 ![Valid csv file](images/CsvFileFormat.png)
 
-### Archiving data files `[coming in v1.3]`
+### Archiving data files `[coming in future versions]`
 
-* Different tabs for `Orders`, `Suppliers`
-* Sort orders by date to keep track of orders.
 * Highlight overdue orders.
-* View list of all orders and tasks to prioritise your workload.
 * View sales (tabulated or GUI) to track your business’s growth.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -425,12 +447,12 @@ Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Or
 ## Command summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                  |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**    | `add_supplier / add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order / add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes` <br> <br> `add_task / add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed` |
 | **Edit**   | `edit_supplier / edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order / edit_o` <br> e.g., `edit_o 3 q/20 r/` <br> <br> `edit_task / edit_t` <br> e.g., `edit_t 1 s/`                                                                                                          |
 | **Delete** | `delete_supplier / delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order / delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task / delete_t` <br> e.g., `delete_t 4`                                                                                                                                       |
 | **Find**   | `find_supplier / find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order / find_o` <br> e.g., `find_order r/No almonds r/No frosting` <br> <br> `find_task / find_t` <br> e.g., `find_t s/N`                                                                                                             |
-| **Tab**    | `tab` <br> e.g., `tab Home`
-|**Sort Task**| `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline`
+| **Sort**   | `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline`                                                                                                                                                                                                                                                             |
+| **Tab**    | `tab` <br> e.g., `tab Home`                                                                                                                                                                                                                                                                                       |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                            |
 | **Exit**   | `exit`                                                                                                                                                                                                                                                                                                            |
