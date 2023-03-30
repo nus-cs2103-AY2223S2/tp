@@ -2,6 +2,7 @@ package seedu.address.model.expense;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +67,19 @@ public class RecurringExpenseList {
         requireAllNonNull(replacementList);
         recurringExpenseList.setAll(replacementList);
     }
+
+    /**
+     * Removes RecurringExpenseManager that are expired.
+     */
+    public void cleanupExpiredGenerators() {
+        recurringExpenseList.removeIf((generator) -> {
+            if (generator.getExpenseEndDate() == null) {
+                return false;
+            }
+            return LocalDate.now().isAfter(generator.getExpenseEndDate());
+        });
+    }
+
 
     public int getSize() {
         return recurringExpenseList.size();
