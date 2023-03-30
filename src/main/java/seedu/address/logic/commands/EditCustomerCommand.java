@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VEHICLES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -36,7 +37,7 @@ public class EditCustomerCommand extends RedoableCommand {
         + "by the id number displayed by listcustomer. "
         + "Existing values will be overwritten by the input values.\n"
         + "Parameters: "
-        + "[" + PREFIX_INTERNAL_ID + "CUSTOMER_ID] "
+        +  PREFIX_INTERNAL_ID + "CUSTOMER_ID "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
@@ -78,7 +79,9 @@ public class EditCustomerCommand extends RedoableCommand {
         Customer editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         model.setCustomer(personToEdit, editedPerson);
+        model.selectCustomer(editedPerson);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+//        model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -97,7 +100,9 @@ public class EditCustomerCommand extends RedoableCommand {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Customer(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        Customer newCustomer =  new Customer(id, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        personToEdit.getVehicleIds().forEach(newCustomer::addVehicle);
+        return newCustomer;
     }
 
     @Override

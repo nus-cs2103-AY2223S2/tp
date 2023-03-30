@@ -49,7 +49,7 @@ public class EditVehicleCommandParser implements Parser<EditVehicleCommand> {
             editVehicleDescriptor.setPlateNumber(argMultimap.getValue(PREFIX_PLATE_NUM).get());
         }
         if (argMultimap.getValue(PREFIX_BRAND).isPresent()) {
-            editVehicleDescriptor.setBrand(argMultimap.getValue(PREFIX_PHONE).get());
+            editVehicleDescriptor.setBrand(argMultimap.getValue(PREFIX_BRAND).get());
         }
         if (argMultimap.getValue(PREFIX_CUSTOMER_ID).isPresent()) {
             editVehicleDescriptor.setOwnerId(Integer.parseInt(argMultimap.getValue(PREFIX_CUSTOMER_ID).get()));

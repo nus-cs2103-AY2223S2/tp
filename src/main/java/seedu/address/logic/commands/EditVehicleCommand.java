@@ -3,10 +3,13 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BRAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNAL_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATE_NUM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_COLOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VEHICLE_TYPE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VEHICLES;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -31,7 +34,8 @@ public class EditVehicleCommand extends RedoableCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the customer identified "
             + "by the id number displayed by listvehicle. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
+            + PREFIX_INTERNAL_ID + "VEHICLE_ID "
             + "[" + PREFIX_PLATE_NUM + "PLATE NUMBER] "
             + "[" + PREFIX_BRAND + "VEHICLE BRAND] "
             + "[" + PREFIX_CUSTOMER_ID + "OWNER ID] "
@@ -44,10 +48,9 @@ public class EditVehicleCommand extends RedoableCommand {
     public static final String MESSAGE_EDIT_VEHICLE_SUCCESS = "Edited vehicle: %1$s";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_VEHICLE = "This vehicle already registered";
-    public static final String MESSAGE_CUSTOMER_NOT_FOUND = "This customer does not exist.";
+    public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer %d does not exist.";
+    public static final String MESSAGE_VEHICLE_NOT_FOUND = "Vehicle %d does not exist.";
     private static final Vehicle VEHICLE_DOES_NOT_EXIST = null;
-
     private static final Customer CUSTOMER_DOES_NOT_EXIST = null;
     private final EditVehicleDescriptor editVehicleDescriptor;
 
@@ -69,21 +72,34 @@ public class EditVehicleCommand extends RedoableCommand {
                         editVehicleDescriptor.getId() == vehicle.getId()).findAny()
                 .orElse(VEHICLE_DOES_NOT_EXIST);
 
-        Vehicle editedVehicle = createEditedVehicle(vehicleToEdit, editVehicleDescriptor);
-
-        if (!vehicleToEdit.isSameVehicle(editedVehicle) && model.hasVehicle(editedVehicle.getId())) {
-            throw new CommandException(MESSAGE_DUPLICATE_VEHICLE);
+        if (vehicleToEdit == VEHICLE_DOES_NOT_EXIST) {
+            throw new CommandException(String.format(MESSAGE_VEHICLE_NOT_FOUND, this.editVehicleDescriptor.getId()));
         }
 
-        Customer customer = model.getFilteredCustomerList().stream().filter(person ->
-                editedVehicle.getOwnerId() == vehicleToEdit.getOwnerId()).findAny().orElse(CUSTOMER_DOES_NOT_EXIST);
+        Vehicle editedVehicle = createEditedVehicle(vehicleToEdit, editVehicleDescriptor);
 
-        if (customer == null) {
-            throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
+        Customer customer = model.getFilteredCustomerList().stream().filter(person ->
+                editedVehicle.getOwnerId() == person.getId()).findAny().orElse(CUSTOMER_DOES_NOT_EXIST);
+
+        if (customer == CUSTOMER_DOES_NOT_EXIST) {
+            throw new CommandException(String.format(MESSAGE_CUSTOMER_NOT_FOUND, editedVehicle.getOwnerId()));
+        }
+
+        if (editedVehicle.getOwnerId() != vehicleToEdit.getOwnerId()) {
+            Customer prevOwner = model.getFilteredCustomerList().stream()
+                .filter(c -> c.getId() == vehicleToEdit.getOwnerId())
+                .findFirst().orElseThrow();
+            prevOwner.removeVehicle(vehicleToEdit);
+            Customer newOwner = model.getFilteredCustomerList().stream()
+                .filter(c -> c.getId() == editedVehicle.getOwnerId())
+                .findFirst().orElseThrow();
+            newOwner.addVehicle(editedVehicle.getId());
         }
 
         model.setVehicle(vehicleToEdit, editedVehicle);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.selectVehicle(editedVehicle);
+        model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
+        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         return new CommandResult(String.format(MESSAGE_EDIT_VEHICLE_SUCCESS, editedVehicle));
     }
 
@@ -131,12 +147,12 @@ public class EditVehicleCommand extends RedoableCommand {
     public static class EditVehicleDescriptor {
 
         private int id;
-        private int ownerId;
+        private int ownerId = -1;
         private String plateNumber;
         private String color;
         private String brand;
         private VehicleType type;
-        private Set<Integer> serviceIds = new HashSet<>();
+        private Set<Integer> serviceIds;
 
         public EditVehicleDescriptor() {}
 
@@ -175,7 +191,10 @@ public class EditVehicleCommand extends RedoableCommand {
         }
 
         public Optional<Integer> getOwnerId() {
-            return Optional.ofNullable(id);
+            if (this.ownerId == -1) {
+                return Optional.empty();
+            }
+            return Optional.of(this.ownerId);
         }
 
         public void setPlateNumber(String plateNumber) {

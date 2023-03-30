@@ -296,6 +296,7 @@ public class ModelManager implements Model {
     public void setVehicle(Vehicle target, Vehicle editedVehicle) {
         requireAllNonNull(target, editedVehicle);
         this.shop.setVehicle(target, editedVehicle);
+        resetMaps();
     }
 
     // ==== For Services ==
