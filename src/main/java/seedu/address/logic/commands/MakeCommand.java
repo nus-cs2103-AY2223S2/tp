@@ -11,7 +11,7 @@ import seedu.address.model.entity.Entity;
  */
 public class MakeCommand extends Command {
 
-    public static final String COMMAND_WORD = "make";
+    public static final String COMMAND_WORD = "make|m";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an entity to the management system. ";
 
@@ -36,7 +36,6 @@ public class MakeCommand extends Command {
         if (model.hasEntity(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENTITY);
         }
-
         model.addEntity(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

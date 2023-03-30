@@ -95,18 +95,22 @@ public class EditModeParser {
         // Where all the edits are stored and sent over to the EditValueCommand
         EditCharacterDescriptor outData = new EditCharacterDescriptor();
         switch (fieldWord.toLowerCase()) {
+        case "n":
         case "name":
             outData.setName(new Name(value));
             break;
+        case "t":
         case "tag":
         case "tags":
             Optional<Set<Tag>> tags = parseTagsForEdit(List.of(value.split("\\s+")));
             tags.ifPresent(realTags -> outData.setTags(realTags));
             break;
+        case "s":
         case "str":
             outData.setStats(new Stats(Integer.valueOf(value),
                     toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
             break;
+        case "d":
         case "dex":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
                     Integer.valueOf(value), toEdit.getStats().getIntelligence()));
@@ -123,6 +127,7 @@ public class EditModeParser {
         case "exp":
             outData.setXp(Integer.valueOf(value));
             break;
+        case "i":
         case "inventory":
             // Check if add or delete
             Inventory editedInventory = new Inventory(toEdit.getInventory().getItems());
