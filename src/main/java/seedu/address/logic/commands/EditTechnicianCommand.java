@@ -83,7 +83,7 @@ public class EditTechnicianCommand extends RedoableCommand {
         //model.selectTechnician(editedPerson);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         model.updateFilteredTechnicianList(PREDICATE_SHOW_ALL_TECHNICIANS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson, Tab.STAFF));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson, Tab.TECHNICIANS));
     }
 
     /**

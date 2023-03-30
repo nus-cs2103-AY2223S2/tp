@@ -415,7 +415,7 @@ public class AddCommandTest {
         public void selectTechnician(Technician technician) {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public void setService(Service target, Service editedService) {
             throw new AssertionError("This method should not be called.");
