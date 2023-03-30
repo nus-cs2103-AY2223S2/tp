@@ -24,11 +24,17 @@ Without further ado, let's get started!
 2. [Glossary](#glossary)
 <details>
 <summary>3. Features</summary>
+    
+    
 
 3. [Features](#features)
     1. [Legend](#legend)
+    
+    
    
     <details><summary>Student Features</summary>
+        
+        
 
     2. [Student Features: `student`](#student)
          1. [Add student: `add`](#addstudent)
@@ -40,14 +46,20 @@ Without further ado, let's get started!
          7. [Editing a student's particulars: `edit`](#editstudent)
          8. [Searching students: `find`](#findstudent)
          9. [Deleting a student: `delete`](#deletestudent)
+        
+        
        </details>
+    
         <details><summary>Parent Features</summary>
+            
 
        3. [Parent Features: `parent`](#parent)
            1. [Add Parent/Next-of-Kin: `add`](#addparent)
            2. [Listing all Parents/Next-of-Kins: `list`](#listparent)
            3. [Editing a Parent/Next-of-Kin particulars: `edit`](#editparent)
            4. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
+            
+            
          </details> 
 
           <details><summary>General Features</summary>
@@ -56,7 +68,9 @@ Without further ado, let's get started!
           1. [List all students / parents](#listing)
           2. [Viewing help: `help`](#help)
           3. [Exiting program: `exit`](#exit)
+              
             </details>
+    
 </details>
 
 4. [Saving the data](#savingdata)
