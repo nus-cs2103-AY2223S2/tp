@@ -2,18 +2,10 @@
 layout: page
 title: CareFlow User Guide
 ---
-<a id="top"></a>
-
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
-# **1. Introduction**
 
 Welcome to CareFlow, your all-in-one solution for managing patient information and drug inventory in the General Practitioner clinic. Do you find yourself struggling to keep track of patient details? Are you tired of manually managing your drug inventory? CareFlow is here to help! Our easy-to-use desktop application is specifically designed for receptionists who want to improve their workflow and provide better patient care.
 
-CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface** (CLI) while benefiting from a Graphical User Interface (GUI). With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
+CareFlow is a **desktop application for patient and drug inventory management, optimised for use via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI)<sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
 
 <p align="center">
   <img src="images/Ui.png" style="zoom:100%"/>
@@ -22,32 +14,34 @@ CareFlow is a **desktop application for patient and drug inventory management, o
   <i>Figure 1. Graphical User Interface (GUI) of CareFlow</i>
 </p>
 
-[🠉 Back to top](#top)
+<a id="top"></a>
+
+* Table of Contents
+{:toc}
 
 <br>
 
-
 --------------------------------------------------------------------------------------------------------------------
 
-# **2. About**
+# **1. About this user guide**
 
 Welcome to the CareFlow user guide! This guide is designed to help you make the most of the software by providing detailed instructions on its features and functionalities.
 
-## 2.1 How to navigate this user guide
+## 1.1 How to navigate this user guide
 
 To help you navigate the guide, we've divided it into several sections, each covering a different aspect of CareFlow. Here's a brief overview of what you'll find in each section:
 
-1. Section [1. Introduction](#1-introduction)
-    - If you want to know what CareFlow is all about, head over to section 1, "Introduction". In this section, you'll learn about CareFlow's goals and purpose, as well as get an overview of what the system can do for you.
+1. Section [1. About this user guide](#1-about-this-user-guide)
+    - if you want to learn more about the guide itself and how to use it, refer to section 1, "About this user guide". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
 
-2. Section [2. About](#2-about)
-    - if you want to learn more about the guide itself and how to use it, refer to section 2, "About". Here, you'll find useful information on the symbols used in this user guide and how to navigate it easily.
+2. Section [2. Quick Start](#2-quick-start)
+    - If you're new to CareFlow and need help getting started, head to Section 2, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
 
-3. Section [3. Quick Start](#3-quick-start)
-    - If you're new to CareFlow and need help getting started, head to Section 3, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
+3. Section [3. Overview of features](#3-overview-of-features)
+    - If you're looking for information on specific features, check out Section 3, "Overview of features". Here you'll find a detailed explanation of each feature and how to use it.
 
-4. Section [4. Features](#4-features)
-    - If you're looking for information on specific features, check out Section 4, "Features". Here you'll find a detailed explanation of each feature and how to use it.
+4. Section [4. Commands](#4-commands)
+    - If you're looking for information on specific command, check out Section 4, "Commands". Here you'll find a detailed explanation of each command and how to use it.
 
 5. Section [5. FAQ](#5-faq)
     - If you have any questions about using CareFlow or running into any issues, take a look at Section 5, "FAQ". We've included answers to common questions and troubleshooting tips to help you out.
@@ -55,9 +49,14 @@ To help you navigate the guide, we've divided it into several sections, each cov
 6. Section [6. Command Summary](#6-command-summary)
     - If you want a quick reference for all the commands available in CareFlow, head to Section 6, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
 
-To make the most of this user guide, we recommend reading through it in order, starting with the Introduction and working your way through each section. You can also use the table of contents to jump to specific sections as needed.
+7. Section [7. Glossary](#7-glossary)
+    - If you want a quick reference for all the commands available in CareFlow, head to Section 7, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
 
-## 2.2 Note on symbols and formatting used
+To make the most of this user guide, we recommend reading through it in order, starting with the Introduction of 
+CareFlow and working your way through each section. You can also use the [table of contents](#top) to jump to specific 
+sections as needed.
+
+## 1.2 Note on symbols and formatting used
 
 Throughout this user guide, you may come across different formatting styles and symbols. These are used to make the guide more readable and easier to understand. Here are some of the formatting styles and symbols you may encounter:
 
@@ -80,8 +79,7 @@ Throughout this user guide, you may come across different formatting styles and 
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
- <p align="center">
-      </p>
+ 
 # **3. Quick start**
 
 1. Ensure you have Java 11 installed in your Computer.
@@ -100,15 +98,18 @@ Throughout this user guide, you may come across different formatting styles and 
      <p align="center">
       <img src="images/UGscreenshots/jdk_installer_windows.png" style="zoom:25%">
        </p>
+     <p align="center">
+       <i>Figure 2. Screenshot of the 'Downloading the JDK Installer' section on the link given.</i>
+       </p>
     </li>
-    <p align="center">
-        <i>Figure 1. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
-      </p>
    <br>
    <li>
    Step 2: Click on the <code>Java SE Downloads</code> link, which leads you to this page:
      <p align="center">
         <img src="images/UGscreenshots/installer_oracle_home.png" style="zoom:15%">
+       </p>
+     <p align="center">
+       <i>Figure 3. Screenshot of the 'Java SE Downloads' page.</i>
        </p>
    </li>
          
@@ -118,6 +119,9 @@ Throughout this user guide, you may come across different formatting styles and 
      <p align="center">
        <img src="images/UGscreenshots/java11_installer_oracle.png" style="zoom:15%">
      </p>
+     <p align="center">
+       <i>Figure 4. Screenshot of the Java SE Development Kit 11.0.18 section.</i>
+       </p>
    </li>
      
    <br>
@@ -128,8 +132,14 @@ Throughout this user guide, you may come across different formatting styles and 
       <img src="images/UGscreenshots/java11_installer_oracle_annotated.jpg" style="zoom:16.1%">
       </p>
       <p align="center">
+       <i>Figure 5. Screenshot of Java SE 11 download page with download link for 'Windows x64' circled.</i>
+       </p>
+      <p align="center">
       <img src="images/UGscreenshots/oracle_resgister.png" style="zoom:15%">
       </p>
+      <p align="center">
+       <i>Figure 6. Screenshot of Oracle account login page.</i>
+       </p>
    </li>
 
       <br>
@@ -138,6 +148,9 @@ Throughout this user guide, you may come across different formatting styles and 
      <p align="center">
        <img src="images/UGscreenshots/jdk_downloaded.png" style="zoom:40%">
      </p>
+     <p align="center">
+       <i>Figure 7. Screenshot of the downloaded file.</i>
+       </p>
    </li>
 
      <br> 
@@ -152,6 +165,9 @@ Throughout this user guide, you may come across different formatting styles and 
        <p align="center">
        <img src="images/UGscreenshots/jdk_macOS.png" style="zoom:25%">
        </p>
+       <p align="center">
+       <i>Figure 8. Screenshot of steps to download JDK on macOS.</i>
+       </p>
    </li>
    
    <br>
@@ -165,7 +181,7 @@ Throughout this user guide, you may come across different formatting styles and 
 
 4. Open a `command terminal`
    <details>
-   <summary>Click here for more information on Java 11 installation</summary>
+   <summary>Click here for more information on opening a command terminal</summary>
       <details> 
       <summary> I. For macOS: </summary>
    <ul>
@@ -174,6 +190,9 @@ Throughout this user guide, you may come across different formatting styles and 
         <p align="center">
           <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
         </p>
+        <p align="center">
+         <i>Figure 9. spotlight icon.</i>
+         </p>
    </li>
         <br>
    <li>
@@ -181,7 +200,9 @@ Throughout this user guide, you may come across different formatting styles and 
         <p align="center">
              <img src="images/UGscreenshots/terminal.png" style="zoom:25%">
         </p>
-
+        <p align="center">
+         <i>Figure 10. search bar on macOS.</i>
+         </p>
    </li>
         <br>
    <li>
@@ -189,6 +210,9 @@ Throughout this user guide, you may come across different formatting styles and 
         <p align="center">
             <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:29.5%">
         </p>
+        <p align="center">
+         <i>Figure 11. command terminal on macOS.</i>
+         </p>
    </li>
         <br>
 
@@ -215,7 +239,8 @@ Throughout this user guide, you may come across different formatting styles and 
    <br>
    <li>
     For keen learners, you can take a look at the short video below to fund out more about the <code>cd</code> command
-         - For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in MacOS Terminal (cd command)</a>
+         - For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in macOS Terminal (cd 
+   command)</a>
          - For Windows: <a href="https://www.youtube.com/watch?v=Q3XQpnQTy6Y">How to Use CD Command in CMD</a>
    </li>
    </ul>
@@ -225,7 +250,9 @@ Throughout this user guide, you may come across different formatting styles and 
   <p align="center">
     <img src="images/UGscreenshots/careflow_home.png" style="zoom:100%">
   </p>
-
+  <p>
+    <i>Figure 12. Graphical User Interface (GUI) of CareFlow</i>
+    </p>
 7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`help`** and hit `Enter` will open the help window.<br>
    <details> 
    <summary>Click here for  Some example commands you can try</summary>
@@ -245,9 +272,8 @@ Throughout this user guide, you may come across different formatting styles and 
 
 <br>
 --------------------------------------------------------------------------------------------------------------------
-# **4. Features**
+# **4. Overview of Features**
 
-<<<<<<< HEAD
 If you work as a clinic receptionist, you understand how time-consuming and overwhelming it can be to manually 
 manage patient information and medicine inventory. That is why we have created a software specifically designed to 
 assist you in these tasks, making your job lot easier and more efficient. With our software, you can easily keep track of patient information and drug inventory, allowing you to focus on providing your patients the best care possible.
@@ -303,7 +329,7 @@ hospital is missing from our directory, please feel free to [contact us](https:/
     <img src="images/UIscreenshots/helpMessage.png" style="zoom:100%">
   </p>
   <p align="center">
-    <i>Figure 2. Screenshot of the 'Downloading the JDK Installer' section on the Oracle website.</i>
+    <i>Figure 13. Popped up window after typing 'g help'.</i>
   </p>
   <br>
 * **Format:** `g help`
@@ -841,3 +867,12 @@ The following commands are drug-related commands that are available in Careflow 
 </p>
 
 [🠉 Back to top](#top)
+
+# 8. Glossary
+<a id="1">
+1. Command Line Interface (CLI)
+</a>
+<br>
+<a id="2">
+2. Graphic User Interface (GUI)
+</a>
