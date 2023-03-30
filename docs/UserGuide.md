@@ -19,6 +19,8 @@ Paidlancers can get your freelancing event management tasks done faster than tra
 This user guide will help you get up to speed in no time!
 
 ## Table of Contents
+- [Using the examples in this Guide](#using-the-examples-in-this-guide)
+- [User Interface](#user-interface)
 - [Quick Start](#quick-start)
 - [Features](#features)
   <details>
