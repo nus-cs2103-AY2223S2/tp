@@ -11,7 +11,7 @@
 <?import javafx.scene.control.TextArea?>
 <fx:root resizable="false" title="Editing remarks" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/help_icon.png" />
+    <Image url="@/images/remark.png" />
   </icons>
   <scene>
     <Scene>
