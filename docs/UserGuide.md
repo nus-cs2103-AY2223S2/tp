@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, FAid can get your client and meeting management tasks done faster than traditional GUI apps, so you won't ever worry about missing a meeting or missing out a client!
+If you can type fast, FAid can get your client and meeting management tasks done faster than traditional GUI apps, so you won't ever worry about missing a meeting or forgetting about a client!
 
 * Table of Contents
 {:toc}
@@ -212,22 +212,22 @@ Notes:
 * Edits the meetings of person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-### Find meeting : `meeting find`
+### Find meeting : `meetingFind`
 
 Gets meetings from the address book
 
-Format: `meeting find DATE [PERSON_INDEX]`
+Format: `meetingFind DATE [PERSON_INDEX]`
 
 Required Information:
 * Date (dd/mm/yyyy)
 * Index of a person already in address book
 
 Examples:
-* `meeting find 12/02/2023` Lists out all meetings that start on 12/02/2023
-* `meeting find 12/02/2023 5` Lists out all meetings that start on 12/02/2023 with the fifth person in the address book
+* `meetingFind 12/02/2023` Lists out all meetings that start on 12/02/2023
+* `meetingFind 12/02/2023 5` Lists out all meetings that start on 12/02/2023 with the fifth person in the address book
 
 
-### List meeting : `meeting list`
+### List meeting : `meetingList`
 
 Lists all meetings scheduled for the day from address book
 
@@ -240,7 +240,7 @@ Required information:
 * Region specified should be a valid region
 
 Examples:
-* `listRegion Central` Finds people from Central region in the address book
+* `listRegion Central` lists all people from the Central region in the address book
 
 ### Find people by policy name : `findPolicy`
 
