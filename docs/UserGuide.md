@@ -90,7 +90,7 @@ Fields are the information following the slash in a command, to provide appropri
 #### Name
 The name of the person. 
 * Names should only contain alphanumeric characters and spaces, and it should not be blank.
-* Non-alphanumeric characters like "/" are disallowed as it makes parsing harder. 
+* Non-alphanumeric characters like "/", "@" and "?" are disallowed. 
 
 #### NRIC
 NRIC is a unique identifier given to all Singaporeans.
