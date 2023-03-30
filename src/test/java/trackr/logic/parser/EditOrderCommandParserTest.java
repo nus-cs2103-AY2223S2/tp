@@ -53,9 +53,9 @@ import trackr.model.order.OrderDescriptor;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 import trackr.testutil.OrderDescriptorBuilder;
 
 
@@ -106,11 +106,11 @@ public class EditOrderCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_ORDER_QUANTITY_DESC,
                 OrderQuantity.MESSAGE_CONSTRAINTS); // invalid Order quantity
         assertParseFailure(parser, "1" + INVALID_CUSTOMER_NAME_DESC,
-                CustomerName.MESSAGE_CONSTRAINTS); // invalid name
+                PersonName.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_CUSTOMER_PHONE_DESC,
-                CustomerPhone.MESSAGE_CONSTRAINTS); // invalid phone
+                PersonPhone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC,
-                CustomerAddress.MESSAGE_CONSTRAINTS); // invalid address
+                PersonAddress.MESSAGE_CONSTRAINTS); // invalid address
 
         // invalid Order name followed by valid Order deadline
         assertParseFailure(parser, "1" + INVALID_ORDER_NAME_DESC

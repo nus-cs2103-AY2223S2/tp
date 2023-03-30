@@ -147,7 +147,7 @@ public class CommandTestUtil {
     public static final String INVALID_ORDER_STATUS = "T";
     public static final String INVALID_ORDER_QUANTITY = "9999";
     public static final String INVALID_CUSTOMER_NAME = "!@*&#";
-    public static final String INVALID_CUSTOMER_PHONE = "912345674554";
+    public static final String INVALID_CUSTOMER_PHONE = "912345@674554";
     public static final String INVALID_CUSTOMER_ADDRESS = "  ";
 
     public static final String ORDER_NAME_DESC_CHOCO_COOKIE =

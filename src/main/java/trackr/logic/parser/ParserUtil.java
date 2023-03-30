@@ -21,9 +21,6 @@ import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;
 import trackr.model.person.PersonName;
@@ -328,13 +325,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CustomerName} is invalid.
      */
-    public static CustomerName parseCustomerName(String customerName) throws ParseException {
+    public static PersonName parseCustomerName(String customerName) throws ParseException {
         requireNonNull(customerName);
         String trimmedCustomerName = customerName.trim();
-        if (!CustomerName.isValidCustomerName(trimmedCustomerName)) {
-            throw new ParseException(CustomerName.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(trimmedCustomerName)) {
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        return new CustomerName(trimmedCustomerName);
+        return new PersonName(trimmedCustomerName);
     }
 
     /**
@@ -343,13 +340,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CustomerPhone} is invalid.
      */
-    public static CustomerPhone parseCustomerPhone(String customerPhone) throws ParseException {
+    public static PersonPhone parseCustomerPhone(String customerPhone) throws ParseException {
         requireNonNull(customerPhone);
         String trimmedCustomerPhone = customerPhone.trim();
-        if (!CustomerPhone.isValidCustomerPhone(trimmedCustomerPhone)) {
-            throw new ParseException(CustomerPhone.MESSAGE_CONSTRAINTS);
+        if (!PersonPhone.isValidPersonPhone(trimmedCustomerPhone)) {
+            throw new ParseException(PersonPhone.MESSAGE_CONSTRAINTS);
         }
-        return new CustomerPhone(trimmedCustomerPhone);
+        return new PersonPhone(trimmedCustomerPhone);
     }
 
     /**
@@ -358,13 +355,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CustomerAddress} is invalid.
      */
-    public static CustomerAddress parseCustomerAddress(String customerAddress) throws ParseException {
+    public static PersonAddress parseCustomerAddress(String customerAddress) throws ParseException {
         requireNonNull(customerAddress);
         String trimmedCustomerAddress = customerAddress.trim();
-        if (!CustomerAddress.isValidCustomerAddress(trimmedCustomerAddress)) {
-            throw new ParseException(CustomerAddress.MESSAGE_CONSTRAINTS);
+        if (!PersonAddress.isValidPersonAddress(trimmedCustomerAddress)) {
+            throw new ParseException(PersonAddress.MESSAGE_CONSTRAINTS);
         }
-        return new CustomerAddress(trimmedCustomerAddress);
+        return new PersonAddress(trimmedCustomerAddress);
     }
 
     //========================Parse those related to tab==================================
