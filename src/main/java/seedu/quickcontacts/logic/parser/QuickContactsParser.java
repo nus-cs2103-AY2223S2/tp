@@ -46,7 +46,8 @@ public class QuickContactsParser {
         AddMeetingCommand.COMMAND_WORD, EditMeetingsCommand.COMMAND_WORD, DeleteMeetingCommand.COMMAND_WORD,
         ExportMeetingsCommand.COMMAND_WORD, ImportMeetingsCommand.COMMAND_WORD, MarkAsDoneCommand.COMMAND_WORD,
         MarkAsNotDoneCommand.COMMAND_WORD, ShowNotDoneCommand.COMMAND_WORD,
-        ClearCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD};
+        ClearCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, SortMeetingCommand.COMMAND_WORD,
+    };
 
     /**
      * Parses user input into command for execution.
