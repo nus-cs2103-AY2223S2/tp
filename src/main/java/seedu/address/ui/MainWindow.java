@@ -4,8 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -175,18 +173,33 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Replicates view task command
+     * @throws CommandException
+     * @throws ParseException
+     */
     @FXML
     public void tasksClicked() throws CommandException, ParseException {
         CommandResult commandResult = executeCommand("view");
         show();
     }
 
+    /**
+     * Replicates list command
+     * @throws CommandException
+     * @throws ParseException
+     */
     @FXML
     public void personsClicked() throws CommandException, ParseException {
         CommandResult commandResult = executeCommand("list");
         show();
     }
 
+    /**
+     * Replicates review command
+     * @throws CommandException
+     * @throws ParseException
+     */
     @FXML
     public void reviewClicked() throws CommandException, ParseException {
         CommandResult commandResult = executeCommand("review");
