@@ -248,7 +248,7 @@ Given below is a quick overview of each component and how they interact with eac
 
 **Components of the architecture**
 
-* **`Main`**: has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* **`Main`**: has two classes called `Main` and `MainApp` which are responsible for,
   * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
   * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 * [**`Commons`**](#common-classes): represents a collection of classes used by multiple other components.
