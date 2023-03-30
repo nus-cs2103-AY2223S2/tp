@@ -37,6 +37,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String education;
     private final String remark;
+    private final String telegram;
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -47,6 +48,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark, @JsonProperty("education") String education,
+                             @JsonProperty("telegram") String telegram,
                              @JsonProperty("modules") List<JsonAdaptedModule> modules,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -55,6 +57,7 @@ class JsonAdaptedPerson {
         this.address = address;
         this.education = education;
         this.remark = remark;
+        this.telegram = telegram;
         if (modules != null) {
             this.modules.addAll(modules);
         }
@@ -73,6 +76,7 @@ class JsonAdaptedPerson {
         address = source.getOptionalAddress().map(Address::toString).orElse(null);
         education = source.getOptionalEducation().map(Education::toString).orElse(null);
         remark = source.getOptionalRemark().map(Remark::toString).orElse(null);
+        telegram = source.getOptionalTelegram().map(Telegram::toString).orElse(null);
         modules.addAll(source.getModules().stream()
                 .map(JsonAdaptedModule::new)
                 .collect(Collectors.toList()));
@@ -138,11 +142,18 @@ class JsonAdaptedPerson {
             ? null
             : new Remark(remark);
 
+        final Telegram modelTelegram = telegram == null
+                ? null
+                : Optional.of(telegram)
+                .filter(Telegram::isValidHandle)
+                .map(Telegram::new)
+                .orElseThrow(() -> new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS));
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Set<Module> modelModules = new HashSet<>(personModules);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelEducation, modelRemark,
-                modelModules, modelTags);
+                modelTelegram, modelModules, modelTags);
     }
 
 }
