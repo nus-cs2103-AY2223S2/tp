@@ -381,7 +381,8 @@ appointment delete INDEX
 Edits the details of an existing appointment.
 
 ```text
-appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] [--v VAX_GROUP]
+appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
+    [--v VAX_GROUP]
 ```
 
 * <code><var>INDEX</var></code> : `<Index>`
@@ -424,7 +425,9 @@ List all the appointments that matches the predicates provided.
 * <code><var>KEYWORDS</var></code> : List appointments that matches the keywords
 
 ```text
-appointment find [--p INDEX] [--s STARTING_TIME] [--e ENDING_TIME] [--v ...VAX_GROUP...]`
+appointment find [--p INDEX] [--s STARTING_TIME] [--e ENDING_TIME] \
+    [--v ...VAX_GROUP...]`
+
 appointment find [...KEYWORDS...]
 ```
 
