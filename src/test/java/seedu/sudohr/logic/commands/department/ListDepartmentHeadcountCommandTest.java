@@ -91,7 +91,7 @@ public class ListDepartmentHeadcountCommandTest {
         );
 
         String expectedMessage2 = String.format(ListDepartmentHeadcountCommand.MESSAGE_SUCCESS,
-                ENGINEERING_EMPLOYEES_PRESENT_ON_DATE_TYPE_2.size(), engineering);
+                ENGINEERING_EMPLOYEES_PRESENT_ON_DATE_TYPE_2.size(), DATE_TYPE_2, engineering);
 
         assertCommandSuccess(command2, model, expectedMessage2, expectedModel);
     }
@@ -108,7 +108,7 @@ public class ListDepartmentHeadcountCommandTest {
         );
 
         String expectedMessage1 = String.format(ListDepartmentHeadcountCommand.MESSAGE_SUCCESS,
-                ENGINEERING_EMPLOYEES_PRESENT_ON_DATE_TYPE_3.size(), engineering);
+                ENGINEERING_EMPLOYEES_PRESENT_ON_DATE_TYPE_3.size(), DATE_TYPE_3, engineering);
 
         expectedModel.updateFilteredEmployeeList(
                 e -> ENGINEERING_EMPLOYEES_PRESENT_ON_DATE_TYPE_3.stream().anyMatch(e::isSameEmployee)
@@ -124,7 +124,7 @@ public class ListDepartmentHeadcountCommandTest {
                 sales
         );
         String expectedMessage2 = String.format(ListDepartmentHeadcountCommand.MESSAGE_SUCCESS,
-                SALES_EMPLOYEES_PRESENT_ON_DATE_TYPE_3.size(), sales);
+                SALES_EMPLOYEES_PRESENT_ON_DATE_TYPE_3.size(), DATE_TYPE_3, sales);
         // refresh expected model
         expectedModel.updateFilteredEmployeeList(e -> true);
 
@@ -149,7 +149,7 @@ public class ListDepartmentHeadcountCommandTest {
         );
 
         String expectedMessage1 = String.format(ListDepartmentHeadcountCommand.MESSAGE_SUCCESS,
-                HR_EMPLOYEES_PRESENT_ON_DATE_TYPE_1.size(), hr);
+                HR_EMPLOYEES_PRESENT_ON_DATE_TYPE_1.size(), DATE_TYPE_1, hr);
 
         assertCommandSuccess(command, model, expectedMessage1, expectedModel);
 
