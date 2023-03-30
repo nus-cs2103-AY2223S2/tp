@@ -80,7 +80,7 @@
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
+    -fx-background-color: #E8AC66;
 }
 
 .split-pane:horizontal .split-pane-divider {
@@ -370,6 +370,7 @@
 #groups {
     -fx-hgap: 7;
     -fx-vgap: 3;
+    -fx-background-color: transparent;
 }
 
 #groups .label {
@@ -390,4 +391,9 @@
 #day {
 -fx-text-fill:black;
 }
+
+#groupListView {
+    -fx-background-color: transparent;
+}
+
 

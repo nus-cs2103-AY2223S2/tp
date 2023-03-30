@@ -1,7 +1,8 @@
-package seedu.address.model.timeslot;
+package seedu.address.model.time;
 
 import static java.util.Arrays.asList;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
@@ -11,16 +12,41 @@ import javafx.collections.ObservableList;
  * Class to generate the entire week of schedule
  */
 public class ScheduleWeek {
+    private static final int DAYS_IN_A_WEEK = 7;
     private static final ObservableList<ScheduleDay> internalList = FXCollections.observableArrayList();
 
-    public void setInternalList(ArrayList<ArrayList<Integer>> timetable) {
+    /**
+     * Constructor for ScheduleWeek where cells will be filled with empty cells when first loaded
+     */
+    public ScheduleWeek() {
+        internalList.clear();
+        ArrayList<Status> emptyCell = new ArrayList<>();
+        for (int i = 0; i < 24; i++) {
+            emptyCell.add(Status.EMPTY);
+        }
+
+        internalList.add(new ScheduleDay("Monday", emptyCell));
+        internalList.add(new ScheduleDay("Tuesday", emptyCell));
+        internalList.add(new ScheduleDay("Wednesday", emptyCell));
+        internalList.add(new ScheduleDay("Thursday", emptyCell));
+        internalList.add(new ScheduleDay("Friday", emptyCell));
+        internalList.add(new ScheduleDay("Saturday", emptyCell));
+        internalList.add(new ScheduleDay("Sunday", emptyCell));
+
+    }
+
+
+    public void setInternalList(ArrayList<ArrayList<Integer>> timetable, DayOfWeek startDay) {
         internalList.clear();
 
         ArrayList<String> allDays = new ArrayList<>(asList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
                 "Saturday", "Sunday"));
 
-        for (int i = 0; i < 7; i++) {
-            ScheduleDay scheduleDay = new ScheduleDay(allDays.get(i), populateData(timetable.get(i)));
+        int zeroBasedStartIndex = startDay.getValue() - 1;
+        for (int i = 0; i < DAYS_IN_A_WEEK; i++) {
+            int currentDayIndex = (zeroBasedStartIndex + i) % DAYS_IN_A_WEEK;
+            ScheduleDay scheduleDay = new ScheduleDay(allDays.get(currentDayIndex),
+                    populateData(timetable.get(currentDayIndex)));
             internalList.add(scheduleDay);
         }
 
@@ -48,7 +74,7 @@ public class ScheduleWeek {
             }
         }
 
-        System.out.println(timeSlot.toString());
+        //  System.out.println(timeSlot.toString());
         return timeSlot;
     }
 

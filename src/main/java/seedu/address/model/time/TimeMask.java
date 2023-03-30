@@ -1,5 +1,6 @@
-package seedu.address.model.timeslot;
+package seedu.address.model.time;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 
 import seedu.address.model.event.IsolatedEvent;
@@ -14,6 +15,7 @@ public class TimeMask {
     // If 0.5 hour granularity is desired, required to split into two separate ints
     private static final int WINDOW_RANGE = 7;
     private static final int SLOTS_PER_DAY = 24;
+    private static final int LAST_HOUR_INDEX = 23;
     // 0's represent free slot
     private final int[] weeklyOccupancy;
 
@@ -21,13 +23,12 @@ public class TimeMask {
         weeklyOccupancy = new int[]{0, 0, 0, 0, 0, 0, 0};
     }
 
-    public int getDayMask(int dayIndex) {
-        checkValidDayIndex(dayIndex);
-        return weeklyOccupancy[dayIndex];
+    public int getDayMask(DayOfWeek dayOfWeek) {
+        return weeklyOccupancy[getZeroBasedDayIndex(dayOfWeek)];
     }
 
-    private void mergeSingleDay(int dayIndex, int dayOccupancy) {
-        checkValidDayIndex(dayIndex);
+    private void mergeSingleDay(DayOfWeek dayOfWeek, int dayOccupancy) {
+        int dayIndex = getZeroBasedDayIndex(dayOfWeek);
         weeklyOccupancy[dayIndex] = weeklyOccupancy[dayIndex] | dayOccupancy;
     }
 
@@ -41,7 +42,7 @@ public class TimeMask {
             throw new RuntimeException("Empty time mask!");
         }
         for (int i = 0; i < WINDOW_RANGE; i++) {
-            mergeSingleDay(i, other.weeklyOccupancy[i]);
+            mergeSingleDay(getDayFromZeroBasedIndex(i), other.weeklyOccupancy[i]);
         }
     }
 
@@ -72,14 +73,13 @@ public class TimeMask {
         checkValidHourIndexes(startHourIndex, endHourIndex);
 
         // TODO: Check, requires JDK 11
-        int startBits = Integer.parseInt("1".repeat(endHourIndex - startHourIndex + 1));
+        int startBits = Integer.parseInt("1".repeat(endHourIndex - startHourIndex + 1), 2);
         int mask = ~(startBits << startHourIndex);
 
         weeklyOccupancy[dayIndex] = weeklyOccupancy[dayIndex] & mask;
     }
 
     private void occupySlots(int dayIndex, int startHourIndex, int endHourIndex) {
-        dayIndex = dayIndex - 1;
         checkValidDayIndex(dayIndex);
         checkValidHourIndexes(startHourIndex, endHourIndex);
 
@@ -110,9 +110,12 @@ public class TimeMask {
      * @param toOccupy boolean
      */
     public void modifyOccupancy(RecurringEvent recurringEvent, boolean toOccupy) {
-        int dayIndex = recurringEvent.getDayValue();
+        int dayIndex = getZeroBasedDayIndex(recurringEvent.getDayOfWeek());
         int startHourIndex = recurringEvent.getStartTime().getHour();
-        int endHourIndex = recurringEvent.getEndTime().getHour();
+        int endHourIndex = recurringEvent.getEndTime().getHour() - 1;
+        if (endHourIndex < 0) {
+            endHourIndex = LAST_HOUR_INDEX;
+        }
         if (toOccupy) {
             occupySlots(dayIndex, startHourIndex, endHourIndex);
         } else {
@@ -120,18 +123,10 @@ public class TimeMask {
         }
     }
 
-//   public static ObservableList<Integer> getTimetable(TimeMask timeMask) {
-//        ObservableList<Integer> linearTimetable = FXCollections.observableArrayList();
-//        for (int offset = 0; offset < WINDOW_RANGE; offset++) {
-//            linearTimetable.addAll(getTimeSlotIndexes(timeMask.getDayMask(offset), offset));
-//        }
-//        return linearTimetable;
-//    }
-
     public static ArrayList<ArrayList<Integer>> getTimeSlotIndexes(TimeMask mask) {
         ArrayList<ArrayList<Integer>> twoDimensionalSlotList = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
-            int dayMask = mask.getDayMask(i);
+        for (DayOfWeek day : DayOfWeek.values()) {
+            int dayMask = mask.getDayMask(day);
             ArrayList<Integer> daySlots = new ArrayList<>();
             int slots = 0;
             while (slots < SLOTS_PER_DAY) {
@@ -144,5 +139,13 @@ public class TimeMask {
             twoDimensionalSlotList.add(daySlots);
         }
         return twoDimensionalSlotList;
+    }
+
+    private int getZeroBasedDayIndex(DayOfWeek day) {
+        return day.getValue() - 1;
+    }
+
+    private DayOfWeek getDayFromZeroBasedIndex(int dayIndex) {
+        return DayOfWeek.of(dayIndex + 1);
     }
 }

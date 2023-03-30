@@ -29,7 +29,7 @@ public class FindTimeCommand extends Command {
             + COMMAND_WORD + " 2 " + PREFIX_STARTDATETIME + "09/03/2023 00:00\n";
 
     // TODO: Consider using another prefix for date instead of dateTime
-    public static final String MESSAGE_SUCCESS = "Timetable generated!";
+    public static final String MESSAGE_SUCCESS = "Timetable generated! It may take some time for the table to display.";
 
     private final Index index;
 
