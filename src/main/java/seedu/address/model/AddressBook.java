@@ -156,6 +156,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         doctors.setDoctor(target, editedDoctor);
     }
 
+    public Doctor getDoctor(int target) {
+        requireNonNull(target);
+
+        return doctors.getDoctor(target);
+    }
+
     /**
      * Replaces the given patient {@code target} in the list with {@code editedPatient}.
      * {@code target} must exist in the address book.
@@ -182,8 +188,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeDoctor(Doctor key) {
         doctors.remove(key);
-        //TODO: For Patient::doctors in key.patients, remove references
+        // TODO: Low Prio - Replace current implementation with the following
+        // For Patient::doctors in key.patients, remove references
         // to this doctor as well.
+        patients.forEach((patient -> patient.removeDoctorIfAssigned(key)));
     }
 
     /**
@@ -192,7 +200,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePatient(Patient key) {
         patients.remove(key);
-        //TODO: Replace current implementation with the following
+        // TODO: Low Prio - Replace current implementation with the following
         // For Doctor::patients in key.doctors, remove references
         // to this patient as well.
         doctors.forEach((doctor -> doctor.removePatientIfAssigned(key)));
