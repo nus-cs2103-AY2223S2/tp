@@ -695,25 +695,11 @@ nr stands for non-recurring
       </td>
    </tr>
    <tr>
-      <td><strong>Exit application</strong>
-      </td>
-      <td><code>:wq</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>:wq</code>
-            </li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
       <td><strong>Add Student</strong>
       </td>
       <td>
-         <ol>
-            <li><code>add student n/NAME [telegram/PHONE_NUMBER or TELEGRAM_HANDLE] [e/NUS_EMAIL] [score/SCORE]</code>
-            </li>
-         </ol>
+         <code>add student n/NAME telegram/PHONE_NUMBER or TELEGRAM_HANDLE] [e/NUS_EMAIL] [score/SCORE]</code>
+         </li>
       </td>
       <td>
          <ul>
@@ -726,10 +712,8 @@ nr stands for non-recurring
       <td><strong>Remove Student</strong>
       </td>
       <td>
-         <ul>
-            <li><code>rm INDEX</code>
-            </li>
-         </ul>
+         <code>rm INDEX</code>
+         </li>
       </td>
       <td>
          <ul>
@@ -741,10 +725,8 @@ nr stands for non-recurring
       <td><strong>Add Student To Event</strong>
       </td>
       <td>
-         <ul>
-            <li><code>addStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]</code>
-            </li>
-         </ul>
+         <code>addStudent [INDEX] [EVENT_TYPE}/[EVENT_NAME]</code>
+         </li>
       </td>
       <td>
          <ul>
@@ -765,225 +747,54 @@ nr stands for non-recurring
          </ul>
       </td>
    </tr>
-   <tr>
-      <td><strong>Find recur</strong>
+    <tr>
+      <td><strong>Add Note To Event</strong>
       </td>
-      <td><code>/ recur [timeframe] [startTime] [endTime]</code>
+      <td><code>add-note note -content hello world -type tutorial -name 2</code>
       </td>
       <td>
          <ul>
-            <li><code>/ recur Wednesday</code>
-            <li><code>/ recur Wednesday 8:00 10:00</code></li>
+            <li><code>add-note note -content rmb to bring along apple pencil\n -type Tutorial -name 2</code>
+            <li><code>add-note note -content grade student labs timely\n -type Lab -name 2</code></li>
+            <li><code>add-note -content solve this student's query via email\n -type Recur -name 2</code></li>
          </ul>
       </td>
    </tr>
-   <tr>
-      <td><strong>Find non-recurring event</strong>
-      </td>
-      <td><code>/ event [date] [startTime] [endTime]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>/ event 2023-04-01</code>
-            <li><code>/ event 2023-03-12 8:00 10:00</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Show recur</strong>
-      </td>
-      <td>
-         <ul>
-            <li><code>:cd [name] or [index] calendar</code>
-            <li><code>:cd [name] or [index] students</code></li>
-         </ul>
-      </td>
-      <td>
-         <ul>
-            <li><code>:cd 1</code>
-            <li><code>:cd weeklyTutorials</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Show non-recurring event</strong>
-      </td>
-      <td>
-         <ul>
-            <li><code>cd nr [name] or [index] calendar</code></li>
-         </ul>
-      </td>
-      <td>
-         <ul>
-            <li><code>:cd nr 1</code>
-            <li><code>:cd nr Make-up-Tutorial</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Sort student </strong>
-      </td>
-      <td><code>sort student [type] [sorting order]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>sort students labs reverse</code>
-            <li><code>sort students tutorials nonreverse</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Move recur</strong>
-      </td>
-      <td><code>:mv [name] or [index]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>:mv 1</code>
-            <li><code>:mv weeklyTutorials</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Stop recur</strong>
-      </td>
-      <td><code>stop [name] or [index]  </code>
-      </td>
-      <td>
-         <ul>
-            <li><code>:stop 1</code>
-            <li><code>:stop weeklyTutorials</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Sort recur</strong>
-      </td>
-      <td><code>sort [type] [sorting method]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>sort labs alphabetical reverse</code>
-            <li><code>sort consultation date nonreverse</code>
-            <li><code>sort tutorial duration nonreverse</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Replace sort recur</strong>
-      </td>
-      <td><code>replace sort [type] [sorting method]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>replace sort labs alphabetical reverse</code>
-            <li><code>replace sort consultation date nonreverse</code>
-            <li><code>replace sort tutorial duration nonreverse</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Help recur</strong>
-      </td>
-      <td><code>help [type]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>help labs</code>
-            <li><code>help tutorial</code>
-            <li><code>help consultation</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Sort student</strong>
-      </td>
-      <td><code>sort student [type] [sorting method] [sorting order]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>sort student lab alphabetical reverse</code>
-            <li><code>sort student tutorial participation nonreverse</code>
-            <li><code>sort student consultation urgency nonreverse</code>
-            <li><code>sort student all urgency nonreverse</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Filter student</strong>
-      </td>
-      <td><code>filter student [type] [metric] [threshold]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>filter student lab urgency 60 </code>
-            <li><code>filter student tutorial participation 50</code>
-            <li><code>filter student consultation urgency 20</code>
-            <li><code>filter student all participation 90</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Alert student</strong>
-      </td>
-      <td><code>alert student [type] [metric]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>alert student lab urgency </code>
-            <li><code>alert student tutorial participation</code>
-            <li><code>alert student consultation urgency</code>
-            <li><code>alert student all participation</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Add note</strong>
-      </td>
-      <td><code>touch note [type] [name or index] [content]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>touch note recur weeklyTutorials "rmb to bring along apple pencil\n"</code>
-            <li><code>touch note recur 2 "grade student labs timely\n"</code>
-            <li><code>touch note student Eldon "solve this student's query via email\n"</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Edit note</strong>
-      </td>
-      <td><code>edit note [type] [name or index] [note-index] [newcontent]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>edit note recur weeklyTutorials 0 "no new tasks lol\n"</code>
-            <li><code>edit note recur 2 0 "bring my lab cheat-sheet\n"</code>
-            <li><code>edit note student Eldon 1 ""</code></li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Delete note</strong>
+    <tr>
+      <td><strong>Delete Note From Event</strong>
       </td>
       <td><code>delete note [type] [name or index] [note-index]</code>
       </td>
       <td>
          <ul>
-            <li><code>delete note recur weeklyTutorials 3</code>
-            <li><code>delete note recur 2 0</code>
-            <li><code>delete note student Eldon 0</code></li>
+            <li><code>rm-note -type Tutorial -name 2 -index 3</code>
+            <li><code>rm-note -type Lab -name 2 -index 1</code></li>
+            <li><code>rm-note -type Recur -name 2 -index 0</code></li>
          </ul>
       </td>
    </tr>
-   <tr>
-      <td><strong>List note</strong>
+    <tr>
+      <td><strong>Edit Note In Event</strong>
       </td>
-      <td><code>ls note [type] [name or index]</code>
+      <td><code>edit-note [type] [name or index] [note-index] [newcontent]</code>
       </td>
       <td>
          <ul>
-            <li><code>ls note recur weeklyTutorials</code></li>
+            <li><code>edit-note -content rmb to bring along apple pencil\n -type Tutorial -name 2 -index 3</code>
+            <li><code>edit-note -content grade student labs timely\n -type Lab -name 2 -index 1</code></li>
+            <li><code>edit-note -content solve this student's query via email\n -type Recur -name 2 -index 0</code></li>
+         </ul>
+      </td>
+   </tr>
+    <tr>
+      <td><strong>Exit application</strong>
+      </td>
+      <td><code>:wq</code>
+      </td>
+      <td>
+         <ul>
+            <li><code>:wq</code>
+            </li>
          </ul>
       </td>
    </tr>
