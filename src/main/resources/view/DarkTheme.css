@@ -153,6 +153,10 @@
      -fx-background-color: derive(#1d1d1d, 20%);
 }
 
+.pane-person-event-label {
+    -fx-background-color: derive(#1d1d1d, 20%);
+}
+
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
 }
@@ -374,5 +378,11 @@
     -fx-border-radius: 2;
     -fx-background-radius: 2;
     -fx-font-size: 11;
+}
+
+#table .table-view column-header-background .label {
+
+    -fx-font-size: 9pt;
+
 }
 
