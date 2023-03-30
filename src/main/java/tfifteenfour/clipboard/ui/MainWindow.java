@@ -22,6 +22,7 @@ import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.Logic;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.BackCommand;
+import tfifteenfour.clipboard.logic.commands.ClearCommand;
 import tfifteenfour.clipboard.logic.commands.Command;
 import tfifteenfour.clipboard.logic.commands.CommandResult;
 import tfifteenfour.clipboard.logic.commands.ExitCommand;
@@ -350,6 +351,12 @@ public class MainWindow extends UiPart<Stage> {
 
         if (prevCommand instanceof SelectCommand) {
             handleBackCommand();
+        } else if (prevCommand instanceof ClearCommand
+                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.SESSION_PAGE)) {
+            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
+        } else if (prevCommand instanceof ClearCommand
+                && logic.getModel().getCurrentSelection().getCurrentPage().equals(PageType.TASK_PAGE)) {
+            showSessionPane(logic.getModel().getCurrentSelection().getSelectedGroup());
         } else {
             // handleSelectCommand acts like refreshing whatever page you're on
             // undo needs to refresh the page after restoring previous state
