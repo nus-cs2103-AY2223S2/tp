@@ -81,7 +81,6 @@ Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/jav
   1. Check the version number provided (`xxx`) is at least `11`.
 
   An example is shown below.
-
   ```
   > java -version
   java version "xxx" <Other information>
@@ -109,6 +108,7 @@ Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/jav
 1. Double-click on the `trackr.jar` file.
 
   <div markdown="block" class="alert alert-tip">
+
     :bulb: **Trackr does not open?**<br>
     1. Open a command terminal.
     1. Type in `java -jar ` (Keep in mind of the space at the end).
@@ -119,6 +119,7 @@ Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/jav
     ```
     > java -jar xxxx/xxxx/trackr.jar
     ```
+
   </div>
 
   A GUI similar to the below should appear in a few seconds. (Note how the app contains some sample data.) <br>
