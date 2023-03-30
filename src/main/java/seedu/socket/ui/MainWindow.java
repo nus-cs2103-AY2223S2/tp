@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -39,10 +41,14 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane commandBoxPlaceholder;
-
+    @FXML
+    private MenuItem undoMenuItem;
+    @FXML
+    private MenuItem redoMenuItem;
     @FXML
     private MenuItem helpMenuItem;
-
+    @FXML
+    private MenuItem exitMenuItem;
     @FXML
     private StackPane personListPanelPlaceholder;
 
@@ -81,6 +87,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(exitMenuItem, KeyCombination.valueOf("SHORTCUT+Q"));
+        setAccelerator(undoMenuItem, KeyCombination.valueOf("SHORTCUT+Z"));
+        setAccelerator(redoMenuItem, new KeyCodeCombination(KeyCode.Z,
+                KeyCombination.SHIFT_DOWN, KeyCombination.SHORTCUT_DOWN));
     }
 
     /**
@@ -174,6 +184,25 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    @FXML
+    private void handleUndo() {
+        try {
+            resultDisplay.setFeedbackToUser(
+                    logic.execute("undo").getFeedbackToUser());
+        } catch (CommandException | ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleRedo() {
+        try {
+            resultDisplay.setFeedbackToUser(logic.execute("redo").getFeedbackToUser());
+        } catch (CommandException | ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        }
     }
 
     public PersonListPanel getPersonListPanel() {
