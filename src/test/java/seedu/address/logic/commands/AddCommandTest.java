@@ -30,6 +30,7 @@ import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.stats.WeeklyStats;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -275,6 +276,31 @@ public class AddCommandTest {
 
         @Override
         public void setHasShown(int i, boolean b) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean sameWeek(DeliveryJob job, WeeklyStats weeklyStats) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<DeliveryJob> weekJobsList(ObservableList<DeliveryJob> list, LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public double getTotalEarnings(ObservableList<DeliveryJob> list) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getTotalCompleted(ObservableList<DeliveryJob> list) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int getTotalPending(ObservableList<DeliveryJob> list) {
             throw new AssertionError("This method should not be called.");
         }
 
