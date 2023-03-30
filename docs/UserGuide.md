@@ -197,7 +197,7 @@ The Command Box is located at the bottom of the application. You may refer to th
 
 <div markdown="span" class="alert alert-success">
 
-:bulb: ** Pro Tip:** <br>
+:bulb: **Pro Tip:** <br>
 Did you know that the UP and DOWN arrow keys can be used to quickly access previously typed commands in the Command Box? This feature has been specially designed for you to save time and increase your productivity.<br>
 <br>
 In the current session, all of your previously typed commands can be accessed using the UP and DOWN arrow keys. Additionally, we automatically save up to 100 of your most recent commands to a file for your convenience in the next session. This way, you can easily refer back to your previous commands without having to retype them, saving you time and increasing your efficiency.
