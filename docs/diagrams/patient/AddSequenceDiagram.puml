@@ -1,0 +1,53 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":VmsParser" as VmsParser LOGIC_COLOR
+participant "u:AddCommand" as AddCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedVms" as VersionedVms MODEL_COLOR
+end box
+[-> LogicManager : execute(add)
+activate LogicManager
+
+LogicManager -> VmsParser : parseCommand(add)
+activate VmsParser
+
+create AddCommand
+VmsParser -> AddCommand
+activate AddCommand
+
+AddCommand --> VmsParser
+deactivate AddCommand
+
+VmsParser --> LogicManager : u
+deactivate VmsParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : addVms()
+activate Model
+
+Model -> VersionedVms : add()
+activate VersionedVms
+
+VersionedVms -> VersionedVms :resetData(ReadOnlyVms)
+VersionedVms --> Model :
+deactivate VersionedVms
+
+Model --> AddCommand
+deactivate Model
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+AddCommand -[hidden]-> LogicManager : result
+destroy AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
