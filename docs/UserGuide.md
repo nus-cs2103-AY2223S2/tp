@@ -44,6 +44,7 @@ If you like our product and want to contribute to it, consider looking at the [D
     * [3.2 editing the data](#32-editing-the-data-file)
   * [4. FAQ](#4-faq)
   * [5. Command summary](#5-command-summary)
+  * [6. Glossary](#6-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,11 +134,11 @@ Clock-Work provides some flexibility regarding the types of inputs it accepts. T
 
 </div>
 
-### 2.1 Adding a task: `add`
+### 2.1 Adding a task : `add`
 
 :man_technologist: Congratulations on reaching this part of the user guide. You should have Clock-Work started and running at this point. You are now ready to add your first task! :tada:
 
-Adds a task to the task book. There are 3 types of tasks. `<span style="color:#4285F4">simpleTask</span>`, `Deadline` and `Event`.
+Adds a task to the task book. There are 3 types of tasks. `simpleTask`, `Deadline` and `Event`.
 For `Deadline` and `Event` `LongDate` field(s) are required.
 
 `LongDate` should be in the format `YYYY-MM-DD HHMM`. ([What is a valid LongDate?](#q2-what-is-a-valid-Longdate))
@@ -260,7 +261,7 @@ Sorts the list using the following format:
 Format: `sort`
 
 
-### 2.6 Locating tasks by name: `find`
+### 2.6 Locating tasks by name : `find`
 
 :man_technologist: Oops! Are you unable to locate a task? Try find.
 

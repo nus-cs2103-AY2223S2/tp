@@ -54,6 +54,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_FROM, PREFIX_TO, PREFIX_EFFORT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             return parseForFindCommand(PREFIX_NAME, argMultimap);
         }
