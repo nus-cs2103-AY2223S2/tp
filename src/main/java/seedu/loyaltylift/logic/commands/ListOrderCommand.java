@@ -50,7 +50,8 @@ public class ListOrderCommand extends Command {
         requireNonNull(model);
         model.sortFilteredOrderList(comparator);
         model.updateFilteredOrderList(predicate);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false,
+                false, true);
     }
 
     @Override

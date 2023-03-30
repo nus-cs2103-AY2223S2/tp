@@ -66,12 +66,16 @@ public class ListCustomerCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCustomerCommand(), model, ListCustomerCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(
+                ListCustomerCommand.MESSAGE_SUCCESS, false, false, true, false);
+        assertCommandSuccess(new ListCustomerCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showCustomerAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListCustomerCommand(), model, ListCustomerCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(
+                ListCustomerCommand.MESSAGE_SUCCESS, false, false, true, false);
+        assertCommandSuccess(new ListCustomerCommand(), model, expectedCommandResult, expectedModel);
     }
 }

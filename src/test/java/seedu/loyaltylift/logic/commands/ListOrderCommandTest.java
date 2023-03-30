@@ -66,12 +66,16 @@ public class ListOrderCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListOrderCommand(), model, ListOrderCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(
+                ListOrderCommand.MESSAGE_SUCCESS, false, false, false, true);
+        assertCommandSuccess(new ListOrderCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showOrderAtIndex(model, INDEX_FIRST);
-        assertCommandSuccess(new ListOrderCommand(), model, ListOrderCommand.MESSAGE_SUCCESS, expectedModel);
+        CommandResult expectedCommandResult = new CommandResult(
+                ListOrderCommand.MESSAGE_SUCCESS, false, false, false, true);
+        assertCommandSuccess(new ListOrderCommand(), model, expectedCommandResult, expectedModel);
     }
 }
