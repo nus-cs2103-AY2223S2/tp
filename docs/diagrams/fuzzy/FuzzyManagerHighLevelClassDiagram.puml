@@ -1,5 +1,5 @@
 @startuml FuzzyManagerHighLevelClassDiagram
-!include styleSimple.puml
+!include ../styleSimple.puml
 
 class SearchMode
 
