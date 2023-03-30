@@ -168,6 +168,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void refreshFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void freezeFilteredPersonList() throws ModifyFrozenStateException {
             throw new AssertionError("This method should not be called");
         }
