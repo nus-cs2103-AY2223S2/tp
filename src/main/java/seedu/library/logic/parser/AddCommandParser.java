@@ -53,7 +53,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 : null;
         Rating rating = argMultimap.getValue(PREFIX_RATING).isPresent()
                 ? ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get())
-                : null;
+                : Rating.DEFAULT_RATING;
         Url url = argMultimap.getValue(PREFIX_URL).isPresent()
                 ? ParserUtil.parseUrl(argMultimap.getValue(PREFIX_URL).get())
                 : new Url("");

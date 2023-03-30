@@ -14,6 +14,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.library.model.bookmark.Bookmark;
+import seedu.library.model.bookmark.Rating;
 
 /**
  * An UI component that displays information of a {@code Bookmark}.
@@ -120,7 +121,7 @@ public class BookmarkCard extends UiPart<Region> {
         InputStream rating4 = new FileInputStream("src/main/resources/images/Rating4.png");
         InputStream rating5 = new FileInputStream("src/main/resources/images/Rating5.png");
 
-        if (bookmark.getRating() == null) {
+        if (bookmark.getRating().equals(Rating.DEFAULT_RATING)) {
             ratingI.setImage(new Image(rating0));
             return;
         }

@@ -446,10 +446,10 @@ no star logos would be displayed.
 #### Design considerations:
 
 ##### Aspect: How should `Rating` be stored?
-The `Rating` field is represented by integer values from 1 to 5. This allows for a simple and intuitive way to rate
+The `Rating` field is represented by integer values from 0 to 5. This allows for a simple and intuitive way to rate
 books in the `Library`.
 
-- **Alternative 1(current choice):** Representing it as an integer from 1 to 5 inclusive.
+- **Alternative 1(current choice):** Representing it as an integer from 0 to 5 inclusive.
   - Pros: Simple to keep track of and store, easily map rating to star icons in UI.
   - Cons: Might not be granular enough to represent all possible values.
 - **Alternative 2:** Representing it a decimal value from 0 to 5.
