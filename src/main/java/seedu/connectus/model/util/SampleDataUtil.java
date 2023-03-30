@@ -83,7 +83,7 @@ public class SampleDataUtil {
         p5.setEmail(new Email("irfan@example.com"));
         p5.setSocialMedia(new SocialMedia(null,
                 Telegram.of("irfanibrahim"), null));
-        p5.setBirthday(new Birthday("29/02/2004"));
+        p5.setBirthday(new Birthday("29/04/2004"));
         p5.setRemarks(getRemarkSet("classmates"));
         p5.setModules(getModuleSet("CS1101S"));
         p5.setCcas(getCcaSet("Art Club"));
@@ -93,7 +93,7 @@ public class SampleDataUtil {
         p6.setEmail(new Email("royb@example.com"));
         p6.setSocialMedia(new SocialMedia(Instagram.of("roy.balakrishnan"),
                 Telegram.of("roybalakrishnan"), null));
-        p6.setBirthday(new Birthday("24/09/2004"));
+        p6.setBirthday(new Birthday("04/05/2004"));
         p6.setRemarks(getRemarkSet("classmates"));
         p6.setModules(getModuleSet("CS1101S"));
         p6.setCcas(getCcaSet("NUS Chess Club"));
