@@ -62,8 +62,8 @@ public class TimeMask {
                 return;
             }
 
-            int startIndex = event.getStartDayValue();
-            int endIndex = event.getEndDayValue();
+            int startIndex = getZeroBasedDayIndex(event.getStartDate().getDayOfWeek());
+            int endIndex = getZeroBasedDayIndex(event.getEndDate().getDayOfWeek());
             int startTime = event.getStartDate().getHour();
             // Shouldn't occupy the next slot
             int endTime = event.getEndDate().getHour() - 1;
