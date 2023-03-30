@@ -51,7 +51,6 @@ public class ImportDeliveryJobCommand extends DeliveryJobCommand {
             Person customer = listOfCustomers.get(i);
             if (!model.hasPerson(customer) && !customer.getPersonId().equals("null")) {
                 model.addPerson(customer);
-                System.out.println(customer);
             }
         }
 

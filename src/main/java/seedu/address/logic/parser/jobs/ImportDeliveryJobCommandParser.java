@@ -43,7 +43,7 @@ public class ImportDeliveryJobCommandParser {
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] arrOfStr = line.split(",");
-                if (arrOfStr.length < 5) {
+                if (arrOfStr.length < 12) {
                     throw new ParseException(
                             String.format(MESSAGE_MISSING_ELEMENT_IN_IMPORT, AddDeliveryJobCommand.MESSAGE_USAGE));
                 }
@@ -53,14 +53,11 @@ public class ImportDeliveryJobCommandParser {
                 String des = arrOfStr[3];
                 String ear = arrOfStr[4];
                 String description = arrOfStr[5];
-                if (arrOfStr.length > 6) {
-                    Person recipient = recipientOrSender(arrOfStr, 6);
-                    listOfCustomers.add(recipient);
-                }
-                if (arrOfStr.length > 12) {
-                    Person sender = recipientOrSender(arrOfStr, 12);
-                    listOfCustomers.add(sender);
-                }
+                Person recipient = recipientOrSender(arrOfStr, 6);
+                Person sender = recipientOrSender(arrOfStr, 12);
+                listOfCustomers.add(sender);
+                listOfCustomers.add(recipient);
+
                 DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, description);
                 listOfAddDeliveryJob.add(job);
             }
