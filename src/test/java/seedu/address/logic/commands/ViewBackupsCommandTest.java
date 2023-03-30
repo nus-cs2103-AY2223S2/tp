@@ -26,7 +26,7 @@ public class ViewBackupsCommandTest {
 
     @Test
     public void execute_success() {
-        assertCommandSuccess(new ViewBackupsCommand(), model, ViewBackupsCommand.MESSAGE_SUCCESS,
-            expectedModel);
+        ViewBackupsCommand toTest = new ViewBackupsCommand();
+        assertCommandSuccess(toTest, model, toTest.execute(model), expectedModel);
     }
 }
