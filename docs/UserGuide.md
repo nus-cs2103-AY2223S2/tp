@@ -186,7 +186,7 @@ Examples:
 
 ![Edit](images/command_result/Edit.png)
 
-Above is the execution result of the input `edit 2 i/G3787219P`
+Above is the execution result of the input `edit 2 i/G3787219P`.
 
 ### Viewing a patient detailed particulars: `view`
 
