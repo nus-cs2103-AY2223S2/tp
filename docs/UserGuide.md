@@ -473,7 +473,7 @@ What you should see:<br>
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: **Examples**<br>
+:bulb: **Example**<br>
 
 * `delete 5`: Removes the fifth contact from EduMate.
 
@@ -481,42 +481,79 @@ What you should see:<br>
 
 ### Add a label to a contact `tag`
 
-Adds module tag(s) or group tag(s)to an existing contact.
+Adds module tag(s) or group tag(s)to an existing contact or your own profile.
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+
 * `tag CONTACT_INDEX m/MODULE_TAG`
 * `tag m/MODULE_TAG`
+* `tag m/MODULE_TAG DAY START END`
 * `tag CONTACT_INDEX m/MODULE_TAG DAY START END`
 * `tag m/MOUDLE_TAG DAY START END`
 * `tag CONTACT_INDEX g/GROUP`
 * `tag g/GROUP`
 
+</div>
+
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-Examples:
-* `tag 1 m/CS1234`: Adds CS1234 to the first contact from EduMate.
+<div markdown="block" class="alert alert-success">
 
+:bulb: **Module Tag Examples**<br>
+
+* `tag 1 m/CS1234`: Adds CS1234 tag to the first contact from EduMate.
+* `tag m/CS1234` : Adds CS1234 tag to your own profile.
+* `tag 2 m/CS2103T MONDAY 8 10` : Adds CS2103T tag (if not present yet) to your second contact with a Monday lesson from 8am - 10am.
+* `tag m/CS2103T MONDAY 8 10` : Adds CS2103T tag (if not present yet) to your profile with a Monday lesson from 8am - 10am.
+
+:bulb: **Group Tag Examples**<br>
+
+* `tag 1 g/Cycling` : Adds Cycling tag to the first contact from EduMate.
+* `tag g/Project` : Adds Project tag to your own profile.
+
+</div>
 
 ### Remove a label from a contact `untag`
 
-Removes a module tag from an existing contact.
+You may also remove an existing module tag or group tag from an existing contact or your own profile.
 
-Formats (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+
 * `untag CONTACT_INDEX m/MODULE_TAG`
 * `untag m/MODULE_TAG`
+* `untag m/MODULE_TAG DAY START END`
 * `untag CONTACT_INDEX m/MODULE_TAG DAY START END`
 * `untag m/MOUDLE_TAG DAY START END`
 * `untag CONTACT_INDEX g/GROUP`
 * `untag g/GROUP`
 
+</div>
+
 What you should see:<br>
 {GUI}<br>
 {Explanation}
 
-Examples:
-* `utag 1 m/CS1234`: Removes CS1234 to the first contact from EduMate.
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Module Tag Examples**<br>
+
+* `untag 1 m/CS1234`: Removes CS1234 tag from the first contact from EduMate.
+* `untag m/CS1234` : Removes CS1234 tag to your own profile.
+* `untag 2 m/CS2103T MONDAY 8 10` : Removes CS2103T tag (if not present yet) from your second contact with a Monday lesson from 8am - 10am.
+* `untag m/CS2103T MONDAY 8 10` : Removes CS2103T tag (if not present yet) from your profile with a Monday lesson from 8am - 10am.
+
+:bulb: **Group Tag Examples**<br>
+
+* `untag 1 g/Cycling` : Removes Cycling tag from the first contact from EduMate.
+* `untag g/Project` : Removes Project tag from your own profile.
+
+</div>
 
 
 
