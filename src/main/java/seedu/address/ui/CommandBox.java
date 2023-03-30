@@ -98,8 +98,7 @@ public class CommandBox extends UiPart<Region> {
             } else if (allowedCommands.contains(commandWord) && trimmedNewValue.equals(FindCommand.COMMAND_WORD)
                     || trimmedNewValue.equals(FindTaskCommand.COMMAND_WORD) && oldValue.length() > newValue.length()) {
                 executeCommand(ListAllCommand.COMMAND_WORD);
-            } else if (trimmedNewValue.isEmpty()) {
-                
+            } else {
                 // Do nothing
             }
         }
