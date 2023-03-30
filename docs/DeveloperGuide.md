@@ -186,7 +186,30 @@ Given below is an example usage sequence of steps taken by the user that trigger
 
 **Step 4.** The user deletes the previously added Drug by executing the command `d delete`.
 
+### Find drug by trade name feature
 
+Users may use the `d find TRADENAME` command to retrieve information about a drug.
+
+This is the sequence diagram illustrating how different components interact to execute a `find` command from the user.
+![drugFindCommandSequenceDiagram](images/DrugFindCommandSequenceDiagram.png)
+
+**Step 1.** The user enters the `"d find Panadol"` command. This causes the listener attached to the command box to fire, and the event handler function `handleCommandEntered()` is triggered.
+
+**Step 2.** The `handleCommandEntered()` function invokes the `CommandExecutor#execute` method, which in turn calls the   `CareFlowLogicManager#execute` method, delegating command execution to the `Logic` component.
+
+**Step 3.** The `CareFlowLogicManager#execute` method promotes `CareFlowParser` to parse the command, which then recursively calls the `parse` method of `DrugParser` and `FindCommandParser` to parse the command step by step.
+
+**Step 4.** The `FindCommandParser` creates a new `TradeNameContainsKeywordsPredicate` instance using the keyword `"Panadol"` and passes this instance, `predicate` to the `FindCommand` constructor. It then returns the `findCommand` instance back to `DrugParser` and `CareFlowParser`, eventually reaching `CareFlowLogicManager`.
+
+**Step 5.** Upon receiving this `findCommand` instance, `CareFlowLogicManager` goes on to invokes its `FindCommand#execute` method, passing the `CareFlowModelManager` instance as the method argument
+
+**Step 6.** The `FindCommand#execute` method uses `CareFlowModelManager#updateFilteredDrugList` to filter the current list of drugs using the `predicate` set earlier. 
+
+**Step 7.** The `FilteredDrugList` now only contains drugs whose trade name contains the keyword `"Panadol"`.
+
+**Step 8.** Upon completion of command execution, a message feedback is packaged in the `commandResult` instance and passed to the `CommandExecutor`.
+
+**Step 9.** The `CommandExecutor` then displays the message feedback and update UI to display the filtered list of drugs.
 
 --------------------------------------------------------------------------------------------------------------------
 
