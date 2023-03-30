@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.roles.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.roles.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.roles.logic.commands.CommandTestUtil.VALID_EXPERIENCE_BOB;
 import static seedu.roles.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.roles.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.roles.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -86,6 +87,10 @@ public class RoleTest {
 
         // different tags -> returns false
         editedAlice = new RoleBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different experience -> returns false
+        editedAlice = new RoleBuilder(ALICE).withExperience(VALID_EXPERIENCE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }
