@@ -9,6 +9,7 @@ import static teambuilder.logic.parser.CliSyntax.PREFIX_PHONE;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TAG;
 import static teambuilder.logic.parser.CliSyntax.PREFIX_TEAM;
 import static teambuilder.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static teambuilder.model.Model.PREDICATE_SHOW_ALL_TEAMS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -119,6 +120,7 @@ public class EditCommand extends Command {
         }
         model.updatePersonInTeams(editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

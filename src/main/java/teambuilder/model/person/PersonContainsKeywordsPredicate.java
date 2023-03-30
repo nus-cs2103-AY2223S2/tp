@@ -24,7 +24,7 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
                 .anyMatch(keywords -> StringUtil.containsWordIgnoreCase(person.getMajor().toString(), keywords));
         boolean isInTag = keywords.stream()
                 .anyMatch(keyword -> person.getTags().stream()
-                        .anyMatch(tag -> StringUtil.containsWordIgnoreCase(keyword, tag.tagName)));
+                        .anyMatch(tag -> StringUtil.containsWordIgnoreCase(tag.tagName, keyword)));
         return isInName || isInMajor || isInTag;
     }
 

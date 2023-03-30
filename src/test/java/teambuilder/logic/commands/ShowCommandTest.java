@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static teambuilder.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static teambuilder.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static teambuilder.testutil.TypicalPersons.BENSON;
 import static teambuilder.testutil.TypicalPersons.CARL;
+import static teambuilder.testutil.TypicalPersons.DANIEL;
 import static teambuilder.testutil.TypicalPersons.ELLE;
 import static teambuilder.testutil.TypicalPersons.FIONA;
 import static teambuilder.testutil.TypicalPersons.getTypicalAddressBook;
@@ -66,12 +68,12 @@ class ShowCommandTest {
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 5);
         TeamContainsKeywordsPredicate predicate = preparePredicate("TeamA TeamB TeamC");
         ShowCommand command = new ShowCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getSortedPersonList());
+        assertEquals(Arrays.asList(BENSON, CARL, DANIEL, ELLE, FIONA), model.getSortedPersonList());
     }
 
     /**

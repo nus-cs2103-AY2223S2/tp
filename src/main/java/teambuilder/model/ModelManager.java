@@ -129,6 +129,7 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         teamBuilder.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
     @Override
@@ -142,6 +143,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         teamBuilder.setPerson(target, editedPerson);
+        updateFilteredTeamList(PREDICATE_SHOW_ALL_TEAMS);
     }
 
     @Override
