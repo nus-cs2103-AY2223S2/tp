@@ -9,7 +9,7 @@ import seedu.internship.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new ViewCommand object
  */
-public class ViewCommandParser implements Parser<SelectCommand> {
+public class SelectCommandParser implements Parser<SelectCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand

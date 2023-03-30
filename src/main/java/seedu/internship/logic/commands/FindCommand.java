@@ -8,7 +8,6 @@ import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -24,7 +23,7 @@ public class FindCommand extends Command {
             + ": Finds internships from the catalogue based on predicates provided by the user.\n"
             + "Parameters: [" + CliSyntax.PREFIX_POSITION + "POSITION] "
             + "[" + CliSyntax.PREFIX_COMPANY + "COMPANY] "
-            + "[" + CliSyntax.PREFIX_STATUS + "STATUS] "
+            + "[" + CliSyntax.PREFIX_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " p/ Software Engineer" + "c/ Grab";
 
     public static final String MESSAGE_SUCCESS = "Found internships : %1$s";

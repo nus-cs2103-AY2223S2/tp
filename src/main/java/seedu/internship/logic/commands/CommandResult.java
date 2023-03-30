@@ -5,12 +5,12 @@ import static seedu.internship.model.event.UniqueEventList.EMPTY_UNIQUE_EVENTS_L
 import static seedu.internship.model.internship.Internship.EMPTY_INTERNSHIP;
 import static seedu.internship.model.internship.Statistics.EMPTY_STATISTICS;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-
 import seedu.internship.model.event.Event;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.Statistics;
@@ -43,7 +43,7 @@ public class CommandResult {
     /**
      * Hash map of event to a list of events
      **/
-    private HashMap<Event, List<Event>> hash = null;
+    private HashMap<LocalDate, List<Event>> hash = null;
 
     /**
      * Constructs a {@code CommandResult} with all specified fields.
@@ -111,7 +111,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value for Clash Function
      */
-    public CommandResult(String feedbackToUser, ResultType resultType, HashMap<Event, List<Event>> hash) {
+    public CommandResult(String feedbackToUser, ResultType resultType, HashMap<LocalDate, List<Event>> hash) {
         this(feedbackToUser, resultType, EMPTY_INTERNSHIP, EMPTY_UNIQUE_EVENTS_LIST, EMPTY_STATISTICS);
         this.hash = hash;
     }
@@ -145,7 +145,7 @@ public class CommandResult {
         return statistics;
     }
 
-    public HashMap<Event, List<Event>> getClashingEvents() {
+    public HashMap<LocalDate, List<Event>> getClashingEvents() {
         return hash;
     }
 
