@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -109,6 +109,8 @@
                                   </TreeItem>
                                   <TreeItem fx:id="viewcommands" value="View commands">
                                       <children>
+                                          <TreeItem fx:id="viewperson" value="pi" />
+                                          <TreeItem fx:id="viewtask" value="ti" />
                                           <TreeItem fx:id="viewassignedall" value="viewassignedall" />
                                           <TreeItem fx:id="viewassignedap" value="viewassignedp" />
                                           <TreeItem fx:id="viewassignedt" value="viewassignedt" />

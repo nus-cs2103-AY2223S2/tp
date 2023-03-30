@@ -124,6 +124,10 @@ public class HelpWindow extends UiPart<Stage> {
             return HelpStrings.FILTERPERSON_HELP;
         case "View commands":
             return HelpStrings.VIEWMETHODS_HELP;
+        case "pi":
+            return HelpStrings.VIEWPERSON_HELP;
+        case "ti":
+            return HelpStrings.VIEWTASK_HELP;
         case "viewassignedall":
             return HelpStrings.VIEWASSIGNEDALL_HELP;
         case "viewassignedp":

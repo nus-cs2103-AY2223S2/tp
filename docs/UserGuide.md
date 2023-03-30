@@ -219,10 +219,10 @@ Examples:
 
 ### 3.3 Task Commands
 
-####  3.3.1 Adding a Task: `addt`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Take note of the datetime format for DEADLINE, which follows the format: `YYYY-MM-DD HH:MM:SS`.
+####  3.3.1 Adding a Task: `addt`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+OfficeConnect data are saved as a JSON file `[JAR file location]/data/*`. Advanced users are welcome to update data directly by editing that data file.
 </div>
 
 Adds a task to OfficeConnect. 
@@ -343,7 +343,7 @@ Displays a list of all persons who have been assigned to a task.
 
 Format: `viewassignedp`
 
-Examples:
+Example:
 - `viewassignedp` displays a list of all persons who have been assigned to a task.
 
 #### 3.6.3 View Assigned Tasks: `viewassignedt`
@@ -352,7 +352,7 @@ Displays a list of all tasks that have been assigned to a person.
 
 Format: `viewassignedt`
 
-Examples:
+Example:
 - `viewassignedt` displays a list of all tasks that have been assigned to a person.
 
 #### 3.6.4 View Unassigned Persons: `viewunassignedp`
@@ -361,7 +361,7 @@ Displays a list of all persons who have not been assigned to any task.
 
 Format: `viewunassignedp`
 
-Examples:
+Example:
 - `viewunassignedp` displays a list of all persons who have not been assigned to any task.
 
 #### 3.6.5 View Unassigned Tasks: `viewunassignedt`
@@ -370,7 +370,7 @@ Displays a list of all tasks that have not been assigned to any person.
 
 Format: `viewunassignedt`
 
-Examples:
+Example:
 - `viewunassignedt` displays a list of all tasks that have not been assigned to any person.
 
 #### 3.6.6 View Assigned Person and Task: `viewassignedall`
@@ -379,7 +379,7 @@ Displays a list of all persons who have been assigned to a task and all tasks th
 
 Format: `viewassignedall`
 
-Examples:
+Example:
 - `viewassignedall` displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
 
 #### 3.6.7 View Unassigned: `viewunassignedall`
@@ -388,16 +388,44 @@ Displays a list of all persons who have not been assigned to any task and all ta
 
 Format: `viewunassignedall`
 
-Examples:
+Example:
 - `viewunassignedall` displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
+
 
 #### 3.6.8 Filter Persons: `filterp tag/TAG`
 
-Displays a list of all persons with the assigned tag. Only ONE tag can be keyed as input. 
+Displays a list of all persons with the assigned tag. Only ONE tag can be keyed as input.
 
 Format: `filterp tag/TAG`
 
 Examples: `filterp tag/Logistics` shows all persons with the Logistics tag.
+
+#### 3.6.9 Viewing a person : `pi`
+
+Shows a list of tasks assigned to a person according to the displayed index.
+
+Format: `pi INDEX`
+
+* Views the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Example:
+- `pi 2` displays person 2 and all tasks assigned to that person
+
+#### 3.6.10 Viewing a task : `ti`
+
+Shows a list of persons assigned to a task according to the displayed index.
+
+Format: `ti INDEX`
+
+* Views the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Example:
+- `task 1` displays task 1 and all persons assigned to that task
+
 
 ### 3.7 Others
 
@@ -427,6 +455,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 The keyboard shortcut for the help function is assigned to the F2 key.
 </div>
 
+<<<<<<< HEAD
 Sets the overall theme of OfficeConnect to light mode. This mode is chosen as the default theme.
 
 ![startup_whitebackground.jpg](images%2Fproduct-screenshots%2Fstartup_whitebackground.jpg)
@@ -447,6 +476,9 @@ Sets the overall theme of OfficeConnect to dark mode.
 </p><br/>
 
 ### 3.8 Archiving data files `[coming in v1.5]`
+
+
+### 3.9 Clearing data files `[coming in v1.5]`
 
 _Details coming soon ..._
 
@@ -485,6 +517,8 @@ _Details coming soon ..._
 | **View Assigned All**       | `viewassignedall`                                                                                                                                                            |
 | **View Assigned Persons**   | `viewassignedp`                                                                                                                                                              |
 | **View Assigned Tasks**     | `viewassignedt`                                                                                                                                                              |
+| **View Person**             | `pi INDEX`<br/> e.g. `pi 2`                                                                                                                                                  |
+| **View Task**               | `ti INDEX`<br/> e.g. `ti 2`                                                                                                                                                  |
 | **View Unassigned All**     | `viewunassignedall`                                                                                                                                                          |
 | **View Unassigned Persons** | `viewunassignedp`                                                                                                                                                            |
 | **View Unassigned Tasks**   | `viewunassignedt`                                                                                                                                                            |

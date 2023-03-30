@@ -2,7 +2,8 @@
 
 [![CI Status](https://github.com/AY2223S2-CS2103-F10-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103-F10-1/tp/actions)
 
-![startup.png](docs%2Fimages%2Fproduct-screenshots%2Fstartup.png)
+![Ui](docs/images/Ui.png)
+![Ui](docs/images/UiDark.png)
 
 ## Description
 OfficeConnect is a task management tool tailored to meet the needs of managers working in corporate settings. 
@@ -27,26 +28,6 @@ and productive work environment.
 
 - Check out our [OfficeConnect Website](https://ay2223s2-cs2103-f10-1.github.io/tp/)
 - Download our latest release from [OfficeConnect Release Page](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases)
-
-## Usage
-
-- `quickstart`
-- `help`
-- `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
-- `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
-- `delete INDEX`
-- `list`
-- `addtask s/SUBJECT c/CONTENT st/STATUS`
-- `deletetask INDEX`
-- `assign ti/INDEX pi/INDEX`
-- `mark INDEX`
-- `unmark INDEX`
-- `listtask`
-- `findtask KEYWORD [MORE_KEYWORDS]`
-- `find NAME`
-- `findtask SUBJECT`
-- `clear`
-- `exit`
 
 ## Contributing
 
