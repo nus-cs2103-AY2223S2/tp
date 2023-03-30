@@ -18,6 +18,7 @@ import seedu.patientist.model.person.Name;
 import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.person.patient.PatientToDo;
+import seedu.patientist.model.tag.PriorityTag;
 import seedu.patientist.model.tag.Tag;
 import seedu.patientist.model.ward.Ward;
 
@@ -142,6 +143,19 @@ public class ParserUtil {
         String trimmedToDo = toDo.trim();
 
         return new PatientToDo(trimmedToDo);
+    }
+
+    /**
+     * Parses a {@code String severity} into a {@code SeverityTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static PriorityTag parsePriority(String priority) {
+        requireNonNull(priority);
+        String trimmedPriority = priority.trim();
+
+        return new PriorityTag(trimmedPriority);
     }
 
     /**

@@ -12,6 +12,7 @@ import seedu.patientist.model.person.Phone;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
 import seedu.patientist.model.person.patient.PatientToDo;
+import seedu.patientist.model.tag.PriorityTag;
 import seedu.patientist.model.tag.Tag;
 import seedu.patientist.model.util.SampleDataUtil;
 
@@ -24,6 +25,7 @@ public class PatientBuilder extends PersonBuilder {
     public static final List<PatientToDo> DEFAULT_TODO = List.of(new PatientToDo("Take medicine"));
     public static final HashSet<Tag> DEFAULT_TAGS = new HashSet<>(List.of(new Tag("Patient")));
 
+    private PriorityTag priority;
     private List<PatientStatusDetails> status;
     private List<PatientToDo> todo;
 
@@ -46,6 +48,7 @@ public class PatientBuilder extends PersonBuilder {
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
+        priority = patientToCopy.getPriority();
         status = new ArrayList<>(patientToCopy.getPatientStatusDetails());
         todo = new ArrayList<>(patientToCopy.getPatientToDoList());
         tags = new HashSet<>(patientToCopy.getTags());
@@ -114,7 +117,7 @@ public class PatientBuilder extends PersonBuilder {
 
     @Override
     public Patient build() {
-        return new Patient(idNumber, name, phone, email, address, status, todo, tags);
+        return new Patient(idNumber, name, phone, email, address, priority, status, todo, tags);
     }
 
 }
