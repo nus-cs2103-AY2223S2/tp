@@ -63,6 +63,14 @@ public class PatientCard extends UiPart<Region> {
     public PatientCard(Patient patient) {
         super(FXML);
         this.patient = patient;
+        name.setText(patient.getName().fullName);
+        phone.setText(patient.getPhone().value);
+        address.setText(patient.getAddress().value);
+        email.setText(patient.getEmail().value);
+        remark.setText(patient.getRemark().value);
+        patient.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

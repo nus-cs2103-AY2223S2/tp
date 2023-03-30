@@ -22,7 +22,7 @@ public class ViewCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SHOW_ENTITY_SUCCESS = "Showing Patient: %1$s";
+    public static final String MESSAGE_SHOW_ENTITY_SUCCESS = "Showing Patient:";
 
     private final Index targetIndex;
 
@@ -42,7 +42,7 @@ public class ViewCommand extends Command {
         Patient patientToDisplay = lastShownList.get(targetIndex.getZeroBased());
         entityInformation = patientToDisplay.toString();
         System.out.println(entityInformation);
-        return new CommandResult(String.format(MESSAGE_SHOW_ENTITY_SUCCESS, entityInformation), true, targetIndex.getZeroBased());
+        return new CommandResult(MESSAGE_SHOW_ENTITY_SUCCESS, true, targetIndex.getZeroBased());
     }
 
     @Override

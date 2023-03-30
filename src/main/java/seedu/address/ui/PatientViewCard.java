@@ -10,14 +10,14 @@ public class PatientViewCard extends UiPart<Stage> {
     private static final String FXML = "PatientViewCard.fxml";
 
     @FXML
-    private Label patientCard;
+    private Label patientViewCard;
 
     public PatientViewCard(Patient patient, Stage root) {
         super(FXML, root);
         if (patient == null) {
-            patientCard.setText("");
+            patientViewCard.setText("");
         } else {
-            patientCard.setGraphic(new PatientCard(patient).getRoot());
+            patientViewCard.setGraphic(new PatientCard(patient).getRoot());
         }
     }
 
