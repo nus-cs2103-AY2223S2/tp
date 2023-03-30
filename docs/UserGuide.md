@@ -491,7 +491,10 @@ If you want to delete an existing tag from a contact, you can use the `delete-t`
 The `delete-t` command:
 * Deletes a tag from the contact at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
 * The `REMARK_INDEX`, `MODULE_INDEX`, `CCA_INDEX` and `MAJOR_INDEX` refer to the index of the tag shown in the respective tag types, from left to right, starting from index 1.
-* For example, the Module tags are indexed from 1 to 3 as follows:
+
+<div style="page-break-after: always"></div>
+
+For example, the Module tags are indexed from 1 to 3 as follows:
 
 ![DeleteTagIndexContactExample](images/DeleteTagIndexContactExample.png)
 
@@ -530,6 +533,8 @@ The `delete` command:
 * Deletes the contact at the specified `PERSON_INDEX`.
 * The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
+
+<div style="page-break-after: always"></div>
 
 **Delete Example 1:**
 
@@ -577,6 +582,8 @@ Using `search` with prefixes (e.g. `search n/NAME_KEYWORD`) will return a list o
 
 From the earlier example, if you have 2 contacts, one with the name January, and another with a birthday in January, `search n/January` will only return the contact whose name is January.
 
+<div style="page-break-after: always"></div>
+
 **Additional Examples:**
 * `search january` returns all contacts whose information fields contain the keyword `january`.
 * `search alex may` returns all contacts whose information fields contain the keywords `alex` and `may`.
@@ -599,6 +606,8 @@ From the earlier example, if you have 2 contacts, one with the name January, and
 **Input in Command Box:** `search cs`
 
 **Result:**<br>![SearchCommandExample1](images/SearchCommandExample1.png)
+
+<div style="page-break-after: always"></div>
 
 **Search Example 2:**
 
@@ -630,6 +639,8 @@ For WhatsApp, if a handle stored is an 8-digit phone number, it will be assumed 
 You'll need to download the desktop applications for <a href="https://desktop.telegram.org/" class="alert-link">Telegram</a> and <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> respectively if you want to use these features!
 </div>
 
+<div style="page-break-after: always"></div>
+
 **Open Example:**
 
 **Input in Command Box:** `open 2 tg/`
@@ -653,6 +664,8 @@ Similar to `open`, if a WhatsApp handle stored is an 8-digit phone number, it wi
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 You'll need to download the desktop application for <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
 </div>
+
+<div style="page-break-after: always"></div>
 
 **Chat Example:**
 
