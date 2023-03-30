@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,8 @@ public class AddMeetingCommand extends Command {
         + "by the index number used in the last person listing.\n"
         + "A new meeting will not be added if there are clashes with"
         + "other meetings on the day or period specified.\n"
-        + "Parameters: [INDEX] m/ [DATE START] [DATE END]\n"
-        + "Example: " + COMMAND_WORD + " 1 m/ 30-03-2020 20:10 22:10";
+        + "Parameters: [INDEX] /md [DESC] /ms [DATE&TIME START] /me [DATE&TIME END]\n"
+        + "Example: " + COMMAND_WORD + " 1 /md Test /ms 30-03-2020 20:10 /me 30-03-2020 22:10";
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting to Person: %1$s";
 
     private final Index index;
@@ -71,13 +72,16 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(meetingClashMsg);
         }
 
-        personToEdit.getMeetings().add(meeting);
-        Person editedPerson = new Person(
-            personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        // personToEdit.getMeetings().add(meeting);
+        // Person editedPerson = new Person(
+        //     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        //     personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        // model.setPerson(personToEdit, editedPerson);
 
-        model.setPerson(personToEdit, editedPerson);
+        // Adds meeting and returns edited person
+        Person editedPerson = model.addMeeting(personToEdit, meeting); 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
 
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
@@ -115,7 +119,7 @@ public class AddMeetingCommand extends Command {
      */
     private String generateSuccessMessage(Person personToEdit) {
         requireNonNull(personToEdit);
-        return String.format(MESSAGE_ADD_MEETING_SUCCESS, personToEdit);
+        return String.format(MESSAGE_ADD_MEETING_SUCCESS, personToEdit.getName());
     }
 
     /**

@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic #C8C8FA
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":RemoveMeetingCommandParser" as RemoveMeetingCommandParser LOGIC_COLOR
+participant ":RemoveMeetingCommand" as RemoveMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("meetingRemove 1 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("meetingRemove 1 1")
+activate AddressBookParser
+
+create RemoveMeetingCommandParser
+AddressBookParser -> RemoveMeetingCommandParser : parse("1 1")
+activate RemoveMeetingCommandParser
+
+create RemoveMeetingCommand
+RemoveMeetingCommandParser -> RemoveMeetingCommand : RemoveMeetingCommand(index, index)
+activate RemoveMeetingCommand
+
+RemoveMeetingCommand --> RemoveMeetingCommandParser
+deactivate RemoveMeetingCommand
+
+RemoveMeetingCommandParser --> AddressBookParser
+deactivate RemoveMeetingCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> RemoveMeetingCommand : execute(model)
+activate RemoveMeetingCommand
+
+RemoveMeetingCommand -> Model : getMeetings()
+activate Model
+
+Model --> RemoveMeetingCommand
+deactivate Model
+
+create CommandResult
+RemoveMeetingCommand -> CommandResult : CommandResult()
+activate CommandResult
+
+CommandResult --> RemoveMeetingCommand
+deactivate CommandResult
+
+RemoveMeetingCommand --> LogicManager : result
+deactivate RemoveMeetingCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml

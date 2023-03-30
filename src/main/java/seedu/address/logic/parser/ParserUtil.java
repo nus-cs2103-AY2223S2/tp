@@ -17,7 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Region;
 import seedu.address.model.person.Region.Regions;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.PolicyTag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -104,27 +104,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String tag} into a {@code PolicyTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static PolicyTag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!PolicyTag.isValidTagName(trimmedTag)) {
+            throw new ParseException(PolicyTag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new PolicyTag(trimmedTag);
     }
 
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code Set<PolicyTag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<PolicyTag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<PolicyTag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
@@ -135,41 +135,17 @@ public class ParserUtil {
      * Parses {@code String meeting} into a {@code Meeting}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if start time given is after the end time given
      */
-    public static Meeting parseMeeting(String meeting) {
-        requireNonNull(meeting);
-        String trimmedMeeting = meeting.trim();
+    public static Meeting parseMeeting(String desc, String start, String end) {
+        requireNonNull(desc);
+        requireNonNull(start);
+        requireNonNull(end);
+        String trimmedDesc = desc.trim();
 
-        LocalDateTime[] dateTimes = parseDateTime(trimmedMeeting);
-        LocalDateTime start = dateTimes[0];
-        LocalDateTime end = dateTimes[1];
+        LocalDateTime parsedStart = parseDateTime(start.trim());
+        LocalDateTime parsedEnd = parseDateTime(end.trim());
 
-        return new Meeting(start, end);
-    }
-
-    /**
-     * Parses {@code String dateTime} into a pair of
-     * {@code LocalDateTime} objects
-     */
-    public static LocalDateTime[] parseDateTime(String dateTime) {
-        String[] dateTimeStrings = dateTime.split(" ");
-        String[] dateString = dateTimeStrings[0].split("-");
-        String[] startTimeString = dateTimeStrings[1].split(":");
-        String[] endTimeString = dateTimeStrings[2].split(":");
-
-        int day = Integer.parseInt(dateString[0]);
-        int month = Integer.parseInt(dateString[1]);
-        int year = Integer.parseInt(dateString[2]);
-        int startHour = Integer.parseInt(startTimeString[0]);
-        int startMinute = Integer.parseInt(startTimeString[1]);
-        int endHour = Integer.parseInt(endTimeString[0]);
-        int endMinute = Integer.parseInt(endTimeString[1]);
-
-        return new LocalDateTime[] {
-            LocalDateTime.of(year, month, day, startHour, startMinute),
-            LocalDateTime.of(year, month, day, endHour, endMinute)
-        };
+        return new Meeting(trimmedDesc, parsedStart, parsedEnd);
     }
 
     /**
@@ -185,5 +161,26 @@ public class ParserUtil {
             }
         }
         throw new ParseException(Region.MESSAGE_CONSTRAINTS);
+    }
+
+    public static String parseMeetingDescription(String desc) {
+        return desc.trim();
+    }
+
+    /**
+     * Parses a {@code String} into a {@code LocalDateTime}
+     * @param dateTime String of meeting start or end
+     * @return meeting dateTime parsed to LocalDateTime
+     */
+    public static LocalDateTime parseDateTime(String dateTime) {
+        String[] dateTimes = dateTime.split(" ");
+        String[] date = dateTimes[0].split("-");
+        String[] time = dateTimes[1].split(":");
+        int day = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[2]);
+        int startHour = Integer.parseInt(time[0]);
+        int startMinute = Integer.parseInt(time[1]);
+        return LocalDateTime.of(year, month, day, startHour, startMinute);
     }
 }

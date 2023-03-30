@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Meeting;
+import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +16,7 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<MeetingWithPerson> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -84,4 +88,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns an unmodifiable view of the filtered meeting list */
+    ObservableList<MeetingWithPerson> getFilteredMeetingList();
+
+    /**
+     * Updates the filtered meeting list to filter by input {@code predicate}
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<MeetingWithPerson> predicate);
+
+    Person addMeeting(Person personToEdit, Meeting meeting);
+
+    Person removeMeeting(Person personToEdit, Index indexMeeting);
+
+    void updateMeeting(Person personToEdit, Index indexMeeting, Meeting editedMeeting);
 }

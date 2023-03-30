@@ -56,10 +56,11 @@ public class RemoveMeetingCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
-        personToEdit.getMeetings().remove(indexMeeting.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        // personToEdit.getMeetings().remove(indexMeeting.getZeroBased());
+        // Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+        //     personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
 
+        Person editedPerson = model.removeMeeting(personToEdit, indexMeeting);
         return new CommandResult(generateSuccessMessage(editedPerson));
     }
 

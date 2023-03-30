@@ -12,7 +12,7 @@ import seedu.address.model.person.Meeting;
  * Jackson-friendly version of {@link Meeting}.
  */
 class JsonAdaptedMeeting {
-
+    private final String description;
     private final LocalDateTime start;
     private final LocalDateTime end;
 
@@ -22,21 +22,23 @@ class JsonAdaptedMeeting {
     @JsonCreator
     public JsonAdaptedMeeting(String dateTime) {
         String[] dateTimeStrings = dateTime.split("\\?");
-        this.start = LocalDateTime.parse(dateTimeStrings[0].trim());
-        this.end = LocalDateTime.parse(dateTimeStrings[1].trim());
+        this.description = dateTimeStrings[0];
+        this.start = LocalDateTime.parse(dateTimeStrings[1].trim());
+        this.end = LocalDateTime.parse(dateTimeStrings[2].trim());
     }
 
     /**
      * Converts a given {@code Meeting} into this class for Jackson use.
      */
     public JsonAdaptedMeeting(Meeting source) {
+        this.description = source.getDescription();
         this.start = source.getStart();
         this.end = source.getEnd();
     }
 
     @JsonValue
     public String getString() {
-        return this.start.toString() + "?" + this.end.toString();
+        return this.description + "?" + this.start.toString() + "?" + this.end.toString();
     }
 
     /**
@@ -48,7 +50,7 @@ class JsonAdaptedMeeting {
         if (this.end.isBefore(this.start)) {
             throw new IllegalValueException("End time is after start!");
         }
-        return new Meeting(this.start, this.end);
+        return new Meeting(this.description, this.start, this.end);
     }
 
 }

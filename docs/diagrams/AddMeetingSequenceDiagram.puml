@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic #C8C8FA
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddMeetingCommandParser" as AddMeetingCommandParser LOGIC_COLOR
+participant ":AddMeetingCommand" as AddMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("meetingAdd 1 \n 30-03-2020 23:30 23:40")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("meetingAdd 1 \n 30-03-2020 23:30 23:40")
+activate AddressBookParser
+
+create AddMeetingCommandParser
+AddressBookParser -> AddMeetingCommandParser : parse("1 30-03-2020 23:30 23:40")
+activate AddMeetingCommandParser
+
+create AddMeetingCommand
+AddMeetingCommandParser -> AddMeetingCommand : AddMeetingCommand(index, string)
+activate AddMeetingCommand
+
+AddMeetingCommand --> AddMeetingCommandParser
+deactivate AddMeetingCommand
+
+AddMeetingCommandParser --> AddressBookParser
+deactivate AddMeetingCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> AddMeetingCommand : execute(model)
+activate AddMeetingCommand
+
+AddMeetingCommand -> Model : getMeetings()
+activate Model
+
+Model --> AddMeetingCommand
+deactivate Model
+
+create CommandResult
+AddMeetingCommand -> CommandResult : CommandResult()
+activate CommandResult
+
+CommandResult --> AddMeetingCommand
+deactivate CommandResult
+
+AddMeetingCommand --> LogicManager : result
+deactivate AddMeetingCommand
+
+[<-- LogicManager
+deactivate LogicManager
+@enduml

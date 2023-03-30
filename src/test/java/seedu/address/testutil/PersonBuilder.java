@@ -12,7 +12,7 @@ import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.PolicyTag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -24,13 +24,16 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final LocalDateTime DEFAULT_START = LocalDateTime.of(2023, 3, 25, 12, 0);
+    public static final LocalDateTime DEFAULT_END = LocalDateTime.of(2023, 3, 25, 15, 0);
+    public static final Meeting DEFAULT_MEETING = new Meeting("DEFAULT", DEFAULT_START, DEFAULT_END);
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
     private ArrayList<Meeting> meetings;
-    private Set<Tag> tags;
+    private Set<PolicyTag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,6 +44,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         meetings = new ArrayList<>();
+        meetings.add(DEFAULT_MEETING);
         tags = new HashSet<>();
     }
 
@@ -65,7 +69,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<PolicyTag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -112,9 +116,11 @@ public class PersonBuilder {
         if (dateTime.isEmpty()) {
             this.meetings.add(new Meeting());
         } else {
-            LocalDateTime[] dateTimes = ParserUtil.parseDateTime(dateTime);
-            Meeting meetingToAdd;
-            meetingToAdd = new Meeting(dateTimes[0], dateTimes[1]);
+            String[] args = dateTime.trim().split(" ", 1);
+            String desc = args[0];
+            LocalDateTime start = ParserUtil.parseDateTime(args[1]);
+            LocalDateTime end = ParserUtil.parseDateTime(args[2]);
+            Meeting meetingToAdd = new Meeting(desc, start, end);
             this.meetings.add(meetingToAdd);
         }
 

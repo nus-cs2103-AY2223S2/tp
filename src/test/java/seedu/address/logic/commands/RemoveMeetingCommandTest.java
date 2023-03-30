@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.RemoveMeetingCommand.MESSAGE_REMOVE_SUCCESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MEETING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -16,6 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -28,19 +32,19 @@ import seedu.address.model.person.Person;
  */
 public class RemoveMeetingCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final RemoveMeetingCommand standardCommand = new RemoveMeetingCommand(INDEX_FIRST_PERSON,
         INDEX_FIRST_MEETING);
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     private void populateMeetings() {
         Person samplePerson1 = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person samplePerson2 = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
-        Meeting m1 = new Meeting(
+        Meeting m1 = new Meeting("m1",
             LocalDateTime.of(2023, 03, 14, 15, 30),
             LocalDateTime.of(2023, 03, 14, 16, 30)
         );
-        Meeting m2 = new Meeting(
+        Meeting m2 = new Meeting("m2",
             LocalDateTime.of(2023, 03, 14, 16, 30),
             LocalDateTime.of(2023, 03, 14, 17, 30)
         );

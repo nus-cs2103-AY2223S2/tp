@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.PolicyTag;
 
 /**
  * Represents a Person in the address book.
@@ -24,13 +24,13 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<PolicyTag> tags = new HashSet<>();
     private final ArrayList<Meeting> meetings;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<PolicyTag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -44,7 +44,7 @@ public class Person {
     /**
      * Overloaded constructor to take in meetings as an argument
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, ArrayList<Meeting> meetings) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<PolicyTag> tags, ArrayList<Meeting> meetings) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -75,7 +75,7 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
+    public Set<PolicyTag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
@@ -87,6 +87,12 @@ public class Person {
         return meetings;
     }
 
+    public Meeting getMeeting(int index) {
+        return this.meetings.get(index);
+    }
+    public void setMeeting(int index, Meeting m) {
+        this.meetings.set(index, m);
+    }
     /**
      * Gets the most recent meeting that the person has
      */
@@ -116,7 +122,7 @@ public class Person {
         }
 
         return otherPerson != null
-            && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -135,10 +141,10 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-            && otherPerson.getPhone().equals(getPhone())
-            && otherPerson.getEmail().equals(getEmail())
-            && otherPerson.getAddress().equals(getAddress())
-            && otherPerson.getTags().equals(getTags());
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override
@@ -151,14 +157,14 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-            .append("; Phone: ")
-            .append(getPhone())
-            .append("; Email: ")
-            .append(getEmail())
-            .append("; Address: ")
-            .append(getAddress());
+                .append("; Phone: ")
+                .append(getPhone())
+                .append("; Email: ")
+                .append(getEmail())
+                .append("; Address: ")
+                .append(getAddress());
 
-        Set<Tag> tags = getTags();
+        Set<PolicyTag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
@@ -166,8 +172,8 @@ public class Person {
 
         List<Meeting> meetings = getMeetings();
         String meetingHeader = meetings.size() == 1
-            ? "; Meeting: "
-            : "; Meetings: ";
+                ? "; Meeting: "
+                : "; Meetings: ";
         if (!meetings.isEmpty()) {
             builder.append(meetingHeader);
             meetings.forEach(builder::append);
