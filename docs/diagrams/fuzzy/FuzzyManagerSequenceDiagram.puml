@@ -1,5 +1,5 @@
 @startuml FuzzyManagerSequenceDiagramA
-!include style.puml
+!include ../style.puml
 
 participant ":SearchMode" as SearchMode MODE_COLOR_T3
 participant ":MainWindow" as MainWindow UI_COLOR_T3
@@ -14,7 +14,7 @@ SearchMode -> MainWindow : set projects
 @enduml
 
 @startuml FuzzyManagerSequenceDiagramB
-!include style.puml
+!include ../style.puml
 skinparam participantFontColor automatic
 
 mainframe sd fuzzy ranking
