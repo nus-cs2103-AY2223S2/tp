@@ -17,6 +17,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_ORDERNAME = new Prefix("on/");
     public static final Prefix PREFIX_ORDERQUANTITY = new Prefix("q/");
 
+    public static final Prefix PREFIX_PRICE = new Prefix("pr/");
+    public static final Prefix PREFIX_COST = new Prefix("c/");
+
     public static final Prefix PREFIX_TAB = new Prefix("t/");
 
+    public static final Prefix PREFIX_CRITERIA = new Prefix("c/");
 }

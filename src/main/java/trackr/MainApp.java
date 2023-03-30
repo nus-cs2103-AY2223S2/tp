@@ -15,9 +15,11 @@ import trackr.commons.util.ConfigUtil;
 import trackr.commons.util.StringUtil;
 import trackr.logic.Logic;
 import trackr.logic.LogicManager;
+import trackr.model.Menu;
 import trackr.model.Model;
 import trackr.model.ModelManager;
 import trackr.model.OrderList;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
@@ -83,9 +85,11 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlySupplierList> supplierListOptional;
         Optional<ReadOnlyTaskList> taskListOptional;
+        Optional<ReadOnlyMenu> menuOptional;
         Optional<ReadOnlyOrderList> orderListOptional;
         ReadOnlySupplierList initialSupplierList;
         ReadOnlyTaskList initialTaskList;
+        ReadOnlyMenu initialMenu;
         ReadOnlyOrderList initialOrderList;
 
         try {
@@ -117,6 +121,20 @@ public class MainApp extends Application {
         }
 
         try {
+            menuOptional = storage.readMenu();
+            if (!menuOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Menu");
+            }
+            initialMenu = menuOptional.orElseGet(SampleDataUtil::getSampleMenu);
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty Menu");
+            initialMenu = new Menu();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty Menu");
+            initialMenu = new Menu();
+        }
+
+        try {
             orderListOptional = storage.readOrderList();
             if (!orderListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample OrderList");
@@ -130,7 +148,7 @@ public class MainApp extends Application {
             initialOrderList = new OrderList();
         }
 
-        return new ModelManager(initialSupplierList, initialTaskList, initialOrderList, userPrefs);
+        return new ModelManager(initialSupplierList, initialTaskList, initialMenu, initialOrderList, userPrefs);
     }
 
     private void initLogging(Config config) {

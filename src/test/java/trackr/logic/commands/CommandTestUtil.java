@@ -19,6 +19,7 @@ import java.util.List;
 
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.exceptions.CommandException;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.SupplierList;
@@ -146,7 +147,7 @@ public class CommandTestUtil {
     public static final String INVALID_ORDER_STATUS = "T";
     public static final String INVALID_ORDER_QUANTITY = "9999";
     public static final String INVALID_CUSTOMER_NAME = "!@*&#";
-    public static final String INVALID_CUSTOMER_PHONE = "912345674554";
+    public static final String INVALID_CUSTOMER_PHONE = "912345@674554";
     public static final String INVALID_CUSTOMER_ADDRESS = "  ";
 
     public static final String ORDER_NAME_DESC_CHOCO_COOKIE =
@@ -217,9 +218,10 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
+ * @throws ParseException
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-                                            Model expectedModel) {
+                                            Model expectedModel) throws ParseException {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -232,9 +234,10 @@ public class CommandTestUtil {
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
+     * @throws ParseException
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                            Model expectedModel) {
+                                            Model expectedModel) throws ParseException {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }

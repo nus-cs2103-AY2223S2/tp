@@ -7,6 +7,7 @@ import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.logic.commands.CommandTestUtil.showTaskAtIndex;
 import static trackr.testutil.TypicalIndexes.INDEX_FIRST_OBJECT;
 import static trackr.testutil.TypicalIndexes.INDEX_SECOND_OBJECT;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.task.DeleteTaskCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -29,10 +31,10 @@ import trackr.model.task.Task;
 public class DeleteTaskCommandTest {
 
     private Model model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-            getTypicalOrderList(), new UserPrefs());
+            getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredTaskList_success() {
+    public void execute_validIndexUnfilteredTaskList_success() throws ParseException {
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_OBJECT);
 
@@ -41,7 +43,7 @@ public class DeleteTaskCommandTest {
                 taskToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+                model.getMenu(), model.getOrderList(), new UserPrefs());
 
         expectedModel.deleteItem(taskToDelete, ModelEnum.TASK);
 
@@ -57,7 +59,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredTaskList_success() {
+    public void execute_validIndexFilteredTaskList_success() throws ParseException {
         showTaskAtIndex(model, INDEX_FIRST_OBJECT);
 
         Task taskToDelete = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
@@ -67,8 +69,8 @@ public class DeleteTaskCommandTest {
                 ModelEnum.TASK,
                 taskToDelete);
 
-        Model expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
-                model.getOrderList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSupplierList(), model.getTaskList(),
+                model.getMenu(), model.getOrderList(), new UserPrefs());
         expectedModel.deleteItem(taskToDelete, ModelEnum.TASK);
         showNoTask(expectedModel);
 

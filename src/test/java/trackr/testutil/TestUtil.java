@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -11,12 +12,14 @@ import trackr.commons.core.GuiSettings;
 import trackr.commons.core.index.Index;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
+import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.ReadOnlyUserPrefs;
 import trackr.model.item.Item;
 import trackr.model.item.ReadOnlyItemList;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
@@ -157,6 +160,21 @@ public class TestUtil {
 
         @Override
         public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyMenu getMenu() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<MenuItem> getFilteredMenu() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortFilteredTaskList(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 

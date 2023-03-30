@@ -23,10 +23,10 @@ import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
-import trackr.model.order.customer.Customer;
-import trackr.model.order.customer.CustomerAddress;
-import trackr.model.order.customer.CustomerName;
-import trackr.model.order.customer.CustomerPhone;
+import trackr.model.person.Customer;
+import trackr.model.person.PersonAddress;
+import trackr.model.person.PersonName;
+import trackr.model.person.PersonPhone;
 
 /**
  * Parser for add order command
@@ -53,9 +53,9 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         OrderQuantity orderQuantity = ParserUtil.parseOrderQuantity(argMultimap.getValue(PREFIX_ORDERQUANTITY).get());
         OrderDeadline orderDeadline = ParserUtil.parseOrderDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         OrderStatus orderStatus = ParserUtil.parseOrderStatus(argMultimap.getValue(PREFIX_STATUS));
-        CustomerName customerName = ParserUtil.parseCustomerName(argMultimap.getValue(PREFIX_NAME).get());
-        CustomerPhone customerPhone = ParserUtil.parseCustomerPhone(argMultimap.getValue(PREFIX_PHONE).get());
-        CustomerAddress customerAddress = ParserUtil.parseCustomerAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        PersonName customerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        PersonPhone customerPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        PersonAddress customerAddress = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
 
         Customer customer = new Customer(customerName, customerPhone, customerAddress);
         Order order = new Order(orderName, orderDeadline, orderStatus, orderQuantity, customer);

@@ -2,6 +2,7 @@ package trackr.logic.commands;
 
 import static trackr.logic.commands.CommandTestUtil.assertCommandFailure;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.order.AddOrderCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -26,14 +28,14 @@ public class AddOrderCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalSupplierList(), getTypicalTaskList(),
-                getTypicalOrderList(), new UserPrefs());
+                getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
     }
 
     @Test
-    public void execute_newOrder_success() {
+    public void execute_newOrder_success() throws ParseException {
         Order validOrder = new OrderBuilder().build();
         Model expectedModel = new ModelManager(model.getSupplierList(),
-                model.getTaskList(), getTypicalOrderList(), new UserPrefs());
+                model.getTaskList(), model.getMenu(), getTypicalOrderList(), new UserPrefs());
         expectedModel.addItem(validOrder, ModelEnum.ORDER);
 
         assertCommandSuccess(new AddOrderCommand(validOrder),

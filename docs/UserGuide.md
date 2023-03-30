@@ -3,7 +3,10 @@ layout: page
 title: User Guide
 ---
 
-Trackr is a **desktop app for managing deliveries for your business, optimised for the use of Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI). If you are a busy home business owner who hates excel or is on a time crunch, this is for you.
+Introducing **Trackr - the ultimate desktop application** designed to simplify the delivery management process for your business!
+With Trackr, you can seamlessly manage your deliveries through a powerful Command Line Interface (CLI), while still enjoying the benefits of a user-friendly Graphical User Interface (GUI).
+Say goodbye to the hassle of Excel and the stress of time constraints! Whether you're a busy home business owner or simply looking for an efficient and streamlined solution, Trackr is the perfect fit for you.
+Experience the convenience of delivery management like never before with Trackr.
 
 This guide shows you the relevant information for setting up and using Trackr to manage your suppliers, orders and tasks.
 
@@ -67,8 +70,14 @@ You can click on any of the links below to navigate to the respective sections f
 
 **:information_source: Notes about the command format:**<br>
 
+* Command keywords are case-sensitive, all command keywords must be in lower-case.
+  e.g. For add supplier command, `add_supplier` is valid but `ADD_SUPPLIER` and `Add_Supplier` are not.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add_supplier n/NAME`, `NAME` is a parameter which can be used as `add_supplier n/John Doe`.
+
+* Prefixes of the parameters are case-sensitive.<br>
+  e.g. `n/` in `add_s n/NAME` is case-sensitive (i.e. `N/` is an invalid prefix).
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -98,6 +107,8 @@ Shows a message explaining how to access the help page.
 
 Syntax: `help`
 
+# Add
+
 ### Adding a supplier: `add_supplier` or `add_s`
 
 Adds a supplier to the list of suppliers.
@@ -107,6 +118,7 @@ Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 * A supplier can have any number of tags (including 0).
 
 Examples:
+
 * `add_supplier n/John Doe p/98765432 e/johnd@example.com a/John Street`
 * `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat`
 
@@ -119,12 +131,14 @@ Syntax: `add_order n/CUSTOMER_NAME l/CUSTOMER_LOCATION {p/CUSTOMER_PHONE_NUMBER 
 
 * An order can have any number of remarks.
 * Either customer phone number or email address must be provided.
-* Status available for setting are: Open, Preparing, Ready, Delivering, Delivered.
-* If no status is provided, it is defaulted to Open.
+* Status available for setting are: Not Delivered, In Progress and Delivered.
+* Key in `N` or `n` for Not Delivered, `I` or `i` for In Progress, and `D` or `d` for Delivered.
+* If no status is provided, it is defaulted to Not Delivered.
 
 Examples:
+
 * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
-* `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/Ready`
+* `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/N`
 
 ### Adding a task: `add_task` or `add_t`
 
@@ -132,12 +146,29 @@ Adds a task to the list of tasks.
 
 Syntax: `add_task n/TASK_DESCRIPTION d/DEADLINE [s/STATUS]`
 
-* Status available for setting are: `N` (Not done), `D` (Done).
+* Status available for setting are: `N` / `n` (Not done), `D` / `d` (Done).
 * If no status is provided, it is defaulted to `N` (Not done).
 
 Examples:
+
 * `add_task n/Buy cookie cutter d/2022-12-22`
 * `add_t n/Buy a card d/2023-12-23 s/D`
+
+### Adding a menu item: `add_item` / `add_i`
+
+Adds a menu item to the menu.
+
+Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
+
+* When entering price and cost data, you may input numbers with or without a decimal point.
+* For example, you can input the number 5, or the number 5.75.
+
+Examples:
+
+* `add_item n/Chocolate cookie pr/5 c/2.50
+* `add_i n/Harley Davidson Shirt pr/40 c/8.50`
+
+# Edit
 
 ### Editing a supplier: `edit_supplier` or `edit_s`
 
@@ -152,6 +183,7 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 * Existing values will be replaced with the new values given.
 * When editing tags, the existing tags of the supplier will be removed and replaced with the given tag (editing of tags is not accumulative).
 * Typing `t/` without any input will remove all the existing tags.
+* To change status, use `N` or `n` for Not Delivered, `I` or `i` for In Progress, and `D` or `d` for Delivered.
 
 Examples:
 
@@ -163,7 +195,7 @@ Examples:
 
 Edits an order that is present in the order list.
 
-Syntax: ` edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]…​`
+Syntax: `edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]…​`
 
 * Edits the order at the specific `INDEX`. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
 * User is required to key in at least one of the optional fields.
@@ -172,8 +204,9 @@ Syntax: ` edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_P
 * User can remove the remarks by typing r/ without specifying any remarks after it.
 
 Examples:
-*  `edit_order 1 p/91234567 d/2023-05-05` edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
-*  `edit_o 3 q/20 r/` edits the quantity of food for the 3rd order to 20 and clears all remarks
+
+* `edit_order 1 p/91234567 d/2023-05-05` edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
+* `edit_o 3 q/20 r/` edits the quantity of food for the 3rd order to 20 and clears all remarks
 
 ### Editing a task: `edit_task` or `edit_t`
 
@@ -187,8 +220,25 @@ Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
 * When editing status, the existing status of the order will be removed and replaced with the given status.
 
 Examples:
-* `edit_task 1 n/Get creamer` edits the 1st task description to be get creamer
+
+* `edit_task 1 n/Get creamer` edits the 1st task description to be "Get creamer"
 * `edit_t 3 d/2023-12-31 s/N` edits the 3rd task deadline to 2023-12-31 and sets the status as not done
+
+### Editing a menu item : `edit_item` / `edit_i`
+
+Edits an item present in the menu.
+Syntax: edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]
+
+* Edits the item at the specific INDEX. The index refers to the number shown in the menu list displayed. The index must be a positive integer 1, 2, 3, …
+* User is required to key in at least one of the optional fields.
+* Existing values will be replaced with the input values.
+
+Examples:
+
+* edit_item 1 n/Coffee pr/2.50 c/1.50 edits the name of the first menu item to "Coffee", sets the price to $2.50 and the cost to $1.50.
+* edit_i 3 d/Our signature burger p/8.99 c/2 edits the description of the third menu item to "Our signature burger", sets the price to $8.99 and the cost to $2.
+
+# Find
 
 ### Finding a supplier: `find_supplier` or `find_s`
 
@@ -205,6 +255,7 @@ Syntax: `find_supplier [n/NAME] [t/TAG]…​`
   e.g. `n/Mark Lee` will return `Mark Tan`, `Lee Chan`.
 
 Examples:
+
 * `find_task n/PHOON HUAT` returns supplier `Phoon Huat` and `John Phoon`
 * `find_s n/PHOON t/eggs t/flour` returns supplier `Phoon Huat` that supplies both `eggs` and `flour`
 
@@ -222,9 +273,30 @@ Syntax: `find_task [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
   e.g. `n/order flour` will match with `order sugar` and `order 10kg flour`.
 
 Examples:
+
 * `find_task n/order flour` returns `Order milk` and `mix flour`
 * `find_t n/buy eggs d/2023-02-17` returns tasks with `buy` or `egg` with deadline of `2023-02-17`
 * `find_t s/N` returns all tasks not done
+
+### Finding a menu item : `find_item` / `find_i`
+
+Find tasks with information that matches with any of the given parameters.
+
+Syntax: `find_item [n/ITEM_NAME]`
+
+* Search is case-insensitive, e.g. `match` will match `Match`.
+* The order of the keywords does not matter, e.g. `n/Chocolate cookies` will match with `Cookies chocolate`.
+* At least one of the optional fields must be keyed in.
+* Only full words will match e.g. `Choco` will not match with `Chocolate`.
+* Menu Items matching with at least one keyword will be returned (i.e. `OR` search).
+  e.g. `n/chocolate cookies` will match with `chocolate cupcake` and `hot chocolate`.
+
+Examples:
+
+* `find_item n/vanilla cupcake` returns `vanilla ice cream` and `Disney cupcake`
+* `find_i n/shirt d/2023-02-17` returns menu items with `shirt`
+
+# Delete
 
 ### Deleting a supplier: `delete_supplier` or `delete_s`
 
@@ -237,6 +309,7 @@ Syntax: `delete_supplier INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
+
 * `delete_supplier 2` deletes the second supplier
 * `find_s n/John` followed by `delete_s 3` deletes the 1st supplier in the results of the `find_s` command with name `John`
 
@@ -249,6 +322,7 @@ Syntax: `delete_order INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
+
 * `list` followed by `delete_order 2` deletes the 2nd order in Trackr.
 * `find Cake` followed by `delete_order 1` deletes the 1st order in the results of the `find` command.
 
@@ -263,8 +337,44 @@ Syntax: `delete_task INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
+
 * `delete_task 2` deletes the first task
-* `find_t flour` followed by `delete_t 3` deletes the 1st task in the results of the `find_t` command
+* `find_t flour` followed by `delete_t 3` deletes the 1st task in the result of the `find_t` command
+
+### Deleting a menu item: `delete_item` / `delete_i`
+
+Deletes the specified item from the menu.
+
+Syntax: `delete_item INDEX`
+
+* Deletes the item at the specified `INDEX`.
+* The index refers to the number shown in the menu displayed.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+
+* `delete_menu 2` deletes the first task
+* `find_i cupcake` followed by `delete_m 3` deletes the 1st menu item in the result of the `find_i` command
+
+# Switch
+
+### Sorting a task: `sort_task` / `sort_t`
+
+Syntax: `sort_task [c/CRITERIA]`
+
+* Sorts all the tasks according to a criteria.
+* Criteria available are: `Time_added`, `Deadline`, `Status`, `Name` and `Status_and_deadline`.
+* Criteria is case-insensitive (i.e. `time_added`, `TIME_ADDED` `Time_Added` are all valid).
+* The default criteria (when no criteria is specified) is `Status_and_deadline`.
+
+* Sorting by `Time_added` puts the tasks added first at the top and tasks added later below.
+* Sorting by `Deadline` puts the tasks with the earlier deadlines on the top of tasks with further deadlines.
+* Sorting by `Status` puts the tasks with "Not Done" status on top and tasks with "Done" status below.
+* Sorting by `Name` sorts the tasks in a lexicographical order (ignoring-case) 
+(i.e. A task with the task name "a" will be placed on top of a different task with the task name"B").
+* Sorting by `Status_and_deadline` puts the tasks that are not done and have the earliest deadlines 
+on top and tasks done and have the furthest deadlines below.
+(i.e. Not done and earliest deadline > Not done and latest deadline > Done and earliest deadline > Not Done and latest deadline)
 
 ### Switching tabs: `tab`
 
@@ -272,10 +382,13 @@ Switch to another tab.
 
 Syntax: `tab t/TAB`
 
-* The available tabs are: `Home`, `Orders`, `Contacts`
+* The available tabs are: `Home`, `Orders`, `Contacts`, `Menu`
 
 Examples:
+
 * `tab t/HOME` switches the tab to the `Home` tab
+
+# Others
 
 ### Exiting the program: `exit`
 
@@ -294,6 +407,11 @@ Trackr data are saved as a JSON file `[JAR file location]/data/trackr.json`. Adv
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Trackr will discard all data and start with an empty data file at the next run.
 </div>
+
+### Uploading a csv file
+
+Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Order` and `Suppliers`, and adds them to their respective lists. Below is an example of a valid csv file
+![Valid csv file](images/CsvFileFormat.png)
 
 ### Upcoming features `[coming soon]`
 
@@ -314,12 +432,13 @@ If your changes to the data file makes its format invalid, Trackr will discard a
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add_supplier` or `add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order` or `add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes` <br> <br> `add_task` or `add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed`
-**Edit** | `edit_supplier` or `edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order` or `edit_o` <br> e.g., `edit_o 3 q/20 r/` <br> <br> `edit_task` or `edit_t` <br> e.g., `edit_t 1 s/`
-**Delete** | `delete_supplier` or `delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order` or `delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task` or `delete_t` <br> e.g., `delete_t 4`
-**Find** | `find_supplier` or `find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order` or `find_o` <br> e.g., `find_order r/No almonds r/No frosting` <br> <br> `find_task` or `find_t` <br> e.g., `find_t s/N`
-**Tab** | `tab` <br> e.g., `tab Home`
-**Help** | `help`
-**Exit** | `exit`
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                  |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Add**    | `add_supplier` or `add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order` or `add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes` <br> <br> `add_task` or `add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed` |
+| **Edit**   | `edit_supplier` or `edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order` or `edit_o` <br> e.g., `edit_o 3 q/20 r/` <br> <br> `edit_task` or `edit_t` <br> e.g., `edit_t 1 s/`                                                                                                          |
+| **Delete** | `delete_supplier` or `delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order` or `delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task` or `delete_t` <br> e.g., `delete_t 4`                                                                                                                                       |
+| **Find**   | `find_supplier` or `find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order` or `find_o` <br> e.g., `find_order r/No almonds r/No frosting` <br> <br> `find_task` or `find_t` <br> e.g., `find_t s/N`                                                                                                             |
+| **Tab**    | `tab` <br> e.g., `tab Home`
+|**Sort Task**| `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline`
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                            |
+| **Exit**   | `exit`                                                                                                                                                                                                                                                                                                            |

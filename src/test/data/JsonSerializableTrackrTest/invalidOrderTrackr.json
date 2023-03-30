@@ -9,5 +9,7 @@
     "customerName": "John Doe",
     "customerPhone": "123",
     "customerAddress": "123 Smith Street"
-  } ]
+  } ],
+  "menuItems": [ ]
+
 }
