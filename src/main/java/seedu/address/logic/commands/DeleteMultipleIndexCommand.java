@@ -27,6 +27,7 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.resetPersonHiddenStatus();
         List<Person> lastShownList = model.getFilteredPersonList();
         isIndexesValid(lastShownList);
 
@@ -36,7 +37,9 @@ public class DeleteMultipleIndexCommand extends DeleteCommand {
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
             listOfPeople.add(personToDelete);
         }
+        model.resetPersonHiddenStatus();
         model.deleteMultiplePersons(listOfPeople);
+        model.resetPersonHiddenStatus();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS));
     }
 

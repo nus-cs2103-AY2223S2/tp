@@ -49,6 +49,16 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
+     * Returns the user prefs' theme
+     */
+    String getCssFilePath();
+
+    /**
+     * Sets the user prefs' theme
+     */
+    void setCssFilePath(String cssFilePath);
+
+    /**
      * Set the user's password
      */
     void setUserHashedPassword(String hashedPassword);

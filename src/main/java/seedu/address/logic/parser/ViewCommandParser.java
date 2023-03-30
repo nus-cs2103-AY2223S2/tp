@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VIEW;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +26,9 @@ public class ViewCommandParser {
 
         String[] parsedIndexList = args.trim().split("\\s+");
         for (String i: parsedIndexList) {
-            ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(i, PREFIX_VIEW);
+            System.out.println(i);
             try {
-                indexList.add(ParserUtil.parseIndex(argumentMultimap.getPreamble()));
+                indexList.add(ParserUtil.parseIndex(i));
             } catch (IllegalValueException ive) {
                 throw new ParseException(String.format(
                         MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_ARGUMENTS), ive);

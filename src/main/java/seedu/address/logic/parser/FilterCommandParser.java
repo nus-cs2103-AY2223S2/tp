@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -17,12 +18,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactContainsDescriptionPredicate;
 import seedu.address.model.person.ContactContainsEmailPredicate;
+import seedu.address.model.person.ContactContainsModuleTagPredicate;
 import seedu.address.model.person.ContactContainsPhoneNumberPredicate;
 import seedu.address.model.person.ContactContainsTagPredicate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Phone;
+import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.tag.Tag;
 
 
@@ -41,11 +44,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         try {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_MODULE_TAG);
 
             int numOfPrefixesPresent = getNumOfPrefixesPresent(argMultimap,
                     PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                    PREFIX_EMAIL, PREFIX_TAG);
+                    PREFIX_EMAIL, PREFIX_TAG, PREFIX_MODULE_TAG);
 
             if (numOfPrefixesPresent > 1) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -53,19 +56,19 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             }
 
             if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                    PREFIX_EMAIL, PREFIX_TAG)) {
+                    PREFIX_EMAIL, PREFIX_TAG, PREFIX_MODULE_TAG)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         FilterCommand.MESSAGE_USAGE));
             }
 
             if (!isAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                    PREFIX_EMAIL, PREFIX_TAG)) {
+                    PREFIX_EMAIL, PREFIX_TAG, PREFIX_MODULE_TAG)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         FilterCommand.MESSAGE_USAGE));
             }
 
             Prefix prefix = getPrefix(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
-                    PREFIX_EMAIL, PREFIX_TAG);
+                    PREFIX_EMAIL, PREFIX_TAG, PREFIX_MODULE_TAG);
 
             if (prefix.getPrefix().equals("n/") && argMultimap.getAllValues(PREFIX_NAME).size() == 1) {
                 Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -88,6 +91,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             } else if (prefix.getPrefix().equals("t/")) {
                 Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
                 return new FilterCommand(new ContactContainsTagPredicate(tagSet));
+            } else if (prefix.getPrefix().equals("m/")) {
+                Set<ModuleTag> moduleTagSet = ParserUtil.parseModuleTags(argMultimap.getAllValues(PREFIX_MODULE_TAG));
+                return new FilterCommand(new ContactContainsModuleTagPredicate(moduleTagSet));
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         FilterCommand.MESSAGE_USAGE));

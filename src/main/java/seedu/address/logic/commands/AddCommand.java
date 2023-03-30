@@ -31,9 +31,9 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "Friendly"
+            + PREFIX_ADDRESS + "Friendly "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "Tutor assistant"
+            + PREFIX_TAG + "Tutor assistant "
             + PREFIX_MODULE_TAG + "CS2103";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
@@ -52,12 +52,12 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-
+        model.resetPersonHiddenStatus();
         model.addPerson(toAdd);
+        model.resetPersonHiddenStatus();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

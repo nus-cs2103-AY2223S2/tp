@@ -38,6 +38,15 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code oneBasedIndex} checks if validity of the index.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static boolean isValidIndex(String oneBasedIndex) {
+        String trimmedIndex = oneBasedIndex.trim();
+        return StringUtil.isNonZeroUnsignedInteger(trimmedIndex);
+    }
+
+    /**
      * Parses {@code indexes} into an {@code listOfIndexes} and returns it. Leading and trailing whitespaces will be
      * trimmed. String of indexes will be split by ",".
      * @param indexes String of indexes.
@@ -74,9 +83,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code name} and checks the validity of the name.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static boolean isValidName(String name) {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        return Name.isValidName(trimmedName);
+    }
+    /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * Allow empty "" as phone field is not compulsory.
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
@@ -91,7 +109,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * Allow empty "" as description field is not compulsory.
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
@@ -106,7 +124,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * Allow empty "" as email field is not compulsory.
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {

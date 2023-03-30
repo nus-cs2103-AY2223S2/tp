@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -111,7 +112,18 @@ public class AddCommandTest {
         }
 
         @Override
+        public String getCssFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCssFilePath(String cssFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Person person) {
+
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,6 +163,19 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void combine(ReadOnlyAddressBook ab, String s) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void resetPersonHiddenStatus() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void showPersonContact(List<Person> personList) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -195,6 +220,7 @@ public class AddCommandTest {
         public String executeRedo() {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
@@ -234,9 +260,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void resetPersonHiddenStatus() {
+            personsAdded.stream().forEach(x -> {
+                if (!x.getHidden()) {
+                    x.toggleHidden();
+                }
+            });
+        }
+
+        @Override
+        public void showPersonContact(List<Person> personList) {
+            personList.stream().forEach(x -> x.toggleHidden());
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
     }
-
 }

@@ -80,6 +80,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public String getCssFilePath() {
+        return model.getCssFilePath();
+    }
+
+    @Override
+    public void setCssFilePath(String cssFilePath) {
+        model.setCssFilePath(cssFilePath);
+    }
+
+    @Override
     public void setUserHashedPassword(String hashedPassword) {
         model.setHashedPassword(hashedPassword);
     }

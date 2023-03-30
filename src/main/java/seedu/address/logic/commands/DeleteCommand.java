@@ -18,11 +18,18 @@ public abstract class DeleteCommand extends Command {
             + "Parameters: INDEXES (must be a positive integer), with each index being separated by a comma \n"
             + "Example: " + COMMAND_WORD + " 1,2,3";
 
+    public static final String MESSAGE_USAGE_DELETE_BY_NAME = "3. Delete Single Person By Name"
+            + ": Deletes the person identified by the specified keyword (case-insensitive) used.\n"
+            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " alice bob charlie";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + "\n"
             + MESSAGE_USAGE_SINGLE_DELETE
             + "\nOR\n"
-            + MESSAGE_USAGE_MULTIPLE_DELETE;
+            + MESSAGE_USAGE_MULTIPLE_DELETE
+            + "\nOR\n"
+            + MESSAGE_USAGE_DELETE_BY_NAME;
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
 }
