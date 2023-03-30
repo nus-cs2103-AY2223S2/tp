@@ -152,7 +152,7 @@ public class MakeCommandTest {
         }
 
         @Override
-        public Entity getEntityWithName(String name) {
+        public Entity getEntityFromName(String name) {
             throw new AssertionError("This method should not be called.");
         }
 

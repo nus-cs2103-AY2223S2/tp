@@ -14,7 +14,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entity.Character;
-import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
@@ -137,7 +136,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Entity getEntityWithName(String name) {
+    public Entity getEntityFromName(String name) {
         requireNonNull(name);
         Entity toReturn = null;
         ObservableList<Entity> entities = reroll.getEntities().getEntityList();

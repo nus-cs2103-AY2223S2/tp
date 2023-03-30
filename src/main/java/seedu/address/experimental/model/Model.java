@@ -91,7 +91,7 @@ public interface Model {
      * @param name the name of the entity to be found
      * @return the found entity
      */
-    Entity getEntityWithName(String name);
+    Entity getEntityFromName(String name);
 
     // ============== Filtered entity list =================
     /**
