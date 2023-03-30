@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
@@ -43,10 +44,12 @@ public class CalendarBox extends UiPart<Region> {
     /**
      * Creates a {@code CalenderBox} with the given {@code List<Event>} and date to display.
      */
-    public CalendarBox(boolean isToday, String date, List<Event> events, Calendar.FilterExecutor filterExecutor) {
+    public CalendarBox(boolean isFind, boolean isToday, String date,
+                       List<Event> events, Calendar.FilterExecutor filterExecutor) {
         super(FXML);
         this.events = events;
         this.filterExecutor = filterExecutor;
+        setHighlight(isFind);
         setDate(date);
         setToday(isToday);
         setEvents();
@@ -59,6 +62,12 @@ public class CalendarBox extends UiPart<Region> {
     public void handleListEvents() {
         if (events != null) {
             filterExecutor.updateFilteredEventList(new EventMatchesDatePredicate(events.get(0).getDate()));
+        }
+    }
+
+    private void setHighlight(boolean isFind) {
+        if (isFind) {
+            calendarHighlight.setFill(Color.RED);
         }
     }
 
