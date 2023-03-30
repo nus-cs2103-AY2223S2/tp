@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, FAid can get your client and meeting management tasks done faster than traditional GUI apps, so you won't ever worry about missing a meeting or forgetting about a client!
+If you can type fast, FAid can get your client and meeting management tasks done quickly, so you won't ever worry about missing a meeting or forgetting about a client!
 
 * Table of Contents
 {:toc}
@@ -73,6 +73,12 @@ If you can type fast, FAid can get your client and meeting management tasks done
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* `PERSON_INDEX` refers to index number showed in displayed person list
+
+* `MEETING_INDEX` refers to index number showed in displayed meeting list
+
+* Index must be a positive number
+
 </div>
 
 ### Viewing help : `help`
@@ -83,8 +89,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
-### Adding a person: `add`
+###  <span style="color:#4B6B94 ;">Adding a person </span>: `add`
 
 Adds a person to the address book.
 
@@ -98,7 +103,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+### <span style="color:#4B6B94 ;">Listing all persons </span>:`list`
 
 Shows a list of all persons in the address book.
 
@@ -216,15 +221,13 @@ Notes:
 
 Gets meetings from the address book
 
-Format: `meetingFind DATE [PERSON_INDEX]`
+Format: `meetingFind DATE `
 
 Required Information:
 * Date (dd/mm/yyyy)
-* Index of a person already in address book
 
 Examples:
 * `meetingFind 12/02/2023` Lists out all meetings that start on 12/02/2023
-* `meetingFind 12/02/2023 5` Lists out all meetings that start on 12/02/2023 with the fifth person in the address book
 
 
 ### List meeting : `meetingList`
