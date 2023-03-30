@@ -99,7 +99,7 @@ public class FullMatchKeywordsPredicate implements Predicate<Person> {
             List<String> personModuleNames = personModules.stream()
                     .map(module -> module.moduleName)
                     .collect(Collectors.toList());
-            hasMatching = hasMatching && values.stream().anyMatch(subject -> personSubjectNames.contains(subject));
+            hasMatching = hasMatching && values.stream().anyMatch(subject -> personModuleNames.contains(subject));
         }
         //@@author
 

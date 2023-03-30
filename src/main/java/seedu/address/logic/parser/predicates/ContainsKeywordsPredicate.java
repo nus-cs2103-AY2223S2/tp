@@ -3,7 +3,7 @@ package seedu.address.logic.parser.predicates;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Subject;
+import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
 import java.util.List;
@@ -84,13 +84,13 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
             hasMatching = hasMatching || values.stream().anyMatch(tag -> personTagNames.contains(tag));
         }
 
-        if (keywords.getValue(PREFIX_SUBJECT).isPresent()) {
-            List<String> values = keywords.getAllValues(PREFIX_SUBJECT);
-            Set<Subject> personSubjects = person.getSubjects();
-            List<String> personSubjectNames = personSubjects.stream()
-                    .map(subject -> subject.subjectName)
+        if (keywords.getValue(PREFIX_MODULE).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_MODULE);
+            Set<Module> personModules = person.getModules();
+            List<String> personModuleNames = personModules.stream()
+                    .map(module -> module.moduleName)
                     .collect(Collectors.toList());
-            hasMatching = hasMatching || values.stream().anyMatch(subject -> personSubjectNames.contains(subject));
+            hasMatching = hasMatching || values.stream().anyMatch(subject -> personModuleNames.contains(subject));
         }
 
         return hasMatching;
