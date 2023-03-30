@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-FAid is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAid can get your contact management tasks done faster than traditional GUI apps.
+FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, FAid can get your client and meeting management tasks done faster than traditional GUI apps, so you won't ever worry about missing a meeting or forgetting about a client!
 
 * Table of Contents
 {:toc}
@@ -12,7 +13,16 @@ FAid is a **desktop app for managing contacts, optimized for use via a Command L
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your operating system.
+
+1. To check if you have Java `11` installed and configured correctly, open a command terminal and type in the command: `java --version`. <br>
+   If java is installed successfully, your output should be similar to the following (Note that it may look slightly different depending on your exact version and operating system): <br>
+   `openjdk 11.0.17 2022-10-18 LTS` <br>
+   `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
+   `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
+   Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
+   `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
+   If you see an error message like this even after installing Java `11`, consider restarting your computer or reinstalling Java.
 
 1. Download the latest `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
 
@@ -149,7 +159,7 @@ Examples:
 
 Adds a meeting to the address book.
 
-Format: `meetingAdd PERSON_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`
+Format: `meetingAdd PERSON_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
 
 Required Information:
 * `PERSON_INDEX`: Index of a person in address book
@@ -158,7 +168,7 @@ Required Information:
 * `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
 
 Example:
-* `meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30` adds a meeting on 30th March 2020 from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3),
+* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` adds a meeting on 30th March 2020 from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3),
 with the description "Meeting with Charlotte".
 
 ![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
@@ -175,11 +185,13 @@ Format: `meetingRemove PERSON_INDEX MEETING_INDEX`
 
 Required Information:
 * `PERSON_INDEX`: Index of a person already in address book
-* `MEETING_INDEX`: Meeting ID
+* `MEETING_INDEX`: Index of meeting in a person
 
 Examples:
-* `meetingRemove 3 2` Deletes a meeting with index 2 from a person with index 3.
-* `meetingRemove 20 6` Deletes a meeting with index 6 from a person with index 20.
+* `meetingRemove 20 6` Deletes the 6th meeting added from the person with index 20.
+* `meetingRemove 3 1` Deletes the 1st meeting added from the person with index 3.
+
+![result for meetingRemove 3 1](images/meetingRemove31.PNG)
 
 ### Updating a meeting : `meetingUpdate`
 
@@ -193,29 +205,29 @@ Required Information:
 
 Examples:
 *  `meetingUpdate 1 1 md/ Policy discussion` Edits the meeting description of the 1st meeting belonging to the 1st person to `Policy discussion`
-*  `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 22:10` Updates the description, start and end of the 3rd meeting belonging to the 2nd person
-to `Plan review`, `30-03-2020 20:10` and `22:10` respectively
+*  `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10` Updates the description, start and end of the 3rd meeting belonging to the 2nd person
+to `Plan review`, `30-03-2020 20:10` and `30-03-2020 22:10` respectively
 
 Notes:
 * Edits the meetings of person at the specified `PERSON_INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3,
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-### Find meeting : `meeting find`
+### Find meeting : `meetingFind`
 
 Gets meetings from the address book
 
-Format: `meeting find DATE [PERSON_INDEX]`
+Format: `meetingFind DATE [PERSON_INDEX]`
 
 Required Information:
 * Date (dd/mm/yyyy)
 * Index of a person already in address book
 
 Examples:
-* `meeting find 12/02/2023` Lists out all meetings that start on 12/02/2023
-* `meeting find 12/02/2023 5` Lists out all meetings that start on 12/02/2023 with the fifth person in the address book
+* `meetingFind 12/02/2023` Lists out all meetings that start on 12/02/2023
+* `meetingFind 12/02/2023 5` Lists out all meetings that start on 12/02/2023 with the fifth person in the address book
 
 
-### List meeting : `meeting list`
+### List meeting : `meetingList`
 
 Lists all meetings scheduled for the day from address book
 
@@ -228,7 +240,21 @@ Required information:
 * Region specified should be a valid region
 
 Examples:
-* `find Central` Finds people from Central region in the address book
+* `listRegion Central` lists all people from the Central region in the address book
+
+### Find people by policy name : `findPolicy`
+
+Lists all person that are under a given policy
+
+Format: `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`
+
+Required information:
+* Name of policy to search for
+
+Examples:
+* `findPolicy Insurance` Finds people with Insurance Policy as their tag
+
+![result for findPolicy Insurance](images/findPolicyInsurance.PNG)
 
 ### Clearing all entries : `clear`
 
@@ -271,15 +297,15 @@ _Details coming soon ..._
 
 | Action                 | Format, Examples                                                                                                                                                      |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`  |
 | **Clear**              | `clear`                                                                                                                                                               |
 | **Delete**             | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                            |
 | **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**               | `list`                                                                                                                                                                |
 | **Help**               | `help`                                                                                                                                                                |
 | **Add Meeting**        | `meetingAdd PERSON_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`                                                                                              |
 | **Remove Meeting**     | `meetingRemove PERSON_INDEX MEETING_INDEX`                                                                                                                            |
-| **Find Meeting**       | ` meeting find DATE [PERSON_INDEX]`                                                                                                                                   |
-| **List all meetings**  | `meeting list`                                                                                                                                                        |
-| **List all in Region** | `region find REGION [PERSON_INDEX]`                                                                                                                                   |
+| **Find Meeting**       | ` meetingFind DATE [PERSON_INDEX]`                                                                                                                                   |
+| **List all meetings**  | `meetingList`                                                                                                                                                        |
+| **List all in Region** | `listRegion REGION`                                                                                                                                   |
