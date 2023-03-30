@@ -5,8 +5,8 @@ title: CareFlow User Guide
 
 Welcome to CareFlow, your all-in-one solution for managing patient information and drug inventory in the General Practitioner clinic. Do you find yourself struggling to keep track of patient details? Are you tired of manually managing your drug inventory? CareFlow is here to help! Our easy-to-use desktop application is specifically designed for receptionists who want to improve their workflow and provide better patient care.
 
-CareFlow is a **desktop application for [patient management](#41-patient-information-management) and [drug inventory 
-management](#42-drug-inventory-management), optimised for use 
+CareFlow is a **desktop application for [patient management](#41-patient-information-management) and [drug inventory
+management](#42-drug-inventory-management), optimised for use
 via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI)<sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#3-quick-start) to get started. Enjoy!
 
 <p align="center">
@@ -40,7 +40,7 @@ To help you navigate the guide, we've divided it into several sections, each cov
     - If you're new to CareFlow and need help getting started, head to Section 2, "Quick Start", where you'll find step-by-step instructions to set up and begin using the application.
 
 3. Section [3. Overview of features](#3-overview-of-features)
-    - If you want to get a better understanding of CareFlow's main features, head to Section 3, "Overview of 
+    - If you want to get a better understanding of CareFlow's main features, head to Section 3, "Overview of
       features". This section provides a explanation of three main feature of CareFlow and how to use them.
 
 4. Section [4. Commands](#4-commands)
@@ -53,11 +53,11 @@ To help you navigate the guide, we've divided it into several sections, each cov
     - If you want a quick reference for all the commands available in CareFlow, head to Section 6, "Command Summary". This section provides a list of all the commands and their functions, making it easy to find what you need.
 
 7. Section [7. Glossary](#7-glossary)
-    - If you come across a term you're not familiar with, the glossary in Section 7 is a useful resource. It 
+    - If you come across a term you're not familiar with, the glossary in Section 7 is a useful resource. It
       provides clear definitions and explanations for all the terminology used in the user guide.
 
-To make the most of this user guide, we recommend reading through it in order, starting with the Introduction of 
-CareFlow and working your way through each section. You can also use the [table of contents](#top) to jump to specific 
+To make the most of this user guide, we recommend reading through it in order, starting with the Introduction of
+CareFlow and working your way through each section. You can also use the [table of contents](#top) to jump to specific
 sections as needed.
 
 ## 1.2 Note on symbols and formatting used
@@ -84,7 +84,7 @@ Throughout this user guide, you may come across different formatting styles and 
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
- 
+
 # **2. Quick start**
 
 1. Ensure you have Java 11 installed in your Computer.
@@ -96,7 +96,7 @@ Throughout this user guide, you may come across different formatting styles and 
    <li>
    To install Java 11 on Window, you have to first <span style="color:orange">download the jdk installer</span> and then <span style="color:orange">run the jdk installer</span> to install Java 11.
    </li>
-   
+
     <br>
    <li>
    Step 1: To download jdk installer, click on the <a href="https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0">link</a> and scroll down to <code>Downloading the JDK installer</code> section:
@@ -117,7 +117,7 @@ Throughout this user guide, you may come across different formatting styles and 
        <i>Figure 3. Screenshot of the 'Java SE Downloads' page.</i>
        </p>
    </li>
-         
+
    <br>
    <li>
    Step 3: Scroll down to this section, then, click on the <code>Java 11</code> tab in the top left corner:
@@ -128,7 +128,7 @@ Throughout this user guide, you may come across different formatting styles and 
        <i>Figure 4. Screenshot of the Java SE Development Kit 11.0.18 section.</i>
        </p>
    </li>
-     
+
    <br>
    <li>
     Step 4: Click on the download linked circled out in the following picture. Note that you will be promoted to register an Oracle account. After registration, the download will start automatically.
@@ -158,11 +158,11 @@ Throughout this user guide, you may come across different formatting styles and 
        </p>
    </li>
 
-     <br> 
+     <br>
    </ul>
      </details>
 
-     <details> 
+     <details>
      <summary>II. Installing Java 11 on macOS</summary>
    <ul>
    <li>
@@ -174,7 +174,7 @@ Throughout this user guide, you may come across different formatting styles and 
        <i>Figure 8. Screenshot of steps to download JDK on macOS.</i>
        </p>
    </li>
-   
+
    <br>
    </ul>
        </details>
@@ -187,7 +187,7 @@ Throughout this user guide, you may come across different formatting styles and 
 4. Open a `command terminal`
    <details>
    <summary>Click here for more information on opening a command terminal</summary>
-      <details> 
+      <details>
       <summary> I. For macOS: </summary>
    <ul>
    <li>
@@ -223,7 +223,7 @@ Throughout this user guide, you may come across different formatting styles and 
 
    </ul>
             </details>
-      <details> 
+      <details>
       <summary> II. For Windows:</summary>
    <ul>
    <li>
@@ -244,12 +244,12 @@ Throughout this user guide, you may come across different formatting styles and 
    <br>
    <li>
     For keen learners, you can take a look at the short video below to fund out more about the <code>cd</code> command
-         - For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in macOS Terminal (cd 
+         - For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in macOS Terminal (cd
    command)</a>
          - For Windows: <a href="https://www.youtube.com/watch?v=Q3XQpnQTy6Y">How to Use CD Command in CMD</a>
    </li>
    </ul>
-   
+
    </details>
 6. Type the `java -jar careflow.jar` command into your `command terminal` and hit `Enter` to run the application. A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.
   <p align="center">
@@ -259,10 +259,10 @@ Throughout this user guide, you may come across different formatting styles and 
     <i>Figure 12. Graphical User Interface (GUI) of CareFlow</i>
     </p>
 7. You can now start typing some command into the command box at the bottom and hit `Enter` to execute it. e.g. type in **`help`** and hit `Enter` will open the help window.<br>
-   <details> 
+   <details>
    <summary>Click here for  Some example commands you can try</summary>
     <ul>
-        <li><code>p list </code> : Lists all patients. </li> 
+        <li><code>p list </code> : Lists all patients. </li>
         <li><code>d list</code> : Lists all drugs.</li>
         <li><code>add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named <code>John Lo</code> to the patient records.</li>
         <li><code>p delete 3</code> : Deletes the 3rd patient record shown in the current list.</li>
@@ -279,19 +279,19 @@ Throughout this user guide, you may come across different formatting styles and 
 --------------------------------------------------------------------------------------------------------------------
 # **3. Overview of Features**
 
-If you work as a clinic receptionist, you understand how time-consuming and overwhelming it can be to manually 
+If you work as a clinic receptionist, you understand how time-consuming and overwhelming it can be to manually
 manage patient information and medicine inventory. That is why we have created CareFlow specifically designed to assist you in these tasks, making your job lot easier and more efficient. With our software, you can easily keep track of patient information and drug inventory, allowing you to focus on providing your patients the best care possible.
 
 ## 3.1 Patient Information Management
 
-If you are a busy clinic receptionist who finds it challenging to manage patient information, CareFlow is the 
+If you are a busy clinic receptionist who finds it challenging to manage patient information, CareFlow is the
 solution for you.
 
-CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes! 
+CareFlow lets you keep all your patient data in one place and access it easily. With our user-friendly interface, you can add, update, or find patient info without any trouble. No more headaches from managing paper records or notes!
 
 <div markdown="block" class="alert alert-info">:information_source:
 
-Visit Section [4.2 Patient Commands](#42-patient-commands) for more information on how to 
+Visit Section [4.2 Patient Commands](#42-patient-commands) for more information on how to
 manage patient data in CareFlow.
 </div>
 
@@ -312,7 +312,7 @@ if you encounter an emergency or serious medical issue that your clinic can't ha
 
 <div markdown="block" class="alert alert-info">:information_source:
 
-Please note that you are not allowed to edit or change the hospital list in CareFlow. However, 
+Please note that you are not allowed to edit or change the hospital list in CareFlow. However,
 if you believe that a hospital is missing from our directory, please feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are committed to constantly improving our software to meet your needs.
 </div>
 
@@ -321,7 +321,7 @@ if you believe that a hospital is missing from our directory, please feel free t
 
 ## 4.1 General Commands
 
-This section introduces the two general commands, `help` and `exit`. These commands are not specific to the patient or 
+This section introduces the two general commands, `help` and `exit`. These commands are not specific to the patient or
 drug of CareFlow.
 
 ### View help : `g help`
@@ -370,18 +370,18 @@ ___
         <img src="images/UIscreenshots/patientSS/patientAdd.png" style="zoom:100%">
       </p>
       <br>
-      
+
     * A message response will be printed on the screen, informing you that your command has been successfully executed!
       <p align="center">
         <img src="images/UIscreenshots/patientSS/patientAddresult.png" style="zoom:100%">
       </p>
-      <br>    
+      <br>
 
     * John Doe is now added to the patient record. Click on John Doe and you will see his information being displayed at the right side.
       <p align="center">
         <img src="images/UIscreenshots/patientSS/../johnDoe_added.png" style="zoom:100%">
       </p>
-      <br>    
+      <br>
 
 
 [↑ Back to top](#top)
@@ -444,8 +444,8 @@ ___
         <p align="center">
              <img src="images/UIscreenshots/patientSS/pdeleteres.png" style="zoom:100%">
         </p>
-      
-      <br>    
+ 
+      <br>
 
 [↑ Back to top](#top)
 
@@ -515,7 +515,7 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/patientSS/pview.png" style="zoom:100%">
       </p>
-      
+
       <br>
 
 [↑ Back to top](#top)
@@ -536,12 +536,12 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/patientSS/pclear.png" style="zoom:100%">
       </p>
-      
+
       <br>
 
 [↑ Back to top](#top)
 
-<br> 
+<br>
 
 
 ### List all patient records : `p list`
@@ -556,7 +556,7 @@ ___
     <p align="center">
           <img src="images/UIscreenshots/patientSS/patientList.png" style="zoom:100%">
     </p>
-  
+
     <br>
 
 [↑ Back to top](#top)
@@ -585,7 +585,7 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/drugSS/daddres.png" style="zoom:100%">
       </p>
-      
+
       <br>
 
 [↑ Back to top](#top)
@@ -671,7 +671,7 @@ ___
             <img src="images/UIscreenshots/drugSS/dupdate.png" style="zoom:100%">
       </p>
       <br>
-      
+
     * The storage of Panadol is now 45
         <p align="left">
           <img src="images/UIscreenshots/drugSS/drugCurrentCount.png" style="zoom:25%">
@@ -701,7 +701,7 @@ ___
       <p align="center">
             <img src="images/UIscreenshots/drugSS/dFindPanadol.png" style="zoom:100%">
       </p>
-      
+
       <br>
 
 [↑ Back to top](#top)
@@ -771,7 +771,7 @@ ___
 ### Saving the data
 
 * CareFlow data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-  
+
 <br>
 
 [↑ Back to top](#top)
@@ -843,7 +843,7 @@ The following commands are patient-related commands that are available in Carefl
 | **View patient by index**     | `p view -i PATIENT_INDEX` e.g. `p view -i 1`                                                                                                                                                                                                                                                | Shows the patient record located at the i-th position in the patient list.|
 | **Find patient by name**      | `p find PATIENT_NAME` e.g., `p find John`                                                                                                                                                                                                                                                   | Shows patient(s) record that match the patient name you have provided.|
 | **Clear all patient**         | `p clear`                                                                                                                                                                                                                                                                                      | Removes all patient records stored in CareFlow.|
-| **List patient**              | `p list`                                                                                                                                                                                                                                                                                       | Lists all the patients that have been recorded in CareFlow.| 
+| **List patient**              | `p list`                                                                                                                                                                                                                                                                                       | Lists all the patients that have been recorded in CareFlow.|
 
 <p align="center">
   <i>Table 3. Command table for patient commands.</i>
@@ -872,7 +872,7 @@ The following commands are drug-related commands that are available in Careflow 
 # 7. Glossary
 <span id="1">
 1. Command Line Interface (CLI) <br>
-A way to interact with a computer using text commands instead of using a mouse to click on buttons or icons. Think 
+A way to interact with a computer using text commands instead of using a mouse to click on buttons or icons. Think
 of it like texting your computer to get it to do things.
 </span>
 <br><br>
