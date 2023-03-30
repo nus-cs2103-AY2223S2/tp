@@ -196,7 +196,7 @@ In the upcoming versions, we will expand `batchadd` feature to:
 2. Include more fields like performance and leaves
 
 
-### Adding multiple employees at once: `batchexport`
+### Exporting database into CSV file: `batchexport`
 
 ExecutivePro allows you to export the employees' data into a `.csv` file.
 
