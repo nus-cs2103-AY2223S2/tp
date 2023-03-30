@@ -3,6 +3,7 @@ package seedu.address.experimental.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
+import seedu.address.model.entity.Name;
 import seedu.address.model.entity.Template;
 
 /**
@@ -27,7 +29,7 @@ public class Reroll implements ReadOnlyReroll {
     private final ReadOnlyEntities characters;
     private final ReadOnlyEntities items;
     private final ReadOnlyEntities mobs;
-    private final UniqueTemplateList templates;
+    private final Template templates;
 
     // Initializer
     {
@@ -35,7 +37,7 @@ public class Reroll implements ReadOnlyReroll {
         characters = new RerollCharacters(new FilteredList<>(entities.getEntityList(), isCharacter));
         items = new RerollItems(new FilteredList<>(entities.getEntityList(), isItem));
         mobs = new RerollMobs(new FilteredList<>(entities.getEntityList(), isMob));
-        templates = new UniqueTemplateList();
+        templates = Template.getPresetTemplates();
     }
 
     public Reroll() {}
@@ -55,17 +57,8 @@ public class Reroll implements ReadOnlyReroll {
      */
     public void resetData(ReadOnlyReroll newData) {
         requireNonNull(newData);
-
         // Initialize all entities
         entities.resetData(newData.getEntities());
-        this.resetTemplates(newData.getTemplates());
-    }
-
-    /*** Reset templates */
-    public void resetTemplates(List<Template> newTemplates) {
-        requireNonNull(newTemplates);
-
-        templates.setTemplates(newTemplates);
     }
 
     @Override
@@ -89,8 +82,8 @@ public class Reroll implements ReadOnlyReroll {
     }
 
     @Override
-    public ObservableList<Template> getTemplates() {
-        return templates.asUnmodifiableObservableList();
+    public List<String> getTemplates() {
+        return templates.list();
     }
 
     // Entity level operations ===============
@@ -131,6 +124,10 @@ public class Reroll implements ReadOnlyReroll {
 
     public ObservableList<Entity> getMobList() {
         return mobs.getEntityList();
+    }
+
+    public Character createFromTemplate(Name newEntity, Name templateName) throws NoSuchElementException {
+        return this.templates.generateCharacter(newEntity, templateName);
     }
 
     @Override

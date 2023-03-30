@@ -7,6 +7,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -20,7 +21,7 @@ import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
-import seedu.address.model.entity.Template;
+import seedu.address.model.entity.Name;
 import seedu.address.model.util.ComposedPredicate;
 
 /**
@@ -37,7 +38,6 @@ public class ModelManager implements Model {
     private final Reroll reroll;
     private final UserPrefs userPrefs;
     private final FilteredList<Entity> filteredActive;
-
     private Entity currentSelectedEntity;
 
     /**
@@ -221,6 +221,7 @@ public class ModelManager implements Model {
         return result;
     }
 
+    //=========== Filtered Entity List Accessors =============================================================
     @Override
     public ObservableList<Entity> getFilteredEntityList() {
         return filteredActive;
@@ -259,19 +260,29 @@ public class ModelManager implements Model {
     public ObservableList<Entity> getListByClassification(String classification) {
         requireNonNull(classification);
         ObservableList<Entity> entities = null;
-        if (classification.equals("char")) {
+        switch (classification) {
+        case "char":
             entities = this.reroll.getCharList();
-        } else if (classification.equals("mob")) {
+            break;
+        case "mob":
             entities = this.reroll.getMobList();
-        } else if (classification.equals("item")) {
+            break;
+        case "item":
             entities = this.reroll.getItemList();
+            break;
+        default:
+            logger.info("What have you done");
         }
-        requireNonNull(entities);
         return entities;
     }
 
     @Override
-    public ObservableList<Template> getTemplates() {
-        return reroll.getTemplates();
+    public Character createFromTemplate(Name entityName, Name templateName) throws NoSuchElementException {
+        return this.reroll.createFromTemplate(entityName, templateName);
+    }
+
+    @Override
+    public List<String> getTemplates() {
+        return this.reroll.getTemplates();
     }
 }

@@ -14,7 +14,6 @@ import seedu.address.experimental.model.Reroll;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
-import seedu.address.model.entity.Template;
 
 /**
  * An Immutable Reroll that is serializable to JSON format.
@@ -24,7 +23,6 @@ public class JsonSerializableReroll {
     private final List<JsonAdaptedMob> mobs = new ArrayList<>();
     private final List<JsonAdaptedCharacter> characters = new ArrayList<>();
     private final List<JsonAdaptedItem> items = new ArrayList<>();
-    private final List<JsonAdaptedTemplate> templates = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableReroll} with the given entities.
@@ -32,12 +30,10 @@ public class JsonSerializableReroll {
     @JsonCreator
     public JsonSerializableReroll(@JsonProperty("mobs") List<JsonAdaptedMob> mobs,
                                   @JsonProperty("characters") List<JsonAdaptedCharacter> characters,
-                                  @JsonProperty("items") List<JsonAdaptedItem> items,
-                                  @JsonProperty("templates") List<JsonAdaptedTemplate> templates) {
+                                  @JsonProperty("items") List<JsonAdaptedItem> items) {
         this.mobs.addAll(mobs);
         this.characters.addAll(characters);
         this.items.addAll(items);
-        this.templates.addAll(templates);
     }
 
     /**
@@ -50,8 +46,6 @@ public class JsonSerializableReroll {
                 .map(x -> (Character) x).map(JsonAdaptedCharacter::new).collect(Collectors.toList()));
         items.addAll(source.getItems().getEntityList().stream().map(x -> (Item) x)
                 .map(JsonAdaptedItem::new).collect(Collectors.toList()));
-        templates.addAll(source.getTemplates().stream().map(JsonAdaptedTemplate::new)
-                .collect(Collectors.toList()));
     }
 
     /**
@@ -74,14 +68,6 @@ public class JsonSerializableReroll {
         for (JsonAdaptedItem jsonItem : items) {
             reroll.addEntity(jsonItem.toModelType());
         }
-
-        // Add all templates
-        List<Template> modelTemplates = new ArrayList<>();
-        for (JsonAdaptedTemplate jsonTemplate : templates) {
-            modelTemplates.add(jsonTemplate.toModelType());
-        }
-
-        reroll.resetTemplates(modelTemplates);
 
         return reroll;
     }

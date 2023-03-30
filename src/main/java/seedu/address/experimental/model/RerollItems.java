@@ -30,5 +30,4 @@ public class RerollItems implements ReadOnlyEntities {
                 || (other instanceof RerollItems
                 && items.equals(((RerollItems) other).items));
     }
-
 }
