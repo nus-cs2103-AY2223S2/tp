@@ -12,7 +12,9 @@ import java.time.format.DateTimeParseException;
  */
 public class InterviewDate extends InternshipApplicationAttribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Interview dates should be of the format 'yyyy-MM-dd hh:mm a'.";
+    public static final String MESSAGE_CONSTRAINTS = "Interview dates should be of the format 'yyyy-MM-dd hh:mm a',"
+            + " where 'a' can be AM or PM,"
+            + " and the date must be after the current date and time.";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
     public final LocalDateTime value;
 
@@ -35,7 +37,10 @@ public class InterviewDate extends InternshipApplicationAttribute {
             return true;
         }
         try {
-            LocalDateTime.parse(test, FORMATTER);
+            LocalDateTime dateTime = LocalDateTime.parse(test, FORMATTER);
+            if (dateTime.isBefore(LocalDateTime.now())) {
+                return false;
+            }
         } catch (DateTimeParseException e) {
             return false;
         }
