@@ -584,14 +584,6 @@ Additionally, you can use the `find` command to generate a list of contacts that
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: You can use this command if:
-* you want to find a specific person and know specific informataion about that person
-* you want to obtain a list of people that you want to use the other commands on
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
 :information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 * `find z/KEYWORD [MORE_KEYWORDS]​`
 
