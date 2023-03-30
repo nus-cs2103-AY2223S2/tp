@@ -98,7 +98,7 @@ public class WhereGotTimeTable extends UiPart<Region> {
                             setStyle("-fx-background-color: #71A89D");
                         } else if (item.equals(Status.BUSY)) {
                             setText(item.toString());
-                            setStyle("-fx-background-color: #C75A6E");
+                            setStyle("-fx-background-color: transparent");
                         } else {
                             setStyle("-fx-background-color: grey");
                         }

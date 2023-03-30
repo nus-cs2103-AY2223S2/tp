@@ -19,12 +19,12 @@
     -fx-text-fill: white;
 }
 
-.table-row-cell:empty {
+.table-row-cell {
     -fx-background: transparent;
 }
 
-.table-row-cell {
-    -fx-background: transparent;
+.table-view .column-header-background .label {
+    -fx-font-size: 9pt;
 }
 
 

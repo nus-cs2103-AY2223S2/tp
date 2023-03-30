@@ -380,4 +380,9 @@
     -fx-font-size: 11;
 }
 
+#table .table-view column-header-background .label {
+
+    -fx-font-size: 9pt;
+
+}
 
