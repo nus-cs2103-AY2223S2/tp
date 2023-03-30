@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.ui.CalendarCard;
 
 /**
  * Finds and lists all appointments whose timeslots contain the specified time.
@@ -33,6 +34,7 @@ public class FindAppointmentCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
+        CalendarCard.addAppointmentsToCalendar(model.getAppointmentList());
         return new CommandResult(
             String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW, model.getFilteredAppointmentList().size()));
     }

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.ui.CalendarCard;
 
 /**
  * Adds an appointment to a patient in the address book.
@@ -57,6 +58,7 @@ public class AddAppointmentCommand extends Command {
 
         if (model.hasPatientName(toAdd.getPatientName())) {
             model.addAppointment(toAdd);
+            CalendarCard.addAppointmentsToCalendar(model.getAppointmentList());
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
