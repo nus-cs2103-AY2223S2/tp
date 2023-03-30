@@ -141,7 +141,24 @@ The responsibilities of `Model` component,
 
 ### Patient component
 
-<!-- TODO -->
+**API** : [`Patient.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/patient/Patient.java)
+
+To represent a patient, `Patient` contains the Identity and Medical information using the following attributes:
+
+* Identity:
+  * The `name` of the patient
+  * The `phone` of the patient
+  * The `dateOfBirth` of the patient
+* Medical:
+  * The `bloodType` of the patient
+  * The `allergies` of the patient
+  * The `vaccines` of the patient
+
+`Patient` have limitations on its attributes according to the [Non-Functional Requirements](#non-functional-requirements).
+
+#### PatientManager
+
+On top of storing `Patient` objects, `PatientManager` ensures the patient's vaccination records are updated if the name of a vaccination changes. It also ensures that there is a maximum limit of `Patient` objects allowed to be stored according to the [Non-Functional Requirements](#non-functional-requirements).
 
 ### Vaccination component
 
@@ -160,7 +177,7 @@ To represent a vaccination, `VaxType` contains the following attributes:
 
 #### VaxTypeManager
 
-On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of `VaxType`. It also ensures that there are at most 30 `VaxType` objects stored.
+On top of storing `VaxType` objects, `VaxTypeManager` ensures the uniqueness of `VaxType`. It also ensures that there is a maximum limit of `VaxType` objects allowed to be stored according to the [Non-Functional Requirements](#non-functional-requirements).
 
 ### Appointment component
 
@@ -185,6 +202,38 @@ The `Storage` component is responsible for the reading and writing of the states
 ### Keyword component
 
 <!-- TODO -->
+
+#### Cascading delete
+
+The cascading delete feature is an important part of the VMS's design, as it helps to maintain data integrity and avoid orphaned records in the system. When a object is deleted from the VMS, any related records should also be deleted to ensure that the system remains consistent.
+
+##### Relationship between `Patient` and `Appointment` 
+
+When a `Patient` record is deleted from the system, any associated `Appointment` records will be deleted as well. This is because `Appointment` records are directly linked to a specific `Patient`, and it would not make sense to keep these records around if the `Patient` is no longer in the system. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
+
+##### Relationship between `VaxType` and `Appointment` 
+
+When a `VaxType` record is deleted from the system, any associated `Appointment` records will be deleted as well. This is because `VaxType` records are directly linked to a specific `Appointment`, and it would not make sense to keep these records around if the `VaxType` record is no longer offered by the VaxType center. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
+
+##### Relationship between `Patient` and `VaxType` 
+
+On the other hand, `Patient` records are not deleted when a `VaxType` record is deleted from the system. This is because `Patient` records should not be modified if a `VaxType` is no longer offered. If a `VaxType` record is deleted, the associated `Appointment` records will be deleted, but any `Patient` records associated with those `VaxType` records will not be updated in the system. This is because the `Patient` records may still be relevant, even if the `VaxType` is no longer in the system.
+
+#### Cascading Change
+
+The cascading change feature is an important part of the VMS's design, as it helps to maintain data integrity and avoid orphaned records in the system. When a object is changed in the VMS, any related records should also be changed to ensure that the system remains consistent.
+
+##### Relationship between `Patient` and `Appointment` 
+
+When a `Patient` record is updated in the system, any associated `Appointment` records will be updated as well. This is because `Appointment` records are directly linked to a specific `Patient`, and if the patient's information changes, it is important to update any related `appointment`s to reflect this change. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
+
+##### Relationship between `VaxType` and `Patient` 
+
+When a `VaxType` record is updated in the system, any associated `Patient` records will be updated as well. This is because `VaxType` records contain information about the `VaxType`s that a `patient` has taken, and if the `VaxType` information changes, it is important to update any related `patient` records to reflect this change. The implementation can be found in [`PatientManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/patient/PatientManager.java).
+
+##### Relationship between `VaxType` and `Appointment` 
+
+Additionally, when a `VaxType` record is updated in the system, any associated `Appointment` records will be updated as well. This is because `VaxType` records are directly linked to a specific `Appointment`, and if the `VaxType` information changes, it is important to update any related `appointment` records to reflect this change. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
 
 ### Common classes
 
