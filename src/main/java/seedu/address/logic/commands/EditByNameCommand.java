@@ -40,7 +40,7 @@ public class EditByNameCommand extends EditCommand {
         model.updateFilteredPersonList(predicate);
         List<Person> updatedList = model.getFilteredPersonList();
         if (updatedList.isEmpty()) {
-            return new CommandResult(String.format(Messages.MESSAGE_PERSON_NOT_FOUND));
+            return new CommandResult(Messages.MESSAGE_PERSON_NOT_FOUND);
         }
         if (updatedList.size() == 1) {
             Person personToEdit = updatedList.get(0);
@@ -65,6 +65,8 @@ public class EditByNameCommand extends EditCommand {
 
         // instanceof handles nulls
         if (!(other instanceof EditByNameCommand)) {
+
+            // state check
             return false;
         }
 
