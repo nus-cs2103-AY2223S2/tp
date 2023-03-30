@@ -278,7 +278,7 @@ Format: `unmark INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive integer 1, 2, 3...
 
-## Find Tasks assigned to a Person: `findp`
+## Finding Tasks assigned to a Person: `findp`
 
 Shows a list of tasks assigned to an existing person in OfficeConnect.
 
@@ -286,10 +286,10 @@ Format: `findp NAME`
 
 * Finds the list of tasks that are assigned to the person with the specified name.
 
-Examples:
+Example:
 - `findp John Cena` displays all tasks that are assigned to him.
 
-## Find Persons assigned to a Task: `findt`
+## Finding Persons assigned to a Task: `findt`
 
 Shows a list of persons assigned to an existing task in OfficeConnect.
 
@@ -297,66 +297,66 @@ Format: `findt TITLE`
 
 * Finds the list of persons who are assigned to the task with the specified title.
 
-Examples:
+Example:
 - `findt CS2103 TP` displays everyone who are assigned to this task.
 
-## List all Persons and Tasks: `listall`
+## Listing all Persons and Tasks: `listall`
 
 Shows a list of all personals and tasks in OfficeConnect.
 
 Format: `listall`
 
-## View Assigned People: `viewassignedp`
+## Viewing Assigned People: `viewassignedp`
 
 Displays a list of all persons who have been assigned to a task.
 
 Format: `viewassignedp`
 
-Examples:
+Example:
 - `viewassignedp` displays a list of all persons who have been assigned to a task.
 
 ---
 
-## View Assigned Tasks: `viewassignedt`
+## Viewing Assigned Tasks: `viewassignedt`
 
 Displays a list of all tasks that have been assigned to a person.
 
 Format: `viewassignedt`
 
-Examples:
+Example:
 - `viewassignedt` displays a list of all tasks that have been assigned to a person.
 
 ---
 
-## View Unassigned People: `viewunassignedp`
+## Viewing Unassigned People: `viewunassignedp`
 
 Displays a list of all persons who have not been assigned to any task.
 
 Format: `viewunassignedp`
 
-Examples:
+Example:
 - `viewunassignedp` displays a list of all persons who have not been assigned to any task.
 
 ---
 
-## View Unassigned Tasks: `viewunassignedt`
+## Viewing Unassigned Tasks: `viewunassignedt`
 
 Displays a list of all tasks that have not been assigned to any person.
 
 Format: `viewunassignedt`
 
-Examples:
+Example:
 - `viewunassignedt` displays a list of all tasks that have not been assigned to any person.
 
 ---
 
-## View Assigned: `viewassignedall`
+## Viewing Assigned: `viewassignedall`
 
 Displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
 
 Format: `viewassignedall`
 
-Examples:
+Example:
 - `viewassignedall` displays a list of all persons who have been assigned to a task and all tasks that have been assigned to a person.
 
 ---
@@ -367,12 +367,39 @@ Displays a list of all persons who have not been assigned to any task and all ta
 
 Format: `viewunassignedall`
 
-Examples:
+Example:
 - `viewunassignedall` displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
 
 ---
+### Viewing a person : `pi`
 
-## Filter Persons: `filterp tag/TAG`
+Shows a list of tasks assigned to a person according to the displayed index.
+
+Format: `pi INDEX`
+
+* Views the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Example:
+- `pi 2` displays person 2 and all tasks assigned to that person
+---
+
+### Viewing a task : `ti`
+
+Shows a list of persons assigned to a task according to the displayed index.
+
+Format: `ti INDEX`
+
+* Views the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Example:
+- `task 1` displays task 1 and all persons assigned to that task
+---
+
+## Filtering Persons: `filterp tag/TAG`
 
 Displays a list of all persons with the assigned tag. Only ONE tag can be keyed as input. 
 
@@ -419,6 +446,8 @@ _Details coming soon ..._
 | **View Assigned All**       | `viewassignedall`                                                                                                                                                            |
 | **View Assigned Persons**   | `viewassignedp`                                                                                                                                                              |
 | **View Assigned Tasks**     | `viewassignedt`                                                                                                                                                              |
+| **View Person**             | `pi INDEX`<br/> e.g. `pi 2`                                                                                                                                                  |
+| **View Task**               | `ti INDEX`<br/> e.g. `ti 2`                                                                                                                                                  |
 | **View Unassigned All**     | `viewunassignedall`                                                                                                                                                          |
 | **View Unassigned Persons** | `viewunassignedp`                                                                                                                                                            |
 | **View Unassigned Tasks**   | `viewunassignedt`                                                                                                                                                            |
