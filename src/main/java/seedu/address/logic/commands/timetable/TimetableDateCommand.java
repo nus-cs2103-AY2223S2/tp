@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import java.time.LocalDate;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -15,6 +16,8 @@ import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
  * Shows timetable of the requested week based on user's date input
  */
 public class TimetableDateCommand extends Command {
+    public static final CommandGroup COMMAND_GROUP = CommandGroup.TIMETABLE;
+
     public static final String COMMAND_WORD = "timetable_date";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -50,6 +53,13 @@ public class TimetableDateCommand extends Command {
 
         String showTimetableMessage = String.format(SHOWING_TIMETABLE_MESSAGE, jobDate.toString());
         return new CommandResult(showTimetableMessage, false, true, false, false, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TimetableDateCommand // instanceof handles nulls
+                && jobDate.equals(((TimetableDateCommand) other).jobDate));
     }
 
 }

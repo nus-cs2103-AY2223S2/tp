@@ -6,10 +6,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -46,7 +44,7 @@ public class ModelManager implements Model {
     private final SortedList<DeliveryJob> sortedDeliveryJobsList;
     private final ObservableList<Reminder> reminderList;
     private final Map<LocalDate, DeliveryList> weekJobListGroupedByDate;
-    private List<DeliveryJob> sortedDeliveryJobs;
+    private final SortedList<DeliveryJob> sortedDeliveryJobs;
     private LocalDate focusDate;
     private Map<LocalDate, DeliveryList> jobListGroupedByDate;
 
@@ -69,7 +67,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredPersons = new FilteredList<Person>(this.addressBook.getPersonList());
         this.filteredDeliveryJobs = new FilteredList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
-        this.sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
+        this.sortedDeliveryJobs = new SortedList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
         this.sortedDeliveryJobsList = new SortedList<DeliveryJob>(filteredDeliveryJobs);
         //updateSortedDeliveryJobListByDate();
         this.jobListGroupedByDate = new HashMap<LocalDate, DeliveryList>();
@@ -248,12 +246,13 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedDeliveryJobList(Comparator<DeliveryJob> sorter) {
-        sortedDeliveryJobs = new ArrayList<DeliveryJob>(this.deliveryJobSystem.getDeliveryJobList());
-        Collections.sort(sortedDeliveryJobs, sorter);
+        requireNonNull(sorter);
+        sortedDeliveryJobs.setComparator(sorter);
     }
 
     @Override
     public void updateSortedDeliveryJobListByComparator(Comparator<DeliveryJob> sorter) {
+        requireNonNull(sorter);
         sortedDeliveryJobsList.setComparator(sorter);
     }
 
@@ -336,6 +335,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFocusDate(LocalDate jobDate) {
+        requireNonNull(jobDate);
         this.focusDate = jobDate;
     }
 

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDate;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,6 +15,8 @@ import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
  * Formats full timetable instructions for every command for display.
  */
 public class TimetableCommand extends Command {
+    public static final CommandGroup COMMAND_GROUP = CommandGroup.TIMETABLE;
+
     public static final String COMMAND_WORD = "timetable";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -35,6 +38,12 @@ public class TimetableCommand extends Command {
         model.updateWeekDeliveryJobList(LocalDate.now());
 
         return new CommandResult(SHOWING_TIMETABLE_MESSAGE, false, true, false, false, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || other instanceof TimetableCommand; // instanceof handles nulls
     }
 }
 

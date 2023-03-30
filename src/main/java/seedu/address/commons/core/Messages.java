@@ -19,6 +19,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_JOB_ID = "The job id provided is invalid";
     public static final String MESSAGE_INVALID_JOB_DISPLAYED_INDEX = "The job index provided is invalid";
     public static final String MESSAGE_DELIVERY_JOB_LISTED_OVERVIEW = "%1$d jobs listed!";
-    public static final String COMMAND_NOT_ALLOW = "Command not allowed!";
+    public static final String COMMAND_NOT_ALLOW = "Command not allowed in this window!";
 
 }

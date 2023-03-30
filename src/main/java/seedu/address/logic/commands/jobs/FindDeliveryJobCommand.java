@@ -23,9 +23,16 @@ public class FindDeliveryJobCommand extends DeliveryJobCommand {
             + "Example: " + COMMAND_WORD + " ji/ <job_id>";
 
     private final Predicate<DeliveryJob> predicate;
+    private final String query;
 
-    public FindDeliveryJobCommand(Predicate<DeliveryJob> predicate) {
+    /**
+     * Constructs a FindDeliveryJobCommand.
+     * @param predicate
+     * @param query for feedback
+     */
+    public FindDeliveryJobCommand(Predicate<DeliveryJob> predicate, String query) {
         this.predicate = predicate;
+        this.query = query;
     }
 
     @Override
@@ -33,7 +40,8 @@ public class FindDeliveryJobCommand extends DeliveryJobCommand {
         requireNonNull(model);
         model.updateFilteredDeliveryJobList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_DELIVERY_JOB_LISTED_OVERVIEW,
+                String.format(
+                        Messages.MESSAGE_DELIVERY_JOB_LISTED_OVERVIEW + "\nQuery options:\n" + query,
                         model.getFilteredDeliveryJobList().size()),
                 false, false, false, false, false, false, false, true, false);
     }

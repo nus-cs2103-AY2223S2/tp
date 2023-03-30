@@ -239,7 +239,8 @@ public class DeliveryJob {
      * @return boolean
      */
     public boolean isScheduled() {
-        return getDeliveryDate().isPresent() && getDeliverySlot().isPresent();
+        return getDeliveryDate().isPresent() && getDeliverySlot().isPresent()
+                && getDeliverySlot().get().isPositive();
     }
 
     /**
@@ -267,24 +268,34 @@ public class DeliveryJob {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
+        builder.append("[Job detail]\n");
+        if (getJobId() != null) {
+            builder.append("Job Id: " + getJobId() + "\n");
+        }
 
-        String outString = "Job [%s]\n"
-                + "receipent: %s\n"
-                + "sender: %s\n"
-                + "deliver date: %s\n"
-                + "deliver slot: %s\n"
-                + "earn: $%s\n"
-                + "status: %s\n";
+        if (getSenderId() != null) {
+            builder.append("Sender Id: " + getSenderId() + "\n");
+        }
 
-        builder.append(
-                String.format(outString,
-                        getJobId(),
-                        getRecipientId(),
-                        getSenderId(),
-                        getDeliveryDate().isPresent() ? getDeliveryDate().get() : "",
-                        getDeliverySlot().isPresent() ? getDeliverySlot().get().getDescription() : "",
-                        getEarning().isPresent() ? getEarning().get() : "",
-                        getDeliveredStatus() ? "Delivered" : "Pending"));
+        if (getRecipientId() != null) {
+            builder.append("Recipient Id: " + getRecipientId() + "\n");
+        }
+
+        if (getDeliveryDate().isPresent()) {
+            builder.append("Delivery Date: " + getDeliveryDate().get() + "\n");
+        }
+
+        if (getDeliverySlot().isPresent()) {
+            builder.append("Delivery Slot: " + getDeliverySlot().get() + "\n");
+        }
+
+        if (getEarning().isPresent()) {
+            builder.append("Earning: " + getEarning().get() + "\n");
+        }
+
+        if (getDeliveredStatus() != null) {
+            builder.append("Status: " + (getDeliveredStatus() ? "Delivered" : "Pending") + "\n");
+        }
 
         return builder.toString();
     }
@@ -376,12 +387,22 @@ public class DeliveryJob {
         }
 
         /**
-         * Sets deliverySlot.
+         * Clears deliverySlot.
          *
          * @return
          */
         public Builder clearDeliverySlot() {
             this.deliverySlot = Optional.of(DeliverySlot.placeholder());
+            return this;
+        }
+
+        /**
+         * Clears deliveryDate.
+         *
+         * @return
+         */
+        public Builder clearDeliveryDate() {
+            this.deliveryDate = Optional.of(DeliveryDate.placeholder());
             return this;
         }
 

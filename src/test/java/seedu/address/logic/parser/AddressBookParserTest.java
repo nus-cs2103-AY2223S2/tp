@@ -24,6 +24,9 @@ import seedu.address.logic.commands.person.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.person.FindCommand;
 import seedu.address.logic.commands.person.ListCommand;
 import seedu.address.logic.commands.timetable.TimetableCommand;
+import seedu.address.logic.commands.timetable.TimetableCompletedCommand;
+import seedu.address.logic.commands.timetable.TimetableDateCommand;
+import seedu.address.logic.commands.timetable.TimetableUnscheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -88,6 +91,28 @@ public class AddressBookParserTest {
     public void parseCommand_timetable() throws Exception {
         assertTrue(parser.parseCommand(TimetableCommand.COMMAND_WORD) instanceof TimetableCommand);
         assertTrue(parser.parseCommand(TimetableCommand.COMMAND_WORD + " 3") instanceof TimetableCommand);
+    }
+
+    @Test
+    public void parseCommand_timetableDate() throws Exception {
+        assertTrue(parser.parseCommand(TimetableDateCommand.COMMAND_WORD
+                + " date/2023-03-03") instanceof TimetableDateCommand);
+        assertTrue(parser.parseCommand(TimetableDateCommand.COMMAND_WORD
+                + " date/2023-03-03") instanceof TimetableDateCommand);
+    }
+
+    @Test
+    public void parseCommand_timetableUnschedule() throws Exception {
+        assertTrue(parser.parseCommand(TimetableUnscheduleCommand.COMMAND_WORD) instanceof TimetableUnscheduleCommand);
+        assertTrue(parser.parseCommand(TimetableUnscheduleCommand.COMMAND_WORD
+                + " 3") instanceof TimetableUnscheduleCommand);
+    }
+
+    @Test
+    public void parseCommand_timetableComplete() throws Exception {
+        assertTrue(parser.parseCommand(TimetableCompletedCommand.COMMAND_WORD) instanceof TimetableCompletedCommand);
+        assertTrue(parser.parseCommand(TimetableCompletedCommand.COMMAND_WORD
+                + " 3") instanceof TimetableCompletedCommand);
     }
 
     @Test

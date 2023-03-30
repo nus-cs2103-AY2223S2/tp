@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,6 +15,7 @@ import seedu.address.model.reminder.Reminder;
  * Adds a reminder to the address book.
  */
 public class AddReminderCommand extends Command {
+    public static final CommandGroup COMMAND_GROUP = CommandGroup.REMINDER;
 
     public static final String COMMAND_WORD = "add_reminder";
 
