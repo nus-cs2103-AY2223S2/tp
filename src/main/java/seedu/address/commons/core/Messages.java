@@ -10,6 +10,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_GROUPS_LISTED_OVERVIEW = "%1$d groups listed!";
+    public static final String MESSAGE_INVALID_DATA = "Invalid data found!";
+    public static final String MESSAGE_NO_IMPORT = "No import data found!";
+    public static final String MESSAGE_IMPORT_SIZE_WRONG = "Invalid size of import!";
 
     public static final String MESSAGE_UNKNOWN_ISOLATED_EVENT = "No such event in isolated event list";
     public static final String MESSAGE_INVALID_ISOLATED_EVENT_LIST = "No such index in the isolated event list";
