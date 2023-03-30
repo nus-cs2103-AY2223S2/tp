@@ -39,6 +39,10 @@ public class ExpenseList implements Iterable<Expense> {
         internalListOfExpenses.remove(toRemove);
     }
 
+    public void set(int index, Expense newExpense) {
+        internalListOfExpenses.set(index, newExpense);
+    }
+
     /**
      * Replace expenses with {@code target} category with Misc object
      * @param target
@@ -97,6 +101,14 @@ public class ExpenseList implements Iterable<Expense> {
     public void clear() {
         internalListOfExpenses.clear();
         internalUnmodifiableList.clear();
+    }
+
+    /**
+     * Sorts the internal list of expenses by date.
+     */
+    public void sortList() {
+        internalListOfExpenses.sort((o1, o2) -> o1.getDate().isAfter(o2.getDate()) ? -1
+                : o1.getDate().isEqual(o2.getDate()) ? 0 : 1);
     }
 
     /**

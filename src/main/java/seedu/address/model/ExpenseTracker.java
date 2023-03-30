@@ -5,12 +5,16 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UniqueCategoryList;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.ExpenseList;
+import seedu.address.model.expense.RecurringExpenseList;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * Wraps all data at the expense tracker level
@@ -21,7 +25,8 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     private static final MiscellaneousCategory MISCELLANEOUS_CATEGORY = new MiscellaneousCategory();
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
-
+    private final RecurringExpenseList recurringGenerators;
+    private final ObjectProperty<Budget> simpleBudget;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -36,6 +41,8 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     {
         categories = new UniqueCategoryList();
         expenses = new ExpenseList();
+        simpleBudget = new SimpleObjectProperty<>(new Budget(0));
+        recurringGenerators = new RecurringExpenseList();
     }
 
     public ExpenseTracker() {
@@ -66,6 +73,14 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         this.expenses.setExpenseList(expenses);
     }
 
+    public void setBudget(Budget budget) {
+        this.simpleBudget.set(budget);
+    }
+
+    public void setRecurringExpenseGenerators(List<RecurringExpenseManager> recurringExpenseGenerators) {
+        this.recurringGenerators.setRecurringExpenseList(recurringExpenseGenerators);
+    }
+
     /**
      * Resets the existing data of this {@code ExpenseTracker} with {@code newData}.
      */
@@ -73,6 +88,30 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         requireNonNull(newData);
         setExpenses(newData.getExpenseList());
         setCategories(newData.getCategoryList());
+        setBudget(newData.getBudget());
+        setRecurringExpenseGenerators(newData.getRecurringExpenseGenerators());
+        generateRetroactiveExpenses();
+        expenses.sortList();
+        cleanupExpiredRecurringExpenses();
+    }
+
+    /**
+     * Adds expenses retroactively for recurring expenses which have starting dates that need to be added.
+     */
+    public void generateRetroactiveExpenses() {
+        for (RecurringExpenseManager generators : recurringGenerators.getRecurringExpenseList()) {
+            for (Expense expense : generators.getExpenses()) {
+                addExpense(expense);
+            }
+        }
+        expenses.sortList();
+    }
+
+    /**
+     * Removes RecurringExpenseManager objects that are expired.
+     */
+    public void cleanupExpiredRecurringExpenses() {
+        recurringGenerators.cleanupExpiredGenerators();
     }
 
     //// category-level operations
@@ -149,6 +188,20 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     }
 
     @Override
+    public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
+        return recurringGenerators.asUnmodifiableList();
+    }
+    @Override
+    public Budget getBudget() {
+        return this.simpleBudget.get();
+    }
+
+    @Override
+    public ObjectProperty<Budget> getBudgetForStats() {
+        return this.simpleBudget;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ExpenseTracker // instanceof handles nulls
@@ -156,13 +209,32 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
                         && categories.equals(((ExpenseTracker) other).categories));
     }
 
-
+    /**
+     * Adds an expense to the expense tracker.
+     * @param expense to be added.
+     */
     public void addExpense(Expense expense) {
         expenses.add(expense);
+        expenses.sortList();
     }
 
+    /**
+     * Deletes an expense from the expense tracker.
+     * @param expense to be deleted.
+     */
     public void removeExpense(Expense expense) {
         expenses.remove(expense);
+        expenses.sortList();
+    }
+
+    /**
+     * Sets an expense at the specified index.
+     * @param index index to be used.
+     * @param expense expense to be used to overwrite the previous expense.
+     */
+    public void setExpense(int index, Expense expense) {
+        expenses.set(index, expense);
+        expenses.sortList();
     }
 
     /**
@@ -176,6 +248,10 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         categories.clear();
     }
 
+    public void clearRecurringExpense() {
+        recurringGenerators.clear();
+    }
+
     /**
      * Returns true if the given expense exists in the list.
      * @param expense The expense to check for existence in the list.
@@ -184,5 +260,18 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     public boolean hasExpense(Expense expense) {
         requireNonNull(expense);
         return expenses.contains(expense);
+    }
+
+    public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        return recurringGenerators.contains(recurringExpenseManager);
+    }
+
+    public void addRecurringGenerator(RecurringExpenseManager generator) {
+        recurringGenerators.addRecurringExpense(generator);
+    }
+
+
+    public void removeRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        recurringGenerators.removeRecurringExpense(recurringExpenseManager);
     }
 }

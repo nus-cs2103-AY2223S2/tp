@@ -1,91 +1,44 @@
 {
   "categories" : [ {
-    "categoryName" : "fruits",
-    "summary" : ""
-  }, {
-    "categoryName" : "entertainment",
-    "summary" : ""
-  }, {
-    "categoryName" : "food",
-    "summary" : ""
-  }, {
-    "categoryName" : "tech",
-    "summary" : ""
-  }, {
-    "categoryName" : "wqfoavj",
-    "summary" : ""
-  }, {
-    "categoryName" : "hello",
-    "summary" : ""
-  }, {
-    "categoryName" : "qvneivn",
-    "summary" : ""
-  }, {
-    "categoryName" : "wefjw",
-    "summary" : ""
-  }, {
-    "categoryName" : "HelloTest",
-    "summary" : "abcdefg"
-  }, {
-    "categoryName" : "a",
-    "summary" : ""
-  }, {
-    "categoryName" : "test",
-    "summary" : "test"
-  }, {
-    "categoryName" : "1",
-    "summary" : ""
-  }, {
-    "categoryName" : "2",
+    "categoryName" : "t",
     "summary" : ""
   } ],
-  "expenses" : [ {
-    "name" : "apples",
-    "amount" : "5.0",
-    "date" : "2023-03-10",
-    "category" : {
-      "categoryName" : "fruits",
+  "expenses" : [ ],
+  "budget" : {
+    "amount" : "0.0"
+  },
+  "recurringGenerators" : [ {
+    "expenseName" : "fw",
+    "expenseAmount" : "2.0",
+    "expenseCategory" : {
+      "categoryName" : "t",
       "summary" : ""
-    }
+    },
+    "nextExpenseDate" : "2023-03-01",
+    "startDate" : "2023-03-01",
+    "endDate" : "2023-03-10",
+    "recurringExpenseType" : "MONTHLY"
   }, {
-    "name" : "chicken rice",
-    "amount" : "8.0",
-    "date" : "2023-02-02",
-    "category" : {
-      "categoryName" : "food",
+    "expenseName" : "fw",
+    "expenseAmount" : "2.0",
+    "expenseCategory" : {
+      "categoryName" : "t",
       "summary" : ""
-    }
+    },
+    "nextExpenseDate" : "2023-04-01",
+    "startDate" : "2023-03-01",
+    "endDate" : "null",
+    "recurringExpenseType" : "MONTHLY"
   }, {
-    "name" : "hello",
-    "amount" : "340.0",
-    "date" : "2023-03-22",
-    "category" : {
-      "categoryName" : "food",
+    "expenseName" : "fw",
+    "expenseAmount" : "3.0",
+    "expenseCategory" : {
+      "categoryName" : "t",
       "summary" : ""
-    }
-  }, {
-    "name" : "filteredout",
-    "amount" : "2.0",
-    "date" : "2023-03-16",
-    "category" : {
-      "categoryName" : "a",
-      "summary" : ""
-    }
-  }, {
-    "name" : "test1",
-    "amount" : "2.0",
-    "date" : "2023-03-28",
-    "category" : {
-      "categoryName" : "1",
-      "summary" : ""
-    }
-  }, {
-    "name" : "test2",
-    "amount" : "2.0",
-    "date" : "2023-03-28",
-    "category" : {
-      "categoryName" : "2",
-      "summary" : ""
-    }
+    },
+    "nextExpenseDate" : "2023-04-01",
+    "startDate" : "2023-03-01",
+    "endDate" : "null",
+    "recurringExpenseType" : "MONTHLY"
   } ]
 }
