@@ -143,7 +143,7 @@ public class UniqueModuleList implements Iterable<Module> {
                 obj = m.getCredit().toString();
                 break;
             case TAG:
-                obj = m.getTags().toString();
+                obj = new Tags(m.getTags()).toString();
                 break;
             case CODE:
                 obj = m.getCodePrefix().toString();
