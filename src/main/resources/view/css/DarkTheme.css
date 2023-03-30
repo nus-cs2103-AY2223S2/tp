@@ -103,8 +103,6 @@
     -fx-text-fill: #FFFFFF;
     -fx-wrap-text: true;
     -fx-min-width: 250;
-    -fx-max-width: 250;
-    -fx-pref-width: 250;
 }
 
 /*
