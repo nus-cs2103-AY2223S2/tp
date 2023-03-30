@@ -45,16 +45,16 @@ public class ImportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         try {
-            ObservableList<Recipe> importedRecipes = importManager.execute();
-            if (importedRecipes == null) {
+            ObservableList<Recipe> importedRecipeList = importManager.execute();
+            if (importedRecipeList == null) {
                 throw new CommandException(EMPTY_COMMAND);
             }
             // Validate uniqueness, add to model
             ObservableList<Recipe> currentRecipes = model.getFilteredRecipeList();
-            if (importedRecipes.stream().anyMatch(currentRecipes::contains)) {
+            if (importedRecipeList.stream().anyMatch(currentRecipes::contains)) {
                 throw new CommandException(DUPLICATE_VALUES);
             }
-            importedRecipes.forEach(model::addRecipe);
+            importedRecipeList.forEach(model::addRecipe);
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
         }
