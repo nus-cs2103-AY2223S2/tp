@@ -327,24 +327,40 @@ CLI - `switch`
 Mouse - click the tab.
 
 
-### 16. Export the student information out : `export`
+### 16. Export the student data out : `export`
 
-Exports all the student's infomration. User can export with or without specific the path.
-If path is never being specificed, default exported position will be under the _home folder_.
-The export file name is `data.json`.
+Exports all the student's data out. User can export with or without specifing the path.
+The default exported position for CLI will be under the _home folder_.
+The exported file name is `data.json`.
 
 Format: There we support using CLI or mouse.
 CLI - `export [FILE_PATH]`
-Mouse - Click the "File" on the top menu, then choose "Import" under the drop down list. An export window will pop up, the user is required to specify which folder to store the exported file.
+Mouse - Click the "File" on the top menu, then choose "Export" under the drop-down list. An export window will pop up, the user is required to specify which folder to store the exported file.
 
 Examples:
-* For windows user:
-    * `export p/C:\bin` will export the file to bin folder under C disk. 
-    * `export` will export the file under the _home folder_.
-* For mac user:
-    * `export p/C:\bin` will export the file to bin folder under C disk. 
-    * `export` will export the file under the _home folder_.
-    
+* `export` will export the file under the _home folder_.
+
+* For Windows user
+  * `export` p/C:\bin export `data.json` to bin folder under C disk.
+* For Mac user
+  * `export` p//Users/username/Desktop export `data.json` to desktop.
+
+
+### 17. Import the student data in : `import`
+
+Imports student data into the application. User can import the file by dragging the file in or choose file path.
+The imported file must be in `.json` format.
+
+Format: There we support using CLI or mouse.
+CLI - `import FILE_PATH`
+Mouse - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
+
+Examples:
+* For Windows user
+  * `import` p/C:\bin\data.json
+* For Mac user
+  * `import` p//Users/carrieli/Desktop/data.json.
+
 
 ### Saving the data
 
