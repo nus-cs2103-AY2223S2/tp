@@ -241,9 +241,7 @@ Adds a new Patient type as defined in the command into the system. If any of the
 
 <pre>
 patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var> --a <var>ALLERGIES</var>... --v <var>VACCINES</var>...
-patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var>
+    --b <var>BLOODTYPE</var> [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
 </pre>
 
 * <code><var>PATIENT_NAME</var></code> : `<name>`
@@ -258,6 +256,38 @@ patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BI
 * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
 * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
 
+Output:
+
+```text
+[INFO] New patient added: John Doe
+```
+
+![Patient Add Detail Card](images/patient/ug/PatientAddDetailCard.png)
+
+#### `detail` - Displays the detail of a patient
+
+##### Syntax
+
+<pre>
+patient detail <var>patient</var>
+</pre>
+
+##### Example
+
+Example assumes none of the default start-up patients are deleted yet.
+
+```text
+patient detail 1
+```
+
+Output:
+
+```text
+[INFO] Detailing patient: #0001 Alex Yeoh
+```
+
+![Patient Detail Example](images/patient/ug/PatientDetailExample.png)
+
 #### `list` - List all patients
 
 Resets the view of the patient pane to display all the Patients. Useful command after using the find command.
@@ -267,6 +297,14 @@ Resets the view of the patient pane to display all the Patients. Useful command 
 ```text
 patient list
 ```
+
+Output:
+
+```text
+[INFO] Listed all patients
+```
+
+![Patient List Example](images/patient/ug/PatientListExample.png)
 
 #### `find` - Locate a patient
 
@@ -285,17 +323,23 @@ patient find --name <string> --phone <phone-number> --d <date> \
 * `patient find john`
 * `patient find --name john --b B+`
 
-#### `update` - Update a patient
+Output:
 
-Updates the Patient using it's PATIENT_ID.
+```text
+[INFO] 1 patients listed!
+```
+
+![Patient Find Example](images/patient/ug/PatientFindExample.png)
+
+#### `edit` - Edit a patient
+
+Updates the Patient using it's PATIENT_ID. It will update the attributes of the specified patient to the attributes provided. If any of the optional arguments are omitted, the values will not be updated.
 
 ##### Syntax
 
 <pre>
 patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var> --a <var>ALLERGIES</var>... --v <var>VACCINES</var>...
-patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var>
+    --b <var>BLOODTYPE</var> [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
 </pre>
 
 * <code><var>PATIENT_NAME</var></code> : `<name>`
@@ -304,11 +348,51 @@ patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</v
 * <code><var>BLOODTYPE</var></code> : `<bloodType>`
 * <code><var>ALLERGIES</var></code> : `<group-name>`
 * <code><var>VACCINES</var></code> : `<group-name>`
+* <code><var>IS_SET</var></code> : `<boolean>`
+  * `true` to replace all list-like patient attributes (**ALLERGIES**, and **VACCINES**) with the one specified in the command or `false` to append them.
+  * It is `false` by default.
 
 ##### Example
 
-* `patient edit 5 --n John Doee --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
-* `patient edit 5 --n John Doee`
+Basic edit, changing patient's attributes that is not related to list-like attributes
+
+* `patient edit 7 --n John Deer`
+
+Output:
+
+```text
+[INFO] Edited Patient: John Deer
+```
+
+![Patient Edit Detail Card Default](images/patient/ug/PatientEditDetailCardDefault.png)
+
+###### Append example
+
+Appending patient's allergies and vaccination details
+
+* `patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax`
+
+Output:
+
+```text
+[INFO] Edited Patient: John Deere
+```
+
+![Patient Edit Detail Card Append](images/patient/ug/PatientEditDetailCardAppend.png)
+
+###### Set example
+
+Setting patient's allergies and vaccination details, values prior will be overridden
+
+* `patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --set true --a grass --v protovax --set true`
+
+Output:
+
+```text
+[INFO] Edited Patient: John Der
+```
+
+![Patient Edit Detail Card Set](images/patient/ug/PatientEditDetailCardSet.png)
 
 #### `delete` - Delete a patient
 
@@ -322,7 +406,13 @@ patient delete <PATIENT_ID>
 
 ##### Example
 
-* `patent delete 5`
+* `patent delete 7`
+
+Output:
+
+```text
+[INFO] Deleted Patient: John Der
+```
 
 #### `clear` - Delete a patient
 
@@ -337,6 +427,12 @@ patient clear
 ##### Example
 
 * `patent clear`
+
+Output:
+
+```text
+[INFO] Patients successfully cleared
+```
 
 ### `vaccination` - Vaccination functionalities
 
@@ -394,7 +490,7 @@ Output:<br>
 [INFO] Vaccination: ABC VAX added
 ```
 
-![Vaccination Add Detail Card](images/VaccinationAddDetailCard.png)
+![Vaccination Add Detail Card](images/vaccination/ug/VaccinationAddDetailCard.png)
 
 ##### Restrictions
 
@@ -441,7 +537,7 @@ Output:<br>
 [INFO] Vaccination: ABC VAX updated
 ```
 
-![Vaccination Edit Detail Card 1](images/VaccinationEditDetailCard_1.png)
+![Vaccination Edit Detail Card 1](images/vaccination/ug/VaccinationEditDetailCard_1.png)
 
 ###### Append example
 
@@ -455,7 +551,7 @@ Output:<br>
 [INFO] Vaccination: ABC VAX updated
 ```
 
-![Vaccination Edit Detail Card 2](images/VaccinationEditDetailCard_2.png)
+![Vaccination Edit Detail Card 2](images/vaccination/ug/VaccinationEditDetailCard_2.png)
 
 ##### Restrictions
 
@@ -565,7 +661,7 @@ Output:<br>
 [INFO] 3 vaccinations listed!
 ```
 
-![Vaccination Find Example](images/VaccinationFindExample.png)
+![Vaccination Find Example](images/vaccination/ug/VaccinationFindExample.png)
 
 ##### Restrictions
 
@@ -605,7 +701,7 @@ Output:<br>
 [INFO] Detailing vaccination: Dose 1 (Moderna)
 ```
 
-![Vaccination Detail Example](images/VaccinationDetailExample.png)
+![Vaccination Detail Example](images/vaccination/ug/VaccinationDetailExample.png)
 
 ##### Restrictions
 
