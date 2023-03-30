@@ -3,19 +3,24 @@ package seedu.dengue.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.dengue.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.dengue.commons.core.GuiSettings;
 import seedu.dengue.commons.core.LogsCenter;
+import seedu.dengue.commons.exceptions.DataConversionException;
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.overview.Overview;
 import seedu.dengue.model.overview.PostalOverview;
 import seedu.dengue.model.person.Person;
+import seedu.dengue.storage.CsvDengueHotspotStorage;
 import seedu.dengue.storage.temporary.TemporaryMemory;
 
 /**
@@ -161,7 +166,7 @@ public class ModelManager implements Model {
     }
 
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Person List Accessors =============================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -191,13 +196,40 @@ public class ModelManager implements Model {
         this.overview = newOverview;
     }
 
-    //=========== Sort Stuff =============================================================
+    //=========== Sort Stuff =================================================================
 
+    @Override
     public void sort(List<Person> sortedList) {
         dengueHotspotTracker.setPersons(sortedList);
     }
 
-    //=========== Misc Stuff =============================================================
+    //=========== Import/Export Csv Stuff ====================================================
+
+    @Override
+    public void importCsv(Path filePath) {
+        DengueHotspotTracker tempDht = new DengueHotspotTracker();
+        tempDht.setPersons(filteredPersons);
+        CsvDengueHotspotStorage toRead = new CsvDengueHotspotStorage(filePath);
+        try {
+            toRead.readDengueHotspotTracker();
+        } catch (DataConversionException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void exportCsv(Path filePath) {
+        DengueHotspotTracker tempDht = new DengueHotspotTracker();
+        tempDht.setPersons(filteredPersons);
+        CsvDengueHotspotStorage toSave = new CsvDengueHotspotStorage(filePath);
+        try {
+            toSave.saveDengueHotspotTracker(tempDht);
+        } catch (IOException | CsvRequiredFieldEmptyException | CsvDataTypeMismatchException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //=========== Misc Stuff =================================================================
 
     @Override
     public boolean equals(Object obj) {

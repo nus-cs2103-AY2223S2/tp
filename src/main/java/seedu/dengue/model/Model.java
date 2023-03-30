@@ -124,4 +124,8 @@ public interface Model {
      * @throws CommandException if sort type not specified.
      */
     void sort(List<Person> sortedList);
+
+    void importCsv(Path filePath);
+
+    void exportCsv(Path filePath);
 }

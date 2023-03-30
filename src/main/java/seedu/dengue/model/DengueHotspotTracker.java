@@ -129,6 +129,6 @@ public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
 
         copy.setPersons(personList);
         return copy;
-
     }
+
 }
