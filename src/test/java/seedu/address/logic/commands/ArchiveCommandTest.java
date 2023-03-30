@@ -81,7 +81,7 @@ public class ArchiveCommandTest {
         ArchiveCommand archiveFirstCommand = new ArchiveCommand(INDEX_FIRST_PET);
         ArchiveCommand archiveSecondCommand = new ArchiveCommand(INDEX_THIRD_PET);
 
-//         same object -> returns true
+        // same object -> returns true
         assertEquals(archiveFirstCommand, archiveSecondCommand);
 
         // same values -> returns true
