@@ -30,31 +30,53 @@ PowerCards (PCs) is a **desktop app for managing contacts, optimized for use via
 
 # Features
 
+## Command Components
+
+This section explains some common components in command format. 
+
+| Component                                                                                                       	 | Format                                                                                               	 | Example                                                                                                                                                                                                                                          	                               |
+|-------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Prefix**. <br><br>They are used to separate the different parameters of a command.                           	  | `lower_case\`                                                                                        	 | `q\`, `a\`, `t\`<br><br>Note that prefixes cannot have spaces: `q \` will not be recognized.                                                                                                                                                     	                               |
+| **Parameters**. <br><br>You will need to supply the parameters to complete certain commands.                   	  | `UPPER_CASE`                                                                                         	 | `QUESTION`, `ANSWER` <br><br> Suppose `add q\QUESTION` is a valid command to add a card. <br><br>You can simply replace `QUESTION` with `What is photosynthesis` to create a card with the given question.<br>                                                                 	 |
+| **Optional prefixes and parameters**.<br><br>Certain commands are valid without these prefixes and parameters. 	  | `[lower_case\UPPER_CASE]`                                                                            	 | `[t\TAG]` <br><br> Suppose `add q\QUESTION [t\TAG]` is a valid command to add a card.<br><br>The first prefix-parameter `q\QUESTION` is compulsory.<br><br>The second prefix-parameter `t\TAG` is optional.                                                         	            |
+| **Multi Parameters**<br><br><br>These are parameters that can appear **multiple times**.                       	  | `UPPER_CASE...`<br><br>`[UPPER_CASE]...`	                                                              | Supposed the command `findCards KEYWORD...` filters all the cards based on the keywords specified.<br><br>This means that the parameter `KEYWORD` can:<br>- Appear one time: `findCards cell`<br>- Appear multiple times: `findCards cell biology` 	                             |
+| **Flags**                                                                                                 	       | `-lower_case`                                   	                                                      | `-e`, `-m`, `-h`<br>                                                                                                                                                                                                                             	                               |
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add q\QUESTION`, `QUESTION` is a parameter which can be used as `add q\What is chemical symbol for Oxygen?`.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `d\science d\chemsitry`, only `d\chemsitry` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be considered.
+  e.g. if you specify `q\What is photosynthesis q\What is a cell`, only `q\What is a cell` will be considered.
+- Extraneous parameters succeeding commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored. e.g. if the command specified is `help 123`, it will be interpreted as `help`.
 
 </div>
 
---------------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------------------------------
+## Key Terms
+
+### Deck 
+A deck refers to a collection of flashcards that are organized together based on a specific topic or subject. 
+For example, you might create a deck of flashcards to study for a math test, with each card containing a different math problem and solution. 
+
+### Card
+A card refers to a flashcard within a deck. A card contains a question or prompt, and the corresponding answer or solution. 
+During a review session, the card will only show the question, encouraging you to actively recall the answer. 
+Once you attempt the question, you can command the card to reveal the answer and test your knowledge.
+
+ 
 ## Main Mode
 
-Main mode will be started by default when the program is launched. 
-Main mode refers to when no deck is selected and the user wishes to manage their list of decks.
+Welcome to the Main Mode of the PowerCards application! This is the default mode you will see when you open the app. 
+
+In the Main Mode, you can quickly and easily create new decks, add new cards to your decks, delete and modify existing cards or decks as needed, and more. 
+
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+If you are unsure about how to use PowerCard, you can always execute this command. 
+This command creates a pop-up with a link to this User Guide, where you can access clear and concise instructions for each commands and features of the app.
 
 [//]: # (![help message]&#40;images/helpMessage.png&#41;)
 
@@ -62,26 +84,42 @@ Format: `help`
 
 ### Adding a new Deck : `addDeck`
 
-Adds a new deck.
+Before you can add any cards, you must first create a deck. Creating a deck is done through the simple command below. 
 
 Format: `addDeck DECK_NAME`
+- `addDeck` is the command name.
+- `DECK_NAME` is the name of the deck you want to create. 
+  - Deck name cannot be duplicated. e.g If you already have a deck named Science, you cannot create another Science deck.
+  - You do not need any prefix tag before deck name.
 
 Examples:
-* `addDeck Science`
+* `addDeck Science` will create a deck titled Science.
 
 ### Editing a Deck : `editDeck`
 
-Edits the name of a deck.
+You just created a deck, but you realised you made a typo! Fret not, you can easily edit the name of the deck with this command. 
+Editing a deck name will not affect the cards stored inside it!
 
 Format: `editDeck INDEX d\ DECK_NAME`
+- `editDeck` is the command word.
+- `INDEX` is the index of the deck you want to edit. 
+  - The index refers to the index number shown in the displayed deck list. The index **must be a positive integer** 1, 2, 3, …​
+- `d\` is the prefix tag.
+- `DECK_NAME` is the new name you want to assign to the specified deck.
+  - The new deck name cannot be the name of an existing deck.
+
+Example: `editDeck 1 Chemistry` will edit the name of the first deck in the deck list to Chemistry.
 
 ### Deleting a Deck : `deleteDeck`
 
-Deletes an existing Deck in the masterDeck.
+Once you have no use for a deck, you can delete the deck and all the cards within it with this command. 
+Be careful, as a deck once deleted cannot be retrieved! 
 
 Format: `deleteDeck INDEX`
+- `deleteDeck` is the command.
+- `INDEX` is the index of the deck in the deck list.
 
-* Deletes the card at the specified `INDEX`. The index refers to the index number shown in the displayed card list. The index **must be a positive integer** 1, 2, 3, …​
+Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1. 
 
 ### Selecting a Deck : `selectDeck`
 
