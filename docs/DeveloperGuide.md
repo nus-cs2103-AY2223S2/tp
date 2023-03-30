@@ -8,13 +8,12 @@ title: Developer Guide
 - [Glossary](#glossary)
 - [Acknowledgements](#acknowledgements)
 - [Setting up](#setting-up-getting-started)
-- [Design](#design)
-  - [Architecture](#architecture)
+- [Architecture](#architecture)
+  - [Common Component](#commons-component)
   - [UI Component](#ui-component)
   - [Logic Component](#logic-component)
   - [Model Component](#model-component)
   - [Storage Component](#storage-component)
-  - [Common Classes](#common-classes)
 - [Implementation](#implementation)
   - [Model](#model-implementation)
     - [Person Class](#person-class)
@@ -272,7 +271,7 @@ Each of the four core components (also shown in the diagram above),
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class, as illustrated in the (partial) class diagram below.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** Implementing the core component's API through an interface prevent outside component's from being coupled to it.
+:information_source: **Note:** Implementing the core component's API through an interface prevents outside component from being coupled to it.
 </div>
 
 <img src="images/ComponentManagers.png" width="300" />
