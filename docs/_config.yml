@@ -13,7 +13,5 @@ github_icon: "images/github-icon.png"
 
 plugins:
   - jemoji
-  
 minima:
   skin: dark
-  
