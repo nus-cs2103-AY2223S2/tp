@@ -381,6 +381,7 @@
     -fx-font-size: 12px;
     -fx-padding: 5 0 5 0;
     -fx-background-color: #E9EDC9;
+    -fx-text-fill: #3D4A5A;
 }
 
 #overviewContent .content {

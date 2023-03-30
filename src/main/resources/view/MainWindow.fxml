@@ -52,8 +52,8 @@
             <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-          <StackPane fx:id="overviewDisplayPlaceholder" minWidth="300" prefWidth="300" HBox.hgrow="ALWAYS">
-          </StackPane>
+          <StackPane fx:id="overviewDisplayPlaceholder" styleClass="pane-with-border"
+                     minWidth="300" prefWidth="300" HBox.hgrow="ALWAYS" />
         </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
