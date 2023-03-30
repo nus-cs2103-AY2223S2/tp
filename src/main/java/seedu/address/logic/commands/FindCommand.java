@@ -1,8 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_CONTEXT_USAGE;
 import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BY_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -31,22 +35,30 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all modules/lectures/videos whose moduleCode/lectureName/videoName or tagNames contain any of "
-            + "the specified keywords (case-insensitive) separated with a comma "
-            + "and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: \n"
-            + "Find by moduleCode/lectureName/videoName: \n"
-            + "1." + COMMAND_WORD + " CS2040S\n"
-            + "2." + COMMAND_WORD + " Week 1, Week 2\n"
-            + "3." + COMMAND_WORD + " Video 1, Video 2, Video 3\n"
-            + "4." + COMMAND_WORD + " Topic 1, Topic 2 /mod ST2334\n"
-            + "5." + COMMAND_WORD + " Video 1 /mod ST2334 /lec Week 1\n"
-            + "Find by tagName: \n"
-            + "1." + COMMAND_WORD + " Heavy /byTag\n"
-            + "2." + COMMAND_WORD + " Heavy /byTag /mod ST2334\n"
-            + "3." + COMMAND_WORD + " Heavy /byTag /mod ST2334 /lec Week 1\n";
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + ":\n"
+            + "(1) Finds all modules whose module code or name contain any of the specified keywords.\n"
+            + "Parameters: {keyword_1}[, {keyword_2}[, ...]]\n"
+            + "Example: " + COMMAND_WORD + " CS2040S\n\n"
+            + "(2) Find all modules whose tag(s) contain any of the specified keywords.\n"
+            + "Parameters: " + "{keyword_1}[, {keyword_2}[, ...]] " + PREFIX_BY_TAG + "\n"
+            + "Example: " + COMMAND_WORD + " Heavy " + PREFIX_BY_TAG + "\n\n"
+            + "(3) Finds all lectures of a module whose name contain any of the specified keywords.\n"
+            + "Parameters: {keyword_1}[, {keyword_2}[, ...]] " + PREFIX_MODULE + " {module_code}\n"
+            + "Example: " + COMMAND_WORD + " Topic 1, Topic 2 " + PREFIX_MODULE + " ST2334\n\n"
+            + "(4) Finds all lectures of a module whose tag(s) contain any of the specified keywords.\n"
+            + "Parameters: {keyword_1}[, {keyword_2}[, ...]] " + PREFIX_MODULE + " {module_code} "
+            + PREFIX_BY_TAG + "\n"
+            + "Example: " + COMMAND_WORD + " Heavy " + PREFIX_MODULE + " ST2334 " + PREFIX_BY_TAG + "\n\n"
+            + "(5) Finds all videos of a lecture whose name contain any of the specified keywords.\n"
+            + "Parameters: {keyword_1}[, {keyword_2}[, ...]] " + PREFIX_MODULE + " {module_code} "
+            + PREFIX_LECTURE + " {lecture_name}\n"
+            + "Example: " + COMMAND_WORD + " Video 1 " + PREFIX_MODULE + " ST2334 " + PREFIX_LECTURE + " Week 1\n\n"
+            + "(6) Finds all videos of a lecture whose tag(s) contain any of the specified keywords.\n"
+            + "Parameters: {keyword_1}[, {keyword_2}[, ...]] " + PREFIX_MODULE + " {module_code} "
+            + PREFIX_BY_TAG + "\n"
+            + "Example: " + COMMAND_WORD + " Video 1 " + PREFIX_MODULE + " ST2334 " + PREFIX_LECTURE + " Week 1 "
+            + PREFIX_BY_TAG + "\n\n"
+            + MESSAGE_CONTEXT_USAGE;
 
     private List<String> keywords;
 

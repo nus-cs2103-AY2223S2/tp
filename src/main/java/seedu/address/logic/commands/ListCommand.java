@@ -1,11 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_CONTEXT_USAGE;
 import static seedu.address.commons.core.Messages.MESSAGE_LECTURE_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -26,18 +26,16 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = "Make sure that you are calling this command from the correct context.\n"
-            + COMMAND_WORD + " " + PREFIX_ROOT + ": List modules from ANY context.\n"
-            + COMMAND_WORD + ": List modules or lectures or videos depending on current context.\n"
-            + COMMAND_WORD + " " + PREFIX_MODULE + " {module_code}: List lectures from MODULE context.\n"
-            + COMMAND_WORD + " " + PREFIX_LECTURE + " {lecture_name}: List videos from LECTURE context.\n"
-            + COMMAND_WORD + " " + PREFIX_MODULE + " {module_code} "
-            + PREFIX_LECTURE + " {lecture_name}: List videos from ANY context.\n"
-            + "Example: " + COMMAND_WORD + " | "
-            + COMMAND_WORD + " " + PREFIX_MODULE + " CS2040S | "
-            + COMMAND_WORD + " " + PREFIX_LECTURE + " Week 1\n"
-            + COMMAND_WORD + " " + PREFIX_MODULE + " CS2040S "
-            + PREFIX_LECTURE + " Week 1";
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + ":\n"
+            + "(1) List all modules of the tracker.\n"
+            + "Example: " + COMMAND_WORD + "\n\n"
+            + "(2) List all lectures of a module.\n"
+            + "Parameters: " + PREFIX_MODULE + " {module_code}\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE + " CS2040S\n\n"
+            + "(3) List all videos of a lecture.\n"
+            + "Parameters: " + PREFIX_MODULE + " {module_code} " + PREFIX_LECTURE + " {lecture_name}\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE + " CS2040S " + PREFIX_LECTURE + " Week 1\n\n"
+            + MESSAGE_CONTEXT_USAGE;
 
     public static final String MESSAGE_SUCCESS_MODULES = "Listed all modules";
 
