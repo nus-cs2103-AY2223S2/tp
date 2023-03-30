@@ -2,8 +2,8 @@ package trackr.testutil;
 
 import trackr.model.person.Customer;
 import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerName;
 import trackr.model.person.CustomerPhone;
+import trackr.model.person.PersonName;
 
 /**
  * A utility class to help with building Customer objects.
@@ -14,7 +14,7 @@ public class CustomerBuilder {
     public static final String DEFAULT_CUSTOMER_PHONE = "12345678";
     public static final String DEFAULT_CUSTOMER_ADDRESS = "123 Smith Street";
 
-    private CustomerName customerName;
+    private PersonName customerName;
     private CustomerPhone customerPhone;
     private CustomerAddress customerAddress;
 
@@ -22,7 +22,7 @@ public class CustomerBuilder {
      * Creates a {@code CustomerBuilder} with the default details.
      */
     public CustomerBuilder() {
-        customerName = new CustomerName(DEFAULT_CUSTOMER_NAME);
+        customerName = new PersonName(DEFAULT_CUSTOMER_NAME);
         customerPhone = new CustomerPhone(DEFAULT_CUSTOMER_PHONE);
         customerAddress = new CustomerAddress(DEFAULT_CUSTOMER_ADDRESS);
     }
@@ -40,7 +40,7 @@ public class CustomerBuilder {
      * Sets the {@code CustomerName} of the {@code Customer} that we are building.
      */
     public CustomerBuilder withCustomerName(String customerName) {
-        this.customerName = new CustomerName(customerName);
+        this.customerName = new PersonName(customerName);
         return this;
     }
 

@@ -9,8 +9,8 @@ import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerName;
 import trackr.model.person.CustomerPhone;
+import trackr.model.person.PersonName;
 
 /**
  * OrderPredicateBuilder class
@@ -92,7 +92,7 @@ public class OrderPredicateBuilder {
      */
     public OrderPredicateBuilder withCustomerName(String customerName) {
         if (customerName != null) {
-            orderPredicate.setCustomerName(new CustomerName(customerName));
+            orderPredicate.setCustomerName(new PersonName(customerName));
         }
         return this;
     }

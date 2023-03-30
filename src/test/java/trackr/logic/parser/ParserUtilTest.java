@@ -21,7 +21,6 @@ import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerName;
 import trackr.model.person.CustomerPhone;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;
@@ -399,14 +398,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseCustomerName_validValueWithoutWhitespace_returnsCustomerName() throws Exception {
-        CustomerName expectedCustomerName = new CustomerName(VALID_NAME);
+        PersonName expectedCustomerName = new PersonName(VALID_NAME);
         assertEquals(expectedCustomerName, ParserUtil.parseCustomerName(VALID_NAME));
     }
 
     @Test
     public void parseCustomerName_validValueWithWhitespace_returnsTrimmedOrderStatus() throws Exception {
         String orderStatusWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        CustomerName expectedCustomerName = new CustomerName(VALID_NAME);
+        PersonName expectedCustomerName = new PersonName(VALID_NAME);
         assertEquals(expectedCustomerName, ParserUtil.parseCustomerName(orderStatusWithWhitespace));
     }
 

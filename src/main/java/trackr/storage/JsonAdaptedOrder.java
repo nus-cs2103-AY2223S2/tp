@@ -11,8 +11,8 @@ import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.Customer;
 import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerName;
 import trackr.model.person.CustomerPhone;
+import trackr.model.person.PersonName;
 
 /**
  * Jackson-friendly version of {@link Order}.
@@ -70,12 +70,12 @@ public class JsonAdaptedOrder {
     public Order toModelType() throws IllegalValueException {
         if (customerName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CustomerName.class.getSimpleName()));
+                    PersonName.class.getSimpleName()));
         }
-        if (!CustomerName.isValidName(customerName)) {
-            throw new IllegalValueException(CustomerName.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(customerName)) {
+            throw new IllegalValueException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        final CustomerName modelName = new CustomerName(customerName);
+        final PersonName modelName = new PersonName(customerName);
 
         if (customerPhone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

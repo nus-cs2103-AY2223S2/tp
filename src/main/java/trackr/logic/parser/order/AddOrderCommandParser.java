@@ -25,8 +25,8 @@ import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.Customer;
 import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerName;
 import trackr.model.person.CustomerPhone;
+import trackr.model.person.PersonName;
 
 /**
  * Parser for add order command
@@ -53,7 +53,7 @@ public class AddOrderCommandParser implements Parser<AddOrderCommand> {
         OrderQuantity orderQuantity = ParserUtil.parseOrderQuantity(argMultimap.getValue(PREFIX_ORDERQUANTITY).get());
         OrderDeadline orderDeadline = ParserUtil.parseOrderDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         OrderStatus orderStatus = ParserUtil.parseOrderStatus(argMultimap.getValue(PREFIX_STATUS));
-        CustomerName customerName = ParserUtil.parseCustomerName(argMultimap.getValue(PREFIX_NAME).get());
+        PersonName customerName = ParserUtil.parseCustomerName(argMultimap.getValue(PREFIX_NAME).get());
         CustomerPhone customerPhone = ParserUtil.parseCustomerPhone(argMultimap.getValue(PREFIX_PHONE).get());
         CustomerAddress customerAddress = ParserUtil.parseCustomerAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
 

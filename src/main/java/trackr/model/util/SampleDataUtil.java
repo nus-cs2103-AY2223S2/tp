@@ -19,7 +19,6 @@ import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.Customer;
 import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerName;
 import trackr.model.person.CustomerPhone;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;
@@ -95,13 +94,13 @@ public class SampleDataUtil {
     }
 
     public static Order[] getSampleOrders() {
-        Customer amy = new Customer(new CustomerName("Amy"),
+        Customer amy = new Customer(new PersonName("Amy"),
                 new CustomerPhone("12345678"),
                 new CustomerAddress("123 Smith Street"));
-        Customer bob = new Customer(new CustomerName("Bob"),
+        Customer bob = new Customer(new PersonName("Bob"),
                 new CustomerPhone("87654321"),
                 new CustomerAddress("321 Hoover Street"));
-        Customer charlie = new Customer(new CustomerName("Charlie"),
+        Customer charlie = new Customer(new PersonName("Charlie"),
                 new CustomerPhone("71396482"),
                 new CustomerAddress("789 Bonder Street"));
 

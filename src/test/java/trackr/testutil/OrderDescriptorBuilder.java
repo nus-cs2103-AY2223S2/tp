@@ -7,8 +7,8 @@ import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerName;
 import trackr.model.person.CustomerPhone;
+import trackr.model.person.PersonName;
 
 
 /**
@@ -77,7 +77,7 @@ public class OrderDescriptorBuilder {
      * Sets the {@code customerName} of the {@code orderDescriptor} that we are building.
      */
     public OrderDescriptorBuilder withCustomerName(String customerName) {
-        orderDescriptor.setCustomerName(new CustomerName(customerName));
+        orderDescriptor.setCustomerName(new PersonName(customerName));
         return this;
     }
 

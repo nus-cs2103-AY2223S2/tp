@@ -19,7 +19,6 @@ import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerName;
 import trackr.model.person.CustomerPhone;
 import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonEmail;
@@ -279,13 +278,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code CustomerName} is invalid.
      */
-    public static CustomerName parseCustomerName(String customerName) throws ParseException {
+    public static PersonName parseCustomerName(String customerName) throws ParseException {
         requireNonNull(customerName);
         String trimmedCustomerName = customerName.trim();
-        if (!CustomerName.isValidName(trimmedCustomerName)) {
-            throw new ParseException(CustomerName.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(trimmedCustomerName)) {
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        return new CustomerName(trimmedCustomerName);
+        return new PersonName(trimmedCustomerName);
     }
 
     /**

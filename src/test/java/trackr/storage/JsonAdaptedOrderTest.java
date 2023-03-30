@@ -14,8 +14,8 @@ import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.CustomerAddress;
-import trackr.model.person.CustomerName;
 import trackr.model.person.CustomerPhone;
+import trackr.model.person.PersonName;
 
 public class JsonAdaptedOrderTest {
 
@@ -47,7 +47,7 @@ public class JsonAdaptedOrderTest {
                 VALID_CUSTOMER_PHONE, VALID_CUSTOMER_ADDRESS,
                 VALID_ORDER_NAME, VALID_ORDER_DEADLINE, VALID_ORDER_QUANTITY,
                 VALID_ORDER_STATUS);
-        String expectedMessage = CustomerName.MESSAGE_CONSTRAINTS;
+        String expectedMessage = PersonName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 
@@ -57,7 +57,7 @@ public class JsonAdaptedOrderTest {
                 VALID_CUSTOMER_ADDRESS, VALID_ORDER_NAME, VALID_ORDER_DEADLINE,
                 VALID_ORDER_QUANTITY, VALID_ORDER_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                CustomerName.class.getSimpleName());
+                PersonName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
     }
 

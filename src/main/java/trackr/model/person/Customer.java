@@ -18,12 +18,12 @@ public class Customer extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Customer(CustomerName customerName, CustomerPhone customerPhone, CustomerAddress customerAddress) {
+    public Customer(PersonName customerName, CustomerPhone customerPhone, CustomerAddress customerAddress) {
         super(customerName, customerPhone, EMPTY_EMAIL, customerAddress, EMPTY_TAGS, ModelEnum.CUSTOMER);
     }
 
-    public CustomerName getCustomerName() {
-        return (CustomerName) getPersonName();
+    public PersonName getCustomerName() {
+        return getPersonName();
     }
 
     public CustomerPhone getCustomerPhone() {
