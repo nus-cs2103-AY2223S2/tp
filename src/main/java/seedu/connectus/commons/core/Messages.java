@@ -15,5 +15,7 @@ public class Messages {
     public static final String MESSAGE_PERSONS_UPCOMING_BIRTHDAY = "%1$d persons has upcoming"
             + " birthdays in the next 2 months!";
     public static final String MESSAGE_PERSON_FIELD_NOT_PRESENT = "The person has no such field";
+    public static final String MESSAGE_PERSON_TOO_MANY_MAJORS = "The total number of majors cannot be "
+            + "greater than 2!";
 
 }
