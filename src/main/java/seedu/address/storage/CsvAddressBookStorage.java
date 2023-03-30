@@ -45,7 +45,7 @@ public class CsvAddressBookStorage implements AddressBookStorage {
         requireNonNull(filePath);
 
         Optional<List<List<String>>> csvData = CsvUtil.readCsvFile(
-                filePath);
+                filePath, CsvSerializableAddressBook.CSV_HEADERS);
         if (!csvData.isPresent()) {
             return Optional.empty();
         }

@@ -26,6 +26,8 @@ public class ExportCommand extends Command {
             + "Type \"export\" or \"export shown\" to export only the filtered contacts shown.\n"
             + "Type \"export all\" to export all contacts, even if they are not shown in the filtered list.";
 
+    public static final String MESSAGE_SUCCESS = "Exported to file";
+
     public static final String FILE_DESCRIPTION = "CSV Files";
 
     public static final String[] FILE_EXTENSIONS = new String[]{"csv"};
@@ -61,7 +63,7 @@ public class ExportCommand extends Command {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        return new CommandResult("Exported to file", false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
     @Override
