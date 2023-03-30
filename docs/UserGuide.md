@@ -533,7 +533,10 @@ Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Or
 
 Below is an example of a valid csv file
 
-![Valid csv file](images/ValidCsvFile.png)
+<p align="center">
+  <img src="images/ValidCsvFile.png" width="600" />
+  <br>Figure 3: Valid csv file Example
+</p>
 
 ### Exiting the program: `exit`
 
