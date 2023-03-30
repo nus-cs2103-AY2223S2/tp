@@ -36,13 +36,13 @@
           </Menu>
         </MenuBar>
 
-        <VBox fx:id="tabPanelPlaceholder" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <StackPane fx:id="tabPanelPlaceholder" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-        </VBox>
+        </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="50" minHeight="50" prefHeight="50" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
@@ -53,7 +53,6 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

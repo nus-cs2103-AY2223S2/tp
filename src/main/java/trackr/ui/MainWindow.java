@@ -21,6 +21,7 @@ import trackr.logic.Logic;
 import trackr.logic.commands.CommandResult;
 import trackr.logic.commands.exceptions.CommandException;
 import trackr.logic.parser.exceptions.ParseException;
+import trackr.ui.dashboard.TabPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -41,7 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     @FXML
-    private VBox tabPanelPlaceholder;
+    private StackPane tabPanelPlaceholder;
 
     @FXML
     private StackPane commandBoxPlaceholder;
