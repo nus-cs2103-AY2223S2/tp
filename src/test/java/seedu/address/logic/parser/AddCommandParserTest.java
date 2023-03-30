@@ -119,7 +119,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_addressMissing_default() {
         // Alex
-        Person expectedPerson = new PersonBuilder(ALEX).withStation("National University of Singapore")
+        Person expectedPerson = new PersonBuilder(ALEX).withStation("Kent Ridge")
                 .withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
                         + CommandTestUtil.PHONE_DESC_ALEX
@@ -128,7 +128,7 @@ public class AddCommandParserTest {
                 new AddCommand(expectedPerson));
 
         // Ben
-        expectedPerson = new PersonBuilder(BEN).withStation("National University of Singapore")
+        expectedPerson = new PersonBuilder(BEN).withStation("Kent Ridge")
                 .withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
                         + CommandTestUtil.PHONE_DESC_BEN
@@ -162,7 +162,7 @@ public class AddCommandParserTest {
     public void parse_multipleFieldsMissing_default() {
         // Alex
         Person expectedPerson = new PersonBuilder(ALEX).withEmail("alexquinn@gmail.com")
-                .withStation("National University of Singapore")
+                .withStation("Kent Ridge")
                 .withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_ALEX
                         + CommandTestUtil.PHONE_DESC_ALEX
@@ -179,7 +179,7 @@ public class AddCommandParserTest {
 
         // Ben
         expectedPerson = new PersonBuilder(BEN).withEmail("benjaminkhoo@gmail.com")
-                .withStation("National University of Singapore")
+                .withStation("Kent Ridge")
                 .withGroupTags().withModuleTags().build();
         assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BEN
                         + CommandTestUtil.PHONE_DESC_BEN
