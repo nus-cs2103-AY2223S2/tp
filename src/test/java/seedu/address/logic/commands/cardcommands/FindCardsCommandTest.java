@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -56,10 +57,12 @@ public class FindCardsCommandTest {
         QuestionContainsKeywordsPredicate predicate = prepareCardPredicate(userInput);
         List keywords = prepareKeywords(userInput);
         FindCardsCommand command = new FindCardsCommand(keywords);
+        CommandResult expectedCommandResult = new CommandResult(
+                expectedMessage, false, false, false, false, false, false, true, false, false, false);
         expectedModel.selectDeck(INDEX_FIRST);
         model.selectDeck(INDEX_FIRST);
         expectedModel.updateFilteredCardList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredCardList());
     }
 
@@ -70,10 +73,12 @@ public class FindCardsCommandTest {
         QuestionContainsKeywordsPredicate predicate = prepareCardPredicate(userInput);
         List keywords = prepareKeywords(userInput);
         FindCardsCommand command = new FindCardsCommand(keywords);
+        CommandResult expectedCommandResult = new CommandResult(
+                expectedMessage, false, false, false, false, false, false, true, false, false, false);
         expectedModel.selectDeck(INDEX_FIRST);
         model.selectDeck(INDEX_FIRST);
         expectedModel.updateFilteredCardList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         assertEquals(Arrays.asList(LOOP), model.getFilteredCardList());
     }
 

@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.logic.commands.deckcommands.FindDecksCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -56,8 +57,10 @@ public class FindDecksCommandTest {
         DeckContainsKeywordsPredicate predicate = prepareDeckPredicate(userInput);
         List keywords = prepareKeywords(userInput);
         FindDecksCommand command = new FindDecksCommand(keywords);
+        CommandResult expectedCommandResult = new CommandResult(
+                expectedMessage, false, false, false, false, false, false, false, true, false, false);
         expectedModel.updateFilteredDeckList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredDeckList());
     }
 
@@ -68,8 +71,10 @@ public class FindDecksCommandTest {
         DeckContainsKeywordsPredicate predicate = prepareDeckPredicate(userInput);
         List keywords = prepareKeywords(userInput);
         FindDecksCommand command = new FindDecksCommand(keywords);
+        CommandResult expectedCommandResult = new CommandResult(
+                expectedMessage, false, false, false, false, false, false, false, true, false, false);
         expectedModel.updateFilteredDeckList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
         assertEquals(Arrays.asList(VALID_DECK_SCIENCE), model.getFilteredDeckList());
     }
 
