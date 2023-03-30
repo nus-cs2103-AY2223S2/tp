@@ -136,5 +136,6 @@ public interface Model {
 
     void addAlarm(Alarm alarm) throws CommandException;
 
-    void displayChart(ChartType chartType);
+    void displayChart(ChartType chartType, String... args)
+            throws AssignmentNotFoundException, NoSubmissionsFoundException, NoGradeVarianceException;
 }

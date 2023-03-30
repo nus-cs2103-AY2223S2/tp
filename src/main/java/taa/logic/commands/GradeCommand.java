@@ -41,7 +41,7 @@ public class GradeCommand extends Command {
         try {
             model.grade(assignmentName, studentId, marks, isLateSubmission);
         } catch (AssignmentException e) {
-            throw new CommandException(String.format("An error occurred when grading assignment %%s:\n", assignmentName)
+            throw new CommandException(String.format("An error occurred when grading assignment %s:\n", assignmentName)
                     + e.getMessage());
         }
 

@@ -111,7 +111,7 @@ public class Student {
      * Otherwise, an Optional.empty() is returned.
      * @throws AssignmentNotFoundException if the assignment does not exist.
      */
-    Optional<Integer> getGradesForAssignment(String assignmentName)
+    public Optional<Integer> getGradesForAssignment(String assignmentName)
             throws AssignmentNotFoundException {
         return this.submissions.getSubmissionScore(assignmentName);
     }

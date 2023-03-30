@@ -69,7 +69,7 @@ public class Submission implements Comparable<Submission> {
      * Returns true if this submission belongs to an assignment with the given name.
      */
     public boolean isForAssignment(String assignmentName) {
-        return this.assignment.toString() == assignmentName;
+        return this.assignment.toString().equals(assignmentName);
     }
 
     /**

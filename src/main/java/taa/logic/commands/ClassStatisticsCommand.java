@@ -3,6 +3,9 @@ package taa.logic.commands;
 import static taa.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_STAT_TYPE;
 
+import taa.assignment.exceptions.AssignmentNotFoundException;
+import taa.assignment.exceptions.NoGradeVarianceException;
+import taa.assignment.exceptions.NoSubmissionsFoundException;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
@@ -38,7 +41,7 @@ public class ClassStatisticsCommand extends Command {
             + "Please include the ASSIGNMENT_NAME of the assignment you wish to analyse.\n"
             + EXAMPLE_USAGE;
     public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "The assignment name you have entered does not exist.\n"
-            + "Please check that the assignment with the speecified name exists for this active class list.\n"
+            + "Please check that the assignment with the specified name exists for this active class list.\n"
             + EXAMPLE_USAGE;
     private ChartType field;
     private String assignmentName;
@@ -69,28 +72,54 @@ public class ClassStatisticsCommand extends Command {
         }
 
         if (this.field == ChartType.CLASS_GRADES
-                && model.hasAssignment(this.assignmentName)) {
+                && !model.hasAssignment(this.assignmentName)) {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_FOUND);
         }
 
         CommandResult result;
 
         if (this.field == ChartType.CLASS_ATTENDANCE) {
-            result = new CommandResult(String.format(MESSAGE_SUCCESS, "attendance", "")
-                    + "\n\n" + SAVE_IMAGE_HINT);
+            return displayAttendanceChart(model);
         } else if (this.field == ChartType.CLASS_GRADES) {
-            result = new CommandResult(String.format(
-                    MESSAGE_SUCCESS,
-                    "grades",
-                    "(" + this.assignmentName + ")")
-                    + "\n\n" + SAVE_IMAGE_HINT);
+            return displayGradeChart(model);
         } else {
             throw new CommandException(MESSAGE_UNKNOWN_FIELD);
         }
+    }
 
-        model.displayChart(this.field);
+    private CommandResult displayAttendanceChart(Model model)
+            throws CommandException {
+        try {
+            model.displayChart(this.field);
+        } catch (AssignmentNotFoundException | NoSubmissionsFoundException e) {
+            throw new CommandException("Could not display attendance distribution: \n"
+                    + e.getMessage());
+        } catch (NoGradeVarianceException e) {
+            // should not ever reach this, attendance distribution will not require grade variance
+            assert false;
+        }
 
-        return result;
+        return new CommandResult(String.format(MESSAGE_SUCCESS, "attendance", "")
+                + "\n\n" + SAVE_IMAGE_HINT);
+    }
+
+    private CommandResult displayGradeChart(Model model)
+            throws CommandException {
+        requireNonNull(model);
+        requireNonNull(assignmentName);
+
+        try {
+            model.displayChart(this.field, this.assignmentName);
+        } catch (AssignmentNotFoundException | NoSubmissionsFoundException | NoGradeVarianceException e) {
+            throw new CommandException("Could not display grade distribution: \n"
+                    + e.getMessage());
+        }
+
+        return new CommandResult(String.format(
+                MESSAGE_SUCCESS,
+                "grades",
+                "(" + this.assignmentName + ")")
+                + "\n\n" + SAVE_IMAGE_HINT);
 
     }
 

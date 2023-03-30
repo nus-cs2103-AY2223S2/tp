@@ -2,9 +2,12 @@ package taa.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.*;
 import java.io.File;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -22,8 +25,16 @@ import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.plot.Marker;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.ValueMarker;
+import org.jfree.chart.ui.RectangleAnchor;
+import org.jfree.chart.ui.TextAnchor;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.function.Function2D;
+import org.jfree.data.function.NormalDistributionFunction2D;
+import org.jfree.data.general.DatasetUtils;
+import org.jfree.data.xy.XYDataset;
 import taa.assignment.AssignmentList;
 import taa.assignment.exceptions.*;
 import taa.commons.core.GuiSettings;
@@ -309,21 +320,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void displayChart(ChartType chartType) {
+    public void displayChart(ChartType chartType, String... args)
+            throws AssignmentNotFoundException, NoSubmissionsFoundException, NoGradeVarianceException {
         String title;
         JFreeChart chart;
 
         switch (chartType) {
         case CLASS_GRADES:
+            // args[0] should not be null here -- should be ensured in ClassStatisticsCommandParser
+            assert args[0] != null;
+
             title = "Grade Distribution";
-            chart = generateGradeBarChart();
+            chart = generateGradeDistribution(args[0]);
             break;
         case CLASS_ATTENDANCE:
             title = "Attendance Distribution";
             chart = generateAttendanceDistribution();
             break;
         default:
-            // this should be unreachable; any invalid ChartType should be handled before this is invoked!
+            // this should be unreachable; any invalid ChartType should
+            // already be handled by ClassStatisticsCommandParser
             assert false;
             return;
         }
@@ -333,8 +349,60 @@ public class ModelManager implements Model {
         frame.setVisible(true);
     }
 
-    private JFreeChart generateGradeBarChart() {
-        return null;
+    private JFreeChart generateGradeDistribution(String assignmentName)
+            throws AssignmentNotFoundException, NoSubmissionsFoundException, NoGradeVarianceException {
+        requireNonNull(assignmentName);
+
+        final int NUM_STD_TO_SHOW = 4;
+        final int NUM_POINTS_TO_SAMPLE = 300;
+
+        IntStatistics statistics = getGradeStatistics(assignmentName);
+        double mean = statistics.getMean();
+        double std = statistics.getStdDev();
+
+        if (std == 0) {
+            // No variance, don't need bell curve
+            throw new NoGradeVarianceException(assignmentName, mean);
+        }
+
+        Function2D bellCurve = new NormalDistributionFunction2D(mean, std);
+        XYDataset dataset = DatasetUtils.sampleFunction2D(
+                bellCurve,
+                mean - NUM_STD_TO_SHOW * std,
+                mean + NUM_STD_TO_SHOW * std,
+                NUM_POINTS_TO_SAMPLE,
+                "Normal"
+        );
+
+        JFreeChart result = ChartFactory.createXYLineChart(
+                "Grade Distribution for Assignment " + assignmentName,
+                "Score",
+                "Probability",
+                dataset,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false
+        );
+
+        double max_Y = result.getXYPlot().getRangeAxis().getRange().getUpperBound();
+        final Marker mean_info = new ValueMarker(max_Y);
+        mean_info.setLabel(String.format("Mean: %.2f", mean));
+        mean_info.setLabelPaint(Color.blue);
+        mean_info.setLabelAnchor(RectangleAnchor.BOTTOM_LEFT);
+        mean_info.setLabelTextAnchor(TextAnchor.TOP_LEFT);
+        mean_info.setLabelFont(new Font("Arial", 0, 24));
+        result.getXYPlot().addRangeMarker(mean_info);
+
+        final Marker std_info = new ValueMarker(0.95 * max_Y);
+        std_info.setLabel(String.format("Std. Dev: %.4f", std));
+        std_info.setLabelPaint(Color.blue);
+        std_info.setLabelAnchor(RectangleAnchor.BOTTOM_LEFT);
+        std_info.setLabelTextAnchor(TextAnchor.TOP_LEFT);
+        std_info.setLabelFont(new Font("Arial", 0, 24));
+        result.getXYPlot().addRangeMarker(std_info);
+
+        return result;
     }
 
     private JFreeChart generateAttendanceDistribution() {
@@ -376,4 +444,20 @@ public class ModelManager implements Model {
         return result;
     }
 
+    private IntStatistics getGradeStatistics(String assignmentName)
+            throws AssignmentNotFoundException, NoSubmissionsFoundException {
+        requireNonNull(assignmentName);
+
+        List<Integer> grades = new ArrayList<>();
+
+        for (Student student : filteredStudents) {
+            student.getGradesForAssignment(assignmentName).ifPresent(grades::add);
+        }
+
+        if (grades.isEmpty()) {
+            throw new NoSubmissionsFoundException(assignmentName);
+        }
+
+        return new IntStatistics(grades);
+    }
 }
