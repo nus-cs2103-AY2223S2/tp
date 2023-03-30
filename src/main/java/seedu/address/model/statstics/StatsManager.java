@@ -12,8 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.InternshipStatus;
 
 /**
- *
- *
+ * The main manager of statistics of the internship application status.
  */
 public class StatsManager {
     private final Model model;
@@ -21,9 +20,9 @@ public class StatsManager {
     private final FilteredList<StatsInformation> filteredStatsInformations;
 
     /**
+     * Creates a new StatsManager.
      *
-     *
-     * @param model
+     * @param model The model from which we get the statistics information.
      */
     public StatsManager(Model model) {
         requireNonNull(model);
@@ -34,7 +33,7 @@ public class StatsManager {
     }
 
     /**
-     *
+     * Initializes the StatsManager.
      */
     private void initStatsInformation() {
         List<InternshipStatus> l = Arrays.asList(InternshipStatus.values());
@@ -46,7 +45,7 @@ public class StatsManager {
     }
 
     /**
-     *
+     * Update current statistics information.
      */
     public void updateAllStatsInformation() {
         for (StatsInformation s: statsInformations) {
@@ -55,23 +54,25 @@ public class StatsManager {
     }
 
     /**
-     *
+     * Update underlying list of statistics information.
      */
     public void updateFilteredStatsInformationList() {
         filteredStatsInformations.setPredicate(p -> true);
     }
 
     /**
+     * Returns the list of statistics information.
      *
-     * @return
+     * @return The list of statistics information.
      */
     public ObservableList<StatsInformation> getStatsInformations() {
         return statsInformations;
     }
 
     /**
+     * Returns the filtered list of statistics information.
      *
-     * @return
+     * @return The filtered list of statistics information.
      */
     public FilteredList<StatsInformation> getFilteredStatsInformations() {
         return filteredStatsInformations;

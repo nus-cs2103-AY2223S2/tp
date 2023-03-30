@@ -9,7 +9,7 @@ import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.StatusPredicate;
 
 /**
- *
+ * Encapsulates the statistics information for a given status.
  */
 public class StatusStatsInformation extends StatsInformation {
     private final Model model;
@@ -18,9 +18,10 @@ public class StatusStatsInformation extends StatsInformation {
     private int numberOfInternshipApplication;
 
     /**
+     * Creates a new StatsInformation instance with given status.
      *
-     * @param model
-     * @param status
+     * @param model The model where we get our statistics information from.
+     * @param status The internship status of the application.
      */
     public StatusStatsInformation(Model model, InternshipStatus status) {
         this.model = model;
@@ -35,9 +36,9 @@ public class StatusStatsInformation extends StatsInformation {
     }
 
     /**
+     * Returns the number of application in this status.
      *
-     *
-     * @param status
+     * @param status The status specified.
      * @return
      */
     public int getNumberOfApplicationWithStatus(InternshipStatus status) {

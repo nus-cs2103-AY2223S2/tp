@@ -29,7 +29,7 @@ public class StatsInformationListPanel extends UiPart<Region> {
     private HBox container;
 
     /**
-     * Creates a {@code ViewContentPanel} with the given {@code StatsManager}.
+     * Creates a {@code StatdsInformationListPanel} with the given {@code StatsManager}.
      */
     public StatsInformationListPanel(StatsManager statsManager) {
         super(FXML);
@@ -46,7 +46,7 @@ public class StatsInformationListPanel extends UiPart<Region> {
     }
 
     /**
-     *
+     * Updates the UI display of the list of statistics information.
      */
     public void updateDisplay() {
         ObservableList<StatsInformation> l = statsManager.getStatsInformations();

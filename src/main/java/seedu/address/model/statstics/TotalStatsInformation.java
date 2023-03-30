@@ -6,7 +6,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.InternshipApplication;
 
 /**
- *
+ * Encapsulates the statistics information for total number of application added.
  */
 public class TotalStatsInformation extends StatsInformation {
     private final Model model;
@@ -14,7 +14,7 @@ public class TotalStatsInformation extends StatsInformation {
     private int numberOfInternshipApplication;
 
     /**
-     *
+     * Creates a new TotalStatsInformation instance.
      * @param model
      */
     public TotalStatsInformation(Model model) {
@@ -33,8 +33,9 @@ public class TotalStatsInformation extends StatsInformation {
     }
 
     /**
+     * Returns the total number of application.
      *
-     * @return
+     * @return The total number of application.
      */
     public int getTotalNumberOfApplication() {
         ReadOnlyAddressBook addressBook = model.getAddressBook();

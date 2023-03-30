@@ -49,7 +49,7 @@ public class StatsInformationCard extends UiPart<Region> {
     }
 
     /**
-     *
+     * Updates underlying statistics information.
      */
     public void updateStatsInformation() {
         statsInformation.updateStatsInformation();
