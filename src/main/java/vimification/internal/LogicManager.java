@@ -104,6 +104,12 @@ public class LogicManager implements Logic {
         return viewTaskList;
     }
 
+
+    @Override
+    public FilteredList<Task> getFilteredTaskList() {
+        return viewTaskList;
+    }
+
     // @Override
     // public Path getTaskListFilePath() {
     // return model.getTaskListFilePath();

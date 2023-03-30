@@ -1,6 +1,7 @@
 package vimification.internal;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.internal.parser.ParserException;
@@ -44,4 +45,6 @@ public interface Logic {
     // * Set the user prefs' GUI settings.
     // */
     // void setGuiSettings(GuiSettings guiSettings);
+
+    FilteredList<Task> getFilteredTaskList();
 }
