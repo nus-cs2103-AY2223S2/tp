@@ -46,7 +46,6 @@ import seedu.address.logic.parser.contact.ContactParser;
 import seedu.address.logic.parser.documents.DocumentsParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.task.TaskParser;
-import seedu.address.logic.parser.task.UnarchiveCommandParser;
 
 /**
  * Parses user input.
