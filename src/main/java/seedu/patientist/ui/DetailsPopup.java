@@ -14,6 +14,7 @@ import seedu.patientist.commons.core.LogsCenter;
 import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
 import seedu.patientist.model.person.patient.PatientStatusDetails;
+import seedu.patientist.model.person.patient.PatientToDo;
 
 
 /**
@@ -49,6 +50,8 @@ public class DetailsPopup extends UiPart<Region> {
     @FXML
     private VBox status;
     @FXML
+    private VBox todos;
+    @FXML
     private FlowPane tags;
 
 
@@ -78,7 +81,11 @@ public class DetailsPopup extends UiPart<Region> {
             for (int i = 1; i < details.size() + 1; i++) {
                 status.getChildren().add(new Label(String.format("%d. ", i) + details.get(i - 1).getDetails()));
             }
-
+            List<PatientToDo> todos = patientToView.getPatientToDoList();
+            for (int i = 1; i < todos.size() + 1; i++) {
+                this.todos.getChildren()
+                        .add(new Label(String.format("%d. ", i) + todos.get(i - 1).getTodo()));
+            }
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
