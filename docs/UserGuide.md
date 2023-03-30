@@ -343,7 +343,7 @@ Format: `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {
 
 Examples:
 - `mark Vid 1 /mod CS2040 /lec Week 1`
-- `unmark Vid 2, Vid 5 /module ST2334 /lecture Topic 4`
+- `unmark Vid 2, Vid 5 /mod ST2334 /lec Topic 4`
 
 ### Delete Module(s)
 
@@ -588,7 +588,7 @@ _\* Both commands will show video `Vid 1` from the video list of lecture `Week 2
 Format:
 - `clear`
 
-- any information entered after `clear` is ignored
+- any following term entered after `clear` is ignored
 - calling `clear` will result in an empty Tracker
 
 ---
