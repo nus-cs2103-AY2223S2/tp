@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="500.0" minWidth="500.0" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">  <icons>
+<fx:root minHeight="500.0" minWidth="500.0" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1">  <icons>
     <Image url="@/images/help_icon.png" />
 </icons>
    <scene>
