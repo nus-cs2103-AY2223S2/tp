@@ -99,10 +99,10 @@ public class FilterCommandTest {
      * Parses {@code PersonDescriptor} into a {@code FieldContainsPartialKeywordsPredicate}.
      */
     private FieldContainsPartialKeywordsPredicate preparePredicate(FilterDescriptor filterDescriptor) {
-        return new FieldContainsPartialKeywordsPredicate(filterDescriptor.getNameValue(),
+        return new FieldContainsPartialKeywordsPredicate(filterDescriptor.getRankValue(),
+                filterDescriptor.getNameValue(), filterDescriptor.getUnitValue(),
+                filterDescriptor.getCompanyValue(), filterDescriptor.getPlatoonValue(),
                 filterDescriptor.getPhoneValue(), filterDescriptor.getEmailValue(),
-                filterDescriptor.getAddressValue(), filterDescriptor.getRankValue(),
-                filterDescriptor.getUnitValue(), filterDescriptor.getCompanyValue(),
-                filterDescriptor.getPlatoonValue(), filterDescriptor.getTagValues());
+                filterDescriptor.getAddressValue(), filterDescriptor.getTagValues());
     }
 }
