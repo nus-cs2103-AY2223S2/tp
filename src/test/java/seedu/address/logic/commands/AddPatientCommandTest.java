@@ -184,6 +184,11 @@ public class AddPatientCommandTest {
         }
 
         @Override
+        public void updateFilteredPersonListNric(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void bookAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
@@ -200,6 +205,11 @@ public class AddPatientCommandTest {
 
         @Override
         public boolean hasDrByNric(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAppointment(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
     }

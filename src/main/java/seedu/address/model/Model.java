@@ -129,9 +129,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredPersonListNric(Nric nric);
+
     boolean hasAppointment(Appointment appointment);
 
     void bookAppointment(Appointment appointment);
+    void deleteAppointment(Appointment appointment);
 
     /**
      * Returns true if a doctor with the same identity as {@code doctor} exists in the address book.

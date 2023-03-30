@@ -183,6 +183,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredPersonListNric(Nric nric) {
+        requireNonNull(nric);
+        updateFilteredPersonList(p -> p.getNric().equals(nric));
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -210,6 +216,12 @@ public class ModelManager implements Model {
     @Override
     public void bookAppointment(Appointment appointment) {
         addressBook.bookAppointment(appointment);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment appointment) {
+        addressBook.deleteAppointment(appointment);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 }
