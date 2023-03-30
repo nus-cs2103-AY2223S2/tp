@@ -11,10 +11,10 @@ title: User Guide
 - [Quick Start](#quick-start)
 - [About TrAcker and User Guide](#about-tracker)
 - [Event Features](#event-features)
-    - [Adding Tutorial](#adding-tutorial--add-tutorial)
-    - [Adding Lab](#adding-lab--add-lab)
-    - [Adding Consultation](#adding-consultation--add-consultation)
-    - [Adding Recurring Event](#adding-recurring-event--add-recur)
+    - [Adding Tutorial](#add-tutorial)
+    - [Adding Lab](#add-lab)
+    - [Adding Consultation](#add-consultation)
+    - [Adding Recurring Event](#add-recur)
     - [Edit An Event](#edit-event)
     - [Delete Events](#delete-events--delete-events)
     - [Open File in Event](#open-file)
@@ -58,7 +58,7 @@ title: User Guide
 
 <div id='about-tracker'></div>
 
-About TrAcker and User Guide
+## About TrAcker and User Guide
 
 TrAcker is a **desktop app for CS2040 Teaching Assistants to centralise the CS2040 tasks involving them.
 It is optimised for use via a Command Line Interface (CLI)** while still having benefits of a Graphical User Interface (GUI).
@@ -80,7 +80,7 @@ Let's clear a little confusion that might arise:
 - How do I use the UG?
   - [UPPER_CASE], i.e upper case letters in [], are parameters to be supplied by the user
   - So, if the command is `rm [INDEX]`, it can be `rm 1`. Of course, the parameters have to abide by TrAcker's restrictions
-  - Other than -date and -file in the event features, there are no other optional parameters
+  - Other than -date and -file in the event features, and the edit student command, there are no other optional parameters
 - What do the symbols mean?
   - :information_source: - are important information to note
   - :bulb: - are usage tips/shortcuts
@@ -92,6 +92,8 @@ Let's clear a little confusion that might arise:
 --------------------------------------------------------------------
 
 ## Event Features
+
+<div id='add-tutorial'></div>
 
 ### Adding tutorial: `add tutorial`
 
@@ -120,6 +122,8 @@ Examples:
 * `touch Tutorial/makeUpTutorial`
 * `touch Tutorial/examReview -date 01/01/2023 16:00`
 * `touch Tutorial/examReview -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/Introduction.pdf`
+
+<div id='add-lab'></div>
 
 ### Adding lab: `add lab`
 
@@ -150,6 +154,8 @@ Examples:
 * `vim Lab/KosarajuAlgorithm -date 01/01/2023 16:00`
 * `vim Lab/StronglyConnected -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/StronglyConnectedComponents.pdf`
 
+<div id='add-consultation'></div>
+
 ### Adding consultation: `add consultation`
 
 Adds a consultation to the TA’s schedule. Consultation is assumed to be 1 hour long (adhering to CS2040 Consultation timing) and no modification of duration is allowed
@@ -176,6 +182,8 @@ Examples:
 
 * `mkdir Consultation/reviewConnectedComponents`
 * `mkdir Consultation/reviewDijsktra -date 01/01/2023 16:00`
+
+<div id='add-recur'></div>
 
 ### Adding recurring event: `add recur`
 
@@ -264,6 +272,8 @@ Adds a student to the student list.
 - Duplicate telegram handle or phone number is not allowed since each student has a
   unique telegram handle or unique phone number
 - Duplicate names are allowed
+- Nus email must be e followed by 7 digits
+- Telegram handle must be minimum 5 characters and maximum 32 characters
 
 Format: `add student n/[NAME] telegram/[PHONE_NUMBER or TELEGRAM_HANDLE] e/[NUS_EMAIL] score/[SCORE]`
 
@@ -286,6 +296,23 @@ Format: `rm [INDEX]`
 Examples:
 
 * `rm 1`
+
+<div id='edit-student'></div>
+
+### Edit student: `edit student`
+
+Edits a student from the student list.
+
+- Index starts from 1
+- Valid index must be provided
+- NAME, PHONE, EMAIL, ADDRESS, SCORE are optional
+
+Format: `edit INDEX n/[NAME] telegram/[PHONE] e/[EMAIL] a/[ADDRESS] score/[SCORE]`
+
+Examples:
+
+* `edit 1 p/91234567 e/e1234567@u.nus.edu`
+* `edit 2 score/100`
 
 <div id='add-student-to-event'></div>
 
@@ -599,12 +626,26 @@ Examples:
       <td><strong>Remove Student</strong>
       </td>
       <td>
-         <code>rm INDEX</code>
+         <code>rm [INDEX]</code>
          </li>
       </td>
       <td>
          <ul>
             <li><code>rm 1</code></li>
+         </ul>
+      </td>
+   </tr>
+    <tr>
+      <td><strong>Edit Student</strong>
+      </td>
+      <td>
+         <code>edit INDEX n/[NAME] telegram/[PHONE] e/[EMAIL] a/[ADDRESS] score/[SCORE]</code>
+         </li>
+      </td>
+      <td>
+         <ul>
+            <li><code>edit 1 p/91234567 e/e1234567@u.nus.edu</code></li>
+            <li><code>edit 2 score/100</code></li>
          </ul>
       </td>
    </tr>
