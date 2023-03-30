@@ -42,7 +42,7 @@ prioritise sales tasks
 
    - `list` : Lists all contacts.
 
-   - `add n/Charlotte Oliveiro g/female p/93210283 e/charlotte@example.com c/Mac King i/food and beverage o/entrepreneur j/CEO a/Blk 11 Ang Mo Kio Street 74, #11-04` : Adds a contact named `Charlotte Oliveiro` to the Address Book.
+   - `add n/Charlotte Oliveiro g/female p/93210283 e/charlotte@example.com c/Mac King l/America o/entrepreneur j/CEO a/Blk 11 Ang Mo Kio Street 74, #11-04` : Adds a contact named `Charlotte Oliveiro` to the Address Book.
 
    - `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -92,7 +92,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG]`
+Format: `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact must include all fields except tag.
@@ -100,14 +100,14 @@ A contact must include all fields except tag.
 
 Examples:
 
-- `add n/Charlotte Oliveiro g/female p/93210283 e/charlotte@example.com c/Mac King i/food and beverage o/entrepreneur j/CEO a/Blk 11 Ang Mo Kio Street 74, #11-04`
-- `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh i/automobile o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111 t/friend`
+- `add n/Charlotte Oliveiro g/female p/93210283 e/charlotte@example.com c/Mac King l/America o/entrepreneur j/CEO a/Blk 11 Ang Mo Kio Street 74, #11-04`
+- `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111 t/friend`
 
 ### Sorting all persons : `sort`
 
 Sorts all persons in the address book based on an attribute.
 
-Format: `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [remark] [status]`
+Format: `sort [name] [gender] [phone number] [email] [company] [location] [occupation] [job title] [address] [remark] [status]`
 
 - At least one of the optional fields must be provided.
 - The address book will be sorted based on the specified attribute by their value.
@@ -127,7 +127,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`
+Format: `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`
 
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
@@ -337,7 +337,7 @@ _italic_ - optional
 
 | Action         | Format, Examples                                                                                                                                                                                                                                                                           |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
-| **Add**        | `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] ...​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh i/automobile o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
+| **Add**        | `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] ...​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
 | **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [remark] [status]` <br> e.g., `sort name`                                                                                                                                             |
 | **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                                        |
 | **Clear**      | `clear`                                                                                                                                                                                                                                                                                    |
