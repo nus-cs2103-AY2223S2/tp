@@ -22,7 +22,7 @@ CareFlow is a **desktop application for patient and drug inventory management, o
 Figure 1. Graphical User Interface (GUI) of CareFlow*
 </p>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -75,7 +75,7 @@ Table 1. Symbols and formats used in this User Guide.
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -237,7 +237,7 @@ Table 1. Symbols and formats used in this User Guide.
       </details>
     <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -256,7 +256,7 @@ Table 1. Symbols and formats used in this User Guide.
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -268,7 +268,7 @@ Table 1. Symbols and formats used in this User Guide.
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -302,7 +302,7 @@ ___
       <br>    
 
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -336,7 +336,7 @@ ___
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -365,7 +365,7 @@ ___
       
       <br>    
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -393,7 +393,7 @@ ___
 
     <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -415,7 +415,7 @@ ___
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -436,7 +436,7 @@ ___
       
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -457,7 +457,7 @@ ___
       
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br> 
 
@@ -477,7 +477,7 @@ ___
   
     <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -506,7 +506,7 @@ ___
       
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -535,7 +535,7 @@ ___
       </p>
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -564,7 +564,7 @@ ___
       </p>
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -596,7 +596,7 @@ ___
         </p>
     <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -622,7 +622,7 @@ ___
       
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -641,7 +641,7 @@ ___
       </p>
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -660,7 +660,7 @@ ___
       </p>
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -681,7 +681,7 @@ ___
       </p>
       <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -692,7 +692,7 @@ ___
   
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -707,7 +707,7 @@ If your changes to the data file makes its format invalid, CareFlow will discard
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 <br>
 
@@ -725,7 +725,7 @@ _Details coming soon ..._
 
 <br>
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -773,4 +773,4 @@ The following commands are drug-related commands that are available in Careflow 
 | **List drug**                 | `d list`                                                                                                                                                                                                                                       | Lists all the drugs that have been recorded in CareFlow. |
 | **Clear all drugs**           | `d clear`                                                                                                                                                                                                                                      | Removes all drug records stored in CareFlow |
 
-[🠉 Back to top](#top)
+[↑ Back to top](#top)
