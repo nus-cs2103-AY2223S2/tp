@@ -154,6 +154,15 @@ public class Shop implements ReadOnlyShop {
     }
 
     /**
+     * Checks if appointment in the system
+     *
+     * @param appointmentId ID of appointment
+     */
+    public boolean hasAppointment(int appointmentId) {
+        return this.getAppointmentList().stream().anyMatch(a -> a.getId() == appointmentId);
+    }
+
+    /**
      * Replaces the contents of the appointment list with {@code appointments}.
      * {@code appointments} must not contain appointment customers.
      */

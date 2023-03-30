@@ -19,7 +19,7 @@ public class ViewVehicleCommandParser implements Parser<ViewVehicleCommand> {
     public ViewVehicleCommand parse(String args) throws ParseException {
         try {
             int index = ParserUtil.parseInt(args.trim());
-            return new ViewVehicleCommand(new VehicleIdPredicate(index));
+            return new ViewVehicleCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewVehicleCommand.MESSAGE_USAGE), pe);

@@ -20,7 +20,7 @@ public class ViewTechnicianCommandParser implements Parser<ViewTechnicianCommand
 
         try {
             int index = ParserUtil.parseInt(args);
-            return new ViewTechnicianCommand(new TechnicianIdPredicate(index));
+            return new ViewTechnicianCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewTechnicianCommand.MESSAGE_USAGE), pe);

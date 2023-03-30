@@ -20,7 +20,7 @@ public class ViewAppointmentCommandParser implements Parser<ViewAppointmentComma
 
         try {
             int index = ParserUtil.parseInt(args);
-            return new ViewAppointmentCommand(new AppointmentIdPredicate(index));
+            return new ViewAppointmentCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewAppointmentCommand.MESSAGE_USAGE), pe);

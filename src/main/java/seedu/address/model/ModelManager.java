@@ -337,6 +337,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasAppointment(int appointmentId) {
+        return this.shop.hasAppointment(appointmentId);
+    }
+
+    @Override
     public void deleteAppointment(Appointment target) {
         this.shop.removeAppointment(target);
     }

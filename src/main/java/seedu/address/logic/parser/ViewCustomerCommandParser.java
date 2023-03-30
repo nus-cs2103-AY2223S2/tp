@@ -20,7 +20,7 @@ public class ViewCustomerCommandParser implements Parser<ViewCustomerCommand> {
 
         try {
             int index = ParserUtil.parseInt(args.trim());
-            return new ViewCustomerCommand(new CustomerIdPredicate(index));
+            return new ViewCustomerCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCustomerCommand.MESSAGE_USAGE), pe);

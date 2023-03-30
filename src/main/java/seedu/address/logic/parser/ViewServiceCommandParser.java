@@ -19,7 +19,7 @@ public class ViewServiceCommandParser implements Parser<ViewServiceCommand> {
     public ViewServiceCommand parse(String args) throws ParseException {
         try {
             int index = ParserUtil.parseInt(args.trim());
-            return new ViewServiceCommand(new ServiceIdPredicate(index));
+            return new ViewServiceCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewServiceCommand.MESSAGE_USAGE), pe);
