@@ -26,18 +26,21 @@ public class ListDepartmentHeadcountCommandParser implements Parser<ListDepartme
     public ListDepartmentHeadcountCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DEPARTMENT_NAME, PREFIX_DATE);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_DEPARTMENT_NAME)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DEPARTMENT_NAME)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ListDepartmentHeadcountCommand.MESSAGE_USAGE));
         }
 
         LocalDate currentDate = LocalDate.now();
-        LocalDate date = ParserUtil.parseLocalDate(argMultimap.getValue(PREFIX_DATE).get());
+        LocalDate givenDate = argMultimap.getValue(PREFIX_DATE).isEmpty()
+                ? LocalDate.now()
+                : ParserUtil.parseLocalDate(argMultimap.getValue(PREFIX_DATE).get());
+
         DepartmentName departmentName = ParserUtil.parseDepartmentName(
                 argMultimap.getValue(PREFIX_DEPARTMENT_NAME).get()
         );
 
-        return new ListDepartmentHeadcountCommand(currentDate, date, departmentName);
+        return new ListDepartmentHeadcountCommand(currentDate, givenDate, departmentName);
     }
 }
