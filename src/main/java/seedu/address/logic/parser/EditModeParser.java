@@ -145,7 +145,7 @@ public class EditModeParser {
         case "tag":
         case "tags":
             Optional<Set<Tag>> tags = parseTagsForEdit(List.of(value.split("\\s+")));
-            tags.ifPresent(realTags -> outData.setTags(realTags));
+            tags.ifPresent(outData::setTags);
             break;
         case "str":
             outData.setStats(new Stats(Integer.valueOf(value),
@@ -236,9 +236,9 @@ public class EditModeParser {
                                                         .findFirst();
         if (item.isPresent()) {
             if (actionWord.equalsIgnoreCase("add")) {
-                item.ifPresent(entity -> editInventory.addItem((Item) entity));
+                editInventory.addItem((Item) item.get());
             } else if (actionWord.equalsIgnoreCase("remove")) {
-                item.ifPresent(entity -> editInventory.deleteItem((Item) entity));
+                editInventory.deleteItem((Item) item.get());
             }
         } else {
             throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);

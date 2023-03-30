@@ -1,5 +1,7 @@
 package seedu.address.model.entity;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,8 +40,12 @@ public class Inventory {
     /**
      * Delete item from the inventory
      */
-    public void deleteItem(Item item) {
-        items.remove(item);
+    public void deleteItem(Item item) throws ParseException {
+        if (items.contains(item)) {
+            items.remove(item);
+        } else {
+            throw new ParseException("The item does not exist in the inventory!");
+        }
     }
 
     /**
