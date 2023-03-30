@@ -16,8 +16,8 @@ import seedu.address.model.module.ReadOnlyModule;
 public class DeleteModuleCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE =
-            "(1) Deletes the module identified by the module code.\n"
-            + "Parameters: module code\n"
+            "(1) Deletes one or more modules from the tracker.\n"
+            + "Parameters: {module code_1}[, {module_code_2}[, ...]]\n"
             + "Example: " + COMMAND_WORD + " CS2040S";
 
     public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";

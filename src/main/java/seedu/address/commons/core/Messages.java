@@ -5,6 +5,12 @@ package seedu.address.commons.core;
  */
 public class Messages {
 
+    public static final String MESSAGE_CONTEXT_USAGE = "/mod and /lec parameters are automatically inserted depending "
+            + "on the current context.\n"
+            + "The user can overwrite the values by specifying them explicitly.\n"
+            + "The user can also specify /r to prevent any of these insertions.\n"
+            + "Refer to the User Guide for more information.";
+
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command\n";
     public static final String MESSAGE_KNOWN_COMMANDS = "The known commands are:\n"
             + "nav, add, edit, delete, tag, list, find, mark, unmark, help and exit";
@@ -32,9 +38,6 @@ public class Messages {
     public static final String MESSAGE_VIDEOS_DO_NOT_EXIST = "Videos "
             + String.format(MESSAGE_DO_NOT_EXIST, "%1$s")
             + " in Lecture %3$s of Module %2$s";
-
-    public static final String MESSAGE_CAN_DO_MULTIPLE = "(first parameter can be comma \",\" "
-            + "separated to include multiple objects)";
 
     public static final String MESSAGE_MODULE_TAG_DOES_NOT_EXIST = "Tag %1$s of "
             + String.format(MESSAGE_MODULE_DOES_NOT_EXIST, "%2$s");

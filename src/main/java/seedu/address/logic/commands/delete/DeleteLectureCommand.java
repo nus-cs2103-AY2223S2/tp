@@ -19,8 +19,8 @@ import seedu.address.model.module.ReadOnlyModule;
 public class DeleteLectureCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE =
-            "(2) Deletes the lecture of the module identified by the lecture name and module code.\n"
-            + "Parameters: lecture name, module code\n"
+            "(2) Deletes one or more lectures from a module.\n"
+            + "Parameters: {lecture_name_1}[, {lecture_name_2}[, ...]] " + PREFIX_MODULE + " {module_code}\n"
             + "Example: " + COMMAND_WORD + " Lecture 01 " + PREFIX_MODULE + " CS2103/T";
 
     public static final String MESSAGE_DELETE_LECTURE_SUCCESS = "Deleted Lecture: %1$s from Module %2$s";

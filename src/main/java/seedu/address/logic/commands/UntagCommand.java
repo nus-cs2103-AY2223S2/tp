@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_CONTEXT_USAGE;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -30,22 +31,30 @@ import seedu.address.model.video.VideoName;
 
 public class UntagCommand extends Command {
     public static final String COMMAND_WORD = "untag";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Untag a specified video, module, or lecture" + "\n"
-            + "\n"
-            + "*** Command Format *** " + "\n"
-            + "Untag Module: " + COMMAND_WORD + " {module_code} " + PREFIX_TAG + " {tag_1}, [{tag_2}, ...]" + "\n"
-            + "Untag Lecture: " + COMMAND_WORD + " {lecture_name} " + PREFIX_MODULE + " {module_code} "
-            + PREFIX_TAG + " {tag_1}, [{tag_2}, ...]" + "\n"
-            + "Untag Video: " + COMMAND_WORD + " {video_name} " + PREFIX_LECTURE
-            + " {lecture_name} " + PREFIX_MODULE + " {module_code} "
-            + PREFIX_TAG + " {tag_1}, [{tag_2}, ...]" + "\n"
-            + "\n"
-            + "*** Example *** " + "\n"
-            + "Untag Module: " + COMMAND_WORD + " EG2310 " + PREFIX_TAG + " fun, hard" + "\n"
-            + "Untag Lecture: " + COMMAND_WORD + " Lecture_1 " + PREFIX_MODULE + " EG2310 "
-            + PREFIX_TAG + " fun, hard" + "\n"
-            + "Untag Video: " + COMMAND_WORD + " Video_1 " + PREFIX_LECTURE + " Lecture_1 " + PREFIX_MODULE + " EG2310 "
-            + PREFIX_TAG + " fun, hard";
+
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + ":\n"
+            + "(1) Remove one or more tags from a module in the tracker.\n"
+            + "Parameters: "
+            + "{module_code} "
+            + PREFIX_TAG + " {tag_1}[, {tag_2}[, ...]]\n"
+            + "Example: " + COMMAND_WORD + " EG2310 " + PREFIX_TAG + " fun, hard\n\n"
+            + "(2) Remove one or more tags from a lecture in a module.\n"
+            + "Parameters: "
+            + "{lecture_name} "
+            + PREFIX_MODULE + " {module_code} "
+            + PREFIX_TAG + " {tag_1}[, {tag_2}[, ...]]\n"
+            + "Example: " + COMMAND_WORD + " Lecture_1 " + PREFIX_MODULE + " EG2310 "
+            + PREFIX_TAG + " fun, hard\n\n"
+            + "(3) Remove one or more tags from a video in a lecture.\n"
+            + "Parameters: "
+            + "{video_name} "
+            + PREFIX_MODULE + " {module_code} "
+            + PREFIX_LECTURE + " {lecture_name} "
+            + PREFIX_TAG + " {tag_1}[, {tag_2}[, ...]]\n"
+            + "Example: " + COMMAND_WORD + " Video_1 " + PREFIX_MODULE + " EG2310 " + PREFIX_LECTURE + " Lecture_1 "
+            + PREFIX_TAG + " fun, hard\n\n"
+            + MESSAGE_CONTEXT_USAGE;
+
     public static final String MESSAGE_SUCCESS = "%1$s untagged";
     private final Set<Tag> deletingTags;
     private final VideoName videoName;
