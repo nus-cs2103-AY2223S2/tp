@@ -20,34 +20,7 @@ reliably than traditional GUI based apps.
 ___
 
 ## Table of Contents
-
-1. [Quick Start](#quick-start)
-2. [Features](#features)
-   1. [Notes about formatting](#notes-about-formatting)
-   2. [View help](#viewing-help--help)
-   3. [Clear patientist](#clearing-the-patientist--clear)
-   4. [Add patient](#adding-a-patient--addpat)                                                                  
-   5. [Add staff](#adding-a-staff-member--addstf)                                                               
-   6. [Add ward](#adding-a-ward-to-the-system--addward)                                                      
-   7. [List patients](#listing-all-patients--lspat)                                                           
-   8. [List staff members](#listing-staff-members--lsstf)                                                       
-   9. [Find person](#finding-a-person--find)                                                         
-   10. [Find patient by ID](#finding-a-patient-by-id-number--findpat)                                            
-   11. [Add patient status](#adding-patient-status--addpatstatus)                                                
-   12. [Delete patient status](#deleting-patient-status--delpatstatus)  
-   13. [Add patient todo](#adding-patient-todo--addpattodo)
-   14. [Delete patient todo](#deleting-patient-todo--delpattodo)
-   15. [View details of a person](#viewing-the-details-of-a-specific-person--view)                               
-   16. [List wards](#listing-the-names-of-all-wards--lsward)                                                     
-   17. [List patients in a ward](#listing-all-patients-in-a-particular-ward--lswardpat)                          
-   18. [Update person's particulars](#update-particulars-of-a-person--edit)                                      
-   19. [Delete person from system based on GUI](#deleting-a-person-from-the-system-based-on-list-on-gui--delete) 
-   20. [Delete patient from system](#deleting-a-patient-from-the-system--delpat)                                 
-   21. [Delete staff member from system](#deleting-a-staff-member-from-the-system--delstf)                       
-   22. [Delete ward from system](#deleting-a-ward-from-the-system--delward)                                      
-   23. [Exit the program](#exiting-the-program--exit)
-3. [FAQ](#faq)
-4. [Command summary](#command-summary)
+- Table of Contents {:toc}
 
 
 --------------------------------------------------------------------------------------------------------------------
