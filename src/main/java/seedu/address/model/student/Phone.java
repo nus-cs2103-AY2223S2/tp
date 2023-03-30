@@ -37,6 +37,9 @@ public class Phone {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given phone number is not exceed 15 digits long.
+     */
     public static boolean isMoreThanMaxDigits(String test) {
         if (test.length() > 15) {
             return false;

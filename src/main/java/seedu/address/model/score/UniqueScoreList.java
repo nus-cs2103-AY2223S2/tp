@@ -3,7 +3,6 @@ package seedu.address.model.score;
 import static java.util.Objects.requireNonNull;
 
 import java.text.DecimalFormat;
-import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.Iterator;
 import java.util.List;
@@ -47,7 +46,8 @@ public class UniqueScoreList implements Iterable<Score> {
             throw new DuplicateScoreException();
         }
         internalList.add(toAdd);
-        internalList.sort(Comparator.comparing(Score::getLocalDate));
+        internalList.sort((s1, s2) -> s1.getLocalDate().compareTo(s2.getLocalDate()));
+        FXCollections.reverse(internalList);
     }
 
     /**
@@ -73,8 +73,6 @@ public class UniqueScoreList implements Iterable<Score> {
      * @return A view of list of sorted score.
      */
     public ObservableList<Score> getSortedScoreList() {
-        internalList.sort(Comparator.comparing(Score::getLocalDate));
-        FXCollections.reverse(internalList);
         return internalList;
     }
 
@@ -83,12 +81,13 @@ public class UniqueScoreList implements Iterable<Score> {
      * @return A view of list of recent 5 scores.
      */
     public ObservableList<Score> getRecentScoreList() {
-        ObservableList<Score> sortedScoreList = getSortedScoreList();
-        if (sortedScoreList.size() < 5) {
-            FXCollections.reverse(sortedScoreList);
-            return sortedScoreList;
+        if (internalList.size() < 5) {
+            ObservableList<Score> recentScoreList = FXCollections.observableArrayList(internalList.stream()
+                    .limit(internalList.size()).collect(java.util.stream.Collectors.toList()));
+            FXCollections.reverse(recentScoreList);
+            return recentScoreList;
         }
-        ObservableList<Score> recentScoreList = FXCollections.observableArrayList(sortedScoreList.stream()
+        ObservableList<Score> recentScoreList = FXCollections.observableArrayList(internalList.stream()
                         .limit(5).collect(java.util.stream.Collectors.toList()));
         FXCollections.reverse(recentScoreList);
         return recentScoreList;
