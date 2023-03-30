@@ -15,6 +15,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.category.Category;
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.RecurringExpenseManager;
 
 /**
  * A default model stub that have some methods failing.
@@ -161,6 +162,26 @@ public class ModelStub implements Model {
 
     @Override
     public void setBudget(Budget budget) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addRecurringGenerator(RecurringExpenseManager recurringExpenseManager) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
         throw new AssertionError("This method should not be called.");
     }
 

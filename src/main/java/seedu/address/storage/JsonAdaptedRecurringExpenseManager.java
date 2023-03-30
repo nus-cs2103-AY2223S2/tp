@@ -98,13 +98,23 @@ public class JsonAdaptedRecurringExpenseManager {
 
         LocalDate modelStartDate = StorageUtility.parseDateFromJson(startDate);
 
-        LocalDate modelEndDate = StorageUtility.parseDateFromJson(endDate);
+        LocalDate modelNextExpenseDate = StorageUtility.parseDateFromJson(nextExpenseDate);
 
         RecurringExpenseType modelRecurringType = RecurringExpenseType.valueOf(recurringExpenseType);
 
         Category toBeUsed = expenseCategory.toModelType();
 
-        return new RecurringExpenseManager(expenseName, modelAmount, toBeUsed, modelStartDate,
-                modelEndDate, modelRecurringType);
+        if (!endDate.equals("null")) {
+            LocalDate modelEndDate = StorageUtility.parseDateFromJson(endDate);
+            RecurringExpenseManager toReturn = new RecurringExpenseManager(expenseName, modelAmount,
+                    toBeUsed, modelStartDate, modelEndDate, modelRecurringType);
+            toReturn.setNextExpenseDate(modelNextExpenseDate);
+            return toReturn;
+        }
+
+        RecurringExpenseManager toReturn = new RecurringExpenseManager(expenseName, modelAmount, toBeUsed,
+                modelStartDate, modelRecurringType);
+        toReturn.setNextExpenseDate(modelNextExpenseDate);
+        return toReturn;
     }
 }
