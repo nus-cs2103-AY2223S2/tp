@@ -34,9 +34,7 @@ public class UndoCommandParser extends UndoRedoCommandParser implements Parser<U
     public void requirePositive(int number) throws ParseException {
         if (number <= 0) {
             throw new ParseException(
-                    String.format(
-                            MESSAGE_INVALID_COMMAND_FORMAT
-                                    + MESSAGE_INDICATE_POSITIVE, UndoCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INDICATE_POSITIVE, UndoCommand.MESSAGE_USAGE));
         }
     }
 }
