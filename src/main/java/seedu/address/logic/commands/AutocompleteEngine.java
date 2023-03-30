@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.KEYWORD_PLACEHOLDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +84,12 @@ public class AutocompleteEngine {
                 .allMatch(argPrefix -> argPrefix.stream()
                         .dropWhile(Prefix::isPlaceholder)
                         .noneMatch(Prefix::isPlaceholder));
+
+        // All index arguments are assumed to come any other type of args.
+        assert ARGUMENT_PREFIX_MAP.values().stream()
+                .allMatch(argPrefix -> argPrefix.stream()
+                        .dropWhile(INDEX_PLACEHOLDER::equals)
+                        .noneMatch(INDEX_PLACEHOLDER::equals));
     }
 
     /**
@@ -175,6 +182,7 @@ public class AutocompleteEngine {
         }
 
         String[] splitArr = commmandBody.trim().split(" +");
+        ArrayList<String> words = new ArrayList<>(Arrays.asList(splitArr));
         int numOfWords = splitArr.length;
         assert numOfWords > 0;
         String firstWord = splitArr[0];
@@ -186,13 +194,11 @@ public class AutocompleteEngine {
 
         boolean isIndexRequired = argPrefixes.contains(INDEX_PLACEHOLDER);
         if (isIndexRequired) {
-            // Index is assumed to always be the first arg.
-            assert argPrefixes.get(0) == INDEX_PLACEHOLDER;
+            long numOfIndexRequired = argPrefixes.stream().filter(INDEX_PLACEHOLDER::equals).count();
+            boolean areAllValidIndexes = words.stream().limit(numOfIndexRequired)
+                    .allMatch(word -> word.matches("\\d+"));
 
-            //TODO to remove when commands are dry-run to see if they're valid,
-            //where an error should be thrown should the first word not be a integer.
-            boolean hasIntAsFirstWord = firstWord.matches("\\d+");
-            if (!hasIntAsFirstWord) {
+            if (!areAllValidIndexes) {
                 throw new CommandException("Invalid index.");
             }
         }
