@@ -178,12 +178,12 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
-        throw new AssertionError("This method should not be called.");
+        return recurringGenerators;
     }
-    
+
     @Override
     public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
-         throw new AssertionError("This method should not be called.");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override

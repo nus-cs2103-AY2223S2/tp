@@ -68,7 +68,7 @@ public class EditRecurringExpenseManagerCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Category> lastShownListOfCategories = model.getFilteredCategoryList();
-        List<RecurringExpenseManager> lastShownListOfRecurringExpenseManagers = model.getFilteredRecurringGenerators();
+        List<RecurringExpenseManager> lastShownListOfRecurringExpenseManagers = model.getRecurringExpenseGenerators();
         Category toBeAllocated = null;
 
         for (Category category : lastShownListOfCategories) {

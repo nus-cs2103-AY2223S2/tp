@@ -170,8 +170,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the recurring expense list */
     ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators();
-    
-      /**
+
+    /**
      * Updates the filter of the filtered recurring expense manager list to filter by the given
      * {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

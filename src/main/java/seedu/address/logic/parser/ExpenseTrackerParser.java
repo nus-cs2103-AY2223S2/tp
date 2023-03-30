@@ -98,7 +98,7 @@ public class ExpenseTrackerParser {
 
         case EditRecurringExpenseManagerCommand.COMMAND_WORD:
             return new EditRecurringExpenseManagerCommandParser().parse(arguments);
-            
+
         case AddRecurringExpenseCommand.COMMAND_WORD:
             return new AddRecurringExpenseParser().parse(arguments);
 

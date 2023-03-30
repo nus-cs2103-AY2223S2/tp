@@ -25,7 +25,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Category> filteredCategories;
-    private final FilteredList<RecurringExpenseManager> filteredRecurringGenerators;
     private final FilteredList<RecurringExpenseManager> filteredRecurringExpense;
 
     /**
@@ -249,11 +248,11 @@ public class ModelManager implements Model {
     public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
         return expenseTracker.getRecurringExpenseGenerators();
     }
-    
+
     @Override
     public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
         requireNonNull(predicate);
-        filteredRecurringGenerators.setPredicate(predicate);
+        filteredRecurringExpense.setPredicate(predicate);
     }
 
     @Override
