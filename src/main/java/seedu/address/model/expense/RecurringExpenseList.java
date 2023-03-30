@@ -76,7 +76,7 @@ public class RecurringExpenseList {
      * @return Boolean depicting if the recurring expense is present in the list.
      */
     public boolean contains(RecurringExpenseManager recurringExpense) {
-        return recurringExpenseList.contains(recurringExpense);
+        return recurringExpenseList.stream().anyMatch(recurringExpense::equals);
     }
 
     public double getTotalAmount() {

@@ -166,25 +166,29 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    @Override
-    public ObservableList<RecurringExpenseManager> getFilteredRecurringGenerators() {
-        return this.recurringGenerators;
+
+    public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public void addRecurringGenerator(RecurringExpenseManager recurringExpenseManager) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
+        throw new AssertionError("This method should not be called.");
+    }
+    
     @Override
     public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
-        this.recurringGenerators.removeIf(predicate);
+         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void addRecurringGenerator(RecurringExpenseManager toAdd) {
-        this.recurringGenerators.add(toAdd);
+    public void deleteRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        throw new AssertionError("This method should not be called.");
     }
-
-    @Override
-    public void removeRecurringGenerator(RecurringExpenseManager toRemove) {
-        this.recurringGenerators.remove(toRemove);
-    }
-
 
 }

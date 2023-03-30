@@ -18,6 +18,7 @@ public class RecurringExpenseManager {
     private LocalDate endDate = null;
     private RecurringExpenseType recurringExpenseType;
 
+
     /**
      * The constructor for the RecurringExpenseManager class with a start and end date.
      * @param expenseName The name of the recurring expense.
@@ -36,6 +37,7 @@ public class RecurringExpenseManager {
         this.startDate = startDate;
         this.endDate = endDate;
         this.recurringExpenseType = recurringExpenseType;
+        this.nextExpenseDate = startDate;
     }
 
     /**
@@ -150,10 +152,59 @@ public class RecurringExpenseManager {
         return expenseAmount;
     }
 
+    public void setNextExpenseDate(LocalDate nextExpenseDate) {
+        this.nextExpenseDate = nextExpenseDate;
+    }
+
     @Override
     public String toString() {
         return "Recurring Expense: " + expenseName + " Amount: " + expenseAmount + " Category: "
                 + expenseCategory + " Start Date: " + startDate + " End Date: " + endDate
                 + " Recurring Expense Type: " + recurringExpenseType;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+
+        RecurringExpenseManager recurringExpense = (RecurringExpenseManager) object;
+
+        if (!recurringExpense.startDate.isEqual(this.startDate)) {
+            return false;
+        }
+
+        if (recurringExpense.expenseAmount != this.expenseAmount) {
+            return false;
+        }
+
+        if (!recurringExpense.nextExpenseDate.isEqual(this.nextExpenseDate)) {
+            return false;
+        }
+
+        if (recurringExpense.recurringExpenseType != this.recurringExpenseType) {
+            return false;
+        }
+
+        if (!recurringExpense.expenseCategory.equals(this.expenseCategory)) {
+            return false;
+        }
+
+        if (!recurringExpense.expenseName.equals(this.expenseName)) {
+            return false;
+        }
+
+        if (recurringExpense.endDate == null) {
+            return this.endDate == null;
+        }
+
+        if (!recurringExpense.endDate.isEqual(this.endDate)) {
+            return false;
+        }
+        return true;
     }
 }

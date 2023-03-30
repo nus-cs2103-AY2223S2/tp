@@ -156,18 +156,31 @@ public interface Model {
      */
     void setBudget(Budget budget);
 
-    /** Returns an unmodifiable view of the recurring expense manager list */
-    ObservableList<RecurringExpenseManager> getFilteredRecurringGenerators();
+    /**
+     * Indicates if a RecurringExpense exists in the RecurringExpenseList
+     * @param recurringExpense the RecurringExpense to check for
+     */
+    boolean hasRecurringExpense(RecurringExpenseManager recurringExpense);
 
     /**
+     * Adds a RecurringExpense to the RecurringExpense list.
+     * @param recurringExpenseManager the Recurring expense to add.
+     */
+    void addRecurringGenerator(RecurringExpenseManager recurringExpenseManager);
+
+    /** Returns an unmodifiable view of the recurring expense list */
+    ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators();
+    
+      /**
      * Updates the filter of the filtered recurring expense manager list to filter by the given
      * {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate);
 
-    void addRecurringGenerator(RecurringExpenseManager toAdd);
-
-    void removeRecurringGenerator(RecurringExpenseManager toRemove);
-
+    /**
+     * Deletes the target {@code RecurringExpense} from the recurring expense list.
+     * @param recurringExpenseManager the recurring expense to be deleted.
+     */
+    void deleteRecurringExpense(RecurringExpenseManager recurringExpenseManager);
 }

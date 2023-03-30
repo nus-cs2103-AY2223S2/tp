@@ -25,11 +25,8 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     private static final MiscellaneousCategory MISCELLANEOUS_CATEGORY = new MiscellaneousCategory();
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
-    private final ObjectProperty<Budget> simpleBudget;
-
     private final RecurringExpenseList recurringGenerators;
-
-
+    private final ObjectProperty<Budget> simpleBudget;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -228,11 +225,16 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         return expenses.contains(expense);
     }
 
+    public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        return recurringGenerators.contains(recurringExpenseManager);
+    }
+
     public void addRecurringGenerator(RecurringExpenseManager generator) {
         recurringGenerators.addRecurringExpense(generator);
     }
 
-    public void removeRecurringGenerator(RecurringExpenseManager generator) {
-        recurringGenerators.removeRecurringExpense(generator);
+
+    public void removeRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        recurringGenerators.removeRecurringExpense(recurringExpenseManager);
     }
 }

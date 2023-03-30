@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Category> filteredCategories;
     private final FilteredList<RecurringExpenseManager> filteredRecurringGenerators;
+    private final FilteredList<RecurringExpenseManager> filteredRecurringExpense;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,7 +38,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExpenses = new FilteredList<>(this.expenseTracker.getExpenseList());
         filteredCategories = new FilteredList<>(this.expenseTracker.getCategoryList());
-        filteredRecurringGenerators = new FilteredList<>(this.expenseTracker.getRecurringExpenseGenerators());
+        filteredRecurringExpense = new FilteredList<>(this.expenseTracker.getRecurringExpenseGenerators());
     }
 
     public ModelManager() {
@@ -235,10 +236,20 @@ public class ModelManager implements Model {
     // =============================================================
 
     @Override
-    public ObservableList<RecurringExpenseManager> getFilteredRecurringGenerators() {
-        return this.filteredRecurringGenerators;
+    public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        return expenseTracker.hasRecurringExpense(recurringExpenseManager);
     }
 
+    @Override
+    public void addRecurringGenerator(RecurringExpenseManager recurringExpenseManager) {
+        expenseTracker.addRecurringGenerator(recurringExpenseManager);
+    }
+
+    @Override
+    public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
+        return expenseTracker.getRecurringExpenseGenerators();
+    }
+    
     @Override
     public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
         requireNonNull(predicate);
@@ -246,16 +257,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addRecurringGenerator(RecurringExpenseManager toAdd) {
-        requireNonNull(toAdd);
-        filteredRecurringGenerators.add(toAdd);
+    public void deleteRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
+        expenseTracker.removeRecurringExpense(recurringExpenseManager);
     }
-
-    @Override
-    public void removeRecurringGenerator(RecurringExpenseManager toRemove) {
-        requireNonNull(toRemove);
-        filteredRecurringGenerators.remove(toRemove);
-    }
-
-
 }
