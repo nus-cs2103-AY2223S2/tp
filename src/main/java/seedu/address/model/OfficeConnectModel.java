@@ -52,7 +52,8 @@ public class OfficeConnectModel {
     }
 
     /**
-     * Checks if task model manager contains task
+     * Checks if task model manager contains task.
+     *
      * @param task task to be checked
      * @return true if task model manager contains the item
      */
@@ -61,7 +62,8 @@ public class OfficeConnectModel {
     }
 
     /**
-     * Adds task to task model manager
+     * Adds task to task model manager.
+     *
      * @param task task to be added
      */
     public void addTaskModelManagerItem(Task task) {
@@ -69,7 +71,8 @@ public class OfficeConnectModel {
     }
 
     /**
-     * Checks if assigntask model manager contains assignment
+     * Checks if assigntask model manager contains assignment.
+     *
      * @param assignTask assignment to be checked
      * @return true if assigntask model manager contains the item
      */
@@ -78,7 +81,8 @@ public class OfficeConnectModel {
     }
 
     /**
-     * Adds assignment to assigntask model manager
+     * Adds assignment to assigntask model manager.
+     *
      * @param assignTask assignment to be added
      */
     public void addAssignTaskModelManagerItem(AssignTask assignTask) {
@@ -86,7 +90,8 @@ public class OfficeConnectModel {
     }
 
     /**
-     * Updates filtered item list in task model manager
+     * Updates filtered item list in task model manager.
+     *
      * @param predicate predicate that determines if item should stay in the filtered item list
      */
     public void updateTaskModelManagerFilteredItemList(Predicate<Task> predicate) {
