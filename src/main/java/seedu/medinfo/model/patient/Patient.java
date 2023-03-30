@@ -3,6 +3,7 @@ package seedu.medinfo.model.patient;
 import static seedu.medinfo.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.medinfo.model.ward.Ward.wardWithName;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.medinfo.model.ward.Ward;
@@ -143,6 +144,14 @@ public class Patient {
         return discharge.value;
     }
 
+    /**
+     * Returns the discharge date as LocalDateTime.
+     * @return LocalDateTime representing the discharge date-time.
+     */
+    public LocalDateTime getDischargeDateTime() {
+        return discharge.getDateTime();
+    }
+
     public void setStatus(Status newStatus) {
         requireAllNonNull(newStatus);
         status = newStatus;
@@ -218,7 +227,7 @@ public class Patient {
      * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByDischargeAsc(Patient patient) {
-        return this.getDischargeString().compareTo(patient.getDischargeString());
+        return this.getDischargeDateTime().compareTo(patient.getDischargeDateTime());
     }
 
     /**
@@ -226,7 +235,7 @@ public class Patient {
      * Returns positive integer if {@code this} should be placed after, 0 if same, and negative if before.
      */
     public int compareToByDischargeDesc(Patient patient) {
-        return INVERTER * this.getDischargeString().compareTo(patient.getDischargeString());
+        return INVERTER * this.getDischargeDateTime().compareTo(patient.getDischargeDateTime());
     }
 
     /**

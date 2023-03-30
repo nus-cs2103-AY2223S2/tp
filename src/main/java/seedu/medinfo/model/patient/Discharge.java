@@ -46,6 +46,15 @@ public class Discharge {
         return true;
     }
 
+    public LocalDateTime getDateTime() {
+        try {
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            return LocalDateTime.parse(value, format);
+        } catch (DateTimeParseException e) {
+            return LocalDateTime.MIN;
+        }
+    }
+
     @Override
     public String toString() {
         return value;
