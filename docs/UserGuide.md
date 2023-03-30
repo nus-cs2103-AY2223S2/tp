@@ -275,8 +275,7 @@ Throughout this user guide, you may come across different formatting styles and 
 # **4. Overview of Features**
 
 If you work as a clinic receptionist, you understand how time-consuming and overwhelming it can be to manually 
-manage patient information and medicine inventory. That is why we have created a software specifically designed to 
-assist you in these tasks, making your job lot easier and more efficient. With our software, you can easily keep track of patient information and drug inventory, allowing you to focus on providing your patients the best care possible.
+manage patient information and medicine inventory. That is why we have created CareFlow specifically designed to assist you in these tasks, making your job lot easier and more efficient. With our software, you can easily keep track of patient information and drug inventory, allowing you to focus on providing your patients the best care possible.
 
 ## 4.1 Patient Information Management
 
@@ -287,23 +286,21 @@ CareFlow lets you keep all your patient data in one place and access it easily. 
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Visit Section [5.2 Patient Commands](#52-patient-commands) for more information on how to manage patient data in our 
-software.
+:information_source: Visit Section [5.2 Patient Commands](#52-patient-commands) for more information on how to 
+manage patient data in CareFlow.
 
 </div>
 
 ## 4.2 Drug Inventory Management
 
-If you find  struggle to keep track of your drug inventory, CareFlow is here to help.
+If you find struggle to keep track of your drug inventory, CareFlow is here to help.
 
-With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. 
-You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no 
-longer have to waste time manually counting pills or reading scribbled notes.
+With CareFlow, you can easily keep track of your stock and avoid the risk of running out of important medications. You can quickly add or remove medications, and view drug inventory levels with just a glance at the pie chart. You no longer have to waste time manually counting pills or reading scribbled notes.
 
 <div markdown="block" class="alert alert-info">
 
-Visit Section [5.3 Drug Commands](#52-drug-commands) for more information on how to manage drug inventory in 
-our software.
+:information_source: Visit Section [5.3 Drug Commands](#53-drug-commands) for more information on how to manage drug 
+inventory in CareFlow.
 
 </div>
 
@@ -313,8 +310,8 @@ if you encounter an emergency or serious medical issue that your clinic can't ha
 
 <div markdown="block" class="alert alert-info">
 
-Please note that you are not allowed to edit or change the hospital list in CareFlow. However, if you believe that a 
-hospital is missing from our directory, please feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are committed to constantly improving our software to meet your needs.
+:information_source: Please note that you are not allowed to edit or change the hospital list in CareFlow. However, 
+if you believe that a hospital is missing from our directory, please feel free to [contact us](https://ay2223s2-cs2103t-w09-3.github.io/tp/AboutUs.html) and let us know. We are committed to constantly improving our software to meet your needs.
 
 </div>
 
@@ -322,6 +319,9 @@ hospital is missing from our directory, please feel free to [contact us](https:/
 # **5. Commands**
 
 ## 5.1 General Commands
+
+This section introduces the two general commands, `help` and `exit`. These commands are not specific to the patient or 
+drug of CareFlow.
 
 ### View help : `g help`
 * Shows all valid command formats and their functionalities.
