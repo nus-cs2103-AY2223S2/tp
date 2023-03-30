@@ -42,10 +42,6 @@ public class MonthlyPlan {
         this.today = today;
     }
 
-    public static LocalDate lastGenerated() {
-        return today;
-    }
-
     /**
      * Check for events occurring each day and allocate count effort expenditure
      * @param list all events currently stored in TaskBook

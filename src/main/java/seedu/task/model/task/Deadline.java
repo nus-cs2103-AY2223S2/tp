@@ -43,7 +43,7 @@ public class Deadline extends Task {
     }
 
     public boolean isValidDate(LocalDate date) {
-        return date.isBefore(deadline.getDate()) || date.isEqual(deadline.getDate());
+        return date.isBefore(deadline.getDate());
     }
 
     @Override

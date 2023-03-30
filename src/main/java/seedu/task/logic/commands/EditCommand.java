@@ -1,6 +1,7 @@
 package seedu.task.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.task.commons.core.Messages.MESSAGE_INVALID_EVENT_DATES;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
@@ -14,7 +15,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.index.Index;
 import seedu.task.commons.util.CollectionUtil;
 import seedu.task.logic.commands.exceptions.CommandException;
@@ -78,7 +78,7 @@ public class EditCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
