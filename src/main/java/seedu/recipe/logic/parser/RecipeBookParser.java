@@ -15,7 +15,6 @@ import seedu.recipe.logic.commands.EditCommand;
 import seedu.recipe.logic.commands.ExitCommand;
 import seedu.recipe.logic.commands.FindCommand;
 import seedu.recipe.logic.commands.HelpCommand;
-import seedu.recipe.logic.commands.ImportCommand;
 import seedu.recipe.logic.commands.ListCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 
