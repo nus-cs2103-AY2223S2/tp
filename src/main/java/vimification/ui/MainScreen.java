@@ -58,8 +58,8 @@ public class MainScreen extends UiPart<VBox> {
         topComponentHeight = windowHeight.multiply(0.9);
         bottomComponentHeight = windowHeight.multiply(0.1);
 
-        leftComponentWidth = windowWidth.multiply(0.3);
-        rightComponentWidth = windowWidth.multiply(0.7);
+        leftComponentWidth = windowWidth.multiply(0.4);
+        rightComponentWidth = windowWidth.multiply(0.6);
         setup();
     }
 
