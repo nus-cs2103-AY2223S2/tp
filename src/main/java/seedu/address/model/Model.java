@@ -253,6 +253,15 @@ public interface Model {
     void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException;
 
     /**
+     * Assigns existing technician to existing appointment
+     *
+     * @param techId ID of technician
+     * @param appointmentId ID of appointment
+     * @throws NoSuchElementException if technician ID or appointment ID does not exist
+     */
+    void addTechnicianToAppointment(int techId, int appointmentId) throws NoSuchElementException;
+
+    /**
      * Checks if part already exists
      *
      * @param partName Name of the part to check against

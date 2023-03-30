@@ -380,6 +380,11 @@ public class ModelManager implements Model {
         this.shop.addTechnicianToService(serviceId, techId);
     }
 
+    @Override
+    public void addTechnicianToAppointment(int techId, int appointmentId) throws NoSuchElementException {
+        this.shop.addTechnicianToAppointment(techId, appointmentId);
+    }
+
     /**
      * Checks if part already exists
      *

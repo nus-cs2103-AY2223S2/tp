@@ -266,6 +266,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addTechnicianToAppointment(int techId, int appointmentId) throws NoSuchElementException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPart(String partName) {
             throw new AssertionError("This method should not be called.");
         }

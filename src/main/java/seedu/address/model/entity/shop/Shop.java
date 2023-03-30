@@ -226,6 +226,24 @@ public class Shop implements ReadOnlyShop {
     }
 
     /**
+     * Assigns existing technician to existing appointment
+     *
+     * @param technicianId ID of technician
+     * @param appointmentId ID of appointment
+     * @throws NoSuchElementException if technician ID or appointment ID does not exist
+     */
+    public void addTechnicianToAppointment(int technicianId, int appointmentId) throws NoSuchElementException {
+        if (!this.hasTechnician(technicianId)) {
+            throw new NoSuchElementException();
+        }
+        Appointment appointment = this.getAppointmentList().stream()
+            .filter(a -> a.getId() == appointmentId)
+            .findFirst()
+            .orElseThrow();
+        appointment.addTechnician(technicianId);
+    }
+
+    /**
      * Increases part stock by a specified quantity
      *
      * @param partName Name of part
