@@ -33,6 +33,6 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String args) {
-        return new AutocompleteResult(null, false);
+        return new AutocompleteResult();
     }
 }

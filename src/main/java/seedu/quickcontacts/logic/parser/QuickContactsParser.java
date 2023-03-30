@@ -40,6 +40,15 @@ public class QuickContactsParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    private static final String[] AVAILABLE_COMMAND_WORDS = {
+        AddCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
+        ExportPersonsCommand.COMMAND_WORD, ImportPersonsCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
+        AddMeetingCommand.COMMAND_WORD, EditMeetingsCommand.COMMAND_WORD, DeleteMeetingCommand.COMMAND_WORD,
+        ExportMeetingsCommand.COMMAND_WORD, ImportMeetingsCommand.COMMAND_WORD, MarkAsDoneCommand.COMMAND_WORD,
+        MarkAsNotDoneCommand.COMMAND_WORD, ShowNotDoneCommand.COMMAND_WORD,
+        ClearCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, SortMeetingCommand.COMMAND_WORD,
+    };
+
     /**
      * Parses user input into command for execution.
      *
@@ -124,9 +133,10 @@ public class QuickContactsParser {
      * @return the {@code AutocompleteResult} based on the user input
      */
     public AutocompleteResult getAutocompleteSuggestion(String userInput) {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        String trimmedUserInput = userInput.trim();
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(trimmedUserInput);
         if (!matcher.matches()) {
-            return new AutocompleteResult(null, false);
+            return new AutocompleteResult();
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -145,16 +155,24 @@ public class QuickContactsParser {
 
         case EditMeetingsCommand.COMMAND_WORD:
             return new EditMeetingParser().getAutocompleteSuggestion(arguments);
+
         case ExportPersonsCommand.COMMAND_WORD:
             return new ExportPersonsParser().getAutocompleteSuggestion(arguments);
+
         case ExportMeetingsCommand.COMMAND_WORD:
             return new ExportMeetingsParser().getAutocompleteSuggestion(arguments);
         case MarkAsDoneCommand.COMMAND_WORD:
             return new MarkAsDoneParser().getAutocompleteSuggestion(arguments);
         case MarkAsNotDoneCommand.COMMAND_WORD:
-            return new MarkAsDoneParser().getAutocompleteSuggestion(arguments);
+            return new MarkAsNotDoneParser().getAutocompleteSuggestion(arguments);
         default:
-            return new AutocompleteResult(null, false);
+            for (String word : AVAILABLE_COMMAND_WORDS) {
+                if (word.startsWith(commandWord) && !word.equals(commandWord)) {
+                    return new AutocompleteResult(word, true);
+                }
+            }
+
+            return new AutocompleteResult();
         }
     }
 

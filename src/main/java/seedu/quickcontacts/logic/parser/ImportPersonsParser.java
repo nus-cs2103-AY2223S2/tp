@@ -48,6 +48,6 @@ public class ImportPersonsParser implements Parser<ImportPersonsCommand> {
 
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String input) {
-        return new AutocompleteResult(null, false);
+        return new AutocompleteResult();
     }
 }

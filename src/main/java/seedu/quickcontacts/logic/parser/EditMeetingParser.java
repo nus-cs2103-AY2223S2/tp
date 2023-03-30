@@ -66,7 +66,7 @@ public class EditMeetingParser implements Parser<EditMeetingsCommand> {
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String args) {
         String[] argsSplit = args.split(" ");
-        if (argsSplit.length == 0) {
+        if (args.isEmpty()) {
             return new AutocompleteResult(PREFIXES[0], false);
         }
         String lastPrefix = argsSplit[argsSplit.length - 1];
