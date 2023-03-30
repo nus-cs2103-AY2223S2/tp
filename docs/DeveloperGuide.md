@@ -77,6 +77,8 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <p align="center"><img src="images/ComponentManagers.png" width="300" /></p>
@@ -270,8 +272,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-<div style="page-break-after: always;"></div>
-
 ### List Feature 
 
 #### Implementation
@@ -292,9 +292,10 @@ Otherwise, this list of Predicate classes include:
 This Predicate class will return True as long as any of the Predicate classes inside it returns True.
 The Predicate classes works using an AND search, persons will be shown in the resulting list only if all the keywords given should match to the Person. 
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the `list` operation works:
 <p align="center"><img src="images/ListSequenceDiagram.png" /></p>
-
 
 #### Design considerations
 
@@ -447,8 +448,6 @@ When `JsonSerializableSocket#toModelType` is called to convert the stored data i
     * Cons: More files to manage, harder to write data to upon any changes to `Socket`.
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## **Documentation**
 
@@ -769,6 +768,8 @@ Use case ends.
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC10 Hide contact details**
 
 **MSS:**
@@ -818,6 +819,8 @@ Use case ends.
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC12 Access peer GitHub information**
 
 **MSS:**
@@ -838,8 +841,6 @@ Use case ends.
 * 3a. The contact does not have github information.
     
    Use case resumes at step 2.
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC13 Undo recent changes**
 
@@ -875,6 +876,8 @@ Use case ends.
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC15 Tagging a contact**
 
 **MSS:**
@@ -884,8 +887,6 @@ Use case ends.
 3.  SOCket tags all contacts in the list currently shown, displays all contacts with the given tag name to the user.
 
     Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC16 Set deadlines & responsibilities**
 
@@ -930,6 +931,8 @@ Use case ends.
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **Use case: UC18 Viewing a person's detail**
 
 **MSS**
@@ -940,8 +943,6 @@ Use case ends.
 4. SOCket displays all the person's information at the detail display window.
 
    Use case ends.
-
-<div style="page-break-after: always;"></div>
 
 **Use case: UC19 Sorting project list**
 
