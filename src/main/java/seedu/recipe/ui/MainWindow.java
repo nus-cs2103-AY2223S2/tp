@@ -53,6 +53,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem importMenuItem;
 
     @FXML
+    private MenuItem exportMenuItem;
+
+    @FXML
     private StackPane recipeListPanelPlaceholder;
 
     @FXML
@@ -83,8 +86,6 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
-        //setAccelerator(importMenuItem, KeyCombination.valueOf("F2"));
-
         getRoot().addEventFilter(DeleteRecipeEvent.DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
 
         helpWindow = new HelpWindow();
@@ -105,6 +106,7 @@ public class MainWindow extends UiPart<Stage> {
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
         setAccelerator(importMenuItem, KeyCombination.valueOf("F3"));
+        setAccelerator(exportMenuItem, KeyCombination.valueOf("F4"));
     }
 
     /**
