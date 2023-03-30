@@ -1,45 +1,48 @@
 
-Contact nUS is a **desktop app for managing NUS student's schedule, optimized for use via a Command Line Interface** 
-(CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Contact nUS can get 
-your contact management tasks done faster than traditional GUI apps.
+Contact nUS is a **desktop app that NUS computing students can use to track their modules and schedules.** It is optimized for use via typing with a Command Line Interface (CLI) rather than clicking which is usually associated with a Graphical User Interface (GUI). However, it provides benefits of both interfaces. NUS computing students can be considered tech-savvy individuals who are also generally fast typists. As such, they stand to gain from the productivity boost that Contact nUS has to offer. 
+
+This guide serves to help NUS computing students familiarise themselves with the use of Contact nUS. 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. To check if you have Java `11`, open up the `terminal` application (for both Windows and Mac OS users) and type in the command `java -version` and press enter. You should see `java version 11` with additional numbers at the back. 
 
-2. Download the latest `ContactnUS.jar` from [here](https://github.com/se-edu/addressbook-level3/releases). 
-[coming soon]
+2. Download the latest `ContactnUS.jar` from [here](www.google.com). 
 
-3. Copy the file to the folder you want to use as the _home folder_ for your ModuleTracker.
+3. Copy the file to the folder you want to use as the _home folder_ for your ModuleTracker. This can be `Desktop` for example.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar ContactnUS.jar` 
-command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Again, open up the `terminal` application. You should be in a directory. If you are not in the folder that you has `ContactnUS.jar`
+downloaded, you can use the command `cd` to move into that folder. An example would be `cd Desktop`.
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will 
-open the help window.<br>
-   Some example commands you can try: [all coming soon]
+5. Now that you are in the same folder as `ContactnUS.jar`, type in the command `java -jar ContactnUS.jar` to run the application.
 
-   * `list` : Shows all the items inside the module tracker.
+<br> A screen similar to the one below should appear in a few seconds. Note how there is already some sample data included.<br>
+![Ui](images/Ui.png)
 
-   * `add n/CS2103T t/Tutorial e/Wednesday 10-11am a/COM1-0210` : Adds a lecture named `CS2103T` with `Tutorial` 
-   on `Wednesday 10-11am` at `COM1-0210` to the Module Tracker.
+5. You should see a command box. You can now type commands into it and start using `contact nUS`! 
 
-   * `delete 3` : Deletes the 3rd item shown in the current list.
+   A brief introduction of the commands List of commands available:
+   
+   * `list` : Shows all the modules. 
+   
+   * `add` : Adds a new module. 
 
-   * `edit 1 n/CS2101 t/Tutorial` : Edits the module name and item type of the 1st item to be `CS2101` and `Tutorial` 
-   respectively.
+   * `delete` : Deletes a module.
 
-   * `exit` : Exits the app.
+   * `edit` : Edits a module. 
 
-<!--    * `clear` : Deletes all items. -->
+   * `find` : Finds a module based on its description. 
+
+   * `sort` : Sorts the modules based on the timeslot or deadline of the module.
+
+   * `clear` : Clears all the modules in the list. Do this only if you are sure!
+
+   * `exit` : Exits the application.
 
 
-
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for further details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## Definition
@@ -99,69 +102,6 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help` 
-
-
-### Adding a module: `add`
-
-Adds an item to the module tracker.
-
-Format: `add n/MODULE_NAME t/TAG [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS] [c/RESOURCE]`
-
-<!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A module can have any number of tags (including 0)
-</div> -->
-
-Examples:
-* `add n/CS2103T t/Lecture`
-* `add n/CS1101S t/Tutorial e/03042023 10:00 a/COM1-0217 s/Sam Wan`
-* `add n/CS2030S t/Lab a/COM1-B112 d/04042023 23:59 r/Attendance not compulsory :)`
-
-### Listing all modules : `list`
-
-Shows a list of all items in the module tracker.
-
-Format: `list`
-
-### Editing a module : `edit`
-
-Edits an existing item in the module tracker.
-
-Format: `edit INDEX [n/MODULE_NAME] [t/TAG] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS] [c/RESOURCE]`
-
-* Edits the items at the specified INDEX. The index refers to the index number shown in the displayed module list. 
-The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the module will be removed i.e adding of tags is not cumulative.
-
-
-Examples:
-* `edit 1 n/CS2101 t/Tutorial` Edits the module name, item type and date of the 1st item to be `CS2101` and `Tutorial` 
-respectively.
-* `edit 2 a/COM3-B110 s/Professor Franklin Stein r/Funny lecturer haha` Edits the venue, teacher and remark of the 2nd 
-item to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
-* `edit 5 n/CS1231S d/02042023 23:59` Edits the module name and deadline of the 5th item to be `CS1231S` 
-and `02042023 23:59` respectively.
-
-### Finding a module or type : `find`
-
-finds the specified module or type from the module tracker.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The KEYWORD refers to the module name or type name such as CS2103T or tutorial.
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* Only the module name and type are searched.
-* Only full words will be matched e.g. `CS2103` will not match `CS2103T`
-* Modules matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `CS2103T tutorial` will return the CS2103T module and tutorials in the module tracker
-
-Examples:
-* `list` followed by `find CS2103T` finds all instances where there is a module named CS2103T in the list.
-* `list` followed by `find tutorial` finds all instances of tutorials in the list
-* `list` followed by `CS2103T tutorial` will return modules named CS2103T and all tutorial type in the module tracker
-
 ![image](https://user-images.githubusercontent.com/82088609/227960415-f3120f1c-6779-4d33-a41c-0eca0d85f285.png)
 
 
@@ -173,31 +113,6 @@ Shows all the deadlines and timeslots you have today
 * it will only look at time slots and deadlines
 
 ![image](https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png)
-
-### Deleting a module : `delete`
-
-Deletes the specified item from the module tracker.
-
-Format: `delete INDEX`
-
-* Deletes the module at the specified `INDEX`.
-* The index refers to the index number shown in the displayed module list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd module in the module tracker.
-
-<!-- ### Clearing all entries : `clear`
-
-Clears all entries from the module tracker.
-
-Format: `clear` -->
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
 
 ### Saving the data
 
@@ -214,9 +129,6 @@ If your changes to the data file makes its format invalid, Contact nUS will disc
 data file at the next run.
 </div> 
 
-<!-- ### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._ -->
 
  --------------------------------------------------------------------------------------------------------------------
 
