@@ -20,8 +20,7 @@ Please read this section before skipping to specific parts in the `Features` sec
 <div markdown="block" class="alert alert-danger">:exclamation: **Notes on display resolution**
 
 The application has been tested extensively on a display resolution of 1920 X 1200 and a display zoom of 125%. 
-It is recommended that you switch to this resolution before proceeding with the rest of the user guide. UI bugs stemming 
-from other resolutions or different zoom levels is out of scope (impracticability due to lack of time).
+It is recommended that you switch to this resolution before proceeding with the rest of the user guide. 
 
 </div>
 
@@ -147,7 +146,7 @@ The availability of a person.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 
-Out of concerns of time, we do not implement the scheme to check and merge overlapping available date ranges, 
+We have not implemented the schema to check and merge overlapping available date ranges, 
 such as `2022-01-03,2022-01-20` and `2022-01-10,2022-01-23`. Therefore, to ensure maximum efficiency for the software,
 please ensure your input available date ranges are non-overlapping.
 
@@ -236,6 +235,14 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
     * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Opening multiple instances of the application**
+
+Be warned! Please ensure that you only have **one** running instance of the application. 
+Opening multiple instances may result in unexpected behaviours.
+
+</div>
+
 
 ---------------------------------------------------
 ## Features
