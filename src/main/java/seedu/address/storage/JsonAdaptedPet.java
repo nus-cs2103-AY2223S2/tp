@@ -18,6 +18,7 @@ import seedu.address.model.pet.Address;
 import seedu.address.model.pet.Deadline;
 import seedu.address.model.pet.Email;
 import seedu.address.model.pet.Name;
+import seedu.address.model.pet.NoDeadline;
 import seedu.address.model.pet.OwnerName;
 import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.Phone;
@@ -150,11 +151,14 @@ class JsonAdaptedPet {
                     Deadline.class.getSimpleName()));
         }
 
-        String[] split = deadline.split("by", 2);
-        String description = split[0].trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime time = LocalDateTime.parse(split[1].trim(), formatter);
-        final Deadline modelDeadline = new Deadline(description, time);
+        Deadline modelDeadline = new NoDeadline();
+        if (!deadline.equals("N/A")) {
+            String[] split = deadline.split("by", 2);
+            String description = split[0].trim();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime time = LocalDateTime.parse(split[1].trim(), formatter);
+            modelDeadline = new Deadline(description, time);
+        }
 
         final Set<Tag> modelTags = new HashSet<>(petTags);
 
