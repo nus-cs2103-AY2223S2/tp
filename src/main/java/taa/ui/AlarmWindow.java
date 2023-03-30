@@ -49,7 +49,7 @@ public class AlarmWindow extends UiPart<Stage> {
     }
 
     public void show() {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing alarm countdown timer...");
         double remainingTime = AlarmList.getSoonestAlarm().getRemainingTimeSec();
         Timeline[] countdownTimeline = new Timeline[1];
         // Create a timeline object with a keyframe event
