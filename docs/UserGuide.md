@@ -232,7 +232,7 @@ Examples:
 
 ### View the Medical File of a patient: `view`
 
-View the medical file of the specified patient. File must be in either pdf, bmp, jpg, png or gif format
+View the medical file of the specified patient. File must be in either in pdf, bmp, jpg, png or gif format
 
 Format: `view INDEX {FILE INDEX}`
 
@@ -248,7 +248,7 @@ Examples:
 
 ### Upload a patient's medical file: `upload`
 
-Upload the medical file. File must be in either pdf, bmp, jpg, png or gif format.
+Upload the medical file. File must be in either in pdf, bmp, jpg, png or gif format.
 This index file can contain additional information about the patient, such as medical history,
 test results, or treatment plans.
 
