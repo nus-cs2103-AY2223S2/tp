@@ -240,13 +240,14 @@ public class ModelManager implements Model {
                 if (isolatedEventList == null) {
                     continue;
                 }
-                baseMask.mergeIsolatedEvents(isolatedEventList);
+                baseMask.mergeIsolatedEvents(isolatedEventList, date);
             }
         }
 
         // TODO: Potential bugs
         ArrayList<ArrayList<Integer>> timetable = TimeMask.getTimeSlotIndexes(baseMask);
         addressBook.getScheduleWeek().setInternalList(timetable, date.getDayOfWeek());
+        // TODO: Consider removing
         logger.info("Timetable generation finished. Rendering expected.");
     }
 

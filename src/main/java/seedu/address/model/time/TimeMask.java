@@ -1,6 +1,7 @@
 package seedu.address.model.time;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import seedu.address.model.event.IsolatedEvent;
@@ -50,14 +51,26 @@ public class TimeMask {
      * Compare the time mask with the isolated events and update the time mask.
      * @param isolatedEventList IsolatedEventList
      */
-    public void mergeIsolatedEvents(IsolatedEventList isolatedEventList) {
+    public void mergeIsolatedEvents(IsolatedEventList isolatedEventList, LocalDate startDate) {
+        LocalDate dateLimit = startDate.plusDays(WINDOW_RANGE - 1);
+
         for (int i = 0; i < isolatedEventList.getSize(); i++) {
             IsolatedEvent event = isolatedEventList.getIsolatedEvent(i);
 
-            int startIndex = event.getStartDayValue();
-            int endIndex = event.getEndDayValue();
+            // Stop traversing if event occurs further than a week from the start date
+            if (event.getStartDate().toLocalDate().isAfter(dateLimit)) {
+                return;
+            }
+
+            int startIndex = getZeroBasedDayIndex(event.getStartDate().getDayOfWeek());
+            int endIndex = getZeroBasedDayIndex(event.getEndDate().getDayOfWeek());
             int startTime = event.getStartDate().getHour();
-            int endTime = event.getEndDate().getHour();
+            // Shouldn't occupy the next slot
+            int endTime = event.getEndDate().getHour() - 1;
+
+            if (endTime < 0) {
+                endTime = LAST_HOUR_INDEX;
+            }
 
             if (startIndex != endIndex) {
                 occupySlots(startIndex, startTime, endTime);
@@ -112,10 +125,13 @@ public class TimeMask {
     public void modifyOccupancy(RecurringEvent recurringEvent, boolean toOccupy) {
         int dayIndex = getZeroBasedDayIndex(recurringEvent.getDayOfWeek());
         int startHourIndex = recurringEvent.getStartTime().getHour();
+        // Shouldn't occupy the next slot
         int endHourIndex = recurringEvent.getEndTime().getHour() - 1;
+
         if (endHourIndex < 0) {
             endHourIndex = LAST_HOUR_INDEX;
         }
+
         if (toOccupy) {
             occupySlots(dayIndex, startHourIndex, endHourIndex);
         } else {
@@ -148,4 +164,5 @@ public class TimeMask {
     private DayOfWeek getDayFromZeroBasedIndex(int dayIndex) {
         return DayOfWeek.of(dayIndex + 1);
     }
+
 }
