@@ -17,8 +17,7 @@ public class Ward {
     public static final String MESSAGE_CONSTRAINTS = "Wards should only contain alphanumeric characters and spaces, "
             + "and it should not be blank";
 
-    public static final String WARD_FULL_MESSAGE_CONSTRAINTS =
-        "The ward cannot be assigned to more patients than its capacity.";
+    public static final String WARD_FULL_MESSAGE_CONSTRAINTS = "The ward cannot be assigned to more patients than its capacity.";
 
     /*
      * The first character of the ward must not be a whitespace,
@@ -48,7 +47,7 @@ public class Ward {
     /**
      * Constructs a {@code Ward}.
      *
-     * @param name A valid name.
+     * @param name     A valid name.
      * @param capacity A specified capacity.
      */
     public Ward(WardName name, Capacity capacity) {
@@ -61,6 +60,7 @@ public class Ward {
 
     /**
      * Ward factory constructor with string for comparisons
+     * 
      * @param name
      * @return placeholder Ward
      */
@@ -71,6 +71,7 @@ public class Ward {
 
     /**
      * Edit capacity of this ward
+     * 
      * @param capacity
      * @return Ward with edited capacity
      */
@@ -86,21 +87,21 @@ public class Ward {
         return name.matches(VALIDATION_REGEX);
 
     }
+
     public static boolean isValidWard(WardName name) {
         return name.toString().matches(VALIDATION_REGEX);
     }
 
     /**
-     * Returns true if a given list of patients is small enough to fit the
+     * Returns true if a given occupany can fit in the
      * ward's capacity
      */
-    private boolean isValidPatients(List<Patient> patients2) {
-        return patients2.size() <= capacity.getValue();
+    public boolean canSupport(int occupancy) {
+        return capacity.getValue() >= occupancy;
     }
 
-
     // public String getName() {
-    //   return name;
+    // return name;
 
     public WardName getName() {
         return value;
@@ -113,6 +114,7 @@ public class Ward {
     public Capacity getCapacity() {
         return capacity;
     }
+
     public String getCapacityString() {
         return capacity.toString();
     }
@@ -197,7 +199,6 @@ public class Ward {
     public String toString() {
         return patients.asUnmodifiableObservableList().size() + " patients";
     }
-
 
     public ObservableList<Patient> getPatientList() {
         return patients.asUnmodifiableObservableList();

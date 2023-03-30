@@ -18,6 +18,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteWardCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditWardCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -56,7 +57,6 @@ public class AddressBookParser {
         Optional<ButtonType> result;
 
         switch (commandWord) {
-
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
@@ -97,6 +97,9 @@ public class AddressBookParser {
 
         case AddWardCommand.COMMAND_WORD:
             return new AddWardCommandParser().parse(arguments);
+
+        case EditWardCommand.COMMAND_WORD:
+            return new EditWardCommandParser().parse(arguments);
 
         case DeleteWardCommand.COMMAND_WORD:
             confirmationDialog = new Alert(Alert.AlertType.CONFIRMATION,

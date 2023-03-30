@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.model.ward.exceptions.DuplicateWardException;
+import seedu.address.model.ward.exceptions.EditedWardInsufficientCapacityException;
 import seedu.address.model.ward.exceptions.WardNotFoundException;
 
 /**
@@ -35,9 +36,9 @@ public class UniqueWardList implements Iterable<Ward> {
     private final ObservableList<Ward> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalList);
 
-
     /**
-     * Initializes wardlist with default Waiting Room ward with capacity of 30 inside.
+     * Initializes wardlist with default Waiting Room ward with capacity of 30
+     * inside.
      */
     public UniqueWardList() {
         WardName waitingRoomName = new WardName("Waiting Room");
@@ -58,6 +59,7 @@ public class UniqueWardList implements Iterable<Ward> {
     public Ward getWard(String wardName) {
         return internalList.get(internalList.indexOf(wardWithName(wardName)));
     }
+
     /**
      * Returns true if the list contains an equivalent ward as the given
      * {@code Ward}.
@@ -91,6 +93,7 @@ public class UniqueWardList implements Iterable<Ward> {
 
     /**
      * Adds patient p to their assigned ward.
+     * 
      * @param p
      */
     public void addPatient(Patient p) {
@@ -120,11 +123,21 @@ public class UniqueWardList implements Iterable<Ward> {
             throw new DuplicatePatientException();
         }
 
+        if (editedWard.getCapacity().getValue() < target.getOccupancy()) {
+            throw new EditedWardInsufficientCapacityException();
+        }
+
+        ObservableList<Patient> patients = target.getPatientList();
+        for (Patient patient : patients) {
+            editedWard.addPatient(patient);
+        }
+
         internalList.set(index, editedWard);
     }
 
     /**
-     * Replaces the ward {@code target} in the target's ward with {@code editedPatient}.
+     * Replaces the ward {@code target} in the target's ward with
+     * {@code editedPatient}.
      * {@code target} must exist in the ward.
      */
     public void setPatient(Patient target, Patient editedPatient) {
@@ -144,9 +157,10 @@ public class UniqueWardList implements Iterable<Ward> {
 
     /**
      * Moves patient from one ward to another
+     * 
      * @param target The target patient
-     * @param from The patient's current ward index in internalList.
-     * @param to The patient's next ward index in internalList.
+     * @param from   The patient's current ward index in internalList.
+     * @param to     The patient's next ward index in internalList.
      */
     public void changePatientWard(Patient target, int from, int to) {
         Ward start = internalList.get(from);
