@@ -26,14 +26,13 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
             + ": Adds a patient to the patient manager. "
-            + "Parameters: "
+            + "\nParameters: "
             + DELIMITER + PREFIX_NAME + " NAME "
             + DELIMITER + PREFIX_PHONE + " PHONE "
             + DELIMITER + PREFIX_DOB + " DATE OF BIRTH "
             + DELIMITER + PREFIX_BLOODTYPE + " BLOOD TYPE "
-            + "(" + DELIMITER + PREFIX_ALLERGY + " ALLERGY)..."
-            + "(" + DELIMITER + PREFIX_VACCINATION + " VACCINATION)...\n"
-            + "*Values in () are optional\n"
+            + "[" + DELIMITER + PREFIX_ALLERGY + " ALLERGY]..."
+            + "[" + DELIMITER + PREFIX_VACCINATION + " VACCINATION]...\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " "
             + DELIMITER + PREFIX_NAME + " John Doe "
             + DELIMITER + PREFIX_PHONE + " 98765432 "
