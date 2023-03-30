@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyShop;
@@ -198,7 +197,7 @@ public class Shop implements ReadOnlyShop {
      * @throws PartLessThanZeroException If part insufficient
      */
     public void addPartToService(int serviceId, String partName, int quantity)
-        throws NoSuchElementException, PartNotFoundException, PartLessThanZeroException {
+            throws NoSuchElementException, PartNotFoundException, PartLessThanZeroException {
         Optional<Service> serviceOption = this.getServiceList()
             .stream()
             .filter(s -> s.getId() == serviceId)

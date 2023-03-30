@@ -6,7 +6,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.service.Service;
-import seedu.address.model.service.ServiceIdPredicate;
 
 /**
  * Finds and returns the service details of the provided id.
@@ -45,6 +44,6 @@ public class ViewServiceCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ViewServiceCommand // instanceof handles nulls
-                && this.serviceId  == ((ViewServiceCommand) other).serviceId); // state check
+                && this.serviceId == ((ViewServiceCommand) other).serviceId); // state check
     }
 }

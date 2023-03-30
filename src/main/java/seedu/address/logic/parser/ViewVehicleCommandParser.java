@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.ViewVehicleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.service.VehicleIdPredicate;
 
 /**
  * Parses input arguments and creates a new ViewVehicleCommand object

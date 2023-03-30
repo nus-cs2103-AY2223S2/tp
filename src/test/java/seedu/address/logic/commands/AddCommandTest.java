@@ -246,6 +246,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasAppointment(int appointmentId) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void addPart(String partName, int quantity) {
             throw new AssertionError("This method should not be called.");
         }
