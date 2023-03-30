@@ -26,7 +26,7 @@ import seedu.sudohr.model.Model;
 import seedu.sudohr.model.ModelManager;
 import seedu.sudohr.model.UserPrefs;
 import seedu.sudohr.model.department.DepartmentName;
-
+import seedu.sudohr.model.leave.LeaveDate;
 
 
 public class ListDepartmentHeadcountCommandTest {
@@ -90,6 +90,10 @@ public class ListDepartmentHeadcountCommandTest {
                 e -> ENGINEERING_EMPLOYEES_PRESENT_ON_DATE_TYPE_2.stream().anyMatch(e::isSameEmployee)
         );
 
+        expectedModel.updateFilteredDepartmentList(d -> d.equals(ENGINEERING));
+
+        expectedModel.updateFilteredLeaveList(l -> l.getDate().equals(new LeaveDate(LocalDate.parse(DATE_TYPE_2))));
+
         String expectedMessage2 = String.format(ListDepartmentHeadcountCommand.MESSAGE_SUCCESS,
                 ENGINEERING_EMPLOYEES_PRESENT_ON_DATE_TYPE_2.size(), engineering);
 
@@ -114,6 +118,10 @@ public class ListDepartmentHeadcountCommandTest {
                 e -> ENGINEERING_EMPLOYEES_PRESENT_ON_DATE_TYPE_3.stream().anyMatch(e::isSameEmployee)
         );
 
+        expectedModel.updateFilteredDepartmentList(d -> d.equals(ENGINEERING));
+
+        expectedModel.updateFilteredLeaveList(l -> l.getDate().equals(new LeaveDate(LocalDate.parse(DATE_TYPE_3))));
+
         assertCommandSuccess(command1, model, expectedMessage1, expectedModel);
 
 
@@ -132,6 +140,10 @@ public class ListDepartmentHeadcountCommandTest {
                 e -> SALES_EMPLOYEES_PRESENT_ON_DATE_TYPE_3.stream().anyMatch(e::isSameEmployee)
         );
 
+        expectedModel.updateFilteredDepartmentList(d -> d.equals(SALES));
+
+        expectedModel.updateFilteredLeaveList(l -> l.getDate().equals(new LeaveDate(LocalDate.parse(DATE_TYPE_3))));
+
         assertCommandSuccess(command2, model, expectedMessage2, expectedModel);
     }
 
@@ -147,6 +159,10 @@ public class ListDepartmentHeadcountCommandTest {
         expectedModel.updateFilteredEmployeeList(
                 e -> HR_EMPLOYEES_PRESENT_ON_DATE_TYPE_1.stream().anyMatch(e::isSameEmployee)
         );
+
+        expectedModel.updateFilteredDepartmentList(d -> d.equals(HUMAN_RESOURCES));
+
+        expectedModel.updateFilteredLeaveList(l -> l.getDate().equals(new LeaveDate(LocalDate.parse(DATE_TYPE_1))));
 
         String expectedMessage1 = String.format(ListDepartmentHeadcountCommand.MESSAGE_SUCCESS,
                 HR_EMPLOYEES_PRESENT_ON_DATE_TYPE_1.size(), hr);

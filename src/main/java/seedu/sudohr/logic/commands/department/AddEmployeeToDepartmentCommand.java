@@ -65,8 +65,14 @@ public class AddEmployeeToDepartmentCommand extends Command {
         }
 
         model.addEmployeeToDepartment(employee, department);
-        model.updateFilteredDepartmentList(Model.PREDICATE_SHOW_ALL_DEPARTMENTS);
-        model.updateFilteredEmployeeList(Model.PREDICATE_SHOW_ALL_EMPLOYEES);
+
+        // only show the relevant department
+        model.updateFilteredDepartmentList(d -> d.equals(department));
+
+        // show the employees within this department
+        model.updateFilteredEmployeeList(e -> department.hasEmployee(e));
+
+
         return new CommandResult(String.format(MESSAGE_ADD_EMPLOYEE_TO_DEPARTMENT_SUCCESS, employee, department));
     }
 
@@ -77,4 +83,6 @@ public class AddEmployeeToDepartmentCommand extends Command {
                 && toAdd.equals(((AddEmployeeToDepartmentCommand) other).toAdd)
                 && departmentName.equals(((AddEmployeeToDepartmentCommand) other).departmentName));
     }
+
+
 }

@@ -76,7 +76,15 @@ public class ListDepartmentHeadcountCommand extends Command {
                 ? e -> true
                 : e -> !leaveOnGivenDate.hasEmployee(e);
 
+
+        // show all employees present on that day in the given department
         model.updateFilteredEmployeeList(predicateEmployeeInDepartment.and(predicateEmployeePresent));
+
+        // show the relevant department
+        model.updateFilteredDepartmentList(d -> d.equals(department));
+
+        // show the leaves on the date
+        model.updateFilteredLeaveList(l -> l.equals(leaveOnGivenDate));
 
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, model.getFilteredEmployeeList().size(), departmentName));
