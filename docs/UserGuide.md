@@ -7,7 +7,7 @@ title: User Guide
 It is optimized for use via a **Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 With LoyaltyLift, you can easily keep track of your customers' preferences, purchase history, and contact information, enabling you to provide personalized service that will keep them coming back. 
-Our application makes it easy to manage orders, and provide rewards, helping you grow your business while delivering an exceptional customer experience. 
+Our application makes it easy to manage orders and provide rewards, helping you grow your business while delivering an exceptional customer experience. 
 
 This user guide provides in-depth documentation on LoyaltyLift installation process, command features and common questions that you might have. 
 In addition, the quick start guide provides an end-to-end setup process to get you started.
@@ -63,9 +63,9 @@ Before starting your journey with LoyaltyLift, let's take a quick look at the la
 
 ![Layout of LoyaltyLift](images/loyaltyLiftLayout.png)
 
-It is composed of 3 panels, the Information Panel, Command Panel and Table Panel. 
+It comprises 3 panels, the Information Panel, Command Panel and Table Panel. 
 The table panel displays either the **customers** or **orders**. 
-This can be configured by selecting the corresponding tab at the Table Tabs area.
+This can be configured by selecting the corresponding tab in the Table Tabs area.
 
 The components are summarised below.
 
@@ -79,10 +79,10 @@ The components are summarised below.
 #### Using the CLI
 {: .no_toc}
 
-The Command Panel is where you type your commands and submit it. 
-LoyaltyLift then processes your request and perform them if it is successful.
+The Command Panel is where you type your commands and submit them.
+LoyaltyLift then processes your request and performs them if it is successful.
 
-If LoyaltyLift understands your request, it will perform it and display a feedback that it has succeeded as seen below.
+If LoyaltyLift understands your request, it will perform it and display feedback that it has succeeded, as seen below.
 
 ![CLI Success](images/cliSuccess.png)
 
@@ -96,7 +96,7 @@ Now that you are familiar with the layout of LoyaltyLift, you are ready to jump 
 
 ### Add your first customer and order
 
-In this tutorial, you will learn how to add your first customer _Lyndon Edwards_ and his order which is 2 of his favourite _Banana Cake_.
+In this tutorial, you will learn how to add your first customer _Lyndon Edwards_ and his order of 2 of his favourite _Banana Cake_.
 Finally, you will learn to remove a customer and observe that **all orders belonging to a customer will be removed as well**.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -112,7 +112,7 @@ Enter the following command to insert a new customer _Lyndon Edwards_ along with
     addc n/Lyndon Edwards p/93015612 e/lyndon@example.com a/Loyalty Street 103, block 122, #01-20
 
 The application should already have your customer displayed by this step.
-Nonetheless, you can always type the following commands to list all customers and view the first customer in our address book, which correspond to _Lyndon Edwards_.
+Nonetheless, you can always type the following commands to list all customers and view the first customer in our address book, which corresponds to _Lyndon Edwards_.
 
     listc
     viewc 1
@@ -120,13 +120,13 @@ Nonetheless, you can always type the following commands to list all customers an
 #### Your first order, 2 of Banana Cakes
 {: .no_toc}
 
-Now that _Lyndon Edwards_ is in our address book, we can proceed to add an order for him.
+Now that _Lyndon Edwards_ is in our address book, we can add an order for him.
 This can be with the [`addo`](#adding-an-order--addo) command like the following.
 
     addo 1 n/Banana Cake q/2 
 
-Likewise, the application should have the order opened. 
-Nonetheless, to do this manually, you can list all your orders and view the first order's information by performing the following commands.  
+Likewise, the application should already have the order opened for your convenience. 
+To do this manually, you can list all your orders and view the first order's information by performing the following commands.  
 
     listo
     viewo 1
@@ -143,31 +143,18 @@ While [`clear`](#clearing-all-entries--clear) command achieves this easily, we c
     deletec 1
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Note that in addition to removing `Lyndon Edwards` from the application, all of his orders are removed as well!
+Note that in addition to removing `Lyndon Edwards` from the application, all of his orders are also removed!
 </div>
 
-Hence, you will notice that the order list is now empty and our application is back to a clean slate.
+Hence, you will notice that the order list is now empty, and our application is back to a clean slate.
 
     listo
 
 ![result after deleting lyndon edwards](images/addingFirstCustomerOrderClearResult.png)
 
-#### Extra remarks
-{: .no_toc}
-
-While this tutorial covers a simplfied situation of adding a customer and order, 
-you may find yourself in need of more complexed control / tasks and LoyaltyLift is ready for it!
-
-Here are some recommended features to explore after this tutorial.
-
-* Editing a customer or order's information with [`editc`](#editing-a-customer--editc) or [`edito`](#editing-an-order--edito)
-* Assigning a customer as an individual or enterprise with [`addc`](#adding-a-customer--addc) or [`editc`](#editing-a-customer--editc)
-* Advancing or reverting an order's progress with [`advo`]() or [`reverto`]()
-* Set or adding rewards points for the customer with [`setpoints`](#setting-reward-points-for-a-customer--setpoints) or [`addpoints`](#adding-points-for-a-customer--removing-points-from-a-customer--addpoints)
-
 ### Following your order to completion
 
-In this tutorial, you will learn how to update your order's status with a few commands. 
+By following this tutorial, you'll learn how to update your order's status in LoyaltyLift, which will help you to better understand and manage the process of orders in your own business.
 
 #### The order's status
 {: .no_toc}
@@ -183,7 +170,7 @@ In LoyaltyLift, an order can have the following status.
 LoyaltyLift assumes that your order will follow a process similar to the order of status stated above (excluding 'cancelled').
 </div>
 
-Before we start, head over to [Add your first customer and order]() to include _Lyndon Edwards_ and the _Banana Cake_ order.
+Before we start, head over to [_Add your first customer and order_](#add-your-first-customer-and-order) to include _Lyndon Edwards_ and the _Banana Cake_ order.
 However, do not clear the application data as we will be using the order for this tutorial.
 
 #### Advancing an order's status
@@ -194,9 +181,11 @@ Let's take a look at our current list of orders, which should only consist of th
     listo
 
 Notice that the order's status is now 'Pending'.
-To advance an order's status, the [`advo`]() command will come in handy, which takes the index of the order as its only parameter.
+To advance an order's status, the [`advo`]() command will come in handy, which takes the order index as its only parameter.
 
     advo 1
+
+[INSERT IMAGE HERE]
 
 Now, the status of the order should be 'Paid'. Doing this multiple times will eventually update the order's status to 'Completed'.
 Further attempts to advance the order status will return an error!
@@ -218,11 +207,31 @@ An order can be cancelled at any stage of the order. This can be performed with 
 
     cancelo 1
 
+[INSERT IMAGE HERE]
+
 Looking at the order status, it is now reflected as 'Cancelled'.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Once an order is cancelled, the action is irrevertible and the order can no longer revert nor advance! <br />
+Once an order is cancelled, the action is irreversible, and the order can no longer revert nor advance! <br />
 </div>
+
+### Rewarding your customers
+
+This tutorial will teach you the rewards system in LoyaltyLift and how you can apply it to boost your business' customer loyalty.
+
+    SECTION TODO
+
+### Extra remarks
+
+While these tutorials covers a simplified situation of adding a customer and order,
+you may find yourself in need of more complex control/tasks, and LoyaltyLift is ready for it!
+
+Here are some recommended features to explore after this tutorial.
+
+* Editing a customer or order's information with [`editc`](#editing-a-customer--editc) or [`edito`](#editing-an-order--edito)
+* Assigning a customer as an individual or enterprise with [`addc`](#adding-a-customer--addc) or [`editc`](#editing-a-customer--editc)
+* Set or adding rewards points for the customer with [`setpoints`](#setting-reward-points-for-a-customer--setpoints) or [`addpoints`](#adding-points-for-a-customer--removing-points-from-a-customer--addpoints)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
