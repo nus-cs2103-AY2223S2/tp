@@ -1,6 +1,7 @@
 package seedu.internship.logic.parser;
 
 import seedu.internship.commons.core.index.Index;
+import seedu.internship.logic.commands.AddCommand;
 import seedu.internship.logic.commands.DeleteCommand;
 import seedu.internship.logic.commands.FindCommand.FilterInternshipDescriptor;
 import seedu.internship.logic.commands.FindCommand;
@@ -30,7 +31,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             filterInternshipDescriptor.setStatus(ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get()));
         }
         if (!filterInternshipDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(FindCommand.MESSAGE_NOT_FILTERED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         return new FindCommand(filterInternshipDescriptor);
     }

@@ -8,61 +8,66 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="eventCard" minHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="wrapper" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox fx:id="timelineContainer">
+      <HBox fx:id="eventCard" minHeight="200.0" prefWidth="300.0">
          <children>
-            <Circle fx:id="circle" radius="4.0" stroke="#ffffff00" strokeType="INSIDE" />
-            <Separator fx:id="separator" disable="true" orientation="VERTICAL" style="-fx-background-color: #3ba0ff;" stylesheets="@ProgressBar.css" VBox.vgrow="ALWAYS">
-               <VBox.margin>
-                  <Insets left="2.0" />
-               </VBox.margin>
-            </Separator>
-         </children>
-         <HBox.margin>
-            <Insets left="25.0" right="25.0" />
-         </HBox.margin>
-      </VBox>
-      <VBox fx:id="cardContent" HBox.hgrow="ALWAYS">
-         <HBox.margin>
-            <Insets />
-         </HBox.margin>
-         <children>
-            <Label fx:id="companyAndPosition" styleClass="info-panel-special-header" text="[\$companyAndPosition]">
-               <font>
-                  <Font name="System Italic" size="12.0" />
-               </font>
-            </Label>
-            <Separator fx:id="separator2" prefWidth="200.0" />
-            <HBox>
+            <VBox fx:id="timelineContainer">
                <children>
-                  <Label styleClass="event-card-h1" text="Event title: ">
+                  <Circle fx:id="circle" radius="4.0" stroke="#ffffff00" strokeType="INSIDE" />
+                  <Separator fx:id="separator" disable="true" orientation="VERTICAL" style="-fx-background-color: #3ba0ff;" stylesheets="@ProgressBar.css" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets left="2.0" />
+                     </VBox.margin>
+                  </Separator>
+               </children>
+               <HBox.margin>
+                  <Insets left="25.0" right="25.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox fx:id="cardContent" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <children>
+                  <Label fx:id="companyAndPosition" styleClass="info-panel-special-header" text="[\$companyAndPosition]">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Italic" size="12.0" />
                      </font>
                   </Label>
-                  <Label fx:id="title" styleClass="event-card-h1" text="\\$title" />
+                  <Separator fx:id="separator2" prefWidth="200.0" />
+                  <HBox>
+                     <children>
+                        <Label fx:id="eventId" />
+                        <Label styleClass="event-card-h1" text="Event title: ">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="title" styleClass="event-card-h1" text="\\$title" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label fx:id="startLabel" styleClass="event-card-text" text="Start: " />
+                        <Label fx:id="start" styleClass="event-card-text" text="\\$start" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label fx:id="endLabel" styleClass="event-card-text" text="End: " />
+                        <Label fx:id="end" styleClass="event-card-text" text="\\$end" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label minWidth="-Infinity" styleClass="event-card-text" text="Description: " />
+                     </children>
+                  </HBox>
+                  <Label fx:id="description" prefWidth="230.0" styleClass="event-card-text" text="\\$eventDescription" wrapText="true" />
                </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label fx:id="startLabel" styleClass="event-card-text" text="Start: " />
-                  <Label fx:id="start" styleClass="event-card-text" text="\\$start" />
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label fx:id="endLabel" styleClass="event-card-text" text="End: " />
-                  <Label fx:id="end" styleClass="event-card-text" text="\\$end" />
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label minWidth="-Infinity" styleClass="event-card-text" text="Description: " />
-               </children>
-            </HBox>
-            <Label fx:id="description" prefWidth="230.0" styleClass="event-card-text" text="\\$eventDescription" wrapText="true" />
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
    </children>
 </HBox>

@@ -21,13 +21,13 @@ import seedu.internship.model.internship.Internship;
 public class EventAddCommand extends EventCommand {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = EventCommand.COMMAND_WORD + " "
-            + EventAddCommand.COMMAND_WORD + ": Adds a event to the event catalogue. "
+            + EventAddCommand.COMMAND_WORD + ": Adds an event to the event catalogue.\n"
             + "Parameters: "
             + PREFIX_EVENT_NAME + "EVENT NAME"
             + PREFIX_EVENT_START + "START DATE TIME "
             + PREFIX_EVENT_END + "END DATE TIME "
-            + PREFIX_EVENT_DESCRIPTION + "DESCRIPTION "
-            + "Example: " + EventCommand.COMMAND_WORD + " "
+            + PREFIX_EVENT_DESCRIPTION + "DESCRIPTION"
+            + "\nExample: " + EventCommand.COMMAND_WORD + " "
             + EventAddCommand.COMMAND_WORD + " "
             + PREFIX_EVENT_NAME + "Technical Interview "
             + PREFIX_EVENT_START + "10/09/2023 1500 "

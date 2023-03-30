@@ -5,11 +5,9 @@ import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import seedu.internship.commons.core.LogsCenter;
 import seedu.internship.model.event.Event;
 import seedu.internship.ui.UiPart;
@@ -37,6 +35,7 @@ public class ClashInfoItem extends UiPart<Region> {
         //setEventInfoBox();
         clashList.setItems(FXCollections.observableList(clashingEvents));
         clashList.setCellFactory(listView -> new EventListViewCell());
+        clashList.setMinHeight(350);
     }
 
     /**
