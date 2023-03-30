@@ -45,14 +45,14 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_RANK + "RANK] "
+            + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_UNIT + "UNIT] "
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_PLATOON + "PLATOON] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -84,18 +84,18 @@ public class EditCommand extends Command {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Rank updatedRank = editPersonDescriptor.getRank().orElse(personToEdit.getRank());
+        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Unit updatedUnit = editPersonDescriptor.getUnit().orElse(personToEdit.getUnit());
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         Platoon updatedPlatoon = editPersonDescriptor.getPlatoon().orElse(personToEdit.getPlatoon());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRank,
-                updatedUnit, updatedCompany, updatedPlatoon, updatedTags);
+        return new Person(updatedRank, updatedName, updatedUnit, updatedCompany, updatedPlatoon,
+                updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -140,18 +140,18 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the person with. Each non-empty field value will
+     * replace the corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private Name name;
-        private Phone phone;
-        private Email email;
-        private Address address;
         private Rank rank;
+        private Name name;
         private Unit unit;
         private Company company;
         private Platoon platoon;
+        private Phone phone;
+        private Email email;
+        private Address address;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {
@@ -162,14 +162,14 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
             setRank(toCopy.rank);
+            setName(toCopy.name);
             setUnit(toCopy.unit);
             setCompany(toCopy.company);
             setPlatoon(toCopy.platoon);
+            setPhone(toCopy.phone);
+            setEmail(toCopy.email);
+            setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
 
@@ -177,39 +177,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, rank, unit, company, platoon, tags);
-        }
-
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
-        }
-
-        public void setName(Name name) {
-            this.name = name;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
-        }
-
-        public void setAddress(Address address) {
-            this.address = address;
+            return CollectionUtil.isAnyNonNull(rank, name, unit, company, platoon, phone, email, address, tags);
         }
 
         public Optional<Rank> getRank() {
@@ -218,6 +186,14 @@ public class EditCommand extends Command {
 
         public void setRank(Rank rank) {
             this.rank = rank;
+        }
+
+        public Optional<Name> getName() {
+            return Optional.ofNullable(name);
+        }
+
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Unit> getUnit() {
@@ -244,9 +220,33 @@ public class EditCommand extends Command {
             this.platoon = platoon;
         }
 
+        public Optional<Phone> getPhone() {
+            return Optional.ofNullable(phone);
+        }
+
+        public void setPhone(Phone phone) {
+            this.phone = phone;
+        }
+
+        public Optional<Email> getEmail() {
+            return Optional.ofNullable(email);
+        }
+
+        public void setEmail(Email email) {
+            this.email = email;
+        }
+
+        public Optional<Address> getAddress() {
+            return Optional.ofNullable(address);
+        }
+
+        public void setAddress(Address address) {
+            this.address = address;
+        }
+
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
+         * Returns an unmodifiable tag set, which throws
+         * {@code UnsupportedOperationException} if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Tag>> getTags() {
@@ -276,14 +276,14 @@ public class EditCommand extends Command {
             // state check
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getRank().equals(e.getRank())
+            return getRank().equals(e.getRank())
+                    && getName().equals(e.getName())
                     && getUnit().equals(e.getUnit())
                     && getCompany().equals(e.getCompany())
                     && getPlatoon().equals(e.getPlatoon())
+                    && getPhone().equals(e.getPhone())
+                    && getEmail().equals(e.getEmail())
+                    && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
         }
     }

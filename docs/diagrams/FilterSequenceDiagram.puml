@@ -1,0 +1,111 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+participant "fd:FilterDescriptor" as FilterDescriptor LOGIC_COLOR
+participant "fc:FilterCommand" as FilterCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "fp :FieldContainsPartialKeywordsPredicate" as FieldContainsPartialKeywordsPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("filter e/gmail r/3sg")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("filter e/gmail r/3sg")
+activate AddressBookParser
+
+create FilterCommandParser
+AddressBookParser -> FilterCommandParser
+activate FilterCommandParser
+
+FilterCommandParser --> AddressBookParser
+deactivate FilterCommandParser
+
+AddressBookParser -> FilterCommandParser : parse("e/gmail r/3sg")
+activate FilterCommandParser
+
+create FilterDescriptor
+FilterCommandParser -> FilterDescriptor
+activate FilterDescriptor
+
+FilterDescriptor --> FilterCommandParser : fd
+deactivate FilterDescriptor
+
+
+FilterCommandParser -> FilterDescriptor : setEmailValue("gmail")
+activate FilterDescriptor
+
+FilterDescriptor --> FilterCommandParser
+deactivate FilterDescriptor
+
+FilterCommandParser -> FilterDescriptor : setRankValue("3sg")
+activate FilterDescriptor
+
+FilterDescriptor --> FilterCommandParser
+deactivate FilterDescriptor
+
+
+create FilterCommand
+FilterCommandParser -> FilterCommand : FilterCommand(fd)
+activate FilterCommand
+
+
+FilterCommand -> FilterCommand : createFilterPredicate(fd)
+activate FilterCommand
+
+create FieldContainsPartialKeywordsPredicate
+FilterCommand -> FieldContainsPartialKeywordsPredicate
+activate FieldContainsPartialKeywordsPredicate
+
+FieldContainsPartialKeywordsPredicate --> FilterCommand : fp
+deactivate FieldContainsPartialKeywordsPredicate
+
+FilterCommand --> FilterCommand : fp
+deactivate FilterCommand
+
+
+
+FilterCommand --> FilterCommandParser : fc
+deactivate FilterCommand
+
+FilterCommandParser --> AddressBookParser : fc
+deactivate FilterCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommandParser -[hidden]-> AddressBookParser
+destroy FilterCommandParser
+
+AddressBookParser --> LogicManager : fc
+deactivate AddressBookParser
+
+LogicManager -> FilterCommand : execute()
+activate FilterCommand
+
+FilterCommand -> Model : updateFilteredPersonList(fp)
+activate Model
+
+Model --> FilterCommand
+deactivate Model
+
+create CommandResult
+FilterCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FilterCommand
+deactivate CommandResult
+
+FilterCommand --> LogicManager : result
+deactivate FilterCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommand -[hidden]-> LogicManager
+destroy FilterCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
