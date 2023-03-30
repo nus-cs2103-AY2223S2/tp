@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -31,6 +32,7 @@ public class FindCommand extends Command {
             PREFIX_EMAIL.asOptional().asRepeatable(),
             PREFIX_ADDRESS.asOptional().asRepeatable(),
             PREFIX_EDUCATION.asOptional().asRepeatable(),
+            PREFIX_REMARK.asOptional().asRepeatable(),
             PREFIX_TAG.asOptional().asRepeatable(),
             PREFIX_SUBJECT.asOptional().asRepeatable()
     ));
