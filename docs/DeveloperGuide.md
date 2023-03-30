@@ -77,16 +77,16 @@ The rest of the App consists of four components.
 #### 2.1.2 How the architecture components interact with each other
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1` to delete the person at index 1.
+the command `deletep 1` to delete the person at index 1.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1` to delete the task at index 1.
+the command `deletet 1` to delete the task at index 1.
 
 <img src="images/ArchitectureSequenceDiagramTwo.png" width="574" />
 
-Each of the four main components (excluding OfficeConnectModel), defines its *API* in an `interface` with the same name as the Component. implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+Each of the four main components (excluding OfficeConnectModel), defines its *API* in an `interface` with the same name as the Component. implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
 using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given
@@ -96,7 +96,7 @@ to the implementation of a component), as illustrated in the (partial) class dia
 <img src="images/OfficeComponentManagers.png" width="750" />
 
 As can be seen from the diagram above, OfficeConnectModel is instead a class that contains two repository model managers, one used 
-to keep track of tasks (i.e `Task` objects) and the other used to keep track of the assignment of tasks to persons (i.e `AssignTask` objects).
+to keep track of tasks (i.e. `Task` objects) and the other used to keep track of the assignment of tasks to persons (i.e `AssignTask` objects).
 
 ### 2.2 UI component
 
@@ -132,10 +132,10 @@ How the `Logic` component works:
 5. add a task or add an assignment).
 6. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")`
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletep 1")`
 API call, which deletes the person located at index one.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `deletep 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -225,7 +225,7 @@ This section describes some noteworthy details on how certain features are imple
 Notation: inputs placed in closed brackets [] are optional.
 
 ### 3.1 Adding a task
-Syntax: `addtask t/TITLE [c/CONTENT] [st/STATUS]`  
+Syntax: `addt t/TITLE [c/CONTENT] [st/STATUS]`  
 Purpose: Allows users to add tasks into OfficeConnect.
 
 #### 3.1.1 Implementation
@@ -251,7 +251,7 @@ Below is a sequence diagram that illustrates how a user adds new tasks into Offi
 #### 3.1.3 Constraints:
 **Title must be unique:**  
 We felt that the title should be unique as it improves organisation and visual clarity for the user. By mandating unique
-titles, we encourage users to be specific in the title(purpose) of the task (e.g they will set title as
+titles, we encourage users to be specific in the title(purpose) of the task (e.g. they will set title as
 "Complete slides for Mr X" rather than "Complete Slides"), which will benefit them greatly, as they will be
 able to clearly distinguish the purpose of each task just by looking at the title.  
 Suppose that the title was not unique. Users might have many tasks with the same title, which would impair their ability
@@ -261,17 +261,17 @@ Hence, our approach in mandating unique titles are geared towards improving orga
 both the short and long term.
 
 ### 3.2 Deleting a task
-Syntax: `deletetask INDEX`  
+Syntax: `deletet INDEX`  
 Purpose: Allows users to delete the task at the specified index in OfficeConnect.
 
 #### 3.2.1 Implementation
 The implementation of this feature is supported by `ListTaskCommand`, `DeleteTaskCommand` and `DeleteTaskCommandParser`.
 Below are the steps required to delete a task in OfficeConnect.  
 
-Step 1: User keys in `listtask`, which will display the index of all tasks.
+Step 1: User keys in `listt`, which will display the index of all tasks.
 The user can thus obtain the index of the task that they want to delete.
 
-Step 2: User keys in `deletetask INDEX` to delete the task at the specified index.
+Step 2: User keys in `deletet INDEX` to delete the task at the specified index.
 If the index is invalid, an error will be thrown.
 
 Below is an activity diagram showcasing the 2 steps:  
@@ -280,19 +280,19 @@ Below is an activity diagram showcasing the 2 steps:
 #### 3.2.2 Design Considerations
 **Aspect: Implementation of Delete Task Command**
 
-* **Alternative 1 (current choice):** Users have to call `listtask` to find the index of the task they wish to delete.
+* **Alternative 1 (current choice):** Users have to call `listt` to find the index of the task they wish to delete.
   * Pros: Increase convenience for users, as they do not have to remember the index of each task while being easier to implement.
-  * Cons: Increases coupling within OfficeConnectModel, as any bug with `listtask` could render users incapable of
-    obtaining the index needed for `deletetask`.
+  * Cons: Increases coupling within OfficeConnectModel, as any bug with `listt` could render users incapable of
+    obtaining the index needed for `deletet`.
 
 * **Alternative 2:** Allow users to key in the index of each task when creating tasks, after which they can
   use this index when deleting tasks
-  * Pros: If the user remembers the index of each task, they will not need to call `listtask`. Hence, it will be less
+  * Pros: If the user remembers the index of each task, they will not need to call `listt`. Hence, it will be less
     troublesome for them to delete tasks as the number of steps required is reduced by one.
-    Also reduces coupling, as `deletetask` will not have to depend on `listtask` to function properly.
+    Also reduces coupling, as `deletet` will not have to depend on `listt` to function properly.
   * Cons: The cons of this alternative lies in the difficulty of managing indexes when adding and deleting tasks.  
     If the user does not keep track of the indexes they have used for previous tasks, they may have to still
-    call `listtask` to find the index of the task they wish to delete or to find unused indexes to add tasks, which will not
+    call `listt` to find the index of the task they wish to delete or to find unused indexes to add tasks, which will not
     give it an advantage over the first alternative.  
     It would also be harder to keep track of invalid indexes. When tasks are deleted, their index should be invalid. Using
     this alternative, we would have to constantly update a list of invalid indexes when adding or deleting tasks, which
@@ -300,7 +300,7 @@ Below is an activity diagram showcasing the 2 steps:
     has index 1, second task has index 2 etc.) and thus the invalid indexes can be easily obtained.
   
 ### 3.3 Find a Person's Assigned Task
-Syntax: `find NAME`  
+Syntax: `findp NAME`  
 Purpose: Allow users to search and review the list of tasks assigned to the specified person in OfficeConnect.
 
 #### 3.3.1 Implementation
@@ -311,7 +311,7 @@ Below is an activity diagram that illustrates the control flow for the Find feat
 ![FindTaskActivitySequenceDiagram](images/FindActivityDiagram.png)
 
 ### 3.4 Find a Task's Assignees
-Syntax: `findtask TASKNAME` </br>
+Syntax: `findt TASKNAME` </br>
 Purpose: Allow users to search and review the group of individuals assigned to the specified task in OfficeConnect.
 
 #### 3.4.1 Implementation
@@ -333,10 +333,10 @@ Below is an activity diagram that illustrates how a user finds who are assigned 
 * **Alternative 2:** Query using INDEX
     * Pros: Shorter command to type out.
     * Cons: Less intuitive and less user-friendly. Users would be forced to list all the tasks before being able
-      to execute the findtask command if the current display is empty.
+      to execute the findt command if the current display is empty.
 
 ### 3.5 Edit a Task
-Syntax: `edittask INDEX title/TITLE c/CONTENT st/STATUS` </br>
+Syntax: `editt INDEX title/TITLE c/CONTENT st/STATUS` </br>
 Purpose: Allow users to edit tasks that are currently listed in OfficeConnect.
 
 #### 3.5.1 Implementation
@@ -353,9 +353,9 @@ to a person in OfficeConnect. </br>
 
 Step 1: User executes `listall` to list all the people and tasks in OfficeConnect.
 * Alternative steps to Step 1:
-  * Step 1.1: User executes `list` to list all persons or `find David` to search for David in the contact
+  * Step 1.1: User executes `listp` to list all persons or `findp David` to search for David in the contact
     list.
-  * Step 1.2: User executes `listtask` to list all the tasks or `findtask slides` to search for a task containing the
+  * Step 1.2: User executes `listt` to list all the tasks or `findt slides` to search for a task containing the
     word slides in its title.
 * After this step, the target task to assign and the target person to be assigned to said task will appear in the list
   of persons and tasks displayed.
@@ -369,18 +369,18 @@ The following activity diagram summarizes what happens when a user wants to exec
 #### 3.6.2 Design Considerations
 **Aspect: Steps Leading to Execution of Assign Command**
 
-* **Alternative 1 (current choice):** Users execute `list` or `find` to display a list of persons and `listtask` or
-  `findtask` to display a list of tasks on the application.
+* **Alternative 1 (current choice):** Users execute `listp` or `findp` to display a list of persons and `listt` or
+  `findt` to display a list of tasks on the application.
   * Pros: Users can search for a specific person or task before assigning.
-  * Cons: If `list` and `listtask` are used, users may have to scroll through a long list to search for the desired
-    person or task. The results of `find` and `findtask` cannot be displayed simultaneously. Thus, if `find` was executed
-    to search for a person, the user will then have to execute `listtask` to access the full list of tasks in order to
+  * Cons: If `listp` and `listt` are used, users may have to scroll through a long list to search for the desired
+    person or task. The results of `findp` and `findt` cannot be displayed simultaneously. Thus, if `findp` was executed
+    to search for a person, the user will then have to execute `listt` to access the full list of tasks in order to
     identify the task that the user wants to be assigned to that person.
 
 * **Alternative 2 (proposed additional choice):** Users can execute a command to display a list tasks that have not been
   assigned to any person or to display a people that have not been assigned to that task.
   * Pros: Users can easily view all the tasks that are currently unassigned at the same time, instead of having to execute
-    `findtask` to search for unassigned tasks one at a time.
+    `findt` to search for unassigned tasks one at a time.
   * Cons: None, because this is an additional feature proposed that will complement Alternative 1.
 
 ### 3.7 Help Window
@@ -390,6 +390,9 @@ Syntax: `help`
 Purpose: Provides users with a bird's eye view of the various methods usable in OfficeConnect.
 
 #### 3.7.1 Implementation
+
+This window was made by the `HelpWindow` class, which ties in its respective `fxml` and `css` files to display the relevant UI to the user.
+To provide the instructions to the user, a `HelpStrings` class is maintained to give instructions stored in lengthy strings.
 
 A Help Window will be opened either by entering the `help` command, or by clicking on "Help" button in the toolbar.
 The Activity Diagram below details the workflow of a user who wishes to access the HelpWindow. If the Help Window does not provide enough
@@ -416,7 +419,7 @@ information, the user can choose to view the comprehensive User Guide instead.
     * Cons: More complex structures to be used when implementing the Ui of the help window. Restructuring of tree also may be necessary when big changes are made to structure of commands.
 
 * **Alternative 2:** Display all executable commands in a list.
-    * Pros: Adding/Restructuring of commands only involves deleting/modifying the line the command is on, no resturcturing of the list needed
+    * Pros: Adding/Restructuring of commands only involves deleting/modifying the line the command is on, no restructuring of the list needed
     * Cons: Design not too intuitive, user may need to eyeball through all the commands in order to find what he/she is looking for.
 
 <br>
@@ -451,7 +454,7 @@ The implementation of this feature is supported by `UnassignTaskCommand` and `Un
     - Cons: Task titles and person names might be long, making it more difficult for users to input the command. There could also be issues with names that are not unique.
 
 ### 3.9 List all tasks
-Syntax: `listtask`  
+Syntax: `listt`  
 Purpose: Displays all tasks stored in OfficeConnect.
 
 #### 3.9.1 Implementation
@@ -480,6 +483,16 @@ Below is an activity diagram that illustrates how a user finds all persons with 
 * **Alternative 2:** Allow multiple tags
   * Pros: Allows users to search for more than one tag at once, which increases convenience and flexibility.
   * Cons: Could produce many search results which may clutter up the GUI (as opposed to searching for only one task). More prone to bugs.
+
+### 3.11 Quickstart Window
+Syntax: `quickstart`  
+Purpose: Allows new users to better understand how OfficeConnect works.
+
+#### 3.11.1 Implementation
+Similar to Help Window in section 3.7, this window is maintained by `QuickstartWindow` class, which also maintains 
+similarly named `fxml` and `css` to display the relevant quickstart information.
+
+Users will be shown a guide 
 
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Documentation, logging, testing, configuration, dev-ops
@@ -531,26 +544,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### 5.3 Acceptance Criteria
 
-- When I use the "add" command followed by a task name, a new task with the given name should be added to my task list.
+- When I use the "addt" command followed by a task name, a new task with the given name should be added to my task list.
 - The task name should be displayed in the task list.
 - The task should be saved to persistent storage so that it is not lost when I exit the app.
 
 #### 5.3.1 Example Usage
 
-> addtask s/Draft proposal c/Complete proposal by 1st March st/false
+> addt s/Draft proposal c/Complete proposal by 1st March st/false
 
 - New task added: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
 
-> listtask
+> listt
 
 1. Finish report; Status: Undone; Content: Complete report for Mr Chan by 2nd March
 2. Send email to team; Status: Done; Content: Send an email regarding office hours
 
-> findtask report
+> findt report
 
 1. Finish report
 
-> deletetask 1
+> deletet 1
 
 - Deleted task: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
 
@@ -743,21 +756,21 @@ feature would work in practice.
 
 2. OfficeConnect opens help interface with dedicated help instructions.
 
-3. User specifies command he wishes to get help on.
+3. User navigates to command he wishes to get help on.
 
-4. OfficeConnect displays how command works, along with format of queried command to user.
+4. OfficeConnect presents information on said command to user.
 
-5. User reads closes window after getting required info.
+5. User reads closes window after retrieving required info.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. User requests for more info on command.
+* 4a. User requests for more info on command.
 
-    * 2a1. Help interface provides link to user guide.
+    * 4a1. Help interface provides link to user guide.
 
-    * 2a2. User retrieves user guide providing more detail on command.
+    * 4a2. User retrieves user guide providing more detail on command.
 
       Use case resumes at step 5.
 
@@ -973,13 +986,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-   2. Test case: `delete 1`<br>
+   1. Prerequisites: List all persons using the `listp` command. Multiple persons in the list.
+   2. Test case: `deletep 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
       Timestamp in the status bar is updated.
-   3. Test case: `delete 0`<br>
+   3. Test case: `deletep 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-   4. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `deletep`, `deletep x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
@@ -992,7 +1005,7 @@ testers are expected to do more *exploratory* testing.
       in the list.
    2. Test case: `assign pi/1 ti/1`<br>
       Expected: Details of the assigned person and task shown in the status message. The task assigned will
-      be shown when after using `find NAME`, where `NAME` is the full name of the first person in the list. <br>
+      be shown when after using `findp NAME`, where `NAME` is the full name of the first person in the list. <br>
       * Follow-up test case: `listall`, followed by `assign pi/1 ti/1`<br>
         Expected: Error details shown in status message indicating that the first person has already been 
         assigned to the first task.
@@ -1006,8 +1019,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Marking a task that has not been assigned to any persons as completed
 
-   1. Prerequisites: List all tasks using the `listtask` command. At least one task in the list. First task
-      has not been assigned to any person, which can be verified by using `findtask TITLE` (where `TITLE` is
+   1. Prerequisites: List all tasks using the `listt` command. At least one task in the list. First task
+      has not been assigned to any person, which can be verified by using `findt TITLE` (where `TITLE` is
       the title of the first task) which should display an empty list. First task is currently not marked as
       completed (red cross appears below task).
    2. Test case: `mark 1`<br>
@@ -1020,7 +1033,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Marking a task that has been assigned to one or more persons as completed
 
-   1. Prerequisites: Find persons assigned to a task using the `findtask TITLE` (where `TITLE` is the title of 
+   1. Prerequisites: Find persons assigned to a task using the `findt TITLE` (where `TITLE` is the title of 
       a task). At least one person in the list. Task is not marked as completed (red cross appears below task).
    2. Test case: `mark 1`<br>
       Expected: Details of the task that is marked shown in the status message. A green tick will appear under the
@@ -1030,8 +1043,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Unmarking a task that has not been assigned to any persons as not completed yet
 
-   1. Prerequisites: List all tasks using the `listtask` command. At least one task in the list. First task
-      has not been assigned to any person, which can be verified by using `findtask TITLE` (where `TITLE` is
+   1. Prerequisites: List all tasks using the `listt` command. At least one task in the list. First task
+      has not been assigned to any person, which can be verified by using `findt TITLE` (where `TITLE` is
       the title of the first task) which should display an empty list. First task is currently marked as
       completed (green tick appears below task).
    2. Test case: `ummark 1`<br>
@@ -1044,7 +1057,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Unmarking a task that has been assigned to one or more persons as not completed yet
 
-   1. Prerequisites: Find persons assigned to a task using the `findtask TITLE` (where `TITLE` is the title of
+   1. Prerequisites: Find persons assigned to a task using the `findt TITLE` (where `TITLE` is the title of
       a task). At least one person in the list. Task is marked as completed (red cross appears below task).
    2. Test case: `unmark 1`<br>
       Expected: Details of the task that is unmarked shown in the status message. A red cross will appear under the

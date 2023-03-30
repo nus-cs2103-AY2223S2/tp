@@ -23,7 +23,7 @@ import seedu.address.model.task.TitleContainsKeywordsPredicate;
  * Keyword matching is case-insensitive.
  */
 public class FindTaskCommand extends Command {
-    public static final String COMMAND_WORD = "findtask";
+    public static final String COMMAND_WORD = "findt";
     public static final String MESSAGE_USAGE = "Format: " + COMMAND_WORD + " <TASK_NAME>\n"
             + "Example: " + COMMAND_WORD + " CS2103 TP";
 

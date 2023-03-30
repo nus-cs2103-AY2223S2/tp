@@ -15,13 +15,12 @@ public class ListAssignment extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all %s %s";
     public static final String TYPE_PERSON = "person";
     public static final String TYPE_TASK = "task";
-    public static final String COMMAND_WORD_UNASSIGN_PERSON = "up";
-    public static final String COMMAND_WORD_UNASSIGN_TASK = "ut";
-    public static final String COMMAND_WORD_ASSIGN_TASK = "at";
-    public static final String COMMAND_WORD_ASSIGN_PERSON = "ap";
-    public static final String COMMAND_WORD_ASSIGN = "la";
-    public static final String COMMAND_WORD_UNASSIGN = "lu";
-
+    public static final String COMMAND_WORD_UNASSIGNED_PERSON = "viewunassignedp";
+    public static final String COMMAND_WORD_UNASSIGNED_TASK = "viewunassignedt";
+    public static final String COMMAND_WORD_ASSIGNED_TASK = "viewassignedt";
+    public static final String COMMAND_WORD_ASSIGNED_PERSON = "viewassignedp";
+    public static final String COMMAND_WORD_ASSIGNED_ALL = "viewassignedall";
+    public static final String COMMAND_WORD_UNASSIGNED_ALL = "viewunassignedall";
 
     private final String type;
     private final Boolean assign;
@@ -44,7 +43,7 @@ public class ListAssignment extends Command {
      * @return A string "assign" if the provided boolean is true, or "unassign" if false.
      */
     private String getAssignString(boolean assign) {
-        return assign ? "assign" : "unassign";
+        return assign ? "assigned" : "unassigned";
     }
 
     /**

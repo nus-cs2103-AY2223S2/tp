@@ -31,7 +31,7 @@ import seedu.address.model.task.Title;
  * Edits the details of an existing task in OfficeConnect.
  */
 public class EditTaskCommand extends Command {
-    public static final String COMMAND_WORD = "edittask";
+    public static final String COMMAND_WORD = "editt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of a task by the index number."
         + "Parameters: "

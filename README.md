@@ -2,7 +2,7 @@
 
 [![CI Status](https://github.com/AY2223S2-CS2103-F10-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103-F10-1/tp/actions)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/improvedUI.png)
 
 ## Description
 
@@ -23,6 +23,8 @@ OfficeConnect is a task management tool designed specifically for managerial rol
 
 ## Usage
 
+- `quickstart`
+- `help`
 - `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]`
 - `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]`
 - `delete INDEX`

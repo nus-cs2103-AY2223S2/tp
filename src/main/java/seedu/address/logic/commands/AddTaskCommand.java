@@ -15,7 +15,7 @@ import seedu.address.model.task.Task;
  * Adds a task to OfficeConnect
  */
 public class AddTaskCommand extends Command {
-    public static final String COMMAND_WORD = "addtask";
+    public static final String COMMAND_WORD = "addt";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to OfficeConnect. "
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
