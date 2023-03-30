@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
@@ -22,8 +23,8 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+      <VBox styleClass="background-custom" stylesheets="@DarkTheme.css">
+        <MenuBar fx:id="menuBar" styleClass="background-custom" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -31,16 +32,24 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-            <StackPane fx:id="modePanelPlaceholder" minHeight="100" prefHeight="400.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <StackPane fx:id="modePanelPlaceholder" minHeight="100" prefHeight="400.0" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="5" left="10" right="10" top="5" />
                </padding>
+               <styleClass>
+                  <String fx:value="pane-with-border" />
+                  <String fx:value="background-custom" />
+               </styleClass>
             </StackPane>
 
-           <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+           <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
+               <styleClass>
+                  <String fx:value="pane-with-border" />
+                  <String fx:value="background-custom" />
+               </styleClass>
         </StackPane>
 
            <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">

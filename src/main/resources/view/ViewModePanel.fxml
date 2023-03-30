@@ -15,10 +15,10 @@
          <items>
             <VBox fx:id="entityList" styleClass="pane-with-border">
                <children>
-                  <StackPane fx:id="entityListPanelPlaceholder" minWidth="200.0" />
+                  <StackPane fx:id="entityListPanelPlaceholder" minWidth="200.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="stack-pane">
                <children>
                   <Pane fx:id="entitiesTicker" minWidth="50.0">
                      <children>
