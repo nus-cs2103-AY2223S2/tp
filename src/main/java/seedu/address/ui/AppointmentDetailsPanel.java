@@ -27,6 +27,7 @@ public class AppointmentDetailsPanel extends UiPart<Region> {
 
     private static final String FXML = "AppointmentDetailsPanel.fxml";
     public final Appointment appointment;
+    @FXML VBox parentContainer;
     @FXML
     private Label id;
     @FXML
@@ -54,6 +55,12 @@ public class AppointmentDetailsPanel extends UiPart<Region> {
     }
 
     private void update(Appointment appointment, AppointmentDataMap dataMap) {
+        if (appointment == null) {
+            parentContainer.getChildren().clear();
+            parentContainer.getChildren().add(new EmptyDetailsPanelPlaceholder("Appointment").getRoot());
+            return;
+        }
+
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
 
         id.setText("Appointment ID: " + appointment.getId());

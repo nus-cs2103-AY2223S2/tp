@@ -272,7 +272,14 @@ public class MainWindow extends UiPart<Stage> {
 
     private void updateSelectedTab(CommandResult commandResult) {
         int tabIndex = commandResult.getType().ordinal();
-        tabResultDisplayMessages[tabIndex] = commandResult.getFeedbackToUser();
+        if(commandResult.getType() != Tab.UNCHANGED && commandResult.getType() != Tab.ALL) {
+            tabResultDisplayMessages[tabIndex] = commandResult.getFeedbackToUser();
+        }
+        if(commandResult.getType() == Tab.ALL) {
+            for (int i = 0; i < tabResultDisplayMessages.length; i++) {
+                tabResultDisplayMessages[i] = commandResult.getFeedbackToUser();
+            }
+        }
         if (!tabs.getSelectionModel().isSelected(tabIndex) && commandResult.getType() != Tab.UNCHANGED) {
             tabs.getSelectionModel().select(tabIndex);
         }

@@ -273,6 +273,14 @@ public class ModelManager implements Model {
     public void updateFilteredCustomerList(Predicate<? super Customer> predicate) {
         requireNonNull(predicate);
         filteredCustomers.setPredicate(predicate);
+        if (filteredCustomers.size() == 0) {
+            selectCustomer(null);
+        } else if (selectedCustomer == null && filteredCustomers.size() > 0) {
+            selectCustomer(filteredCustomers.get(0));
+        } else if (selectedCustomer != null && filteredCustomers.stream()
+                .noneMatch(selectedCustomer::isSameCustomer)) {
+            selectCustomer(filteredCustomers.get(0));
+        }
     }
 
     // ==== For Vehicles ==
@@ -483,24 +491,56 @@ public class ModelManager implements Model {
     public void updateFilteredTechnicianList(Predicate<? super Technician> predicate) {
         requireNonNull(predicate);
         filteredTechnicians.setPredicate(predicate);
+        if (filteredTechnicians.size() == 0) {
+            selectTechnician(null);
+        } else if (selectedTechnician == null && filteredTechnicians.size() > 0) {
+            selectTechnician(filteredTechnicians.get(0));
+        } else if (selectedTechnician != null && filteredTechnicians.stream()
+                .noneMatch(selectedTechnician::isSameStaff)) {
+            selectTechnician(filteredTechnicians.get(0));
+        }
     }
 
     @Override
     public void updateFilteredServiceList(Predicate<? super Service> predicate) {
         requireNonNull(predicate);
         filteredServices.setPredicate(predicate);
+        if (filteredServices.size() == 0) {
+            selectService(null);
+        } else if (selectedService == null && filteredServices.size() > 0) {
+            selectService(filteredServices.get(0));
+        } else if (selectedService != null && filteredServices.stream()
+                .noneMatch(selectedService::isSameService)) {
+            selectService(filteredServices.get(0));
+        }
     }
 
     @Override
     public void updateFilteredAppointmentList(Predicate<? super Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
+        if (filteredAppointments.size() == 0) {
+            selectAppointment(null);
+        } else if (selectedAppointment == null && filteredAppointments.size() > 0) {
+            selectAppointment(filteredAppointments.get(0));
+        } else if (selectedAppointment != null && filteredAppointments.stream()
+                .noneMatch(selectedAppointment::isSameAppointment)) {
+            selectAppointment(filteredAppointments.get(0));
+        }
     }
 
     @Override
     public void updateFilteredVehicleList(Predicate<? super Vehicle> predicate) {
         requireNonNull(predicate);
         filteredVehicles.setPredicate(predicate);
+        if (filteredVehicles.size() == 0) {
+            selectVehicle(null);
+        } else if (selectedVehicle == null && filteredVehicles.size() > 0) {
+            selectVehicle(filteredVehicles.get(0));
+        } else if (selectedVehicle != null && filteredVehicles.stream()
+                .noneMatch(selectedVehicle::isSameVehicle)) {
+            selectVehicle(filteredVehicles.get(0));
+        }
     }
 
     //    @Override
@@ -592,25 +632,65 @@ public class ModelManager implements Model {
     @Override
     public void updateCustomerComparator(Comparator<? super Customer> cmp) {
         this.sortedFilteredCustomers.setComparator(cmp);
+        if (sortedFilteredCustomers.size() == 0) {
+            selectCustomer(null);
+        } else if (selectedCustomer == null && sortedFilteredCustomers.size() > 0) {
+            selectCustomer(sortedFilteredCustomers.get(0));
+        } else if (selectedCustomer != null && sortedFilteredCustomers.stream()
+                .noneMatch(selectedCustomer::isSameCustomer)) {
+            selectCustomer(sortedFilteredCustomers.get(0));
+        }
     }
 
     @Override
     public void updateVehicleComparator(Comparator<? super Vehicle> cmp) {
         this.sortedFilteredVehicles.setComparator(cmp);
+        if (sortedFilteredVehicles.size() == 0) {
+            selectVehicle(null);
+        } else if (selectedVehicle == null && sortedFilteredVehicles.size() > 0) {
+            selectVehicle(sortedFilteredVehicles.get(0));
+        } else if (selectedVehicle != null && sortedFilteredVehicles.stream()
+                .noneMatch(selectedVehicle::isSameVehicle)) {
+            selectVehicle(sortedFilteredVehicles.get(0));
+        }
     }
 
     @Override
     public void updateServiceComparator(Comparator<? super Service> cmp) {
         this.sortedFilteredServices.setComparator(cmp);
+        if (sortedFilteredServices.size() == 0) {
+            selectService(null);
+        } else if (selectedService == null && sortedFilteredServices.size() > 0) {
+            selectService(sortedFilteredServices.get(0));
+        } else if (selectedService != null && sortedFilteredServices.stream()
+                .noneMatch(selectedService::isSameService)) {
+            selectService(sortedFilteredServices.get(0));
+        }
     }
 
     @Override
     public void updateAppointmentComparator(Comparator<? super Appointment> cmp) {
         this.sortedFilteredAppointments.setComparator(cmp);
+        if (sortedFilteredAppointments.size() == 0) {
+            selectAppointment(null);
+        } else if (selectedAppointment == null && sortedFilteredAppointments.size() > 0) {
+            selectAppointment(sortedFilteredAppointments.get(0));
+        } else if (selectedAppointment != null && sortedFilteredAppointments.stream()
+                .noneMatch(selectedAppointment::isSameAppointment)) {
+            selectAppointment(sortedFilteredAppointments.get(0));
+        }
     }
 
     @Override
     public void updateTechnicianComparator(Comparator<? super Technician> cmp) {
         this.sortedFilteredTechnicians.setComparator(cmp);
+        if (sortedFilteredTechnicians.size() == 0) {
+            selectTechnician(null);
+        } else if (selectedTechnician == null && sortedFilteredTechnicians.size() > 0) {
+            selectTechnician(sortedFilteredTechnicians.get(0));
+        } else if (selectedTechnician != null && sortedFilteredTechnicians.stream()
+                .noneMatch(selectedTechnician::isSameStaff)) {
+            selectTechnician(sortedFilteredTechnicians.get(0));
+        }
     }
 }

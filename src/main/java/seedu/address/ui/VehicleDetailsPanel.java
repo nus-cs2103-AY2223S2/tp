@@ -20,6 +20,7 @@ public class VehicleDetailsPanel extends UiPart<Region> {
     private static final String FXML = "VehicleDetailsPanel.fxml";
 
     public final Vehicle vehicle;
+    @FXML VBox parentContainer;
     @FXML
     private Label id;
     @FXML
@@ -48,6 +49,12 @@ public class VehicleDetailsPanel extends UiPart<Region> {
 
     private void update(Vehicle vehicle, VehicleDataMap dataMap) {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
+
+        if (vehicle == null) {
+            parentContainer.getChildren().clear();
+            parentContainer.getChildren().add(new EmptyDetailsPanelPlaceholder("Vehicle").getRoot());
+            return;
+        }
 
         id.setText("Vehicle ID: " + vehicle.getId());
         plateNumber.setText(vehicle.getPlateNumber() + "");

@@ -24,6 +24,7 @@ public class TechnicianDetailsPanel extends UiPart<Region> {
     private static final String FXML = "TechnicianDetailsPanel.fxml";
 
     public final Technician technician;
+    @FXML VBox parentContainer;
     @FXML
     private Label id;
     @FXML
@@ -55,6 +56,12 @@ public class TechnicianDetailsPanel extends UiPart<Region> {
     }
 
     private void update(Technician technician, TechnicianDataMap dataMap) {
+        if (technician == null) {
+            parentContainer.getChildren().clear();
+            parentContainer.getChildren().add(new EmptyDetailsPanelPlaceholder("Technician").getRoot());
+            return;
+        }
+
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
 
         id.setText("Technician ID: " + technician.getId());
