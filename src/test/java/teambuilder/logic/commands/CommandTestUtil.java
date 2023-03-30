@@ -20,8 +20,8 @@ import teambuilder.commons.core.index.Index;
 import teambuilder.logic.commands.exceptions.CommandException;
 import teambuilder.model.Model;
 import teambuilder.model.TeamBuilder;
-import teambuilder.model.person.NameContainsKeywordsPredicate;
 import teambuilder.model.person.Person;
+import teambuilder.model.person.PersonContainsKeywordsPredicate;
 import teambuilder.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -135,7 +135,7 @@ public class CommandTestUtil {
 
         Person person = model.getSortedPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new PersonContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getSortedPersonList().size());
     }
