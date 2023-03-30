@@ -266,11 +266,11 @@
                                 <children>
                                     <Label prefHeight="39.0" prefWidth="16.0" />
                                     <Text fill="#a12222" strokeType="OUTSIDE" strokeWidth="0.0" text="Inputs should not have alphabets followed by &quot;/&quot;, e.g. y/" wrappingWidth="468.13671875" />
-                                    <Button mnemonicParsing="false" onMouseClicked="#handleEditInternship" prefHeight="31.0" prefWidth="88.0" styleClass="primary-button" stylesheets="@PopupAddInternship.css" text="Add">
+                                    <Button mnemonicParsing="false" onMouseClicked="#handleEditInternship" prefHeight="31.0" prefWidth="88.0" styleClass="primary-button" stylesheets="@PopupAddInternship.css" text="Edit">
                                         <graphic>
                                             <ImageView fitHeight="20.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                                                 <image>
-                                                    <Image url="@../images/add_internship.png" />
+                                                    <Image url="@../images/edit_internship.png" />
                                                 </image>
                                             </ImageView>
                                         </graphic>

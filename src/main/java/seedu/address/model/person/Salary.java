@@ -8,14 +8,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Salary extends InternshipApplicationAttribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Salaries must be in the form [number] [CURRENCY] "
-        + "and should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Salaries must be in the form [number] [CURRENCY] or blank";
 
-    /*
-     * The first character of the salary must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[0-9]+ [A-Z]+";
+    public static final String VALIDATION_REGEX = "([0-9]+ [A-Z]+|)";
 
     public final String value;
 

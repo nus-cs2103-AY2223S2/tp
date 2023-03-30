@@ -8,13 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Rating extends InternshipApplicationAttribute {
 
-    public static final String MESSAGE_CONSTRAINTS = "Ratings can take any values, and it should not be blank";
-
-    /*
-     * The first character of the Rating must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String MESSAGE_CONSTRAINTS = "Ratings can take any values";
+    public static final String VALIDATION_REGEX = ".*";
 
     public final String value;
 
