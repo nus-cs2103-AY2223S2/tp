@@ -31,13 +31,19 @@ open the help window.<br>
 
    * `list` : Lists all cases.
 
-   * `add n/John Tan p/543299 d/2023-02-13 a/20` : Adds a case named `John Tan` to the Dengue Hotspot Tracker.
+   * `add n/John Tan p/543299 d/2023 February 13 a/20` : Adds a case named `John Tan` to the Dengue Hotspot Tracker.
 
    * `delete 3` : Deletes the 3rd case shown in the current list.
 
    * `clear` : Deletes all cases.
 
    * `exit` : Exits the app.
+
+   * `undo 5` : Undo 5 previous actions.
+
+   * `redo 5` : Redo 5 previous actions.
+
+
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -54,6 +60,13 @@ open the help window.<br>
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [v/VARIANT]` can be used as `n/John Doe v/DENV1` or as `n/John Doe`.
+
+* Multiple date formats are accepted, as long as `yyyy`, `MM`/`MMM`/`MMMM` and `dd` are present,<br>
+  with no extra alphanumeric characters.
+  e.g `d/2000-january-05`, `d/jan 2000 01`, `20000101` will all work.
+  When it is ambiguous whether a sequent of digits corresponds to `MM` or `dd` or `yyyy`, 
+  The first sequence of 4 digits will be read as `yyyy`, before the first sequence of 2 digits
+  is read into `MM`. Then, `dd` is the last to be read in. Thus, `20000102` is read as 2nd Jan 2000.
 
 * Items in curly brackets are features that are currently work in progress. <br>
   e.g `{t/TAG}` means that tagging someone has not yet been implemented, but is planned to be a feature.
@@ -155,6 +168,19 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
 * `find s666` followed by `delete 4` deletes the 4th case in the results of the `find` command.
 
+### Undo/Redo an action : `undo` or `redo`
+
+Undo/redo an action that resulted in the change of the Dengue Hotspot Tracker data.
+
+Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
+
+* Undo/redo an action multiple times, specified by the number `INTEGER`. If not specified, `INTEGER` is assumed to be 1.
+* `INTEGER` must be a strictly positive integer.
+* The user cannot undo/redo actions from a previous session of starting the app.
+* The user cannot undo actions that are more than 10 iterations old.
+* The user cannot undo actions that do not change the data of the Dengue Hotspot Tracker, such as list and find.
+* Performing a change after undo-ing will clear any possible `redo` actions.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the Dengue Hotspot Tracker.
@@ -207,3 +233,5 @@ the data of your previous DengueHotspotTracker home folder.
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                     |
 | **List**   | `list`                                                                                                                         |
 | **Help**   | `help`                                                                                                                         |
+| **Undo**   | `undo [INTEGER]`                                                                                                               |
+| **Redo**   | `redo [INTEGER]`                                                                                                               |

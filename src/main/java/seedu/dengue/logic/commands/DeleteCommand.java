@@ -35,7 +35,7 @@ public class DeleteCommand extends Command {
             + "[" + PREFIX_STARTDATE + "STARTDATE]...\n"
             + "[" + PREFIX_ENDDATE + "ENDDATE]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_DATE + "2001-10-10"
+            + PREFIX_DATE + "2001-10-10 \n"
             + "Indexes cannot occur with dates, and a single date cannot occur with a start or end date.";
 
     public static final String MESSAGE_DELETE_INDEX_SUCCESS = "%1$s cases deleted";

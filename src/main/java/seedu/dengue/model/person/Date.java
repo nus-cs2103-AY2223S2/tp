@@ -36,6 +36,7 @@ public class Date {
             new DateFormat("uuuu", "MMM", "dd");
     private static final Pattern LONG_MONTH_FORMAT_CHECK = Pattern.compile("[a-zA-Z]{4,}");
     private static final Pattern MONTH_FORMAT_CHECK = Pattern.compile("[a-zA-Z]{3}");
+    private static final Pattern ALPHANUM = Pattern.compile("[a-ce-tv-zA-LN-Z0-9]");
 
 
     public final String value;
@@ -102,6 +103,9 @@ public class Date {
             dateString = dateString.replaceFirst("\\d{2}", NUM_FORMATS.getDay());
         }
 
+        if (ALPHANUM.matcher(dateString).find()) {
+            throw new IllegalArgumentException();
+        }
 
         DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
         builder = builder.parseCaseInsensitive();
@@ -110,7 +114,6 @@ public class Date {
 
         DateTimeFormatter format = builder.toFormatter()
                 .withResolverStyle(ResolverStyle.STRICT);
-
 
         return format;
     }

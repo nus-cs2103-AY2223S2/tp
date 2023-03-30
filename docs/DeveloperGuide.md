@@ -47,7 +47,7 @@ The rest of the App consists of four components.
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to various platforms of storage.
 
 
 **How the architecture components interact with each other**
@@ -143,7 +143,7 @@ The `Storage` component,
 * can save both Dengue Hotspot Tracker data and user preference data in csv format, and read them back into corresponding objects.
 * inherits from both `DengueHotspotTrackerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
-
+* temporarily saves `DengueHotspotTracker` data while the app is running, for `undo` and `redo` commands.
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -156,43 +156,53 @@ This section describes some noteworthy details on how certain features are imple
 
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedDengueHotspotTracker`. It extends `DengueHotspotTracker` with an undo/redo history, stored internally as an `dengueHotspotTrackerStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `TemporaryMemory`. It extends `SpecialisedStackForMemory`, which implements `StackWithStorage`.
+`TemporaryMemory` only stores the 10 most recent actions performed by the user, when the app is open. This means that when the app is closed and open again, the user will not be able to perform an undo or redo.
+`TemporaryMemory` can be viewed as a stack which supports additional operations.
 
-* `VersionedDengueHotspotTracker#commit()` — Saves the current Dengue Hotspot Tracker state in its history.
-* `VersionedDengueHotspotTracker#undo()` — Restores the previous Dengue Hotspot Tracker state from its history.
-* `VersionedDengueHotspotTracker#redo()` — Restores a previously undone Dengue Hotspot Tracker state from its history.
+1. `TemporaryMemory` only contains 10 saved iterations of the file. Therefore, older iterations are deleted.
+2. `TemporaryMemory` supports the redo command, and therefore, after performing an undo, more recent iterations of the file are still stored in an auxiliary storage component.
+3. When the user performs an undo and then edits/saves the file once again, more recent iterations of the file must be overwritten. Therefore, this temporary storage is cleared.
 
-These operations are exposed in the `Model` interface as `Model#commitDengueHotspotTracker()`, `Model#undoDengueHotspotTracker()` and `Model#redoDengueHotspotTracker()` respectively.
+`TemporaryMemory`, therefore, is a specialised memory stack, where each item is an iteration of the Dengue Hotspot Tracker file. It holds as attributes a `Deque` for the primary memory stack and an auxiliary storage `Stack`, which temporarily stores popped items (undone operations).
 
+* `TemporaryMemory#saveNewLatest(ReadOnlyDengueHotspotTracker latest)` — Saves the current Dengue Hotspot Tracker state in its history, pushing it into the primary memory stack represented by a `Deque`.
+* `TemporaryMemory#undo()` — Restores the previous Dengue Hotspot Tracker state from its history. This pops an item from the primary memory stack represented by a `Deque` and pushes it into the auxiliary storage stack implemented with a `Stack`.
+* `TemporaryMemory#redo()` — Restores a previously undone Dengue Hotspot Tracker state from its history. This pushes an item from the auxiliary `Stack` back into the primary memory stack.
+* `TemporaryMemory#loadCurrent()` — Peeks into the top element of the stack and loads it.
+These operations are exposed in the `Model` interface as `Model#saveChanges()`, `Model#undo()`, `Model#redo()` and `Model#updateFromMemoryStack()`.
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedDengueHotspotTracker` will be initialized with the initial Dengue Hotspot Tracker state, and the `currentStatePointer` pointing to that single Dengue Hotspot Tracker state.
+Step 1. The user launches the application for the first time. The `DengueHotspotTracker` will be initialized with the initial Dengue Hotspot Tracker state, and the `TemporaryMemory` stack implementation contains only the current Dengue Hotspot Tracker state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the Dengue Hotspot Tracker. The `delete` command calls `Model#commitDengueHotspotTracker()`, causing the modified state of the Dengue Hotspot Tracker after the `delete 5` command executes to be saved in the `dengueHotspotTrackerStateList`, and the `currentStatePointer` is shifted to the newly inserted Dengue Hotspot Tracker state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the Dengue Hotspot Tracker. The `delete` command calls `Model#saveChanges()`. The Dengue Hotspot Tracker is modified, and a copy of the modified Dengue Hotspot Tracker is generated by `DengueHotspotTracker#generateDeepCopy()`. This deep copy is pushed into the `TemporaryMemory` stack under its `Deque`.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David d/2000 31 Jan...` to add a new person. The `add` command also calls `Model#commitDengueHotspotTracker()`, causing another modified Dengue Hotspot Tracker state to be saved into the `dengueHotspotTrackerStateList`.
-
+Step 3. The user executes `add n/David d/2000 31 January...` to add a new person. The `add` command also calls `Model#saveChanges()`, causing another modified Dengue Hotspot Tracker state to be deep-copied and saved into the `TemporaryMemory` stack, under its `Deque`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitDengueHotspotTracker()`, so the Dengue Hotspot Tracker state will not be saved into the `dengueHotspotTrackerStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#saveChanges()`, so the Dengue Hotspot Tracker state will not be saved into the `TemporaryMemory`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoDengueHotspotTracker()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous Dengue Hotspot Tracker state, and restores the Dengue Hotspot Tracker to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command pops an item from the primary `Deque` in `TemporaryMemory`, and pushes it into the auxiliary storage `Stack`. The new top-level item in the primary `Deque` stack will be read in as the current file.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial DengueHotspotTracker state, then there are no previous DengueHotspotTracker states to restore. The `undo` command uses `Model#canUndoDengueHotspotTracker()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If there is only 1 element in the `Deque`, then there are no previous DengueHotspotTracker states to restore. The `undo` command uses `TemporaryMemory#canUndo` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
+
+Step 5. The user again decides that adding the person was not a mistake, and decides to redo the action by executing the `redo` command. The `redo` command pops an item from the auxiliary `Stack` in `TemporaryMemory` and pushes it back into the primary stack `Deque`, where it is being read as the current file.
+
+Step 6. The user now wishes to perform an undo twice. The user executes the `undo 2` command to undo two steps. As with before, 2 iterations of the tracker data are popped from the `TemporaryMemory` primary `Deque` and pushed into the auxiliary `Stack`.
 
 The following sequence diagram shows how the undo operation works:
 
@@ -202,19 +212,13 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoDengueHotspotTracker()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the Dengue Hotspot Tracker to that state.
+The `redo` command does the opposite — it calls `TemporaryMemory#redo()`, which pops from the auxiliary `Stack` once, and pushes the popped item back into the primary `Deque`, restoring the Dengue Hotspot Tracker to a previous state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `dengueHotspotTrackerStateList.size() - 1`, pointing to the latest Dengue Hotspot Tracker state, then there are no undone DengueHotspotTracker states to restore. The `redo` command uses `Model#canRedoDengueHotspotTracker()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the Dengue Hotspot Tracker, such as `list`, will usually not call `Model#commitDengueHotspotTracker()`, `Model#undoDengueHotspotTracker()` or `Model#redoDengueHotspotTracker()`. Thus, the `dengueHotspotTrackerStateList` remains unchanged.
+Step 7. The user then decides to execute the command `list`. Commands that do not modify the Dengue Hotspot Tracker, such as `list`, will usually not call `Model#saveChanges()`, `Model#undo()` or `Model#redo()`. Thus, the `TemporaryMemory` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitDengueHotspotTracker()`. Since the `currentStatePointer` is not pointing at the end of the `dengueHotspotTrackerStateList`, all Dengue Hotspot Tracker states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -224,16 +228,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire dengue case list.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** Saves 10 previous iterations of the entire dengue case list temporarily while the app is running.
+    * Pros: Saves memory as all tracker iterations are deleted when the app closes. Deleting older tracker iterations also helps to improve performance.
+    * Cons: User may not have access to older data.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Saves 10 previous iterations of the entire dengue case list in a JSON file.
+    * Pros: User can have direct access to older data.
+    * Cons: Can be very messy to implement.
 
-_{more aspects and alternatives to be added}_
 
 ### \[Proposed\] Data archiving
 
