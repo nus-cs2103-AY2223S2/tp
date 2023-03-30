@@ -13,7 +13,8 @@ public class AddAssignmentCommand extends Command {
 
     public static final String COMMAND_WORD = "add_asgn";
     public static final String MESSAGE_SUCCESS = "Assignment %s with %s marks added.";
-    public static final String MESSAGE_USAGE = "Format: asgn_add n/{name} (optional: m/{marks})";
+    public static final String MESSAGE_USAGE = "Format: asgn_add n/{name} (optional: m/{marks}) "
+            + "(optional: cl/{class_list}";
     private final String toAdd;
     private final int totalMarks;
 

@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -83,6 +84,15 @@ public class ImportCommand extends Command {
         }
         final String pp = record.get(CsvUtil.KW_ATTENDANCE).trim();
 
+        if (!record.isMapped(CsvUtil.KW_ATTENDANCE)) {
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
+                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
+        }
+
+        ArrayList<String> submissions = new ArrayList<>();
+        Collections.addAll(submissions, record.get(CsvUtil.KW_SUBMISSION).trim().split(","));
+
+
         if (!record.isMapped(CsvUtil.KW_TAGS)) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_TAGS));
         }
@@ -97,7 +107,7 @@ public class ImportCommand extends Command {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + Tag.MESSAGE_CONSTRAINTS);
         }
 
-        return new Student(new Name(name), atd, pp, parsedTags);
+        return new Student(new Name(name), atd, pp, submissions, parsedTags);
     }
 
     @Override

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -84,10 +85,12 @@ public class EditStudentCommand extends Command {
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
         Attendance updatedAttendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAtd());
+        ArrayList<String> submissionStrings = editStudentDescriptor.getSubmissionStrings()
+                .orElse(studentToEdit.getSubmissionStorageStrings());
         Set<Tag> updatedClassTags = editStudentDescriptor.getTags().orElse(studentToEdit.getClassTags());
 
         return new Student(updatedName, updatedAttendance.atdStrorageStr(),
-                updatedAttendance.partPointsStorageStr(), updatedClassTags);
+                updatedAttendance.partPointsStorageStr(), submissionStrings, updatedClassTags);
     }
 
     @Override
@@ -118,6 +121,8 @@ public class EditStudentCommand extends Command {
 
         private Attendance attendance;
 
+        private ArrayList<String> submissionStrings;
+
         public EditStudentDescriptor() {}
 
         /**
@@ -128,6 +133,7 @@ public class EditStudentCommand extends Command {
             setName(toCopy.name);
             setTags(toCopy.tags);
             setAttendance(toCopy.attendance);
+            setSubmissions(toCopy.submissionStrings);
         }
 
         /**
@@ -153,6 +159,13 @@ public class EditStudentCommand extends Command {
             return Optional.ofNullable(this.attendance);
         }
 
+        public void setSubmissions(ArrayList<String> submissions) {
+            this.submissionStrings = submissions;
+        }
+
+        public Optional<ArrayList<String>> getSubmissionStrings() {
+            return Optional.ofNullable(this.submissionStrings);
+        }
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.

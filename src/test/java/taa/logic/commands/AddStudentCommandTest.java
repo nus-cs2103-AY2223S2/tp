@@ -215,6 +215,17 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public void deleteStudentSubmission(Student studentToDelete) {
+        }
+
+        @Override
+        public void initAssignmentsFromStorage() {
+        }
+
+        @Override
+        public void addStudentAssignment(Student stu) {
+        }
+
         public String listAlarms() {
             throw new AssertionError("This method should not be called");
         }

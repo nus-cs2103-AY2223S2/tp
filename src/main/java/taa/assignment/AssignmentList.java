@@ -90,6 +90,53 @@ public class AssignmentList {
     }
 
     /**
+     * Delete all of a student's submissions from the assignment list.
+     * @param s the student
+     */
+    public void deleteStudent(Student s) {
+        for (Assignment a : assignments) {
+            a.deleteStudentSubmission(s);
+        }
+    }
+
+    /**
+     * Creates new submissions for an added student.
+     * @param s the student
+     */
+    public void addStudent(Student s) {
+        for (Assignment a : assignments) {
+            a.addStudent(s);
+        }
+    }
+
+    /**
+     * Populates the assignment list, submissions list into
+     * @param sl the student list
+     */
+    public void initFromStorage(FilteredList<Student> sl) {
+        if (sl.isEmpty()) {
+            return;
+        }
+        // Step 1: populate the assignment list and hashmap with empty assignments.
+        Student firstStudent = sl.get(0);
+        for (String submissionString : firstStudent.getSubmissionStorageStrings()) {
+            String[] words = submissionString.split(",");
+            Assignment a = new Assignment(words[0], Integer.parseInt(words[4]));
+            assignments.add(a);
+            assignmentMap.put(words[0], a);
+        }
+
+        // Step 2: populate each assignment with each student submission.
+        for (Student stu : sl) {
+            for (String submissionString : stu.getSubmissionStorageStrings()) {
+                String assignmentName = submissionString.split(",")[0];
+                Assignment toAdd = assignmentMap.get(assignmentName);
+                toAdd.addStudentSubmission(stu, submissionString);
+            }
+        }
+    }
+
+    /**
      * Returns true if an assignment with the provided name exists.
      */
     public boolean contains(String name) {

@@ -141,9 +141,17 @@ public interface Model {
 
     void addAlarm(Alarm alarm) throws CommandException;
 
+
+    void deleteStudentSubmission(Student studentToDelete);
+
+    void initAssignmentsFromStorage();
+
+    void addStudentAssignment(Student toAdd);
+
     void displayChart(ChartType chartType, String... args)
             throws AssignmentNotFoundException, NoSubmissionsFoundException, NoGradeVarianceException;
     String listAlarms();
 
     void deleteAlarm(int index) throws CommandException;
+
 }

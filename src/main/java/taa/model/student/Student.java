@@ -1,5 +1,6 @@
 package taa.model.student;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -25,20 +26,21 @@ public class Student {
     // Data fields
     private final Attendance atd;
     private final Set<Tag> classTags = new HashSet<>();
-    private final Submissions submissions;
+    private final Submissions submissions = new Submissions(new ArrayList<>(), this);
+    private final ArrayList<String> submissionStringArr;
 
     private final int hashcode;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, String atd, String pp, Set<Tag> classTags) {
+    public Student(Name name, String atd, String pp, ArrayList<String> submissionStrArr, Set<Tag> classTags) {
         CollectionUtil.requireAllNonNull(name, classTags);
         this.id = ++lastId;
         this.name = name;
         this.atd = new Attendance(atd, pp);
         this.classTags.addAll(classTags);
-        this.submissions = new Submissions();
+        this.submissionStringArr = submissionStrArr;
         hashcode = Objects.hash(name, this.classTags);
     }
 
@@ -80,13 +82,18 @@ public class Student {
      */
     public void addSubmission(Submission submission) {
         this.submissions.addSubmission(submission);
+        if (!submissionStringArr.contains(submission.toStorageString())) { // if doesn't exist in storage.
+            submissionStringArr.add(submission.toStorageString());
+        }
     }
 
     /**
      * Removes a submission attributed to this student.
      */
     public void deleteSubmission(Submission submission) {
+
         this.submissions.deleteSubmission(submission);
+        submissionStringArr.remove(submission.toStorageString());
     }
 
     /**
@@ -96,6 +103,9 @@ public class Student {
         return this.submissions.getLatestSubmission();
     }
 
+    public ArrayList<String> getSubmissionStorageStrings() {
+        return this.submissionStringArr;
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

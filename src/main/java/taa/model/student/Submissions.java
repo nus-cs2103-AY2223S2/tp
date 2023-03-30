@@ -1,7 +1,6 @@
 package taa.model.student;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import taa.assignment.Submission;
@@ -11,17 +10,13 @@ import taa.assignment.exceptions.AssignmentNotFoundException;
  * A list of Submissions belonging to a Student.
  */
 public class Submissions {
-    private List<Submission> submissions;
+    private ArrayList<Submission> submissions;
     private Student student;
-
-    public Submissions() {
-        this.submissions = new ArrayList<>();
-    }
 
     /**
      * @param submissions A list containing Submissions.
      */
-    public Submissions(List<Submission> submissions, Student student) {
+    public Submissions(ArrayList<Submission> submissions, Student student) {
         this.submissions = submissions;
         this.student = student;
     }
@@ -44,15 +39,21 @@ public class Submissions {
      * Returns the latest submission.
      */
     public Submission getLatestSubmission() {
-        Submission latestSubmission = null;
-
-        for (Submission submission : this.submissions) {
-            if (latestSubmission == null || submission.compareTo(latestSubmission) > 0) {
-                latestSubmission = submission;
-            }
+        if (submissions.isEmpty()) {
+            return null;
         }
+        return submissions.get(submissions.size() - 1);
+    }
 
-        return latestSubmission;
+    /**
+     * @return ArrayList of storage string representation for the submissions
+     */
+    public ArrayList<String> submissionStorageString() {
+        ArrayList<String> res = new ArrayList<>();
+        for (Submission sub: this.submissions) {
+            res.add(sub.toStorageString());
+        }
+        return res;
     }
 
     /**
