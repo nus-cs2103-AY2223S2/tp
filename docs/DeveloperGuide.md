@@ -347,6 +347,7 @@ The `Model` component,
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* **Most importantly, a dedicated `Person` object `protagonist`, that represent "staged" `Person` which various CoDoc commands will operate on.**
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Skill` list in the `Codoc`, which `Person` references. This allows `Codoc` to only require one `Skill` object per unique skill, instead of each `Person` needing their own `Skill` objects.<br>
 
@@ -598,6 +599,35 @@ We also chose to make our find command case-insensitive to increase the speed of
 
 <div style="page-break-after: always;"></div>
 
+### **View command**
+
+One of the main feature for CoDoc is the [Info Panel](#info-panel). This command interacts heavily with the Info Panel
+UI.
+
+As described in the [Model Implementation](#model-implementation), `Model` manages a special `Person` called the
+`protagonist`, and a dedicated String `currentTab` to make this command and feature work.
+
+#### Implementation flow
+
+When the command is entered, the parser differentiates entered command between viewing different person (changing
+`protagonist`) or viewing different tab of the `protagonist` (changing to contact/module/skill tab) and creates
+appropriate ViewCommand command to execute:
+
+1. When changing protagonist, `Logic` calls for its `Model` to change its protagonist to a desired one.
+2. When changing tabs, `Model`'s `currentTab` is also updated in a similar way.
+
+#### Design Considerations 
+Whatever change this command makes in the `model`, Info Panel just takes reference off `Logic` to display relevant
+information. This was done to truly adhere to Single Responsibility Principle, UI component does not have to know what
+change was made to the `Logic` and then update afterwards. After every execution, a fresh Info Panel is generated which
+naturally will show the updated protagonist to view.
+
+Note that `currentTab` is only updated with the ViewCommand. Other commands will not update the `currentTab`. This is
+an intentional implementation so that users can easily compare same tabs between people.
+
+[Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -695,18 +725,36 @@ _{Explain here how the data archiving feature will be implemented}_
 
 This section describes implementation of features within `ui` package.
 
-On program initialization, `UiManager` creates `MainWindow` as a primary stage which is mainly divided into two
-sides, the left side [Main Section](#main-section) which handles user input and executes command, the right side
-[Info Panel](#info-panel) which shows more details about a specific person.
+On program initialization, `UiManager` creates `MainWindow` as a primary stage which is mainly divided into three
+sides:
 
-![ui-main-sections](images/ui-diagrams/ui-main-sections.PNG)
+![ui-main-sections](images/navigation.png)
+
+1. Left: [Course List Panel](#course-list-panel) which is a panel that simply generates off the currently supported
+courses as implemented within the `model/course/CourseList.java`.
+2. Center: [Main Section](#main-section) which handles user input and executes command.
+3. Right: [Info Panel](#info-panel) which shows more details about a specific person.
 
 Visual design of this section are implemented using the CSS file under resources. Details of such implementation are
 explained under [Theme](#theme) section.
 
+To support GUI features where users are able to click on a person within the list to view or click on the name of tab
+to switch between tabs, `MainWindow` controller also has a `ClickListener` that is set on various UI components,
+handling corresponding click events.
+
 <br>
 
 Refer to [UI Component](#ui-component) for more information about this package.
+
+<br>
+
+## **Course List Panel**
+
+This panel simply wraps the implemented courses in `CourseList` class with a label and stage it.
+
+Refer to its controller class `CourseListPanel.java` for more information.
+
+<br>
 
 ## **Main section**
 
@@ -716,8 +764,6 @@ Main section consists of the following components:
 * [ResultDisplay](#resultdisplay)
 * [PersonListPanel](#personlistpanel)
 * [StatusBarFooter](#statusbarfooter)
-
-![ui-main-section-sections](images/ui-diagrams/ui-main-section-sections.PNG)
 
 ### **CommandBox**
 
@@ -802,10 +848,6 @@ Info Panel consists of the following components:
   * [DetailedContact](#detailedcontact)
   * [DetailedModule](#detailedmodule)
   * [DetailedSkill](#detailedskill)
-
-| InfoTab with DetailedContact                                           | InfoTab with DetailedModule                                          | InfoTab with DetailedSkill                                         |
-|------------------------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------|
-| ![ui-info-panel-contact](images/ui-diagrams/ui-info-panel-contact.PNG) | ![ui-info-panel-module](images/ui-diagrams/ui-info-panel-module.PNG) | ![ui-info-panel-skill](images/ui-diagrams/ui-info-panel-skill.PNG) |
 
 ### **InfoTab**
 
@@ -897,8 +939,6 @@ package. These are loaded by the `MainApp` class upon initialization of the prog
 [StatusBarFooter](#statusbarfooter)).
 
 <br>
-
-{More to be added}
 
 
 [Scroll back to UI Implementation](#ui-implementation)
