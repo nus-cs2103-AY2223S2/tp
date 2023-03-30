@@ -42,14 +42,17 @@ JsonUtil -> JsonUtil : toJsonString(serializableToJsonObject)
 activate JsonUtil
 return content
 
+
 JsonUtil -> FileUtil : writeToFile(filePath, content)
 activate FileUtil
 return
 deactivate FileUtil
-
 return
+return
+deactivate JsonUtil
 return
 deactivate JsonCodocStorage
-return
+
+deactivate StorageManager
 
 @enduml

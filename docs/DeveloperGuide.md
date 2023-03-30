@@ -3,30 +3,37 @@ layout: page
 title: Developer Guide
 ---
 ## Table of Contents
-- [CoDoc Developer Guide](#codoc-developer-guide)
-- [Navigating the Developer Guide](#navigating-the-developer-guide)
-- [Glossary](#glossary)
 - [Acknowledgements](#acknowledgements)
+- [Introduction](#introduction)
+  - [Intended Audience](#intended-audience)
+  - [Target Audience](#target-audience)
+  - [Navigating the Developer Guide](#navigating-the-developer-guide)
+  - [Glossary](#glossary)
 - [Setting up](#setting-up-getting-started)
-- [Design](#design)
-  - [Architecture](#architecture)
+- [Design Architecture](#design-architecture)
+  - [Common Component](#commons-component)
   - [UI Component](#ui-component)
   - [Logic Component](#logic-component)
   - [Model Component](#model-component)
   - [Storage Component](#storage-component)
-  - [Common Classes](#common-classes)
 - [Implementation](#implementation)
-  - [Model](#model-implementation)
-    - [Person Class](#person-class)
-    - [Module Class](#module-class)
-    - [Course and CourseList Class](#course-and-courselist-class)
-  - [Logic](#logic-implementation)
-    - [Edit Command](#edit-command)
-    - [Find Command](#find-command)
   - [UI](#ui-implementation)
     - [Main Section](#main-section)
     - [Info Panel](#info-panel)
     - [Theme](#theme)
+  - [Logic](#logic-implementation)
+    - [Edit Command](#edit-command)
+    - [Find Command](#find-command)
+  - [Model](#model-implementation)
+    - [Person Class](#person-class)
+    - [Module Class](#module-class)
+    - [Course and CourseList Class](#course-and-courselist-class)
+  - [Storage](#storage-implementation)
+    - [Saving Data](#saving-data)
+    - [Retrieving Data](#retrieving-data)
+- [Viable Enhancement](#viable-enhancement)
+  - [Undo and Redo Feature](#proposed-undo-and-redo-feature)
+  - [Data Archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product Scope](#product-scope-)
@@ -36,18 +43,18 @@ title: Developer Guide
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Acknowledgements**
+
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+
+[Scroll back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## **CoDoc Developer Guide**
+## **Introduction**
 
-CoDoc is **designed for NUS School of Computing students** by providing a centralised platform for them to keep track
-of their friends' contact information, modules and skills. CoDoc is **optimised for use via a Command Line Interface** (CLI)
-while still having the benefits of a **Graphical User Interface** (GUI).
-
-For students who are fast typers, CoDoc is an excellent platform for you to find and identify your friends with certain capabilities and experience, 
-so you can spend less time searching through chats, and spend more time making
-meaningful connections and engaging in productive work.
-
+### Intended Audience
 The goal of this Developer Guide is to document and illustrate the underlying architecture of CoDoc, and provide
 insights on how our product is designed, implemented and tested as well as the design considerations that were involved
 in the deciding the implementation of various features offered by CoDoc.
@@ -56,18 +63,29 @@ You are recommended to read the [Navigating the Developer Guide](#navigating-the
 sections, which will provide the necessary information to allow you to familiarise yourself with the structure of this
 Developer Guide and help you navigate it with ease.
 
---------------------------------------------------------------------------------------------------------------------
+[Scroll back to top](#table-of-contents)
 
-## **Navigating the Developer Guide**
+### Target Audience
+CoDoc is **designed for NUS School of Computing students** by providing a centralised platform for them to keep track
+of their friends' contact information, modules and skills. CoDoc is **optimised for use via a Command Line Interface** (CLI)
+while still having the benefits of a **Graphical User Interface** (GUI).
+
+For students who are fast typers, CoDoc is an excellent platform for you to find and identify your friends with certain capabilities and experience,
+so you can spend less time searching through chats, and spend more time making
+meaningful connections and engaging in productive work.
+
+[Scroll back to top](#table-of-contents)
+
+### Navigating the Developer Guide
 
 The Developer Guide is divided into the following sections :
-- [Design](#design)
+- [Design Architecture](#design-architecture)
 - [Implementation](#implementation)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
 - [Appendix: Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
 
-The [Design](#design) section gives an overview of the architecture of CoDoc.
+The [Design Architecture](#design-architecture) section gives an overview of the architecture of CoDoc.
 In this section, you will be provided with:
 
 1. The API (Application Programming Interface) of the major components of CoDoc.
@@ -119,7 +137,7 @@ We would recommend you to read the [Glossary](#glossary) section next.
 
 <div style="page-break-after: always;"></div>
 
-## **Glossary**
+### Glossary
 
 The glossary illustrated in the table below will help you understand the terminologies used in this
 Developer Guide.
@@ -215,12 +233,6 @@ Developer Guide.
   </tr>
 </table>
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Acknowledgements**
-
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -228,56 +240,54 @@ Developer Guide.
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
+<br>
+<br>
 
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
-
+## **Design Architecture**
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-[Scroll back to top](#table-of-contents)
-
-### Architecture
-
 <img src="images/ArchitectureDiagram.png" width="280" />
+
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-Given below is a quick overview of main components and how they interact with each other.
+Given below is a quick overview of each component and how they interact with each other.
 
-**Main components of the architecture**
+**Components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
-
-The rest of the App consists of four components.
-
+* **`Main`**: has two classes called `Main` and `MainApp` which are responsible for,
+  * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+  * At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* [**`Commons`**](#commons-component): represents a collection of classes used by multiple other components.
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
-**How the architecture components interact with each other**
+**How the core architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the core components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
-Each of the four main components (also shown in the diagram above),
+Each of the four core components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class, as illustrated in the (partial) class diagram below.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Implementing the core component's API through an interface prevents outside component from being coupled to it.
+</div>
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -285,17 +295,23 @@ The sections below give more details of each component.
 
 [Scroll back to top](#table-of-contents)
 
-### UI component
+### Commons Component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+A collection of classes used by multiple other components located in the `codoc.commons` package.
+
+[Scroll back to top](#table-of-contents)
+
+### UI Component
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`InfoTab`, `CommandBox`, `ResultDisplay`, `PersonListPanel`, `CourseListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts such as `InfoTab`, `CommandBox`, `ResultDisplay`, `PersonListPanel`, `CourseListPanel`, `StatusBarFooter`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+**The `UI` component:**
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -304,15 +320,15 @@ The `UI` component,
 
 [Scroll back to top](#table-of-contents)
 
-### Logic component
+### Logic Component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-How the `Logic` component works:
+**How the `Logic` component works:**
 1. When `Logic` is called upon to execute a command, it uses the `CodocParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -329,25 +345,24 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.png" width="600"/>
 
-How the parsing works:
-* When called upon to parse a user command, the `CodocParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CodocParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+**How the parsing works:**
+* when called upon to parse a user command, the `CodocParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CodocParser` returns back as a `Command` object.
+* all `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 [Scroll back to top](#table-of-contents)
 
-### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+### Model Component
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
 
-The `Model` component,
+**The `Model` component:**
 
 * stores CoDoc data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-* **Most importantly, a dedicated `Person` object `protagonist`, that represent "staged" `Person` which various CoDoc commands will operate on.**
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Skill` list in the `Codoc`, which `Person` references. This allows `Codoc` to only require one `Skill` object per unique skill, instead of each `Person` needing their own `Skill` objects.<br>
 
@@ -357,144 +372,260 @@ The `Model` component,
 
 [Scroll back to top](#table-of-contents)
 
-### Storage component
+### Storage Component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S2-CS2103T-F12-2/tp/blob/master/src/main/java/codoc/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 <br>
 
-The `Storage` component, 
-* can save both CoDoc data and user preference data in json format, and read them back into corresponding objects.
+**The `Storage` component:** 
+* can save both CoDoc data and user preference in `json` format, and read them back to corresponding objects.
 * inherits from both `CodocStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`) the notable being
-  * ReadOnlyUserPrefs: to obtain gui settings and file path of data
-  * ReadOnlyReadOnlyCodoc: contains an unmodifiable view of the persons list
-  * Person
-  * Module
-  * Skill
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`) the notable being:
+  * `model.ReadOnlyUserPrefs`: for gui settings and data file path
+  * `model.ReadOnlyReadOnlyCodoc`: an unmodifiable list of all person added
+  * `model.person.Person`: information of a person
+  * `model.module.Module`: a module object 
+  * `model.skill.Skill` : a skill object
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The location in which both files are saved are specified in `commons.core.config`.
+</div>
 <br>
-
-#### How data is saved
-<img src="images/SaveSequenceDiagram.png" width="550" />
-<br>
-<br>
-
-#### How data is retrieved
-<img src="images/ReadStorageSequenceDiagram.png" width="550" />
-<br>
-<br>
-
-#### Additional Information
-* The sequence for user preference save and retrieval is similar to data
-* The location in which both files are save are specified in commons/core/config
 
 [Scroll back to top](#table-of-contents)
 
-### Common classes
-
-Classes used by multiple components are in the `codoc.commons` package.
-
-[Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Implementation**
+## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+<br>
+
+### **UI Implementation**
+
+This section describes implementation of features within `ui` package.
+
+On program initialization, `UiManager` creates `MainWindow` as a primary stage which is mainly divided into two
+sides, the left side [Main Section](#main-section) which handles user input and executes command, the right side
+[Info Panel](#info-panel) which shows more details about a specific person.
+
+![ui-main-sections](images/ui-diagrams/ui-main-sections.PNG)
+
+Visual design of this section are implemented using the CSS file under resources. Details of such implementation are
+explained under [Theme](#theme) section.
 
 <br>
 
-## **Model Implementation**
+Refer to [UI Component](#ui-component) for more information about this package.
 
-This section describes implementation of features within `model` package. Refer to [Model component](#model-component) for more 
-information about this package.
+#### **Main section**
 
-### **Person Class**
-Each `Person` in CoDoc is implemented in the following way:
+Main section consists of the following components:
 
-![Person Class Diagram](images/PersonClassDiagram.png)
+* [CommandBox](#commandbox)
+* [ResultDisplay](#resultdisplay)
+* [PersonListPanel](#personlistpanel)
+* [StatusBarFooter](#statusbarfooter)
 
-All `Person` must have a `Name`, `Email`, `Course` and `Year`.
+![ui-main-section-sections](images/ui-diagrams/ui-main-section-sections.PNG)
 
-`Person` can have a `Github` and `Linkedin` URL added to their profile, and as many `Skills` and `Modules` as desired.
+#### **CommandBox**
 
-#### Design Considerations
+**Main input for the UI.**
 
-For duplicate persons, instead of checking whether they had the same `Name`, we decided to check if they had the same `Email`, since students can have the same name but their emails are always different. 
+`CommandBox`'s constructor takes in a `CommandExecutor` that is passed by the `MainWindow`. This creates a single, 
+bidirectional association between the two, removing the need for the `CommandBox` to interact with the `Model` directly.
 
-We included the `Skills` attribute to remind the user to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.  
+Users are able to write their commands into its text field and execute it by pressing `Enter` key.
 
-**Aspect 1: How to implement the `GitHub` and `Linkedin` attributes:**
+<br>
 
-- Alternative 1 (current choice): Make them optional i.e. each person does not need to have a GitHub username or LinkedIn profile URL 
-  - Pros: Faster to add a new person as the user can leave out these attributes when typing. More flexible as the user does not need to know the person's attribute to be able to add him/her.
-  - Cons: Lack of details, user may want to check out the person's GitHub profile/projects or connect with them through LinkedIn instead of email.
-- Alternative 2: Make them compulsory 
-  - Pros: Can remind users to ask the person that they are adding for their socials such that they can look them up if they want to.
-  - Cons:
-  Slower and more inconvenient, need to add these attributes when adding a person.
-- Decision: We chose Alternative 1 as speed is important. The LinkedIn profile URL can be very lengthy as well. Since users can already connect with the added persons through their email, which is a compulsory attribute, we decided to make these socials optional.
+##### Design considerations
 
-<div style="page-break-after: always;"></div>
+Commands may execute successfully or fail throwing exceptions. To increase usability of the `CommandBox`, following are
+implemented:
+* On succesful execution: text field is reset to be empty, ready to take in more commands.
+* On failed execution: command in text field is kept but shown in different color to indicate error, so that users can 
+modify the command without having to rewrite the whole command.
 
-[Scroll back to top](#table-of-contents)
+<br>
 
-### **Module Class**
-Each module in CoDoc have a string representing its module.
-#### Regex and validation
-All module string should satisfy the following regex pattern,
+#### **ResultDisplay**
 
-`^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*`
+**Main output for the UI.**
 
-For example, a valid Module string is "AY2223S1 CS1101S"
+Even though the program supports GUI, main interaction between the user and the program happens through the CLI. This
+leads to a need for showing results of command as Strings which the users can refer to, gaining more understanding about
+execution of commands.
 
-Additionally, a final validation is required to ensure that the 4 digit after
-the "AY" is valid. 
+<br>
 
-The following are valid 4 digit sequence (last 2 digits are increments of first 2 digits)
-- 2223
-- 9900
-- 0102
+##### Design considerations
 
-The following are invalid (the last 2 digit number is not an increment of the first)
-- 2224
-- 1111
-- 2019
+Since the execution of command is handled by the `Logic` component, all it needs to have is an uneditable text field
+that is updated by the `MainWindow` after execution. Respective commands executed are responsible for the content of
+this update, adhering to the segregation of concerns principle.
 
-[Scroll back to top](#table-of-contents)
+<br>
 
-### **Course and CourseList Class**
-Each `Course` in CoDoc is implemented in the following way:
+#### **PersonListPanel**
 
-![Course Class Diagram](images/CourseClassDiagram.png)
+Part of the main section that displays a list of person registered to the CoDoc database.
 
-All `Course` hava a `String` representing the name of the course.
+The list is created as a ListView. More information about ListView
+[here](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ListView.html).
 
-#### Design Considerations
+<br>
 
-The `Course` constructor accepts a `String` input that represents the index of the course name 
-residing in `COURSE_LIST` found in the `CourseList.java`. This `COURSE_LIST` is displayed in the left panel 
-of the GUI, along with the corresponding index of the course name.
+##### Design considerations
 
-Instead of parsing the name of the course directly into
-the `Course` constructor, we wanted to standardize the names of courses without allowing users to
-input their own course names. This prevents 1 course from having multiple `String` representations
-in our `Storage` as well as the courses displayed in the application.
+Since the list is updated constantly as program executes, ListView was chosen as the way to display the list since it
+is able to observe changes in its content (as long as it is an 
+[ObservableList](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ObservableList.html)) and reflect the
+change during execution without having the user to update what is shown on the program separately.
 
-<div style="page-break-after: always;"></div>
+To allow cells within the ListView to show relevant information about a person, `PersonListPanel` also has a custom
+class `PersonListViewCell` that acts as a factory to create the cells through `PersonCard` class. Developers interested
+in changing how the cells within the ListView look should look into `PersonCard` and its `.fxml` file for modification.
 
-[Scroll back to top](#table-of-contents)
+<br>
 
-## **Logic Implementation**
+#### **StatusBarFooter**
+
+Small section at the bottom of the program to show information about the status of the program.
+
+Currently, it shows the path for CoDoc's database. Developers who are looking to show any other status to the user
+(such as internet connection availability, if required in future implementation) may use this to display such
+information.
+
+<br>
+
+### **Info Panel**
+
+Info Panel is controlled by classes under `infopanel` package. It is initialized by the primary component `InfoTab`
+which shows more information about a person on the top half, and loads up `DetailedInfo` on the bottom part.
+
+Info Panel consists of the following components:
+
+* [InfoTab](#infotab)
+* [DetailedInfo](#detailedinfo)
+  * [DetailedContact](#detailedcontact)
+  * [DetailedModule](#detailedmodule)
+  * [DetailedSkill](#detailedskill)
+
+| InfoTab with DetailedContact                                           | InfoTab with DetailedModule                                          | InfoTab with DetailedSkill                                         |
+|------------------------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------|
+| ![ui-info-panel-contact](images/ui-diagrams/ui-info-panel-contact.PNG) | ![ui-info-panel-module](images/ui-diagrams/ui-info-panel-module.PNG) | ![ui-info-panel-skill](images/ui-diagrams/ui-info-panel-skill.PNG) |
+
+#### **InfoTab**
+
+Similar to how `MainWindow` is the main controller for the primary stage, `InfoTab` is the class that acts as the 
+**main controller** for the right section, Info Panel.
+
+![info-tab-sequence-diagram](images/InfoTabSequenceDiagram.png)
+
+<br>
+
+##### Design considerations
+
+The Info Panel is implemented to show details of a person as [PersonListPanel](#personlistpanel) is unable to show all
+information about a person given limited space within each cell. This "staged" person is called internally code-wise as
+`protagonist` and shall be referred to as that.
+
+However, even by having a separate panel dedicated for showing such information, the set of modules or skills a person
+has may grow so large to show all of them in one section. Furthermore, user do not need to see all of them at once as
+for the moment there are no direct links between contacts, modules and skills information of a person.
+
+This led to the design which top part of `InfoTab` shows basic information about the `protagonist` (name, year, course
+of study) and bottom part shows whatever [DetailedInfo](#detailedinfo) user wish to display. Since the name or course of
+study could become very long, the containing `VBox` has been allowed to grow and the information containing `label` are
+set to wrap its text.
+
+Note that there are no listeners that observes the changes made to the staged `progatonist`. This is to prevent
+over-coupling of components which makes maintenance of code much harder. Instead, `MainWindow`'s `executeCommand`
+creates a new `InfoTab` at the end of every execution by referring to the `protagonist` at given state.
+
+<br>
+
+#### **DetailedInfo**
+
+Parent class of the three different types of `DetailedInfo`, which are `DetailedContact`, `DetailedModule` and
+`DetailedSkill`.
+
+<br>
+
+##### Design considerations
+
+`InfoTab` may create either of the children classes, depending on what the user has specified using the
+[ViewCommand](#view-command). This parent class utilizes Java's polymorphism so that `InfoTab` can just display
+generated `DetailedInfo` that gets loaded into the bottom `detailedInfoPlaceholder` StackPane within the `InfoTab`.
+
+<br>
+
+#### **DetailedContact**
+
+Controller class for Info Panel which holds detailed contact information about a person. Shows contact information such
+as GitHub user ID, email address and LinkedIn profile URL.
+
+<br>
+
+#### **DetailedModule**
+
+Controller class for Info Panel which holds detailed module information about a person. Shows a list of modules taken
+by a person that is created as a ListView, similar to the [PersonListPanel](#personlistpanel).
+
+<br>
+
+#### **DetailedSkill**
+
+Controller class for Info Panel which holds detailed skill information about a person. Shows a list of skills possessed
+by a person that is created as a ListView.
+
+The implementation are very similar to its counterpart, hence refer to the [DetailedModule](#detailedmodule) for more
+information.
+
+<br>
+
+### **Theme**
+
+Most of the Java FXML components follow the style specified by the CSS file `CodocTheme.css`. Refer to this file under
+the `view` package within the `resources` folder when visual design changes are to be made.
+
+CSS file also contains colors shown in the program in RGB color codes, developers may refer to
+[this page](https://www.rapidtables.com/web/color/RGB_Color.html) to decipher them.
+
+Commonly used colors are:
+1. **#bfbfbf**: Dark gray color for borders.
+2. **#808080**: Even darker gray for most of the texts shown on the program.
+3. **#ffffff**: White color used for most of the backgrounds existing.
+
+Fonts used in this program but not part of system fonts are stored in the `resources` folder as well, under the `font`
+package. These are loaded by the `MainApp` class upon initialization of the program. Mainly used fonts are:
+1. **Roboto Mono Regular**: contents requiring mono-spacing for better alignment (such as list of skills/modules).
+2. **Roboto Bold and Regular**: most of the texts displayed on the program.
+3. **Segeo UI**: for system-related texts (such as [CommandBox](#commandbox), [ResultDisplay](#resultdisplay) or
+[StatusBarFooter](#statusbarfooter)).
+
+<br>
+
+{More to be added}
+
+
+[Scroll back to UI Implementation](#ui-implementation)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### **Logic Implementation**
 
 This section describes implementation of features within `logic` package. Refer to [Logic component](#logic-component)
 for more information about this package.
 
 <br>
 
-### **Edit Command**
+#### **Edit Command**
 
 Editing a person's attributes is implemented such that the user can only edit the person in the right view panel.
 For `name`, `year`, `course`, `email`, `GitHub`, `LinkedIn`, the command will replace the old data with the new input.
@@ -515,7 +646,7 @@ For `Skills` and `Modules`, the command is capable of adding, deleting and updat
 * `s+/` for adding a new skill
 * `s-/` for deleting an existing skill
 
-#### Implementation Flow
+##### Implementation Flow
 
 Given below is a sequence diagram to illustrate how the person list is updated after the user attempts to edit the
 person.
@@ -528,21 +659,29 @@ Given below is an activity diagram to illustrate the behaviour of editing Person
 
 ![Edit Activity Diagram](images/EditActivityDiagram.png)
 
-#### Design Considerations
+##### Design Considerations
 
-We initially created 2 additional prefixes to updating the `Skills` and `Modules` using old and new prefixes. 
-However, we realised the behaviour is similar to simply deleting and adding new modules and skills. 
+We initially created 2 additional prefixes to updating the `Skills` and `Modules` using old and new prefixes.
+However, we realised the behaviour is similar to simply deleting and adding new modules and skills.
 Hence, we removed the implementation of the old and new prefixes.
 
 [Scroll back to top](#table-of-contents)
 
-### Find Command
+#### **Find Command**
 
-Finding i.e filtering a person by their attributes is implemented such that the user can find people by their name, year, course, modules and/or skills, such that he/she is able to reach out to them for collaboration more quickly.
+Finding i.e. filtering a person by their attributes is implemented such that the user can find people by their `name`, `year`, `course`, `modules` and/or `skills`, such that he/she is able to reach out to them for collaboration more quickly.
 
 - `FilteredList` contains people that must satisfy **all** attribute predicates corresponding to the prefixes specified by user.
+- **Predicates will continue to stack** until a successful execution of `add`, `edit` or `list` which will clear all predicates that the user input thereby showing the full list.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Logical AND not logical OR.
+</div>
 - **Can check for multiple predicates within each prefix** i.e. `find s/python java` finds people that have both `python` and `java` skills.
-- Checks if the attributes of the person **contain** the keywords specified by the user (uses contain, not containWord).
+- Checks if the attributes of the person **contain** the keywords specified by the user.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Uses contain, not containWord.
+</div>
+
 - Case-insensitive.
 - If the user types duplicate prefixes in the query i.e. `find s/java python s/javascript s/c sql`, only the last occurrence of the prefix will be taken i.e. `find s/c sql` will be taken.
 
@@ -565,7 +704,7 @@ Given below is the activity diagram to illustrate what happens when the user cal
 
 ![Find Activity Diagram](images/FindActivityDiagram.png)
 
-#### Design Considerations
+##### Design Considerations
 
 We made our `find` command able to **find by multiple attributes** i.e. `find n/david y/2` instead of `findn david` and `findy 2`. This way, our find command becomes powerful whereby the user can find by not just one attribute, but rather a combination of attributes. The user just needs to specify the prefixes corresponding to the attributes they want to find by. No need to remember many variants of the find command like `findy`, `findc`, `findm` and `finds`.
 
@@ -576,19 +715,19 @@ We also chose to make our find command case-insensitive to increase the speed of
 **Aspect 1: `find` by logical AND vs `find` by logical OR:**
 
 - Alternative 1 (current choice): `find` by logical AND
-    - Pros: User can find people that have multiple attributes (includes attributes within a single prefix), i.e. `find m/cs2109s cs2103t s/python` finds people that are proficient in python and are taking/have taken both CS2109S and CS2103T.
-    - Cons: More restrictive on the filtered people, people must have **all** the attributes specified by the user to be in the `FilteredList`.
+  - Pros: User can find people that have multiple attributes (includes attributes within a single prefix), i.e. `find m/cs2109s cs2103t s/python` finds people that are proficient in python and are taking/have taken both CS2109S and CS2103T.
+  - Cons: More restrictive on the filtered people, people must have **all** the attributes specified by the user to be in the `FilteredList`.
 - Alternative 2: `find` by logical OR
-    - Pros: Less restrictive - as long as the person have at least 1 attribute specified by the user, it will be in the `FilteredList` i.e. `find y/2 c/1` finds people that are either year 2, taking Computer Science, or both. 
-    - Cons:
-      User cannot find people that have multiple attributes.
+  - Pros: Less restrictive - as long as the person have at least 1 attribute specified by the user, it will be in the `FilteredList` i.e. `find y/2 c/1` finds people that are either year 2, taking Computer Science, or both.
+  - Cons:
+    User cannot find people that have multiple attributes.
 - Decision: We chose Alternative 1 as it provides an option that Alternative 2 does not, whereas if the user want to find people that have either of the attributes, they can still do so with Alternative 1, but they would have to call multiple `find` commands i.e. if the user wants to find people that are either y/2 or proficient in python, he/she has to call `find y/2`, followed by `find s/python`, or vice versa. Most websites use find by logical AND such as GitHub, YouTube and Shopee.
 
 **Aspect 2: `find` by contains vs containsWord:**
 
 - Alternative 1 (current choice): `find` by contains
   - Pros: User can find people that have attributes containing the keywords specified by the user, i.e. `find c/bus` finds people that enrolled in Business Analytics, `find n/d` finds people that have 'd' in their name, makes it less restrictive when searching.
-  - Cons: Harder for user to find people that match the exact keyword i.e. `find n/sam` will also match people named Samantha, Sammy, Samuel, etc., will have more search results making it harder for the user if he/she just wants to find people named Sam. 
+  - Cons: Harder for user to find people that match the exact keyword i.e. `find n/sam` will also match people named Samantha, Sammy, Samuel, etc., will have more search results making it harder for the user if he/she just wants to find people named Sam.
 - Alternative 2: `find` by containsWord (not a built-in method but can be created)
   - Pros: Resolves the cons in Alternative 1.
   - Cons:
@@ -599,39 +738,122 @@ We also chose to make our find command case-insensitive to increase the speed of
 
 <div style="page-break-after: always;"></div>
 
-### **View command**
-
-One of the main feature for CoDoc is the [Info Panel](#info-panel). This command interacts heavily with the Info Panel
-UI.
-
-As described in the [Model Implementation](#model-implementation), `Model` manages a special `Person` called the
-`protagonist`, and a dedicated String `currentTab` to make this command and feature work.
-
-#### Implementation flow
-
-When the command is entered, the parser differentiates entered command between viewing different person (changing
-`protagonist`) or viewing different tab of the `protagonist` (changing to contact/module/skill tab) and creates
-appropriate ViewCommand command to execute:
-
-1. When changing protagonist, `Logic` calls for its `Model` to change its protagonist to a desired one.
-2. When changing tabs, `Model`'s `currentTab` is also updated in a similar way.
-
-#### Design Considerations 
-Whatever change this command makes in the `model`, Info Panel just takes reference off `Logic` to display relevant
-information. This was done to truly adhere to Single Responsibility Principle, UI component does not have to know what
-change was made to the `Logic` and then update afterwards. After every execution, a fresh Info Panel is generated which
-naturally will show the updated protagonist to view.
-
-Note that `currentTab` is only updated with the ViewCommand. Other commands will not update the `currentTab`. This is
-an intentional implementation so that users can easily compare same tabs between people.
-
 [Scroll back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+### **Model Implementation**
+
+This section describes implementation of features within `model` package. Refer to [Model component](#model-component) for more
+information about this package.
+
+#### **Person Class**
+Each `Person` in CoDoc is implemented in the following way:
+
+![Person Class Diagram](images/PersonClassDiagram.png)
+
+All `Person` must have a `Name`, `Email`, `Course` and `Year`.
+
+`Person` can have a `Github` and `Linkedin` URL added to their profile, and as many `Skills` and `Modules` as desired.
+
+##### Handling Duplicates
+For duplicate persons, instead of checking whether they had the same `Name`, we decided to check if they had the same `Email`, since students can have the same name but their emails are always different.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** CoDoc is design in such a way where no two person can have the same email.
+</div>
+
+##### Skills Attribute
+We included the `Skills` attribute to remind the user to add in the person's skills (java, python, sql, etc.), which can be useful in cases where the user wants to scout for project members with specific skills.
+
+##### Design Consideration
+
+**How to implement the `GitHub` and `Linkedin` attributes:**
+
+- Alternative 1 (current choice): Make them optional i.e. each person does not need to have a GitHub username or LinkedIn profile URL
+  - Pros: Faster to add a new person as the user can leave out these attributes when typing. More flexible as the user does not need to know the person's attribute to be able to add him/her.
+  - Cons: Lack of details, user may want to check out the person's GitHub profile/projects or connect with them through LinkedIn instead of email.
+- Alternative 2: Make them compulsory
+  - Pros: Can remind users to ask the person that they are adding for their socials such that they can look them up if they want to.
+  - Cons:
+    Slower and more inconvenient, need to add these attributes when adding a person.
+- Decision: We chose Alternative 1 as speed is important. The LinkedIn profile URL can be very lengthy as well. Since users can already connect with the added persons through their email, which is a compulsory attribute, we decided to make these socials optional.
 
 <div style="page-break-after: always;"></div>
 
-### \[Proposed\] Undo/redo feature
+[Scroll back to top](#table-of-contents)
 
-#### Proposed Implementation
+#### **Module Class**
+Each module in CoDoc have a string representing its module.
+##### Regex and validation
+All module string should satisfy the following regex pattern,
+
+`^AY[0-9]{4}S[12] [A-Z]+[0-9]+[A-Z]*`
+
+For example, a valid Module string is "AY2223S1 CS1101S"
+
+Additionally, a final validation is required to ensure that the 4 digit after
+the "AY" is valid.
+
+The following are **valid** 4 digit sequence (last 2 digits are increments of first 2 digits)
+- 2223
+- 9900
+- 0102
+
+The following are **invalid** (the last 2 digit number is not an increment of the first)
+- 2224
+- 1111
+- 2019
+
+[Scroll back to top](#table-of-contents)
+
+#### **Course and CourseList Class**
+Each `Course` in CoDoc is implemented in the following way:
+
+![Course Class Diagram](images/CourseClassDiagram.png)
+
+All `Course` hava a `String` representing the name of the course.
+
+##### Design Considerations
+The `Course` constructor accepts a `String` input that represents the index of the course name
+residing in `COURSE_LIST` found in the `CourseList.java`. This `COURSE_LIST` is displayed in the left panel
+of the GUI, along with the corresponding index of the course name.
+
+Instead of parsing the name of the course directly into
+the `Course` constructor, we wanted to standardize the names of courses without allowing users to
+input their own course names. This prevents 1 course from having multiple `String` representations
+in our `Storage` as well as the courses displayed in the application.
+
+<div style="page-break-after: always;"></div>
+
+[Scroll back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### **Storage Implementation**
+This section describes implementation of features within `storage` package. Refer to [Storage Component](#storage-component)
+for more information about this package.
+
+#### Saving Data
+<img src="images/SaveSequenceDiagram.png" />
+<br>
+<br>
+
+#### Retrieving Data
+<img src="images/ReadStorageSequenceDiagram.png"/>
+<br>
+<br>
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** User preference data are saved and retrieved in a similar fashion.
+</div>
+
+[Scroll back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+### **Viable Enhancement**
+
+#### \[Proposed\] Undo and Redo Feature
+
+##### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedCodoc`. It extends `Codoc` with an undo/redo history, stored internally as an `codocStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -696,252 +918,27 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 [Scroll back to top](#table-of-contents)
 
-#### Design considerations:
+##### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire CoDoc.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
 [Scroll back to top](#table-of-contents)
 
-### \[Proposed\] Data archiving
+
+#### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
-[Scroll back to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-
-## **UI Implementation**
-
-This section describes implementation of features within `ui` package.
-
-On program initialization, `UiManager` creates `MainWindow` as a primary stage which is mainly divided into three
-sides:
-
-![ui-main-sections](images/navigation.png)
-
-1. Left: [Course List Panel](#course-list-panel) which is a panel that simply generates off the currently supported
-courses as implemented within the `model/course/CourseList.java`.
-2. Center: [Main Section](#main-section) which handles user input and executes command.
-3. Right: [Info Panel](#info-panel) which shows more details about a specific person.
-
-Visual design of this section are implemented using the CSS file under resources. Details of such implementation are
-explained under [Theme](#theme) section.
-
-To support GUI features where users are able to click on a person within the list to view or click on the name of tab
-to switch between tabs, `MainWindow` controller also has a `ClickListener` that is set on various UI components,
-handling corresponding click events.
-
-<br>
-
-Refer to [UI Component](#ui-component) for more information about this package.
-
-<br>
-
-## **Course List Panel**
-
-This panel simply wraps the implemented courses in `CourseList` class with a label and stage it.
-
-Refer to its controller class `CourseListPanel.java` for more information.
-
-<br>
-
-## **Main section**
-
-Main section consists of the following components:
-
-* [CommandBox](#commandbox)
-* [ResultDisplay](#resultdisplay)
-* [PersonListPanel](#personlistpanel)
-* [StatusBarFooter](#statusbarfooter)
-
-### **CommandBox**
-
-**Main input for the UI.**
-
-`CommandBox`'s constructor takes in a `CommandExecutor` that is passed by the `MainWindow`. This creates a single, 
-bidirectional association between the two, removing the need for the `CommandBox` to interact with the `Model` directly.
-
-Users are able to write their commands into its text field and execute it by pressing `Enter` key.
-
-<br>
-
-#### Design considerations
-
-Commands may execute successfully or fail throwing exceptions. To increase usability of the `CommandBox`, following are
-implemented:
-* On succesful execution: text field is reset to be empty, ready to take in more commands.
-* On failed execution: command in text field is kept but shown in different color to indicate error, so that users can 
-modify the command without having to rewrite the whole command.
-
-<br>
-
-### **ResultDisplay**
-
-**Main output for the UI.**
-
-Even though the program supports GUI, main interaction between the user and the program happens through the CLI. This
-leads to a need for showing results of command as Strings which the users can refer to, gaining more understanding about
-execution of commands.
-
-<br>
-
-#### Design considerations
-
-Since the execution of command is handled by the `Logic` component, all it needs to have is an uneditable text field
-that is updated by the `MainWindow` after execution. Respective commands executed are responsible for the content of
-this update, adhering to the segregation of concerns principle.
-
-<br>
-
-### **PersonListPanel**
-
-Part of the main section that displays a list of person registered to the CoDoc database.
-
-The list is created as a ListView. More information about ListView
-[here](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/ListView.html).
-
-<br>
-
-#### Design considerations
-
-Since the list is updated constantly as program executes, ListView was chosen as the way to display the list since it
-is able to observe changes in its content (as long as it is an 
-[ObservableList](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ObservableList.html)) and reflect the
-change during execution without having the user to update what is shown on the program separately.
-
-To allow cells within the ListView to show relevant information about a person, `PersonListPanel` also has a custom
-class `PersonListViewCell` that acts as a factory to create the cells through `PersonCard` class. Developers interested
-in changing how the cells within the ListView look should look into `PersonCard` and its `.fxml` file for modification.
-
-<br>
-
-### **StatusBarFooter**
-
-Small section at the bottom of the program to show information about the status of the program.
-
-Currently, it shows the path for CoDoc's database. Developers who are looking to show any other status to the user
-(such as internet connection availability, if required in future implementation) may use this to display such
-information.
-
-<br>
-
-## **Info Panel**
-
-Info Panel is controlled by classes under `infopanel` package. It is initialized by the primary component `InfoTab`
-which shows more information about a person on the top half, and loads up `DetailedInfo` on the bottom part.
-
-Info Panel consists of the following components:
-
-* [InfoTab](#infotab)
-* [DetailedInfo](#detailedinfo)
-  * [DetailedContact](#detailedcontact)
-  * [DetailedModule](#detailedmodule)
-  * [DetailedSkill](#detailedskill)
-
-### **InfoTab**
-
-Similar to how `MainWindow` is the main controller for the primary stage, `InfoTab` is the class that acts as the 
-**main controller** for the right section, Info Panel.
-
-![info-tab-sequence-diagram](images/InfoTabSequenceDiagram.png)
-
-<br>
-
-#### Design considerations
-
-The Info Panel is implemented to show details of a person as [PersonListPanel](#personlistpanel) is unable to show all
-information about a person given limited space within each cell. This "staged" person is called internally code-wise as
-`protagonist` and shall be referred to as that.
-
-However, even by having a separate panel dedicated for showing such information, the set of modules or skills a person
-has may grow so large to show all of them in one section. Furthermore, user do not need to see all of them at once as
-for the moment there are no direct links between contacts, modules and skills information of a person.
-
-This led to the design which top part of `InfoTab` shows basic information about the `protagonist` (name, year, course
-of study) and bottom part shows whatever [DetailedInfo](#detailedinfo) user wish to display. Since the name or course of
-study could become very long, the containing `VBox` has been allowed to grow and the information containing `label` are
-set to wrap its text.
-
-Note that there are no listeners that observes the changes made to the staged `progatonist`. This is to prevent
-over-coupling of components which makes maintenance of code much harder. Instead, `MainWindow`'s `executeCommand`
-creates a new `InfoTab` at the end of every execution by referring to the `protagonist` at given state.
-
-<br>
-
-### **DetailedInfo**
-
-Parent class of the three different types of `DetailedInfo`, which are `DetailedContact`, `DetailedModule` and
-`DetailedSkill`.
-
-<br>
-
-#### Design considerations
-
-`InfoTab` may create either of the children classes, depending on what the user has specified using the
-[ViewCommand](#view-command). This parent class utilizes Java's polymorphism so that `InfoTab` can just display
-generated `DetailedInfo` that gets loaded into the bottom `detailedInfoPlaceholder` StackPane within the `InfoTab`.
-
-<br>
-
-### **DetailedContact**
-
-Controller class for Info Panel which holds detailed contact information about a person. Shows contact information such
-as GitHub user ID, email address and LinkedIn profile URL.
-
-<br>
-
-### **DetailedModule**
-
-Controller class for Info Panel which holds detailed module information about a person. Shows a list of modules taken
-by a person that is created as a ListView, similar to the [PersonListPanel](#personlistpanel).
-
-<br>
-
-### **DetailedSkill**
-
-Controller class for Info Panel which holds detailed skill information about a person. Shows a list of skills possessed
-by a person that is created as a ListView.
-
-The implementation are very similar to its counterpart, hence refer to the [DetailedModule](#detailedmodule) for more
-information.
-
-<br>
-
-## **Theme**
-
-Most of the Java FXML components follow the style specified by the CSS file `CodocTheme.css`. Refer to this file under
-the `view` package within the `resources` folder when visual design changes are to be made.
-
-CSS file also contains colors shown in the program in RGB color codes, developers may refer to
-[this page](https://www.rapidtables.com/web/color/RGB_Color.html) to decipher them.
-
-Commonly used colors are:
-1. **#bfbfbf**: Dark gray color for borders.
-2. **#808080**: Even darker gray for most of the texts shown on the program.
-3. **#ffffff**: White color used for most of the backgrounds existing.
-
-Fonts used in this program but not part of system fonts are stored in the `resources` folder as well, under the `font`
-package. These are loaded by the `MainApp` class upon initialization of the program. Mainly used fonts are:
-1. **Roboto Mono Regular**: contents requiring mono-spacing for better alignment (such as list of skills/modules).
-2. **Roboto Bold and Regular**: most of the texts displayed on the program.
-3. **Segeo UI**: for system-related texts (such as [CommandBox](#commandbox), [ResultDisplay](#resultdisplay) or
-[StatusBarFooter](#statusbarfooter)).
-
-<br>
-
-
-[Scroll back to UI Implementation](#ui-implementation)
 
 [Scroll back to top](#table-of-contents)
 
