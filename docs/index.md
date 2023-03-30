@@ -18,4 +18,4 @@ While it has a GUI, most of the user interactions happen using a CLI (Command Li
 **Acknowledgements**
 
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
-* Credits for tag color codes goes to: https://sashamaps.net/docs/resources/20-colors/
+* Credits for tag color codes goes to: [Sasha Trubetskoy](https://sashamaps.net/docs/resources/20-colors/)
