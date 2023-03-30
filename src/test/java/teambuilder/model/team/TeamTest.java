@@ -10,18 +10,18 @@ import static teambuilder.testutil.TypicalTeams.TEAM_A;
 import static teambuilder.testutil.TypicalTeams.TEAM_B;
 import static teambuilder.testutil.TypicalTeams.TEAM_C;
 
+import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 import teambuilder.testutil.TeamBuilder;
-
-import java.util.Collections;
 
 class TeamTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Team team = new TeamBuilder().build();
-        assertThrows(UnsupportedOperationException.class,
-                () -> Collections.unmodifiableSet(team.getTags()).remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                Collections.unmodifiableSet(team.getTags()).remove(0));
     }
 
     @Test
