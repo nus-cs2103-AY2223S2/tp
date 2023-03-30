@@ -108,7 +108,8 @@ public class CommandFormat {
                 LIST_COMMAND_FORMAT,
                 FIND_COMMAND_FORMAT,
                 THEME_COMMAND_FORMAT,
-                SETPICTURE_COMMAND_FORMAT
+                SETPICTURE_COMMAND_FORMAT,
+                LEAVE_COMMAND_FORMAT
         );
     }
 
