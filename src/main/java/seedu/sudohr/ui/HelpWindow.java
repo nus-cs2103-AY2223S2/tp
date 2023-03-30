@@ -15,8 +15,37 @@ import seedu.sudohr.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
+    public static final String COMMAND_LIST = "These are the commands used in SudoHR:\n\n"
+            + "Employee-related commands:\n"
+            + "    add    -   Add employee\n"
+            + "    list   -   List employees\n"
+            + "    edit   -   Edit employee\n"
+            + "    find   -   Find employee by name\n"
+            + "    del    -   Delete employee\n"
+            + "\n"
+            + "Department-related commands:\n"
+            + "    adep   -   Add department\n"
+            + "    ldep   -   List departments\n"
+            + "    edep   -   Edit department\n"
+            + "    fdep   -   Find department by name\n"
+            + "    ddep   -   Delete department\n"
+            + "    aetd   -   Add employee to department\n"
+            + "    refd   -   Remove employee from department\n"
+            + "    led    -   List employee's departments\n"
+            + "    leid   -   List employees in department\n"
+            + "    ldhc   -   List department head count\n"
+            + "\n"
+            + "Leave-related commands:\n"
+            + "    aetl   -   Add employee to leave\n"
+            + "    aelr   -   Add employee leave (range)\n"
+            + "    defl   -   Delete employee from leave\n"
+            + "    leol   -   List employees on leave\n"
+            + "    llbe   -   List leaves taken by employee\n"
+            + "    llve   -   List leaves\n";
+
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "For more information, refer to the user guide: " + USERGUIDE_URL
+            + "\n\n" + COMMAND_LIST;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
