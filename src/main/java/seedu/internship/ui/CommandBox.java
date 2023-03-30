@@ -3,10 +3,12 @@ package seedu.internship.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.exceptions.CommandException;
 import seedu.internship.logic.parser.exceptions.ParseException;
+import seedu.internship.storage.CommandHistory;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -17,6 +19,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private final CommandHistory commandHistory;
 
     @FXML
     private TextField commandTextField;
@@ -29,6 +32,8 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        this.commandHistory = new CommandHistory();
+        this.commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, this::handleUpDownButtonEvent);
     }
 
     /**
@@ -41,11 +46,31 @@ public class CommandBox extends UiPart<Region> {
             return;
         }
 
+        this.commandHistory.addInput(commandText);
+
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+        }
+    }
+
+    @FXML
+    private void handleUpDownButtonEvent(KeyEvent event) {
+        if (event.getCode().isArrowKey()) {
+            switch (event.getCode()) {
+                case UP:
+                    commandTextField.setText(this.commandHistory.getOlderInput());
+                    break;
+
+                case DOWN:
+                    commandTextField.setText(this.commandHistory.getNewerInput());
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 
