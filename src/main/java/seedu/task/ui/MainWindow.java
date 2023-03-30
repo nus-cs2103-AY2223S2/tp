@@ -128,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
 
         alertList = new AlertListPanel(logic.getAlertTaskList());
         alertListPlaceholder.getChildren().add(alertList.getRoot());
-
+        alertStatus.setText("Alerts");
         alertStatus.setFont(new Font("Segoe UI Light", 32));
         alertStatus.setStyle("-fx-text-fill: white; -fx-opacity: 1; -fx-font-size: 15pt");
 
@@ -168,11 +168,6 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleAlert() {
-        if (logic.getAlertTaskList().isEmpty()) {
-            alertStatus.setText("There are no alerts");
-        } else {
-            alertStatus.setText("Here are your current alerts");
-        }
         alertList = new AlertListPanel(logic.getAlertTaskList());
         alertListPlaceholder.getChildren().add(alertList.getRoot());
     }
