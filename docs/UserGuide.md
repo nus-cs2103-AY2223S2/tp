@@ -92,7 +92,7 @@ Table 1. Symbols and formats used in this User Guide.
    
     <br>
    <li>
-   Step 1: To download jdk installer, click on the <a href="https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0">link</a> and scroll down to `Downloading the JDK installer` section:
+   Step 1: To download jdk installer, click on the <a href="https://docs.oracle.com/en/java/javase/11/install/installation-jdk-microsoft-windows-platforms.html#GUID-371F38CC-248F-49EC-BB9C-C37FC89E52A0">link</a> and scroll down to <code>Downloading the JDK installer</code> section:
      <p align="center">
       <img src="images/UGscreenshots/jdk_installer_windows.png" style="zoom:25%">
        </p>
@@ -100,7 +100,7 @@ Table 1. Symbols and formats used in this User Guide.
    
    <br>
    <li>
-   Step 2: Click on the `Java SE Downloads` link, which leads you to this page:
+   Step 2: Click on the <code>Java SE Downloads</code> link, which leads you to this page:
      <p align="center">
         <img src="images/UGscreenshots/installer_oracle_home.png" style="zoom:15%">
        </p>
@@ -108,7 +108,7 @@ Table 1. Symbols and formats used in this User Guide.
          
    <br>
    <li>
-   Step 3: Scroll down to this section, then, click on the `Java 11` tab in the top left corner:
+   Step 3: Scroll down to this section, then, click on the <code>Java 11</code> tab in the top left corner:
      <p align="center">
        <img src="images/UGscreenshots/java11_installer_oracle.png" style="zoom:15%">
      </p>
@@ -127,7 +127,7 @@ Table 1. Symbols and formats used in this User Guide.
    
       <br>
    <li>
-   Step 5: Locate the downloaded file and double-click the icon to `run the jdk installer`. Then, simply follow the instructions provided by the installer.
+   Step 5: Locate the downloaded file and double-click the icon to <code>run the jdk installer</code>. Then, simply follow the instructions provided by the installer.
      <p align="center">
        <img src="images/UGscreenshots/jdk_downloaded.png" style="zoom:40%">
      </p>
@@ -139,12 +139,16 @@ Table 1. Symbols and formats used in this User Guide.
 
      <details> 
      <summary>II. Installing Java 11 on macOS</summary>
-
-     - Click on the <a href="https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html">link</a> and scroll down to `Installing JDK on macOS` and simply follow the instructions there!
+   <ul>
+   <li>
+     Click on the <a href="https://docs.oracle.com/en/java/javase/11/install/installation-jdk-macos.html">link</a> and scroll down to <code>Installing JDK on macOS</code> and simply follow the instructions there!
        <p align="center">
        <img src="images/UGscreenshots/jdk_macOS.png" style="zoom:25%">
        </p>
+   </li>
+   
        <br>
+   </ul>
        </details>
        </details>
 
@@ -159,21 +163,21 @@ Table 1. Symbols and formats used in this User Guide.
       <summary> I. For macOS: </summary>
    <ul>
    <li>
-    Step 1: Click on the `spotlight search` icon in the top right corner of your navigation bar, you'll see a search bar popping out.
+    Step 1: Click on the <code>spotlight search</code> icon in the top right corner of your navigation bar, you'll see a search bar popping out.
         <p align="center">
           <img src="images/UGscreenshots/spotlight_search.png" style="zoom:10%">
         </p>
    </li>
         <br>
    <li>
-    Step 2: Type `terminal.app` into the search bar, and simply hit `Enter`
+    Step 2: Type <code>terminal.app</code> into the search bar, and simply hit `Enter`
         <p align="center">
              <img src="images/UGscreenshots/terminal.png" style="zoom:20%">
         </p>
    </li>
         <br>
    <li>
-    Step 3: You're now looking at the `command terminal`, good job!
+    Step 3: You're now looking at the <code>command terminal</code>, good job!
         <p align="center">
             <img src="images/UGscreenshots/command_terminal.jpg" style="zoom:25%">
         </p>
@@ -195,12 +199,19 @@ Table 1. Symbols and formats used in this User Guide.
 5. The next step is to navigate into the folder you put the jar file in with the `cd` command
    <details>
    <summary> Click here for more information on navigating to jar file </summary>
+    <ul>
+   <li>
+    Suppose you have adopted the suggestion to put the jar file inside a folder called <code>CareFlow</code> on your desktop, you should type:<code>cd desktop/CareFlow</code> into your <code>command terminal</code> and hit <code>Enter</code>. <br>
+   </li>
 
-    - Suppose you have adopted the suggestion to put the jar file inside a folder called `CareFlow` on your desktop, you should type:`cd desktop/CareFlow` into your `command terminal` and hit `Enter`. <br>
-   
-    - For keen learners, you can take a look at the short video below to fund out more about the `cd` command
+   <br>
+   <li>
+    For keen learners, you can take a look at the short video below to fund out more about the <code>cd</code> command
          - For macOS: <a href="https://www.youtube.com/watch?v=VJZ9mk6D6pw">Change Directories in MacOS Terminal (cd command)</a>
          - For Windows: <a href="https://www.youtube.com/watch?v=Q3XQpnQTy6Y">How to Use CD Command in CMD</a>
+   </li>
+   </ul>
+   
    </details>
 6. Type the `java -jar careflow.jar` command into your `command terminal` and hit `Enter` to run the application. A GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.
   <p align="center">
@@ -212,11 +223,11 @@ Table 1. Symbols and formats used in this User Guide.
    <summary>Click here for  Some example commands you can try</summary>
     <ul>
         <li><code>p list </code> : Lists all patients. </li> 
-        <li><code>d list`</code> : Lists all drugs.</li>
+        <li><code>d list</code> : Lists all drugs.</li>
         <li><code>add -n John Lo -ph 98765431 -em johnl@example.com -ad John Street, Block 321, #02-02 -dob 22-02-2000 -g male -ic T3871910C</code> : Adds a patient named `John Lo` to the patient records.</li>
         <li><code>p delete 3</code> : Deletes the 3rd patient record shown in the current list.</li>
-        <li><code>p clear</code> : Deletes all patient records</li>
-        <li><code>d clear</code> : Deletes all drug records</li>
+        <li><code>p clear</code> : Deletes all patient records.</li>
+        <li><code>d clear</code> : Deletes all drug records.</li>
         <li><code>exit</code> : Exits the app.</li>
    </ul>
       </details>
