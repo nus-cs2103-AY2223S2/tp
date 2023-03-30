@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.nio.charset.Charset;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -7,13 +8,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
 import seedu.address.model.module.Module;
-import com.vdurmont.emoji.EmojiParser;
+
 /**
  * A UI component that displays information of a {@code Module}.
  */
 public class ModuleCard extends UiPart<Region> {
-
     private static final String FXML = "ModuleListCard.fxml";
 
     /**
@@ -32,10 +33,8 @@ public class ModuleCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
-
     @FXML
     private Label resource;
-
     @FXML
     private Label address;
     @FXML
@@ -57,7 +56,7 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
-        resource.setText("Resource" + module.getResource().value);
+        resource.setText("Resource: " + module.getResource().value);
         address.setText("Venue: " + module.getAddress().value);
         timeSlot.setText("Time: " + module.getTimeSlot().toString());
         remark.setText("Remark: " + module.getRemark().value);
