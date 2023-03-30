@@ -118,7 +118,7 @@ We advise you to
 @doug (all the misc todos here)
 
 {TODO drawio}
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img src="images/archi/ArchitectureDiagram.png" width="280" />
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -144,8 +144,6 @@ The rest of the App consists of four components.
 
 {TODO update the description and diagram here}
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
-
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
@@ -153,7 +151,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<img src="images/archi/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
 
@@ -172,7 +170,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/logic/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
@@ -182,14 +180,14 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("dp -pn Mycelium")` API call.
 
-![Interactions Inside the Logic Component for the `dp -pn Mycelium` Command](images/DeleteProjectSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `dp -pn Mycelium` Command](images/logic/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteProjectCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/logic/ParserClasses.png" width="600"/>
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddProjectCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddProjectCommand`) which the `AddressBookParser` returns back as a `Command` object.
@@ -238,7 +236,7 @@ list.
 {TODO update diagram and link}
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/storage/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -313,7 +311,7 @@ UiEvent handlers that are bundled together within the `UiEventManager` class.
 The following is the class diagram of the
 `UiEventManager` class.
 
-![UiEventManager class diagram](images/UiEventManager.png)
+![UiEventManager class diagram](images/uievent/UiEventManager.png)
 
 There are currently 10 registered event handlers, namely:
 * `HelpKey` Help (F1)
@@ -339,23 +337,23 @@ The `UiEventManager` is responsible for calling the appropriate event handler to
 the incoming event. When a keyboard input is registered, the `UiEventManager#catchAndExecute(KeyEvent)`
 method will be called with the incoming event as the argument.
 
-![EventHandling sequence diagram](images/EventHandling.png)
+![EventHandling sequence diagram](images/uievent/EventHandling.png)
 
 The above seqeuence diagram shows what happens when a keyboard event is
 registered. To keep the diagram simple, we only explicitly show two
 out of the 10 registered event handlers as the other event handlers
 work in a similar manner.
 The key combination that triggered the event will be checked against the
-each of the registered event handlers to decide which event handler to invoke. 
+each of the registered event handlers to decide which event handler to invoke.
 
-![GenericKey sequence diagram](images/GenericKey.png)
+![GenericKey sequence diagram](images/uievent/GenericKey/GenericKey.png)
 
 The above sequence diagram shows what happens once there is a match with a
 generic event handler. An instance of the respective `Key` will be created,
 and executed. The event is then consumed to prevent the event from propagating
 any further to the inner UI elements.
 
-![GenericKeyExecute sequence diagram](images/GenericKeyExecute.png)
+![GenericKeyExecute sequence diagram](images/uievent/GenericKey/GenericKeyExecute.png)
 
 The above sequence diagram shows how the user interface can be modified during
 the execution of the `Key` instance. The `Key` calls the respective method of
@@ -365,8 +363,8 @@ the action associated with the event.
 We will use the `SwitchTabKey` event handler as a concrete example. The following
 sequence diagrams show what happens when the `SwitchTabKey` event handler is invoked.
 
-![SwitchTabKey sequence diagram](images/SwitchTabKey.png)
-![SwitchTabKeyExecute sequence diagram](images/SwitchTabKeyExecute.png)
+![SwitchTabKey sequence diagram](images/uievent/SwitchTabKey/SwitchTabKey.png)
+![SwitchTabKeyExecute sequence diagram](images/uievent/SwitchTabKey/SwitchTabKeyExecute.png)
 
 Note that not all event handlers are built the same. An example of a more
 complicated event handler will be `FindKey` which we will elaborate more
@@ -393,14 +391,14 @@ handles keyboard event.
 The following sequence diagrams show what happens when `FindKey` event handler
 is invoked.
 
-![FindKey sequence diagram](images/ToggleMode.png)
-![FindKeyExecute sequence diagram](images/ToggleModeExecute.png)
+![FindKey sequence diagram](images/uievent/FindKey/ToggleMode.png)
+![FindKeyExecute sequence diagram](images/uievent/FindKey/ToggleModeExecute.png)
 
 Depending on the current `Mode` of the command box, triggering the `FindKey` event handler
 creates the other `Mode` and calls `MainWindow#setCommandBoxMode(Mode)` which sets `Mode`
 of the command box by calling `CommandBox#setMode(Mode)`.
 
-![CommandBoxSetMode sequence diagram](images/CommandBoxSetMode.png)
+![CommandBoxSetMode sequence diagram](images/commandbox/CommandBoxSetMode.png)
 
 When `Mode#setMode(Mode)` is called, the command box will call `Mode#teardownMode()`
 on its outgoing `Mode` to perform the necessary clean up which includes
@@ -414,7 +412,7 @@ to its original state when incoming `Mode` is torn down in the future.
 The following sequence diagram shows what happens when the user submits in the
 command box.
 
-![CommandBoxSubmit sequence diagram](images/CommandBoxSubmit.png)
+![CommandBoxSubmit sequence diagram](images/commandbox/CommandBoxSubmit.png)
 
 When the user submits, the command box will call `Mode#onInputSubmit(String)`
 on its current `Mode` with the text input. An `Optional<Mode>` instance will be
@@ -427,7 +425,7 @@ box to `CommandMode` when submitting in `SearchMode`.
 The following sequence diagram shows what happens when the user edits the input
 of the command box.
 
-![CommandBoxInputChange sequence diagram](images/CommandBoxInputChange.png)
+![CommandBoxInputChange sequence diagram](images/commandbox/CommandBoxInputChange.png)
 
 When the user edits the input, the command box will call `Mode#onInputChange(String)`
 on its current `Mode` with the text input. This is utilised in `SearchMode` to allow
@@ -498,7 +496,7 @@ In order to use fuzzy search from the application, we also have the
 and projects. The class diagram below shows a high level overview of the
 classes involved.
 
-![FuzzyManagerHighLevelClassDiagram](images/FuzzyManagerHighLevelClassDiagram.png)
+![FuzzyManagerHighLevelClassDiagram](images/fuzzy/FuzzyManagerHighLevelClassDiagram.png)
 
 The `FuzzyManager#rankItems` method is just a convenient pure function which,
 when given a list of clients or projects and a query string, constructs a new
@@ -511,8 +509,8 @@ encapsulates the logic required to handle search requests (via a change in user
 input) as well as applying updates to the UI. The following sequence diagrams
 illustrate this in further detail.
 
-![FuzzyManagerSequenceDiagramA](images/FuzzyManagerSequenceDiagramA.png)
-![FuzzyManagerSequenceDiagramB](images/FuzzyManagerSequenceDiagramB.png)
+![FuzzyManagerSequenceDiagramA](images/fuzzy/FuzzyManagerSequenceDiagramA.png)
+![FuzzyManagerSequenceDiagramB](images/fuzzy/FuzzyManagerSequenceDiagramB.png)
 
 From above, we see that the `onInputChanged()` method on `SearchMode` is
 invoked with the current contents of the command box. From here, it is a
@@ -564,7 +562,7 @@ address book, which automatically reverts it to its pre-fuzzy state.
 
 When the command box is in `CommandMode`, the user can enter commands to perform various operations in Mycelium. The following sequence diagram shows how the command is handled.
 
-![CommandHandling Sequence Diagram](images/CommandHandling.png)
+![CommandHandling Sequence Diagram](images/commandbox/CommandHandling.png)
 
 When the user enters a command, the command box calls `Mode#onInputSubmit(String)` on its current `CommandMode`.
 The input from the command box is then propagated down to the `MainWindow`, the `Logic` and finally the `Parser` to be parsed.
@@ -583,7 +581,7 @@ This is used to perform actions such as switching the tab to Projects tab when a
 
 The following sequence diagram shows how the `UiAction` that switches the tab to Projects tab.
 
-![SwitchToProjectsUiAction sequence diagram](images/SwitchToProjectsUiAction.png)
+![SwitchToProjectsUiAction sequence diagram](images/uiaction/SwitchToProjectsUiAction.png)
 
 Upon being executed, `UiAction` instance calls the appropriate method in `MainWindow` to perform the action from a successful command. In this case, the `UiAction` calls `MainWindow#selectProjectTab` to switch the tab to the Projects tab.
 
@@ -701,7 +699,7 @@ Here are the steps to create a new release.
   which will log messages according to the specified logging level.
 * Log messages are output through the console and to a `.log` file.
 * The output logging level can be controlled using the `logLevel` setting in
-  the configuration file (See the [Configuration guide](Configuration.md)
+  the configuration file (See the [Configurations](#configurations)
   section).
 * **When choosing a level for a log message**, follow the conventions given in
   [_[se-edu/guides] Java: Logging
@@ -742,6 +740,10 @@ files.
 * The `docs/images` directory contains ready-for-use pictures in PNG format
 * The `docs/diagrams` directory contains `.puml` files (for PlantUML) and
   `.xml` files (for draw.io) which allow editing and regenerating of diagrams
+
+## Configurations
+
+Certain properties of the application can be controlled (e.g user preferences file location, logging level) through the configuration file (default: `config.json`). The configuration file is created the first time the application is run. It is in JSON format and contains name-value pairs.
 
 --------------------------------------------------------------------------------------------------------------------
 
