@@ -212,11 +212,18 @@ public class InternshipTodo {
         }
 
         InternshipTodo otherCompany = (InternshipTodo) other;
-        return otherCompany.getInternshipTitle().equals(getInternshipTitle())
+        boolean areEqual = otherCompany.getInternshipTitle().equals(getInternshipTitle())
                 && otherCompany.getJobTitle().equals(getJobTitle())
                 && otherCompany.getDeadline().equals(getDeadline())
-                && otherCompany.getNote().equals(getNote())
                 && otherCompany.getDate().equals(getDate());
+
+        if (otherCompany.getNote() != null ^ getNote() != null) {
+            return false;
+        } else if (otherCompany.getNote() == null && getNote() == null) {
+            return areEqual;
+        } else {
+            return areEqual && otherCompany.getNote().equals(getNote());
+        }
     }
 
     @Override

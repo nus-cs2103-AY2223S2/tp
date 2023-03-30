@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/8">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button defaultButton="true" mnemonicParsing="false" text="Add Internship" textFill="WHITE" onMouseClicked="#handleAddInternshipClicked">
+      <Button defaultButton="true" mnemonicParsing="false" text="Add Internship" textFill="#2d3f4d" onMouseClicked="#handleAddInternshipClicked">
          <graphic>
             <ImageView fitHeight="36.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -18,7 +17,7 @@
             </ImageView>
          </graphic>
          <font>
-            <Font name="StempelGaramond Roman" size="12.0" />
+            <Font name="Sans-serif" size="12.0" />
          </font>
       </Button>
    </children>

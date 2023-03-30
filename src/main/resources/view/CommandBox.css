@@ -1,22 +1,42 @@
 #commandTextField {
     -fx-control-inner-background: #463f3a;
     -fx-text-box-border: transparent;
-    fx-border-radius: 8px;
+    -fx-background-radius: 10px;
 
     -fx-prompt-text-fill: #bcbcbc;
     -fx-prompt-text-size: 15px;
 
     -fx-text-fill: whitesmoke;
     -fx-font-size: 15px;
+    -fx-font-size: 18px;
     -fx-font-family: consolas;
 }
 
 #enterButton {
-    -fx-background-color: #219ebc;
-    -fx-border-radius: 8px;
+    -fx-background-color: #029fed;
+    -fx-background-radius: 18px;
 
     -fx-text-fill: whitesmoke;
     -fx-font-size: 18px;
+    -fx-font-weight: bold;
     -fx-font-family: stencil;
+}
+
+#commandTextField:focused {
+    -fx-text-box-border: #7bb5d1;
+    -fx-faint-focus-color: #7bb5d122;
+}
+
+#commandTextField:hover {
+    -fx-text-box-border: whitesmoke;
+    -fx-faint-focus-color: #ffffff22;
+}
+
+#enterButton:hover {
+    -fx-background-color: #04557d;
+}
+
+#enterButton:clicked {
+    -fx-background-color: #043852;
 }
 

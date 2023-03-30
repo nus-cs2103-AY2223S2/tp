@@ -9,13 +9,12 @@ import java.util.Set;
 
 import seedu.address.model.contact.Contact;
 import seedu.address.model.documents.Documents;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents an InternshipApplication in the tracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class InternshipApplication {
+public class InternshipApplication implements Comparable<InternshipApplication> {
     // Identity fields
     private final CompanyName companyName;
     private final JobTitle jobTitle;
@@ -34,7 +33,6 @@ public class InternshipApplication {
     private final boolean isArchived;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
     private final Contact contact;
     private final Documents documents;
 
@@ -204,14 +202,6 @@ public class InternshipApplication {
         return status;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
-    }
-
     public Contact getContact() {
         return contact;
     }
@@ -260,6 +250,11 @@ public class InternshipApplication {
         return otherApplication.getCompanyName().equals(getCompanyName())
                 && otherApplication.getJobTitle().equals(getJobTitle())
                 && otherApplication.getStatus().equals(getStatus());
+    }
+
+    @Override
+    public int compareTo(InternshipApplication internshipApplication) {
+        return this.getCompanyName().compareTo(internshipApplication.getCompanyName());
     }
 
     @Override

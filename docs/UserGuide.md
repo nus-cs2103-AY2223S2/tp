@@ -3,7 +3,12 @@ layout: page
 title: User Guide
 ---
 
-InternEase is a powerful and innovative desktop app designed to streamline the internship application process for Computer Science undergraduates. With its optimized combination of a Command Line Interface (CLI) and Graphical User Interface (GUI), InternEase offers users the best of both worlds - the speed and efficiency of a CLI for those who can type quickly, and the user-friendly experience of a GUI for those who prefer a visual interface. Whether you're a seasoned CLI user or a first-time applicant, InternEase makes it easy to keep track of your progress, deadlines, and follow-up actions, so you can focus on landing your dream internship.
+InternEase is a powerful and innovative desktop app designed to streamline the internship application process primarily 
+for Computer Science undergraduates. With its optimized combination of a Command Line Interface (CLI) 
+and Graphical User Interface (GUI), InternEase offers users the best of both worlds - the speed and efficiency of a CLI 
+for those who can type quickly, and the user-friendly experience of a GUI for those who prefer a visual interface. 
+Whether you're a seasoned CLI user or a first-time applicant new to work environment, InternEase makes it easy 
+to keep track of your progress, deadlines, and follow-up actions, so you can focus on landing your dream internship.
 
 ## Features Menu
 - [Quick start](#quick-start)
@@ -37,6 +42,7 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
         - [Revert the most recent delete command : `revert`](#revert-a-recent-deleted-internship-application--revert)
         - [Revert all delete and clear commands : `revert_all`](#revert-all-recently-deleted-or-cleared-internship-applications--revert_all)
     - [Exit InternEase : `exit`](#exiting-the-program--exit)
+  
 - [Side Features](#side-features-planning-to-apply-internships)
     - [Task (todo and notes)](#display-lists-of-tasks-todos-and-notes--list_task)
         - [List current available tasks : `list_task`](#display-lists-of-tasks-todos-and-notes--list_task)
@@ -53,7 +59,9 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
         - [Add a note : `add_note`](#add-a-note-add_note)
         - [Delete a note : `delete_note`](#delete-a-note--delete_note)
         - [Clear all notes : `clear_note`](#clear-all-notes---clear_note)
-- [FAQ](#faq)        
+        - 
+- [FAQ](#faq)    
+
 - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -122,7 +130,7 @@ InternEase is a powerful and innovative desktop app designed to streamline the i
 
 </div>
 
-### Main features: Tracking applied internships
+## Main features: Tracking applied internships
 
 ### View help : `help`
 Shows a user guide message on how to use the internship tracker
@@ -368,7 +376,7 @@ Exits the program.
 
 Format: `exit`
 
-### Side features: Planning to apply internships
+## Side features: Planning to apply internships
 
 ### Display lists of tasks (todos and notes) : `list_task`
 
@@ -545,6 +553,7 @@ Action | Format, Examples
 **Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
 **Edit Deadline** |`edit_deadline INDEX by/DEADLINE` <br> e.g., `edit_deadline 2 by/2023-06-05`
 **Edit Note Content** |`edit_content c/NOTE_CONTENT` <br> e.g., `edit_content 2 c/Venue changed`
+**List Todo** |`list_todo`
 **Add Note** |`add_note c/NOTE_CONTENT` <br> e.g., `add_note c/The tasks are planned to be done by tomorrow!`
 **Clear Note** |`clear_note`
 **Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`

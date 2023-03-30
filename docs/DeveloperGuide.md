@@ -310,7 +310,7 @@ The `clear_by` feature enables user to clear the internship applications in batc
 In `Logic` interface, `ClearByCommand` extends `Command` with a `ClearByCommand#execute` functionality. The parsing process is facilitated by both the `InternEaseParser#parse` and `ClearByCommandParser#parse`.
 
 The workflow of a `clear_by` command during its execution is shown by the activity diagram below:
-[!ClearByActivityDiagram](images/ClearByActivityDiagram.png)
+![ClearByActivityDiagram](images/ClearByActivityDiagram.png)
 
 There are 3 constructors `ClearByCommand::new` provided for 3 different cases stated below : 
 
@@ -332,7 +332,7 @@ There are 3 constructors `ClearByCommand::new` provided for 3 different cases st
 These operations are involved in the `Model` interface as `Model#getFilteredInternshipList`, `Model#addInternshipToCache` and `Model#deleteInternship`
 
 The execution process of `Clear_by` is demonstrated by the sequence diagram below.
-[!ClearByActivityDiagram](images/ClearBySequenceDiagram.png)
+![ClearBySequenceDiagram](images/ClearBySequenceDiagram.png)
 
 Given below is a step-wise explanation on `clear_by` mechanism's behaviour.
 

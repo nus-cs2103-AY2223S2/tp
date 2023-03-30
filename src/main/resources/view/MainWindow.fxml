@@ -14,19 +14,17 @@
 <?import javafx.stage.Stage?>
 
 <fx:root minHeight="450" minWidth="450" onCloseRequest="#handleExit" title="InternEase" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
-    <Image url="@/images/address_book_32.png" />
-  </icons>
+    <icons>
+        <Image url="@/images/intern_ease.png" />
+    </icons>
   <scene>
     <Scene>
       <stylesheets>
           <URL value="@MainWindow.css" />
-        <!--<URL value="@DarkTheme.css" />-->
-        <!--<URL value="@Extensions.css" />-->
       </stylesheets>
         <AnchorPane>
-      <VBox fx:id="mainBox" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5" AnchorPane.topAnchor="0">
-              <GridPane fx:id="headerGridPane" maxHeight="80" minHeight="70" AnchorPane.rightAnchor="5" VBox.vgrow="ALWAYS">
+      <VBox fx:id="mainBox" AnchorPane.bottomAnchor="0 " AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+              <GridPane fx:id="headerGridPane" maxHeight="80" minHeight="70" AnchorPane.rightAnchor="-5" VBox.vgrow="ALWAYS">
                 <columnConstraints>
                   <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" percentWidth="33.33" />
                   <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" percentWidth="33.33" />
@@ -42,24 +40,25 @@
                  </children>
               </GridPane>
 
-        <StackPane fx:id="commandBoxPlaceholder" minHeight="50" style="-fx-padding: 10 0 10 0" styleClass="pane-with-border" AnchorPane.leftAnchor="5" AnchorPane.rightAnchor="5" VBox.vgrow="NEVER" />
-
-            <GridPane fx:id="mainGridPane" alignment="CENTER" hgap="20" AnchorPane.bottomAnchor="0">
-                <Separator orientation="VERTICAL" GridPane.columnIndex="1" />
+        <StackPane fx:id="commandBoxPlaceholder" minHeight="50" styleClass="pane-with-border" AnchorPane.leftAnchor="25" AnchorPane.rightAnchor="25" VBox.vgrow="NEVER" />
+            <GridPane fx:id="mainGridPane" alignment="CENTER" hgap="18" AnchorPane.bottomAnchor="0" >
+                <Separator orientation="VERTICAL" GridPane.columnIndex="2" />
               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" percentWidth="1.0" />
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="49.0" />
                   <ColumnConstraints hgrow="NEVER" percentWidth="1.0" />
                 <ColumnConstraints hgrow="ALWAYS" percentWidth="49.0" />
+                  <ColumnConstraints hgrow="NEVER" percentWidth="1.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints percentHeight="97" vgrow="ALWAYS" />
               </rowConstraints>
                <children>
-             <StackPane fx:id="applicationListPanelPlaceholder" alignment="TOP_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />
-             <VBox fx:id="mainContainer" spacing="20" styleClass="pane-with-border" GridPane.columnIndex="2">
+             <StackPane fx:id="applicationListPanelPlaceholder" alignment="TOP_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" GridPane.columnIndex="1" />
+             <VBox fx:id="mainContainer" spacing="20" styleClass="pane-with-border" GridPane.columnIndex="3">
                      <children>
                         <StackPane fx:id="viewContentPanelPlaceholder" alignment="TOP_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />
-                        <StackPane fx:id="summaryPanelPlaceholder" alignment="BOTTOM_CENTER" AnchorPane.bottomAnchor="3" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="statsInformationListPanelPlaceholder" alignment="BOTTOM_CENTER" style="-fx-background-color: #383838;" AnchorPane.bottomAnchor="3" />
                      </children>
              </VBox>
                </children>

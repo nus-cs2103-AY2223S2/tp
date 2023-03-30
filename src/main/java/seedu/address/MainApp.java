@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.statstics.StatsManager;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -52,6 +53,7 @@ public class MainApp extends Application {
     protected Logic logic;
     protected Storage storage;
     protected Model model;
+    protected StatsManager statsManager;
     protected Config config;
 
     @Override
@@ -75,7 +77,9 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        statsManager = new StatsManager(model);
+
+        logic = new LogicManager(model, storage, statsManager);
 
         ui = new UiManager(logic);
     }

@@ -14,7 +14,7 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.ui.control.ControlBox;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of applications.
  */
 public class ApplicationListPanel extends UiPart<Region> {
     private static final String FXML = "ApplicationListPanel.fxml";
@@ -23,6 +23,7 @@ public class ApplicationListPanel extends UiPart<Region> {
     private ViewContentPanel viewContentPanel;
     private InternshipApplication currentApplication;
     private ControlBox controlBox;
+    private final MainWindow mainWindow;
 
     @FXML
     private ListView<InternshipApplication> applicationListView;
@@ -37,6 +38,7 @@ public class ApplicationListPanel extends UiPart<Region> {
                                 ViewContentPanel viewContentPanel) {
         super(FXML);
         this.viewContentPanel = viewContentPanel;
+        this.mainWindow = mainWindow;
         controlBox = new ControlBox(mainWindow);
         container.getChildren().add(0, controlBox.getRoot());
         applicationListView.setItems(applicationList);
@@ -59,7 +61,8 @@ public class ApplicationListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code ApplicationCard}.
+     * Custom {@code ListCell} that displays the graphics of an {@code InternshipApplication}
+     * using a {@code ApplicationCard}.
      */
     class ApplicationListViewCell extends ListCell<InternshipApplication> {
         @Override
@@ -71,7 +74,7 @@ public class ApplicationListPanel extends UiPart<Region> {
                 setText(null);
                 viewContentPanel.clearPanel();
             } else {
-                setGraphic(new ApplicationCard(application, getIndex() + 1).getRoot());
+                setGraphic(new ApplicationCard(application, getIndex() + 1, mainWindow).getRoot());
                 if (currentApplication != null && application.isSameApplication(currentApplication)) {
                     viewContentPanel.setInternshipApplication(application);
                 }
