@@ -46,7 +46,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ ModuleTracker methods ==============================
 
     @Override
     public Path getModuleTrackerFilePath() {
