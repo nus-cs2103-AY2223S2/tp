@@ -62,7 +62,7 @@ Tips are useful suggestions that will help you become a seasoned **MODTrek** use
 
 **Notes**
 
-Notes are important information that you should pay attention to when using sprINT.
+Notes are important information that you should pay attention to when using **MODTrek**.
 
 <div markdown="span" class="alert alert-info">
 
