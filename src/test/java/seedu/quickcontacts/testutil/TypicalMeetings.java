@@ -20,6 +20,9 @@ public class TypicalMeetings {
             .withDateTime("13/03/2023 12:45").withAttendees(TypicalPersons.ALICE)
             .withLocation("https://us02web.zoom.us/j/99999999999?pwd=ABCdEfGHiJkYkRuYW5WTLmNopQrSt12")
             .withDescription("Plan for project work").build();
+    public static final Meeting UNDONE_MEETING = new MeetingBuilder().withIsDone(false).build();
+    public static final Meeting DONE_MEETING = new MeetingBuilder().withIsDone(true).build();
+    public static final Meeting DONE_MEETING2 = new MeetingBuilder().withTitle("A").withIsDone(true).build();
 
     /**
      * Private constructor to prevent initialisation.

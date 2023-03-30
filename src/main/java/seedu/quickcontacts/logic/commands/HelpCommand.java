@@ -10,7 +10,7 @@ public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
-        + "Example: " + COMMAND_WORD;
+            + "Example: " + COMMAND_WORD;
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
@@ -28,14 +28,16 @@ public class HelpCommand extends Command {
         + "8. " + ImportPersonsCommand.COMMAND_WORD + ": " + ImportPersonsCommand.COMMAND_DESCRIPTION + "\n"
         + "9. " + AddMeetingCommand.COMMAND_WORD + ": " + AddMeetingCommand.COMMAND_DESCRIPTION + "\n"
         + "10. " + FindMeetingCommand.COMMAND_WORD + ": " + FindMeetingCommand.COMMAND_DESCRIPTION + "\n"
-        + "11. " + ViewMeetingsCommand.COMMAND_WORD + ": " + ViewMeetingsCommand.COMMAND_DESCRIPTION + "\n"
-        + "12. " + EditMeetingsCommand.COMMAND_WORD + ": " + EditMeetingsCommand.COMMAND_DESCRIPTION + "\n"
-        + "13. " + DeleteMeetingCommand.COMMAND_WORD + ": " + DeleteMeetingCommand.COMMAND_DESCRIPTION + "\n"
-        + "14. " + ExportMeetingsCommand.COMMAND_WORD + ": " + ExportMeetingsCommand.COMMAND_DESCRIPTION + "\n"
-        + "15. " + ImportMeetingsCommand.COMMAND_WORD + ": " + ImportMeetingsCommand.COMMAND_DESCRIPTION + "\n"
-        + "16. " + SortMeetingCommand.COMMAND_WORD + ": " + SortMeetingCommand.COMMAND_DESCRIPTION + "\n"
-        + "17. " + HelpCommand.COMMAND_WORD + ": " + HelpCommand.COMMAND_DESCRIPTION + "\n"
-        + "18. " + ExitCommand.COMMAND_WORD + ": " + ExitCommand.COMMAND_DESCRIPTION + "\n";
+        + "11. " + EditMeetingsCommand.COMMAND_WORD + ": " + EditMeetingsCommand.COMMAND_DESCRIPTION + "\n"
+        + "12. " + DeleteMeetingCommand.COMMAND_WORD + ": " + DeleteMeetingCommand.COMMAND_DESCRIPTION + "\n"
+        + "13. " + ExportMeetingsCommand.COMMAND_WORD + ": " + ExportMeetingsCommand.COMMAND_DESCRIPTION + "\n"
+        + "14. " + ImportMeetingsCommand.COMMAND_WORD + ": " + ImportMeetingsCommand.COMMAND_DESCRIPTION + "\n"
+        + "15. " + SortMeetingCommand.COMMAND_WORD + ": " + SortMeetingCommand.COMMAND_DESCRIPTION + "\n"
+        + "16. " + HelpCommand.COMMAND_WORD + ": " + HelpCommand.COMMAND_DESCRIPTION + "\n"
+        + "17. " + MarkAsDoneCommand.COMMAND_WORD + ": " + MarkAsDoneCommand.COMMAND_DESCRIPTION + "\n"
+        + "18. " + MarkAsNotDoneCommand.COMMAND_WORD + ": " + MarkAsNotDoneCommand.COMMAND_DESCRIPTION + "\n"
+        + "19. " + ShowNotDoneCommand.COMMAND_WORD + ": " + ShowNotDoneCommand.COMMAND_DESCRIPTION + "\n"
+        + "20. " + ExitCommand.COMMAND_WORD + ": " + ExitCommand.COMMAND_DESCRIPTION + "\n";
     private static final String SHOW_HELP_POPUP = "";
     private final String commandWord;
 
@@ -81,9 +83,6 @@ public class HelpCommand extends Command {
         case FindMeetingCommand.COMMAND_WORD:
             return new CommandResult(FindMeetingCommand.MESSAGE_USAGE);
 
-        case ViewMeetingsCommand.COMMAND_WORD:
-            return new CommandResult(ViewMeetingsCommand.MESSAGE_USAGE);
-
         case EditMeetingsCommand.COMMAND_WORD:
             return new CommandResult(EditMeetingsCommand.MESSAGE_USAGE);
 
@@ -104,6 +103,13 @@ public class HelpCommand extends Command {
 
         case ImportMeetingsCommand.COMMAND_WORD:
             return new CommandResult(ImportMeetingsCommand.MESSAGE_USAGE);
+        case MarkAsDoneCommand.COMMAND_WORD:
+            return new CommandResult(MarkAsDoneCommand.MESSAGE_USAGE);
+        case MarkAsNotDoneCommand.COMMAND_WORD:
+            return new CommandResult(MarkAsNotDoneCommand.MESSAGE_USAGE);
+        case ShowNotDoneCommand.COMMAND_WORD:
+            return new CommandResult(ShowNotDoneCommand.MESSAGE_USAGE);
+
 
         case SHOW_HELP_POPUP:
             return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
@@ -116,7 +122,7 @@ public class HelpCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof HelpCommand // instanceof handles nulls
-            && commandWord.equals(((HelpCommand) other).commandWord)); // state check
+                || (other instanceof HelpCommand // instanceof handles nulls
+                && commandWord.equals(((HelpCommand) other).commandWord)); // state check
     }
 }

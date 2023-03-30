@@ -240,6 +240,16 @@ Example JSON:
 ```
 The JSON is generated using the Jackson library, through the use of the JsonUtil utility class.
 
+#### Design Considerations
+
+**Alternative 1**: Use some other format (eg. `XML` or `YAML`) for exporting
+
+Could provide more readable and/or less text for copying.
+
+**Alternative 2 (current choice)**: Use existing `JSON` format
+
+Benefit: can directly copy-paste to and from the data files that already exist in the system.
+
 ##### Importing
 Using the exported JSON, one can then import it using `import THE_JSON`.
 Before importing, a check is done to make sure there are no duplicate values. This is done before the actual importing 
@@ -679,6 +689,24 @@ Extensions:
   * All meetings imported.
   * Use case ends.
 
+**Use case: UC16 - Mark Meetings as Done**
+
+MSS:
+
+1. User marks meetings as done.
+2. QuickContacts updates meetings and updates the view.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Meeting index not found.
+    * 1a1. Show error message.
+
+* 1b. Meetings not provided.
+    * 1b1. Show error message.
+
+    Use case ends.
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

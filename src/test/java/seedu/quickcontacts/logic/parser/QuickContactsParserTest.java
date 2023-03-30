@@ -26,7 +26,6 @@ import seedu.quickcontacts.logic.commands.FindCommand;
 import seedu.quickcontacts.logic.commands.FindMeetingCommand;
 import seedu.quickcontacts.logic.commands.HelpCommand;
 import seedu.quickcontacts.logic.commands.ListCommand;
-import seedu.quickcontacts.logic.commands.ViewMeetingsCommand;
 import seedu.quickcontacts.logic.parser.exceptions.ParseException;
 import seedu.quickcontacts.model.meeting.Meeting;
 import seedu.quickcontacts.model.meeting.MeetingContainsNamesPredicate;
@@ -105,14 +104,8 @@ public class QuickContactsParserTest {
     public void parseCommand_findMeeting() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindMeetingCommand command = (FindMeetingCommand) parser.parseCommand(
-            FindMeetingCommand.COMMAND_WORD + " " + String.join(" ", keywords));
+                FindMeetingCommand.COMMAND_WORD + " " + String.join(" ", keywords));
         assertEquals(new FindMeetingCommand(new MeetingContainsNamesPredicate(keywords)), command);
-    }
-
-    @Test
-    public void parseCommand_viewMeetings() throws Exception {
-        assertTrue(parser.parseCommand(ViewMeetingsCommand.COMMAND_WORD) instanceof ViewMeetingsCommand);
-        assertTrue(parser.parseCommand(ViewMeetingsCommand.COMMAND_WORD + " 3") instanceof ViewMeetingsCommand);
     }
 
     @Test
@@ -128,7 +121,8 @@ public class QuickContactsParserTest {
         EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder(meeting).build();
         EditMeetingsCommand command = (EditMeetingsCommand) parser.parseCommand(
                 EditMeetingsCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + MeetingUtil.getEditMeetingDescriptorDetails(descriptor));
+                        + INDEX_FIRST_PERSON.getOneBased() + " "
+                        + MeetingUtil.getEditMeetingDescriptorDetails(descriptor));
         assertEquals(new EditMeetingsCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -142,7 +136,7 @@ public class QuickContactsParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

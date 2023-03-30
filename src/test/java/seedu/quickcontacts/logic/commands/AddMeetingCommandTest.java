@@ -60,7 +60,7 @@ public class AddMeetingCommandTest {
         ModelStub modelStub = new ModelStubWithMeeting(ALICE, CARL, MEETING_A);
 
         assertThrows(CommandException.class, AddMeetingCommand.MESSAGE_DUPLICATE_MEETING, () ->
-            addMeetingCommand.execute(modelStub));
+                addMeetingCommand.execute(modelStub));
     }
 
     /**
@@ -183,8 +183,19 @@ public class AddMeetingCommandTest {
         public void setMeeting(Meeting target, Meeting editedMeeting) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public ObservableList<Meeting> getFilteredMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markMeetingsAsDone(List<Index> indexes) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markMeetingsAsNotDone(List<Index> indexes) {
             throw new AssertionError("This method should not be called.");
         }
 

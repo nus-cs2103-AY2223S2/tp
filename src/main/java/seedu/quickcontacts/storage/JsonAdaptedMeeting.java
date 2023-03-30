@@ -24,6 +24,7 @@ public class JsonAdaptedMeeting {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Meeting's %s field is missing!";
 
     private final String title;
+    private final boolean isDone;
     private final String dateTime;
     private final String location;
     private final String description;
@@ -36,7 +37,7 @@ public class JsonAdaptedMeeting {
     public JsonAdaptedMeeting(@JsonProperty("title") String title, @JsonProperty("dateTime") String dateTime,
                               @JsonProperty("attendees") List<JsonAdaptedPerson> attendees,
                               @JsonProperty("location") String location,
-                              @JsonProperty("description") String description) {
+                              @JsonProperty("description") String description, @JsonProperty("isDone") boolean isDone) {
         this.title = title;
         this.dateTime = dateTime;
         this.location = location;
@@ -44,6 +45,7 @@ public class JsonAdaptedMeeting {
         if (attendees != null) {
             this.attendees.addAll(attendees);
         }
+        this.isDone = isDone;
     }
 
     /**
@@ -65,6 +67,7 @@ public class JsonAdaptedMeeting {
         attendees.addAll(source.getAttendees().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
+        this.isDone = source.getIsCompleted();
     }
 
     /**
@@ -116,6 +119,7 @@ public class JsonAdaptedMeeting {
         }
 
         final Set<Person> modelAttendees = new HashSet<>(meetingAttendees);
-        return new Meeting(modelTitle, modelDateTime, modelAttendees, modelLocation, modelDescription);
+        return new Meeting(modelTitle, modelDateTime, modelAttendees, modelLocation, modelDescription,
+                isDone);
     }
 }
