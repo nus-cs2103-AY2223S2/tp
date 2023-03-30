@@ -7,7 +7,7 @@ import static seedu.connectus.commons.util.AppUtil.checkArgument;
  * Represents a Tag in the ConnectUS.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class  Tag implements Comparable<Tag> {
+public class Tag implements Comparable<Tag> {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ]+#?[\\p{Alnum}\\s]+$";
