@@ -7,10 +7,10 @@ Participant ":Logic" as logic LOGIC_COLOR
 Participant ":OfficeConnectModel" as model MODEL_COLOR
 Participant ":RepositoryModelManager" as repo REPO_COLOR
 
-user -[USER_COLOR]> ui : "listtask"
+user -[USER_COLOR]> ui : "listt"
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : execute("listtask")
+ui -[UI_COLOR]> logic : execute("listt")
 activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]> model : updateTaskModelManagerFilteredItemList(PREDICATE_SHOW_ALL)

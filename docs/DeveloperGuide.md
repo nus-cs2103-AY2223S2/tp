@@ -225,7 +225,7 @@ This section describes some noteworthy details on how certain features are imple
 Notation: inputs placed in closed brackets [] are optional.
 
 ### 3.1 Adding a task
-Syntax: `addt t/TITLE [c/CONTENT] [st/STATUS]`  
+Syntax: `addt t/TITLE c/CONTENT st/STATUS [dl/DEADLINE]`  
 Purpose: Allows users to add tasks into OfficeConnect.
 
 #### 3.1.1 Implementation
@@ -235,18 +235,16 @@ Below is a sequence diagram that illustrates how a user adds new tasks into Offi
 ![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
 #### 3.1.2 Design Considerations
-**Aspect: Format of inputs in Add Task Command**
+**Aspect: Setting deadline as optional input**
 
-* **Alternative 1 (current choice):** Only title is required when creating a task. The other fields are optional.
-  * Pros: As users may not have a content or status in mind when creating new tasks, this alternative allows flexibility
-    in user input, which makes the app more user-friendly. Some tasks may also be self-explanatory and thus do not
-    require content descriptions.
-  * Cons: More difficult to implement, more likely to cause bugs.
+* **Alternative 1 (current choice):** Deadline is optional.
+  * Pros: Increase convenience for users, as they will have to key in one less input. Not all tasks may have a set deadline.
+  * Cons: Users may be lazy to key in specific deadlines as it is optional
 
-* **Alternative 2:** Require all fields to be compulsory
-  * Pros: Easier to implement, fewer bugs may be generated.
-  * Cons: Less intuitive and less user-friendly, as users who might not have a content description in mind when
-    creating tasks may be forced to key in random content to add tasks.
+* **Alternative 2:** Make deadline compulsory
+  * Pros: Easier to implement
+  * Cons: Inconveniences users, as they have to key in one more input to create a task, especially if there is no set deadline 
+  for the task and they have to create a dummy deadline just to create a task.
 
 #### 3.1.3 Constraints:
 **Title must be unique:**  
@@ -464,7 +462,7 @@ Below is a sequence diagram that illustrates how a user can see all tasks stored
 ![ListTaskSequenceDiagram](images/ListTaskSequenceDiagram.png)
 
 ### 3.10 Filter persons according to tag
-Syntax: `filter t/TAG`  
+Syntax: `filterp t/TAG`  
 Purpose: Allows users to find all persons with the specified tag
 
 #### 3.10.1 Implementation
@@ -550,7 +548,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### 5.3.1 Example Usage
 
-> addt s/Draft proposal c/Complete proposal by 1st March st/false
+> addt t/Draft proposal c/Complete proposal by 1st March st/false
 
 - New task added: Draft proposal; Status: Undone; Content: Complete proposal by 1st March
 
@@ -995,7 +993,7 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `deletep`, `deletep x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+
 
 ### 6.3 Assigning a task to a person
 
@@ -1063,11 +1061,64 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the task that is unmarked shown in the status message. A red cross will appear under the
       task. The progress indicator of the persons assigned to this task will be updated.
 
+### 6.6 Adding a task
 
-### 6.6 Saving data
+1. Adding a task with no deadline
+   1. Prerequisites: There are no tasks with the same title present. 
+   2. Test case: `addt t/Project X c/Complete slides for Mr X st/false`<br>
+      Expected: Details of the task that is added is shown in the status message. A new task will appear in the taskbar of the GUI.
+   3. Test case: `addt t/Project X c/Complete slides for Mr X st/hello`<br>
+      Expected: No tasks are added. Error details shown in status message.
+   4. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/INPUT`, where INPUT is anything that is not true/false.
+      Expected: Similar to previous.
 
-1. Dealing with missing/corrupted data files
+2. Adding a task with deadline.
+   1. Prerequisites: There are no tasks with the same title present.
+   2. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01`<br>
+      Expected: Details of the task that is added is shown in the status message. A new task will appear in the taskbar of the GUI.
+   3. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 02:05:00`<br>
+      Expected: Details of the task that is added is shown in the status message. A new task will appear in the taskbar of the GUI.
+   4. Test case: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 02:05:0`<br>
+      Expected: No tasks are added. Error details shown in status message.
+   5. Other incorrect add task commands to try: `addt t/Project X c/Complete slides for Mr X st/false dl/2023-01-01 005:0`<br>, or any input with incorrect datetime format (datetime format should be YYYY-MM-DD HH-MM-SS, where HH-MM-SS is optional).
+      Expected: Similar to previous
+    
+### 6.7 Deleting a task
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Deleting a task while all task are being shown
 
-2. _{ more test cases …​ }_
+  1. Prerequisites: List all persons using the `listt` command. Multiple persons in the list.
+  2. Test case: `deletet 1`<br>
+     Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
+  3. Test case: `deletet 0`<br>
+     Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+  4. Other incorrect delete task commands to try: `deletet`, `deletet x` (where x is larger than the list size)<br>
+     Expected: Similar to previous.
+
+### 6.8 Listing all tasks 
+
+1. Listing all tasks
+   1. Prerequisites: None
+   2. Test case: `listt`
+      Expected: All tasks stored in OfficeConnect are listed. "Listed all task" shown in status message.
+
+### 6.9 Filtering persons by tag
+
+1. There are persons in OfficeConnect with the specified tag.
+   1. Prerequisites: Only one tag can be specified. 
+   2. Test case: `filterp tag/Logistics` <br>
+      Expected: All persons with the tag are displayed. "Filtered all persons with the tag: [tag]" shown in status message.
+   3. Test case: `filterp ` <br>
+      Expected: No changes in GUI. Error details shown in status message.
+   4. Other incorrect filter persons commands to try: `filterp tag/`)<br>
+      Expected: Similar to previous.
+
+2. There are no persons in OfficeConnect with the specified tag.
+   1. Prerequisites: Only one tag can be specified.
+   2. Test case: `filterp tag/Logistics` <br>
+      Expected: No persons are displayed. "There are no persons with the tag: [tag]" shown in status message.
+   3. Test case: `filterp ` <br>
+      Expected: No changes in GUI. Error details shown in status message.
+   4. Other incorrect filter persons commands to try: `filterp tag/`)<br>
+      Expected: Similar to previous.
+
