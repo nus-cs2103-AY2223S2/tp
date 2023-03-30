@@ -7,6 +7,9 @@ import java.util.Objects;
 
 import trackr.model.ModelEnum;
 import trackr.model.item.Item;
+import trackr.model.menu.ItemPrice;
+import trackr.model.menu.MenuItem;
+import trackr.model.order.OrderUtil;
 import trackr.model.person.Customer;
 
 /**
@@ -15,24 +18,30 @@ import trackr.model.person.Customer;
  */
 public class Order extends Item {
 
-    //Data fields
+    // Data fields
     private final OrderName orderName;
     private final OrderDeadline orderDeadline;
     private final OrderStatus orderStatus;
     private final OrderQuantity orderQuantity;
     private final LocalDateTime timeAdded;
 
-    //Customer
+    // Customer
     private final Customer customer;
+
+    // MenuItem
+    private final MenuItem orderItem;
 
     /**
      * Every field must be present and not null
      */
-    public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
+    public Order(MenuItem orderItem, OrderDeadline orderDeadline, OrderStatus orderStatus,
                  OrderQuantity orderQuantity, Customer customer) {
         super(ModelEnum.ORDER);
-        requireAllNonNull(orderName, orderDeadline, orderQuantity, orderStatus, customer);
-        this.orderName = orderName;
+        requireAllNonNull(orderItem, orderDeadline, orderQuantity, orderStatus, customer);
+        this.orderItem = orderItem;
+        this.orderName = new OrderName(orderItem
+                                            .getItemName()
+                                            .toString());
         this.orderDeadline = orderDeadline;
         this.orderStatus = orderStatus;
         this.orderQuantity = orderQuantity;
@@ -43,11 +52,14 @@ public class Order extends Item {
     /**
      * Every field must be present and not null
      */
-    public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
+    public Order(MenuItem orderItem, OrderDeadline orderDeadline, OrderStatus orderStatus,
                  OrderQuantity orderQuantity, Customer customer, LocalDateTime timeAdded) {
         super(ModelEnum.ORDER);
-        requireAllNonNull(orderName, orderDeadline, orderStatus, customer);
-        this.orderName = orderName;
+        requireAllNonNull(orderItem, orderDeadline, orderStatus, customer);
+        this.orderItem = orderItem;
+        this.orderName = new OrderName(orderItem
+                                            .getItemName()
+                                            .toString());
         this.orderDeadline = orderDeadline;
         this.orderStatus = orderStatus;
         this.orderQuantity = orderQuantity;
@@ -72,13 +84,27 @@ public class Order extends Item {
         return orderQuantity;
     }
 
+
     public Customer getCustomer() {
         return customer;
     }
+
     public LocalDateTime getTimeAdded() {
         return timeAdded;
     }
 
+    public ItemPrice getTotalProfit() {
+        return OrderUtil.getTotalProfit(orderQuantity, orderItem);
+    }
+
+    public ItemPrice getTotalCost() {
+        return OrderUtil.getTotalCost(orderQuantity, orderItem);
+    }
+
+    public ItemPrice getTotalRevenue() {
+        return OrderUtil.getTotalRevenue(orderQuantity, orderItem);
+    }
+ 
     /**
      * Compares 2 tasks using their time added.
      * @param otherOrder The order to compare with.
@@ -210,5 +236,4 @@ public class Order extends Item {
                 .append(getCustomer());
         return builder.toString();
     }
-
 }

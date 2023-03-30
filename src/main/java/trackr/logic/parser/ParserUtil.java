@@ -16,7 +16,7 @@ import trackr.model.commons.Name;
 import trackr.model.commons.Tag;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
-import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
@@ -229,13 +229,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code itemName} is invalid.
      */
-    public static ItemPrice parseItemPrice(String itemPrice) throws ParseException {
+    public static ItemSellingPrice parseItemPrice(String itemPrice) throws ParseException {
         requireNonNull(itemPrice);
         String trimmedItemPrice = itemPrice.trim();
-        if (!ItemPrice.isValidPrice(trimmedItemPrice)) {
-            throw new ParseException(ItemPrice.MESSAGE_CONSTRAINTS);
+        if (!ItemSellingPrice.isValidPrice(trimmedItemPrice)) {
+            throw new ParseException(ItemSellingPrice.MESSAGE_CONSTRAINTS);
         }
-        return new ItemPrice(trimmedItemPrice);
+        return new ItemSellingPrice(trimmedItemPrice);
     }
 
     /**

@@ -10,7 +10,7 @@ import trackr.model.item.ItemDescriptor;
  */
 public class MenuItemDescriptor implements ItemDescriptor<MenuItem> {
     private ItemName itemName;
-    private ItemPrice itemPrice;
+    private ItemSellingPrice itemPrice;
     private ItemCost itemCost;
     private ItemProfit itemProfit;
 
@@ -41,11 +41,11 @@ public class MenuItemDescriptor implements ItemDescriptor<MenuItem> {
         return Optional.ofNullable(itemName);
     }
 
-    public void setItemPrice(ItemPrice itemPrice) {
+    public void setItemPrice(ItemSellingPrice itemPrice) {
         this.itemPrice = itemPrice;
     }
 
-    public Optional<ItemPrice> getItemPrice() {
+    public Optional<ItemSellingPrice> getItemPrice() {
         return Optional.ofNullable(itemPrice);
     }
 

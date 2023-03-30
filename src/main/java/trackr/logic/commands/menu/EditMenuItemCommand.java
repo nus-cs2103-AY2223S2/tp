@@ -10,7 +10,7 @@ import trackr.model.ModelEnum;
 import trackr.model.item.ItemDescriptor;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
-import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 import trackr.model.menu.MenuItemDescriptor;
 
@@ -50,7 +50,7 @@ public class EditMenuItemCommand extends EditItemCommand<MenuItem> {
 
         ItemName updatedItemName =
                 menuItemDescriptor.getItemName().orElse(itemToEdit.getItemName());
-        ItemPrice updatedItemPrice =
+        ItemSellingPrice updatedItemPrice =
                 menuItemDescriptor.getItemPrice().orElse(itemToEdit.getItemPrice());
         ItemCost updatedItemCost =
                 menuItemDescriptor.getItemCost().orElse(itemToEdit.getItemCost());

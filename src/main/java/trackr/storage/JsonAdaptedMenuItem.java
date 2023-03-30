@@ -7,7 +7,7 @@ import trackr.commons.exceptions.IllegalValueException;
 import trackr.model.commons.Name;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
-import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 
 /**
@@ -72,12 +72,12 @@ class JsonAdaptedMenuItem {
 
         if (itemPrice == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ItemPrice.class.getSimpleName()));
+                    ItemSellingPrice.class.getSimpleName()));
         }
-        if (!ItemPrice.isValidPrice(itemPrice)) {
-            throw new IllegalValueException(ItemPrice.MESSAGE_CONSTRAINTS);
+        if (!ItemSellingPrice.isValidPrice(itemPrice)) {
+            throw new IllegalValueException(ItemSellingPrice.MESSAGE_CONSTRAINTS);
         }
-        final ItemPrice modelItemPrice = new ItemPrice(itemPrice);
+        final ItemSellingPrice modelItemPrice = new ItemSellingPrice(itemPrice);
 
         return new MenuItem(modelItemName, modelItemPrice, modelItemCost);
     }

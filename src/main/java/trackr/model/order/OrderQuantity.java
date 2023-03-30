@@ -29,6 +29,10 @@ public class OrderQuantity {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public int getOrderQuantity() {
+        return Integer.parseInt(value);
+    }
+
     @Override
     public String toString() {
         return value;

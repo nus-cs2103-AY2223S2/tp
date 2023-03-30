@@ -16,7 +16,7 @@ import trackr.logic.parser.Prefix;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
-import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 
 /**
@@ -41,7 +41,7 @@ public class AddMenuItemCommandParser implements Parser<AddMenuItemCommand> {
         }
 
         ItemName itemName = ParserUtil.parseItemName(argMultimap.getValue(PREFIX_NAME).get());
-        ItemPrice itemPrice = ParserUtil.parseItemPrice(argMultimap.getValue(PREFIX_PRICE).get());
+        ItemSellingPrice itemPrice = ParserUtil.parseItemPrice(argMultimap.getValue(PREFIX_PRICE).get());
         ItemCost itemCost = ParserUtil.parseItemCost(argMultimap.getValue(PREFIX_COST).get());
         MenuItem menuItem = new MenuItem(itemName, itemPrice, itemCost);
 
