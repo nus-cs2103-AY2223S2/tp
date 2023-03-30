@@ -22,7 +22,7 @@ public class DetailCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Detailing patient: %1$s";
+    public static final String MESSAGE_SUCCESS = "Detailing patient: #%04d %s";
     public static final String MESSAGE_FAILURE = "The patient does not exist";
 
     private final Index index;
@@ -45,13 +45,14 @@ public class DetailCommand extends Command {
             throw new CommandException(MESSAGE_FAILURE);
         }
         model.setDetailedPatient(patient);
-        return new CommandMessage(String.format(MESSAGE_SUCCESS, patient));
+        return new CommandMessage(
+                String.format(MESSAGE_SUCCESS, patient.getId() + 1, patient.getValue().getName().fullName));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DetailCommand // instanceof handles nulls
-                && index.equals(((DetailCommand) other).index)); // state check
+                        && index.equals(((DetailCommand) other).index)); // state check
     }
 }
