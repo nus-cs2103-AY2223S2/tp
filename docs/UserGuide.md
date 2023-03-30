@@ -5,7 +5,7 @@ title: User Guide
 
 # Welcome to ConnectUS!
 
-ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing student, this app is for you. With ConnectUS, you can **connect with people** without the stress of remembering who you met where (on top of the stress of a growing assignment backlog — ~~_trust us, we know!_~~) holding you back from socialising.
+ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing (SoC) student, this app is for you. With ConnectUS, you can **easily connect with people** without the anxiety of _remembering who you met where_ holding you back from socialising. 
 
 We're focused on:
 - **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
@@ -678,7 +678,7 @@ Never forget a birthday again! With `upcoming-b`, you can check which of your fr
 
 **Input in Command Box:** `upcoming-b`
 
-**Result:**<br>![UpcomingBirthdayExample](images/johndoe.png)
+**Result:**<br>![UpcomingBirthdayExample](images/UpcomingBirthdayExample.png)
 
 <div style="page-break-after: always"></div>
 
@@ -731,7 +731,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 - [5.9 Tags](#59-tags)
   - [5.9.1 Module Tags: `mod/`](#591-module-tags-mod)
   - [5.9.2 CCA Tags: `cca/`](#592-cca-tags-cca)
-  - [5.9.3 Major Tags: `major`](#593-major-tags-major)
+  - [5.9.3 Major Tags: `major`](#593-major-tags-maj)
   - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
 
 <div style="page-break-after: always"></div>
@@ -862,13 +862,12 @@ There are four kinds of tags in ConnectUS. They are Module Tags, Major Tags, CCA
 * A contact can have any number of CCAs assigned to it.
 
 If you wish to assign a CCA Position to a contact, you can do so with the CCA prefix as well!
-* Format: `cca/CCA#CCA_POSITION`
+* Format: `cca/CCA[#CCA_POSITION]`
 * CCA_POSITION is optional, however if you enter # after CCA you are expected to enter a CCA_NAME.
 * Example: If you have a contact who is the President of the Chess Club, you can use the field `cca/Chess Club#President` to assign that CCA tag to them.
 * Example: If you have a contact who is a member of the Arts Club, but you do not know their position, you can use the field `cca/Arts Club` to assign just CCA.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
-
 
 ### 5.9.3 Major Tags: `maj/`
 >Major tags refer to Majors that you can assign to a contact to keep track of the majors that the contact is taking.
@@ -954,20 +953,20 @@ We are aware that you can assign any kinds of tags to a contact (e.g. using the 
 
 # 8. Prefix Summary
 
-| Information Field | Prefix   | Example                                       |
-|-------------------|----------|-----------------------------------------------|
-| **Address**       | `a/`     | `a/Blk 456, Den Road, #01-355`                |
-| **Birthday**      | `b/`     | `b/01/01/2000`                                |
-| **CCA Tag**       | `cca/`   | `cca/NUS Hackers`, `cca/Chess Club#President` |
-| **Email**         | `e/`     | `e/johndoe@example.com`                       |
-| **Instagram**     | `ig/`    | `ig/john.doe`                                 |
-| **Major Tag**     | `major/` | `major/Computer Engineering`                  |
-| **Module Tag**    | `mod/`   | `mod/CS2103T`                                 |
-| **Name**          | `n/`     | `n/John Doe`                                  |
-| **Phone**         | `p/`     | `p/91234567`                                  |
-| **Remark Tag**    | `r/`     | `r/School of Computing`                       |
-| **Telegram**      | `tg/`    | `tg/johndoe`                                  |
-| **WhatsApp**      | `wa/`    | `wa/91234567`                                 |
+| Information Field | Prefix | Example                                       |
+|-------------------|--------|-----------------------------------------------|
+| **Address**       | `a/`   | `a/Blk 456, Den Road, #01-355`                |
+| **Birthday**      | `b/`   | `b/01/01/2000`                                |
+| **CCA Tag**       | `cca/` | `cca/NUS Hackers`, `cca/Chess Club#President` |
+| **Email**         | `e/`   | `e/johndoe@example.com`                       |
+| **Instagram**     | `ig/`  | `ig/john.doe`                                 |
+| **Major Tag**     | `maj/` | `maj/Computer Engineering`                    |
+| **Module Tag**    | `mod/` | `mod/CS2103T`                                 |
+| **Name**          | `n/`   | `n/John Doe`                                  |
+| **Phone**         | `p/`   | `p/91234567`                                  |
+| **Remark Tag**    | `r/`   | `r/School of Computing`                       |
+| **Telegram**      | `tg/`  | `tg/johndoe`                                  |
+| **WhatsApp**      | `wa/`  | `wa/91234567`                                 |
 
 [↑ Back to top](#table-of-contents)
 
@@ -1015,6 +1014,9 @@ We are aware that you can assign any kinds of tags to a contact (e.g. using the 
 > Short for JavaScript Object Notation. A standard text-based format for representing structured data based on JavaScript object syntax. *Basically, it stores your data.*
 
 ### M
+> **Major:**
+> Majors are the main programmes that students take at the National University of Singapore.
+>
 > **Module:**
 > Modules are courses that students take at the National University of Singapore.
 
