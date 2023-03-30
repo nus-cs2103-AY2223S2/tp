@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -22,7 +23,6 @@ public class DeleteEventCommand extends Command {
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD, "1");
 
     private static final String MESSAGE_SUCCESS = "Deleted event: %1$s";
-    private static final String MESSAGE_INVALID_EVENT = "This event index provided is invalid!";
 
     private final Index targetIndex;
 
@@ -36,7 +36,7 @@ public class DeleteEventCommand extends Command {
         List<Event> lastShownList = model.getEvents();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(MESSAGE_INVALID_EVENT);
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
         Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());

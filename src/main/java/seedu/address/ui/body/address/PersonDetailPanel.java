@@ -25,8 +25,7 @@ public class PersonDetailPanel extends UiPart<Region> {
     private static final String FXML = "body/address/PersonDetailPanel.fxml";
     private static final String INDEX_UNSPECIFIED = "Select a contact";
     private static final String INDEX_SPECIFIED = "Index %d";
-
-    private int displayedIndex;
+    private static final int EMPTY_INDEX = -1;
 
     @FXML
     private ScrollPane scrollContainer;
@@ -68,7 +67,6 @@ public class PersonDetailPanel extends UiPart<Region> {
      * @param index 1-based index of the corresponding {@code Person}.
      */
     public void setDisplayedIndex(int index) {
-        this.displayedIndex = index;
         if (index < 1) {
             id.setText(INDEX_UNSPECIFIED);
         } else {
@@ -77,9 +75,7 @@ public class PersonDetailPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets specified selected person and corresponding index in detail panel
-     * @param person
-     * @param indexOfPerson
+     * Sets specified selected person and corresponding index in detail panel.
      */
     public void setSelectedPerson(Person person, int indexOfPerson) {
         this.setPerson(person);
@@ -90,7 +86,7 @@ public class PersonDetailPanel extends UiPart<Region> {
      * Empties the fields, resulting in a blank {@code PersonDetailPanel}.
      */
     public void clearPerson() {
-        setDisplayedIndex(-1);
+        setDisplayedIndex(EMPTY_INDEX);
 
         name.setText(null);
         tags.getChildren().clear();

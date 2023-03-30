@@ -111,12 +111,14 @@ public class LogicManager implements Logic {
     public ObservableList<Event> getEventList() {
         return model.getEvents();
     }
+
     @Override
     public ReadOnlyObjectProperty<Person> getSelectedPerson() {
         return model.getSelectedPerson();
     }
+
     @Override
-    public void setSelectedPerson(Index index) {
-        model.setSelectedPerson(index);
+    public void setSelectedPerson(Person person) {
+        model.setSelectedPerson(person);
     }
 }

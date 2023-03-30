@@ -66,5 +66,5 @@ public interface Logic {
 
     ReadOnlyObjectProperty<Person> getSelectedPerson();
 
-    void setSelectedPerson(Index index);
+    void setSelectedPerson(Person person);
 }

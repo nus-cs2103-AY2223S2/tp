@@ -98,9 +98,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
-    public ReadOnlyObjectProperty<Person> getSelectedPerson() {
-        return observableSelectedPerson.getReadOnlyProperty();
-    }
     /**
      * Finds the person with given {@code name}.
      */
@@ -115,7 +112,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return this.persons.hasPersonWithName(name);
     }
 
-    //// util methods
+    public ReadOnlyObjectProperty<Person> getSelectedPerson() {
+        return observableSelectedPerson.getReadOnlyProperty();
+    }
 
     public void setSelectedPerson(Person person) {
         observableSelectedPerson.set(person);

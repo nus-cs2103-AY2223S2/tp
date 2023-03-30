@@ -141,9 +141,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setSelectedPerson(Index index) {
-        Person selectedPerson = filteredPersons.get(index.getZeroBased());
-        addressBook.setSelectedPerson(selectedPerson);
+    public void setSelectedPerson(Person person) {
+        addressBook.setSelectedPerson(person);
     }
 
     public Person getPersonWithName(String name) {

@@ -1,6 +1,6 @@
 package seedu.address.ui.body.address;
 
-import javafx.collections.ObservableList;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
@@ -25,38 +25,25 @@ public class AddressPanel extends UiPart<Region> {
 
     /**
      * Creates an {@code AddressPanel}.
-     *
-     * @param personObservableList Observable list of {@code Person}s to display.
      */
-    public AddressPanel(ObservableList<Person> personObservableList, Logic logic, ResultDisplay resultDisplay) {
+    public AddressPanel(Logic logic, ResultDisplay resultDisplay) {
         super(FXML);
         personDetailPanel = new PersonDetailPanel();
         personDetailPanelPlaceholder.getChildren().add(personDetailPanel.getRoot());
-        personListPanel = new PersonListPanel(personObservableList, personDetailPanel, logic, resultDisplay);
+        personListPanel = new PersonListPanel(logic, resultDisplay);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        bindSelectedPerson(logic.getSelectedPerson());
     }
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
 
-    /**
-     * Gets the index to display of specified person
-     * @param person
-     * @return (int) index
-     */
-    public int getIndexOfSelectedPerson(Person person) {
-        return personListPanel.getIndexOfSelectedPerson(person);
+    private void bindSelectedPerson(ReadOnlyObjectProperty<Person> selectedPerson) {
+        selectedPerson.addListener((observable, oldValue, newValue) -> {
+            personListPanel.setSelectedPerson(newValue);
+            personDetailPanel.setSelectedPerson(newValue, personListPanel.getSelectedIndex());
+        });
     }
-
-    /**
-     * Sets selected person's details in person detail panel
-     * @param person
-     */
-    public void setSelectedPerson(Person person) {
-        int indexOfPerson = this.getIndexOfSelectedPerson(person);
-        this.personDetailPanel.setSelectedPerson(person, indexOfPerson);
-        this.personListPanel.bindSelectedIndex(indexOfPerson);
-    }
-
 }
