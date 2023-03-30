@@ -129,10 +129,6 @@ public class Points implements Comparable<Points> {
         return (test >= MAXIMUM_POINTS_SUBTRACT && test <= MAXIMUM_POINTS_ADD);
     }
 
-    public boolean isCumulativeEqualToOrHigher(Points p) {
-        return this.cumulative >= p.cumulative;
-    }
-
     @Override
     public String toString() {
         return value.toString()
