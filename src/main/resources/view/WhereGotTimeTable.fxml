@@ -47,7 +47,6 @@
                   <TableColumn fx:id="time21" prefWidth="75.0" styleClass="table-row-cell:empty" text="21:00" />
                   <TableColumn fx:id="time22" prefWidth="75.0" styleClass="table-row-cell:empty" text="22:00" />
                   <TableColumn fx:id="time23" prefWidth="75.0" styleClass="table-row-cell:empty" text="23:00" />
-                  <TableColumn fx:id="time24" prefWidth="75.0" styleClass="table-row-cell:empty" text="00:00" />
               </columns>
             </TableView>
          </children>

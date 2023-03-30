@@ -256,6 +256,10 @@ public class ModelManager implements Model {
         ObservableList<String> timetable = TimeMask.getTimetable(date.getDayOfWeek(), baseMask);
         System.out.println(timetable);
         filteredTimeSlots = new FilteredList<>(timetable);
+
+        System.out.println(filteredTimeSlots);
+
+        //todo
     }
 
     @Override
