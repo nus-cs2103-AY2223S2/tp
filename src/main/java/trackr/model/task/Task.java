@@ -61,7 +61,7 @@ public class Task extends Item {
     }
 
     /**
-     * Compares 2 tasks using their dates added.
+     * Compares 2 tasks using their time added.
      * @param otherTask The task to compare with.
      * @return -1 if this task was added earlier than the other task.
      *         Returns 1 if this task was added later than the other task

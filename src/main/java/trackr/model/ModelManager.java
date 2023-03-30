@@ -265,7 +265,7 @@ public class ModelManager implements Model {
     }
 
 
-    //=========== AddressBook - Supplier ==============================================================================
+    //=========== SupplierList - Supplier ==============================================================================
 
     @Override
     public ReadOnlySupplierList getSupplierList() {
@@ -329,6 +329,7 @@ public class ModelManager implements Model {
     public ObservableList<MenuItem> getFilteredMenu() {
         return filteredMenuItems;
     }
+
     //=========== OrderList ===================================================================================
 
     @Override
@@ -347,6 +348,15 @@ public class ModelManager implements Model {
         return filteredOrders;
     }
 
+    /**
+     * Update the sorted order list.
+     * @param comparator The comparator used to sort the orders.
+     */
+    @Override
+    public void sortFilteredOrderList(Comparator<Order> comparator) {
+        requireNonNull(comparator);
+        orderList.sortItems(comparator);
+    }
 
     //========================================================================================================
 

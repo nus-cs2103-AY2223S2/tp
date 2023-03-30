@@ -1,80 +1,72 @@
 package trackr.model.order;
 
-import static java.util.Objects.requireNonNull;
-import static trackr.commons.util.AppUtil.checkArgument;
+import java.util.HashMap;
+
+import trackr.model.commons.Status;
 
 /**
  * Represents an Order's status in the order list.
- * Guaruntees: immutable; is valid as declared in {@link #isValidOrderStatus(String)}
+ * Guaruntees: immutable; is valid as declared in {@link #isValidStatus(String, HashMap)}
  */
-public class OrderStatus {
+public class OrderStatus extends Status {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Order status should only be `N` or `n` for Not Delivered, `I` or `i` for In Progress,"
-            + " or `D` or `d` for Delivered";
+    public static final HashMap<String, String> STATUSES;
 
-    /*
-     * The first character of the task status must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "^[nNiIdD]$";
-
-    private String orderStatus;
-
-    /**
-     * Constructs a {@code OrderStatus}.
-     */
-    public OrderStatus() {
-        //Order status defaulted to false
-        orderStatus = "N";
+    static {
+        STATUSES = new HashMap<>();
+        STATUSES.put("N", "Not Delivered");
+        STATUSES.put("I", "In Progress");
+        STATUSES.put("D", "Delivered");
     }
+
     /**
      * Constructs a {@code OrderStatus}.
+     *
+     * @param status A valid status.
      */
     public OrderStatus(String status) {
-        requireNonNull(status);
-        checkArgument(isValidOrderStatus(status), MESSAGE_CONSTRAINTS);
-        if (status.equalsIgnoreCase("D")) {
-            orderStatus = "D";
-        } else if (status.equalsIgnoreCase("I")) {
-            orderStatus = "I";
-        } else if (status.equalsIgnoreCase("N")) {
-            orderStatus = "N";
-        }
+        super(status, "Order", STATUSES);
     }
 
     /**
-     * Returns true if a given string is a valid order status.
+     * Constructs a {@code TaskStatus}.
      */
-    public static boolean isValidOrderStatus(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public OrderStatus() {
+        this("N");
     }
 
-    public String toJsonString() {
-        return orderStatus;
-    }
+    /**
+     * Compares this status to a given status.
+     * @return -1, 1 or 0 according to the status sorting criteria.
+     *         OrderStatus have descending sorting priority in the order: N > I > D.
+     *         Returns -1 this order status has a higher sorting priority,
+     *         1 if this order status has a lower sorting priority,
+     *         0 if both statuses are the same.
+     */
 
     @Override
-    public String toString() {
-        if (orderStatus == "N") {
-            return "Not Delivered";
-        } else if (orderStatus == "I") {
-            return "In Progress";
-        } else {
-            return "Delivered";
+    public int compare(Status other) {
+        if (toJsonString().equalsIgnoreCase(other.toJsonString())) {
+            //both statuses are the same
+            return 0;
         }
-    }
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof OrderStatus // instanceof handles nulls
-                && orderStatus == ((OrderStatus) other).orderStatus); // state check
-    }
+        //this status has a higher sorting priority than the other status
 
-    @Override
-    public int hashCode() {
-        return orderStatus.hashCode();
+        //this status is not done or in progress and the other status is done
+        if (toJsonString().equalsIgnoreCase("N")
+                || toJsonString().equalsIgnoreCase("I")
+                && other.toJsonString().equalsIgnoreCase("D")) {
+            return -1;
+        }
+        //this status is not done and the other is in progress
+        if (toJsonString().equalsIgnoreCase("N")
+                && other.toJsonString().equalsIgnoreCase("I")) {
+            return -1;
+        }
+
+        // this status has a lower sorting priority than the other status
+        return 1;
     }
 
 }

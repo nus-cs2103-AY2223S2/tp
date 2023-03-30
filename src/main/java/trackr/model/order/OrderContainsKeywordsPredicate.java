@@ -60,7 +60,7 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
 
         if (orderNameKeywords != null) {
             return orderNameKeywords.stream()
-                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getOrderName().value, keyword));
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getOrderName().getName(), keyword));
         } else {
             isOrderNameMatch = true;
         }

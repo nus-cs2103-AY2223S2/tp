@@ -32,31 +32,31 @@ public class OrderDeadlineTest {
     }
 
     @Test
-    public void isValidTaskDeadline() {
-        // null task deadline
-        assertThrows(NullPointerException.class, () -> OrderDeadline.isValidOrderDeadline(null));
+    public void isValidOrderDeadline() {
+        // null order deadline
+        assertThrows(NullPointerException.class, () -> OrderDeadline.isValidDeadline(null));
 
-        // invalid task deadline
+        // invalid order deadline
 
         String wrongFormatDate = "2024-01-01";
-        assertFalse(OrderDeadline.isValidOrderDeadline(wrongFormatDate)); //deadline is in the wrong format
+        assertFalse(OrderDeadline.isValidDeadline(wrongFormatDate)); //deadline is in the wrong format
 
         String invalidDate = "35/14/2024";
-        assertFalse(OrderDeadline.isValidOrderDeadline(invalidDate)); //deadline is an invalid date in the calendar
+        assertFalse(OrderDeadline.isValidDeadline(invalidDate)); //deadline is an invalid date in the calendar
 
         String notADate = "Not a Date";
-        assertFalse(OrderDeadline.isValidOrderDeadline(notADate)); // deadline is not a date
+        assertFalse(OrderDeadline.isValidDeadline(notADate)); // deadline is not a date
 
-        // valid task deadline
+        // valid order deadline
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String todayDate = LocalDate.now().format(dtf);
         String tomorrow = LocalDate.now().plusDays(1).format(dtf);
         String futureDate = LocalDate.now().plusMonths(7).plusDays(21).format(dtf);
         String pastDate = LocalDate.now().minusMonths(7).minusDays(10).format(dtf);
-        assertTrue(OrderDeadline.isValidOrderDeadline(todayDate)); // today's date
-        assertTrue(OrderDeadline.isValidOrderDeadline(tomorrow)); // tomorrow's date
-        assertTrue(OrderDeadline.isValidOrderDeadline(futureDate)); // future date
-        assertTrue(OrderDeadline.isValidOrderDeadline(pastDate)); // past date
+        assertTrue(OrderDeadline.isValidDeadline(todayDate)); // today's date
+        assertTrue(OrderDeadline.isValidDeadline(tomorrow)); // tomorrow's date
+        assertTrue(OrderDeadline.isValidDeadline(futureDate)); // future date
+        assertTrue(OrderDeadline.isValidDeadline(pastDate)); // past date
     }
 
     @Test

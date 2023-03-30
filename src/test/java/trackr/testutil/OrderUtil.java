@@ -37,7 +37,7 @@ public class OrderUtil {
      */
     public static String getOrderDetails(Order order) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_ORDERNAME + order.getOrderName().value + " ");
+        sb.append(PREFIX_ORDERNAME + order.getOrderName().getName() + " ");
         sb.append(PREFIX_ORDERQUANTITY + order.getOrderQuantity().value + " ");
         sb.append(PREFIX_DEADLINE + order.getOrderDeadline().toJsonString() + " ");
         sb.append(PREFIX_STATUS + order.getOrderStatus().toJsonString() + " ");
@@ -51,7 +51,7 @@ public class OrderUtil {
     public static String getOrderDescriptorDetails(OrderDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getOrderName()
-                .ifPresent(orderName -> sb.append(PREFIX_ORDERNAME).append(orderName.value).append(" "));
+                .ifPresent(orderName -> sb.append(PREFIX_ORDERNAME).append(orderName.getName()).append(" "));
         descriptor.getOrderDeadline()
                 .ifPresent(orderDeadline -> sb.append(PREFIX_DEADLINE)
                     .append(orderDeadline.toJsonString()).append(" "));
