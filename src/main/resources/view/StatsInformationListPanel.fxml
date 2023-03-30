@@ -9,6 +9,6 @@
         <URL value="@StatsInformationListPanel.css" />
     </stylesheets>
     <children>
-       <ListView fx:id="statsInformationListView" orientation="HORIZONTAL" prefHeight="121.0" prefWidth="614.0" />
+       <ListView fx:id="statsInformationListView" orientation="HORIZONTAL" prefHeight="121.0" prefWidth="614.0" HBox.hgrow="ALWAYS"/>
    </children>
 </HBox>
