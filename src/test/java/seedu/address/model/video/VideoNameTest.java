@@ -37,4 +37,35 @@ public class VideoNameTest {
         assertTrue(VideoName.isValidName("Lorem Ipsum")); // with capital letters
     }
 
+    @Test
+    public void compareTo() {
+        VideoName name = new VideoName("CbA");
+        VideoName otherName = new VideoName("AbC");
+
+        // same case
+        assertTrue(name.compareTo(name) == 0);
+        assertTrue(name.compareTo(otherName) > 0);
+        assertTrue(otherName.compareTo(name) < 0);
+
+        // different case, same order
+        name = new VideoName("abc");
+        otherName = new VideoName("ABC");
+
+        assertTrue(name.compareTo(otherName) == 0);
+
+        // different case, upper case has higher order
+        name = new VideoName("CDE");
+        otherName = new VideoName("abc");
+
+        assertTrue(name.compareTo(otherName) > 0);
+        assertTrue(otherName.compareTo(name) < 0);
+
+        // different case, lower case has higher order
+        name = new VideoName("cde");
+        otherName = new VideoName("ABC");
+
+        assertTrue(name.compareTo(otherName) > 0);
+        assertTrue(otherName.compareTo(name) < 0);
+    }
+
 }

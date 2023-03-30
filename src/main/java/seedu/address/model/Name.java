@@ -7,7 +7,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * Represents a non-blank name of an entity in the tracker.
  * Guarantees: immutable, is valid as declared in {@link #isValidName(String)}.
  */
-public class Name {
+public class Name implements Comparable<Name> {
 
     /*
      * The first character of the name must not be a whitespace,
@@ -36,6 +36,11 @@ public class Name {
         requireAllNonNull(name, validationRegex);
         checkArgument(isValidName(name, validationRegex), constraintsMesssage);
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(Name o) {
+        return name.toLowerCase().compareTo(o.name.toLowerCase());
     }
 
     @Override
