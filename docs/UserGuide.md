@@ -481,7 +481,7 @@ Output:
 [INFO] Deleted Patient: John Der
 ```
 
-#### `clear` - Delete a patient
+#### `clear` - Clear Patients
 
 Deletes all Patients from VMS. It is for users to clear the dummy patients out from VMS
 
