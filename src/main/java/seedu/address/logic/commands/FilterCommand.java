@@ -15,7 +15,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.fields.FieldContainsKeywordsPredicate;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class FilterCommand extends Command {
             + PREFIX_NAME + "John "
             + PREFIX_PHONE + "98765432"
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_ADDRESS + "311, Clementi "
             + PREFIX_SUBJECT + "Math "
             + PREFIX_SCHEDULE + "monday "
             + PREFIX_STARTTIME + "08:30 "
@@ -92,7 +91,7 @@ public class FilterCommand extends Command {
         public String scheduleToFilter;
         public String startTimeToFilter;
         public String endTimeToFilter;
-        public String tagToFilter;
+        public List<String> tagToFilter;
 
         /**
          * FilterTuteeDescription constructor.
@@ -106,7 +105,7 @@ public class FilterCommand extends Command {
             this.scheduleToFilter = "";
             this.startTimeToFilter = "";
             this.endTimeToFilter = "";
-            this.tagToFilter = "";
+            this.tagToFilter = Collections.emptyList();
         }
 
         /**
@@ -184,12 +183,38 @@ public class FilterCommand extends Command {
             return endTimeToFilter;
         }
 
-        public void setTagToFilter(String tag) {
+        public void setTagToFilter(List<String> tag) {
             tagToFilter = tag;
         }
 
-        public String getTagToFilter() {
+        public List<String> getTagToFilter() {
             return tagToFilter;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof FilterTuteeDescription)) {
+                return false;
+            }
+
+            // state check
+            FilterTuteeDescription f = (FilterTuteeDescription) other;
+
+            return getNameToFilter().equals(f.getNameToFilter())
+                    && getPhoneToFilter().equals(f.getPhoneToFilter())
+                    && getEmailToFilter().equals(f.getEmailToFilter())
+                    && getAddressToFilter().equals(f.getAddressToFilter())
+                    && getSubjectToFilter().equals(f.getSubjectToFilter())
+                    && getScheduleToFilter().equals(f.getScheduleToFilter())
+                    && getStartTimeToFilter().equals(f.getStartTimeToFilter())
+                    && getEndTimeToFilter().equals(f.getEndTimeToFilter())
+                    && getTagToFilter().equals(f.getTagToFilter());
         }
     }
 }

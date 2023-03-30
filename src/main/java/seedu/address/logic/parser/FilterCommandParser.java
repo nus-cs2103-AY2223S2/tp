@@ -2,11 +2,18 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterCommand.FilterTuteeDescription;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 import java.util.Arrays;
@@ -67,7 +74,13 @@ public class FilterCommandParser implements Parser<FilterCommand>  {
             filterTuteeDescription.setEndTimeToFilter(argMultimap.getValue(PREFIX_ENDTIME).get());
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            filterTuteeDescription.setTagToFilter(argMultimap.getValue(PREFIX_TAG).get());
+            String trimmedArgs = argMultimap.getValue(PREFIX_TAG).get().trim();
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            }
+            String[] tagKeywords = trimmedArgs.split("\\s+");
+            filterTuteeDescription.setTagToFilter(Arrays.asList(tagKeywords));
         }
 
         if (filterTuteeDescription.isAllFieldEmpty()) {
