@@ -8,7 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.module.Module;
-
+import com.vdurmont.emoji.EmojiParser;
 /**
  * A UI component that displays information of a {@code Module}.
  */
@@ -57,14 +57,14 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
-        resource.setText("Resource: " + module.getResource().value);
+        resource.setText("Resource" + module.getResource().value);
         address.setText("Venue: " + module.getAddress().value);
         timeSlot.setText("Time: " + module.getTimeSlot().toString());
         remark.setText("Remark: " + module.getRemark().value);
         module.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        deadline.setText("Deadline: " + module.getDeadline().toString());
+        deadline.setText("Deadline: " + module.getDeadline().displayInUI());
         teacher.setText("Teacher: " + module.getTeacher().value);
     }
 
