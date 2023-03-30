@@ -42,11 +42,9 @@ public class HelpWindow extends UiPart<Stage> {
             + "    defl   -   Delete employee from leave\n"
             + "    leol   -   List employees on leave\n"
             + "    llbe   -   List leaves taken by employee\n"
-            + "    llve   -   List leaves\n";
-
+            + "    llve   -   List leaves\n\n";
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "For more information, refer to the user guide: " + USERGUIDE_URL
-            + "\n\n" + COMMAND_LIST;
+    public static final String HELP_MESSAGE = COMMAND_LIST + "For more information, refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";

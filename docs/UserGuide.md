@@ -70,7 +70,7 @@ You will see several types of boxes in the UG:
 
 ## 6.1. Layout
 
-![Screenshot of SudoHR app](images/Ui.png "SudoHR main page")
+[//]: # (![Screenshot of SudoHR app]&#40;images/Ui.png "SudoHR main page"&#41;)
 
 [//]: # (<-- Insert labelled UI here -->)
 Our app interface consists of 5 main components:
