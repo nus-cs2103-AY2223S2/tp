@@ -1,12 +1,11 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Comparator;
 import java.util.Set;
-import java.util.concurrent.Flow;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -18,7 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;

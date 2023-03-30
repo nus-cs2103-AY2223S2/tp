@@ -1,7 +1,5 @@
 package seedu.address.model.documents;
 
-import seedu.address.model.person.InternshipApplicationAttribute;
-
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -10,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import seedu.address.model.person.InternshipApplicationAttribute;
 
 /**
  * Represents a link to a resume in the internship application.
