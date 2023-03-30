@@ -26,6 +26,7 @@ public class RecurringExpenseList {
 
     }
 
+
     /**
      * Removes a recurring expense from the internal list of recurring expenses.
      * @param recurringExpense Recurring expense to remove.

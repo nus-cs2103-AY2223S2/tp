@@ -172,6 +172,13 @@ public interface Model {
     ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators();
 
     /**
+     * Updates the filter of the filtered recurring expense manager list to filter by the given
+     * {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate);
+
+    /**
      * Deletes the target {@code RecurringExpense} from the recurring expense list.
      * @param recurringExpenseManager the recurring expense to be deleted.
      */

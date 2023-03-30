@@ -231,6 +231,9 @@ public class ModelManager implements Model {
         expenseTracker.setBudget(budget);
     }
 
+    // =========== Recurring Expense Manager List Accessors
+    // =============================================================
+
     @Override
     public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
         return expenseTracker.hasRecurringExpense(recurringExpenseManager);
@@ -244,6 +247,12 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
         return expenseTracker.getRecurringExpenseGenerators();
+    }
+
+    @Override
+    public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
+        requireNonNull(predicate);
+        filteredRecurringExpense.setPredicate(predicate);
     }
 
     @Override

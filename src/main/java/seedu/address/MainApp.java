@@ -89,10 +89,6 @@ public class MainApp extends Application {
             }
             // TODO update sample data
             initialData = expenseTrackerOptional.orElseGet(SampleExpenseTracker::getSampleExpenseTracker);
-            // initialData =
-            // addressBookOptional.orElseGet(SampleDataUtil::getSampleCategoryData);
-            // initialData =
-            // addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ExpenseTracker");
             initialData = new ExpenseTracker();

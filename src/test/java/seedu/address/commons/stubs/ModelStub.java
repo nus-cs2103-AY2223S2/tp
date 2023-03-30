@@ -23,6 +23,7 @@ import seedu.address.model.expense.RecurringExpenseManager;
 public class ModelStub implements Model {
     private ObservableList<Category> categories = FXCollections.observableArrayList();
     private ObservableList<Expense> expenses = FXCollections.observableArrayList();
+    private ObservableList<RecurringExpenseManager> recurringGenerators = FXCollections.observableArrayList();
 
     @Override
     public void addCategory(Category toAdd) {
@@ -165,7 +166,7 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    @Override
+
     public boolean hasRecurringExpense(RecurringExpenseManager recurringExpenseManager) {
         throw new AssertionError("This method should not be called.");
     }
@@ -177,6 +178,11 @@ public class ModelStub implements Model {
 
     @Override
     public ObservableList<RecurringExpenseManager> getRecurringExpenseGenerators() {
+        return recurringGenerators;
+    }
+
+    @Override
+    public void updateFilteredRecurringGenerators(Predicate<RecurringExpenseManager> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 

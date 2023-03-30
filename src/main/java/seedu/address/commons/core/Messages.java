@@ -21,6 +21,10 @@ public class Messages {
             + "the category name or the category's summary.";
     public static final String MESSAGE_SUCCESSFULLY_EDITED_CATEGORY = "Edited category: %1$s";
     public static final String MESSAGE_SUCCESSFULLY_EDITED_EXPENSE = "Edited expense: %1$s";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_SUCCESSFULLY_EDITED_RECURRING = "Edited recurring expense generator: %1$s";
+    public static final String MESSAGE_INVALID_ENUM_FOR_FREQUENCY = "The frequency provided is invalid!"
+            + "Please choose from the following: daily, weekly, monthly or yearly.";
+
+
 
 }
