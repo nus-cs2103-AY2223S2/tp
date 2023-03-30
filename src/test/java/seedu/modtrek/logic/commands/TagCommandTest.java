@@ -152,7 +152,7 @@ class TagCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ViewCommand(false)));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new TagCommand(ST2334.getCode(), true, tagToAdd)));

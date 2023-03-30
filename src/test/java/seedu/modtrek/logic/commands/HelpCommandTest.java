@@ -48,10 +48,10 @@ public class HelpCommandTest {
     }
 
     @Test
-    public void execute_helpList_success() {
-        CommandResult expectedCommandResult = new CommandResult(ListCommand.MESSAGE_USAGE,
+    public void execute_helpView_success() {
+        CommandResult expectedCommandResult = new CommandResult(ViewCommand.MESSAGE_USAGE,
                 false, false, false, false);
-        assertCommandSuccess(new HelpCommand(ListCommand.MESSAGE_USAGE), model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(new HelpCommand(ViewCommand.MESSAGE_USAGE), model, expectedCommandResult, expectedModel);
     }
 
     @Test

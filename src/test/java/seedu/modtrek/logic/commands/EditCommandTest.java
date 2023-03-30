@@ -146,7 +146,7 @@ class EditCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertFalse(standardCommand.equals(new ViewCommand(false)));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new EditCommand(ST2334.getCode(), DESC_CS1101S)));

@@ -21,7 +21,7 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.modtrek.commons.core.Messages;
 import seedu.modtrek.logic.commands.AddCommand;
 import seedu.modtrek.logic.commands.CommandResult;
-import seedu.modtrek.logic.commands.ListCommand;
+import seedu.modtrek.logic.commands.ViewCommand;
 import seedu.modtrek.logic.commands.exceptions.CommandException;
 import seedu.modtrek.logic.parser.exceptions.ParseException;
 import seedu.modtrek.model.Model;
@@ -79,8 +79,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String viewModulesCommand = ViewCommand.COMMAND_WORD + " modules";
+        assertCommandSuccess(viewModulesCommand, ViewCommand.MESSAGE_MODULES_SUCCESS, model);
     }
 
     @Test
