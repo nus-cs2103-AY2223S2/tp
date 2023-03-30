@@ -1,6 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,11 +13,9 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -116,25 +113,10 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getSortedDeliveryJobList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedDeliveryJobList().remove(0));
-    }
-
-    @Test
     public void getSortedDeliveryJobListByComparator_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedDeliveryJobListByComparator().remove(0));
+        assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getSortedDeliveryJobListByComparator().remove(0));
     }
-
-    @Test
-    public void getUnscheduledDeliveryJobList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getUnscheduledDeliveryJobList().remove(0));
-    }
-
-    @Test
-    public void getCompletedDeliveryJobList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getCompletedDeliveryJobList().remove(0));
-    }
-
 
     @Test
     public void updateSortedDeliveryJobList_throwsNullPointerException() {

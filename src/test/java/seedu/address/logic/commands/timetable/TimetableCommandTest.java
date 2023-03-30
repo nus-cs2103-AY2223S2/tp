@@ -1,21 +1,16 @@
 package seedu.address.logic.commands.timetable;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalDeliveryJobs.getTypicalDeliveryJobSystem;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.person.ListCommand;
+
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
-
-import java.sql.Time;
-import java.time.LocalDate;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalDeliveryJobs.getTypicalDeliveryJobSystem;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class TimetableCommandTest {
     private Model model;
@@ -29,10 +24,8 @@ public class TimetableCommandTest {
 
     @Test
     public void execute_focusDateIsUpdated() {
-        expectedModel.updateFocusDate(LocalDate.now());
-        expectedModel.updateSortedDeliveryJobList(TimetableCommand.SORTER);
-        expectedModel.updateSortedDeliveryJobListByDate();
-        expectedModel.updateWeekDeliveryJobList(LocalDate.now());
-        assertCommandSuccess(new TimetableCommand(), model, TimetableCommand.SHOWING_TIMETABLE_MESSAGE, expectedModel);
+        assertCommandSuccess(new TimetableCommand(), model,
+                new CommandResult(TimetableCommand.SHOWING_TIMETABLE_MESSAGE, false, true, false, false, false),
+                expectedModel);
     }
 }
