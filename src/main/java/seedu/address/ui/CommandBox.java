@@ -8,7 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.CommandSuggestor;
+import seedu.address.logic.commands.AutocompleteEngine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -21,7 +21,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
-    private final CommandSuggestor commandSuggestor;
+    private final AutocompleteEngine autocompleteEngine;
 
     @FXML
     private TextField commandTextField;
@@ -47,7 +47,7 @@ public class CommandBox extends UiPart<Region> {
         commandSuggestionTextField.setEditable(false);
         commandSuggestionTextField.setFocusTraversable(false);
         commandSuggestionTextField.setMouseTransparent(true);
-        commandSuggestor = new CommandSuggestor();
+        autocompleteEngine = new AutocompleteEngine();
         //@@author
     }
 
@@ -113,7 +113,7 @@ public class CommandBox extends UiPart<Region> {
         }
         String userInput = commandTextField.getText();
         String commandSuggestion = commandSuggestionTextField.getText();
-        String autocompletedCommand = commandSuggestor.autocompleteCommand(userInput, commandSuggestion);
+        String autocompletedCommand = autocompleteEngine.autocompleteCommand(userInput, commandSuggestion);
         if (!autocompletedCommand.isEmpty()) {
             commandTextField.setText(autocompletedCommand);
             commandTextField.end();
@@ -131,7 +131,7 @@ public class CommandBox extends UiPart<Region> {
             return;
         }
         try {
-            commandSuggestionTextField.setText(commandSuggestor.suggestCommand(commandText));
+            commandSuggestionTextField.setText(autocompleteEngine.suggestCommand(commandText));
             commandSuggestionTextField.positionCaret(commandTextField.getText().length());
         } catch (CommandException e) {
             commandSuggestionTextField.setText(commandText);

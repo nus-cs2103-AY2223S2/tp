@@ -24,7 +24,7 @@ import seedu.address.logic.parser.Prefix;
 /**
  * Suggests and autocompletes command/argument based on the user input.
  */
-public class CommandSuggestor {
+public class AutocompleteEngine {
 
     private static final ArrayList<String> COMMAND_LIST = new ArrayList<>(List.of(
             AddCommand.COMMAND_WORD,
@@ -54,7 +54,7 @@ public class CommandSuggestor {
     /**
      * Constructs a {@code CommandSuggestor} with predefined commands and argument prompts.
      */
-    public CommandSuggestor() {
+    public AutocompleteEngine() {
         // Assert 'commandArgPrefixes' keys contains all the elements of 'commandList'
         assert COMMAND_LIST.stream().allMatch(ARGUMENT_PREFIX_MAP::containsKey);
         // and vice versa.
