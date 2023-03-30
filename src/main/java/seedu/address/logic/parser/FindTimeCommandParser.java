@@ -37,12 +37,11 @@ public class FindTimeCommandParser implements Parser<FindTimeCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTimeCommand.MESSAGE_USAGE), pe);
         }
 
-        // TODO: Change parsing function
-        // TODO: Refactor the following lines, especially date parsing and Optional
+        // TODO: Refactor the following lines, including Optional
         boolean isDateSpecified = argumentMultimap.getValue(PREFIX_STARTDATETIME).isPresent();
         LocalDate date;
         if (isDateSpecified) {
-            date = parseDate(argumentMultimap.getValue(PREFIX_STARTDATETIME).get()).toLocalDate();
+            date = parseDate(argumentMultimap.getValue(PREFIX_STARTDATETIME).get());
         } else {
             date = LocalDate.now();
         }
