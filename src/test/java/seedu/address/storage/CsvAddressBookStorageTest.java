@@ -3,8 +3,11 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.*;
+
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.HOON;
 import static seedu.address.testutil.TypicalPersons.IDA;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -37,12 +40,12 @@ public class CsvAddressBookStorageTest {
     }
 
     @Test
-    public void readAddressBook_TooManyHeaders_throwDataConversionException() {
+    public void readAddressBook_tooManyHeaders_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAddressBook("TooManyHeaders.csv"));
     }
 
     @Test
-    public void readAddressBook_WrongHeaders_throwDataConversionException() {
+    public void readAddressBook_wrongHeaders_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAddressBook("WrongHeaders.csv"));
     }
 
