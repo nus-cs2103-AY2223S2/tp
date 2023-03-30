@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.text.ParseException;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -41,7 +42,11 @@ public class TaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
+                try {
+                    setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }

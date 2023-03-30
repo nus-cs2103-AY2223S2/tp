@@ -28,8 +28,6 @@ public class DeadlineTask extends Task {
         return this.deadlineDate;
     }
 
-
-
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (Before: " + deadlineDate + ")";

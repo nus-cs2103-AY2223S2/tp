@@ -101,10 +101,42 @@
 
 .list-cell:filled:even {
     -fx-background-color: #3c3e3f;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 2px;
 }
 
 .list-cell:filled:odd {
     -fx-background-color: #515658;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 2px;
+}
+
+.label-past-deadline {
+    -fx-background-color: #515658;
+    -fx-border-color: red;
+    -fx-border-width: 4px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 2px;
+}
+
+.label-cell-done {
+    -fx-background-color: #515658;
+    -fx-border-color: #24a924;
+    -fx-border-width: 4px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 2px;
+}
+
+.label-cell-upcoming {
+    -fx-background-color: #515658;
+    -fx-border-color: #ce7113;
+    -fx-border-width: 4px;
+    -fx-border-radius: 10px;
+    -fx-background-insets: 2px;
 }
 
 .list-cell:filled:selected {
