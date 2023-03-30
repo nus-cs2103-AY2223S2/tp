@@ -39,7 +39,7 @@ public class OpeningCard extends UiPart<Region> {
     @FXML
     private Label remark;
     @FXML
-    private FlowPane dates;
+    private FlowPane keydates;
 
     /**
      * Creates a {@code OpeningCode} with the given {@code Opening} and index to display.
@@ -51,8 +51,8 @@ public class OpeningCard extends UiPart<Region> {
         company.setText(opening.getCompany().fullCompany);
         position.setText(opening.getPosition().fullPosition);
         status.setText(opening.getStatus().fullStatus);
-        opening.getDates().stream()
-                .forEach(date -> dates.getChildren().add(new DateCard(date)));
+        opening.getKeydates().stream()
+                .forEach(keydate -> keydates.getChildren().add(new KeydateCard(keydate)));
     }
 
     @Override

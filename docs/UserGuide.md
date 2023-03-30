@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Ultron is a **desktop app for compiling job and internship openings, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you are familiar with the Ultron interface and type fast, it can help you organise your openings in a structured manner.
+Ultron is a **desktop app for compiling job and internship openings, optimized for use via typing **. The application interface provides you both a summary list and a detailed display, with a text input box for commands. If you are familiar with the Ultron interface and type fast, it can help you organise your openings in a quick and structured manner.
 
 - Table of Contents
   {:toc}
@@ -83,6 +83,18 @@ Examples:
 - `edit 1 c/Goggle e/johndoe@example.com` Edits the company and email address of the 1st opening to be `Goggle` and `johndoe@example.com` respectively.
 - `edit 2 c/Shopee d/` Edits the company of the 2nd opening to be `Shopee` and clears all existing `KEYDATE`.
 
+# List upcoming dates : `upcoming`
+
+Lists openings which has events in the next N days.
+
+Format: `upcoming N`
+
+* Lists all openings which has events in the next N days.
+* N **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `upcoming 1` lists all openings with events happening in the next 1 day.
+
 ### Filtering openings by company or position: `find`
 
 Finds openings whose COMPANY or POSITION contain any of the given keywords.
@@ -158,8 +170,6 @@ Format: `clear`
 * This command allows you to delete all openings from the list in a single command
 * Useful when you want to start a fresh new list!
 
-
-
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -170,12 +180,6 @@ Format: `exit`
 
 Ultron data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
----
-
 ## FAQ
 
 _Details coming soon ..._
@@ -184,10 +188,11 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                   |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Add**    | `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​` <br> e.g., `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@2023-03-14` |
-| **Edit**   | `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​` <br> e.g., `edit 1 c/Goggle e/johndoe@example.com`                                        |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
-| **Status** | `status s/STATUS`<br> e.g., `status s/interviewing`                                                                                                                |
-| **List**   | `list`                                                                                                                                                             |
+| Action       | Format, Examples                                                                                                                                                   |
+|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add p/POSITION c/COMPANY e/EMAIL s/STATUS [d/KEYDATE]…​` <br> e.g., `add p/Software Engineer c/Google e/chinese@google.com s/interviewing d/Interview@2023-03-14` |
+| **Edit**     | `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​` <br> e.g., `edit 1 c/Goggle e/johndoe@example.com`                                        |
+| **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
+| **Status**   | `status s/STATUS`<br> e.g., `status s/interviewing`                                                                                                                |
+| **List**     | `list`                                                                                                                                                             |
+| **Upcoming** | `upcoming DAYS`<br/> e.g, `upcoming 1`                                                                                                                              |   

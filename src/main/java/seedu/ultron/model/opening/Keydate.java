@@ -3,38 +3,39 @@ package seedu.ultron.model.opening;
 import static java.util.Objects.requireNonNull;
 import static seedu.ultron.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.LocalDate;
 import java.util.Objects;
 
 /**
  * Represents an Opening's date in the address book.
  */
-public class Date implements Comparable<Date> {
+public class Keydate implements Comparable<Keydate> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should only be in the format yyyy-MM-dd e.g. 2023-01-01";
+            "Keys should not be blank or only contain whitespaces. Keys and dates should be directly connected by '@'."
+                    + " Dates should only be in the format yyyy-MM-dd e.g. Interview@2023-01-01";
 
     public final String fullDate;
-    public final String fullName;
+    public final String fullKey;
 
     /**
      * Constructs a {@code Date}.
      *
      * @param date A valid date.
      */
-    public Date(String name, String date) {
+    public Keydate(String name, String date) {
         requireNonNull(date);
         requireNonNull(name);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidKeydate(date), MESSAGE_CONSTRAINTS);
         fullDate = date;
-        fullName = name;
+        fullKey = name;
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
-    public static boolean isValidDate(String test) {
+    public static boolean isValidKeydate(String test) {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
             LocalDate.parse(test, dateFormat);
@@ -47,7 +48,7 @@ public class Date implements Comparable<Date> {
     /**
      * Returns true if the date is in the past.
      */
-    public boolean isPastDate() {
+    public boolean isPastKeydate() {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
             LocalDate date = LocalDate.parse(fullDate, dateFormat);
@@ -63,24 +64,24 @@ public class Date implements Comparable<Date> {
 
     @Override
     public String toString() {
-        return fullName + ": " + fullDate;
+        return fullKey + ": " + fullDate;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Date // instanceof handles nulls
-                && fullName.equals(((Date) other).fullName)
-                && fullDate.equals(((Date) other).fullDate)); // state check
+                || (other instanceof Keydate // instanceof handles nulls
+                && fullKey.equals(((Keydate) other).fullKey)
+                && fullDate.equals(((Keydate) other).fullDate)); // state check
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fullName, fullDate);
+        return Objects.hash(fullKey, fullDate);
     }
 
     @Override
-    public int compareTo(Date other) {
+    public int compareTo(Keydate other) {
         if (other == null) {
             return 1;
         } else {

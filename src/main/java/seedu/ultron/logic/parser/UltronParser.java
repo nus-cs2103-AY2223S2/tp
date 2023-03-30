@@ -7,8 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.ultron.logic.commands.AddCommand;
-import seedu.ultron.logic.commands.ClearCommand;
 import seedu.ultron.logic.commands.Command;
+import seedu.ultron.logic.commands.ClearCommand;
 import seedu.ultron.logic.commands.DeleteCommand;
 import seedu.ultron.logic.commands.EditCommand;
 import seedu.ultron.logic.commands.ExitCommand;
@@ -16,11 +16,13 @@ import seedu.ultron.logic.commands.FindCommand;
 import seedu.ultron.logic.commands.HelpCommand;
 import seedu.ultron.logic.commands.ListCommand;
 import seedu.ultron.logic.commands.RemarkCommand;
+import seedu.ultron.logic.commands.UpcomingCommand;
 import seedu.ultron.logic.commands.ShowCommand;
 import seedu.ultron.logic.commands.StatusCommand;
 import seedu.ultron.logic.commands.SortCommand;
 
 import seedu.ultron.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses user input.
@@ -48,6 +50,9 @@ public class UltronParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
+
+        case UpcomingCommand.COMMAND_WORD:
+                return new UpcomingCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
