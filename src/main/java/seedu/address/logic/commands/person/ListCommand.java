@@ -12,8 +12,8 @@ import seedu.address.model.Model;
  */
 public class ListCommand extends PersonCommand {
 
+    public static final CommandGroup COMMAND_GROUP = CommandGroup.GENERAL;
     public static final String COMMAND_WORD = "list";
-
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
 
@@ -22,10 +22,5 @@ public class ListCommand extends PersonCommand {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS, false, false, false, false, false, false, true, false, false);
-    }
-
-    @Override
-    public CommandGroup getGroup() {
-        return CommandGroup.GENERAL;
     }
 }

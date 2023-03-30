@@ -12,6 +12,8 @@ import seedu.address.model.Model;
  */
 public abstract class Command {
 
+    public static final CommandGroup COMMAND_GROUP = CommandGroup.GENERAL;
+
     /**
      * Executes the command and returns the result message.
      *
@@ -20,13 +22,4 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model) throws CommandException, ParseException, FileNotFoundException;
-
-    /**
-     * Returns the group of command.
-     *
-     * @return CommandGroup
-     */
-    public CommandGroup getGroup() {
-        return CommandGroup.GENERAL;
-    }
 }

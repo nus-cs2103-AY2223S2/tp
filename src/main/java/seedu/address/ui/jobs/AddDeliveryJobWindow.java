@@ -109,7 +109,6 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         String text = change.getText();
         String fullText = inputEarning.getText();
         if (text.equals(".") && fullText.split("\\d+").length < 2) {
-            System.out.println("length: " + fullText.split("\\d+").length);
             return change;
         }
         if (text.isEmpty() || text.matches(Earning.VALIDATION_REGEX) || text.matches(Earning.VALIDATION_REGEX_DECI)) {
@@ -351,7 +350,10 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
 
     @FXML
     private void handleExit() {
-        primaryStage.hide();
+        if (addressBookWindow != null) {
+            addressBookWindow.getRoot().close();;
+        }
+        getRoot().close();
     }
 
     private boolean validateFields() {
@@ -471,7 +473,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
      * Hides the stats window.
      */
     public void hide() {
-        getRoot().hide();
+        handleExit();
     }
 
     /**

@@ -79,7 +79,29 @@ public class DeliveryJob {
             Optional<DeliverySlot> deliverySlot,
             Optional<Earning> earning,
             Boolean isDelivered, String description) {
-        requireAllNonNull(jobId, recipient, sender, deliveryDate, deliverySlot, earning, isDelivered, description);
+        this(true, jobId, recipient, sender, deliveryDate,
+                deliverySlot, earning, isDelivered,
+                description);
+    }
+
+    /**
+     * A special constructor to bypass null check.
+     *
+     * @param jobId
+     * @param recipient
+     * @param deliverySlot
+     * @param sender
+     * @param earning
+     * @param isDelivered
+     */
+    public DeliveryJob(boolean checkNull, String jobId, String recipient, String sender,
+            Optional<DeliveryDate> deliveryDate,
+            Optional<DeliverySlot> deliverySlot,
+            Optional<Earning> earning,
+            Boolean isDelivered, String description) {
+        if (checkNull) {
+            requireAllNonNull(jobId, recipient, sender, deliveryDate, deliverySlot, earning, isDelivered, description);
+        }
         this.jobId = jobId;
         this.recipient = recipient;
         this.sender = sender;
@@ -260,7 +282,7 @@ public class DeliveryJob {
                         getRecipientId(),
                         getSenderId(),
                         getDeliveryDate().isPresent() ? getDeliveryDate().get() : "",
-                        getDeliverySlot().isPresent() ? getDeliverySlot().get() : "",
+                        getDeliverySlot().isPresent() ? getDeliverySlot().get().getDescription() : "",
                         getEarning().isPresent() ? getEarning().get() : "",
                         getDeliveredStatus() ? "Delivered" : "Pending"));
 
@@ -401,6 +423,15 @@ public class DeliveryJob {
          */
         public DeliveryJob build() {
             return new DeliveryJob(jobId, recipient, sender,
+                    deliveryDate,
+                    deliverySlot, earning, isDelivered, description);
+        }
+
+        /**
+         * Builds DeliveryJob.
+         */
+        public DeliveryJob buildNullable() {
+            return new DeliveryJob(false, jobId, recipient, sender,
                     deliveryDate,
                     deliverySlot, earning, isDelivered, description);
         }
