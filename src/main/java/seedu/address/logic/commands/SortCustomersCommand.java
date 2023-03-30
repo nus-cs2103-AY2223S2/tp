@@ -12,9 +12,9 @@ import seedu.address.model.entity.person.Customer;
 /**
  * Manages Sorting of customers
  */
-public class SortCustomersCommand extends Command{
+public class SortCustomersCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "sortcustomers";
-    public static final String MESSAGE_SUCCESS = "Sorted customers by ";
+    public static final String MESSAGE_SUCCESS = "Sorted customers";
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Sorts customers by attribute. "
         + "Parameters: "
         + PREFIX_SORT_BY + "[id | name | email | phone | address] "
@@ -34,7 +34,7 @@ public class SortCustomersCommand extends Command{
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult executeUndoableCommand(Model model) throws CommandException {
         model.updateCustomerComparator(cmp);
         return new CommandResult(MESSAGE_SUCCESS, Tab.CUSTOMERS);
     }

@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
+import java.util.SortedSet;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -36,17 +37,15 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Customer> filteredCustomers;
+    private final SortedList<Customer> sortedFilteredCustomers;
     private final FilteredList<Technician> filteredTechnicians;
+    private final SortedList<Technician> sortedFilteredTechnicians;
     private final FilteredList<Service> filteredServices;
+    private final SortedList<Service> sortedFilteredServices;
     private final FilteredList<Vehicle> filteredVehicles;
+    private final SortedList<Vehicle> sortedFilteredVehicles;
     private final FilteredList<Appointment> filteredAppointments;
-
-    // Comparators for sorting
-    private Comparator<Customer> customerComparator = null;
-    private Comparator<Vehicle> vehicleComparator = null;
-    private Comparator<Service> serviceComparator = null;
-    private Comparator<Appointment> appointmentComparator = null;
-    private Comparator<Technician> technicianComparator = null;
+    private final SortedList<Appointment> sortedFilteredAppointments;
 
     private final PartMap partMap;
     private final Shop shop;
@@ -74,11 +73,22 @@ public class ModelManager implements Model {
 
 
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
         filteredCustomers = new FilteredList<>(this.shop.getCustomerList());
+        this.sortedFilteredCustomers = new SortedList<>(this.filteredCustomers);
+
         filteredTechnicians = new FilteredList<>(this.shop.getTechnicianList());
+        this.sortedFilteredTechnicians = new SortedList<>(this.filteredTechnicians);
+
         filteredServices = new FilteredList<>(this.shop.getServiceList());
+        this.sortedFilteredServices = new SortedList<>(this.filteredServices);
+
         filteredVehicles = new FilteredList<>(this.shop.getVehicleList());
+        this.sortedFilteredVehicles = new SortedList<>(this.filteredVehicles);
+
         filteredAppointments = new FilteredList<>(this.shop.getAppointmentList());
+        this.sortedFilteredAppointments = new SortedList<>(this.filteredAppointments);
+
         partMap = this.shop.getPartMap();
         //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
 
@@ -238,7 +248,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Customer> getFilteredCustomerList() {
-        return new SortedList<>(this.filteredCustomers, this.customerComparator);
+        return this.sortedFilteredCustomers;
     }
 
     @Override
@@ -251,7 +261,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Vehicle> getFilteredVehicleList() {
-        return new SortedList<>(this.filteredVehicles, this.vehicleComparator);
+        return this.sortedFilteredVehicles;
     }
 
     /**
@@ -286,7 +296,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Service> getFilteredServiceList() {
-        return new SortedList<>(this.filteredServices, this.serviceComparator);
+        return this.sortedFilteredServices;
     }
 
     /**
@@ -334,7 +344,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
-        return new SortedList<>(this.filteredAppointments, this.appointmentComparator);
+        return this.sortedFilteredAppointments;
     }
 
     // ==== For Part ==
@@ -378,7 +388,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Technician> getFilteredTechnicianList() {
-        return new SortedList<>(this.filteredTechnicians, this.technicianComparator);
+        return this.sortedFilteredTechnicians;
     }
 
     // ==== For Technician ==
@@ -527,27 +537,27 @@ public class ModelManager implements Model {
 
     @Override
     public void updateCustomerComparator(Comparator<? super Customer> cmp) {
-
+        this.sortedFilteredCustomers.setComparator(cmp);
     }
 
     @Override
     public void updateVehicleComparator(Comparator<? super Vehicle> cmp) {
-
+        this.sortedFilteredVehicles.setComparator(cmp);
     }
 
     @Override
     public void updateServiceComparator(Comparator<? super Service> cmp) {
-
+        this.sortedFilteredServices.setComparator(cmp);
     }
 
     @Override
     public void updateAppointmentComparator(Comparator<? super Appointment> cmp) {
-
+        this.sortedFilteredAppointments.setComparator(cmp);
     }
 
     @Override
     public void updateTechnicianComparator(Comparator<? super Technician> cmp) {
-
+        this.sortedFilteredTechnicians.setComparator(cmp);
     }
 
 }

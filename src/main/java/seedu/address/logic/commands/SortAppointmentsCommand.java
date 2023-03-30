@@ -13,7 +13,7 @@ import seedu.address.model.service.appointment.Appointment;
 /**
  * Manages Sorting of appointments
  */
-public class SortAppointmentsCommand extends Command{
+public class SortAppointmentsCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "sortappointments";
     public static final String MESSAGE_SUCCESS = "Sorted appointments";
     public static final String COMMAND_USAGE = COMMAND_WORD + ": Sorts appointments by attribute. "
@@ -35,7 +35,7 @@ public class SortAppointmentsCommand extends Command{
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult executeUndoableCommand(Model model) throws CommandException {
         model.updateAppointmentComparator(cmp);
         return new CommandResult(MESSAGE_SUCCESS, Tab.APPOINTMENTS);
     }

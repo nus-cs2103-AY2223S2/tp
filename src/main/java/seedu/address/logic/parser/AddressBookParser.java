@@ -32,6 +32,7 @@ import seedu.address.logic.commands.ListCustomersCommand;
 import seedu.address.logic.commands.ListServicesCommand;
 import seedu.address.logic.commands.ListVehiclesCommand;
 import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.SortCustomersCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewAppointmentCommand;
 import seedu.address.logic.commands.ViewCustomerCommand;
@@ -101,6 +102,8 @@ public class AddressBookParser {
 
         // AutoM8 commands
 
+        // Add
+
         case AddCustomerCommand.COMMAND_WORD:
             return new AddCustomerCommandParser().parse(arguments);
 
@@ -125,6 +128,8 @@ public class AddressBookParser {
         case AddTechnicianToServiceCommand.COMMAND_WORD:
             return new AddTechnicianToServiceCommandParser().parse(arguments);
 
+        // List
+
         case ListCustomersCommand.COMMAND_WORD:
             return new ListCustomersCommand();
 
@@ -134,6 +139,7 @@ public class AddressBookParser {
         case ListServicesCommand.COMMAND_WORD:
             return new ListServicesCommand();
 
+        // View
 
         case ViewPartCommand.COMMAND_WORD:
             return new ViewPartCommand(arguments.trim());
@@ -153,6 +159,8 @@ public class AddressBookParser {
         case ViewServiceCommand.COMMAND_WORD:
             return new ViewServiceCommandParser().parse(arguments.trim());
 
+        // Delete
+
         case DeleteVehicleCommand.COMMAND_WORD:
             return new DeleteVehicleCommandParser().parse(arguments.trim());
 
@@ -167,6 +175,12 @@ public class AddressBookParser {
 
         case DeleteTechnicianCommand.COMMAND_WORD:
             return new DeleteTechnicianCommandParser().parse(arguments.trim());
+
+        // Sort
+
+        case SortCustomersCommand.COMMAND_WORD:
+            return new SortCustomersCommandParser().parse(arguments);
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -3,46 +3,73 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REVERSE_SORT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddAppointmentCommand;
+import seedu.address.logic.commands.SortCustomersCommand;
 import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.entity.person.Customer;
+import seedu.address.model.entity.person.Name;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Parses input arguments and creates new SortCustomerCommand object
  */
-public class SortCustomersCommandParser implements Parser<AddAppointmentCommand> {
+public class SortCustomersCommandParser implements Parser<SortCustomersCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SortCustomerCommand
-     * and returns an AddAppointmentCommand object for execution.
+     * and returns an SortCustomerCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddAppointmentCommand parse(String args) throws ParseException {
+    public SortCustomersCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CUSTOMER_ID, PREFIX_DATE, PREFIX_TIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_SORT_BY, PREFIX_REVERSE_SORT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CUSTOMER_ID, PREFIX_DATE, PREFIX_TIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_SORT_BY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCustomersCommand.COMMAND_USAGE));
         }
 
-        int customerId = ParserUtil.parseInt(argMultimap.getValue(PREFIX_CUSTOMER_ID).get());
-        LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
-        LocalDateTime dateTime = date.atTime(time);
+        String sortAttribute = argMultimap.getValue(PREFIX_SORT_BY).get();
 
-        Appointment appointment = new Appointment(IdGenerator.generateAppointmentId(), customerId, dateTime);
+        Optional<Comparator<Customer>> cmpOption = generateComparator(sortAttribute);
+        if (cmpOption.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCustomersCommand.COMMAND_USAGE));
+        }
 
-        return new AddAppointmentCommand(appointment);
+        if (arePrefixesPresent(argMultimap, PREFIX_REVERSE_SORT)) {
+            return new SortCustomersCommand(cmpOption.get().reversed());
+        }
+        return new SortCustomersCommand(cmpOption.get());
+    }
+
+    private Optional<Comparator<Customer>> generateComparator(String input) {
+        switch (input) {
+        case "id":
+            return Optional.of(Comparator.comparing(Customer::getId));
+        case "name":
+            return Optional.of(Comparator.comparing(x -> x.getName().toString()));
+        case "email":
+            return Optional.of(Comparator.comparing(x -> x.getEmail().toString()));
+        case "address":
+            return Optional.of(Comparator.comparing(x -> x.getAddress().toString()));
+        case "phone":
+            return Optional.of(Comparator.comparing(x -> x.getPhone().toString()));
+        default:
+            return Optional.empty();
+        }
     }
 
     /**
