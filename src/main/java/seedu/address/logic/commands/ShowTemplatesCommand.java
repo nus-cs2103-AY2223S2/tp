@@ -14,7 +14,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
  */
 public class ShowTemplatesCommand extends Command {
 
-    public static final String COMMAND_WORD = "show templates";
+    public static final String COMMAND_WORD = "show";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
