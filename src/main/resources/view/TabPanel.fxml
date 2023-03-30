@@ -4,11 +4,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<TabPane style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <tabs>
-        <Tab fx:id="homeTab">
+        <Tab fx:id="homeTab" closable="false">
             <content>
-                <StackPane fx:id="homePanelPlaceholder" styleClass="pane-with-border" />
+                <StackPane fx:id="homePanelPlaceholder" alignment="TOP_CENTER" styleClass="pane-with-border" />
             </content>
         </Tab>
         <Tab fx:id="orderTab">

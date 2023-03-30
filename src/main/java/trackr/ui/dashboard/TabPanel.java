@@ -1,4 +1,4 @@
-package trackr.ui;
+package trackr.ui.dashboard;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
@@ -8,6 +8,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import trackr.commons.core.index.Index;
 import trackr.logic.Logic;
+import trackr.ui.UiPart;
+import trackr.ui.listpanels.OrderListPanel;
+import trackr.ui.listpanels.SupplierListPanel;
+import trackr.ui.listpanels.TaskListPanel;
 
 /**
  * The UI component that is responsible for displaying Tab views.
@@ -21,6 +25,7 @@ public class TabPanel extends UiPart<Region> {
     private HomeView homeView;
     private SupplierListPanel contactListPanel;
     private TaskListPanel taskListPanel;
+    private TaskListPanel sortedTaskListPanel;
     private OrderListPanel orderListPanel;
 
     @FXML

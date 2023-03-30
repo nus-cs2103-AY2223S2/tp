@@ -20,6 +20,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.task.FindTaskCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -71,7 +72,7 @@ public class FindTaskCommandTest {
     }
 
     @Test
-    public void execute_zeroTaskNameKeywords_noTaskFound() {
+    public void execute_zeroTaskNameKeywords_noTaskFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
         TaskContainsKeywordsPredicate predicate = preparePredicate(" ", null, null);
         FindTaskCommand command = new FindTaskCommand(predicate);
@@ -81,7 +82,7 @@ public class FindTaskCommandTest {
     }
 
     @Test
-    public void execute_multipleTaskNameKeywords_multipleTasksFound() {
+    public void execute_multipleTaskNameKeywords_multipleTasksFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
         TaskContainsKeywordsPredicate predicate = preparePredicate("Buy Inventory", null, null);
         FindTaskCommand command = new FindTaskCommand(predicate);
@@ -91,7 +92,7 @@ public class FindTaskCommandTest {
     }
 
     @Test
-    public void execute_taskDeadline_noTaskFound() {
+    public void execute_taskDeadline_noTaskFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 0);
         TaskContainsKeywordsPredicate predicate = preparePredicate(null, "12/12/2012", null);
         FindTaskCommand command = new FindTaskCommand(predicate);
@@ -101,7 +102,7 @@ public class FindTaskCommandTest {
     }
 
     @Test
-    public void execute_taskDeadline_multipleTasksFound() {
+    public void execute_taskDeadline_multipleTasksFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
         TaskContainsKeywordsPredicate predicate = preparePredicate(null, "01/01/2024", null);
         FindTaskCommand command = new FindTaskCommand(predicate);
@@ -111,7 +112,7 @@ public class FindTaskCommandTest {
     }
 
     @Test
-    public void execute_taskStatus_oneTaskFound() {
+    public void execute_taskStatus_oneTaskFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0,
                 ModelEnum.TASK.toString().toLowerCase());
         TaskContainsKeywordsPredicate predicate = preparePredicate(null, null, "N");
@@ -124,7 +125,7 @@ public class FindTaskCommandTest {
     }
 
     @Test
-    public void execute_taskStatus_multipleTasksFound() {
+    public void execute_taskStatus_multipleTasksFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_TASKS_LISTED_OVERVIEW, 2);
         TaskContainsKeywordsPredicate predicate = preparePredicate(null, null, "D");
         FindTaskCommand command = new FindTaskCommand(predicate);

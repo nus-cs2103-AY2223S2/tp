@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -288,6 +289,17 @@ public class ModelManager implements Model {
     public ReadOnlyTaskList getTaskList() {
         return taskList;
     }
+
+    /**
+     * Update the sorted task list.
+     * @param comparator The comparator used to sort the tasks.
+     */
+    @Override
+    public void sortFilteredTaskList(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        taskList.sortItems(comparator);
+    }
+
 
     //=========== Filtered Task List Accessors ===============================================================
 

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.supplier.DeleteSupplierCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -33,7 +34,7 @@ public class DeleteSupplierCommandTest {
             getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredList_success() throws ParseException {
         Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
         DeleteSupplierCommand deleteSupplierCommand = new DeleteSupplierCommand(INDEX_FIRST_OBJECT);
 
@@ -57,7 +58,7 @@ public class DeleteSupplierCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_success() throws ParseException {
         showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
 
         Supplier supplierToDelete = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());

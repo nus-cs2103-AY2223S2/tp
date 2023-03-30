@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.task.ListTaskCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -34,7 +35,7 @@ public class ListTaskCommandTest {
     }
 
     @Test
-    public void execute_taskListIsNotFiltered_showsSameList() {
+    public void execute_taskListIsNotFiltered_showsSameList() throws ParseException {
         assertCommandSuccess(new ListTaskCommand(),
                 model,
                 String.format(ListItemCommand.MESSAGE_SUCCESS, ModelEnum.TASK.toString().toLowerCase()),
@@ -42,7 +43,7 @@ public class ListTaskCommandTest {
     }
 
     @Test
-    public void execute_taskListIsFiltered_showsEverything() {
+    public void execute_taskListIsFiltered_showsEverything() throws ParseException {
         showTaskAtIndex(model, INDEX_FIRST_OBJECT);
         assertCommandSuccess(new ListTaskCommand(),
                 model,

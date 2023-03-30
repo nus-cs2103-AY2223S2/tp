@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.supplier.AddSupplierCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -32,7 +33,7 @@ public class AddSupplierCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newSupplier_success() {
+    public void execute_newSupplier_success() throws ParseException {
         Supplier validSupplier = new SupplierBuilder().build();
 
         Model expectedModel = new ModelManager(model.getSupplierList(),

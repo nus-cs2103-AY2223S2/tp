@@ -23,6 +23,7 @@ import trackr.commons.core.Messages;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.supplier.ClearSupplierCommand;
 import trackr.logic.commands.supplier.EditSupplierCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Menu;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
@@ -45,7 +46,7 @@ public class EditSupplierCommandTest {
             getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredList_success() throws ParseException {
         Supplier editedSupplier = new SupplierBuilder().build();
         PersonDescriptor descriptor = new PersonDescriptorBuilder(editedSupplier).build();
         EditSupplierCommand editCommand = new EditSupplierCommand(INDEX_FIRST_OBJECT, descriptor);
@@ -63,7 +64,7 @@ public class EditSupplierCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredList_success() throws ParseException {
         Index indexLastSupplier = Index.fromOneBased(model.getFilteredSupplierList().size());
         Supplier lastSupplier = model.getFilteredSupplierList().get(indexLastSupplier.getZeroBased());
 
@@ -88,7 +89,7 @@ public class EditSupplierCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_success() throws ParseException {
         EditSupplierCommand editCommand = new EditSupplierCommand(INDEX_FIRST_OBJECT, new PersonDescriptor());
         Supplier editedSupplier = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());
 
@@ -104,7 +105,7 @@ public class EditSupplierCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws ParseException {
         showSupplierAtIndex(model, INDEX_FIRST_OBJECT);
 
         Supplier supplierInFilteredList = model.getFilteredSupplierList().get(INDEX_FIRST_OBJECT.getZeroBased());

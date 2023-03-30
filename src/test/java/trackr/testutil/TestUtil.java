@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -169,6 +170,11 @@ public class TestUtil {
 
         @Override
         public ObservableList<MenuItem> getFilteredMenu() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortFilteredTaskList(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 

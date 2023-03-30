@@ -1,5 +1,6 @@
 package trackr.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -82,9 +83,12 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new TaskName("Buy flour"), new TaskDeadline("01/01/2024"), new TaskStatus()),
-            new Task(new TaskName("Sort inventory"), new TaskDeadline("03/03/2024"), new TaskStatus("D")),
-            new Task(new TaskName("Check status of orders"), new TaskDeadline("02/01/2024"), new TaskStatus("N")),
+            new Task(new TaskName("Buy flour"), new TaskDeadline("01/01/2024"),
+                    new TaskStatus(), LocalDateTime.now()),
+            new Task(new TaskName("Sort inventory"), new TaskDeadline("03/03/2024"),
+                    new TaskStatus("D"), LocalDateTime.now().minusDays(2)),
+            new Task(new TaskName("Check status of orders"), new TaskDeadline("02/01/2024"),
+                    new TaskStatus("N"), LocalDateTime.now().minusHours(1)),
         };
     }
 

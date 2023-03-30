@@ -46,6 +46,9 @@ public interface Logic {
      */
     ReadOnlyOrderList getOrderList();
 
+    /** Returns an unmodifiable view of the filtered list of orders */
+    ObservableList<Order> getFilteredOrderList();
+
     /**
      * Returns the TaskList.
      *
@@ -66,8 +69,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of menu items */
     ObservableList<MenuItem> getFilteredMenu();
 
-    /** Returns an unmodifiable view of the filtered list of orders */
-    ObservableList<Order> getFilteredOrderList();
 
     /**
      * Returns the user prefs' trackr file path.

@@ -2,7 +2,7 @@ package trackr.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static trackr.logic.parser.CliSyntax.PREFIX_TAB;
-import static trackr.ui.TabPanel.switchToTab;
+import static trackr.ui.dashboard.TabPanel.switchToTab;
 
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.exceptions.CommandException;

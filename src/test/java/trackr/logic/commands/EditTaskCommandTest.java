@@ -27,6 +27,7 @@ import trackr.commons.core.index.Index;
 import trackr.logic.commands.supplier.ClearSupplierCommand;
 import trackr.logic.commands.task.EditTaskCommand;
 import trackr.model.Menu;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -45,7 +46,7 @@ public class EditTaskCommandTest {
             getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredTaskList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredTaskList_success() throws ParseException {
         Task editedTask = new TaskBuilder().build();
         TaskDescriptor descriptor = new TaskDescriptorBuilder(editedTask).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT, descriptor);
@@ -64,7 +65,7 @@ public class EditTaskCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredTaskList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredTaskList_success() throws ParseException {
         Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
         Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
 
@@ -94,7 +95,7 @@ public class EditTaskCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredTaskList_success() {
+    public void execute_noFieldSpecifiedUnfilteredTaskList_success() throws ParseException {
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_OBJECT, new TaskDescriptor());
         Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());
 
@@ -110,7 +111,7 @@ public class EditTaskCommandTest {
     }
 
     @Test
-    public void execute_filteredTaskList_success() {
+    public void execute_filteredTaskList_success() throws ParseException {
         showTaskAtIndex(model, INDEX_FIRST_OBJECT);
 
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_OBJECT.getZeroBased());

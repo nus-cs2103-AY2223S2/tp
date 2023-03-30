@@ -28,6 +28,7 @@ import trackr.commons.core.index.Index;
 import trackr.logic.commands.order.ClearOrderCommand;
 import trackr.logic.commands.order.EditOrderCommand;
 import trackr.logic.commands.supplier.EditSupplierCommand;
+import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.Model;
 import trackr.model.ModelEnum;
 import trackr.model.ModelManager;
@@ -43,7 +44,7 @@ public class EditOrderCommandTest {
             getTypicalMenu(), getTypicalOrderList(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredOrderList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredOrderList_success() throws ParseException {
         Order editedOrder = new OrderBuilder().build();
         OrderDescriptor descriptor = new OrderDescriptorBuilder(editedOrder).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_OBJECT, descriptor);
@@ -61,7 +62,7 @@ public class EditOrderCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredOrderList_success() {
+    public void execute_someFieldsSpecifiedUnfilteredOrderList_success() throws ParseException {
         Index indexLastOrder = Index.fromOneBased(model.getFilteredOrderList().size());
         Order lastOrder = model.getFilteredOrderList().get(indexLastOrder.getZeroBased());
 
@@ -98,7 +99,7 @@ public class EditOrderCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredOrderList_success() {
+    public void execute_noFieldSpecifiedUnfilteredOrderList_success() throws ParseException {
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST_OBJECT, new OrderDescriptor());
         Order editedOrder = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());
 
@@ -113,7 +114,7 @@ public class EditOrderCommandTest {
     }
 
     @Test
-    public void execute_filteredOrderList_success() {
+    public void execute_filteredOrderList_success() throws ParseException {
         showOrderAtIndex(model, INDEX_FIRST_OBJECT);
 
         Order orderInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST_OBJECT.getZeroBased());

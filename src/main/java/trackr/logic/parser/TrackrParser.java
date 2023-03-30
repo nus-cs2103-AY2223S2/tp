@@ -16,6 +16,7 @@ import trackr.logic.commands.menu.DeleteMenuItemCommand;
 import trackr.logic.commands.menu.EditMenuItemCommand;
 import trackr.logic.commands.menu.FindMenuItemCommand;
 import trackr.logic.commands.menu.ListMenuItemCommand;
+import trackr.logic.commands.UploadCsvCommand;
 import trackr.logic.commands.order.AddOrderCommand;
 import trackr.logic.commands.order.ClearOrderCommand;
 import trackr.logic.commands.order.DeleteOrderCommand;
@@ -34,6 +35,7 @@ import trackr.logic.commands.task.DeleteTaskCommand;
 import trackr.logic.commands.task.EditTaskCommand;
 import trackr.logic.commands.task.FindTaskCommand;
 import trackr.logic.commands.task.ListTaskCommand;
+import trackr.logic.commands.task.SortTasksCommand;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.logic.parser.menu.AddMenuItemCommandParser;
 import trackr.logic.parser.menu.DeleteMenuItemCommandParser;
@@ -51,6 +53,7 @@ import trackr.logic.parser.task.AddTaskCommandParser;
 import trackr.logic.parser.task.DeleteTaskCommandParser;
 import trackr.logic.parser.task.EditTaskCommandParser;
 import trackr.logic.parser.task.FindTaskCommandParser;
+import trackr.logic.parser.task.SortTasksCommandParser;
 
 /**
  * Parses user input.
@@ -175,6 +178,10 @@ public class TrackrParser {
         case ListMenuItemCommand.COMMAND_WORD_SHORTCUT:
             return new ListMenuItemCommand();
 
+        case SortTasksCommand.COMMAND_WORD:
+        case SortTasksCommand.COMMAND_WORD_SHORTCUT:
+            return new SortTasksCommandParser().parse(arguments);
+
         case TabCommand.COMMAND_WORD:
             return new TabCommandParser().parse(arguments);
 
@@ -183,6 +190,9 @@ public class TrackrParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case UploadCsvCommand.COMMAND_WORD:
+            return new UploadCsvCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
