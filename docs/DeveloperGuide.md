@@ -177,11 +177,11 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Current Implementation
 
-PowerConnect allows users to delete a student from the `UniqueStudentList` of `Class`. 
+PowerConnect allows users to delete a student from the `UniqueStudentList` of `Class`.
 
-When the user enters the delete student command, `MainWindow#executeCommand()` will be called. It will then call 
-`Logic#execute` which will return a `CommandResult`. The `execute` method is facilitated by `StudentDeleteCommand` 
-class. When `StudentDeleteCommand#execute` is called, it will call `deleteStudent()` method from model. This would call 
+When the user enters the delete student command, `MainWindow#executeCommand()` will be called. It will then call
+`Logic#execute` which will return a `CommandResult`. The `execute` method is facilitated by `StudentDeleteCommand`
+class. When `StudentDeleteCommand#execute` is called, it will call `deleteStudent()` method from model. This would call
 `removeStudent` method from Class which in turn deletes the student from the `UniqueStudentList`.
 
 ##### General Flow for StudentDeleteCommand
@@ -201,11 +201,11 @@ Full implementation sequence diagram
 ![Sequence Diagram](images/DeleteSequentialDiagram.png)
 
 ### Design considerations
-We want to keep it simple for the user to delete students, using students' class and index number is sufficient to 
+We want to keep it simple for the user to delete students, using students' class and index number is sufficient to
 identify the student that needs to be deleted.
 
 1.Exception is thrown immediately if either student class or index number is invalid
-2.Remove the student from the parent's list of children too so the necessary changes will be displayed 
+2.Remove the student from the parent's list of children too so the necessary changes will be displayed
 
 #### Aspect: How to delete students
 
@@ -222,7 +222,7 @@ identify the student that needs to be deleted.
     * Pros: More flexibility for users
     * Cons: Hard to implement, need to check the different prefixes to determine which field to delete
 
-### Attendance feature 
+### Attendance feature
 
 #### Current Implementation
 
@@ -230,7 +230,7 @@ The attendance feature is facilitated by `Attendance`. It is composed by a `Pers
 
 Given below is an example usage scenario and how the attendance mechanism behaves at each step
 
-Step 1. The user launches the application for the first time 
+Step 1. The user launches the application for the first time
 Step 2. The user creates a student using the Add command. The `Attendance` of `Students` will be initialized with the initial attendance state (F) indicating that the student is absent.
 
 [//]: # (![Student Add Command]&#40;images/StudentAddCommand.png&#41;)
@@ -254,7 +254,7 @@ We want to make it easy for the user to set current date as present. Thus we all
     * Pros: Easy to read and write to storage
     * Pros: Flexible to add more features if more features are added eg. mark as MC, Late..
     * Cons: Hard to implement
-  
+
 * **Alternative 2:** Store attendance as a string representation of LocalDate
     * Pros: Easy to implement
     * Pros: Use less memory
@@ -278,7 +278,7 @@ Step 3. The user wants to add a test to a student. The user executes the `grade`
 
 ![Grade Command](images/Grade.png)
 
-Step 4. The test/homework is saved to the storage file automatically after each command. 
+Step 4. The test/homework is saved to the storage file automatically after each command.
 
 Full implementation sequence diagram
 
@@ -336,10 +336,10 @@ Step 5. Edited `Parent` is saved to the storage file automatically after the com
 ![Sequence Diagram](images/ParentEditCmd(Sequence_Diagram_PT4).jpg)
 
 ### Design considerations
-We want to make it easy for the user to edit `Parent / NOK` particulars without manually deleting the `Parent` and creating a new `Parent` and reassigning each `Student` attached to original `Parent` with the new `Parent`. 
+We want to make it easy for the user to edit `Parent / NOK` particulars without manually deleting the `Parent` and creating a new `Parent` and reassigning each `Student` attached to original `Parent` with the new `Parent`.
 <br><br>
-We also do not want to trouble the user with inputting multiple **PREFIXES** to edit parent / NOK. Hence, user will only need to input **ESSENTIAL PREFIXES and information** for these: 
-1. Parent's / NOK's `Name` 
+We also do not want to trouble the user with inputting multiple **PREFIXES** to edit parent / NOK. Hence, user will only need to input **ESSENTIAL PREFIXES and information** for these:
+1. Parent's / NOK's `Name`
 2. Parent's / NOK's `Phone Number`
 3. Particulars that are being amended<br><br>
 
