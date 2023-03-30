@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -54,10 +55,12 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
 
-            String previousHistoryString = model.getHistory().getHistoryString();
-            String historyStringAfterExecution = previousHistoryString + commandText + "\n";
-            model.setHistory(new InputHistory(historyStringAfterExecution));
-            storage.saveHistoryString(historyStringAfterExecution);
+            List<String> inputPast = model.getHistory().getPast();
+            List<String> inputFuture = model.getHistory().getFuture();
+            inputPast.add(commandText);
+            InputHistory updatedHistory = new InputHistory(inputPast, inputFuture);
+            model.setHistory(updatedHistory);
+            storage.saveInputHistory(updatedHistory);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

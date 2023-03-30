@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.TxtUtil;
+import seedu.address.model.history.InputHistory;
 
 /**
  * This class implements {@code HistoryStorage}, represent as a
@@ -30,12 +31,12 @@ public class TxtInputHistoryStorage implements InputHistoryStorage {
     }
 
     @Override
-    public Optional<String> readHistoryString() throws IOException {
-        return readHistoryString(filePath);
+    public Optional<InputHistory> readInputHistory() throws IOException {
+        return readInputHistory(filePath);
     }
 
     @Override
-    public Optional<String> readHistoryString(Path filePath) throws IOException {
+    public Optional<InputHistory> readInputHistory(Path filePath) throws IOException {
         requireNonNull(filePath);
 
         Optional<String> historyString = TxtUtil.readTxtFile(filePath);
@@ -43,19 +44,19 @@ public class TxtInputHistoryStorage implements InputHistoryStorage {
             return Optional.empty();
         }
 
-        return historyString;
+        return Optional.of(InputHistory.fromDataString(historyString.get()));
     }
 
     @Override
-    public void saveHistoryString(String historyString) throws IOException {
-        saveHistoryString(historyString, filePath);
+    public void saveInputHistory(InputHistory history) throws IOException {
+        saveInputHistory(history, filePath);
     }
 
     @Override
-    public void saveHistoryString(String historyString, Path filePath) throws IOException {
+    public void saveInputHistory(InputHistory history, Path filePath) throws IOException {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        TxtUtil.saveTxtFile(historyString, filePath);
+        TxtUtil.saveTxtFile(history.toDataString(), filePath);
     }
 }

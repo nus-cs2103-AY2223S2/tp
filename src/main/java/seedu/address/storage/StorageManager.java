@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.history.InputHistory;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -106,24 +107,24 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<String> readHistoryString() throws IOException {
-        return readHistoryString(inputHistoryStorage.getHistoryStoragePath());
+    public Optional<InputHistory> readInputHistory() throws IOException {
+        return readInputHistory(inputHistoryStorage.getHistoryStoragePath());
     }
 
     @Override
-    public Optional<String> readHistoryString(Path filePath) throws IOException {
+    public Optional<InputHistory> readInputHistory(Path filePath) throws IOException {
         logger.fine("Reading from history file" + filePath);
-        return inputHistoryStorage.readHistoryString(filePath);
+        return inputHistoryStorage.readInputHistory(filePath);
     }
 
     @Override
-    public void saveHistoryString(String historyString) throws IOException {
-        saveHistoryString(historyString, inputHistoryStorage.getHistoryStoragePath());
+    public void saveInputHistory(InputHistory history) throws IOException {
+        saveInputHistory(history, inputHistoryStorage.getHistoryStoragePath());
     }
 
     @Override
-    public void saveHistoryString(String historyString, Path filePath) throws IOException {
+    public void saveInputHistory(InputHistory history, Path filePath) throws IOException {
         logger.fine("Saving previous executed command(s) to the history file: " + filePath);
-        inputHistoryStorage.saveHistoryString(historyString, filePath);
+        inputHistoryStorage.saveInputHistory(history, filePath);
     }
 }

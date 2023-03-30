@@ -22,12 +22,12 @@ public interface InputHistoryStorage {
      *
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<String> readHistoryString() throws IOException;
+    Optional<InputHistory> readInputHistory() throws IOException;
 
     /**
      * @see #getHistoryStoragePath()
      */
-    Optional<String> readHistoryString(Path filePath) throws IOException;
+    Optional<InputHistory> readInputHistory(Path filePath) throws IOException;
 
     /**
      * Replace the history txt file's content with the given string to the storage.
@@ -35,11 +35,11 @@ public interface InputHistoryStorage {
      * @param historyString cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveHistoryString(String historyString) throws IOException;
+    void saveInputHistory(InputHistory history) throws IOException;
 
     /**
      * @see #saveHistory(InputHistory)
      */
-    void saveHistoryString(String historyString, Path filePath) throws IOException;
+    void saveInputHistory(InputHistory history, Path filePath) throws IOException;
 
 }

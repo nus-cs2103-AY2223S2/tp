@@ -62,7 +62,7 @@ public class MainApp extends Application {
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         InputHistory inputHistory = new InputHistory();
         InputHistoryStorage inputHistoryStorage = new TxtInputHistoryStorage(inputHistory.getHistoryStoragePath());
-        inputHistoryStorage.readHistoryString();
+        inputHistoryStorage.readInputHistory();
 
         storage = new StorageManager(addressBookStorage, userPrefsStorage, inputHistoryStorage);
 
@@ -83,7 +83,6 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
-        Optional<String> historyStringOptional;
         InputHistory initialInputHistory;
 
         try {
@@ -93,11 +92,11 @@ public class MainApp extends Application {
             }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
 
-            historyStringOptional = storage.readHistoryString();
-            if (!historyStringOptional.isPresent()) {
+            Optional<InputHistory> historyOptional = storage.readInputHistory();
+            if (!historyOptional.isPresent()) {
                 logger.info("History file not found. Will be starting with the default file");
             }
-            initialInputHistory = new InputHistory(historyStringOptional.orElse(""));
+            initialInputHistory = historyOptional.orElse(new InputHistory());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
