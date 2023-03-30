@@ -8,5 +8,5 @@
   <stylesheets>
     <URL value="@ListPanel.css" />
   </stylesheets>
-    <ListView fx:id="todoListView" VBox.vgrow="ALWAYS"/>
+  <ListView fx:id="todoListView" VBox.vgrow="ALWAYS" onMouseClicked="#handleMouseClick"/>
 </VBox>

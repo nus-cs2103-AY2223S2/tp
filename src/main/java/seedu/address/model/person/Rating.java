@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an internship's Rating in the tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidRating(String)}
  */
-public class Rating {
+public class Rating extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Ratings can take any values, and it should not be blank";
 

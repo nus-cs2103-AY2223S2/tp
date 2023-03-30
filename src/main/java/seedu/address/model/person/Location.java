@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an internship's location in the tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidLocation(String)}
  */
-public class Location {
+public class Location extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Locations can take any values, and it should not be blank";
 

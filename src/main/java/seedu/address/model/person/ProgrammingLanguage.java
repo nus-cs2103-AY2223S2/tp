@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an internship's ProgrammingLanguage in the tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidProgrammingLanguage(String)}
  */
-public class ProgrammingLanguage {
+public class ProgrammingLanguage extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Programming Languages can take any values, "
         + "and it should not be blank";

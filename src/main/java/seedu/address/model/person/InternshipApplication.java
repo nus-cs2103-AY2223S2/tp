@@ -51,11 +51,12 @@ public class InternshipApplication {
 
         // Data field
         this.contact = null;
-        //Interview field
-        this.status = InternshipStatus.NA;
+        this.status = InternshipStatus.PENDING;
         this.isArchived = false;
-        this.interviewDate = null;
         this.documents = null;
+
+        //Interview field
+        this.interviewDate = null;
     }
 
     /**
@@ -100,7 +101,7 @@ public class InternshipApplication {
 
         // Data field
         this.contact = null;
-        this.status = InternshipStatus.NA;
+        this.status = InternshipStatus.PENDING;
         this.isArchived = false;
         this.documents = null;
 
@@ -151,8 +152,10 @@ public class InternshipApplication {
         this.contact = contact;
         this.status = status;
         this.isArchived = isArchived;
-        this.interviewDate = interviewDate;
         this.documents = documents;
+
+        //Interview field
+        this.interviewDate = interviewDate;
     }
 
     public CompanyName getCompanyName() {

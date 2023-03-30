@@ -9,11 +9,13 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import seedu.address.model.person.InternshipApplicationAttribute;
+
 /**
  * Represents a link to a cover letter in the internship application.
  * Guarantees: immutable; is valid as declared in {@link #isValidCoverLetterLink(String)}
  */
-public class CoverLetterLink {
+public class CoverLetterLink extends InternshipApplicationAttribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Link to cover letter should be in the form http://domain/path "
             + "or https://domain/path";
