@@ -4,19 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_TELEGRAM;
 
+import seedu.connectus.model.person.Person;
+
 /**
  * Represents a Person's telegram in ConnectUS.
  * Guarantees: immutable; is valid as declared in {@link #isValid(String)}
  */
-public class Telegram {
+public class Telegram implements Openable {
 
     private static final String SPECIAL_CHARACTERS = "_";
     public static final String MESSAGE_CONSTRAINTS = "Telegram usernames should be of the format johndoe "
-            + "and adhere to the following constraints:\n"
-            + "1. The username should only contain alphanumeric characters and the special character, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + ").\n"
-            + "2. The username should contain at least 5 characters."
-            + "Format: " + PREFIX_SOCMED_TELEGRAM + "TELEGRAM";
+        + "and adhere to the following constraints:\n"
+        + "1. The username should only contain alphanumeric characters and the special character, excluding "
+        + "the parentheses, (" + SPECIAL_CHARACTERS + ").\n"
+        + "2. The username should contain at least 5 characters."
+        + "Format: " + PREFIX_SOCMED_TELEGRAM + "TELEGRAM";
 
     // alphanumeric and special characters, beginning with 0 or 1 "@"
     private static final String USERNAME_REGEX = "\\w{5,}+";
@@ -45,6 +47,15 @@ public class Telegram {
     }
 
     @Override
+    public String getUserLink() {
+        return "tg://resolve?domain=" + value;
+    }
+
+    public static String getUserLink(Person user) {
+        return user.getSocialMedia().map(SocialMedia::getTelegram).map(Telegram::getUserLink).orElse("");
+    }
+
+    @Override
     public String toString() {
         return value;
     }
@@ -52,8 +63,8 @@ public class Telegram {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Telegram // instanceof handles nulls
-                && value.equals(((Telegram) other).value)); // state check
+            || (other instanceof Telegram // instanceof handles nulls
+            && value.equals(((Telegram) other).value)); // state check
     }
 
     @Override
