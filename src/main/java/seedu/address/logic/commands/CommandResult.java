@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import seedu.address.model.Level;
+import seedu.address.model.DisplayListLevel;
 import seedu.address.model.lecture.LectureName;
 import seedu.address.model.lecture.ReadOnlyLecture;
 import seedu.address.model.module.ModuleCode;
@@ -40,13 +40,13 @@ public class CommandResult {
     private final List<VideoEditInfo> videoEditInfoList = new ArrayList<>();
 
     /** The level list to be displayed */
-    private final Level level;
+    private final DisplayListLevel level;
 
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, Level level, String context,
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, DisplayListLevel level, String context,
             List<ModuleEditInfo> moduleEditInfoList, List<LectureEditInfo> lectureEditInfoList,
             List<VideoEditInfo> videoEditInfoList) {
 
@@ -73,7 +73,7 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code level},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, Level level) {
+    public CommandResult(String feedbackToUser, DisplayListLevel level) {
         this(feedbackToUser, false, false, level, "", Collections.emptyList(),
                 Collections.emptyList(), Collections.emptyList());
     }
@@ -126,7 +126,7 @@ public class CommandResult {
         return feedbackToUser;
     }
 
-    public Level getLevel() {
+    public DisplayListLevel getLevel() {
         return level;
     }
 

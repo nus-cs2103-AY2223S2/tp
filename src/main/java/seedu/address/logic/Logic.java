@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Level;
+import seedu.address.model.DisplayListLevel;
 import seedu.address.model.ReadOnlyNavigation;
 import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.lecture.ReadOnlyLecture;
@@ -75,6 +75,6 @@ public interface Logic {
     /**
      * Returns the last list type to displayed to user.
      */
-    Level getLastListLevel();
+    DisplayListLevel getLastListLevel();
 
 }

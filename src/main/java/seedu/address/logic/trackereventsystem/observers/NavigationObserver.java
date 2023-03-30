@@ -1,4 +1,4 @@
-package seedu.address.logic.trackereventsystem.navigation;
+package seedu.address.logic.trackereventsystem.observers;
 
 import seedu.address.logic.trackereventsystem.OnLectureEditedEventObserver;
 import seedu.address.logic.trackereventsystem.OnModuleEditedEventObserver;
@@ -11,7 +11,8 @@ import seedu.address.model.navigation.NavigationContext;
 import seedu.address.model.navigation.NavigationContext.NavLayer;
 
 /**
- * Represents a navigation observer that responds to on module edited and on lecture edited events.
+ * Represents a navigation observer that responds to on module edited and on
+ * lecture edited events.
  */
 public class NavigationObserver implements OnModuleEditedEventObserver, OnLectureEditedEventObserver {
 
@@ -34,7 +35,7 @@ public class NavigationObserver implements OnModuleEditedEventObserver, OnLectur
     }
 
     private boolean isAtLectureAffectedByLectureEdit(NavigationContext navContext, ReadOnlyLecture originalLecture) {
-        return navContext.getLayer() == NavLayer.LECTURE
+        return originalLecture != null && navContext.getLayer() == NavLayer.LECTURE
                 && navContext.getLectureName().equals(originalLecture.getName());
     }
 
@@ -57,10 +58,12 @@ public class NavigationObserver implements OnModuleEditedEventObserver, OnLectur
     }
 
     private boolean isAtLectureAffectedByModuleEdit(NavigationContext navContext, ReadOnlyModule originalModule) {
-        return navContext.getLayer() == NavLayer.LECTURE && navContext.getModuleCode().equals(originalModule.getCode());
+        return originalModule != null && navContext.getLayer() == NavLayer.LECTURE
+                && navContext.getModuleCode().equals(originalModule.getCode());
     }
 
     private boolean isAtModuleAffectedByModuleEdit(NavigationContext navContext, ReadOnlyModule originalModule) {
-        return navContext.getLayer() == NavLayer.MODULE && navContext.getModuleCode().equals(originalModule.getCode());
+        return originalModule != null && navContext.getLayer() == NavLayer.MODULE
+                && navContext.getModuleCode().equals(originalModule.getCode());
     }
 }

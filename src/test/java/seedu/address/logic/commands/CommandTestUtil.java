@@ -37,6 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_NAME_2040 = "Data Structures and Algorithms";
     public static final String VALID_LECTURE_NAME_L1 = "lecture1";
     public static final String VALID_LECTURE_NAME_L2 = "lecture2";
+    public static final String VALID_LECTURE_NAME_W1 = "Week 1";
+    public static final String VALID_LECTURE_NAME_W2 = "Week 2";
     public static final String VALID_VIDEO_NAME_V1 = "video1";
     public static final String VALID_VIDEO_NAME_V2 = "video2";
     public static final String VALID_VIDEO_TIMESTAMP_1 = "01:02:03";
