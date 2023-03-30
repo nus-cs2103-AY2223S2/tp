@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.SortVehiclesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.service.Vehicle;
 
 /**
@@ -47,7 +46,7 @@ public class SortVehiclesCommandParser implements Parser<SortVehiclesCommand> {
     }
 
     private Optional<Comparator<Vehicle>> generateComparator(String input) {
-        switch (input) {
+        switch (input.toLowerCase()) {
         case "id":
             return Optional.of(Comparator.comparing(Vehicle::getId));
         case "owner id":

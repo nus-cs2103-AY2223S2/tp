@@ -56,7 +56,7 @@ public class SortCustomersCommandParser implements Parser<SortCustomersCommand> 
     }
 
     private Optional<Comparator<Customer>> generateComparator(String input) {
-        switch (input) {
+        switch (input.toLowerCase()) {
         case "id":
             return Optional.of(Comparator.comparing(Customer::getId));
         case "name":
