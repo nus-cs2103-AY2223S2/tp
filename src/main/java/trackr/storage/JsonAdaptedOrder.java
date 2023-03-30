@@ -1,5 +1,8 @@
 package trackr.storage;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,9 +17,6 @@ import trackr.model.person.PersonAddress;
 import trackr.model.person.PersonName;
 import trackr.model.person.PersonPhone;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-
 /**
  * Jackson-friendly version of {@link Order}.
  */
@@ -24,7 +24,7 @@ public class JsonAdaptedOrder {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
     public static final String MESSAGE_PARSE_TIME_ADDED_ERROR =
-            "Unexpected error encountered when parsing Task's `timeAdded` "
+            "Unexpected error encountered when parsing Order's `timeAdded` "
                     + "field that was read from storage file";
 
     private final String customerName;

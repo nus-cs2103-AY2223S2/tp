@@ -14,9 +14,9 @@ public class OrderStatus extends Status {
 
     static {
         STATUSES = new HashMap<>();
-        STATUSES.put("N", "Not Done");
+        STATUSES.put("N", "Not Delivered");
         STATUSES.put("I", "In Progress");
-        STATUSES.put("D", "Done");
+        STATUSES.put("D", "Delivered");
     }
 
     /**
