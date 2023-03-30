@@ -49,6 +49,12 @@
 !define MODE_COLOR_T3 #1e0161
 !define MODE_COLOR_T4 #12013b
 
+!define COMMAND_COLOR #04d48f
+!define COMMAND_COLOR_T1 #03b26f
+!define COMMAND_COLOR_T2 #028f4e
+!define COMMAND_COLOR_T3 #01612e
+!define COMMAND_COLOR_T4 #0a3b1e
+
 !define USER_COLOR #000000
 
 skinparam BackgroundColor #FFFFFFF

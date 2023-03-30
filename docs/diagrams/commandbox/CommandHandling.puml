@@ -1,0 +1,58 @@
+@startuml
+!include ../style.puml
+
+participant ":CommandMode" as CommandMode MODE_COLOR_T2
+participant "mainWindow:MainWindow" as MainWindow UI_COLOR_T3
+participant ":CommandLog" as CommandLog UI_COLOR
+participant "commandResult:CommandResult" as CommandResult COMMAND_COLOR_T3
+participant ":UiAction" as UiAction COMMAND_COLOR_T2
+participant ":Logic" as Logic LOGIC_COLOR_T2
+participant ":Parser" as Parser LOGIC_COLOR_T3
+participant "command:Command" as Command COMMAND_COLOR_T1
+
+[-> CommandMode : onInputSubmit(input)
+activate CommandMode
+opt input is not empty string
+    CommandMode -> MainWindow : executeCommand(input)
+    activate MainWindow
+    MainWindow -> Logic : execute(input)
+    activate Logic
+    Logic -> Parser : parseCommand(input)
+    activate Parser
+    ref over Parser : parse command
+    Parser --> Logic : command
+    deactivate Parser
+    Logic -> Command : execute(model)
+    activate Command
+    Command --> Logic : commandResult
+    deactivate Command
+    Logic --> MainWindow : commandResult
+    deactivate Logic
+    MainWindow --> CommandResult : getFeedBackToUser()
+    activate CommandResult
+    CommandResult --> MainWindow : feedback
+    deactivate CommandResult
+    MainWindow -> CommandLog : setFeedBackToUser(feedback)
+    activate CommandLog
+    CommandLog --> MainWindow
+    deactivate CommandLog
+    MainWindow -> CommandResult : executeUiAction(mainWindow)
+    activate CommandResult
+    CommandResult -> UiAction : execute(mainWindow)
+    activate UiAction
+    ref over UiAction : execute UiAction
+    UiAction --> CommandResult
+    deactivate UiAction
+    CommandResult --> MainWindow
+    deactivate CommandResult
+    MainWindow --> CommandMode : commandResult
+    deactivate MainWindow
+    CommandMode -> MainWindow : setCommandBoxInput("")
+    activate MainWindow
+    MainWindow --> CommandMode
+    deactivate MainWindow
+end
+CommandMode -->[
+deactivate CommandMode
+@enduml
+

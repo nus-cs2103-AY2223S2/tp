@@ -12,7 +12,7 @@
 mainframe sd sdName
 participant ":KeyType" as Key KEY_COLOR_T3
 participant "mainWindow:MainWindow" as MainWindow UI_COLOR_T4
-participant "targetName:targetType" as Target UI_COLOR
+participant ":targetType" as Target UI_COLOR
 
 [-> Key : execute(logic, mainWindow)
 activate Key
