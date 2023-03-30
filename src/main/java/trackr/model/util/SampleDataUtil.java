@@ -101,7 +101,7 @@ public class SampleDataUtil {
         return new MenuItem[] {
             new MenuItem(new ItemName("Chocolate Cookies"), new ItemPrice("5"), new ItemCost("1")),
             new MenuItem(new ItemName("Cupcake"), new ItemPrice("6"), new ItemCost("1")),
-            new MenuItem(new ItemName("Bracelet"), new ItemPrice("10"), new ItemCost("0.5")),
+            new MenuItem(new ItemName("Bracelet"), new ItemPrice("10"), new ItemCost("5")),
         };
     }
 

@@ -56,7 +56,7 @@ public class JsonAdaptedOrder {
         customerName = source.getCustomer().getCustomerName().getName();
         customerPhone = source.getCustomer().getCustomerPhone().personPhone;
         customerAddress = source.getCustomer().getCustomerAddress().personAddress;
-        orderName = source.getOrderName().value;
+        orderName = source.getOrderName().getName();
         orderDeadline = source.getOrderDeadline().toJsonString();
         orderQuantity = source.getOrderQuantity().value;
         orderStatus = source.getOrderStatus().toJsonString();
@@ -99,7 +99,7 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     OrderName.class.getSimpleName()));
         }
-        if (!OrderName.isValidOrderName(orderName)) {
+        if (!OrderName.isValidName(orderName)) {
             throw new IllegalValueException(OrderName.MESSAGE_CONSTRAINTS);
         }
         final OrderName modelOrderName = new OrderName(orderName);
@@ -108,7 +108,7 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     OrderDeadline.class.getSimpleName()));
         }
-        if (!OrderDeadline.isValidOrderDeadline(orderDeadline)) {
+        if (!OrderDeadline.isValidDeadline(orderDeadline)) {
             throw new IllegalValueException(OrderDeadline.MESSAGE_CONSTRAINTS);
         }
         final OrderDeadline modelOrderDeadline = new OrderDeadline(orderDeadline);
@@ -126,7 +126,7 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     OrderStatus.class.getSimpleName()));
         }
-        if (!OrderStatus.isValidOrderStatus(orderStatus)) {
+        if (!OrderStatus.isValidStatus(orderStatus, OrderStatus.STATUSES)) {
             throw new IllegalValueException(OrderStatus.MESSAGE_CONSTRAINTS);
         }
         final OrderStatus modelOrderStatus = new OrderStatus(orderStatus);

@@ -2,12 +2,14 @@ package trackr.model.order;
 
 import static trackr.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
+
 import trackr.logic.parser.CriteriaEnum;
 
 /**
  * Comparator used to sort orders.
  */
-public class SortOrdersComparator {
+public class SortOrdersComparator implements Comparator<Order> {
     /**
      * The criteria to sort the orders by.
      */

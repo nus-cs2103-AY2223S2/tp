@@ -86,6 +86,11 @@ public interface Model {
      */
     ObservableList<Supplier> getFilteredSupplierList();
 
+    /**
+     * Sort the filtered order list
+     */
+    void sortFilteredOrderList(Comparator<Order> comparator);
+
     // ===================================================== Task =====================================================
 
     /**

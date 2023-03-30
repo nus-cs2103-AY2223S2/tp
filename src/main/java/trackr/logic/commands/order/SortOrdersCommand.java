@@ -1,5 +1,6 @@
 package trackr.logic.commands.order;
 
+import trackr.logic.commands.Command;
 import trackr.logic.commands.CommandResult;
 import trackr.model.Model;
 import trackr.model.order.SortOrdersComparator;
@@ -10,7 +11,7 @@ import static trackr.logic.parser.CliSyntax.PREFIX_CRITERIA;
 /**
  * Sorts all task in task list using a criteria given.
  */
-public class SortOrdersCommand {
+public class SortOrdersCommand extends Command {
     public static final String COMMAND_WORD = "sort_order";
     public static final String COMMAND_WORD_SHORTCUT = "sort_o";
 
