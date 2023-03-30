@@ -105,7 +105,6 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateObservablePersonList();
-
         return new ViewCommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson), editedPerson);
     }
 
