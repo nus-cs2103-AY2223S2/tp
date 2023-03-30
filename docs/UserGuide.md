@@ -283,13 +283,13 @@ Above is the execution result of input `find i/S1234567A`.
 
 ### Backing up patient records: `backup`
 
-Backs up the patient records to a specified slot represented by an index.
+Backs up the patient records to a specified slot represented by an index. Can add a description to the backup.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Backups need to be accessed and are not 
 automatically loaded on launch of application.
 </div>
 
-Format: `backup INDEX_NO`
+Format: `backup INDEX_NO [b/DESCRIPTION]`
 
 Examples:
 
@@ -318,11 +318,11 @@ Example:
 
 Above is the execution result of input `load 1`.
 
-### Viewing backup data: `viewbackup`
+### View backup data: `viewbackups`
 
 Shows all the backups available.
 
-Format: `viewbackup`
+Format: `viewbackups`
 
 ![Viewbackup](images/command_result/Viewbackup.png)
 
