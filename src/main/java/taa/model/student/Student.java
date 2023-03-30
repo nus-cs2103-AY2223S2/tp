@@ -1,11 +1,9 @@
 package taa.model.student;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 import taa.assignment.Submission;
+import taa.assignment.exceptions.AssignmentNotFoundException;
 import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.model.tag.Tag;
@@ -106,6 +104,16 @@ public class Student {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName());
+    }
+
+    /**
+     * Returns the grade obtained by the student, if it exists.
+     * Otherwise, an Optional.empty() is returned.
+     * @throws AssignmentNotFoundException if the assignment does not exist.
+     */
+    Optional<Integer> getGradesForAssignment(String assignmentName)
+            throws AssignmentNotFoundException {
+        return this.submissions.getSubmissionScore(assignmentName);
     }
 
     /**
