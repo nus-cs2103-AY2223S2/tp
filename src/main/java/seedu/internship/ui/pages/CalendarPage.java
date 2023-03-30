@@ -1,23 +1,22 @@
 package seedu.internship.ui.pages;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.logging.Logger;
+
 import com.calendarfx.model.Calendar;
 import com.calendarfx.model.CalendarSource;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.DateControl;
 import com.calendarfx.view.page.MonthPage;
+
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
 import javafx.scene.Node;
 import javafx.scene.layout.StackPane;
 import seedu.internship.commons.core.LogsCenter;
 import seedu.internship.model.event.Event;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.logging.Logger;
-
 
 /**
  * A panel to display detailed information about an internship.
@@ -48,6 +47,10 @@ public class CalendarPage extends Page {
         calendarPlaceholder.getChildren().add(monthPage);
     }
 
+    /**
+     * Initializes all components required to show the calendar and sets time for {@code MonthPage}
+     * @return A MonthPage that is initialized.
+     */
     public MonthPage initializeCalendar() {
 
         // Solution below adapted from https://dlsc-software-consulting-gmbh.github.io/CalendarFX/#_quick_start with
@@ -67,6 +70,8 @@ public class CalendarPage extends Page {
 
         monthPage.setEntryDetailsPopOverContentCallback(this::makeCalendarPopover);
         monthPage.setEntryFactory(param -> null);
+
+        monthPage.getDateDetailsCallback();
 
         Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
             @Override
@@ -95,12 +100,16 @@ public class CalendarPage extends Page {
 
     }
 
+    /**
+     * Enters each {@code Event} as an {@code Entry} into the {@code Calendar}
+     */
     public void addCalendarEntries() {
         for (Event event : events) {
             Entry<Event> entry = new CalendarEntry(event);
             if (event.isDeadline()) {
                 entry.setInterval(event.getStart().getLocalDateTime());
                 entry.setFullDay(true);
+                entry.setInterval(event.getStart().getLocalDateTime());
             } else {
                 entry.setInterval(event.getStart().getLocalDateTime(),
                         event.getEnd().getLocalDateTime());
@@ -109,6 +118,11 @@ public class CalendarPage extends Page {
         }
     }
 
+    /**
+     * Returns a custom popover for the {@code MonthPage}
+     * @param param Specified input for the producer taken in by monthPage.setEntryDetailsPopOverContentCallback
+     * @return A javafx Node
+     */
     public Node makeCalendarPopover(DateControl.EntryDetailsPopOverContentParameter param) {
         // Okay to suppress because all entries created are CalendarEntry (s)
         @SuppressWarnings("unchecked")

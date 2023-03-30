@@ -8,7 +8,6 @@ import seedu.internship.model.internship.Company;
 import seedu.internship.model.internship.Internship;
 import seedu.internship.model.internship.Position;
 import seedu.internship.model.internship.Status;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;

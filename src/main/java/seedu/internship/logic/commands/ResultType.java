@@ -10,4 +10,5 @@ public enum ResultType {
     SHOW_INFO,
     STATS,
     FIND,
+    FIND_EVENT
 }
