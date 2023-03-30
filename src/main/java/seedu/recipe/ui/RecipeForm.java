@@ -172,12 +172,15 @@ public abstract class RecipeForm extends UiPart<Region> {
         //Set dimensions, scene graph
         Scene scene = new Scene(getRoot());
 
-        //Event handler for Escape Key
+        //Event handler
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ESCAPE) {
                 window.close();
+            } else if (event.getCode() == KeyCode.ENTER) {
+                saveRecipe();
             }
         });
+
 
         //Display
         window.setScene(scene);
