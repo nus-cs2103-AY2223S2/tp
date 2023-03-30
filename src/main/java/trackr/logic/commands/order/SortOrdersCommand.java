@@ -20,7 +20,7 @@ public class SortOrdersCommand extends Command {
             + "Parameters: " + "[" + PREFIX_CRITERIA + "CRITERIA] "
             + "Example: " + COMMAND_WORD + PREFIX_CRITERIA + "Status";
 
-    public static final String MESSAGE_SUCCESS = "Tasks sorted!";
+    public static final String MESSAGE_SUCCESS = "Orders sorted!";
 
     private SortOrdersComparator sortOrdersComparator;
 
