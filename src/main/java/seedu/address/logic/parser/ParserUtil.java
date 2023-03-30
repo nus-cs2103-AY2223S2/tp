@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -149,6 +150,7 @@ public class ParserUtil {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             dueDate = LocalDateTime.parse(date, formatter);
+            checkDateExist(dueDate, date.substring(0, 2));
         } catch (DateTimeException e) {
             throw new ParseException(IsolatedEvent.MESSAGE_CONSTRAINTS_DATE);
         }
@@ -161,6 +163,20 @@ public class ParserUtil {
     }
 
     // TODO: Parse into Local Date
+
+    /**
+     * Check whether the day exists in the month, throw error if it does not exist.
+     * @param date to be checked
+     * @param day to be checked
+     * @throws ParseException to be thrown if there is error.
+     */
+    public static void checkDateExist(LocalDateTime date, String day) throws ParseException {
+        int lastDay = date.getMonth().maxLength();
+
+        if (Integer.parseInt(day) > lastDay) {
+            throw new ParseException(Messages.MESSAGE_NONEXISTENT_DATE);
+        }
+    }
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
