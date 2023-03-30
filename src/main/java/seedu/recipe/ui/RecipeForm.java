@@ -1,6 +1,7 @@
 package seedu.recipe.ui;
 
 //Core imports
+
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,15 +9,12 @@ import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-//JavaFX imports
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -25,7 +23,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-//Custom imports
 import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.logic.commands.CommandResult;
 import seedu.recipe.logic.commands.exceptions.CommandException;
@@ -40,7 +37,13 @@ import seedu.recipe.ui.util.FieldsUtil;
 public class RecipeForm extends UiPart<Region> {
     private static final String FXML = "RecipeForm.fxml";
     private static final String INGREDIENT_PROMPT = "(i.e. `a/100 g n/parmesan cheese r/grated s/mozzarella`";
-
+    private static final double DEFAULT_HEIGHT = 500;
+    //Data fields
+    private final int displayedIndex;
+    private final Recipe recipe;
+    //Logic executors and system logging
+    private final CommandExecutor commandExecutor;
+    private final Logger logger = LogsCenter.getLogger(getClass());
     //UI child elements
     @FXML
     private TextField nameField;
@@ -56,7 +59,6 @@ public class RecipeForm extends UiPart<Region> {
     private VBox ingredientsBox;
     @FXML
     private VBox stepsBox;
-
     //Core CTA Group
     @FXML
     private Region buttonCtrLeft;
@@ -64,20 +66,8 @@ public class RecipeForm extends UiPart<Region> {
     private Button saveButton;
     @FXML
     private Button cancelButton;
-
-    //Data fields
-    private final int displayedIndex;
     private Map<String, String> initialValues;
-    private final Recipe recipe;
 
-    //Logic executors and system logging
-    private final CommandExecutor commandExecutor;
-    private final Logger logger = LogsCenter.getLogger(getClass());
-
-    @FunctionalInterface
-    interface CustomFocusChangeListener {
-        void onFocusChange(boolean newValue);
-    }
     /**
      * Creates a new RecipeForm with the given recipe and displayed index.
      * If the recipe is not null, the form fields are pre-populated with the recipe's data.
@@ -173,8 +163,10 @@ public class RecipeForm extends UiPart<Region> {
         // Ensures users do not exit the view by clicking outside
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(recipe == null ? "Add Recipe" : "Edit Recipe");
-        window.setMaxHeight(Screen.getPrimary().getBounds().getMaxY());
-        window.setMinHeight(500);
+
+        double maxHeight = Screen.getPrimary().getBounds().getMaxY();
+        window.setMaxHeight(maxHeight);
+        window.setHeight(Math.min(maxHeight, DEFAULT_HEIGHT));
 
         //Set dimensions, scene graph
         VBox pane = new VBox(getRoot());
@@ -194,8 +186,6 @@ public class RecipeForm extends UiPart<Region> {
         window.showAndWait();
     }
 
-    /*----------------------------------------------------------------------------------------------------------- */
-    // The following functions are helper functions used in the main code above.
     /**
      * Stores the initial values of the form fields in a HashMap.
      * This is used for comparison when saving the recipe to determine
@@ -217,6 +207,9 @@ public class RecipeForm extends UiPart<Region> {
         initialValues.put("tags", tagsField.getText());
     }
 
+    /*----------------------------------------------------------------------------------------------------------- */
+    // The following functions are helper functions used in the main code above.
+
     /**
      * Populates the form fields with the data from the existing recipe.
      * Stores all prepopulated data into a hashmap for comparison later when saving.
@@ -228,13 +221,13 @@ public class RecipeForm extends UiPart<Region> {
             Optional.ofNullable(recipe.getDurationNullable())
                 .map(Object::toString)
                 .orElse("")
-        );
+                             );
         //Portion
         portionField.setText(
             Optional.ofNullable(recipe.getPortionNullable())
                 .map(Object::toString)
                 .orElse("")
-        );
+                            );
 
         //Ingredients
         if (!recipe.getIngredients().isEmpty()) {
@@ -347,7 +340,7 @@ public class RecipeForm extends UiPart<Region> {
     /**
      * Handles the edit recipe event by updating the recipe with the changed values.
      *
-     * @param index The index of the recipe to be edited.
+     * @param index         The index of the recipe to be edited.
      * @param changedValues A map of the changed recipe fields with keys as field names and values as the new data.
      */
     private void handleEditRecipeEvent(int index, Map<String, String> changedValues) {
@@ -372,7 +365,7 @@ public class RecipeForm extends UiPart<Region> {
      * @param commandText the command text to execute.
      * @return the resulting {@code CommandResult} after executing the command.
      * @throws CommandException if the command execution fails.
-     * @throws ParseException if the command text cannot be parsed.
+     * @throws ParseException   if the command text cannot be parsed.
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
@@ -383,5 +376,10 @@ public class RecipeForm extends UiPart<Region> {
             logger.info("Invalid command: " + commandText);
             throw e;
         }
+    }
+
+    @FunctionalInterface
+    interface CustomFocusChangeListener {
+        void onFocusChange(boolean newValue);
     }
 }
