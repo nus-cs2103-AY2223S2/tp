@@ -16,6 +16,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
+import seedu.address.model.client.appointment.Appointment;
 import seedu.address.model.client.policy.Policy;
 import seedu.address.model.client.policy.UniquePolicyList;
 import seedu.address.model.tag.Tag;
@@ -34,6 +35,8 @@ class JsonAdaptedClient {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedPolicy> policies = new ArrayList<>();
 
+    private final JsonAdaptedAppointment appointment;
+
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
@@ -41,7 +44,8 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("policies") List<JsonAdaptedPolicy> policies) {
+                             @JsonProperty("policies") List<JsonAdaptedPolicy> policies,
+                             @JsonProperty("appointment") JsonAdaptedAppointment appointment) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,6 +56,7 @@ class JsonAdaptedClient {
         if (policies != null) {
             this.policies.addAll(policies);
         }
+        this.appointment = appointment;
     }
 
     /**
@@ -68,6 +73,8 @@ class JsonAdaptedClient {
         policies.addAll(StreamSupport.stream(source.getPolicyList().spliterator(), false)
                 .map(JsonAdaptedPolicy::new)
                 .collect(Collectors.toList())); // is it considered breaking Law of Demeter?
+
+        appointment = new JsonAdaptedAppointment(source.getAppointment());
     }
 
     /**
@@ -127,7 +134,10 @@ class JsonAdaptedClient {
             modelPolicies.add(policy);
         }
 
-        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies);
+        Appointment modelAppointment = appointment.toModelType();
+
+
+        return new Client(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelPolicies, modelAppointment);
     }
 
 }
