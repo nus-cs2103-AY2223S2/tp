@@ -37,7 +37,7 @@ public class EventAddCommand extends EventCommand {
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the catalogue";
     public static final String MESSAGE_NO_INTERNSHIP_SELECTED = "Select an internship before adding an event.";
-
+    public static final String MESSAGE_EVENT_CLASH_WARNING = "WARNING: This event CLASHES with another event.Use the clash command to see specifics.";
     public static final String MESSAGE_END_BEFORE_START = "End Date Time cannot be before Start Date Time.";
 
     private final Event eventToAdd;
@@ -70,9 +70,23 @@ public class EventAddCommand extends EventCommand {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
+        //Checking for clashes
+        model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
+        boolean isClashing = false;
+        for (Event e : model.getFilteredEventList()) {
+            if (eventToAdd.isClash(e)) {
+                isClashing = true;
+                break;
+            };
+        }
+
         model.addEvent(eventToAdd);
         model.updateFilteredEventList(new EventByInternship(selectedIntern));
         ObservableList<Event> events = model.getFilteredEventList();
+        if (isClashing) {
+            return new CommandResult(String.format(MESSAGE_EVENT_CLASH_WARNING, eventToAdd), ResultType.SHOW_INFO,
+                    selectedIntern, events);
+        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToAdd), ResultType.SHOW_INFO,
                 selectedIntern, events);
