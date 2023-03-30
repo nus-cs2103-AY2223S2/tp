@@ -3,7 +3,7 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
@@ -117,7 +117,7 @@
       "name": "Dakota Dunman",
       "email": "dakotadunman@gmail.com",
       "telegramHandle": "@dakotadunman",
-      "address": "Dakota",
+      "station": "Dakota",
       "groups": [
         "CCA"
       ],

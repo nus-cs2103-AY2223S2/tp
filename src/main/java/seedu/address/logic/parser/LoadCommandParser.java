@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class LoadCommandParser implements Parser<LoadCommand> {
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the station must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";

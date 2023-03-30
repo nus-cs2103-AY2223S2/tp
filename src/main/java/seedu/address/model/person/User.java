@@ -13,10 +13,10 @@ public class User extends Person {
     /**
      * Every field must be present and not null.
      */
-    public User(Name name, Phone phone, Email email, Address address,
+    public User(Name name, Phone phone, Email email, Station station,
                    TelegramHandle telegramHandle, ContactIndex contactIndex,
                 Set<GroupTag> groupTags, Set<ModuleTag> moduleTags) {
-        super(name, phone, email, address, telegramHandle, contactIndex,
+        super(name, phone, email, station, telegramHandle, contactIndex,
                 groupTags, moduleTags);
     }
 
@@ -25,7 +25,7 @@ public class User extends Person {
      */
     public User copy() {
         return new User(getName(), getPhone(), getEmail(),
-                getAddress(), getTelegramHandle(), getContactIndex(),
+                getStation(), getTelegramHandle(), getContactIndex(),
                 getImmutableGroupTags(), getImmutableModuleTags());
     }
 }

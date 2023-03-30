@@ -23,13 +23,13 @@ public class AddCommand extends Command {
             + Prefix.NAME + "NAME "
             + Prefix.PHONE + "PHONE "
             + Prefix.EMAIL + "EMAIL "
-            + Prefix.ADDRESS + "ADDRESS "
+            + Prefix.STATION + "STATION "
             + "[" + Prefix.GROUP_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + Prefix.NAME + "John Doe "
             + Prefix.PHONE + "98765432 "
             + Prefix.EMAIL + "johnd@example.com "
-            + Prefix.ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + Prefix.STATION + "311, Clementi Ave 2, #02-25 "
             + Prefix.GROUP_TAG + "friends "
             + Prefix.GROUP_TAG + "owesMoney";
 

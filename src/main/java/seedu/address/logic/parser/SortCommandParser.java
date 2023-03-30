@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 public class SortCommandParser implements Parser<SortCommand> {
     // maps the prefixes to their comparators
     private static final HashMap<Prefix, Comparator<Person>> COMPARATOR_HASH_MAP = new HashMap<>() {{
-            put(Prefix.ADDRESS, Comparator.comparing(Person::getAddress));
+            put(Prefix.STATION, Comparator.comparing(Person::getStation));
             put(Prefix.EMAIL, Comparator.comparing(Person::getEmail));
             put(Prefix.GROUP_TAG, Comparator.comparing(Person::getGroupTags));
             put(Prefix.MODULE_TAG, Comparator.comparing(Person::getModuleTags));
@@ -30,7 +30,7 @@ public class SortCommandParser implements Parser<SortCommand> {
 
     // use this as the default sorting direction
     private static final HashMap<Prefix, Boolean> IS_ASCENDING_DEFAULT_HASH_MAP = new HashMap<>() {{
-            put(Prefix.ADDRESS, true);
+            put(Prefix.STATION, true);
             put(Prefix.EMAIL, true);
             put(Prefix.GROUP_TAG, false);
             put(Prefix.MODULE_TAG, false);
@@ -51,7 +51,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         // the prefix positions are ordered from first to last
         // the argument multimap gives an unordered list so we cannot use it here
         List<PrefixPosition> prefixPositions = ArgumentTokenizer
-                .findAllPrefixPositions(args, Prefix.NAME, Prefix.PHONE, Prefix.EMAIL, Prefix.ADDRESS,
+                .findAllPrefixPositions(args, Prefix.NAME, Prefix.PHONE, Prefix.EMAIL, Prefix.STATION,
                         Prefix.TELEGRAM_HANDLE, Prefix.GROUP_TAG, Prefix.MODULE_TAG);
 
         // we reverse here because of the nature of the reduce function

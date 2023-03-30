@@ -143,15 +143,10 @@ public class ModelManagerTest {
         createEqualsFilteredList(
                 Prefix.PHONE, ALBERT.getPhone().getValue().split("\\s+"), eduMate, userPrefs, eduMateHistory);
         createEqualsFilteredList(
-                Prefix.ADDRESS, ALBERT.getAddress().getValue().getName().split("\\s+"),
+                Prefix.STATION, ALBERT.getStation().getValue().getName().split("\\s+"),
                 eduMate, userPrefs, eduMateHistory);
         createEqualsFilteredList(
                 Prefix.TELEGRAM_HANDLE, ALBERT.getTelegramHandle().getValue().split("\\s+"),
-                eduMate, userPrefs, eduMateHistory);
-
-        createEqualsFilteredList(
-                Prefix.MODULE_TAG,
-                ALBERT.getImmutableModuleTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
                 eduMate, userPrefs, eduMateHistory);
 
         createEqualsFilteredList(

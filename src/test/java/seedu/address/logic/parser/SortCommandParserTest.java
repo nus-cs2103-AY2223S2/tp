@@ -57,13 +57,13 @@ public class SortCommandParserTest {
         testSinglePrefix(String.format(" %sd", Prefix.TELEGRAM_HANDLE.getPrefix()),
                 Comparator.comparing(Person::getTelegramHandle), "Telegram Handle: Descending");
 
-        // address
-        testSinglePrefix(String.format(" %s", Prefix.ADDRESS.getPrefix()),
-                Comparator.comparing(Person::getAddress), "Address: Ascending");
-        testSinglePrefix(String.format(" %sa", Prefix.ADDRESS.getPrefix()),
-                Comparator.comparing(Person::getAddress), "Address: Ascending");
-        testSinglePrefix(String.format(" %sd", Prefix.ADDRESS.getPrefix()),
-                Comparator.comparing(Person::getAddress), "Address: Descending");
+        // station
+        testSinglePrefix(String.format(" %s", Prefix.STATION.getPrefix()),
+                Comparator.comparing(Person::getStation), "Station: Ascending");
+        testSinglePrefix(String.format(" %sa", Prefix.STATION.getPrefix()),
+                Comparator.comparing(Person::getStation), "Station: Ascending");
+        testSinglePrefix(String.format(" %sd", Prefix.STATION.getPrefix()),
+                Comparator.comparing(Person::getStation), "Station: Descending");
 
         // group tags
         testSinglePrefix(String.format(" %s", Prefix.GROUP_TAG.getPrefix()),
@@ -86,12 +86,12 @@ public class SortCommandParserTest {
     public void execute_sortIndexCommand_success() throws ParseException {
         Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
         SortCommandParser parser = new SortCommandParser();
+        List<ContactIndex> sortedIndexSorted = model.getObservablePersonList().stream()
+                .map(x -> x.getContactIndex()).collect(Collectors.toUnmodifiableList());
         parser.parse(String.format(" %s", Prefix.NAME.getPrefix()))
                 .execute(model);
         List<Person> personList = model.getObservablePersonList();
         List<ContactIndex> contactIndexSortedByName = personList.stream()
-                .map(x -> x.getContactIndex()).collect(Collectors.toUnmodifiableList());
-        List<ContactIndex> sortedIndexSorted = personList.stream()
                 .map(x -> x.getContactIndex()).collect(Collectors.toUnmodifiableList());
         assertNotEquals(contactIndexSortedByName.toArray(), sortedIndexSorted.toArray());
         parser.parse("").execute(model);

@@ -3,41 +3,226 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
     ],
     "modules": [
-      "CS2100",
-      "CS2101",
-      "CS2102",
-      "CS2103",
-      "CS2104",
-      "CS2105",
-      "CS2106"
+      {
+        "moduleCode": "CS2105",
+        "lessons": [
+          {
+            "startHour": 12,
+            "endHour": 14,
+            "day": "TUESDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 10,
+            "day": "WEDNESDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "EL1101E",
+        "lessons": [
+          {
+            "startHour": 14,
+            "endHour": 15,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 12,
+            "day": "WEDNESDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 11,
+            "day": "MONDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2103T",
+        "lessons": [
+          {
+            "startHour": 16,
+            "endHour": 17,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 11,
+            "endHour": 13,
+            "day": "FRIDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2103",
+        "lessons": [
+          {
+            "startHour": 16,
+            "endHour": 17,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 19,
+            "endHour": 21,
+            "day": "WEDNESDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 10,
+            "day": "TUESDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2102",
+        "lessons": [
+          {
+            "startHour": 18,
+            "endHour": 19,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 11,
+            "day": "MONDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 12,
+            "day": "THURSDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2107",
+        "lessons": [
+          {
+            "startHour": 17,
+            "endHour": 19,
+            "day": "MONDAY"
+          }
+        ]
+      }
     ],
     "index": 0
   },
   "persons": [
     {
+<<<<<<< HEAD
+      "name": "Su De",
+      "email": "sude@gmail.com",
+      "telegramHandle": "@sude",
+      "station": "Soo Teck",
+      "groups": [],
+=======
       "name": "Adam Tan",
       "email": "adamtan@gmail.com",
       "telegramHandle": "@adamtan",
-      "address": "Tan Kah Kee",
+      "station": "Tan Kah Kee",
       "groups": [
         "TA"
       ],
+>>>>>>> master
       "phone": "23",
-      "index": 82,
       "modules": [
-        "IE2141",
-        "CE2183",
-        "LAV2201",
-        "BT2103",
-        "LAK3201",
-        "CS2101"
-      ]
+        {
+          "moduleCode": "CS2103T",
+          "lessons": [
+            {
+              "startHour": 15,
+              "endHour": 16,
+              "day": "MONDAY"
+            },
+            {
+              "startHour": 16,
+              "endHour": 18,
+              "day": "TUESDAY"
+            },
+            {
+              "startHour": 17,
+              "endHour": 19,
+              "day": "THURSDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CE3202",
+          "lessons": [
+            {
+              "startHour": 17,
+              "endHour": 19,
+              "day": "TUESDAY"
+            },
+            {
+              "startHour": 16,
+              "endHour": 17,
+              "day": "THURSDAY"
+            },
+            {
+              "startHour": 13,
+              "endHour": 15,
+              "day": "FRIDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2104",
+          "lessons": [
+            {
+              "startHour": 14,
+              "endHour": 16,
+              "day": "THURSDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "PF4306",
+          "lessons": [
+            {
+              "startHour": 15,
+              "endHour": 17,
+              "day": "WEDNESDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CE2183",
+          "lessons": [
+            {
+              "startHour": 9,
+              "endHour": 11,
+              "day": "FRIDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "GE2103",
+          "lessons": [
+            {
+              "startHour": 17,
+              "endHour": 18,
+              "day": "MONDAY"
+            },
+            {
+              "startHour": 9,
+              "endHour": 11,
+              "day": "WEDNESDAY"
+            },
+            {
+              "startHour": 19,
+              "endHour": 21,
+              "day": "THURSDAY"
+            }
+          ]
+        }
+      ],
+      "index": 87
     }
   ]
 }

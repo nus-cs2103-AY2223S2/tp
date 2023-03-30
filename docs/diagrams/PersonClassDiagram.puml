@@ -6,7 +6,7 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>> {
 Class Person
-Class Address
+Class Station
 Class Email
 Class Name
 Class Phone
@@ -24,7 +24,7 @@ HiddenOutside ..> Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> Station
 
 Person *--> ModuleTagSet
 ModuleTagSet *--> "*" ModuleTag
@@ -32,6 +32,6 @@ Person *--> GroupTagSet
 GroupTagSet *--> "*" GroupTag
 GroupTag ..|> Tag
 ModuleTag ..|> Tag
-Address --> Location
+Station --> Location
 
 @enduml

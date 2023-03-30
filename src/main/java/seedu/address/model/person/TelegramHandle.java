@@ -13,7 +13,7 @@ public class TelegramHandle implements Comparable<TelegramHandle> {
             "Telegram Handle should not be blank and should start with @ symbol";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the station must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      * The first character should be "@" followed by alphanumeric characters.
      */

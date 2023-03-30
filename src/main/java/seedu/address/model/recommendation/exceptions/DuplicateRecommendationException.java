@@ -5,6 +5,6 @@ package seedu.address.model.recommendation.exceptions;
  */
 public class DuplicateRecommendationException extends RuntimeException {
     public DuplicateRecommendationException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate recommendations");
     }
 }

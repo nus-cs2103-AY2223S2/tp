@@ -17,7 +17,7 @@
     -fx-wrap-text: true;
 }
 
-#phone, #email, #address, #telegramHandle {
+#phone, #email, #station, #telegramHandle {
     -fx-font-family: "Inter Medium";
     -fx-font-size: 12px;
     -fx-text-fill: rgb(94, 40, 102, 0.7);

@@ -80,12 +80,12 @@
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="37" x="401.5"
                   y="32.9736">Email
             </text>
-        </g><!--class Address-->
-        <g id="elem_Address">
-            <rect fill="#D42E12" height="29.0679" id="Address" rx="2.5" ry="2.5"
+        </g><!--class Station-->
+        <g id="elem_Station">
+            <rect fill="#D42E12" height="29.0679" id="Station" rx="2.5" ry="2.5"
                   style="stroke:#FFFFFF;stroke-width:1.0;" width="61" x="298.5" y="13.0076"/>
             <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="55" x="301.5"
-                  y="32.9736">Address
+                  y="32.9736">Station
             </text>
         </g><!--class Telegram-->
         <g id="elem_Telegram">
@@ -197,9 +197,9 @@
             <polygon fill="#D42E12"
                      points="344.68,100.5176,351.7811,99.2631,353.3543,92.2257,346.2531,93.4802,344.68,100.5176"
                      style="stroke:#D42E12;stroke-width:1.1;"/>
-        </g><!--link Address to Person-->
-        <g id="link_Address_Person">
-            <path codeLine="22" d="M329,56.7576 C329,66.4876 329,77.3776 329,87.1076 " fill="none" id="Address-Person"
+        </g><!--link Station to Person-->
+        <g id="link_Station_Person">
+            <path codeLine="22" d="M329,56.7576 C329,66.4876 329,77.3776 329,87.1076 " fill="none" id="Station-Person"
                   style="stroke:#D42E12;stroke-width:1.1;"/>
             <polygon fill="#D42E12" points="329,43.9976,325,52.9976,329,48.9976,333,52.9976,329,43.9976"
                      style="stroke:#D42E12;stroke-width:1.1;"/>

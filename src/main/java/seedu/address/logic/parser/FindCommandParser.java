@@ -26,16 +26,16 @@ public class FindCommandParser implements Parser<FindCommand> {
         String keyWords = "";
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, Prefix.NAME, Prefix.PHONE, Prefix.EMAIL,
-                        Prefix.ADDRESS, Prefix.TELEGRAM_HANDLE,
+                        Prefix.STATION, Prefix.TELEGRAM_HANDLE,
                         Prefix.GROUP_TAG, Prefix.MODULE_TAG);
-        if (!atLeastOnePrefixPresent(argMultimap, Prefix.NAME, Prefix.ADDRESS, Prefix.PHONE, Prefix.EMAIL,
+        if (!atLeastOnePrefixPresent(argMultimap, Prefix.NAME, Prefix.STATION, Prefix.PHONE, Prefix.EMAIL,
                 Prefix.TELEGRAM_HANDLE,
                 Prefix.GROUP_TAG, Prefix.MODULE_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        List<Prefix> prefixPresent = findPrefixPresent(argMultimap, Prefix.NAME, Prefix.ADDRESS, Prefix.PHONE,
+        List<Prefix> prefixPresent = findPrefixPresent(argMultimap, Prefix.NAME, Prefix.STATION, Prefix.PHONE,
                 Prefix.EMAIL,
                 Prefix.TELEGRAM_HANDLE,
                 Prefix.GROUP_TAG,

@@ -8,33 +8,33 @@ import seedu.address.model.location.util.LocationDataUtil;
 
 /**
  * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidStation(String)}
  */
-public class Address implements Comparable<Address> {
+public class Station implements Comparable<Station> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Addresses should be the "
+            "Stations should be the "
             + "names of the closest MRT stations to their homes.";
 
     private final Location value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Station}.
      *
-     * @param address A valid address.
+     * @param station A valid station.
      */
-    public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = LocationDataUtil.ADDRESSES_HASH_MAP.get(address.toLowerCase());
+    public Station(String station) {
+        requireNonNull(station);
+        checkArgument(isValidStation(station), MESSAGE_CONSTRAINTS);
+        value = LocationDataUtil.STATIONS_HASH_MAP.get(station.toLowerCase());
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidStation(String test) {
         return test != null
-                && LocationDataUtil.ADDRESSES_HASH_MAP.containsKey(test.trim().toLowerCase());
+                && LocationDataUtil.STATIONS_HASH_MAP.containsKey(test.trim().toLowerCase());
     }
 
     /**
@@ -52,8 +52,8 @@ public class Address implements Comparable<Address> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof Station // instanceof handles nulls
+                && value.equals(((Station) other).value)); // state check
     }
 
     @Override
@@ -62,8 +62,8 @@ public class Address implements Comparable<Address> {
     }
 
     @Override
-    public int compareTo(Address otherAddress) {
-        return value.compareTo(otherAddress.value);
+    public int compareTo(Station otherStation) {
+        return value.compareTo(otherStation.value);
     }
 
 }

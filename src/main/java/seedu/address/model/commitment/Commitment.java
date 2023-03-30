@@ -1,5 +1,7 @@
 package seedu.address.model.commitment;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -22,6 +24,7 @@ public class Commitment {
      * Constructor for a {@code Commitment} object.
      */
     public Commitment(Location location, TimePeriod timePeriod) {
+        requireAllNonNull(location, timePeriod);
         this.location = location;
         this.timePeriod = timePeriod;
     }
@@ -75,9 +78,7 @@ public class Commitment {
     @Override
     public String toString() {
         return "Commitment{"
-                + getDay()
-                + ", " + getStartTime()
-                + " to " + getEndTime()
+                + timePeriod.toString()
                 + " at " + location + '}';
     }
 

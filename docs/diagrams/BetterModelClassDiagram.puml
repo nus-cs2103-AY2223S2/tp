@@ -20,6 +20,6 @@ ModuleTagSet --> "*" ModuleTag
 Person *-up-> Name
 Person *-up-> Phone
 Person *-up-> Email
-Person *-up-> Address
+Person *-up-> Station
 Person *-up-> Telegram
 @enduml

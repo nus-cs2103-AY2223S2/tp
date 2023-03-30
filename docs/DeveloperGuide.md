@@ -26,7 +26,7 @@ title: Developer Guide
    * [Model Component](#model-component)
      * [Person](#person)
          * [Name](#name)
-         * [Address](#address)
+         * [Station](#station)
          * [Phone](#phone)
          * [Email](#email)
          * [Telegram Handle](#telegram-handle)
@@ -250,7 +250,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 | Name            | Bee Shan                                |
 | Phone           | 81121128                                |
 | Email           | beeshan@gmail.com                       |
- | Address         | 200 Bishan Road                         |
+ | Station         | 200 Bishan Road                         |
  | Telegram Handle | @beeshan                                |
  | Groups          | NS, CCA                                 |
  | Modules         | CS3242, BT3101, CS1010E, CS3219, CE3165 |
@@ -395,7 +395,7 @@ The `Model` component,
 
 Represents the name of the user or the contact in `EduMate`.
 
-#### **Address**
+#### **Station**
 
 Represents the nearest MRT station to the user or contact's home.
 
@@ -497,7 +497,7 @@ The `add` command allows users to create a new person and insert them into the a
 
 :information_source: **Command Formats:** <br>
 
-* `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
+* `add n/NAME p/PHONE s/STATION e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
 
 </div>
 
@@ -844,7 +844,7 @@ The `ArgumentMultimap` utilises a `HashMap` to store an `ArrayList<String>` of a
 
 #### **Prefix**
 
-The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Address](#address), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
+The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Station](#station), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
 
 ## **Recommenders**
 
@@ -1278,7 +1278,7 @@ testers are expected to do more *exploratory* testing.
 
 ### **Add a new person**
 
-`add n/Thomas a/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
+`add n/Thomas s/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
 
 Expected Output in the Person List: New person added to EduMate.
 
@@ -1315,7 +1315,7 @@ Expected Output in Profile Panel: The user's name is changed to Gordon.
 
 Expected Output in the Person List: The fourth person has been removed, and there is no fourth index.
 
-`delete 4`, `add n/James e/james@gmail.com t/@james a/Bishan p/87654321`
+`delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
 
 Expected Output in the Person List: New person has been added to EduMate, with an index of 4.
 
@@ -1372,6 +1372,10 @@ Expected Output in Person List: All contacts that have the word 'Albert' in thei
 `find m/CS2103T`
 
 Expected Output in Person List: All contacts with CS2103T tag under `Module`.
+
+`find n/Albert m/CS2103T`
+
+Expected Output in Person List: All contacts that have the word 'Albert' in their name and CS2103T tag under `Module`.
 
 ### **Arrange persons by criteria**
 
