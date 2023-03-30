@@ -71,15 +71,12 @@ public class LogicManager implements Logic {
 
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-        CommandResult commandResult;
-        Command command;
-
         commandText = navigationInjector.inject(commandText, model);
 
         logger.info("----------------[POST INJECTION USER COMMAND][" + commandText + "]");
-        command = trackerParser.parseCommand(commandText);
 
-        commandResult = command.execute(model);
+        Command command = trackerParser.parseCommand(commandText);
+        CommandResult commandResult = command.execute(model);
 
         triggerTrackerEvents(commandResult);
 
