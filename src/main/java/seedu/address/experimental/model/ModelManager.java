@@ -1,6 +1,7 @@
 package seedu.address.experimental.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_ENTITY_NONEXISTENT;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
@@ -13,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
@@ -136,7 +138,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Entity getEntityFromName(String name) {
+    public Entity getEntityFromName(String name) throws ParseException {
         requireNonNull(name);
         String trimName = name.trim();
         Entity toReturn = null;
@@ -146,6 +148,9 @@ public class ModelManager implements Model {
                 toReturn = entity;
                 break;
             }
+        }
+        if (toReturn == null) {
+            throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);
         }
         return toReturn;
     }

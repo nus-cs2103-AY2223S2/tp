@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.Classification;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Template;
@@ -91,7 +92,7 @@ public interface Model {
      * @param name the name of the entity to be found
      * @return the found entity
      */
-    Entity getEntityFromName(String name);
+    Entity getEntityFromName(String name) throws ParseException;
 
     // ============== Filtered entity list =================
     /**
