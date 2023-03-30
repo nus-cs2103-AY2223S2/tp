@@ -23,7 +23,7 @@ public class Timeslot {
     public static final String TIMESLOT_VALIDATION_REGEX = "\\d{8} \\d{2}:\\d{2},\\d{8} \\d{2}:\\d{2}";
     public static final String DATETIME_VALIDATION_REGEX = "\\d{8} \\d{2}:\\d{2}";
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("ddMMyyyy HH:mm");
-
+    private static final DateTimeFormatter displayFormat = DateTimeFormatter.ofPattern("dd MMM HH:mm");
     public final LocalDateTime startingDateTime;
     public final LocalDateTime endingDateTime;
     public final String timeslotString;
@@ -54,7 +54,7 @@ public class Timeslot {
         this.startingDateTime = startingDateTime;
         this.endingDateTime = endingDateTime;
         this.timeslotString =
-            startingDateTime.format(dateTimeFormatter) + "," + endingDateTime.format(dateTimeFormatter);
+            startingDateTime.format(displayFormat) + " to " + endingDateTime.format(displayFormat);
     }
 
     /**
@@ -113,9 +113,16 @@ public class Timeslot {
         return dateTimeFormatter;
     }
 
+    public String getFormattedStartTime() {
+        return startingDateTime.format(displayFormat);
+    }
+
+    public String getFormattedEndTime() {
+        return endingDateTime.format(displayFormat);
+    }
     @Override
     public String toString() {
-        return startingDateTime.toString() + " " + endingDateTime.toString();
+        return getFormattedStartTime() + " to " + getFormattedEndTime();
     }
 
     @Override
