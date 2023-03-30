@@ -58,7 +58,8 @@ public class SampleDataUtil {
         p3.setPhone(new Phone("93210283"));
         p3.setEmail(new Email("charlotte@example.com"));
         p3.setAddress(new Address("Blk 11 Ang Mo Kio Street 74, #11-04"));
-        p3.setSocialMedia(new SocialMedia(Instagram.of("charlotte.oliveriro"), Telegram.of("charlotteoliveriro"),
+        p3.setSocialMedia(new SocialMedia(Instagram.of("charlotte.oliveriro"),
+                Telegram.of("charlotteoliveriro"),
                 WhatsApp.of("93210283")));
         p3.setBirthday(new Birthday("10/01/2000"));
         p3.setRemarks(getRemarkSet("neighbours"));
