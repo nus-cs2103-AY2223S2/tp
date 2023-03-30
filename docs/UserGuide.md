@@ -208,6 +208,15 @@ Format: `remark_patient INDEX [r/REMARK]`
 * `remark_patient 1 r/Immunocompromised` Adds a note `Immunocompromised` to the patient.
 * `remark_patient 1` Removes any existing note from the patient.
 
+### Viewing a patient: `view`
+
+Views a patient's full details in another popup window.
+
+Format: `view INDEX`
+
+Example:
+* `view 1`
+
 ### Adding an appointment: `add_appt`
 
 Adds an appointment for an existing patient in MediMeet.
