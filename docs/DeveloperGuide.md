@@ -542,7 +542,6 @@ For each `Day` in the `Timetable`, there are 15 `HourBlock` objects each represe
 
 #### **Sample Data Util**
 
-<<<<<<< HEAD
 The `SampleDataUtil` class deals with reading and parsing persons data from a file. In particular, these are the people that will appear upon first load of EduMate, as well as during the execution of `SampleCommand`. The sample data is stored within [this file](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/data/sampleData.txt).
 
 <div markdown="span" class="alert alert-primary">
@@ -554,9 +553,6 @@ The `SampleDataUtil` class deals with reading and parsing persons data from a fi
 * Notice that the `MODULE_TAGS` are separated by a comma `,` instead, as its parser uses spaces to separate out the arguments. 
 
 </div>
-=======
-{Hafeez please}
->>>>>>> master
 
 ---
 
