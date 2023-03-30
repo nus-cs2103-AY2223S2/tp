@@ -23,7 +23,7 @@ public class DeleteTagCommand extends Command {
     public static final String MESSAGE_USAGE = commandWords
             + ": Delete tag from the person identified by the index used in the displayed person list.\n"
             + "Parameters: Index (must be positive number), Tag Name\n"
-            + "Example: " + commandWords + " 1 teacher";
+            + "Example: " + commandWords.get(0) + " 1 teacher";
 
     public static final String MESSAGE_SUCCESS = "Tag deleted: %1$s";
     public static final String MESSAGE_INVALID_PERSON = "Person does not exist.";

@@ -51,7 +51,7 @@ public class ShortcutCommandParser implements Parser<ShortcutCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShortcutCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split(" ");
+        String[] nameKeywords = trimmedArgs.split("[\\n\\r\\s]+");
         String commandWord = nameKeywords[COMMAND_INDEX];
         String shortForm = nameKeywords[SHORT_FORM_INDEX];
 

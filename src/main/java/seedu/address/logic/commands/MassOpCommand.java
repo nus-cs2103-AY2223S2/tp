@@ -27,7 +27,7 @@ public class MassOpCommand extends Command {
     public static final String MESSAGE_USAGE = commandWords
             + ": Applies a single-target operation to all people being displayed.\n"
             + "Parameters: [edit | tag | delete_tag | delete] [FURTHER_ARGS (must exclude index)] \n"
-            + "Example: " + commandWords + " tag marked";
+            + "Example: " + commandWords.get(0) + " tag marked";
 
     public static final String MESSAGE_SUCCESS = "Command executed on %1$d / %2$d persons";
 
