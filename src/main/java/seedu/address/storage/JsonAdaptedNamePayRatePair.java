@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.PayRate;
 import seedu.address.model.session.NamePayRatePair;
 import seedu.address.model.tag.Tag;
 
@@ -15,14 +14,14 @@ import seedu.address.model.tag.Tag;
 public class JsonAdaptedNamePayRatePair {
 
     private final String studentName;
-    private final PayRate payRate;
+    private final int payRate;
 
     /**
      * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
      */
     @JsonCreator
     public JsonAdaptedNamePayRatePair(@JsonProperty("name") String studentName,
-                                      @JsonProperty("payRate") PayRate payRate) {
+                                      @JsonProperty("payRate") int payRate) {
         this.studentName = studentName;
         this.payRate = payRate;
     }
@@ -33,7 +32,6 @@ public class JsonAdaptedNamePayRatePair {
     public JsonAdaptedNamePayRatePair(NamePayRatePair source) {
         this.studentName = source.getName();
         this.payRate = source.getPayRate();
-
     }
 
     /**

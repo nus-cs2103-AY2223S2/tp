@@ -36,7 +36,7 @@ public class Session implements Comparable<Session> {
     private final int id;
     private final Location location;
     private HashMap<String, Boolean> attendanceMap = new HashMap<>();
-    private HashMap<String, PayRate> payRateMap = new HashMap<>();
+    private HashMap<String, Integer> payRateMap = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -122,7 +122,7 @@ public class Session implements Comparable<Session> {
         String name = person.getName().formattedName;
         PayRate payRate = person.getPayRate();
         attendanceMap.put(name, false);
-        payRateMap.put(name, payRate);
+        payRateMap.put(name, payRate.toInt());
     }
 
     /**
@@ -333,7 +333,7 @@ public class Session implements Comparable<Session> {
         try {
             for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
                 if (entry.getValue()) {
-                    float indivPay = payRateMap.get(entry.getKey()).toInt();
+                    float indivPay = payRateMap.get(entry.getKey());
                     totalPay += indivPay / 60 * durationInMins;
                 }
             }
@@ -457,7 +457,7 @@ public class Session implements Comparable<Session> {
 
     public ArrayList<NamePayRatePair> getNamePayRateMap() {
         ArrayList<NamePayRatePair> map = new ArrayList<>();
-        for (Map.Entry<String, PayRate> set
+        for (Map.Entry<String, Integer> set
                 : payRateMap.entrySet()) {
             NamePayRatePair toAdd =
                     new NamePayRatePair(
