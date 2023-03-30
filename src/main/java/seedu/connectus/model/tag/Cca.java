@@ -5,15 +5,14 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
 
 /**
  * Represents a Cca in the ConnectUS.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidCcaName(String)}
  */
 public class Cca extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "CCA names and CCA Positions should be "
             + "alphanumeric and may contain spaces\n"
-            + "Example:\n"
-            + "1. " + PREFIX_CCA + "NUS Hackers\n"
-            + "2. " + PREFIX_CCA + "Chess Club#Director";
+            + "CCA Positions are optional\n"
+            + "Format: " + PREFIX_CCA + "CCA[#CCA_POSITION]";
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ]+#?[\\p{Alnum}\\s]+$";
     public final String ccaName;
     public final String ccaPositionName;

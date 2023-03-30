@@ -5,13 +5,13 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 
 /**
  * Represents a Module in the ConnectUS.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidModuleName(String)}
  */
 public class Module extends Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Module names should be alphanumeric "
             + "and not contain any spaces\n"
-            + "Example: " + PREFIX_MODULE + "CS2103T";
+            + "Format: " + PREFIX_MODULE + "MODULE_CODE";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     public final String moduleName;
 

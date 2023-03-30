@@ -2,6 +2,7 @@ package seedu.connectus.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 
 /**
@@ -12,8 +13,7 @@ public class Name {
 
     public static final String MESSAGE_CONSTRAINTS = "Names should only contain "
             + "alphanumeric characters and spaces, and it should not be blank\n"
-            + "Example:\n"
-            + "1. " + PREFIX_NAME + "NUS Hackers\n";
+            + "Format: " + PREFIX_NAME + "NAME";
 
     /*
      * The first character of the address must not be a whitespace,
