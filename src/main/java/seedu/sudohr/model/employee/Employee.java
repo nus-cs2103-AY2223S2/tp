@@ -159,16 +159,16 @@ public class Employee {
         builder.append(getName())
                 .append("\nEmployee ID:\t")
                 .append(getId())
-                .append("\nPhone:\t")
+                .append("\nPhone:\t\t\t")
                 .append(getPhone())
-                .append("\nEmail:\t")
+                .append("\nEmail:\t\t\t")
                 .append(getEmail())
-                .append("\nAddress:\t")
+                .append("\nAddress:\t\t")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("\nTags: ");
+            builder.append("\nTags: \t\t\t");
             tags.forEach(builder::append);
         }
         return builder.toString();

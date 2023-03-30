@@ -13,3 +13,18 @@ github_icon: "images/github-icon.png"
 
 plugins:
   - jemoji
+
+
+enable_features:
+  admonitions: true
+  autoglossary: true
+
+defaults:
+  - scope:
+      path: "" # Site-wide default
+    values:
+      master_branch: "https://github.com/AY2223S1-CS2103T-W16-2/tp/tree/master"
+      main_src: "src/main/java/seedu/foodrem"
+
+plugins:
+  - jemoji

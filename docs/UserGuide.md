@@ -9,9 +9,10 @@ SudoHR is a **desktop app specially catered for HR professionals in managing emp
 optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface
 (GUI). If you can type fast, SudoHR can get your HR management tasks done faster than traditional GUI apps.
 
+
 # 2. Table of Contents
 Table of Contents
-{: #toc-heading}
+{% include toc.html html=content %}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -27,7 +28,7 @@ SudoHR allows you to manage these components by:
 2. Adding/Removing employees in departments/leaves.
 3. Applying different filters on the data.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **WARNING:**
+<div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
 SudoHR can only hold up to 10,000 employees, 10,000 departments, 10,000 leaves
 and 10,000 tags! Exceeding this limit will result in slower performance or unforeseen
 problems.
@@ -45,7 +46,7 @@ problems.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sudohr.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiPreview.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -60,10 +61,19 @@ problems.
 
 [//]: # (Explain notations used in the UG)
 
-You will see several types of boxes in the UG:
-1. TIP - Good practices you can follow to enhance your experience using SudoHR
-2. NOTE - Things to remember when using SudoHR so you don't get confused
-3. WARNING - Important things to remember when using SudoHR that may cause problems.
+You will see several types of annotations in the user guide:
+
+<div markdown="span" class="alert alert-primary">:exclamation: **TIP:**
+Good practices you can follow to enhance your experience using SudoHR.
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **NOTE:**
+Things to remember when using SudoHR so you don't get confused.
+</div>
+
+<div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
+Important things to remember when using SudoHR that may cause problems.
+</div> 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -71,7 +81,7 @@ You will see several types of boxes in the UG:
 
 ## 6.1. Layout
 
-[//]: # (![Screenshot of SudoHR app]&#40;images/Ui.png "SudoHR main page"&#41;)
+![Screenshot of SudoHR app](images/Ui.png)
 
 [//]: # (<-- Insert labelled UI here -->)
 Our app interface consists of 5 main components:
@@ -195,8 +205,9 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 | **EMAIL**               | e/                 | EMAIL represents the email address of an employee. It must be of the format local-part@domain <br/> It has the following constraints: <li> It must be unique </li> <li> The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, ( +_.- ). The local-part may not start or end with any special characters. </li>  <li> This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. </li> <li> The domain name must: <ol><li>End with a domain label at least 2 characters long</li><li>Have each domain label start and end with alphanumeric characters</li><li>Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.</li></ol></li> Valid Examples: <li>PeterJack+1190@example.com</li> <li>a1+be.d@example1.com</li> Invalid Examples: <li>peter jack@example.com</li> <li>-peterjack@example.com</li> |
 | **ADDRESS**             | a/                 | ADDRESS represents the home address of an employee. <br/> It can take on any value!                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | **TAG**                 | t/                 | TAG represents a tag of an employee. This field is optional and is not restrictive in usage. <br/> For example, it can be used to indicate an employee's position in the department or simple remarks about the employee. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Manager</li> Invalid Examples: <li>*Manager</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **DEPARTMENT_NAME**     | n/                 | DEPARTMENT_NAME is the unique identifier for a department. It is used when creating, editing and deleting a department. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Manager</li> Invalid Examples: <li>*Manager</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **OLD_DEPARTMENT_NAME** | NA                 | OLD_DEPARTMENT_NAME represents the original name before editing a department. It has the same constraints as DEPARTMENT_NAME.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| **DEPARTMENT_NAME**     | n/                 | DEPARTMENT_NAME is the unique identifier for a department. It is used when creating and deleting a department. <br/> It has the following constraints: <li> They can only contain alphanumeric characters. </li> <br/> Valid Examples: <li>Manager</li> Invalid Examples: <li>*Manager</li>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **OLD_DEPARTMENT_NAME** | NA                 | OLD_DEPARTMENT_NAME represents the original department name before editing a department. It has the same constraints as DEPARTMENT_NAME.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **NEW_DEPARTMENT_NAME** | n/                 | NEW_DEPARTMENT_NAME represents the new department name when editing a department. It has the same constraints as DEPARTMENT_NAME.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | **DATE**                | d/                 | DATE represents the date of the leave. <br/> It has the following constraints: <li>The date provided must be of the form YYYY-MM-DD. </li><br>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | **START_DATE**          | s/                 | START_DATE represents the start of a range of days where leave is taken. <br/> It has the following constraints: <li>The date provided must be of the form YYYY-MM-DD.</li><br>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | **END_DATE**            | e/                 | START_DATE represents the end of a range of days where leave is taken. <br/> It has the following constraints: <li> Within a command, the end_date must be chronologically after the START_DATE </li> <li> Within a command, the END_DATE can at most be 6 days later than the START_DATE </li><li>The date provided must be of the form YYYY-MM-DD.</li><br/>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -218,7 +229,7 @@ It consists of:
 2. Prefixes - They indicate what type of input to enter.
 3. Placeholders - The actual data you input for the command.
 
-## 6.4. Trying your first command
+[//]: # (## 6.4. Trying your first command)
 
 [//]: # (<-- Insert example context here -->)
 
@@ -526,7 +537,7 @@ Shows a message explaining how to access the help page for SudoHR.
 
 Format: `help`
 
-### 7.4.1. Viewing help : `sa`
+### 7.4.1. Refresh all lists : `sa`
 
 Shows all employees, departments and leaves in SudoHR.
 
@@ -558,7 +569,7 @@ SudoHR data are saved in the hard disk automatically after any command that chan
 
 SudoHR data are saved as a JSON file `[JAR file location]/data/sudohr.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **WARNING:**
+<div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
 If your changes to the data file makes its format invalid, SudoHR will discard all data and start with an empty data file at the next run.
 </div>
 
