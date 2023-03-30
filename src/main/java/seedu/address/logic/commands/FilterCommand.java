@@ -32,24 +32,24 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters through all persons in the address "
             + "book, removing persons whose fields fail to contain the specified keywords (case-insensitive)\n"
             + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_RANK + "RANK] "
+            + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_UNIT + "UNIT] "
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_PLATOON + "PLATOON] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "jo "
-            + PREFIX_PHONE + "98 "
-            + PREFIX_EMAIL + "example.com "
-            + PREFIX_ADDRESS + "clementi "
             + PREFIX_RANK + "3SG "
+            + PREFIX_NAME + "jo "
             + PREFIX_UNIT + "6SIR "
             + PREFIX_COMPANY + "Alpha "
             + PREFIX_PLATOON + "2 "
+            + PREFIX_PHONE + "98 "
+            + PREFIX_EMAIL + "example.com "
+            + PREFIX_ADDRESS + "clementi "
             + PREFIX_TAG + "2ic "
             + PREFIX_TAG + "logistics ";
     public static final String MESSAGE_NO_FIELD_GIVEN = "At least one field must be provided to filter.";
@@ -115,14 +115,14 @@ public class FilterCommand extends Command {
      */
     public static class FilterDescriptor {
         private static final String BLANK = "";
-        private String nameValue;
-        private String phoneValue;
-        private String emailValue;
-        private String addressValue;
         private String rankValue;
+        private String nameValue;
         private String unitValue;
         private String companyValue;
         private String platoonValue;
+        private String phoneValue;
+        private String emailValue;
+        private String addressValue;
         private List<String> tagValues;
 
         /**
@@ -131,14 +131,14 @@ public class FilterCommand extends Command {
          * values.
          */
         public FilterDescriptor() {
-            nameValue = BLANK;
-            phoneValue = BLANK;
-            emailValue = BLANK;
-            addressValue = BLANK;
             rankValue = BLANK;
+            nameValue = BLANK;
             unitValue = BLANK;
             companyValue = BLANK;
             platoonValue = BLANK;
+            phoneValue = BLANK;
+            emailValue = BLANK;
+            addressValue = BLANK;
             tagValues = Collections.emptyList();
         }
 
@@ -150,42 +150,6 @@ public class FilterCommand extends Command {
                     companyValue, platoonValue) || !(tagValues.isEmpty()));
         }
 
-        public String getNameValue() {
-            return nameValue;
-        }
-
-        public void setNameValue(String nameValue) {
-            requireNonNull(nameValue);
-            this.nameValue = nameValue;
-        }
-
-        public String getPhoneValue() {
-            return phoneValue;
-        }
-
-        public void setPhoneValue(String phoneValue) {
-            requireNonNull(phoneValue);
-            this.phoneValue = phoneValue;
-        }
-
-        public String getEmailValue() {
-            return emailValue;
-        }
-
-        public void setEmailValue(String emailValue) {
-            requireNonNull(emailValue);
-            this.emailValue = emailValue;
-        }
-
-        public String getAddressValue() {
-            return addressValue;
-        }
-
-        public void setAddressValue(String addressValue) {
-            requireNonNull(addressValue);
-            this.addressValue = addressValue;
-        }
-
         public String getRankValue() {
             return rankValue;
         }
@@ -193,6 +157,15 @@ public class FilterCommand extends Command {
         public void setRankValue(String rankValue) {
             requireNonNull(rankValue);
             this.rankValue = rankValue;
+        }
+
+        public String getNameValue() {
+            return nameValue;
+        }
+
+        public void setNameValue(String nameValue) {
+            requireNonNull(nameValue);
+            this.nameValue = nameValue;
         }
 
         public String getUnitValue() {
@@ -222,6 +195,33 @@ public class FilterCommand extends Command {
             this.platoonValue = platoonValue;
         }
 
+        public String getPhoneValue() {
+            return phoneValue;
+        }
+
+        public void setPhoneValue(String phoneValue) {
+            requireNonNull(phoneValue);
+            this.phoneValue = phoneValue;
+        }
+
+        public String getEmailValue() {
+            return emailValue;
+        }
+
+        public void setEmailValue(String emailValue) {
+            requireNonNull(emailValue);
+            this.emailValue = emailValue;
+        }
+
+        public String getAddressValue() {
+            return addressValue;
+        }
+
+        public void setAddressValue(String addressValue) {
+            requireNonNull(addressValue);
+            this.addressValue = addressValue;
+        }
+
         public List<String> getTagValues() {
             return tagValues;
         }
@@ -246,14 +246,14 @@ public class FilterCommand extends Command {
             // state check
             FilterDescriptor e = (FilterDescriptor) other;
 
-            return getNameValue().equals(e.getNameValue())
-                    && getPhoneValue().equals(e.getPhoneValue())
-                    && getEmailValue().equals(e.getEmailValue())
-                    && getAddressValue().equals(e.getAddressValue())
-                    && getRankValue().equals(e.getRankValue())
+            return getRankValue().equals(e.getRankValue())
+                    && getNameValue().equals(e.getNameValue())
                     && getUnitValue().equals(e.getUnitValue())
                     && getCompanyValue().equals(e.getCompanyValue())
                     && getPlatoonValue().equals(e.getPlatoonValue())
+                    && getPhoneValue().equals(e.getPhoneValue())
+                    && getEmailValue().equals(e.getEmailValue())
+                    && getAddressValue().equals(e.getAddressValue())
                     && getTagValues().equals(e.getTagValues());
         }
     }

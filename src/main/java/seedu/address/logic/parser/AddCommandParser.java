@@ -56,17 +56,17 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Rank rank = ParserUtil.parseRank(argMultimap.getValue(PREFIX_RANK).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Unit unit = ParserUtil.parseUnit(argMultimap.getValue(PREFIX_UNIT).orElse("N/A"));
         Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).orElse("N/A"));
         Platoon platoon = ParserUtil.parsePlatoon(argMultimap.getValue(PREFIX_PLATOON).orElse("N/A"));
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, address, rank, unit, company, platoon, tagList);
+        Person person = new Person(rank, name, unit, company, platoon, phone, email, address, tagList);
 
         return new AddCommand(person);
     }

@@ -29,12 +29,16 @@ public class PersonCard extends UiPart<Region> {
 
     @FXML
     private HBox cardPane;
+
     @FXML
     private Label name;
+
     @FXML
     private Label id;
+
     @FXML
     private Label phone;
+
     @FXML
     private Label address;
 
@@ -62,14 +66,14 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
         rank.setText(person.getRank().value);
+        name.setText(person.getName().fullName);
         unit.setText(person.getUnit().value);
         company.setText(person.getCompany().value);
         platoon.setText(person.getPlatoon().value);
+        phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
+        address.setText(person.getAddress().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
