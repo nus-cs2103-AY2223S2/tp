@@ -47,7 +47,7 @@ public class WardName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof WardName // instanceof handles nulls
-                && wardName.equals(((WardName) other).wardName)); // state check
+                && wardName.equalsIgnoreCase(((WardName) other).wardName)); // state check
     }
 
     @Override
