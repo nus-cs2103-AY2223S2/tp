@@ -1,6 +1,15 @@
 package tfifteenfour.clipboard.ui;
 
 public class HelpWindowMessages {
+    final static String GENERAL_HELP_MESSAGE = "\n\nHere are some general commands you can use.\n" +
+            "1. home: goes back to the home page, which is the Course Page\n" +
+            "2. back: goes back to the previous page you were at\n" +
+            "3. undo: deletes the change that your last command did\n" +
+            "4. help: opens this help window with commands specific to the page you are on\n" +
+            "5. clear: clears entries of the page you are at\n" +
+            "6. exit: exits the program\n" +
+            "7. UP/DOWN arrow keys: scrolls through your command history\n";
+
     final static String COURSE_HELP_MESSAGE = "Here is what you can do under the [Course] page.\n" +
             "1. add course <COURSE NAME>: adds a new course to the page\n" +
             "\tTry this: add course CS2103T\n" +
@@ -9,7 +18,7 @@ public class HelpWindowMessages {
             "3. edit course <INDEX> <NEW COURSE NAME>: edits an existing course name\n" +
             "\tTry this: edit course 1 CS2101\n" +
             "4. select <INDEX>: choose a course to move to the group page\n" +
-            "\tTry this: select 1\n";
+            "\tTry this: select 1";
 
     final static String GROUP_HELP_MESSAGE = "Here is what you can do under the [Group] page.\n" +
             "1. add group <GROUP NAME>: adds a new group to the page\n" +
@@ -23,7 +32,7 @@ public class HelpWindowMessages {
             "5. session <INDEX>: choose a group to move to the session page\n" +
             "\tTry this: session 1\n" +
             "6. task <INDEX>: choose a group to move to the task page\n" +
-            "\tTry this: task 1\n";
+            "\tTry this: task 1";
 
     final static String STUDENT_HELP_MESSAGE = "Here is what you can do under the [Student] page.\n" +
             "1. add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>: adds a new student to the page\n" +
@@ -37,7 +46,7 @@ public class HelpWindowMessages {
             "5. find <KEYWORD>: finds students whose names contain any of the given keywords\n" +
             "\tTry this: find John\n" +
             "6. select <INDEX>: select a particular student and display his / her particulars\n" +
-            "\tTry this: select 1\n";
+            "\tTry this: select 1";
 
     final static String SESSION_HELP_MESSAGE = "Here is what you can do under the [Session] page.\n" +
             "1. add session <SESSION>: adds a new session to the page\n" +

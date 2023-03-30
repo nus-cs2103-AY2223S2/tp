@@ -249,25 +249,25 @@ public class MainWindow extends UiPart<Stage> {
 
         switch (currentPage) {
         case COURSE_PAGE:
-            message = HelpWindowMessages.COURSE_HELP_MESSAGE;
+            message = HelpWindowMessages.COURSE_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
             break;
         case GROUP_PAGE:
-            message = HelpWindowMessages.GROUP_HELP_MESSAGE;
+            message = HelpWindowMessages.GROUP_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
             break;
         case STUDENT_PAGE:
-            message = HelpWindowMessages.STUDENT_HELP_MESSAGE;
+            message = HelpWindowMessages.STUDENT_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
             break;
         case SESSION_PAGE:
-            message = HelpWindowMessages.SESSION_HELP_MESSAGE;
+            message = HelpWindowMessages.SESSION_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
             break;
         case TASK_PAGE:
-            message = HelpWindowMessages.TASK_HELP_MESSAGE;
+            message = HelpWindowMessages.TASK_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
             break;
         case SESSION_STUDENT_PAGE:
-            message = HelpWindowMessages.ATTENDANCE_HELP_MESSAGE;
+            message = HelpWindowMessages.ATTENDANCE_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
             break;
         case TASK_STUDENT_PAGE:
-            message = HelpWindowMessages.GRADES_HELP_MESSAGE;
+            message = HelpWindowMessages.GRADES_HELP_MESSAGE + HelpWindowMessages.GENERAL_HELP_MESSAGE;
             break;
         default:
             break;
