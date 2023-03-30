@@ -49,8 +49,13 @@ public class OpeningDetailsPanel extends UiPart<Region> {
         opening.getKeydates().stream()
                 .forEach(date -> {
                     KeydateCard keydateCard = new KeydateCard(date);
+                    keydateCard.setWrapText(true);
                     dates.getChildren().add(keydateCard);
                 });
+        position.setWrapText(true);
+        company.setWrapText(true);
+        status.setWrapText(true);
+        email.setWrapText(true);
         remark.setWrapText(true);
     }
 }

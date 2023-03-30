@@ -2,6 +2,7 @@ package seedu.ultron.logic.commands;
 
 import seedu.ultron.commons.core.Messages;
 import seedu.ultron.model.Model;
+import seedu.ultron.model.opening.KeydateSort;
 import seedu.ultron.model.opening.OpeningsBeforeDaysPredicate;
 
 import static java.util.Objects.requireNonNull;
@@ -25,6 +26,7 @@ public class UpcomingCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredOpeningList(predicate);
+        model.sortFilteredOpeningList(new KeydateSort("asc"));
         return new CommandResult(
                 String.format(Messages.MESSAGE_OPENING_LISTED_OVERVIEW, model.getFilteredOpeningList().size()));
     }
