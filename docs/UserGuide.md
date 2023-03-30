@@ -73,7 +73,8 @@ Parameters:
 
 > Note:  
 > Name/Description is alphanumeric only.  
-> Start time should come before end time.
+> Start time should come before end time.  
+> Adding of events that overlaps in time is not allowed.
 
 Example: `add n/booked tennis court /2023-02-01 /2023-02-02`
 
@@ -229,8 +230,6 @@ Functionality:
 
 <h1 id="limitations">Limitations</h1>
 -------------------------------------
-* Currently, we only support same-day events.
-  Events which are stretched across multiple days are not supported.
 * Currently, we only support same-day events.
   Events which are stretched across multiple days are not supported.
 
