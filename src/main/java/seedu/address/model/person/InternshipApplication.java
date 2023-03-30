@@ -9,7 +9,6 @@ import java.util.Set;
 
 import seedu.address.model.contact.Contact;
 import seedu.address.model.documents.Documents;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents an InternshipApplication in the tracker.
@@ -34,7 +33,6 @@ public class InternshipApplication {
     private final boolean isArchived;
 
     // Data fields
-    private final Set<Tag> tags = new HashSet<>();
     private final Contact contact;
     private final Documents documents;
 
@@ -202,14 +200,6 @@ public class InternshipApplication {
 
     public InternshipStatus getStatus() {
         return status;
-    }
-
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
     }
 
     public Contact getContact() {
