@@ -230,7 +230,7 @@ To use ConnectUS, type the [command](#321-command) along with its [parameters](#
 * If a parameter is expected only once in the command, but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameter for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameter for commands that do not take in parameters (such as `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 * Commands are case-sensitive!<br>
@@ -372,14 +372,15 @@ Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do procee
 
 ## 4.4 Adding a contact: `add`
 
-Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA]…​ [ccapos/CCA_POSITION]…​ [r/REMARK]…​`
+Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA[#CCA_POSITION]]…​ [maj/MAJOR]…​ [r/REMARK]…​`
 
 >Adds a contact to the ConnectUS app.
  
 You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE` etc.) are optional. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
-A contact can have any number of tags, <u>modules</u> and <u>CCAs</u>! (including 0)
+* A contact can have any number of tags, <u>modules</u> and <u>CCAs</u> (including 0)! 
+* A contact can have at most 2 majors. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters! 
 </div>
 
 <div style="page-break-after: always"></div>
@@ -400,7 +401,7 @@ A contact can have any number of tags, <u>modules</u> and <u>CCAs</u>! (includin
 
 Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
-<div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you add a new contact.
 </div>
 
@@ -414,7 +415,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/
 
 >Edits an existing contact in the ConnectUS app.
 
-If you accidentally added the wrong information when [adding a contact](#44-adding-a-contact-add), or if you want to update your contacts' information, you use the `edit`  command to update contact information. 
+If you accidentally added the wrong information when [adding a contact](#44-adding-a-contact-add), or if you want to update your contacts' information, you use the `edit`  command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-add-t" class="alert-link">Adding Additional Tags</a> or <a href="#47-deleting-tags-from-a-contact-delete-t" class="alert-link">Deleting Existing Tags</a> instead!
@@ -439,8 +440,12 @@ The `edit` command:
 
 Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
-<div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you edit an existing contact.
+</div>
+<br>
+<div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+As of now, removing a contact's information field is not supported yet. Be sure to look out for it in a future iteration!
 </div>
 
 [↑ Back to feature list](#4-features)
@@ -449,7 +454,7 @@ ConnectUS helps you to detect duplicate contacts by checking the existing contac
 
 ## 4.6 Adding additional tags to a contact: `add-t`
 
-Format: `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA] [ccapos/CCA_POSITION]`
+Format: `add-t PERSON_INDEX [r/REMARK] [mod/MODULE] [cca/CCA[#CCA_POSITION]] [maj/MAJOR]`
 
 > Adds a tag to an existing contact.
 
@@ -458,7 +463,7 @@ If you want to add a new tag to a contact, you can use the `add-t` command.
 The `add-t` command:
 * Adds a tag to the contact at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
-* At least one of the optional fields must be provided (e.g. `r/REMARK_NAME`, `mod/MODULE_NAME`).
+* At least one of the optional fields must be provided (e.g. `r/REMARK_NAME`, `mod/MODULE_CODE`).
 * A new tag will be created and assigned to the person specified at the `PERSON_INDEX`.
 
 <div style="page-break-after: always"></div>
@@ -477,7 +482,7 @@ The `add-t` command:
 
 ## 4.7 Deleting tags from a contact: `delete-t`
 
-Format: `delete-t PERSON_INDEX [r/REMARK_INDEX] [mod/MODULE_INDEX] [cca/CCA_INDEX] [ccapos/CCA_POSITION_INDEX]`
+Format: `delete-t PERSON_INDEX [r/REMARK_INDEX] [mod/MODULE_INDEX] [cca/CCA_INDEX] [maj/MAJOR_INDEX]`
 
 > Deletes an existing tag from an existing contact.
 
@@ -485,21 +490,26 @@ If you want to delete an existing tag from a contact, you can use the `delete-t`
 
 The `delete-t` command:
 * Deletes a tag from the contact at the specified `PERSON_INDEX`. The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
-* The `REMARK_INDEX`, `MODULE_INDEX`, `CCA_INDEX` and `CCA_POSITION_INDEX` refer to the index of the tag shown in the respective tag types, from left to right, starting from index 1.
+* The `REMARK_INDEX`, `MODULE_INDEX`, `CCA_INDEX` and `MAJOR_INDEX` refer to the index of the tag shown in the respective tag types, from left to right, starting from index 1.
+* For example, the Module tags are indexed from 1 to 3 as follows:
 
-![DeleteTagIndexContactExample](images/johndoe.png)
+![DeleteTagIndexContactExample](images/DeleteTagIndexContactExample.png)
 
-* All indexes (i.e. `PERSON_INDEX`, `REMARK_INDEX`, `MODULE_INDEX`, `CCA_INDEX`, `CCA_POSITION_INDEX`) **must be a positive integer** e.g. 1, 2, 3, …​
-* At least one of the optional fields must be provided (i.e. `r/REMARK_INDEX`, `mod/MODULE_INDEX`, `cca/CCA_INDEX`, `CCA_POSITION_INDEX`).
+* All indexes (i.e. `PERSON_INDEX`, `REMARK_INDEX`, `MODULE_INDEX`, `CCA_INDEX`, `MAJOR_INDEX`) **must be a positive integer** e.g. 1, 2, 3, …​
+* At least one of the optional fields must be provided (i.e. `r/REMARK_INDEX`, `mod/MODULE_INDEX`, `cca/CCA_INDEX`, `maj/MAJOR_INDEX`).
 * The specified tag will be deleted from the contact specified at the `PERSON_INDEX`.
+
+<div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+As of now, tags can only be deleted one at a time. If there is more than one occurrence of a parameter, only the last one will be taken.
+</div>
 
 <div style="page-break-after: always"></div>
 
 **Delete Tag Example:**
 
-**Input in Command Box:** `delete-t 1 mod/1`
+**Input in Command Box:** `delete-t 1 mod/2`
 
-**Before:**<br>![AddTagAfter](images/AddTagAfter.png)
+**Before:**<br>![AddTagAfter](images/DeleteTagIndexContactExample.png)
 
 **After:**<br>![DeleteTagAfter](images/DeleteTagAfter.png)
 
