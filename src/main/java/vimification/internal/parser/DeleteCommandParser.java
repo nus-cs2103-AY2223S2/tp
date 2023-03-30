@@ -27,8 +27,8 @@ public class DeleteCommandParser implements CommandParser<DeleteCommand> {
     private static ApplicativeParser<DeleteCommand> parseArguments(Index index) {
         DeleteFieldsRequest request = new DeleteFieldsRequest();
         ArgumentCounter counter = new ArgumentCounter(
-                CommandParserUtil.LABEL_FLAG.withMaxCount(Integer.MAX_VALUE),
-                CommandParserUtil.DEADLINE_FLAG);
+                Pair.of(CommandParserUtil.LABEL_FLAG, Integer.MAX_VALUE),
+                Pair.of(CommandParserUtil.DEADLINE_FLAG, 1));
 
         ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
                 CommandParserUtil.LABEL_FLAG_PARSER

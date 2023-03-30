@@ -3,7 +3,6 @@ package vimification.internal.parser;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -18,12 +17,12 @@ public class ArgumentCounter {
      **/
     private final Map<ArgumentFlag, Integer> counter;
 
-    public ArgumentCounter(ArgumentFlag... allowedFlags) {
+    @SafeVarargs
+    public ArgumentCounter(Pair<ArgumentFlag, Integer>... allowedFlags) {
         this.counter = Arrays
                 .stream(allowedFlags)
-                .collect(Collectors.toMap(Function.identity(),
-                        ArgumentFlag::getMaxCount,
-                        Integer::sum, HashMap::new));
+                .collect(Collectors.toMap(Pair::getFirst, Pair::getSecond, Integer::sum,
+                        HashMap::new));
     }
 
     private void throwIfNotAllowed(ArgumentFlag flag) {

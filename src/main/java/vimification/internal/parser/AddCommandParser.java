@@ -24,9 +24,9 @@ public class AddCommandParser implements CommandParser<AddCommand> {
 
     private static ApplicativeParser<AddCommand> parseArguments(Task task) {
         ArgumentCounter counter = new ArgumentCounter(
-                CommandParserUtil.LABEL_FLAG.withMaxCount(Integer.MAX_VALUE),
-                CommandParserUtil.PRIORITY_FLAG,
-                CommandParserUtil.DEADLINE_FLAG);
+                Pair.of(CommandParserUtil.LABEL_FLAG, Integer.MAX_VALUE),
+                Pair.of(CommandParserUtil.PRIORITY_FLAG, 1),
+                Pair.of(CommandParserUtil.DEADLINE_FLAG, 1));
 
         ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
                 CommandParserUtil.LABEL_FLAG_PARSER

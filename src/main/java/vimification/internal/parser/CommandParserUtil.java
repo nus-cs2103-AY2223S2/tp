@@ -32,29 +32,42 @@ public class CommandParserUtil {
             .nonWhitespaces1()
             .map(ignore -> LocalDateTime.now());
 
-    public static final ArgumentFlag TITLE_FLAG = new ArgumentFlag("-t", "--title");
-    public static final ArgumentFlag LABEL_FLAG = new ArgumentFlag("-l", "--label");
-    public static final ArgumentFlag STATUS_FLAG = new ArgumentFlag("-s", "--status");
-    public static final ArgumentFlag PRIORITY_FLAG = new ArgumentFlag("-p", "--priority");
-    public static final ArgumentFlag DEADLINE_FLAG = new ArgumentFlag("-d", "--deadline");
-    public static final ArgumentFlag KEYWORD_FLAG = new ArgumentFlag("-w", "--keyword");
-    public static final ArgumentFlag BEFORE_FLAG = new ArgumentFlag(null, "--before");
-    public static final ArgumentFlag AFTER_FLAG = new ArgumentFlag(null, "--after");
-    public static final ArgumentFlag BETWEEN_FLAG = new ArgumentFlag(null, "--between");
+    public static final LiteralArgumentFlag TITLE_FLAG = new LiteralArgumentFlag("-t", "--title");
+    public static final LiteralArgumentFlag LABEL_FLAG = new LiteralArgumentFlag("-l", "--label");
+    public static final LiteralArgumentFlag STATUS_FLAG = new LiteralArgumentFlag("-s", "--status");
+    public static final LiteralArgumentFlag PRIORITY_FLAG =
+            new LiteralArgumentFlag("-p", "--priority");
+    public static final LiteralArgumentFlag DEADLINE_FLAG =
+            new LiteralArgumentFlag("-d", "--deadline");
+    public static final LiteralArgumentFlag KEYWORD_FLAG =
+            new LiteralArgumentFlag("-w", "--keyword");
+    public static final LiteralArgumentFlag BEFORE_FLAG = new LiteralArgumentFlag(null, "--before");
+    public static final LiteralArgumentFlag AFTER_FLAG = new LiteralArgumentFlag(null, "--after");
 
-    public static final ApplicativeParser<ArgumentFlag> TITLE_FLAG_PARSER = parseFlag(TITLE_FLAG);
-    public static final ApplicativeParser<ArgumentFlag> LABEL_FLAG_PARSER = parseFlag(LABEL_FLAG);
-    public static final ApplicativeParser<ArgumentFlag> STATUS_FLAG_PARSER = parseFlag(STATUS_FLAG);
-    public static final ApplicativeParser<ArgumentFlag> PRIORITY_FLAG_PARSER =
+    public static final LiteralArgumentFlag ADD_MACRO_FLAG = new LiteralArgumentFlag("-a", "--add");
+    public static final LiteralArgumentFlag DELETE_MACRO_FLAG =
+            new LiteralArgumentFlag("-d", "--delete");
+    public static final ComposedArgumentFlag MACRO_FLAG =
+            new ComposedArgumentFlag(ADD_MACRO_FLAG, DELETE_MACRO_FLAG);
+
+    public static final ApplicativeParser<LiteralArgumentFlag> TITLE_FLAG_PARSER =
+            parseFlag(TITLE_FLAG);
+    public static final ApplicativeParser<LiteralArgumentFlag> LABEL_FLAG_PARSER =
+            parseFlag(LABEL_FLAG);
+    public static final ApplicativeParser<LiteralArgumentFlag> STATUS_FLAG_PARSER =
+            parseFlag(STATUS_FLAG);
+    public static final ApplicativeParser<LiteralArgumentFlag> PRIORITY_FLAG_PARSER =
             parseFlag(PRIORITY_FLAG);
-    public static final ApplicativeParser<ArgumentFlag> DEADLINE_FLAG_PARSER =
+    public static final ApplicativeParser<LiteralArgumentFlag> DEADLINE_FLAG_PARSER =
             parseFlag(DEADLINE_FLAG);
-    public static final ApplicativeParser<ArgumentFlag> KEYWORD_FLAG_PARSER =
+    public static final ApplicativeParser<LiteralArgumentFlag> KEYWORD_FLAG_PARSER =
             parseFlag(KEYWORD_FLAG);
-    public static final ApplicativeParser<ArgumentFlag> BEFORE_FLAG_PARSER = parseFlag(BEFORE_FLAG);
-    public static final ApplicativeParser<ArgumentFlag> AFTER_FLAG_PARSER = parseFlag(AFTER_FLAG);
-    public static final ApplicativeParser<ArgumentFlag> BETWEEN_FLAG_PARSER =
-            parseFlag(BETWEEN_FLAG);
+    public static final ApplicativeParser<LiteralArgumentFlag> BEFORE_FLAG_PARSER =
+            parseFlag(BEFORE_FLAG);
+    public static final ApplicativeParser<LiteralArgumentFlag> AFTER_FLAG_PARSER =
+            parseFlag(AFTER_FLAG);
+    public static final ApplicativeParser<ComposedArgumentFlag> MACRO_FLAG_PARSER =
+            parseFlag(MACRO_FLAG);
 
     public static final ApplicativeParser<String> TITLE_PARSER = STRING_PARSER;
     public static final ApplicativeParser<String> LABEL_PARSER = STRING_PARSER;
@@ -68,13 +81,25 @@ public class CommandParserUtil {
     public static final ApplicativeParser<Index> ZERO_BASED_INDEX_PARSER =
             INT_PARSER.filter(i -> i >= 0).map(Index::fromZeroBased);
 
-    public static ApplicativeParser<ArgumentFlag> parseFlag(ArgumentFlag flag) {
+    public static ApplicativeParser<LiteralArgumentFlag> parseFlag(LiteralArgumentFlag flag) {
         return Stream.of(flag.getShortForm(), flag.getLongForm())
                 .filter(Objects::nonNull)
                 .map(ApplicativeParser::string)
                 .reduce(ApplicativeParser::or)
                 .orElseGet(ApplicativeParser::fail)
                 .constMap(flag);
+    }
+
+    public static ApplicativeParser<ComposedArgumentFlag> parseFlag(ComposedArgumentFlag flag) {
+        return flag.getFlags().stream()
+                .map(CommandParserUtil::parseFlag)
+                .reduce(ApplicativeParser::or)
+                .orElseGet(ApplicativeParser::fail)
+                .map(literalFlag -> {
+                    ComposedArgumentFlag clonedFlag = flag.clone();
+                    clonedFlag.setActualFlag(literalFlag);
+                    return clonedFlag;
+                });
     }
 
     private CommandParserUtil() {}

@@ -22,12 +22,12 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
 
     private static ApplicativeParser<SearchCommand> parseArguments(Object ignore) {
         ArgumentCounter counter = new ArgumentCounter(
-                CommandParserUtil.KEYWORD_FLAG,
-                CommandParserUtil.STATUS_FLAG,
-                CommandParserUtil.LABEL_FLAG.withMaxCount(Integer.MAX_VALUE),
-                CommandParserUtil.PRIORITY_FLAG,
-                CommandParserUtil.BEFORE_FLAG,
-                CommandParserUtil.AFTER_FLAG);
+                Pair.of(CommandParserUtil.KEYWORD_FLAG, 1),
+                Pair.of(CommandParserUtil.STATUS_FLAG, 1),
+                Pair.of(CommandParserUtil.LABEL_FLAG, Integer.MAX_VALUE),
+                Pair.of(CommandParserUtil.PRIORITY_FLAG, 1),
+                Pair.of(CommandParserUtil.BEFORE_FLAG, 1),
+                Pair.of(CommandParserUtil.AFTER_FLAG, 1));
 
         ApplicativeParser<SearchCommand> flagParser = ApplicativeParser.choice(
                 CommandParserUtil.KEYWORD_FLAG_PARSER
@@ -64,7 +64,9 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
         return ApplicativeParser
                 .skipWhitespaces1()
                 .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
-                .map(ComposedSearchCommand::new);
+                .<SearchCommand>map(ComposedSearchCommand::new)
+                .dropNext(ApplicativeParser.skipWhitespaces())
+                .dropNext(ApplicativeParser.eof());
     }
 
     public static SearchCommandParser getInstance() {

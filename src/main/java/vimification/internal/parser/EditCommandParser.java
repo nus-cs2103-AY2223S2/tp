@@ -25,11 +25,11 @@ public class EditCommandParser implements CommandParser<EditCommand> {
     private static ApplicativeParser<EditCommand> parseArguments(Index index) {
         EditRequest request = new EditRequest();
         ArgumentCounter counter = new ArgumentCounter(
-                CommandParserUtil.TITLE_FLAG,
-                CommandParserUtil.LABEL_FLAG.withMaxCount(Integer.MAX_VALUE),
-                CommandParserUtil.STATUS_FLAG,
-                CommandParserUtil.PRIORITY_FLAG,
-                CommandParserUtil.DEADLINE_FLAG);
+                Pair.of(CommandParserUtil.TITLE_FLAG, 1),
+                Pair.of(CommandParserUtil.LABEL_FLAG, Integer.MAX_VALUE),
+                Pair.of(CommandParserUtil.STATUS_FLAG, 1),
+                Pair.of(CommandParserUtil.PRIORITY_FLAG, 1),
+                Pair.of(CommandParserUtil.DEADLINE_FLAG, 1));
 
         ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
                 CommandParserUtil.TITLE_FLAG_PARSER
