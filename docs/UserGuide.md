@@ -2,11 +2,14 @@
 layout: page
 title: User Guide
 ---
+
 * Table of Contents
-  {:toc}
-  
+{:toc}
+
 --------------------------------------------------------------------------------------------------------------------
+
 ## Introduction
+
 DengueHotspotTracker (DHT) is a **desktop app for managing Dengue Cases, optimized for**
 **use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User
 Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
@@ -47,31 +50,35 @@ open the help window.<br>
 
    * `redo 5` : Redo 5 previous actions.
    
-6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below
-for details of each command, or the [Command Summary](#Command summary).
+6. To learn more about DengueHotspotTracker, refer to the [Commands](#Commands) section below for details of each command, or the [Command Summary](#Command summary).
+
 --------------------------------------------------------------------------------------------------------------------
+
 ## Navigating the User Interface
 
+placeholder
+
 --------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
 
-| Action     | Format, Examples                                                                                                         |
-|------------|--------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1` |
-| **Clear**  | `clear`                                                                                                                        |
-| **Delete** | `delete INDEX…​` or `delete [d/DATE]` or `delete [sd/STARTDATE] [ed/ENDDATE]` <br> e.g., `delete 3`, `delete d/2023-03-10`       |
-| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
+| Action     | Format, Examples                                                                                                                          |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1`            |
+| **Clear**  | `clear`                                                                                                                                   |
+| **Delete** | `delete INDEX…​` or `delete [d/DATE]` or `delete [sd/STARTDATE] [ed/ENDDATE]` <br> e.g., `delete 3`, `delete d/2023-03-10`                |
+| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`                    |
 | **Find**   | `find [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE]`<br/> or<br/> `find [n/NAME] [sd/START_DATE] [ed/END_DATE]`<br> e.g., `find n/James Jake` |
-| **List**   | `list`                                                                                                                   |
-| **Sort**   | `sort [n/] [a/] [d/]`<br> e.g.,`sort d/`                                                                                       |
-| **Import** | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                     |
-| **Export** | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                     |
-| **Help**   | `help`                                                                                                                   |
-| **Undo**   | `undo [INTEGER]`                                                                                                         |
-| **Redo**   | `redo [INTEGER]`                                                                                                         |
-
+| **List**   | `list`                                                                                                                                    |
+| **Sort**   | `sort [n/] [a/] [p/] [d/]`<br> e.g.,`sort d/`                                                                                             |
+| **Import** | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                      |
+| **Export** | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                      |
+| **Help**   | `help`                                                                                                                                    |
+| **Undo**   | `undo [INTEGER]`                                                                                                                          |
+| **Redo**   | `redo [INTEGER]`                                                                                                                          |
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -116,6 +123,7 @@ for details of each command, or the [Command Summary](#Command summary).
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Valid persons
 This section describes the requirements of the specified data fields.
 
@@ -158,7 +166,9 @@ The first character of the name must not be a whitespace
   * `DENV2`
   * `DENV3`
   * `DENV4`
+
 --------------------------------------------------------------------------------------------------------------------
+
 ## Commands
 
 ### Adding a case: `add`
@@ -272,10 +282,10 @@ Format: `list`
 
 Sorts the entire case list based on the specified criteria.
 
-Format: `sort [n/] [a/] [d/]`
+Format: `sort [n/] [a/] [p/] [d/]`
 
 * Sorts cases based on the specified criteria.
-* One and only one of the criteria must be specified; `n/` for name, `a/` for age, and `d/` for date.
+* One and only one of the criteria must be specified; `n/` for name, `a/` for age, `p/` for postal, and `d/` for date.
 
 ### Importing data from CSV file : `import`
 
@@ -324,8 +334,6 @@ Example CSV output of  `export sampledata.csv`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Try copying these to a .csv file. Then import them as sample inputs!
 </div>
-
-<div style="page-break-after: always;"></div>
 
 ### Viewing help: `help`
 
@@ -376,7 +384,7 @@ empty data file at the next run.
 
 ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+_Details coming soon ...
 
 --------------------------------------------------------------------------------------------------------------------
 

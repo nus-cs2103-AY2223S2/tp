@@ -43,7 +43,7 @@ public interface StackWithStorage<T> {
     void clearStorage();
 
     /**
-     * Remove old values at the bottom of the stack.
+     * Remove old values at the bottom of the stack (polls from the Deque).
      */
     T removeOld();
 

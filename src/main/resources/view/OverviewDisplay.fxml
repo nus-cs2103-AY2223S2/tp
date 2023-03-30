@@ -1,31 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane fx:id="placeHolder" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <VBox fx:id="overviewDisplay">
-    <Label styleClass="small_label_gap" />
-
-    <HBox>
-      <Region HBox.hgrow="ALWAYS" />
-      <Label fx:id="overviewTitle" styleClass="overview-title" VBox.vgrow="NEVER" />
-      <Region HBox.hgrow="ALWAYS" />
-    </HBox>
-
-    <HBox>
-      <Region HBox.hgrow="ALWAYS" />
-      <Label fx:id="overviewSubtitle" styleClass="overview-subtitle" VBox.vgrow="NEVER" />
-      <Region HBox.hgrow="ALWAYS" />
-    </HBox>
-
-    <Label styleClass="small_label_gap" />
-
-    <TextArea fx:id="overviewContent" editable="false" styleClass="overview-content" VBox.vgrow="ALWAYS"
-              promptText="No cases to analyze."/>
-  </VBox>
-</StackPane>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <ListView fx:id="overviewContentView" VBox.vgrow="ALWAYS" />
+</VBox>

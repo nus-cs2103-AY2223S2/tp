@@ -21,8 +21,6 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 import seedu.dengue.commons.core.LogsCenter;
 import seedu.dengue.commons.exceptions.DataConversionException;
@@ -74,7 +72,7 @@ public class CsvUtil {
      * @throws IOException if there was an error during writing to the file
      */
     public static <T> void saveCsvFile(List<String[]> data, Path filePath, String[] header)
-            throws IOException, CsvRequiredFieldEmptyException, CsvDataTypeMismatchException {
+            throws IOException {
         requireNonNull(filePath);
         requireNonNull(data);
 
@@ -140,11 +138,9 @@ public class CsvUtil {
      * @param header the header row to include in the CSV file
      * @param data the data to write to the CSV file
      * @throws IOException if an I/O error occurs while writing to the CSV file
-     * @throws CsvDataTypeMismatchException if the data provided is of the wrong type for a CSV field
-     * @throws CsvRequiredFieldEmptyException if a required CSV field is empty
      */
     public static void writeToCsvFile(Path file, String[] header, List<String[]> data)
-            throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
+            throws IOException {
         FileUtil.createIfMissing(file);
         FileWriter writer = new FileWriter(file.toString());
         char sp = ',';

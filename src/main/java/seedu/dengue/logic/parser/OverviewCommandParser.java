@@ -22,7 +22,7 @@ public class OverviewCommandParser implements Parser<OverviewCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public OverviewCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim().toLowerCase();
+        String trimmedArgs = args.trim();
 
         if (trimmedArgs.equals(PREFIX_POSTAL.getPrefix())) {
             return new OverviewCommand(new PostalOverview(), "POSTAL");

@@ -146,7 +146,7 @@
 }
 
 .status-bar {
-    -fx-background-color: #B3A79B;
+        -fx-background-color: #B3A79B;
 }
 
 .result-display {
@@ -257,6 +257,50 @@
 
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color, 30%);
+}
+
+#copyButton {
+    -fx-font-family: "Lucida Sans Typewriter";
+    -fx-font-size: 12px;
+    -fx-text-fill: #3D4A5A;
+}
+
+#helpMessage:focused {
+    -fx-font-family: "Lucida Sans Typewriter";
+    -fx-font-size: 12px;
+    -fx-padding: 5 0 5 0;
+    -fx-background-color: #E7D6C5;
+    -fx-background-radius: 10;
+    -fx-border-color: #E7D6C5;
+    -fx-border-radius: 10;
+    -fx-border-width: 10;
+    -fx-text-fill: #3D4A5A;
+}
+
+#helpMessage .content {
+    -fx-background-color: #E7D6C5;
+}
+
+#copyButton {
+    -fx-background-color: #649494;
+    -fx-font-family: "Verdana";
+    -fx-font-color: #000000;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent
+}
+
+#copyButton:hover {
+    -fx-background-color: #3D4A5A;
+    -fx-text-fill: #1d1d1d;
+}
+
+#copyButton:armed {
+    -fx-background-color: #B9C19D;
+}
+
+#helpMessageContainer {
+   -fx-padding: 20 0 20 20;
+   -fx-background-color: #B3A79B;
 }
 
 .dialog-pane {

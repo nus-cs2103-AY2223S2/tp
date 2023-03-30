@@ -1,11 +1,13 @@
 package seedu.dengue.model;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.dengue.commons.core.GuiSettings;
+import seedu.dengue.commons.exceptions.DataConversionException;
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.overview.Overview;
 import seedu.dengue.model.person.Person;
@@ -132,4 +134,17 @@ public interface Model {
      * @throws CommandException if sort type not specified.
      */
     void sort(List<Person> sortedList);
+
+    /**
+     * Imports data from a CSV file.
+     * @throws DataConversionException if data format is wrong.
+     * @throws IOException thrown while reading file.
+     */
+    void importCsv(Path filePath) throws DataConversionException, IOException;
+
+    /**
+     * Exports data to a CSV file.
+     * @throws IOException thrown while writing file.
+     */
+    void exportCsv(Path filePath) throws IOException;
 }

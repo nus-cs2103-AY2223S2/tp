@@ -5,6 +5,7 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's name in the Dengue Hotspot Tracker.
+ * A name can only contain alphabets (capital or otherwise), and whitespaces.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
@@ -16,7 +17,7 @@ public class Name {
      * The first character of the name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z\\s]*";
 
     public final String fullName;
 
@@ -28,7 +29,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        fullName = name.trim().replaceAll("\\s{2,}", " ");
     }
 
     /**

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints percentWidth="15" />
+      <ColumnConstraints percentWidth="70" />
+      <ColumnConstraints percentWidth="15" />
+    </columnConstraints>
+        <padding>
+          <Insets right="15" left="15" bottom="10" />
+        </padding>
+          <Label fx:id="id" styleClass="cell_big_label" GridPane.columnIndex="0" GridPane.valignment="TOP">
+            <padding>
+              <Insets top="5" />
+            </padding>
+            <minWidth>
+              <!-- Ensures that the label text is never truncated -->
+              <Region fx:constant="USE_PREF_SIZE" />
+            </minWidth>
+          </Label>
+          <Label fx:id="binName" styleClass="cell_small_label" GridPane.columnIndex="1" wrapText="true"
+                 minWidth="200" maxWidth="150" GridPane.valignment="TOP">
+          <padding>
+            <Insets top="5" bottom="10"/>
+          </padding>
+          </Label>
+          <Label fx:id="binSize" styleClass="cell_big_label"  GridPane.columnIndex="2" GridPane.valignment="TOP">
+          <padding>
+            <Insets top="5" />
+          </padding>
+          </Label>
+  </GridPane>
+</HBox>

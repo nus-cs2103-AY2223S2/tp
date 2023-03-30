@@ -4,6 +4,7 @@ import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
 import seedu.dengue.commons.core.GuiSettings;
+import seedu.dengue.logic.analyst.DataBin;
 import seedu.dengue.logic.commands.CommandResult;
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.logic.parser.exceptions.ParseException;
@@ -53,4 +54,6 @@ public interface Logic {
      * Returns the overview of the model.
      */
     Overview getOverview();
+
+    ObservableList<DataBin> getOverviewContent();
 }

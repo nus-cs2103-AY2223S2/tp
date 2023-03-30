@@ -105,7 +105,10 @@ public class PersonBuilder {
     public Person buildRandom() {
         StringBuilder nameBuilder = new StringBuilder();
         for (int i = 0; i < RANDOM.nextInt(SMALL_BOUND) + 5; i++) {
-            nameBuilder.append(RANDOM.nextInt(26) + 97);
+            nameBuilder.append(Character.toString(RANDOM.nextInt(26) + 97));
+            if (RANDOM.nextInt(SMALL_BOUND) > (SMALL_BOUND * 4) / 5) {
+                nameBuilder.append(" ");
+            }
         }
         String newName = nameBuilder.toString();
 

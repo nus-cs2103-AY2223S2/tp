@@ -111,7 +111,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return false;
         } else {
             String slicedDate = test.substring(0, lastSpace);
-            return Date.isValidDate(slicedDate) ? true : false;
+            return Date.isValidDate(slicedDate);
         }
     }
 
