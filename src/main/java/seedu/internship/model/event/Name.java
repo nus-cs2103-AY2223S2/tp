@@ -1,5 +1,7 @@
 package seedu.internship.model.event;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.AppUtil.checkArgument;
 
@@ -34,7 +36,6 @@ public class Name {
         }
         return true;
     }
-
 
     @Override
     public String toString() {

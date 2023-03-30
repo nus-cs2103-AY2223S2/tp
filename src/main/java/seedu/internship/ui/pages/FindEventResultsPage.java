@@ -3,9 +3,11 @@ package seedu.internship.ui.pages;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
@@ -67,14 +69,10 @@ public class FindEventResultsPage extends Page {
      * Sets the content for the body of FindEventResultsPage.
      */
     public void setBodyContent() {
-
-        List<EventCard> eventCards = resultEvents
+        List<Node> eventCards = resultEvents
                 .stream()
                 .map(event -> EventCard.of(event, false))
-                .collect(Collectors.toList());
-        resultBox.getChildren().addAll(eventCards
-                .stream()
-                .map(eventCard -> eventCard.getRoot())
-                .collect(Collectors.toList()));
+                .map(eventCard -> eventCard.getRoot()).collect(Collectors.toList());
+        this.resultBox.getChildren().addAll(eventCards);
     }
 }

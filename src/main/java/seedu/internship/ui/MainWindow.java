@@ -220,6 +220,7 @@ public class MainWindow extends UiPart<Stage> {
             case STATS:
             case CLASH:
             case SHOW_INFO:
+            case FIND_EVENT:
             case CALENDAR:
                 pagePlaceholder.getChildren().clear();
                 pagePlaceholder.getChildren().add(Page.of(commandResult).getRoot());
