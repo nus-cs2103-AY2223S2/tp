@@ -897,10 +897,6 @@ If you wish to assign a CCA Position to a contact, you can do so with the CCA pr
 * If a tag you want to add to a contact does not exist, you can use the remark tag. 
 * The difference in tag colours in the UI can help you differentiate between the different kinds of tags.
 
-<div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
-We are aware that you can assign any kinds of tags to a contact (e.g. using the Module Tag, but not entering an existing module). These tags are primarily to aid you in distinguishing the information that you assign to a contact via the different colours. While less intuitive, you are free to use these tags for any information you want to assign to a contact.
-</div>
-
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 [↑ Back to top](#table-of-contents)
@@ -917,8 +913,8 @@ We are aware that you can assign any kinds of tags to a contact (e.g. using the 
 **Q**: Why do we need remark tags if we already have other kinds of tags?<br>
 **A**: Remarks are used for assigning other information to a contact, e.g. their Year of Study, Faculty, Company etc. If a tag you want to add to a contact does not exist, you can use the remark tag. The difference in tag colours in the UI can help you differentiate between the different kinds of tags.
 
-**Q**: Instead of using the tags for assigning modules and CCAs, can I use it for other information instead?<br>
-**A**: We are aware that you can assign any kinds of tags to a contact (e.g. using the Module Tag, but not entering an existing module). These tags are primarily to aid you in distinguishing the information that you assign to a contact via the different colours. While less intuitive, you are free to use these tags for any information you want to assign to a contact.
+**Q**: Why can't I remove an information field after I add it with `edit`?<br>
+**A**: As of now, removing a contact's information field is not supported yet. Be sure to look out for it in a future iteration!
 
 
 [↑ Back to top](#table-of-contents)
