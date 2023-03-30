@@ -33,6 +33,8 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
   * [**Profile Panel**](#profile-panel)
   * [**Command Box**](#command-box)
   * [**Command Response**](#command-response)
+  * [**Meet Up Recommendation Panel**](#meet-up-recommendation-panel)
+  * [**Scheduled Meet Up Panel**](#scheduled-meet-up-panel)
 * [**Set Your Own Profile**](#set-your-own-profile)
 * [**Commands**](#commands)
   * [**How to interpret the command format**](#how-to-interpret-the-command-format)
@@ -164,23 +166,61 @@ A member of our core team will attend to you as soon as possible.
 
 ## User Interface
 
-{to be filled in}
+`EduMate`'s UI components are built using FXML and JavaFX. Each of the UI components are built to fulfil a specific functionality. We also used light purple and white as our main colour scheme as they are cool colours.
+
+![Ui](images/UG_ui_pictures/user_interface.png)
+<center>Diagram 2: <code>EduMate</code>'s UI</center>
 
 ### Person List
 
-{to be filled in}
+You may locate the Person List at the center-left of `EduMate`. This is where you will see all your saved contacts (or sample data if you are trying out for the first time).
+
+<img src="images/UG_ui_pictures/contact_list.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 3: Person List with some contacts displayed.</center>
 
 ### Profile Panel
 
-{to be filled in}
+The Profile Panel allows you to display your own or your contact's information.
+
+The Profile Panel will display basic information like your / contact's name, phone number, email address, nearest home station and the modules you are taking in NUS.
+
+<img src="images/UG_ui_pictures/user_profile.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 4: Sample user profile displayed on Profile Panel.</center>
 
 ### Command Box
 
-{to be filled in}
+The Command Box is where you can input the [Commands](#commands) when using `EduMate`.
+
+The Command Box is located at the bottom of the application. You may refer to the [User Interface](#user-interface) section to locate it.
 
 ### Command Response
 
-{to be filled in}
+The Command Response box is where you will receive feedback for any command you execute. It could give you some information if the command execution was successful or if you had executed a command of an invalid format.
+
+The Command Response box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box).
+
+<img src="images/UG_ui_pictures/command_feedback.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 5: Successful command execution feedback shown</center>
+
+### Meet Up Recommendation Panel
+
+The Meet Up Recommendation Panel (located at the top right of `EduMate`) suggests recommendations of optimal timings and locations
+where you can meet your friends.
+
+<img src="images/UG_ui_pictures/recommender_panel.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 6: Recommended timings and locations for meetups displayed</center>
+
+### Scheduled Meet Up Panel
+
+The Scheduled Meet Up Panel (located directly to the right of [Profile Panel](#profile-panel)) will show your confirmed meetings with your contacts.
+
+<img src="images/UG_ui_pictures/meetup_panel.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 7: Sample scheduled meet ups displayed.</center>
 
 [Return to the top](#table-of-contents)
 
