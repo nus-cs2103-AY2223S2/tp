@@ -24,19 +24,20 @@ public class SortTechniciansCommandParser implements Parser<SortTechniciansComma
      */
     public SortTechniciansCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_SORT_BY, PREFIX_REVERSE_SORT);
+            ArgumentTokenizer.tokenize(args, PREFIX_SORT_BY, PREFIX_REVERSE_SORT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_SORT_BY)
-                || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTechniciansCommand.COMMAND_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTechniciansCommand.COMMAND_USAGE));
         }
 
         String sortAttribute = argMultimap.getValue(PREFIX_SORT_BY).get();
 
         Optional<Comparator<Technician>> cmpOption = generateComparator(sortAttribute);
         if (cmpOption.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTechniciansCommand.COMMAND_USAGE));
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTechniciansCommand.COMMAND_USAGE));
         }
 
         if (arePrefixesPresent(argMultimap, PREFIX_REVERSE_SORT)) {

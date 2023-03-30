@@ -1,26 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REVERSE_SORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.SortCustomersCommand;
-import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entity.person.Customer;
-import seedu.address.model.entity.person.Name;
-import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Parses input arguments and creates new SortCustomerCommand object
