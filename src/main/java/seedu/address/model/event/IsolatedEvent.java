@@ -89,6 +89,7 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
      */
     public void checkDateTime() throws CommandException {
         LocalDateTime now = LocalDateTime.now();
+
         if (this.startDate.isAfter(endDate) || this.startDate.equals(endDate)) {
             throw new CommandException(Messages.MESSAGE_EVENT_START_AFTER_END);
         }

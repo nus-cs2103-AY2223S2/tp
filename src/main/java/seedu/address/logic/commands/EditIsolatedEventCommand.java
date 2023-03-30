@@ -84,7 +84,8 @@ public class EditIsolatedEventCommand extends Command {
 
         model.setIsolatedEvent(personToEdit, originalEvent, editedIsolatedEvent);
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedIsolatedEvent)
-                + " from " + originalEvent + " for " + personToEdit.getName());
+                + " for " + personToEdit.getName()
+                + "\nOriginal Event: " + originalEvent + " for " + personToEdit.getName());
     }
 
     /**
