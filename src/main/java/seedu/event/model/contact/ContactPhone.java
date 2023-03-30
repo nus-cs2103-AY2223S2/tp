@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.event.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Contact's phone number in the contact book.
+ * Represents a Contact's phone number in the contact list.
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class ContactPhone {

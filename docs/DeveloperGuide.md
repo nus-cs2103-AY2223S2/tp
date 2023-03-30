@@ -218,6 +218,7 @@ The `Event` component,
 The `Contact` component,
 - it is made up of 2 objects the `ContactName` and `ContactPhone`
 - both objects are created using user input.
+- the contact will be added into the UniqueContactList.
 
 
 ### Storage component
