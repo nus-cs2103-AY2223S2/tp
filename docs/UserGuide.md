@@ -18,50 +18,50 @@ If this is the first time you are using this user guide, we highly recommend you
 
 For **experienced users**, you may refer to the [Command Summary](#command-summary) for a summarised table of all the commands available. 
 ## Table of Contents
-1. [**Using this Guide**](#using-this-guide)
-2. [**Table of Contents**](#table-of-contents)
-3. [**Overview**](#overview)
-    1. [**What is EduMate?**](#what-is-edumate)
-    2. [**Understanding the Symbols and Colours**](#understanding-the-symbols-and-colours)
-    3. [**Glossary**](#glossary)
-4. [**Quick Start**](#quick-start)
-    1. [**System Requirements**](#system-requirements)
-    2. [**Installation Instructions**](#installation-instructions)
-    3. [**Try it out! (Recommended)**](#try-it-out-recommended)
-    4. [**Getting Help**](#getting-help)
-5. [**User Interface**](#user-interface)
-    1. [**Person List**](#person-list)
-    2. [**Profile Panel**](#profile-panel)
-    3. [**Command Box**](#command-box)
-    4. [**Command Response**](#command-response)
-6. [**Set Your Own Profile**](#set-your-own-profile)
-7. [**Commands**](#commands)
-    1. [**How to interpret the command format**](#how-to-interpret-the-command-format)
-    2. [**Arguments**](#arguments)
-    3. [**Basic Commands**](#basic-commands)
-        1. [**Add a contact `add`**](#add-a-contact-add)
-        2. [**View a contact's profile `view`**](#view-a-contacts-profile-view)
-        3. [**Edit a contact's details `edit`**](#edit-a-contacts-details-edit)
-        4. [**Delete a contact `delete`**](#delete-a-contact-delete)
-        5. [**Add a label to a contact `tag`**](#add-a-label-to-a-contact-tag)
-        6. [**Remove a label from a contact `untag`**](#remove-a-label-from-a-contact-untag)
-    4. [**Advanced Commands**](#advanced-commands)
-        1. [**Search Commands**](#search-commands)
-            1. [**Filter contacts by keywords `find`**](#filter-contacts-by-keywords-find)
-            2. [**Arrange contacts based on criteria `sort`**](#arrange-contacts-based-on-criteria-sort)
-        2. [**Storage Commands**](#storage-commands)
-            1. [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
-            2. [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
-        3. [**Meet Commands**](#meet-commands)
-            1. [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
-    5. [**Other Commands**](#other-commands)
-        1. [**Exit the application**](#exit-the-application)
-8. [**FAQ**](#faq)
-9. [**Summary**](#summary)
-    1. [**Prefixes**](#prefixes)
-    2. [**Command Summary**](#command-summary)
-10. [**Troubleshooting**](#troubleshooting)
-     1. [**How to check your Java version**](#how-to-check-your-java-version)
+* [**Using this Guide**](#using-this-guide)
+* [**Table of Contents**](#table-of-contents)
+* [**Overview**](#overview)
+  * [**What is EduMate?**](#what-is-edumate)
+  * [**Understanding the Symbols and Colours**](#understanding-the-symbols-and-colours)
+  * [**Glossary**](#glossary)
+* [**Quick Start**](#quick-start)
+  * [**System Requirements**](#system-requirements)
+  * [**Installation Instructions**](#installation-instructions)
+  * [**Try it out! (Recommended)**](#try-it-out-recommended)
+  * [**Getting Help**](#getting-help)
+* [**User Interface**](#user-interface)
+  * [**Person List**](#person-list)
+  * [**Profile Panel**](#profile-panel)
+  * [**Command Box**](#command-box)
+  * [**Command Response**](#command-response)
+* [**Set Your Own Profile**](#set-your-own-profile)
+* [**Commands**](#commands)
+  * [**How to interpret the command format**](#how-to-interpret-the-command-format)
+  * [**Arguments**](#arguments)
+  * [**Basic Commands**](#basic-commands)
+    * [**Add a contact `add`**](#add-a-contact-add)
+    * [**View a contact's profile `view`**](#view-a-contacts-profile-view)
+    * [**Edit a contact's details `edit`**](#edit-a-contacts-details-edit)
+    * [**Delete a contact `delete`**](#delete-a-contact-delete)
+    * [**Add a label to a contact `tag`**](#add-a-label-to-a-contact-tag)
+    * [**Remove a label from a contact `untag`**](#remove-a-label-from-a-contact-untag)
+* [**Advanced Commands**](#advanced-commands)
+  * [**Search Commands**](#search-commands)
+  * [**Filter contacts by keywords `find`**](#filter-contacts-by-keywords-find)
+  * [**Arrange contacts based on criteria `sort`**](#arrange-contacts-based-on-criteria-sort)
+  * [**Storage Commands**](#storage-commands)
+  * [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
+  * [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
+  * [**Meet Commands**](#meet-commands)
+    * [**Suggest places to meet with your contacts `meet`**](#suggest-places-to-meet-with-your-contacts-meet)
+* [**Other Commands**](#other-commands)
+    * [**Exit the application `exit`**](#exit-the-application)
+* [**FAQ**](#faq)
+* [**Summary**](#summary)
+  * [**Prefixes**](#prefixes)
+  * [**Command Summary**](#command-summary)
+* [**Troubleshooting**](#troubleshooting)
+  * [**How to check your Java version**](#how-to-check-your-java-version)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -121,14 +121,17 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
 
 ### Installation Instructions
 
-1. Download the latest `eduMate.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-2/tp/releases).
+**Step 1.** Download the latest `eduMate.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-2/tp/releases).
 
-2. Copy the file to the folder you want to use as the _home folder_ for your EduMate.
+**Step 2.** Copy the file to the folder you want to use as the _home folder_ for your EduMate.
 
-3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar eduMate.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+**Step 3.** Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar eduMate.jar` command to run the application.<br>
+
+
+A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
    ![Ui](images/Ui.png)
-   <br>
+<center>Figure 1: The GUI upon start up.</center>
 
 ### Try it out! (Recommended)
 
@@ -149,7 +152,7 @@ Before we begin our journey through EduMate's many features, do choose whether y
 
 ### Getting help
 
-Should you get stuck at any point, it is likely that the solution can be found in the [Commands](#commands) section of this User Guide. Otherwise, type in the `help` command...
+Should you get stuck at any point, it is likely that the solution can be found in the [Commands](#commands) section of this User Guide. Otherwise, type in the `help` command.
 
 If you need more assistance, do not hesitate to head over to our
 [Github](https://github.com/AY2223S2-CS2103T-W14-2/tp) page and file an issue with a tag *customer-assistance-required*.
@@ -215,16 +218,17 @@ E.g `tag m/CS2103T MON 8 10 m/CS2101 WED 14 15`
 
 </div>
 
-**Step 4.** To add groups that you currently belong to as such: `tag g/[GROUP_NAME]`  
-<br>
+**Step 4.** To add groups that you currently belong to as such: 
+`tag g/[GROUP_NAME]`
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** <br>
-E.g `tag g/SoC g/Sailing` <br>
+E.g `tag g/SoC g/Sailing`
+
 </div>
 
 
-**Step 5.** You are done! **ENJOY!** <br>
+**Step 5.** You are done! Enjoy! <br>
 
 
 [Return to the top](#table-of-contents)
