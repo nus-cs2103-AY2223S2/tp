@@ -3,10 +3,10 @@ package seedu.connectus.logic.parser;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT_HELP;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_COMMAND_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADD;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADDT;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_ADD_T;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_CLEAR;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_DELETE;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_DELETET;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_DELETE_T;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_EDIT;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_EMPTY;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_HELP_COMMAND_EXIT;
@@ -51,13 +51,13 @@ public class HelpCommandParserTest {
     public void parse_validArgs_returnsHelpCommandWithArgs() {
         assertParseSuccess(parser, VALID_HELP_COMMAND_ADD,
                 new HelpCommand(AddCommand.MESSAGE_USAGE));
-        assertParseSuccess(parser, VALID_HELP_COMMAND_ADDT,
+        assertParseSuccess(parser, VALID_HELP_COMMAND_ADD_T,
                 new HelpCommand(AddTagToPersonCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_CLEAR,
                 new HelpCommand(ClearCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_DELETE,
                 new HelpCommand(DeleteCommand.MESSAGE_USAGE));
-        assertParseSuccess(parser, VALID_HELP_COMMAND_DELETET,
+        assertParseSuccess(parser, VALID_HELP_COMMAND_DELETE_T,
                 new HelpCommand(DeleteTagFromPersonCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_EDIT,
                 new HelpCommand(EditCommand.MESSAGE_USAGE));

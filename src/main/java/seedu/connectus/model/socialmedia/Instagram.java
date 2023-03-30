@@ -2,6 +2,7 @@ package seedu.connectus.model.socialmedia;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.commons.util.AppUtil.checkArgument;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_SOCMED_INSTAGRAM;
 
 /**
  * Represents a Person's instagram in ConnectUS.
@@ -15,7 +16,8 @@ public class Instagram {
             + "1. The username should only contain alphanumeric characters and the special character, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + ").\n"
             + "2. The dots must not be consecutive or at the end.\n"
-            + "3. The username should contain at most 30 characters.";
+            + "3. The username should contain at most 30 characters."
+            + "Format: " + PREFIX_SOCMED_INSTAGRAM + "INSTAGRAM";
 
     // alphanumeric and dot; no consecutive dots, not ending with dot
     private static final String USERNAME_REGEX = "([a-zA-Z0-9]\\.?)*[a-zA-Z0-9]";

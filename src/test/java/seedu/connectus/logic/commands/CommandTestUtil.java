@@ -77,10 +77,10 @@ public class CommandTestUtil {
 
     // For help command tests
     public static final String VALID_HELP_COMMAND_ADD = "add";
-    public static final String VALID_HELP_COMMAND_ADDT = "addt";
+    public static final String VALID_HELP_COMMAND_ADD_T = "add-t";
     public static final String VALID_HELP_COMMAND_CLEAR = "clear";
     public static final String VALID_HELP_COMMAND_DELETE = "delete";
-    public static final String VALID_HELP_COMMAND_DELETET = "deletet";
+    public static final String VALID_HELP_COMMAND_DELETE_T = "delete-t";
     public static final String VALID_HELP_COMMAND_EDIT = "edit";
     public static final String VALID_HELP_COMMAND_EXIT = "exit";
     public static final String VALID_HELP_COMMAND_HELP = "help";

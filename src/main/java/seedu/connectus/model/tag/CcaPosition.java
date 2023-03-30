@@ -6,11 +6,12 @@ package seedu.connectus.model.tag;
  */
 public class CcaPosition extends Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "CCA Position names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "A Position name should be alphanumeric";
+
     public final String ccaPositionName;
 
     /**
-     * Constructs a {@code Module}.
+     * Constructs a {@code CcaPosition}.
      *
      * @param ccaPositionName A valid CCA position.
      */
@@ -20,9 +21,11 @@ public class CcaPosition extends Tag {
     }
 
     /**
-     * Returns true if a given string is a valid cca position name.
+     * Returns true if a given string is a valid ccaPositionName.
      */
     public static boolean isValidCcaPositionName(String test) {
-        return isValidTagName(test);
+        return test.matches(VALIDATION_REGEX);
     }
+
+
 }
