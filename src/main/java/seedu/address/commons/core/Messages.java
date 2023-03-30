@@ -1,14 +1,18 @@
 package seedu.address.commons.core;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
+
 /**
  * Container for user visible messages.
  */
 public class Messages {
 
-    public static final String MESSAGE_CONTEXT_USAGE = "/mod and /lec parameters are automatically inserted depending "
-            + "on the current context.\n"
+    public static final String MESSAGE_CONTEXT_USAGE = PREFIX_MODULE + " and " + PREFIX_LECTURE + " parameters are "
+            + "automatically inserted depending on the current context.\n"
             + "The user can overwrite the values by specifying them explicitly.\n"
-            + "The user can also specify /r to prevent any of these insertions.\n"
+            + "The user can also specify " + PREFIX_ROOT + " to prevent any of these insertions.\n"
             + "Refer to the User Guide for more information.";
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command\n";
