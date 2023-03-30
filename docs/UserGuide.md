@@ -173,7 +173,9 @@ i.e. `find name KEYWORD [ADDITIONAL KEYWORDS]...`, `find tag KEYWORD [ADDITIONAL
 Example(s) of usage:
 * `find cheese` returns all recipes with the keyword `cheese` in their recipe name
 * `find name pancakes sandwich` returns all recipes with the keyword `pancakes` and/or `sandwich` in their names
+
 ![FindCommandUI](images/FindCommandUI.png)
+
 * `find tag western` returns all recipes with the tag `western`
 * `find ingredient tofu` returns all recipes with the ingredient `tofu`
 
@@ -297,6 +299,7 @@ JSON file to be exported and select the desired location for it to be saved!
 * Alternatively, like the import function, you can access the export function from the `File` tab in the top left corner of the main window.
 
 ![ExportDataWindow](images/ExportWindow.jpg)
+
 ---
 
 ## FAQ
@@ -322,6 +325,7 @@ JSON file to be exported and select the desired location for it to be saved!
 | **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                         |
 
 ## Keyboard Shortcuts summary
+
 | Shortcut                                            | Functionality                                      |
 |-----------------------------------------------------|----------------------------------------------------|
 | **`up` and `down` arrow keys in Main Window**       | Navigate through different recipes                 |
