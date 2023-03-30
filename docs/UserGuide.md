@@ -300,6 +300,11 @@ Format: `findt TITLE`
 Examples:
 - `findt CS2103 TP` displays everyone who are assigned to this task.
 
+## List all Persons and Tasks: `listall`
+
+Shows a list of all personals and tasks in OfficeConnect.
+
+Format: `listall`
 
 ## View Assigned People: `viewassignedp`
 
