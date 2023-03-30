@@ -69,13 +69,13 @@ public class ModelManager implements Model {
 
     @Override
     public Path getModuleTrackerFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getModuleTrackerFilePath();
     }
 
     @Override
     public void setModuleTrackerFilePath(Path moduleTrackerFilePath) {
         requireNonNull(moduleTrackerFilePath);
-        userPrefs.setAddressBookFilePath(moduleTrackerFilePath);
+        userPrefs.setModuleTrackerFilePath(moduleTrackerFilePath);
     }
 
     //=========== AddressBook ================================================================================

@@ -13,20 +13,20 @@ import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.ModuleTracker;
 import seedu.address.testutil.TypicalModules;
 
-public class JsonSerializableAddressBookTest {
+public class JsonSerializableModuleTrackerTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_MODULES_FILE = TEST_DATA_FOLDER.resolve("typicalModulesAddressBook.json");
-    private static final Path INVALID_MODULE_FILE = TEST_DATA_FOLDER.resolve("invalidModuleAddressBook.json");
-    private static final Path DUPLICATE_MODULE_FILE = TEST_DATA_FOLDER.resolve("duplicateModuleAddressBook.json");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableModuleTrackerTest");
+    private static final Path TYPICAL_MODULES_FILE = TEST_DATA_FOLDER.resolve("typicalModulesModuleTracker.json");
+    private static final Path INVALID_MODULE_FILE = TEST_DATA_FOLDER.resolve("invalidModuleModuleTracker.json");
+    private static final Path DUPLICATE_MODULE_FILE = TEST_DATA_FOLDER.resolve("duplicateModuleModuleTracker.json");
 
     @Test
     public void toModelType_typicalModulesFile_success() throws Exception {
         JsonSerializableModuleTracker dataFromFile = JsonUtil.readJsonFile(TYPICAL_MODULES_FILE,
                 JsonSerializableModuleTracker.class).get();
-        ModuleTracker addressBookFromFile = dataFromFile.toModelType();
-        ModuleTracker typicalModulesAddressBook = TypicalModules.getTypicalModuleTracker();
-        assertEquals(addressBookFromFile, typicalModulesAddressBook);
+        ModuleTracker moduleTrackerFromFile = dataFromFile.toModelType();
+        ModuleTracker typicalModulesModuleTracker = TypicalModules.getTypicalModuleTracker();
+        assertEquals(moduleTrackerFromFile, typicalModulesModuleTracker);
     }
 
     @Test

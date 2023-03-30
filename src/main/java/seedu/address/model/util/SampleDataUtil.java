@@ -54,12 +54,12 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyModuleTracker getSampleAddressBook() {
-        ModuleTracker sampleAb = new ModuleTracker();
+    public static ReadOnlyModuleTracker getSampleModuleTracker() {
+        ModuleTracker sampleMt = new ModuleTracker();
         for (Module sampleModule : getSampleModules()) {
-            sampleAb.addModule(sampleModule);
+            sampleMt.addModule(sampleModule);
         }
-        return sampleAb;
+        return sampleMt;
     }
 
     /**

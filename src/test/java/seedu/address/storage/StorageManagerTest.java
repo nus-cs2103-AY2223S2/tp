@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonModuleTrackerStorage addressBookStorage = new JsonModuleTrackerStorage(getTempFilePath("ab"));
+        JsonModuleTrackerStorage moduleTrackerStorage = new JsonModuleTrackerStorage(getTempFilePath("mt"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(moduleTrackerStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,11 +48,11 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void moduleTrackerReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonModuleTrackerStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonModuleTrackerStorageTest} class.
          */
         ModuleTracker original = getTypicalModuleTracker();
         storageManager.saveModuleTracker(original);
@@ -61,7 +61,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getModuleTrackerFilePath() {
         assertNotNull(storageManager.getModuleTrackerFilePath());
     }
 
