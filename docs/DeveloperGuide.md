@@ -398,12 +398,32 @@ The `Model` component,
 </div>
 
 #### **Name**
+
+Represents the name of the user or the contact in `EduMate`.
+
 #### **Address**
+
+Represents the nearest MRT station to the user or contact's home.
+
 #### **Phone**
+
+Represents the contact number of the user or the contact.
+
 #### **Email**
+
+Represents the Email Address of the user or contact.
+
 #### **Telegram Handle**
+
+Represents the Telegram Handle of the user or contact.
+
 #### **Group Tag Set**
+
+Represents a collection of **unique** groups that the user or contact belong to.
+
 #### **Module Tag Set**
+
+Represents a collection of **unique** modules that the user or contact is enrolled into.
 
 ### **Tag**
 #### **Group Tag**
@@ -414,7 +434,7 @@ The `Model` component,
 We use `org.joda.time.LocalTime` as the very basis of how we construct our time-related
 objects which is then used elsewhere in the codebase.
 
-<img src="images/TimeGroup.png" style="width:80%;margin:0 10%">
+<img src="images/TimeGroup.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.3.3</b> Class Diagram for classes in Time Package.
 </div>
@@ -508,10 +528,21 @@ Currently, all `Lessons` are in NUS, but this can be improved upon in the future
 
 ### **Timetable**
 
+The `Timetable` represents the daily schedule of the user or contact.
+
+<img src="images/TimetableClass.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.5</b> Class Diagram for Timetable and related classes.
+</div>
+
+<br>
+For each `Day` in the `Timetable`, there are 15 `HourBlock` objects each representing an hour starting from 8 AM - 9 AM and ending at 10 PM - 11 PM.
+
 ### **Utils**
 
 #### **Sample Data Util**
 
+<<<<<<< HEAD
 The `SampleDataUtil` class deals with reading and parsing persons data from a file. In particular, these are the people that will appear upon first load of EduMate, as well as during the execution of `SampleCommand`. The sample data is stored within [this file](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/data/sampleData.txt).
 
 <div markdown="span" class="alert alert-primary">
@@ -523,6 +554,9 @@ The `SampleDataUtil` class deals with reading and parsing persons data from a fi
 * Notice that the `MODULE_TAGS` are separated by a comma `,` instead, as its parser uses spaces to separate out the arguments. 
 
 </div>
+=======
+{Hafeez please}
+>>>>>>> master
 
 ---
 
@@ -637,12 +671,6 @@ From these two sources of information, we can create a `descriptor` that keeps t
 
 * `editPersonDescriptor.getName().orElse(userToEdit.getName())`.
 
-<div markdown="span" class="alert alert-warning">
-
-:warning: **Warning**:
-If no fields have been changed, an exception is thrown. This is handled in the `EditCommandParser`.
-
-</div>
 
 In summary, the activity diagram is as such:
 
@@ -726,13 +754,13 @@ The last viewed profile will remain displayed on the profile panel should there 
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
 
-<img src="images/ViewParserSequenceDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/ViewParserSequenceDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.6a</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
 </div>
 <br>
 Below is an Activity Diagram for the execution of the `ViewCommand`.
-<img src="images/ViewActivityDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/ViewActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution 
 </div>
@@ -918,7 +946,7 @@ The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/`
 
 **API** : `Recommender.java`
 
-<img src="images/RecommenderClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/RecommenderClass.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.6</b> Class Diagram for Recommender Module
 </div>
@@ -949,7 +977,7 @@ The `TimingRecommender`'s role is to recommend timings in which the user and all
 The `TimingRecommedner` uses the participants' schedule to find common time periods that everyone
 will be free so that a meetup could be scheduled.
 
-<img src="images/SchedulerActivity.png" style="width:60%;margin:0 20%">
+<img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.6.2</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
@@ -1023,14 +1051,26 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ## **Unit Tests**
 
-{to be filled}
+Our organisation primarily utilizes `JUnit5`for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
+
+Each individual unit of the program is tested to ensure each piece works correctly and stubs are commonly used to test the units in isolation.
 
 ### **Testing Models**
-{to be filled}
+
+Models used:
+* Waterfall model
+* Agile model
+* Breadth-first iterative model
+
+We used a mixture of models to suit our needs for different features. We applied the waterfall model to features that required individual work and the agile model for the others that required teamwork. We also had considerations for the time-limit imposed on this project so we applied the breadth-first iterative model to ensure basic functionalities.
+
 ### **Testing Commands**
-{to be filled}
+
+Equivalence partitions and stubs were mainly used to test commands.
+
 ### **Testing Parsers**
-{to be filled}
+
+Positive and negative test cases were mainly used to test parsers.
 
 ---
 
@@ -1417,15 +1457,53 @@ Expected Output in the Command Output Box: Error message for invalid command for
 
 ### **Add a tag to a person**
 
-{to be filled}
+The following commands work under the assumption that there are no clashes in the timetable. In the scenario where a 
+`tag` command results in any `ModuleTag` having a clash, the entire command will be aborted.
+
+`tag 1 m/CS1234`
+
+Expected Output in the PersonList: The first person has a new `ModuleTag` added to its 
+`ModuleTagSet` with `tagName` of `CS1234`, if a `ModuleTag` with the same `tagName` does not already exist
+in the person's `ModuleTagSet`.
+
+`tag 2 m/CS2345 mon 12 13`
+
+Expected Output in the PersonList: The second person has a new `ModuleTag` added to its `ModuleTagSet`
+with `tagName` of `CS1234`, if a `ModuleTag` with the same `TagName` does not already exist in the person's
+`ModuleTagSet`. A `Lesson` is added to the `ModuleTag`. 
+
+`tag 3 g/Friend`
+
+Expected Output in the PersonList: The third person has a new `GroupTag` added to its `GroupTagSet` with a `tagName` of
+`Friend`, if a `GroupTag` with the same `tagName` does not already exist in the person's `GroupTagSet`
+
 
 ### **Remove a tag from a person**
 
-{to be filled}
+`untag 1 m/CS1234`
+
+Expected Output in the PersonList: The first person has the `ModuleTag` with `tagName` of `CS1234` removed from its 
+`ModuleTagSet`. All lessons belonging to the `ModuleTag` will be dropped.
+
+`untag 2 m/CS2345 mon 12 13`
+
+Expected Output in the PersonList: the second person has the lesson with the corresponding timeslot dropped from 
+`ModuleTag` WITH `tagName` of `CS2345`.
+
+`untag 3 g/Enemy`
+
+Expected Output in the PersonList: the third person has the `GroupTag` with `tagName` of `Enemy` removed from its 
+`GroupTagSet`. 
 
 ### **Filter persons by keywords**
 
-{to be filled}
+`find n/Albert`
+
+Expected Output in Person List: All contacts that have the word 'Albert' in their name.
+
+`find m/CS2103T`
+
+Expected Output in Person List: All contacts with CS2103T tag under `Module`.
 
 ### **Arrange persons by criteria**
 
@@ -1473,6 +1551,7 @@ Expected Output in Command Output Box: Suggestions on where and when to study.
 * **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: National University of Singapore
+* **MRT** : Also known as the Mass Rapid Transit, Singapore high-speed railway system.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Pull Request (PR)**: An event that takes place in software development when a contributor/developer is ready to begin the process of merging new code changes with the main project repository
 * **Repo (Repository)**: A storage location for software packages, mainly residing on GitHub
