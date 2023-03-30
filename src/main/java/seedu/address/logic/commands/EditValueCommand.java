@@ -126,7 +126,7 @@ public class EditValueCommand extends Command {
         Inventory updatedInventory = editMobDescriptor.getInventory().orElse(mobToEdit.getInventory());
 
         return new Mob(updatedName, updatedStats, updatedChallengeRating, updatedIsLegendary,
-                                                                    updatedTags, updatedInventory);
+                                                                    updatedInventory, updatedTags);
     }
 
     /**

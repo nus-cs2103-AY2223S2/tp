@@ -1,10 +1,12 @@
 package seedu.address.experimental.model.util;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 import seedu.address.experimental.model.ReadOnlyReroll;
 import seedu.address.experimental.model.Reroll;
 import seedu.address.model.entity.Character;
+import seedu.address.model.entity.Inventory;
 import seedu.address.model.entity.Item;
 import seedu.address.model.entity.Mob;
 import seedu.address.model.entity.Name;
@@ -22,12 +24,16 @@ public class SampleDataUtil {
 
     /** Sample Data */
     public static void getSampleEntities() {
-        Character c = new Character(new Name("Item1"), new Stats(0, 0, 0), 3, 2, new HashSet<Tag>());
-        Mob m1 = new Mob(new Name("Mob1"), new Stats(300, 300, 300), 2, true, new HashSet<Tag>());
-        Mob m2 = new Mob(new Name("Mob2"), new Stats(300, 300, 300), 2, true, new HashSet<Tag>());
+        Item sword = new Item(new Name("Sword"), 2, 3, new HashSet<>());
+        Item bow = new Item(new Name("Bow"), 4, 3, new HashSet<>());
+        Inventory i1 = new Inventory(Arrays.asList(new Item[] {sword}));
+        Inventory i2 = new Inventory(Arrays.asList(new Item[] {bow}));
+        Character c = new Character(new Name("Mike"), new Stats(3, 3, 3), 3, 2, i2, new HashSet<Tag>());
+        Mob m1 = new Mob(new Name("Skeleton Archer"), new Stats(300, 300, 300), 2, true, i2, new HashSet<Tag>());
+        Mob m2 = new Mob(new Name("Skeleton Warrior"), new Stats(300, 300, 300), 2, true, i1, new HashSet<Tag>());
         sampleCharacter = new Character[] {c};
         sampleMob = new Mob[] {m1, m2};
-        sampleItem = new Item[] {};
+        sampleItem = new Item[] {sword, bow};
     }
 
     /** Initialize Reroll with sample data */

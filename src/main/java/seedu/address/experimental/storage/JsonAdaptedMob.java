@@ -76,6 +76,6 @@ public class JsonAdaptedMob {
         }
 
         final Set<Tag> modelTags = new HashSet<>(tags);
-        return new Mob(new Name(name), stat, challengeRating, isLegendary, modelTags, inventory);
+        return new Mob(new Name(name), stat, challengeRating, isLegendary, inventory, modelTags);
     }
 }

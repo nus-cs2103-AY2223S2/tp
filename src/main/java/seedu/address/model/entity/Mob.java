@@ -64,7 +64,7 @@ public class Mob extends Entity {
      * Constructor for Mobs with inventory
      */
 
-    public Mob(Name name, Stats stats, float challengeRating, boolean isLegendary, Set<Tag> tags, Inventory inventory) {
+    public Mob(Name name, Stats stats, float challengeRating, boolean isLegendary, Inventory inventory, Set<Tag> tags) {
         super(name, tags);
         this.stats = stats;
         this.challengeRating = challengeRating;
