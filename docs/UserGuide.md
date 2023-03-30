@@ -65,7 +65,25 @@ problems.
 
 ## 6.1. Layout
 
+![Screenshot of SudoHR app](images/Ui.png "SudoHR main page")
+
 [//]: # (<-- Insert labelled UI here -->)
+Our app interface consists of 5 main components:
+1. Command line
+2. Result display
+3. Leave section
+4. Employee section
+5. Department section
+
+### 6.1.1 Command line
+The command line box located at the top of the application window serves to receive your typed inputs. 
+
+To start typing a command, move your cursor over to the command line and click it.
+
+### 6.1.2 Result display
+Underneath the command line is the result display. This text box displays necessary information when executing
+commands.
+
 
 ## 6.2. Key definitions
 
