@@ -61,7 +61,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .getValue(PREFIX_FEEDING_INTERVAL).get()));
         }
         if (argMultimap.getValue(PREFIX_TANK).isPresent()) {
-            editFishDescriptor.setTank(ParserUtil.parseTank2(argMultimap.getValue(PREFIX_TANK).get()));
+            editFishDescriptor.setTank(ParserUtil.parseTankForEditCommand(argMultimap.getValue(PREFIX_TANK).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editFishDescriptor::setTags);
 

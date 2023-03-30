@@ -182,11 +182,12 @@ public class ParserUtil {
      *
      * @throws ParseException If the given {@code tank} is invalid.
      */
-    public static Tank parseTank2(String tank) throws ParseException {
+    public static Tank parseTankForEditCommand(String tank) throws ParseException {
         requireNonNull(tank);
         String trimmedTank = tank.trim();
         if (!TankName.isValidTankName(trimmedTank)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS
+            );
         }
         Tank retTank = new Tank(new TankName(trimmedTank), new AddressBook(), new UniqueIndividualReadingLevels());
         return retTank;
