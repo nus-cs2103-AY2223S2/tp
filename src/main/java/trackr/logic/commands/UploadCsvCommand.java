@@ -18,7 +18,7 @@ public class UploadCsvCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allows you to upload "
             + "a csv file and convert it to orders, tasks and or contacts.";
 
-    public static final String MESSAGE_SUCCESS = "csv file successfully uploaded";
+    public static final String MESSAGE_SUCCESS = "Csv file successfully uploaded";
     private List<String> commands;
 
     /**
