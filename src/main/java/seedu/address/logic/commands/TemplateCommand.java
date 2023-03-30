@@ -15,7 +15,7 @@ import seedu.address.model.entity.Name;
  */
 public class TemplateCommand extends Command {
 
-    public static final String COMMAND_WORD = "template";
+    public static final String COMMAND_WORD = "template|t";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a character using a template. ";
 

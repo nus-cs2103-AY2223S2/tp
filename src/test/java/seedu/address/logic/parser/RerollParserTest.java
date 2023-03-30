@@ -86,7 +86,7 @@ public class RerollParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        String inputCommand = ListCommand.COMMAND_WORD + " " + CHAR.label;
+        String inputCommand = "list" + " " + CHAR.label;
         assertTrue(parser.parseCommand(inputCommand) instanceof ListCommand);
     }
 

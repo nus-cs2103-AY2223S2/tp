@@ -12,14 +12,14 @@ import seedu.address.model.entity.Entity;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit|e";
 
     public static final String MESSAGE_SUCCESS = "Entered Edit Mode";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Deletes the person identified by the index number used in the displayed person list.\n"
-        + "Parameters: CLASSIFICATION (char, mob or item) NAME (name of entity)\n"
-        + "Example: " + COMMAND_WORD + " item short dagger";
+            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + "Parameters: CLASSIFICATION (char, mob or item) NAME (name of entity)\n"
+            + "Example: " + COMMAND_WORD + " item short dagger";
 
     private final String toEditName;
     private final String toEditClassification;
@@ -37,12 +37,15 @@ public class EditCommand extends Command {
         requireNonNull(model);
         ReadOnlyEntities rerollEntities;
         switch (toEditClassification) {
+        case "c":
         case "char":
             rerollEntities = model.getReroll().getCharacters();
             break;
+        case "m":
         case "mob":
             rerollEntities = model.getReroll().getMobs();
             break;
+        case "i":
         case "item":
             rerollEntities = model.getReroll().getItems();
             break;

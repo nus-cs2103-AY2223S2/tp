@@ -130,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         listModeEntityListPanel = new EntityListPanel(logic.getFilteredEntityList());
         viewModeEntityListPanel = new EntityListPanel(logic.getFilteredEntityList());
         listModePanel = new ListModePanel(listModeEntityListPanel);
-        entityDetailsPanel = new EntityDetailsPanel();
+        entityDetailsPanel = new EntityDetailsPanel(logic.getReroll().getItems().getEntityList());
         viewModePanel = new ViewModePanel(viewModeEntityListPanel, entityDetailsPanel);
         modePanelPlaceholder.getChildren().add(listModePanel.getRoot());
 
@@ -180,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-            (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

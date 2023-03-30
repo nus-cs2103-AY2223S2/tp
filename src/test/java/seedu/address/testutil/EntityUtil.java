@@ -4,7 +4,6 @@ import static seedu.address.logic.parser.ClassificationTerms.CHAR;
 import static seedu.address.logic.parser.ClassificationTerms.ITEM;
 import static seedu.address.logic.parser.ClassificationTerms.MOB;
 
-import seedu.address.logic.commands.MakeCommand;
 import seedu.address.model.entity.Character;
 import seedu.address.model.entity.Entity;
 import seedu.address.model.entity.Item;
@@ -20,7 +19,7 @@ public class EntityUtil {
      * Returns an add command string for adding the {@code entity}.
      */
     public static String getMakeCommand(Entity entity) {
-        return MakeCommand.COMMAND_WORD + " " + getEntityDetails(entity);
+        return "make" + " " + getEntityDetails(entity);
     }
 
     /**

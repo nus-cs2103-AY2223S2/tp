@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_ENTITY_NONEXISTENT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.EditValueCommand.MESSAGE_INVALID_ENTITY_TYPE;
 
@@ -94,18 +95,22 @@ public class EditModeParser {
         // Where all the edits are stored and sent over to the EditValueCommand
         EditCharacterDescriptor outData = new EditCharacterDescriptor();
         switch (fieldWord.toLowerCase()) {
+        case "n":
         case "name":
             outData.setName(new Name(value));
             break;
+        case "t":
         case "tag":
         case "tags":
             Optional<Set<Tag>> tags = parseTagsForEdit(List.of(value.split("\\s+")));
             tags.ifPresent(realTags -> outData.setTags(realTags));
             break;
+        case "s":
         case "str":
             outData.setStats(new Stats(Integer.valueOf(value),
                     toEdit.getStats().getDexterity(), toEdit.getStats().getIntelligence()));
             break;
+        case "d":
         case "dex":
             outData.setStats(new Stats(toEdit.getStats().getStrength(),
                     Integer.valueOf(value), toEdit.getStats().getIntelligence()));
@@ -122,6 +127,7 @@ public class EditModeParser {
         case "exp":
             outData.setXp(Integer.valueOf(value));
             break;
+        case "i":
         case "inventory":
             // Check if add or delete
             Inventory editedInventory = new Inventory(toEdit.getInventory().getItems());
@@ -144,7 +150,7 @@ public class EditModeParser {
         case "tag":
         case "tags":
             Optional<Set<Tag>> tags = parseTagsForEdit(List.of(value.split("\\s+")));
-            tags.ifPresent(realTags -> outData.setTags(realTags));
+            tags.ifPresent(outData::setTags);
             break;
         case "str":
         case "strength":
@@ -225,17 +231,23 @@ public class EditModeParser {
     private void parseInventoryCommand(String args, Inventory editInventory) throws ParseException {
         final Matcher matcher = INVENTORY_COMMAND_FORMAT.matcher(args);
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditValueCommand.MESSAGE_USAGE));
         }
         final String actionWord = matcher.group("actionWord");
-        final String itemName = matcher.group("name");
-        final Item item = (Item) model.getEntityFromName(itemName);
-        if (actionWord.equalsIgnoreCase("add")) {
-            editInventory.addItem(item);
-        } else if (actionWord.equalsIgnoreCase("remove")) {
-            editInventory.deleteItem(item);
+        final String itemName = matcher.group("name").trim();
+        final Optional<Entity> item = model.getReroll().getItems()
+                                                        .getEntityList()
+                                                        .stream()
+                                                        .filter(entity -> entity.getName().fullName.equals(itemName))
+                                                        .findFirst();
+        if (item.isPresent()) {
+            if (actionWord.equalsIgnoreCase("add")) {
+                editInventory.addItem((Item) item.get());
+            } else if (actionWord.equalsIgnoreCase("remove")) {
+                editInventory.deleteItem((Item) item.get());
+            }
         } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_ENTITY_NONEXISTENT);
         }
     }
 }

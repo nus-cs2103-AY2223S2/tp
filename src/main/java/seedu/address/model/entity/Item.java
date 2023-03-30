@@ -68,8 +68,7 @@ public class Item extends Entity {
         final StringBuilder serializedTags = new StringBuilder();
         tags.forEach(serializedTags::append);
         return List.of(
-                new Pair<>("Name", getName().toString()),
-                new Pair<>("Cost", String.valueOf(getCost())),
+                new Pair<>("Cost", String.valueOf(getCost()) + "g"),
                 new Pair<>("Weight", String.valueOf(getWeight())),
                 new Pair<>("Tags", serializedTags.toString())
         );
