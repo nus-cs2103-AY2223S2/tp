@@ -16,7 +16,7 @@ import seedu.address.model.Model;
 public class ExportCommand extends Command {
     public static final String COMMAND_WORD = "export";
     public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + ":\n"
-            + "(1) Archive all modules currently in Le Tracker to a new file.\n"
+            + "(1) Archive all modules currently in Le Tracker to a new file. File must be of JSON format\n"
             + "Parameter: "
             + "{file_name}\n"
             + "Example: " + COMMAND_WORD + " hello.json\n\n"
