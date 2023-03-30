@@ -145,6 +145,37 @@ Please refer to the terminology [specified above](#data-terminology) if you are 
     - `event t/ CS2103T Lecture from/ 31-03-2023 1400 to/ 31-03-2023 1600`
     - `event t/ CS2103T Lecture from/ today to/ 31-03-2023 1600 d/ Lecture on UML l/ Online p/ HIGH tag/ CS2103T tag/ Lecture`
 
+#### Editing tasks: `edit`
+
+Edits information about a particular task specified by its index. Edits the title, date-times (*by, from, to*), description, location and tags of the referenced task.
+
+
+A few points to take note of:
+- When modifying an event, fields unique to todo will be parsed as strings, and vice versa.
+- Coming soon: incompatible fields will not be parsed, and therefore, will be ignored.
+
+Format: `edit TASK_INDEX [t/ <title>] [by/ <date-time>] [from/ <date-time>] [to/ <date-time>] [d/ <description>] [l/ <location>] [p/ <priority>] [tag/ <tag>]...`
+
+Examples:
+- `edit 4 from/ 05-03-2023 2000 to/ 06-03-2023 2000 l/ NUS`
+- `edit 2 t/ Essay by/ 04-04-2023 2359 tag/ ES2660`
+
+#### Updating task status
+
+- #### Marking as *done*: `mark`
+  Marks the task specified by its index as *done*.
+
+  Format: `mark TASK_INDEX`
+
+  Example: `mark 3`
+
+- #### Marking as *not done*: `unmark`
+  Marks the task specified by its index as *not done*.
+
+  Format: `unmark TASK_INDEX`
+
+  Example: `unmark 1`
+
 #### Searching and filtering for tasks: `search`
 
 Searches for tasks with matching keywords in their fields. Filtered tasks are displayed in a list to the side.
