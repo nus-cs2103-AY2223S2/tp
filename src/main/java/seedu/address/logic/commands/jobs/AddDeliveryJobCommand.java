@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EARNING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPIENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SENDER_ID;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,7 +15,7 @@ import seedu.address.model.jobs.DeliveryJob;
 /**
  * Adds a delivery job to the delivery job system.
  */
-public class AddDeliveryJobCommand extends Command {
+public class AddDeliveryJobCommand extends DeliveryJobCommand {
 
     public static final String COMMAND_WORD = "add_job";
 

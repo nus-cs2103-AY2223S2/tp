@@ -19,11 +19,14 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.jobs.DeliveryDate;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
+import seedu.address.model.jobs.Earning;
 import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.stats.WeeklyStats;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -414,6 +417,14 @@ public class ModelManager implements Model {
         return reminderList;
     }
 
+    /**
+     * Sorts reminder list
+     */
+    @Override
+    public void sortReminderList() {
+        addressBook.sortReminderList();
+    }
+
     @Override
     public void setHasShown(int i, boolean b) {
         reminderList.get(i).setHasShown(b);
@@ -436,6 +447,64 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    @Override
+    public boolean sameWeek(DeliveryJob job, WeeklyStats weeklyStats) {
+        Optional<DeliveryDate> deliveryDate = job.getDeliveryDate();
+        if (!deliveryDate.isEmpty()) {
+            DeliveryDate date = deliveryDate.get();
+            LocalDate localDate = date.getDate();
+            return weeklyStats.getDates().contains(localDate);
+        }
+        return false;
+    }
+
+    @Override
+    public ObservableList<DeliveryJob> weekJobsList(ObservableList<DeliveryJob> list, LocalDate date) {
+        ObservableList<DeliveryJob> newList = FXCollections.observableArrayList(list);
+        WeeklyStats weeklyStats = new WeeklyStats(date);
+        for (DeliveryJob job: list) {
+            if (!sameWeek(job, weeklyStats)) {
+                newList.remove(job);
+            }
+        }
+        return newList;
+    }
+
+    @Override
+    public double getTotalEarnings(ObservableList<DeliveryJob> list) {
+        double earnings = 0;
+        for (DeliveryJob job: list) {
+            Optional<Earning> earning = job.getEarning();
+            Earning earn = earning.get();
+            if (earn != null) {
+                earnings += Double.parseDouble(earn.value);
+            }
+        }
+        return earnings;
+    }
+
+    @Override
+    public int getTotalCompleted(ObservableList<DeliveryJob> list) {
+        int completed = 0;
+        for (DeliveryJob job: list) {
+            if (job.getDeliveredStatus()) {
+                completed += 1;
+            }
+        }
+        return completed;
+    }
+
+    @Override
+    public int getTotalPending(ObservableList<DeliveryJob> list) {
+        int pending = 0;
+        for (DeliveryJob job: list) {
+            if (!job.getDeliveredStatus()) {
+                pending += 1;
+            }
+        }
+        return pending;
     }
 
 }

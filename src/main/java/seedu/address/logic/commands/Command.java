@@ -21,4 +21,12 @@ public abstract class Command {
      */
     public abstract CommandResult execute(Model model) throws CommandException, ParseException, FileNotFoundException;
 
+    /**
+     * Returns the group of command.
+     *
+     * @return CommandGroup
+     */
+    public CommandGroup getGroup() {
+        return CommandGroup.GENERAL;
+    }
 }

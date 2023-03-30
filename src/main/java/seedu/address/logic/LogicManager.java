@@ -6,14 +6,15 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.DukeDriverParser;
@@ -23,9 +24,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
-import seedu.address.model.jobs.Earning;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.stats.WeeklyStats;
 import seedu.address.storage.Storage;
 
 /**
@@ -61,6 +62,19 @@ public class LogicManager implements Logic {
 
         Command command = addressBookParser.parseCommand(commandText);
         return execute(command);
+    }
+
+    @Override
+    public CommandResult execute(String commandText, Predicate<CommandGroup> condition)
+            throws CommandException, ParseException, FileNotFoundException {
+        logger.info("----------------[USER COMMAND][" + commandText + "]");
+
+        Command command = addressBookParser.parseCommand(commandText);
+        if (condition.test(command.getGroup())) {
+            return execute(command);
+        } else {
+            return new CommandResult(String.format(Messages.COMMAND_NOT_ALLOW));
+        }
     }
 
     @Override
@@ -128,37 +142,27 @@ public class LogicManager implements Logic {
 
     @Override
     public double getTotalEarnings(ObservableList<DeliveryJob> list) {
-        double earnings = 0;
-        for (DeliveryJob job: list) {
-            Optional<Earning> earning = job.getEarning();
-            Earning earn = earning.get();
-            if (earn != null) {
-                earnings += Double.parseDouble(earn.value);
-            }
-        }
-        return earnings;
+        return model.getTotalEarnings(list);
     }
 
     @Override
     public int getTotalCompleted(ObservableList<DeliveryJob> list) {
-        int completed = 0;
-        for (DeliveryJob job: list) {
-            if (job.getDeliveredStatus()) {
-                completed += 1;
-            }
-        }
-        return completed;
+        return model.getTotalCompleted(list);
     }
 
     @Override
     public int getTotalPending(ObservableList<DeliveryJob> list) {
-        int pending = 0;
-        for (DeliveryJob job: list) {
-            if (!job.getDeliveredStatus()) {
-                pending += 1;
-            }
-        }
-        return pending;
+        return model.getTotalPending(list);
+    }
+
+    @Override
+    public boolean sameWeek(DeliveryJob job, WeeklyStats weeklyStats) {
+        return model.sameWeek(job, weeklyStats);
+    }
+
+    @Override
+    public ObservableList<DeliveryJob> weekJobsList(ObservableList<DeliveryJob> list, LocalDate date) {
+        return model.weekJobsList(list, date);
     }
 
     public ObservableList<DeliveryJob> getUnscheduledDeliveryJobList() {
@@ -168,6 +172,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Reminder> getReminderList() {
         return model.getReminderList();
+    }
+
+    @Override
+    public void sortReminderList() {
+        model.sortReminderList();
     }
 
     @Override

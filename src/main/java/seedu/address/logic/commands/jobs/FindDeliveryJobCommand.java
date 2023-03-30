@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.jobs.DeliveryJob;
@@ -14,7 +13,7 @@ import seedu.address.model.jobs.DeliveryJob;
  * Finds and lists all jobs in job system whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindDeliveryJobCommand extends Command {
+public class FindDeliveryJobCommand extends DeliveryJobCommand {
 
     public static final String COMMAND_WORD = "find_job";
 

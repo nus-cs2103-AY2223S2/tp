@@ -106,29 +106,31 @@ public class NotificationManager {
         List<DeliveryJob> jobList;
         Calendar now = Calendar.getInstance();
         int hour = now.get(Calendar.HOUR_OF_DAY);
-        switch (hour) {
-        case 10:
-            jobList = deliveryList.get(0);
-            break;
-        case 11:
-            jobList = deliveryList.get(1);
-            break;
-        case 13:
-            jobList = deliveryList.get(2);
-            break;
-        case 14:
-            jobList = deliveryList.get(3);
-            break;
-        case 15:
-            jobList = deliveryList.get(4);
-            break;
-        default:
-            //nothing scheduled at the moment
-            jobList = null;
-        }
-        if (jobList != null) {
-            if (jobList.size() > 0) {
-                showScheduleNotification(jobList.size(), "now");
+        if (deliveryList != null) {
+            switch (hour) {
+            case 10:
+                jobList = deliveryList.get(0);
+                break;
+            case 11:
+                jobList = deliveryList.get(1);
+                break;
+            case 13:
+                jobList = deliveryList.get(2);
+                break;
+            case 14:
+                jobList = deliveryList.get(3);
+                break;
+            case 15:
+                jobList = deliveryList.get(4);
+                break;
+            default:
+                //nothing scheduled at the moment
+                jobList = null;
+            }
+            if (jobList != null) {
+                if (jobList.size() > 0) {
+                    showScheduleNotification(jobList.size(), "now");
+                }
             }
         }
     }

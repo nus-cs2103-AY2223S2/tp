@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -27,9 +28,10 @@ import seedu.address.ui.main.ResultDisplay;
  * Controller for a statistics page
  */
 public class StatisticsWindow extends UiPart<Stage> {
+    public static final String ALL_STATS = "All time statistics: ";
+    public static final String LAST_WEEK = "Last Week's statistics:";
     public static final String STATISTICS = "Here are your statistics: ";
     private static final String FXML = "StatisticsWindow.fxml";
-
     private final Logger logger = LogsCenter.getLogger(getClass());
     private Stage primaryStage;
     private Logic logic;
@@ -37,18 +39,15 @@ public class StatisticsWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private DeliveryJobListPanel deliveryJobListPanel;
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private Label header;
     @FXML
-    private StackPane jobListPanelPlaceholder;
+    private Label allStats;
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private Label lastWeekStats;
     @FXML
-    private StackPane statusbarPlaceholder;
-
+    private Label titleAllStats;
     @FXML
-    private Label statsMessage;
-    @FXML
-    private Label totalJob;
+    private Label titleLastWeek;
     @FXML
     private StackPane deliveryJobListPanelPlaceholder;
     @FXML
@@ -64,9 +63,9 @@ public class StatisticsWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
-        // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
-        statsMessage.setText(STATISTICS);
+        header.setText(STATISTICS);
+        titleAllStats.setText(ALL_STATS);
+        titleLastWeek.setText(LAST_WEEK);
     }
 
     /**
@@ -144,19 +143,10 @@ public class StatisticsWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         ObservableList<DeliveryJob> list = logic.getFilteredDeliveryJobList();
-        // new simple DeliveryJobListPanel constructor with no event handlers
-        //deliveryJobListPanel = new DeliveryJobListPanel(logic.getFilteredDeliveryJobList());
-        //deliveryJobListPanelPlaceholder.getChildren().add(deliveryJobListPanel.getRoot());
-        totalJob.setText(fillStats(list));
-
-        //resultDisplay = new ResultDisplay();
-        //resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        //StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        //statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        //CommandBox commandBox = new CommandBox(this::executeCommand);
-        //commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        LocalDate lastWeekDate = LocalDate.now().minusDays(7);
+        ObservableList<DeliveryJob> currWeekJobs = logic.weekJobsList(list, lastWeekDate);
+        allStats.setText(fillStats(list));
+        lastWeekStats.setText(fillStats(currWeekJobs));
     }
 
     /**

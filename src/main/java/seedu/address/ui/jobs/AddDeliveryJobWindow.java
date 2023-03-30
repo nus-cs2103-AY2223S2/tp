@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 import java.util.logging.Logger;
 
@@ -25,6 +26,7 @@ import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.jobs.AddDeliveryJobCommand;
 import seedu.address.logic.commands.jobs.EditDeliveryJobCommand;
@@ -50,7 +52,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
-    private Runnable completeEditCallback;
+    private Consumer<CommandResult> completeEditCallback;
     private AddressBookWindow addressBookWindow;
 
     @FXML
@@ -147,7 +149,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     /**
      * Edit mode.
      */
-    public AddDeliveryJobWindow(Stage primaryStage, Logic logic, DeliveryJob job, Runnable callback) {
+    public AddDeliveryJobWindow(Stage primaryStage, Logic logic, DeliveryJob job, Consumer<CommandResult> callback) {
         super(FXML, primaryStage);
         this.primaryStage = primaryStage;
         this.logic = logic;
@@ -235,13 +237,12 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
 
         try {
             EditDeliveryJobCommand.EditDeliveryJobDescriptor des = prepareChange();
-            logic.execute(new EditDeliveryJobCommand(des));
-            completeEditCallback.run();
+            CommandResult commandResult = logic.execute(new EditDeliveryJobCommand(des));
+            completeEditCallback.accept(commandResult);
             getRoot().close();
-        } catch (ParseException | CommandException e) {
+        } catch (FileNotFoundException | ParseException | CommandException e) {
             logger.warning("[Event] editDeliveryJob" + e.getMessage());
-        } catch (FileNotFoundException e) {
-            logger.warning("[Event] editDeliveryJob" + e.getMessage());
+            outputError(e.getMessage());
         }
     }
 
@@ -259,15 +260,15 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
             if (inputDeliverySlot.getValue() == null) {
                 // if date and slot is empty
                 job = new DeliveryJob(
-                        inputSender.getText(),
                         inputRecipient.getText(),
+                        inputSender.getText(),
                         inputEarning.getText(),
                         inputDescription.getText());
             } else {
                 // if date and slot has value
                 job = new DeliveryJob(
-                        inputSender.getText(),
                         inputRecipient.getText(),
+                        inputSender.getText(),
                         inputDeliveryDate.getValue().toString(),
                         Integer.toString(inputDeliverySlot.getSelectionModel().getSelectedIndex()),
                         inputEarning.getText(),
@@ -276,10 +277,9 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
 
             logic.execute(new AddDeliveryJobCommand(job));
             getRoot().close();
-        } catch (ParseException | CommandException e) {
+        } catch (FileNotFoundException | ParseException | CommandException e) {
             logger.warning("[Event] createDeliveryJob" + e.getMessage());
-        } catch (FileNotFoundException e) {
-            logger.warning("[Event] createDeliveryJob" + e.getMessage());
+            outputError(e.getMessage());
         }
     }
 

@@ -26,30 +26,31 @@ public class ImportDeliveryJobCommandParser {
      */
     public static List<DeliveryJob> parse(File file) throws ParseException, FileNotFoundException {
 
-        Scanner sc = new Scanner(file);
-        List<DeliveryJob> listOfAddDeliveryJob = new ArrayList<>();
+        try (Scanner sc = new Scanner(file)) {
+            List<DeliveryJob> listOfAddDeliveryJob = new ArrayList<>();
 
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
-            String[] arrOfStr = line.split(",");
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] arrOfStr = line.split(",");
 
-            if (arrOfStr.length != 5) {
-                throw new ParseException(
-                        String.format(MESSAGE_MISSING_ELEMENT_IN_IMPORT, AddDeliveryJobCommand.MESSAGE_USAGE));
+                if (arrOfStr.length != 5) {
+                    throw new ParseException(
+                            String.format(MESSAGE_MISSING_ELEMENT_IN_IMPORT, AddDeliveryJobCommand.MESSAGE_USAGE));
+                }
+
+                String sid = arrOfStr[0];
+                String rid = arrOfStr[1];
+                String ded = arrOfStr[2];
+                String des = arrOfStr[3];
+                String ear = arrOfStr[4];
+
+                DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, "");
+
+                listOfAddDeliveryJob.add(job);
             }
-
-            String sid = arrOfStr[0];
-            String rid = arrOfStr[1];
-            String ded = arrOfStr[2];
-            String des = arrOfStr[3];
-            String ear = arrOfStr[4];
-
-            DeliveryJob job = new DeliveryJob(rid, sid, ded, des, ear, "");
-
-            listOfAddDeliveryJob.add(job);
+            sc.close();
+            return listOfAddDeliveryJob;
         }
-
-        return listOfAddDeliveryJob;
     }
 }
 

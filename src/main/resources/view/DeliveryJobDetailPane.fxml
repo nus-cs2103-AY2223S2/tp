@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="detail-pane" prefWidth="500.0" styleClass="background" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="detail-pane" prefWidth="500.0" styleClass="background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox spacing="10.0">
          <children>
@@ -158,6 +158,11 @@
                            <graphic>
                               <Label graphicTextGap="0.0" styleClass="label-bright" text="🖋" />
                            </graphic></Button>
+                        <Button mnemonicParsing="false" onAction="#handleDeleteAction" text="Delete">
+                           <graphic>
+                              <Label graphicTextGap="0.0" styleClass="label-bright" text="🗑" />
+                           </graphic>
+                        </Button>
                      </children>
                   </HBox>
                </children>

@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.person.DeleteCommand;
@@ -26,7 +27,7 @@ import seedu.address.ui.main.StatusBarFooter;
  */
 public class AddressBookWindow extends UiPart<Stage> {
 
-    private static final String FXML = "AddressBookWIndow.fxml";
+    private static final String FXML = "AddressBookWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Consumer<Person> selectHandler;
@@ -173,14 +174,14 @@ public class AddressBookWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText)
             throws CommandException, ParseException, FileNotFoundException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
+            CommandResult commandResult = logic.execute(commandText,
+                    g -> g.equals(CommandGroup.PERSON) || g.equals(CommandGroup.GENERAL));
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             if (commandResult.isShowJobList()) {
                 handleListJob();
             }
@@ -188,7 +189,6 @@ public class AddressBookWindow extends UiPart<Stage> {
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

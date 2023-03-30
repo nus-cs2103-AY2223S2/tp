@@ -116,6 +116,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         reminderList.remove(i);
     }
 
+    public void sortReminderList() {
+        reminderList.sortByOldest();
+    }
+
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";

@@ -130,8 +130,14 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     /**
      * selectPrevious.
      */
-    public void selectPrevious() {
-        deliveryJobListView.getSelectionModel().selectPrevious();
+    public void selectAvailable() {
+        if (this.size() > 0) {
+            if (deliveryJobListView.getSelectionModel().getSelectedIndex() != this.size() - 1) {
+                deliveryJobListView.getSelectionModel().selectNext();
+            } else {
+                deliveryJobListView.getSelectionModel().selectPrevious();
+            }
+        }
     }
 
     /**

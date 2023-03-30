@@ -10,6 +10,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,6 +20,7 @@ import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
+import seedu.address.model.stats.WeeklyStats;
 
 /**
  * API of the Logic component
@@ -33,6 +35,18 @@ public interface Logic {
      * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException, FileNotFoundException;
+
+    /**
+     * Executes the command for chosen group and returns the result.
+     *
+     * @param commandText The command as entered by the user.
+     * @param condition execute when true.
+     * @return the result of the command execution.
+     * @throws CommandException If an error occurs during command execution.
+     * @throws ParseException   If an error occurs during parsing.
+     */
+    CommandResult execute(String commandText, Predicate<CommandGroup> condition)
+            throws CommandException, ParseException, FileNotFoundException;
 
     /**
      * Executes specific command object and returns the result.
@@ -71,6 +85,11 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of reminders
      */
     ObservableList<Reminder> getReminderList();
+
+    /**
+     * Sorts reminder list
+     */
+    void sortReminderList();
 
     // DELIVERY JOB SYSTEM ===================================
 
@@ -121,6 +140,10 @@ public interface Logic {
     int getTotalCompleted(ObservableList<DeliveryJob> list);
 
     int getTotalPending(ObservableList<DeliveryJob> list);
+
+    ObservableList<DeliveryJob> weekJobsList(ObservableList<DeliveryJob> list, LocalDate date);
+
+    boolean sameWeek(DeliveryJob job, WeeklyStats weeklyStats);
 
     /**
      * Returns the user prefs' delivery job system file path.

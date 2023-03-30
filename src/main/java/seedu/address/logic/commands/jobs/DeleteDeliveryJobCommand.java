@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -15,7 +14,7 @@ import seedu.address.model.jobs.DeliveryJob;
 /**
  * Deletes a job identified using it's displayed index from the job system.
  */
-public class DeleteDeliveryJobCommand extends Command {
+public class DeleteDeliveryJobCommand extends DeliveryJobCommand {
 
     public static final String COMMAND_WORD = "delete_job";
 

@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -17,7 +16,7 @@ import seedu.address.model.jobs.DeliveryJob;
 /**
  * Mass imports delivery jobs from CSV file to the delivery job system.
  */
-public class ImportDeliveryJobCommand extends Command {
+public class ImportDeliveryJobCommand extends DeliveryJobCommand {
 
     public static final String COMMAND_WORD = "import_job";
     public static final String MESSAGE_EMPTY_FILE = "File is empty";
