@@ -94,7 +94,7 @@ public final class RoleDisplay {
         Label phone = new Label("Phone No.: " + roleToDisplay.getPhone());
         phone.getStyleClass().add("role-display-body");
 
-        Label website = new Label("Email: " + roleToDisplay.getWebsite());
+        Label website = new Label("Website: " + roleToDisplay.getWebsite());
         website.getStyleClass().add("role-display-body");
 
         VBox detailsContainer = new VBox(detailCardHeader, salary, deadlineContainer, experience, jobDesc);

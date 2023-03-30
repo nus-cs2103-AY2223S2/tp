@@ -215,17 +215,17 @@ Given below is an example usage of how Salary Command is being used in the follo
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the current address
    book from the storage and loads it.
 
-   <img src="images/SalaryCommand0.png" width="800" />
+   <img src="images/UICommandImages/SalaryCommand0.png" width="800" />
 
 2. The user can choose to use the `SalaryCommand` in asc or desc orderParser.
     - The user executes `salary asc` command to sort the salary of the roles in the ascending
       orderParser.
 
-      <img src="images/SalaryCommand1.png" width="800" />
+      <img src="images/UICommandImages/SalaryCommand1.png" width="800" />
     - The user executes `salary desc` command to sort the salary of the roles in the descending
       orderParser.
 
-      <img src="images/SalaryCommand2.png" width="800" />
+      <img src="images/UICommandImages/SalaryCommand2.png" width="800" />
 
 The following sequence diagram shows how the Salary Command is being done:
 
@@ -265,9 +265,9 @@ Given below is an example usage of how Salary Command is being used in the follo
 
 2. The user can choose to use the `DeadlineCommand` in asc or desc orderParser.
     - The user executes `deadline asc` command to sort the salary of the roles in the ascending
-      orderParser. <img src="images/DeadlineCommand1.png" width="800" />
+      order. <img src="images/UICommandImages/DeadlineCommand1.png" width="800" />
     - The user executes `deadline desc` command to sort the salary of the roles in the descending
-      orderParser. <img src="images/DeadlineCommand2.png" width="800" />
+      order. <img src="images/UICommandImages/DeadlineCommand2.png" width="800" />
 
 The following sequence diagram shows how the Deadline Command is being done and used:
 
@@ -306,7 +306,7 @@ Given below is an example usage of how CompanyCommand is being used in the follo
 
 2. The user can choose to use the `Company Command` to filter companies.
     - The user executes `company <keyword>` command to filter roles by their company.
-    <img src="images/CompanyCommand1.png" width="800" />
+    <img src="images/UICommandImages/CompanyCommand1.png" width="800" />
 
 The following sequence diagram shows how the Company Command is being done:
 
@@ -340,7 +340,7 @@ Given below is an example usage of how TagCommand is being used in the following
 
 2. The user can choose to use the `Tag Command` to filter tags.
     - The user executes `tag <keyword>` command to filter roles by their tag.
-      <img src="images/TagCommand.png" width="800" />
+      <img src="images/UICommandImages/TagCommand.png" width="800" />
 
 The following sequence diagram shows how the Tag Command is being done:
 
@@ -372,10 +372,10 @@ any roles in the address book.
 An example usage of the `View` command is given below:
 
 1. The user launches the application for the first time. The AddressBook will be initialized with the current address book.
-   <img src="images/ViewCommand0.png" width="800" />
+   <img src="images/UICommandImages/ViewCommand0.png" width="800" />
 2. The user can use the `view` command to show more details pertaining to a role.
    - The user executes `view 1` to view details regarding the first role.
-     <img src="images/ViewCommand1.png" width="800" />
+     <img src="images/UICommandImages/ViewCommand1.png" width="800" />
 
 The following sequence diagram shows how the `view` Command is being done:
 [to be created]

@@ -37,7 +37,6 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 This section guides you on how to use features available in TechTrack.
 
-<div markdown="block" class="alert alert-info">
 
 
 **The features of TechTrack can be split into 3 main categories:**
@@ -46,7 +45,6 @@ This section guides you on how to use features available in TechTrack.
 * [Viewing Role Info](#viewing-role-info)
 * [General Commands](#general-commands)
 
-<sub><sup>[back to top](#techtrack-user-guide)</sup></sub>
 
 ## Creating Role Info
 The commands in this segment are focused on creating, editing and removing data to and from the application.
@@ -87,12 +85,17 @@ Format: `edit {index} {Prefix}/{Parameter}…​`
 Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed 
 $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
+![Edit](images/UICommandImages/editCommand.png)
+
+
 ### Deleting a role `delete`:
 Deletes the role from the current list of roles. Uses a 1-based index.
 
 Format: `delete {index}`
 
 Example: `delete 1`
+
+![Delete](images/UICommandImages/deleteCommand.png)
 
 ## Viewing Role Info
 The commands in this segment are focused on viewing formats and details of the preexisting roles.
@@ -112,12 +115,16 @@ Format: `name {keywords}...`
 
 Example: `name analyst engineer data`
 
+![Name](images/UICommandImages/nameCommand.png)
+
 ### Find roles by company
 Searches for roles with the provided companies.
 
 Format: `company {keywords}...`
 
 Example: `company Google`
+
+![Company](images/UICommandImages/CompanyCommand1.png)
 
 ### Find roles by tag
 Searches for roles with the provided tag.
@@ -126,16 +133,18 @@ Format: `tag {keyword}`
 
 Example: `tag Tech`
 
+![Salary](images/UICommandImages/TagCommand0.png)
+
 ### Sorting by Salary
 Sort roles based on salary, in ascending/descending orderParser.
 
 Format: `salary asc/desc`
 
 Example 1: `salary asc`
-![Deadline](images/SalaryCommand1.png)
+![Salary](images/UICommandImages/SalaryCommand1.png)
 
 Example 2: `salary desc`
-![Deadline](images/SalaryCommand2.png)
+![Salary](images/UICommandImages/SalaryCommand2.png)
 
 ### Sorting by Deadline
 Sort roles based on deadline, in ascending/descending orderParser.
@@ -143,15 +152,17 @@ Sort roles based on deadline, in ascending/descending orderParser.
 Format: `deadline asc/desc`
 
 Example 1: `deadline asc`
-![Deadline](images/DeadlineCommand1.png)
+![Deadline](images/UICommandImages/DeadlineCommand1.png)
 
 Example 2: `deadline desc`
-![Deadline](images/DeadlineCommand2.png)
+![Deadline](images/UICommandImages/DeadlineCommand2.png)
 
 ### Viewing a role
 Displays more details about a particular role.
 
 Format: `view {index}`
+
+![View](images/UICommandImages/viewcommand.png)
 
 ## General Commands
 
@@ -163,14 +174,18 @@ Format: `view {index}`
 ### List: `list`
 Lists all roles available in TechTrack.
 
+![List](images/UICommandImages/listcommand.png)
+
 ### Clear: `clear`
 Deletes all roles available in TechTrack.
 
 ### Help: `help`
 Display commands that are available in TechTrack and the proper format for usage. Also links to this user guide.
 
+![Help](images/UICommandImages/helpcommand.png)
+
 ### Exit: `exit`
-Exits TechTrack.
+Exits and closes TechTrack.
 
 ## FAQ
 Q: How do I transfer my data to another Computer?
@@ -184,7 +199,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | delete   | delete roleID (e.g. delete 221574)      |
 | view     | view roleID (e.g. view 221574)          |
 | list     | list                                    |
-| exit     | bye                                     |
+| exit     | exit                                    |
 | salary   | salary asc/desc (e.g. salary asc)       |
 | deadline | deadline asc/desc (e.g. deadline asc)   |
 | company  | company {keyword} (e.g. company google) |
