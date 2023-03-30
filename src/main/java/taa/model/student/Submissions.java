@@ -1,7 +1,6 @@
 package taa.model.student;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import taa.assignment.Submission;
@@ -11,13 +10,13 @@ import taa.assignment.exceptions.AssignmentNotFoundException;
  * A list of Submissions belonging to a Student.
  */
 public class Submissions {
-    private List<Submission> submissions;
+    private ArrayList<Submission> submissions;
     private Student student;
 
     /**
      * @param submissions A list containing Submissions.
      */
-    public Submissions(List<Submission> submissions, Student student) {
+    public Submissions(ArrayList<Submission> submissions, Student student) {
         this.submissions = submissions;
         this.student = student;
     }

@@ -26,7 +26,7 @@ public class Student {
     // Data fields
     private final Attendance atd;
     private final Set<Tag> classTags = new HashSet<>();
-    private final Submissions submissions = new Submissions(new ArrayList<>());
+    private final Submissions submissions = new Submissions(new ArrayList<>(), this);
     private final ArrayList<String> submissionStringArr;
 
     private final int hashcode;

@@ -134,6 +134,8 @@ public class AssignmentList {
                 toAdd.addStudentSubmission(stu, submissionString);
             }
         }
+    }
+
     /**
      * Returns true if an assignment with the provided name exists.
      */
