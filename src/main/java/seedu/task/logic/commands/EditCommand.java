@@ -1,6 +1,8 @@
 package seedu.task.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.task.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.task.commons.core.Messages.MESSAGE_INVALID_EVENT_DATES;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
@@ -13,14 +15,16 @@ import java.util.Optional;
 import java.util.Set;
 
 import javafx.collections.ObservableList;
-import seedu.task.commons.core.Messages;
 import seedu.task.commons.core.index.Index;
 import seedu.task.commons.util.CollectionUtil;
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
 import seedu.task.model.tag.Tag;
+import seedu.task.model.task.Date;
+import seedu.task.model.task.Deadline;
 import seedu.task.model.task.Description;
 import seedu.task.model.task.Effort;
+import seedu.task.model.task.Event;
 import seedu.task.model.task.Name;
 import seedu.task.model.task.SimpleTask;
 import seedu.task.model.task.Subtask;
@@ -47,6 +51,12 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task book.";
 
+    public static final String MESSAGE_DEADLINE_ON_TASK = "A deadline cannot be added to a simple task.";
+    public static final String MESSAGE_FROM_ON_TASK = "A from date cannot be added to a simple task.";
+    public static final String MESSAGE_TO_ON_TASK = "A to date date cannot be added to a simple task.";
+    public static final String MESSAGE_FROM_ON_DEADLINE = "A from date cannot be added to a deadline.";
+    public static final String MESSAGE_TO_ON_DEADLINE = "A to date cannot be added to a deadline.";
+    public static final String MESSAGE_DEADLINE_ON_EVENT = "A deadline cannot be added to an event.";
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -68,7 +78,7 @@ public class EditCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
@@ -87,16 +97,50 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
-        //TODO: Change edit to accommodate for event/deadline.
+    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) throws
+            CommandException {
+
         assert taskToEdit != null;
+
+        boolean deadlinePresent = editTaskDescriptor.getDeadline().isPresent();
+        boolean fromPresent = editTaskDescriptor.getFrom().isPresent();
+        boolean toPresent = editTaskDescriptor.getTo().isPresent();
         Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
         Effort updatedEffort = editTaskDescriptor.getEffort().orElse(taskToEdit.getEffort());
         ObservableList<Subtask> subtaskList = taskToEdit.getSubtasks();
+        if (taskToEdit instanceof SimpleTask) {
+            if (deadlinePresent) {
+                throw new CommandException(MESSAGE_DEADLINE_ON_TASK);
+            } else if (fromPresent) {
+                throw new CommandException(MESSAGE_FROM_ON_TASK);
+            } else if (toPresent) {
+                throw new CommandException(MESSAGE_TO_ON_TASK);
+            }
+            return new SimpleTask(updatedName, updatedDescription, updatedTags, updatedEffort, subtaskList);
+        } else if (taskToEdit instanceof Deadline) {
+            if (fromPresent) {
+                throw new CommandException(MESSAGE_FROM_ON_DEADLINE);
+            } else if (toPresent) {
+                throw new CommandException(MESSAGE_TO_ON_DEADLINE);
+            }
+            Date updatedDeadline = editTaskDescriptor.getDeadline().orElse(((Deadline) taskToEdit).getDeadline());
+            return new Deadline(updatedName, updatedDescription, updatedTags, updatedDeadline, updatedEffort,
+                subtaskList);
+        } else {
+            if (deadlinePresent) {
+                throw new CommandException(MESSAGE_DEADLINE_ON_EVENT);
+            }
+            Date updatedFrom = editTaskDescriptor.getFrom().orElse(((Event) taskToEdit).getFrom());
+            Date updatedTo = editTaskDescriptor.getTo().orElse(((Event) taskToEdit).getTo());
+            if (!updatedFrom.isValidEvent(updatedTo)) {
+                throw new CommandException(MESSAGE_INVALID_EVENT_DATES);
+            }
+            return new Event(updatedName, updatedDescription, updatedTags, updatedFrom, updatedTo,
+                updatedEffort, subtaskList);
+        }
 
-        return new SimpleTask(updatedName, updatedDescription, updatedTags, updatedEffort, subtaskList);
     }
 
     @Override
@@ -126,6 +170,10 @@ public class EditCommand extends Command {
         private Description description;
         private Effort effort;
         private Set<Tag> tags;
+        private Date deadline;
+        private Date from;
+        private Date to;
+
 
 
         public EditTaskDescriptor() {}
@@ -139,14 +187,17 @@ public class EditCommand extends Command {
             setDescription(toCopy.description);
             setTags(toCopy.tags);
             setEffort(toCopy.effort);
-
+            setDeadline((toCopy.deadline));
+            setFrom(toCopy.from);
+            setTo(toCopy.to);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, tags, effort);
+            return CollectionUtil.isAnyNonNull(name, description, tags, effort,
+                deadline, from, to);
         }
 
         public void setName(Name name) {
@@ -182,6 +233,30 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        public void setDeadline(Date deadline) {
+            this.deadline = deadline;
+        }
+
+        public Optional<Date> getDeadline() {
+            return (Optional.ofNullable(deadline));
+        }
+
+        public void setFrom(Date from) {
+            this.from = from;
+        }
+
+        public Optional<Date> getFrom() {
+            return (Optional.ofNullable(from));
+        }
+
+        public void setTo(Date to) {
+            this.to = to;
+        }
+
+        public Optional<Date> getTo() {
+            return (Optional.ofNullable(to));
+        }
+
         public void setEffort(Effort e) {
             this.effort = e;
         }
@@ -212,7 +287,10 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags())
-                    && getEffort().equals(e.getEffort());
+                    && getEffort().equals(e.getEffort())
+                    && getDeadline().equals(e.getDeadline())
+                    && getFrom().equals(e.getFrom())
+                    && getTo().equals(e.getTo());
         }
     }
 }

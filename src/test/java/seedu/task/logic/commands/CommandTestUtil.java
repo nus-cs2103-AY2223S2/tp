@@ -2,6 +2,7 @@ package seedu.task.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
@@ -60,6 +61,9 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String FROM_DESC_DEFAULT = " " + PREFIX_FROM + VALID_FROM_DATE;
     public static final String TO_DESC_DEFAULT = " " + PREFIX_TO + VALID_TO_DATE;
+    public static final String VALID_DEADLINE = "2023-03-29 2359";
+
+    public static final String DEADLINE_DESC_DEFAULT = " " + PREFIX_DEADLINE + VALID_DEADLINE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String BLANK_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "";
@@ -74,6 +78,17 @@ public class CommandTestUtil {
     public static final EditCommand.EditTaskDescriptor DESC_AMY;
     public static final EditCommand.EditTaskDescriptor DESC_BOB;
 
+    public static final EditCommand.EditTaskDescriptor DESC_AMY_EVENT;
+    public static final EditCommand.EditTaskDescriptor DESC_AMY_DEADLINE;
+
+    public static final String VALID_DATE = "2023-03-30 2359";
+
+    public static final String VALID_FROM = "2023-03-25 2359";
+
+    public static final String VALID_TO = "2023-03-26 2359";
+
+
+
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withDescription(VALID_DESCRIPTION_AMY)
@@ -81,6 +96,15 @@ public class CommandTestUtil {
         DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withDescription(VALID_DESCRIPTION_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_AMY_EVENT = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withDescription(VALID_DESCRIPTION_AMY)
+                .withTags(VALID_TAG_FRIEND)
+                .withFrom(VALID_FROM)
+                .withTo(VALID_TO).build();
+        DESC_AMY_DEADLINE = new EditTaskDescriptorBuilder().withName(VALID_NAME_AMY)
+            .withDescription(VALID_DESCRIPTION_AMY)
+            .withTags(VALID_TAG_FRIEND)
+            .withDeadline(VALID_DEADLINE).build();
     }
 
     /**
