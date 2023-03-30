@@ -89,6 +89,8 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
             builder.append(String.format(MESSAGE_ADD_LEAVE_SUCCESS, employeeToAdd, leavesToAdd.get(i)) + "\n");
         }
 
+        model.updateFilteredLeaveList(l -> l.hasEmployee(employeeToAdd));
+
         return new CommandResult(builder.toString());
     }
 

@@ -75,6 +75,7 @@ public class AddEmployeeToLeaveCommand extends Command {
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
         model.updateFilteredEmployeeList(predicate);
+        model.updateFilteredLeaveList(l -> l.hasEmployee(employeeToAdd));
 
         return new CommandResult(String.format(MESSAGE_ADD_LEAVE_SUCCESS, employeeToAdd, leaveToAdd));
     }
