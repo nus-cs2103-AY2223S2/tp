@@ -21,6 +21,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "    list   -   List employees\n"
             + "    edit   -   Edit employee\n"
             + "    find   -   Find employee by name\n"
+            + "    feid   -   Find employee by ID\n"
             + "    del    -   Delete employee\n"
             + "\n"
             + "Department-related commands:\n"
