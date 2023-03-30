@@ -8,26 +8,17 @@ participant "event:KeyEvent" as Event UI_EVENT_COLOR_T3
 
 [-> UiEventManager : catchAndExecute(event)
 activate UiEventManager
-alt ef "F1"
-    refOver show help
+alt event is to be ignored
+    UiEventManager -> Event : consume()
+    activate Event
+    Event --> UiEventManager
+    deactivate Event
 else ef "CTRL-F"
     refOver toggle mode
-else ef "CTRL-S"
-    refOver switch panel
 else ef "CTRL-L"
     refOver switch tabs
-else ef "CTRL-J"
-    refOver next item
-else ef "CTRL-K"
-    refOver previous item
-else ef "CTRL-D"
-    refOver clear command box
-else ef "CTRL-W"
-    refOver move to start of line
-else ef "CTRL-E"
-    refOver move to end of line
-else ef "CTRL-Q"
-    refOver quit mycelium
+else event is to be handled
+    refOver handle event
 end
 
 UiEventManager -->[

@@ -10,6 +10,7 @@ participant "keyName:typeName" as Key KEY_COLOR_T3
 participant "event:KeyEvent" as Event UI_EVENT_COLOR_T3
 
 mainframe sd sdName
+activate UiEventManager
 create Key
 UiEventManager -> Key: typeName()
 activate Key

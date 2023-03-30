@@ -109,7 +109,7 @@ You can find more details about the Entity and Statistics panels in the followin
 
 ### Entity Panel
 
-The Entity panel is where you will be able to view your projects and clients. It is split into two tabs, one that lists all existing projects and the other that lists all existing clients. 
+The Entity panel is where you will be able to view your projects and clients. It is split into two tabs, one that lists all existing projects and the other that lists all existing clients.
 
 #### Projects Tab
 
@@ -171,7 +171,7 @@ two characters long. This terseness is *intentional* to allow for faster
 keystrokes. Also note that all commands and argument flags are case sensitive.
 </div>
 
-<div markdown="span" class="alert alert-info"> 
+<div markdown="span" class="alert alert-info">
 :information_source: **A note on dates:** some arguments are in the form of
 dates. For these, :mushroom:Mycelium only accepts input of the format dd/MM/yyyy. For
 example, "14/03/2023" is okay, but "14/3/2023", or "14-03-2023" are not okay.
@@ -197,6 +197,11 @@ overrides *Mycelium*. So we end up with a project named *Desktop*.
 ## Managing Clients
 
 This user guide section outlines how to _create_, _update_, and _delete_ client contacts using command line arguments in :mushroom:Mycelium.
+
+<div markdown="span" class="alert alert-success">
+:bulb: After executing a command listed in this section, if you are currently
+on the Projects tab, Mycelium will automatically display the Clients tab.
+</div>
 
 ### Creating a client contact: `c`
 
@@ -311,6 +316,11 @@ Updated Client: Bobby Baker (alice_baker@bakers.com)
 ## Managing Projects
 
 This section of the user guide explains how to _create_, _delete_, and _update_ a project using commands that allows users to manage their projects efficiently.
+
+<div markdown="span" class="alert alert-success">
+:bulb: After executing a command listed in this section, if you are currently
+on the Clients tab, Mycelium will automatically display the Projects tab.
+</div>
 
 ### Creating a project: `p`
 
@@ -579,7 +589,7 @@ since it is similar to, for example, finding files in IDEs, or the well known
 might wish to note:
 
 * Each fuzzy query will be applied to both clients and project. That is, when
-  you query for something, say, "coc", this query is applied to both the Clients 
+  you query for something, say, "coc", this query is applied to both the Clients
   tab and the Projects tab, regardless of which tab is currently being displayed.
 * You might experience some input lag while in search mode. This is expected to
   improve as we refine the implementation.
@@ -617,14 +627,14 @@ The panel in focus will be highlighted with a blue header.
 
 ### (CTRL+L) Switch Tabs
 
-This shortcut allows you to quickly switch between the tabs of panel that is currently in focus. 
-If the left Entity panel is in focus, then the tabs will be the Projects tab and Clients tab. 
+This shortcut allows you to quickly switch between the tabs of panel that is currently in focus.
+If the left Entity panel is in focus, then the tabs will be the Projects tab and Clients tab.
 If the right Statistics panel is in focus, then the tabs will be the Overdue and Due soon tabs.
 
 ### (CTRL+J) Select next
 
-This shortcut allows you to quickly select the next item on the list in the currently selected tab 
-in the currently selected panel. 
+This shortcut allows you to quickly select the next item on the list in the currently selected tab
+in the currently selected panel.
 This could be the either the Projects tab or Clients tab in the Entity panel or the Overdue tab or Due soon tab in the Statistics panel.
 
 If the last item is selected, then the next item will be the first item in the list.
@@ -679,7 +689,7 @@ read the statement `q -a foo [-b bar]` like so:
 * `[-b bar]` indicates an optional argument.
 
 
-Action | Format | Example 
+Action | Format | Example
 --------|------------------|------
 [**Create new client**](#creating-a-client-contact-c) | `c -cn client_name -e email [-y year_of_birth] [-src source] [-mn mobile_number]` | `c -cn Alice Baker -e alice_baker@bakers.com -y 2000`
 [**Delete an existing client** ](#deleting-a-client-contact-dc)| `dc -e email` | `dc -e alice_baker@bakers.com`
