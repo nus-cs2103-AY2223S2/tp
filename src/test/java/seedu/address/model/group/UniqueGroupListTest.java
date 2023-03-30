@@ -37,13 +37,13 @@ public class UniqueGroupListTest {
     public void removeGroupFromList() {
         UniqueGroupList ugl = new UniqueGroupList();
         ugl.add(group);
-        ugl.delete(group, new HashSet<Person>());
+        ugl.delete(group);
         assertFalse(ugl.contains(group));
         assertThrows(NullPointerException.class, () -> {
-            ugl.delete(null, new HashSet<Person>());
+            ugl.delete(null);
         });
         assertThrows(GroupNotFoundException.class, () -> {
-            ugl.delete(group, new HashSet<Person>());
+            ugl.delete(group);
         });
     }
 

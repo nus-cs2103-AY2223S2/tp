@@ -48,14 +48,12 @@ public class UniqueGroupList implements Iterable<Group> {
      * The group must exist in the set.
      *
      * @param toRemove Group to remove from set
-     * @param persons Persons to remove group from
      */
-    public void delete(Group toRemove, Set<Person> persons) {
+    public void delete(Group toRemove) {
         requireNonNull(toRemove);
         if (!contains(toRemove)) {
             throw new GroupNotFoundException();
         }
-        persons.forEach(person -> person.removeGroup(toRemove));
         internalList.remove(toRemove);
     }
 
