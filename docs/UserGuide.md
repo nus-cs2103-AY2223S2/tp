@@ -12,7 +12,7 @@ optimized for use via a Command Line Interface** (CLI) while still having the be
 
 # 2. Table of Contents
 Table of Contents
-{% include toc.html html=content %}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
