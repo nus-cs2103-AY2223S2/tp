@@ -95,6 +95,7 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
         this.events.remove(key);
     }
 
+
     public HashMap<LocalDate, List<Event>> findClashEvents() {
         return this.events.getClashEventHash();
     }
