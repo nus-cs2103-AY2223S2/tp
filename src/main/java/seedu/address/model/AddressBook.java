@@ -202,6 +202,22 @@ public class AddressBook implements ReadOnlyAddressBook {
         return wards.asUnmodifiableObservableList();
     }
 
+    /**
+     * Stats to be displayed on StatusBarFooter.
+     * This is the method to modify to choose what you want to display.
+     *
+     * @return List of information to display.
+     */
+    @Override
+    public List<String> getStatsInfo() {
+        List<String> statsInfo = new ArrayList<>();
+        String currentOccupancy = "Current Occupancy: " + patients.size() + "/" + wards.capacity();
+        String currentCriticals = "Critical Patients: " + patients.critical();
+        statsInfo.add(currentOccupancy);
+        statsInfo.add(currentCriticals);
+        return statsInfo;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

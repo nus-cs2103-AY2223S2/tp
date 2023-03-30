@@ -7,14 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.TextField?>
-<HBox styleClass="status-bar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox styleClass="status-bar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" spacing="200">
   <Label fx:id="saveLocationStatus" />
-  <HBox alignment="BASELINE_RIGHT">
-    <Label text="Current Occupancy: "/>
-    <Label fx:id="currentOccupancy"/>
-
-    <Label text="Current Critical: "/>
-    <Label fx:id="currentCritical"/>
-  </HBox>
-
+  <Label fx:id="stats" textAlignment="CENTER"/>
 </HBox>

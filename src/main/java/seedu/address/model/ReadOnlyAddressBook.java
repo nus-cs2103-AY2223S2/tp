@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.util.Comparator;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.patient.Patient;
@@ -21,4 +22,5 @@ public interface ReadOnlyAddressBook {
     ObservableList<Patient> getPatientList();
 
     ObservableList<Ward> getWardList();
+    List<String> getStatsInfo();
 }

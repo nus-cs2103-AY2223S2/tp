@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -188,6 +190,10 @@ public class ModelManager implements Model {
         filteredWards.setPredicate(predicate);
     }
 
+    @Override
+    public List<String> getStatsInfo() {
+        return addressBook.getStatsInfo();
+    }
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

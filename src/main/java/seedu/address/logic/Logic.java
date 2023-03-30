@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -30,6 +31,8 @@ public interface Logic {
      * @see seedu.address.model.Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
+
+    List<String> getStatsInfo();
 
     /** Returns an unmodifiable view of the filtered list of patients */
     ObservableList<Patient> getFilteredPatientList();

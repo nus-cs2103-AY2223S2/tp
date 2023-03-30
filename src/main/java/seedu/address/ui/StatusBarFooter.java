@@ -2,9 +2,12 @@ package seedu.address.ui;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
 /**
@@ -17,18 +20,19 @@ public class StatusBarFooter extends UiPart<Region> {
     @FXML
     private Label saveLocationStatus;
     @FXML
-    private Label currentOccupancy;
-    @FXML
-    private Label currentCritical;
+    private Label stats;
 
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
-    public StatusBarFooter(Path saveLocation, String currentOccupancy, String currentCritical) {
+    public StatusBarFooter(Path saveLocation, List<String> statsInfo) {
         super(FXML);
+        statsInfo.get(0);
+        statsInfo.get(1);
         this.saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
-        this.currentOccupancy.setText(currentOccupancy);
-        this.currentCritical.setText(currentCritical);
+        for (String stat:statsInfo) {
+            stats.setText(stats.getText() + "       " + stat + "       ");
+        }
     }
 
 }
