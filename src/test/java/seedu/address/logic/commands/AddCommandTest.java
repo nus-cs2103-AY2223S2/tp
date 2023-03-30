@@ -130,17 +130,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addStudentToTutorial(Index toAdd, String tutName) {
+        public void addStudentToTutorial(Index toAdd, Index tutorialIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addStudentToLab(Index toAdd, String tutName) {
+        public void addStudentToLab(Index toAdd, Index labIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addStudentToConsultation(Index toAdd, String tutName) {
+        public void addStudentToConsultation(Index toAdd, Index labIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
