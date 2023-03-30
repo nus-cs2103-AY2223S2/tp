@@ -38,15 +38,30 @@ public class Group {
     public Group copy() {
         Group copy = new Group(this.groupName);
         UniqueStudentList studentsCopy = new UniqueStudentList();
-        students.asUnmodifiableObservableList().forEach(student -> studentsCopy.add(student.copy()));
-        copy.setStudents(studentsCopy);
+        UniqueSessionsList sessionsCopy = new UniqueSessionsList();
+        UniqueTasksList tasksCopy = new UniqueTasksList();
 
+        students.asUnmodifiableObservableList().forEach(student -> studentsCopy.add(student.copy()));
+        sessions.asUnmodifiableObservableList().forEach(session -> sessionsCopy.add(session.copy()));
+        tasks.asUnmodifiableObservableList().forEach(task -> tasksCopy.add(task.copy()));
+
+        copy.setStudents(studentsCopy);
+        copy.setSessions(sessionsCopy);
+        copy.setTasks(tasksCopy);
         return copy;
 
     }
 
     public void setStudents(UniqueStudentList students) {
         this.students.setInternalList(students.asUnmodifiableObservableList());;
+    }
+
+    public void setSessions(UniqueSessionsList sessions) {
+        this.sessions.setInternalList(sessions.asUnmodifiableObservableList());;
+    }
+
+    public void setTasks(UniqueTasksList tasks) {
+        this.tasks.setInternalList(tasks.asUnmodifiableObservableList());;
     }
 
     /**

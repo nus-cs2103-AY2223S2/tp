@@ -44,6 +44,13 @@ public class Task {
         isSelected = false;
     }
 
+    public Task copy() {
+        Task copy = new Task(this.taskName);
+        copy.setGrades(new HashMap<>(gradeList));
+
+        return copy;
+    }
+
     /**
      * Returns an unmodifiable list of the students in the group with the task.
      */
