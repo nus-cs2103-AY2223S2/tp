@@ -39,6 +39,7 @@ public class ImportDeliveryJobCommandParser {
             throws ParseException, FileNotFoundException {
         try (Scanner sc = new Scanner(file)) {
             List<DeliveryJob> listOfAddDeliveryJob = new ArrayList<>();
+            sc.nextLine();
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
                 String[] arrOfStr = line.split(",");
