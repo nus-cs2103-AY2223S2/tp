@@ -108,31 +108,35 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        List<String> existingTagsType = editPersonDescriptor.replaceExistingTags(personToEdit.getTags())
-            .stream().distinct().collect(Collectors.toList());
-        List<String> newTagsType = editPersonDescriptor.replaceExistingTags(editPersonDescriptor.getTags().get())
-            .stream().distinct().collect(Collectors.toList());
-        System.out.println("Before: " + existingTagsType);
-        System.out.println("After: " + newTagsType);
         Set<Tag> updatedTags;
-        Set<Tag> newTags = new HashSet<>();
-        if (newTagsType.stream().allMatch(element -> existingTagsType.contains(element))) {
-            newTags.addAll(editPersonDescriptor.getTags().orElse(personToEdit.getTags()));
-            newTags.addAll(personToEdit.getTags().stream().filter(x -> !newTagsType.contains(
-                editPersonDescriptor.containTagType(x))).collect(Collectors.toList()));
-            updatedTags = newTags;
-        } else {
 
-            Collection<String> stringTags = new ArrayList<>();
-            newTags.addAll(editPersonDescriptor.getTags().get());
-            newTags.addAll(personToEdit.getTags());
+        if (!editPersonDescriptor.getTags().equals(Optional.empty())) {
+            List<String> existingTagsType = editPersonDescriptor.replaceExistingTags(personToEdit.getTags())
+                .stream().distinct().collect(Collectors.toList());
+            List<String> newTagsType = editPersonDescriptor.replaceExistingTags(editPersonDescriptor.getTags().get())
+                .stream().distinct().collect(Collectors.toList());
 
-            Collection<Tag> tags = Stream.of(newTags).flatMap(Collection::stream)
-                .collect(Collectors.toList());
-            for (Tag tag : tags) {
-                stringTags.add(tag.tagName);
+            Set<Tag> newTags = new HashSet<>();
+            if (newTagsType.stream().allMatch(element -> existingTagsType.contains(element))) {
+                newTags.addAll(editPersonDescriptor.getTags().orElse(personToEdit.getTags()));
+                newTags.addAll(personToEdit.getTags().stream().filter(x -> !newTagsType.contains(
+                    editPersonDescriptor.containTagType(x))).collect(Collectors.toList()));
+                updatedTags = newTags;
+            } else {
+
+                Collection<String> stringTags = new ArrayList<>();
+                newTags.addAll(editPersonDescriptor.getTags().get());
+                newTags.addAll(personToEdit.getTags());
+
+                Collection<Tag> tags = Stream.of(newTags).flatMap(Collection::stream)
+                    .collect(Collectors.toList());
+                for (Tag tag : tags) {
+                    stringTags.add(tag.tagName);
+                }
+                updatedTags = ParserUtil.parseTags(stringTags);
             }
-            updatedTags = ParserUtil.parseTags(stringTags);
+        } else {
+            updatedTags = personToEdit.getTags();
         }
 
         Image updatedImage = personToEdit.getImage();

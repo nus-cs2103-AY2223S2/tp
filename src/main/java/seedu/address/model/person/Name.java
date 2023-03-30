@@ -10,7 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+        "Names should only contain alphanumeric characters and spaces, and it should not be blank. ";
+
+    public static final String MESSAGE_LEN_CONSTRAINTS = "Names should be between 1-20 characters long";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -28,6 +30,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        // checkArgument(isValidLength(name), "Names should be between 1-20 characters long");
         fullName = name;
     }
 
@@ -38,7 +41,6 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return fullName;
@@ -47,8 +49,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+            || (other instanceof Name // instanceof handles nulls
+            && fullName.equals(((Name) other).fullName)); // state check
     }
 
     @Override
