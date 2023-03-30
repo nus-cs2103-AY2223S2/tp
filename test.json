@@ -1,0 +1,146 @@
+{
+  "modules" : [ {
+    "code" : "CS2040S",
+    "name" : "Data Structures and Algorithms",
+    "lectures" : [ {
+      "name" : "Week 1",
+      "videos" : [ {
+        "name" : "Vid 3",
+        "hasWatched" : false,
+        "timestamp" : "01:02:03",
+        "tagged" : [ "Intro" ]
+      } ],
+      "tagged" : [ "Intro" ]
+    }, {
+      "name" : "Week 2",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ ]
+      }, {
+        "name" : "Vid 2",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ "Analysis", "MathHeavy" ]
+      } ],
+      "tagged" : [ "Arrays", "LinkedList" ]
+    }, {
+      "name" : "Week 3",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ ]
+      }, {
+        "name" : "Vid 2",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ "Analysis", "MathHeavy" ]
+      } ],
+      "tagged" : [ "Sorting" ]
+    }, {
+      "name" : "Week 4",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ ]
+      }, {
+        "name" : "Vid 2",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ "Analysis", "MathHeavy" ]
+      } ],
+      "tagged" : [ "Arrays", "LinkedList" ]
+    }, {
+      "name" : "Week 5",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ ]
+      }, {
+        "name" : "Vid 2",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ "Analysis", "MathHeavy" ]
+      } ],
+      "tagged" : [ "Hashing" ]
+    }, {
+      "name" : "Week 6",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ ]
+      }, {
+        "name" : "Vid 2",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ "Analysis", "MathHeavy" ]
+      } ],
+      "tagged" : [ "BloomFilter" ]
+    }, {
+      "name" : "Week 7",
+      "videos" : [ {
+        "name" : "Vid 4",
+        "hasWatched" : false,
+        "timestamp" : "03:02:01",
+        "tagged" : [ "Revision" ]
+      } ],
+      "tagged" : [ "Revision" ]
+    } ],
+    "tagged" : [ "Heavy", "Analysis", "Math" ]
+  }, {
+    "code" : "ST2334",
+    "name" : "Probability and Statistics",
+    "lectures" : [ {
+      "name" : "Topic 1",
+      "videos" : [ {
+        "name" : "Vid 3",
+        "hasWatched" : false,
+        "timestamp" : "01:02:03",
+        "tagged" : [ "Intro" ]
+      } ],
+      "tagged" : [ "Intro" ]
+    }, {
+      "name" : "Topic 2",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ ]
+      } ],
+      "tagged" : [ "Probability" ]
+    }, {
+      "name" : "Topic 3",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ ]
+      } ],
+      "tagged" : [ "RandomVariables" ]
+    }, {
+      "name" : "Topic 4",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ ]
+      } ],
+      "tagged" : [ "JointDistributions" ]
+    }, {
+      "name" : "Topic 5",
+      "videos" : [ {
+        "name" : "Vid 1",
+        "hasWatched" : true,
+        "timestamp" : "00:00:00",
+        "tagged" : [ ]
+      } ],
+      "tagged" : [ "Sampling" ]
+    } ],
+    "tagged" : [ "Probability", "Math" ]
+  } ]
+}
