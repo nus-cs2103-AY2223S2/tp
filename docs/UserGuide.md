@@ -1,8 +1,12 @@
 ---
 layout: page
-title: Vimificattion User Guide
+title: User Guide
 ---
 
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
 <!---
 Outstanding TODOs:
 [ ] Add numbering to all the sections in both the TOC & section headings
@@ -37,8 +41,8 @@ Command summary
 
 ## Table of Contents
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 ## Introduction
 
