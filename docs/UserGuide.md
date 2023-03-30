@@ -7,8 +7,7 @@ Welcome to CareFlow, your all-in-one solution for managing patient information a
 
 CareFlow is a **desktop application for [patient management](#31-patient-information-management) and [drug inventory
 management](#32-drug-inventory-management), optimised for use
-via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI)<sup>[2]
-(#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#2-quick-start) to get started. Enjoy!
+via a Command Line Interface (CLI)<sup>[1](#1)</sup>** while benefiting from a Graphical User Interface (GUI) <sup>[2](#2)</sup>. With CareFlow, you can streamline your workflow, improve patient care, and reduce the stress of managing multiple systems and spreadsheets. If you are a receptionist at a GP clinic and are comfortable typing, CareFlow can streamline your daily patient and drug management tasks, saving you from tedious daily routines and allowing you to focus on what really matters —— your patients' well-being! Interested? Jump to Section [3. Quick Start](#2-quick-start) to get started. Enjoy!
 
 <p align="center">
   <img src="images/Ui.png" style="zoom:100%"/>
@@ -783,7 +782,7 @@ ___
 
 * All CareFlow data is saved as a JSON file `[JAR file location]/data/careflow.json`. If you are an advanced user, you can also update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CareFlow will discard all data and start with an empty data file at the next run.
 </div>
 
