@@ -85,6 +85,7 @@ Let's clear a little confusion that might arise:
   - :information_source: - are important information to note
   - :bulb: - are usage tips/shortcuts
   - :exclamation: - are some warnings about certain actions
+- :information_source: Every Tutorial, Consultation and Lab prefix are case-sensitive
 
 **Features**
 --------------------------------------------------------------------
