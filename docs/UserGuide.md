@@ -531,8 +531,6 @@ Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Or
 * Fill in the valid values for each field. (i.e. `Chocolate Cookies`, `10`, `10/01/2023`, etc.)
 * If there are any optional fields (i.e. `Suppler`'s `Tag` field), indicate it with a '-' if you don't wish to put any values in that particular field.
 
-Below is an example of a valid csv file
-
 <p align="center">
   <img src="images/ValidCsvFile.png" width="600" />
   <br>Figure 3: Valid csv file Example
