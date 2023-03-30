@@ -3,6 +3,7 @@ package seedu.wife.model.food;
 import static java.util.Objects.requireNonNull;
 import static seedu.wife.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -106,6 +107,13 @@ public class UniqueFoodList implements Iterable<Food> {
         }
 
         internalList.setAll(foods);
+    }
+
+    /**
+     * Sorts food items of this list with {@code Comparator}.
+     */
+    public void sort(Comparator<Food> cmp) {
+        internalList.sort(cmp);
     }
 
     /**

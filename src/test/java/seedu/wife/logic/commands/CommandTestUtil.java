@@ -28,6 +28,7 @@ import seedu.wife.testutil.EditFoodDescriptorBuilder;
 public class CommandTestUtil {
     public static final String VALID_TAG_NEW = "NEW";
     public static final String VALID_TAG_USED = "USED";
+    public static final String VALID_TAG_TEST = "TEST";
     public static final String VALID_NAME_MEIJI = "MEIJI";
     public static final String VALID_UNIT_MEIJI = "Carton";
     public static final String VALID_QUANTITY_MEIJI = "2";

@@ -1,7 +1,9 @@
 package seedu.wife.model.tag;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.wife.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -34,6 +36,11 @@ public class TagNameTest {
     public void isValidTagName() {
         // null tag name
         assertThrows(NullPointerException.class, () -> TagName.isValidTagName(null));
+
+        assertTrue(TagName.isValidTagName("notlengthy"));
+        assertFalse(TagName.isValidTagName("thistagnameiswaytoolong"));
+        assertFalse(TagName.isValidTagName("symb@l"));
+        assertFalse(TagName.isValidTagName(""));
     }
 
     @Test

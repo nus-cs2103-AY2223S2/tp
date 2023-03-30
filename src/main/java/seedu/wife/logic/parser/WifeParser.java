@@ -16,6 +16,7 @@ import seedu.wife.logic.commands.foodcommands.FindCommand;
 import seedu.wife.logic.commands.foodcommands.IncreaseCommand;
 import seedu.wife.logic.commands.foodcommands.ListByTagCommand;
 import seedu.wife.logic.commands.foodcommands.ListCommand;
+import seedu.wife.logic.commands.foodcommands.SortByExpiryCommand;
 import seedu.wife.logic.commands.foodcommands.ViewCommand;
 import seedu.wife.logic.commands.generalcommands.ClearCommand;
 import seedu.wife.logic.commands.generalcommands.ExitCommand;
@@ -93,6 +94,8 @@ public class WifeParser {
             return new ListTagCommand();
         case ListByTagCommand.COMMAND_WORD:
             return new ListByTagCommandParser().parse(arguments);
+        case SortByExpiryCommand.COMMAND_WORD:
+            return new SortByExpiryCommand();
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case TagFoodCommand.COMMAND_WORD:

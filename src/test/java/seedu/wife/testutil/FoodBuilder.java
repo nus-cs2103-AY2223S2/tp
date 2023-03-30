@@ -18,7 +18,7 @@ public class FoodBuilder {
     public static final String DEFAULT_NAME = "Meiji";
     public static final String DEFAULT_UNIT = "Carton";
     public static final String DEFAULT_QUANTITY = "2";
-    public static final String DEFAULT_EXPIRY_DATE = "13-11-2024";
+    public static final String DEFAULT_EXPIRY_DATE = "13-11-2026";
 
     private Name name;
     private Unit unit;

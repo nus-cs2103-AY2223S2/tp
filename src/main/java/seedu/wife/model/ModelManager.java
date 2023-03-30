@@ -15,7 +15,7 @@ import seedu.wife.model.food.Food;
 import seedu.wife.model.tag.Tag;
 
 /**
- * Represents the in-memory model of the wife data.
+ * Represents the in-memory model of the WIFE data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final FilteredList<Tag> filteredTags;
 
     /**
-     * Initializes a ModelManager with the given wife and userPrefs.
+     * Initializes a ModelManager with the given WIFE and userPrefs.
      */
     public ModelManager(ReadOnlyWife wife, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(wife, userPrefs);
@@ -37,6 +37,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFoods = new FilteredList<>(this.wife.getFoodList());
         filteredTags = new FilteredList<>(this.wife.getTagList());
+        sortFilteredFoodListByExpiryDate();
     }
 
     public ModelManager() {
@@ -128,6 +129,12 @@ public class ModelManager implements Model {
     public ObservableList<Food> getFilteredFoodList() {
         return filteredFoods;
     }
+
+    /** Sorts food list by its expiry date */
+    @Override
+    public void sortFilteredFoodListByExpiryDate() {
+        wife.sortFood(null);
+    };
 
     /**
      * Returns an unmodifiable view of the list of {@code Food} backed by {@code versionedWife}

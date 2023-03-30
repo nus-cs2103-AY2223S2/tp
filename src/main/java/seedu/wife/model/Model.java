@@ -122,6 +122,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered food list */
     ObservableList<Food> getFilteredFoodList();
 
+    /** Sorts food list by its expiry date */
+    void sortFilteredFoodListByExpiryDate();
+
     /** Returns an unmodifiable view of the food list */
     ObservableList<Food> getFoodList();
 
