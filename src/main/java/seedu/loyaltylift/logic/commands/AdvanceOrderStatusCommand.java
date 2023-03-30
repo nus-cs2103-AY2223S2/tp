@@ -35,8 +35,6 @@ public class AdvanceOrderStatusCommand extends Command {
 
     public static final String MESSAGE_ADVANCE_STATUS_SUCCESS = "Advanced status for order: %1$s \n"
             + "New status is: %2$s";
-    public static final String MESSAGE_INVALID_STATE = "This order is already completed or cancelled";
-
     private final Index index;
 
     /**
@@ -47,6 +45,7 @@ public class AdvanceOrderStatusCommand extends Command {
 
         this.index = index;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Order> lastShownList = model.getFilteredOrderList();
@@ -56,43 +55,16 @@ public class AdvanceOrderStatusCommand extends Command {
         }
 
         Order orderToAdvance = lastShownList.get(index.getZeroBased());
-        Order editedOrderWithPoints = createAdvancedOrder(orderToAdvance);
+        Order advancedOrder = orderToAdvance.advance();
 
-        model.setOrder(orderToAdvance, editedOrderWithPoints);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+        model.setOrder(orderToAdvance, advancedOrder);
 
-        return new CommandResult(generateSuccessMessage(editedOrderWithPoints));
+        return new CommandResult(generateSuccessMessage(advancedOrder));
     }
-
-    /**
-     * Creates and returns a {@code Order} with the details of {@code orderToAdvance}
-     */
-    private Order createAdvancedOrder(Order orderToAdvance) throws CommandException {
-        assert orderToAdvance != null;
-        Status newStatus;
-        Name name = orderToAdvance.getName();
-        Customer customer = orderToAdvance.getCustomer();
-        Address address = orderToAdvance.getAddress();
-        Quantity quantity = orderToAdvance.getQuantity();
-        Status status = orderToAdvance.getStatus();
-        CreatedDate createdDate = orderToAdvance.getCreatedDate();
-        Note note = orderToAdvance.getNote();
-
-        try {
-            newStatus = status.newStatusWithNewUpdate(LocalDate.now());
-        } catch (IllegalStateException e) {
-            throw new CommandException(MESSAGE_INVALID_STATE);
-        }
-
-        return new Order(customer, name, quantity, address, newStatus,
-                createdDate, note);
-    }
-
-
 
     /**
      * Generates a command execution success message based on whether
-     * the points are added
+     * the order status is advanced
      */
     private String generateSuccessMessage(Order advancedOrder) {
         String message = MESSAGE_ADVANCE_STATUS_SUCCESS;
@@ -116,4 +88,3 @@ public class AdvanceOrderStatusCommand extends Command {
         return index.equals(e.index);
     }
 }
-

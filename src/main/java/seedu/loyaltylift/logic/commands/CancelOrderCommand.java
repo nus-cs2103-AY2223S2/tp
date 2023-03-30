@@ -59,7 +59,6 @@ public class CancelOrderCommand extends Command {
         Order cancelledOrder = createCancelledOrder(orderToCancel);
 
         model.setOrder(orderToCancel, cancelledOrder);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
 
         return new CommandResult(generateSuccessMessage(cancelledOrder));
     }
@@ -88,11 +87,9 @@ public class CancelOrderCommand extends Command {
                 createdDate, note);
     }
 
-
-
     /**
      * Generates a command execution success message based on whether
-     * the points are added
+     * the order is successfully cancelled
      */
     private String generateSuccessMessage(Order advancedOrder) {
         String message = MESSAGE_CANCEL_ORDER_SUCCESS;

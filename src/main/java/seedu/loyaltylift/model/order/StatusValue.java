@@ -35,18 +35,6 @@ public enum StatusValue {
         return StatusValue.values()[pos + 1];
     }
 
-    /**
-     * Returns a {@code StatusValue}, "Cancelled"
-     * Should not be called when StatusValue is Completed.
-     * @return A {@code StatusValue}
-     */
-    public StatusValue changeToCancelled() {
-        if (this.equals(COMPLETED)) {
-            throw new IllegalStateException();
-        }
-        return StatusValue.CANCELLED;
-    }
-
     @Override
     public String toString() {
         String str = super.toString();

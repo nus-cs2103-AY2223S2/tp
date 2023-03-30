@@ -39,13 +39,14 @@ public class RevertOrderStatusCommand extends Command {
     private final Index index;
 
     /**
-     * @param index of the order in the filtered order list to advance status
+     * @param index of the order in the filtered order list to revert status
      */
     public RevertOrderStatusCommand(Index index) {
         requireAllNonNull(index);
 
         this.index = index;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Order> lastShownList = model.getFilteredOrderList();
@@ -55,43 +56,16 @@ public class RevertOrderStatusCommand extends Command {
         }
 
         Order orderToRevert = lastShownList.get(index.getZeroBased());
-        Order revertedOrder = createRevertedOrder(orderToRevert);
+        Order revertedOrder = orderToRevert.revert();
 
         model.setOrder(orderToRevert, revertedOrder);
-        model.updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
 
         return new CommandResult(generateSuccessMessage(revertedOrder));
     }
 
     /**
-     * Creates and returns a {@code Order} with the details of {@code orderToRevert}
-     */
-    private Order createRevertedOrder(Order orderToRevert) throws CommandException {
-        assert orderToRevert != null;
-        Status newStatus;
-        Name name = orderToRevert.getName();
-        Customer customer = orderToRevert.getCustomer();
-        Address address = orderToRevert.getAddress();
-        Quantity quantity = orderToRevert.getQuantity();
-        Status status = orderToRevert.getStatus();
-        CreatedDate createdDate = orderToRevert.getCreatedDate();
-        Note note = orderToRevert.getNote();
-
-        try {
-            newStatus = status.newStatusWithRemoveLatest();
-        } catch (IllegalStateException e) {
-            throw new CommandException(MESSAGE_INVALID_COMMAND);
-        }
-
-        return new Order(customer, name, quantity, address, newStatus,
-                createdDate, note);
-    }
-
-
-
-    /**
      * Generates a command execution success message based on whether
-     * the points are added
+     * the order status was reverted
      */
     private String generateSuccessMessage(Order revertedOrder) {
         String message = MESSAGE_REVERT_STATUS_SUCCESS;

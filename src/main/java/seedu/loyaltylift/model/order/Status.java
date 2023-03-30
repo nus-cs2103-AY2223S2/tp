@@ -75,9 +75,9 @@ public class Status implements Comparable<Status> {
             throw new IllegalStateException();
         }
 
-        StatusUpdate latestStatusUpdate = getLatestStatus();
         ArrayList<StatusUpdate> newStatusUpdates = new ArrayList<>(this.statusUpdates);
-        newStatusUpdates.add(latestStatusUpdate.cancelOrder(date));
+        StatusUpdate statusUpdateCancelled = new StatusUpdate(StatusValue.CANCELLED, LocalDate.now());
+        newStatusUpdates.add(statusUpdateCancelled);
 
         return new Status(newStatusUpdates);
     }
