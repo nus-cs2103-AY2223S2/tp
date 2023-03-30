@@ -79,9 +79,6 @@ public class CommandBox extends UiPart<Region> {
                 break;
 
             case DOWN:
-//                String newerInput = this.commandHistory.getNewerInput();
-//                commandTextField.setText(newerInput);
-//                commandTextField.positionCaret(newerInput.length());
                 commandTextField.setText(this.commandHistory.getNewerInput());
                 break;
 
