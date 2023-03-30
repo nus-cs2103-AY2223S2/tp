@@ -200,7 +200,7 @@ How the parsing works:
 ***Classes:*** [`Client.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java), [`Project.java`](https://github.com/AY2223S2-CS2103T-W14-1/tp/blob/master/src/main/java/mycelium/mycelium/model/client/Client.java)
 
 {TODO update diagram}
-![ClientAndProjectClassDiagram](images/ClientAndProjectClassModel.png)
+![ClientAndProjectClassDiagram](images/model/ModelClassDiagram.png)
 
 The `Model` box is the central component of the Mycelium's data. It contains
 the entities `Client` and `Project` which are used to store the data of each
