@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane styleClass="background" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <VBox maxHeight="1.7976931348623157E308" prefHeight="500.0" prefWidth="248.0">
         <ListView fx:id="deliveryJobListView" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
@@ -39,15 +39,15 @@
                   </Label>
                </graphic>
             </Menu>
-            <Menu fx:id="filterOption" mnemonicParsing="false" text="Filter By" visible="false">
+            <Menu fx:id="filterOption" mnemonicParsing="false" text="Filter By">
               <items>
-                  <RadioMenuItem fx:id="filterAll" mnemonicParsing="false" selected="true" text="All">
+                  <RadioMenuItem fx:id="filterAll" mnemonicParsing="false" selected="true" styleClass="select-radio-item" text="All">
                      <toggleGroup>
                         <ToggleGroup fx:id="toggleGroup" />
                      </toggleGroup>
                   </RadioMenuItem>
-                  <RadioMenuItem fx:id="filterDelivered" mnemonicParsing="false" text="Delivered" toggleGroup="$toggleGroup" />
-                  <RadioMenuItem fx:id="filterPending" mnemonicParsing="false" text="Pending" toggleGroup="$toggleGroup" />
+                  <RadioMenuItem fx:id="filterDelivered" mnemonicParsing="false" styleClass="select-radio-item" text="Delivered" toggleGroup="$toggleGroup" />
+                  <RadioMenuItem fx:id="filterPending" mnemonicParsing="false" styleClass="select-radio-item" text="Pending" toggleGroup="$toggleGroup" />
               </items>
             </Menu>
          </menus>

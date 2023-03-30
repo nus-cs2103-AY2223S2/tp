@@ -1,5 +1,6 @@
 package seedu.address.ui.jobs;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -239,6 +240,8 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
             getRoot().close();
         } catch (ParseException | CommandException e) {
             logger.warning("[Event] editDeliveryJob" + e.getMessage());
+        } catch (FileNotFoundException e) {
+            logger.warning("[Event] editDeliveryJob" + e.getMessage());
         }
     }
 
@@ -265,7 +268,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
                 job = new DeliveryJob(
                         inputSender.getText(),
                         inputRecipient.getText(),
-                        inputDeliveryDate.getValue().format(DeliveryDate.VALID_FORMAT),
+                        inputDeliveryDate.getValue().toString(),
                         Integer.toString(inputDeliverySlot.getSelectionModel().getSelectedIndex()),
                         inputEarning.getText(),
                         inputDescription.getText());
@@ -274,6 +277,8 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
             logic.execute(new AddDeliveryJobCommand(job));
             getRoot().close();
         } catch (ParseException | CommandException e) {
+            logger.warning("[Event] createDeliveryJob" + e.getMessage());
+        } catch (FileNotFoundException e) {
             logger.warning("[Event] createDeliveryJob" + e.getMessage());
         }
     }
@@ -349,7 +354,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    boolean validateFields() {
+    private boolean validateFields() {
         boolean flag = true;
         if (inputSender.getText().isEmpty()) {
             inputSender.getStyleClass().add("error-input");
@@ -370,6 +375,12 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
                 outputError("Sender and Recipient cannot be the same.");
                 flag = false;
             }
+        }
+
+        if (inputEarning.getText().isEmpty()) {
+            inputEarning.getStyleClass().add("error-input");
+            outputError("Earning cannot be empty.");
+            flag = false;
         }
 
         // any has value
@@ -411,6 +422,9 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
                         flag = false;
                     }
                 }
+            } else {
+                inputDeliverySlot.setValue(null);
+                inputDeliveryDate.setValue(null);
             }
         }
 

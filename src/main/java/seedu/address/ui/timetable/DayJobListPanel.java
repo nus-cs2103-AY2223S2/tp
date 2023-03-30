@@ -86,7 +86,7 @@ public class DayJobListPanel extends UiPart<Region> {
             if (getIndex() % 2 == 1) {
                 setStyle("-fx-background-color: DARKCYAN;");
             } else {
-                setStyle("-fx-background-color: lightgrey;");
+                setStyle("-fx-background-color: GREY;");
             }
         }
     }

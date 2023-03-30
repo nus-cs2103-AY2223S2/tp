@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -57,16 +58,7 @@ public class TimetableDetailPanel extends UiPart<Region> {
         focusDate = logic.getFocusDate();
 
         //Get year and month of week
-        Text year = new Text(String.valueOf(focusDate.getYear()));
-        Text month = new Text(String.valueOf(focusDate.getMonth()));
-        year.setFont(new Font(24));
-        month.setFont(new Font(24));
-
-        year.setText(String.valueOf(focusDate.getYear()));
-        month.setText(String.valueOf(focusDate.getMonth()));
-        monthYearPanel.getChildren().addAll(year, month);
-        monthYearPanel.setSpacing(20);
-        monthYearPanel.setAlignment(Pos.CENTER);
+        setMonthYearPanel();
 
         dayOfWeekPanel.getChildren().add(new DayOfWeekPanel(logic, primaryStage).getRoot());
         dayOfMonthPanel.getChildren().add(new DayOfMonthPanel(focusDate, logic, primaryStage).getRoot());
@@ -74,7 +66,25 @@ public class TimetableDetailPanel extends UiPart<Region> {
 
         logic.updateSortedDeliveryJobListByDate();
         logic.setWeekDeliveryJobList(focusDate);
-        logger.info("Filled in timetable detail with focus date as " + focusDate.toString());
+        logger.fine("Filled in timetable detail with focus date as " + focusDate.toString());
 
+    }
+
+    /**
+     * Sets up month year in timetable based on focus date
+     */
+    private void setMonthYearPanel() {
+        Text year = new Text(String.valueOf(focusDate.getYear()));
+        Text month = new Text(String.valueOf(focusDate.getMonth()));
+        year.setFont(new Font(24));
+        year.setFill(Color.WHITE);
+        month.setFont(new Font(24));
+        month.setFill(Color.WHITE);
+
+        year.setText(String.valueOf(focusDate.getYear()));
+        month.setText(String.valueOf(focusDate.getMonth()));
+        monthYearPanel.getChildren().addAll(year, month);
+        monthYearPanel.setSpacing(20);
+        monthYearPanel.setAlignment(Pos.CENTER);
     }
 }
