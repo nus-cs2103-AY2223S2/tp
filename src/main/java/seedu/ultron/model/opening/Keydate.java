@@ -12,9 +12,11 @@ import java.util.Objects;
  * Represents an Opening's date in the address book.
  */
 public class Keydate implements Comparable<Keydate> {
-    public static final String MESSAGE_CONSTRAINTS =
-                "Keys should not be blank or only contain whitespaces. Keys and dates should be directly connected by '@'."
-                    + " Dates should only be in the format yyyy-MM-dd e.g. Interview@2023-01-01";
+    public static final String MESSAGE_CONSTRAINTS = "Keydates should be of the format key@date "
+            + "and adhere to the following constraints:\n"
+            + "1. The key should only contain alphabetic characters and must not be blank or made of only whitespace.\n"
+            + "2. This is followed by a '@' and then a date. The date should only be in the format yyyy-MM-dd.\n"
+            + "eg. CodingAssignment@2023-01-01\n";
     private static final String DATE_ERROR = "Date should be valid.";
     private static final DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
