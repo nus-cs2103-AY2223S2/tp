@@ -35,7 +35,7 @@ public class AddCommandIntegrationTest {
         expectedModel.addEmployee(validEmployee);
 
         assertCommandSuccess(new AddCommand(validEmployee), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validEmployee), expectedModel);
+                String.format(AddCommand.MESSAGE_SUCCESS, validEmployee.toStringAllFields()), expectedModel);
     }
 
     @Test
