@@ -7,8 +7,12 @@ import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
+import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.AddCommand;
 import ezschedule.logic.commands.ClearCommand;
 import ezschedule.logic.commands.DeleteCommand;
@@ -48,7 +52,9 @@ public class SchedulerParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_EVENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_EVENT), command);
+        List<Index> indexFirstEvent = new ArrayList<>();
+        indexFirstEvent.add(INDEX_FIRST_EVENT);
+        assertEquals(new DeleteCommand(indexFirstEvent), command);
     }
 
     @Test
