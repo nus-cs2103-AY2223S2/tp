@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.joda.time.LocalTime;
@@ -199,7 +200,8 @@ public class ParserUtil {
         String trimmedTag = tag.trim();
         ArrayList<String> args = parseMoreModules(trimmedTag);
 
-        logger.info(String.format("Parsing tag: %s with %d arguments", args, args.size()));
+        logger.log(Level.FINE,
+                String.format("Parsing tag: %s with %d arguments", args, args.size()));
 
         if (args.size() == 1) {
             return parseModuleTagFromSingle(args.get(0));
@@ -217,7 +219,7 @@ public class ParserUtil {
 
         Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
 
-        logger.info(String.format("Lesson parsed: %s", lesson));
+        logger.log(Level.FINE, String.format("Lesson parsed: %s", lesson));
 
         return new ModuleTag(moduleCode, lesson);
     }

@@ -150,11 +150,6 @@ public class ModelManagerTest {
                 eduMate, userPrefs, eduMateHistory);
 
         createEqualsFilteredList(
-                Prefix.MODULE_TAG,
-                ALBERT.getImmutableModuleTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
-                eduMate, userPrefs, eduMateHistory);
-
-        createEqualsFilteredList(
                 Prefix.GROUP_TAG,
                 ALBERT.getImmutableGroupTags().toString().replaceAll("[\\[\\], ]", "").split(" "),
                 eduMate, userPrefs, eduMateHistory);

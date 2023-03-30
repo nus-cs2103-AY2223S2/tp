@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.model.commitment.Lesson;
 import seedu.address.model.tag.ModuleTag;
 
 /**
@@ -77,9 +78,12 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
         }
 
         ModuleTag existingModuleTag = modules.get(tagName);
-        existingModuleTag.removeLessons(moduleTag.getImmutableLessons());
+        ModuleTag moduleTagCopy =
+                new ModuleTag(tagName, existingModuleTag.getImmutableLessons());
+        moduleTagCopy.removeLessons(moduleTag.getImmutableLessons());
+        modules.put(tagName, moduleTagCopy);
 
-        if (existingModuleTag.getImmutableLessons().size() == 0) {
+        if (moduleTagCopy.getImmutableLessons().size() == 0) {
             modules.remove(tagName);
         }
     }
@@ -207,7 +211,9 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
         }
 
         ModuleTagSet otherModuleTagSet = (ModuleTagSet) other;
-        return modules.equals(otherModuleTagSet.modules);
+
+        return modules.keySet().equals(otherModuleTagSet.modules.keySet())
+                && getLessons().equals(otherModuleTagSet.getLessons());
     }
 
     /**
@@ -221,5 +227,12 @@ public class ModuleTagSet implements Comparable<ModuleTagSet> {
             result = result + "\n";
         }
         return result;
+    }
+
+    private Set<Lesson> getLessons() {
+        return modules.values()
+                .stream().map(ModuleTag::getImmutableLessons)
+                .flatMap(Set::stream)
+                .collect(Collectors.toSet());
     }
 }

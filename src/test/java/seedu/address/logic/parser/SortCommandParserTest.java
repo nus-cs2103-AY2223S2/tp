@@ -86,12 +86,12 @@ public class SortCommandParserTest {
     public void execute_sortIndexCommand_success() throws ParseException {
         Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
         SortCommandParser parser = new SortCommandParser();
+        List<ContactIndex> sortedIndexSorted = model.getObservablePersonList().stream()
+                .map(x -> x.getContactIndex()).collect(Collectors.toUnmodifiableList());
         parser.parse(String.format(" %s", Prefix.NAME.getPrefix()))
                 .execute(model);
         List<Person> personList = model.getObservablePersonList();
         List<ContactIndex> contactIndexSortedByName = personList.stream()
-                .map(x -> x.getContactIndex()).collect(Collectors.toUnmodifiableList());
-        List<ContactIndex> sortedIndexSorted = personList.stream()
                 .map(x -> x.getContactIndex()).collect(Collectors.toUnmodifiableList());
         assertNotEquals(contactIndexSortedByName.toArray(), sortedIndexSorted.toArray());
         parser.parse("").execute(model);

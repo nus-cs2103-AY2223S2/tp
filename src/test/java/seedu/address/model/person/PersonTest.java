@@ -8,6 +8,15 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.STATION_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2030S_HA;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2040S_HA;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2030S_MON_12PM_2HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2030S_THU_10AM_2HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2030S_THU_1PM_1HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2040S_FRI_10AM_1HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2040S_MON_4PM_2HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2040S_TUE_9AM_2HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2040S_WED_2PM_1HR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
 import static seedu.address.testutil.TypicalPersons.BEN;
@@ -101,5 +110,20 @@ public class PersonTest {
                 ALBERT.getPhone(), ALBERT.getEmail(), ALBERT.getStation(),
                 ALBERT.getTelegramHandle(), ALBERT.getGroupTags(),
                 ALBERT.getModuleTags()));
+    }
+
+    @Test
+    public void getCommitments_validModuleTags_success() {
+        Person person = new PersonBuilder()
+                .withModuleTags(CS2030S_HA, CS2040S_HA)
+                .build();
+
+        assertTrue(person.getCommitments().contains(CS2030S_MON_12PM_2HR));
+        assertTrue(person.getCommitments().contains(CS2030S_THU_10AM_2HR));
+        assertTrue(person.getCommitments().contains(CS2030S_THU_1PM_1HR));
+        assertTrue(person.getCommitments().contains(CS2040S_MON_4PM_2HR));
+        assertTrue(person.getCommitments().contains(CS2040S_TUE_9AM_2HR));
+        assertTrue(person.getCommitments().contains(CS2040S_WED_2PM_1HR));
+        assertTrue(person.getCommitments().contains(CS2040S_FRI_10AM_1HR));
     }
 }

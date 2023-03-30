@@ -241,10 +241,7 @@ public class Person {
                 .filter(ModuleTag::isBasicTag)
                 .collect(Collectors.toList());
 
-        logger.info(String.format("Removing Module Tags: %s, %s",
-                removableModuleTags, completelyRemovableModuleTags));
-
-        removableModuleTags.forEach(this.moduleTags::remove);
+        this.moduleTags.removeAll(removableModuleTags);
         removableModuleTags.stream()
                 .map(ModuleTag::getImmutableLessons)
                 .flatMap(Set::stream)
@@ -290,10 +287,11 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getGroupTags().equals(getGroupTags())
                 && otherPerson.getStation().equals(getStation())
                 && otherPerson.getImmutableGroupTags().equals(getImmutableGroupTags())
                 && otherPerson.getTelegramHandle().equals(getTelegramHandle())
-                && otherPerson.getImmutableModuleTags().equals(getImmutableModuleTags());
+                && otherPerson.getModuleTags().equals(getModuleTags());
     }
 
     @Override

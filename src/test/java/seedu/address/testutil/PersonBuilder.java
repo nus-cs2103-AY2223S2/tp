@@ -1,8 +1,12 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -83,8 +87,35 @@ public class PersonBuilder {
      * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
      * and set it to the {@code Person} that we are building.
      */
+    public PersonBuilder withModuleTags() {
+        this.moduleTags = SampleDataUtil.getModuleTagSet();
+        return this;
+    }
+
+    /**
+     * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
+     * and set it to the {@code Person} that we are building.
+     */
     public PersonBuilder withModuleTags(String ... moduleTags) {
         this.moduleTags = SampleDataUtil.getModuleTagSet(moduleTags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModuleTags(ModuleTag... moduleTags) {
+        this.moduleTags = Arrays.stream(moduleTags).collect(Collectors.toSet());
+        return this;
+    }
+
+    /**
+     * Parses the {@code moduleTags} into a {@code Set<ModuleTag>}
+     * and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withModuleTags(Collection<? extends ModuleTag> moduleTags) {
+        this.moduleTags = new HashSet<>(moduleTags);
         return this;
     }
 
@@ -93,6 +124,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withStation(String station) {
         this.station = new Station(station);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Station} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withStation(Location location) {
+        this.station = new Station(location.getName());
         return this;
     }
 
