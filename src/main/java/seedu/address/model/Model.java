@@ -10,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
+import seedu.address.model.mapping.AppointmentDataMap;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
@@ -290,6 +291,7 @@ public interface Model {
     VehicleDataMap getVehicleDataMap();
 
     ServiceDataMap getServiceDataMap();
+    AppointmentDataMap getAppointmentDataMap();
 
     /**
      * Sets currently selected customer

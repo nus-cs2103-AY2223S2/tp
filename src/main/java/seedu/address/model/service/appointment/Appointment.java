@@ -9,6 +9,7 @@ import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +21,11 @@ import seedu.address.model.Findable;
  * The appointment class containing a meeting with a customer at a particular date.
  */
 public class Appointment implements Findable {
+    public enum DateStatus {
+        NOW,
+        UPCOMING,
+        PASSED,
+    }
     private static final String OUTPUT_FORMAT = "<<Appointment>>" + NEWLINE
                                                         + "Customer: %d" + NEWLINE
                                                         + "Date: %s";
@@ -111,6 +117,32 @@ public class Appointment implements Findable {
         LocalDate startDate = ldt.toLocalDate().minus(Period.ofDays(1));
         LocalDate endDate = ldt.toLocalDate().plusDays(1);
         return (totalDate.isAfter(startDate) && totalDate.isBefore(endDate));
+    }
+
+    public DateStatus getDateStatus() {
+        LocalDate date = this.timeDate.toLocalDate();
+        LocalDate today = LocalDate.now();
+
+        if (date.isAfter(today)) {
+            // Date is in the future
+            long daysBetween = ChronoUnit.DAYS.between(today, date);
+            if (daysBetween == 1) {
+                return DateStatus.UPCOMING;
+            } else {
+                return DateStatus.UPCOMING;
+            }
+        } else if (date.isBefore(today)) {
+            // Date is in the past
+            long daysBetween = ChronoUnit.DAYS.between(date, today);
+            if (daysBetween == 1) {
+                return DateStatus.PASSED;
+            } else {
+                return DateStatus.PASSED;
+            }
+        } else {
+            // Date is today
+            return DateStatus.NOW;
+        }
     }
 
     @Override

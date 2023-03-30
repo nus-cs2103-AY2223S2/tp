@@ -16,11 +16,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCustomersCommand;
-import seedu.address.logic.commands.ListServicesCommand;
-import seedu.address.logic.commands.ListVehiclesCommand;
-import seedu.address.logic.commands.Tab;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -43,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private CustomerListPanel customerListPanel;
     private VehicleListPanel vehicleListPanel;
     private ServiceListPanel serviceListPanel;
+    private AppointmentListPanel appointmentListPanel;
     private CustomerDetailsPanel customerDetailsPanel;
     private VehicleDetailsPanel vehicleDetailsPanel;
     private ServiceDetailsPanel serviceDetailsPanel;
@@ -63,6 +60,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane serviceListPanelPlaceholder;
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -153,11 +152,17 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getServiceDataMap());
         serviceListPanelPlaceholder.getChildren().add(serviceListPanel.getRoot());
     }
+    private void initAppointmentListPanel() {
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList(),
+                logic.getAppointmentDataMap());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+    }
 
     private void initTabResultDisplayMessages() {
         tabResultDisplayMessages[Tab.CUSTOMERS.ordinal()] = ListCustomersCommand.MESSAGE_SUCCESS;
         tabResultDisplayMessages[Tab.VEHICLES.ordinal()] = ListVehiclesCommand.MESSAGE_SUCCESS;
         tabResultDisplayMessages[Tab.SERVICES.ordinal()] = ListServicesCommand.MESSAGE_SUCCESS;
+        tabResultDisplayMessages[Tab.APPOINTMENTS.ordinal()] = ListAppointmentsCommand.MESSAGE_SUCCESS;
     }
 
     /**
@@ -169,6 +174,7 @@ public class MainWindow extends UiPart<Stage> {
         initCustomerListPanel();
         initVehicleListPanel();
         initServiceListPanel();
+        initAppointmentListPanel();
 
         initSelected();
 

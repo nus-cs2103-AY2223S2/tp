@@ -14,10 +14,12 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.SharedComparatorsUtil;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Person;
 import seedu.address.model.entity.person.Technician;
 import seedu.address.model.entity.shop.Shop;
+import seedu.address.model.mapping.AppointmentDataMap;
 import seedu.address.model.mapping.CustomerVehicleMap;
 import seedu.address.model.mapping.ServiceDataMap;
 import seedu.address.model.mapping.VehicleDataMap;
@@ -57,6 +59,7 @@ public class ModelManager implements Model {
     private final CustomerVehicleMap customerVehicleMap;
     private final VehicleDataMap vehicleDataMap;
     private final ServiceDataMap serviceDataMap;
+    private final AppointmentDataMap appointmentDataMap;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -87,6 +90,8 @@ public class ModelManager implements Model {
 
         filteredAppointments = new FilteredList<>(this.shop.getAppointmentList());
         this.sortedFilteredAppointments = new SortedList<>(this.filteredAppointments);
+        // default sort for appointments
+        this.sortedFilteredAppointments.setComparator(SharedComparatorsUtil.getDefaultAppointmentSort());
 
         partMap = this.shop.getPartMap();
         //        filteredParts = new FilteredList<>(this.shop.getPartList()); // filteredParts
@@ -97,6 +102,8 @@ public class ModelManager implements Model {
                 this.shop.getServiceList());
         serviceDataMap = new ServiceDataMap(this.shop.getServiceList(), this.shop.getTechnicianList(),
                 this.shop.getVehicleList());
+        appointmentDataMap = new AppointmentDataMap(this.shop.getAppointmentList(), this.shop.getTechnicianList(),
+                this.shop.getCustomerList());
 
         if (filteredCustomers.size() > 0) {
             selectedCustomer = filteredCustomers.get(0);
@@ -120,6 +127,8 @@ public class ModelManager implements Model {
                 this.shop.getServiceList());
         this.serviceDataMap.reset(this.shop.getServiceList(), this.shop.getTechnicianList(),
                 this.shop.getVehicleList());
+        this.appointmentDataMap.reset(this.shop.getAppointmentList(), this.shop.getTechnicianList(),
+                this.shop.getCustomerList());;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -427,6 +436,11 @@ public class ModelManager implements Model {
         return this.serviceDataMap;
     }
 
+    @Override
+    public AppointmentDataMap getAppointmentDataMap() {
+        return this.appointmentDataMap;
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -563,5 +577,4 @@ public class ModelManager implements Model {
     public void updateTechnicianComparator(Comparator<? super Technician> cmp) {
         this.sortedFilteredTechnicians.setComparator(cmp);
     }
-
 }

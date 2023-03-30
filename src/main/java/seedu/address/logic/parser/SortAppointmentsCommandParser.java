@@ -8,6 +8,8 @@ import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import seedu.address.commons.util.DateStatusComparator;
+import seedu.address.commons.util.SharedComparatorsUtil;
 import seedu.address.logic.commands.SortAppointmentsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.service.appointment.Appointment;
@@ -54,6 +56,8 @@ public class SortAppointmentsCommandParser implements Parser<SortAppointmentsCom
             return Optional.of(Comparator.comparing(Appointment::getCustomerId));
         case "date":
             return Optional.of(Comparator.comparing(Appointment::getTimeDate));
+        case "date status":
+            return Optional.of(SharedComparatorsUtil.getDefaultAppointmentSort());
         default:
             return Optional.empty();
         }
