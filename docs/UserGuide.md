@@ -25,6 +25,10 @@ You can click on any of the links below to navigate to the respective sections f
 
 <!-- TOC -->
 * [Quick start](#quick-start)
+  * [Prerequisites](#prerequisites)
+    * [Java](#java)
+    * [Glossary](#glossary)
+  * [Installation](#installation)
 * [Features](#features)
     * [Viewing help: `help`](#viewing-help-help)
   * [Add](#add)
@@ -60,13 +64,14 @@ You can click on any of the links below to navigate to the respective sections f
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # Quick start
 
 ## Prerequisites
 
 ### Java
-Ensure you have [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) installed.
+Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)</ins> or above installed.
 
 <div markdown="block" class="alert alert-info">
 
@@ -74,9 +79,9 @@ Ensure you have [Java `11`](https://www.oracle.com/sg/java/technologies/javase/j
 
 1. Open up **Command Prompt** (Windows) or **Terminal** (Mac and Linux).
 
-1. Type and run the command `java -version`
+1. Type and run the command `java -version`.
 
-1. Check the version number provided (`xxx`) is at least `11`
+1. Check the version number provided (`xxx`) is at least `11`.
 
 An example is shown below.
 
@@ -108,11 +113,11 @@ java version "xxx" <Other information>
 
 <div markdown="block" class="alert alert-info">
 
-  **:information_source: Cannot open your Trackr:**<br>
+  **:information_source: Trackr does not open?**<br>
 
-  1. Open a command terminal 
-  2. Type in `java -jar ` (Keep in mind of the space at the end)
-  3. Drag and drop `trackr.jar` into the command terminal 
+  1. Open a command terminal.
+  2. Type in `java -jar ` (Keep in mind of the space at the end).
+  3. Drag and drop `trackr.jar` into the command terminal.
   4. Press enter and execute the command.
 
 An example of the final command is displayed below.
