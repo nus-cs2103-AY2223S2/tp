@@ -48,9 +48,9 @@
         </StackPane>
 
         <HBox prefHeight="1000" styleClass="pane-with-border">
-          <StackPane fx:id="departmentListPanelPlaceholder" styleClass="pane-with-border" prefWidth="800" VBox.vgrow="ALWAYS"/>
-          <StackPane fx:id="employeeListPanelPlaceholder" styleClass="pane-with-border" prefWidth="800" VBox.vgrow="ALWAYS"/>
-          <StackPane fx:id="leaveListPanelPlaceholder" styleClass="pane-with-border" prefWidth="800" VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="departmentListPanelPlaceholder" styleClass="pane-with-border" prefWidth="600" VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="employeeListPanelPlaceholder" styleClass="pane-with-border" prefWidth="1000" VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="leaveListPanelPlaceholder" styleClass="pane-with-border" prefWidth="750" VBox.vgrow="ALWAYS"/>
         </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
