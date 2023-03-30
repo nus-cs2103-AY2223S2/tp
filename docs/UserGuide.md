@@ -54,16 +54,7 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
    * `list_job` : Lists all jobs.
    
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-<<<<<<< HEAD
    * `timetable` : Shows timetable of current week.
-
-=======
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * `timetable` : Shows timetable of current week.
-
->>>>>>> e53aca7528ab8b665ccac22b39e04f708bead433
    * `exit` : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -104,15 +95,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-<<<<<<< HEAD
 ## 1. Features available for Customers/Address Book
 ### *Can only access from Customer Window*
-=======
-## 1. Features related to Customers
 
 To access the address book containing all customers, please click on `Customers` in menu bar > `Address Book`.
 
->>>>>>> e53aca7528ab8b665ccac22b39e04f708bead433
 ### 1.1. Adding a person: `add`
 
 Adds a person to the address book.
