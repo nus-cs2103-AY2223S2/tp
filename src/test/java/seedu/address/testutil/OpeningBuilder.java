@@ -1,14 +1,7 @@
 package seedu.address.testutil;
 
-<<<<<<< HEAD
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-=======
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> master
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -36,11 +29,7 @@ public class OpeningBuilder {
     private Email email;
     private Status status;
     private Remark remark;
-<<<<<<< HEAD
-    private Set<Keydate> keydates;
-=======
-    private List<Date> dates;
->>>>>>> master
+    private List<Keydate> keydates;
 
     /**
      * Creates a {@code OpeningBuilder} with the default details.
@@ -51,11 +40,7 @@ public class OpeningBuilder {
         email = new Email(DEFAULT_EMAIL);
         status = new Status(DEFAULT_STATUS);
         remark = new Remark(DEFAULT_REMARK);
-<<<<<<< HEAD
-        keydates = new HashSet<>();
-=======
-        dates = new ArrayList<>();
->>>>>>> master
+        keydates = new ArrayList<>();
     }
 
     /**
@@ -67,11 +52,7 @@ public class OpeningBuilder {
         email = openingToCopy.getEmail();
         status = openingToCopy.getStatus();
         remark = openingToCopy.getRemark();
-<<<<<<< HEAD
-        keydates = new HashSet<>(openingToCopy.getKeydates());
-=======
-        dates = new ArrayList<>(openingToCopy.getDates());
->>>>>>> master
+        keydates = new ArrayList<>(openingToCopy.getKeydates());
     }
 
     /**
@@ -85,14 +66,9 @@ public class OpeningBuilder {
     /**
      * Parses the {@code keydates} into a {@code Set<Keydate>} and set it to the {@code Opening} that we are building.
      */
-<<<<<<< HEAD
-    public OpeningBuilder withKeydates(ArrayList<String>... keydates) {
-        this.keydates = Stream.of(keydates).map(keydate -> new Keydate(keydate.get(0), keydate.get(1)))
-                .collect(Collectors.toSet());
-=======
     public OpeningBuilder withDates(ArrayList<String>... dates) {
-        this.dates = Stream.of(dates).map(date -> new Date(date.get(0), date.get(1))).collect(Collectors.toList());
->>>>>>> master
+        this.keydates = Stream.of(dates).map(date -> new Keydate(date.get(0), date.get(1)))
+                .collect(Collectors.toList());
         return this;
     }
 

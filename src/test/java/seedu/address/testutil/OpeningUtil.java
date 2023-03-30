@@ -53,17 +53,12 @@ public class OpeningUtil {
                 .append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.fullStatus).append(" "));
-<<<<<<< HEAD
         if (descriptor.getKeydates().isPresent()) {
-            Set<Keydate> dates = descriptor.getKeydates().get();
-=======
-        if (descriptor.getDates().isPresent()) {
-            List<Date> dates = descriptor.getDates().get();
->>>>>>> master
+            List<Keydate> dates = descriptor.getKeydates().get();
             if (dates.isEmpty()) {
                 sb.append(PREFIX_KEYDATE);
             } else {
-                dates.forEach(s -> sb.append(PREFIX_KEYDATE).append(s.fullName).append("@")
+                dates.forEach(s -> sb.append(PREFIX_KEYDATE).append(s.fullKey).append("@")
                         .append(s.fullDate).append(" "));
             }
         }
