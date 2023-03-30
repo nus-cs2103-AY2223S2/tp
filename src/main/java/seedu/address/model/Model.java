@@ -321,6 +321,16 @@ public interface Model {
     /**
      * Returns currently selected service
      */
+    Appointment getSelectedAppointment();
+
+    /**
+     * Sets currently selected appointment
+     */
+    void selectAppointment(Appointment appointment);
+
+    /**
+     * Returns currently selected service
+     */
     Service getSelectedService();
 
     // Sort helper functions

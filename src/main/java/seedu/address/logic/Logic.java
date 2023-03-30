@@ -99,4 +99,7 @@ public interface Logic {
 
     /** Returns currently selected service*/
     Service getSelectedService();
+
+    /** Returns currently selected appointment*/
+    Appointment getSelectedAppointment();
 }

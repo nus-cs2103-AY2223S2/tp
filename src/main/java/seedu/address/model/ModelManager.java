@@ -54,6 +54,7 @@ public class ModelManager implements Model {
     private Customer selectedCustomer;
     private Vehicle selectedVehicle;
     private Service selectedService;
+    private Appointment selectedAppointment;
 
     // Mapped
     private final CustomerVehicleMap customerVehicleMap;
@@ -113,6 +114,9 @@ public class ModelManager implements Model {
         }
         if (filteredServices.size() > 0) {
             selectedService = filteredServices.get(0);
+        }
+        if (filteredAppointments.size() > 0) {
+            selectedAppointment = sortedFilteredAppointments.get(0);
         }
     }
 
@@ -551,6 +555,16 @@ public class ModelManager implements Model {
     @Override
     public Service getSelectedService() {
         return selectedService;
+    }
+
+    @Override
+    public void selectAppointment(Appointment appointment) {
+        selectedAppointment = appointment;
+    }
+
+    @Override
+    public Appointment getSelectedAppointment() {
+        return selectedAppointment;
     }
 
     @Override

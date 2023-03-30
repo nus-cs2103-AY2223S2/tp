@@ -90,6 +90,9 @@
               <minHeight>
                 <Region fx:constant="USE_PREF_SIZE" />
               </minHeight>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
             </Label>
           </children>
         </VBox>
@@ -114,6 +117,9 @@
               </children>
             </VBox>
           </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
         </HBox>
       </VBox>
     </ScrollPane>

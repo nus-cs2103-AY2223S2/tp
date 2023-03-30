@@ -153,8 +153,14 @@ public class LogicManager implements Logic {
     public Vehicle getSelectedVehicle() {
         return model.getSelectedVehicle();
     }
+
     @Override
     public Service getSelectedService() {
         return model.getSelectedService();
+    }
+
+    @Override
+    public Appointment getSelectedAppointment() {
+        return model.getSelectedAppointment();
     }
 }

@@ -43,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private CustomerDetailsPanel customerDetailsPanel;
     private VehicleDetailsPanel vehicleDetailsPanel;
     private ServiceDetailsPanel serviceDetailsPanel;
+    private AppointmentDetailsPanel appointmentDetailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -77,6 +78,8 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane vehicleDetailsPlaceholder;
     @FXML
     private StackPane serviceDetailsPlaceholder;
+    @FXML
+    private StackPane appointmentDetailsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -257,6 +260,10 @@ public class MainWindow extends UiPart<Stage> {
         serviceDetailsPlaceholder.getChildren().clear();
         serviceDetailsPanel = new ServiceDetailsPanel(logic.getSelectedService(), logic.getServiceDataMap());
         serviceDetailsPlaceholder.getChildren().add(serviceDetailsPanel.getRoot());
+
+        appointmentDetailsPlaceholder.getChildren().clear();
+        appointmentDetailsPanel = new AppointmentDetailsPanel(logic.getSelectedAppointment(), logic.getAppointmentDataMap());
+        appointmentDetailsPlaceholder.getChildren().add(appointmentDetailsPanel.getRoot());
     }
 
 

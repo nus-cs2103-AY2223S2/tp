@@ -26,7 +26,7 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minHeight>
         </Label>
-        <Label id="detailsPaneName" fx:id="customerName" maxWidth="Infinity" styleClass="details-title" text="\\\$description" wrapText="true">
+        <Label id="detailsPaneName" fx:id="customerName" maxWidth="Infinity" styleClass="details-title" text="\\$customerName" wrapText="true">
           <minHeight>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
@@ -39,7 +39,7 @@
         </Label>
         <HBox spacing="10.0">
           <children>
-            <VBox prefWidth="100.0">
+            <VBox prefWidth="100.0" HBox.hgrow="SOMETIMES">
               <children>
                 <Label fx:id="datetimeLabel" styleClass="details-info-label" text="Appointment DateTime">
                 </Label>
@@ -63,7 +63,15 @@
           <minHeight>
             <Region fx:constant="USE_PREF_SIZE" />
           </minHeight>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
         </Label>
+            <Label fx:id="asOf" styleClass="details-info" text="\\$dateStatus">
+               <minHeight>
+                  <Region fx:constant="USE_PREF_SIZE" />
+               </minHeight>
+            </Label>
       <Label fx:id="dateStatus" styleClass="details-info" text="\\$dateStatus">
         <minHeight>
           <!-- Ensures that the label text is never truncated -->
@@ -83,6 +91,9 @@
                   </minHeight>
                 </Label>
               </children>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
             </VBox>
           </children>
         </HBox>

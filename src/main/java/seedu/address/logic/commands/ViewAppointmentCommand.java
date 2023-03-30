@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.service.appointment.Appointment;
 
 /**
  * Finds and returns the appointment details of the provided id.
@@ -32,6 +33,8 @@ public class ViewAppointmentCommand extends RedoableCommand {
             throw new CommandException(String.format(MESSAGE_APPOINTMENT_NOT_FOUND, this.appointmentId));
         }
         model.updateFilteredAppointmentList(a -> a.getId() == this.appointmentId);
+        Appointment current = model.getFilteredAppointmentList().get(0);
+        model.selectAppointment(current);
         return new CommandResult(
                 String.format(Messages.MESSAGE_APPOINTMENT_VIEW_OVERVIEW));
     }
