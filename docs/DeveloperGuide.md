@@ -240,6 +240,16 @@ Example JSON:
 ```
 The JSON is generated using the Jackson library, through the use of the JsonUtil utility class.
 
+#### Design Considerations
+
+**Alternative 1**: Use some other format (eg. `XML` or `YAML`) for exporting
+
+Could provide more readable and/or less text for copying.
+
+**Alternative 2 (current choice)**: Use existing `JSON` format
+
+Benefit: can directly copy-paste to and from the data files that already exist in the system.
+
 ##### Importing
 Using the exported JSON, one can then import it using `import THE_JSON`.
 Before importing, a check is done to make sure there are no duplicate values. This is done before the actual importing 
