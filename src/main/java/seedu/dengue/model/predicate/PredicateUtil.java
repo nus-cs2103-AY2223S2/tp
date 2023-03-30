@@ -46,7 +46,6 @@ public abstract class PredicateUtil<T> implements Predicate<T> {
         return SubPostal.isValidSubPostal(trimmedSubPostal);
     }
 
-
     /**
      * Checks for whether the {@code String age} is valid.
      * Leading and trailing whitespaces will be trimmed from the {@code String age}.
@@ -91,6 +90,11 @@ public abstract class PredicateUtil<T> implements Predicate<T> {
         return initial;
     }
 
+    /**
+     * Tests the predicate against the input.
+     * @param thing the input argument.
+     * @return A boolean value.
+     */
     @Override
     public abstract boolean test(T thing);
 }
