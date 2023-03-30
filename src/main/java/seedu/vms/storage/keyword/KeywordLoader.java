@@ -71,10 +71,11 @@ public class KeywordLoader {
         KeywordManager manager = new KeywordManager();
         for (JsonAdaptedKeyword adapted : keywords) {
             Keyword keyword = adapted.toModelType();
-            if (Keyword.isNotMainKeyword(keyword.getKeyword()) && Keyword.isValidMainKeyword(keyword.getMainKeyword())) {
+            if (Keyword.isNotMainKeyword(keyword.getKeyword())
+                    && Keyword.isValidMainKeyword(keyword.getMainKeyword())) {
                 manager.add(keyword);
             }
-        } 
+        }
         return manager;
     }
 
