@@ -295,7 +295,7 @@ Shows a list of all customers.
 Format: `listc [s/{name|points}] [f/{marked|ind|ent}]`
 
 * Lists all customer with the specified sorting option.
-* Be default, customers are sorted by name
+* By default, customers are sorted by name
 * If `f/marked` is provided, then shows only bookmarked customers.
 * If `f/ind` or `f/ent` is provided, then shows only individual or enterprise customers respectively.
 
@@ -332,7 +332,7 @@ Display a customer's information in the information panel.
 Format: `viewc INDEX`
 
 * Displays the customer's information at the specified `INDEX`.
-* * The index refers to the index number shown in the displayed customer list.
+* The index refers to the index number shown in the displayed customer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -349,7 +349,9 @@ Edits an existing customer in the address book.
 
 Format: `editc INDEX [ct/{ind|env}] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
-* Edits the customer at the specified `INDEX`. The index refers to the index number shown in the displayed customer list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the customer at the specified `INDEX`. 
+* The index refers to the index number shown in the displayed customer list. 
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -501,11 +503,12 @@ Examples:
 
 Adds an order tagged to a customer, to the list of orders.
 
-Format: `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS]`
+Format: `addo INDEX n/NAME [q/QUANTITY] [a/ADDRESS]`
 
-* Adds an order, tagged to CUSTOMER_INDEX.
+* Adds an order, tagged to INDEX.
+* The index refers to the index number shown in the displayed customer list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * ADDRESS is optional and will be set to the customer's address by default
-* The index **must be a valid integer** (i.e. if there is 1 customer, CUSTOMER_INDEX can only be 1)
 * QUANTITY is optional and will be set to 1 by default. Otherwise, it must be a positive integer 1, 2, 3...
 
 Examples:
@@ -554,7 +557,7 @@ Display an order's information in the information panel.
 Format: `viewo INDEX`
 
 * Displays the order's information at the specified `INDEX`.
-* * The index refers to the index number shown in the displayed order list.
+* The index refers to the index number shown in the displayed order list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
