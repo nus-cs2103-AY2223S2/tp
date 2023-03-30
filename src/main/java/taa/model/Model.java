@@ -4,8 +4,15 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import taa.assignment.exceptions.AssignmentException;
+import taa.assignment.exceptions.AssignmentNotFoundException;
+import taa.assignment.exceptions.DuplicateAssignmentException;
+import taa.assignment.exceptions.NoGradeVarianceException;
+import taa.assignment.exceptions.NoSubmissionsFoundException;
 import taa.commons.core.GuiSettings;
+import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
+import taa.model.alarm.Alarm;
 import taa.model.student.Student;
 
 /**
@@ -63,6 +70,11 @@ public interface Model {
     boolean hasClassList(ClassList tocheck);
 
     /**
+     * Returns the number of students in the active class list.
+     */
+    int getClassListSize();
+
+    /**
      * Deletes the given student.
      * The student must exist in the address book.
      */
@@ -113,15 +125,33 @@ public interface Model {
      */
     void addStudentToTaggedClasses(Student student);
 
-    void addAssignment(String assignmentName, int totalMarks) throws CommandException;
+    /**
+     * Checks if a given assignment already exists.
+     */
+    boolean hasAssignment(String assignmentName);
+    void addAssignment(String assignmentName, int totalMarks) throws DuplicateAssignmentException;
 
-    void deleteAssignment(String assignmentName) throws CommandException;
+    void deleteAssignment(String assignmentName) throws AssignmentNotFoundException;
 
-    void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission) throws CommandException;
+    void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission) throws AssignmentException;
 
     String listAssignments();
 
-    void ungrade(String assignmentName, int studentId) throws CommandException;
+    void ungrade(String assignmentName, int studentId) throws AssignmentException;
 
     void addAlarm(Alarm alarm) throws CommandException;
+
+
+    void deleteStudentSubmission(Student studentToDelete);
+
+    void initAssignmentsFromStorage();
+
+    void addStudentAssignment(Student toAdd);
+
+    void displayChart(ChartType chartType, String... args)
+            throws AssignmentNotFoundException, NoSubmissionsFoundException, NoGradeVarianceException;
+    String listAlarms();
+
+    void deleteAlarm(int index) throws CommandException;
+
 }

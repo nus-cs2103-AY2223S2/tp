@@ -1,6 +1,6 @@
 package taa.assignment;
 
-import java.util.Date;
+import java.util.Optional;
 
 import taa.assignment.exceptions.InvalidGradeException;
 import taa.model.student.Student;
@@ -8,14 +8,13 @@ import taa.model.student.Student;
 /**
  * An assignment submission
  */
-public class Submission implements Comparable<Submission> {
+
+public class Submission {
     private boolean isGraded = false;
     private boolean isLateSubmission = false;
     private int marks = 0;
     private final Assignment assignment;
     private final Student student;
-    private Date timeCreated;
-
 
     /**
      * @param student The student who made this submission.
@@ -23,7 +22,27 @@ public class Submission implements Comparable<Submission> {
     public Submission(Student student, Assignment assignment) {
         this.student = student;
         this.assignment = assignment;
-        this.timeCreated = new Date();
+    }
+
+    /**
+     * Creates a Submission, used when creating from storage.
+     * @param student
+     * @param assignment
+     * @param isGraded
+     * @param isLateSubmission
+     * @param marks
+     */
+    public Submission(Student student, Assignment assignment, boolean isGraded,
+                      boolean isLateSubmission, int marks) {
+        this.student = student;
+        this.assignment = assignment;
+        this.isGraded = isGraded;
+        this.isLateSubmission = isLateSubmission;
+        this.marks = marks;
+    }
+
+    public Student getStudent() {
+        return this.student;
     }
 
     /**
@@ -62,6 +81,25 @@ public class Submission implements Comparable<Submission> {
         return String.format("%s (Grade: %s) %s", this.assignment.toString(), gradeStatus, late);
     }
 
+    /**
+     * Returns true if this submission belongs to an assignment with the given name.
+     */
+    public boolean isForAssignment(String assignmentName) {
+        return this.assignment.toString().equals(assignmentName);
+    }
+
+    /**
+     * Returns the score of this submission, if graded.
+     * Otherwise, an Optional.empty() is returned.
+     */
+    public Optional<Integer> getScore() {
+        if (isGraded) {
+            return Optional.of(this.marks);
+        } else {
+            return Optional.empty();
+        }
+    }
+
     @Override
     public String toString() {
         char gradeChar = isGraded ? 'X' : ' ';
@@ -70,8 +108,15 @@ public class Submission implements Comparable<Submission> {
                 marks, assignment.getTotalMarks(), late);
     }
 
-    @Override
-    public int compareTo(Submission otherSubmission) {
-        return this.timeCreated.compareTo(otherSubmission.timeCreated);
+    /**
+     * Creates a string for a submission to store into our storage.
+     * @return The storage string
+     */
+    public String toStorageString() {
+        String assignmentName = assignment.getName();
+        int graded = isGraded ? 1 : 0;
+        int late = isLateSubmission ? 1 : 0;
+        return String.format("%s,%d,%d,%d,%d", assignmentName, graded, late, marks, assignment.getTotalMarks());
     }
+
 }

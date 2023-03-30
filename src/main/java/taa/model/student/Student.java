@@ -1,11 +1,14 @@
 package taa.model.student;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import taa.assignment.Submission;
+import taa.assignment.exceptions.AssignmentNotFoundException;
 import taa.commons.util.CollectionUtil;
 import taa.model.tag.Tag;
 
@@ -15,7 +18,7 @@ import taa.model.tag.Tag;
  */
 public class Student {
 
-    private static int lastId = 0;
+    private static int lastId;
     // Identity fields
     private final Name name;
     private final int id;
@@ -23,20 +26,21 @@ public class Student {
     // Data fields
     private final Attendance atd;
     private final Set<Tag> classTags = new HashSet<>();
-    private final Submissions submissions;
+    private final Submissions submissions = new Submissions(new ArrayList<>(), this);
+    private final ArrayList<String> submissionStringArr;
 
     private final int hashcode;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, String atd, String pp, Set<Tag> classTags) {
+    public Student(Name name, String atd, String pp, ArrayList<String> submissionStrArr, Set<Tag> classTags) {
         CollectionUtil.requireAllNonNull(name, classTags);
         this.id = ++lastId;
         this.name = name;
         this.atd = new Attendance(atd, pp);
         this.classTags.addAll(classTags);
-        this.submissions = new Submissions();
+        this.submissionStringArr = submissionStrArr;
         hashcode = Objects.hash(name, this.classTags);
     }
 
@@ -78,13 +82,18 @@ public class Student {
      */
     public void addSubmission(Submission submission) {
         this.submissions.addSubmission(submission);
+        if (!submissionStringArr.contains(submission.toStorageString())) { // if doesn't exist in storage.
+            submissionStringArr.add(submission.toStorageString());
+        }
     }
 
     /**
      * Removes a submission attributed to this student.
      */
     public void deleteSubmission(Submission submission) {
+
         this.submissions.deleteSubmission(submission);
+        submissionStringArr.remove(submission.toStorageString());
     }
 
     /**
@@ -94,6 +103,9 @@ public class Student {
         return this.submissions.getLatestSubmission();
     }
 
+    public ArrayList<String> getSubmissionStorageStrings() {
+        return this.submissionStringArr;
+    }
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -105,6 +117,16 @@ public class Student {
 
         return otherStudent != null
                 && otherStudent.getName().equals(getName());
+    }
+
+    /**
+     * Returns the grade obtained by the student, if it exists.
+     * Otherwise, an Optional.empty() is returned.
+     * @throws AssignmentNotFoundException if the assignment does not exist.
+     */
+    public Optional<Integer> getGradesForAssignment(String assignmentName)
+            throws AssignmentNotFoundException {
+        return this.submissions.getSubmissionScore(assignmentName);
     }
 
     /**
@@ -142,6 +164,13 @@ public class Student {
             classes.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Updates the attendance counter for the entire class list.
+     */
+    public void updateAttendanceCounter(int[] counter) {
+        this.atd.updateAttendanceCounter(counter);
     }
 
 }

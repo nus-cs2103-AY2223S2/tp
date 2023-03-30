@@ -3,6 +3,7 @@ package taa.logic.parser;
 import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -38,7 +39,8 @@ public class AddStudentCommandParser implements Parser<AddStudentCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_CLASS_TAG));
 
-        Student student = new Student(name, Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP, tagList);
+        Student student = new Student(name, Attendance.ORIGINAL_ATD, Attendance.ORIGINAL_PP,
+                new ArrayList<String>(), tagList);
 
         return new AddStudentCommand(student);
     }
