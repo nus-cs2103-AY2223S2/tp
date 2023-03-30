@@ -2,7 +2,7 @@ package seedu.connectus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -18,7 +18,7 @@ import seedu.connectus.logic.commands.exceptions.CommandException;
 import seedu.connectus.model.Model;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.Major;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -32,15 +32,15 @@ public class AddTagToPersonCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_MODULE + "MODULE]... "
         + "[" + PREFIX_CCA + "CCA]... "
-        + "[" + PREFIX_MAJOR + "CCA POSITION]... "
+        + "[" + PREFIX_CCA_POSITION + "CCA POSITION]... "
         + "[" + PREFIX_REMARK + "REMARK]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_MODULE + "CS2103T "
         + PREFIX_MODULE + "CS2101 "
         + PREFIX_CCA + "NES "
         + PREFIX_CCA + "ICS "
-        + PREFIX_MAJOR + "Director "
-        + PREFIX_MAJOR + "President "
+        + PREFIX_CCA_POSITION + "Director "
+        + PREFIX_CCA_POSITION + "President "
         + PREFIX_REMARK + "friends "
         + PREFIX_REMARK + "owesMoney";
 
@@ -81,15 +81,15 @@ public class AddTagToPersonCommand extends Command {
     private Person createEditedPerson(Person personToEdit, AddTagDescriptor addTagDescriptor) {
         var modules = new HashSet<>(personToEdit.getModules());
         var ccas = new HashSet<>(personToEdit.getCcas());
-        var Major = new HashSet<>(personToEdit.getCcaPositions());
+        var ccaPositions = new HashSet<>(personToEdit.getCcaPositions());
         var remarks = new HashSet<>(personToEdit.getRemarks());
 
         modules.addAll(addTagDescriptor.modules);
         ccas.addAll(addTagDescriptor.ccas);
-        Major.addAll(addTagDescriptor.majors);
+        ccaPositions.addAll(addTagDescriptor.ccaPositions);
         remarks.addAll(addTagDescriptor.remarks);
 
-        return new Person(personToEdit, remarks, modules, ccas, Major);
+        return new Person(personToEdit, remarks, modules, ccas, ccaPositions);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class AddTagToPersonCommand extends Command {
     public static class AddTagDescriptor {
         protected final Set<Module> modules;
         protected final Set<Cca> ccas;
-        protected final Set<Major> majors;
+        protected final Set<CcaPosition> ccaPositions;
         protected final Set<Remark> remarks;
 
 
@@ -126,10 +126,10 @@ public class AddTagToPersonCommand extends Command {
          * Constructor.
          */
         public AddTagDescriptor(Set<Remark> remarks, Set<Module> modules,
-                                Set<Cca> ccas, Set<Major> majors) {
+                                Set<Cca> ccas, Set<CcaPosition> ccaPositions) {
             this.modules = modules;
             this.ccas = ccas;
-            this.majors = majors;
+            this.ccaPositions = ccaPositions;
             this.remarks = remarks;
         }
 
@@ -139,7 +139,7 @@ public class AddTagToPersonCommand extends Command {
         public AddTagDescriptor(AddTagDescriptor addTagDescriptor) {
             modules = addTagDescriptor.modules;
             ccas = addTagDescriptor.ccas;
-            majors = addTagDescriptor.majors;
+            ccaPositions = addTagDescriptor.ccaPositions;
             remarks = addTagDescriptor.remarks;
         }
 
@@ -179,13 +179,13 @@ public class AddTagToPersonCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code ccaPositions} is null.
          */
-        public Optional<Set<Major>> get() {
-            return (majors != null) ? Optional.of(Collections.unmodifiableSet(majors)) : Optional.empty();
+        public Optional<Set<CcaPosition>> getCcaPositions() {
+            return (ccaPositions != null) ? Optional.of(Collections.unmodifiableSet(ccaPositions)) : Optional.empty();
         }
 
         public boolean isEmpty() {
             return (remarks == null || remarks.isEmpty()) && (modules == null || modules.isEmpty())
-                && (ccas == null || ccas.isEmpty()) && (majors == null || majors.isEmpty());
+                && (ccas == null || ccas.isEmpty()) && (ccaPositions == null || ccaPositions.isEmpty());
         }
 
         @Override
@@ -204,7 +204,7 @@ public class AddTagToPersonCommand extends Command {
             var e = (AddTagDescriptor) other;
 
             return getRemarks().equals(e.getRemarks()) && getModules().equals(e.getModules())
-                && getCcas().equals(e.getCcas()) && get().equals(e.get());
+                && getCcas().equals(e.getCcas()) && getCcaPositions().equals(e.getCcaPositions());
         }
     }
 }

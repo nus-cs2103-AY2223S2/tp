@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.connectus.commons.exceptions.IllegalValueException;
-import seedu.connectus.model.tag.Major;
+import seedu.connectus.model.tag.CcaPosition;
 
 /**
- * Jackson-friendly version of {@link Major}.
+ * Jackson-friendly version of {@link CcaPosition}.
  */
 class JsonAdaptedCcaPosition {
 
@@ -24,8 +24,8 @@ class JsonAdaptedCcaPosition {
     /**
      * Converts a given {@code CcaPosition} into this class for Jackson use.
      */
-    public JsonAdaptedCcaPosition(Major source) {
-        this.ccaPositionName = source.major;
+    public JsonAdaptedCcaPosition(CcaPosition source) {
+        this.ccaPositionName = source.ccaPositionName;
     }
 
     @JsonValue
@@ -38,11 +38,11 @@ class JsonAdaptedCcaPosition {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted ccaPosition.
      */
-    public Major toModelType() throws IllegalValueException {
-        if (!Major.isValidMajorName(ccaPositionName)) {
-            throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
+    public CcaPosition toModelType() throws IllegalValueException {
+        if (!CcaPosition.isValidCcaPositionName(ccaPositionName)) {
+            throw new IllegalValueException(CcaPosition.MESSAGE_CONSTRAINTS);
         }
-        return new Major(ccaPositionName);
+        return new CcaPosition(ccaPositionName);
     }
 
 }

@@ -26,7 +26,7 @@ import seedu.connectus.model.socialmedia.Instagram;
 import seedu.connectus.model.socialmedia.Telegram;
 import seedu.connectus.model.socialmedia.WhatsApp;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.Major;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -371,8 +371,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseCcaPosition_validValueWithoutWhitespace_returnsCca() throws Exception {
-        Major expectedMajor = new Major(VALID_CCA_POSITION_1);
-        assertEquals(expectedMajor, ParserUtil.parseCca(VALID_CCA_POSITION_1));
+        CcaPosition expectedCcaPosition = new CcaPosition(VALID_CCA_POSITION_1);
+        assertEquals(expectedCcaPosition, ParserUtil.parseCca(VALID_CCA_POSITION_1));
     }
 
     @Test
@@ -400,12 +400,12 @@ public class ParserUtilTest {
 
     @Test
     public void parseCcaPositions_collectionWithValidCcaPositions_returnsCcaPositionSet() throws Exception {
-        Set<Major> actualMajorSet = ParserUtil.parseCcaPositions(Arrays
+        Set<CcaPosition> actualCcaPositionSet = ParserUtil.parseCcaPositions(Arrays
                 .asList(VALID_CCA_POSITION_1, VALID_CCA_POSITION_2));
-        Set<Major> expectedMajorSet = new HashSet<>(Arrays.asList(new Major(VALID_CCA_POSITION_1),
-                new Major(VALID_CCA_POSITION_2)));
+        Set<CcaPosition> expectedCcaPositionSet = new HashSet<>(Arrays.asList(new CcaPosition(VALID_CCA_POSITION_1),
+                new CcaPosition(VALID_CCA_POSITION_2)));
 
-        assertEquals(expectedMajorSet, actualMajorSet);
+        assertEquals(expectedCcaPositionSet, actualCcaPositionSet);
     }
 
     @Test

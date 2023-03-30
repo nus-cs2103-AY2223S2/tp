@@ -19,7 +19,7 @@ import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.socialmedia.SocialMedia;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.Major;
+import seedu.connectus.model.tag.CcaPosition;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -148,9 +148,9 @@ class JsonAdaptedPerson {
             personCcas.add(cca.toModelType());
         }
 
-        final List<Major> personMajors = new ArrayList<>();
+        final List<CcaPosition> personCcaPositions = new ArrayList<>();
         for (JsonAdaptedCcaPosition ccaPosition : ccaPositions) {
-            personMajors.add(ccaPosition.toModelType());
+            personCcaPositions.add(ccaPosition.toModelType());
         }
 
         if (name == null) {
@@ -219,9 +219,9 @@ class JsonAdaptedPerson {
         }
 
         if (ccaPositions != null) {
-            Set<Major> modelMajors = new HashSet<>(personMajors);
-            if (!modelMajors.isEmpty()) {
-                p.setCcaPositions(modelMajors);
+            Set<CcaPosition> modelCcaPositions = new HashSet<>(personCcaPositions);
+            if (!modelCcaPositions.isEmpty()) {
+                p.setCcaPositions(modelCcaPositions);
             }
         }
         return p;

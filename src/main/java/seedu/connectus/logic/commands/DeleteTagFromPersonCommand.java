@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.commands.CommandUtil.convertSetToList;
 import static seedu.connectus.logic.commands.CommandUtil.isIndexValid;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -30,12 +30,12 @@ public class DeleteTagFromPersonCommand extends Command {
         + "Parameters: PERSON_INDEX (must be a positive integer) "
         + "[" + PREFIX_MODULE + "MODULE]... "
         + "[" + PREFIX_CCA + "CCA]... "
-        + "[" + PREFIX_MAJOR + "CCA POSITION]... "
+        + "[" + PREFIX_CCA_POSITION + "CCA POSITION]... "
         + "[" + PREFIX_REMARK + "REMARK]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_MODULE + "1 "
         + PREFIX_CCA + "2 "
-        + PREFIX_MAJOR + "1 "
+        + PREFIX_CCA_POSITION + "1 "
         + PREFIX_REMARK + "1";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted tag from Person: %1$s";
