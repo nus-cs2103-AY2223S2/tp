@@ -289,7 +289,7 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:** If your changes to the data file makes its format invalid, ModTrek will discard all data and start with an empty data file at the next run.
+:exclamation: **Caution:** If your changes to the data file makes its format invalid, **MODTrek** will discard all data and start with an empty data file at the next run.
 </div>
 
 [Back to Table of Contents](#toc)
@@ -310,7 +310,7 @@ are provided only by NUS.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command Summary <a name="command_summary"></a>
+## 6. Command Summary <a name="command-summary"></a>
 
 | Action                   | Format, Examples                                                                                                                                          |
 |--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
