@@ -251,7 +251,7 @@ Given below is a quick overview of each component and how they interact with eac
 * **`Main`**: has two classes called `Main` and `MainApp` which are responsible for,
   * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
   * At shut down: Shuts down the components and invokes cleanup methods where necessary.
-* [**`Commons`**](#common-classes): represents a collection of classes used by multiple other components.
+* [**`Commons`**](#commons-component): represents a collection of classes used by multiple other components.
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
@@ -281,9 +281,9 @@ The sections below give more details of each component.
 
 [Scroll back to top](#table-of-contents)
 
-### Common classes
+### Commons Component
 
-Classes used by multiple components are in the `codoc.commons` package.
+A collection of classes used by multiple other components located in the `codoc.commons` package.
 
 [Scroll back to top](#table-of-contents)
 
