@@ -50,6 +50,10 @@ public class TaskList {
         return new TaskList();
     }
 
+    public boolean isEmpty() {
+        return tasks.isEmpty();
+    }
+
     @Override
     public String toString() {
         if (tasks.size() == 0) {
