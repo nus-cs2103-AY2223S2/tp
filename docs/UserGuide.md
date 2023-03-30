@@ -50,9 +50,9 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
    Some example commands you can try:
 
    * `list` : Lists all contacts.
-   
+
    * `list_job` : Lists all jobs.
-   
+
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * `timetable` : Shows timetable of current week.
@@ -181,7 +181,7 @@ Commands are input in this text field
 
 Adds a delivery job to the delivery job system.
 
-Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]`  
+Format: `add_job si/SENDER_ID ri/RECEIPIENT_ID [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING]` 
 Alternative: Click on `Delivery Job System` in menu bar > `Create Job`. Fill in relevant details and click `Create Job` button. (Click `Cancel` button to stop adding)
 ![Create Job](images/Addjob.png)
 
@@ -192,7 +192,7 @@ Description field is only available in GUI mode.
 * Adds the job to delivery job system.
 * `SENDER_ID` and `RECEIPIENT_ID` **must be valid IDs** (i.e. must exist in address book).
 * Delivery date **must be in format YYYY-mm-DD**.
-* Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5. 
+* Delivery slot **must be a positive integer** and valid slots should be within the range from 1 to 5.
 * Slot 1: 10AM - 11AM, Slot 2: 11AM - 12PM, Slot 3: 1PM - 2PM, Slot 4: 2PM - 3PM, Slot 5: 3PM - 4PM.
 * Delivery slots outside valid range will be classified as "Extra hours (4PM++)".
 * Earning **must be a double**.
@@ -210,7 +210,7 @@ Format: Click on `Delivery Job System` in menu bar > `Import Jobs` > select a fi
 
 * File **must be a CSV file**.
 * There must be a header row as the first row will be skipped when file is parsed.
-* These columns `Recipient`	`Sender`	`Delivery date`	`Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist. 
+* These columns `Recipient`	`Sender`	`Delivery date`	`Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist.
   * The optional details may be empty cells. e.g. `Sender's Tag` may be empty.
 * If recipient/ sender does not already exist in customer address book i.e. new customer, recipient/ sender will also be added into the address book.
 
@@ -239,7 +239,7 @@ Examples:
 * `edit_job 1 date/2023-03-01`
 * `edit_job ji/<job_id> si/ALE874 ri/DAV910 date/2023-03-01 slot/3 earn/20`
 
-Alternative:  
+Alternative: 
 ![edit job](images/editJob.png)
 
 ### 2.5. Mark job as in/complete : `com_job` | `uncom_job`
@@ -252,7 +252,7 @@ Incomplete Format: `uncom_job <job id>`
 * `com_job ALBE1989C9`
 * `uncom_job ALBE1989C9`
 
-Alternative:  
+Alternative: 
 ![complete job](images/comJob.png)
 
 ### 2.6. Find job : `find_job`
@@ -269,7 +269,7 @@ Examples:
 
 ### 2.7. Delete job : `delete_job`
 
-Deletes a job from the system.  
+Deletes a job from the system. 
 Support `del` key in job list.
 
 Format: `delete_job <job_id>`
@@ -278,7 +278,7 @@ Format: `delete_job <job_id>`
 Examples:
 * `delete_job <job_id>`
 
-Alternative:  
+Alternative: 
 ![delete job](images/delJob.png)
 
 ## 3. Features available for Reminders
@@ -363,10 +363,10 @@ Alternative: Click on `Timetable` in menu bar > `Unscheduled Jobs`
 ![Statistics](images/Statistics.png)
 
 Shows a summary of statistics related to the jobs in the job list
-* Total number of jobs in the job list 
-* Total earnings from all jobs in the job list 
-* Total number of completed jobs in the job list 
-* Total number of pending jobs in the job list 
+* Total number of jobs in the job list
+* Total earnings from all jobs in the job list
+* Total number of completed jobs in the job list
+* Total number of pending jobs in the job list
 
 Similar statistics are shown for jobs in the previous week
 
@@ -409,8 +409,8 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ## Command summary
 **:information_source: Notes about the command format:**<br>
-* Commands that start with *(C)* could only be accessed from Customer Window 
-* Commands that start with *(M)* could only be accessed from Main Window 
+* Commands that start with *(C)* could only be accessed from Customer Window
+* Commands that start with *(M)* could only be accessed from Main Window
 * Commands that start with *(B)* could be accessed from both Main and Customer Window
 
 
