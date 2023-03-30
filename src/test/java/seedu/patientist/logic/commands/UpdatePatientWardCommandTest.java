@@ -22,7 +22,7 @@ public class UpdatePatientWardCommandTest {
     public void execute_validIndexList_success() {
         Person personToBeUpdated = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         UpdatePatientWardCommand updatePatientWardCommand = new UpdatePatientWardCommand(INDEX_SECOND_PERSON,
-                "Block A Ward 1", "Block A Ward 2");
+                "Block A Ward 2");
 
         String expectedMessage = String.format(UpdatePatientWardCommand.MESSAGE_SUCCESS,
                 INDEX_SECOND_PERSON.getOneBased(), "Block A Ward 1", "Block A Ward 2");
@@ -39,25 +39,16 @@ public class UpdatePatientWardCommandTest {
     public void execute_invalidIndexList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         UpdatePatientWardCommand updatePatientWardCommand = new UpdatePatientWardCommand(outOfBoundIndex,
-                "Block A Ward 1", "Block A Ward 2");
+                "Block A Ward 2");
 
         assertCommandFailure(updatePatientWardCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_invalidCurrentWardList_throwsCommandException() {
-        Person personToBeUpdated = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
-        UpdatePatientWardCommand updatePatientWardCommand = new UpdatePatientWardCommand(INDEX_SECOND_PERSON,
-                "Block A Ward 2", "Block A Ward 1");
-        assertCommandFailure(updatePatientWardCommand, model,
-                String.format(updatePatientWardCommand.MESSAGE_WARD_INCORRECT));
     }
 
     @Test
     public void execute_invalidWard_throwsCommandException() {
         Person personToBeUpdated = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         UpdatePatientWardCommand updatePatientWardCommand = new UpdatePatientWardCommand(INDEX_SECOND_PERSON,
-                "Block A Ward 1", "Block C Ward 1");
+                "Block C Ward 1");
         assertCommandFailure(updatePatientWardCommand, model,
                 String.format(updatePatientWardCommand.MESSAGE_WARD_NOT_FOUND, "Block C Ward 1"));
     }

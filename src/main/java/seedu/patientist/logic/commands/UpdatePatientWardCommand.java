@@ -19,19 +19,18 @@ import seedu.patientist.model.ward.Ward;
  */
 
 public class UpdatePatientWardCommand extends Command {
-    public static final String COMMAND_WORD = "trfWard";
+    public static final String COMMAND_WORD = "trfward";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Update the patient ward from one ward to another ward "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Moves the patient."
             + "Parameters: "
-            + "Index " + PREFIX_WARD + "WARD " + PREFIX_WARD + "WARD "
+            + "Index " + PREFIX_WARD + "WARD "
             + "Example: " + COMMAND_WORD + " "
-            + "2 " + PREFIX_WARD + "Block B Ward 2 " + PREFIX_WARD + "Block C Ward 1";
+            + "2 " + PREFIX_WARD + "Block C Ward 1";
 
     public static final String MESSAGE_SUCCESS = "Patient %1$s has been transferred from ward %2$s to ward %3$s";
     public static final String MESSAGE_WARD_NOT_FOUND = "Ward not found: %1$s";
     public static final String MESSAGE_WARD_INCORRECT = "Ward of patient is incorrect";
 
-    private final String ogWard;
     private final String nextWard;
     private final Index patient;
 
@@ -39,8 +38,9 @@ public class UpdatePatientWardCommand extends Command {
      * Creates an UpdatePatientWardCommand to change specified {@code Index} ward {@code ogWard} to
      * {@code nextWard}.
      */
-    public UpdatePatientWardCommand(Index patient, String ogWard, String nextWard) {
-        this.ogWard = ogWard;
+    public UpdatePatientWardCommand(Index patient, String nextWard) {
+        requireNonNull(patient);
+        requireNonNull(nextWard);
         this.nextWard = nextWard;
         this.patient = patient;
     }
@@ -48,10 +48,6 @@ public class UpdatePatientWardCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (!model.hasWard(new Ward(ogWard))) {
-            throw new CommandException(String.format(MESSAGE_WARD_NOT_FOUND, ogWard));
-        }
 
         if (!model.hasWard(new Ward(nextWard))) {
             throw new CommandException(String.format(MESSAGE_WARD_NOT_FOUND, nextWard));
@@ -63,13 +59,25 @@ public class UpdatePatientWardCommand extends Command {
         }
 
         Patient personToBeUpdated = (Patient) lastShownList.get(patient.getZeroBased());
+        Ward ward = null;
+
+        for (String wardName : model.getWardNames()) {
+            if (model.getWard(wardName).containsPatient(personToBeUpdated)) {
+                ward = model.getWard(wardName);
+                break;
+            }
+        }
+
+        if (ward == null) {
+            throw new CommandException("Patient not found in Patientist");
+        }
         Patientist patientist = (Patientist) model.getPatientist();
         try {
-            patientist.transferPatient(personToBeUpdated, model.getWard(ogWard), model.getWard(nextWard));
+            patientist.transferPatient(personToBeUpdated, ward, model.getWard(nextWard));
         } catch (Exception e) {
             throw new CommandException(MESSAGE_WARD_INCORRECT);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getOneBased(), ogWard, nextWard));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getOneBased(), ward, nextWard));
     }
 
     @Override
@@ -77,7 +85,6 @@ public class UpdatePatientWardCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof UpdatePatientWardCommand
                 && patient.equals(((UpdatePatientWardCommand) other).patient)
-                && ogWard.equals(((UpdatePatientWardCommand) other).ogWard)
                 && nextWard.equals(((UpdatePatientWardCommand) other).nextWard)); // instanceof handles nulls
     }
 }
