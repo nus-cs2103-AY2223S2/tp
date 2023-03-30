@@ -27,20 +27,20 @@ their patient management tasks and improve overall efficiency.
 - [Command Prefixes](#command-prefixes)
 - [Features](#features)
     - [Help](#viewing-help--help) `help`
-    - [Undo](#undoing-previous-command--undo) `undo`
-    - [Redo](#redoing-previous-undo--redo) `redo`
-    - [Add patient](#adding-patient-record--add): `add`
-    - [Edit patient](#editing-a-patient-record--edit): `edit`
-    - [Delete patient](#deleting-a-patient-record--delete): `delete`
-    - [List all patients](#listing-all-patients--list): `list`
-    - [Filter patients](#find-patients-by-nric-name-address-or-tags--find): `find`
-    - [Backup patient records](#backup-patient-records--backup): `backup`
-    - [Load backups](#load-data--load): `load`
-    - [View backups](#view-backup-data--viewbackup): `viewbackup`
-    - [Delete backup](#delete-backup-data--deletebackup): `deletebackup`
-    - [Clear all data](#clearing-all-data--clear): `clear`
-    - [Light mode](#switch-to-light-mode--light): `light`
-    - [Dark mode](#switch-to-dark-mode--dark): `dark`
+    - [Undo](#undoing-previous-command-undo) `undo`
+    - [Redo](#redoing-previous-undo-redo) `redo`
+    - [Add patient](#adding-patient-record-add): `add`
+    - [Edit patient](#editing-a-patient-record-edit): `edit`
+    - [Delete patient](#deleting-a-patient-record-delete): `delete`
+    - [List all patients](#listing-all-patients-list): `list`
+    - [Filter patients](#filter-patients-by-attribute-find): `find`
+    - [Backup patient records](#backup-patient-records-backup): `backup`
+    - [Load backups](#load-data-load): `load`
+    - [View backups](#view-backup-data-viewbackup): `viewbackup`
+    - [Delete backup](#delete-backup-data-deletebackup): `deletebackup`
+    - [Clear all data](#clearing-all-data-clear): `clear`
+    - [Light mode](#switch-to-light-mode-light): `light`
+    - [Dark mode](#switch-to-dark-mode-dark): `dark`
     - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -62,7 +62,7 @@ their patient management tasks and improve overall efficiency.
    1. `help` opens up the help menu.
 6. Refer to the [Features](#features) below for details of each command.
 
-Note: HospiSearch is compitable with Windows, MacOS and Ubuntu.
+Note: HospiSearch is compatible with Windows, MacOS and Ubuntu.
 
 <sub>[return to table of contents](#table-of-contents-)</sub>
 
@@ -88,7 +88,7 @@ Note: HospiSearch is compitable with Windows, MacOS and Ubuntu.
 | Medicine             | m/     |
 | Backup description   | b/     |
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ## Features
 
@@ -120,8 +120,9 @@ Above is the view of help window after inputting `help`.
 
 Reverts the patient records to the state before the previous command was executed.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** The initial starting state will be upon
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The initial starting state will be upon
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
+</div>
 
 Format: `undo`
 
@@ -133,8 +134,9 @@ Above is the execution result of input `undo` (the list has been cleared).
 
 Reverts the patient records to the state before the previous undo was executed. 
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Redo can only be executed if undo command
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Redo can only be executed if undo command
 has run.
+</div>
 
 Format: `redo`
 
@@ -145,8 +147,9 @@ Above is the execution result of input `redo` (the list is cleared again).
 
 Adds a person to the patient records.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Do take note which patient details are 
-optional
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Do take note which patient details are 
+optional.
+</div>
 
 Format: `add i/NRIC n/NAME dob/DATE OF BIRTH p/PHONE a/ADDRESS d/DRUGALLERGIES g/GENDER ad/DOCTOR [e/EMAIL] [t/TAG]…​ [m/MEDICINE]…​`
 
@@ -169,8 +172,9 @@ Above is the execution result of input `add i/S1234567H n/Cedric Pei p/84655284 
 Edits an existing patient in the patient records.
 
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Only include the prefixes for the specific
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only include the prefixes for the specific
 patient detail you would like to edit.
+</div>
 
 Format: `edit INDEX [i/NRIC] [n/NAME] [dob/DATE OF BIRTH] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/DRUGALLERGIES] [g/GENDER] [ad/DOCTOR] [t/TAG]…​ [m/MEDICINE]…​`
 
@@ -204,8 +208,9 @@ Above is the execution result of input `view i/S1234567H`.
 
 Deletes the specified patient from the patient records.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Only include the prefixes for the specific
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only include the prefixes for the specific
 patient detail you would like to edit.
+</div>
 
 Format: `delete i/NRIC…​`
 
@@ -222,8 +227,9 @@ Above is the execution result of input `delete i/S1234567A`.
 
 Shows a list of all patients in the patient records.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** List returns the entire current database
+<div markdown="span" class="alert alert-info">:information_source: **Note:** List returns the entire current database
 that you have loaded.
+</div>
 
 Format: `list`
 
@@ -231,19 +237,27 @@ Format: `list`
 
 Above is the execution result of input `list`.
 
-### Finding patients by nric, name, address, doctor or tags: `find`
+### Filtering patients by attribute: `find`
 
 Find patients according to a particular attribute stated followed by the change.
 
-Eg. name(`n/`), address(`a/`), nric(`i/`), tag(`t/`), doctor(`ad/`)
+Command Prefixes that can be searched: 
+* name(`n/`)
+* nric(`i/`)
+* tag(`t/`)
+* doctor(`ad/`)
+* medicine(`m/`)
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Find searches by full strings and not 
-substrings. You may only search for a few attributes.
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** 
+  - `find` searches by full strings and not substrings.
+  - You may only search for a few attributes.
+  - Only one attribute can be searched at one time.
+</div>
 
-Format: `find (n/NAME | i/NRIC | m/MEDICINE | t/TAG) [MORE_KEYWORDS]`
+Format: `find (n/NAME | i/NRIC | t/TAG | ad/DOCTOR | m/MEDICINE ) [MORE_KEYWORDS]`
 
 * The search will only be carried out for the given attribute.
-* Only one attribute can be searched at one time.
 * The search is case-insensitive. e.g panadol will match pANAdol.
 * The order of the keywords does matter. e.g. "panadol" will match "medicine panadol".
 * Multiple keywords for a given attribute can be inputted. All matching persons will be returned.
@@ -269,8 +283,9 @@ Above is the execution result of input `find i/S1234567A`.
 
 Backs up the patient records to a specified slot represented by an index.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Backups need to access and are not 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Backups need to access and are not 
 automatically loaded on launch of application.
+</div>
 
 Format: `backup INDEX_NO`
 
@@ -288,7 +303,8 @@ Above is the execution result of input `backup 1`.
 
 Loads the data from a specified slot represented by an index.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Allows access to a specific backup.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Allows access to a specific backup.
+</div>
 
 Format: `load INDEX_NO`
 
@@ -310,8 +326,9 @@ Format: `viewbackup`
 
 Deletes the data from a specified slot represented by an index.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Deleted backups cannot be retrieved after 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Deleted backups cannot be retrieved after 
 deletion.
+</div>
 
 Format: `deletebackup INDEX_NO`
 
@@ -327,7 +344,8 @@ Above is the execution result of input `deletebackup 1`
 
 Purges all data from the database.
 
-<div markdown="span" class="alert alert-info">:information_source:**Note:** Data cannot be retrieved after clearing.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Data cannot be retrieved after clearing.
+</div>
 
 Format: `clear`
 
@@ -356,7 +374,7 @@ Format: `dark`
 Above is the execution result of input `dark`.
   
 --------------------------------------------------------------------------------------------------------------------  
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ## FAQ
 
@@ -368,7 +386,7 @@ from your previous HospiSearch `data` directory.
 **A**: The `data` directory is created in the same folder your HospiSearch Jar file is opened in.
   
 --------------------------------------------------------------------------------------------------------------------  
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ## Command summary
 
@@ -390,4 +408,4 @@ from your previous HospiSearch `data` directory.
 | **Light**          | `light`                                                                                                                                                                                                                           |  
 | **Dark**           | `dark`                                                                                                                                                                                                                            |
 
-<sub>[return to table of contents](#table-of-contents-)</sub>
+<sub>[return to table of contents](#table-of-contents)</sub>
