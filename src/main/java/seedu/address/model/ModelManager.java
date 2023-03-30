@@ -143,8 +143,7 @@ public class ModelManager implements Model {
 
     @Override
     public void sortPersonList(String type, boolean ascending) {
-//        assert Objects.equals(type, "asc")
-//                || Objects.equals(type, "desc")
+//        assert Objects.equals(type, "size")
 //                || Objects.equals(type, "priority")
 //                || Objects.equals(type, "trans")
 //                || Objects.equals(type, "name");
