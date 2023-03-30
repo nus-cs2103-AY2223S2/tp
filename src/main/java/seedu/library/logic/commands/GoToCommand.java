@@ -21,6 +21,8 @@ import seedu.library.model.bookmark.Bookmark;
 public class GoToCommand extends Command {
     public static final String COMMAND_WORD = "goto";
     public static final String URI_OPS_ERROR = "could not go to url";
+    public static final String EMPTY_URL_ERROR = "url field is not present cannot goto site";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": opens up specified index bookmark's url if present\n"
@@ -43,6 +45,9 @@ public class GoToCommand extends Command {
         Bookmark bookmarkToGoto = lastShownList.get(targetIndex.getZeroBased());
         String url = bookmarkToGoto.getUrl().toString();
         try {
+            if (url.isEmpty()) {
+                throw new CommandException(EMPTY_URL_ERROR);
+            }
             openUrl(url);
         } catch (IOException ioe) {
             throw new CommandException(URI_OPS_ERROR + ioe, ioe);
