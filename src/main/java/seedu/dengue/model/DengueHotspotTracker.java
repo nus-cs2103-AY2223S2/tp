@@ -15,9 +15,9 @@ import seedu.dengue.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class DengueHotspotTracker implements ReadOnlyDengueHotspotTracker {
+    private static final String BAR = "\n=================================================================\n";
 
     private final UniquePersonList persons;
-    private static final String BAR = "\n=================================================================\n";
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
