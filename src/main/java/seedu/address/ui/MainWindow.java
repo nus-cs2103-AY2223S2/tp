@@ -4,7 +4,11 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -58,6 +62,12 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label panelLabel;
 
+    @FXML
+    private CheckMenuItem light;
+
+    @FXML
+    private Menu menuButton;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -110,6 +120,20 @@ public class MainWindow extends UiPart<Stage> {
         });
     }
 
+    public void setTheme() {
+        light.selectedProperty().addListener((obs, wasSelected, isSelected) -> {
+            String currentStyleSheet = primaryStage.getScene().getStylesheets().get(0);
+            String newStyleSheet;
+            if (isSelected) {
+                newStyleSheet = "view/LightTheme.css";
+            } else {
+                newStyleSheet = "view/DarkTheme.css";
+            }
+            primaryStage.getScene().getStylesheets().remove(currentStyleSheet);
+            primaryStage.getScene().getStylesheets().add(newStyleSheet);
+        });
+    }
+
     /**
      * Fills up all the tasks placeholders of this window.
      */
@@ -154,16 +178,19 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void tasksClicked() throws CommandException, ParseException {
         CommandResult commandResult = executeCommand("view");
+        show();
     }
 
     @FXML
     public void personsClicked() throws CommandException, ParseException {
         CommandResult commandResult = executeCommand("list");
+        show();
     }
 
     @FXML
     public void reviewClicked() throws CommandException, ParseException {
         CommandResult commandResult = executeCommand("review");
+        show();
     }
 
     void show() {
