@@ -241,9 +241,7 @@ Adds a new Patient type as defined in the command into the system. If any of the
 
 <pre>
 patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var> --a <var>ALLERGIES</var>... --v <var>VACCINES</var>...
-patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var>
+    --b <var>BLOODTYPE</var> [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
 </pre>
 
 * <code><var>PATIENT_NAME</var></code> : `<name>`
@@ -257,6 +255,28 @@ patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BI
 
 * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
 * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
+
+#### `detail` - Displays the detail of a patient
+
+##### Syntax
+
+<pre>
+patient detail <var>patient</var>
+</pre>
+
+##### Example
+
+Example assumes none of the default start-up patients are deleted yet.
+
+```text
+patient detail 1
+```
+
+Output:<br>
+
+```text
+[INFO] Detailing patient: #0001 Alex Yeoh
+```
 
 #### `list` - List all patients
 
@@ -293,9 +313,7 @@ Updates the Patient using it's PATIENT_ID.
 
 <pre>
 patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var> --a <var>ALLERGIES</var>... --v <var>VACCINES</var>...
-patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var>
+    --b <var>BLOODTYPE</var> [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
 </pre>
 
 * <code><var>PATIENT_NAME</var></code> : `<name>`
@@ -307,8 +325,8 @@ patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</v
 
 ##### Example
 
-* `patient edit 5 --n John Doee --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
-* `patient edit 5 --n John Doee`
+* `patient edit 5 --n John Deer --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
+* `patient edit 5 --n John Deer`
 
 #### `delete` - Delete a patient
 
