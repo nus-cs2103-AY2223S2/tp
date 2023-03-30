@@ -15,7 +15,7 @@ import seedu.address.model.entity.Name;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete|d";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an entity from Reroll.";
 

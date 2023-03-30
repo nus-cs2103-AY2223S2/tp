@@ -12,7 +12,7 @@ import seedu.address.model.entity.Entity;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit|e";
 
     public static final String MESSAGE_SUCCESS = "Entered Edit Mode";
 
@@ -37,12 +37,15 @@ public class EditCommand extends Command {
         requireNonNull(model);
         ReadOnlyEntities rerollEntities;
         switch (toEditClassification) {
+        case "c":
         case "char":
             rerollEntities = model.getReroll().getCharacters();
             break;
+        case "m":
         case "mob":
             rerollEntities = model.getReroll().getMobs();
             break;
+        case "i":
         case "item":
             rerollEntities = model.getReroll().getItems();
             break;

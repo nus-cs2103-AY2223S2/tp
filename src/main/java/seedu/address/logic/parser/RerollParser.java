@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,25 +49,26 @@ public class RerollParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
-        switch (commandWord) {
 
-        case MakeCommand.COMMAND_WORD:
-            return new MakeCommandParser().parse(userInput);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
+        // TODO: Improve code quality
+        if (Pattern.matches(MakeCommand.COMMAND_WORD, commandWord)) {
+            return new MakeCommandParser().parse(arguments);
+        } else if (Pattern.matches(DeleteCommand.COMMAND_WORD, commandWord)) {
             return new DeleteCommandParser().parse(arguments);
+        } else if (Pattern.matches(EditCommand.COMMAND_WORD, commandWord)) {
+            return new EditCommandParser().parse(arguments);
+        } else if (Pattern.matches(TemplateCommand.COMMAND_WORD, commandWord)) {
+            return new TemplateCommandParser().parse(arguments);
+        } else if (Pattern.matches(ListCommand.COMMAND_WORD, commandWord)) {
+            return new ListCommandParser().parse(arguments);
+        }
 
+        switch (commandWord) {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -76,10 +78,10 @@ public class RerollParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommand();
+
         case FilterCommand.COMMAND_WORD:
             return new FilterCommandParser().parse(arguments);
-        case TemplateCommand.COMMAND_WORD:
-            return new TemplateCommandParser().parse(arguments);
+
         case ShowTemplatesCommand.COMMAND_WORD:
             return new ShowTemplatesCommand();
         default:
