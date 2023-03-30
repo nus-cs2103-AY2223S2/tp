@@ -1,14 +1,14 @@
 package seedu.address.model.person.fields.subfields;
 
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Reader;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.person.fields.Field;
 
@@ -17,24 +17,24 @@ import seedu.address.model.person.fields.Field;
  */
 public class NusMod extends Field {
 
-    public static final String MESSAGE_CONSTRAINTS = "Modules should be a part of NUS' NUSMods list";
-    public static final String MODULELIST_FILE_PATH = "data/moduleList.json";
-    private static final Map<String, Boolean> MODULE_MAP = new HashMap<>();
+    public static final String MESSAGE_CONSTRAINTS = "Module codes should exist in NUS' NUSMods list";
+    public static final String MODULES_FILE_PATH = "/data/modules.json";
+    private static final Set<String> MODULE_MAP = new HashSet<>();
 
     static {
-        try {
-            FileInputStream inputStream = new FileInputStream(MODULELIST_FILE_PATH);
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-
+        try (Reader reader = new InputStreamReader(Objects
+                .requireNonNull(NusMod.class.getResourceAsStream(MODULES_FILE_PATH)))) {
+            BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
+                System.out.println(line);
                 if (line.contains("\"moduleCode\":")) {
                     String moduleCode = line.split(":")[1].trim().replace("\"", "");
-                    MODULE_MAP.put(moduleCode, true);
+                    MODULE_MAP.add(moduleCode);
                 }
             }
-            reader.close();
-        } catch (IOException e) {
+            bufferedReader.close();
+        } catch (IOException | NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -49,13 +49,14 @@ public class NusMod extends Field {
     }
 
     /**
-     * Checks whether a module is a valid NUSMod by comparing the String name to the module list data
+     * Checks whether a module is a valid NUSMod by comparing with the module list data.
      *
-     * @param trimmedMod The module name to be checked
-     * @return false if the module does not exist in NUSMods
+     * @param moduleCode The module code to be checked.
+     * @return true if the module exists in NUSMods;
+     *         false otherwise.
      */
-    public static boolean isValidModName(String trimmedMod) {
-        return MODULE_MAP.containsKey(trimmedMod);
+    public static boolean isValidModName(String moduleCode) {
+        return MODULE_MAP.contains(moduleCode);
     }
 
 
