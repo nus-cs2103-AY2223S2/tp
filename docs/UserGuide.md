@@ -15,7 +15,15 @@ With its easy-to-use **text-based interface** and contact management features, s
 
 ## Before you Begin
 
-Please read this section before skipping to specific parts in the `Features` section
+Please read this section before skipping to specific parts in the `Features` section.
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
+
+The application has been tested extensively on a display resolution of 1920 X 1200 and a display zoom of 125%. 
+It is recommended that you switch to this resolution before proceeding with the rest of the user guide. UI bugs stemming 
+from other resolutions or different zoom levels is out of scope (impracticability due to lack of time).
+
+</div>
 
 ### Purpose of Guide
 
@@ -33,19 +41,19 @@ We suggest reading this guide in sequential order (or at least the whole of this
 
 You may see the following icons throughout our user guide, which are styled differently according to their purpose.
 
-<div markdown="span" class="alert alert-info">:information_source: **Info**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 This provides some additional information that you are recommended to know.
 </div>
 
 ##### Tip Box
 
-<div markdown="block" class="alert alert-primary">:bulb: **Tip**
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 This provides some quick and convenient hacks that you can use to optimize your experience with FriendlyLink.
 </div>
 
 ##### Danger Box
 
-<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
 Danger zone! Do pay attention to the information here carefully.
 </div>
 
@@ -119,14 +127,25 @@ The susceptibility level of an elderly to injury or sickness.
 * Specified for elderly only.
 
 #### Medical Qualification
-* Medical qualification must be in the format `SKILL_NAME LEVEL`.
+* Medical qualification must be in the format `SKILL_NAME, LEVEL`.
   * The `LEVEL` must be one of the following value: `BASIC`, `INTERMEDIATE` or `HIGH`.
-  * Example: `CPR BASIC`, `AED INTERMEDIATE`.
+  * Example: `CPR, BASIC`, `AED, INTERMEDIATE`.
+  * The `SKILL_NAME` should not include any spaces.
 * Specified for volunteers only.
+
+#### Available Dates
+* The start of the available dates must be before the end of the available dates.
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
+
+Out of concerns of time, we do not implement the scheme to check and merge overlapping available date ranges, 
+such as `2022-01-03,2022-01-20` and `2022-01-10,2022-01-23`. Therefore, to ensure maximum efficiency for the software,
+please ensure your input available date ranges are non-overlapping.
+</div>
 
 #### Tags
 A tag is a generic description for a group of people.
-* Only alphanumeric characters are allowed.
+* Only alphanumeric, non-space characters are allowed.
 
 #### Duplicate Entries
 * Person (Elderly and Volunteers)
@@ -166,7 +185,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | Entity                | A generic term to describe an object stored in FriendlyLink, such as elderly, volunteer and pairs                                                           |
 | FriendlyLink          | The name of our application                                                                                                                                 |
 | Field                 | A field is the information following the slash in a command.                                                                                                |
-| Index                 | An index is an integer used for numbering purposes in a displayed list of entities. It must be a positive integer.                                          |
+| Index                 | An index represents the position of the referred item in a displayed list of entities. It must be a positive integer.                                       |
 | Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
 | NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
 | Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
@@ -215,8 +234,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 
 Shows a message explaining how to access the help page.
 
-[//]: # (Need to update help message pic)
-![help message](images/helpMessage.png)
+![help message](images/helpMessage1.PNG)
 
 Format: `help`
 
@@ -239,7 +257,7 @@ Format: `add_elderly n/NAME ic/NRIC bd/BIRTH_DATE [re/REGION] [r/RISK_LEVEL] [p/
 * Dates specified should follow the format `YYYY-MM-DD`. 
 * For available dates, the start date should be before the end date.
 * Phone number specified can only be numeric characters, and must be at least 3 digits long.
-* `START_DATE, END_DATE` represents the start and end of the dates that the elderly is available.
+* `AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the dates that the elderly is available.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An elderly can have any number of tags and available dates.
@@ -262,8 +280,8 @@ Format: `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [re/REGION] [p/PHONE] [e/EMA
 * Dates specified should follow the format `YYYY-MM-DD`. 
 * For available dates, the start date should be before the end date.
 * Phone number specified can only be numeric characters, and must be at least 3 digits long.
-* The `MEDICAL_QUALIFICATION` takes the form `SKILL_NAME LEVEL`. The `LEVEL` can only take 3 values: `BASIC`, `INTERMEDIATE` or `HIGH`. Example: `CPR BASIC`, `AED INTERMEDIATE`.
-* AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the dates that the volunteer is available.
+* The `MEDICAL_QUALIFICATION` takes the form `SKILL_NAME, LEVEL`. The `LEVEL` can only take 3 values: `BASIC`, `INTERMEDIATE` or `HIGH`. Example: `CPR, BASIC`, `AED, INTERMEDIATE`.
+* `AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the dates that the volunteer is available.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A volunteer can have any number of tags, medical qualifications and available dates. 
@@ -290,7 +308,7 @@ Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 
 <div markdown="block" class="alert alert-info">
    
-**:information_source: Warnings when pairing volunteer and elderly:**<br>
+**:information_source: Info:**<br>
 * A warning will be given when:
    * there are clashes in availability between the volunteer and elderly; or
    * the volunteer and elderly lives in different regions
@@ -460,6 +478,8 @@ Examples:
 * `list paired`
 * `list unpaired`
 
+--------------------------------------
+
 ### Finding people and their related pairs: `find`
 
 Finds any elderly or volunteers matching **all** the specified fields, and pairings that they are involved in.
@@ -475,7 +495,7 @@ Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRT
 Examples:
 
 * `find t/experienced p/1234567 e/betsycrowe@example.com a/Newgate Estate`
-* `find n/John Wick e/johnwick@example.com a/New York p/1234561 ic/T1254567D re/north r/low, t/funny dr/2023-04-01,2023-04-15`
+* `find n/John Wick e/johnwick@example.com a/New York p/1234561 ic/T1254567D re/north r/low t/funny dr/2023-04-01,2023-04-15`
 
 ---------------------------------------
 
@@ -536,22 +556,23 @@ Example:
 * Typing `fi` will suggest `find`.
 
 For adding records, if the user has not input all the available fields for the new input elderly or volunteer, the
-auto-complete feature will automatically suggest all the remaining prefixes. No new suggestions will be given if all
-possible prefixes has at least one value provided.
+auto-complete feature will automatically recommend all remaining prefixes. No new suggestions will be given once all
+possible prefixes has at least one value provided. If the user continues to specify more attributes like `t/`, the recommendation
+will be done on a case-by-case basis.
 
 Example:
 
 * Typing `add_volunteer n/Harry p/12345686`, FriendlyLink will
   suggest `e/<email> a/<address> t/<tag> re/<region> mt/<medical_tags> bd/<birth_date> dr/<start_date,end_date>` as
   these fields have not been filled.
-* Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 vnr/S8959886I re/NORTH t/experienced mt/CPR ADVANCED dr/2023-06-03,2023-06-17`
+* Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 vnr/S8959886I re/NORTH t/experienced mt/CPR, ADVANCED dr/2023-06-03,2023-06-17`
 , FriendlyLink will not suggest anything as all possible fields have at least one value.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**<br>
 
-* Input validation merely validates the set of possible fields. If the user specifies an field that is
+* Input validation validates the set of possible fields. If the user specifies a field that is
   not included in the list of accepted fields, a warning will given. The user is free to continue typing, but an
   error will be thrown when the user confirms the command.
 * There is a known UI bug when the text in `commandTextField` overflows. To improve user experience, the recommendation
@@ -567,6 +588,11 @@ Example:
 * `CTRL+C`: Copy the text
 * `CTRL+V`: Paste the text into command box
 * `CTRL+Z`: Undo the previous command
+* `CTRL+X`: Cut the text
+* `ARROW_UP`: Navigate to the previous item on the list
+* `ARROW_DOWN`: Navigate to the next item on the list
+
+For more shortcuts, please refer [here](https://wiki.openjdk.org/display/OpenJFX/Keyboard+Navigation).
 
 ---------------------------------------------------
 
@@ -588,7 +614,7 @@ Example:
 | **Edit Elderly**     | `edit_elderly INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit_elderly 1 p/91234567 e/johndoe@example.com`                                                                                |
 | **Edit Volunteer**   | `edit_volunteer INDEX [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit_volunteer 2 n/Betsy Crower mt/`                                                                     |
 | **Edit Person**      | `edit NRIC [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit S1234567A p/12334455`                                                                                  |
-| **Delete Elderly**   | `delete_elderly NRIC`<br> <br> e.g., `delete_ elderly S8238655C`                                                                                                                                                                                                                                                            |
+| **Delete Elderly**   | `delete_elderly NRIC`<br> <br> e.g., `delete_elderly S8238655C`                                                                                                                                                                                                                                                             |
 | **Delete Volunteer** | `delete_volunteer NRIC`<br> <br> e.g., `delete_volunteer S8238658J`                                                                                                                                                                                                                                                         |
 | **Unpair**           | `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> e.g., `unpair vic/t0123423a eic/S2235243I`                                                                                                                                                                                                                            |
 | **Find People**      | `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG] [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` <br> <br> e.g., `find n/John Doe`                                                                                             |

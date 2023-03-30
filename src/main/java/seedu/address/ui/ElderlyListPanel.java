@@ -47,7 +47,7 @@ public class ElderlyListPanel extends UiPart<Region> {
         imageView.setImage(image);
 
         emptyBox.getChildren().add(imageView);
-        Label label = new Label("Add an elderly to see something here!");
+        Label label = new Label("There is nothing to see here.");
         emptyBox.getChildren().add(label);
 
         emptyBox.setAlignment(Pos.CENTER);

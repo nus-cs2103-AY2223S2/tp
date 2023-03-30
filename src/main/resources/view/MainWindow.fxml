@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-<fx:root minHeight="900" minWidth="1400" onCloseRequest="#handleExit" title="Friendly Link" type="javafx.stage.Stage"
+<fx:root minHeight="800" minWidth="1400" onCloseRequest="#handleExit" title="Friendly Link" type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/app_icon.png"/>
@@ -25,9 +25,6 @@
 
       <VBox style="-fx-background-color: #D4E5B1;">
         <MenuBar fx:id="menuBar" prefWidth="216.0" style="-fx-background-color: #457C51;" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
@@ -39,7 +36,7 @@
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="50" prefHeight="200" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="300" minHeight="50" prefHeight="200" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="25" right="25" top="10"/>
           </padding>
@@ -47,32 +44,29 @@
 
       <VBox VBox.vgrow="ALWAYS" minWidth="1030" >
         <HBox VBox.vgrow="ALWAYS" prefWidth="1030">
-        <VBox fx:id="elderlyList" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10.0" left="25.0" right="10.0" top="10.0"/>
-          </padding>
-          <StackPane fx:id="elderlyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          <VBox fx:id="elderlyList" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets bottom="10.0" left="25.0" right="10.0" top="10.0"/>
+            </padding>
+            <StackPane fx:id="elderlyListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          </VBox>
 
-        </VBox>
-
-          <VBox fx:id="pairList" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" maxWidth="450">
+          <VBox fx:id="pairList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <padding>
               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
             </padding>
             <StackPane fx:id="pairListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
           </VBox>
 
-        <VBox fx:id="volunteerList"  styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10.0" left="10.0" right="25.0" top="10.0"/>
-          </padding>
-          <StackPane fx:id="volunteerListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-        </VBox>
-
+          <VBox fx:id="volunteerList"  styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <padding>
+              <Insets bottom="10.0" left="10.0" right="25.0" top="10.0"/>
+            </padding>
+            <StackPane fx:id="volunteerListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          </VBox>
         </HBox>
       </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+      <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

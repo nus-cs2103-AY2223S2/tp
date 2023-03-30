@@ -6,6 +6,7 @@
     -fx-morning-green: #F0FFE3;
 
     -fx-tag-color: #457C51;
+    -fx-date-tag-color: #45657b;
 
     -fx-border-radius-default: 10;
     -fx-background-radius-default: 10;
@@ -21,14 +22,15 @@
     -fx-text-fill: black;
 }
 
-.popup {
+.popupBox {
     -fx-background-color: #B5C89C;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-opacity: 95%;
-    -fx-padding: 2 10 2 10;
+    -fx-padding: 2 10;
     -fx-max-width: 100;
 }
+
 
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
@@ -86,7 +88,7 @@
 
 .table-view .column-header, .table-view .filler {
     -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0 0 1;
     -fx-background-color: transparent;
     -fx-border-color:
         transparent
@@ -203,6 +205,53 @@
     -fx-font-size: 13pt;
     -fx-text-fill: black;
     -fx-wrap-text: true;
+    -fx-background-color: transparent;
+    -fx-control-inner-background: -fx-morning-green;
+}
+
+.text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0, 0, 0, 0;
+
+    -fx-box-border: none;
+    -fx-focus-color: -fx-control-inner-background;
+    -fx-faint-focus-color: -fx-control-inner-background;
+    -fx-text-box-border: -fx-control-inner-background;
+    -fx-border-width: -1;
+}
+
+.text-area .content {
+    -fx-background-color: transparent;
+}
+
+.text-area:focused .content {
+    -fx-background-color: transparent;
+}
+
+.viewport {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0, 0, 0, 0;
+
+    -fx-focus-color: -fx-control-inner-background;
+    -fx-faint-focus-color: -fx-control-inner-background;
+    -fx-text-box-border: -fx-control-inner-background;
+    -fx-border-width: -1;
+}
+
+.text-area:focused {
+    -fx-highlight-fill: -fx-dark-green;
+    -fx-text-fill: black;
+
+    -fx-background-insets: 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0, 0, 0, 0;
+
+    -fx-focus-color: -fx-control-inner-background;
+    -fx-faint-focus-color: -fx-control-inner-background;
+    -fx-text-box-border: -fx-control-inner-background;
+    -fx-border-width: -1;
 }
 
 #resultBox {
@@ -265,13 +314,11 @@
 }
 
 .menu:hover, .menu:showing {
-    -fx-border-color: -fx-morning-green;
-    -fx-background-color: -fx-dark-green;
+    -fx-background-color: #5ea77b;
 }
 
 .menu-item:focused {
-    -fx-border-color: -fx-morning-green;
-    -fx-background-color: -fx-dark-green;
+    -fx-background-color: #5ea77b;
 }
 
 /*
@@ -280,7 +327,7 @@
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
 .button {
-    -fx-padding: 5 22 5 22;
+    -fx-padding: 5 22;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
@@ -301,10 +348,10 @@
 }
 
 .button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
+    -fx-border-color: white;
+    -fx-border-width: 1;
     -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
+    -fx-border-radius: 0;
     -fx-border-insets: 1 1 1 1, 0;
 }
 
@@ -361,7 +408,7 @@
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
     -fx-background-color: transparent;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 0;
 }
 
 .scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
@@ -369,12 +416,12 @@
 }
 
 .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
+    -fx-padding: 1 8;
     -fx-pref-width: 15px;
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
+    -fx-padding: 8 1;
     -fx-pref-height: 15px;
 }
 
@@ -464,6 +511,20 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: -fx-tag-color;
+    -fx-padding: 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#availableDates {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#availableDates .label {
+    -fx-text-fill: white;
+    -fx-background-color: -fx-date-tag-color;
     -fx-padding: 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
