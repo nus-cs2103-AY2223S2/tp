@@ -15,23 +15,23 @@
             <Insets bottom="5" left="10" right="5" top="5" />
         </padding>
         <HBox alignment="TOP_LEFT" spacing="5">
-            <Label fx:id="name" styleClass="label-header-bright" text="name">
+            <Label fx:id="name" styleClass="label-purple-header" text="name">
                 <padding>
                     <Insets bottom="0" left="10" right="10" top="10" />
                 </padding>
             </Label>
         </HBox>
-      <Label fx:id="age" styleClass="label-bright" text="age">
+      <Label fx:id="age" styleClass="label-purple" text="age">
          <padding>
             <Insets left="10.0" right="10.0" top="5.0" />
          </padding>
       </Label>
-      <Label fx:id="nric" styleClass="label-bright" text="nric">
+      <Label fx:id="nric" styleClass="label-purple" text="nric">
          <padding>
             <Insets left="10.0" right="10.0" top="5.0" />
          </padding>
       </Label>
-        <Label fx:id="phone" styleClass="label-bright" text="phone">
+        <Label fx:id="phone" styleClass="label-purple" text="phone">
             <padding>
                 <Insets bottom="0" left="10" right="10" top="5" />
             </padding>
@@ -41,22 +41,22 @@
                 <Insets bottom="0" left="10" right="10" top="5" />
             </padding>
         </FlowPane>
-        <Label fx:id="email" styleClass="label-bright" text="email">
+        <Label fx:id="email" styleClass="label-purple" text="email">
             <padding>
                 <Insets left="10.0" right="10.0" top="5.0" />
             </padding>
         </Label>
-        <Label fx:id="address" styleClass="label-bright" text="address">
+        <Label fx:id="address" styleClass="label-purple" text="address">
             <padding>
                 <Insets left="10.0" right="10.0" top="5.0" />
             </padding>
         </Label>
-        <Label fx:id="medicalCondition" styleClass="label-bright" text="medical condition">
+        <Label fx:id="medicalCondition" styleClass="label-purple" text="medical condition">
             <padding>
                 <Insets left="10.0" right="10.0" top="5.0" />
             </padding>
         </Label>
-      <Label fx:id="appointment" styleClass="label-bright" text="appointment">
+      <Label fx:id="appointment" styleClass="label-purple" text="appointment">
          <padding>
             <Insets left="10.0" right="10.0" top="5.0" />
          </padding>
@@ -64,8 +64,14 @@
       <HBox alignment="BOTTOM_CENTER" prefHeight="44.0" prefWidth="420.0">
          <children>
             <Button fx:id="generateButton" mnemonicParsing="false" text="create" />
-            <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#showAddAppointmentWindow" text="Appointment" />
-            <Button fx:id="uploadButton" mnemonicParsing="false" text="upload" />
+            <Button fx:id="appointmentButton" mnemonicParsing="false" onAction="#showAddAppointmentWindow" text="Appointment">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin></Button>
+            <Button fx:id="uploadButton" mnemonicParsing="false" text="upload">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin></Button>
          </children>
       </HBox>
       <ListView fx:id="viewDisplay" prefHeight="261.0" prefWidth="210.0">
