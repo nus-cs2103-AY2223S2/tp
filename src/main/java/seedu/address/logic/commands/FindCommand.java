@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.Prefix;
-import seedu.address.logic.parser.predicates.ContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.FullMatchKeywordsPredicate;
 import seedu.address.model.Model;
 
 /**
@@ -31,9 +31,9 @@ public class FindCommand extends Command {
                     .collect(Collectors.joining(" "))
             + "\nExample: " + COMMAND_WORD + " alice bob charlie";
 
-    private final ContainsKeywordsPredicate predicate;
+    private final FullMatchKeywordsPredicate predicate;
 
-    public FindCommand(ContainsKeywordsPredicate predicate) {
+    public FindCommand(FullMatchKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
