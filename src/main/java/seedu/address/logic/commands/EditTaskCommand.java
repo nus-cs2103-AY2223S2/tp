@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.AddTaskCommand.MESSAGE_DUPLICATE_TASK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_CREATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_CREATEDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.OfficeConnectModel.PREDICATE_SHOW_ALL_TASKS;
@@ -42,7 +42,7 @@ public class EditTaskCommand extends Command {
         + PREFIX_TITLE + "Complete Project X "
         + PREFIX_CONTENT + "Do the UML diagram "
         + PREFIX_STATUS + "false "
-        + PREFIX_TASK_CREATETIME + "CREATEDATE "
+        + PREFIX_TASK_CREATEDATE + "CREATEDATE "
         + PREFIX_TASK_DEADLINE + "DEADLINE ";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "New task added: %1$s";
