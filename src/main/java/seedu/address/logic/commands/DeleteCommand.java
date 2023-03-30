@@ -21,7 +21,9 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>(List.of(
-            INDEX_PLACEHOLDER));
+            INDEX_PLACEHOLDER,
+            INDEX_PLACEHOLDER.asOptional().asRepeatable()
+    ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Delete the persons identified by the index numbers used in the displayed person list.\n"
