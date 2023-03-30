@@ -150,24 +150,37 @@ public class Employee {
         return Objects.hash(id, name, phone, email, address, tags);
     }
 
-    @Override
-    public String toString() {
+    /**
+     * Displays all information about an employee in SudoHR.
+     * @return A concatenated string all all information about the employee.
+     */
+    public String toStringAllFields() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Employee ID: ")
+                .append("\nEmployee ID:\t")
                 .append(getId())
-                .append("; Phone: ")
+                .append("\nPhone:\t")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\nEmail:\t")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\nAddress:\t")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("\nTags: ");
             tags.forEach(builder::append);
         }
+        return builder.toString();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append(" (Employee ID: ")
+                .append(getId())
+                .append(")");
         return builder.toString();
     }
 }
