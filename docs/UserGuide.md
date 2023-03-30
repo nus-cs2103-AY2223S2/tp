@@ -61,6 +61,13 @@ open the help window.<br>
 * Items in square brackets are optional.<br>
   e.g `n/NAME [v/VARIANT]` can be used as `n/John Doe v/DENV1` or as `n/John Doe`.
 
+* Multiple date formats are accepted, as long as `yyyy`, `MM`/`MMM`/`MMMM` and `dd` are present,<br>
+  with no extra alphanumeric characters.
+  e.g `d/2000-january-05`, `d/jan 2000 01`, `20000101` will all work.
+  When it is ambiguous whether a sequent of digits corresponds to `MM` or `dd` or `yyyy`, 
+  The first sequence of 4 digits will be read as `yyyy`, before the first sequence of 2 digits
+  is read into `MM`. Then, `dd` is the last to be read in. Thus, `20000102` is read as 2nd Jan 2000.
+
 * Items in curly brackets are features that are currently work in progress. <br>
   e.g `{t/TAG}` means that tagging someone has not yet been implemented, but is planned to be a feature.
 
@@ -217,13 +224,14 @@ the data of your previous DengueHotspotTracker home folder.
 
 ## Command summary
 
-| Action        | Format, Examples                                                                                                               |
-|---------------|--------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1` |
-| **Clear**     | `clear`                                                                                                                        |
-| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                            |
-| **Edit**      | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                     |
-| **List**      | `list`                                                                                                                         |
-| **Help**      | `help`                                                                                                                         |
-| **Undo/Redo** | `undo [INTEGER]` or `redo [INTEGER]`                                                                                           |
+| Action     | Format, Examples                                                                                                               |
+|------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1` |
+| **Clear**  | `clear`                                                                                                                        |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                            |
+| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`         |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                     |
+| **List**   | `list`                                                                                                                         |
+| **Help**   | `help`                                                                                                                         |
+| **Undo**   | `undo [INTEGER]`                                                                                                               |
+| **Redo**   | `redo [INTEGER]`                                                                                                               |
