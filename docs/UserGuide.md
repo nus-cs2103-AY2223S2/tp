@@ -285,7 +285,7 @@ Condition
 
 Filter the parameters as specified by the flag.
 
-Format: `:f [-t <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]... `
+Format: `:f [-w <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]... `
 
 | Parameter    | Detail                                          | Example        |
 | ------------ | ----------------------------------------------- | -------------- |
@@ -297,7 +297,7 @@ Format: `:f [-t <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priori
 
 
 Example of command
-1. `:f -t "quiz"` filter for tasks with "quiz" as title
+1. `:f -w "quiz"` filter for tasks with "quiz" as keyword
 2. `:f -d --before 2023-04-05` filter for tasks before 2023-04-05
 3. `:f -s 1` filter for tasks with status of in_progress 
 4. `:f -p 1` filter for tasks with priority of urgent 
@@ -378,7 +378,7 @@ _Details coming soon in v2.0 ..._
 | Delete task            | `:d [index]`                                                         |
 | Delete parameter       | `:d <task_index> [-d] [-l <label_name>]`                             |
 | Edit parameter         | `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>] `|
-| Filter                 | `:f [-t <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`|
+| Filter                 | `:f [-w <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`|
 | Sort                   | `:s [-t] [-d] [-p] `                                                 |
 | Exit the application   | `:wq!`, `:q!`, `:wq`, `:q`                                           |
 
