@@ -2,7 +2,6 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -11,61 +10,77 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
-
-<fx:root minHeight="650.0" minWidth="650.0" onCloseRequest="#handleExit" title="Army Information Management System" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
-    <Image url="@/images/address_book_32.png" />
-  </icons>
-  <scene>
-    <Scene>
-         <BorderPane>
-            <top>
-               <VBox BorderPane.alignment="CENTER">
-                  <children>
-                 <MenuBar fx:id="menuBar">
-                   <Menu mnemonicParsing="false" text="File">
-                     <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-                   </Menu>
-                   <Menu mnemonicParsing="false" text="Help">
-                     <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-                   </Menu>
-                 </MenuBar>
-                      <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                   <padding>
-                     <Insets bottom="5" left="10" right="10" top="5" />
-                   </padding>
-                 </StackPane>
-                  </children>
-               </VBox>
-            </top>
-            <bottom>
-              <StackPane fx:id="statusbarPlaceholder" BorderPane.alignment="CENTER" />
-            </bottom>
-            <center>
-               <SplitPane dividerPositions="0.3" orientation="VERTICAL" BorderPane.alignment="CENTER">
-                  <items>
-                      <StackPane fx:id="resultDisplayPlaceholder" maxHeight="300.0" minHeight="-Infinity" prefHeight="120.0" style="-fx-border-width: 0;" styleClass="pane-with-border">
-                   <padding>
-                     <Insets bottom="5" left="10" right="10" top="5" />
-                   </padding>
-                 </StackPane>
-                      <VBox fx:id="personList" alignment="CENTER" minHeight="300.0" minWidth="350.0" prefHeight="400.0" prefWidth="350.0" style="-fx-border-width: 0;" styleClass="pane-with-border">
-                   <padding>
-                     <Insets bottom="10" left="10" right="10" top="10" />
-                   </padding>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" minHeight="650.0" minWidth="650.0" onCloseRequest="#handleExit"
+         title="Army Information Management System" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19">
+    <icons>
+        <Image url="@/images/address_book_32.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <BorderPane fx:id="rightPanel">
+                <left>
+                    <VBox fx:id="favoritesList" styleClass="pane-with-border"
+                          VBox.vgrow="ALWAYS">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <StackPane fx:id="favoritesListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                </left>
+                <top>
+                    <VBox BorderPane.alignment="CENTER">
                         <children>
-                      <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                            <MenuBar fx:id="menuBar">
+                                <Menu mnemonicParsing="false" text="File">
+                                    <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
+                                </Menu>
+                                <Menu mnemonicParsing="false" text="Help">
+                                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false"
+                                              onAction="#handleHelp" text="Help"/>
+                                </Menu>
+                            </MenuBar>
+                            <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border"
+                                       VBox.vgrow="NEVER">
+                                <padding>
+                                    <Insets bottom="5" left="10" right="10" top="5"/>
+                                </padding>
+                            </StackPane>
                         </children>
-                 </VBox>
-                  </items>
-               </SplitPane>
-            </center>
-         </BorderPane>
-         <stylesheets>
-            <URL value="@StyloMilo.css" />
-            <URL value="@Extensions.css" />
-         </stylesheets>
-    </Scene>
-  </scene>
+                    </VBox>
+                </top>
+                <bottom>
+                    <StackPane fx:id="statusbarPlaceholder" BorderPane.alignment="CENTER"/>
+                </bottom>
+                <center>
+                    <SplitPane dividerPositions="0.3" orientation="VERTICAL" BorderPane.alignment="CENTER">
+                        <items>
+                            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="300.0" minHeight="-Infinity"
+                                       prefHeight="120.0" style="-fx-border-width: 0;"
+                                       styleClass="pane-with-border">
+                                <padding>
+                                    <Insets bottom="5" left="10" right="10" top="5"/>
+                                </padding>
+                            </StackPane>
+                            <VBox fx:id="personList" alignment="CENTER" minHeight="300.0" minWidth="350.0"
+                                  prefHeight="400.0" prefWidth="350.0" style="-fx-border-width: 0;"
+                                  styleClass="pane-with-border">
+                                <padding>
+                                    <Insets bottom="10" left="10" right="10" top="10"/>
+                                </padding>
+                                <children>
+                                    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                                </children>
+                            </VBox>
+                        </items>
+                    </SplitPane>
+                </center>
+            </BorderPane>
+            <stylesheets>
+                <URL value="@StyloMilo.css"/>
+                <URL value="@Extensions.css"/>
+            </stylesheets>
+        </Scene>
+    </scene>
 </fx:root>

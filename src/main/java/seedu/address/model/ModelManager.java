@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -23,6 +24,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final FilteredList<Person> favoritedPersons;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +37,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        favoritedPersons = new FilteredList<>(this.addressBook.getPersonList());
+        favoritedPersons.setPredicate(PREDICATE_SHOW_FAVORITED);
     }
 
     public ModelManager() {
@@ -94,6 +99,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersons(List<Person> persons) {
+        requireAllNonNull(persons);
+        return addressBook.hasPersons(persons);
+    }
+
+    @Override
+    public int findDuplicateIndex(List<Person> persons) {
+        requireAllNonNull(persons);
+        return addressBook.findDuplicateIndex(persons);
+    }
+
+    @Override
+    public String findDuplicateString(Person person) {
+        requireNonNull(person);
+        return addressBook.findDuplicateString(person);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -101,6 +124,12 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void addPersons(List<Person> persons) {
+        addressBook.addPersons(persons);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -141,6 +170,15 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the favorited list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Person> getFavoritedPersonList() {
+        return favoritedPersons;
     }
 
     @Override

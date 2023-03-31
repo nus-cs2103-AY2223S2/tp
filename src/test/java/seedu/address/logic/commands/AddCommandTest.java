@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonUtil;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -46,7 +48,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, "Email: " + String.format(
+                AddCommand.MESSAGE_DUPLICATE_PERSON, validPerson.getEmail()), () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -113,6 +116,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addPersons(List<Person> persons) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
@@ -124,6 +132,21 @@ public class AddCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPersons(List<Person> persons) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int findDuplicateIndex(List<Person> persons) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String findDuplicateString(Person duplicatePerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -161,6 +184,12 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Person> getFavoritedPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
@@ -178,6 +207,12 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+
+        @Override
+        public String findDuplicateString(Person person) {
+            requireNonNull(person);
+            return PersonUtil.findDuplicateFieldString(this.person, person);
         }
     }
 

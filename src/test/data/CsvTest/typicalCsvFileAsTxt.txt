@@ -1,0 +1,4 @@
+name,aDdress,EMAIL,PhonE,rank,unit,company,platoon,tags,,
+alphaaeus,"7 Hougang Street, #12-01",alphaolive@test.com,987654321,2LT,6SIR,Bravo,Support,g6pd,,
+ryaan,"6 lemon road, #43-01",ryantheboy@yahoo.com,83729200,REC,5Mar,Delta,3,cook,scoliosis,admin
+donnaa,"5 orchard road, #11-11",dondon@don.com,81238321,REC,4SAB,Alpha,2,ugly,,
