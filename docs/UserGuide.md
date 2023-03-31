@@ -271,12 +271,12 @@ Example: `show 2`
 
 #### Saving your data
 
-Calidr user preferences and calendar information is saved in the hard disk automatically after any modification command. The data is stored
-as an [ics-formatted json file](https://www.ical4j.org/).
+Calidr user preferences and calendar information is saved in the hard disk automatically after any modification command. The calendar data is stored
+as an [ics file](https://www.ical4j.org/).
 
 #### Editing the data file
 
-The `cal.ics` save file is located in the directory the program resides in (i.e. `[root_directory]/cal.ics`). Advanced
+The `calendar.ics` save file is located in the `data` folder the directory the program resides in (i.e. `[root_directory]/data/calendar.ics`). Advanced
 users are welcome to manipulate data directly by editing the save file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
