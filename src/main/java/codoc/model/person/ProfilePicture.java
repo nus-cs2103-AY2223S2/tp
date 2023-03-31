@@ -1,14 +1,22 @@
 package codoc.model.person;
 
 
+import java.io.InputStream;
+
 /**
  * The type Profile picture.
  */
 public class ProfilePicture {
     public final String profilePicturePath;
+    public final InputStream profilePictureInputStream;
 
+    /**
+     * Get picture.
+     * @param profilePicturePath string path
+     */
     public ProfilePicture(String profilePicturePath) {
         this.profilePicturePath = profilePicturePath;
+        this.profilePictureInputStream = this.getClass().getResourceAsStream(profilePicturePath);
     }
 
     @Override

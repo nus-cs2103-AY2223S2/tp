@@ -10,8 +10,6 @@ import static codoc.logic.parser.CliSyntax.PREFIX_NAME;
 import static codoc.logic.parser.CliSyntax.PREFIX_SKILL;
 import static codoc.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.io.File;
-import java.util.Random;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -58,15 +56,17 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        /*
         // randomly select a profile pic from the folder
         File[] files =
                 new File("src/main/resources/images/avataricons").listFiles();
         assert files != null;
         int randomIndex = new Random().nextInt(files.length);
         String profilePicturePath = files[randomIndex].getAbsolutePath();
+        */
 
         // set the profile pic of the person
-        ProfilePicture profilePicture = new ProfilePicture(profilePicturePath);
+        ProfilePicture profilePicture = new ProfilePicture("/images/avataricons/004-sloth.png");
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Github github = ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).orElseGet(() -> null));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());

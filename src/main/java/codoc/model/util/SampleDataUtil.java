@@ -24,7 +24,7 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(
-                    new ProfilePicture("src/main/resources/images/avataricons/001-bear.png"),
+                    new ProfilePicture("/images/avataricons/001-bear.png"),
                     new Name("Lim Jun Jie"),
                     new Course("6"),
                     new Year("2"),
@@ -39,7 +39,7 @@ public class SampleDataUtil {
                                     + "CS2103T", "AY2223S2 CS2107", "AY2223S2 CS2102", "AY2223S2 GESS1025")
             ),
             new Person(
-                    new ProfilePicture("src/main/resources/images/avataricons/002-rabbit.png"),
+                    new ProfilePicture("/images/avataricons/002-rabbit.png"),
                     new Name("Nicole Lee"),
                     new Course("6"),
                     new Year("2"),
@@ -54,7 +54,7 @@ public class SampleDataUtil {
                                     + "CS2103T", "AY2223S2 CS2107", "AY2223S2 GEN2002", "AY2223S2 GESS1025")
             ),
             new Person(
-                    new ProfilePicture("src/main/resources/images/avataricons/003-panda.png"),
+                    new ProfilePicture("/images/avataricons/003-panda.png"),
                     new Name("Nicole Tan"),
                     new Course("4"),
                     new Year("1"),
@@ -67,7 +67,7 @@ public class SampleDataUtil {
                             "AY2223S2 CS2040", "AY2223S2 IS2101")
             ),
             new Person(
-                    new ProfilePicture("src/main/resources/images/avataricons/004-sloth.png"),
+                    new ProfilePicture("/images/avataricons/004-sloth.png"),
                     new Name("Muhammad Syafiq"),
                     new Course("9"),
                     new Year("2"),
@@ -82,7 +82,7 @@ public class SampleDataUtil {
                                     + "IS3103", "AY2223S2 LAK2201", "AY2223S2 IS3106", "AY2223S2 GESS1025")
             ),
             new Person(
-                    new ProfilePicture("src/main/resources/images/avataricons/005-hen.png"),
+                    new ProfilePicture("/images/avataricons/005-hen.png"),
                     new Name("Madhu Kumar"),
                     new Course("5"),
                     new Year("2"),
@@ -98,7 +98,7 @@ public class SampleDataUtil {
                                     + "CS2113", "AY2223S2 DTK1234", "AY2223S2 ES2631", "AY2223S2 GEA1000")
             ),
             new Person(
-                    new ProfilePicture("src/main/resources/images/avataricons/006-puffer-fish.png"),
+                    new ProfilePicture("/images/avataricons/006-puffer-fish.png"),
                     new Name("Nguyen Thanh Tran"),
                     new Course("10"),
                     new Year("4"),
@@ -121,7 +121,7 @@ public class SampleDataUtil {
                                     + "IS4231", "AY2223S2 SC1101E", "AY2223S2 EL1101E", "AY2223S2 NUR1113A")
             ),
             new Person(
-                    new ProfilePicture("src/main/resources/images/avataricons/007-beaver.png"),
+                    new ProfilePicture("/images/avataricons/007-beaver.png"),
                     new Name("Jeremy Lim"),
                     new Course("6"),
                     new Year("2"),
