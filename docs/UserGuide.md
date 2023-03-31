@@ -59,6 +59,7 @@ If you need to switch to a new device, you can also export and import your previ
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
 <div markdown="block" class="alert alert-info">
 
 ### **:information_source: Notes about the command format:**<br>
@@ -340,9 +341,13 @@ Examples:
 * For Mac users
   * `export` p//Users/username/Desktop export `data.json` to desktop.
 
+<div markdown="block" class="alert alert-info">
+
 **:information_source: Note about the format of `FILE_PATH`:**<br>
 * For Windows users, the format of `FILE_PATH` must be `p/C:\Users\username\Downloads`.
 * For Mac users, the format of `FILE_PATH` must be `p//Users/username/Desktop`.
+
+</div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
@@ -363,9 +368,13 @@ Examples:
 * For Mac users
   * `import` p//Users/username/Desktop/data.json.
 
+<div markdown="block" class="alert alert-info">
+
 **:information_source: Note about the format of `FILE_PATH`:**<br>
 * For Windows users, the format of `FILE_PATH` must be `p/C:\bin\[FILE_NAME]`.
 * For Mac users, the format of `FILE_PATH` must be `p//Users/username/Desktop/[FILE_NAME]`.
+
+</div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
@@ -399,9 +408,13 @@ Examples:
 * For Mac users
   * `exportp 1 p//Users/johndoe/Documents`
 
+<div markdown="block" class="alert alert-info">
+
 **:information_source: Note about the format of `FILE_PATH`:**<br>
 * For Windows users, the format of `FILE_PATH` must be `p/C:\Users\username\Downloads`.
 * For Mac users, the format of `FILE_PATH` must be `p//Users/username/Desktop`.
+
+</div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
