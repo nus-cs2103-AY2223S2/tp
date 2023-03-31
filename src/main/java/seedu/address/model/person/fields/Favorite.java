@@ -3,14 +3,20 @@ package seedu.address.model.person.fields;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 /**
  * Represents a person's favorite status in the address book.
  */
 public class Favorite {
 
-    public static final String MESSAGE_CONSTRAINTS = "Fav can only be T or F";
+    public static final String MESSAGE_CONSTRAINTS = "Favorite can only be T or F";
+
+    private static final String VALUE_TRUE = "T";
+    private static final String VALUE_FALSE = "F";
+
     public final boolean isFavorite;
 
     /**
@@ -19,7 +25,6 @@ public class Favorite {
      * @param isFavorite If favorite is true or not.
      */
     public Favorite(boolean isFavorite) {
-        requireNonNull((isFavorite));
         this.isFavorite = isFavorite;
     }
 
@@ -29,13 +34,9 @@ public class Favorite {
      * @param favoriteMessage If message is "T" or "F"
      */
     public Favorite(String favoriteMessage) {
-        requireNonNull((favoriteMessage));
+        requireNonNull(favoriteMessage);
         checkArgument(isValidFavorite(favoriteMessage), MESSAGE_CONSTRAINTS);
-        if (favoriteMessage.equals("T")) {
-            this.isFavorite = true;
-        } else {
-            this.isFavorite = false;
-        }
+        this.isFavorite = VALUE_TRUE.equals(favoriteMessage);
     }
 
     public boolean getFavoriteStatus() {
@@ -46,11 +47,7 @@ public class Favorite {
      * Checks if a string is a valid favorite tag
      */
     public static boolean isValidFavorite(String trimmedFavorite) {
-        if (Objects.equals(trimmedFavorite, "")) {
-            return true;
-        }
-        requireNonNull(trimmedFavorite);
-        return Objects.equals(trimmedFavorite, "T") || Objects.equals(trimmedFavorite, "F");
+        return List.of("", VALUE_TRUE, VALUE_FALSE).contains(trimmedFavorite);
     }
 
     /**
@@ -59,9 +56,9 @@ public class Favorite {
     @Override
     public String toString() {
         if (isFavorite) {
-            return "T";
+            return VALUE_TRUE;
         } else {
-            return "F";
+            return VALUE_FALSE;
         }
     }
 
