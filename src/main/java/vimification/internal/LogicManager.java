@@ -33,6 +33,7 @@ public class LogicManager implements Logic {
 
     private static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file";
     private static final String LIST_OPS_ERROR_MESSAGE = "Invalid operation";
+
     private static final Logger LOGGER = LogsCenter.getLogger(LogicManager.class);
 
     private LogicTaskList logicTaskList;
@@ -72,9 +73,9 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) {
         LOGGER.info("[USER COMMAND] " + commandText);
-        Command command = vimificationParser.parse(commandText);
         CommandResult result = null;
         try {
+            Command command = vimificationParser.parse(commandText);
             if (command instanceof LogicCommand) {
                 LogicCommand logicCommand = (LogicCommand) command;
                 result = logicCommand.execute(logicTaskList, commandStack);
