@@ -148,7 +148,12 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
+        SuggestionListPanel suggestionListPanel = new SuggestionListPanel(logic.getFilteredCategoryList(), commandBox);
+
+
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        resultDisplayPlaceholder.getChildren().add(suggestionListPanel.getRoot());
+
     }
 
     /**

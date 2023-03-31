@@ -238,6 +238,22 @@
     -fx-padding: 8 12 8 12
 }
 
+.suggestionPane {
+     -fx-background-color: #000032;
+     -fx-border-style: none;
+}
+
+.suggestionPane .list-cell:filled:selected {
+     -fx-background-color: #0B134F;
+     -fx-border-style: none;
+     -fx-background-radius: 8px;
+}
+
+.suggestionPane .scroll-bar {
+    -fx-background-color: #000032;
+}
+
+
 .stack-pane {
      -fx-background-color: #000026
 }

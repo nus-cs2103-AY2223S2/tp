@@ -42,42 +42,46 @@
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-               <SplitPane fx:id="splitScreen" dividerPositions="0.29797979797979796" maxHeight="1.7976931348623157E308" prefWidth="200.0" styleClass="pane">
-                 <items>
-                     <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="100.0">
-                        <children>
-                           <VBox maxWidth="1.7976931348623157E308" minHeight="80.0" prefHeight="80.0" prefWidth="100.0" VBox.vgrow="NEVER">
+               <StackPane fx:id="mainView" prefHeight="150.0" prefWidth="200.0">
+                  <children>
+                     <SplitPane fx:id="splitScreen" dividerPositions="0.29797979797979796" maxHeight="1.7976931348623157E308" prefWidth="200.0" styleClass="pane">
+                       <items>
+                           <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="100.0">
                               <children>
-                                 <StackPane fx:id="resultsHeaderPlaceholder" prefWidth="200.0" VBox.vgrow="NEVER">
-                                    <VBox.margin>
-                                       <Insets bottom="15.0" />
-                                    </VBox.margin>
-                                 </StackPane>
-                                 <StackPane fx:id="resultsDetailsPlaceholder" prefWidth="200.0" VBox.vgrow="NEVER" />
+                                 <VBox maxWidth="1.7976931348623157E308" minHeight="80.0" prefHeight="80.0" prefWidth="100.0" VBox.vgrow="NEVER">
+                                    <children>
+                                       <StackPane fx:id="resultsHeaderPlaceholder" prefWidth="200.0" VBox.vgrow="NEVER">
+                                          <VBox.margin>
+                                             <Insets bottom="15.0" />
+                                          </VBox.margin>
+                                       </StackPane>
+                                       <StackPane fx:id="resultsDetailsPlaceholder" prefWidth="200.0" VBox.vgrow="NEVER" />
+                                    </children>
+                                    <padding>
+                                       <Insets left="5.0" right="5.0" />
+                                    </padding>
+                                 </VBox>
+                            <StackPane fx:id="listPanelPlaceholder" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" styleClass="dialog-pane" VBox.vgrow="ALWAYS" />
                               </children>
-                              <padding>
-                                 <Insets left="5.0" right="5.0" />
-                              </padding>
                            </VBox>
-                      <StackPane fx:id="listPanelPlaceholder" maxHeight="1.7976931348623157E308" minWidth="-Infinity" prefWidth="200.0" styleClass="dialog-pane" VBox.vgrow="ALWAYS" />
-                        </children>
-                     </VBox>
-                     <VBox prefHeight="169.0" prefWidth="100.0">
-                        <children>
-                           <HBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308">
+                           <VBox prefHeight="169.0" prefWidth="100.0">
                               <children>
-                                 <Label alignment="CENTER_RIGHT" styleClass="results_header" text="Summary Statistics">
-                                    <HBox.margin>
-                                       <Insets right="10.0" />
-                                    </HBox.margin>
-                                 </Label>
+                                 <HBox alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308">
+                                    <children>
+                                       <Label alignment="CENTER_RIGHT" styleClass="results_header" text="Summary Statistics">
+                                          <HBox.margin>
+                                             <Insets right="10.0" />
+                                          </HBox.margin>
+                                       </Label>
+                                    </children>
+                                 </HBox>
+                                 <StackPane fx:id="statisticsPlaceholder" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
                               </children>
-                           </HBox>
-                           <StackPane fx:id="statisticsPlaceholder" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-                        </children>
-                     </VBox>
-                 </items>
-               </SplitPane>
+                           </VBox>
+                       </items>
+                     </SplitPane>
+                  </children>
+               </StackPane>
         </VBox>
 
            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="1.7976931348623157E308" minHeight="100.0" prefHeight="100.0" styleClass="pane" VBox.vgrow="ALWAYS">
