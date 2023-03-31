@@ -14,6 +14,18 @@ DengueHotspotTracker (DHT) is a **desktop app for managing Dengue Cases, optimiz
 **use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User
 Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
+### Purpose of this application:
+Dengue fever is a prevalent mosquito-borne disease in many parts of the world, including Singapore. The National 
+Environmental Agency (NEA) of Singapore is responsible for monitoring and controlling the spread of this disease. 
+To aid in this task, a new application called DengueHotspotTracker (DHT) has been developed, which allows NEA to 
+track all reported cases of dengue fever in Singapore.
+
+This application serves as an address book, containing the name, postal code, age, date, and (optional) variant type
+of the reported case. The user-friendly interface provides an easy-to-view overview of the cases, enabling NEA to 
+monitor the trends of the disease in different areas, spread in different age groups, and spread of
+different variant types of dengue. Overall, this application would allow NEA to stay informed about the latest trends
+and take proactive measures to prevent the spread of the disease.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -181,8 +193,9 @@ Adds a dengue patient to DengueHotspotTracker.
 Format: `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`
 
 Examples:
-* `add n/John Tan a/20 p/543299 d/2023-02-13 v/DENV1`
-* `add p/519999 n/Desiree Lim d/2023-02-13 a/18`
+* `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1`
+* `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
+![AddCommandExample](images/AddCommandExample.png)
 
 <br>
 
@@ -204,6 +217,7 @@ Examples:
 * `edit 1 p/912345 d/2001-01-01` Edits the postal code and date of the 1st case to be `S912345` and `2001-01-01`
   respectively.
 * `edit 2 n/Betsy Crower v/` Edits the name of the 2nd case to be `Betsy Crower` and clears all tagged dengue variants.
+![EditCommandExample](images/EditCommandExample.png)
 
 <br>
 
@@ -224,10 +238,13 @@ Format: `delete INDEX...` or `delete d/DATE` or `delete [sd/START_DATE] [ed/END_
 * The three variations of the delete command should not be used together, i.e. indexes should not be provided with dates, and `d/` should not co-occur with `sd/` or `ed/`.
 
 Examples:
-* `list` followed by `delete 2 3` deletes the 2nd and 3rd cases in DengueHotspotTracker.
 * `find n/Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
-* `find p/s666` followed by `delete d/2023-03-23` deletes the cases from 23rd March 2023 in the results of the `find` command.
-* * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 2023 inclusive in the results of the `find` command.
+* `find p/s666` followed by `delete d/2023-03-23` deletes the cases from 23rd March 2023 in the results of the `find` 
+command.
+* * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 
+2023 inclusive in the results of the `find` command.
+* `list` followed by `delete 2 3` deletes the 2nd and 3rd cases in DengueHotspotTracker.
+![DeleteCommandExample](images/DeleteCommandExample.png)
 
 <br>
 
@@ -301,10 +318,11 @@ Examples:
 
 Sorts the entire case list based on the specified criterion.
 
-Format: `sort { n/ &#124; a/ &#124; d/ }`
+Format: `sort { n/ &#124; a/ &#124; p/ &#124; d/ }`
 
 * Sorts cases based on the specified criterion.
-* One and only one of the prefixes must be specified: `n/` for name, `a/` for age, and `d/` for date.
+* One and only one of the prefixes must be specified: `n/` for name, `a/` for age, `p/` for postal code and 
+`d/` for date.
 
 <br>
 
@@ -321,6 +339,11 @@ Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
 * The user cannot undo actions that do not change the data of DengueHotspotTracker, such as list and find.
 * Performing a change after undo-ing will clear any possible `redo` actions.
 
+Example:
+* `undo` after a `edit 2 n/Betsy Crower v/` command:
+  ![UndoCommandExample](images/UndoCommandExample.png)
+* `redo` after the undo:
+  ![RedoCommandExample](images/RedoCommandExample.png)
 <br>
 
 ### Changing the overview type : `overview`
@@ -413,7 +436,7 @@ Shows a summary of the available commands and their formats, and links the user 
 
 Format: `help`
 
-![help message](images/helpMessage.png)
+![HelpCommandExample](images/HelpCommandExample.png)
 
 <br>
 
