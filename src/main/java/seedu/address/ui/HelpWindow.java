@@ -16,28 +16,42 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL =
-            "https://docs.google.com/document/d/1nTsxXRuQh8OzcsR_LoAR6xX_pkw0IuO5HKIqznkDMzE/edit?usp=sharing";
+            "https://ay2223s2-cs2103t-w09-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE_COMMAND = "Features:\n"
             + "help\n"
             + "    - Accesses this help guide\n\n"
-            + "addcat [c/categoryName]\n"
+            + "addcat c/categoryName\n"
             + "    - Adds a new category to the expense tracker\n\n"
-            + "delcat [index]\n"
+            + "delcat index\n"
             + "    - Deletes a category from the expense tracker\n\n"
-            + "ecat [index] [c/categoryName] [s/summary]\n"
+            + "edcat index c/categoryName [s/summary]\n"
             + "    - Edits specified category in the expense tracker\n\n"
             + "lcat\n"
             + "    - Shows all categories in the expense tracker\n\n"
-            + "add [c/categoryName] [n/itemName] [p/price] [d/date]\n"
+            + "add n/expenseName c/categoryName p/price [d/Date]\n"
             + "    - Adds an expense to the user's expense tracker\n\n"
-            + "delete [index]\n"
+            + "delete index\n"
             + "    - Deletes expense at index [index]\n\n"
-            + "eexp [index] [c/categoryName] [n/expenseName] [d/Date] [p/price]\n"
+            + "edexp index [c/categoryName] [n/expenseName] [d/Date] [p/price]\n"
             + "    - Edits specified expense in the expense tracker\n\n"
-            + "find [itemname]\n"
-            + "    - lists all items with matching names\n\n"
+            + "addrec c/categoryName n/itemName p/price t/timeframe sd/startDate [ed/endDate]\n"
+            + "    - Adds a recurring expense to the user's expense tracker\n\n"
+            + "delrec index\n"
+            + "    - Deletes a recurring expense at index [index]\n\n"
+            + "edrec index [c/categoryName] [n/itemName] [p/price] [t/timeframe] [ed/endDate]\n"
+            + "    - Edits specified expense in the expense tracker\n\n"
+            + "lrec\n"
+            + "    - Displays the list of recurring expenses\n\n"
+            + "set p/budget\n"
+            + "    - Sets the monthly budget in the expense tracker\n\n"
+            + "scat index\n"
+            + "    - Displays summary text of category\n\n"
+            + "find [keyword]\n"
+            + "    - lists all expenses with matching keywords\n\n"
             + "list [c/categoryName] [t/timeframe]\n"
-            + "    - Toggles the view of summary of expenses\n\n";
+            + "    - Displays the list of expenses with optional category or time-span filters\n\n"
+            + "CLEAR\n"
+            + "    - Clears all the expenses and categories stored in FastTrack\n\n";
 
     public static final String HELP_MESSAGE = HELP_MESSAGE_COMMAND + "For more info, refer to the user guide: "
             + USERGUIDE_URL;

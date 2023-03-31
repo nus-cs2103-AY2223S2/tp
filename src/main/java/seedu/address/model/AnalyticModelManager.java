@@ -278,6 +278,14 @@ public class AnalyticModelManager implements AnalyticModel {
     }
 
     /**
+     * Gets the Property of the users current monthly budget
+     */
+    @Override
+    public DoubleProperty getMonthlyBudgetProperty() {
+        return monthlyBudget;
+    }
+
+    /**
      * Returns a DoubleProperty representing analytics data for a given AnalyticsType.
      * @param type an AnalyticsType enum that specifies which type of analytics data to return
      * @return a DoubleProperty representing the requested analytics data
