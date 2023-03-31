@@ -16,8 +16,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 - [Features](#features)
 - [Main Features](#main-features-tracking-applied-internships)
     - [View guide : `help`](#view-help--help)
-    - [Add an internship application](#adding-an-internship--add)
-        - [Add](#adding-an-internship--add)
+    - [Add an internship application : `add`](#add-an-internship-application--add)
     - [List currently ongoing internship applications : `list`](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications : `sort`](#sort-all-internship-applications--sort)
     - [Find internship applications by the company name, job title, status, or interview date : `find`](#find-internship-applications-by-the-company-name-job-title-status-or-interview-date--find)
@@ -35,13 +34,14 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Archive an application : `archive`](#archive-an-internship-application--archive)
         - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
         - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
-    - [Remind](#displaying-the-internship-application-with-the-most-imminent-interview--remind)
+    - [Edit an internship application : `edit`](#edit-an-internship-application--edit)
+    - [Displaying reminders : `remind`](#displaying-the-internship-application-with-the-most-imminent-interview--remind)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
         - [Clear all internship applications : `clear`](#clearing-all-internship-application-entries--clear)
         - [Clear specific internship applications : `clear_by`](#clear-internship-application-entries-with-keyword--clear_by)
     - [Revert delete or clear](#revert-a-recent-deleted-internship-application--revert)
-        - [Revert the most recent delete command : `revert`](#revert-a-recent-deleted-internship-application--revert)
+        - [Revert the most recent delete command : `revert`](#revert-a-recently-deleted-internship-application--revert)
         - [Revert all delete and clear commands : `revert_all`](#revert-all-recently-deleted-or-cleared-internship-applications--revert_all)
     - [Exit InternEase : `exit`](#exiting-the-program--exit)
 
@@ -139,19 +139,19 @@ Shows user the link to user guide.
 
 Format: `help`
 
-### Adding an internship : `add`
+### Add an internship application : `add`
 
 Adds an internship application to the tracker
 
 Format: `add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...`
+- `SALARY` should be in the form of amount followed by a space and then the currency in upper case.
 
-- `Salary` should be in the form of amount followed by space currency in upper case.
-- 
+
 Examples:
 * `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
 * `add n/LinkedIn j/Software Engineer s/2000 SGD` adds an application for the Software Engineer role at LinkedIn with salary 2000 SGD.
 
-### Edit an internship : `edit`
+### Edit an internship application : `edit`
 
 Edits the internship .
 
@@ -236,12 +236,12 @@ Format: `edit_status INDEX s/STATUS`
 - Edits the status of the specified `INDEX` to the specified `STATUS`.
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
-- Available status: NA, PENDING, RECEIVED, REJECTED, NO
-    - NA: Internship application is not submitted.
+- Available status: PENDING, RECEIVED, ACCEPTED, DECLINED, REJECTED
     - PENDING: Internship application submitted, outcome has not been released.
     - RECEIVED: Offer received.
-    - REJECTED: Offer rejected.
-    - NO: Application rejected.
+    - ACCEPTED: Offer accepted.
+    - DECLINED: Offer received and declined.
+    - REJECTED: Application rejected.
 
 Examples:
 * `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
@@ -419,7 +419,7 @@ Clears all internship application entries from the internship tracker.
 
 Format: `clear`
 
-### Revert a recent deleted internship application : `revert`
+### Revert a recently deleted internship application : `revert`
 
 Reverts recent delete command and restores the relevant data to the end of the current internship applications list.
 
@@ -591,7 +591,7 @@ Format: `clear_note`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
-**Q**: How do I update the Statistics at bottom right corner?<br>
+**Q**: How do I update the statistics at bottom right corner?<br>
 **A**: It's automatically update after you execute every command / action via either CLI or GUI.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -600,9 +600,10 @@ Format: `clear_note`
 
 Action | Format, Examples
 --------|------------------
+**Add** | `add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...` <br> e.g., `add n/LinkedIn j/Software Engineer s/2000 SGD` 
 **Add Contact** | `add_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `add_contact 1 p/87654321 e/abc@gmail.com`
 **Add Documents** | `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `add_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter`
-**Add Date** | `add_date INDEX d/DATE_TIME` <br> e.g., `add_date 1 d/2023-05-02 11:30 AM`
+**Add Interview Date** | `add_date INDEX d/DATE_TIME` <br> e.g., `add_date 1 d/2023-05-02 11:30 AM`
 **Add Note** |`add_note c/NOTE_CONTENT` <br> e.g., `add_note c/The tasks are planned to be done by tomorrow!`
 **Add Todo** |`add_todo n/COMPANY_NAME J/JOB_TITLE by/DEADLINE` <br> e.g., `add_todo n/company j/Manager d/2023-09-08`
 **Archive** | `archive INDEX`<br> e.g., `archive 2`
@@ -615,13 +616,14 @@ Action | Format, Examples
 **Delete Documents** | `delete_docs INDEX` <br> e.g., `delete_docs 2`
 **Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`
 **Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
+**Edit** | `edit INDEX [n/COMPANY_NAME] [j/JOB_TITLE] [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...` <br> e.g., `edit 1 q/Singapore citizen q/Pursuing CS degree` 
 **Edit Contact** | `edit_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
 **Edit Documents** | `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
 **Edit Deadline** |`edit_deadline INDEX by/DEADLINE` <br> e.g., `edit_deadline 2 by/2023-06-05`
 **Edit Note Content** |`edit_content c/NOTE_CONTENT` <br> e.g., `edit_content 2 c/Venue changed`
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
 **Exit**   | `exit`
-**Find Applications** | `find KEYWORD [MORE KEYWORDS]` <br> e.g., `find Google` <br> `find s/STATUS` <br> e.g., `find s/PENDING` <br> `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2` <br> e.g., find before/2023-01-31 12:45 PM
+**Find Applications** | `find KEYWORD [MORE KEYWORDS]` <br> e.g., `find Google` <br> `find s/STATUS` <br> e.g., `find s/PENDING` <br> `find before/DATE`, `find after/DATE_TIME`, `find from/DATE_TIME1 to/DATE_TIME2` <br> e.g., `find before/2023-01-31 12:45 PM`
 **Find Task** |`find_task KEYWORD`<br> e.g., `find_task test`
 **Help** | `help`
 **List** |`list`
@@ -629,7 +631,7 @@ Action | Format, Examples
 **List Note** |`list_note`
 **List Task** |`list_task`
 **List Todo** |`list_todo`
-**Remind** |`remind`
+**Reminder** | `remind`
 **Revert**   | `revert`
 **Revert All**   | `revert_all`
 **Sort Applications** | `sort n/` <br> `sort j/` <br> `sort s/` <br> `sort d/`
