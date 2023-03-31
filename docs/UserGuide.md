@@ -7,27 +7,27 @@ title: User Guide
 
 **Table of Contents**
 - [Introduction](#introduction)
-- [Purpose of this User Guide](#purpose--of-this-User-Guide)
+- [Purpose of this User Guide](#purpose-of-this-user-guide)
 - [Quick Start](#quick-start)
     - [Installation](#installation)
     - [For Windows](#for-windows)
-    - [For Mac (M1 Chip)](#for-Mac-(-M1-Chip-))
+    - [For Mac](#for-mac)
     - [Trying out the commands](#trying-out-the-commands)
 - [Navigating Vimification](#navigating-vimification)
 - [Using the commands](#using-the-commands)
-- [Information on commands' parameters](#information-on-commands'-parameters)
+- [Information on commands' parameters](#information-on-commands-parameters)
 - [Features and commands](#features-and-commands)
     - [Viewing help](#viewing-help)
-    - [Adding a task](#adding-a-task)
-    - [Adding a task with a deadline](#adding-a-task-with-deadline)
-    - [Deleting a task](#deleting-a-task)
+    - [Adding task](#adding-task)
+    - [Inserting parameters to a task](#inserting-parameters-to-a-task)
+    - [Deleting task](#deleting-task)
+    - [Deleting parameters of a task](#deleting-parameters-of-a-task)
+    - [Editing task](#editing-task)
+    - [Filtering task](#filtering-task)
+    - [Sorting task](#sorting-task)
     - [Exiting the application](#exiting-the-application)
-    - [Saving the tasklist data](#saving-the-tasklist-data)
-    - [Editing tasklist data stored](#editing-tasklist-data-stored)
-    - [Archiving tasklist data](#arhiving-tasklist-data)
-FAQ
-Flag summary
-Command summary
+    - [Saving the task list data](#saving-the-task-list-data)
+    - [Editing existing task list data](#editing-existing-task-list-data)
 
 
 ## Introduction
@@ -76,7 +76,7 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
 3. The application should launch, and a GUI similar to the below should appear in a few seconds. <br>
 
-### For Mac (M1 Chip)
+### For Mac
 
 1. Ensure that you have Java `11` Zulu SDK installed in your Computer.
 
@@ -281,7 +281,7 @@ Condition
 - The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
 
     
-### Filter task
+### Filtering task
 
 Filter the parameters as specified by the flag.
 
@@ -307,7 +307,7 @@ Condition
 - Only one flag should be present. 
 
     
-### Sort task
+### Sorting task
 
 Sort the parameters as specified by the flag.
 
