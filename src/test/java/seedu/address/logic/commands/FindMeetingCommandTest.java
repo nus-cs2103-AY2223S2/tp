@@ -4,15 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
-
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_START_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_START_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,15 +18,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.MeetingStartDatePredicate;
-import seedu.address.model.person.MeetingWithPerson;
-import seedu.address.model.person.PersonLivesInRegionPredicate;
-import seedu.address.model.person.Region.Regions;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 public class FindMeetingCommandTest {
-
-    private class Hi {
-
-    }
     private final FindMeetingCommand standardCommand = new FindMeetingCommand(VALID_MEETING_START_AMY);
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -44,7 +36,8 @@ public class FindMeetingCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // Different command -> return false
-        assertFalse(standardCommand.equals(new Hi()));
+        assertFalse(standardCommand.equals(new FindCommand(new NameContainsKeywordsPredicate(
+            Collections.singletonList("Test")))));
 
         // Different inputs -> return false
         assertFalse(standardCommand.equals(new FindMeetingCommand(VALID_MEETING_START_BOB)));

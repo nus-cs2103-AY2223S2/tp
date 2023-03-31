@@ -1,49 +1,57 @@
+
 ---
-layout: page
-title: User Guide
+layout: page title: User Guide
 ---
 
-FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, FAid can get your client and meeting management tasks done quickly, so you won't ever worry about missing a meeting or forgetting about a client!
+FAid is a **desktop app for managing clients and meetings built for Financial Advisors, optimized for use via a Command
+Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAid
+can get your client and meeting management tasks done quickly, so you won't ever worry about missing a meeting or
+forgetting about a client!
 
-* Table of Contents
-{:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your operating system.
+1. Download [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) for your
+   operating system.
 
-1. To check if you have Java `11` installed and configured correctly, open a command terminal and type in the command: `java --version`. <br>
-   If java is installed successfully, your output should be similar to the following (Note that it may look slightly different depending on your exact version and operating system): <br>
+1. To check if you have Java `11` installed and configured correctly, open a command terminal and type in the
+   command: `java --version`. <br>
+   If java is installed successfully, your output should be similar to the following (Note that it may look slightly
+   different depending on your exact version and operating system): <br>
    `openjdk 11.0.17 2022-10-18 LTS` <br>
    `OpenJDK Runtime Environment Zulu11.60+19-CA (build 11.0.17+8-LTS)` <br>
    `OpenJDK 64-Bit Server VM Zulu11.60+19-CA (build 11.0.17+8-LTS, mixed mode)` <br>
    Otherwise, if java is not installed or not configured correctly, you could see an error message like this: <br>
    `'java' is not recognized as an internal or external command, operable program or batch file.` <br>
-   If you see an error message like this even after installing Java `11`, consider restarting your computer or reinstalling Java.
+   If you see an error message like this even after installing Java `11`, consider restarting your computer or
+   reinstalling Java.
 
 1. Download the latest `faid.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your FAid application.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar faid.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar faid.jar` command to
+   run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+   open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all clients.
+    * `list` : Lists all clients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to FAid.
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe`
+      to FAid.
 
-   * `delete 3` : Deletes the 3rd client shown in the current list.
+    * `delete 3` : Deletes the 3rd client shown in the current list.
 
-   * `clear` : Deletes all clients.
+    * `clear` : Deletes all clients.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -67,10 +75,12 @@ If you can type fast, FAid can get your client and meeting management tasks done
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
+  the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be
+  ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * `CLIENT_INDEX` refers to index number showed in displayed client list
@@ -89,7 +99,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-###  Adding a client : `add`
+### Adding a client : `add`
 
 Adds a client to the address book.
 
@@ -100,6 +110,7 @@ A client can have any number of tags (including 0)
 </div>
 
 Examples:
+
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
@@ -115,16 +126,18 @@ Edits an existing client in the address book.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list.
+  The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
-* You can remove all the client’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all the client’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+
+* `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567`
+  and `johndoe@example.com` respectively.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
 ### Locating clients by name: `find`
 
@@ -136,10 +149,11 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* clients matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* clients matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`
+  , `Bo Yang`
 
 Examples:
+
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
@@ -153,9 +167,9 @@ Format: `delete INDEX`
 * Deletes the client at the specified `INDEX`.
 
 Examples:
+
 * `list` followed by `delete 2` deletes the 2nd client in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
-
 
 ### Add meeting : `meetingAdd`
 
@@ -164,18 +178,21 @@ Adds a meeting to the address book.
 Format: `meetingAdd CLIENT_INDEX md/ DESC ms/ START_DATE&TIME me/ END_DATE&TIME`
 
 Required Information:
+
 * `client_INDEX`: Index of a client in address book
 * `DESC`: Description of the meeting to add
 * `START DATE&TIME`: Start date and time (Format: dd-mm-yyyy HH:MM)
 * `END DATE&TIME`: End date and time (Format: dd-mm-yyyy HH:MM)
 
 Example:
-* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` adds a meeting on 30th March 2020 from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3),
-with the description "Meeting with Charlotte".
+
+* `meetingAdd 3 md/Meeting with Charlotte ms/30-03-2020 12:30 me/30-03-2020 13:30` adds a meeting on 30th March 2020
+  from 12.30pm to 13.30pm, with Charlotte Oliveiro (index 3), with the description "Meeting with Charlotte".
 
 ![result for 'meetingAdd 3 Meeting with Charlotte 30-03-2020 12:30 30-03-2020 13:30`](images/meetingAddCharlotte.PNG)
 
 Notes:
+
 * Meeting must not conflict in timing with other meetings scheduled for the day.
 
 ### Remove meeting : `meetingRemove`
@@ -185,10 +202,12 @@ Removes meeting from the address book.
 Format: `meetingRemove CLIENT_INDEX MEETING_INDEX`
 
 Required Information:
+
 * `client_INDEX`: Index of a client already in address book
 * `MEETING_INDEX`: Index of meeting in a client
 
 Examples:
+
 * `meetingRemove 20 6` Deletes the 6th meeting added from the client with index 20.
 * `meetingRemove 3 1` Deletes the 1st meeting added from the client with index 3.
 
@@ -201,16 +220,21 @@ Updates an existing meeting belonging to a client in the address book.
 Format: `meetingUpdate CLIENT_INDEX MEETING_INDEX [md/DESCRIPTION] [ms/START] [me/END]`
 
 Required Information:
+
 * Index of a client already in address book
 * Meeting ID
 
 Examples:
-*  `meetingUpdate 1 1 md/ Policy discussion` Edits the meeting description of the 1st meeting belonging to the 1st client to `Policy discussion`
-*  `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10` Updates the description, start and end of the 3rd meeting belonging to the 2nd client
-to `Plan review`, `30-03-2020 20:10` and `30-03-2020 22:10` respectively
+
+* `meetingUpdate 1 1 md/ Policy discussion` Edits the meeting description of the 1st meeting belonging to the 1st client
+  to `Policy discussion`
+* `meetingUpdate 2 3 md/ Plan review ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10` Updates the description, start and end
+  of the 3rd meeting belonging to the 2nd client to `Plan review`, `30-03-2020 20:10` and `30-03-2020 22:10`
+  respectively
 
 Notes:
-* Edits the meetings of client at the specified `client_INDEX`. 
+
+* Edits the meetings of client at the specified `client_INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -221,11 +245,12 @@ Gets meetings from the address book
 Format: `meetingFind DATE `
 
 Required Information:
+
 * Date (dd-mm-yyyy hh:mm)
 
 Examples:
-* `meetingFind 09-11-2022 11:30` Lists out all meetings that start on 9th November 2022 at 11.30
 
+* `meetingFind 09-11-2022 11:30` Lists out all meetings that start on 9th November 2022 at 11.30
 
 ### List meeting : `meetingList`
 
@@ -236,10 +261,12 @@ Lists all meetings scheduled for the day from address book
 Lists all clients living in a given region
 
 Required information:
+
 * Region to search for
 * Region specified should be a valid region
 
 Examples:
+
 * `listRegion Central` lists all clients from the Central region in the address book
 
 ### Find clients by policy name : `findPolicy`
@@ -249,9 +276,11 @@ Lists all clients that are under a given policy
 Format: `findPolicy POLICY_NAME [MORE_POLICY_NAMES]`
 
 Required information:
+
 * Name of policy to search for
 
 Examples:
+
 * `findPolicy Insurance` Find clients with Insurance Policy as their tag
 
 ![result for findPolicy Insurance](images/findPolicyInsurance.PNG)
@@ -270,11 +299,13 @@ Format: `exit`
 
 ### Saving the data
 
-FAid data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FAid data are saved in the hard disk automatically after any command that changes the data. There is no need to save
+manually.
 
 ### Editing the data file
 
-FAid data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+FAid data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update
+data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FAid will discard all data and start with an empty data file at the next run.
@@ -286,7 +317,8 @@ If your changes to the data file makes its format invalid, FAid will discard all
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+the data of your previous AddressBook home folder.
 
 **Q**: How do I key in my client's region?<br>
 **A**: FAid automatically detects region based on address keyed in
@@ -294,30 +326,21 @@ If your changes to the data file makes its format invalid, FAid will discard all
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-|---
-| Action                 | Format, Examples                                                                                                                                                   |
-|:----------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| **Add**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`<br>e.g, `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`  |
-|---
-| **Clear**              | `clear`                                                                                                                                                            |
-|---
-| **Delete**             | `delete INDEX` e.g., `delete 3`                                                                                                                                    |
-|---
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                         |
-|---
-| **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                         |
-|---
-| **List**               | `list`                                                                                                                                                             |
-|---
-| **Help**               | `help`                                                                                                                                                             |
-|---
-| **Add Meeting**        | `meetingAdd CLIENT_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`                                                                                           |
-|---
-| **Remove Meeting**     | `meetingRemove CLIENT_INDEX MEETING_INDEX`                                                                                                                         |
-|---
-| **Find Meeting**       | `meetingFind DATE[CLIENT_INDEX]`                                                                                                                                   |
-|---
-| **List all meetings**  | `meetingList`                                                                                                                                                      |
-|---
-| **List all in Region** | `listRegion REGION`                                                                                                                                                |
-|---
+
+|--- | Action | Format, Examples | |:----------------------:|:
+------------------------------------------------------------------------------------------------------------------------------------------------------------------:
+| | **Add**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`<br>
+e.g, `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`  | |--- | **
+Clear**              | `clear`
+| |--- | **Delete**             | `delete INDEX` e.g., `delete 3`
+| |--- | **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>
+e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                         | |--- | **Find**
+| `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+| |--- | **List**               | `list`
+| |--- | **Help**               | `help`
+| |--- | **Add Meeting**        | `meetingAdd CLIENT_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`
+| |--- | **Remove Meeting**     | `meetingRemove CLIENT_INDEX MEETING_INDEX`
+| |--- | **Find Meeting**       | `meetingFind DATE[CLIENT_INDEX]`
+| |--- | **List all meetings**  | `meetingList`
+| |--- | **List all in Region** | `listRegion REGION`
+| |---

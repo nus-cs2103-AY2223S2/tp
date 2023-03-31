@@ -254,7 +254,7 @@ under an existing `Person`.
 The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
 `FindPolicyCommandParser#parse()` is called, which returns an `FindPolicyCommand` object.
 
-* `FindPolicyCommandParser`: 
+* `FindPolicyCommandParser`:
   * checks that the command contains `FindPolicyCommand.COMMAND_WORD`.
   * checks that the arguments given are Strings.
 * `FindPolicyCommand`:
