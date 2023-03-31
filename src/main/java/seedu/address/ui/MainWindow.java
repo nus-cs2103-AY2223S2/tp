@@ -222,6 +222,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private String getRemarksFromRemarkBox(String existingRemarks) {
-        return remarkWindow.showAndGetText(existingRemarks);
+        commandBoxPlaceholder.setDisable(true);
+        String updatedRemarks = remarkWindow.showAndGetText(existingRemarks);
+        commandBoxPlaceholder.setDisable(false);
+        return updatedRemarks;
     }
 }

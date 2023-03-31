@@ -10,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -25,6 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_EDUCATION = "P6";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_TELEGRAM = "@amybb";
 
     private Name name;
     private Phone phone;
@@ -32,6 +34,7 @@ public class PersonBuilder {
     private Address address;
     private Education education;
     private Remark remark;
+    private Telegram telegram;
     private Set<Tag> tags;
     private Set<Module> modules;
 
@@ -45,6 +48,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         education = new Education(DEFAULT_EDUCATION);
         remark = new Remark(DEFAULT_REMARK);
+        telegram = new Telegram(DEFAULT_TELEGRAM);
         tags = new HashSet<>();
         modules = new HashSet<>();
     }
@@ -59,6 +63,7 @@ public class PersonBuilder {
         address = personToCopy.getOptionalAddress().orElse(null);
         education = personToCopy.getOptionalEducation().orElse(null);
         remark = personToCopy.getOptionalRemark().orElse(null);
+        telegram = personToCopy.getOptionalTelegram().orElse(null);
         tags = new HashSet<>(personToCopy.getTags());
         modules = new HashSet<>(personToCopy.getModules());
     }
@@ -127,8 +132,13 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withTelegram(String telegram) {
+        this.telegram = telegram == null ? null : new Telegram(telegram);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, education, remark, modules, tags);
+        return new Person(name, phone, email, address, education, remark, telegram, modules, tags);
     }
 
 }
