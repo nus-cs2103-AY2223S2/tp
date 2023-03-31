@@ -36,7 +36,7 @@ open the help window.<br>
 
    * `list` : Lists all cases.
 
-   * `add n/John Tan p/543299 d/2023 February 13 a/20` : Adds a case named `John Tan` to the Dengue Hotspot Tracker.
+   * `add n/John Tan p/543299 d/2023 February 13 a/20` : Adds a case named `John Tan` to DengueHotspotTracker.
 
    * `delete 3` : Deletes the 3rd case shown in the current list.
    
@@ -62,21 +62,28 @@ placeholder
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                          |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​` <br> e.g., `add n/James Ho p/S222244 d/2000-11-11 a/123, v/DENV1`            |
-| **Clear**  | `clear`                                                                                                                                   |
-| **Delete** | `delete INDEX…​` or `delete [d/DATE]` or `delete [sd/STARTDATE] [ed/ENDDATE]` <br> e.g., `delete 3`, `delete d/2023-03-10`                |
-| **Edit**   | `edit INDEX [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`                    |
-| **Find**   | `find [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE]`<br/> or<br/> `find [n/NAME] [sd/START_DATE] [ed/END_DATE]`<br> e.g., `find n/James Jake` |
-| **List**   | `list`                                                                                                                                    |
-| **Sort**   | `sort [n/] [a/] [p/] [d/]`<br> e.g.,`sort d/`                                                                                             |
-| **Import** | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                      |
-| **Export** | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                      |
-| **Export** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                      |
-| **Help**   | `help`                                                                                                                                    |
-| **Undo**   | `undo [INTEGER]`                                                                                                                          |
-| **Redo**   | `redo [INTEGER]`                                                                                                                          |
+| Action       | Format, Examples                                                                                                                                                                                                                                                       |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g., `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                                                                       |
+| **Edit**     | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`                                                                                                                                                            |
+| **Delete**   | `delete INDEX...` or `delete { d/DATE &#124; [sd/START_DATE] [ed/END_DATE] } `<br> e.g., `delete 3`, `delete d/2023-03-10`                                                                                                                                             |
+| **Clear**    | `clear`                                                                                                                                                                                                                                                                |
+| **List**     | `list`                                                                                                                                                                                                                                                                 |
+| **Find**     | `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \`<br> `&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }`<br> e.g., `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
+| **Sort**     | `sort { n/ &#124; a/ &#124; d/ }`<br> e.g.,`sort d/`                                                                                                                                                                                                                   |
+| **Undo**     | `undo [INTEGER]`<br> e.g., `undo 5`                                                                                                                                                                                                                                    |
+| **Redo**     | `redo [INTEGER]`<br> e.g., `redo 2`                                                                                                                                                                                                                                    |
+| **Overview** | `overview { p/ &#124; a/ &#124; v/ }`<br> e.g., `overview v/`                                                                                                                                                                                                          |
+| **Checkout** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                                                                 |
+| **Import**   | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                                                                   |
+| **Export**   | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                                                                   |
+| **Help**     | `help`                                                                                                                                                                                                                                                                 |
+| **Exit**     | `exit`                                                                                                                                                                                                                                                                 |
+
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -92,40 +99,35 @@ placeholder
 * Items in square brackets are optional.<br>
   e.g `n/NAME [v/VARIANT]` can be used as `n/John Doe v/DENV1` or as `n/John Doe`.
 
-* Multiple date formats are accepted, as long as `yyyy`, `MM`/`MMM`/`MMMM` and `dd` are present,<br>
-  with no extra alphanumeric characters.
-  e.g `d/2000-january-05`, `d/jan 2000 01`, `20000101` will all work.
+* Multiple date formats are accepted, as long as `yyyy`, `MM`/`MMM`/`MMMM` and `dd` are present,
+  with no extra alphanumeric characters.<br>
+  e.g `d/2000-january-01`, `d/jan 2000 01`, `d/20000101` will all work.<br>
   When it is ambiguous whether a sequent of digits corresponds to `MM` or `dd` or `yyyy`, 
-  The first sequence of 4 digits will be read as `yyyy`, before the first sequence of 2 digits
-  is read into `MM`. Then, `dd` is the last to be read in. Thus, `20000102` is read as 2nd Jan 2000.
+  the first sequence of 4 digits will be read as `yyyy`, then the first sequence of 2 digits
+  is read into `MM`, then `dd` is the last to be read in. Thus, `20000102` is read as 2nd Jan 2000.
 
-* Items in curly brackets are features that are currently work in progress. <br>
-  e.g `{t/TAG}` means that tagging someone has not yet been implemented, but is planned to be a feature.
+* Items in curly brackets `{ }` separated by vertical lines `&#124;` form a set from which one option is to be chosen.<br>
+  e.g `{ p/ &#124; a/ &#124; v/ }` means that exactly one of `p/`, `a/` and `v/` must be chosen.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[v/VARIANT]…​` can be used as ` ` (i.e. 0 times), `v/DENV1`, `v/DENV1 v/DENV2` etc.
+* Items with `...` after them can be used multiple times including zero times.<br>
+  e.g. `[v/VARIANT]...` can be used as ` ` (i.e. 0 times), `v/DENV1`, `v/DENV1 v/DENV2`, etc.
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/POSTAL_CODE`, `p/POSTAL_CODE n/NAME` is also acceptable.
+* Parameters with prefixes can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/POSTAL`, `p/POSTAL n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/123414 p/567878`, only `p/567878` will be taken.
+* If a parameter is expected only once in the command but was specified multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if `p/123414 p/567878` was given, only `p/567878` will be parsed.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (e.g. `clear`, `list`, `help` and `exit`) will be ignored.<br>
+  e.g. if the command `help 123` was given, it will be interpreted as `help`.
 
 * For postal codes, the user may choose to enter a sequence of 6 digits, or the letter `"S"` or `"s"` followed by the sequence of 6 digits. Postal codes should be valid, i.e. their first two digits should start with a valid postal sector in Singapore.
-
-* Users may choose to enter dates in various formats, including but not limited to:
-  * `yyyy-mm-dd`, e.g. `2023-03-12`
-  * `yyyy/mm/dd`, e.g. `2023/03/12`
-  * `dd MMM yyyy`, e.g. `12 mar 2023`
 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Valid persons
+## Valid Persons
 This section describes the requirements of the specified data fields.
 
 ### Person names
@@ -134,21 +136,21 @@ The first character of the name must not be a whitespace
 * Names have a maximum allowed length of 50 and cannot be blank.
 
 ### Postal codes
-* Postal codes must be of the following format:
-    * S123456
+* Postal codes must be in of the following formats:
+    * S123456, or s123456
     * 123456
 * Postal codes must have 6 digits.
 
 ### Date
 * Dates should adhere to the following constraints:
   * Year:
-    * 4-digit years YYYY
+    * 4-digit years `YYYY`
   * Month:
-    * 2-digit months MM 
-    * 3-letter months MMM
-    * fully-spelled months MMMM
+    * 2-digit months `MM` 
+    * 3-letter months `MMM`
+    * Fully-spelled months `MMMM`
   * Day:
-    * 2-digit days dd
+    * 2-digit days `dd`
 
 ### Age
 * Ages should only contain numeric characters.
@@ -158,7 +160,7 @@ The first character of the name must not be a whitespace
         * `51`
         * `199`
     * Invalid:
-        * `#200` (contains invalid hash symbol)
+        * `#20` (contains invalid hash symbol)
         * `200` (outside of the range of valid ages)
 
 ### Variants
@@ -174,47 +176,21 @@ The first character of the name must not be a whitespace
 
 ### Adding a case: `add`
 
-Adds a dengue patient to the dengue hotspot tracker.
+Adds a dengue patient to DengueHotspotTracker.
 
-Format: `add n/PATIENT_NAME p/POSTAL_CODE d/DATE a/AGE [v/DENGUE_VARIANT]…​`
-
-Examples:
-* `add n/John Tan p/543299 d/2023-02-13 a/20 v/DENV1`
-* `add n/Desiree Lim p/519999 d/2023-02-13 a/18`
-
-### Clearing all entries: `clear`
-
-Clears all entries from the Dengue Hotspot Tracker.
-
-Format: `clear`
-
-### Deleting cases: `delete`
-
-Deletes the specified cases from the Dengue Hotspot Tracker. The cases can be specified with indexes, a date, or a date range.
-
-Format: `delete INDEX…​` or `delete d/DATE` or `delete [sd/STARTDATE] [ed/ENDDATE]`, where at least one of the optional fields must be provided.
-
-* Deletes cases at the specified `INDEX`es, cases from the specified `DATE`, or cases falling within the specified range from `STARTDATE` to `ENDDATE` inclusive.
-* The index refers to the index number shown in the displayed case list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* The command will fail if multiple indexes are given and at least one of them is out of range of the displayed case list.
-* If a start date is given without an end date, the range will be taken to end at the latest date in the Dengue Hotspot Tracker.
-* Likewise, if an end date is given without a start date, the range will be taken to start at the earliest date in the Dengue Hotspot Tracker.
-* The `sd/` and `ed/` arguments can be given in any order.
-* The start date must come before or be the same as the end date.
-* The three variations of the delete command should not be used together, i.e. indexes should not be provided with dates, and `d/` should not co-occur with `sd/` or `ed/`.
+Format: `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`
 
 Examples:
-* `list` followed by `delete 2 3` deletes the 2nd and 3rd cases in the Dengue Hotspot Tracker.
-* `find n/Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
-* `find p/s666` followed by `delete d/2023-03-23` deletes the cases from 23rd March 2023 in the results of the `find` command.
-* * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 2023 inclusive in the results of the `find` command.
+* `add n/John Tan a/20 p/543299 d/2023-02-13 v/DENV1`
+* `add p/519999 n/Desiree Lim d/2023-02-13 a/18`
+
+<br>
 
 ### Editing a case: `edit`
 
-Edits an existing case in the Dengue Hotspot Tracker.
+Edits an existing case in DengueHotspotTracker.
 
-Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`
+Format: `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/DENGUE_VARIANT]...`
 
 * Edits the case at the specified `INDEX`. The index refers to the index number shown in the displayed case list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -222,20 +198,65 @@ Format: `edit INDEX [n/NAME] [p/POSTAL] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…�
 * Existing values will be updated to the input values.
 * When editing dengue variants, all existing variants of the case will be removed i.e adding of variants is not cumulative.
 * You can remove all the case’s dengue variants by typing `v/` without
-    specifying any variants after it.
+  specifying any variants after it.
 
 Examples:
 * `edit 1 p/912345 d/2001-01-01` Edits the postal code and date of the 1st case to be `S912345` and `2001-01-01`
-respectively.
+  respectively.
 * `edit 2 n/Betsy Crower v/` Edits the name of the 2nd case to be `Betsy Crower` and clears all tagged dengue variants.
+
+<br>
+
+### Deleting cases: `delete`
+
+Deletes the specified case(s) from DengueHotspotTracker. The cases can be specified with indexes, a date, or a date range.
+
+Format: `delete INDEX...` or `delete d/DATE` or `delete [sd/START_DATE] [ed/END_DATE]`, where at least one of the optional fields must be provided.
+
+* Deletes cases at the specified `INDEX`es, cases from the specified `DATE`, or cases falling within the specified range from `START_DATE` to `END_DATE` inclusive.
+* The index refers to the index number shown in the displayed case list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The command will fail if multiple indexes are given and at least one of them is out of range of the displayed case list.
+* If a start date is given without an end date, the range will be taken to end at the latest date in DengueHotspotTracker.
+* Likewise, if an end date is given without a start date, the range will be taken to start at the earliest date in DengueHotspotTracker.
+* The `sd/` and `ed/` arguments can be given in any order.
+* The start date must come before or be the same as the end date.
+* The three variations of the delete command should not be used together, i.e. indexes should not be provided with dates, and `d/` should not co-occur with `sd/` or `ed/`.
+
+Examples:
+* `list` followed by `delete 2 3` deletes the 2nd and 3rd cases in DengueHotspotTracker.
+* `find n/Betsy` followed by `delete 1` deletes the 1st case in the results of the `find` command.
+* `find p/s666` followed by `delete d/2023-03-23` deletes the cases from 23rd March 2023 in the results of the `find` command.
+* * `find p/243` followed by `delete sd/2023-03-20 ed/2023-03-27` deletes the cases from 20th March 2023 to 27th March 2023 inclusive in the results of the `find` command.
+
+<br>
+
+### Clearing all entries: `clear`
+
+Clears all entries from the **current view** of DengueHotspotTracker.
+
+Format: `clear`
+
+Examples:
+* `list` followed by `clear` clears all cases from DengueHotspotTracker.
+* `find n/Betsy` followed by `clear` deletes all cases with names that include "Betsy".
+
+<br>
+
+### Listing all cases: `list`
+
+Displays all cases in DengueHotspotTracker.
+
+Format: `list`
+
+<br>
 
 ### Finding cases by prefixes: `find` 
 
-Find cases which matches the given prefixes. Date ranges and age ranges are also supported using new prefixes
+Finds cases which match the given prefixes. Date ranges and age ranges are also supported using the new prefixes
 `sd/` `ed/` `sa/` `ea/`.
 
-Format: `find [n/NAME] [p/POSTAL_CODE] [d/DATE] [a/AGE] [v/DENGUE_VARIANT]…​`<br/> or<br/> `
-find [n/NAME] [sd/START_DATE] [ed/END_DATE] [v/DENGUE_VARIANT]…​`
+Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }`
 
 * The search is case-insensitive for all tags.
   * e.g. `n/hans` will match `Hans` or `hAns`
@@ -271,32 +292,78 @@ date `d/` or age `a/` prefixes respectively
 
 Examples:
 * `find v/denv1` finds all cases with `DENV1` in their variant tags.
-  ![result for find v/denv1](images/findExample.png)
 
-### Listing all cases: `list`
+![result for find v/DENV1](images/findExample.png)
 
-Shows a list of all cases in the Dengue Hotspot Tracker.
-
-Format: `list`
+<br>
 
 ### Sorting cases: `sort`
 
-Sorts the entire case list based on the specified criteria.
+Sorts the entire case list based on the specified criterion.
 
-Format: `sort [n/] [a/] [p/] [d/]`
+Format: `sort { n/ &#124; a/ &#124; d/ }`
 
-* Sorts cases based on the specified criteria.
-* One and only one of the criteria must be specified; `n/` for name, `a/` for age, `p/` for postal, and `d/` for date.
+* Sorts cases based on the specified criterion.
+* One and only one of the prefixes must be specified: `n/` for name, `a/` for age, and `d/` for date.
+
+<br>
+
+### Undoing/Redoing an action : `undo` or `redo`
+
+Undo's/redo's an action that resulted in the change of DengueHotspotTracker data.
+
+Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
+
+* The use can undo/redo an action multiple times, specified by the value of `INTEGER`. If not provided, `INTEGER` is assumed to be 1.
+* `INTEGER` must be a strictly positive integer.
+* The user cannot undo/redo actions from a previous session of starting the app.
+* The user cannot undo actions that are more than 10 iterations old.
+* The user cannot undo actions that do not change the data of DengueHotspotTracker, such as list and find.
+* Performing a change after undo-ing will clear any possible `redo` actions.
+
+<br>
+
+### Changing the overview type : `overview`
+
+Switches between the three overview options to summarize the data based on: location by postal code (default), age group, or dengue variant.
+
+Format: `overview { p/ &#124; a/ &#124; v/ }`
+
+* The default setting upon app start-up is `p/`.
+* One and only one of the three prefixes can be chosen: `p/` (location), `a/` (age), or `v/` (dengue variant).
+* The overview is updated in realtime by other command calls as well.
+
+<br>
+
+### Checking out overview to CSV file : `checkout`
+
+Exports the currently displayed overview to a CSV file.
+
+Format: `checkout [FILENAME]`
+
+Example CSV output of  `checkout overview.csv`:
+<pre><code style="white-space: pre-wrap;">"id","binName","binSize"
+"1","0 - 9","3"
+"2","10 - 19","1"
+"3","110 - 119","1"
+"4","190 - 199","1"
+</code></pre>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can view and open this csv in excel or any spreadsheet editor!
+</div>
+
+<br>
 
 ### Importing data from CSV file : `import`
 
-Use this command to import persons from a CSV file. Imported items will be added to the front of the list.
+Imports persons from a CSV file. Imported items will be added to the front of the list.
 
 Format: `import [FILENAME]`
 
 * The dengue case list imported must be valid. Some criteria are as follows:
     * No duplicates
-    * All fields [valid](#valid-denguehotspottracker)
+    * All fields must be [valid](#valid-denguehotspottracker)
     * No missing fields
 * The CSV must begin with a header that includes the names of each column.
 
@@ -316,9 +383,11 @@ If you are using Microsoft Excel, you can easily export your data to a CSV file 
 
 See [below](#exporting-data-to-csv-file--export) for example CSV files.
 
+<br>
+
 ### Exporting data to CSV file : `export`
 
-Use this command to export currently displayed cases to a CSV file.
+Exports the currently displayed cases to a CSV file.
 
 Format: `export [FILENAME]`
 
@@ -336,55 +405,25 @@ Example CSV output of  `export sampledata.csv`
 Try copying these to a .csv file. Then import them as sample inputs!
 </div>
 
-### Checking out overview to CSV file : `checkout`
-
-Use this command to export currently displayed cases to a CSV file.
-
-Format: `checkout [FILENAME]`
-
-Example CSV output of  `checkout overview.csv`
-<pre><code style="white-space: pre-wrap;">"id","binName","binSize"
-"1","0 - 9","3"
-"2","10 - 19","1"
-"3","110 - 119","1"
-"4","190 - 199","1"
-</code></pre>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can view and open this csv in excel or any spreadsheet editor!
-</div>
+<br>
 
 ### Viewing help: `help`
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a summary of the available commands and their formats, and links the user to this user guide.
 
 Format: `help`
 
-### Undo/Redo an action : `undo` or `redo`
+![help message](images/helpMessage.png)
 
-Undo/redo an action that resulted in the change of the Dengue Hotspot Tracker data.
-
-Format: `undo [INTEGER]` or `redo [INTEGER]` for `undo` and `redo` respectively.
-
-* Undo/redo an action multiple times, specified by the number `INTEGER`. If not specified, `INTEGER` is assumed to be 1.
-* `INTEGER` must be a strictly positive integer.
-* The user cannot undo/redo actions from a previous session of starting the app.
-* The user cannot undo actions that are more than 10 iterations old.
-* The user cannot undo actions that do not change the data of the Dengue Hotspot Tracker, such as list and find.
-* Performing a change after undo-ing will clear any possible `redo` actions.
-
-Examples:
-* `list` followed by `clear' 
-s all cases from the Dengue Hotspot Tracker.
-* `find n/Betsy` followed by `clear` deletes all cases in the results of the `find` command.
+<br>
 
 ### Exiting the program: `exit`
 
-Exits the program.
+Closes DengueHotspotTracker.
 
 Format: `exit`
+
+<br>
 
 ### Saving the data
 
@@ -401,9 +440,11 @@ If your changes to the data file makes its format invalid, DengueHotspotTracker 
 empty data file at the next run.
 </div>
 
+<br>
+
 ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ...
+*Details coming soon ...*
 
 --------------------------------------------------------------------------------------------------------------------
 
