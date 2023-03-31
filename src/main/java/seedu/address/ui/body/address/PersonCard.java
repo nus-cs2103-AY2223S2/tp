@@ -80,7 +80,7 @@ public class PersonCard extends UiPart<Region> {
         }
 
         id.setText(String.valueOf(displayedIndex));
-        star.setVisible(person.getIsFavorite().getFavoriteStatus());
+        star.setVisible(person.getFavorite().getFavoriteStatus());
 
         ObservableList<Node> summary = summaryContainer.getChildren();
         summary.clear();

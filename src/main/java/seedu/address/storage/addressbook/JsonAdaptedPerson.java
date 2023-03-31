@@ -99,7 +99,7 @@ public class JsonAdaptedPerson {
         this.tagged.addAll(source.getSetOfTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        this.isFavorite = source.getIsFavorite().toString();
+        this.isFavorite = source.getFavorite().toString();
         this.faculty = source.getFaculty().value;
     }
 

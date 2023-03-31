@@ -49,11 +49,11 @@ public class UnfavoriteCommand extends Command {
 
         Person personToUnfav = lastShownList.get(index.getZeroBased());
 
-        if (!personToUnfav.getIsFavorite().getFavoriteStatus()) {
+        if (!personToUnfav.getFavorite().getFavoriteStatus()) {
             return new CommandResult(String.format(MESSAGE_ISUNFAVORITED, personToUnfav));
         }
 
-        Person unfavoritedPerson = personToUnfav.unfavorite();
+        Person unfavoritedPerson = personToUnfav.setFavorite(false);
 
         model.setPerson(personToUnfav, unfavoritedPerson);
 

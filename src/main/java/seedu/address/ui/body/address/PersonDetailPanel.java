@@ -56,7 +56,7 @@ public class PersonDetailPanel extends UiPart<Region> {
 
         name.setText(person.getName().toString());
         dataContainer.getChildren().addAll(getDataCardCollection(person));
-        star.setVisible(person.getIsFavorite().getFavoriteStatus());
+        star.setVisible(person.getFavorite().getFavoriteStatus());
     }
 
     /**

@@ -44,7 +44,7 @@ public class User extends Person {
                 user.getRace(),
                 user.getTags(),
                 user.getComms(),
-                user.getIsFavorite(),
+                user.getFavorite(),
                 user.getFaculty());
         this.events = events;
     }
