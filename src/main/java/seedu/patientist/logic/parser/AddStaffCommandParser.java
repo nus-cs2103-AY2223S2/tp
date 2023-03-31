@@ -9,7 +9,6 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -50,8 +49,7 @@ public class AddStaffCommandParser implements Parser<AddStaffCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         IdNumber id = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
-        Set<Tag> tagList = new HashSet<>(Arrays.asList(new Tag("Staff")));
-        tagList.addAll(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
+        Set<Tag> tagList = new HashSet<>(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
         Ward ward = ParserUtil.parseWard(argMultimap.getValue(PREFIX_WARD).get());
 
         Staff staff = new Staff(name, phone, email, id, address, tagList);

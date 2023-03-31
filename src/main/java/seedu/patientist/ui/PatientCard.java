@@ -1,28 +1,20 @@
 package seedu.patientist.ui;
 
 import java.util.Comparator;
-import java.util.List;
-import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import seedu.patientist.commons.core.LogsCenter;
-import seedu.patientist.model.person.Person;
 import seedu.patientist.model.person.patient.Patient;
-import seedu.patientist.model.person.patient.PatientStatusDetails;
-import seedu.patientist.model.person.patient.PatientToDo;
 
 /**
- * The UI component that is responsible for a pop-up to show details of Person.
+ * An UI component that displays information of a {@code Person}.
  */
-public class DetailsPopup extends UiPart<Region> {
+public class PatientCard extends UiPart<Region> {
 
-    private static final Logger logger = LogsCenter.getLogger(DetailsPopup.class);
-    private static final String FXML = "DetailsPopup.fxml";
+    private static final String FXML = "PatientListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -32,14 +24,16 @@ public class DetailsPopup extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on Patientist level 4</a>
      */
 
-    public final Person person;
+    public final Patient patient;
 
     @FXML
-    private HBox detailsPane;
+    private HBox cardPane;
     @FXML
     private Label name;
     @FXML
     private Label idNumber;
+    @FXML
+    private Label id;
     @FXML
     private Label phone;
     @FXML
@@ -49,51 +43,46 @@ public class DetailsPopup extends UiPart<Region> {
     @FXML
     private Label priority;
     @FXML
-    private VBox status;
-    @FXML
-    private VBox todos;
-    @FXML
     private FlowPane tags;
 
-
     /**
-     * Creates a {@code DetailsPopup} with the given {@code personListPanel}.
+     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public DetailsPopup(Person personToView) {
+    public PatientCard(Patient patient, int displayedIndex) {
         super(FXML);
-        this.person = personToView;
-        if (personToView == null) {
-            name.setText("");
-            phone.setText("");
-            address.setText("");
-            email.setText("");
-            idNumber.setText("");
-            return;
-        }
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        String s = person.getIdNumber().toString();
+
+        this.patient = patient;
+        id.setText(displayedIndex + ". ");
+        name.setText(patient.getName().fullName);
+        phone.setText(patient.getPhone().value);
+        address.setText(patient.getAddress().value);
+        email.setText(patient.getEmail().value);
+        String s = patient.getIdNumber().toString();
         idNumber.setText(s);
-        if (personToView instanceof Patient) {
-            Patient patientToView = (Patient) personToView;
-            priority.setText(patientToView.getPriority().tagName);
-            textToColor(priority.getText());
-            List<PatientStatusDetails> details = patientToView.getPatientStatusDetails();
-            for (int i = 1; i < details.size() + 1; i++) {
-                status.getChildren().add(new Label(String.format("%d. ", i) + details.get(i - 1).getDetails()));
-            }
-            List<PatientToDo> todos = patientToView.getPatientToDoList();
-            for (int i = 1; i < todos.size() + 1; i++) {
-                this.todos.getChildren()
-                        .add(new Label(String.format("%d. ", i) + todos.get(i - 1).getTodo()));
-            }
-        }
-        tags.getChildren().add(new Label(person.getRoleTag().tagName));
-        person.getTags().stream()
+        priority.setText(patient.getPriority().tagName);
+        textToColor(priority.getText());
+        tags.getChildren().add(new Label(patient.getRoleTag().tagName));
+        patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PatientCard)) {
+            return false;
+        }
+
+        // state check
+        PatientCard card = (PatientCard) other;
+        return id.getText().equals(card.id.getText())
+               && patient.equals(card.patient);
     }
 
     private void textToColor(String text) {

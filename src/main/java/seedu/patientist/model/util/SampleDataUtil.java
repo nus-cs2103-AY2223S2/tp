@@ -26,36 +26,30 @@ public class SampleDataUtil {
     public static Patient[] getSamplePatients() {
         return new Patient[] {
             new Patient(new Email("alexyeoh@example.com"), new Name("Alex Yeoh"), new Phone("87438807"),
-                    new IdNumber("A12345A"), new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("Patient")),
+                    new IdNumber("A12345A"), new Address("Blk 30 Geylang Street 29, #06-40"), getTagSet()),
             new Patient(new Email("berniceyu@example.com"), new Name("Bernice Yu"), new Phone("99272758"),
-                    new IdNumber("A12345B"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("Patient")),
+                    new IdNumber("A12345B"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), getTagSet()),
             new Patient(new Email("charlotte@example.com"), new Name("Charlotte Oliveiro"), new Phone("93210283"),
-                    new IdNumber("A12345C"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("Patient")),
+                    new IdNumber("A12345C"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), getTagSet()),
             new Patient(new Email("lidavid@example.com"), new Name("David Li"), new Phone("91031282"),
-                    new IdNumber("A12345D"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("Patient")),
+                    new IdNumber("A12345D"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagSet()),
             new Patient(new Email("irfan@example.com"), new Name("Irfan Ibrahim"), new Phone("92492021"),
-                    new IdNumber("A12345E"), new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("Patient")),
+                    new IdNumber("A12345E"), new Address("Blk 47 Tampines Street 20, #17-35"), getTagSet()),
             new Patient(new Email("royb@example.com"), new Name("Roy Balakrishnan"), new Phone("92624417"),
-                    new IdNumber("A12345F"), new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("Patient"))
+                    new IdNumber("A12345F"), new Address("Blk 45 Aljunied Street 85, #11-31"), getTagSet())
         };
     }
 
     private static Staff[] getSampleStaffs() {
         return new Staff[] {
             new Staff(new Name("Amy Bee"), new Phone("11111111"), new Email("amy@example.com"),
-                    new IdNumber("A12345678B"), new Address("Block 312, Amy Street 1"), getTagSet("Staff")),
+                    new IdNumber("A12345678B"), new Address("Block 312, Amy Street 1"), getTagSet()),
             new Staff(new Name("Bob Choo"), new Phone("222222222"), new Email("bob@example.com"),
-                    new IdNumber("Y78932734N"), new Address("Block 123, Bobby Street 3"), getTagSet("Staff")),
+                    new IdNumber("Y78932734N"), new Address("Block 123, Bobby Street 3"), getTagSet()),
             new Staff(new Name("Charles Lee"), new Phone("2136784"), new Email("leecharles@example.com"),
-                    new IdNumber("G487659645D"), new Address("123, ABC, #08-111"), getTagSet("Staff")),
+                    new IdNumber("G487659645D"), new Address("123, ABC, #08-111"), getTagSet()),
             new Staff(new Name("Dacia Chin"), new Phone("96128393"), new Email("daciachin@example.com"),
-                    new IdNumber("L73825263J"), new Address("970, Hindhede St, #07-27"), getTagSet("Staff")),
+                    new IdNumber("L73825263J"), new Address("970, Hindhede St, #07-27"), getTagSet()),
         };
     }
 

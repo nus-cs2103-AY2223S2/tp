@@ -14,7 +14,6 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -64,8 +63,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
                     new ArrayList<>(ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_STATUS)));
             ArrayList<PatientToDo> toDos =
                     new ArrayList<>(ParserUtil.parseToDos(argMultimap.getAllValues(PREFIX_TODO)));
-            Set<Tag> tagList = new HashSet<>(List.of(new Tag("Patient"), priority));
-            tagList.addAll(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
+            Set<Tag> tagList = new HashSet<>(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
             Patient patient = new Patient(idNumber, name, phone, email, address, priority, details, toDos, tagList);
             return new AddPatientCommand(ward.getWardName(), patient);
         } catch (IllegalArgumentException e) {

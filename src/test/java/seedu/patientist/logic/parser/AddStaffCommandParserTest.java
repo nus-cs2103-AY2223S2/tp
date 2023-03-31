@@ -55,7 +55,7 @@ public class AddStaffCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Staff expectedStaff = new StaffBuilder(BOB).withTags(VALID_TAG_FRIEND, staffTag).build();
+        Staff expectedStaff = new StaffBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -83,7 +83,7 @@ public class AddStaffCommandParserTest {
                 new AddStaffCommand(VALID_WARD_BOB, expectedStaff));
 
         // multiple tags - all accepted
-        Staff expectedStaffMultipleTags = new StaffBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND, staffTag)
+        Staff expectedStaffMultipleTags = new StaffBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + PID_DESC_BOB + WARD_DESC_BOB,
@@ -93,7 +93,7 @@ public class AddStaffCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Staff expectedStaff = new StaffBuilder(AMY).withTags(staffTag).build();
+        Staff expectedStaff = new StaffBuilder(AMY).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PID_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + WARD_DESC_AMY, new AddStaffCommand(VALID_WARD_AMY, expectedStaff));
     }

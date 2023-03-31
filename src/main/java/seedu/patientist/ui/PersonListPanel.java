@@ -9,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.patientist.commons.core.LogsCenter;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
 
 /**
  * Panel containing the list of persons.
@@ -41,7 +43,11 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                if (person instanceof Patient) {
+                    setGraphic(new PatientCard((Patient) person, getIndex() + 1).getRoot());
+                } else {
+                    setGraphic(new StaffCard((Staff) person, getIndex() + 1).getRoot());
+                }
             }
         }
     }
