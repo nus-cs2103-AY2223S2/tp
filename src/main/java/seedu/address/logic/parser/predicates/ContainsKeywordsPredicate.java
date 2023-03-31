@@ -67,6 +67,15 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
                             person.getOptionalEducation().map(education -> education.value)
                                     .orElse(null), keyword));
         }
+
+        if (keywords.getValue(PREFIX_TELEGRAM).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_TELEGRAM);
+            hasMatching = hasMatching || values.stream()
+                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+                            person.getOptionalTelegram().map(telegram -> telegram.value)
+                                    .orElse(null), keyword));
+        }
+
         if (keywords.getValue(PREFIX_REMARK).isPresent()) {
             List<String> values = keywords.getAllValues(PREFIX_REMARK);
             hasMatching = hasMatching || values.stream()
