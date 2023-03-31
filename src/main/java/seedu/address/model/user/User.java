@@ -26,8 +26,8 @@ import seedu.address.model.person.fields.Tags;
  * Store all relevant information about the User.
  */
 public class User extends Person {
+    private static final String DEFAULT_NAME = "Neo";
 
-    //todo: Add event list!
     private final UniqueEventList events;
 
     /**
@@ -56,6 +56,7 @@ public class User extends Person {
                 Major major, Modules modules, Race race, Tags tags, CommunicationChannel comms,
                 Favorite favorite, Faculty faculty, List<Event> events) {
         super(name, phone, email, address, gender, major, modules, race, tags, comms, favorite, faculty);
+        Objects.requireNonNull(events);
         this.events = new UniqueEventList();
         this.events.setEvents(events);
     }
@@ -75,7 +76,7 @@ public class User extends Person {
      * Constructor for an empty {@code User}.
      */
     public User() {
-        super(new Name("Neo"));
+        super(new Name(DEFAULT_NAME));
         events = new UniqueEventList();
     }
 
