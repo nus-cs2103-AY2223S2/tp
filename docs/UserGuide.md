@@ -204,23 +204,31 @@ Examples:
 
 Edits a student's remark.
 
-> Format: `remark INDEX [r/REMARK]`
+> Format: `remark INDEX`
+
+There you can type your desired remarks into the popup text box. When you are done, you can simply press `Ctrl` + `S`
+and your remarks will be saved.
 
 Examples:
 
-- `remark 2 r/Not good in Japanese`
-- `remark 1 r/Bad in German`
-- `remark 3` _(removes student's remark)_
+- `remark 2'
 
-<p align=center>
-    <img alt="remark before" src="images/user-guide/remark_before.jpg" />
-    <br><i><b>Above:</b> Before entering <code>remark</code> command</i>
-</p>
+[//]: # (<p align=center>)
 
-<p align=center>
-    <img alt="remark after" src="images/user-guide/remark_after.jpg" />
-    <br><i><b>Above:</b> After entering <code>remark</code> command</i>
-</p>
+[//]: # (    <img alt="remark before" src="images/user-guide/remark_before.jpg" />)
+
+[//]: # (    <br><i><b>Above:</b> Before entering <code>remark</code> command</i>)
+
+[//]: # (</p>)
+
+[//]: # ()
+[//]: # (<p align=center>)
+
+[//]: # (    <img alt="remark after" src="images/user-guide/remark_after.jpg" />)
+
+[//]: # (    <br><i><b>Above:</b> After entering <code>remark</code> command</i>)
+
+[//]: # (</p>)
 
 [↑ Back to top](#table-of-contents)
 
@@ -268,6 +276,7 @@ tags and modules in full.
   * Email: `e/`
   * Phone No.: `p/`
   * Education: `edu/`
+  * Telegram Handle: `tele`
   * Remark: `r/`
   * Tags: `t/`
   * Modules: `m/`

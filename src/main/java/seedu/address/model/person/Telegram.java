@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's telegram handle in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidHandle} (String)}
  */
 public class Telegram {
 
@@ -28,7 +28,11 @@ public class Telegram {
     public Telegram(String telegram) {
         requireNonNull(telegram);
         checkArgument(isValidHandle(telegram), MESSAGE_CONSTRAINTS);
+//        value = telegram.charAt(0) == '@'
+//                ? telegram
+//                : "@" + telegram;
         value = telegram;
+        System.out.println(value);
     }
 
     /**
