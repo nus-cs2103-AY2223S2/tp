@@ -288,7 +288,32 @@ Examples:
 * `re_edit 1 1 d/Tuesday`
 * `re_edit 1 1 t/14:00`
 
-### List all events: `event list`  [coming soon]
+#### 2) Export a person: `export`
+Export a person's details from the address book. 
+
+Format: `export [INDEX_OF_PERSON]`
+
+* Exports a person's details with the specified `INDEX`
+* All details except groups and tags are exported.
+* Export data is saved in the data/export.json
+* Exporting a person will overwrite any existing export.json file
+
+Examples:
+* `export 1`
+* `export 2`
+
+### Find free time slots: `free`
+
+Displays the time slots in a week when all members of the specified group are free (no events).
+
+Format: free GROUP_INDEX [START_DATE]
+
+* Finds unoccupied time slots within members of the group at the specified `INDEX`. The index refers to the index number
+  shown in the displayed group list. The index *must be a positive* 1, 2, 3 ...
+* The `START_DATE` field is optional. The time slots will be shown for the week ahead, starting from that date. If it is
+  not provided, then the current date will be used.
+* `START_DATE` must be of the format: `dd/MM/yyyy`
+
 
 ### Importing data : `import`
 Import one person into your address book to update their details and events.
@@ -325,10 +350,6 @@ WhereGotTime data are saved as a JSON file `[JAR file location]/data/wheregottim
 If your changes to the data file makes its format invalid, the app will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -359,4 +380,6 @@ _Details coming soon ..._
 | **Recurring Event create** | `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                              |
 | **Recurring Event delete** | `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                              |
 | **Recurring Event update** | `re_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] re/NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                  |
+| **Export person** | `export [INDEX_OF_PERSON]` |
 | **Event list**             | [coming soon]                                                                                                                                                               |
+| **Free**                   | `free GROUP_INDEX [START_DATE]`                                                                                                                                             |
