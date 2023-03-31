@@ -82,11 +82,11 @@ Without further ado, let's get started!
 
     * `student 1A grade in/13 test/CA1 score/75 deadline/15/05/2023 weightage/20`: Adds a test named CA1, score of 75, deadline of 15/05/2023, weightage 20% to student index number 13 in class 1A
     * `student 1A gradedelete in/13 test/CA1`: Deletes a test named CA1 for student in class 1A with index 13
-    * `clear` : Deletes all contacts.
     * `exit` : Exits the app.
 
 
 7. Refer to the [Features](#features) below for details of each command.
+8. To clear the student and parent list, make use of student [delete](#deletestudent) and parent [delete](#deleteparent) commands.
 
 <div style="page-break-after: always;"></div>
 
@@ -98,16 +98,18 @@ Without further ado, let's get started!
 
 1. Absolute Path to Image: Location where the image is stored <br>
    By default, it should be stored in the images folder as mentioned [here](#images). <br><br>
-2. Attributes: Information of a student / parent. <br>
-   For example, name, phone number, email address etc <br><br>
-3. CLI: Command Line Interface <br><br>
-4. Hard disk: Non-volatile data storage device, your OS's storage in short. <br><br>
-5. JSON: JavaScript Object Notation, open standard file format for storing text. <br>
+2. Attributes: General particulars of a student/parent. <br>
+   For example, name, phone number, email address etc. <br><br>
+3. Parameters: The actual information of a student/parent <br>
+   For example, Tan Ah Kow, 91234567 etc. <br><br>
+4. CLI: Command Line Interface <br><br>
+5. Hard disk: Non-volatile data storage device, your OS's storage in short. <br><br>
+6. JSON: JavaScript Object Notation, open standard file format for storing text. <br>
    Examples of other commonly known file formats: `.TXT`, `.DOC`, `.PDF`, `.XLS`, `.HTML` etc <br><br>
-6. LMS: Learning Management System, application used by schools to provide students a platform to access their lessons materials online. <br>
+7. LMS: Learning Management System, application used by schools to provide students a platform to access their lessons materials online. <br>
    Examples of LMS: Canvas, LumiNUS, Blackboard, Google Classroom, Quizlet <br><br>
-7. NOK: Next-of-kin, could be either blood related family members or guardian <br><br>
-8. OS: Operating System <br>
+8. NOK: Next-of-kin, could be either blood related family members or guardian <br><br>
+9. OS: Operating System <br>
    Examples of OS: Windows, Linux, Mac etc <br><br>
 
 [Back to Table of Contents](#table-of-contents)
@@ -231,11 +233,11 @@ This section aims to provide a brief overview of the features available in Power
 
 <a name="addstudent"/>
 
-### Adding a Student: `add`
+### Adding a Student: `student <class> add`
 
 Adds a student to the database
 
-Format: `add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<NOK_RELATIONSHIP_TO_STUDENT> [s/<SEX> a/<REISDENTIAL_ADDRESS> ageS/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> pnS/<PHONE_NUMBER> cca/<CCA>]`
+Format: `student <class> add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<NOK_RELATIONSHIP_TO_STUDENT> [s/<SEX> a/<REISDENTIAL_ADDRESS> ageS/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> pnS/<PHONE_NUMBER> cca/<CCA>]`
 
 ***Click [HERE](#images) to find out more on what to input for inserting image!!!***
 
@@ -275,12 +277,12 @@ It is recommended to store the images using the folder [method](#images) instead
 
 <a name = "attendance"/>
 
-### Marking attendance for student: `attendance`
+### Marking attendance for student: `student <class> attendance`
 
 Marks the student as being present or allow you to define that the student was present
 Ensure that if you mark the same date for the same student as being present, it will prompt that you have indeed added the same date (for verification)
 
-Format : `attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`
+Format : `student <class> attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`
 
 Examples:
 * `student 3A attendance in/25 att/T`
@@ -303,13 +305,13 @@ This date can be set to:
 
 <a name="gradestudent"/>
 
-### Adding a grade for student : `grade`
+### Adding a grade for student : `student <class> grade`
 
 Adds a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
 
 You cannot have different test/homework with the same name
 
-Format: `grade in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>] [score/<score> deadline/<DEADLINE(DD/MM/YYYY)> weightage/<WEIGHTAGE>] [hwdone/<HOMEWORK_DONE(true/false)>]`
+Format: `student <class> grade in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>] [score/<score> deadline/<DEADLINE(DD/MM/YYYY)> weightage/<WEIGHTAGE>] [hwdone/<HOMEWORK_DONE(true/false)>]`
 
 Examples:
 * `student 1A grade in/13 test/CA1 score/75 weightage/10`
@@ -334,13 +336,13 @@ Examples:
 
 <a name = "gradedelete"/>
 
-### Deleting a grade for student : `gradedelete`
+### Deleting a grade for student : `student <class> gradedelete`
 
 Deletes a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
 
 Duplicate test/homework  is checked through having the same name
 
-Format: `gradedelete in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>]`
+Format: `student <class> gradedelete in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>]`
 
 Examples:
 * `student 1A gradedelete in/13 test/CA1`
@@ -354,11 +356,11 @@ Examples:
 
 <a name = "commentstudent"/>
 
-### Adding comments for student : `comment`
+### Adding comments for student : `student <class> comment`
 
 Adds a comment for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
 
-Format: `comment in/<INDEX_NUMBER> com/<COMMENT>`
+Format: `student <class> comment in/<INDEX_NUMBER> com/<COMMENT>`
 
 Examples:
 
@@ -376,11 +378,11 @@ If an existing comment is already available for the selected student, the new co
 
 <a name = "liststudent"/>
 
-### Listing all students in the selected class: `list`
+### Listing all students in the selected class: `student <class> list`
 
 Shows a list of all students in the selected class in the database
 
-Format: `list`
+Format: `student <class> list`
 
 Examples:
 * `student 1A list`
@@ -397,11 +399,11 @@ Examples:
 
 <a name = "editstudent" />
 
-### Edit Student:  `edit`
+### Edit Student:  `student <class> edit`
 
 Edits personal details of students for the student corresponding to the `INDEX_NUMBER` in the `CLASS` based on the particulars given by the user.
 
-Format: `edit in/<INDEX_NUMBER (of student)> [nn/<NEWNAME> nin/<NEWINDEXNUMBER> nc/<NEWCLASS> s/<SEX> ageS/<STUDENT AGE>
+Format: `student <class> edit in/<INDEX_NUMBER (of student)> [nn/<NEWNAME> nin/<NEWINDEXNUMBER> nc/<NEWCLASS> s/<SEX> ageS/<STUDENT AGE>
 imgS/<IMAGE> cca/<CCA> att/<ATTENDANCE> com/<COMMENTS> pnS/<STUDENT PHONE NUMBER> eS/<STUDENT EMAIL> a/<ADDRESS>
 npn/<NEW PARENT NAME> npnP/<NEW PARENT PHONE NUMBER> rls/<RELATIONSHIP>]`
 
@@ -428,11 +430,11 @@ If you want to update all students under this student's parent, please kindly us
 
 <a name = "findstudent"/>
 
-### Locating students by name:  `find`
+### Locating students by name:  `student <class> find`
 
 Finds and generates all students with matching student name and class
 
-Format: `find <NAME>  `
+Format: `student <class> find <NAME>  `
 
 Examples:
 * `student 3B find Russel`
@@ -450,11 +452,11 @@ Examples:
 
 <a name = "deletestudent"/>
 
-### Deleting student: `delete`
+### Deleting student: `student <class> delete`
 
 Deletes student corresponding to the `INDEX_NUMBER` in the `CLASS`  from the database
 
-Format: `delete in/<INDEX_NUMBER>`
+Format: `student <class> delete in/<INDEX_NUMBER>`
 
 Examples:
 * `student 1A delete in/14`
@@ -483,7 +485,7 @@ Examples:
 
 <a name="addparent"/>
 
-### Adding a Parent/NOK: `add`
+### Adding a Parent/NOK: `parent add`
 
 Adds a Parent/[NOK](#glossary) to the database
 
@@ -508,7 +510,7 @@ Examples of Full Command:
 
 <a name = "listparent" />
 
-### Listing all Parents/NOKs : `list`
+### Listing all Parents/NOKs : `parent list`
 
 Shows a list of all Parents/[NOKs](#glossary) in the database with their corresponding particulars
 
@@ -528,7 +530,7 @@ Examples of Full Command:
 
 <a name = "editparent" />
 
-### Edit Parent: `edit`
+### Edit Parent: `parent edit`
 
 Edits personal details of Parent/[NOK](#glossary) with corresponding NAME and PARENT_PHONE_NUMBER
 
@@ -550,7 +552,7 @@ Examples of Full Command:
 
 <a name = "deleteparent" />
 
-### Deleting Parent: `delete`
+### Deleting Parent: `parent delete`
 
 Deletes parent with corresponding `NAME` and `PARENT_PHONE_NUMBER` from the database
 
@@ -708,6 +710,9 @@ program. Essentially you do not need a mouse to run this program at all!
 ## Command Summary
 
 ### Command Summary for Student `student <CLASS>`
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Need to add student <class> before each command!
+</div>
 
 | Action      | Format, Examples                                                                                                                                                                                                                                                                                                       |
 |-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -723,6 +728,10 @@ program. Essentially you do not need a mouse to run this program at all!
 <div style="page-break-after: always;"></div>
 
 ### Command Summary for Parent / NOK `parent`
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
+Need to add parent before each command!!
+</div>
 
 | Action     | Format, Examples                                                                                                                                 |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -730,6 +739,14 @@ program. Essentially you do not need a mouse to run this program at all!
 | **List**   | `list`                                                                                                                                           |
 | **Edit** | `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]` |
 | **Delete** | `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]` |
+
+### General Command Summary
+
+| Action     | Format, Examples             |
+|------------|------------------------------|
+| **List**   | `list student` `list parent` |
+| **Help**   | `help`                       |
+| **Exit**   | `exit`                       |
 
 [Back to Table of Contents](#table-of-contents)
 
