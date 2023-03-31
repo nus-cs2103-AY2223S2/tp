@@ -40,7 +40,7 @@ The following is a short overview of the features and capabilities of CookHub:
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar cookhub.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiInWindows.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -80,15 +80,8 @@ The following is a short overview of the features and capabilities of CookHub:
 </div>
 
 ---
-### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
----
+## Beginners' commands
 
 ### Add a recipe : `add`
 
@@ -101,9 +94,15 @@ Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
 
 Examples:
 
-- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange` is valid
+The original recipe book:
+![Before typing commands](images/UiInWindows.png)
+- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange` is valid and a recipe look like the picture
+shown below will be added to the recipe book:
+![AddCommand example1 result](images/AddResult1.png)
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because `s/` is compulsory
-- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar s/Juice the orange` is valid because we can have multiple `i/` flags
+- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar, 50, g, 0.10 s/Juice the orange` is valid because we can have
+multiple `i/` flags and a recipe look like the picture shown below will be added to the recipe book:
+![AddCommand example2 result](images/AddResult2.png)
 
 ---
 ### Edit a recipe: `edit {recipe number}`
@@ -116,9 +115,15 @@ Format: `edit {recipe number} $[t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP]
 
 
 Example:
-- `edit 1 t/Corndogs` is valid
+
+The original recipe book:
+![Before changing](images/UiInWindows.png)
+- `edit 1 t/Corndog` is valid and the recipe will be edited like the picture shown below:
+![EditCommand example1 result](images/EditResult1.png)
 - `edit 1` is not valid as at least one flag is required
-- `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted
+- `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted and the recipe will be edited like
+the picture shown below:
+![EditCommand example2 result](images/EditResult2.png)
 
 ---
 ### Delete a recipe : `delete {recipe number}`
@@ -129,11 +134,17 @@ Format: `delete {recipe number}`
 - The *recipe number* refers to the index number shown in the displayed recipe book
 - The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
 
-Examples:
-- `delete 1`
-- `delete 2`
-
 Expected outcome: You should see an updated list of recipes with the recipe at the specified index removed.
+
+Examples:
+
+The original recipe book:
+![Before changing](images/UiInWindows.png)
+- `delete 1` will change the recipe book to:
+![DeleteCommand example1 result](images/DeleteResult1.png)
+- `delete 2` is invalid as there is only 1 recipe in the recipe book for now and you will see an error message like the
+picture shown below:
+![DeleteCommand example2 result](images/DeleteResult2.png)
 
 ---
 ### List recipe : `list`
@@ -142,19 +153,30 @@ Lists out all the recipes that you have added to CookHub
 
 Format: `list`
 
-Example: `list`
 Expected outcome: You should see a list of all the recipes in CookHub
+
+Example: `list` will list all the recipes like the picture shown below:
+![ListCommand example result](images/ListResult.png)
+
 
 ---
 ### Clear recipe : `clear`
+
 Clears the entire CookHub of all recipes
+
 Format: `clear`
+
 Expected outcome: You should see that CookHub has zero recipes in it
 
----
-### Find recipe : `find`
-Finds the recipes in CookHub according to what you are looking for
+Example: `clear` will clear all recipes like the picture shown below:
+![ClearCommand example result](images/ClearResult.png)
 
+---
+## Intermediate commands
+
+### Find recipe : `find`
+
+Finds the recipes in CookHub according to what you are looking for
 
 Format: `find $$[r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]$$`
 - the flag `r/` searches through the entire recipe and its components
@@ -166,7 +188,11 @@ Format: `find $$[r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]$$`
 :exclamation: Constraint: `find i/INGREDIENT` should only be used to find the name of  the ingredients, and not its quantity/unit of measurement/price per unit. e.g. `find i/lemons` is OK, but `find i/30g` should not be used.
 
 Examples:
-- `find r/eggs` is valid
+
+The original recipe book:
+![Before changing](images/AddResult2.png)
+- `find r/eggs` is valid and the result of the command is shown below:
+![FindCommand example result](images/FindResult.png)
 - `find r/eggs s/fry the egg` is not valid because at most one flag is allowed
 - `find` is not valid as at least one flag is required
 
@@ -176,22 +202,36 @@ Examples:
 Searches for recipes that can be made with only those ingredients
 
 Format: `only INGREDIENT...`
+
 Examples:
+
+The original recipe book:
+![Before changing](images/AddResult2.png)
 - e.g. `only` is not valid as a parameter is needed
-- e.g. `only eggs` is valid
-- e.g. `only eggs` will search for recipes that have ingredients that at most contain eggs, and nothing more
-- e.g. `only eggs ham cheese` will search for recipes that have ingredients that at most contains eggs, ham and cheese. A recipe that only needs eggs will also be valid
+- e.g. `only eggs` is valid, will search for recipes that have ingredients that at most contain eggs, and nothing more,
+and the result of the command is shown below:
+![OnlyCommand example1 result](images/OnlyResult1.png)
+- e.g. `only eggs flour` will search for recipes that have ingredients that at most contains eggs and flour.
+A recipe that only needs eggs will also be valid. The result of the command is shown below:
+![OnlyCommand example2 result](images/OnlyResult2.png)
 
 ---
 ### Sort recipe by cost: `sort {order}`
 
-Sorts the recipes in the RecipeBook by price in the order specified. The order can only be `asc` for ascending order OR `desc` for descending order. The price of a recipe is determined by cost of all ingredients required.
+Sorts the recipes in the RecipeBook by price in the order specified. The order can only be `asc` for ascending order OR
+`desc` for descending order. The price of a recipe is determined by cost of all ingredients required.
 
 Format: `sort {order}`
 
-Example: `sort asc`
-
 Expected outcome: You should see a list of recipes sorted in ascending order of price.
+
+Example: 
+
+The original recipe book:
+![Before changing](images/AddResult2.png)
+- `sort desc` will give you the result of the picture shown below:
+![SortCommand example result](images/SortResult.png)
+
 
 ---
 
@@ -201,35 +241,35 @@ Filters the recipes in the RecipeBook by price according to the comparator speci
 
 Format: `fp {comparator} {price}`
 
-Example: `fp < 4.50`
-
 Expected outcome: You should see a list of filtered recipes with price less than $4.50.
 
----
-### List all recipes in the favorites : `favorites`
+Example: 
 
-Lists out all the recipes that you have added to the favorites, which include all recipes you favor the most.
-
-Format: `favorites`
-
-Example: `favorites`
-Expected outcome: You should see a list of all the recipes in your favorites
+The original recipe book:
+![Before changing](images/AddResult2.png)
+- `fp < 4.50` will give you the result of the picture shown below:
+![FpCommand example result](images/FpResult.png)
 
 ---
 ### Add a recipe to the favorites: `star {index}`
 
-Add the recipe at the specified *task number* in the favorites.
+Add the recipe at the specified *task number* in the favorites, which include all recipes you favor the most.
 
 Format: `star {recipe number}`
 
 - The *recipe number* refers to the index number shown in the displayed recipe book
 - The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
 
-Examples:
-- `star 1`
-- `star 2`
-
 Expected outcome: You should see a star after the title of the recipe you marked on.
+
+Examples:
+
+The original recipe book:
+![Before changing](images/AddResult2.png)
+- `star 1` will give you the result of the picture shown below:
+![StarCommand example1 result](images/StarResult1.png)
+- `star 2` will give you the result of the picture shown below:
+![StarCommand example2 result](images/StarResult2.png)
 
 ---
 ### Remove a recipe from the favorites: `unstar {index}`
@@ -241,11 +281,45 @@ Format: `unstar {recipe number}`
 - The *recipe number* refers to the index number shown in the displayed recipe book
 - The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
 
-Examples:
-- `unstar 1`
-- `unstar 2`
-
 Expected outcome: You should not see the star after the title of the recipe you unmarked on.
+
+Examples:
+
+The original recipe book:
+![Before changing](images/AllRecipesStarred.png)
+- `unstar 1` will give you the result of the picture shown below:
+![UnstarCommand example1 result](images/UnstarResult1.png)
+- `unstar 2` will give you the result of the picture shown below:
+![UnstarCommand example2 result](images/UnstarResult2.png)
+
+---
+### List all recipes in the favorites : `favorites`
+
+Lists out all the recipes that you have added to the favorites.
+
+Format: `favorites`
+
+Expected outcome: You should see a list of all the recipes in your favorites
+
+Example:
+
+The original recipe book:
+![Before changing](images/StarResult1.png)
+- `favorites` will give you the result of the picture shown below:
+![FavoritesCommand example result](images/FavoritesResult.png)
+
+---
+### If you forget some commands, you are always welcome to check this page again!
+### Showing the website for user guide : `help`
+
+Shows a message explaining how to access the help page.
+
+Expected outcome: You should see a window like the picture shown below:
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 
 <hr style="border:2px solid gray">
 
