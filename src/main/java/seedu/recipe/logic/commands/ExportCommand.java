@@ -18,6 +18,12 @@ public class ExportCommand extends Command {
     public static final String SUCCESS_MESSAGE = "Recipe Book JSON file exported successfully";
 
     private final ExportManager exportManager;
+
+    /**
+     * Constructs an instance of this Command around the given Export Manager.
+     * @param stage The UI stage that triggered this command.
+     * @param logic The Logic that helps to derive the current Recipe Book path for Export Manager to use.
+     */
     public ExportCommand(Stage stage, Logic logic) {
         exportManager = new ExportManager(stage, logic.getRecipeBookFilePath());
     }
