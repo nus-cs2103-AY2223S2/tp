@@ -6,7 +6,7 @@ title: InternEase
 [![CI Status](https://github.com/AY2223S2-CS2103T-W15-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W15-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S2-CS2103T-W15-4/tp/branch/master/graph/badge.svg?token=MVV9ABQAS8)](https://codecov.io/gh/AY2223S2-CS2103T-W15-4/tp)
 
-![Ui](https://github.com/AY2223S2-CS2103T-W15-4/tp/blob/master/docs/images/Ui.png)
+![Ui](images/Ui.png)
 
 **InternEase is a desktop application for managing your internship applications.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
