@@ -76,6 +76,15 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ## Add student <a name="add"></a>
 
 Adds a student to the managing system.
@@ -87,6 +96,7 @@ Schedule supported: {`monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `sa
 Examples:
 
 * ```add n/John Doe p/98765432 e/johnd@example.com a/block 224 s/Math sch/monday st/09:30 et/11:30```
+
 
 ## Delete student <a name="delete"></a>
 
@@ -108,6 +118,42 @@ Format: ```list```
 Examples:
 
 * ```list``` 
+
+
+### Editing a person : `edit`
+
+Edits an existing person in the address book.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
+    specifying any tags after it.
+
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Locating students by name: `find`
+
+Finds persons whose names contain any of the given keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ## Filter students by any fields <a name='filter'></a>
 
@@ -165,6 +211,12 @@ Loads the saved state of the program (if there is any) on the hard disk.
 Creates an empty file if there is none.
 
 Done automatically.
+
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
 
 ## Exit program <a name="exit"></a>
 
