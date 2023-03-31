@@ -5,7 +5,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 import seedu.address.logic.commands.FindMeetingCommand;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 /**
      * Parses input arguments and creates a new ListRegionCommand object
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 
         @Override
         public FindMeetingCommand parse(String userInput) throws ParseException {
-            LocalDateTime meetingStart = ParserUtil.parseDateTime(userInput);
+            LocalDate meetingStart = ParserUtil.parseDate(userInput);
             return new FindMeetingCommand(meetingStart);
         }
 
