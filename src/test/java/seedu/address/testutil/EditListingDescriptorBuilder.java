@@ -10,6 +10,8 @@ import seedu.address.model.applicant.Name;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.platform.Platform;
+import seedu.address.model.platform.PlatformName;
 
 /**
  * A utility class to help with building EditListingDescriptor objects.
@@ -34,6 +36,7 @@ public class EditListingDescriptorBuilder {
         descriptor.setJobTitle(listing.getTitle());
         descriptor.setJobDescription(listing.getDescription());
         descriptor.setApplicants(listing.getApplicants());
+        descriptor.setPlatforms(listing.getPlatforms());
     }
 
     /**
@@ -60,6 +63,17 @@ public class EditListingDescriptorBuilder {
         ArrayList<Applicant> applicantArrayList = new ArrayList<>(Stream.of(applicants).map((name) ->
                         new Applicant(new Name(name))).collect(Collectors.toList()));
         descriptor.setApplicants(applicantArrayList);
+        return this;
+    }
+
+    /**
+     * Parses the {@code platform} into a {@code ArrayList<Platform>} and set it to the {@code EditListingDescriptor}
+     * that we are building.
+     */
+    public EditListingDescriptorBuilder withPlatform(String... platforms) {
+        ArrayList<Platform> platformArrayList = new ArrayList<>(Stream.of(platforms).map((name) ->
+                new Platform(new PlatformName(name))).collect(Collectors.toList()));
+        descriptor.setPlatforms(platformArrayList);
         return this;
     }
 

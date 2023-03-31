@@ -81,7 +81,8 @@ public class AddApplicantCommand extends Command {
         }
         newApplicants.add(applicantToAdd);
 
-        return new Listing(listingToChange.getTitle(), listingToChange.getDescription(), newApplicants);
+        return new Listing(listingToChange.getTitle(), listingToChange.getDescription(), newApplicants,
+                listingToChange.getPlatforms());
     }
 
     @Override

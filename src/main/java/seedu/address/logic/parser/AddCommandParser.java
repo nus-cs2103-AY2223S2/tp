@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import seedu.address.model.applicant.Applicant;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.platform.Platform;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -27,7 +29,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_APPLICANT);
+                ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_APPLICANT, PREFIX_PLATFORM);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -37,8 +39,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         JobTitle jobTitle = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         JobDescription jobDescription = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         ArrayList<Applicant> applicantList = ParserUtil.parseApplicants(argMultimap.getAllValues(PREFIX_APPLICANT));
+        ArrayList<Platform> platformList = ParserUtil.parsePlatforms(argMultimap.getAllValues(PREFIX_PLATFORM));
 
-        Listing listing = new Listing(jobTitle, jobDescription, applicantList);
+        Listing listing = new Listing(jobTitle, jobDescription, applicantList, platformList);
 
         return new AddCommand(listing);
     }

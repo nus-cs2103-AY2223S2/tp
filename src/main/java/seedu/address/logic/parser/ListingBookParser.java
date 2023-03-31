@@ -8,9 +8,11 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddApplicantCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPlatformCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteApplicantCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeletePlatformCommand;
 import seedu.address.logic.commands.EditApplicantCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -83,6 +85,12 @@ public class ListingBookParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case AddPlatformCommand.COMMAND_WORD:
+            return new AddPlatformCommandParser().parse(arguments);
+
+        case DeletePlatformCommand.COMMAND_WORD:
+            return new DeletePlatformCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

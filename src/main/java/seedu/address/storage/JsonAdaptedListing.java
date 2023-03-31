@@ -12,6 +12,7 @@ import seedu.address.model.applicant.Applicant;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.platform.Platform;
 
 /**
  * Jackson-friendly version of {@link Listing}.
@@ -24,6 +25,7 @@ class JsonAdaptedListing {
     private final String description;
 
     private final List<JsonAdaptedApplicants> applicants = new ArrayList<>();
+    private final List<JsonAdaptedPlatform> platforms = new ArrayList<>();
 
 
     /**
@@ -40,7 +42,7 @@ class JsonAdaptedListing {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Listing} into this class for Jackson use.
      */
     public JsonAdaptedListing(Listing source) {
         title = source.getTitle().fullTitle;
@@ -48,7 +50,12 @@ class JsonAdaptedListing {
         applicants.addAll(source.getApplicants().stream()
                 .map(JsonAdaptedApplicants::new)
                 .collect(Collectors.toList()));
+        platforms.addAll(source.getPlatforms().stream()
+                .map(JsonAdaptedPlatform::new)
+                .collect(Collectors.toList()));
     }
+
+
 
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
@@ -57,8 +64,14 @@ class JsonAdaptedListing {
      */
     public Listing toModelType() throws IllegalValueException {
         final ArrayList<Applicant> listingApplicants = new ArrayList<>();
+        final ArrayList<Platform> listingPlatforms = new ArrayList<>();
+
         for (JsonAdaptedApplicants applicant : applicants) {
             listingApplicants.add(applicant.toModelType());
+        }
+
+        for (JsonAdaptedPlatform platform : platforms) {
+            listingPlatforms.add(platform.toModelType());
         }
 
         if (title == null) {
@@ -79,7 +92,7 @@ class JsonAdaptedListing {
         }
         final JobDescription modelDescription = new JobDescription(description);
 
-        return new Listing(modelTitle, modelDescription, listingApplicants);
+        return new Listing(modelTitle, modelDescription, listingApplicants, listingPlatforms);
     }
 
 }
