@@ -54,8 +54,10 @@ public class CommandParserUtil {
 
     public static final LiteralArgumentFlag OR_FLAG = new LiteralArgumentFlag("-o", "--or");
     public static final LiteralArgumentFlag AND_FLAG = new LiteralArgumentFlag("-a", "--and");
-    public static final ComposedArgumentFlag SEARCH_FLAG =
+    public static final ComposedArgumentFlag FILTER_FLAG =
             new ComposedArgumentFlag(AND_FLAG, OR_FLAG);
+    public static final ComposedArgumentFlag SORT_FLAG = new ComposedArgumentFlag(
+            DEADLINE_FLAG, PRIORITY_FLAG, STATUS_FLAG);
 
     public static final ApplicativeParser<LiteralArgumentFlag> TITLE_FLAG_PARSER =
             parseFlag(TITLE_FLAG);
@@ -76,8 +78,10 @@ public class CommandParserUtil {
 
     public static final ApplicativeParser<ComposedArgumentFlag> MACRO_FLAG_PARSER =
             parseFlag(MACRO_FLAG);
-    public static final ApplicativeParser<ComposedArgumentFlag> SEARCH_FLAG_PARSER =
-            parseFlag(SEARCH_FLAG);
+    public static final ApplicativeParser<ComposedArgumentFlag> FILTER_FLAG_PARSER =
+            parseFlag(FILTER_FLAG);
+    public static final ApplicativeParser<ComposedArgumentFlag> SORT_FLAG_PARSER =
+            parseFlag(SORT_FLAG);
 
     public static final ApplicativeParser<String> TITLE_PARSER = STRING_PARSER;
     public static final ApplicativeParser<String> LABEL_PARSER = STRING_PARSER;
