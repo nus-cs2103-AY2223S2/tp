@@ -1,5 +1,7 @@
 package seedu.address.model.event.fields;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents an Events's Description in the Calendar.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
@@ -7,14 +9,15 @@ package seedu.address.model.event.fields;
 public class Description {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Description should only contain alphanumeric characters and spaces, "
-                    + "and it should not be blank";
-
-    public static final String VALIDATION = "";
+            "Description should not be blank";
 
     public final String description;
 
+    /**
+     * Creates a {@code Description}.
+     */
     public Description(String description) {
+        requireNonNull(description);
         this.description = description;
     }
 
@@ -22,8 +25,11 @@ public class Description {
         return this.description;
     }
 
+    /**
+     * @return true if {@code description} is not blank.
+     */
     public static boolean isValidDescription(String description) {
-        return !description.equals(VALIDATION);
+        return !description.isBlank();
     }
 
     @Override

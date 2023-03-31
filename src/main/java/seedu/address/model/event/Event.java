@@ -59,10 +59,10 @@ public abstract class Event {
      * are updated to reflect the next earliest occurrence.
      */
     public Event updateDateTime() {
-        if (!this.recurrence.isRecurring()) {
-            return this;
-        }
         Event event = this.copy();
+        if (!this.recurrence.isRecurring()) {
+            return event;
+        }
         ChronoUnit timeUnit = event.getRecurrence().getIncrementUnit();
         while (event.endDateTime.getDateTime().isBefore(LocalDateTime.now())) {
             event.startDateTime.plus(timeUnit);
@@ -75,7 +75,7 @@ public abstract class Event {
      * Creates a copy of this event, with the Person {@code p} removed.
      */
     public Event deleteTaggedPerson(Person p) {
-        Set<Person> taggedPeople = this.taggedPeople;
+        Set<Person> taggedPeople = new HashSet<>(this.taggedPeople);
         taggedPeople.removeIf(p1 -> p1.equals(p));
         Description description = this.getDescription();
         DateTime startDateTime = this.getStartDateTime();
@@ -93,8 +93,9 @@ public abstract class Event {
      * Creates a copy of this event, with the {@code personToEdit} removed and the {@code editedPerson} added in.
      */
     public Event editTaggedPerson(Person personToEdit, Person editedPerson) {
-        Set<Person> taggedPeople = this.taggedPeople.stream().map(
-                person -> person.equals(personToEdit) ? editedPerson : person).collect(Collectors.toSet());
+        Set<Person> taggedPeople = this.taggedPeople.stream()
+                .map(person -> person.equals(personToEdit) ? editedPerson : person)
+                .collect(Collectors.toSet());
         Description description = this.getDescription();
         DateTime startDateTime = this.getStartDateTime();
         DateTime endDateTime = this.getEndDateTime();
