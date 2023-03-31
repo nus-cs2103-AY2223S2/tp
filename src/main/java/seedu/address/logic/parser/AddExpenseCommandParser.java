@@ -14,7 +14,7 @@ import seedu.address.logic.commands.AddExpenseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
-import seedu.address.model.person.Price;
+import seedu.address.model.expense.Price;
 
 /**
  * Parses input arguments and creates a new AddExpenseCommand object

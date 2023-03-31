@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.util.Collection;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.RecurringExpenseManager;
-import seedu.address.model.person.Person;
 
 public class AddressBookTest {
 
@@ -85,15 +83,11 @@ public class AddressBookTest {
      * constraints.
      */
     private static class AddressBookStub implements ReadOnlyExpenseTracker {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Category> categories = FXCollections.observableArrayList();
         private final ObservableList<Expense> expenses = FXCollections.observableArrayList();
         private final ObservableList<RecurringExpenseManager> expenseGenerators = FXCollections.observableArrayList();
         private final ObjectProperty<Budget> simpleBudget = new SimpleObjectProperty<>(new Budget(0));
 
-        AddressBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
-        }
 
         @Override
         public ObservableList<Category> getCategoryList() {
