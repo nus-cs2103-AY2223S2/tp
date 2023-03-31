@@ -23,6 +23,7 @@ If you are a fast typer who is seeking a one-stop platform to organise and track
 ### Objectives of the User Guide
 
 This User Guide provides an easy to understand and comprehensive documentation, so you can easily start using MyLib. It covers how to download the application, launch the application and the various features in MyLib that will make it easy for you to organise and track all your reading materials.
+<div style="page-break-after: always;"></div>
 
 ### How to use the User Guide
 
@@ -33,6 +34,7 @@ The user guide contains certain visuals to aid in conveying information more eff
 :bulb: **Tip** - Suggestions on how to enhance your experience
 
 :exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
+
 <div style="page-break-after: always;"></div>
 
 ### Getting Started
@@ -68,11 +70,11 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
    * `goto 1` : Opens the url of 1st Bookmark shown in current list.
    
    * `exit` : Exits the app.
-<div style="page-break-after: always;"></div>
-
+   
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -301,6 +303,7 @@ If your changes to the data file makes its format invalid, MyLib will discard al
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
