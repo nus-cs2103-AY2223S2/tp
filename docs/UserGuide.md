@@ -257,9 +257,7 @@ Image source will be displayed in decreasing priority: <br>
 * images/<STUDENT_NAME><STUDENT_CLASS>.png.
 * Default Image (?). <br>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-
-Note:
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 1. User cannot create two students of the same index number and same class.
 2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get bound to the matching parent.
 3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update. 
