@@ -260,7 +260,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g., `alpha` will match `Alpha`
 - The order of the keywords does not matter. e.g. `Ris Pasir` will match `Pasir Ris`
-- All person fields are search.
+- All person fields are searched.
 - Partial matching is performed e.g., `@gmail.com` will match all persons with a Gmail account
 - Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Jacob Lim` will return `Jacob Tan` and `Nicholas Lim`
@@ -340,9 +340,7 @@ view an earlier command and the down arrow (`↓`) on your keyboard to view a la
   in the command box instead.
 - At any point in the command history, you can simply edit the command and re-run it. Note that once you navigate away
   from this point in the command history, the changes you've made to this current command in history will be lost.
-- The command history file is located at `[JAR file location]/data/command_history.txt`. Whenever you run a command *
-  *successfully**, the command history file will be automatically updated. In other words, commands that fail to run due
-  to syntax errors or otherwise will**not** be recorded in the command history.
+- The command history file is located at `[JAR file location]/data/command_history.txt`. Whenever you run a command **successfully**, the command history file will be automatically updated. In other words, commands that fail to run due to syntax errors or otherwise will **not** be recorded in the command history.
 
 ### Adding a person to favorites : `favorite`
 
