@@ -35,38 +35,38 @@ You can click on any of the links below to navigate to the respective sections f
 * [Features](#features)
     * [Viewing help: `help`](#viewing-help-help)
   * [Add](#add)
-    * [Adding a supplier: `add_supplier` or `add_s`](#adding-a-supplier-addsupplier-or-adds)
-    * [Adding an order: `add_order` or `add_o`](#adding-an-order-addorder-or-addo)
-    * [Adding a task: `add_task` or `add_t`](#adding-a-task-addtask-or-addt)
-    * [Adding a menu item: `add_item` / `add_i`](#adding-a-menu-item-additem--addi)
+    * [Adding a supplier: `add_supplier`](#adding-a-supplier-addsupplier)
+    * [Adding an order: `add_order`](#adding-an-order-addorder)
+    * [Adding a task: `add_task`](#adding-a-task-addtask)
+    * [Adding a menu item: `add_item`](#adding-a-menu-item-additem)
   * [Edit](#edit)
-    * [Editing a supplier: `edit_supplier` or `edit_s`](#editing-a-supplier-editsupplier-or-edits)
-    * [Editing an order: `edit_order` or `edit_o`](#editing-an-order-editorder-or-edito)
-    * [Editing a task: `edit_task` or `edit_t`](#editing-a-task-edittask-or-editt)
-    * [Editing a menu item : `edit_item` / `edit_i`](#editing-a-menu-item--edititem--editi)
+    * [Editing a supplier: `edit_supplier`](#editing-a-supplier-editsupplier)
+    * [Editing an order: `edit_order`](#editing-an-order-editorder)
+    * [Editing a task: `edit_task`](#editing-a-task-edittask)
+    * [Editing a menu item : `edit_item`](#editing-a-menu-item--edititem)
   * [Find](#find)
-    * [Finding a supplier: `find_supplier` or `find_s`](#finding-a-supplier-findsupplier-or-finds)
-    * [Finding an order: `find_order` or `find_o`](#finding-an-order-findorder-or-findo)
-    * [Finding a task: `find_task` or `find_t`](#finding-a-task-findtask-or-findt)
-    * [Finding a menu item : `find_item` / `find_i`](#finding-a-menu-item--finditem--findi)
+    * [Finding a supplier: `find_supplier`](#finding-a-supplier-findsupplier)
+    * [Finding an order: `find_order`](#finding-an-order-findorder)
+    * [Finding a task: `find_task`](#finding-a-task-findtask)
+    * [Finding a menu item : `find_item`](#finding-a-menu-item--finditem)
   * [Delete](#delete)
-    * [Deleting a supplier: `delete_supplier` or `delete_s`](#deleting-a-supplier-deletesupplier-or-deletes)
-    * [Deleting an order: `delete_order` or `delete_o`](#deleting-an-order-deleteorder-or-deleteo)
-    * [Deleting a task: `delete_task` or `delete_t`](#deleting-a-task-deletetask-or-deletet)
-    * [Deleting a menu item: `delete_item` / `delete_i`](#deleting-a-menu-item-deleteitem--deletei)
+    * [Deleting a supplier: `delete_supplier`](#deleting-a-supplier-deletesupplier)
+    * [Deleting an order: `delete_order`](#deleting-an-order-deleteorder)
+    * [Deleting a task: `delete_task`](#deleting-a-task-deletetask)
+    * [Deleting a menu item: `delete_item`](#deleting-a-menu-item-deleteitem)
   * [Sort](#sort)
-    * [Sorting a task: `sort_task` / `sort_t`](#sorting-a-task-sorttask--sortt)
-    * [Sorting a order: `sort_order` / `sort_o`](#sorting-a-order-sortorder--sorto)
+    * [Sorting a task: `sort_task`](#sorting-a-task-sorttask)
+    * [Sorting a order: `sort_order`](#sorting-a-order-sortorder)
   * [List](#list)
-    * [Listing all suppliers: `list_supplier` or `list_s`](#listing-all-suppliers-listsupplier-or-lists)
-    * [Listing all orders: `list_order` or `list_o`](#listing-all-orders-listorder-or-listo)
-    * [Listing all tasks: `list_task` or `list_t`](#listing-all-tasks-listtask-or-listt)
-    * [Listing all menu items: `list_item` or `list_i`](#listing-all-menu-items-listitem-or-listi)
+    * [Listing all suppliers: `list_supplier`](#listing-all-suppliers-listsupplier)
+    * [Listing all orders: `list_order`](#listing-all-orders-listorder)
+    * [Listing all tasks: `list_task`](#listing-all-tasks-listtask)
+    * [Listing all menu items: `list_menu`](#listing-all-menu-items-listmenu)
   * [Clear](#clear)
-    * [Clear all supplier entries: `clear_supplier` or `clear_s`](#clear-all-supplier-entries-clearsupplier-or-clears)
-    * [Clear all order entries: `clear_order` or `clear_o`](#clear-all-order-entries-clearorder-or-clearo)
-    * [Clear all task entries: `clear_task` or `clear_t`](#clear-all-task-entries-cleartask-or-cleart)
-    * [Clear all menu item entries: `clear_item` or `clear_i`](#clear-all-menu-item-entries-clearitem-or-cleari)
+    * [Clear all supplier entries: `clear_supplier`](#clear-all-supplier-entries-clearsupplier)
+    * [Clear all order entries: `clear_order`](#clear-all-order-entries-clearorder)
+    * [Clear all task entries: `clear_task`](#clear-all-task-entries-cleartask)
+    * [Clear all menu item entries: `clear_menu`](#clear-all-menu-item-entries-clearmenu)
   * [Switch](#switch)
     * [Switching tabs: `tab`](#switching-tabs-tab)
   * [Others](#others)
@@ -175,6 +175,9 @@ A GUI similar to the below should appear in a few seconds. (Note how the app con
 * Command keywords are case-sensitive, all command keywords must be in lower-case.
   e.g. For add supplier command, `add_supplier` is valid but `ADD_SUPPLIER` and `Add_Supplier` are not.
 
+* All commands have a shortcut alternative, which is the first letter of the specific type you are managing.
+  e.g. `add_s` is the same as `add_supplier`; `edit_o` is the same as `edit_order`
+
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add_supplier n/NAME`, `NAME` is a parameter which can be used as `add_supplier n/John Doe`.
 
@@ -211,7 +214,7 @@ Syntax: `help`
 
 ## Add
 
-### Adding a supplier: `add_supplier` or `add_s`
+### Adding a supplier: `add_supplier`
 
 Adds a supplier to the list of suppliers.
 
@@ -225,7 +228,7 @@ Examples:
 * `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat`
 
 
-### Adding an order: `add_order` or `add_o`
+### Adding an order: `add_order`
 
 Adds an order into the list of orders.
 
@@ -242,7 +245,7 @@ Examples:
 * `add_order n/John Doe a/John Street d/2023-12-12 q/10 on/Cupcakes p/91234567`
 * `add_o on/Birthday Cake q/1 n/Betsy Cow a/Betsy Street d/2023-03-03 s/N`
 
-### Adding a task: `add_task` or `add_t`
+### Adding a task: `add_task`
 
 Adds a task to the list of tasks.
 
@@ -256,7 +259,7 @@ Examples:
 * `add_task n/Buy cookie cutter d/2022-12-22`
 * `add_t n/Buy a card d/2023-12-23 s/D`
 
-### Adding a menu item: `add_item` / `add_i`
+### Adding a menu item: `add_item`
 
 Adds a menu item to the menu.
 
@@ -277,7 +280,7 @@ Examples:
 
 ## Edit
 
-### Editing a supplier: `edit_supplier` or `edit_s`
+### Editing a supplier: `edit_supplier`
 
 Edit an existing supplier’s information.
 
@@ -298,7 +301,7 @@ Examples:
 * `edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
 
 
-### Editing an order: `edit_order` or `edit_o`
+### Editing an order: `edit_order`
 
 Edits an order that is present in the order list.
 
@@ -315,7 +318,7 @@ Examples:
 * `edit_order 1 p/91234567 d/2023-05-05` edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
 * `edit_o 3 q/20` edits the quantity of food for the 3rd order to 20 and clears all remarks
 
-### Editing a task: `edit_task` or `edit_t`
+### Editing a task: `edit_task`
 
 Edits a task present in the task list.
 
@@ -331,7 +334,7 @@ Examples:
 * `edit_task 1 n/Get creamer` edits the 1st task description to be "Get creamer"
 * `edit_t 3 d/2023-12-31 s/N` edits the 3rd task deadline to 2023-12-31 and sets the status as not done
 
-### Editing a menu item : `edit_item` / `edit_i`
+### Editing a menu item : `edit_item`
 
 Edits an item present in the menu.
 Syntax: edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]
@@ -349,7 +352,7 @@ Examples:
 
 ## Find
 
-### Finding a supplier: `find_supplier` or `find_s`
+### Finding a supplier: `find_supplier`
 
 Find suppliers whose information matches with any of the given parameters.
 
@@ -368,7 +371,7 @@ Examples:
 * `find_task n/PHOON HUAT` returns supplier `Phoon Huat` and `John Phoon`
 * `find_s n/PHOON t/eggs t/flour` returns supplier `Phoon Huat` that supplies both `eggs` and `flour`
 
-### Finding an order: `find_order` or `find_o`
+### Finding an order: `find_order`
 
 Find orders whose information matches with any of the given parameters.
 
@@ -386,7 +389,7 @@ Examples:
 * `find_order on/Chocolate` returns orders `Chocolate Cake` and `Chocolate Cookies`
 * `find_s on/Cake d/01/01/2023` returns order `Chocolate Cake` that has a delivery dateline of `01/01/2023`
 
-### Finding a task: `find_task` or `find_t`
+### Finding a task: `find_task`
 
 Find tasks with information that matches with any of the given parameters.
 
@@ -405,7 +408,7 @@ Examples:
 * `find_t n/buy eggs d/2023-02-17` returns tasks with `buy` or `egg` with deadline of `2023-02-17`
 * `find_t s/N` returns all tasks not done
 
-### Finding a menu item : `find_item` / `find_i`
+### Finding a menu item : `find_item`
 
 Find tasks with information that matches with any of the given parameters.
 
@@ -425,7 +428,7 @@ Examples:
 
 ## Delete
 
-### Deleting a supplier: `delete_supplier` or `delete_s`
+### Deleting a supplier: `delete_supplier`
 
 Deletes the specified supplier from the contact list.
 
@@ -440,7 +443,7 @@ Examples:
 * `delete_supplier 2` deletes the second supplier
 * `find_s n/John` followed by `delete_s 3` deletes the 1st supplier in the results of the `find_s` command with name `John`
 
-### Deleting an order: `delete_order` or `delete_o`
+### Deleting an order: `delete_order`
 
 Syntax: `delete_order INDEX`
 
@@ -453,7 +456,7 @@ Examples:
 * `list` followed by `delete_order 2` deletes the 2nd order in Trackr.
 * `find Cake` followed by `delete_order 1` deletes the 1st order in the results of the `find` command.
 
-### Deleting a task: `delete_task` or `delete_t`
+### Deleting a task: `delete_task`
 
 Deletes the specified task from the task list.
 
@@ -468,7 +471,7 @@ Examples:
 * `delete_task 2` deletes the first task
 * `find_t flour` followed by `delete_t 3` deletes the 1st task in the result of the `find_t` command
 
-### Deleting a menu item: `delete_item` / `delete_i`
+### Deleting a menu item: `delete_item`
 
 Deletes the specified item from the menu.
 
@@ -486,7 +489,7 @@ Examples:
 
 ## Sort
 
-### Sorting a task: `sort_task` / `sort_t`
+### Sorting a task: `sort_task`
 
 Syntax: `sort_task [c/CRITERIA]`
 
@@ -512,7 +515,7 @@ Examples:
 * `find_t s/N` followed by `sort_t` would sort all the tasks but only the sorted result of the `find_t` command will be displayed<br>
   (to get the sorted list of all the items, use the `list_t` command)
 
-### Sorting a order: `sort_order` / `sort_o`
+### Sorting a order: `sort_order`
 
 Syntax: `sort_order [c/CRITERIA]`
 
@@ -544,55 +547,55 @@ Examples:
 
 ## List
 
-### Listing all suppliers: `list_supplier` or `list_s`
+### Listing all suppliers: `list_supplier`
 
 Shows a list of all suppliers in the supplier list.
 
 Syntax `list_supplier`
 
-### Listing all orders: `list_order` or `list_o`
+### Listing all orders: `list_order`
 
 Shows a list of all orders in the order list.
 
 Syntax `list_order`
 
-### Listing all tasks: `list_task` or `list_t`
+### Listing all tasks: `list_task`
 
 Shows a list of all tasks in the task list.
 
 Syntax `list_task`
 
-### Listing all menu items: `list_item` or `list_i`
+### Listing all menu items: `list_menu`
 
 Shows a list of all menu items in the menu item list.
 
-Syntax `list_item`
+Syntax `list_menu`
 
 ## Clear
 
-### Clear all supplier entries: `clear_supplier` or `clear_s`
+### Clear all supplier entries: `clear_supplier`
 
 Clears all supplier entries from the supplier list.
 
 Syntax: `clear_supplier`
 
-### Clear all order entries: `clear_order` or `clear_o`
+### Clear all order entries: `clear_order`
 
 Clears all order entries from the order list.
 
 Syntax: `clear_order`
 
-### Clear all task entries: `clear_task` or `clear_t`
+### Clear all task entries: `clear_task`
 
 Clears all task entries from the task list.
 
 Syntax: `clear_task`
 
-### Clear all menu item entries: `clear_item` or `clear_i`
+### Clear all menu item entries: `clear_menu`
 
 Clears all menu item entries from the menu item list.
 
-Syntax: `clear_item`
+Syntax: `clear_menu`
 
 ## Switch
 
