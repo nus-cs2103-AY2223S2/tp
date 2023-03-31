@@ -478,25 +478,6 @@ Examples:
 * `findc Betsy` followed by `addpoints 1 pt/-300` deducts 300 reward points from
   the 1st customer in the results of the `findc` command.
 
-#### Setting tiers for your reward system : `settier`
-
-Sets a tier for your reward system with a point threshold. Customers above the point threshold are automatically in this tier, and the tiers below it.
-
-Format: `settier TIER_NUM POINT_THRESHOLD`
-
-* There are 3 tiers by default, tiers 1, 2 and 3 will be initially set to 999997 999998 and 999999 respectively.
-* The points threshold of tiers must go in the following order, 1 < 2 < 3
-* The tier_num refers to the particular tier that you want to set the point_threshold
-* The tier_num **must be 1, 2 or 3**
-* The point_threshold refers to how much points you want a customer to accmulate before he is in the tier, tier_num
-* The points **must be a positive integer** 1, 2, 3, ​​…
-
-Examples:
-* `settier 1 500` Sets tier 1 with a point threshold of 500, any customer above 500 points will automatically be
-  in tier 1.
-* `settier 1 500` followed by `settier 2 450` will not be allowed as tier 1 must have a lower point threshold
-  than tier 2.
-
 ### Orders
 
 #### Adding an order : `addo`
