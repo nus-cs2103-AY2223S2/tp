@@ -16,6 +16,7 @@ import seedu.dengue.model.person.Person;
  */
 public abstract class Overview {
     protected static final int MAX_INDEX_LEN = 4; // Length of " 28."
+    protected static final int MAX_BIN_NAME_LENGTH = 17; // Hong Leong Garden
     protected static final String GAP = "     ";
 
     /**
@@ -57,7 +58,11 @@ public abstract class Overview {
      * @param bin The input bin to format into a {@code String}.
      * @return The string representation of the bin.
      */
-    public abstract String makeBinFormat(DataBin bin);
+    public String makeBinFormat(DataBin bin) {
+        int maxSizeLen = String.valueOf(getAnalyst().getTotal()).length();
+        return String.format("%s" + GAP + "%" + maxSizeLen + "d",
+                padBinName(bin.getName()), bin.getSize());
+    }
 
     protected static String makeWhitespace(int length) {
         if (length <= 0) {
@@ -65,6 +70,12 @@ public abstract class Overview {
         }
 
         return Stream.iterate(" ", x -> x).limit(length).collect(Collectors.joining());
+    }
+
+    protected static String padBinName(String binName) {
+        int paddingNeeded = MAX_BIN_NAME_LENGTH - binName.length();
+        String whitespace = makeWhitespace(paddingNeeded / 2);
+        return whitespace + binName + whitespace;
     }
 
     private String makeBinPrefix(int x) {
@@ -104,5 +115,19 @@ public abstract class Overview {
                     return newArray;
                 })
                 .collect(Collectors.toList());
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof Overview)) {
+            return false;
+        }
+
+        Overview other = (Overview) obj;
+        return getAnalyst().equals(other.getAnalyst());
+
     }
 }

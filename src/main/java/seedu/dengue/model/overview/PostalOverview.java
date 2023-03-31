@@ -13,8 +13,8 @@ import seedu.dengue.model.person.Person;
  * @see PostalAnalyst
  */
 public class PostalOverview extends Overview {
+    private static final String POSTAL_DELIMITER = ", ";
     private static final String POSTAL_TITLE = "Overview by Location";
-    private static final int MAX_NAME_LENGTH = 17; // Hong Leong Garden
 
     private PostalAnalyst analyst;
 
@@ -52,13 +52,13 @@ public class PostalOverview extends Overview {
     }
 
     private static String[] splitLocationName(String locationName) {
-        return locationName.split(", ");
+        return locationName.split(POSTAL_DELIMITER);
     }
 
     @Override
     public String makeBinFormat(DataBin bin) {
         String[] locationNames = splitLocationName(bin.getName());
-        String paddingWhitespace = makeWhitespace(MAX_NAME_LENGTH - locationNames[0].length());
+        String paddingWhitespace = makeWhitespace(MAX_BIN_NAME_LENGTH - locationNames[0].length());
 
         int maxSizeLen = String.valueOf(getAnalyst().getTotal()).length();
         locationNames[0] = String.format("%s" + paddingWhitespace + GAP + "%" + maxSizeLen + "d",
@@ -66,19 +66,5 @@ public class PostalOverview extends Overview {
 
         String rowPrefix = "\n" + makeWhitespace(MAX_INDEX_LEN) + GAP;
         return String.join(rowPrefix, locationNames);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-
-        if (!(obj instanceof PostalOverview)) {
-            return false;
-        }
-
-        PostalOverview other = (PostalOverview) obj;
-        return this.analyst.equals(other.analyst);
     }
 }

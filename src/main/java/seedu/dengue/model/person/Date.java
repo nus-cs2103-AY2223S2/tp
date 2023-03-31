@@ -77,8 +77,10 @@ public class Date {
      * Then, if month is in MM format,
      * the first 2-digit substring will be read into the month parameter.
      * Lastly, the last 2-digit substring will be read into the day parameter.
+     * Any additional alphanumeric characters leftover will result in an error.
      * @param date A string representation of the date.
      * @return A format representation of the date. Eg. "yyyy MMM dd"
+     * @throws IllegalArgumentException If an invalid format is produced.
      */
     public static DateTimeFormatter produceValidationFormat(String date)
             throws IllegalArgumentException {

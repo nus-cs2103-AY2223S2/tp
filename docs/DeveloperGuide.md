@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -173,8 +173,8 @@ The undo/redo mechanism is facilitated by `TemporaryMemory`. It extends `Special
 * `TemporaryMemory#undo()` — Restores the previous Dengue Hotspot Tracker state from its history. This pops an item from the primary memory stack represented by a `Deque` and pushes it into the auxiliary storage stack implemented with a `Stack`.
 * `TemporaryMemory#redo()` — Restores a previously undone Dengue Hotspot Tracker state from its history. This pushes an item from the auxiliary `Stack` back into the primary memory stack.
 * `TemporaryMemory#loadCurrent()` — Peeks into the top element of the stack and loads it.
-These operations are exposed in the `Model` interface as `Model#saveChanges()`, `Model#undo()`, `Model#redo()` and `Model#updateFromMemoryStack()`.
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+  These operations are exposed in the `Model` interface as `Model#saveChanges()`, `Model#undo()`, `Model#redo()` and `Model#updateFromMemoryStack()`.
+  Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `DengueHotspotTracker` will be initialized with the initial Dengue Hotspot Tracker state, and the `TemporaryMemory` stack implementation contains only the current Dengue Hotspot Tracker state.
 
@@ -248,20 +248,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 The proposed Prefix find feature mechanism is primarily facilitated by the `DengueHotspotTrackerParser#parseCommand()`,
 `FindCommandParser#parse()`, `ArgumentTokenizer#Tokenize()`, `ArgumentMultimap#getValue()`, and `FindCommand#execute()`
- methods.
+methods.
 
 Given below is an example usage scenario and how the Prefix find mechanism behaves at each step.
 
 Step 1. The user launches the application.
 
 Step 2. The user executes the `find a/ 13 n/ Thomas p/ 612` command to filter the list of cases which contain a dengue
- case associated with the name Thomas, who is of the age 13 and has a postal code beginning with 612.
+case associated with the name Thomas, who is of the age 13 and has a postal code beginning with 612.
 
 Step 3. `DengueHotspotTrackerParser#parseCommand()` parses the command and, detecting the `find` command word,
- passes the argument `a/ 13 n/ Thomas p/ 612` to the `FindCommandParser`.
+passes the argument `a/ 13 n/ Thomas p/ 612` to the `FindCommandParser`.
 
 Step 4. `FindCommandParser#parse()` will call on `ArgumentTokenizer#Tokenize()` and subsequently gets the values of
- each individual Prefix using `ArgumentMultimap#getValue()`.
+each individual Prefix using `ArgumentMultimap#getValue()`.
 
 Step 5. `FindCommand#execute()` will get the most updated list of filtered Persons based on the values given from
 `ArgumentMultimap#getValue()` and shows it on the User Interface.
@@ -280,16 +280,16 @@ The following activity diagram summarises what happens when a user executes a Pr
 or age past 200)**
 
 * **Alternative 1 (current choice):** Accepts the user input and executes the find command as per usual.
-  * Pros: Allows for user freedom in cases that there may be people with Numerics in names, and the underlying code
-would not have to change if new postal codes were to be implemented.
-  * Cons: In the case of the input being erroneous, there is no indication that the for the user that it may be due to
-what they keyed in.
+    * Pros: Allows for user freedom in cases that there may be people with Numerics in names, and the underlying code
+      would not have to change if new postal codes were to be implemented.
+    * Cons: In the case of the input being erroneous, there is no indication that the for the user that it may be due to
+      what they keyed in.
 
 
 * **Alternative 2:** Displays a message indicating that the input may be erroneous for each of the available prefix.
-  * Pros: In the case of the input being erroneous, there would be an indication that the for the user that their input
-may be unintended.
-  * Cons: Less flexibility and requires changes to the code base if new postal codes are added.
+    * Pros: In the case of the input being erroneous, there would be an indication that the for the user that their input
+      may be unintended.
+    * Cons: Less flexibility and requires changes to the code base if new postal codes are added.
 
 ### Multi-index delete feature
 
@@ -450,6 +450,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Person**: A person who has contracted Dengue fever.
+* **CSV file**: Comma-separated values file
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -477,7 +479,6 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases … }
 
 ### Deleting a person
 
@@ -494,12 +495,20 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }
+### Exporting/Importing data
+1. Testing import CSV
+   1. Remove `denguehotspottracker.csv` file in the /data folder.
+   1. Run `DengueHotSpotTracker` to obtain an initialized list of persons.
+   1. Enter Command: `export sampledata.csv` to export existing list of persons.<br>
+      Expected: Successfully exported data to sampledata.csv
+   1. Enter Command: `clear` to clear existing list of persons.
+   1. Enter Command: `import sampledata.csv` to import sampledata.csv.<br>
+      Expected: Successfully imported data from sampledata.csv
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }
+   1. Ensure that `DengueHotspotTracker` is currently not running.
+   1. Open `data/denguehotspottracker.csv` file with your favourite text editor.
+   1. Remove any of the quotation marks.
+   1.Run `DengueHotspotTracker`. Since the data file is not in the correct format, `DengueHotspotTracker` should start without any data.
