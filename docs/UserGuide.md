@@ -4,18 +4,12 @@ title: User Guide
 ---
 
 ## Introduction
-MedInfo is a **desktop app for managing patients and wards for private hospitals, 
-optimized for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, MedInfo can get your patient management tasks done faster than traditional GUI apps.
+MedInfo is a desktop application for **private hospital administrative staff**. It helps manage your patients,
+their status, discharge and ward, and your wards.
 
 This is a User Guide for MedInfo that will guide you through installing the app to getting familiarised
-with its features and using it. You are a **hospital staff member** with decent typing ability and prefer typing
-over voice or mouse commands to do your tasks.
-
-Navigating this User Guide is simple with the Table of Contents with hyperlinks to every segment below, and a hyperlink
-on every page to take you back to the Table of Contents. To further augment your navigation, press
-<kbd>Ctrl</kbd> + <kbd>F</kbd> to search for a keyword directly.
+with its features and using it. If this is your first time using this Guide, you may refer to this segment
+on [how to use our User Guide](#how-to-use-the-user-guide)
 
 ## Table of Contents
 * Table of Contents
@@ -68,7 +62,16 @@ tee, allowing you to in-process, update, and move patients around while looking 
 ## User Interface Overview
 
 ![UiOverview](images/UiOverview.png)
-## Features
+
+## How to use the User Guide
+
+This Guide contains detailed explanations on the **commmands** available and what they do.
+The [**Table of Contents**](#table-of-contents) at the top provide a quick way to navigate to any section you want,
+and a [Back to Table of Contents](#table-of-contents) tag is provided at the footer of each section to take you back
+to the Table of Contents. To further augment your navigation, press <kbd>Ctrl</kbd> + <kbd>F</kbd> to search for a keyword directly.
+<br><br>
+Our commands follow a certain format for ease of use. Below are some notes on how you should interpret each command
+format.
 
 <div markdown="block" class="alert alert-info">
 
@@ -94,6 +97,12 @@ tee, allowing you to in-process, update, and move patients around while looking 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+## Features
+
+These are all the commands available in MedInfo. It is mainly classified into **Patient** and 
+**Ward** commands.
+
 
 ### Viewing help : `help`
 
