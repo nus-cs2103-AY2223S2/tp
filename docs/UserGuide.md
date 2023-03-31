@@ -160,12 +160,12 @@ Format: `edit INDEX [n/COMPANY_NAME] [j/JOB_TITLE] [l/LOCATION] [s/SALARY] [rate
 - Edits the internship application at the specified `INDEX`.
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
-- If `COMPANY_NAME` or `JOB_TITLE` is empty, they will retain the former value.
+- If `COMPANY_NAME` or `JOB_TITLE` is empty in the form, they will retain the former value, but the `COMPANY_NAME` or `JOB_TITLE` in CLI command cannot be empty.
 - Other attribute can be left as empty string.
 
 Examples:
 * `edit 1 q/Singapore citizen q/Pursuing CS degree` updates the qualification of the internship with first index to `Singapore citizen` and `Pursuing CS degree`.
-* `edit 2 n/ j/Data Engineer` updates the second internship job title to `Data Engineer` and retains the original name.
+* `edit 2 n/LinkedIn j/Data Engineer` updates the second internship company name to `LinkedIn` and job title to `Data Engineer`.
 
 ### Add an interview date : `add_date`
 
