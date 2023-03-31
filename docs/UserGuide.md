@@ -30,7 +30,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - [Edit a Module](#edit-a-module)
   - [Edit a Lecture](#edit-a-lecture)
   - [Edit a Video](#edit-a-video)
-  - [Mark or Unmark a Video](#mark-or-unmark-a-video)
+  - [Mark or Unmark Video](#mark-or-unmark-video)
   - [Delete Module](#delete-module)
   - [Delete Lecture](#delete-lecture)
   - [Delete Video](#delete-video)
@@ -56,7 +56,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Type the command in the command box. Use the `UP` and `DOWN` arrow to toggle through previous commands that you have executed.
+2. Type the command in the command box. Use the :arrow_up: and :arrow_down: arrow to toggle through previous commands that you have executed.
 
 3. Press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
@@ -337,15 +337,17 @@ Examples:
 
 - `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /watch /tags Intro, Short`
 
-### Mark or Unmark Video(s)
+### Mark or Unmark Video
 
-> Marks/Unmarks a video as watched/unwatched in a lecture of its specified module.
+> Marks/Unmarks video(s) as watched/unwatched in a lecture of its specified module.
 
 Format:
+
 - `mark {video_name} /mod {module_name} /lec {lecture_index}`
 - `unmark {video_name} /mod {module_name} /lec {lecture_index}`
 
 Parameters:
+
 - `mark` marks `{video_name}` as watched
 - `unmark` marks `{video_name}` as unwatched
 - `{video_name}` can be names of multiple videos, separated by commas (",")
@@ -603,6 +605,7 @@ _\* Both commands will show video `Vid 1` from the video list of lecture `Week 2
 > Clears all information (modules, lectures, videos, tags) from Le Tracker
 
 Format:
+
 - `clear`
 
 - any following term entered after `clear` is ignored
