@@ -16,7 +16,7 @@ With Docedex, taking control of patient management is just a few keystrokes away
 
 ![NewUi](images/NewUi.png)
 
-For **new users** visit our [quick start](#quick-start) to get you started .
+For **new users** visit [quick start](#quick-start).
 
 <!-- omit in toc -->
 ## Table of Contents
@@ -32,8 +32,8 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 2. Download the latest jar file (`docedex.jar`) from our [Github Releases](https://github.com/AY2223S2-CS2103T-F12-1/tp/releases/).
    ![DownloadDocedex](images/DownloadDocedex.png)
 
-3. Move the jar file to a Docedex's new folder
-   - Create a new folder called Docedex where you would like to house the application (e.g., Desktop, Documents, etc.). 
+3. Move the jar file to a folder where you want to store the data of the doctors and patients.
+   - Create a new folder called (you can name it Docedex) where you would like to house the application (e.g., Desktop, Documents, etc.). 
    - Move the downloaded jar file to this folder as shown below.
      - For Mac Users:
      ![DownloadDocedexMac](images/DownloadDocedexMac.png)
@@ -51,7 +51,7 @@ For **new users** visit our [quick start](#quick-start) to get you started .
    - You should notice the GUI of the application pop up.<br>
    ![NewUi](images/NewUi.png)
 
-6. Test out some commands in [Docedex Tutorial](#docedex-tutorial)
+6. Refer to the [Docedex Tutorial](#docedex-tutorial) to learn how to use the application quickly.
 
 7. Refer to the [Features](#features) section for details of each command.
 
@@ -59,14 +59,28 @@ For **new users** visit our [quick start](#quick-start) to get you started .
 
 ## Notes about the command format
 
-| Notes                                                                                                       | Explanation                                                        | Examples                                                                                          |
-|-------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| Words in `UPPER_CASE`                                                                                       | These are parameters that are supplied by the user                 | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
-| Items in square brackets                                                                                    | These are optional fields (can be left empty by user)              | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
-| Items with `…`​ after them                                                                                  | These are fields that can be used multiple times including 0 times | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
-| Parameters can be in any order.                                                                             | N/A                                                                | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
-| If a parameter is **expected only once** and entered multiple times, only the latest occurence is accepted. | N/A                                                                | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
-| Extraneous parameters for commands that do not take in parameters will be ignored.                          | N/A                                                                | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
+| Notes                                                                                                       | Explanation                                                               | Examples                                                                                          |
+|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| Words in `UPPER_CASE`                                                                                       | These are fields that are supplied by the user                            | `add-doc n/NAME...` can be used as `add-doc n/John Doe...`                                        |
+| Items in square brackets                                                                                    | These are optional fields (can be left empty by user)                     | `add-doc n/NAME ... [t/TAG]` can be used as `add-doc n/John Doe t/friend` or `add-doc n/John Doe` |
+| Items with `…`​ after them                                                                                  | These are fields that can be used multiple times (or omitted completely)  | `add-doc ... [t/TAG]…​` can be used as `add-doc ... t/friend t/surgeon` or `add-doc ...`          |
+| Parameters can be in any order.                                                                             | N/A                                                                       | `add-doc n/NAME p/PHONE_NUMBER ...` is equivalent to `add-doc p/PHONE_NUMBER n/NAME`              |
+| If a parameter is **expected only once** and entered multiple times, only the latest occurence is accepted. | N/A                                                                       | `add-doc n/John Doe n/Shawn Koh ...` is equivalent to `add-doc n/Shawn Koh ...`                   |
+| Extraneous parameters for commands that do not take in parameters will be ignored.                          | N/A                                                                       | `help 123`, `list 123` is equivalent to `help` or `list`                                          |
+
+## Command Summary
+| Command             | Shorthand | What it does                                                                              |
+|---------------------|-----------|-------------------------------------------------------------------------------------------|
+| add-doc / add-ptn   | ad / ap   | Adds a doctor or patient into Docedex.                                                    |
+| edit-doc / edit-ptn | ed / ep   | Edits the specified doctor or patient.                                                    |
+| del-doc / del-ptn   | dd / dp   | Removes the specified doctor or patient from Docedex. **This action cannot be undone.**   |
+| find-doc / find-ptn | fd / fp   | Finds the doctor(s) and patient(s) which matches the search query.                        |
+| list-doc / list-ptn | lsd / lsp | Lists all doctors or patients.                                                            |
+| assign-ptn          | asn       | Assigns a patient to a doctor.                                                            |
+| unassign-ptn        | uasn      | Unassigns a patient from a doctor.                                                        |
+| sd / sp             | sd / sp   | Selects the specified doctor or patient and displays the person's information on the GUI. |
+| help                | N/A       | Displays the link to the User Guide.                                                      |
+| clear               | N/A       | Clears all entries from Docedex. **This action cannot be undone.**                            |
 
 ## Features
 
