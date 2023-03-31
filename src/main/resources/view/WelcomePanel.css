@@ -1,0 +1,13 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1,
+h2 {
+  color: #55a5ef;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
