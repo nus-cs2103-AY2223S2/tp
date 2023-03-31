@@ -20,7 +20,6 @@ This guide shows you the relevant information for setting up and using Trackr to
 
 You can click on any of the links below to navigate to the respective sections for more information.
 
-
 # Table of Contents
 
 <!-- TOC -->
@@ -88,19 +87,21 @@ You can click on any of the links below to navigate to the respective sections f
 ## Prerequisites
 
 ### Java
+
 Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html)</ins> or above installed.
 
 <div markdown="block" class="alert alert-tip">
 
-  :bulb: **How to check your current Java version:**<br>
-  
-  **Step 1.** Open up **Command Prompt** (Windows) or **Terminal** (Mac and Linux).
-  
-  **Step 2.** Type and run the command `java -version`. 
-  
-  **Step 3.** Check the version number provided (`xxx`) is at least `11`.
+:bulb: **How to check your current Java version:**<br>
 
-  An example is shown below.
+**Step 1.** Open up **Command Prompt** (Windows) or **Terminal** (Mac and Linux).
+
+**Step 2.** Type and run the command `java -version`.
+
+**Step 3.** Check the version number provided (`xxx`) is at least `11`.
+
+An example is shown below.
+
   ```
   > java -version
   java version "xxx" <Other information>
@@ -130,18 +131,19 @@ Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/jav
 **Step 3.** Double-click on the `trackr.jar` file.
 
 <div markdown="block" class="alert alert-tip">
-    
-  :bulb: **Trackr does not open?**<br>
-  
-  **Step 1.** Open a command terminal.
 
-  **Step 2.** Type in `java -jar ` (Keep in mind of the space at the end).
+:bulb: **Trackr does not open?**<br>
 
-  **Step 3.** Drag and drop `trackr.jar` into the command terminal. 
-  
-  **Step 4.** Press enter and execute the command.
+**Step 1.** Open a command terminal.
 
-  An example of the final command is displayed below.
+**Step 2.** Type in `java -jar ` (Keep in mind of the space at the end).
+
+**Step 3.** Drag and drop `trackr.jar` into the command terminal.
+
+**Step 4.** Press enter and execute the command.
+
+An example of the final command is displayed below.
+
   ```
   > java -jar xxxx/xxxx/trackr.jar
   ```
@@ -149,18 +151,18 @@ Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/jav
 </div>
 
 A GUI similar to the below should appear in a few seconds. (Note how the app contains some sample data.) <br>
-  
+
 <p align="center">
   <img src="images/Ui.png" />
   <br>Figure 1: Initial Setup UI
 </p>
 
 **Step 4.** Type your command in the command box and press Enter to execute it. (e.g. typing **`help`** and pressing Enter will open the help window.) <br>
-   
-   Some example commands you can try:
 
-   * `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567` : Adds an order for John Doe to the order list.
-   * `exit` : Exits the app.
+Some example commands you can try:
+
+* `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567` : Adds an order for John Doe to the order list.
+* `exit` : Exits the app.
 
 **Step 5.** Refer to the [Features](#features) below for details of each command.
 
@@ -227,7 +229,6 @@ Examples:
 * `add_supplier n/John Doe p/98765432 e/johnd@example.com a/John Street`
 * `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat`
 
-
 ### Adding an order: `add_order`
 
 Adds an order into the list of orders.
@@ -266,11 +267,11 @@ Adds a menu item to the menu.
 Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
 
 * When entering price and cost data, you may only
-  * input positive numbers. 
-    * For example, you can input the number 5, not -5. 
+  * input positive numbers.
+    * For example, you can input the number 5, not -5.
   * choose to include number with a decimal point. A decimal point looks like this: `.` However, you can only key in up to 2 numbers after the decimal point.
-      * For example, the number 5.75 but not 5.752. 
-* After you have add an item, note that the profit margin displayed can be positive or negative number. 
+    * For example, the number 5.75 but not 5.752.
+* After you have add an item, note that the profit margin displayed can be positive or negative number.
   * For example, if you see `Profit Margin: $-0.50` and  `Profit Margin: $2.00`, both are correct. However, this means that you are making a lost on your menu item.
 
 Examples:
@@ -299,7 +300,6 @@ Examples:
 
 * `edit_supplier 1 n/Johnny p/90138482 t/` edits the 1st supplier's name to `Johnny`, phone number to `90138482` and removed all of its tags
 * `edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
-
 
 ### Editing an order: `edit_order`
 
@@ -412,7 +412,7 @@ Examples:
 
 Find tasks with information that matches with any of the given parameters.
 
-Syntax: `find_item [n/ITEM_NAME]`
+Syntax: `find_item [ITEM_NAME]`
 
 * Search is case-insensitive, e.g. `match` will match `Match`.
 * The order of the keywords does not matter, e.g. `n/Chocolate cookies` will match with `Cookies chocolate`.
@@ -486,7 +486,6 @@ Examples:
 * `delete_menu 2` deletes the first task
 * `find_i cupcake` followed by `delete_m 3` deletes the 1st menu item in the result of the `find_i` command
 
-
 ## Sort
 
 ### Sorting a task: `sort_task`
@@ -501,12 +500,12 @@ Syntax: `sort_task [c/CRITERIA]`
 * Sorting by `Time_added` puts the tasks added first at the top and tasks added later below.
 * Sorting by `Deadline` puts the tasks with the earlier deadlines on the top of tasks with further deadlines.
 * Sorting by `Status` puts the tasks with "Not Done" status on top and tasks with "Done" status below.
-* Sorting by `Name` sorts the tasks in a lexicographical order (ignoring-case) 
-(i.e. A task with the task name "a" will be placed on top of a different task with the task name"B").
-* Sorting by `Status_and_deadline` puts the tasks that are not done and have the earliest deadlines 
-on top and tasks done and have the furthest deadlines below.<br>
-(i.e. The tasks will be sorted in the order:
-Not done and earliest deadline > Not done and latest deadline > Done and earliest deadline > Not Done and latest deadline)
+* Sorting by `Name` sorts the tasks in a lexicographical order (ignoring-case)
+  (i.e. A task with the task name "a" will be placed on top of a different task with the task name"B").
+* Sorting by `Status_and_deadline` puts the tasks that are not done and have the earliest deadlines
+  on top and tasks done and have the furthest deadlines below.<br>
+  (i.e. The tasks will be sorted in the order:
+  Not done and earliest deadline > Not done and latest deadline > Done and earliest deadline > Not Done and latest deadline)
 
 Examples:
 
@@ -538,7 +537,7 @@ Examples:
 * `sort_o` sorts all orders by their status and deadline
 * `sort_order c/status` sorts all orders by their deadlines
 * `find_o s/N` followed by `sort_o` would sort all the orders but only the sorted result of the `find_o` command will be displayed<br>
-    (to get the sorted list of all the orders, use the `list_o` command)
+  (to get the sorted list of all the orders, use the `list_o` command)
 
 <p align="center">
   <img src="images/SortOrdersExample.png" width="600" />
@@ -616,6 +615,7 @@ Examples:
 ### Uploading a csv file
 
 Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Order` and `Suppliers`, and adds them to their respective lists. It is important that a strict format is used in order for the commands to be parsed correctly.
+
 * First indicate what item is to be added. (i.e. `Orders`)
 * List out the item fields in the next row. (i.e. `OrderName`, `Quanity`, `Deadline`, etc.)
 * Fill in the valid values for each field. (i.e. `Chocolate Cookies`, `10`, `10/01/2023`, etc.)
@@ -663,13 +663,15 @@ If your changes to the data file makes its format invalid, Trackr will discard a
 
 # Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                                                                   |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add_supplier / add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order / add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 on/Cupcakes` <br> <br> `add_task / add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed` |
-| **Edit**   | `edit_supplier / edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order / edit_o` <br> e.g., `edit_o 3 q/20` <br> <br> `edit_task / edit_t` <br> e.g., `edit_t 1 s/`                                                                                                              |
-| **Delete** | `delete_supplier / delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order / delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task / delete_t` <br> e.g., `delete_t 4`                                                                                                                                        |
-| **Find**   | `find_supplier / find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order / find_o` <br> e.g., `find_order on/Chocolate` <br> <br> `find_task / find_t` <br> e.g., `find_t s/N`                                                                                                                            |
-| **Sort**   | `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline`                                                                                                                                                                                                                                                              |
-| **Tab**    | `tab` <br> e.g., `tab Home`                                                                                                                                                                                                                                                                                        |
-| **Help**   | `help`                                                                                                                                                                                                                                                                                                             |
-| **Exit**   | `exit`                                                                                                                                                                                                                                                                                                             |
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                               |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add_supplier / add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order / add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 on/Cupcakes` <br> <br> `add_task / add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed` <br> <br> `add_item / add_i` <br> e.g., `add_i n/Chocolate Cake pr/30 c/10` |
+| **Edit**   | `edit_supplier / edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order / edit_o` <br> e.g., `edit_o 3 q/20` <br> <br> `edit_task / edit_t` <br> e.g., `edit_t 1 s/` <br> <br> `edit_item / edit_i` <br> e.g., `edit_i 2 n/Chocolate Chip Cookie`                                                                                                             |
+| **Delete** | `delete_supplier / delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order / delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task / delete_t` <br> e.g., `delete_t 4` <br> <br> `delete_item / delete_i` <br> e.g., `delete_i 2`                                                                                                                                                         |
+| **Find**   | `find_supplier / find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order / find_o` <br> e.g., `find_order on/Chocolate` <br> <br> `find_task / find_t` <br> e.g., `find_t s/N` <br> <br> `find_item / find_i` <br> e.g., `find_i Chocolate`                                                                                                                                           |
+| **Sort**   | `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline` <br> <br> `sort_order / sort_o` <br> e.g., `sort_order c/Deadline`                                                                                                                                                                                                                                                                       |
+| **List**   | `list_supplier` <br> <br> `list_order` <br> <br> `list_task` <br> <br> `list_menu`                                                                                                                                                                                                                                                                                                             |
+| **Clear**  | `clear_supplier` <br> <br> `clear_order` <br> <br> `clear_task` <br> <br> `clear_menu`                                                                                                                                                                                                                                                                                                         |
+| **Tab**    | `tab` <br> e.g., `tab Home`                                                                                                                                                                                                                                                                                                                                                                    |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                         |
+| **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                                         |
