@@ -99,7 +99,9 @@ The original recipe book:
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange` is valid and a recipe look like the picture
 shown below will be added to the recipe book:
 ![AddCommand example1 result](images/AddResult1.png)
-- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because `s/` is compulsory
+- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because `s/` is compulsory and you will see an
+error message like the one in the picture shown below:
+![AddCommand error](images/AddError.png)
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar, 50, g, 0.10 s/Juice the orange` is valid because we can have
 multiple `i/` flags and a recipe look like the picture shown below will be added to the recipe book:
 ![AddCommand example2 result](images/AddResult2.png)
@@ -120,7 +122,9 @@ The original recipe book:
 ![Before changing](images/UiInWindows.png)
 - `edit 1 t/Corndog` is valid and the recipe will be edited like the picture shown below:
 ![EditCommand example1 result](images/EditResult1.png)
-- `edit 1` is not valid as at least one flag is required
+- `edit 1` is not valid as at least one flag is required and you will see an error message like the one in the picture
+shown below:
+![EditCommand error](images/EditError.png)
 - `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted and the recipe will be edited like
 the picture shown below:
 ![EditCommand example2 result](images/EditResult2.png)
@@ -143,7 +147,7 @@ The original recipe book:
 - `delete 1` will change the recipe book to:
 ![DeleteCommand example1 result](images/DeleteResult1.png)
 - `delete 2` is invalid as there is only 1 recipe in the recipe book for now and you will see an error message like the
-picture shown below:
+one in the picture shown below:
 ![DeleteCommand example2 result](images/DeleteResult2.png)
 
 ---
@@ -172,7 +176,7 @@ Example: `clear` will clear all recipes like the picture shown below:
 ![ClearCommand example result](images/ClearResult.png)
 
 ---
-## Intermediate commands
+## Advanced commands
 
 ### Find recipe : `find`
 
@@ -193,8 +197,12 @@ The original recipe book:
 ![Before changing](images/AddResult2.png)
 - `find r/eggs` is valid and the result of the command is shown below:
 ![FindCommand example result](images/FindResult.png)
-- `find r/eggs s/fry the egg` is not valid because at most one flag is allowed
-- `find` is not valid as at least one flag is required
+- `find r/eggs s/fry the egg` is not valid because at most one flag is allowed and you will see an error message like
+the one in the picture shown below:
+![FindCommand error1](images/FindError1.png)
+- `find` is not valid as at least one flag is required and you will see an error message like the one in the picture
+shown below:
+![FindCommand error2](images/FindError2.png)
 
 ---
 ### Search recipe with limited ingredients: `only`
@@ -207,7 +215,9 @@ Examples:
 
 The original recipe book:
 ![Before changing](images/AddResult2.png)
-- e.g. `only` is not valid as a parameter is needed
+- e.g. `only` is not valid as a parameter is needed and you will see an error message like the one in the picture shown
+below:
+![OnlyCommand error](images/OnlyError.png)
 - e.g. `only eggs` is valid, will search for recipes that have ingredients that at most contain eggs, and nothing more,
 and the result of the command is shown below:
 ![OnlyCommand example1 result](images/OnlyResult1.png)
