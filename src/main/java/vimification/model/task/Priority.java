@@ -21,6 +21,19 @@ public enum Priority {
         }
     }
 
+    public String asEnding() {
+        switch (this) {
+        case NOT_URGENT:
+            return " !";
+        case URGENT:
+            return " !!";
+        case VERY_URGENT:
+            return " !!!";
+        default:
+            return ".";
+        }
+    }
+
     @Override
     public String toString() {
         return name().toLowerCase().replace('_', ' ');

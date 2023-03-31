@@ -38,7 +38,7 @@ public class DeleteTaskCommand extends DeleteCommand {
         requireNonNull(taskList);
         deletedTask = taskList.remove(targetIndex.getZeroBased());
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTask));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTask.forDisplay()));
     }
 
     @Override
