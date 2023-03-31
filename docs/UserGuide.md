@@ -206,6 +206,7 @@ Example of command
 1. `:i 3 -d 2023-04-5` inserts the deadline to task 3
 2. `:i 3 -l cs2103t` inserts the "cs2103t" label to task 3
 
+Condition
 - At least one for the flags should be present. 
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
@@ -224,7 +225,8 @@ Format: `:d <task_index>`
     
 Example of command 
 1. `:d 3` deletes task 3
-    
+
+Condition
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
@@ -244,6 +246,7 @@ Example of command
 1. `:d 3 -d` deletes the deadline of task 3
 2. `:d 3 -l cs2103t` deletes the "cs2103t" label of task 3
 
+Condition    
 - At least one for the flags should be present. Else, command will be treated as deleting the task at index number.
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
@@ -271,13 +274,52 @@ Example of command
 4. `:e 3 -p 1` edits the priority of task 3 to be in urgent      
 5. `:e 3 -l oldLabel newLabel` edits oldLabel of task 3 to be newLabel      
                       
-                      
+Condition                   
 - At least one for the flags should be present. 
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
 
     
+### Filter task
+
+Filter the parameters as specified by the flag.
+
+Format: `:f [-t <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]... `
+
+| Parameter    | Detail                                          | Example        |
+| ------------ | ----------------------------------------------- | -------------- |
+| `<title>`    | Title of task to filter                         | `"CS2103T UG"` |
+| `<date>` | date of the task to filter before or after  | `2023-03-31`   |
+| `<status>`   | Status of task to filter                        | `2`            |
+| `<priority>` | Priority level of task to filter                | `1`            |
+| `<label>`    | Label of task to filter                         | cs2103t(assuming the task list has this label) |
+
+
+Example of command
+1. `:f -t "quiz"` filter for tasks with "quiz" as title
+2. `:f -d --before 2023-04-05` filter for tasks before 2023-04-05
+3. `:f -s 1` filter for tasks with status of in_progress 
+4. `:f -p 1` filter for tasks with priority of urgent 
+5. `:f -l cs2103t` filter for tasks with label of cs2103t     
+    
+Condition
+- Only one flag should be present. 
+
+    
+### Sort task
+
+Sort the parameters as specified by the flag.
+
+Format: `:s [-t] [-d] [-p] `
+
+Example of command
+1. `:f -t` sort for tasks by title
+2. `:f -d` sort for tasks by deadline
+3. `:f -p` sort for tasks by priority level
+    
+Condition
+- Only one flag should be present. 
     
 ### Exiting the application
 
