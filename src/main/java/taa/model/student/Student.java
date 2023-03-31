@@ -106,9 +106,17 @@ public class Student {
     public ArrayList<String> getSubmissionStorageStrings() {
         return this.submissionStringArr;
     }
+
+    public String getSubmissionStorageString() {
+        StringBuilder ans = new StringBuilder();
+        for (String sub : submissionStringArr) {
+            ans.append(sub).append(';');
+        }
+        return ans.toString();
+    }
+
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both persons have the same name. This defines a weaker notion of equality between two persons.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
