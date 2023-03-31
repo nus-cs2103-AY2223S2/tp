@@ -20,6 +20,7 @@ import seedu.dengue.logic.commands.AddCommand;
 import seedu.dengue.logic.commands.FindCommand;
 import seedu.dengue.logic.parser.exceptions.ParseException;
 import seedu.dengue.model.person.Age;
+import seedu.dengue.model.person.ContinuousData;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.SubPostal;
@@ -75,7 +76,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (!startDate.isBefore(endDate)) {
             throw new ParseException(MESSAGE_INVALID_RANGE);
         }
-        return new Range<Date>(startDate, endDate);
+        return ContinuousData.generateRange(startDate, endDate);
     }
 
     private static Range<Age> getAgeRange(ArgumentMultimap argumentMultimap) throws ParseException {
@@ -86,7 +87,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (!startAge.isBefore(endAge)) {
             throw new ParseException(MESSAGE_INVALID_RANGE);
         }
-        return new Range<Age>(startAge, endAge);
+        return ContinuousData.generateRange(startAge, endAge);
     }
     /**
      * Returns true if at least one of the prefixes contains non-empty {@code Optional} value in the given

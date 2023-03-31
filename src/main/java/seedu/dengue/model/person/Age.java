@@ -7,7 +7,7 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
  * Represents a Person's age in the Dengue Hotspot Tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidAge(String)}
  */
-public class Age {
+public class Age implements ContinuousData {
 
     public static final String MESSAGE_CONSTRAINTS = "Age must be an integer between 0 and 199 inclusive.";
 
@@ -28,6 +28,8 @@ public class Age {
         checkArgument(isValidAge(age), MESSAGE_CONSTRAINTS);
         value = String.valueOf(Integer.valueOf(age));
     }
+
+
 
     /**
      * Returns true if a given string is a valid date.
