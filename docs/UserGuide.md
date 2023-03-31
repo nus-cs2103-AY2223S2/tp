@@ -381,6 +381,5 @@ If your changes to the data file makes its format invalid, the app will discard 
 | **Recurring Event create** | `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                              |
 | **Recurring Event delete** | `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                              |
 | **Recurring Event update** | `re_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] re/NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                  |
-| **Export person** | `export [INDEX_OF_PERSON]` |
-| **Event list**             | [coming soon]                                                                                                                                                               |
+| **Export person** | `export [INDEX_OF_PERSON]` |                                                                                                                                                     |
 | **Free**                   | `free GROUP_INDEX [START_DATE]`                                                                                                                                             |
