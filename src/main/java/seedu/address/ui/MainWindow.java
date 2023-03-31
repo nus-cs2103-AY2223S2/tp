@@ -36,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ImportWindow importWindow;
+    private ExportWindow exportWindow;
     private TaskListPanel taskListPanel;
     private ScoreListPanel scoreListPanel;
 
@@ -44,6 +46,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem importMenuItem;
+
+    @FXML
+    private MenuItem exportMenuItem;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -75,7 +83,25 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        Consumer<String> message;
+
+        // Listener for ImportWindow such that the GUI will be updated after the import is done
+        message = new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+                try {
+                    executeCommand(s);
+                    importWindow.handleSuccess();
+                } catch (CommandException | ParseException e) {
+                    importWindow.handleError(e.getMessage());
+                }
+            }
+        };
+
         helpWindow = new HelpWindow();
+        importWindow = new ImportWindow(message);
+        exportWindow = new ExportWindow(this.logic);
+
     }
 
     public Stage getPrimaryStage() {
@@ -172,6 +198,31 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+
+    }
+
+    /**
+     * Opens the file explorer to select a file to import into the application.
+     */
+    @FXML
+    public void handleImport() {
+        if (!importWindow.isShowing()) {
+            importWindow.show();
+        } else {
+            importWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the file explorer to select a directory to export the application's data to.
+     */
+    @FXML
+    public void handleExport() {
+        if (!exportWindow.isShowing()) {
+            exportWindow.show();
+        } else {
+            exportWindow.focus();
+        }
     }
 
     void show() {
@@ -187,6 +238,9 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        importWindow.hide();
+        exportWindow.hide();
+        personListPanel.hideExportProgressWindow();
         primaryStage.hide();
     }
 

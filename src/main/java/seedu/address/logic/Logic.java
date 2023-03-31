@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
@@ -30,6 +31,16 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
+    /**
+     * Sets the address book to the given address book.
+     */
+    void setAddressBook(ReadOnlyAddressBook addressBook) throws CommandException;
+
+    /**
+     * Stores the address book data to the given file path.
+     */
+    void storeAddressBook(Path filePath) throws IOException;
+
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
@@ -54,4 +65,6 @@ public interface Logic {
      * @return the person being selected by the user.
      */
     Person findCheckedPerson();
+
+    void exportProgress(Person target, String completePath) throws IOException;
 }

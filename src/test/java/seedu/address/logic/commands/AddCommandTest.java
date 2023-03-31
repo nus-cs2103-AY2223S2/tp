@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -156,6 +157,11 @@ public class AddCommandTest {
         @Override
         public Person findSelectedPerson() {
             return null;
+        }
+
+        @Override
+        public void exportProgress(Person target, String completePath) throws IOException {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

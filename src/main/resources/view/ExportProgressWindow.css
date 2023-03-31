@@ -1,0 +1,76 @@
+#exportMessage, #directoryChosen {
+    -fx-text-fill: white;
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 12pt;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}
+
+#exportMessageContainer {
+    -fx-background-color: #EFEEFC;
+}
+
+.scroll-bar {
+    -fx-background-color: white;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color:#605BF1;
+    -fx-background-insets: 3;
+    -fx-background-radius: 4;
+}
+
+.scroll-bar .track {
+    -fx-background-color: white;
+}
+
+.scroll-bar:vertical {
+    -fx-background-insets: 0 -2 0 0;
+    -fx-padding: 0 2 0 2;
+}
+
+.scroll-bar:horizontal {
+    -fx-background-color:white;
+    -fx-pref-height: 18;
+    -fx-padding: 2 0 2 0;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.result-display {
+    -fx-font-family: "SansSerif";
+    -fx-font-size: 14pt;
+    -fx-text-fill: white;
+    -fx-background-color: #605BF1;
+    -fx-background-radius: 4;
+    -fx-control-inner-background: #605BF1;
+    -fx-border-width: 0px;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+.result-display .label {
+    -fx-text-fill: white !important;
+}
+.containerButton {
+    -fx-background-color: #d1ceee;
+    -fx-font-size: 16pt;
+    -fx-text-fill: #5058a3;
+    -fx-background-radius: 10;
+}
+
+.containerButton:hover {
+    -fx-background-color: #dad8e9;
+}
+
+.containerButton:armed {
+    -fx-background-color: #d1ceee;
+}

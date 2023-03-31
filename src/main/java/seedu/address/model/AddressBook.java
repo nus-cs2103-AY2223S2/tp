@@ -3,8 +3,11 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.address.AppParameters;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -13,9 +16,8 @@ import seedu.address.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
-
+    private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
     private final UniquePersonList persons;
-
     private Person selectedPerson;
 
     /*
@@ -54,7 +56,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        this.selectedPerson = null;
         setPersons(newData.getPersonList());
     }
 

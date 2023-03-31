@@ -42,7 +42,9 @@ class JsonAdaptedTag {
         if (!Tag.isValidTagName(tagName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
+        if (!Tag.isMoreThanMaxLetters(tagName)) {
+            throw new IllegalValueException(Tag.MESSAGE_EXCEED_MAX_LETTERS);
+        }
         return new Tag(tagName);
     }
-
 }

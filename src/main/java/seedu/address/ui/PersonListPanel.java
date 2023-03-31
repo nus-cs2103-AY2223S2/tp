@@ -19,6 +19,8 @@ public class PersonListPanel extends UiPart<Region> {
 
     private Logic logic;
 
+    private ExportProgressWindow exportProgressWindow;
+
     @FXML
     private ListView<Person> personListView;
 
@@ -30,6 +32,11 @@ public class PersonListPanel extends UiPart<Region> {
         this.logic = logic;
         personListView.setItems(logic.getFilteredPersonList());
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        this.exportProgressWindow = new ExportProgressWindow(null, this.logic);
+    }
+
+    public void hideExportProgressWindow() {
+        this.exportProgressWindow.hide();
     }
 
     /**
@@ -44,7 +51,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1, exportProgressWindow).getRoot());
             }
         }
     }

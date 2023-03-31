@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -235,5 +236,25 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseFilePath_invalidCharInPath() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseFilePath(Optional.of("???")));
+    }
+
+    @Test
+    public void parseFilePath_validValueWithoutWhitespace_returnsString() throws Exception {
+        String expectedFilePath = System.getProperty("user.home");
+        Optional<String> filePathOpt = Optional.of(System.getProperty("user.home"));
+        assertEquals(expectedFilePath, ParserUtil.parseFilePath(filePathOpt));
+    }
+
+    @Test
+    public void parseFilePath_validValueWithWhitespace_returnsTrimmedString() throws Exception {
+        String filePathWithWhitespace = WHITESPACE + System.getProperty("user.home") + WHITESPACE;
+        Optional<String> filePathOpt = Optional.of(filePathWithWhitespace);
+        String expectedFilePath = System.getProperty("user.home");
+        assertEquals(expectedFilePath, ParserUtil.parseFilePath(filePathOpt));
     }
 }

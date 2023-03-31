@@ -19,7 +19,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     public boolean test(Person person) {
         return keywords.stream().anyMatch(keyword -> {
             for (Tag tag : person.getTags()) {
-                if (tag.tagName.startsWith(keyword)) {
+                if (tag.tagName.toLowerCase().equals(keyword.toLowerCase())) {
                     return true;
                 }
             }
@@ -33,5 +33,4 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
                 || (other instanceof TagContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((TagContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }

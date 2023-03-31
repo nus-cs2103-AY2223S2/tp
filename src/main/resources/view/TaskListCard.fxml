@@ -8,23 +8,27 @@
 <?import javafx.scene.layout.Region?>
 
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="360" prefWidth="360" />
         </columnConstraints>
-        <HBox prefWidth="100" alignment="CENTER_LEFT">
+        <HBox prefWidth="100">
             <padding>
                 <Insets top="0" right="10" bottom="0" left="10" />
             </padding>
-            <ImageView fx:id="taskStatus" fitWidth="30" fitHeight="30" style="-fx-padding: 0 0 4 0"/>
-            <Label fx:id="id" styleClass="cell_middle_label" style="-fx-padding: 0 0 0 20">
+            <VBox alignment="CENTER_LEFT">
+            <ImageView fx:id="taskStatus" fitWidth="24" fitHeight="24" style="-fx-padding: 0 0 0 0"/>
+            </VBox>
+            <HBox alignment="TOP_LEFT">
+            <Label fx:id="id" styleClass="cell_middle_label" style="-fx-padding: 0 0 0 20" >
                 <minWidth>
-                    <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE" />
                 </minWidth>
             </Label>
-            <Label fx:id="taskName" text="\$first" styleClass="cell_middle_label" />
+            <Label fx:id="taskName" text="\$first" styleClass="cell_middle_label" style="-fx-padding: 0 0 0 0"/>
+            </HBox>
         </HBox>
     </GridPane>
 </HBox>

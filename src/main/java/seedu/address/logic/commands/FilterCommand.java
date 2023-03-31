@@ -8,18 +8,17 @@ import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 /**
  * Filters and list all persons in address book that has tag/s which contains the
- * filter keywords as a prefix.
- * Keyword matching is case insensitive.
+ * filter keywords.
+ * Keyword matching is case insensitive and need to be exact match.
  */
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose has any prefix tag "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose has any tag "
             + "that matches with the filter condition (case-insensitive) and displays the "
-            + " filtered result as a list with index numbers.\n"
+            + "filtered result as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Supported filter types: primary, secondary, jc, poly, university.\n"
-            + "Example: " + COMMAND_WORD + " secondary";
+            + "Example: " + COMMAND_WORD + " primary";
 
     private final TagContainsKeywordsPredicate predicate;
 

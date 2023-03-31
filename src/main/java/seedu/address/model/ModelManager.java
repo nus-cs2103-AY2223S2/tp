@@ -3,9 +3,12 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -23,6 +26,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    private final PdfConverter pdfConverter;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -34,6 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.pdfConverter = new PdfConverter();
     }
 
     public ModelManager() {
@@ -80,6 +86,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -114,6 +121,14 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void exportProgress(Person target, String completePath) throws IOException {
+        requireAllNonNull(target, completePath);
+        PDDocument document = pdfConverter.exportProgress(target);
+        document.save(completePath);
+        document.close();
     }
 
     //=========== Filtered Person List Accessors =============================================================

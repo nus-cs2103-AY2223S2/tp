@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_1;
 import static seedu.address.testutil.TypicalTasks.VALID_TASK_2;
 
@@ -11,6 +13,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.task.exceptions.DuplicateTaskException;
@@ -125,5 +128,36 @@ public class TaskListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
                 -> taskList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void add_task_increasesSize() {
+        int sizeBefore = taskList.size();
+        taskList.add(VALID_TASK_1);
+        int sizeAfter = taskList.size();
+        assertTrue(sizeBefore + 1 == sizeAfter);
+    }
+
+    @Test
+    public void remove_task_decreasesSize() {
+        taskList.add(VALID_TASK_1);
+        int sizeBefore = taskList.size();
+        taskList.remove(VALID_TASK_1);
+        int sizeAfter = taskList.size();
+        assertTrue(sizeBefore - 1 == sizeAfter);
+    }
+
+    @Test
+    public void get_score_returnsScore() {
+        taskList.add(VALID_TASK_1);
+        assertTrue(taskList.get(INDEX_FIRST_PERSON.getZeroBased())
+                .equals(taskList.getInternalList().get(INDEX_FIRST_PERSON.getZeroBased())));
+    }
+
+    @Test
+    public void get_invalidScoreIndex_throwsIndexOutofBoundsException() {
+        taskList.add(VALID_TASK_1);
+        Assertions.assertThrows(IndexOutOfBoundsException.class, ()
+                -> taskList.get(INDEX_SECOND_PERSON.getZeroBased()));
     }
 }

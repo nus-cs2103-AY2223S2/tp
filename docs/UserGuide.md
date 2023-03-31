@@ -91,7 +91,7 @@ If you need to switch to a new device, you can also export and import your previ
 
 Prompts the help page link.
 
-<img width="793" alt="Screenshot 2023-03-30 at 3 08 08 PM" src="https://user-images.githubusercontent.com/97392685/228756824-377ceb52-0585-4eed-ae6e-62c4b4394ab9.png">
+<img width="796" alt="Screenshot 2023-03-30 at 3 37 34 PM" src="https://user-images.githubusercontent.com/97392685/228764298-dccce25c-662f-41c6-9c91-6db2a8b44df7.png">
 
 Format: `help`
 
@@ -183,11 +183,11 @@ Examples:
 * `check 2` checks the 2nd student in the student list.
 
 
-### 8. Adding a task for a student: `addTask`
+### 8. Adding a task for a student: `addtask`
 
 Adds a task to a specific student.
 
-Format: `addTask INDEX t/TASK_NAME`
+Format: `addtask INDEX t/TASK_NAME`
 
 * Adds the given task to the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -197,17 +197,17 @@ Format: `addTask INDEX t/TASK_NAME`
 
 Examples:
 
-* `list` followed by `addTask 2 t/finish Math Paper 1` adds the task `finish Math Paper 1` to the 2nd student of the
+* `list` followed by `addtask 2 t/finish Math Paper 1` adds the task `finish Math Paper 1` to the 2nd student of the
   student list.
-* `check 2` followed by `addTask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
+* `check 2` followed by `addtask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
   being checked.
 
 
-### 9. Deleting a task of a student: `deleteTask`
+### 9. Deleting a task of a student: `deletetask`
 
 Deletes the specified task from the task list of a student.
 
-Format: `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`
+Format: `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`
 
 * Deletes the task at the specified `INDEX_OF_TASK` of a specified student (`INDEX_OF_STUDENT`).
 * The first index refers to the index number shown in the displayed student list and
@@ -216,19 +216,19 @@ Format: `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`
 
 Examples:
 
-* `list` followed by `deleteTask 2 3` deletes the third task of the 2nd student in the student list.
-* `find Betsy` followed by `deleteTask 1 6` deletes the sixth task of the 1st student in the results of the 
+* `list` followed by `deletetask 2 3` deletes the third task of the 2nd student in the student list.
+* `find Betsy` followed by `deletetask 1 6` deletes the sixth task of the 1st student in the results of the 
 `find` command.
 
 
-### 10. Marking a task of a student: `markComplete`, `markInProgress`, `markLate`
+### 10. Marking a task of a student: `markcomplete`, `markinprogress`, `marklate`
 
 Marks the specified task from the task list of a student as complete, in progress or late.
 
 Format:
-<br> Mark task as complete: `markComplete INDEX_OF_STUDENT INDEX_OF_TASK`
-<br> Mark task as in progress: `markInProgress INDEX_OF_STUDENT INDEX_OF_TASK`
-<br> Mark task as late: `markLate INDEX_OF_STUDENT INDEX_OF_TASK`
+<br> Mark task as complete: `markcomplete INDEX_OF_STUDENT INDEX_OF_TASK`
+<br> Mark task as in progress: `markinprogress INDEX_OF_STUDENT INDEX_OF_TASK`
+<br> Mark task as late: `marklate INDEX_OF_STUDENT INDEX_OF_TASK`
 
 * Marks the task at the specified `INDEX_OF_TASK` of a specified student (`INDEX_OF_STUDENT`) as complete, in progress or late, depending on the command called.
 * The first index refers to the index number shown in the displayed student list and
@@ -237,16 +237,16 @@ Format:
 
 Examples:
 
-* `list` followed by `markComplete 2 3` marks the third task of the 2nd student in the student list as complete.
-* `find Betsy` followed by `markLate 1 6` marks the sixth task of the 1st student in the results of the
+* `list` followed by `markcomplete 2 3` marks the third task of the 2nd student in the student list as complete.
+* `find Betsy` followed by `marklate 1 6` marks the sixth task of the 1st student in the results of the
   `find` command as late.
 
 
-### 11. Adding a score for a student: `addScore`
+### 11. Adding a score for a student: `addscore`
 
 Adds a score to a specific student.
 
-Format: `addScore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
+Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 
 * Adds the given score to the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -269,11 +269,11 @@ Examples:
   value of `50` and dated `2021-09-09` to the student being checked.
 
 
-### 12. Deleting a score of a student: `deleteScore`
+### 12. Deleting a score of a student: `deletescore`
 
 Deletes the specified score from the score list of a student.
 
-Format: `deleteScore INDEX_OF_STUDENT INDEX_OF_SCORE `
+Format: `deletescore INDEX_OF_STUDENT INDEX_OF_SCORE `
 
 * Deletes the score at the specified `INDEX_OF_SCORE` of a specified student (`INDEX_OF_STUDENT`).
 * The first index refers to the index number shown in the displayed student list and
@@ -282,8 +282,8 @@ Format: `deleteScore INDEX_OF_STUDENT INDEX_OF_SCORE `
 
 Examples:
 
-* `list` followed by `deleteScore 2 1` deletes first score of the 2nd student in the student list.
-* `find Betsy` followed by `deleteScore 1 2` deletes second score of the 1st student in the results of the `find` command.
+* `list` followed by `deletescore 2 1` deletes first score of the 2nd student in the student list.
+* `find Betsy` followed by `deletescore 1 2` deletes second score of the 1st student in the results of the `find` command.
 
 ### Exporting a student's progress : `exportp`
 
@@ -319,6 +319,74 @@ Exits the program.
 Format: `exit`
 
 
+### 15. Filtering students by tag: `filter`
+
+Filters students whose tag contain any of the given keywords.
+
+Format: `filter KEYWORD [MORE_KEYWORDS]`
+
+* The filter is case-insensitive. e.g `primary` will match `Primary`
+* The order of the keywords does not matter. e.g. `primary primary4` will match `primary4 primary`
+* Only the tag is searched.
+* Only full words will be matched e.g. `primary` will not match `primary4`
+* Students whose tag matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `primary primary4` will return `primary`, `primary4`
+
+Examples:
+* `filter primary` returns `primary`, `Primary`
+* `filter primary primary4` returns `primary`, `primary4`
+
+
+### 16. Switch between tabs :`switch`
+
+Switches between the score list and score chart tabs.
+
+Format: There we support using CLI or mouse.
+CLI - `switch`
+Mouse - click the tab.
+
+
+### 17. Export the student data out:`export`
+
+Exports all the student's data out. User can export with or without specifing the path.
+The default exported position for CLI will be under the _home folder_.
+The exported file name is `data.json`.
+
+Format: There we support using CLI or mouse.
+CLI - `export [FILE_PATH]`
+Mouse - Click the "File" on the top menu, then choose "Export" under the drop-down list. An export window will pop up, the user is required to specify which folder to store the exported file.
+
+Examples:
+* `export` will export the file under the _home folder_.
+* For Windows user
+  * `export` p/C:\bin export `data.json` to bin folder under C disk.
+* For Mac user
+  * `export` p//Users/username/Desktop export `data.json` to desktop.
+
+
+### 18. Import the student data in: `import`
+
+Imports student data into the application. User can import the file by dragging the file in or choose file path.
+The imported file must be in `.json` format.
+
+Format: There we support using CLI or mouse.
+CLI - `import FILE_PATH`
+Mouse - Click the "File" on the top menu, then choose "Import" under the drop-down list. An import window will pop up, the user can choose to either drag the file in or choose a specific file path.
+
+Examples:
+* For Windows user
+  * `import` p/C:\bin\data.json.
+* For Mac user
+  * `import` p//Users/username/Desktop/data.json.
+
+**:information_source: Note about format of `FILE_PATH`:**<br>
+* For Windows user, the format of `FILE_PATH` must be `p/C:\bin\[FILE_NAME]`.
+* For Mac user, the format of `FILE_PATH` must be `p//Users/username/Desktop/[FILE_NAME]`.
+
+
+### 19. Export student progress out as PDF file: `exportp`
+
+
 ### Saving the data
 
 MATHUTORING data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -351,12 +419,16 @@ If your changes to the data file makes its format invalid, MATHUTORING will disc
 | **Check**          | `check INDEX`<br> e.g. `check 1`                                                                                                                                                              |
 | **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [c/PARENT_PHONE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com c/12348888`                                       |
 | **Find**           | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                    |
+| **Filter**         | `filter KEYWORD [MORE_KEYWORDS]`<br> e.g., `filter friends colleagues`                                                                                                                        |
 | **List Students**  | `list`                                                                                                                                                                                        |
 | **Add Task**       | `addTask INDEX t/TITLE`<br> e.g `addTask 2 t/Homework Assignment 1`                                                                                                                           |
 | **Delete Task**    | `deleteTask INDEX_OF_STUDENT INDEX_OF_TASK`<br> e.g `deleteTask 2 1`                                                                                                                          |
 | **Mark Task**      | `mark(STATUS) INDEX_OF_STUDENT INDEX_OF_TASK` (`mark(STATUS)` can be either `markComplete`, `markLate` or `markInProgress`)<br> e.g. `markComplete 1 2`<br>                                   |
 | **Add Score**      | `addScore l/LABEL v/VALUE_OF_SCORE d/DATE`<br> e.g `addScore l/CA2 A Math v/70 d/2022-03-03`                                                                                                  |
 | **Delete Score**   | `deleteScore INDEX_OF_STUDENT INDEX_OF_SCORE`<br> e.g. `deleteScore 3 4`                                                                                                                      |
+| **Import Data**   | `import p/FILE_PATH`<br> e.g. `import p//Users/John/data.json`                                                                                                                      |
+| **Export Data**   | `export [p/FILE_PATH]`<br> e.g. `export p//Users/John`                                                                                                                      |
+| **Export Progress**   | `exportp INDEX [p/FILE_PATH]`<br> e.g. `export 1 p//Users/John`                                                                                                                      |
 | **Help**           | `help`                                                                                                                                                                                        |
 
 

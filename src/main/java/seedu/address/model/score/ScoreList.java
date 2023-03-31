@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.text.DecimalFormat;
-import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.Iterator;
 import java.util.List;
@@ -30,8 +29,6 @@ public class ScoreList implements Iterable<Score> {
     private final ObservableList<Score> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    private ObservableList<Score> sortedScoreList = FXCollections.observableArrayList();
-
     /**
      * Returns true if the list contains an equivalent score as the given argument.
      */
@@ -50,7 +47,8 @@ public class ScoreList implements Iterable<Score> {
             throw new DuplicateScoreException();
         }
         internalList.add(toAdd);
-        sortedScoreList.add(toAdd);
+        internalList.sort((s1, s2) -> s1.getLocalDate().compareTo(s2.getLocalDate()));
+        FXCollections.reverse(internalList);
     }
 
     /**
@@ -121,25 +119,17 @@ public class ScoreList implements Iterable<Score> {
     }
 
     /**
-     * Gets the sorted score list with recent score at front.
-     * @return A view of list of sorted score.
-     */
-    public ObservableList<Score> getSortedScoreList() {
-        sortedScoreList.sort(Comparator.comparing(Score::getLocalDate).reversed());
-        return sortedScoreList;
-    }
-
-    /**
      * Gets the recent 5 scores with recent score at back.
      * @return A view of list of recent 5 scores.
      */
     public ObservableList<Score> getRecentScoreList() {
-        ObservableList<Score> sortedScoreList = getSortedScoreList();
-        if (sortedScoreList.size() < 5) {
-            FXCollections.reverse(sortedScoreList);
-            return sortedScoreList;
+        if (internalList.size() < 5) {
+            ObservableList<Score> recentScoreList = FXCollections.observableArrayList(internalList.stream()
+                    .limit(internalList.size()).collect(java.util.stream.Collectors.toList()));
+            FXCollections.reverse(recentScoreList);
+            return recentScoreList;
         }
-        ObservableList<Score> recentScoreList = FXCollections.observableArrayList(sortedScoreList.stream()
+        ObservableList<Score> recentScoreList = FXCollections.observableArrayList(internalList.stream()
                         .limit(5).collect(java.util.stream.Collectors.toList()));
         FXCollections.reverse(recentScoreList);
         return recentScoreList;
@@ -159,8 +149,10 @@ public class ScoreList implements Iterable<Score> {
         Double average = scoreSummary.getAverage();
         Double maxValue = scoreSummary.getMax();
         Double minValue = scoreSummary.getMin();
-        Double percentage = (recentScoreList.get(recentScoreList.size() - 1).getValue().value
-                - recentScoreList.get(0).getValue().value) / recentScoreList.get(0).getValue().value * 100;
+        Double oldValue = recentScoreList.get(0).getValue().value;
+        Double newValue = recentScoreList.get(recentScoreList.size() - 1).getValue().value;
+        Double percentage = newValue - oldValue == 0 ? 0 : oldValue == 0 ? (newValue - oldValue) / 1
+            : (newValue - oldValue) / oldValue * 100;
         average = Double.valueOf(df.format(average));
         percentage = Double.valueOf(df.format(percentage));
         ScoreSummary ss = new ScoreSummary(maxValue, minValue, average, percentage);
@@ -235,6 +227,13 @@ public class ScoreList implements Iterable<Score> {
             }
         }
         return true;
+    }
+
+    public int size() {
+        return internalList.size();
+    }
+    public Score get(int index) {
+        return internalList.get(index);
     }
 
 }

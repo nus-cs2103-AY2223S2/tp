@@ -19,7 +19,7 @@ import seedu.address.model.score.Score;
  */
 public class DeleteScoreCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteScore";
+    public static final String COMMAND_WORD = "deletescore";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the score identified by the index number used in the score list of the person specified.\n"

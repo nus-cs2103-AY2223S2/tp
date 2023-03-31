@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
  */
 public class MarkTaskInProgressCommand extends Command {
 
-    public static final String COMMAND_WORD = "markInProgress";
+    public static final String COMMAND_WORD = "markinprogress";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task identified by its index number in the task list of the "
