@@ -5,9 +5,9 @@ title: User Guide
 
 * Table of Contents
 {:toc}
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
 
 MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read!
@@ -52,7 +52,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   <img width="560" height="400"  src="images/Ui.png">
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -68,6 +68,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
    * `goto 1` : Opens the url of 1st Bookmark shown in current list.
    
    * `exit` : Exits the app.
+<div style="page-break-after: always;"></div>
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -107,6 +108,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
   * `t/` - TAGS
 
 </div>
+<div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
 
@@ -139,6 +141,7 @@ Example:
 Lists all tags in the tag list.
 
 Format: `tags`
+<div style="page-break-after: always;"></div>
 
 ### Adding a bookmark: `add`
 
@@ -170,6 +173,7 @@ Format : sort [ORDER]
 Examples:
 * sort asc
 * sort desc
+<div style="page-break-after: always;"></div>
 
 ### Editing a person : `edit`
 
@@ -205,6 +209,7 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * The order of the keywords matter. e.g. `Guide Rankers` will not match `Rankers Guide`
 * Only the fields of the specified prefixes are searched.
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
