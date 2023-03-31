@@ -84,8 +84,10 @@ public class CommandParserUtil {
             new LiteralArgumentFlag("-a", "--add");
     public static final LiteralArgumentFlag DELETE_MACRO_FLAG =
             new LiteralArgumentFlag("-d", "--delete");
+    public static final LiteralArgumentFlag LIST_MACRO_FLAG =
+            new LiteralArgumentFlag("-l", "--list");
     public static final ComposedArgumentFlag MACRO_FLAG =
-            new ComposedArgumentFlag(ADD_MACRO_FLAG, DELETE_MACRO_FLAG);
+            new ComposedArgumentFlag(ADD_MACRO_FLAG, DELETE_MACRO_FLAG, LIST_MACRO_FLAG);
 
     public static final LiteralArgumentFlag OR_FLAG = new LiteralArgumentFlag("-o", "--or");
     public static final LiteralArgumentFlag AND_FLAG = new LiteralArgumentFlag("-a", "--and");

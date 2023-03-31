@@ -2,6 +2,7 @@ package vimification.internal.parser;
 
 import vimification.internal.command.macro.AddMacroCommand;
 import vimification.internal.command.macro.DeleteMacroCommand;
+import vimification.internal.command.macro.ListMacroCommand;
 import vimification.internal.command.macro.MacroCommand;
 
 public class MacroCommandParser implements CommandParser<MacroCommand> {
@@ -32,6 +33,9 @@ public class MacroCommandParser implements CommandParser<MacroCommand> {
         }
         if (flag.equals(CommandParserUtil.DELETE_MACRO_FLAG)) {
             return CommandParserUtil.STRING_PARSER.map(DeleteMacroCommand::new);
+        }
+        if (flag.equals(CommandParserUtil.LIST_MACRO_FLAG)) {
+            return CommandParserUtil.STRING_PARSER.map(ignore -> new ListMacroCommand());
         }
         throw new ParserException("Should not reach here!");
     }
