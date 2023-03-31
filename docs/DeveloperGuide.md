@@ -17,6 +17,7 @@ We would like to thank:
   * [JavaFX](https://openjfx.io/)
   * [Jackson](https://github.com/FasterXML/jackson)
   * [JUnit](https://junit.org/junit5/)
+* Colors from [Ayu](https://raw.githubusercontent.com/ayu-theme/ayu-colors/master/colors.svg)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -156,7 +157,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.address.commons` package.
+Classes used by multiple components are in the `seedu.quickcontacts.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -188,7 +189,7 @@ The `EditMeetingsCommand` class also has an inner class`EditMeetingDescriptor`, 
 
 There are also constant variables for this class that store messages to display when the command is executed or when there are errors. The `MESSAGE_USAGE` constant holds the command syntax and format, while the `MESSAGE_EDIT_MEETING_SUCCESS`, `MESSAGE_NOT_EDITED`, and `MESSAGE_DUPLICATE_MEETING` constants hold the success message, error message when no fields are provided, and error message when the edited meeting already exists in the address book, respectively.
 
-This class also overrides the equals() method to check if two `EditMeetingsCommnds` are equal
+This class also overrides the equals() method to check if two `EditMeetingsCommnds` are equal.
 
 
 ##### Deleting
@@ -239,6 +240,16 @@ Example JSON:
 ```
 The JSON is generated using the Jackson library, through the use of the JsonUtil utility class.
 
+#### Design Considerations
+
+**Alternative 1**: Use some other format (eg. `XML` or `YAML`) for exporting
+
+Could provide more readable and/or less text for copying.
+
+**Alternative 2 (current choice)**: Use existing `JSON` format
+
+Benefit: can directly copy-paste to and from the data files that already exist in the system.
+
 ##### Importing
 Using the exported JSON, one can then import it using `import THE_JSON`.
 Before importing, a check is done to make sure there are no duplicate values. This is done before the actual importing 
@@ -250,8 +261,8 @@ followed by the import of Person2 throwing a DuplicatePersonError, resulting in 
 message and Person4 not being imported but the system now has `[Person1, Person2, Person3]`. 
 
 However, if the user wishes to "force import", a `f/` parameter is provided. This imports for each `Person` if the 
-Person does not already exist, and ignores those that do. This allows the previous situation to complete with `
-[Person1, Person2, Person3, Person4]` in the system.
+Person does not already exist, and ignores those that do. 
+This allows the previous situation to complete with `[Person1, Person2, Person3, Person4]` in the system.
 
 The JSON is parsed using the Jackson library. If the Jackson library is unable to parse the json, an error message 
 is thrown.
@@ -294,13 +305,46 @@ behave for that particular command.
 * Benefit: There is more flexibility in customising how to best cater autocompletion for each individual
 command to better the user experience.
 
-### Traverse commands
+### Traversal of Commands
+
+Traversal of commands is facilitated by `CommandHistory` model in addition to `KeyPressedHandler` in the `CommandBox` UI component.
+
+Internally, `CommandHistory` utilises [`LinkedList`](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html) to store all the commands that have been executed by the user. Note that `LinkedList` is a [doubly-linked list](https://en.wikipedia.org/wiki/Doubly_linked_list) and this allows us to traverse the list of commands forward and backward in O(1) [time complexity](https://en.wikipedia.org/wiki/Time_complexity). Traversal of the list is facilitated by a `static` pointer.
+
+`CommandBox` UI component is actively listening to the `UP` and `DOWN` keys which would be handled by the `KeyPressedHandler`, which is responsible for traversing the command history using `CommandHistory`.
 
 ### DateTime parsing
+
+Storing of `dateTime` (date and/or time) of `Meeting` is facilitated by `DateTime`. 
+
+The `dateTime` of a `Meeting` requires users to input a date, but leaves the time of the meeting to be optional. Internally, `DateTime` stores the date using [`LocalDate`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html) and the time using [`LocalTime`](https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html). However, since the time is an optional field, the optionality of the time is implemented by wrapping `LocalTime` with the Java [`Optional`](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html) class.  This brings about various benefits and is further discussed below.
+
+Moreover, `DateTime` allows for various formats of parsing in a `dateTime` value (22/02 3.30PM, 2202 1530, 22.02.2023 etc). This is facilitated by first having a list of formats for dates and times separately. Moreover, separators (`.`, `:`, `/` etc) are maintained and inserted for each format dynamically. For example:
+
+* `dd{SEP}MM{SEP}yyyy` specifies the format for `dd/MM/yyyy`, `dd.MM.yyyy` and `dd-MM-yyyy` for separators `/`, `.` and `-` respectively.
+
+This way, formats are easily extensible and maintainable. The parsing of `dateTime` inputs into `LocalDate` and `LocalTime` objects are facilitated by breaking up the input into 2 parts: date and time, before using `LocalDate#parse` and `LocalTime#parse` respectively.
+
+#### Design Considerations
+
+**Aspect: How to encapsulate the time of a `Meeting` which is optional**
+
+* **Alternative 1**: Have the time set to `null` if user does not provide the time.
+  * This would risk [`NullPointerException`](https://docs.oracle.com/javase/7/docs/api/java/lang/NullPointerException.html) being thrown if the time is not provided but there are attempts of accessing the time.
+  * As a result of the point above, there will be many instances of null checks, which would contribute to unnecessary code verbosity.
+* **Alternative 2**: Make use of `LocalTime.MAX` to represent that the time is not provided.
+  * This alternative removes the risk of `NullPointerException` that comes with Alternative 1.
+  * However, there would still be many instances of checks whether the time equals to `LocalTime.MAX`, which would contribute to unnecessary code verbosity.
+* **Alternative 3 (current choice)**: Utilise Java `Optional` to wrap the time.
+  * By doing so, there will not be any `NullPointerException` and enables us to make use of the provided methods (`orElse` etc.) that helps to carry out the logic based on the presence of the time.
 
 ### Sort Meeting commands
 `SortMeetingCommand` is a Java class that sorts the meeting objects stored in a Model object based on a specified attribute. This command allows the user to sort meetings by their title, date and time, location, or description. The user can also specify whether the sorting should be done in reverse order. The sorting is done by creating a Comparator for the specified attribute and passing it to the Model object's sortFilteredMeetingList method. The execute method of this class takes a `Model` object as an argument, applies the correct `Comparator` based on the prefix given by the user, and then returns a `CommandResult` object with a success message indicating the attribute that the meetings have been sorted by. If an invalid prefix is provided, a `CommandException` is thrown.
 
+### Light Theme
+The current theme is stored as a boolean inside GuiSettings, which is stored inside UserPrefs. Clicking the button 
+toggles the boolean and removes the current stylesheet (eg. LightTheme.css/DarkTheme.css) and adds the opposite 
+stylesheet to the scene.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -316,266 +360,365 @@ command to better the user experience.
 
 ## **Appendix: Requirements**
 
-### Product scope
+This sections describes the user requirements we intend to address with `QuickContacts`.
 
-**Target user profile**:
+### Target User Profile
 
-* Users who are on their computers most of their days
-* has a need to manage a significant number of contacts and meetings
+`QuickContacts` is designed for users with busy schedules of meeting people.
+
+* need to manage a large number of contacts and meetings
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts and meetings faster than a typical mouse/GUI driven app
+### Value proposition
+
+`QuickContacts` allows users to manage contacts and meetings faster than a typical mouse/GUI-driven application.
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+**Priority levels**:
 
-| Priority | As a …​                                                             | I want to …​                                                                | So that I can…​                                                 |
-| -------- | ---------------------------------------------------------------------------| -----------------------------------------------------------------------------------|----------------------------------------------------------------------- |
-| `* * *`  | new user                                                                   | see usage instructions                                                             | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                                                       | add a new person                                                                   |                                                                        |
-| `* * *`  | user                                                                       | delete a person                                                                    | remove entries that I no longer need                                   |
-| `* * *`  | user                                                                       | find a person by name                                                              | locate details of persons without having to go through the entire list |
-| `* *`    | user                                                                       | hide private contact details                                                       | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the contact book                                 | sort persons by name                                                               | locate a person easily                                                 |
-|`*`       | user                                                                       | Find a person by tag                                                               | I can filter the contacts by tags                                      |
-|`*`       | user                                                                       | Sort by tag priority                                                               | I can find the most important contacts                                 |
-|`*`       | user                                                                       | Assign tag priority                                                                |                                                                        |
-|`*`       | user                                                                       | Retrieve deleted contacts                                                          |                                                                        |
-|`*`       | user                                                                       | Set a date for deletion of contacts                                                | Remove the contacts automatically                                      |
-|`*`       | user                                                                       | Add a contact                                                                      | Store my contact in app                                                |
-|`*`       | user                                                                       | Delete a contact                                                                   | Remove unwanted contacts                                               |
-|`*`       | user                                                                       | Edit a contact                                                                     | Change details of existing contacts                                    |
-|`*`       | user                                                                       | Assign tag to contact                                                              | Categorise my contacts                                                 |
-|`*`       | user                                                                       | Use the help command                                                               | To see available commands                                              |
-|`*`       | power user                                                                 | Assign shortcuts to different actions                                              | I can cut down on the time taken to type                               |
-|`*`       | User with many connections                                                 | Export my contacts                                                                 | I can share my contacts easily                                         |
-|`*`       | User with many connections                                                 | Copy the details of my contacts                                                    | I can share my contacts easily                                         |
-|`*`       | User with many existing contacts                                           | Import my contacts automatically                                                   | I don\'t have to spend too much time creating contacts one by one  |
-|`*`       | User with many meetups with people                                         | Sort meetings based on the date and time                                           | I can prioritize my time well                                          |
-|`*`       | Busy user with many meetups                                                | Receive notifications about meetups with contacts                                  | I won\'t be late for meetups                                       |
-|`*`       | User with many meetups with people                                         | Create a meeting                                                                   | Schedule a meeting                                                     |
-|`*`       | User with many meetups with people                                         | Edit a meeting                                                                     | Change meeting details                                                 |
-|`*`       | User with many meetups with people                                         | Delete a meeting                                                                   | Remove cancelled or completed meetings                                 |
-|`*`       | User with many meetups with people                                         | View all meetings                                                                  | See in a glance the meetings that I have                               |
-|`*`       | User with many meetups with people                                         | View meeting details                                                               | Understand what my meeting is about                                    |
-|`*`       | Users with meetings                                                        | Add a reminder to meeting                                                          | So I do not forget the meeting                                         |
-|`*`       | Users with meetings                                                        | Edit reminder of meeting                                                           | Change how frequent my reminders are                                   |
-|`*`       | Users with meetings                                                        | Delete a reminder                                                                  | So I am not spammed with reminders                                     |
-|`*`       | Users with many meetings                                                   | Tag meeting                                                                        | Organize they types of meetings                                        |
-|`*`       | User who are very familiar with the keyboard                               | Add custom keybinds | So that I am faster at organizing contacts                   |                                                                        |
-|`*`       | User with many meetings                                                    | See how many days left to a meeting                                                | I don\'t forget to attend one                                      |
-|`*`       | User in a hurry                                                            | Undo previous action up to 3 previous actions                                      | I can be fast and a bit sloppy without worrying                        |
-|`*`       | User who use the app for a long time                                       | Set a reminder to tag people | In future I can better organize people              |                                                                        |
-|`*`       | User who forget what is in contacts                                        | Ask if person/meeting still relevant | So that the contact remain relatively clean |                                                                        |
-|`*`       | User assign name to priority tag                                           | Customise the tags                                                                 | I can remember more easily who is ranked higher                        |
+* High (must have) - `* * *`
+* Medium (nice to have) - `* *`
+* Low (unlikely to have) - `*`
+
+| Priority | As a …​                                      | I want to …​                                      | So that I can…​                                                        |
+|----------|----------------------------------------------|---------------------------------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                     | see usage instructions                            | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                         | add a new person                                  |                                                                        |
+| `* * *`  | user                                         | delete a person                                   | remove entries that I no longer need                                   |
+| `* * *`  | user                                         | find a person by name                             | locate details of persons without having to go through the entire list |
+| `* *`    | user                                         | hide private contact details                      | minimize chance of someone else seeing them by accident                |
+| `*`      | user with many persons in the contact book   | sort persons by name                              | locate a person easily                                                 |
+| `*`      | user                                         | Find a person by tag                              | I can filter the contacts by tags                                      |
+| `*`      | user                                         | Sort by tag priority                              | I can find the most important contacts                                 |
+| `*`      | user                                         | Assign tag priority                               |                                                                        |
+| `*`      | user                                         | Retrieve deleted contacts                         |                                                                        |
+| `*`      | user                                         | Set a date for deletion of contacts               | Remove the contacts automatically                                      |
+| `*`      | user                                         | Add a contact                                     | Store my contact in app                                                |
+| `*`      | user                                         | Delete a contact                                  | Remove unwanted contacts                                               |
+| `*`      | user                                         | Edit a contact                                    | Change details of existing contacts                                    |
+| `*`      | user                                         | Assign tag to contact                             | Categorise my contacts                                                 |
+| `*`      | user                                         | Use the help command                              | To see available commands                                              |
+| `*`      | power user                                   | Assign shortcuts to different actions             | I can cut down on the time taken to type                               |
+| `*`      | User with many connections                   | Export my contacts                                | I can share my contacts easily                                         |
+| `*`      | User with many connections                   | Copy the details of my contacts                   | I can share my contacts easily                                         |
+| `*`      | User with many existing contacts             | Import my contacts automatically                  | I don\'t have to spend too much time creating contacts one by one      |
+| `*`      | User with many meetups with people           | Sort meetings based on the date and time          | I can prioritize my time well                                          |
+| `*`      | Busy user with many meetups                  | Receive notifications about meetups with contacts | I won\'t be late for meetups                                           |
+| `*`      | User with many meetups with people           | Create a meeting                                  | Schedule a meeting                                                     |
+| `*`      | User with many meetups with people           | Edit a meeting                                    | Change meeting details                                                 |
+| `*`      | User with many meetups with people           | Delete a meeting                                  | Remove cancelled or completed meetings                                 |
+| `*`      | User with many meetups with people           | View all meetings                                 | See in a glance the meetings that I have                               |
+| `*`      | User with many meetups with people           | View meeting details                              | Understand what my meeting is about                                    |
+| `*`      | Users with meetings                          | Add a reminder to meeting                         | So I do not forget the meeting                                         |
+| `*`      | Users with meetings                          | Edit reminder of meeting                          | Change how frequent my reminders are                                   |
+| `*`      | Users with meetings                          | Delete a reminder                                 | So I am not spammed with reminders                                     |
+| `*`      | Users with many meetings                     | Tag meeting                                       | Organize they types of meetings                                        |
+| `*`      | User who are very familiar with the keyboard | Add custom keybinds                               | So that I am faster at organizing contacts                             |
+| `*`      | User with many meetings                      | See how many days left to a meeting               | I don\'t forget to attend one                                          |
+| `*`      | User in a hurry                              | Undo previous action up to 3 previous actions     | I can be fast and a bit sloppy without worrying                        |
+| `*`      | User who use the app for a long time         | Set a reminder to tag people                      | In future I can better organize people                                 |
+| `*`      | User who forget what is in contacts          | Ask if person/meeting still relevant              | So that the contact remain relatively clean                            |
+| `*`      | User assign name to priority tag             | Customise the tags                                | I can remember more easily who is ranked higher                        |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `QuickContacts` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the **system** is `QuickContacts` and the **Actor** is the `user`, unless specified otherwise.
 
-**Use case: Add a person**
+**Use case: UC1 - Add a contact**
 
-**MSS**
+MSS:
 
-1.  User requests to add a person
-2.  QuickContacts adds that person
-3.  QuickContacts shows new person in list
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. String in a field illegal.
-    * 1a1. Show error message
-
-  Use case resumes at step 1.
-
-**Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  QuickContacts shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  QuickContacts deletes the person
+1. User requests to add a contact.
+2. `QuickContacts` adds that contact.
+3. `QuickContacts` shows new contact in list.
 
     Use case ends.
 
-**Extensions**
+Extensions:
+
+* 1a. Input for a required field is illegal.
+  * 1a1. `QuickContacts` prompts user with an error message.
+  * Use case resumes at step 1.
+
+**Use case: UC2 - Delete a contact**
+
+MSS:
+
+1. User requests to list contacts.
+2. `QuickContacts` shows a list of contacts.
+3. User requests to delete a specific contact in the list.
+4. `QuickContacts` deletes the contact.
+
+    Use case ends.
+
+Extensions:
 
 * 2a. The list is empty.
+  * `QuickContacts` returns an empty list.
+  * Use case ends.
+* 3a. Index for the contact to be deleted is invalid.
+  * `QuickContacts` prompts user with an error message.
+  * Use case resumes from step 3.
 
-  Use case ends.
+**Use case: UC3 - Find a contact**
 
-* 3a. The given index is invalid.
+MSS:
 
-    * 3a1. QuickContacts shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Find a Person**
-
-**MSS**
-
-1.  User requests searches person by name
-2.  QuickContacts shows that person
+1. User requests searches contact by name.
+2. `QuickContacts` shows that person.
 
     Use case ends.
 
-**Extensions**
+Extensions:
+
+* 1a. Input for a required field is illegal.
+  * 1a1. Show error message.
+  * Use case continues at step 1.
+
+**Use case: UC4 - Edit an existing contact's details**
+
+MSS:
+
+1. User requests to edit a contact.
+2. `QuickContacts` shows the contact with the updated details.
+
+    Use case ends.
+
+Extensions:
+
+* 1a. Input for a field is illegal.
+  * 1a1. Show error message.
+  * Use case continues at step 1.
+
+* 1b. Contact cannot be found.
+  * 1b1. Show error message.
+  * Use case continues at step 1.
+
+**Use case: UC5 - User want to list all**
+
+MSS:
+
+1. User requests to list.
+2. `QuickContacts` shows all the person and meetings.
+
+    Use case ends.
+
+Extensions:
+
+* 1a. list is empty.
+  * Use case ends.
+
+**Use case: UC6 - User wants to clear everything**
+
+MSS:
+
+1. User requests to `clear`.
+2. `QuickContacts` deletes all contacts and meetings.
+
+    Use case ends.
+
+**Use case: UC7 - User wants to exit**
+
+MSS:
+
+1. User requests to exit.
+2. `QuickContacts` closes.
+
+    Use case ends.
+
+**Use case: UC8 - Add a meeting**
+
+MSS:
+
+1. User requests to add a meeting.
+2. `QuickContacts` adds that meeting.
+3. `QuickContacts` shows new meeting in list.
+
+    Use case ends.
+
+Extensions:
 
 * 1a. String in a field illegal.
-    * 1a1. Show error message
+  * 1a1. Show error message.
+  * Use case resumes at step 1.
 
-  Use case continues at step 1.
+**Use case: UC9 - Delete a meeting**
 
-**Use case: Edit an existing person's details**
+MSS:
 
-**MSS**
-
-1.  User requests to edit a person
-2.  QuickContacts shows the person with the updated details
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. String in a field illegal.
-    * 1a1. Show error message
-
-* 1b. Person cannot be found.
-    * 1b1. Show error message
-
-  Use case continues at step 1.
-
-**Use case: User want to list all**
-
-**MSS**
-
-1.  User request list
-2.  QuickContacts shows all the person and meetings
+1. User requests to list meetings.
+2. `QuickContacts` shows a list of meetings.
+3. User requests to delete a specific meeting in the list.
+4. `QuickContacts` deletes the meeting.
 
     Use case ends.
 
-**Extensions**
-
-* 1a. list is empty
-
-  Use case ends.
-
-
-**Use case: User wants to clear everything**
-
-**MSS**
-
-1.  User requests to clear
-2.  QuickContacts deletes everyone and all the meetings
-
-    Use case ends.
-
-**Use case: User wants to exit**
-
-**MSS**
-
-1.  User requests to exit
-2.  QuickContacts closes
-
-    Use case ends.
-
-**Use case: Add a meeting**
-
-**MSS**
-
-1.  User requests to add a meeting
-2.  QuickContacts adds that meeting
-3.  QuickContacts shows new meeting in list
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. String in a field illegal.
-    * 1a1. Show error message
-
-  Use case resumes at step 1.
-
-**Use case: Delete a meeting**
-
-**MSS**
-
-1.  User requests to list meetings
-2.  QuickContacts shows a list of meetings
-3.  User requests to delete a specific meeting in the list
-4.  QuickContacts deletes the meeting
-
-    Use case ends.
-
-**Extensions**
+Extensions:
 
 * 2a. The list is empty.
-
-  Use case ends.
+  * Use case ends.
 
 * 3a. The given index is invalid.
+  * 3a1. `QuickContacts` shows an error message.
+  * Use case resumes at step 2.
 
-    * 3a1. QuickContacts shows an error message.
+**Use case: UC10 - Edit a meeting**
 
-      Use case resumes at step 2.
+MSS:
 
-**Use case: Edit a meeting**
-
-**MSS**
-
-1.  User requests to edit a meeting
-2.  QuickContacts shows the meeting with the updated details
+1. User requests to edit a meeting.
+2. `QuickContacts` shows the meeting with the updated details.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
 * 1a. String in a field illegal.
-    * 1a1. Show error message
+  * 1a1. Show error message.
+  * Use case continues at step 1.
 
 * 1b. Meeting cannot be found.
-    * 1b1. Show error message
+  * 1b1. Show error message.
+  * Use case continues at step 1.
 
-  Use case continues at step 1.
+**Use case: UC11 - Sort by meeting attribute**
 
-**Use case: Sort by meeting attribute**
+MSS:
 
-**MSS**
+1. User wants to sort by a meeting attribute.
+2. `QuickContacts` sorts the original list by order requested by user.
+3. `QuickContacts` shows the sorted list.
 
-1.  User wants to sort by a meeting attribute
-2.  QuickContacts sorts the original list by order requested by user
-3.  QuickContacts shows the sorted list
+**Use case: UC12 - Export Contacts**
+
+MSS:
+
+1. User requests to export contacts.
+2. `QuickContacts` shows the exported contacts.
 
     Use case ends.
 
-**Extensions**
+Extensions:
 
 * 1a. String in a field illegal.
-    * 1a1. Show error message
+  * 1a1. Show error message.
+  * Use case resumes at step 1.
 
-  Use case resumes at step 1.
+* 1a. Person index not given.
+  * 1a1. Show error message.
+  * Use case continues at step 1.
 
+* 1b. Person index cannot be found.
+  * 1b1. Show error message.
+  * Use case continues at step 1.
 
+**Use case: UC13 - Import Contacts**
+
+MSS:
+
+1. User requests to import contacts.
+2. `QuickContacts` imports the meetings and updates the view.
+
+    Use case ends.
+
+Extensions:
+
+* 1a. Contacts format malformed.
+  * 1a1. Show error message.
+  * Use case continues at step 1.
+
+* 1b. Contacts not provided.
+  * 1b1. Show error message.
+  * Use case continues at step 1.
+
+* 1c. Duplicate contact without user indicating force import.
+  * 1c1. Show error message.
+  * Use case continues at step 1.
+
+* 1d. User indicates force import.
+  * All contacts imported.
+  * Use case ends.
+
+**Use case: UC14 - Export Meetings**
+
+MSS:
+
+1. User requests to export meetings.
+2. QuickContacts shows the exported meetings.
+
+    Use case ends.
+
+Extensions:
+
+* 1a. Meeting index not given.
+  * 1a1. Show error message.
+  * Use case continues at step 1.
+
+* 1b. Meeting index cannot be found.
+  * 1b1. Show error message.
+  * Use case continues at step 1.
+
+**Use case: UC15 - Import Meetings**
+
+MSS:
+
+1. User requests to import meetings.
+2. QuickContacts imports the meetings and updates the view.
+
+    Use case ends.
+
+Extensions:
+
+* 1a. Meetings format malformed.
+  * 1a1. Show error message.
+  * Use case continues at step 1.
+
+* 1b. Meetings not provided.
+  * 1b1. Show error message.
+  * Use case continues at step 1.
+
+* 1c. Duplicate meeting without user indicating force import.
+  * 1c1. Show error message.
+  * Use case continues at step 1.
+
+* 1d. User indicates force import.
+  * All meetings imported.
+  * Use case ends.
+
+**Use case: UC16 - Mark Meetings as Done**
+
+MSS:
+
+1. User marks meetings as done.
+2. QuickContacts updates meetings and updates the view.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. Meeting index not found.
+    * 1a1. Show error message.
+
+* 1b. Meetings not provided.
+    * 1b1. Show error message.
+
+    Use case ends.
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Can support 1000 meetings with same amount of lag as 10 meeting
-5. Commands should be intuitive to not technical people
-6. Should be clear that meeting and people are 2 seperate things
+4. Can support 1000 meetings with same amount of lag as 10 meeting.
+5. Commands should be intuitive to not technical people.
+6. Should be clear that meeting and people are 2 separate things.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Meetings**: Important dates with a duration and a place
 * **Find**: Searches by name field, case-insensitive, match all matching words individually
 * **GUI**: Graphic User Interface
@@ -583,6 +726,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **OS**: Operating System
 * **Java**: Programming Language by SUN Oracle
 * **CLI**: Command Line Interface
+* **LinkedList**: Data structure that consists of nodes that contain data and a reference to the next node
+* **Time complexity**: Amount of time taken by an algorithm to run, as a function of the length of the input
 
 --------------------------------------------------------------------------------------------------------------------
 

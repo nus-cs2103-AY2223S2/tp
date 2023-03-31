@@ -3,91 +3,218 @@ layout: page
 title: User Guide
 ---
 
-Quick Contacts (QC) is a **cross-platform desktop application** that enables you to easily **manage your contacts and meetings all in one place**! It is designed for users who have a large number of contacts, with many of which are only needed temporarily.
+<!---
+Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-t12-2.github.io/tp/UserGuide.html
+--->
 
-Equipped with both a Graphical User Interface (GUI) and Command Line Interface (CLI), users are empowered with the ability to perform tasks using QC in a second via the CLI while still enjoying the beauty of the GUI.
+## About QuickContacts
 
-## Table of Contents
-- [Quick start](#quick-start)
-- [Features](#features)
-    - [`help`](#viewing-help--help)
-    - [`add`](#adding-a-person--add)
-    - [`list`](#listing-all-persons--list)
-    - [`edit`](#editing-a-person--edit)
-    - [`find`](#locating-persons-by-name--find)
-    - [`delete`](#deleting-a-person--delete)
-    - [`clear`](#clearing-all-entries--clear)
-    - [`exit`](#exiting-the-program--exit)
-    - [`addm`](#adding-a-meeting--addm)
-    - [`findm`](#finding-meetings-by-name--findm)
-    - [`export`](#exporting-of-contact--export)
-    - [`import`](#importing-of-contacts--import)
-    - [`exportm`](#export-meetings--exportm)
-    - [`importm`](#import-meetings--importm)
-    - [Saving of data](#saving-the-data)
-    - [Editing of data](#editing-the-data-file)
-    - [Archiving of data](#archiving-data-files-coming-in-v20)
-- [FAQ](#faq)
-- [Command summary](#command-summary)
+QuickContacts is a **contacts and schedule management system** that enables you to track your contacts and manage your
+schedule with ease! As a busy individual with a considerable number of contacts and meetings to attend, you can
+**seamlessly save contact and meeting information** with QuickContacts. QuickContacts provides you with a **bird's eye
+view of all your meetings**, making sure that you will never miss any of them again.
 
---------------------------------------------------------------------------------------------------------------------
-
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-2. Download the latest `quickcontacts.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-2/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your `QuickContacts`.
-
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar quickcontacts.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-    * `list` : Lists all contacts.
-
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-    * `delete 3` : Deletes the 3rd contact shown in the current list.
-
-    * `clear` : Deletes all contacts.
-
-    * `exit` : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Features
+We, the developers at QuickContacts, understand the amount of time required to manage many contacts and maintaining a
+schedule with many meetings with them. Perfect for individuals that are looking for efficiency, QuickContacts can be
+used without having you to ever reach for your mouse. Complete with an **autocomplete assistance**, you can be assured
+that your time spent managing your contacts and schedule is minimised!
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-* Commands are **_italicised and bolded_** for ease of identification.
+**:bulb: Tip**<br>
+For more details about QuickContacts' features, you may head over to the [Features](#features) section below!
 
 </div>
+
+QuickContacts is specially designed for:
+
+* Seamless creation and management of contacts and meetings
+* Users who have a large number of contacts and meetings
+* Typists
+
+This user guide provides a detailed documentation on QuickContacts and serves as an introduction on how to incorporate
+QuickContacts into your daily workflow. From having QuickContacts installed to making the best use out of QuickContacts,
+this user guide has everything you need. Head over to the [Getting started](#getting-started) section to get onboard!
+
+## Table of Contents
+
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Using this User Guide
+
+Welcome to QuickContacts!
+
+If you have yet to install QuickContacts, head over to the [Installation](#installation) section to install
+QuickContacts.
+
+### Icon Coloured Boxes
+
+Throughout this user guide, you may observe coloured boxes that provide useful information with an icon on its top-left
+indicating the type of information present.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+Tips empower you to make full use of QuickContacts.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+Notes are general information that gives you a better understand of QuickContacts.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Caution**<br>
+Cautions are warnings for you to note when using QuickContacts.
+
+</div>
+
+## Installation
+
+1. Ensure you have [Java 11](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html) or above
+installed in your computer
+
+2. Download the latest version of `quickcontacts.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-2/tp/releases)
+
+3. Copy the file to an empty folder you want to use as the _home folder_ for QuickContacts
+
+4. Double-click on the downloaded `.jar` file to launch QuickContacts
+
+And that's it! You are good to go with QuickContacts.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+QuickContacts is packaged with sample contacts and meetings. To delete the default data, simply execute the `clear`
+command.
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Caution**<br>
+QuickContacts will generate default files in the same directory it is installed in on its first launch. Avoid
+editing or deleting such files unless you know what you are doing!
+
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Quick Reference Guide
+
+This section will walk you through the essential parts of understanding and using QuickContacts in detail.
+
+### User Interface Layout
+
+Upon launching QuickContacts, you will be greeted by the following Graphical User Interface (GUI).
+
+![Annotated UI Layout](images/UiLayoutAnnotated.png)
+
+We can break the GUI into several parts:
+
+1. **Menu Bar**: This is where you find auxiliary features
+2. **Result Display Box**: This is where you get feedback from the command executed
+3. **Meetings List**: This is where you view all your meetings
+4. **Contacts List**: This is where you view all your contacts
+5. **Command Box**: This is where you input commands to interact with QuickContacts
+
+### Command Format
+
+QuickContacts provides a powerful Command Line Interface (CLI) which rely heavily on commands. In this
+subsection, we will discover how the commands are designed.
+
+#### Prefix
+
+Prefixes are placeholders in a command that uniquely identify different input parameters. Each prefix is
+_typically_ followed by the corresponding input data.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+* There are some input parameters that do not require any corresponding input data.
+* There are some input data that share the same prefix. For example: `CONTACT_PHONE_NUMBER` and `MEETING_ATTENDEE`
+  share the same prefix `p/`.
+
+</div>
+
+| Prefix   | Corresponding Input Data                     |
+|----------|----------------------------------------------|
+| `a/`     | `CONTACT_ADDRESS`                            |
+| `des/`   | `MEETING_DESCRIPTION`                        |
+| `dt/`    | `MEETING_DATE_TIME`                          |
+| `e/`     | `CONTACT_EMAIL`                              |
+| `end/`   | `MEETING_EXPORT_END_DATE`                    |
+| `f/`     | -                                            |
+| `l/`     | `MEETING_LOCATION`                           |
+| `m/`     | `MEETING_TITLE`                              |
+| `n/`     | `CONTACT_NAME`                               |
+| `p/`     | `CONTACT_PHONE_NUMBER` or `MEETING_ATTENDEE` |
+| `start/` | `MEETING_EXPORT_START_DATE`                  |
+| `t/`     | `CONTACT_TAG`                                |
+
+#### Understanding Commands
+
+Now that we are familiar with the prefixes and corresponding input data, let us put them together and see how
+a command works. Take the following as an example:
+
+Command: `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`
+
+| Command Component                                                                                     | Component Type  | Description                                                     |
+|-------------------------------------------------------------------------------------------------------|-----------------|-----------------------------------------------------------------|
+| `add`                                                                                                 | Command Keyword | Represents the action executed by QuickContacts                 |
+| `n/`, `p/`, `e/`, `a/`, `t/`                                                                          | Prefix          | Uniquely identifies the corresponding input data                |
+| `CONTACT_NAME`<br/>`CONTACT_PHONE_NUMBER`<br/>`CONTACT_EMAIL`<br/>`CONTACT_ADDRESS`<br/>`CONTACT_TAG` | Input Data      | Placeholders for the actual data to be supplied for the command |
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**
+
+* `[]` means that the parameter is **optional**.
+* `...` means that the parameter can be **supplied multiple times** in the same command input. 
+
+</div>
+
+A valid executable command of this example form is:
+
+`add n/Noah t/friend t/nus t/cs2103t`
+
+The above command would create a new contact with the name `Noah` and tags `friend`, `nus` and `cs2103t`.
+The phone number, email address and address of `Noah` will be left empty as they are not provided.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+Command prefixes can be specified in any order. For example: `add t/friend t/nus n/Noah t/cs2103t` is equivalent to our
+example above.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
+the parameter will be taken.<br>e.g. if you specify `n/Noah n/Peter`, only `n/Peter` will be taken.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
+be ignored.<br>e.g. `help 123` will be interpreted as `help`.
+
+</div>
+
+## Features
+
+### Theme toggling
+
+Toggles the theme from dark to light or vice versa.
+
+![toggle theme](images/toggleTheme.png)
 
 ### Viewing help : `help`
 
@@ -205,7 +332,7 @@ Exits the program.
 
 Format: `exit`
 
-### Adding a Meeting: `addm`
+### Adding a Meeting : `addm`
 
 Adds a meeting to the address book.
 
@@ -215,7 +342,7 @@ Examples:
 * `addm m/CS2103T Tutorial p/John Doe p/Jane Doe dt/2022-02-22 10:00 l/COM1-B103 des/CS2103T Tutorial`
 * `addm m/CS2103T Tutorial p/John Doe p/Mary Jane dt/2022-02-22 22:22 l/COM1-B103 des/CS2101 Tutorial`
 
-### Finding Meetings by name: `findm`
+### Finding Meetings by name : `findm`
 
 Find meetings whose names contain any of the given keywords.
 
@@ -243,18 +370,14 @@ QuickContacts data are saved as a JSON file `[JAR file location]/data/quickconta
 If your changes to the data file makes its format invalid, QuickContacts will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
-### Exporting of contact: `export`
+### Exporting of contact : `export`
 * Exports the persons at the specified `INDEX`es.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `export p/ INDEX1 p/ INDEX2`
 
-### Importing of contacts: `import`
+### Importing of contacts : `import`
 * Imports the persons in the provided JSON.
 * The JSON **must contain a valid array of persons** 
 
@@ -282,11 +405,11 @@ Example:
   }
 ]
 ```
-Optional Parameter `f/ true` that forces imports regardless of duplicate values.
+Optional Parameter `f/` that forces imports regardless of duplicate values.
 
-Format: `import JSON f/ true`
+Format: `import JSON f/`
 
-### Export meetings: `exportm`
+### Export meetings : `exportm`
 * Exports the meetings at the specified `INDEX`es, between `start` and `end` dates.
 * The indexes refer to the index numbers shown in the displayed meetings list.
 * The indexes **must be positive integers** 1, 2, 3
@@ -294,7 +417,7 @@ Format: `import JSON f/ true`
 
 Format: `exportm p/ INDEX1 p/ INDEX2 start/ START_DATE end/ END_DATE`
 
-### Import meetings: `importm`
+### Import meetings : `importm`
 * Imports the meetings in the provided JSON.
 * The JSON **must contain a valid array of meetings**
 
@@ -365,18 +488,38 @@ Example:
 
 ```
 
-Optional Parameter `f/ true` that forces imports regardless of duplicate values.
+Optional Parameter `f/` that forces imports regardless of duplicate values.
 
-Format: `import JSON f/ true`
+Format: `import JSON f/`
 
-### Create meetings `[Coming Soon]`
-_Details coming soon ..._
+### Delete meetings : `delm`
 
-### Delete meetings `[Coming Soon]`
-_Details coming soon ..._
+Deletes the specified meeting.
 
-### Edit meetings `[Coming Soon]`
-_Details coming soon ..._
+Format: `delm INDEX`
+
+* Deletes the meeting at the specified `INDEX`.
+* The index refers to the index number shown in the displayed meetings list.
+* The index must be a positive integer 1, 2, 3...
+
+Examples:
+
+* `listm` followed by `delm 2` deletes the 2nd meeting.
+
+### Marking meetings as done or undone: `mark` or `unmark`
+
+Marks the specified meeting as either done or undone.
+
+Format: "mark INDEX" or "unmark INDEX"
+
+* The index refers to the index number shown in the displayed meetings list.
+* The index must be a positive integer 1, 2, 3...
+* 
+### Showing meetings that are done or over: `pending`
+
+Shows meetings that either have dates that are in the past or not marked as done.
+
+Format: "pending"
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -389,12 +532,21 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| Action                | Format, Examples                                                                                                                                                      |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Create a contact**  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Reset all data**    | `clear`                                                                                                                                                               |
+| **Delete a contact**  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit a contact**    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find a contact**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List all contacts** | `list`                                                                                                                                                                |
+| **Help**              | `help`                                                                                                                                                                |
+| **List all meetings** | `listm`                                                                                                                                                               |
+| **Create a meeting**  | `addm m/TITLE dt/DATE_TIME p/CONTACT_NAME... l/LOCATION des/DESCRIPTION`                                                                                              |
+| **Edit a meeting**    | `editm INDEX [m/TITLE] [dt/DATE_TIME] [p/CONTACT_NAME]... [l/LOCATION] [des/DESCRIPTION]`                                                                             |
+| **Delete a meeting**  | `delm INDEX` <br> e.g., `deletem 3`                                                                                                                                   |
+| **Export a contact**  | `export p/INDEX...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                   |
+| **Export a meeting**  | `exportm m/INDEX...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                 |
+| **Import a contact**  | `import VALID_JSON`                                                                                                                                                   |
+| **Import a meeting**  | `importm VALID_JSON`                                                                                                                                                  |
+| **Sort meetings**     | `sortm SORT_FIELD` <br> e.g., `sortm dt/`                                                                                                                             |
