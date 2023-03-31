@@ -88,7 +88,7 @@ public class AddressBookParser {
 
         case FindPolicyCommand.COMMAND_WORD:
             return new FindPolicyCommandParser().parse(arguments);
-            
+
         case UpdateMeetingCommand.COMMAND_WORD:
             return new UpdateMeetingCommandParser().parse(arguments);
 
