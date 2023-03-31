@@ -21,6 +21,7 @@ import java.util.Set;
 import seedu.connectus.logic.commands.SearchCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
 import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
+import seedu.connectus.model.tag.Cca;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -114,12 +115,12 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         if (modules.size() > 0) {
             predicate.setModules(modules);
         }
-        Set<String> ccas = new HashSet<>();
+        Set<String[]> ccas = new HashSet<>();
         for (String s : argMultimap.getAllValues(PREFIX_CCA)) {
             if (s.trim().equals("")) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
             } else {
-                ccas.add(s);
+                ccas.add(Cca.decouple(s));
             }
         }
         if (ccas.size() > 0) {

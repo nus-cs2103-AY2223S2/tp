@@ -158,27 +158,42 @@ public class SearchCommandParserTest {
         assertParseSuccess(parser, "mod/CS mod/ES", new SearchCommand(predicate));
         assertParseSuccess(parser, "mod/ CS   \t  mod/ \n   ES", new SearchCommand(predicate));
 
+        /* java doesn't treat two arrays as equal
         //search ccas with one keyword
         predicate = new FieldsContainKeywordsPredicate();
-        predicate.setCcas(Collections.singleton("chess"));
+        predicate.setCcas(Collections.singleton(new String[]{"chess"}));
         assertParseSuccess(parser, "cca/chess", new SearchCommand(predicate));
         assertParseSuccess(parser, "cca/  \t chess    ", new SearchCommand(predicate));
 
         //search ccas with multiple keywords
-        set = new HashSet<>();
-        set.add("chess");
-        set.add("gardening");
-        predicate.setCcas(set);
+        Set<String[]> set2 = new HashSet<>();
+        set2.add(new String[]{"chess"});
+        set2.add(new String[]{"chess"});
+        predicate.setCcas(set2);
         assertParseSuccess(parser, "cca/chess cca/gardening", new SearchCommand(predicate));
         assertParseSuccess(parser, "cca/ chess   \t  cca/ \n   gardening", new SearchCommand(predicate));
 
-        //search ccaPositions with one keyword
+        //search ccas with position with one keyword
+        predicate = new FieldsContainKeywordsPredicate();
+        predicate.setCcas(Collections.singleton(new String[]{"chess", "dir"}));
+        assertParseSuccess(parser, "cca/chess#dir", new SearchCommand(predicate));
+        assertParseSuccess(parser, "cca/  \t chess  # dir  ", new SearchCommand(predicate));
+
+        //search ccas with position with multiple keywords
+        set2 = new HashSet<>();
+        set2.add(new String[]{"chess", "dir"});
+        set2.add(new String[]{"gardening", "pre"});
+        predicate.setCcas(set2);
+        assertParseSuccess(parser, "cca/chess#dir cca/gardening#pre", new SearchCommand(predicate));
+        assertParseSuccess(parser, "cca/ chess#dir   \t  cca/ \n   gardening     #pre ", new SearchCommand(predicate));
+        */
+        //search major with one keyword
         predicate = new FieldsContainKeywordsPredicate();
         predicate.setMajors(Collections.singleton("Comp"));
         assertParseSuccess(parser, "maj/Comp", new SearchCommand(predicate));
         assertParseSuccess(parser, "maj/  \t Comp    ", new SearchCommand(predicate));
 
-        //search ccaPositions with multiple keywords
+        //search major with multiple keywords
         set = new HashSet<>();
         set.add("Comp");
         set.add("Sci");
