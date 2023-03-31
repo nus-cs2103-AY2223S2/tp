@@ -58,18 +58,19 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        PriorityTag priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
-        ArrayList<PatientStatusDetails> details =
-                new ArrayList<>(ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_STATUS)));
-        ArrayList<PatientToDo> toDos =
-                new ArrayList<>(ParserUtil.parseToDos(argMultimap.getAllValues(PREFIX_TODO)));
-        Set<Tag> tagList = new HashSet<>(List.of(new Tag("Patient"), priority));
-        tagList.addAll(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
-
-        Patient patient = new Patient(idNumber, name, phone, email, address, priority, details, toDos, tagList);
-
-        return new AddPatientCommand(ward.getWardName(), patient);
-
+        try {
+            PriorityTag priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+            ArrayList<PatientStatusDetails> details =
+                    new ArrayList<>(ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_STATUS)));
+            ArrayList<PatientToDo> toDos =
+                    new ArrayList<>(ParserUtil.parseToDos(argMultimap.getAllValues(PREFIX_TODO)));
+            Set<Tag> tagList = new HashSet<>(List.of(new Tag("Patient"), priority));
+            tagList.addAll(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
+            Patient patient = new Patient(idNumber, name, phone, email, address, priority, details, toDos, tagList);
+            return new AddPatientCommand(ward.getWardName(), patient);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
+        }
     }
 
     /**
