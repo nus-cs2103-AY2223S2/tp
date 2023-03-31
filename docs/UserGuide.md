@@ -155,6 +155,9 @@ Tag is an optional field when adding an application.
 An application can have multiple tags or none at all.
 </div>
 
+Refer to the following section [here](#413-adding-and-editing-tags-for-an-application--using-add-app-and-edit-app) 
+to learn more about adding tags to your application entries.
+
 Examples:
 * `add-app r/SWE Intern c/Google e/google_careers@gmail.com s/interested t/creditBearing`
 * `add-app r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com`
@@ -169,21 +172,39 @@ Format: `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [
 * Edits the internship application at the specified `INDEX`. The index here refers to the index number shown in the displayed application list. The index **must be a positive number**: 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values of the application entry will be updated to what you have inputted.
-* When editing tags, the existing corresponding tags for that application will be removed. i.e. the adding of tags is not cumulative.
-
-<div markdown="span" class="alert alert-info">:information_source:
-**Note:** This means that if an application has an existing `highSalary` tag. Executing command `edit-app 1 t/creditBearing` would remove the original
-`highSalary` tag, replacing it with the `creditBearing` tag.
-</div>
-
-* You can remove all of an application’s tags by typing `t/` without specifying any values after it.
+* Refer to the following section [here](#413-adding-and-editing-tags-for-an-application--using-add-app-and-edit-app)
+  to learn more about editing an application's tags.
 
 Examples:
 *  `edit-app 1 r/Cloud Engineer e/googleHR@example.com` Edits the role and email address of the 1st application to be `Cloud Engineer` and `googleHR@gmail.com` respectively.
-*  `edit-app 2 s/Rejected t/` Edits the status of the 2nd application to be `Rejected` and clears all existing tags.
+*  `edit-app 2 s/Rejected` Edits the status of the 2nd application to be `Rejected`.
 
+#### 4.1.3 Adding and editing tags for an application : Using `add-app` and `edit-app`
 
-#### 4.1.3 Deleting an application : `delete-app`
+* To add an application with tags, you can use `add-app` as described in the section on 
+[adding an application](#411-adding-an-application--add-app).
+
+**Example:**
+`add-app r/SWE Intern c/Google e/google_careers@gmail.com s/interested t/creditBearing t/overseas`
+* Later on, you can remove all of an application’s tags simply by typing `t/` without specifying any values after it.
+
+**Example:**
+`edit-app 1 t/`
+* You can also change an existing application's tags by using `edit-app`.
+
+**Example:**
+`edit-app 1 t/overseas t/dream company` changes the tags of the 1st application in the displayed list to
+`overseas` and `dream company`.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
+When editing tags of an application, the existing tags for that application will be removed! 
+i.e., The adding of tags is not cumulative.
+</div>
+
+This means that for example, if an application has an existing `highSalary` tag, executing the command `edit-app 1 t/creditBearing` 
+would remove the original `highSalary` tag, replacing it with the `creditBearing` tag.
+
+#### 4.1.4 Deleting an application : `delete-app`
 
 Deletes the specified application from the internship book.
 
@@ -377,7 +398,7 @@ If your changes to the data file makes its format invalid, the internship book w
 
 <div style="page-break-after: always;"></div>
 
-## **5.FAQ**
+## **5. FAQ**
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous internship book's home folder.
