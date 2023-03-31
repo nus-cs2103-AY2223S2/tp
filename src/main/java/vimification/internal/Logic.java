@@ -1,12 +1,9 @@
 package vimification.internal;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.internal.parser.ParserException;
 import vimification.model.UiTaskList;
-import vimification.model.task.Task;
 import vimification.ui.MainScreen;
 
 /**
@@ -24,16 +21,6 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParserException;
 
     // /**
-    // * Returns the AddressBook.
-    // *
-    // * @see vimification.model.Model#getTaskList()
-    // */
-    // ReadOnlyTaskPlanner getTaskList();
-
-    // /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Task> getViewTaskList();
-
-    // /**
     // * Returns the user prefs' address book file path.
     // */
     // Path getTaskListFilePath();
@@ -47,8 +34,6 @@ public interface Logic {
     // * Set the user prefs' GUI settings.
     // */
     // void setGuiSettings(GuiSettings guiSettings);
-
-    FilteredList<Task> getFilteredTaskList();
 
     UiTaskList getUiTaskList();
 
