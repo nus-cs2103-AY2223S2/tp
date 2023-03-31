@@ -173,12 +173,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### 1.6. Clearing all contacts in Address Book : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
 ## 2. Features related to Delivery Jobs
 ### *Can only access from Main Window*
 Commands are input in this text field and app response is printed below the text field.
@@ -299,12 +293,6 @@ Example:
 * `com_job ALBE29E66F`
 * `uncom_job ALBE29E66F`
 
-### 2.8. Clearing all contacts in Address Book : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
 
 ## 3. Features available for Reminders
 ### *Can only access from Main Window*
@@ -398,6 +386,14 @@ Similar statistics are shown for jobs in the previous week
 
 ## Other features
 
+
+
+### Clearing all entries : `clear`
+
+Clears all entries from the delivery job system and address book.
+
+Format: `clear`
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -446,7 +442,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 | Action                                    | Format, Examples                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 |-------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ***(C)* Add Customer**                    | Click on `Customers` in menu bar > `Address Book` then input `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br/><br/>e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                                                                                                                                 |
-| ***(B)* Clear all contacts**              | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ***(B)* Clear all entries**               | `clear`                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | ***(C)* Delete Customer**                 | Click on `Customers` in menu bar > `Address Book` then input `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                                                                                                                                        |
 | ***(C)* Edit Customer details**           | Click on `Customers` in menu bar > `Address Book` then input `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br><br/> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                                                                                                                                                                           |
 | ***(C)* Find Customer**                   | Click on `Customers` in menu bar > `Address Book` then input `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                                                                                                                                                                                 |
