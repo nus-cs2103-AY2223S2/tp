@@ -243,6 +243,14 @@ to be updated
 ---
 ### Others
 
+### Get number of appointments : `totalappointment`
+
+Finds the number of appointments on the specified date.
+
+Format: `totalappointment d/DATE`
+
+Example: `totalappointment d/2023-02-03`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -277,6 +285,9 @@ to be updated
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Command summary may be using outdated syntax please refer to guide above
+</div>
 
 | Action                                                  | Format, Examples                                                                                                                                                                |
 |---------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
