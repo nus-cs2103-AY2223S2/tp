@@ -1,3 +1,7 @@
+---
+layout: page
+title: User Guide
+---
 
 Contact nUS is a **desktop app that NUS computing students can use to track their modules and schedules.** It is optimized for use via typing with a Command Line Interface (CLI) rather than clicking which is usually associated with a Graphical User Interface (GUI). However, it provides benefits of both interfaces. NUS computing students can be considered tech-savvy individuals who are also generally fast typists. As such, they stand to gain from the productivity boost that Contact nUS has to offer. 
 
@@ -5,11 +9,61 @@ This guide serves to help NUS computing students familiarise themselves with the
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Table of Contents
+
+* [**Before you read**](#before-you-read)
+* [**How to use this user guide**](#how-to-use-the-user-guide)
+* [**Quick start**](#quick-start)
+* [**User interface**](#user-interface)
+* [**Definitions**](#definitions)
+* [**Features**](#features)
+  * [Modules](#modules)
+    * [Adding a module: `add`](#adding-a-module--add)
+    * [Editing a module: `edit`](#editing-a-module--edit)
+    * [Listing all modules: `list`](#listing-all-modules--list)
+    * [Finding a module: `find`](#finding-a-module--find)
+    * [Deleting a module: `delete`](#deleting-a-module--delete)
+  * [Schedules](#schedules)
+    * [Reminder for modules](#reminder-for-items)
+    * [Sorting modules by time: `sort`](#sorting-the-modules--sort)
+  * [Miscellaneous](#miscellaneous)
+    * [Viewing help: `help`](#viewing-help--help)
+    * Clearing all modules: `clear`
+    * Exiting Contact nUS: `exit`
+* **Valid and invalid data**
+* **Data storage**
+  * [**Saving the data**](#saving-the-data)
+  * [**Editing the data file**](#editing-the-data-file)
+* **Glossary**
+* [**FAQ**](#faq)
+* [**Command summary**](#command-summary)
+--------------------------------------------------------------------------------------------------------------------
+## Before you read
+
+This user guide aims to provide a brief overview of what `Contact nUS` is and the features it has. 
+This user guide is mainly targeted for first-time users who are new to `Contact nUS` for their daily usage, but experienced users are welcome to use this for reference.
+
+<br>
+In the user guide, you can find instructions for [setting up your very own `Contact nUS`](#quick-start), [a guide to use a particular feature](#features).
+You may also refer to some sample valid and invalid data to see what type of data you can key into the software. 
+
+<br>
+Alternatively, you may use this user guide as a [quick reference](#command-summary) for all the commands the software has. 
+
+<br>
+Are you new to `contact nUS`, or is this your first time reading the user guide? You are encouraged to read further to find out how to use this user guide!
+
+--------------------------------------------------------------------------------------------------------------------
+## How to use the user guide
+
+Some text here
+
+--------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer. To check if you have Java `11`, open up the `terminal` application (for both Windows and Mac OS users) and type in the command `java -version` and press enter. You should see `java version 11` with additional numbers at the back. 
 
-2. Download the latest `ContactnUS.jar` from [here](www.google.com). 
+2. Download the latest `ContactnUS.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases). 
 
 3. Copy the file to the folder you want to use as the _home folder_ for your ModuleTracker. This can be `Desktop` for example.
 
@@ -45,7 +99,13 @@ downloaded, you can use the command `cd` to move into that folder. An example wo
 1. Refer to the [Features](#features) below for further details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Definition
+## User interface
+
+This will be a screenshot of the home page, with callouts.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Definitions
 
 <div markdown="block" class="alert alert-info">
 
@@ -97,14 +157,42 @@ will be ignored.<br>
 
 ## Features
 
-### Viewing help : `help`
+## Modules
 
-Shows a message explaining how to access the help page.
+The following commands deal with handling the details of a module in `Contact nUS`. You can use them to:
+* Add a module
+* Edit a module
+* List all modules
+* Find a specific module
+* Delete a module
+<br>
 
-![help message](images/helpMessage.png)
+### Adding a module: `add`
 
-![image](https://user-images.githubusercontent.com/82088609/227960415-f3120f1c-6779-4d33-a41c-0eca0d85f285.png)
+Adds a new module to `Contact nUS`.
 
+### Editing a module: `edit`
+
+Edits the details of an existing module in `Contact nUS`.
+
+### Listing all modules: `list`
+
+Displays a list of all the modules you have added into `Contact nUS`.
+
+### Finding a module: `find`
+
+Finds module(s) from the existing modules you have added, whose names match any of the given keywords.
+
+### Deleting a module: `delete`
+
+Deletes the module you specified from `Contact nUS`.
+
+<br>
+
+## Schedules
+The following features deal with the time slot and/or deadline of a module in `Contact nUS`. You can use them to: 
+* View reminders for items you have today
+* Sort the modules by time slot or deadline
 
 ### Reminder for items
 
@@ -114,6 +202,54 @@ Shows all the deadlines and timeslots you have today
 * it will only look at time slots and deadlines
 
 ![image](https://user-images.githubusercontent.com/82088609/227960147-f26fae28-c2e7-44bf-bea1-a3d68a3539b5.png)
+
+### Sorting the modules: `sort`
+
+Sorts the existing modules by either time slot or deadline.
+
+<br>
+
+### Miscellaneous 
+
+The following commands are additional quality-of-life features that you may be interested to use in `Contact nUS`. They are able to:
+* View help on using the software
+* Clear all existing modules from the software
+* Exit `Contact nUS`
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+<!--![image](https://user-images.githubusercontent.com/82088609/227960415-f3120f1c-6779-4d33-a41c-0eca0d85f285.png) -->
+
+### Clearing all modules: `clear`
+
+Clears all existing modules from the software.
+
+<!--Include warning-->
+
+### Exits the software: `exit`
+
+Exits the software.
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## Valid and invalid data
+
+Some sample data here.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+## Data Storage
+
+Some text here
 
 ### Saving the data
 
@@ -132,6 +268,11 @@ data file at the next run.
 
 
  --------------------------------------------------------------------------------------------------------------------
+## Glossary
+
+Some text here
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
