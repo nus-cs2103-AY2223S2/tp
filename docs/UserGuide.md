@@ -86,6 +86,11 @@ Fields are the information following the slash in a command, to provide appropri
 * Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
     * E.g. If you specify `help 123`, it will be interpreted as `help`.
 
+#### Name
+The name of the person. 
+* Names should only contain alphanumeric characters and spaces, and it should not be blank.
+* Non-alphanumeric characters like "/", "@" and "?" are disallowed. 
+
 #### NRIC
 NRIC is a unique identifier given to all Singaporeans.
 * NRIC is case-insensitive
