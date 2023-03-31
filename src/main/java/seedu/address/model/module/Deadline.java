@@ -1,6 +1,7 @@
 package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.util.SampleDataUtil.EMPTY_INPUT;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,7 @@ public class Deadline implements Comparable<Deadline> {
     public Deadline(String deadline) {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
+        checkArgument(isValidDeadline(trimmedDeadline), MESSAGE_CONSTRAINTS);
         value = convertStringToDate(trimmedDeadline);
     }
 
