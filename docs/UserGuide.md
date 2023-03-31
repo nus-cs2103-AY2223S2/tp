@@ -13,35 +13,37 @@ see in your career.
 
 ## Table of Contents
 
-* ### How to Get Started
-  * ### Features
-      * #### General Management
-          * Viewing help : `help`
-          * Undo previous operation : `undo`
-          * Redo previous operation : `redo`
-          * Clear all entries : `clear`
-          * Exiting the program : `exit`
-          * Saving the data
-          * Editing the data file
-      * #### Client Management
-          * Adding a client: `add`
-          * Selecting a client: `select`
-          * Listing all clients : `list`
-          * Editing a client : `edit`
-          * Filtering clients by name: `find`
-          * Deleting a client : `delete`
-          * Sorting Clients by Email address : `sortClientEmail`
-          * Sorting Clients by Name : `sortClientName`
-          * Sorting Clients by Phone Number : `sortClientPhone`
-      * #### Policy Management
-          * Adding a policy: `addPolicy`
-          * Editing a policy : `editPolicy`
-          * Deleting a policy : `deletePolicy`
-      * #### Policy Management
-          * Adding an appointment: `addApt`
-          * Deleting an appointment: `deleteApt`
-* ### FAQ
-* ### Command Summary
+* #### [How to Get Started](#how-to-get-started)
+    * #### [Features](#features)
+        * #### [General Management](#general-management)
+            * Viewing help : `help`
+            * Undo previous operation : `undo`
+            * Redo previous operation : `redo`
+            * Clear all entries : `clear`
+            * Exiting the program : `exit`
+            * Saving the data
+            * Editing the data file
+        * #### [Client Management](#client-management)
+            * Adding a client: `add`
+            * Selecting a client: `select`
+            * Listing all clients : `list`
+            * Editing a client : `edit`
+            * Filtering clients by name: `find`
+            * Deleting a client : `delete`
+            * Sorting Clients by Email address : `sortClientEmail`
+            * Sorting Clients by Name : `sortClientName`
+            * Sorting Clients by Phone Number : `sortClientPhone`
+        * #### [Policy Management](#policy-management)
+            * Adding a policy: `addPolicy`
+            * Editing a policy : `editPolicy`
+            * Deleting a policy : `deletePolicy`
+        * #### [Appointment Management](#appointment-management)
+            * Adding an appointment: `addApt`
+            * Deleting an appointment: `deleteApt`
+* #### [FAQ](#faq)
+* #### [Command Summary](#command-summary)
+
+---
 
 ## How to Get Started
 
@@ -82,7 +84,8 @@ Some example commands you can try:
 
 * `exit` : Exits the app.
 * `select 1` : Selects the client indexed as `#0001`.
-* `addPolicy 1 pn/Fire Insurance pd/01.01.2023 pp/1000 pf/monthly` : Adds a policy named `Fire Insurance` into the client indexed as `#0001`.
+* `addPolicy 1 pn/Fire Insurance pd/01.01.2023 pp/1000 pf/monthly` : Adds a policy named `Fire Insurance` into the
+  client indexed as `#0001`.
 * `addApt 1 an/Discussion ad/05.07.2023` : Adds an appointment called Discussion on 5 July 2023.
 
 #### 6. Refer to the [Features](#features) below for details of each command.
@@ -116,6 +119,8 @@ Some example commands you can try:
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+---
 
 ## General Management
 
@@ -190,6 +195,8 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 _Details coming soon ..._
 
+---
+
 ## Client Management
 
 ### Adding a client: `add`
@@ -214,7 +221,6 @@ Examples:
 - `select 1` returns client with index 1 (`Alex Yeoh`), displaying his policies in the policy dashboard
 
 ![result for 'find alex david'](images/selectexample.png)
-
 
 ### Listing all clients: `list`
 
@@ -317,6 +323,8 @@ Examples:
 * `sortClientPhone 1` sorts the client list based on client's phone number in **ascending** order
 * `sortClientPhone 0` sorts the client list based on client's phone number in **descending** order
 
+---
+
 ## Policy Management
 
 While you can manage your clients, we also provide a way to manage the client's policies.
@@ -354,7 +362,6 @@ Format: `addPolicy INDEX pn/POLICY_NAME pd/START_DATE pp/PREMIUM pf/FREQUENCY`
 
 Examples: `addPolicy 1 pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`
 
-
 You will then be able to view the policies on the right side under 'Policies'
 
 ![addpolicy.png](images/addpolicy.png)
@@ -385,27 +392,30 @@ Deletes the indexed policy from a specific client
 
 Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
-
 Examples: `deletePolicy 1 pi/2` deletes the 1st client's 2nd policy in the list
 
-
+---
 
 ## Appointment Management
 
 While you can manage your clients, we also provide a way to manage client appointments.
 
-Appointment refers to the meeting that the client or the financial advisor scheduled to discuss their goals on a scheduled date.
+Appointment refers to the meeting that the client or the financial advisor scheduled to discuss their goals on a
+scheduled date.
 
 The appointment contains the following fields:
+
 * Appointment Name
 * Appointment Meetup Date
 
 Using Advis.io, you can add, delete and view the appointments for your clients very easily! Here's how.
 
 ### Adding an appointment: `addApt`
+
 Adds an appointment to a specific client
 
 Format: `addApt INDEX an/APPOINTMENT_NAME ad/MEETUP_DATE`
+
 * The Meetup Date should be in the following format: `dd.mm.yyyy`.
 * The Meetup Date should be after the present date.
 
@@ -414,14 +424,17 @@ Examples: `addApt 1 an/Review on goals ad/05.06.2023`
 You will then be able to view the appointments under
 
 ### Deleting an appointment: `deleteApt`
+
 Deletes an appointment from a specific client
 
 Format: `deleteApt INDEX`
+
 * Deletes the appointment from the client at the specified `INDEX`
 * The index refers to the index number shown in the displayed client list
 * The index **must be a positive integer** 1,2,3,...
 
 Examples: `deleteApt 1`
+
 * `list` followed by `deleteApt 1` deletes the appointment from the 1st client in the list of clients list.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -462,24 +475,24 @@ those thresholds. However, the limit can be expanded in the future if necessary.
 
 ## Command summary
 
- Action              | Format, Examples                                                                                                                                                  
----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
- **Select**          | `select INDEX` <br> e.g., `select 3`                                                                                                                                 
- **Clear**           | `clear`                                                                                                                                                               
- **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   
- **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
- **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            
- **List**            | `list`                                                                                                                                                                
- **Undo**            | `undo`                                                                                                                                                                
- **Redo**            | `redo`                                                                                                                                                                
- **Help**            | `help`                                                                                                                                                                
- **Add a Policy**    | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`               
- **Delete a Policy** | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1` 
- **Edit a Policy**   | `editPolicy INDEX pi/POLICY INDEX[pn/POLICY NAME] [pd/START DATE] [pp/PREMIUM] [pf/FREQUENCY]` <br> e.g., `editPolicy 1 pn/Travel Insurance pp/2000`
- **Add an appointment** | `addApt INDEX an/APPOINTMENT_NAME ad/APPOINTMENT_MEETUP_DATE` <br> eg., `addApt 1 an/Review of goals ad/01.01.2024`
- **Delete an appointment** | `deleteApt INDEX`<br> eg., `deleteApt 1`
- **Select**          | `select INDEX`<br> e.g.,`select 1`
- **Sort Client by Email** | `sortClientEmail INDEX(Any Integer)`<br> e.g.,`sortClientEmail 1`
- **Sort Client by Name** | `sortClientName INDEX(Any Integer)`<br> e.g.,`sortClientName 1`
- **Sort Client by Phone** | `sortClientPhone INDEX(Any Integer)`<br> e.g.,`sortClientPhone 1`
+| Action                    | Format, Examples                                                                                                                                                      |
+|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Select**                | `select INDEX` <br> e.g., `select 3`                                                                                                                                  |
+| **Clear**                 | `clear`                                                                                                                                                               |
+| **Delete**                | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit**                  | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**                  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **List**                  | `list`                                                                                                                                                                |
+| **Undo**                  | `undo`                                                                                                                                                                |
+| **Redo**                  | `redo`                                                                                                                                                                |
+| **Help**                  | `help`                                                                                                                                                                |
+| **Add a Policy**          | `addPolicy INDEX pn/POLICY-NAME pd/START-DATE pp/PREMIUM pf/FREQUENCY` <br> e.g., `addPolicy INDEX pn/Health Insurance pd/28.05.2023 pp/300 pf/monthly`               |
+| **Delete a Policy**       | `deletePolicy n/NAME INDEX` <br> e.g., `deletePolicy n/John Doe 1`                                                                                                    |
+| **Edit a Policy**         | `editPolicy INDEX pi/POLICY INDEX[pn/POLICY NAME] [pd/START DATE] [pp/PREMIUM] [pf/FREQUENCY]` <br> e.g., `editPolicy 1 pn/Travel Insurance pp/2000`                  |
+| **Add an appointment**    | `addApt INDEX an/APPOINTMENT_NAME ad/APPOINTMENT_MEETUP_DATE` <br> eg., `addApt 1 an/Review of goals ad/01.01.2024`                                                   |
+| **Delete an appointment** | `deleteApt INDEX`<br> eg., `deleteApt 1`                                                                                                                              |
+| **Select**                | `select INDEX`<br> e.g.,`select 1`                                                                                                                                    |
+| **Sort Client by Email**  | `sortClientEmail INDEX(Any Integer)`<br> e.g.,`sortClientEmail 1`                                                                                                     |
+| **Sort Client by Name**   | `sortClientName INDEX(Any Integer)`<br> e.g.,`sortClientName 1`                                                                                                       |
+| **Sort Client by Phone**  | `sortClientPhone INDEX(Any Integer)`<br> e.g.,`sortClientPhone 1`                                                                                                     |
