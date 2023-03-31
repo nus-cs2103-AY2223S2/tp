@@ -1,6 +1,6 @@
 ---
 layout: page
-title: MediMate: The Doctor’s Companion
+title: MediMate The Doctor’s Companion
 --- 
 
 MediMate (MM) is a cross-platform desktop application for medical professionals, specifically for private doctors or
