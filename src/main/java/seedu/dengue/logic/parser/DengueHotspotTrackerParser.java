@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.dengue.logic.commands.AddCommand;
+import seedu.dengue.logic.commands.CheckoutCommand;
 import seedu.dengue.logic.commands.ClearCommand;
 import seedu.dengue.logic.commands.Command;
 import seedu.dengue.logic.commands.DeleteCommand;
@@ -91,6 +92,9 @@ public class DengueHotspotTrackerParser {
 
         case ExportCommand.COMMAND_WORD:
             return new ExportCommandParser().parse(arguments);
+
+        case CheckoutCommand.COMMAND_WORD:
+            return new CheckoutCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -73,6 +73,7 @@ placeholder
 | **Sort**   | `sort [n/] [a/] [p/] [d/]`<br> e.g.,`sort d/`                                                                                             |
 | **Import** | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                      |
 | **Export** | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                      |
+| **Export** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                      |
 | **Help**   | `help`                                                                                                                                    |
 | **Undo**   | `undo [INTEGER]`                                                                                                                          |
 | **Redo**   | `redo [INTEGER]`                                                                                                                          |
@@ -333,6 +334,24 @@ Example CSV output of  `export sampledata.csv`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Try copying these to a .csv file. Then import them as sample inputs!
+</div>
+
+### Checking out overview to CSV file : `checkout`
+
+Use this command to export currently displayed cases to a CSV file.
+
+Format: `checkout [FILENAME]`
+
+Example CSV output of  `checkout overview.csv`
+<pre><code style="white-space: pre-wrap;">"id","binName","binSize"
+"1","0 - 9","3"
+"2","10 - 19","1"
+"3","110 - 119","1"
+"4","190 - 199","1"
+</code></pre>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can view and open this csv in excel or any spreadsheet editor!
 </div>
 
 ### Viewing help: `help`

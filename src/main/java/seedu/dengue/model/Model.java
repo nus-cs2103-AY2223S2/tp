@@ -147,4 +147,10 @@ public interface Model {
      * @throws IOException thrown while writing file.
      */
     void exportCsv(Path filePath) throws IOException;
+
+    /**
+     * Checkout overview to a CSV file.
+     * @throws IOException thrown while writing file.
+     */
+    void checkout(Path filePath) throws IOException;
 }

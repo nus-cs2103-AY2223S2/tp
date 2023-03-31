@@ -9,12 +9,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.dengue.commons.core.GuiSettings;
 import seedu.dengue.commons.core.LogsCenter;
 import seedu.dengue.commons.exceptions.DataConversionException;
+import seedu.dengue.commons.util.CsvUtil;
+import seedu.dengue.logic.analyst.DataBin;
 import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.overview.Overview;
 import seedu.dengue.model.overview.PostalOverview;
@@ -234,6 +238,22 @@ public class ModelManager implements Model {
         CsvDengueHotspotStorage toSave = new CsvDengueHotspotStorage(filePath);
         try {
             toSave.saveDengueHotspotTracker(tempDht);
+        } catch (IOException e) {
+            throw e;
+        }
+    }
+
+    @Override
+    public void checkout(Path filePath) throws IOException {
+        ObservableList<DataBin> tempList = FXCollections.observableArrayList();
+        tempList.setAll(overview.getOverviewContent());
+        String[] headers = new String[]{"id", "binName", "binSize"};
+        List<String[]> data = Overview.enumList(tempList
+                        .stream()
+                        .map(DataBin::toCsvString)
+                        .collect(Collectors.toList()));
+        try {
+            CsvUtil.saveCsvFile(data, filePath, headers);
         } catch (IOException e) {
             throw e;
         }

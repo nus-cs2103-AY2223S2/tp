@@ -11,17 +11,17 @@ import seedu.dengue.model.Model;
 /**
  * Sorts the Dengue Hotspot Tracker.
  */
-public class ExportCommand extends Command {
+public class CheckoutCommand extends Command {
 
-    public static final String COMMAND_WORD = "export";
+    public static final String COMMAND_WORD = "checkout";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": exports data to filename in current directory. "
-            + "Example: " + COMMAND_WORD + " sampledata.csv ";
+            + ": checkout overview to filename in current directory. "
+            + "Example: " + COMMAND_WORD + " sampleoverview.csv ";
 
-    public static final String MESSAGE_SUCCESS = "Successfully exported data to %s";
+    public static final String MESSAGE_SUCCESS = "Successfully checked out overview to %s";
 
-    public static final String MESSAGE_FAILURE = "Failed to export data to %s."
+    public static final String MESSAGE_FAILURE = "Failed to checkout overview to %s."
             + " Please check if the filename is in the correct format.";
 
     private final Path filePath;
@@ -31,7 +31,7 @@ public class ExportCommand extends Command {
      *
      * @param filePath to export to.
      */
-    public ExportCommand(Path filePath) {
+    public CheckoutCommand(Path filePath) {
         requireNonNull(filePath);
 
         this.filePath = filePath;
@@ -42,7 +42,7 @@ public class ExportCommand extends Command {
         requireNonNull(model);
 
         try {
-            model.exportCsv(filePath);
+            model.checkout(filePath);
         } catch (IOException e) {
             return new CommandResult(String.format(MESSAGE_FAILURE, this.filePath.toString()));
         }
