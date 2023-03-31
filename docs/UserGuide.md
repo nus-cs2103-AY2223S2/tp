@@ -46,7 +46,7 @@ If you have any questions or run into problems, check out the [FAQ](#faq) for so
 
 <div markdown="block" class="alert alert-info">
 🕮 From now on we'll be using a slightly modifided version of the <a href="http://docopt.org/">docopt</a> command description language.
-<details>
+</div>
 
 1. We will use the word "**string**" to describe any general sequence of characters.
 2. We will use the word "**word**" to describe a sequence of characters terminated by a whitespace.
@@ -82,8 +82,6 @@ If you have any questions or run into problems, check out the [FAQ](#faq) for so
     mutually-inclusive elements (if *one* element is present, then *another* one is required):
 
     `edit TASK_INDEX (OPTION <argument>)...`
-</details>
-</div>
 
 ### Data terminology
 
