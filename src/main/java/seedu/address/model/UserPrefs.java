@@ -52,9 +52,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return this.petPalFilePath;
     }
 
-    public void setPetPalFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.petPalFilePath = addressBookFilePath;
+    public void setPetPalFilePath(Path petPalFilePath) {
+        requireNonNull(petPalFilePath);
+        this.petPalFilePath = petPalFilePath;
     }
 
     public Path getPetPalArchiveFilePath() {
@@ -89,11 +89,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + petPalFilePath);
-        sb.append("\nLocal archive file location: " + petPalArchiveFilePath);
-        return sb.toString();
+        return "Gui Settings : " + guiSettings +
+                "\nLocal data file location : " + petPalFilePath +
+                "\nLocal archive file location: " + petPalArchiveFilePath;
     }
 
 }

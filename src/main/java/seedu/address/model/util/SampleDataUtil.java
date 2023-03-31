@@ -17,7 +17,7 @@ import seedu.address.model.pet.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code PetPal} with sample data.
  */
 public class SampleDataUtil {
     public static Pet[] getSamplePets() {

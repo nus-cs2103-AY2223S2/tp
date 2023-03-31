@@ -48,7 +48,7 @@ public class PetPal implements ReadOnlyPetPal {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code PetPal} with {@code newData}.
      */
     public void resetData(ReadOnlyPetPal newData) {
         requireNonNull(newData);
