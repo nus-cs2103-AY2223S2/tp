@@ -1,5 +1,6 @@
 package seedu.dengue.model.predicate;
 
+import seedu.dengue.model.person.ContinuousData;
 import seedu.dengue.model.person.Person;
 import seedu.dengue.model.range.Range;
 
@@ -9,9 +10,9 @@ import seedu.dengue.model.range.Range;
  */
 public class RangeContainsPersonPredicate extends PredicateUtil<Person> {
 
-    private final Range range;
+    private final Range<? extends ContinuousData> range;
 
-    public RangeContainsPersonPredicate(Range range) {
+    public RangeContainsPersonPredicate(Range<? extends ContinuousData> range) {
         this.range = range;
     }
 
