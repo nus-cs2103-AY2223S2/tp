@@ -39,6 +39,7 @@ public class AutocompleteEngine {
             EditCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
+            FilterCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
             ListCommand.COMMAND_WORD,
             RemarkCommand.COMMAND_WORD,
@@ -53,6 +54,7 @@ public class AutocompleteEngine {
             Map.entry(EditCommand.COMMAND_WORD, EditCommand.ARGUMENT_PREFIXES),
             Map.entry(ExitCommand.COMMAND_WORD, ExitCommand.ARGUMENT_PREFIXES),
             Map.entry(FindCommand.COMMAND_WORD, FindCommand.ARGUMENT_PREFIXES),
+            Map.entry(FilterCommand.COMMAND_WORD, FilterCommand.ARGUMENT_PREFIXES),
             Map.entry(HelpCommand.COMMAND_WORD, HelpCommand.ARGUMENT_PREFIXES),
             Map.entry(ListCommand.COMMAND_WORD, ListCommand.ARGUMENT_PREFIXES),
             Map.entry(RemarkCommand.COMMAND_WORD, RemarkCommand.ARGUMENT_PREFIXES),
@@ -77,27 +79,29 @@ public class AutocompleteEngine {
         // Assert that they both contains only the same values and nothing else, with no duplicates.
         assert ARGUMENT_PREFIX_MAP.keySet().size() == COMMAND_LIST.size();
 
-        // For commands with index arguments, the index must be the first argument.
-        assert ARGUMENT_PREFIX_MAP.values().stream()
-                .filter(argPrefix -> argPrefix.contains(INDEX_PLACEHOLDER))
-                .allMatch(argPrefix -> argPrefix.get(0).equals(INDEX_PLACEHOLDER));
-
-        // For commands with keyword arguments, the keyword is assumed to be the only argument.
-        assert ARGUMENT_PREFIX_MAP.values().stream()
-                .filter(argPrefix -> argPrefix.contains(KEYWORD_PLACEHOLDER))
-                .allMatch(argPrefix -> argPrefix.size() == 1);
-
-        // All prefix-less arguments (eg. index/keywords) are assumed to come before prefixed args.
+        // All prefix-less arguments (eg. index/keywords) must come before prefixed args.
         assert ARGUMENT_PREFIX_MAP.values().stream()
                 .allMatch(argPrefix -> argPrefix.stream()
                         .dropWhile(Prefix::isPlaceholder)
                         .noneMatch(Prefix::isPlaceholder));
 
-        // All index arguments are assumed to come any other type of args.
+        // All index arguments must come before any other type of args.
         assert ARGUMENT_PREFIX_MAP.values().stream()
                 .allMatch(argPrefix -> argPrefix.stream()
                         .dropWhile(INDEX_PLACEHOLDER::equals)
                         .noneMatch(INDEX_PLACEHOLDER::equals));
+
+        // All optional arguments must come after any compulsory args.
+        assert ARGUMENT_PREFIX_MAP.values().stream()
+                .allMatch(argPrefix -> argPrefix.stream()
+                        .dropWhile(prefix -> !prefix.isOptional())
+                        .allMatch(Prefix::isOptional));
+
+        // All repeatable arguments must come after any non-repeatable args.
+        assert ARGUMENT_PREFIX_MAP.values().stream()
+                .allMatch(argPrefix -> argPrefix.stream()
+                        .dropWhile(prefix -> !prefix.isRepeatable())
+                        .allMatch(Prefix::isRepeatable));
     }
 
     /**
