@@ -13,10 +13,10 @@ import java.nio.file.Paths;
 public class PicturePath {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "All employee pictures should be stored in src/main/resources/employeepictures in .png format.";
+            "All employee pictures should be stored in data/employeepictures in .png format.";
 
-    // The filepath must start with "src/main/resources/employeepictures/" and the file name must end in ".png".
-    public static final String VALID_DIRECTORY = "src/main/resources/employeepictures/";
+    // The filepath must start with "data/employeepictures/" and the file name must end in ".png".
+    public static final String VALID_DIRECTORY = "data/employeepictures/";
     public static final String VALID_EXTENSION = ".png";
 
     public final String value;

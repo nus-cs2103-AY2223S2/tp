@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Employee {
-    public static final String DEFAULT_PICTURE_PATH = "src/main/resources/employeepictures/default.png";
+    public static final String DEFAULT_PICTURE_PATH = "data/employeepictures/default.png";
 
     // Identity fields
     private final Name name;
