@@ -5,6 +5,25 @@ title: User Guide
 
 CookHub is a **desktop app for managing recipes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This recipe tracking app is targeted for student chefs on a tight budget and schedule with limited ingredients. 
 
+**CookHub** operates via a [command line interface](#glossary) which aids fast typists in managing their recipes quickly, 
+while still providing the benefits of a graphical user interface.
+
+**CookHub** excels in its simplicity and optimisation for the university student's task management needs. Upon 
+download, it supports management via recipe ingredients and price. Having a gentle learning curve and requiring 
+minimal setup, it is perfect for the contemporary student cook!
+
+The following is a short overview of the features and capabilities of CookHub:
+* Creating tasks with specified titles, ingredients, steps, and tags.
+* Starring and unstarring each recipe.
+* Getting all your favourite recipes. 
+* Finding recipes by titles, ingredients, steps, or tags.
+* Sorting or filtering by price.
+* Getting all the combined ingredients for a set of recipes. 
+
+|   If you are   |                                         You should                                         |
+|:--------------:|:------------------------------------------------------------------------------------------:|
+|   a new user   | proceed to our [quick start](#quick-start) section to set up CookHub and try its features |
+| returning user |       skip to our [command summary](#command-summary) for a summary of our features!       |
 
 * Table of Contents
 {:toc}
@@ -42,44 +61,21 @@ CookHub is a **desktop app for managing recipes, optimized for use via a Command
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  - e.g. `add t/TITLE d/DESCRIPTION i/INGREDIENT s/STEP [tag/TAG]` can be `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter`
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. The parameters can also be input in any order.<br>
+  - The format of the add command: 
+  - `add t/TITLE d/DESCRIPTION i/INGREDIENT s/STEP [tag/TAG]`
+  - Example usages of the add command:
+  - `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` 
+  - `add s/Mix batter i/Flour, 3.5, Cup, 0.30 t/Corndogs d/Delicious`
+
+* Items in square brackets are optional.<br>
+  - e.g  `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` is without the `tag/` flag as it is optional
 
 * TITLE, DESCRIPTION, STEP are words or sentences (Java String).
   - e.g. `t/I am a title d/I am a description s/I am a step`
 
 * INGREDIENT is of the format {ingredient_name, quantity, unit_of_measurement, price_per_unit}
   - e.g. `i/White wine vinegar, 2, tbsp, 0.10 i/large egg, 4, unit, 0.80`
-
-* Items in square brackets are optional.<br>
-  - e.g  `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` is without the `tag/` flag as it is optional
-
-* Items in between dollar signs, means that at least one of them is required
-    - e.g. `edit 1 t/New title` is valid
-    - e.g. `edit 1 t/New title d/Another description` is valid
-    - e.g. `edit 1` is invalid because one of the flags `t/`, `d/`, `s/`, `i/`, `tag/` is needed
-
-* Items in double dollar signs, means that exactly one of them is required
-    - `find r/Corndogs` is valid
-    - `find` is not valid
-    - `find r/Corndogs i/Egg, 1, piece, 0.20` is not valid
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  - e.g. `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 i/large egg, 4, unit, 0.80 s/Mix batter s/Fry` is valid because the `i/` and `s/` flag can be used multiple times. Since `i/` and `s/` are not surrounded by square brackets, they have to appear at least one time
-
-* Parameters can be in any order, .<br>
-    - e.g. `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` and `add d/Delicious t/Corndogs i/Flour, 3.5, Cup, 0.30 s/Mix batter` are the same
-    - e.g. `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter s/Fry` and `add t/Corndogs s/Mix batter d/Delicious i/Flour, 3.5, Cup, 0.30 s/Fry` is the same
-
-* `s/` flags need to be chronological for accurate step numbering
-    - e.g. `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter s/Fry` would result in mixing batter before frying, but `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Fry s/Mix batter` would result in frying before mixing batter
-    - e.g. `add t/Corndogs d/Deliciouss s/Mix batter i/Flour, 3.5, Cup, 0.30 s/Fry`. Since the mixing batter still comes before frying, this is correct
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  - e.g. `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` and `add t/Corndogs d/Awful d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` are the same as `d/` is only expected once
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-    - `list`, `exit`, `help`
 
 </div>
 
@@ -198,6 +194,7 @@ Example: `sort asc`
 Expected outcome: You should see a list of recipes sorted in ascending order of price.
 
 ---
+
 ### Filter recipe by price: `fp {comparator} {price}`
 
 Filters the recipes in the RecipeBook by price according to the comparator specified. The `comparator` can only be `<` for less than OR `>` for more than. The `price` can take on any positive real value as the price of a recipe is determined by cost of all ingredients required.
@@ -208,6 +205,47 @@ Example: `fp < 4.50`
 
 Expected outcome: You should see a list of filtered recipes with price less than $4.50.
 
+---
+### List all recipes in the favorites : `favorites`
+
+Lists out all the recipes that you have added to the favorites, which include all recipes you favor the most.
+
+Format: `favorites`
+
+Example: `favorites`
+Expected outcome: You should see a list of all the recipes in your favorites
+
+---
+### Add a recipe to the favorites: `star {index}`
+
+Add the recipe at the specified *task number* in the favorites.
+
+Format: `star {recipe number}`
+
+- The *recipe number* refers to the index number shown in the displayed recipe book
+- The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
+
+Examples:
+- `star 1`
+- `star 2`
+
+Expected outcome: You should see a star after the title of the recipe you marked on.
+
+---
+### Remove a recipe from the favorites: `unstar {index}`
+
+Remove the recipe at the specified *task number* from the favorites.
+
+Format: `unstar {recipe number}`
+
+- The *recipe number* refers to the index number shown in the displayed recipe book
+- The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
+
+Examples:
+- `unstar 1`
+- `unstar 2`
+
+Expected outcome: You should not see the star after the title of the recipe you unmarked on.
 
 <hr style="border:2px solid gray">
 
@@ -254,7 +292,7 @@ Format meanings:
 <hr style="border:2px solid gray">
 
 ## Glossary
-| Word	| Definition                                                           |
+| Word	|    Definition                                                  |
 |-------|----------------------------------------------------------------------|
 
 **Command Line Interface (CLI)** | 	A program that mainly uses typed commands to interact with the app. 

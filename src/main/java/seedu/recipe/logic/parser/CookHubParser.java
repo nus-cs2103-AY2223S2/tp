@@ -15,6 +15,7 @@ import seedu.recipe.logic.commands.ExitCommand;
 import seedu.recipe.logic.commands.FavoritesCommand;
 import seedu.recipe.logic.commands.FilterPriceCommand;
 import seedu.recipe.logic.commands.FindCommand;
+import seedu.recipe.logic.commands.GroceriesCommand;
 import seedu.recipe.logic.commands.HelpCommand;
 import seedu.recipe.logic.commands.ListCommand;
 import seedu.recipe.logic.commands.OnlyCommand;
@@ -91,6 +92,9 @@ public class CookHubParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case GroceriesCommand.COMMAND_WORD:
+            return new GroceriesCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
