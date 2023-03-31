@@ -7,10 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.person.Doctor;
-import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
-import seedu.address.model.prescription.Prescription;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -65,13 +62,14 @@ public class PersonCard extends UiPart<Region> {
         }
 
         nric.setText(person.getNric().nric);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        //phone.setText(person.getPhone().value);
+        //address.setText(person.getAddress().value);
+        //email.setText(person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
+        /*
         if (person.isPatient()) {
             // https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html
             Patient patient = (Patient) person;
@@ -90,7 +88,7 @@ public class PersonCard extends UiPart<Region> {
             Doctor doctor = (Doctor) person;
             appointments.setText("Appointments: \n" + doctor.drAppointmentsToString());
         }
-
+        */
     }
 
     @Override
