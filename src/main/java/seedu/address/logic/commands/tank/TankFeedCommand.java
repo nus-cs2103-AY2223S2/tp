@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.date.DateUtil;
 import seedu.address.model.tank.Tank;
+import seedu.address.model.task.Task;
 
 /**
  * Feeds a {@code Tank} identified using it's displayed index from the {@code TankList}.
@@ -51,8 +52,17 @@ public class TankFeedCommand extends TankCommand {
         String formattedNow = DateUtil.getCurrentDateTime();
 
         model.setLastFedDateTimeFishes(tankToFeed, formattedNow);
-
+        deleteFeedingReminderForThisTank(model, tankToFeed);
         return new CommandResult(String.format(MESSAGE_FEED_TANK_SUCCESS, tankToFeed));
+    }
+
+    private void deleteFeedingReminderForThisTank(Model model, Tank tankToFeed) {
+        List<Task> lastShownList = model.getFilteredTaskList();
+        for (Task t : lastShownList) {
+            if (t.getIsReminder() && t.getTank().equals(tankToFeed)) {
+                model.deleteTask(t);
+            }
+        }
     }
 
     @Override
