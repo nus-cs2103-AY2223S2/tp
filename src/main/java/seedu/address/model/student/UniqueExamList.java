@@ -11,10 +11,8 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.student.exceptions.ConflictingExamsException;
-import seedu.address.model.student.exceptions.ConflictingLessonsException;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
 import seedu.address.model.student.exceptions.DuplicateExamsException;
-import seedu.address.model.student.exceptions.DuplicateLessonException;
 import seedu.address.model.student.exceptions.EntryNotFoundException;
 
 /**
@@ -49,7 +47,7 @@ public class UniqueExamList implements Iterable<Exam> {
      *
      * @param toAdd the Exam to be added
      */
-    public void add(Exam toAdd) throws DuplicateLessonException, ConflictingLessonsException {
+    public void add(Exam toAdd) throws DuplicateExamsException, ConflictingExamsException {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateExamsException();
@@ -94,9 +92,6 @@ public class UniqueExamList implements Iterable<Exam> {
         }
     }
 
-    public boolean validExmas() {
-        return examsAreUnique(internalList);
-    }
 
     /**
      * Replaces the contents of this list with {@code replacement}.
