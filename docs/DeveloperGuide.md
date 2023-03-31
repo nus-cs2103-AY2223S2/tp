@@ -1044,7 +1044,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
-## **MathUtil**
+### **MathUtil**
 
 The `MathUtil` class contains generic functions for mathematical operations such as Cartesian Product and indexing.
 
