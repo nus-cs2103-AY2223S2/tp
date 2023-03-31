@@ -68,8 +68,8 @@ title: Developer Guide
        * [Location Recommender](#location-recommender)
        * [Location Tracker](#location-tracker)
    * [Storage Component](#storage-component)
-   * [Commons Component](#common-classes)
-     * [MathUtil](#math-util)
+   * [Commons Classes](#common-classes)
+     * [MathUtil](#mathutil)
 5. [Testing](#5-testing)
    * [Unit Tests](#unit-tests)
    * [Testing Models](#testing-models)
@@ -991,7 +991,35 @@ the participants could meet up.
 
 #### Location Recommender
 
-{to be filled by Hafeez}
+The `LocationRecommender`'s role is to recommend a **central location** where persons can meet. It accepts two sets of locations:
+1. A set of `destinations` to be suggested. They could be places to study, eat or both.
+2. A set of `sources` representing the participants' locations given a particular time.
+
+The midpoint of these `sources` is calculated, and then we compare the `destinations` based on how close they are to this midpoint. In this way, we recommend the locations that are the closest for everybody.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **DistanceUtil**
+As part of abstraction, most of the logic is handled by the `DistanceUtil` class, which calculates distances and finds the nearest destinations.
+
+</div>
+
+#### Location Tracker
+
+The `LocationTracker`'s role is to give an approximate location of a person given a certain timing. These approximations are then fed into the `LocationRecommender` to give more accurate recommendations.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **How we approximate a location**
+A person is assumed to be travelling gradually between known locations. For example, if the person is in NUS at 9AM and at home at 11AM, they are assumed to be somewhere in the middle at 10AM.
+
+</div>
+
+The process of getting a recommendation is as follows:
+1. From the person's timetable, we gather their set of **known locations**. For example, if the person has a lesson at NUS on Monday 8AM to 9AM, we know their location at that time period.
+2. Next, between any two **consecutive known locations**, we calculate the number of unknown locations between them.
+3. Based on this calculation, the `DistanceUtil` will return a list of approximations that achieve what was mentioned earlier.
+4. Finally, these locations are put in their respective places in the `LocationTracker`.
 
 ---
 
@@ -1015,6 +1043,10 @@ The `Storage` component,
 ## **Common Classes**
 
 Classes used by multiple components are in the `seedu.address.commons` package.
+
+### **MathUtil**
+
+The `MathUtil` class contains generic functions for mathematical operations such as Cartesian Product and indexing.
 
 # **5. Testing**
 
