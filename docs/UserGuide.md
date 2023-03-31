@@ -288,6 +288,22 @@ Examples:
 * `re_edit 1 1 d/Tuesday`
 * `re_edit 1 1 t/14:00`
 
+
+#### 2) Export a person: `export`
+Export a person's details from the address book. 
+
+Format: `export [INDEX_OF_PERSON]`
+
+* Exports a person's details with the specified `INDEX`
+* All details except groups and tags are exported.
+* Export data is saved in the data/export.json
+* Exporting a person will overwrite any existing export.json file
+
+Examples:
+* `export 1`
+* `expoRT 2`
+
+
 ### List all events: `event list`  [coming soon]
 
 ### Clearing all entries : `clear`
@@ -348,4 +364,5 @@ _Details coming soon ..._
 | **Recurring Event create** | `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                              |
 | **Recurring Event delete** | `re_delete [INDEX_OF_PERSON] [INDEX_OF_EVENT]`                                                                                                                              |
 | **Recurring Event update** | `re_edit [INDEX_OF_PERSON] [INDEX_OF_EVENT] re/NAME d/DAY_OF_WEEK f/START_TIME t/END_TIME`                                                                                  |
+| **Export person** | `export [INDEX_OF_PERSON]` |
 | **Event list**             | [coming soon]                                                                                                                                                               |
