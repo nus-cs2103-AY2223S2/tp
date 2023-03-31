@@ -355,7 +355,9 @@ Format: `clear`
 ConnectUS comes with a set of default contacts. If you want to remove all default contacts, or you want to restart your ConnectUS contact list, you can use the `clear` command without any additional parameters.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+
 Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do proceed with caution!
+
 </div>
 
 <div style="page-break-after: always"></div>
@@ -380,8 +382,9 @@ You can add a contact using the `add` command followed by the parameters (as sho
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 
-* A contact can have any number of tags, <u>modules</u> and <u>CCAs</u> (including 0)! 
+* A contact can have any number of tags, <u>modules</u> and <u>CCAs</u> (including 0)!
 * A contact can have at most 2 majors. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters! 
+
 </div>
 
 <div style="page-break-after: always"></div>
@@ -403,7 +406,9 @@ You can add a contact using the `add` command followed by the parameters (as sho
 Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+
 ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you add a new contact.
+
 </div>
 
 [↑ Back to feature list](#4-features)
@@ -419,7 +424,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/
 If you accidentally added the wrong information when [adding a contact](#44-adding-a-contact-add), or if you want to update your contacts' information, you use the `edit`  command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+
 If you want to edit a contact's tags, refer to these guides on <a href="#46-adding-additional-tags-to-a-contact-add-t" class="alert-link">Adding Additional Tags</a> or <a href="#47-deleting-tags-from-a-contact-delete-t" class="alert-link">Deleting Existing Tags</a> instead!
+
 </div>
 
 The `edit` command:
@@ -442,11 +449,15 @@ The `edit` command:
 Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+
 ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you edit an existing contact.
+
 </div>
 <br>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+
 As of now, removing a contact's information field is not supported yet. Be sure to look out for it in a future iteration!
+
 </div>
 
 [↑ Back to feature list](#4-features)
@@ -504,7 +515,9 @@ For example, the Module tags are indexed from 1 to 3 as follows:
 * The specified tag will be deleted from the contact specified at the `PERSON_INDEX`.
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**<br>
+
 As of now, tags can only be deleted one at a time. If there is more than one occurrence of a parameter, only the last one will be taken.
+
 </div>
 
 <div style="page-break-after: always"></div>
@@ -556,7 +569,9 @@ The `delete` command:
 **After:**<br>![DeleteAfter2](images/DeleteAfter2.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+
 To retrieve your contacts after a <code>search</code>, type <code>list</code> in the Command Box and hit enter!
+
 </div>
 
 [↑ Back to feature list](#4-features)
@@ -596,9 +611,11 @@ From the earlier example, if you have 2 contacts, one with the name January, and
 * `search cca\#president` returns all contacts who have a position that contains the keyword `president` in at least one cca
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+
 * The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
 * Only unspecified keywords treat space as a separator. This means `search yu alex` will search for a contact that contains both `yu` and `alex` in the information, but `search n/yu alex` will search for a contact that contains the string `yu alex` in its name. 
 * If you have 2 contacts, one with the name January, and another with a birthday in January, `search n/January` will return _ONLY_ the contact whose name is January.
+
 </div>
 
 <div style="page-break-after: always"></div>
@@ -618,7 +635,9 @@ From the earlier example, if you have 2 contacts, one with the name January, and
 **Result:**<br>![SearchCommandExample2](images/SearchCommandExample2.png)
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+
 To retrieve your contacts after a <code>search</code>, type <code>list</code> in the Command Box and hit enter!
+
 </div>
 
 Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
@@ -638,7 +657,9 @@ You can directly open supported social media platforms (i.e. Instagram, Telegram
 For WhatsApp, if a handle stored is an 8-digit phone number, it will be assumed as a Singaporean number and the `65` country code will be automatically filled. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+
 You'll need to download the desktop applications for <a href="https://desktop.telegram.org/" class="alert-link">Telegram</a> and <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> respectively if you want to use these features!
+
 </div>
 
 <div style="page-break-after: always"></div>
@@ -664,7 +685,9 @@ Due to platform constraints, only WhatsApp is supported.
 Similar to `open`, if a WhatsApp handle stored is an 8-digit phone number, it will be assumed as a Singaporean number and the `65` country code will be automatically filled.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+
 You'll need to download the desktop application for <a href="https://www.whatsapp.com/download" class="alert-link">WhatsApp</a> if you want to use this feature!
+
 </div>
 
 <div style="page-break-after: always"></div>
@@ -719,7 +742,9 @@ If you are an advanced user, you are welcome to update data directly by editing 
 ConnectUS data is saved as a <u>JSON</u> file `[JAR file location]/data/ConnectUS.json`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+
 If your changes to the data file makes its format invalid, ConnectUS will discard all data and start with an empty data file at the next run. Do remember to keep a backup of your data before attempting any changes in this manner!
+
 </div>
 
 [↑ Back to feature list](#4-features)
