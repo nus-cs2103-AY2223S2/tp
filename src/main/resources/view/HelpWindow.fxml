@@ -26,7 +26,7 @@
           <padding>
             <Insets right="5" left="5" />
           </padding>
-          <TextArea fx:id="helpMessage" editable="false" minHeight="450" minWidth="600">
+          <TextArea fx:id="helpMessage" editable="false" minHeight="400" minWidth="540">
             <HBox.margin>
               <Insets left="10.0" right="5.0" />
             </HBox.margin>
