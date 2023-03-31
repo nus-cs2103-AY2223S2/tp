@@ -315,7 +315,6 @@ public class ParserUtil {
         LocalDateTime[] newRange = new LocalDateTime[]{newDateStart, newDateEnd};
         for (int i = 0; i < MASTER_TIME.size(); i++) {
             if (MASTER_TIME.size() == 0) {
-                MASTER_TIME.add(newRange);
                 break;
             }
             LocalDateTime[] currentRange = MASTER_TIME.get(i);
@@ -331,11 +330,13 @@ public class ParserUtil {
             if (newDateEnd.isEqual(currentRange[0]) && newDateEnd.isEqual(currentRange[1])) {
                 throw new ParseException("You are already busy during that period!");
             }
-            //Ensures user cannot create event in the past
-            if (newDateStart.isBefore(LocalDateTime.now()) || newDateEnd.isBefore(LocalDateTime.now())) {
-                throw new ParseException("You cannot create a historical event!");
-            }
         }
+
+        //Ensures user cannot create event in the past
+        if (newDateStart.isBefore(LocalDateTime.now()) || newDateEnd.isBefore(LocalDateTime.now())) {
+            throw new ParseException("You cannot create a historical event!");
+        }
+
         MASTER_TIME.add(newRange);
         Collections.sort(MASTER_TIME, (range1, range2) -> {
             if (range1[0].isBefore(range2[0])) {
