@@ -47,7 +47,7 @@ public class AddTechnicianToAppointmentCommand extends RedoableCommand {
             throw new CommandException(String.format(MESSAGE_APPOINTMENT_NOT_FOUND, this.appointmentId));
         }
         model.addTechnicianToAppointment(this.techId, this.appointmentId);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.appointmentId));
-        //TODO Tab.APPOINTMENT
+        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.appointmentId),
+                Tab.APPOINTMENTS);
     }
 }

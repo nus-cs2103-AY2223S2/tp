@@ -326,6 +326,9 @@ public class ModelManager implements Model {
     @Override
     public void deleteVehicle(Vehicle target) {
         this.shop.removeVehicle(target);
+        Customer targetOwner = vehicleDataMap.getVehicleCustomer(target);
+        targetOwner.removeVehicle(target);
+        this.shop.setCustomer(vehicleDataMap.getVehicleCustomer(target), targetOwner);
         resetMaps();
         updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
@@ -370,6 +373,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteService(Service service) {
         this.shop.removeService(service);
+        resetMaps();
         updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
         updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
@@ -385,6 +389,7 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         this.shop.addAppointment(appointment);
+        resetMaps();
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
@@ -397,6 +402,10 @@ public class ModelManager implements Model {
     @Override
     public void deleteAppointment(Appointment target) {
         this.shop.removeAppointment(target);
+        Customer targetOwner = appointmentDataMap.getAppointmentCustomer(target);
+        targetOwner.removeAppointment(target);
+        this.shop.setCustomer(appointmentDataMap.getAppointmentCustomer(target), targetOwner);
+        resetMaps();
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
@@ -425,6 +434,8 @@ public class ModelManager implements Model {
     @Override
     public void addPartToService(int serviceId, String partName, int quantity) throws NoSuchElementException {
         this.shop.addPartToService(serviceId, partName, quantity);
+        resetMaps();
+        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
     }
 
     /**
@@ -433,11 +444,15 @@ public class ModelManager implements Model {
     @Override
     public void addTechnicianToService(int serviceId, int techId) throws NoSuchElementException {
         this.shop.addTechnicianToService(serviceId, techId);
+        resetMaps();
+        updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
     }
 
     @Override
     public void addTechnicianToAppointment(int techId, int appointmentId) throws NoSuchElementException {
         this.shop.addTechnicianToAppointment(techId, appointmentId);
+        resetMaps();
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
     /**
@@ -471,6 +486,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteTechnician(Technician target) {
         this.shop.removeTechnician(target);
+        resetMaps();
         updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }

@@ -101,7 +101,7 @@ public class EditServiceCommand extends RedoableCommand {
         model.selectService(editService);
         model.updateFilteredServiceList(PREDICATE_SHOW_ALL_SERVICES);
         model.updateFilteredVehicleList(PREDICATE_SHOW_ALL_VEHICLES);
-        return new CommandResult(String.format(MESSAGE_EDIT_SERVICE_SUCCESS, editService, Tab.SERVICES));
+        return new CommandResult(String.format(MESSAGE_EDIT_SERVICE_SUCCESS, editService), Tab.SERVICES);
     }
 
     /**
