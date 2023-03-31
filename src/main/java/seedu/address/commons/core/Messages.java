@@ -19,11 +19,11 @@ public class Messages {
     public static final String MESSAGE_LESSON_ADDED_SUCCESS = "New lesson added: \n%s \n"
             + "To the following students: \n%s";
     public static final String MESSAGE_HOMEWORK_ALREADY_MARKED_AS_DONE =
-            "Homework %s of student %s is already marked as done\n";
-    public static final String MESSAGE_HOMEWORK_MARKED_AS_DONE = "Homework %s of student %s is marked as done\n";
-    public static final String MESSAGE_HOMEWORK_MARKED_AS_UNDONE = "Homework %s of student %s is marked as undone\n";
+            "Homework %s\nof student %s is already marked as done\n";
+    public static final String MESSAGE_HOMEWORK_MARKED_AS_DONE = "Homework %s of\nstudent %s is marked as done\n";
+    public static final String MESSAGE_HOMEWORK_MARKED_AS_UNDONE = "Homework %s of\nstudent %s is marked as undone\n";
     public static final String MESSAGE_HOMEWORK_ALREADY_MARKED_AS_UNDONE =
-            "Homework %s of student %s is already marked as undone\n";
+            "Homework %s of\bstudent %s is already marked as undone\n";
     public static final String MESSAGE_INVALID_STUDENT_NAME = "No student found!\n";
     public static final String MESSAGE_NO_LESSON_FOUND = "No lesson is found!";
     public static final String MESSAGE_ALL_LESSONS_LISTED_OVERVIEW = "%d lessons from all students listed:\n%s";
