@@ -34,7 +34,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Archive an application : `archive`](#archive-an-internship-application--archive)
         - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
         - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
-    - [Edit](#)
+    - [Edit an internship application : `edit`](#edit-an-internship-application--edit)
     - [Displaying reminders : `remind`](#displaying-the-internship-application-with-the-most-imminent-interview--remind)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
@@ -151,7 +151,7 @@ Examples:
 * `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
 * `add n/LinkedIn j/Software Engineer s/2000 SGD` adds an application for the Software Engineer role at LinkedIn with salary 2000 SGD.
 
-### Edit an internship : `edit`
+### Edit an internship application : `edit`
 
 Edits the internship .
 
@@ -600,9 +600,10 @@ Format: `clear_note`
 
 Action | Format, Examples
 --------|------------------
+**Add** | `add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...` <br> e.g., `add n/LinkedIn j/Software Engineer s/2000 SGD` 
 **Add Contact** | `add_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `add_contact 1 p/87654321 e/abc@gmail.com`
 **Add Documents** | `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `add_docs 1 rs/https://www.example.com/resume cl/https://www.example.com/coverletter`
-**Add Date** | `add_date INDEX d/DATE_TIME` <br> e.g., `add_date 1 d/2023-05-02 11:30 AM`
+**Add Interview Date** | `add_date INDEX d/DATE_TIME` <br> e.g., `add_date 1 d/2023-05-02 11:30 AM`
 **Add Note** |`add_note c/NOTE_CONTENT` <br> e.g., `add_note c/The tasks are planned to be done by tomorrow!`
 **Add Todo** |`add_todo n/COMPANY_NAME J/JOB_TITLE by/DEADLINE` <br> e.g., `add_todo n/company j/Manager d/2023-09-08`
 **Archive** | `archive INDEX`<br> e.g., `archive 2`
@@ -615,6 +616,7 @@ Action | Format, Examples
 **Delete Documents** | `delete_docs INDEX` <br> e.g., `delete_docs 2`
 **Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`
 **Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
+**Edit** | `edit INDEX [n/COMPANY_NAME] [j/JOB_TITLE] [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...` <br> e.g., `edit 1 q/Singapore citizen q/Pursuing CS degree` 
 **Edit Contact** | `edit_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
 **Edit Documents** | `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
 **Edit Deadline** |`edit_deadline INDEX by/DEADLINE` <br> e.g., `edit_deadline 2 by/2023-06-05`
@@ -629,7 +631,7 @@ Action | Format, Examples
 **List Note** |`list_note`
 **List Task** |`list_task`
 **List Todo** |`list_todo`
-**Remind** |`remind`
+**Reminder** | `remind`
 **Revert**   | `revert`
 **Revert All**   | `revert_all`
 **Sort Applications** | `sort n/` <br> `sort j/` <br> `sort s/` <br> `sort d/`
