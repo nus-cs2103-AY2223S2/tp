@@ -183,9 +183,9 @@ Format: `:a <"title"> [-d <deadline>] [-l <label>]... [-p <priority>]`
 | `<title>`    | Title of the task                           | Yes        | `CS2103T UG`   |
 | `<deadline>` | Deadline of the task                        | No         | `2023-03-31`   |
 | `<label>`    | Label given to the task                     | No         | `presentation` |
-| `<priority>` | Priority level assigned to the task         | No         | `1`         |
+| `<priority>` | Priority level assigned to the task         | No         | `1`            |
 
-- SoC students can put module code as the label.
+Note: SoC students can put module code as the label.
 
 Example of command
 1. `:a "Enhance CS2103T tp user guide" -d 2023-03-31 -l cs2103t -p 1`
@@ -199,7 +199,7 @@ Format: `:i <task_index> [-d <deadline>] [-l <label_name>]`
 | Parameter      | Detail                               | Example                                         |
 | -------------- | ------------------------------------ | ----------------------------------------------- |
 | `<task_index>` | Index of the target task             | 3 (assuming the task list has at least 3 tasks) |
-| `<deadline  >` | Deadline of task you want to insert  | 2023-04-05
+| `<deadline>` | Deadline of task you want to insert  | 2023-04-05                                      |
 | `<label_name>` | Name of the label you want to insert | cs2103t(assuming the task list has this label)  |
 
 Example of command
@@ -210,7 +210,7 @@ Condition
 - At least one for the flags should be present. 
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
-- The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.    
+- The index must not exceed the number of tasks in the displayed task list. 
 
 ### Deleting task
 
@@ -229,7 +229,7 @@ Example of command
 Condition
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
-- The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
+- The index must not exceed the number of tasks in the displayed task list.
 
 ### Deleting parameters of a task
 
@@ -250,7 +250,7 @@ Condition
 - At least one for the flags should be present. Else, command will be treated as deleting the task at index number.
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
-- The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
+- The index must not exceed the number of tasks in the displayed task list.
 
 ### Editing task
 
@@ -278,7 +278,7 @@ Condition
 - At least one for the flags should be present. 
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
-- The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
+- The index must not exceed the number of tasks in the displayed task list.
 
     
 ### Filtering task
@@ -290,7 +290,7 @@ Format: `:f [-t <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priori
 | Parameter    | Detail                                          | Example        |
 | ------------ | ----------------------------------------------- | -------------- |
 | `<title>`    | Title of task to filter                         | `"CS2103T UG"` |
-| `<date>` | date of the task to filter before or after  | `2023-03-31`   |
+| `<date>`     | Date of the task to filter before or after      | `2023-03-31`   |
 | `<status>`   | Status of task to filter                        | `2`            |
 | `<priority>` | Priority level of task to filter                | `1`            |
 | `<label>`    | Label of task to filter                         | cs2103t(assuming the task list has this label) |
@@ -364,20 +364,23 @@ _Details coming soon in v2.0 ..._
 |-t                      | title of description       | Cannot be empty, enclosed in open close quotation marks|
 |-d                      | deadline of description    | In the format of YYYY-MM-dd or YYYY-MM-dd HH:mm    |
 |-l                      | label of task              | cannot be empty                                    |
-|-p                      | priority of t              | 1 for very urgent, 2 for urgent, 3 for not urgent, 4 for unknown|
-|-s                      | status of t                | 0 for not done, 1 for in progress, 2 for completed, 3 for overdue|
+|-p                      | priority of task           | 1 for very urgent, 2 for urgent, 3 for not urgent, 4 for unknown|
+|-s                      | status of task             | 0 for not done, 1 for in progress, 2 for completed, 3 for overdue|
 
 
 ## Command summary
 
-| Action                 | Format                     | Examples                                           |
-| ---------------------- | -------------------------- | -------------------------------------------------- |
-| View help              | `:help`                    | No variation thus no example                       |
-| Add task               | `:a <title>`               | `:a Enhance formatting of CS2103T UG`              |
-| Add task with deadline | `:a <title> -d <deadline>` | `:a Finalise CS2103T milestone v1.3 -d 2022-03-31` |
-| Delete task            | `:d [index]`               | `:d 3`                                             |
-| Exit the application   | `:wq!`, `:q!`, `:wq`, `:q` | No variation thus no example                       |
-| Save current data      |                            |                                                    |
-| Edit existing data     |                            |                                                    |
+| Action                 | Format                                                               |
+| ---------------------- | -------------------------------------------------------------------- |
+| View help              | `:help`                                                              |
+| Add task               | `:a <title> [-d <deadline>] [-p <priority>] [-l <label>] `           |
+| Insert parameter       | `:i <task_index> [-d <deadline>] [-l <label_name>]`                   |
+| Delete task            | `:d [index]`                                                         |
+| Delete parameter       | `:d <task_index> [-d] [-l <label_name>]`                             |
+| Edit parameter         | `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>] `|
+| Filter                 | `:f [-t <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`|
+| Sort                   | `:s [-t] [-d] [-p] `                                                 |
+| Exit the application   | `:wq!`, `:q!`, `:wq`, `:q`                                           |
+
 
 <p style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
