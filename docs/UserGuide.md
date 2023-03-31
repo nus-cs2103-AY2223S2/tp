@@ -320,7 +320,7 @@ Examples:
 
 ### 16. Switch between tabs :`switch`
 
-Switchs between the score list and score chart tabs.
+Switches between the score list and score chart tabs.
 
 Format: There we support using CLI or mouse.
 CLI - `switch`
