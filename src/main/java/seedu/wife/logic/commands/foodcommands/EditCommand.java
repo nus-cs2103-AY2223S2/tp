@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_UNIT;
 import static seedu.wife.model.Model.PREDICATE_SHOW_ALL_FOODS;
 
@@ -220,8 +219,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getUnit().equals(e.getUnit())
                     && getQuantity().equals(e.getQuantity())
-                    && getExpiryDate().equals(e.getExpiryDate())
-                    && getTags().equals(e.getTags());
+                    && getExpiryDate().equals(e.getExpiryDate());
         }
     }
 }
