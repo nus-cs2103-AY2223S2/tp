@@ -29,6 +29,18 @@ public class CommandResult {
     /** The application should end a review **/
     private final boolean endReview;
 
+    /** The application should find cards **/
+    private final boolean findCards;
+
+    /** The application should find decks **/
+    private final boolean findDecks;
+
+    /** The application should show all cards**/
+    private final boolean showCards;
+
+    /** The application should show all decks**/
+    private final boolean showDecks;
+
 
 
     /**
@@ -36,7 +48,8 @@ public class CommandResult {
      */
     public CommandResult(
             String feedbackToUser, boolean showHelp, boolean exit,
-            boolean startReview, boolean endReview, boolean selectDeck, boolean unselectDeck) {
+            boolean startReview, boolean endReview, boolean selectDeck, boolean unselectDeck,
+            boolean findCards, boolean findDecks, boolean showCards, boolean showDecks) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -44,6 +57,10 @@ public class CommandResult {
         this.unselectDeck = unselectDeck;
         this.startReview = startReview;
         this.endReview = endReview;
+        this.findCards = findCards;
+        this.findDecks = findDecks;
+        this.showCards = showCards;
+        this.showDecks = showDecks;
     }
 
     /**
@@ -52,7 +69,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser,
-                false, false, false, false, false, false);
+                false, false, false, false, false, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -83,6 +100,22 @@ public class CommandResult {
         return unselectDeck;
     }
 
+    public boolean isFindCards() {
+        return findCards;
+    }
+
+    public boolean isFindDecks() {
+        return findDecks;
+    }
+
+    public boolean isShowCards() {
+        return showCards;
+    }
+
+    public boolean isShowDecks() {
+        return showDecks;
+    }
+
     public boolean isClear() {
         return false;
     }
@@ -105,7 +138,11 @@ public class CommandResult {
                 && startReview == otherCommandResult.startReview
                 && endReview == otherCommandResult.endReview
                 && selectDeck == otherCommandResult.selectDeck
-                && unselectDeck == otherCommandResult.unselectDeck;
+                && unselectDeck == otherCommandResult.unselectDeck
+                && findCards == otherCommandResult.findCards
+                && findDecks == otherCommandResult.findDecks
+                && showCards == otherCommandResult.showCards
+                && showDecks == otherCommandResult.showDecks;
 
     }
 

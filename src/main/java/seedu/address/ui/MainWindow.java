@@ -35,6 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final Text MAIN_TITLE = new Text("Main");
     private static final Text REVIEW_TITLE = new Text("Review");
     private static final ObservableList<String> EMPTY_TITLE = FXCollections.observableArrayList("");
+    private static final String FILTER_DECK_PREFIX = "Finding Decks with keyword: ";
+    private static final String FILTER_CARD_PREFIX = "Finding Cards with keyword: ";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -43,8 +45,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private CardListPanel cardListPanel;
-    private UiPart<Region> leftPanel;
-    private UiPart<Region> rightTitle;
+    private UiPart<Region> deckListPanel;
+    private UiPart<Region> rightDeckTitle;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -71,6 +73,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TextFlow titlePanel;
+
+    @FXML
+    private TextFlow leftFilterText;
+
+    @FXML
+    private TextFlow rightFilterText;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -134,14 +142,14 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         titlePanel.getChildren().add(MAIN_TITLE);
 
-        rightTitle = new DeckNamePanel(logic.getDeckNameList());
-        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
+        rightDeckTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitlePlaceholder.getChildren().add(rightDeckTitle.getRoot());
 
         cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
 
-        leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
-        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+        deckListPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
+        leftPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -216,9 +224,9 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the review stats panel.
      */
     public void handleStartReview() {
-        leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
+        deckListPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().clear();
-        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+        leftPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
 
         cardListPanel = new CardListPanel(logic.getReviewCardList(), true);
         rightPanelPlaceholder.getChildren().clear();
@@ -228,8 +236,8 @@ public class MainWindow extends UiPart<Stage> {
         titlePanel.getChildren().add(REVIEW_TITLE);
 
         rightPanelTitlePlaceholder.getChildren().clear();
-        rightTitle = new DeckNamePanel(EMPTY_TITLE);
-        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
+        rightDeckTitle = new DeckNamePanel(EMPTY_TITLE);
+        rightPanelTitlePlaceholder.getChildren().add(rightDeckTitle.getRoot());
     }
 
     /**
@@ -238,9 +246,9 @@ public class MainWindow extends UiPart<Stage> {
     public void handleEndReview() {
         updateDeckTitle();
 
-        leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
+        deckListPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().clear();
-        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+        leftPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
 
 
         cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
@@ -256,8 +264,46 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void updateDeckTitle() {
         rightPanelTitlePlaceholder.getChildren().clear();
-        rightTitle = new DeckNamePanel(logic.getDeckNameList());
-        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
+        rightPanelTitlePlaceholder.getChildren().clear();
+        rightDeckTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitlePlaceholder.getChildren().add(rightDeckTitle.getRoot());
+    }
+
+    /**
+     * Gets the argument from a command
+     */
+    private String getArgs(String commandText) {
+        return commandText.split(" ")[1];
+    }
+
+    /**
+     * Displays the find parameters of cards
+     */
+    public void handleFindCards(String commandText) {
+        Text args = new Text(FILTER_CARD_PREFIX + getArgs(commandText));
+        rightFilterText.getChildren().add(args);
+    }
+
+    /**
+     * Displays the find parameters of decks
+     */
+    public void handleFindDecks(String commandText) {
+        Text args = new Text(FILTER_DECK_PREFIX + getArgs(commandText));
+        leftFilterText.getChildren().add(args);
+    }
+
+    /**
+     * Hides the find parameters of cards
+     */
+    public void handleShowCards() {
+        rightFilterText.getChildren().clear();
+    }
+
+    /**
+     * Hides the find parameters of decks
+     */
+    public void handleShowDecks() {
+        leftFilterText.getChildren().clear();
     }
 
     /**
@@ -270,6 +316,22 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isFindCards()) {
+                handleFindCards(commandText);
+            }
+
+            if (commandResult.isFindDecks()) {
+                handleFindDecks(commandText);
+            }
+
+            if (commandResult.isShowCards()) {
+                handleShowCards();
+            }
+
+            if (commandResult.isShowDecks()) {
+                handleShowDecks();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

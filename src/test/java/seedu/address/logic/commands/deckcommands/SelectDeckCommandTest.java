@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.deckcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.commandresult.CommandResult;
-import seedu.address.logic.commands.deckcommands.SelectDeckCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.deck.Deck;
@@ -29,7 +28,7 @@ public class SelectDeckCommandTest {
         String expectedMessage = String.format(SelectDeckCommand.MESSAGE_SUCCESS, testDeck.getDeckName());
         Model expectedModel = new ModelManager();
         CommandResult expectedCommandResult = new CommandResult(
-                expectedMessage, false, false, false, false, true, false);
+                expectedMessage, false, false, false, false, true, false, false, false, false, false);
         expectedModel.addDeck(testDeck);
         expectedModel.selectDeck(validIndex);
 

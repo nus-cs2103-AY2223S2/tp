@@ -36,17 +36,21 @@
 
         <TextFlow fx:id="titlePanel" />
 
-        <SplitPane fx:id="masterDeckSplitPane" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-         <StackPane fx:id="leftPanelPlaceholder" styleClass="panel" minWidth="400" maxWidth="400"/>
-          <VBox prefHeight="0.0" prefWidth="0.0" >
-            <StackPane fx:id="rightPanelTitlePlaceholder" minHeight="110" prefHeight="110" minWidth="300"/>
-            <StackPane fx:id="rightPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" minWidth="300" />
+        <SplitPane fx:id="cardList" dividerPositions="0.2" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <VBox prefHeight="0.0" prefWidth="0.0">
+            <StackPane fx:id="leftPanelPlaceholder" minWidth="50.0" styleClass="panel" VBox.vgrow="ALWAYS"/>
+            <TextFlow fx:id="leftFilterText"/>
+          </VBox>
+          <VBox prefHeight="0.0" prefWidth="0.0">
+            <StackPane prefHeight="110" minHeight="110" minWidth="50.0" fx:id="rightPanelTitlePlaceholder"/>
+            <StackPane fx:id="rightPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS"/>
+            <TextFlow fx:id="rightFilterText"/>
           </VBox>
         </SplitPane>
 
         <SplitPane fx:id="commandSplitPane" dividerPositions="0.5" VBox.vgrow="NEVER" >
           <StackPane fx:id="commandBoxPlaceholder" prefWidth="340.0" styleClass="pane-with-border" />
-          <StackPane fx:id="resultDisplayPlaceholder" alignment="TOP_LEFT" maxHeight="100" minHeight="100" prefHeight="100" prefWidth="317.0" styleClass="pane-with-border" />
+          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefWidth="317.0" styleClass="pane-with-border" />
         </SplitPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />

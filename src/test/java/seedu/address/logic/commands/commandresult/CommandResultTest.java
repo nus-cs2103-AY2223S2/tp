@@ -14,7 +14,7 @@ public class CommandResultTest {
         // same values -> returns true
         assertEquals(commandResult, new CommandResult("feedback"));
         assertEquals(commandResult, new CommandResult("feedback",
-                        false, false, false, false, false, false));
+                        false, false, false, false, false, false, false, false, false, false));
 
         // same object -> returns true
         assertEquals(commandResult, commandResult);
@@ -30,27 +30,27 @@ public class CommandResultTest {
 
         // different showHelp value -> returns false
         assertNotEquals(commandResult, new CommandResult(
-                "feedback", true, false, false, false, false, false));
+                "feedback", true, false, false, false, false, false, false, false, false, false));
 
         // different exit value -> returns false
         assertNotEquals(commandResult, new CommandResult("feedback",
-                false, true, false, false, false, false));
+                false, true, false, false, false, false, false, false, false, false));
 
         // different startReview value -> return false
         assertNotEquals(commandResult, new CommandResult("feedback",
-                false, false, true, false, false, false));
+                false, false, true, false, false, false, false, false, false, false));
 
         // different endReview value -> return false
         assertNotEquals(commandResult, new CommandResult("feedback",
-                false, false, false, true, false, false));
+                false, false, false, true, false, false, false, false, false, false));
 
         // different selectDeck value -> return false
         assertNotEquals(commandResult, new CommandResult("feedback",
-                false, false, false, false, true, false));
+                false, false, false, false, true, false, false, false, false, false));
 
         // different unSelectDeck value -> return false
         assertNotEquals(commandResult, new CommandResult("feedback",
-                false, false, false, false, false, true));
+                false, false, false, false, false, true, false, false, false, false));
     }
 
     @Test
@@ -65,27 +65,27 @@ public class CommandResultTest {
 
         // different showHelp value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(
-                "feedback", true, false, false, false, false, false).hashCode());
+                "feedback", true, false, false, false, false, false, false, false, false, false).hashCode());
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(
-                "feedback", false, true, false, false, false, false).hashCode());
+                "feedback", false, true, false, false, false, false, false, false, false, false).hashCode());
 
         // different startReview value -> return different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
-                false, false, true, false, false, false).hashCode());
+                false, false, true, false, false, false, false, false, false, false).hashCode());
 
         // different endReview value -> return different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
-                false, false, false, true, false, false).hashCode());
+                false, false, false, true, false, false, false, false, false, false).hashCode());
 
         // different selectDeck value -> return different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
-                false, false, false, false, true, false).hashCode());
+                false, false, false, false, true, false, false, false, false, false).hashCode());
 
         // different unSelectDeck value -> return different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback",
-                false, false, false, false, false, true).hashCode());
+                false, false, false, false, false, true, false, false, false, false).hashCode());
 
     }
 }
