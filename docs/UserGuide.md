@@ -363,7 +363,7 @@ Trying to `undo` without having ANY of the above commands prior will cause Teach
 
 > Format: `undo` 
 
-Example: `delete 1` followed by `undo`
+Example: `delete 1 4` followed by `undo`. <br>
 
 ### Redo a previous `undo`: `redo`
 
@@ -378,7 +378,7 @@ Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpa
 
 >Format: `redo`
 
-Example: `delete 1`, followed by `undo`, then `redo`.
+Example: `delete 1 4`, followed by `undo`, then `redo`.
 
 [↑ Back to top](#table-of-contents)
 
