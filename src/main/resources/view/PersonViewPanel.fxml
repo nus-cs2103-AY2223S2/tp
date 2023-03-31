@@ -11,7 +11,7 @@
 <VBox minWidth="380.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
 <VBox minWidth="340.0" prefWidth="340.0" HBox.hgrow="ALWAYS">
    <children>
-         <VBox minWidth="340.0" prefWidth="370.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <VBox fx:id="particularsBox" minWidth="340.0" prefWidth="370.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
             <children>
             <Label id="name" fx:id="name" styleClass="cell_name_label" wrapText="true" />
                <HBox>
@@ -53,7 +53,7 @@
                <Insets bottom="5.0" />
             </VBox.margin>
          </VBox>
-         <VBox minWidth="340.0" prefWidth="370.0" style="-fx-border-color: white; -fx-background-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <VBox fx:id="appointmentBox" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: white; -fx-background-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
             <children>
                <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Appointments" textAlignment="CENTER">
                   <padding>
