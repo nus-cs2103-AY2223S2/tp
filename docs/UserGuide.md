@@ -147,7 +147,7 @@ Adds an internship application to the tracker
 Format: `add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...`
 
 - `Salary` should be in the form of amount followed by space currency in upper case.
-- 
+
 Examples:
 * `add n/Facebook j/Product Manager` adds an application for the Product Manager role at Facebook.
 * `add n/LinkedIn j/Software Engineer s/2000 SGD` adds an application for the Software Engineer role at LinkedIn with salary 2000 SGD.
@@ -237,12 +237,12 @@ Format: `edit_status INDEX s/STATUS`
 - Edits the status of the specified `INDEX` to the specified `STATUS`.
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
-- Available status: NA, PENDING, RECEIVED, REJECTED, NO
-    - NA: Internship application is not submitted.
+- Available status: PENDING, RECEIVED, ACCEPTED, DECLINED, REJECTED
     - PENDING: Internship application submitted, outcome has not been released.
     - RECEIVED: Offer received.
-    - REJECTED: Offer rejected.
-    - NO: Application rejected.
+    - ACCEPTED: Offer accepted.
+    - DECLINED: Offer received and declined.
+    - REJECTED: Application rejected.
 
 Examples:
 * `edit_status 2 s/PENDING` Changes the status of the 2nd application in the applications list to `PENDING` (Internship application submitted, outcome has not been released).
