@@ -1,7 +1,5 @@
 package seedu.dengue.model.range;
 
-import seedu.dengue.model.person.ContinuousData;
-
 /**
  * Represents a range which can be used to signify age ranges, or date ranges to be used in predicates
  * to filter out people in the person list in the Dengue Hotspot Tracker.

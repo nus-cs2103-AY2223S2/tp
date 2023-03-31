@@ -20,6 +20,7 @@ import seedu.dengue.logic.commands.exceptions.CommandException;
 import seedu.dengue.model.DengueHotspotTracker;
 import seedu.dengue.model.Model;
 import seedu.dengue.model.person.Age;
+import seedu.dengue.model.person.ContinuousData;
 import seedu.dengue.model.person.Date;
 import seedu.dengue.model.person.Name;
 import seedu.dengue.model.person.Person;
@@ -176,8 +177,8 @@ public class CommandTestUtil {
         Optional<Age> emptyAge = Optional.empty();
         Optional<Date> emptyDate = Optional.empty();
         Set<Variant> emptyVariants = new HashSet<>();
-        Range<Date> emptyDateRange = new Range<Date>(new StartDate(emptyDate), new EndDate(emptyDate));
-        Range<Age> emptyAgeRange = new Range<Age>(new StartAge(emptyAge), new EndAge(emptyAge));
+        Range<Date> emptyDateRange = ContinuousData.generateRange(new StartDate(emptyDate), new EndDate(emptyDate));
+        Range<Age> emptyAgeRange = ContinuousData.generateRange(new StartAge(emptyAge), new EndAge(emptyAge));
         model.updateFilteredPersonList(
                 new FindPredicate(testName, emptySubPostal, emptyAge, emptyDate, emptyVariants,
                         emptyDateRange, emptyAgeRange));
