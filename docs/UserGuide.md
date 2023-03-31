@@ -16,8 +16,8 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 - [Features](#features)
 - [Main Features](#main-features-tracking-applied-internships)
     - [View guide : `help`](#view-help--help)
-    - [Add an internship application](#)
-        - [Add](#)
+    - [Add an internship application](#adding-an-internship--add)
+        - [Add](#adding-an-internship--add)
     - [List currently ongoing internship applications : `list`](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications : `sort`](#sort-all-internship-applications--sort)
     - [Find internship applications by the company name, job title, status, or interview date : `find`](#find-internship-applications-by-the-company-name-job-title-status-or-interview-date--find)
@@ -144,7 +144,7 @@ Format: help
 
 Adds an internship application to the tracker
 
-Format: ` add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...`
+Format: `add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...`
 
 - `Salary` should be in the form of amount followed by space currency in upper case.
 - 
