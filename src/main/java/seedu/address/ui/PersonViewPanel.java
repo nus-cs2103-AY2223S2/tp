@@ -46,6 +46,12 @@ public class PersonViewPanel extends UiPart<Region> {
     private VBox prescriptionBox;
 
     @FXML
+    private VBox appointmentBox;
+
+    @FXML
+    private VBox particularsBox;
+
+    @FXML
     private Label medication;
 
     @FXML
@@ -62,6 +68,9 @@ public class PersonViewPanel extends UiPart<Region> {
         super(FXML);
         if (person == null) {
             this.person = null;
+            particularsBox.setVisible(false);
+            appointmentBox.setVisible(false);
+            prescriptionBox.setVisible(false);
             return;
         }
         /*

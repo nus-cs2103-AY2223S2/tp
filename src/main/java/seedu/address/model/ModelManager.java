@@ -40,11 +40,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        //displayedPerson = filteredPersons.get(0);
         displayedPerson = filteredPersons.size() > 0
                 ? filteredPersons.get(0)
                 : null;
-        // todo fix GUI null display
     }
 
     public ModelManager() {
