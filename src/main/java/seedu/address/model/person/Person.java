@@ -92,9 +92,11 @@ public class Person {
     public Meeting getMeeting(int index) {
         return this.meetings.get(index);
     }
+
     public void setMeeting(int index, Meeting m) {
         this.meetings.set(index, m);
     }
+
     /**
      * Gets the most recent meeting that the person has
      */
@@ -124,7 +126,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+            && otherPerson.getName().equals(getName());
     }
 
     /**
@@ -143,10 +145,10 @@ public class Person {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getEmail().equals(getEmail())
+            && otherPerson.getAddress().equals(getAddress())
+            && otherPerson.getTags().equals(getTags());
     }
 
     @Override
@@ -159,12 +161,12 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
-                .append(getPhone())
-                .append("; Email: ")
-                .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+            .append("; Phone: ")
+            .append(getPhone())
+            .append("; Email: ")
+            .append(getEmail())
+            .append("; Address: ")
+            .append(getAddress());
 
         Set<PolicyTag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -174,8 +176,8 @@ public class Person {
 
         List<Meeting> meetings = getMeetings();
         String meetingHeader = meetings.size() == 1
-                ? "; Meeting: "
-                : "; Meetings: ";
+            ? "; Meeting: "
+            : "; Meetings: ";
         if (!meetings.isEmpty()) {
             builder.append(meetingHeader);
             meetings.forEach(builder::append);
