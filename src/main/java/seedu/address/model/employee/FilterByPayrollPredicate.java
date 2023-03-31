@@ -13,6 +13,11 @@ public class FilterByPayrollPredicate implements Predicate<Employee> {
     private final boolean isLesserThan;
     private final boolean isEqualTo;
 
+    /**
+     * FilterByPayroll constructor.
+     * @param comparisonAmount
+     * @param possibleOperators
+     */
     public FilterByPayrollPredicate(int comparisonAmount, boolean[] possibleOperators) {
         this.comparisonAmount = comparisonAmount;
         this.possibleOperators = possibleOperators;

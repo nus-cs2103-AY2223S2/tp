@@ -2,6 +2,9 @@ package seedu.address.model.employee;
 
 import java.util.function.Predicate;
 
+/**
+ * FilterByLeave class.
+ */
 public class FilterByLeaveCountPredicate implements Predicate<Employee> {
 
     private final int comparisonAmount;
@@ -10,6 +13,9 @@ public class FilterByLeaveCountPredicate implements Predicate<Employee> {
     private final boolean isLesserThan;
     private final boolean isEqualTo;
 
+    /**
+     * FilterByLeave constructor.
+     */
     public FilterByLeaveCountPredicate(int comparisonAmount, boolean[] possibleOperators) {
         this.comparisonAmount = comparisonAmount;
         this.possibleOperators = possibleOperators;
