@@ -27,11 +27,11 @@ public class InsertCommandParserTest {
         InsertCommand cmd = INSTANCE.parse(input);
         assertTrue(cmd != null);
 
-        String input1 = "i 10 -d <deadline> -l haskell --label proglang";
+        String input1 = "i 10 -d Mon -l haskell --label proglang";
         InsertCommand cmd1 = INSTANCE.parse(input1);
         assertTrue(cmd1 != null);
 
-        String input2 = "i 10 --deadline <deadline>";
+        String input2 = "i 10 --deadline 2023-01-01 23:59";
         InsertCommand cmd2 = INSTANCE.parse(input2);
         assertTrue(cmd2 != null);
     }

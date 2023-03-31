@@ -57,13 +57,15 @@ public class CommandParserUtil {
     public static final ApplicativeParser<LocalTime> TIME_PARSER =
             ApplicativeParser
                     .nonWhitespaces1()
-                    .optionalMap(CommandParserUtil::parseTime)
-                    .orElse(TIME_ZERO_ZERO);
+                    .optionalMap(CommandParserUtil::parseTime);
 
     public static final ApplicativeParser<LocalDateTime> DATE_TIME_PARSER =
-            ApplicativeParser.choice(DATE_PARSER, DATE_PARSER)
-                    .dropNext(ApplicativeParser.skipWhitespaces1())
-                    .combine(TIME_PARSER, LocalDateTime::of);
+            ApplicativeParser.choice(DATE_PARSER, DAY_PARSER)
+                    .combine(ApplicativeParser
+                            .skipWhitespaces1()
+                            .takeNext(TIME_PARSER)
+                            .orElse(TIME_ZERO_ZERO),
+                            LocalDateTime::of);
 
     public static final LiteralArgumentFlag TITLE_FLAG = new LiteralArgumentFlag("-t", "--title");
     public static final LiteralArgumentFlag LABEL_FLAG = new LiteralArgumentFlag("-l", "--label");
