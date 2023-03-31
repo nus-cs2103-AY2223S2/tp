@@ -60,7 +60,7 @@ public class TankCard extends UiPart<Region> {
         super(FXML);
         this.tank = tank;
         id.setText(displayedIndex + ". ");
-        alignment.setText(displayedIndex + ".  ");
+        //alignment.setText(displayedIndex + ".  ");
         name.setText(tank.getTankName().toString());
         numberOfFish.setText("x" + tank.getFishList().size());
 
@@ -94,8 +94,8 @@ public class TankCard extends UiPart<Region> {
         NumberAxis yAxis = new NumberAxis(lowerBound, upperBound, upperBound - lowerBound);
         LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.getData().add(series);
-        lineChart.setPrefHeight(85);
-        lineChart.setMinHeight(85);
+        lineChart.setPrefHeight(100);
+        lineChart.setMinHeight(100);
         lineChart.setPrefWidth(50);
         lineChart.setMinWidth(50);
         lineChart.setCreateSymbols(false);

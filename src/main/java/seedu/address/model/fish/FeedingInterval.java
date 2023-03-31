@@ -54,7 +54,24 @@ public class FeedingInterval {
 
     @Override
     public String toString() {
-        return days + " days, " + hours + " hours";
+        StringBuilder str = new StringBuilder();
+        if (daysInteger > 0) {
+            str.append(days).append(" day");
+            if (daysInteger > 1) {
+                str.append("s");
+            }
+            if (hoursInteger > 0) {
+                str.append(", ");
+            }
+        }
+        if (hoursInteger > 0) {
+            str.append(hours).append(" hour");
+            if (hoursInteger > 1) {
+                str.append("s");
+            }
+        }
+
+        return str.toString();
     }
 
     @Override
