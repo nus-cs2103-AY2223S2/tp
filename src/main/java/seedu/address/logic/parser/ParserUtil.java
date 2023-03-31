@@ -17,7 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Region;
 import seedu.address.model.person.Region.Regions;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.PolicyTag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -104,27 +104,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String tag} into a {@code PolicyTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static PolicyTag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!PolicyTag.isValidTagName(trimmedTag)) {
+            throw new ParseException(PolicyTag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new PolicyTag(trimmedTag);
     }
 
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code Set<PolicyTag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<PolicyTag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<PolicyTag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
@@ -183,4 +183,5 @@ public class ParserUtil {
         int startMinute = Integer.parseInt(time[1]);
         return LocalDateTime.of(year, month, day, startHour, startMinute);
     }
+
 }

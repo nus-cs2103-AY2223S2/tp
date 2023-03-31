@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Represents the specified policy name to be used to check against
+ * {@code Person} list of {@code Meetings} for matching {@code PolicyTag} names
+ */
 public class PolicyExistInPersonPredicate implements Predicate<Person> {
     private final List<String> keywords;
 

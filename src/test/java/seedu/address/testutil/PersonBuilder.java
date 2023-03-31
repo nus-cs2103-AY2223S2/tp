@@ -12,7 +12,7 @@ import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.PolicyTag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -33,7 +33,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private ArrayList<Meeting> meetings;
-    private Set<Tag> tags;
+    private Set<PolicyTag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -69,7 +69,7 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<PolicyTag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);

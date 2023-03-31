@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +79,7 @@ public class AddMeetingCommand extends Command {
         // model.setPerson(personToEdit, editedPerson);
 
         // Adds meeting and returns edited person
-        Person editedPerson = model.addMeeting(personToEdit, meeting); 
+        Person editedPerson = model.addMeeting(personToEdit, meeting);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
 
