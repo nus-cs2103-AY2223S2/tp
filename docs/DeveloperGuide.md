@@ -69,7 +69,7 @@ title: Developer Guide
        * [Location Tracker](#location-tracker)
    * [Storage Component](#storage-component)
    * [Commons Classes](#common-classes)
-     * [MathUtil](#math-util)
+     * [MathUtil](#mathutil)
 5. [Testing](#5-testing)
    * [Unit Tests](#unit-tests)
    * [Testing Models](#testing-models)
