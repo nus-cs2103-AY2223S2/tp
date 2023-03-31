@@ -10,7 +10,6 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddConsultationCommand;
 import seedu.address.logic.commands.AddLabCommand;
 import seedu.address.logic.commands.AddNoteToEventCommand;
-import seedu.address.logic.commands.AddRecurCommand;
 import seedu.address.logic.commands.AddStudentToEventCommand;
 import seedu.address.logic.commands.AddTutorialCommand;
 import seedu.address.logic.commands.ChangeTabEventCommand;
@@ -110,9 +109,6 @@ public class AddressBookParser {
 
         case AddTutorialCommand.COMMAND_WORD:
             return new AddTutorialParser().parse(arguments);
-
-        case AddRecurCommand.COMMAND_WORD:
-            return new AddRecurParser().parse(arguments);
 
         case AddNoteToEventCommand.COMMAND_WORD:
             return new AddNoteParser().parse(arguments);

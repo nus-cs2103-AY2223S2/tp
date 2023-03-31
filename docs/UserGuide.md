@@ -185,24 +185,6 @@ Examples:
 
 <div id='add-recur'></div>
 
-### Adding recurring event: `add recur`
-
-Adds a recurring event to the TA’s schedule. Recurring event is assumed to be 1 hour long (adhering to CS2040 timing) and no modification of duration is allowed
-
-- Name need not be unique
-- Cannot be clashes in the time with any other events
-- Maximum number of occurrences of the event is 10
-- Event is assumed to be conducted weekly only (Adhering to CS2040 Timetables)
-
-Format: `schedule Recur/[EVENT_TYPE]/[EVENT_NAME] -n [REPETITION]`
-
-Examples:
-
-* `schedule Recur/Tutorial/weeklyWrapUp -n 3`
-* `schedule Recur/Lab/weeklyVisuAlgoQuiz -n 8`
-
-<div id='edit-event'></div>
-
 ### Edit an event: `editEvent event`
 
 Edits an event current in the TA’s schedule.
@@ -552,19 +534,6 @@ Examples:
          <ul>
             <li><code>mkdir Consultation/reviewConnectedComponents</code>
             <li><code>mkdir Consultation/reviewDijsktra -date 01/01/2023 16:00</code>
-            </li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Add Recurring Event</strong>
-      </td>
-      <td><code>schedule Recur/[EVENT_TYPE]/[EVENT_NAME] -n number_of_times_to_repeat</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>schedule Recur/Tutorial/weeklyWrapUp -n 3</code>
-            <li><code>schedule Recur/Lab/weeklyVisuAlgoQuiz -n 8</code>
             </li>
          </ul>
       </td>
