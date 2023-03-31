@@ -1,9 +1,13 @@
 package vimification.ui;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.fxml.FXML;
+import vimification.model.task.Priority;
+import vimification.model.task.Status;
 import vimification.model.task.Task;
 
 
@@ -16,17 +20,28 @@ public class TaskDetailPanel extends UiPart<VBox> {
     private Task task;
 
     @FXML
-    private Label typeField;
+    private HBox cardPane;
     @FXML
-    private Label descriptionField;
+    private Label id;
 
     @FXML
-    private Label statusField;
+    private Label title;
     @FXML
-    private Label priorityField;
+    private Label deadline;
+    @FXML
+    private Label priorityMessage;
 
     @FXML
-    private HBox durationComponent;
+    private Label statusMessage;
+
+    @FXML
+    private ProgressBar status;
+
+    @FXML
+    private FlowPane labels;
+
+    @FXML
+    private FlowPane priority;
 
     /**
      * Creates a {@code TaskDetailPanel}.
@@ -38,15 +53,41 @@ public class TaskDetailPanel extends UiPart<VBox> {
     }
 
     private void setup() {
-        String taskType = getTaskType(task);
-        typeField.setText(taskType);
 
-        descriptionField.setText(task.getTitle());
-        statusField.setText(task.getStatus().toString());
-        priorityField.setText(task.getPriority().toString());
+        title.setText(task.getTitle());
 
-        boolean isTaskDeadline = taskType.equals("Deadline");
-        durationComponent.setVisible(isTaskDeadline);
+        if (task.getDeadline() != null) {
+            deadline.setText(task.getDeadlineToString());
+        } else {
+            deadline.setText("-");
+        }
+        Priority p = task.getPriority();
+        priorityMessage.setText(task.getPriority().toString());
+        if (p.equals(Priority.UNKNOWN)) {
+            priorityMessage.setStyle("-fx-background-color: #3e7b91");
+        } else if (p.equals(Priority.NOT_URGENT)) {
+            priorityMessage.setStyle("-fx-background-color: #8abc79");
+        } else if  (p.equals(Priority.URGENT)) {
+            priorityMessage.setStyle("-fx-background-color: #d3bc75");
+        } else {
+            priorityMessage.setStyle("-fx-background-color: #d46b70");
+        }
+
+        task.getLabels().stream().forEach(label -> labels.getChildren().add(new Label(label)));
+
+        Status s = task.getStatus();
+        String message = s.toString();
+        if (s.equals(Status.NOT_DONE)) {
+            status.setProgress(0.0);
+        } else if (s.equals(Status.IN_PROGRESS)) {
+            status.setProgress(0.5);
+        } else if (s.equals(Status.COMPLETED)) {
+            status.setProgress(1.0);
+        } else {
+            status.setProgress(1.0);
+            status.setStyle("-fx-accent:#d46b70");
+        }
+        statusMessage.setText(message);
     }
 
     /**
