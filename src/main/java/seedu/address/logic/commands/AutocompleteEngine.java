@@ -88,6 +88,18 @@ public class AutocompleteEngine {
                 .allMatch(argPrefix -> argPrefix.stream()
                         .dropWhile(INDEX_PLACEHOLDER::equals)
                         .noneMatch(INDEX_PLACEHOLDER::equals));
+
+        // All optional arguments must come after any compulsory args.
+        assert ARGUMENT_PREFIX_MAP.values().stream()
+                .allMatch(argPrefix -> argPrefix.stream()
+                        .dropWhile(prefix -> !prefix.isOptional())
+                        .allMatch(Prefix::isOptional));
+
+        // All repeatable arguments must come after any non-repeatable args.
+        assert ARGUMENT_PREFIX_MAP.values().stream()
+                .allMatch(argPrefix -> argPrefix.stream()
+                        .dropWhile(prefix -> !prefix.isRepeatable())
+                        .allMatch(Prefix::isRepeatable));
     }
 
     /**
