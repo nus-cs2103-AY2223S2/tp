@@ -1,14 +1,18 @@
 package seedu.dengue.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.dengue.commons.core.LogsCenter;
 import seedu.dengue.logic.analyst.DataBin;
+import seedu.dengue.model.overview.Overview;
 
 /**
  * A ui for the current overview that is displayed on the right of the application.
@@ -19,19 +23,50 @@ public class OverviewDisplay extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(OverviewDisplay.class);
 
     @FXML
+    private Label overviewTitle;
+    @FXML
+    private Label overviewSubtitle;
+    @FXML
     private ListView<DataBin> overviewContentView;
 
     /**
      * Constructs a new blank {@code OverviewDisplay} instance.
      */
-    public OverviewDisplay(ObservableList<DataBin> dataBinList) {
+    public OverviewDisplay(Overview overview) {
         super(FXML);
-        overviewContentView.setItems(dataBinList);
+        overviewTitle.setText(overview.getOverviewTitle());
+        overviewSubtitle.setText(overview.getOverviewSubtitle());
+
+        overviewContentView.setItems(overview.getOverviewContent());
         overviewContentView.setCellFactory(listView -> new OverviewBinCell());
     }
 
-    public void updateOverviewDisplay(ObservableList<DataBin> dataBinList) {
-        overviewContentView.setItems(dataBinList);
+    private void setOverviewTitle(String title) {
+        requireNonNull(title);
+        overviewTitle.setText(title);
+    }
+
+    private void setOverviewSubtitle(String subtitle) {
+        requireNonNull(subtitle);
+        overviewSubtitle.setText(subtitle);
+    }
+
+    private void setOverviewContent(ObservableList<DataBin> dataBins) {
+        requireNonNull(dataBins);
+        overviewContentView.setItems(dataBins);
+    }
+
+    /**
+     * Sets the title, subtitle and content of the {@code OverviewDisplay}
+     * to match the given {@code overview} input.
+     *
+     * @param overview The overview instance to update the GUI with.
+     */
+    public void updateOverviewDisplay(Overview overview) {
+        requireNonNull(overview);
+        setOverviewTitle(overview.getOverviewTitle());
+        setOverviewSubtitle(overview.getOverviewSubtitle());
+        setOverviewContent(overview.getOverviewContent());
     }
 
     /**

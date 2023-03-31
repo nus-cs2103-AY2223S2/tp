@@ -10,8 +10,8 @@ import seedu.dengue.logic.analyst.DataBin;
  * An UI component that displays information of a {@code Person}.
  */
 public class DataBinCard extends UiPart<Region> {
-
     private static final String FXML = "DataBinListCard.fxml";
+    private static final String BIN_SIZE_PREFIX = "Count: ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -41,7 +41,7 @@ public class DataBinCard extends UiPart<Region> {
         this.dataBin = dataBin;
         id.setText(displayedIndex + ". ");
         binName.setText(dataBin.getName());
-        binSize.setText(String.valueOf(dataBin.getSize()));
+        binSize.setText(BIN_SIZE_PREFIX + dataBin.getSize());
     }
 
     @Override

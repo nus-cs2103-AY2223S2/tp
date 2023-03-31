@@ -11,8 +11,8 @@
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints percentWidth="15" />
-      <ColumnConstraints percentWidth="70" />
-      <ColumnConstraints percentWidth="15" />
+      <ColumnConstraints percentWidth="60" />
+      <ColumnConstraints percentWidth="25" />
     </columnConstraints>
         <padding>
           <Insets right="15" left="15" bottom="10" />
@@ -27,12 +27,12 @@
             </minWidth>
           </Label>
           <Label fx:id="binName" styleClass="cell_small_label" GridPane.columnIndex="1" wrapText="true"
-                 minWidth="200" maxWidth="150" GridPane.valignment="TOP">
+                 minWidth="100" GridPane.valignment="TOP">
           <padding>
             <Insets top="5" bottom="10"/>
           </padding>
           </Label>
-          <Label fx:id="binSize" styleClass="cell_big_label"  GridPane.columnIndex="2" GridPane.valignment="TOP">
+          <Label fx:id="binSize" styleClass="cell_big_small_label" GridPane.columnIndex="2" GridPane.valignment="TOP">
           <padding>
             <Insets top="5" />
           </padding>
