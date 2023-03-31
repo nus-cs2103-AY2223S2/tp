@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
         LocalDate today = LocalDate.now();
         MeetingStartDatePredicate predicate = new MeetingStartDatePredicate(today);
-        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        meetingListPanel = new MeetingListPanel(logic.updateFilteredMeetingList(predicate));
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

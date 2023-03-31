@@ -186,7 +186,8 @@ public class ParserUtil {
     }
 
     public static LocalDate parseDate(String date) {
-        String[] dates = date.split("/");
+        String[] input = date.split(" ");
+        String[] dates = input[1].split("/");
         int day = Integer.parseInt(dates[0]);
         int month = Integer.parseInt(dates[1]);
         int year= Integer.parseInt(dates[2]);

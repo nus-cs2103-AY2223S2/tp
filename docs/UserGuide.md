@@ -224,7 +224,7 @@ Required Information:
 * Date (dd-mm-yyyy hh:mm)
 
 Examples:
-* `meetingFind 09-11-2022 11:30` Lists out all meetings that start on 9th November 2022 at 11.30
+* `meetingFind 11/03/2023` Lists out all meetings that start on 9th November 2022 at 11.30
 
 
 ### List meeting : `meetingList`
