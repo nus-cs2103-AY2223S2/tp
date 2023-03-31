@@ -29,10 +29,12 @@ title: User Guide
       * [Adding a task `task add`](#adding-a-task-task-add)
       * [Deleting a task `task delete`](#deleting-a-task-task-delete)
       * [Listing tasks `list task`](#listing-tasks-list-task)
+      * [Feeding reminders](#feeding-reminders)
     * [Storage](#storage)
     * [Help](#help)
   * [FAQ](#faq)
-  * [Summary](#command-summary)
+  * [Summary of commands](#command-summary)
+  * [Summary of prefixes in commands](#command-prefix-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -174,6 +176,9 @@ Adds a set of `AmmoniaLevel`, `PH` and `Temperature` readings to the specified t
 If your tanks have ammonia level, pH and temperature tracking equipment, use this command to log down the current readings.
 The date and time of the readings logged will be the current date and time.
 
+:exclamation: While adding readings, take note that you **cannot add more than 1 reading per minute**. Trying to do so
+will replace the previous reading made in the same minute!
+
 Format: `tank addReadings <TANK_INDEX>`
 
 ### Deleting the most recent set of readings: `tank delLastReadings`
@@ -313,6 +318,17 @@ Use this command to list all tasks.
 
 Format: `list task`
 
+### Feeding reminders
+
+Feeding reminders are a special type of tasks that **can only be automatically** created. Everytime you open the app,
+a feeding reminder is created for each tank which have fish that need to be fed, based on the `Last Fed Date Time` and
+`Feeding Interval`.
+
+If you see these reminders, it might be time to feed your fish!
+
+Format: _cannot be created manually_
+
+:bulb: Get rid of this reminder and feed your fish at the same time with the [`tank feed` command!](#feeding-a-tank-tank-feed) 
 
 ## Storage
 ### Saving the data
@@ -321,7 +337,12 @@ App data is saved in the hard disk automatically after any command that changes 
 
 ### Editing the data file
 
+:exclamation: Advanced users
+
 App data are saved as a JSON file `[JAR file location]/data/fishahoy.json`. Advanced users are welcome to update data directly by editing that data file.
+
+:bulb: If you have a set of ammonia, pH and temperature readings you want to input in bulk,
+you might want to insert it directly in the `readings.json` file!
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Fish Ahoy! will discard all data and start with an empty data file at the next run.
@@ -334,7 +355,9 @@ _Details coming soon ..._
 ## Help
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Opens up a web-viewer showing this user guide!
+
+:bulb: If you do not have internet connection, an offline version will still be loaded!
 
 ![help message](images/helpMessage.png)
 
@@ -367,15 +390,31 @@ Format: `help`
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `fish add` `tank add` `task add` <br>`tank addReadings`
-**Clear** | `clear` **Coming soon**
-**Delete** | `fish delete INDEX` `tank delete INDEX` `task delete INDEX` <br>`tank delLastReadings INDEX` <br> e.g., `tank delete 3`
-**Edit** | **Coming soon**
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> **Coming soon**
-**Sort** | `fish sort KEYWORD [TANK]`<br> e.g., `fish sort by/n tk/2`
-**List** | `list tanks` `list fishes`
-**Help** | `help`
+| Action     | Format, Examples                                                                                                        |
+|------------|-------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `fish add` `tank add` `task add` <br>`tank addReadings`                                                                 |
+| **Clear**  | `clear` **Coming soon**                                                                                                 |
+| **Delete** | `fish delete INDEX` `tank delete INDEX` `task delete INDEX` <br>`tank delLastReadings INDEX` <br> e.g., `tank delete 3` |
+| **Edit**   | **Coming soon**                                                                                                         |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> **Coming soon**                                                                      |
+| **Sort**   | `fish sort KEYWORD [TANK]`<br> e.g., `fish sort by/n tk/2`                                                              |
+| **List**   | `list tanks` `list fishes`                                                                                              |
+| **Help**   | `help`                                                                                                                  |
+
+## Command prefix summary
+
+| Type     | Attribute                 | Prefix   |
+|----------|---------------------------|----------|
+| Fish     | **Name**                  | **n/**   |
+| Fish     | **Last fed date**         | **lfd/** |
+| **Fish** | **Species**               | **s/**   |
+| **Fish** | **Feeding Interval**      | **fi/**  |
+| **Fish** | **Tag**                   | **tg/**  |
+| **Fish** | **Sorting**               | **by/**  |
+| **Tank** | **Description**           | **d/**   |
+| **Tank** | **Ammonia level reading** | **al/**  |
+| **Tank** | **PH reading**            | **ph/**  |
+| **Tank** | **Temperature reading**   | **tp/**  |
+| **All**  | **Tank**                  | **tk/**  |
 
 []: #listing-tanks-list-tank
