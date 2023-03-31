@@ -6,7 +6,6 @@ title: Developer Guide
 {:toc}
 
 # **Introduction**
----
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Software OverView**
@@ -26,6 +25,7 @@ This guide is intended primarily for developers who want to work on the MyLib co
 This guide contains certain visuals to aid in conveying information more effectively
 
 Visual: :bulb: GMFD: `:bulb:` Meaning: Useful supplementary information for the developer
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **About Us**
@@ -46,6 +46,7 @@ This Developer Guide provides in-depth documentation on how MyLib is designed an
 You can use this guide to maintain and evolve FoodRem.
 
 This Developer Guide is accurate as of 30 March 2023.
+<div style="page-break-after: always;"></div>
 
 ### Setting up, getting started
 
@@ -71,6 +72,7 @@ This section gives you a high-level overview of how the application is structure
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
+<div style="page-break-after: always;"></div>
 
 **Main components of the architecture**
 
@@ -100,6 +102,7 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+<div style="page-break-after: always;"></div>
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -164,7 +167,6 @@ The Model component holds the data of the app in memory.
 
 
 The `Model` component,
-
 * stores the Library data i.e., all `Bookmark` objects (which are contained in a `UniqueBookmarkList` object).
 * stores the currently 'selected' `Bookmark` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Bookmark>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
@@ -247,6 +249,7 @@ The following sequence diagram shows how the undo operation works:
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoLibrary()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the Library to that state.
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `libraryStateList.size() - 1`, pointing to the latest Library state, then there are no undone Library states to restore. The `redo` command uses `Model#canRedoLibrary()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
