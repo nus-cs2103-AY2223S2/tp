@@ -78,7 +78,7 @@
 
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: derive(#4B6B94, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
+    -fx-border-color: transparent transparent transparent #4B6B94;
 }
 
 .split-pane {
@@ -137,8 +137,8 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: derive(#4B6B94, 20%);
+     -fx-border-color: derive(#4B6B94, 10%);
      -fx-border-top-width: 1px;
 }
 
@@ -318,7 +318,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: transparent #4B6B94 transparent #4B6B94;
     -fx-background-insets: 0;
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
