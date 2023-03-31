@@ -51,8 +51,8 @@ public class AddCommand extends Command {
             + PREFIX_SOCMED_WHATSAPP + "98765432 "
             + PREFIX_BIRTHDAY + "01/01/1990 "
             + PREFIX_MODULE + "CS2103T " + PREFIX_MODULE + "CS2101 "
-            + PREFIX_CCA + "NES " + PREFIX_CCA + "ICS#DIRECTOR"
-            + PREFIX_MAJOR + "Computer Science " + PREFIX_MAJOR + "BBA"
+            + PREFIX_CCA + "NES " + PREFIX_CCA + "ICS#DIRECTOR "
+            + PREFIX_MAJOR + "Computer Science " + PREFIX_MAJOR + "BBA "
             + PREFIX_REMARK + "friends " + PREFIX_REMARK + "owesMoney ";
 
 
