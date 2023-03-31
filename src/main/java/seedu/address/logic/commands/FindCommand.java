@@ -39,13 +39,13 @@ public class FindCommand extends Command {
             PREFIX_MODULE.asOptional().asRepeatable()
     ));
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain ALL of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
             + ARGUMENT_PREFIXES.stream()
                     .map(Prefix::toString)
                     .collect(Collectors.joining(" "))
-            + "\nExample: " + COMMAND_WORD + " alice bob charlie";
+            + "\nExample: " + COMMAND_WORD + " n/alice n/tan t/hasSubmitted";
 
     private final boolean isModifying = false;
 

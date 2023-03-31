@@ -43,42 +43,42 @@ public class FullMatchKeywordsPredicate implements Predicate<Person> {
         if (keywords.getValue(PREFIX_NAME).isPresent()) {
             List<String> values = keywords.getAllValues(PREFIX_NAME);
             hasMatching = hasMatching && values.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getName().fullName, keyword));
         }
 
         if (keywords.getValue(PREFIX_PHONE).isPresent()) {
             List<String> values = keywords.getAllValues(PREFIX_PHONE);
             hasMatching = hasMatching && values.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getOptionalPhone().map(phone -> phone.value).orElse(null), keyword));
         }
 
         if (keywords.getValue(PREFIX_EMAIL).isPresent()) {
             List<String> values = keywords.getAllValues(PREFIX_EMAIL);
             hasMatching = hasMatching && values.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getOptionalEmail().map(email -> email.value).orElse(null), keyword));
         }
 
         if (keywords.getValue(PREFIX_ADDRESS).isPresent()) {
             List<String> values = keywords.getAllValues(PREFIX_ADDRESS);
             hasMatching = hasMatching && values.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getOptionalAddress().map(address -> address.value).orElse(null), keyword));
         }
 
         if (keywords.getValue(PREFIX_EDUCATION).isPresent()) {
             List<String> values = keywords.getAllValues(PREFIX_EDUCATION);
             hasMatching = hasMatching && values.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getOptionalEducation().map(education -> education.value)
                                     .orElse(null), keyword));
         }
         if (keywords.getValue(PREFIX_REMARK).isPresent()) {
             List<String> values = keywords.getAllValues(PREFIX_REMARK);
             hasMatching = hasMatching && values.stream()
-                    .anyMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
                             person.getOptionalRemark().map(remark -> remark.value)
                                     .orElse(null), keyword));
         }
@@ -89,7 +89,7 @@ public class FullMatchKeywordsPredicate implements Predicate<Person> {
             List<String> personTagNames = personTags.stream()
                     .map(tag -> tag.tagName)
                     .collect(Collectors.toList());
-            hasMatching = hasMatching && values.stream().anyMatch(tag -> personTagNames.contains(tag));
+            hasMatching = hasMatching && values.stream().allMatch(tag -> personTagNames.contains(tag));
         }
 
         //@@author Bentimate
@@ -99,7 +99,7 @@ public class FullMatchKeywordsPredicate implements Predicate<Person> {
             List<String> personModuleNames = personModules.stream()
                     .map(module -> module.moduleName)
                     .collect(Collectors.toList());
-            hasMatching = hasMatching && values.stream().anyMatch(subject -> personModuleNames.contains(subject));
+            hasMatching = hasMatching && values.stream().allMatch(module -> personModuleNames.contains(module));
         }
         //@@author
 

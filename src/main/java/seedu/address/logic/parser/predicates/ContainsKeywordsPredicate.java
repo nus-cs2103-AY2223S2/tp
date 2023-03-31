@@ -90,7 +90,7 @@ public class ContainsKeywordsPredicate implements Predicate<Person> {
             List<String> personModuleNames = personModules.stream()
                     .map(module -> module.moduleName)
                     .collect(Collectors.toList());
-            hasMatching = hasMatching || values.stream().anyMatch(subject -> personModuleNames.contains(subject));
+            hasMatching = hasMatching || values.stream().anyMatch(module -> personModuleNames.contains(module));
         }
 
         return hasMatching;
