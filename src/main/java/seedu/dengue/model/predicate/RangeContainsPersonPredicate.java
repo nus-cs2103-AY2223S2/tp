@@ -12,6 +12,11 @@ public class RangeContainsPersonPredicate extends PredicateUtil<Person> {
 
     private final Range<? extends ContinuousData> range;
 
+    /**
+     * Creates a {@code RangeContainsPersonPredicate} that checks a {@code Range} of
+     * {@link ContinuousData} such as Date or Age.
+     * @param range A range of {@link ContinuousData}.
+     */
     public RangeContainsPersonPredicate(Range<? extends ContinuousData> range) {
         this.range = range;
     }
