@@ -121,11 +121,17 @@ Examples:
 
 - `add nric/S1234567A name/John Doe s/RED`
 
+[Back to Table of Contents](#table-of-contents)
+
+
 ### Listing all patients in the system: `list`
 
 Shows a list of all patients with their details in the system.
 
 Format: `list`
+
+[Back to Table of Contents](#table-of-contents)
+
 
 ### Editing a patient’s details in the system: `edit`
 
@@ -144,6 +150,9 @@ Examples:
 - `edit 5 w/A01` Edits the ward of the fifth currently displayed patient to be `A01`.
 - `edit 4 d/27/07/2023 1600` Edits the discharge date-time of the fourth currently displayed patient to be `27/07/2023 1600` which is read as 27th July 2023 1600hrs.
 
+[Back to Table of Contents](#table-of-contents)
+
+
 ### Sorting all patients in the system: `sort`
 
 Sorts all the patients with the specified field and order in the system.
@@ -153,6 +162,9 @@ Format: `sort FIELD/ORDER`
 Examples:
 
 - `sort s/asc`
+
+[Back to Table of Contents](#table-of-contents)
+
 
 ### Finding patients by name in the system: `find`
 
@@ -173,6 +185,9 @@ Examples:
 - `find name/john carlos` returns `John Smith`, `Carlos Lopez`<br>
   ![result for 'find alex david'](images/findJohnCarlosResult.png)
 
+[Back to Table of Contents](#table-of-contents)
+
+
 ### Deleting a patient from the system: `delete`
 
 Deletes a patient by index.
@@ -184,6 +199,9 @@ Format: `delete INDEX`
 Examples:
 
 `delete 1`
+
+[Back to Table of Contents](#table-of-contents)
+
 
 ### Adding a ward to the system: `addward`
 
@@ -203,6 +221,9 @@ Examples:
 
 - `addward w/A01 c/25` Adds the ward with name `A01` and capacity `25` to the system.
 
+[Back to Table of Contents](#table-of-contents)
+
+
 ### Editing a ward's details in the system: `editward`
 
 Edit an existing ward's name or capacity.
@@ -218,6 +239,9 @@ Examples:
 - `editward 1 w/A02` Edits the name of the first currently displayed ward to be `A02`.
 - `editward 5 c/35` Edits the capacity of the fifth currently displayed ward to be `35`.
 
+[Back to Table of Contents](#table-of-contents)
+
+
 ### Deleting a ward from the system: `deleteward`
 
 Deletes a ward by index.
@@ -230,14 +254,23 @@ Examples:
 
 `deleteward 1`
 
+[Back to Table of Contents](#table-of-contents)
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
+[Back to Table of Contents](#table-of-contents)
+
+
 ### Saving the data
 MedInfo data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Back to Table of Contents](#table-of-contents)
+
 
 ### Editing the data file
 
@@ -246,6 +279,8 @@ MedInfo data are saved as a JSON file `[JAR file location]/data/addressbook.json
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file make its format invalid, MedInfo will not be able to run.
 </div>
+
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -268,6 +303,8 @@ to start entering patients into the system, the waiting room is made un-deletabl
 the file that contains the data of your previous MedInfo home folder.<br>
 <br>
 
+[Back to Table of Contents](#table-of-contents)
+
 ---
 
 ## Command summary
@@ -285,3 +322,5 @@ the file that contains the data of your previous MedInfo home folder.<br>
 | **Help**        | `help`                                                                                     |
 | **Sort**        | `sort FIELD/ORDER` <br> e.g., `sort name/asc`                                              |
 | **Delete Ward** | `deleteward INDEX` <br> e.g., `deleteward 1`                                               |
+
+[Back to Table of Contents](#table-of-contents)
