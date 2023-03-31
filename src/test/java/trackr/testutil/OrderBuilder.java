@@ -36,7 +36,6 @@ public class OrderBuilder {
      */
     public OrderBuilder() {
         orderName = new OrderName(DEFAULT_ORDER_NAME);
-        
         orderQuantity = new OrderQuantity(DEFAULT_ORDER_QUANTITY);
         orderDeadline = new OrderDeadline(DEFAULT_ORDER_DEADLINE);
         orderStatus = new OrderStatus(DEFAULT_ORDER_STATUS);
