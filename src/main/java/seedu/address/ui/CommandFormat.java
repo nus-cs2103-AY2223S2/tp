@@ -82,6 +82,10 @@ public class CommandFormat {
             "clear",
             "Clears the data stored in the database.",
             "clear");
+    private static final CommandFormat FILTER_COMMAND_FORMAT = new CommandFormat(
+            "filter",
+            "Filters out employees satisfying given condition.",
+            "filter FILTER_PARAMETER BOOLEAN_OPERATOR COMPARISON_AMOUNT");
 
     private SimpleStringProperty command;
     private SimpleStringProperty usage;
@@ -109,7 +113,8 @@ public class CommandFormat {
                 FIND_COMMAND_FORMAT,
                 THEME_COMMAND_FORMAT,
                 SETPICTURE_COMMAND_FORMAT,
-                LEAVE_COMMAND_FORMAT
+                LEAVE_COMMAND_FORMAT,
+                FILTER_COMMAND_FORMAT
         );
     }
 

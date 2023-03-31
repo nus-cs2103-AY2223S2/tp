@@ -301,6 +301,19 @@ Examples:
 or they are in the 'Sales' department 
 * `find * John Sales` displays list of all employees in the 'Sales' department who have a 'John' in their name
 
+### Filtering out employees: `filter`
+
+Filters out all the employees satisfying the given condition. 
+
+* The filtering condition can be based on Payroll(`pr`) or the number of leaves remaining for an employee(`l`)
+* The filtering condition checks the value of Payroll or number of leaves of an employee against a `COMPARISON_AMOUNT`
+* The filtering condition can either be greater than(`>`), lesser than(`<`) or equal to(`=`) the `COMPARISON_AMOUNT` 
+* The `COMPARISON_AMOUNT` must be _non-negative_(greater than zero) and an _integer_
+
+Examples:
+* `filter pr > 1000` displays list of all employees whose payroll value is greater than 0
+* `filter l = 1` displays list of all employees who have only 1 leave left
+
 
 ### Deleting an employee : `delete`
 

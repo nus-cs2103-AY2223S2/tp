@@ -15,6 +15,7 @@ public class Payroll {
             "Date of payment has to be an integer between 1 and 28 (inclusive), please try again.";
     public static final String MESSAGE_CONSTRAINTS =
             "Payroll should contain two integers separated by a space";
+    public static final String FILTER_PARAMETER = "pr";
     public final int salary;
     public final int dayOfPayment;
 
