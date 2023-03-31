@@ -19,13 +19,7 @@ public class ExportCommandParser {
 
     public ExportCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OVERWRITE);
-        boolean isOverwritingExistingFile = false;
-
-        String overwritingFileArgument = argMultimap.getValue(PREFIX_OVERWRITE).orElse("").trim();
-
-        if (overwritingFileArgument.equals("true")) {
-            isOverwritingExistingFile = true;
-        }
+        boolean isOverwritingExistingFile = argMultimap.getValue(PREFIX_OVERWRITE).isPresent();
 
         String fileName = argMultimap.getPreamble().trim();
 

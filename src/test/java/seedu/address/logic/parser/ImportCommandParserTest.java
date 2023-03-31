@@ -44,7 +44,7 @@ public class ImportCommandParserTest {
 
     @Test
     public void parseCommand_overwriteModule_successful() throws ParseException {
-        String argument = TEST_FILE + " /overwrite true";
+        String argument = TEST_FILE + " /overwrite";
         ImportCommand expectedCommand = new ImportCommand(TEST_FILE, new HashSet<>(),
                 true, true);
         assertEquals(expectedCommand, parser.parse(argument));
@@ -52,7 +52,7 @@ public class ImportCommandParserTest {
 
     @Test
     public void parseCommand_importSomeModule_successful() throws ParseException {
-        String argument = TEST_FILE + " " + PREFIX_MODULE + " " + MODULE_1 + ", " + MODULE_2 + " /overwrite true";
+        String argument = TEST_FILE + " " + PREFIX_MODULE + " " + MODULE_1 + ", " + MODULE_2 + " /overwrite";
         ImportCommand expectedCommand = new ImportCommand(TEST_FILE,
                 new HashSet<>(List.of(new ModuleCode(MODULE_1), new ModuleCode(MODULE_2))),
                 true, false);

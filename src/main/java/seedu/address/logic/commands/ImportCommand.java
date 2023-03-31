@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,20 +23,25 @@ public class ImportCommand extends Command {
     //TODO: CHANGE THIS
 
     public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + ":\n"
-            + "(1) Import all modules in archive file\n"
+            + "(1) Import all modules from archive file.\n"
             + "Parameter: "
             + "{file_name}\n"
             + "Example: " + COMMAND_WORD + " hello.json\n\n"
-            + "(2) Import specific modules in archive file, no similar modules in Le Tracker\n"
+            + "(2) Import specific modules from archive file.\n"
             + "Parameter: "
             + "{file_name} "
             + PREFIX_MODULE + " {module_1}[, {module_2}[, ...]]\n"
-            + "Example: " + COMMAND_WORD + " hello.json /mod EG2310, EG1311 \n\n"
-            + "(2) Import specific modules in archive file, overwrite similar modules in Le Tracker\n"
+            + "Example: " + COMMAND_WORD + " hello.json " + PREFIX_MODULE + " EG2310, EG1311\n\n"
+            + "(3) Import all modules from archive file, overwriting similar modules in Le Tracker.\n"
+            + "Parameter: "
+            + "{file_name} " + PREFIX_OVERWRITE + "\n"
+            + "Example: " + COMMAND_WORD + " hello.json " + PREFIX_OVERWRITE + "\n\n"
+            + "(4) Import specific modules from archive file, overwriting similar modules in Le Tracker.\n"
             + "Parameter: "
             + "{file_name} "
-            + PREFIX_MODULE + " {module_1}[, {module_2}[, ...]]\n"
-            + "Example: " + COMMAND_WORD + " hello.json /mod EG2310, EG1311 /overwrite true \n\n";
+            + PREFIX_MODULE + " {module_1}[, {module_2}[, ...]] "
+            + PREFIX_OVERWRITE + "\n"
+            + "Example: " + COMMAND_WORD + " hello.json " + PREFIX_MODULE + " EG2310, EG1311 " + PREFIX_OVERWRITE;
 
     public static final String MESSAGE_SUCCESS = "Modules %1$s imported to Le Tracker";
 
@@ -87,4 +93,3 @@ public class ImportCommand extends Command {
                 && (isImportingAllModules == otherCommand.isImportingAllModules);
     }
 }
-
