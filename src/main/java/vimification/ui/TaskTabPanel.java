@@ -81,4 +81,33 @@ public class TaskTabPanel extends UiPart<VBox> {
         completedTaskListPanel.searchForTask(predicate);
         taskTabPane.getSelectionModel().clearSelection(targetTabIndex);
     }
+
+    public TabPane getTaskTabPane() {
+        return taskTabPane;
+    }
+
+    public VBox getOngoingTaskListComponent() {
+        return ongoingTaskListComponent;
+    }
+
+    public VBox getCompletedTaskListComponent() {
+        return completedTaskListComponent;
+    }
+
+    public TaskListPanel getOngoingTaskListPanel() {
+        return ongoingTaskListPanel;
+    }
+
+    public TaskListPanel getCompletedTaskListPanel() {
+        return completedTaskListPanel;
+    }
+
+    public MainScreen getMainScreen() {
+        return mainScreen;
+    }
+
+    public Logic getLogic() {
+        return logic;
+    }
+
 }

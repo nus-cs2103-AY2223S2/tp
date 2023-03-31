@@ -21,7 +21,7 @@ public class InsertCommand extends UndoableLogicCommand {
             + "Example: " + COMMAND_WORD + " 1" + "2023-01-01";
 
     public static final String SUCCESS_MESSAGE_FORMAT =
-            "New field(s) were inserted into task %1$s.";
+            "New field(s) are succesfully inserted into task %1$s.";
     public static final String UNDO_MESSAGE =
             "The command has been undone. The new field(s) were discarded.";
 

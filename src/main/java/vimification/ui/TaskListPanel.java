@@ -21,6 +21,10 @@ public class TaskListPanel extends UiPart<VBox> {
 
     private UiTaskList taskList;
 
+    public UiTaskList getTaskList() {
+        return taskList;
+    }
+
     private MainScreen mainScreen;
 
     @FXML
