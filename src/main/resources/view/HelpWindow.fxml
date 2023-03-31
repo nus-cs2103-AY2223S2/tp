@@ -12,326 +12,311 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root maxHeight="680.0" maxWidth="700.0" resizable="false" title="Help" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="680.0" maxWidth="700.0" resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/help_icon.png"/>
+        <Image url="@/images/help_icon.png" />
     </icons>
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@HelpWindow.css"/>
+                <URL value="@HelpWindow.css" />
             </stylesheets>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                  prefHeight="600.0" prefWidth="527.0">
-                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                      prefHeight="147.0" prefWidth="527.0"
-                      style="-fx-border-color: rgb(227, 211, 238); -fx-border-width: 0 0 2 0;">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="527.0">
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="527.0" style="-fx-border-color: rgb(227, 211, 238); -fx-border-width: 0 0 2 0;">
                     <HBox fx:id="helpMessageContainer" alignment="CENTER">
                         <opaqueInsets>
-                            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                         </opaqueInsets>
                         <padding>
-                            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                            <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                         </padding>
                         <Label fx:id="helpMessage" text="Label" wrapText="true">
                             <HBox.margin>
-                                <Insets right="5.0"/>
+                                <Insets right="5.0" />
                             </HBox.margin>
                         </Label>
                         <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
                             <HBox.margin>
-                                <Insets left="5.0"/>
+                                <Insets left="5.0" />
                             </HBox.margin>
                         </Button>
                     </HBox>
                     <HBox prefHeight="49.0" prefWidth="517.0">
                         <VBox.margin>
-                            <Insets bottom="5.0" left="5.0" right="5.0" top="7.0"/>
+                            <Insets bottom="5.0" left="5.0" right="5.0" top="7.0" />
                         </VBox.margin>
                         <Label styleClass="prefix-label" text="Prefixes">
                             <HBox.margin>
-                                <Insets right="10.0" top="10.0"/>
+                                <Insets right="10.0" top="10.0" />
                             </HBox.margin>
                         </Label>
-                        <FlowPane hgap="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                                  minWidth="-Infinity" prefHeight="54.0" prefWidth="445.0" vgap="5.0">
-                            <Label styleClass="prefix" text="n/NAME"/>
-                            <Label styleClass="prefix" text="s/STATION"/>
-                            <Label styleClass="prefix" text="p/PHONE_NUMBER"/>
-                            <Label styleClass="prefix" text="t/TELEGRAM"/>
-                            <Label styleClass="prefix" text="e/EMAIL"/>
-                            <Label styleClass="prefix-type2" text="g/GROUP"/>
-                            <Label styleClass="prefix-type2" text="m/MODULE"/>
-                            <Label styleClass="prefix" text="d/DAY"/>
-                            <Label styleClass="prefix" text="T/TIME_PERIOD"/>
-                            <Label styleClass="prefix" text="l/LOCATION"/>
+                        <FlowPane hgap="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="445.0" vgap="5.0">
+                            <Label styleClass="prefix" text="n/NAME" />
+                            <Label styleClass="prefix" text="s/STATION" />
+                            <Label styleClass="prefix" text="p/PHONE_NUMBER" />
+                            <Label styleClass="prefix" text="t/TELEGRAM" />
+                            <Label styleClass="prefix" text="e/EMAIL" />
+                            <Label styleClass="prefix-type2" text="g/GROUP" />
+                            <Label styleClass="prefix-type2" text="m/MODULE" />
+                            <Label styleClass="prefix" text="d/DAY" />
+                            <Label styleClass="prefix" text="T/TIME_PERIOD" />
+                            <Label styleClass="prefix" text="l/LOCATION" />
                         </FlowPane>
                     </HBox>
-                    <HBox prefHeight="31.0" prefWidth="366.0"
-                          style="-fx-background-color: rgb(0,0,0,0.1); -fx-padding: 5; -fx-background-radius: 5;">
+                    <HBox prefHeight="31.0" prefWidth="366.0" style="-fx-background-color: rgb(0,0,0,0.1); -fx-padding: 5; -fx-background-radius: 5;">
                         <VBox.margin>
-                            <Insets left="67.0" right="45.0"/>
+                            <Insets left="67.0" right="45.0" />
                         </VBox.margin>
                         <Label styleClass="prefix-type2" text="Prefixes">
                             <HBox.margin>
-                                <Insets left="10.0" right="5.0"/>
+                                <Insets left="10.0" right="5.0" />
                             </HBox.margin>
                         </Label>
                         <Label prefHeight="17.0" prefWidth="167.0" text=" Accept multiple keywords but">
                             <HBox.margin>
-                                <Insets right="5.0" top="1.0"/>
+                                <Insets right="5.0" top="1.0" />
                             </HBox.margin>
                         </Label>
                         <Label styleClass="prefix" text="Prefixes">
                             <HBox.margin>
-                                <Insets right="10.0"/>
+                                <Insets right="10.0" />
                             </HBox.margin>
                         </Label>
                         <Label prefHeight="17.0" prefWidth="44.0" text="do not!">
                             <HBox.margin>
-                                <Insets right="5.0" top="1.0"/>
+                                <Insets right="5.0" top="1.0" />
                             </HBox.margin>
                         </Label>
                     </HBox>
                 </VBox>
                 <Label styleClass="prefix-label" text="Command Usage">
                     <VBox.margin>
-                        <Insets left="5.0" top="5.0"/>
+                        <Insets left="5.0" top="5.0" />
                     </VBox.margin>
                 </Label>
-                <ScrollPane hbarPolicy="NEVER" prefHeight="894.0" prefWidth="527.0">
+                <ScrollPane hbarPolicy="NEVER" prefHeight="960.0" prefWidth="527.0">
                     <content>
-                        <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="923.0" prefWidth="506.0">
+                        <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="920.0" prefWidth="506.0">
                             <padding>
-                                <Insets left="10.0" right="10.0" top="10.0"/>
+                                <Insets left="10.0" right="10.0" top="10.0" />
                             </padding>
-                            <HBox prefHeight="23.0" prefWidth="507.0" styleClass="box-pad2">
+                            <HBox styleClass="box-pad2">
                                 <VBox.margin>
-                                    <Insets bottom="5.0"/>
+                                    <Insets bottom="5.0" />
                                 </VBox.margin>
                                 <Label styleClass="command-word" text="exit">
                                     <HBox.margin>
-                                        <Insets right="43.0"/>
+                                        <Insets right="43.0" />
                                     </HBox.margin>
                                 </Label>
-                                <Label styleClass="command-explanation" text=": Exits the application"/>
+                                <Label styleClass="command-explanation" text=": Exits the application" />
                             </HBox>
-                            <HBox prefHeight="27.0" prefWidth="507.0" styleClass="box-pad">
+                            <HBox styleClass="box-pad">
                                 <Label styleClass="command-word" text="help">
                                     <HBox.margin>
-                                        <Insets right="39.0"/>
+                                        <Insets right="39.0" />
                                     </HBox.margin>
                                 </Label>
                                 <Label styleClass="command-explanation" text=": Displays help window">
                                     <HBox.margin>
-                                        <Insets bottom="5.0"/>
+                                        <Insets bottom="5.0" />
                                     </HBox.margin>
                                 </Label>
                             </HBox>
-                            <HBox prefHeight="46.0" prefWidth="507.0" styleClass="box-pad2">
+                            <HBox styleClass="box-pad2">
                                 <VBox.margin>
-                                    <Insets bottom="5.0"/>
+                                    <Insets bottom="5.0" />
                                 </VBox.margin>
-                                <Label prefHeight="21.0" prefWidth="32.0" styleClass="command-word" text="add">
+                                <Label styleClass="command-word" text="add">
                                     <HBox.margin>
-                                        <Insets right="40.0"/>
+                                        <Insets right="40.0" />
                                     </HBox.margin>
                                 </Label>
-                                <VBox prefHeight="57.0" prefWidth="414.0">
-                                    <Label styleClass="command-explanation"
-                                           text=":  Adds a contact, name is compulsory"/>
-                                    <Label prefHeight="29.0" prefWidth="473.0" styleClass="command-explanation"
-                                           text="   add n/NAME p/PHONE_NUMBER s/STATION e/EMAIL t/TELEGRAM"
-                                           wrapText="true"/>
-                                    <Label prefHeight="29.0" prefWidth="473.0" styleClass="command-explanation"
-                                           text="   [g/GROUP]… [m/MODULE]…" wrapText="true"/>
+                                <VBox>
+                                    <Label styleClass="command-explanation" text=":  Adds a contact, name is compulsory" />
+                                    <Label styleClass="command-explanation" text="   add n/NAME p/PHONE_NUMBER s/STATION e/EMAIL t/TELEGRAM" wrapText="true" />
+                                    <Label styleClass="command-explanation" text="   [g/GROUP]… [m/MODULE]…" wrapText="true" />
                                 </VBox>
                             </HBox>
-                            <HBox prefHeight="45.0" prefWidth="507.0" styleClass="box-pad">
-                                <Label prefHeight="21.0" prefWidth="32.0" styleClass="command-word" text="edit">
+                            <HBox styleClass="box-pad">
+                                <Label styleClass="command-word" text="edit">
                                     <HBox.margin>
-                                        <Insets right="40.0"/>
+                                        <Insets right="40.0" />
                                     </HBox.margin>
                                 </Label>
-                                <VBox prefHeight="38.0" prefWidth="400.0">
-                                    <Label styleClass="command-explanation"
-                                           text="CONTACT_INDEX [z/FIELD]... : Edits the fields for the contact at index"/>
-                                    <Label styleClass="command-explanation" text="[z/FIELD] : Edits your user profile"/>
+                                <VBox>
+                                    <Label styleClass="command-explanation" text="CONTACT_INDEX [z/FIELD]... : Edits the fields for the contact at index" />
+                                    <Label styleClass="command-explanation" text="[z/FIELD] : Edits your user profile" />
                                 </VBox>
                             </HBox>
-                            <HBox prefHeight="63.0" prefWidth="507.0" styleClass="box-pad2">
-                                <Label prefHeight="21.0" prefWidth="37.0" styleClass="command-word" text="view">
+                            <HBox styleClass="box-pad2">
+                                <Label styleClass="command-word" text="view">
                                     <HBox.margin>
-                                        <Insets right="36.0"/>
+                                        <Insets right="36.0" />
                                     </HBox.margin>
                                 </Label>
                                 <VBox prefHeight="57.0" prefWidth="404.0">
-                                    <Label styleClass="command-explanation" text=": Views your profile"/>
-                                    <Label styleClass="command-explanation" text="CONTACT_INDEX : Views the contact at index"/>
-                                    <Label styleClass="command-explanation"
-                                           text="n/NAME: Views the contact with name"/>
+                                    <Label styleClass="command-explanation" text=": Views your profile" />
+                                    <Label styleClass="command-explanation" text="CONTACT_INDEX : Views the contact at index" />
+                                    <Label styleClass="command-explanation" text="n/NAME: Views the contact with name" />
                                 </VBox>
                             </HBox>
-                            <HBox prefHeight="27.0" prefWidth="507.0" styleClass="box-pad">
-                                <Label prefHeight="21.0" prefWidth="44.0" styleClass="command-word" text="delete">
+                            <HBox styleClass="box-pad">
+                                <Label styleClass="command-word" text="delete">
                                     <HBox.margin>
-                                        <Insets right="30.0"/>
+                                        <Insets right="30.0" />
                                     </HBox.margin>
                                 </Label>
-                                <Label styleClass="command-explanation" text="CONTACT_INDEX : Deletes contact at index"/>
+                                <Label styleClass="command-explanation" text="CONTACT_INDEX : Deletes contact at index" />
                             </HBox>
-                            <HBox prefHeight="48.0" prefWidth="507.0" styleClass="box-pad2">
-                                <Label prefHeight="21.0" prefWidth="28.0" styleClass="command-word" text="tag">
+                            <HBox styleClass="box-pad2">
+                                <Label styleClass="command-word" text="tag">
                                     <HBox.margin>
-                                        <Insets right="45.0"/>
+                                        <Insets right="45.0" />
                                     </HBox.margin>
                                 </Label>
-                                <VBox prefHeight="38.0" prefWidth="395.0">
-                                    <Label styleClass="command-explanation"
-                                           text="CONTACT_INDEX m/MODULE : Tags the contact with the module tag"/>
-                                    <Label styleClass="command-explanation"
-                                           text="m/MODULE : Tags your user profile with module tag"/>
+                                <VBox>
+                                    <Label styleClass="command-explanation" text="CONTACT_INDEX m/MODULE : Tags the contact with the module tag" />
+                                    <Label styleClass="command-explanation" text="m/MODULE : Tags your user profile with module tag" />
                                 </VBox>
                             </HBox>
-                            <HBox prefHeight="41.0" prefWidth="507.0" styleClass="box-pad">
-                                <Label prefHeight="21.0" prefWidth="44.0" styleClass="command-word" text="untag">
+                            <HBox styleClass="box-pad">
+                                <Label styleClass="command-word" text="untag">
                                     <HBox.margin>
-                                        <Insets right="28.0"/>
+                                        <Insets right="28.0" />
                                     </HBox.margin>
                                 </Label>
-                                <VBox prefHeight="38.0" prefWidth="405.0">
-                                    <Label styleClass="command-explanation"
-                                           text="CONTACT_INDEX m/MODULE : Tags the contact with the module tag"/>
-                                    <Label styleClass="command-explanation"
-                                           text="m/MODULE : Tags your user profile with module tag"/>
+                                <VBox>
+                                    <Label styleClass="command-explanation" text="CONTACT_INDEX m/MODULE : Tags the contact with the module tag" />
+                                    <Label styleClass="command-explanation" text="m/MODULE : Tags your user profile with module tag" />
                                 </VBox>
                             </HBox>
-                            <HBox prefHeight="33.0" prefWidth="507.0" styleClass="box-pad2">
-                                <Label prefHeight="21.0" prefWidth="50.0" styleClass="command-word" text="sample">
+                            <HBox styleClass="box-pad2">
+                                <Label styleClass="command-word" text="sample">
                                     <HBox.margin>
-                                        <Insets right="23.0"/>
+                                        <Insets right="23.0" />
                                     </HBox.margin>
                                 </Label>
-                                <Label styleClass="command-explanation"
-                                       text="NUMBER : Generates a sample list of contacts"/>
+                                <Label styleClass="command-explanation" text="NUMBER : Generates a sample list of contacts" />
                             </HBox>
-                            <HBox prefHeight="41.0" prefWidth="507.0" styleClass="box-pad">
-                                <Label prefHeight="21.0" prefWidth="31.0" styleClass="command-word" text="find">
+                            <HBox styleClass="box-pad">
+                                <Label styleClass="command-word" text="find">
                                     <HBox.margin>
-                                        <Insets right="40.0"/>
+                                        <Insets right="40.0" />
                                     </HBox.margin>
                                 </Label>
-                                <Label styleClass="command-explanation"
-                                       text="z/[FIELD] [MORE_FIELDS]... : Accepts only one Prefix, accepts multiple keywords"/>
+                        <VBox>
+                           <children>
+                                      <Label styleClass="command-explanation" text="z/[FIELD] [MORE_FIELDS]... : Accepts only one Prefix, accepts multiple" />
+                              <Label styleClass="command-explanation" text=" keywords" />
+                           </children>
+                        </VBox>
                             </HBox>
                             <HBox prefHeight="41.0" prefWidth="507.0" styleClass="box-pad2">
-                                <Label prefHeight="21.0" prefWidth="37.0" styleClass="command-word" text="sort">
+                                <Label styleClass="command-word" text="sort">
                                     <HBox.margin>
-                                        <Insets right="40.0"/>
+                                        <Insets right="40.0" />
                                     </HBox.margin>
                                 </Label>
-                                <VBox prefHeight="114.0" prefWidth="419.0">
-                                    <Label styleClass="command-explanation"
-                                           text=": Sorts the contacts by their indices"/>
-                                    <Label styleClass="command-explanation"
-                                           text="z/a : Sorts the contacts by their z attribute in ascending order"/>
-                                    <Label styleClass="command-explanation"
-                                           text="z/d : Sorts the contacts by their z attribute in descending order"/>
-                                    <Label styleClass="command-explanation"
-                                           text="z/: Sorts the contacts by their z attribute based on the default order"/>
-                                    <Label styleClass="command-explanation"
-                                           text="z1/ z2/ : Sorts the contacts by their z1 attribute, breaks ties using their z2 attribute"
-                                           wrapText="true"/>
-                                    <Label styleClass="command-explanation"
-                                           text="[z/]... : Sorts the contacts by multiple attributes"/>
+                                <VBox>
+                                    <Label styleClass="command-explanation" text=": Sorts the contacts by their indices" />
+                                    <Label styleClass="command-explanation" text="z/a : Sorts the contacts by their z attribute in ascending order" />
+                                    <Label styleClass="command-explanation" text="z/d : Sorts the contacts by their z attribute in descending order" />
+                                    <Label styleClass="command-explanation" text="z/: Sorts the contacts by their z attribute based on the default order" />
+                                    <Label styleClass="command-explanation" text="z1/ z2/ : Sorts the contacts by their z1 attribute, breaks ties using their" wrapText="true" />
+                           <Label styleClass="command-explanation" text="               z2 attribute" wrapText="true" />
+                                    <Label styleClass="command-explanation" text="[z/]... : Sorts the contacts by multiple attributes" />
                                 </VBox>
                             </HBox>
-                            <HBox prefHeight="41.0" prefWidth="507.0" styleClass="box-pad">
-                                <Label prefHeight="21.0" prefWidth="37.0" styleClass="command-word" text="save">
+                            <HBox styleClass="box-pad">
+                                <Label styleClass="command-word" text="save">
                                     <HBox.margin>
-                                        <Insets right="34.0"/>
+                                        <Insets right="34.0" />
                                     </HBox.margin>
                                 </Label>
-                                <Label styleClass="command-explanation"
-                                       text="FILENAME : Saves your data into a file at FILENAME.json">
+                                <Label styleClass="command-explanation" text="FILENAME : Saves your data into a file at FILENAME.json">
                                     <HBox.margin>
-                                        <Insets/>
+                                        <Insets />
                                     </HBox.margin>
                                 </Label>
                             </HBox>
-                            <HBox prefHeight="41.0" prefWidth="507.0" styleClass="box-pad2">
-                                <Label prefHeight="21.0" prefWidth="37.0" styleClass="command-word" text="load">
+                            <HBox styleClass="box-pad2">
+                                <Label styleClass="command-word" text="load">
                                     <HBox.margin>
-                                        <Insets right="33.0"/>
+                                        <Insets right="33.0" />
                                     </HBox.margin>
                                 </Label>
-                                <Label styleClass="command-explanation"
-                                       text="FILENAME : Loads your data from a file at FILENAME.json"/>
+                                <Label styleClass="command-explanation" text=" FILENAME : Loads your data from a file at FILENAME.json" />
                             </HBox>
-                            <HBox prefHeight="0.0" prefWidth="507.0" styleClass="box-pad">
-                                <Label prefHeight="21.0" prefWidth="39.0" styleClass="command-word" text="meet">
+                            <HBox styleClass="box-pad">
+                                <Label styleClass="command-word" text="meet">
                                     <HBox.margin>
-                                        <Insets right="30.0"/>
+                                        <Insets right="30.0" />
                                     </HBox.margin>
                                 </Label>
-                                <Label styleClass="command-explanation"
-                                       text="[CONTACT_INDEX]... : Suggests locations to meet with contacts at the indexes"/>
+                        <VBox>
+                           <children>
+                              <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to meet with contacts at the" />
+                                      <Label styleClass="command-explanation" text="                                       indexes" />
+                           </children>
+                        </VBox>
                             </HBox>
-                            <HBox prefHeight="0.0" prefWidth="507.0" styleClass="box-pad2">
-                                <Label prefHeight="21.0" prefWidth="29.0" styleClass="command-word" text="eat">
+                            <HBox styleClass="box-pad2">
+                                <Label styleClass="command-word" text="eat">
                                     <HBox.margin>
-                                        <Insets right="40.0"/>
+                                        <Insets right="40.0" />
                                     </HBox.margin>
                                 </Label>
-                                <Label styleClass="command-explanation"
-                                       text="[CONTACT_INDEX]... : Suggests locations to eat with contacts at the indexes"/>
+                        <VBox>
+                           <children>
+                                      <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to eat with contacts at the" />
+                              <Label styleClass="command-explanation" text="                                       indexes" />
+                           </children>
+                        </VBox>
                             </HBox>
-                            <HBox prefHeight="0.0" prefWidth="507.0" styleClass="box-pad">
-                                <Label prefHeight="21.0" prefWidth="44.0" styleClass="command-word" text="study">
+                            <HBox styleClass="box-pad">
+                                <Label styleClass="command-word" text="study">
                                     <HBox.margin>
-                                        <Insets right="26.0"/>
+                                        <Insets right="26.0" />
                                     </HBox.margin>
                                 </Label>
-                                <Label styleClass="command-explanation"
-                                       text="[CONTACT_INDEX]... : Suggests locations to study with contacts at the indexes"/>
+                        <VBox>
+                           <children>
+                                      <Label styleClass="command-explanation" text="[CONTACT_INDEX]... : Suggests locations to study with contacts at the" />
+                              <Label styleClass="command-explanation" text="                                       indexes" />
+                           </children>
+                        </VBox>
                             </HBox>
-                            <HBox prefHeight="0.0" prefWidth="507.0" styleClass="box-pad2">
-                                <Label prefHeight="21.0" prefWidth="84.0" styleClass="command-word" text="organise">
+                            <HBox styleClass="box-pad2">
+                                <Label styleClass="command-word" text="organise">
                                     <HBox.margin>
-                                        <Insets right="13.0"/>
+                                        <Insets right="13.0" />
                                     </HBox.margin>
                                 </Label>
-                                <VBox prefHeight="38.0" prefWidth="442.0">
-                                    <Label styleClass="command-explanation"
-                                           text="[MEETUP_INDEX] : Organises a meet up from recommendations"/>
-                                    <Label styleClass="command-explanation"
-                                           text="[MEETUP_INDEX]... d/DAY T/TIME_PERIOD l/LOCATION: Organises a"/>
-                                    <Label styleClass="command-explanation"
-                                           text="customised meet up"/>
+                                <VBox>
+                                    <Label styleClass="command-explanation" text="[MEETUP_INDEX] : Organises a meet up from recommendations" />
+                                    <Label styleClass="command-explanation" text="[MEETUP_INDEX]... d/DAY T/TIME_PERIOD l/LOCATION: Organises a" />
+                                    <Label styleClass="command-explanation" text="                                 customised meet up" />
                                 </VBox>
                             </HBox>
-                            <HBox prefHeight="0.0" prefWidth="507.0" styleClass="box-pad">
-                                <Label prefHeight="21.0" prefWidth="71.0" styleClass="command-word" text="unorganise"/>
-                                <Label styleClass="command-explanation" text="[MEETUP_INDEX] : Removes a organised meet up"/>
+                            <HBox styleClass="box-pad">
+                                <Label styleClass="command-word" text="unorganise" />
+                                <Label styleClass="command-explanation" text="[MEETUP_INDEX] : Removes a organised meet up" />
                             </HBox>
-                            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                                  prefHeight="51.0" prefWidth="493.0"
-                                  style="-fx-border-color: rgb(227, 211, 238); -fx-border-width: 2;"
-                                  styleClass="box-pad">
+                            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="486.0" style="-fx-border-color: rgb(227, 211, 238); -fx-border-width: 2;" styleClass="box-pad">
                                 <VBox.margin>
-                                    <Insets bottom="10.0"/>
+                                    <Insets bottom="10.0" />
                                 </VBox.margin>
-                                <Label prefHeight="21.0" prefWidth="52.0" styleClass="prefix-label" text="Tips">
+                                <Label prefHeight="27.0" prefWidth="88.0" styleClass="prefix-label" text="Tips">
                                     <HBox.margin>
-                                        <Insets right="10.0" top="10.0"/>
+                                        <Insets right="10.0" top="10.0" />
                                     </HBox.margin>
                                 </Label>
                                 <VBox prefHeight="34.0" prefWidth="460.0">
-                                    <Label styleClass="command-explanation"
-                                           text="Press UP key when text field is selected : Loads previous command into textfield"/>
-                                    <Label styleClass="command-explanation"
-                                           text="Press DOWN key when text field is selected : Loads next command into textfield"/>
+                                    <Label styleClass="command-explanation" text="Press UP key when text field is selected : Loads previous command into" />
+                           <Label styleClass="command-explanation" text="                                                                       textfield" />
+                                    <Label styleClass="command-explanation" text="Press DOWN key when text field is selected : Loads next command into" />
+                           <Label styleClass="command-explanation" text="                                                                             textfield" />
                                 </VBox>
                             </HBox>
                         </VBox>
