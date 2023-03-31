@@ -38,7 +38,8 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EXAM, PREFIX_STARTTIME, PREFIX_ENDTIME, PREFIX_WEIGHT, PREFIX_GRADE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EXAM, PREFIX_STARTTIME, PREFIX_ENDTIME,
+                        PREFIX_WEIGHT, PREFIX_GRADE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EXAM, PREFIX_STARTTIME, PREFIX_ENDTIME)
                 || !argMultimap.getPreamble().isEmpty()) {

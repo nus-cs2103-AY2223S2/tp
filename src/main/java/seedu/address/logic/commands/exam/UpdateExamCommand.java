@@ -1,10 +1,15 @@
 package seedu.address.logic.commands.exam;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -120,10 +125,10 @@ public class UpdateExamCommand extends Command {
         Double newWeightage = this.weightage.orElse(examToUpdate.getWeightage());
         Grade newGrade = this.grade.orElse(examToUpdate.getGrade());
 
-//        if (Duration.between(newStartTime, newEndTime).toMinutes() < 30 || Duration.between(newStartTime,
-//            newEndTime).toHours() > 3) {
-//            throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DURATION);
-//        }
+        //if (Duration.between(newStartTime, newEndTime).toMinutes() < 30 || Duration.between(newStartTime,
+        //    newEndTime).toHours() > 3) {
+        //    throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DURATION);
+        //}
         Exam newExam = new Exam(newExamName, newStartTime, newEndTime, newWeightage, newGrade);
 
         try {
@@ -131,7 +136,6 @@ public class UpdateExamCommand extends Command {
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }
-
 
         return new CommandResult(
             String.format(Messages.MESSAGE_EXAM_UPDATED_SUCCESS, index.getOneBased(),

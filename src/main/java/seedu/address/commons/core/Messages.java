@@ -44,7 +44,7 @@ public class Messages {
             + "Exam name: %s\n"
             + "Start Time: %s\n"
             + "End Time: %s\n"
-            + "Weightage: %s"+ "%%" + "\n"
+            + "Weightage: %s" + "%%" + "\n"
             + "Grade: %s\n";
     public static final String MESSAGE_HOMEWORK_UPDATED_SUCCESS = "Homework %s of student %s is updated to:\n"
             + "Homework name: %s\n"

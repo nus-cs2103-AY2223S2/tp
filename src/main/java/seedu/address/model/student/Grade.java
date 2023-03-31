@@ -20,10 +20,10 @@ public class Grade {
      * @param fullMarks the maximum score that could be obtained
      * @throws IllegalArgumentException if the score is negative or greater than full marks
      */
-    public Grade(double score, double fullMarks) throws IllegalArgumentException{
+    public Grade(double score, double fullMarks) throws IllegalArgumentException {
         if (score < 0 || score > fullMarks) {
-            throw new IllegalArgumentException("Invalid score, score has to be positive and lesser than the " +
-                    "full marks achievable");
+            throw new IllegalArgumentException("Invalid score, score has to be positive and lesser than the "
+                    + "full marks achievable");
         }
         if (fullMarks <= 0) {
             throw new IllegalArgumentException("Full marks must be positive!");
@@ -34,8 +34,13 @@ public class Grade {
     }
 
     //Dummy code that needs to be included for json-related classes to work, I don't know why, todo understand this
-    //https://stackoverflow.com/questions/7625783/jsonmappingexception-no-suitable-constructor-found-for-type-simple-type-class
-    public Grade(){
+    //https://stackoverflow.com/questions/7625783/jsonmappingexception-no-suitable-constructor-
+    // found-for-type-simple-type-class
+
+    /**
+     * dummy code
+     */
+    public Grade() {
         score = 0;
         fullMarks = 0;
     }

@@ -93,7 +93,7 @@ public class Exam {
         if (weightage == null) {
             return "Undefined";
         }
-        return String.format("%.2f",weightage)+ "%";
+        return String.format("%.2f", weightage) + "%";
     }
 
     /**

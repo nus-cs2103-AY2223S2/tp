@@ -10,13 +10,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.LogicManager;
 import seedu.address.model.student.exceptions.ConflictingExamsException;
-import seedu.address.model.student.exceptions.ConflictingLessonsException;
 import seedu.address.model.student.exceptions.DuplicateEntryException;
 import seedu.address.model.student.exceptions.DuplicateExamsException;
-import seedu.address.model.student.exceptions.DuplicateLessonException;
 import seedu.address.model.student.exceptions.EntryNotFoundException;
 
 /**
