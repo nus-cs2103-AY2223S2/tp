@@ -210,6 +210,20 @@ due to a `freeze` will now be applied.
 
 Format: `unfreeze`
 
+### Creating a shortcut : `shortcut`
+
+Allows the user to create a shortcut for a command; this shortcut can be used in place of the command instead.
+
+The shortcut will be saved and can still be used when the user exits E-Lister and re-opens it. 
+
+Format: `shortcut ORIGINAL_COMMAND SHORTCUT`
+
+* The shortcut cannot be the same as any of the words already existing in E-Lister.
+* The shortcut can only consist of uppercase and lowercase characters in the English alphabet. 
+
+Examples:
+* `shortcut list lst` will allow the user to input `lst` in place of `list`.
+
 ### Mass operations : `mass`
 
 Takes in a command typically applied to a single target index, and applies it to all _displayed_ persons.
