@@ -1,443 +1,652 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="./ManualPanel.css" />
-  </head>
-  <body>
-    <h1>Vimification Manual Page.</h1>
-    <p>
-      Vimification is a
-      <strong
-        >desktop app for managing tasks, optimized for use via a Command Line
-        Interface</strong
-      >
-    </p>
+<p><strong><span style="font-size:18px"><span style="font-family:Comic Sans MS,cursive">Help Manual</span></span></strong></p>
 
-    <hr />
-    <h2 id="quick-start">Quick Start</h2>
-    <h3 id="trying-out-the-commands">Trying out the commands</h3>
-    <ol>
-      <li>
-        <p>
-          Type the command in the command box and press Enter to execute it.
-          e.g. typing <strong><code>:help</code></strong> and pressing Enter
-          will open the help window.<br />
-        </p>
-        <p>Some example commands you can try:</p>
-        <ul>
-          <li>
-            <p>
-              <code>:a "Enhance CS2103T tp user guide"</code> : Adds a task with
-              the title <code>Enhance CS2103T tp user guide</code> to
-              Vimification.
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>:a "Finish up weekly tp tasks -d 2023-04-01"</code> : Adds a
-              task with the title <code>Finish up weekly tp tasks</code> and
-              deadline <code>2023-04-01</code> to Vimification.
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>:d 2</code> : Deletes the 2nd task shown in the current
-              list.
-            </p>
-          </li>
-          <li>
-            <p><code>:wq</code> : Exits the app.</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>
-          Refer to the <a href="#features">Features</a> below for details of
-          each command.
-        </p>
-      </li>
-    </ol>
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
+<hr />
+<h2><span style="font-size:16px"><strong><span style="font-family:Comic Sans MS,cursive">Navigating Vimification</span></strong></span></h2>
 
-    <hr />
-    <h2 id="navigating-vimification">Navigating Vimification</h2>
-    <p>
-      Vimification is designed to mimic Vim as closely as possible. Navigate
-      Vimification as you would in Vim by using
-      <code>h</code>,<code>j</code>,<code>k</code>,<code>l</code> to move to the
-      left, down, up, right respectively.
-    </p>
-    <p>
-      Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be
-      used as well.
-    </p>
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Vimification is designed to mimic Vim as closely as possible. Navigate Vimification as you would in Vim by&nbsp;<strong>using&nbsp;</strong>h,j,k,<strong>l</strong><strong>&nbsp;to move to the left, down, up, right</strong>&nbsp;respectively.&nbsp;<strong>To open the detailed task list, use &lsquo;l&rsquo;.</strong></span></span></p>
 
-    <h2 id="using-the-commands">Using the commands</h2>
-    <p>
-      Similar to Vim, you can access command mode by pressing the
-      <code>:</code> key on your keyboard. This will bring the cursor to the
-      command input field, which is at the bottom of the application.
-    </p>
-    Example:
-    <img
-      class="ui-img"
-      style="width: 50%"
-      src="../manual-images/showCommand/commandExample.png"
-      alt="Example of Show Command Image"
-      title="How to bring up the command input"
-    />
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be used as well.</span></span></p>
 
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
+<h2><span style="font-size:16px"><strong><span style="font-family:Comic Sans MS,cursive">Using the commands</span></strong></span></h2>
 
-    <h2 id="information-on-commands-parameters">
-      Information on commands&#39; parameters
-    </h2>
-    <div markdown="block" class="alert alert-info">
-      <!-- *IMPORTANT: Take note of how the command format is being interpretted, to know what parameters it requires.* -->
-      <em
-        >Take note of how the command format is being interpretted, to know what
-        parameters it requires.</em
-      >
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Similar to Vim, you can&nbsp;<strong>access command mode by pressing the&nbsp;:&nbsp;key&nbsp;</strong>on your keyboard. This will bring the cursor to the command input field, which is at the bottom of the application.</span></span></p>
 
-      Flags like <code>-d</code>, <code>-l</code> and <code>-p</code> act as
-      identifier for the parameter that comes immediately after the flag. - e.g.
-      <code>:a &lt;title&gt; [-d &lt;deadline&gt;]</code>, the
-      <code>-d</code> indicates the deadline attribute of a task. - Refer to the
-      <a href="#flag-summary">Flag summary</a> below for details of each flag.
-      Words in <strong>angle brackets</strong> are
-      <strong>compulsory</strong> parameters to be supplied by the user. - e.g.
-      in <code>:a &lt;title&gt;</code>, the user must provide the
-      <code>&lt;title&gt;</code> parameter, for example,
-      <code>:a Do weekly quiz</code>. Words in
-      <strong>square brackets</strong> are <strong>optional</strong> parameters
-      to be supplied by the user. - e.g.
-      <code>:a &lt;title&gt; [-d &lt;deadline&gt;]</code>, the user need not
-      provide the <code>&lt;deadline&gt;</code> parameter. Bracketed items with
-      <code>…</code>​ behind means that user can provide multiple parameters. -
-      e.g. <code>:a &lt;title&gt; [-l &lt;label&gt;]…​</code>, for example,
-      <code>:a Do OP2 slides -t cs2101</code>,
-      <code>:a Do OP2 slides -t cs2101 -t presentation</code> are both
-      acceptable. Parameters identified by flags can be in any order. - e.g.
-      <code>:a Do OP2 slides -t cs2101 -p high</code>,
-      <code>:a Do OP2 slides -p high -t cs2101</code> are both acceptable. For
-      commands that do not take in parameters (such as <code>help</code>,
-      <code>list</code>, <code>exit</code> and <code>clear</code>), any
-      parameter provided will be ignored. - e.g. if the user inputs
-      <code>:help 123</code>, it will be interpreted as <code>help</code>.
-    </div>
+<h2><span style="font-size:16px"><strong><span style="font-family:Comic Sans MS,cursive">Information on commands&rsquo; parameters</span></strong></span></h2>
 
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Flags like&nbsp;-d,&nbsp;-l&nbsp;and&nbsp;-p&nbsp;act as identifier for the parameter that comes immediately after the flag.</span></span></p>
 
-    <hr />
-    <h2 id="features-and-commands">Features and commands</h2>
-    <h3 id="viewing-help">Viewing help</h3>
-    <p>Shows a message explaning how to access the help page.</p>
-    <p>
-      <img
-        src="../manual-images/helpMessage.png"
-        style="width: 50%"
-        alt="help message"
-      />
-    </p>
-    <p>Format: <code>:help</code></p>
-    <h3 id="adding-task">Adding task</h3>
-    <p>Adds a task to the current task list.</p>
-    <p>
-      Format:
-      <code>:a &lt;title&gt; [-l &lt;label&gt;]... [-p &lt;priority&gt;]</code>
-    </p>
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Detail</th>
-          <th>Compulsory</th>
-          <th>Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>&lt;title&gt;</code></td>
-          <td>Title of the task</td>
-          <td>Yes</td>
-          <td><code>CS2103T UG</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;label&gt;</code></td>
-          <td>Label given to the task</td>
-          <td>No</td>
-          <td><code>household chores</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;priority&gt;</code></td>
-          <td>Priority level assigned to the task</td>
-          <td>No</td>
-          <td><code>high</code></td>
-        </tr>
-      </tbody>
-    </table>
-    <ul>
-      <li>SoC students can put module code as the label.</li>
-    </ul>
-    <p>
-      Example after the command, <code>:a Enhance CS2103T tp user guide</code>:
-    </p>
-    <p>
-      <img
-        class="ui-img"
-        style="width: 50%"
-        src="../manual-images/AddTaskCommandDemo.png"
-        alt="Add Task Command Demo Image"
-        title="Add Task Command Demo"
-      />
-    </p>
-    <h3 id="adding-task-with-deadline">Adding task with deadline</h3>
-    <p>Adds a task with a deadline to the current task list.</p>
-    <p>Format: <code>:a &lt;title&gt; -d &lt;deadline&gt;</code></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Detail</th>
-          <th>Compulsory</th>
-          <th>Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>&lt;title&gt;</code></td>
-          <td>Title of the task</td>
-          <td>Yes</td>
-          <td><code>CS2103T UG</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;deadline&gt;</code></td>
-          <td>Deadline of the task in <code>YYYY-MM-DD</code> format</td>
-          <td>Yes</td>
-          <td><code>2023-03-31</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;label&gt;</code></td>
-          <td>Label given to the task</td>
-          <td>No</td>
-          <td><code>presentation</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;priority&gt;</code></td>
-          <td>Priority level assigned to the task</td>
-          <td>No</td>
-          <td><code>high</code></td>
-        </tr>
-      </tbody>
-    </table>
-    <ul>
-      <li>SoC students can put module code as the label.</li>
-    </ul>
-    <p>
-      Example after the command, <code>:a CS2130T v1.3 -d 2022-03-31</code>:
-    </p>
-    <p>
-      <img
-        class="ui-img"
-        style="width: 50%"
-        src="../manual-images/AddDeadlineCommandDemo.png"
-        alt="Add Deadline Command Demo Image"
-        title="Add Deadline Command Demo"
-      />
-    </p>
-    <h3 id="deleting-task">Deleting task</h3>
-    <p>
-      Deletes a task from the current task list by specifying the task number.
-    </p>
-    <p>Format: <code>:d &lt;task_index&gt;</code></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Detail</th>
-          <th>Compulsory</th>
-          <th>Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>&lt;task_index&gt;</code></td>
-          <td>Index of the task you want to delete</td>
-          <td>Yes</td>
-          <td>3 (assuming the task list has at least 3 tasks)</td>
-        </tr>
-      </tbody>
-    </table>
-    <ul>
-      <li>
-        Deletes the task at the specified <code>&lt;task_index&gt;</code>.
-      </li>
-      <li>
-        The index refers to the index number shown in the displayed task list.
-      </li>
-      <li>
-        The index <strong>must be a positive integer</strong>, i.e 1, 2, 3 etc.
-      </li>
-      <li>
-        The index must not exceed the number of tasks in the displayed task
-        list, otherwise Vimification will show an error message.
-      </li>
-    </ul>
-    <p>Example:</p>
-    <table style="width: 100%; border: none">
-      <tr>
-        <td style="width: 50%">Before the command <code>:d 4</code></td>
-        <td style="width: 50%">After the command <code>:d 4</code></td>
-      </tr>
-      <tr>
-        <td style="width: 50%">
-          <img
-            class="ui-img"
-            style="width: 100%"
-            src="../manual-images/deleteCommand/before.png"
-            alt="Delete Command Before Image"
-            title="Before Delete Command"
-          />
-        </td>
-        <td style="width: 50%">
-          <img
-            class="ui-img"
-            style="width: 100%"
-            src="../manual-images/deleteCommand/after.png"
-            alt="Delete Command After Image"
-            title="After Delete Command"
-          />
-        </td>
-      </tr>
-    </table>
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Refer to the flag summary&nbsp;below for details of each flag.</span></span></li>
+</ul>
 
-    <h3 id="exiting-the-application">Exiting the application</h3>
-    <p>
-      Similar to Vim, we can use the <code>:wq!</code>,
-      <code>:q!</code>,,<code>:wq</code>,<code>:q</code> commands to exit the
-      application.
-    </p>
-    <p>
-      Format: <code>:wq!</code>, <code>:q!</code>,,<code>:wq</code>,<code
-        >:q</code
-      >
-    </p>
-    <p>Example:</p>
-    <p>
-      <img
-        class="ui-img"
-        style="width: 50%"
-        src="../manual-images/quitCommand/quitExample1.png"
-        alt="Quit Example 1 Image"
-        title="Quit Example 1"
-      />
-    </p>
-    <h3 id="saving-the-task-list-data">Saving the task list data</h3>
-    <p>
-      The task list data is saved in the hard disk automatically after any
-      command that changes the data. There is no need to save manually.
-    </p>
-    <h3 id="editing-existing-task-list-data">
-      Editing existing task list data
-    </h3>
-    <p>
-      Existing task list data is saved as a JSON file
-      <code>[JAR file location]/data/tasklist.json</code>. Advanced users are
-      welcome to update data directly by editing that data file.
-    </p>
-    <div markdown="span" class="alert alert-warning">
-      :exclamation: <strong>Caution:</strong>
-      If your changes to the data file makes its format invalid, Vimification
-      will discard all data and start with an empty data file at the next run.
-    </div>
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Words in&nbsp;angle brackets&nbsp;are&nbsp;compulsory&nbsp;parameters to be supplied by the user.</span></span></p>
 
-    <h3 id="archiving-data-files-future-feature-">
-      Archiving data files (future feature)
-    </h3>
-    <p><em>Details coming soon in v2.0 ...</em></p>
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">e.g. in&nbsp;:a &lt;&quot;title&quot;&gt;, the user must provide the&nbsp;&lt;&quot;title&quot;&gt;&nbsp;parameter, for example,&nbsp;:a &quot;Do weekly quiz&quot;.</span></span></li>
+</ul>
 
-    <hr />
-    <h2 id="faq">FAQ</h2>
-    <p>
-      <strong>Q</strong>: How do I transfer my data to another Computer?<br />
-      <strong>A</strong>: Install the app in the other computer and overwrite
-      the empty data file it creates with the file that contains the data of
-      your previous Vimification home folder.
-    </p>
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Words in&nbsp;square brackets&nbsp;are&nbsp;optional&nbsp;parameters to be supplied by the user.</span></span></p>
 
-    <hr />
-    <h2 id="flag-summary">Flag summary</h2>
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">e.g.&nbsp;:a &lt;&quot;title&quot;&gt; [-d &lt;deadline&gt;], the user need not provide the&nbsp;&lt;deadline&gt;&nbsp;parameter.</span></span></li>
+</ul>
 
-    <!-- TODO: Complete this command summary box -->
-    <h2 id="command-summary">Command summary</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Action</th>
-          <th>Format</th>
-          <th>Examples</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>View help</td>
-          <td><code>:help</code></td>
-          <td>No variation thus no example</td>
-        </tr>
-        <tr>
-          <td>Add task</td>
-          <td><code>:a &lt;title&gt;</code></td>
-          <td><code>:a Enhance formatting of CS2103T UG</code></td>
-        </tr>
-        <tr>
-          <td>Add task with deadline</td>
-          <td><code>:a &lt;title&gt; -d &lt;deadline&gt;</code></td>
-          <td><code>:a Finalise CS2103T milestone v1.3 -d 2022-03-31</code></td>
-        </tr>
-        <tr>
-          <td>Delete task</td>
-          <td><code>:d [index]</code></td>
-          <td><code>:d 3</code></td>
-        </tr>
-        <tr>
-          <td>Exit the application</td>
-          <td>
-            <code>:wq!</code>, <code>:q!</code>, <code>:wq</code>,
-            <code>:q</code>
-          </td>
-          <td>No variation thus no example</td>
-        </tr>
-        <tr>
-          <td>Save current data</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Edit existing data</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-    <p style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
-  </body>
-</html>
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Bracketed items with&nbsp;&hellip;​ behind means that user can provide multiple parameters.</span></span></p>
+
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">e.g.&nbsp;:a &lt;&#39;title&quot;&gt; [-l &lt;label&gt;]&hellip;​, for example,&nbsp;:a &quot;Do OP2 slides&quot; -t cs2101,&nbsp;:a Do OP2 slides -t cs2101 -t presentation&nbsp;are both acceptable.</span></span></li>
+</ul>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Parameters identified by flags can be in any order.</span></span></p>
+
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">e.g.&nbsp;:a &quot;Do OP2 slides&quot; -t cs2101 -p high,&nbsp;:a &quot;Do OP2 slides&quot; -p high -t cs2101&nbsp;are both acceptable.</span></span></li>
+</ul>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">For commands that do not take in parameters (such as&nbsp;help,&nbsp;list,&nbsp;exit&nbsp;and&nbsp;clear), any parameter provided will be ignored.</span></span></p>
+
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">e.g. if the user inputs&nbsp;:help 123, it will be interpreted as&nbsp;help.</span></span></li>
+</ul>
+
+<hr />
+<h2><span style="font-size:16px"><strong><span style="font-family:Comic Sans MS,cursive">Features and commands</span></strong></span></h2>
+
+<h3><span style="font-size:14px"><strong><span style="color:#3498db"><span style="font-family:Comic Sans MS,cursive">Adding task</span></span></strong></span></h3>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Adds a task to the current task list.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Format:&nbsp;:a &lt;&quot;title&quot;&gt; [-d &lt;deadline&gt;] [-l &lt;label&gt;]... [-p &lt;priority&gt;]</span></span></p>
+
+<table style="width:470px">
+	<thead>
+		<tr>
+			<td style="width:78px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Parameter</span></span></p>
+			</td>
+			<td style="width:181px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Detail</span></span></p>
+			</td>
+			<td style="width:62px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Compulsory</span></span></p>
+			</td>
+			<td style="width:121px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;Example</span></span></p>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="width:78px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;title&gt;</span></span></p>
+			</td>
+			<td style="width:181px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;Title of the task&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></span></p>
+			</td>
+			<td style="width:62px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp;Yes</span></span></p>
+			</td>
+			<td style="width:121px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; CS2103T UG</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:78px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;deadline&gt;</span></span></p>
+			</td>
+			<td style="width:181px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Deadline of the task&nbsp; &nbsp;</span></span></p>
+			</td>
+			<td style="width:62px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp;No</span></span></p>
+			</td>
+			<td style="width:121px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; 2023-03-31</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:78px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;label&gt;</span></span></p>
+			</td>
+			<td style="width:181px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;Label given to the task</span></span></p>
+			</td>
+			<td style="width:62px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp;No</span></span></p>
+			</td>
+			<td style="width:121px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; presentation</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:78px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;priority&gt;</span></span></p>
+			</td>
+			<td style="width:181px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Priority level assigned to the task</span></span></p>
+			</td>
+			<td style="width:62px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp;No</span></span></p>
+			</td>
+			<td style="width:121px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; 1</span></span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Note: SoC students can put module code as the label.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example of command</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">1.&nbsp;:a &quot;Enhance CS2103T tp user guide&quot; -d 2023-03-31 -l cs2103t -p 1</span></span></p>
+
+<h3>&nbsp;</h3>
+
+<h3><span style="font-size:14px"><strong><span style="color:#3498db"><span style="font-family:Comic Sans MS,cursive">Inserting parameters to a task</span></span></strong></span></h3>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Insert the parameter as specified by the flag of a task to the current task list as specified by the task number.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Format:&nbsp;:i &lt;task_index&gt; [-d &lt;deadline&gt;] [-l &lt;label_name&gt;]</span></span></p>
+
+<table style="width:582px">
+	<thead>
+		<tr>
+			<td style="width:79px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Parameter</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Detail</span></span></p>
+			</td>
+			<td style="width:276px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example</span></span></p>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="width:79px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;task_index&gt;</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Index of the target task&nbsp;</span></span></p>
+			</td>
+			<td style="width:276px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">3 (assuming the task list has at least 3 tasks)</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:79px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;deadline &gt;</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Deadline of task you want to insert</span></span></p>
+			</td>
+			<td style="width:276px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">2023-04-05</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:79px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;label_name&gt;</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Name of the label you want to insert</span></span></p>
+			</td>
+			<td style="width:276px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">s2103t(assuming the task list has this label)</span></span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example of command</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">1.&nbsp;:i 3 -d 2023-04-5&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;inserts the deadline to task 3</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">2.&nbsp;:i 3 -l cs2103t&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; inserts the &ldquo;cs2103t&rdquo; label to task 3</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Condition</span></span></p>
+
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">At least one for the flags should be present.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index refers to the index number shown in the displayed task list.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index&nbsp;must be a positive integer, i.e 1, 2, 3 etc.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index must not exceed the number of tasks in the displayed task list.</span></span></li>
+</ul>
+
+<h3>&nbsp;</h3>
+
+<h3><strong><span style="color:#3498db"><span style="font-size:14px"><span style="font-family:Comic Sans MS,cursive">Deleting task</span></span></span></strong></h3>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Deletes a task from the current task list by specifying the task number.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Format:&nbsp;:d &lt;task_index&gt;</span></span></p>
+
+<table style="width:706px">
+	<thead>
+		<tr>
+			<td style="width:101px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Parameter</span></span></p>
+			</td>
+			<td style="width:200px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Detail&nbsp;</span></span></p>
+			</td>
+			<td style="width:78px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp;Compulsory</span></span></p>
+			</td>
+			<td style="width:297px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example</span></span></p>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="width:101px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;task_index&gt;</span></span></p>
+			</td>
+			<td style="width:200px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Index of the task you want to delete</span></span></p>
+			</td>
+			<td style="width:78px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; Yes</span></span></p>
+			</td>
+			<td style="width:297px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;3 (assuming the task list has at least 3 tasks)</span></span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example of command</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">1. :d 3&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; deletes task 3</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Condition</span></span></p>
+
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index refers to the index number shown in the displayed task list.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index&nbsp;must be a positive integer, i.e 1, 2, 3 etc.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index must not exceed the number of tasks in the displayed task list.</span></span></li>
+</ul>
+
+<h3>&nbsp;</h3>
+
+<h3><strong><span style="color:#3498db"><span style="font-size:14px"><span style="font-family:Comic Sans MS,cursive">Deleting parameters of a task</span></span></span></strong></h3>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Deletes the parameter as specified by the flag of a task from the current task list as specified by the task number.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Format:&nbsp;:d &lt;task_index&gt; [-d] [-l &lt;label_name&gt;]</span></span></p>
+
+<table style="width:589px">
+	<thead>
+		<tr>
+			<td style="width:97px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Parameter</span></span></p>
+			</td>
+			<td style="width:215px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;Detail</span></span></p>
+			</td>
+			<td style="width:253px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example</span></span></p>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="width:97px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;task_index&gt;</span></span></p>
+			</td>
+			<td style="width:215px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;Index of the target task</span></span></p>
+			</td>
+			<td style="width:253px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">3 (assuming the task list has at least 3 tasks)</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:97px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;label_name&gt;</span></span></p>
+			</td>
+			<td style="width:215px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Name of the label you want to delete</span></span></p>
+			</td>
+			<td style="width:253px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">cs2103t (assuming the task list has this label)</span></span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example of command</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">1. :d 3 -d&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;deletes the deadline of task 3</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">2. :d 3 -l cs2103t&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; deletes the &ldquo;cs2103t&rdquo; label of task 3</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Condition</span></span></p>
+
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">At least one for the flags should be present. Else, command will be treated as deleting the task at index number.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index refers to the index number shown in the displayed task list.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index&nbsp;must be a positive integer, i.e 1, 2, 3 etc.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.</span></span></li>
+</ul>
+
+<h3>&nbsp;</h3>
+
+<h3><span style="color:#3498db"><strong><span style="font-size:14px"><span style="font-family:Comic Sans MS,cursive">Editing task</span></span></strong></span></h3>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Edit the parameters as specified by the flag of a task in the current task list as specified by the task number.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Format:&nbsp;:e &lt;task_index&gt; [-t &lt;title&gt;] [-d &lt;deadline&gt;] [-s &lt;status&gt;] [-p &lt;priority&gt;] [-l &lt;previous_label&gt; &lt;new_label&gt;]...</span></span></p>
+
+<table style="width:580px">
+	<thead>
+		<tr>
+			<td style="width:94px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Parameter</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Detail</span></span></p>
+			</td>
+			<td style="width:257px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example</span></span></p>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="width:94px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;title&gt;</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">New title of task</span></span></p>
+			</td>
+			<td style="width:257px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&quot;CS2103T UG&quot;</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:94px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;deadline&gt;</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">New deadline of the task</span></span></p>
+			</td>
+			<td style="width:257px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">2023-03-31</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:94px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;status&gt;</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">New status of task</span></span></p>
+			</td>
+			<td style="width:257px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">2</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:94px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;priority&gt;</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Priority level assigned to the task</span></span></p>
+			</td>
+			<td style="width:257px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;1</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:94px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;previous_label&gt;</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Name of the label you want to edit</span></span></p>
+			</td>
+			<td style="width:257px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">cs2103t(assuming the task list has this label)</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:94px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;new_label&gt;</span></span></p>
+			</td>
+			<td style="width:203px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">New name of the label</span></span></p>
+			</td>
+			<td style="width:257px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;group project</span></span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example of command</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">1. :e 3 -t &quot;quiz&quot;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; edits the title of task 3 to &ldquo;quiz&rdquo;</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">2. :e 3 -d 2023-04-05&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;edits the deadline of task 3 to 2023-04-05</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">3. :e 3 -s 1&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;edits the status of task 3 to be in progress</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">4. :e 3 -p 1&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;edits the priority of task 3 to be in urgent</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">5. :e 3 -l oldLabel newLabel&nbsp; &nbsp; &nbsp; &nbsp;edits oldLabel of task 3 to be newLabel</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Condition</span></span></p>
+
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">At least one for the flags should be present.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index refers to the index number shown in the displayed task list.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index&nbsp;must be a positive integer, i.e 1, 2, 3 etc.</span></span></li>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.</span></span></li>
+</ul>
+
+<h3>&nbsp;</h3>
+
+<h3><strong><span style="color:#3498db"><span style="font-size:14px"><span style="font-family:Comic Sans MS,cursive">Filtering task</span></span></span></strong></h3>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Filter the parameters as specified by the flag.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Format:&nbsp;:f [-w &lt;&quot;keyword&quot;] [-d --before/after &lt;date&gt;] [-s &lt;status&gt;] [-p &lt;priority&gt;] [-l &lt;label&gt;]...</span></span></p>
+
+<table style="width:588px">
+	<thead>
+		<tr>
+			<td style="width:69px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Parameter</span></span></p>
+			</td>
+			<td style="width:234px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Detail</span></span></p>
+			</td>
+			<td style="width:261px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Example</span></span></p>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="width:69px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;keyword&gt;</span></span></p>
+			</td>
+			<td style="width:234px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;Keyword of task to filter</span></span></p>
+			</td>
+			<td style="width:261px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;&quot;CS2103T UG&quot;</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:69px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;date&gt;</span></span></p>
+			</td>
+			<td style="width:234px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;Date of the task to filter before or after</span></span></p>
+			</td>
+			<td style="width:261px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">2023-03-31</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:69px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;status&gt;</span></span></p>
+			</td>
+			<td style="width:234px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;Status of task to filter</span></span></p>
+			</td>
+			<td style="width:261px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">2</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:69px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;priority&gt;</span></span></p>
+			</td>
+			<td style="width:234px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;Priority level of task to filter&nbsp;</span></span></p>
+			</td>
+			<td style="width:261px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;1</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:69px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&lt;label&gt;</span></span></p>
+			</td>
+			<td style="width:234px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp;Label of task to filter</span></span></p>
+			</td>
+			<td style="width:261px">
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">cs2103t(assuming the task list has this label)</span></span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example of command</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">1. :f -2 &quot;quiz&quot;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;filter for tasks with &ldquo;quiz&rdquo; as keyword</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">2. :f -d --before 2023-04-05&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; filter for tasks before 2023-04-05</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">3. :f -s 1&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; filter for tasks with status of in_progress</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">4. :f -p 1&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; filter for tasks with priority of urgent</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">5. :f -l cs2103t&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; filter for tasks with label of cs2103t</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Condition</span></span></p>
+
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Only one flag should be present.</span></span></li>
+</ul>
+
+<h3>&nbsp;</h3>
+
+<h3><span style="color:#3498db"><span style="font-size:14px"><strong><span style="font-family:Comic Sans MS,cursive">Sorting task</span></strong></span></span></h3>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Sort the parameters as specified by the flag.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Format:&nbsp;:s [-t] [-d] [-p]</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Example of command</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">1. :f -t&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;sort for tasks by title</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">2. :f -d&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sort for tasks by deadline</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">3. :f -p&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; sort for tasks by priority level</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Condition</span></span></p>
+
+<ul>
+	<li><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Only one flag should be present.</span></span></li>
+</ul>
+
+<h3><span style="color:#3498db"><strong><span style="font-size:14px"><span style="font-family:Comic Sans MS,cursive">Exiting the application</span></span></strong></span></h3>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Similar to Vim, we can use the&nbsp;:wq!,&nbsp;:q!,,:wq,:q&nbsp;commands to exit the application.</span></span></p>
+
+<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Format:&nbsp;:wq!,&nbsp;:q!,,:wq,:q</span></span></p>
+
+<hr />
+<h2><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Flag summary</span></span></h2>
+
+<table>
+	<thead>
+		<tr>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Flag</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Meaning</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">Conditions</span></span></p>
+			</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">-t</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp;title of description</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Cannot be empty, enclosed in open close quotation marks</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">-d</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp;deadline of description</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;In the format of YYYY-MM-dd or YYYY-MM-dd HH:mm</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">-l</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp;label of task</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Cannot be empty</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">-p</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp;priority of task</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1 for very urgent, 2 for urgent, 3 for not urgent, 4 for unknown</span></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">-s</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp;status of task</span></span></p>
+			</td>
+			<td>
+			<p><span style="font-size:11px"><span style="font-family:Comic Sans MS,cursive">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0 for not done, 1 for in progress, 2 for completed, 3 for overdue</span></span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
