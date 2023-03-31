@@ -92,7 +92,7 @@ public class LogicManager implements Logic {
                 result = new CommandResult("Nothing happened");
             }
         } catch (ParserException ex) {
-            result = new CommandResult(LIST_OPS_ERROR_MESSAGE);
+            result = new CommandResult(ex.getMessage());
         } catch (RuntimeException ex) {
             result = new CommandResult(LIST_OPS_ERROR_MESSAGE);
         } catch (IOException ex) {
