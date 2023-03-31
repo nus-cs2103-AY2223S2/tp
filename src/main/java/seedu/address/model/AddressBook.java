@@ -190,9 +190,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @return The sum of the user's potential earnings.
      */
     @Override
-    public int getPotentialEarnings() {
+    public long getPotentialEarnings() {
         Iterator<Person> iterator = persons.iterator();
-        int totalValue = 0;
+        long totalValue = 0;
         while (iterator.hasNext()) {
             totalValue += iterator.next().getBusinessSize().getNumericValue();
         }

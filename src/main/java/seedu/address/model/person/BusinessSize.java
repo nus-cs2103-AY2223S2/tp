@@ -23,8 +23,8 @@ public class BusinessSize {
         this.value = businessSize.strip();
     }
 
-    public int getNumericValue() {
-        return Integer.parseInt(this.value);
+    public long getNumericValue() {
+        return Long.parseLong(this.value);
     }
 
     public static boolean isValidBusinessSize(String test) {
@@ -40,13 +40,13 @@ public class BusinessSize {
      * Returns integer representation of business size value
      * @return Integer
      */
-    public Integer getIntValue() {
+    public Long getLongValue() {
         try {
-            System.out.println(Integer.valueOf(this.value));
-            return Integer.valueOf(this.value);
+            System.out.println(Long.valueOf(this.value));
+            return Long.valueOf(this.value);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return 0;
+            return Long.valueOf(0);
         }
     }
 

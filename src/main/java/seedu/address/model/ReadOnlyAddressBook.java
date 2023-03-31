@@ -22,7 +22,7 @@ public interface ReadOnlyAddressBook {
     /**
      * Returns the sum of the potential earnings.
      */
-    int getPotentialEarnings();
+    long getPotentialEarnings();
 
     /**
      * Returns the a string containing all tags.
