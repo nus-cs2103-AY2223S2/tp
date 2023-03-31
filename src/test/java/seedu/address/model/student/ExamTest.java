@@ -25,14 +25,14 @@ class ExamTest {
     public void constructor_startTimeAfterEndTime_throwsIllegalArgumentException() {
         LocalDateTime startTime = LocalDateTime.of(2023, 3, 31, 13, 0);
         LocalDateTime endTime = LocalDateTime.of(2023, 3, 31, 12, 59);
-        assertThrows(IllegalArgumentException.class, () -> new Exam("Midterm", startTime, endTime, 0.4, null));
+        assertThrows(IllegalArgumentException.class, () -> new Exam("Midterm", startTime, endTime, 40d, null));
     }
 
     @Test
     public void constructor_invalidWeightage_throwsIllegalArgumentException() {
         LocalDateTime startTime = LocalDateTime.of(2023, 3, 31, 13, 0);
         LocalDateTime endTime = LocalDateTime.of(2023, 3, 31, 14, 59);
-        assertThrows(IllegalArgumentException.class, () -> new Exam("Midterm", startTime, endTime, 1.4, null));
+        assertThrows(IllegalArgumentException.class, () -> new Exam("Midterm", startTime, endTime, 104d, null));
     }
 
     @Test
