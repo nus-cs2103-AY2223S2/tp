@@ -7,7 +7,7 @@ import java.util.Set;
 import vimification.model.task.Priority;
 import vimification.model.task.Status;
 
-public class SearchRequest {
+public class FilterRequest {
 
     public enum Mode {
         DEFAULT, AND, OR
@@ -21,7 +21,7 @@ public class SearchRequest {
     private LocalDateTime searchedDeadlineAfter;
     private Mode mode = Mode.DEFAULT;
 
-    public SearchRequest() {}
+    public FilterRequest() {}
 
     public Status getSearchedStatus() {
         return searchedStatus;
