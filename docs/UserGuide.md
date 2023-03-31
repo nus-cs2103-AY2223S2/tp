@@ -45,10 +45,10 @@ Welcome to the *Fish Ahoy! User Guide*! <br>
 *Fish Ahoy!* Is a **desktop app for managing your fish, fish tanks, and relevant tasks, optimized for use via a Command
 Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). <br>
 
-*Fish Ahoy!* **simplifies** the fish keeping experience by helping you keep track of your many **fishes**, **tanks** and 
+*Fish Ahoy!* **streamlines** the fish keeping experience by helping you keep track of your many **fishes**, **tanks** and 
 **weekly tasks**, such as feeding and cleaning. 
 
-*Fish Ahoy!* **abstracts** commands to revolve around **fish**, **tank** and **task**. When you want to, for example,
+*Fish Ahoy!* **simplifies** commands to revolve around **fish**, **tank** and **task**. When you want to, for example,
 perform an action on **tanks**, the commands all begin with `tank`.
 
 Choose a feature from our table of contents above to find answers and get step-by-step instructions on how to make 
@@ -77,7 +77,35 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
   * `fish add n/bobby lfd/01/01/2023 s/guppy fi/0d5h tk/1`: Add a fish to your fish book.
 
 
-6. Refer to the [Features](#Features) below for details of each command.
+6. Refer to [About the Interface](#about-the-interface) below for details on the interface.
+7. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# About the Interface
+
+The *Fish Ahoy!* interface consists of three main components, the **Command Line**, **Alerts**, and **Panels**, 
+and two buttons, **Hile** and **Help**.
+
+![Ui](images/UiIntro.png)
+
+The **Command Line** is where you can enter various commands to enter information into *Fish Ahoy!*. 
+Refer to the [Features](#features) below for details of each command!
+
+The **Alerts** will display the results of each command, and display additional help specific to the command.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: If you are unsure of the command format, simply enter the category you want to use, e.g. `fish`, followed by the command
+you would like to use `add`. Information on prefixes will be displayed in the Alerts!:**<br>
+
+The **Panels** will display all the information on your Tanks, Fishes and Tasks. These panels will automatically update 
+whenever you enter a command. Try it out!
+
+The **File** button will present a menu where you can exit the application. Exiting from the application using 
+Windows/Mac OS native close buttons are also fine.
+
+The **Help** button will present a menu where you can display the *Fish Ahoy! User Guide*. If you require extra information,
+do use this to redirect you to our user guide!
 
 --------------------------------------------------------------------------------------------------------------------
 
