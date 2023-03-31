@@ -18,7 +18,7 @@ public interface Logic {
      * @throws CommandException If an error occurs during command execution.
      * @throws ParserException If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParserException;
+    CommandResult execute(String commandText);
 
     // /**
     // * Returns the user prefs' address book file path.

@@ -70,7 +70,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParserException {
+    public CommandResult execute(String commandText) {
         LOGGER.info("[USER COMMAND] " + commandText);
         Command command = vimificationParser.parse(commandText);
         CommandResult result = null;
@@ -90,6 +90,8 @@ public class LogicManager implements Logic {
                 LOGGER.warning("Unknown command type: " + command.getClass().getSimpleName());
                 result = new CommandResult("Nothing happened");
             }
+        } catch (ParserException ex) {
+            result = new CommandResult(LIST_OPS_ERROR_MESSAGE);
         } catch (RuntimeException ex) {
             result = new CommandResult(LIST_OPS_ERROR_MESSAGE);
         } catch (IOException ex) {
