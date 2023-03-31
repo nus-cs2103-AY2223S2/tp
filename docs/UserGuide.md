@@ -32,7 +32,7 @@ to learn more about what TeachMeSenpai can do for you!
 [Links](#navigating-the-user-guide): Words highlighted in blue are clickable and will direct you to a relevant section within
 this user guide for more information, or to external websites to learn more!
 
----
+---notes
 
 ## **Table of Contents**
 {:.no_toc}
@@ -57,25 +57,29 @@ TeachMeSenpai has been designed to work for all Operating Systems!
 
 ## Guide on using Features
 
-> <ins>:bulb: **Notes about the command format:**</ins>
-> 
-> - Words in `UPPER_CASE` are the parameters to be supplied by the user.  
->   _(eg. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`)_
->
-> - Items in square brackets are optional.  
->   _(eg. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`)_
-> 
-> - Items with `...` after them can be used multiple times including zero times.  
->   _(eg. `[t/TAG]...` can be excluded completely, or once `t/friend`, or twice `t/friend t/family`, etc.)_
-> 
-> - Parameters can be in any order.  
->   _(eg. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable)_
-> 
-> - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.  
->   _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
-> 
-> - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored.  
->   _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Notes about the command format:**
+
+- Words in `UPPER_CASE` are the parameters to be supplied by the user.  
+  _(eg. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`)_
+
+- Items in square brackets are optional.  
+  _(eg. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`)_
+
+- Items with `...` after them can be used multiple times including zero times.  
+  _(eg. `[t/TAG]...` can be excluded completely, or once `t/friend`, or twice `t/friend t/family`, etc.)_
+
+- Parameters can be in any order.  
+  _(eg. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable)_
+
+- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.  
+  _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
+
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored.  
+  _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
+
+<div>
 
 ## Parameter descriptions
 
@@ -103,6 +107,22 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 ---
 
 ## Features
+
+### Autocompletion
+
+Start typing the first letters of a command to get shadow-like autocomplete suggestions. The format of the suggested arguments are as described in the [**Guide on using Features**](#guide-on-using-features).
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Tip:** You can press the `TAB` to fill in the next suggested word!
+</div>
+
+![help popup gui](images/user-guide/autocomplete.jpg)
+
+<br>
+
+For the `module`, `tag`, `education` fields, it will also autocomplete for existing values.
+
+![help popup gui](images/user-guide/autocomplete_arg_values.jpg)
 
 ### Viewing help: `help`
 
