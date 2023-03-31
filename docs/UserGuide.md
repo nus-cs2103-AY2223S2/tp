@@ -65,7 +65,7 @@ Without further ado, let's get started!
 
 3. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
 
-4. In the same folder, create a new folder named “image” and store all images to be used for the program in this folder. eg student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`
+4. In the same folder, create a new folder named “image” and store all images to be used for the program in this folder. eg student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`.
 
 5. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PowerConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -96,7 +96,7 @@ Without further ado, let's get started!
 
 ## Glossary
 
-1. Absolute Path to Image: Location where the image is stored <br>
+1. Absolute Path to Image: Location where the image is stored. <br>
    By default, it should be stored in the images folder as mentioned [here](#images). <br><br>
 2. Attributes: General particulars of a student/parent. <br>
    For example, name, phone number, email address etc. <br><br>
@@ -127,8 +127,8 @@ This section aims to provide a brief overview of the features available in Power
 
 ### Legend
 * Command lines supplied by the user are NOT case-sensitive. User needs to be ensure they have typed in the command in the correct case.
-  E.g. in the list feature, user can call it via this method:
-  `student 5A list`
+  e.g. in the list feature, user can call it via this method:
+  `student 5A list`.
 
 
 
@@ -141,8 +141,7 @@ This section aims to provide a brief overview of the features available in Power
 
 
 * All items in the square brackets are OPTIONAL.
-
-  e.g. in `…add…[..c/<CCA>.. ]...` , `CCA` is an optional parameter that need not be given by the user and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…` .
+  e.g. in `…add…[..c/<CCA>.. ]...` , `CCA` is an optional parameter that need not be given by the user and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…`.
 
 
 
@@ -235,7 +234,7 @@ This section aims to provide a brief overview of the features available in Power
 
 ### Adding a Student: `student <class> add`
 
-Adds a student to the database
+Adds a student to the database.
 
 Format: `student <class> add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<NOK_RELATIONSHIP_TO_STUDENT> [s/<SEX> a/<REISDENTIAL_ADDRESS> ageS/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> pnS/<PHONE_NUMBER> cca/<CCA>]`
 
@@ -257,17 +256,19 @@ Examples:
 * `New student added:`
 
 Image source will be displayed in decreasing priority: <br>
-* Absolute or relative file path
-* images/<STUDENT_NAME><STUDENT_CLASS>.png
-* Default Image (?) <br>
+* Absolute or relative file path.
+* images/<STUDENT_NAME><STUDENT_CLASS>.png.
+* Default Image (?). <br>
 
-Note: <br>
-1. User cannot create two students of the same index number and same class
-2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get binded to the matching parent.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+1. User cannot create two students of the same index number and same class.
+2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get bound to the matching parent.
 3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update. 
 Please delete the student and add without the image source path. 
 4. If you have entered the `ABSOLUTE PATH TO IMAGE`, note that once the image changes location, the picture will not render properly.
 It is recommended to store the images using the folder [method](#images) instead.
+
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -279,8 +280,8 @@ It is recommended to store the images using the folder [method](#images) instead
 
 ### Marking attendance for student: `student <class> attendance`
 
-Marks the student as being present or allow you to define that the student was present
-Ensure that if you mark the same date for the same student as being present, it will prompt that you have indeed added the same date (for verification)
+Marks the student as being present or allow you to define that the student was present.
+Ensure that if you mark the same date for the same student as being present, it will prompt that you have indeed added the same date (for verification).
 
 Format : `student <class> attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`
 
@@ -293,9 +294,12 @@ Examples:
 
 Date is in DD/MM/YYYY format <br>
 This date can be set to:
-* T (Indicates that the student was present today)
-* F (Default when adding student)
-* Specific date (Used when you want to update the attendance of the student in the past)
+* T 
+  * Indicates that the student was present today.
+* F 
+  * Default when adding student.
+* Specific date 
+  * Used when you want to update the attendance of the student in the past.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -307,9 +311,9 @@ This date can be set to:
 
 ### Adding a grade for student : `student <class> grade`
 
-Adds a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
+Adds a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`.
 
-You cannot have different test/homework with the same name
+You cannot have different test/homework with the same name.
 
 Format: `student <class> grade in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>] [score/<score> deadline/<DEADLINE(DD/MM/YYYY)> weightage/<WEIGHTAGE>] [hwdone/<HOMEWORK_DONE(true/false)>]`
 
@@ -321,12 +325,16 @@ Examples:
 * `New test added:`
 * `New homework added:`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-1. Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.
-2. hwdone is compulsory for homework.
-3. Score is out of 100
-4. Weightage is out of 100%
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
+* Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.<br>
+   * Duplicate test/homework is checked through having the same name. 
+* hwdone is compulsory for homework.<br>
 </div>
+
+Note:
+* Score is out of 100.<br>
+* Weightage is out of 100%.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -338,9 +346,9 @@ Examples:
 
 ### Deleting a grade for student : `student <class> gradedelete`
 
-Deletes a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
+Deletes a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`.
 
-Duplicate test/homework  is checked through having the same name
+Duplicate test/homework  is checked through having the same name.
 
 Format: `student <class> gradedelete in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>]`
 
@@ -358,7 +366,7 @@ Examples:
 
 ### Adding comments for student : `student <class> comment`
 
-Adds a comment for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
+Adds a comment for the student corresponding to the `INDEX_NUMBER` in the `CLASS`.
 
 Format: `student <class> comment in/<INDEX_NUMBER> com/<COMMENT>`
 
@@ -366,8 +374,10 @@ Examples:
 
 * `student 3A comment in/25 com/Quiet person, needs to interact more with classmates`
 
-Note: <br>
-If an existing comment is already available for the selected student, the new comment will OVERRIDE the old comment! Hence, users should check on existing comments before adding a new comment!
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If an existing comment is already available for the selected student, the new comment will OVERRIDE the old comment!<br>
+Users should check on existing comments before adding a new comment!
+</div>
 <a name = "liststudent"/> <br><br>
 
 [Back to Table of Contents](#table-of-contents)
@@ -380,7 +390,7 @@ If an existing comment is already available for the selected student, the new co
 
 ### Listing all students in the selected class: `student <class> list`
 
-Shows a list of all students in the selected class in the database
+Shows a list of all students in the selected class in the database.
 
 Format: `student <class> list`
 
@@ -432,7 +442,7 @@ If you want to update all students under this student's parent, please kindly us
 
 ### Locating students by name:  `student <class> find`
 
-Finds and generates all students with matching student name and class
+Finds and generates all students with matching student name and class.
 
 Format: `student <class> find <NAME>  `
 
@@ -454,7 +464,7 @@ Examples:
 
 ### Deleting student: `student <class> delete`
 
-Deletes student corresponding to the `INDEX_NUMBER` in the `CLASS`  from the database
+Deletes student corresponding to the `INDEX_NUMBER` in the `CLASS`  from the database.
 
 Format: `student <class> delete in/<INDEX_NUMBER>`
 
@@ -487,7 +497,7 @@ Examples:
 
 ### Adding a Parent/NOK: `parent add`
 
-Adds a Parent/[NOK](#glossary) to the database
+Adds a Parent/[NOK](#glossary) to the database.
 
 Format: `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS] ]`
 
@@ -512,7 +522,7 @@ Examples of Full Command:
 
 ### Listing all Parents/NOKs : `parent list`
 
-Shows a list of all Parents/[NOKs](#glossary) in the database with their corresponding particulars
+Shows a list of all Parents/[NOKs](#glossary) in the database with their corresponding particulars.
 
 Format: `list`
 
@@ -532,7 +542,7 @@ Examples of Full Command:
 
 ### Edit Parent: `parent edit`
 
-Edits personal details of Parent/[NOK](#glossary) with corresponding NAME and PARENT_PHONE_NUMBER
+Edits personal details of Parent/[NOK](#glossary) with corresponding NAME and PARENT_PHONE_NUMBER.
 
 Format: `Format: edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]`
 
@@ -554,7 +564,7 @@ Examples of Full Command:
 
 ### Deleting Parent: `parent delete`
 
-Deletes parent with corresponding `NAME` and `PARENT_PHONE_NUMBER` from the database
+Deletes parent with corresponding `NAME` and `PARENT_PHONE_NUMBER` from the database.
 
 Format: `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]`
 
@@ -586,7 +596,7 @@ Deleted Parent: TanAhNiu; Parent Age: Insert parent age here!; Address: Insert A
 
 ### Listing students / parents: `list`
 
-Lists all students / parents as specified in command <br>
+Lists all students / parents as specified in command. <br>
 
 Format: `list student` `list parent` <br><br>
 
@@ -652,22 +662,22 @@ If your changes to the data file makes its format invalid, PowerConnect will dis
 
 ## Images
 
-In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
+1. In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
 
-Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS>.png` <br>
+2. Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS>.png` <br>
 
-Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br><br>
+    Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br><br>
 
-Location of where images folder should be at. (Same directory of PowerConnect.jar)
+    Location of where images folder should be at. (Same directory of PowerConnect.jar)
 ![image message](images/images1.png)
 
-Inside the images folder, create a folder called `student` and `parent` if it does not exist.
+3. Inside the images folder, create a folder called `student` and `parent` if it does not exist.
 ![image2 message](images/images2.png)
 
-Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS>.png`
+    Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS>.png`
 ![imagestudent message](images/imagestudent.png)
 
-Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
+    Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
 ![imagesparent message](images/imagesparent.png)
 
 [Back to Table of Contents](#table-of-contents)
@@ -684,7 +694,7 @@ Feel free to ask any questions [here](https://docs.google.com/forms/d/e/1FAIpQLS
 --------------------------------------------------------------------------------------------------------------------
 
 **Q**: Where is the information stored?<br>
-**A**: Data is stored locally in the ./data folder. The student and class information is stored in the file pcclass.json whereas the parents information is stored in parents.json
+**A**: Data is stored locally in the ./data folder. The student and class information is stored in the file pcclass.json whereas the parents information is stored in parents.json.
 
 **Q**: What is CLI?<br>
 **A**: Command Line Interface (CLI) is a text based user interface used to run the
