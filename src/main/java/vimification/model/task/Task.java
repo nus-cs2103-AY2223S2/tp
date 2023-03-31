@@ -16,7 +16,8 @@ public class Task {
     private Priority priority;
     private Set<String> labels;
 
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter dateTimeFormatter =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Every field must be present and not null.
@@ -150,6 +151,16 @@ public class Task {
         }
         Task otherTask = (Task) other;
         return otherTask.title.equals(title) && otherTask.status.equals(status);
+    }
+
+    public String forDisplay() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(title);
+        if (deadline != null) {
+            sb.append(" by").append(getDeadlineToString());
+        }
+        sb.append(priority.asEnding());
+        return sb.toString();
     }
 
     @Override
