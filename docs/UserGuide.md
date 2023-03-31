@@ -388,6 +388,16 @@ Shows a list of recurring expense in the log.
 
 Format: `lrec`
 
+## Setting Budget: `set`
+Sets the monthly budget of the expense tracker.
+
+Format `set p/AMOUNT`
+
+| Parameter | Description                       |
+|-----------|-----------------------------------|
+| `AMOUNT`  | The monthly budget amount to set. |
+
+
 ## Clearing all entries : `CLEAR`
 
 Clears all entries from the expense log.
@@ -453,6 +463,7 @@ _Details coming soon ..._
 ### General Commands
 | Action                                         | Format  | Examples |
 |------------------------------------------------|---------|----------|
+|[**Set Budget**](#setting-budget--set)| `set p/AMOUNT`| `set p/1000`|
 | [**Help**](#viewing-help--help)| `help`| `help`|
 | [**Exit program**](#exiting-the-program--exit)| `exit`| `exit`|
 | [**Clear data**](#clearing-all-entries--clear)| `CLEAR`| `CLEAR`|
