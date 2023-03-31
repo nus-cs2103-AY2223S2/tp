@@ -183,4 +183,5 @@ public class ParserUtil {
         int startMinute = Integer.parseInt(time[1]);
         return LocalDateTime.of(year, month, day, startHour, startMinute);
     }
+
 }

@@ -192,7 +192,8 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<PolicyTag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<PolicyTag> expectedTagSet = new HashSet<PolicyTag>(Arrays.asList(new PolicyTag(VALID_TAG_1), new PolicyTag(VALID_TAG_2)));
+        Set<PolicyTag> expectedTagSet = new HashSet<PolicyTag>(Arrays.asList(new PolicyTag(VALID_TAG_1),
+            new PolicyTag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
     }

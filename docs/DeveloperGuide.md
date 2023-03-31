@@ -219,6 +219,23 @@ The parsing and execution of FindMeeting command can be shown with the following
 sequence diagram:
 
 ### 5. Find Meeting Feature
+### 5.1 Update Meeting Feature
+
+The find meeting feature is handled by the following classes:
+* `FindMeetingCommandParser` - Checks that the command is in the right format, then
+  parses the input to extract PersonID, MeetingID and updated Meeting details.
+    * `FindMeetingCommandParser#parse()` is called and returns an
+      `FindMeetingCommand` object with the extracted PersonID, MeetingID
+* `FindMeetingCommand` - The update Meeting command that will be executed by FAid
+    * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()` method.
+
+Just like other commands, the `Command#execute()` method of `FindMeetingCommand` is handled by
+`Logic` component. Please refer to the 'Logic component' under 'Design' for more
+information on how the `Logic` component handles a command.
+
+The parsing and execution of FindMeeting command can be shown with the following
+sequence diagram:
+
 ![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
 
 ### 6. Policy Tag Feature
@@ -237,7 +254,7 @@ under an existing `Person`.
 The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
 `FindPolicyCommandParser#parse()` is called, which returns an `FindPolicyCommand` object.
 
-* `FindPolicyCommandParser`: 
+* `FindPolicyCommandParser`:
   * checks that the command contains `FindPolicyCommand.COMMAND_WORD`.
   * checks that the arguments given are Strings.
 * `FindPolicyCommand`:
@@ -332,24 +349,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Update Meeting Feature
 
-The find meeting feature is handled by the following classes:
-* `FindMeetingCommandParser` - Checks that the command is in the right format, then
-  parses the input to extract PersonID, MeetingID and updated Meeting details.
-    * `FindMeetingCommandParser#parse()` is called and returns an
-      `FindMeetingCommand` object with the extracted PersonID, MeetingID
-* `FindMeetingCommand` - The update Meeting command that will be executed by FAid
-    * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()` method.
-
-Just like other commands, the `Command#execute()` method of `FindMeetingCommand` is handled by
-`Logic` component. Please refer to the 'Logic component' under 'Design' for more
-information on how the `Logic` component handles a command.
-
-The parsing and execution of FindMeeting command can be shown with the following
-sequence diagram:
-
-![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

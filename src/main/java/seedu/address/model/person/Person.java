@@ -1,3 +1,4 @@
+
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -44,7 +45,8 @@ public class Person {
     /**
      * Overloaded constructor to take in meetings as an argument
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<PolicyTag> tags, ArrayList<Meeting> meetings) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<PolicyTag> tags,
+                  ArrayList<Meeting> meetings) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -90,9 +92,11 @@ public class Person {
     public Meeting getMeeting(int index) {
         return this.meetings.get(index);
     }
+
     public void setMeeting(int index, Meeting m) {
         this.meetings.set(index, m);
     }
+
     /**
      * Gets the most recent meeting that the person has
      */
