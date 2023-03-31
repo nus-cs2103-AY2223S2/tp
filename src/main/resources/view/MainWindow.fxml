@@ -38,12 +38,14 @@
             <VBox prefHeight="0.0" prefWidth="0.0">
               <children>
                 <StackPane fx:id="leftPanelPlaceholder" minWidth="50.0" styleClass="panel" VBox.vgrow="ALWAYS" />
+                <TextFlow fx:id="leftFilterText" />
               </children>
             </VBox>
             <VBox prefHeight="0.0" prefWidth="0.0">
               <children>
                 <StackPane prefHeight="110" minHeight="110" minWidth="50.0" fx:id="rightPanelTitlePlaceholder" />
                 <StackPane fx:id="rightPanelPlaceholder" styleClass="panel" VBox.vgrow="ALWAYS" />
+                <TextFlow fx:id="rightFilterText" />
               </children>
             </VBox>
           </items>

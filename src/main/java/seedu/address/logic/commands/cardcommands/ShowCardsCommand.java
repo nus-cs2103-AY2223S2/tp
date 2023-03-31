@@ -28,6 +28,7 @@ public class ShowCardsCommand extends Command {
         Optional<Deck> selectedDeck = model.getSelectedDeck();
         assert selectedDeck.isPresent() : MESSAGE_NO_SELECTED_DECK;
         model.updateFilteredCardList(PREDICATE_SHOW_ALL_CARDS.and(new CardInDeckPredicate(selectedDeck.get())));
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS,
+                false, false, false, false, false, false, false, false, true, false);
     }
 }

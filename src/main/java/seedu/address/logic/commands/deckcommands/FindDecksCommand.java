@@ -39,7 +39,8 @@ public class FindDecksCommand extends Command {
         requireNonNull(model);
         model.updateFilteredDeckList(deckPredicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_DECKS_LISTED_OVERVIEW, model.getFilteredDeckList().size()));
+                String.format(Messages.MESSAGE_DECKS_LISTED_OVERVIEW, model.getFilteredDeckList().size()),
+                false, false, false, false, false, false, false, true, false, false);
     }
 
     @Override

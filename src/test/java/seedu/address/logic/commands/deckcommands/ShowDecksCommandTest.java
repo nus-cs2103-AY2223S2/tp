@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -26,13 +27,17 @@ public class ShowDecksCommandTest {
 
     @Test
     public void execute_deckListIsNotFiltered_showsSameDeckList() {
+        CommandResult expectedCommandResult = new CommandResult(
+                ShowDecksCommand.MESSAGE_SUCCESS, false, false, false, false, false, false, false, false, false, true);
         expectedModel.updateFilteredDeckList(Model.PREDICATE_SHOW_ALL_DECKS);
-        assertCommandSuccess(new ShowDecksCommand(), model, ShowDecksCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ShowDecksCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_deckListIsFiltered_showsEverything() {
+        CommandResult expectedCommandResult = new CommandResult(
+                ShowDecksCommand.MESSAGE_SUCCESS, false, false, false, false, false, false, false, false, false, true);
         expectedModel.updateFilteredDeckList(Model.PREDICATE_SHOW_ALL_DECKS);
-        assertCommandSuccess(new ShowDecksCommand(), model, ShowDecksCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ShowDecksCommand(), model, expectedCommandResult, expectedModel);
     }
 }

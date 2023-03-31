@@ -35,6 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final Text MAIN_TITLE = new Text("Main");
     private static final Text REVIEW_TITLE = new Text("Review");
     private static final ObservableList<String> EMPTY_TITLE = FXCollections.observableArrayList("");
+    private static final String FILTER_DECK_PREFIX = "Finding Decks with keyword: ";
+    private static final String FILTER_CARD_PREFIX = "Finding Cards with keyword: ";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -71,6 +73,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TextFlow titlePanel;
+
+    @FXML
+    private TextFlow leftFilterText;
+
+    @FXML
+    private TextFlow rightFilterText;
 
 
 
@@ -257,8 +265,46 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void updateDeckTitle() {
         rightPanelTitlePlaceholder.getChildren().clear();
+        rightPanelTitlePlaceholder.getChildren().clear();
         rightTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
+    }
+
+    /**
+     * Gets the argument from a command
+     */
+    private String getArgs(String commandText) {
+        return commandText.split(" ")[1];
+    }
+
+    /**
+     * Displays the find parameters of cards
+     */
+    public void handleFindCards(String commandText) {
+        Text args = new Text(FILTER_CARD_PREFIX + getArgs(commandText));
+        rightFilterText.getChildren().add(args);
+    }
+
+    /**
+     * Displays the find parameters of decks
+     */
+    public void handleFindDecks(String commandText) {
+        Text args = new Text(FILTER_DECK_PREFIX + getArgs(commandText));
+        leftFilterText.getChildren().add(args);
+    }
+
+    /**
+     * Hides the find parameters of cards
+     */
+    public void handleShowCards() {
+        rightFilterText.getChildren().clear();
+    }
+
+    /**
+     * Hides the find parameters of decks
+     */
+    public void handleShowDecks() {
+        leftFilterText.getChildren().clear();
     }
 
     /**
@@ -271,6 +317,22 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.isFindCards()) {
+                handleFindCards(commandText);
+            }
+
+            if (commandResult.isFindDecks()) {
+                handleFindDecks(commandText);
+            }
+
+            if (commandResult.isShowCards()) {
+                handleShowCards();
+            }
+
+            if (commandResult.isShowDecks()) {
+                handleShowDecks();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.deckcommands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCards.getTypicalMasterDeck;
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.commandresult.CommandResult;
-import seedu.address.logic.commands.deckcommands.UnselectDeckCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -24,7 +23,7 @@ public class UnselectDeckCommandTest {
 
         CommandResult expectedCommandResult = new CommandResult(
                 UnselectDeckCommand.MESSAGE_SUCCESS, false, false, false,
-                false, false, true);
+                false, false, true, false, false, false, false);
 
         expectedModel.unselectDeck();
 

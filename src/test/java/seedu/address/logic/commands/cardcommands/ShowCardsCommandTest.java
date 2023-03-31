@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.commandresult.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -29,15 +30,19 @@ public class ShowCardsCommandTest {
     public void execute_cardListIsNotFiltered_showsSameCardList() {
         expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
         expectedModel.selectDeck(INDEX_FIRST);
+        CommandResult expectedCommandResult = new CommandResult(
+                ShowCardsCommand.MESSAGE_SUCCESS, false, false, false, false, false, false, false, false, true, false);
         model.selectDeck(INDEX_FIRST);
-        assertCommandSuccess(new ShowCardsCommand(), model, ShowCardsCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ShowCardsCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_cardListIsFiltered_showsEverything() {
         expectedModel.updateFilteredCardList(Model.PREDICATE_SHOW_ALL_CARDS);
         expectedModel.selectDeck(INDEX_FIRST);
+        CommandResult expectedCommandResult = new CommandResult(
+                ShowCardsCommand.MESSAGE_SUCCESS, false, false, false, false, false, false, false, false, true, false);
         model.selectDeck(INDEX_FIRST);
-        assertCommandSuccess(new ShowCardsCommand(), model, ShowCardsCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ShowCardsCommand(), model, expectedCommandResult, expectedModel);
     }
 }
