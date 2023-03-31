@@ -473,7 +473,7 @@ patient delete <PATIENT_ID>
 
 ##### Example
 
-* `patent delete 7`
+* `patient delete 7`
 
 Output:
 
@@ -481,7 +481,7 @@ Output:
 [INFO] Deleted Patient: John Der
 ```
 
-#### `clear` - Delete a patient
+#### `clear` - Clear Patients
 
 Deletes all Patients from VMS. It is for users to clear the dummy patients out from VMS
 
@@ -493,7 +493,7 @@ patient clear
 
 ##### Example
 
-* `patent clear`
+* `patient clear`
 
 Output:
 
@@ -645,19 +645,19 @@ vaccination delete <var>VACCINATION</var> [--force <var>IS_FORCE</var>]
 Examples follow after vaccination clear and then add command examples.
 
 ```text
-vaccination 1
+vaccination delete 1
 ```
 
 ```text
-vaccination INDEX::1
+vaccination delete INDEX::1
 ```
 
 ```text
-vaccination ABC VAX
+vaccination delete ABC VAX
 ```
 
 ```text
-vaccination NAME::ABC VAX
+vaccination delete NAME::ABC VAX
 ```
 
 Output:<br>
@@ -817,28 +817,6 @@ appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 
 <br></br>
 
-#### `delete` - Delete an appointment
-
-Removes the specified appointment from the appointment manager.
-
-##### Syntax
-
-```text
-appointment delete INDEX
-```
-
-* <code><var>INDEX</var></code> : `<Index>`
-
-##### Example
-
-* `appointment delete 5`
-
-##### Restrictions
-
-* The index must be an existing index in the appointment manager.
-
-<br></br>
-
 #### `edit` - Edit an appointment
 
 Edits the details of an existing appointment.
@@ -858,7 +836,7 @@ appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
 
 ##### Example
 
-* `appointment edit 1 --p 5 --s 2023-03-05 0700 --e 2023-03-05 0800 --v Dose 1 (Pfizer)`
+* `appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfizer)`
 
 ##### Restrictions
 
@@ -958,6 +936,28 @@ appointment unmark INDEX
 
 * The index must be an existing index in the appointment manager.
 * The specified appointment should already be done.
+
+<br></br>
+
+#### `delete` - Delete an appointment
+
+Removes the specified appointment from the appointment manager.
+
+##### Syntax
+
+```text
+appointment delete INDEX
+```
+
+* <code><var>INDEX</var></code> : `<Index>`
+
+##### Example
+
+* `appointment delete 5`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
 
 <br></br>
 
