@@ -216,22 +216,20 @@ Examples:
 
 - `remark 2'
 
-[//]: # (<p align=center>)
+<p align=center>
+    <img alt="remark before" src="images/user-guide/remark_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>remark</code> command</i>
+</p>
 
-[//]: # (    <img alt="remark before" src="images/user-guide/remark_before.jpg" />)
+<p align=center>
+    <img alt="remark after" src="images/user-guide/remark_during.jpg" />
+    <br><i><b>Above:</b> After pressing Ctrl + S <code>remark</code> command</i>
+</p>
 
-[//]: # (    <br><i><b>Above:</b> Before entering <code>remark</code> command</i>)
-
-[//]: # (</p>)
-
-[//]: # ()
-[//]: # (<p align=center>)
-
-[//]: # (    <img alt="remark after" src="images/user-guide/remark_after.jpg" />)
-
-[//]: # (    <br><i><b>Above:</b> After entering <code>remark</code> command</i>)
-
-[//]: # (</p>)
+<p align=center>
+    <img alt="remark during" src="images/user-guide/remark_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>remark</code> command</i>
+</p>
 
 [↑ Back to top](#table-of-contents)
 
@@ -267,11 +265,11 @@ Examples:
 Finds entries of students based on a keyword in the field that you want. <br>
 
 The `find` and `filter` command allows you to match keywords or partial keywords with the entries, for example:<br><br>
-`find Sh` displays the students with names which contain `sh` in them, such as `Shaun` or `Amresh`.<br>
+`find Sh` displays the students with names which contain `sh` in them, such as `Shaun` or `Amresh`.<br><br>
 This applies to all fields EXCEPT tags and modules, where you will have to enter and find them by the 
-tags and modules in full. <br>
-the `find` command allows you to hone in on an entry that matches ALL your criteria, but `filter` will also show you 
-those who only match with some criteria.
+tags and modules in full. <br><br>
+the `find` command allows you to hone in on an entry that matches **all** your `FIELD` and `KEYWORDS`
+, but `filter` will also show you those who match with **at least one** of the criteria.
 
 > Format: <br>
 > `find FIELD... KEYWORDS...` <br>
@@ -290,17 +288,17 @@ those who only match with some criteria.
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:** No input in the `FIELD` defaults to finding by name.
 
 </div>
 
 Examples:
 
 - `find Sh` will display the students named "Shao Hong" & "Shaun"
-- `find a/ pas` will display students who stay at places which names that contain `pas` such as `Pasir Ris`
-- `find t/ URGENT` will display students who have the exact tag `URGENT`
-- `find m/ CS2101` will display students who have the exact module `CS2101`
+- `find a/pas` will display students who stay at places which names that contain `pas` such as `Pasir Ris`
+- `filter t/URGENT` will display students who have the exact tag `URGENT`
+- `filter m/CS2101` will display students who have the exact module `CS2101`
 
+**Using the following input fields `find n/a m/CS2103T`:**
 <p align=center>
     <img alt="find before" src="images/user-guide/find_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>find</code> command</i>
@@ -310,6 +308,20 @@ Examples:
     <img alt="find after" src="images/user-guide/find_after.jpg" />
     <br><i><b>Above:</b> After entering <code>find</code> command</i>
 </p>
+
+:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
+<p align=center>
+    <img alt="filter before" src="images/user-guide/filter_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>filter</code> command</i>
+</p>
+
+<p align=center>
+    <img alt="filter after" src="images/user-guide/filter_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>filter</code> command</i>
+</p>
+
+:bulb: **Note:** Here, other entries that match some criteria like `Roy Balakrishnan`
+are shown too.
 
 [↑ Back to top](#table-of-contents)
 
