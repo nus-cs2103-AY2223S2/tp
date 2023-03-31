@@ -1,0 +1,143 @@
+{
+  "_comment": "ExpressLibrary save file which contains the same Person and Book values as in TypicalExpressLibrary#getTypicalExpressLibrary()",
+  "persons": [
+    {
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "books": [],
+      "tagged": ["friends"]
+    },
+    {
+      "name": "Benson Meier",
+      "phone": "98765432",
+      "email": "johnd@example.com",
+      "address": "311, Clementi Ave 2, #02-25",
+      "books": [],
+      "tagged": ["owesMoney", "friends"]
+    },
+    {
+      "name": "Carl Kurz",
+      "phone": "95352563",
+      "email": "heinz@example.com",
+      "address": "wall street",
+      "books": [],
+      "tagged": []
+    },
+    {
+      "name": "Daniel Meier",
+      "phone": "87652533",
+      "email": "cornelia@example.com",
+      "address": "10th street",
+      "books": [],
+      "tagged": ["friends"]
+    },
+    {
+      "name": "Elle Meyer",
+      "phone": "9482224",
+      "email": "werner@example.com",
+      "address": "michegan ave",
+      "books": [],
+      "tagged": []
+    },
+    {
+      "name": "Fiona Kunz",
+      "phone": "9482427",
+      "email": "lydia@example.com",
+      "address": "little tokyo",
+      "books": [],
+      "tagged": []
+    },
+    {
+      "name": "George Best",
+      "phone": "9482442",
+      "email": "anna@example.com",
+      "address": "4th street",
+      "books": [],
+      "tagged": []
+    }
+  ],
+  "books": [
+    {
+      "title": "A Game of Thrones",
+      "author": "George RR Martin",
+      "isbn": "9780553103540",
+      "borrowDate": "",
+      "dueDate": "",
+      "isBorrowed": false
+    },
+    {
+      "title": "Beloved",
+      "author": "Toni Morrison",
+      "isbn": "9781400033416",
+      "borrowDate": "",
+      "dueDate": "",
+      "isBorrowed": false
+    },
+    {
+      "title": "Crime and Punishment",
+      "author": "Fyodor Dostoevsky",
+      "isbn": "9780486415871",
+      "borrowDate": "",
+      "dueDate": "",
+      "isBorrowed": false
+    },
+    {
+      "title": "Dune",
+      "author": "Frank Herbert",
+      "isbn": "9780441172719",
+      "borrowDate": "",
+      "dueDate": "",
+      "isBorrowed": false
+    },
+    {
+      "title": "Emma",
+      "author": "Jane Austen",
+      "isbn": "9780141439587",
+      "borrowDate": "",
+      "dueDate": "",
+      "isBorrowed": false
+    },
+    {
+      "title": "Frankenstein",
+      "author": "Mary Shelley",
+      "isbn": "9780486282114",
+      "borrowDate": "",
+      "dueDate": "",
+      "isBorrowed": false
+    },
+    {
+      "title": "Great Gatsby",
+      "author": "F Scott Fitzgerald",
+      "isbn": "9780743273565",
+      "borrowDate": "",
+      "dueDate": "",
+      "isBorrowed": false
+    },
+    {
+      "title": "Heart of Darkness",
+      "author": "Joseph Conrad",
+      "isbn": "9780141441672",
+      "borrowDate": "",
+      "dueDate": "",
+      "isBorrowed": false
+    },
+    {
+      "title": "Invisible Man",
+      "author": "Ralph Ellison",
+      "isbn": "9780679732761",
+      "borrowDate": "",
+      "dueDate": "",
+      "isBorrowed": false
+    },
+    {
+      "title": "Jane Eyre",
+      "author": "Charlotte Bronte",
+      "isbn": "9780141441146",
+      "borrowDate": "",
+      "dueDate": "",
+      "isBorrowed": false
+    }
+  ]
+}

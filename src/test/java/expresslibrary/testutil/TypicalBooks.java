@@ -30,10 +30,11 @@ public class TypicalBooks {
     public static final Book JANE_EYRE = new Book(new Title("Jane Eyre"), new Author("Charlotte Bronte"),
             new Isbn("9780141441146"));
 
-    private TypicalBooks() {} // prevents instantiation
+    private TypicalBooks() {
+    } // prevents instantiation
 
     public static Book[] getTypicalBooks() {
-        return new Book[] {A_GAME_OF_THRONES, BELOVED, CRIME_AND_PUNISHMENT, DUNE, EMMA, FRANKENSTEIN,
-            GREAT_GATSBY, HEART_OF_DARKNESS, INVISIBLE_MAN, JANE_EYRE};
+        return new Book[] { A_GAME_OF_THRONES, BELOVED, CRIME_AND_PUNISHMENT, DUNE, EMMA, FRANKENSTEIN,
+            GREAT_GATSBY, HEART_OF_DARKNESS, INVISIBLE_MAN, JANE_EYRE };
     }
 }
