@@ -285,11 +285,11 @@ Condition
 
 Filter the parameters as specified by the flag.
 
-Format: `:f [-t <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]... `
+Format: `:f [-w <"keyword>"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]... `
 
 | Parameter    | Detail                                          | Example        |
 | ------------ | ----------------------------------------------- | -------------- |
-| `<title>`    | Title of task to filter                         | `"CS2103T UG"` |
+| `<keyword>`    | Keyword of task to filter                         | `"CS2103T UG"` |
 | `<date>` | date of the task to filter before or after  | `2023-03-31`   |
 | `<status>`   | Status of task to filter                        | `2`            |
 | `<priority>` | Priority level of task to filter                | `1`            |
@@ -297,7 +297,7 @@ Format: `:f [-t <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priori
 
 
 Example of command
-1. `:f -t "quiz"` filter for tasks with "quiz" as title
+1. `:f -w "quiz"` filter for tasks with "quiz" as title
 2. `:f -d --before 2023-04-05` filter for tasks before 2023-04-05
 3. `:f -s 1` filter for tasks with status of in_progress 
 4. `:f -p 1` filter for tasks with priority of urgent 
