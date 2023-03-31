@@ -24,6 +24,7 @@ import seedu.address.model.person.patient.PatientContainsKeywordsPredicate;
 public class FindPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "find-ptn";
+    public static final String SHORTHAND_COMMAND_WORD = "fp";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds a patient in the address book. "
             + "Parameters: "

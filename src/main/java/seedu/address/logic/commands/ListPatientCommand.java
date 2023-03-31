@@ -11,6 +11,8 @@ import seedu.address.model.Model;
 public class ListPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "list-ptn";
+    public static final String SHORTHAND_COMMAND_WORD = "lsp";
+
 
     public static final String MESSAGE_SUCCESS = "Listed all patients";
 

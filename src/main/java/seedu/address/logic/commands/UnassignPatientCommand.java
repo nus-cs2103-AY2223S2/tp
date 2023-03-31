@@ -20,6 +20,8 @@ import seedu.address.model.person.patient.Patient;
 public class UnassignPatientCommand extends Command {
 
     public static final String COMMAND_WORD = "unassign-ptn";
+    public static final String SHORTHAND_COMMAND_WORD = "uasn";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the assignment of "
