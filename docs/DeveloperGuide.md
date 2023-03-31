@@ -367,7 +367,7 @@ The `UI` component,
     <b>Figure 4.3.1</b> Activity Diagram for UP and DOWN keys
 </div>
 
-
+<br>
 The UP and DOWN keys have been mapped to return previously typed commands by the user.<br> <br>
 The above activity diagram does not include the mapping of the UP and DOWN keys to return previously typed commands by the user in order to avoid excessive complexity and maintain clarity. It is important to note that when the user has pre-existing text in the input field or has made edits to previous commands, the UP and DOWN keys will function as expected to prevent accidental deletion of user input.
 
