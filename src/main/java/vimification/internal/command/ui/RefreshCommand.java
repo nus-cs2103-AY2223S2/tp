@@ -6,6 +6,6 @@ import vimification.ui.MainScreen;
 public class RefreshCommand extends UiCommand {
 
     public CommandResult execute(MainScreen mainScreen) {
-        return new CommandResult("");
+        return new CommandResult("Refreshed Task List.");
     }
 }

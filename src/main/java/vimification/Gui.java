@@ -19,6 +19,7 @@ import vimification.model.LogicTaskList;
 import vimification.model.MacroMap;
 import vimification.model.TaskListRef;
 import vimification.model.UserPrefs;
+import vimification.model.util.SampleDataUtil;
 import vimification.storage.JsonTaskListRefStorage;
 import vimification.storage.JsonMacroMapStorage;
 import vimification.storage.JsonUserPrefsStorage;
