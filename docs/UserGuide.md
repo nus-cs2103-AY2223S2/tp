@@ -289,13 +289,15 @@ Example: `make char John Cena` -> `m c John Cena`
 ## Command summary
 
 | Action                        | Format, Examples                                                      |
-|-------------------------------|-----------------------------------------------------------------------|
+|---------------------|-------------------------|
 | **Make**                      | `make CLASSIFICATION NAME` <br> e.g., `make char BigMcLargeHuge`      |
 | **Clear**                     | `clear`                                                               |
 | **Delete**                    | `kill CLASSIFICATION NAME`<br> e.g., `delete char BigMcLargeHuge`     |
 | **Enter Edit Mode**           | `edit CLASSIFICATION NAME`<br> e.g.,`edit char BigMcLargeHuge`        |
 | **Edit field (in Edit Mode)** | `FIELD NEW_VALUE` <br> e.g., `name SmallMcTinyMicro`                  |
 | **Find**                      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Large`                 |
-| **Template**                  | `template TEMPLATE_NAME NAME` <br> e.g. `template Wrestler John Cena` |`                                        |NAME`                                         | NAME`                                        |`                                         |`                                         |
-| **List entities**             | `view CLASSIFICATION` <br> e.g., `view items`                         |
+| **Template**                  | `template TEMPLATE_NAME NAME` <br> e.g. `template Wrestler John Cena` |
+| **View** | `view CLASSIFICATION NAME` <br> e.g. `view char John Cena` |
+| **List entities**             | `list CLASSIFICATION` <br> e.g., `list item`                         |
 | **Help**                      | `help`                                                                |
+| **Filter** | `filter TAG [MORE_TAG]` <br> e.g., `filter elite` |
