@@ -220,6 +220,16 @@ Example: `deletepart Cylinder Head` deletes the part 'Cylinder Head' and all the
 ---
 ### Actions
 
+### Finds the number of appointments on a specified date: `totalAppointment`
+
+Counts how many customer appointments are there on a specified date.
+
+Format: `totalAppointment d\DATE`
+
+* Finds  at the specified `DATE`.
+* The `DATE` must follow a YYYY-MM-DD format. The range of allowable years is 0001 to 9999.
+
+
 ### Undo a previously executed command: `undo`
 
 Undoes the previously typed command
@@ -229,16 +239,32 @@ Format: `undo`
 Example flow:
 1. `add customer n/john p/91238765 e/john@gmail.com a/kent ridge street, block 123, #01-01`
 2. `undo`
-3. *System deletes previously added customer*
+
+`undo` will reverse the add command, causing the system to delete previously added customer. 
+
+_See below for a list of commands that `undo` applies to_
 
 ### Redo a previously executed command: `redo`
 
-Repeats the execution of the previously typed command
-
+Restores most recent command that was undone using undo. If you use a command that is not undo or redo, while in the midst of undoing, there will no longer be commands to redo.
 Format: `redo`
 
-Example flow:
-to be updated
+Examples:
+
+- `deletecustomer 3`  
+  `undo`  
+  `redo`
+
+After deleting a customer at Index 3 and using `undo` to reverse the deletion of the customer, using `redo` will restore the customer back into the list.
+
+<div markdown="block" class="alert alert-info">
+
+**Commands that you can undo/redo:**<br>
+* `add` after successfully adding a contact
+* `delete`
+* `edit`
+* `undo`/`redo` i.e. you can `undo` a `redo`, and you can `redo` an `undo`
+</div>
 
 ---
 ### Others
@@ -305,6 +331,7 @@ Command summary may be using outdated syntax please refer to guide above
 | **View specific Vehicle/Customer/Part/Appointment**     | `view(vehicle/customer/part/appointment) ID`<br> e.g., `view appointment 56`                                                                                                    |
 | **Edit a specific Vehicle/Customer/Part/Appointment**   | `edit(vehicle/customer/part/appointment) ID [?/PARAM] …​`<br> e.g., `edit customer 1 p/91234567 e/johndoe@example.com`                                                          |
 | **Delete a specific Vehicle/Customer/Part/Appointment** | `delete(vehicle/customer/part/appointment) ID`<br> e.g., `delete customer 12`                                                                                                   |
+| **Total appointment on a specified date**               | `TotalAppointment d/DATE`                                                                                                                                                       |
 | **Undo**                                                | `undo`                                                                                                                                                                          |
 | **Redo**                                                | `redo`                                                                                                                                                                          |
 | **Exit**                                                | `exit`                                                                                                                                                                          |

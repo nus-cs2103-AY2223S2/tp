@@ -376,11 +376,11 @@ AutoM8 provides the necessary features that support the management of customer, 
   Use case ends.
   <br/><br/>
 
-**Use case: UC03 - Listing all customer appointments**
+**Use case: UC03 - Listing all services**
 
 **MSS**
-1. User requests to list out all customer appointments.
-2. AutoM8 shows a list of all customer appointments.
+1. User requests to list out all services.
+2. AutoM8 shows a list of all services.
 
    Use case ends.
 
@@ -390,35 +390,8 @@ AutoM8 provides the necessary features that support the management of customer, 
   Use case ends.
   <br/><br/>
 
-**Use case: UC04 - Listing all spare parts**
 
-**MSS**
-1. User requests to list out all spare parts.
-2. AutoM8 shows a list of all spare parts.
-
-   Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-  Use case ends.
-  <br/><br/>
-
-**Use case: UC05 - Listing all service**
-
-**MSS**
-1. User requests to list out all service .
-2. AutoM8 shows a list of all service.
-
-   Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-  Use case ends.
-  <br/><br/>
-
-**Use case: UC06 - Adding a customer**
+**Use case: UC04 - Adding a customer**
 
 **MSS**
 
@@ -435,7 +408,7 @@ AutoM8 provides the necessary features that support the management of customer, 
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC07 - Adding a vehicle**
+**Use case: UC05 - Adding a vehicle**
 
 **MSS**
 
@@ -452,7 +425,7 @@ AutoM8 provides the necessary features that support the management of customer, 
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC08 - Adding a customer appointment**
+**Use case: UC06 - Adding a customer appointment**
 
 **MSS**
 
@@ -469,7 +442,7 @@ AutoM8 provides the necessary features that support the management of customer, 
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC09 - Adding a service to a vehicle**
+**Use case: UC07 - Adding a service to a vehicle**
 
 **MSS**
 
@@ -486,7 +459,7 @@ AutoM8 provides the necessary features that support the management of customer, 
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC10 - Adding a spare part**
+**Use case: UC08 - Adding a spare part**
 
 **MSS**
 
@@ -504,7 +477,7 @@ AutoM8 provides the necessary features that support the management of customer, 
       <br/><br/>
 
 
-**Use case: UC11 - Editing a customer's details**
+**Use case: UC09 - Editing a customer's details**
 
 **MSS**
 
@@ -525,7 +498,7 @@ AutoM8 provides the necessary features that support the management of customer, 
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC12 - Editing a vehicle's details**
+**Use case: UC10 - Editing a vehicle's details**
 
 **MSS**
 
@@ -546,7 +519,7 @@ AutoM8 provides the necessary features that support the management of customer, 
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC13 - Editing spare part's details**
+**Use case: UC11 - Editing spare part's details**
 
 **MSS**
 
@@ -567,28 +540,8 @@ AutoM8 provides the necessary features that support the management of customer, 
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC14 - Editing an appointment detail**
 
-**MSS**
-
-1. User requests to <u>list appointment as contacts (UC03)</u>.
-2. AutoM8 shows a list of appointments.
-3. User requests to edit an appointment on the list.
-4. User inputs the updated information.
-5. AutoM8 updates the appointment details.
-
-   Use case end.
-
-**Extensions**
-- 2a. The list is empty.
-  Use case ends.
-- 3a. The provided index is invalid.
-    - 3a1. AutoM8 displays an error message.
-
-      Use case resumes at step 2.
-      <br/><br/>
-
-**Use case: UC15 - Editing a service detail**
+**Use case: UC12 - Editing a service detail**
 
 **MSS**
 
@@ -608,6 +561,40 @@ AutoM8 provides the necessary features that support the management of customer, 
 
       Use case resumes at step 2.
       <br/><br/>
+
+**Use case: UC13 - Undo previous command**
+
+**MSS**
+1.  User requests to undo command
+2.  System reverts list to its previous state
+
+   Use case ends.
+
+**Extensions**
+- * 2a. There is no previous command
+
+**Use case: UC14 - Redo previous command**
+
+**MSS**
+1. User requests to redo command
+2.  System reverts the list to its previous undone state
+
+Use case ends.
+
+**Extensions**
+- * 2a. There is no previous undone command
+
+**Use case: UC15 - Finding total appointment in on a specified date**
+
+**MSS**
+1. User requests to find number of appointments on a certain date
+2. AutoM8 shows an integer indicating how many appointments there are on that particular date
+
+Use case ends.
+
+**Extensions**
+- * 1a. The provided date is invalid
+      - 1a1. AutoM8 displays an error message.
 
 **Use case: UC16 - Deleting a customer**
 
@@ -647,13 +634,13 @@ AutoM8 provides the necessary features that support the management of customer, 
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC18 - Deleting a customer appointment**
+**Use case: UC18 - Deleting a Service**
 
 **MSS**
-1. User requests to <u>list of appointments (UC03)</u>.
-2. AutoM8 shows a list of appointments.
-3. User requests to delete an appointment at a given index.
-4. AutoM8 deletes the appointment at the index.
+1. User requests to <u>list of services (UC03)</u>.
+2. AutoM8 shows a list of services.
+3. User requests to delete a service at a given index.
+4. AutoM8 deletes the service at the index.
 
    Use case ends.
 
@@ -725,6 +712,26 @@ AutoM8 provides the necessary features that support the management of customer, 
       Use case resumes at step 2.
       <br/><br/>
 
+
+**Use case: UC22 - Find a vehicle**
+
+**MSS**
+
+1. User requests to <u>list of vehicle as contacts (UC02)</u>.
+2. AutoM8 shows a list of vehicle.
+3. User requests to find vehicle on the list.
+4. AutoM8 find vehicle according to user's requirements.
+
+   Use case end.
+
+**Extensions**
+- 2a. The list is empty.
+  Use case ends.
+- 3a. The provided index is invalid.
+    - 3a1. AutoM8 displays an error message.
+
+      Use case resumes at step 2.
+      <br/><br/>
 
 **Use case: UC22 - Find a vehicle**
 
