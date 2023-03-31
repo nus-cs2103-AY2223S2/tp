@@ -342,17 +342,6 @@ student.
 Examples:
 * `update-exam name/John index/1 grade/20/25`
 
-### Calculate grade:  `calculate-grade`
-
-Format: `calculate-grade [name/STUDENT_NAME] [subject/SUBJECT]`
-
-* Calculates the grade of a subject using the weightages and scores tracked by TutorPro and outputs the report.
-* the `[SUBJECT]` field matches the name and/or description of the tracked exam and factors the exam that matches the 
-description into the score calculation.
-* Should there be undefined weightages for exams, the overall report will state the grade as undefined. 
-
-Examples:
-* `calculate-grade name/John subject/Econs`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -384,7 +373,6 @@ Examples:
 | Remove an exam               | `delete-exam [name/STUDENT_NAME_1] [name/STUDENT_NAME_2].. [index/INDEX_OF_EXAM]`                                                                                    | `delete-exam name/John Doe index/1`                                                                                    |
 | Update an exam               | `update-exam [name/STUDENT_NAME] [index/INDEX_OF_EXAM] (optional)[exam/NEW_EXAM_NAME] (optional)[start/START_TIME] (optional)[end/END_TIME] (optional)[grade/GRADE]` | `update-exam name/John Doe index/1 exam/Math MYE`                                                                      |
 | View exams                   | `view-exam [name/STUDENT_NAME] (optional)[date/DATE] (optional)[exam/EXAM_NAME] (optional)[done/DONE_STATUS]`                                                        | `view-exam name/John Doe date/2023-05-01 exam/MYE done/`                                                               |
-| Calculate grade              | `calculate-grade [name/STUDENT_NAME] [subject/SUBJECT]`                                                                                                              | `calculate-grade name/John Doe subject/Math`                                                                           |
 
 ### List of Prefixes
 | Prefix      | Meaning     | Usage                                               | Example                           |
