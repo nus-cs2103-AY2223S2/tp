@@ -32,6 +32,9 @@ public class ModelManager implements Model {
     private final FilteredList<Employee> filteredEmployees;
     private final FilteredList<Department> filteredDepartments;
     private final FilteredList<Leave> filteredLeaves;
+    private final FilteredList<Employee> refreshedEmployees;
+    private final FilteredList<Department> refreshedDepartments;
+    private final FilteredList<Leave> refreshedLeaves;
     private final SortedList<Leave> sortedLeaves;
 
     /**
@@ -45,15 +48,19 @@ public class ModelManager implements Model {
         this.sudoHr = new SudoHr(sudoHr);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        filteredEmployees = new FilteredList<>(this.sudoHr.getEmployeeList());
-        filteredDepartments = new FilteredList<>(this.sudoHr.getDepartmentList());
-        filteredLeaves = new FilteredList<>(this.sudoHr.getLeavesList(), PREDICATE_SHOW_ALL_NON_EMPTY_LEAVES);
+        refreshedEmployees = new FilteredList<>(this.sudoHr.getEmployeeList(), (l) -> true);
+        refreshedDepartments = new FilteredList<>(this.sudoHr.getDepartmentList(), (l) -> true);
+        refreshedLeaves = new FilteredList<>(this.sudoHr.getLeavesList(), (l) -> true);
+        filteredEmployees = new FilteredList<>(refreshedEmployees);
+        filteredDepartments = new FilteredList<>(refreshedDepartments);
+        filteredLeaves = new FilteredList<>(refreshedLeaves, PREDICATE_SHOW_ALL_NON_EMPTY_LEAVES);
         sortedLeaves = new SortedList<>(this.filteredLeaves, new LeaveSortedByDateComparator());
     }
 
     public ModelManager() {
         this(new SudoHr(), new UserPrefs());
     }
+
 
     // =========== UserPrefs
     // ==================================================================================
@@ -89,6 +96,16 @@ public class ModelManager implements Model {
     public void setSudoHrFilePath(Path sudoHrFilePath) {
         requireNonNull(sudoHrFilePath);
         userPrefs.setSudoHrFilePath(sudoHrFilePath);
+    }
+
+    @Override
+    public void refresh() {
+        refreshedEmployees.setPredicate((e) -> false);
+        refreshedDepartments.setPredicate((d) -> false);
+        refreshedLeaves.setPredicate((l) -> false);
+        refreshedEmployees.setPredicate((e)->true);
+        refreshedDepartments.setPredicate((d)->true);
+        refreshedLeaves.setPredicate((l)->true);
     }
 
     // =========== SudoHr

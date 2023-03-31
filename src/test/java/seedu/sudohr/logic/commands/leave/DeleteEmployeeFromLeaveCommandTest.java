@@ -338,6 +338,11 @@ public class DeleteEmployeeFromLeaveCommandTest {
         public boolean checkEmployeeExists(Id id) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void refresh() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
