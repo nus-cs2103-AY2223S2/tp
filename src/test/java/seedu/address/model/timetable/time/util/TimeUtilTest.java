@@ -285,7 +285,6 @@ class TimeUtilTest {
         List<HourBlock> intervals = TimeUtil.getFreeCommonIntervals(Day.FRIDAY, timetables);
         List<TimePeriod> mergedIntervals = TimeUtil.mergeTimeSlots(intervals);
         assertFalse(mergedIntervals.isEmpty());
-        System.out.println(mergedIntervals);
         assertEquals(3, mergedIntervals.size());
         // expecting 8am-9am, 11am-7pm, 10pm - 11pm
         assertArrayEquals(new TimeBlock[]{
