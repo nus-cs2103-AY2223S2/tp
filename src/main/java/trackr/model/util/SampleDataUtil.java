@@ -15,7 +15,7 @@ import trackr.model.TaskList;
 import trackr.model.commons.Tag;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
-import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
@@ -98,9 +98,9 @@ public class SampleDataUtil {
 
     public static MenuItem[] getSampleMenuItems() {
         return new MenuItem[] {
-            new MenuItem(new ItemName("Chocolate Cookies"), new ItemPrice("5.00"), new ItemCost("1.20")),
-            new MenuItem(new ItemName("Cupcake"), new ItemPrice("6.20"), new ItemCost("1.10")),
-            new MenuItem(new ItemName("Bracelet"), new ItemPrice("10"), new ItemCost("0.5"))
+            new MenuItem(new ItemName("Chocolate Cookies"), new ItemSellingPrice("5.00"), new ItemCost("1.20")),
+            new MenuItem(new ItemName("Cupcake"), new ItemSellingPrice("6.20"), new ItemCost("1.10")),
+            new MenuItem(new ItemName("Bracelet"), new ItemSellingPrice("10"), new ItemCost("0.5"))
         };
     }
 

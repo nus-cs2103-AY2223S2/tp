@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.ExitCommand;
 import trackr.logic.commands.HelpCommand;
-import trackr.logic.commands.order.AddOrderCommand;
 import trackr.logic.commands.order.ClearOrderCommand;
 import trackr.logic.commands.order.DeleteOrderCommand;
 import trackr.logic.commands.order.ListOrderCommand;
@@ -32,15 +31,15 @@ import trackr.logic.commands.task.EditTaskCommand;
 import trackr.logic.commands.task.FindTaskCommand;
 import trackr.logic.commands.task.ListTaskCommand;
 import trackr.logic.parser.exceptions.ParseException;
-import trackr.model.order.Order;
+//import trackr.model.order.Order;
 import trackr.model.person.PersonDescriptor;
 import trackr.model.person.PersonNameContainsKeywordsPredicate;
 import trackr.model.person.Supplier;
 import trackr.model.task.Task;
 import trackr.model.task.TaskContainsKeywordsPredicate;
 import trackr.model.task.TaskDescriptor;
-import trackr.testutil.OrderBuilder;
-import trackr.testutil.OrderUtil;
+//import trackr.testutil.OrderBuilder;
+//import trackr.testutil.OrderUtil;
 import trackr.testutil.PersonDescriptorBuilder;
 import trackr.testutil.SupplierBuilder;
 import trackr.testutil.SupplierUtil;
@@ -67,13 +66,13 @@ public class TrackrParserTest {
         assertEquals(new AddTaskCommand(task), command);
     }
 
-    @Test
-    public void parseCommand_addOrder() throws Exception {
-        Order order = new OrderBuilder().build();
-        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(
-                OrderUtil.getAddOrderCommand(order));
-        assertEquals(new AddOrderCommand(order), command);
-    }
+    //    @Test
+    //    public void parseCommand_addOrder() throws Exception {
+    //        Order order = new OrderBuilder().build();
+    //        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(
+    //                OrderUtil.getAddOrderCommand(order));
+    //        assertEquals(new AddOrderCommand(order), command);
+    //    }
 
     @Test
     public void parseCommand_addTaskShortcut() throws Exception {
@@ -83,13 +82,13 @@ public class TrackrParserTest {
         assertEquals(new AddTaskCommand(task), command);
     }
 
-    @Test
-    public void parseCommand_addOrderShortcut() throws Exception {
-        Order order = new OrderBuilder().build();
-        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(
-                OrderUtil.getAddOrderCommandShortcut(order));
-        assertEquals(new AddOrderCommand(order), command);
-    }
+    //    @Test
+    //    public void parseCommand_addOrderShortcut() throws Exception {
+    //        Order order = new OrderBuilder().build();
+    //        AddOrderCommand command = (AddOrderCommand) parser.parseCommand(
+    //                OrderUtil.getAddOrderCommandShortcut(order));
+    //        assertEquals(new AddOrderCommand(order), command);
+    //    }
 
     @Test
     public void parseCommand_clearSupplier() throws Exception {

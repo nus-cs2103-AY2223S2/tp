@@ -33,4 +33,15 @@ public class Customer extends Person {
     public PersonAddress getCustomerAddress() {
         return getPersonAddress();
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getPersonName())
+                .append("; Phone: ")
+                .append(getPersonPhone())
+                .append("; Address: ")
+                .append(getPersonAddress());
+        return builder.toString();
+    }
 }

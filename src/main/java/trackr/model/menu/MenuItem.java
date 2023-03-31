@@ -15,14 +15,14 @@ public class MenuItem extends Item {
 
     // Data fields
     private final ItemName itemName;
-    private final ItemPrice itemPrice;
+    private final ItemSellingPrice itemPrice;
     private final ItemCost itemCost;
     private final ItemProfit itemProfit;
 
     /**
      * Every field must be present and not null.
      */
-    public MenuItem(ItemName itemName, ItemPrice itemPrice, ItemCost itemCost) {
+    public MenuItem(ItemName itemName, ItemSellingPrice itemPrice, ItemCost itemCost) {
         super(ModelEnum.Item);
         requireAllNonNull(itemName, itemPrice, itemCost);
         this.itemName = itemName;
@@ -35,7 +35,7 @@ public class MenuItem extends Item {
         return itemName;
     }
 
-    public ItemPrice getItemPrice() {
+    public ItemSellingPrice getItemPrice() {
         return itemPrice;
     }
 

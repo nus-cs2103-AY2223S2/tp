@@ -11,6 +11,7 @@ import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
+import trackr.model.menu.ItemPrice;
 import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
@@ -48,6 +49,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of orders */
     ObservableList<Order> getFilteredOrderList();
+
+    /** Returns cumulative profits */
+    ItemPrice getTotalProfits();
+
+    /** Returns cumulative sales/ revenue */
+    ItemPrice getTotalSales();
 
     /**
      * Returns the TaskList.

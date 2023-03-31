@@ -2,8 +2,8 @@ package trackr.testutil;
 
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
-import trackr.model.menu.ItemPrice;
 import trackr.model.menu.ItemProfit;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 
 /**
@@ -17,7 +17,7 @@ public class MenuItemBuilder {
 
     private ItemName itemName;
     private ItemCost itemCost;
-    private ItemPrice itemPrice;
+    private ItemSellingPrice itemPrice;
     private ItemProfit itemProfit;
 
     /**
@@ -26,7 +26,7 @@ public class MenuItemBuilder {
     public MenuItemBuilder() {
         itemName = new ItemName(DEFAULT_ITEM_NAME);
         itemCost = new ItemCost(DEFAULT_ITEM_COST);
-        itemPrice = new ItemPrice(DEFAULT_ITEM_PRICE);
+        itemPrice = new ItemSellingPrice(DEFAULT_ITEM_PRICE);
         itemProfit = new ItemProfit(itemPrice, itemCost);
     }
 
@@ -59,7 +59,7 @@ public class MenuItemBuilder {
      * Sets the {@code TaskStatus} of the {@code Task} that we are building.
      */
     public MenuItemBuilder withItemPrice(String itemPrice) {
-        this.itemPrice = new ItemPrice(itemPrice);
+        this.itemPrice = new ItemSellingPrice(itemPrice);
         return this;
     }
 

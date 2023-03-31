@@ -7,6 +7,11 @@ import java.util.Objects;
 
 import trackr.model.ModelEnum;
 import trackr.model.item.Item;
+import trackr.model.menu.ItemCost;
+import trackr.model.menu.ItemName;
+import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemSellingPrice;
+import trackr.model.menu.MenuItem;
 import trackr.model.person.Customer;
 
 /**
@@ -15,15 +20,36 @@ import trackr.model.person.Customer;
  */
 public class Order extends Item {
 
-    //Data fields
+    // Data fields
     private final OrderName orderName;
     private final OrderDeadline orderDeadline;
     private final OrderStatus orderStatus;
     private final OrderQuantity orderQuantity;
     private final LocalDateTime timeAdded;
 
-    //Customer
+    // Customer
     private final Customer customer;
+
+    // MenuItem
+    private final MenuItem orderItem;
+
+    /**
+     * Every field must be present and not null
+     */
+    public Order(MenuItem orderItem, OrderDeadline orderDeadline, OrderStatus orderStatus,
+                 OrderQuantity orderQuantity, Customer customer) {
+        super(ModelEnum.ORDER);
+        requireAllNonNull(orderItem, orderDeadline, orderQuantity, orderStatus, customer);
+        this.orderItem = orderItem;
+        this.orderName = new OrderName(orderItem
+                                            .getItemName()
+                                            .toString());
+        this.orderDeadline = orderDeadline;
+        this.orderStatus = orderStatus;
+        this.orderQuantity = orderQuantity;
+        this.customer = customer;
+        timeAdded = LocalDateTime.now();
+    }
 
     /**
      * Every field must be present and not null
@@ -32,6 +58,7 @@ public class Order extends Item {
                  OrderQuantity orderQuantity, Customer customer) {
         super(ModelEnum.ORDER);
         requireAllNonNull(orderName, orderDeadline, orderQuantity, orderStatus, customer);
+        this.orderItem = new MenuItem(new ItemName("INVALID"), new ItemSellingPrice("99.99"), new ItemCost("99.99"));
         this.orderName = orderName;
         this.orderDeadline = orderDeadline;
         this.orderStatus = orderStatus;
@@ -46,7 +73,8 @@ public class Order extends Item {
     public Order(OrderName orderName, OrderDeadline orderDeadline, OrderStatus orderStatus,
                  OrderQuantity orderQuantity, Customer customer, LocalDateTime timeAdded) {
         super(ModelEnum.ORDER);
-        requireAllNonNull(orderName, orderDeadline, orderStatus, customer);
+        requireAllNonNull(orderName, orderDeadline, orderQuantity, orderStatus, customer);
+        this.orderItem = new MenuItem(new ItemName("INVALID"), new ItemSellingPrice("99.99"), new ItemCost("99.99"));
         this.orderName = orderName;
         this.orderDeadline = orderDeadline;
         this.orderStatus = orderStatus;
@@ -55,6 +83,28 @@ public class Order extends Item {
         this.timeAdded = timeAdded;
     }
 
+
+    /**
+     * Every field must be present and not null
+     */
+    public Order(MenuItem orderItem, OrderDeadline orderDeadline, OrderStatus orderStatus,
+                 OrderQuantity orderQuantity, Customer customer, LocalDateTime timeAdded) {
+        super(ModelEnum.ORDER);
+        requireAllNonNull(orderItem, orderDeadline, orderStatus, customer);
+        this.orderItem = orderItem;
+        this.orderName = new OrderName(orderItem
+                                            .getItemName()
+                                            .toString());
+        this.orderDeadline = orderDeadline;
+        this.orderStatus = orderStatus;
+        this.orderQuantity = orderQuantity;
+        this.customer = customer;
+        this.timeAdded = timeAdded;
+    }
+
+    public MenuItem getOrderItem() {
+        return orderItem;
+    }
 
     public OrderName getOrderName() {
         return orderName;
@@ -72,11 +122,25 @@ public class Order extends Item {
         return orderQuantity;
     }
 
+
     public Customer getCustomer() {
         return customer;
     }
+
     public LocalDateTime getTimeAdded() {
         return timeAdded;
+    }
+
+    public ItemPrice getTotalProfit() {
+        return OrderUtil.getTotalProfit(orderQuantity, orderItem);
+    }
+
+    public ItemPrice getTotalCost() {
+        return OrderUtil.getTotalCost(orderQuantity, orderItem);
+    }
+
+    public ItemPrice getTotalRevenue() {
+        return OrderUtil.getTotalRevenue(orderQuantity, orderItem);
     }
 
     /**
@@ -162,6 +226,7 @@ public class Order extends Item {
         return otherOrder != null
                 && otherOrder.getCustomer().equals(this.getCustomer())
                 && otherOrder.getOrderName().equals(this.getOrderName())
+                && otherOrder.getOrderItem().equals(this.getOrderItem())
                 && otherOrder.getOrderDeadline().equals(this.getOrderDeadline())
                 && otherOrder.getOrderQuantity().equals(this.getOrderQuantity());
     }
@@ -185,6 +250,7 @@ public class Order extends Item {
         return otherOrder != null
                 && otherOrder.getCustomer().equals(this.getCustomer())
                 && otherOrder.getOrderName().equals(this.getOrderName())
+                && otherOrder.getOrderItem().equals(this.getOrderItem())
                 && otherOrder.getOrderDeadline().equals(this.getOrderDeadline())
                 && otherOrder.getOrderStatus().equals(this.getOrderStatus())
                 && otherOrder.getOrderQuantity().equals(this.getOrderQuantity());
@@ -210,5 +276,4 @@ public class Order extends Item {
                 .append(getCustomer());
         return builder.toString();
     }
-
 }

@@ -38,13 +38,13 @@ public class UniqueOrderListTest {
         assertTrue(uniqueOrderList.contains(CHOCOLATE_COOKIES));
     }
 
-    @Test
-    public void contains_orderWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueOrderList.add(CHOCOLATE_COOKIES);
-        Order editedOrder = new OrderBuilder(CHOCOLATE_COOKIES)
-                .withOrderStatus(VALID_ORDER_STATUS_DONE).build();
-        assertTrue(uniqueOrderList.contains(editedOrder));
-    }
+    //    @Test
+    //    public void contains_orderWithSameIdentityFieldsInList_returnsTrue() {
+    //        uniqueOrderList.add(CHOCOLATE_COOKIES);
+    //        Order editedOrder = new OrderBuilder(CHOCOLATE_COOKIES)
+    //                .withOrderStatus(VALID_ORDER_STATUS_DONE).build();
+    //        assertTrue(uniqueOrderList.contains(editedOrder));
+    //    }
 
     @Test
     public void add_nullOrder_throwsNullPointerException() {

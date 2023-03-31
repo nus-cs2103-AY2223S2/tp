@@ -38,7 +38,6 @@ Styles VBox and StackPane that contains elements in the MainWindow
      -fx-background-color: derive(#f9f9f9, 20%);
 }
 
-
 /*-----------------------------------------------------------------------------------------------*\
 dashboard
 
@@ -110,7 +109,7 @@ ListView contains `cells`. Contents of `cells` are populated from `{Object}Card`
 .list-cell {
     -fx-border-radius: 20;
     -fx-background-radius: 20;
-    -fx-padding: 3
+    -fx-padding: 3;
 }
 
 .list-cell:empty {
@@ -214,7 +213,7 @@ Styles SupplierCard and TaskCard
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 3;
     -fx-background-radius: 3;
-    -fx-font-size: 11;
+    -fx-font-size: 13;
 }
 
 /*-----------------------------------------------------------------------------------------------*\
