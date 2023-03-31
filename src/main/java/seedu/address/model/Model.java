@@ -400,4 +400,9 @@ public interface Model {
      * @param cmp Technician comparator
      */
     void updateTechnicianComparator(Comparator<? super Technician> cmp);
+
+    /**
+     * Update mappings
+     */
+    void resetMaps();
 }

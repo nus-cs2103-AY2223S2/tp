@@ -52,6 +52,7 @@ public class RemoveTechnicianFromAppointmentCommand extends RedoableCommand {
             throw new CommandException(MESSAGE_TECHNICIAN_NOT_FOUND);
         }
         appointment.removeTechnician(this.techId);
+        model.resetMaps();
         return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.appointmentId),
                 Tab.APPOINTMENTS);
     }
