@@ -5,6 +5,7 @@ title: User Guide
 
 * Table of Contents
 {:toc}
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
@@ -17,10 +18,8 @@ MyLib is **optimized for use via a Command Line Interface** (CLI) while still ha
 
 If you are a fast typer who is seeking a one-stop platform to organise and track your readings (online or physical), then MyLib is what you need! Even if you are not a fast typer, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
 
-
 --------------------------------------------------------------------------------------------------------------------
 ## **About User Guide**
-
 ### Objectives of the User Guide
 
 This User Guide provides an easy to understand and comprehensive documentation, so you can easily start using MyLib. It covers how to download the application, launch the application and the various features in MyLib that will make it easy for you to organise and track all your reading materials.
@@ -34,6 +33,7 @@ The user guide contains certain visuals to aid in conveying information more eff
 :bulb: **Tip** - Suggestions on how to enhance your experience
 
 :exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
+<div style="page-break-after: always;"></div>
 
 ### Getting Started
 Head on over to the [Quick start](#quick-start) section to get started with MyLib!
@@ -258,6 +258,9 @@ Examples:
 * `list` followed by `goto 2` opens up the url of  2nd bookmark in the library.
 * `find n/Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Our Application also supports this feature in gui format, clicking on the url in the right panel will open it on your default browser .
+</div>
 
 ### Clearing all entries : `clear`
 
@@ -306,6 +309,7 @@ _Details coming soon ..._
 **A**: Unfortunately, MyLib is only designed to run on your desktop/laptop such that you can use the command line interface.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
