@@ -280,7 +280,7 @@ Format: `import [combine|reset]`
 * If `reset` is entered, the existing data will be removed and replaced with the imported dataset.
 * If neither keyword is entered, the behaviour will be the same as `combine`.
 
-**Note: Your CSV file must have the following headers in this order: Name,Phone,Email,Address,Income,Tags
+**Note: Your CSV file must have the following headers in this order: _Name,Phone,Email,Address,Income,Tags_**
 
 ![CSV headers example](images/csvHeadersExample.png)
 
