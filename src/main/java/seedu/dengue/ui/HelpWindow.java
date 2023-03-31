@@ -31,7 +31,7 @@ public class HelpWindow extends UiPart<Stage> {
             + INDENT + "find [n/NAME] [p/POSTAL] [v/VARIANT]... \\\n"
             + INDENT + "        { [a/AGE] | [sa/START_AGE] [ea/END_AGE] } \\\n"
             + INDENT + "        { [d/DATE] | [sd/START_DATE] [ed/END_DATE] }\n\n"
-            + INDENT + "sort { n/ | a/ | d/ }\n\n"
+            + INDENT + "sort { n/ | a/ | p/ | d/ }\n\n"
             + INDENT + "undo [INTEGER]\n\n"
             + INDENT + "redo [INTEGER]\n\n"
             + INDENT + "overview { p/ | a/ | v/ }\n\n"

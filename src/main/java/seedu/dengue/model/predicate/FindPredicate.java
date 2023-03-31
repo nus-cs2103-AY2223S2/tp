@@ -26,15 +26,15 @@ public class FindPredicate extends PredicateUtil<Person> {
     /**
      * A class that represents the predicate which is used to filter through the persons list to test for whether
      * the person belongs to the filtered list.
-     *
-     * @param name
-     * @param subPostal
-     * @param age
-     * @param date
-     * @param variants
-     * @param dateRange
-     * @param ageRange
+     * @param name (Optional) Name of the input passed in by user.
+     * @param subPostal (Optional) Substring of a Postal of the input passed in by user.
+     * @param age (Optional) Age of the input passed in by user.
+     * @param date (Optional) Date of the input passed in by user.
+     * @param variants Set of Variant of the input passed in by user.
+     * @param dateRange Range containing (Optional) Date of the input passed in by user.
+     * @param ageRange Range containing (Optional) Age of the input passed in by user.
      */
+
     public FindPredicate(Optional<Name> name, Optional<SubPostal> subPostal, Optional<Age> age, Optional<Date> date,
                          Set<Variant> variants, Range<Date> dateRange, Range<Age> ageRange) {
         this.name = name;
