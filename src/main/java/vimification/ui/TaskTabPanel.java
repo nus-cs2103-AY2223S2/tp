@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import vimification.internal.Logic;
+import vimification.model.task.Status;
 import vimification.model.task.Task;
 
 public class TaskTabPanel extends UiPart<VBox> {
@@ -14,7 +15,7 @@ public class TaskTabPanel extends UiPart<VBox> {
     @FXML
     private TabPane taskTabPane;
     @FXML
-    private VBox ongoingTaskListComponent;
+    private VBox allTaskListComponent;
     @FXML
     private VBox completedTaskListComponent;
 
@@ -39,8 +40,8 @@ public class TaskTabPanel extends UiPart<VBox> {
         completedTaskListPanel = new TaskListPanel(logic.getUiTaskList());
         completedTaskListPanel.setMainScreen(mainScreen);
 
-        ongoingTaskListComponent.getChildren().clear();
-        ongoingTaskListComponent.getChildren().add(ongoingTaskListPanel.getRoot());
+        allTaskListComponent.getChildren().clear();
+        allTaskListComponent.getChildren().add(ongoingTaskListPanel.getRoot());
 
         taskTabPane.prefHeightProperty().bind(this.getRoot().prefHeightProperty());
         ongoingTaskListPanel.getRoot().prefHeightProperty()
@@ -76,18 +77,19 @@ public class TaskTabPanel extends UiPart<VBox> {
         return isOngoingTabSelected;
     }
 
-    public void searchForTask(Predicate<? super Task> predicate, int targetTabIndex) {
+    public void searchForTask(Predicate<? super Task> predicate, Status status) {
         ongoingTaskListPanel.searchForTask(predicate);
         completedTaskListPanel.searchForTask(predicate);
-        taskTabPane.getSelectionModel().clearSelection(targetTabIndex);
+        int index = status == Status.COMPLETED ? 1 : 0;
+        taskTabPane.getSelectionModel().select(index);
     }
 
     public TabPane getTaskTabPane() {
         return taskTabPane;
     }
 
-    public VBox getOngoingTaskListComponent() {
-        return ongoingTaskListComponent;
+    public VBox getAllTaskListComponent() {
+        return allTaskListComponent;
     }
 
     public VBox getCompletedTaskListComponent() {
@@ -109,5 +111,11 @@ public class TaskTabPanel extends UiPart<VBox> {
     public Logic getLogic() {
         return logic;
     }
+
+    @FXML
+    private void intialize() {
+        // taskTabPane.getTabs().addListener(null);
+    }
+
 
 }

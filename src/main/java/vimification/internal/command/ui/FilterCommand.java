@@ -40,7 +40,7 @@ public class FilterCommand extends UiCommand {
         Predicate<Task> predicate = predicates.stream()
                 .reduce(request.getMode() == FilterRequest.Mode.OR ? Predicate::or : Predicate::and)
                 .orElse(ignore -> true);
-        mainScreen.getTaskTabPanel().searchForTask(predicate, 0); // TODO: refactor to pass enum
+        mainScreen.getTaskTabPanel().searchForTask(predicate, request.getSearchedStatus());
         return new CommandResult(SUCCESS_MESSAGE);
     }
 }

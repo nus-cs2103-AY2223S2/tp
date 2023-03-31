@@ -90,25 +90,6 @@ public class CommandInput extends UiPart<HBox> {
             return;
         }
 
-        // try {
-        // CommandResult result = logic.execute(commandString);
-        // mainScreen.initializeTaskTabPanel();
-        // mainScreen.loadCommandResultComponent(result);
-
-        // // TODO: Should only clear if the task has been deleted.
-        // if (result.getFeedbackToUser().contains("Deleted Task:")) {
-        // mainScreen.clearRightComponent();
-        // }
-        // System.out.println(result.getFeedbackToUser());
-        // } catch (CommandException e) {
-        // e.printStackTrace();
-        // System.out.println("[Your command] " + input + " is invalid");
-        // } catch (ParserException e) {
-        // e.printStackTrace();
-        // CommandResult errorResult = new CommandResult("[Not a valid command] " + input);
-        // mainScreen.loadCommandResultComponent(errorResult);
-        // }
-
         CommandResult result = logic.execute(commandString);
         mainScreen.initializeTaskTabPanel();
         mainScreen.loadCommandResultComponent(result);
@@ -120,22 +101,12 @@ public class CommandInput extends UiPart<HBox> {
     }
 
     private boolean processUiCommand(String commandString) {
-        checkIsExitCommand(commandString);
-
         // TODO : TEMPORARY, REMOVE THIS IN THE FUTURE AFTER ABSTRACTING INTO GUI COMMANDS
         if (isNumeric(commandString)) {
             mainScreen.getTaskTabPanel().scrollToTaskIndex(Integer.parseInt(commandString));
             return true;
         }
         return false;
-    }
-
-    private void checkIsExitCommand(String commandString) {
-        List<String> exitCommands = List.of("wq!", "wq", "q!", "q");
-        boolean isExitCommand = exitCommands.contains(commandString);
-        if (isExitCommand) {
-            Platform.exit();
-        }
     }
 
     @Override

@@ -1,7 +1,6 @@
 package vimification.ui;
 
 import java.net.URISyntaxException;
-import java.nio.file.Path;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
