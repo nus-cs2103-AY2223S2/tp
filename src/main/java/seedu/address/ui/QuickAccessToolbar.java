@@ -14,7 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class QuickAccessToolbar extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
-    private static final String FXML = "QuickAccessToolBar.fxml";
+    private static final String FXML = "QuickAccessToolbar.fxml";
 
     private final CommandExecutor commandExecutor;
 
