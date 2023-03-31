@@ -8,6 +8,6 @@ public class QuitCommand extends UiCommand {
 
     public CommandResult execute(MainScreen mainScreen) {
         Platform.exit();
-        return new CommandResult("");
+        return new CommandResult("Quiting Vimification.");
     }
 }
