@@ -124,6 +124,11 @@ Format `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [ic/NRIC] [a/ADDRESS] [t/TAG]…
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * Tags can be removed by typing t/ without specifying any tags after it.
 
+Examples:
+* `edit 9 n/John Smith` will edit the name of the 9th person listed to "Jon Smith".
+
+![Edit](images/Edit.png)
+
 ### Display patient's information : `display`
 Displays personal particulars, appointments and prescription for patients.
 
@@ -206,6 +211,8 @@ Format: `bill ic/NRIC`
 Examples:
 * `bill ic/S1234567X` Calculates the cost of patient's (of IC S1234567X) medication.
 
+![Bill](images/Bill.png)
+
 ### Retrieve person information : `list`
 
 Shows a list of all persons in MediConnect.
@@ -222,7 +229,6 @@ Format: `clear`
 
 Example:
 * `clear` permanently deletes all data stored in the system.
-
 
 ### Requesting help : `help`
 
