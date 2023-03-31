@@ -1,6 +1,5 @@
 package seedu.address.model.tutee.fields;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -22,7 +21,6 @@ public class Lesson implements Iterable<String> {
 
     public Lesson() {
         this.lessons = new HashSet<>();
-
         lessons.add("Meet Tutor");
     }
 

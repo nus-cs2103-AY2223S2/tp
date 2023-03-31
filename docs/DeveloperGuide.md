@@ -154,85 +154,97 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Field Validation
+Each `Tutee` has various fields (i.e. name, phone...). Validation from user input is done at the `Parser` level, but
+when loading from a JSON file field validation is performed differently.\
+The automatic validation of a tutee field requires the following three elements to be defined,
+an example implementation of a tutee field is shown below:
+```java
+public class Phone {
+   // Need at least one constructor with this signature
+   public Phone(String value) {
+      // ...
+   }
+
+   // Message to display to the user if the stored JSON data is invalid for the given field
+   public static final String MESSAGE_CONSTRAINT = "Invalid phone number!";
+
+   // Validation method that will return true if the value is valid for the field, false otherwise
+   // If your field is named differently this method is named differently too, e.g. isValidRemark
+   public static boolean isValidPhone(String value) {
+      // ... details
+   }
+}
+```
+This automatic validation relies on Java reflection and will raise `RuntimeExceptions` if the automatic validation fails
+for reasons other than the user input being invalid. The process is as follows:
+1. The JSON file is read
+1. The `isValid` method is called with the given input
+1. If `isValid` returns false, the `MESSAGE_CONSTRAINT` is displayed to the user
+1. Otherwise, the input is passed to the constructor to create an instance of the field
+
+### Attendance Management
+#### The Attendance Field
+The `Attendance` field uses a hashset internally to store all the dates on which the tutee was present. The field is designed to be
+immutable, which means updating a tutee's absence or presence will create a new attendance field instance.
+
+#### Mark and Unmark Command
+The mark and unmark commands are implemented similarly: both follow the format of `<mark|unmark> <index> [date]`. The
+user's input is parsed by its respective parser (`MarkCommandParser` and `UnmarkCommandParser`) and then those arguments
+are passed to the command.\
+If the user does not specify a date, then the command will use the default value as returned by `LocalDate.now()`.\
+If the command executes successfully, the specified tutee's `attendance` field will be updated accordingly. `mark` will add that
+date to the attendance field, thereby marking them as present on that date. Unmark will remove it, thereby marking them as absent on that date.\
+If tutee has already been marked present or absent on the specified date, the commands will have no effect.
+
+#### Query Command
+The date is represented as an `Optional<LocalDate>`. When the command is executed, if this optional is empty, then the command will return all the dates in which the tutee was present. Otherwise, the command will return whether the tutee was present by calling the
+`didAttend()` method on the attendance field.
+
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+### Learn\Unlearn feature
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The learn\unlearn mechanism is storing the `lessons` in a `Set`, adding\removing a `lesson` is editing this `Set`. It implements the following classes and operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `Lesson`  —  Representing lesson fields, containting a `Set` of lessons .
+* `Lesson#learn()`  —  Adds the new lesson to the Set.
+* `Lesson#unlearn()` —  Removes a lesson from the Set.
+* `LearnCommand`  —  Adds new lesson to the Index specified Tutee.
+* `UnlearnCommand`  —  Removes lesson from the Index specified Tutee.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+[//]: # (The following sequence diagram shows how the undo operation works:)
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+[//]: # ()
+[//]: # (![UndoSequenceDiagram]&#40;images/UndoSequenceDiagram.png&#41;)
 
-![UndoRedoState0](images/UndoRedoState0.png)
+[//]: # ()
+[//]: # (<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker &#40;X&#41; but due to a limitation of PlantUML, the lifeline reaches the end of diagram.)
 
-Step 2. The user executes `delete 5` command to delete the 5th tutee in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+[//]: # ()
+[//]: # (</div>)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+[//]: # ()
+[//]: # (The following activity diagram summarizes what happens when a user executes a new command:)
 
-Step 3. The user executes `add n/David …​` to add a new tutee. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the tutee was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+[//]: # ()
+[//]: # (<img src="images/CommitActivityDiagram.png" width="250" />)
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How learn & unlearn executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 1 (current choice):** add/remove lesson to the `Set`.
+  * Pros: Easy to implement, don't allow duplicates.
+  * Cons: Does not show the learning order.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the tutee being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** Combine Attendance and Learning.
+  * Pros: Easier for user to keep track of time and lesson.
+  * Cons: Harder to implement.
 
 _{more aspects and alternatives to be added}_
+
 
 ### \[Proposed\] Data archiving
 
@@ -242,19 +254,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Filter Implementation
 
-The filter feature is facilitated by `FilterCommand`. It extends `Command`. The constructor of `FilterCommand` takes in 
+The logic of the filter implementation is found in `FilterCommand` class. The constructor of `FilterCommand` takes in 
 a `FilterTuteeDescription` object and creates a `FieldContainsKeywordPredicate` based on the variables that are set in 
-`FilterTuteeDescription`. Inside the `FilterCommand` class is a static `FilterTuteeDescription` class which encapsulates 
-the fields of a tutee that the user wants to filter. `FilterTuteeDescription` contains all the fields of a tutee including: 
-`name`, `phone`, `email`, `address`, `subject`, `schedule`, `start time`, `end time`, `tag`of a tutee. 
-By default, they are all an empty string hence when filter is called without specifying an fields, the feature lists down 
-all the tutees.
+`FilterTuteeDescription`.  
 
-`FilterTuteeDescription` will have its fields updated when the user specifies the fields he/she wants to filter using the
-`filter` command. This will allow `FilterCommandParser` to set the appropriate fields in `FilterTuteeDescription` for the
-fields that are to be filtered in. Once `FilterTuteeDescription` has its fields set (i.e. nameToFilter = "alex"), 
-`FieldContainsKeywordPredicate` will take in all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` 
-object. `FieldContainsKeywordPredicate` implements `Predicate` and it overrides the `test` method. It returns true if the 
+`FilterTuteeDescription` encapsulates the fields of a tutee that the user wants to filter. 
+The class contains all the fields of a tutee including: `name`, `phone`, `email`, `address`, `subject`, `schedule`, `start time`, `end time`, `tag`of a tutee. 
+By default, `name`, `address`, `tags` are empty lists while the rest of the fields are empty strings. 
+
+`FilterCommandParser` will set the appropriate fields in `FilterTuteeDescription` for the
+fields that are to be filtered in.  Once `FilterTuteeDescription` has its fields set (e.g. nameToFilter = "alex"), 
+`FieldContainsKeywordPredicate` will take in all the variables in `FilterTuteeDescription` and return a `FieldContainsKeywordPredicate` object.
+
+`FieldContainsKeywordPredicate` implements `Predicate` and it overrides the `test` method. It returns true if the 
 given field is empty (default) or when the tutee has the field equal to the field provided by the user when using the filter
 command. 
 
@@ -262,13 +274,35 @@ Finally, `FilterCommand` will execute which will call the method `model.updateFi
 `FieldContainsKeywordPredicate` object as the predicate. The feature will filter and display the tutees which have fields 
 that are equal to what the user has provided. 
 
+#### Design considerations
+
+#### How filter executes
+
+- Alternative 1 (current choice): Use prefix to filter what to search for.
+  - Pros: More precise when filtering time (e.g. `filter st/10:30` will only return tutees whose lesson starting time is at
+  10:30)
+  - Pros: Using prefix can filter tutees more precisely (e.g. `filter s/math sch/monday` will only return tutees whose 
+  lessons fall on `monday` **and** taking the `math` subject.) This is more useful as it is harder to find intersections between
+  multiple fields than the union of all the fields.
+  - Cons: Harder to implement.
+
+- Alternative 2: Extend find feature and filter any field without specifying prefix.
+  - Pros: Easier to implement.
+  - Cons: Could cause confusion when filtering time (e.g. `filter 10:30` will return all tutees whose lesson start time and
+  end time are at 10:30)
+  - Cons: The extended find feature will not be as precise in filtering tutees (e.g. `filter math monday`) will return 
+  all tutees whose lessons fall on `monday` **or** taking the `math` subject.) This is considered less useful as it is simple
+  to find the union of multiple fields compared to finding the intersections. (i.e. users can perform filter for individual fields
+  separately if they want to find the union of all of them)
+   
+
 ### Copy feature
 
 #### Copy Implementation
-The copy feature is facilitated by `CopyCommand`. It extends `Command`. The constructor of `CopyCommand` takes in 
-an `index and an EditPersonDescripter` object and creates a `tutee` based on the variables that are set in 
-`EditPersonDescripter`. The `CopyCommand` class makes use of the `EditPersonDescripter`in the `EditCommand` class which contains all the fields of a tutee including: 
-`subject`, `schedule`, `start time`, `end time` of a tutee. 
+The copy feature is facilitated by `CopyCommand`. It extends `Command`. The constructor of `CopyCommand` takes in
+an `index and an EditPersonDescripter` object and creates a `tutee` based on the variables that are set in
+`EditPersonDescripter`. The `CopyCommand` class makes use of the `EditPersonDescripter`in the `EditCommand` class which contains all the fields of a tutee including:
+`subject`, `schedule`, `start time`, `end time` of a tutee.
 All of the fields are required to be filled in order for the command to make a copy of a tutee with a different lesson and schedule.
 
 --------------------------------------------------------------------------------------------------------------------

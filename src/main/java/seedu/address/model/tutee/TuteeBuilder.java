@@ -1,5 +1,6 @@
 package seedu.address.model.tutee;
 
+import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -169,6 +170,18 @@ public class TuteeBuilder {
      * @return A new tutee instance with the given fields
      */
     public Tutee build() {
+        // Use reflection to make sure that all the fields within the builder have been set
+        // to some non null value
+        for (Field field : this.getClass().getDeclaredFields()) {
+            try {
+                if (field.get(this) == null) {
+                    throw new NullPointerException(String.format("%s was null!", field.getName()));
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to validate fields in TuteeBuilder", e);
+            }
+        } 
+
         return new Tutee(name, phone, email, address, attendance, remark, subject, schedule, startTime, endTime, tags, lessons);
     }
 }

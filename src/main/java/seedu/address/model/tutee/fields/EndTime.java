@@ -33,6 +33,7 @@ public class EndTime {
         requireNonNull(endTime);
         checkArgument(isValidEndTime(endTime), MESSAGE_CONSTRAINTS);
         this.time = LocalTime.parse(endTime, TIME_FORMATTER);
+        this.endTime = endTime;
     }
 
     /**

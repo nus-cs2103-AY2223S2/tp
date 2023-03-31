@@ -12,11 +12,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.Model;
 import seedu.address.model.tutee.fields.FieldContainsKeywordsPredicate;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Filters and lists all tutees in address book whose field matches
@@ -29,28 +29,27 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters through all persons in the tutee managing system, "
             + "showing only the tutees that matches the parameters that have been provided\n"
             + "Parameters: "
-            + PREFIX_NAME + "NAME] "
-            + PREFIX_PHONE + "PHONE] "
-            + PREFIX_EMAIL + "EMAIL] "
-            + PREFIX_ADDRESS + "ADDRESS] "
-            + PREFIX_SUBJECT + "SUBJECT] "
-            + PREFIX_SCHEDULE + "SCHEDULE] "
-            + PREFIX_STARTTIME + "START TIME] "
-            + PREFIX_ENDTIME + "END TIME] "
-            + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_NAME + "NAME "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
+            + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_SUBJECT + "SUBJECT "
+            + PREFIX_SCHEDULE + "SCHEDULE "
+            + PREFIX_STARTTIME + "START TIME "
+            + PREFIX_ENDTIME + "END TIME "
+            + PREFIX_TAG + "TAG \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John "
             + PREFIX_PHONE + "98765432"
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_ADDRESS + "311, Clementi "
             + PREFIX_SUBJECT + "Math "
             + PREFIX_SCHEDULE + "monday "
             + PREFIX_STARTTIME + "08:30 "
             + PREFIX_ENDTIME + "10:30 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "friends ";
 
-    public static final String MESSAGE_NOT_FILTERED = "At least one field must be provided to filter.";
+    public static final String MESSAGE_NOT_FILTERED = "At least one field to filter must be provided.";
 
     private final FieldContainsKeywordsPredicate predicate;
     private final FilterTuteeDescription filterTuteeDescription;
@@ -80,14 +79,14 @@ public class FilterCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the tutee with. Each non-empty field value will replace the
+     * Stores the details to filter the tutee with. Each non-empty field value will replace the
      * corresponding field value of the tutee.
      */
     public static class FilterTuteeDescription {
-        public String nameToFilter;
+        public List<String> nameToFilter;
         public String phoneToFilter;
         public String emailToFilter;
-        public String addressToFilter;
+        public List<String> addressToFilter;
         public String subjectToFilter;
         public String scheduleToFilter;
         public String startTimeToFilter;
@@ -98,10 +97,10 @@ public class FilterCommand extends Command {
          * FilterTuteeDescription constructor.
          */
         public FilterTuteeDescription() {
-            this.nameToFilter = "";
+            this.nameToFilter = Collections.emptyList();
             this.phoneToFilter = "";
             this.emailToFilter = "";
-            this.addressToFilter = "";
+            this.addressToFilter = Collections.emptyList();
             this.subjectToFilter = "";
             this.scheduleToFilter = "";
             this.startTimeToFilter = "";
@@ -112,16 +111,19 @@ public class FilterCommand extends Command {
         /**
          * Returns true if at least one field is filtered.
          */
-        public boolean isAnyFieldFiltered() {
-            return CollectionUtil.isAnyNonNull(nameToFilter, phoneToFilter, emailToFilter, addressToFilter, subjectToFilter
-                    , scheduleToFilter, startTimeToFilter, endTimeToFilter, tagToFilter);
+        public boolean isAllFieldEmpty() {
+            return nameToFilter.isEmpty() && phoneToFilter.isEmpty()
+                    && emailToFilter.isEmpty() && addressToFilter.isEmpty()
+                    && subjectToFilter.isEmpty() && scheduleToFilter.isEmpty()
+                    && startTimeToFilter.isEmpty() && endTimeToFilter.isEmpty()
+                    && tagToFilter.isEmpty();
         }
 
-        public void setNameToFilter(String name) {
+        public void setNameToFilter(List<String> name) {
             nameToFilter = name;
         }
 
-        public String getNameToFilter() {
+        public List<String> getNameToFilter() {
             return nameToFilter;
         }
 
@@ -141,11 +143,11 @@ public class FilterCommand extends Command {
             return emailToFilter;
         }
 
-        public void setAddressToFilter(String address) {
+        public void setAddressToFilter(List<String> address) {
             addressToFilter = address;
         }
 
-        public String getAddressToFilter() {
+        public List<String> getAddressToFilter() {
             return addressToFilter;
         }
 
@@ -181,13 +183,38 @@ public class FilterCommand extends Command {
             return endTimeToFilter;
         }
 
-        public void setTagToFilter(List<String> tags) {
-            tagToFilter = tags;
+        public void setTagToFilter(List<String> tag) {
+            tagToFilter = tag;
         }
 
         public List<String> getTagToFilter() {
             return tagToFilter;
         }
 
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof FilterTuteeDescription)) {
+                return false;
+            }
+
+            // state check
+            FilterTuteeDescription f = (FilterTuteeDescription) other;
+
+            return getNameToFilter().equals(f.getNameToFilter())
+                    && getPhoneToFilter().equals(f.getPhoneToFilter())
+                    && getEmailToFilter().equals(f.getEmailToFilter())
+                    && getAddressToFilter().equals(f.getAddressToFilter())
+                    && getSubjectToFilter().equals(f.getSubjectToFilter())
+                    && getScheduleToFilter().equals(f.getScheduleToFilter())
+                    && getStartTimeToFilter().equals(f.getStartTimeToFilter())
+                    && getEndTimeToFilter().equals(f.getEndTimeToFilter())
+                    && getTagToFilter().equals(f.getTagToFilter());
+        }
     }
 }
