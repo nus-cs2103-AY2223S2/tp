@@ -49,7 +49,7 @@ public class ArchiveCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ArchiveCommand // instanceof handles nulls
-                && targetIndex.equals(((ArchiveCommand) other).targetIndex)); // state check
+                && this.targetIndex == ((ArchiveCommand) other).targetIndex); // state check
     }
 
     @Override

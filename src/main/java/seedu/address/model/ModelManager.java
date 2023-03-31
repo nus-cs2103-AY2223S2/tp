@@ -135,7 +135,7 @@ public class ModelManager implements Model {
         PetPal temp = new PetPal(petPalCache);
         petPal.setPets(temp.getPetList());
 
-        PetPal archiveTemp = new PetPal(petPalCache);
+        PetPal archiveTemp = new PetPal(archiveCache);
         archiveStorage.setPets(archiveTemp.getPetList());
     }
 
@@ -160,7 +160,7 @@ public class ModelManager implements Model {
     //=========== Filtered Pet List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Pet} backed by the internal list of
      * {@code versionedPetPal}
      */
     @Override

@@ -45,7 +45,7 @@ public interface Model {
     void setPetPalFilePath(Path petPalFilePath);
 
     /**
-     * Replaces pet pal data with the data in {@code addressBook}.
+     * Replaces pet pal data with the data in {@code petPal}.
      */
     void setPetPal(ReadOnlyPetPal petPal);
 
@@ -64,7 +64,7 @@ public interface Model {
     void deletePet(Pet target);
 
     /**
-     * Adds the given person.
+     * Adds the given pet.
      * {@code pet} must not already exist in the pet list.
      */
     void addPet(Pet pet);
@@ -78,9 +78,9 @@ public interface Model {
     void undo();
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given pet {@code target} with {@code editedPet}.
+     * {@code target} must exist in the PetPal.
+     * The pet identity of {@code editedPet} must not be the same as another existing pet in the PetPal.
      */
     void setPet(Pet target, Pet editedPet);
 

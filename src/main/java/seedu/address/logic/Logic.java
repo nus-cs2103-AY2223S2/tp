@@ -25,7 +25,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the PetPal.
      *
      * @see Model#getPetPal()
      */
