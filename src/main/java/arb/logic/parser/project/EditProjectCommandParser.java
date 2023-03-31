@@ -114,7 +114,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
         }
         List<String> clientNameKeywordsList = clientNameKeywords.stream().flatMap(s -> splitKeywords(s)).collect(Collectors.toList());
         if (clientNameKeywordsList.stream().anyMatch(s -> s.equals(""))) {
-            throw new ParseException("Client name keywords should not be blank");
+            throw new ParseException("There should not be a mix of empty and non-empty client keywords");
         }
 
         List<String> filteredKeywordsList = clientNameKeywordsList.stream().filter(s -> Name.isValidName(s)).collect(Collectors.toList());
