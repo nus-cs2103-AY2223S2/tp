@@ -236,8 +236,10 @@ public class MainWindow extends UiPart<Stage> {
         titlePanel.getChildren().add(REVIEW_TITLE);
 
         rightPanelTitlePlaceholder.getChildren().clear();
+
         rightDeckTitle = new DeckNamePanel(EMPTY_TITLE);
         rightPanelTitlePlaceholder.getChildren().add(rightDeckTitle.getRoot());
+        rightFilterText.getChildren().clear();
     }
 
     /**
@@ -257,6 +259,7 @@ public class MainWindow extends UiPart<Stage> {
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(MAIN_TITLE);
+        rightFilterText.getChildren().clear();
     }
 
     /**
@@ -355,6 +358,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isSelectDeck() || commandResult.isUnselectDeck()) {
                 updateDeckTitle();
+                rightFilterText.getChildren().clear();
             }
 
             return commandResult;
