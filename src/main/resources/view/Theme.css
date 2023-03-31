@@ -161,29 +161,6 @@
     -fx-padding: 0 0 0 0;
 }
 
-#ReviewCardPane {
-    -fx-background-color: #524cd1;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-
-#ReviewCardPane .label{
-    -fx-font-size: 20px;
-    -fx-text-fill: white;
-    -fx-padding: 5;
-}
-
-#ReviewCardPane #question {
-    -fx-font-size: 23px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Arial";
-}
-
-#ReviewCardPane #id {
-    -fx-font-size: 23px;
-    -fx-font-weight: bold;
-    -fx-font-family: "Arial";
-}
-
 /* ============ TAGS ========== */
 #tags {
     -fx-hgap: 7;
