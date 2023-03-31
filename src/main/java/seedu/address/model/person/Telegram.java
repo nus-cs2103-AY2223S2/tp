@@ -28,7 +28,11 @@ public class Telegram {
     public Telegram(String telegram) {
         requireNonNull(telegram);
         checkArgument(isValidHandle(telegram), MESSAGE_CONSTRAINTS);
+//        value = telegram.charAt(0) == '@'
+//                ? telegram
+//                : "@" + telegram;
         value = telegram;
+        System.out.println(value);
     }
 
     /**

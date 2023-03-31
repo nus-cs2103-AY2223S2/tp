@@ -1,14 +1,5 @@
 package seedu.address.logic.parser.predicates;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -20,6 +11,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
+import static seedu.address.logic.parser.CliSyntax.*;
 
 
 /**
@@ -75,6 +67,15 @@ public class FullMatchKeywordsPredicate implements Predicate<Person> {
                             person.getOptionalEducation().map(education -> education.value)
                                     .orElse(null), keyword));
         }
+
+        if (keywords.getValue(PREFIX_TELEGRAM).isPresent()) {
+            List<String> values = keywords.getAllValues(PREFIX_TELEGRAM);
+            hasMatching = hasMatching && values.stream()
+                    .allMatch(keyword -> StringUtil.containsPartialIgnoreCase(
+                            person.getOptionalTelegram().map(telegram -> telegram.value)
+                                    .orElse(null), keyword));
+        }
+
         if (keywords.getValue(PREFIX_REMARK).isPresent()) {
             List<String> values = keywords.getAllValues(PREFIX_REMARK);
             hasMatching = hasMatching && values.stream()
