@@ -13,14 +13,13 @@ import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.connectus.commons.core.index.Index;
 import seedu.connectus.logic.commands.exceptions.CommandException;
 import seedu.connectus.model.ConnectUs;
 import seedu.connectus.model.Model;
-import seedu.connectus.model.person.NameContainsKeywordsPredicate;
+import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.testutil.EditPersonDescriptorBuilder;
 
@@ -154,8 +153,10 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String name = person.getName().fullName;
+        FieldsContainKeywordsPredicate predicate = new FieldsContainKeywordsPredicate();
+        predicate.setName(name);
+        model.updateFilteredPersonList(predicate);
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

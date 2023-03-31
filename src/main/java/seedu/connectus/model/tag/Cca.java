@@ -17,11 +17,10 @@ public class Cca extends Tag {
     public final String ccaName;
     public final String ccaPositionName;
     public final String coupledCcaName;
-    public final String decoupledCcaName;
 
-    private String cca;
+    private final String cca;
     private String position;
-    private String decoupled;
+    private boolean isPosition = false;
 
     /**
      * Constructs a {@code Cca}.
@@ -32,26 +31,25 @@ public class Cca extends Tag {
         super(coupledCcaName);
         checkArgument(isValidCcaName(coupledCcaName), MESSAGE_CONSTRAINTS);
         this.coupledCcaName = coupledCcaName;
-        decoupleCcaName();
+        String[] arr = decouple(coupledCcaName);
+        cca = arr[0];
+        if (arr.length > 1) {
+            isPosition = true;
+            position = arr[1];
+        }
         ccaName = cca;
         ccaPositionName = position;
-        decoupledCcaName = decoupled;
     }
 
+    public boolean hasPosition() {
+        return isPosition;
+    }
     /**
      * Decouples command into CCA Name and CCA Position.
      */
-    public void decoupleCcaName() {
+    public static String[] decouple(String coupledCcaName) {
         String[] arr = coupledCcaName.split("#");
-        if (arr.length == 2) {
-            cca = arr[0];
-            position = arr[1];
-            decoupled = cca + " - " + position;
-        } else {
-            cca = arr[0];
-            position = "";
-            decoupled = cca;
-        }
+        return arr;
     }
 
     /**
@@ -63,6 +61,10 @@ public class Cca extends Tag {
 
     @Override
     public String toString() {
-        return decoupledCcaName;
+        if (isPosition) {
+            return cca + " - " + position;
+        } else {
+            return cca;
+        }
     }
 }

@@ -25,7 +25,7 @@ class JsonAdaptedCca {
      * Converts a given {@code Cca} into this class for Jackson use.
      */
     public JsonAdaptedCca(Cca source) {
-        this.ccaName = source.decoupledCcaName;
+        this.ccaName = source.toString();
     }
 
     @JsonValue

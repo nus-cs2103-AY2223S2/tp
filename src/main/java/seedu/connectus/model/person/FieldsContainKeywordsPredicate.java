@@ -25,7 +25,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
     private Set<String> remarks;
     private String birthday;
     private Set<String> modules;
-    private Set<String> ccas;
+    private Set<String[]> ccas;
     private Set<String> majors;
     public FieldsContainKeywordsPredicate() {}
     public FieldsContainKeywordsPredicate(List<String> keywords) {
@@ -173,7 +173,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * Sets {@code ccas} to this object's {@code ccas}.
      * A defensive copy of {@code ccas} is used internally.
      */
-    public void setCcas(Set<String> ccas) {
+    public void setCcas(Set<String[]> ccas) {
         this.ccas = (ccas != null) ? new HashSet<>(ccas) : null;
     }
 
@@ -183,7 +183,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code ccas} is null.
      */
-    public Optional<Set<String>> getCcas() {
+    public Optional<Set<String[]>> getCcas() {
         return (ccas != null) ? Optional.of(Collections.unmodifiableSet(ccas)) : Optional.empty();
     }
 
@@ -305,8 +305,18 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
             }
         }
         if (getCcas().isPresent()) {
-            if (!ccas.stream().allMatch(ccaKey -> person.getCcas().stream().anyMatch(cca ->
-                    StringUtil.containsKeywordsListIgnoreCase(cca.toString(), ccaKey)))) {
+            boolean result = ccas.stream().allMatch(ccaKey -> person.getCcas().stream().anyMatch(cca -> {
+                boolean check = true;
+                check = check
+                        && (ccaKey[0].trim().isEmpty()
+                                    || StringUtil.containsKeywordsListIgnoreCase(cca.ccaName, ccaKey[0]));
+                if (ccaKey.length > 1) {
+                    check = check && cca.hasPosition() && StringUtil.containsKeywordsListIgnoreCase(cca.ccaPositionName,
+                            ccaKey[1]);
+                }
+                return check;
+            }));
+            if (!result) {
                 return false;
             }
         }

@@ -10,12 +10,11 @@ import static seedu.connectus.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.connectus.commons.core.GuiSettings;
-import seedu.connectus.model.person.NameContainsKeywordsPredicate;
+import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
 import seedu.connectus.testutil.ConnectUsBuilder;
 
 public class ModelManagerTest {
@@ -117,8 +116,10 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentConnectUS, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        final String name = ALICE.getName().fullName;
+        FieldsContainKeywordsPredicate predicate = new FieldsContainKeywordsPredicate();
+        predicate.setName(name);
+        modelManager.updateFilteredPersonList(predicate);
         assertFalse(modelManager.equals(new ModelManager(connectUS, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

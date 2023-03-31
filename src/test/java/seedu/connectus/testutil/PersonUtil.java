@@ -54,7 +54,7 @@ public class PersonUtil {
                 s -> sb.append(PREFIX_MODULE + s.moduleName + " ")
         );
         person.getCcas().stream().forEach(
-                s -> sb.append(PREFIX_CCA + s.ccaName + " ")
+                s -> sb.append(PREFIX_CCA + s.toString() + " ")
         );
         person.getMajors().stream().forEach(
                 s -> sb.append(PREFIX_MAJOR + s.major + " ")
@@ -92,7 +92,7 @@ public class PersonUtil {
             if (ccas.isEmpty()) {
                 sb.append(PREFIX_CCA).append(" ");
             } else {
-                ccas.forEach(s -> sb.append(PREFIX_MODULE).append(s.ccaName).append(" "));
+                ccas.forEach(s -> sb.append(PREFIX_MODULE).append(s.toString()).append(" "));
             }
         }
         if (descriptor.getMajors().isPresent()) {
