@@ -33,7 +33,7 @@ public class HelpWindow extends UiPart<Stage> {
             + INDENT + "clear\n\n"
             + INDENT + "undo [INTEGER]\n\n"
             + INDENT + "redo [INTEGER]\n\n"
-            + INDENT + "sort { n/ | a/ | d/ }\n\n"
+            + INDENT + "sort { n/ | a/ | p/ | d/ }\n\n"
             + INDENT + "overview { p/ | a/ | v/ }\n\n"
             + INDENT + "import [FILENAME]\n\n"
             + INDENT + "export [FILENAME]\n\n"
