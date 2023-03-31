@@ -57,6 +57,16 @@ You can click on any of the links below to navigate to the respective sections f
   * [Sort](#sort)
     * [Sorting a task: `sort_task` / `sort_t`](#sorting-a-task-sorttask--sortt)
     * [Sorting a order: `sort_order` / `sort_o`](#sorting-a-order-sortorder--sorto)
+  * [List](#list)
+    * [Listing all suppliers: `list_supplier` or `list_s`](#listing-all-suppliers-listsupplier-or-lists)
+    * [Listing all orders: `list_order` or `list_o`](#listing-all-orders-listorder-or-listo)
+    * [Listing all tasks: `list_task` or `list_t`](#listing-all-tasks-listtask-or-listt)
+    * [Listing all menu items: `list_item` or `list_i`](#listing-all-menu-items-listitem-or-listi)
+  * [Clear](#clear)
+    * [Clear all supplier entries: `clear_supplier` or `clear_s`](#clear-all-supplier-entries-clearsupplier-or-clears)
+    * [Clear all order entries: `clear_order` or `clear_o`](#clear-all-order-entries-clearorder-or-clearo)
+    * [Clear all task entries: `clear_task` or `clear_t`](#clear-all-task-entries-cleartask-or-cleart)
+    * [Clear all menu item entries: `clear_item` or `clear_i`](#clear-all-menu-item-entries-clearitem-or-cleari)
   * [Switch](#switch)
     * [Switching tabs: `tab`](#switching-tabs-tab)
   * [Others](#others)
@@ -531,6 +541,58 @@ Examples:
   <img src="images/SortOrdersExample.png" width="600" />
   <br>Figure 2: `sort_o` Example
 </p>
+
+## List
+
+### Listing all suppliers: `list_supplier` or `list_s`
+
+Shows a list of all suppliers in the supplier list.
+
+Syntax `list_supplier`
+
+### Listing all orders: `list_order` or `list_o`
+
+Shows a list of all orders in the order list.
+
+Syntax `list_order`
+
+### Listing all tasks: `list_task` or `list_t`
+
+Shows a list of all tasks in the task list.
+
+Syntax `list_task`
+
+### Listing all menu items: `list_item` or `list_i`
+
+Shows a list of all menu items in the menu item list.
+
+Syntax `list_item`
+
+## Clear
+
+### Clear all supplier entries: `clear_supplier` or `clear_s`
+
+Clears all supplier entries from the supplier list.
+
+Syntax: `clear_supplier`
+
+### Clear all order entries: `clear_order` or `clear_o`
+
+Clears all order entries from the order list.
+
+Syntax: `clear_order`
+
+### Clear all task entries: `clear_task` or `clear_t`
+
+Clears all task entries from the task list.
+
+Syntax: `clear_task`
+
+### Clear all menu item entries: `clear_item` or `clear_i`
+
+Clears all menu item entries from the menu item list.
+
+Syntax: `clear_item`
 
 ## Switch
 
