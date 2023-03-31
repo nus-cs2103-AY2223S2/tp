@@ -103,6 +103,7 @@ public class SessionListPanel extends UiPart<Region> {
         if (sessionListView.getItems() != null) {
             updateDisplay(sessionListView.getItems().get(0));
         }
+        
         getStatistics(sessionList);
         setClickEventListener();
         setUpdateEventListener(logic);
@@ -113,7 +114,10 @@ public class SessionListPanel extends UiPart<Region> {
         Label[] details = new Label[]{today, thisWeek, thisMonth, lifetime};
 
         setStatisticsFieldDisplay(fields);
-        updateStatisticsDetail(sessionList, details);
+        if (sessionList != null) {
+            updateStatisticsDetail(sessionList, details);
+        }
+
     }
 
     private void updateStatisticsDetail(ObservableList<Session> sessionList, Label[] details) {
