@@ -495,7 +495,7 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 ### 4. Editing a person : `edit`
 
 Does one of your contact have outdated information? Overwrite them in the view panel with the edit command! 
->💡 Existing values will be <b><u>overwritten</u></b> by the input values.<br/>
+>:warning: **Caution:** Existing values will be <b><u>overwritten</u></b> by the input values.<br/>
 > Use m+/ or s+/ to <b><u>append</u></b> information instead
 
 At least one of the optional fields must be provided.
