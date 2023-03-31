@@ -46,7 +46,6 @@ CookHub is a **desktop app for managing recipes, optimized for use via a Command
   - e.g. `add t/TITLE d/DESCRIPTION i/INGREDIENT s/STEP [tag/TAG]` can be `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter`
 
 * TITLE, DESCRIPTION, STEP are words or sentences (Java String).
-  - Punctuations are not allowed in these words or sentences
   - e.g. `t/I am a title d/I am a description s/I am a step`
 
 * INGREDIENT is of the format {ingredient_name, quantity, unit_of_measurement, price_per_unit}
