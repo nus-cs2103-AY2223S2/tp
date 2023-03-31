@@ -19,7 +19,6 @@ than traditional GUI apps.
   - [Help](#help)
   - [Add](#add)
   - [List](#list)
-    - [listTime](#listtime)
     - [list_name](#list_name)
   - [Edit](#edit)
   - [Appointment](#appointment)
