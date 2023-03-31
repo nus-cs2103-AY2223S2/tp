@@ -3,6 +3,7 @@ layout: page
 title: User Guide
 ---
 
+## Introduction
 MedInfo is a **desktop app for managing patients and wards for private hospitals, 
 optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). 
@@ -16,9 +17,21 @@ Navigating this User Guide is simple with the Table of Contents with hyperlinks 
 on every page to take you back to the Table of Contents. To further augment your navigation, press
 <kbd>Ctrl</kbd> + <kbd>F</kbd> to search for a keyword directly.
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
+---
+## About MedInfo
+MedInfo is a very simple and intuitive application that will help you manage your patients' **status, ward,
+discharge date** and your wards' **occupancies**. <br>
+<br>
+With the time-critical nature of a private hospital's services, patient and ward management are
+of utmost priority, where the smallest delays or lapses in updating information can affect
+how your hospital attends to your patients. **MedInfo** has simplified, focused patient and ward management down to a
+tee, allowing you to in-process, update, and move patients around while looking at the overall stats of the hospital.<br>
+<br>
+[Back to Table of Contents](#logic-component)
 ---
 
 ## Quick start
@@ -29,9 +42,11 @@ on every page to take you back to the Table of Contents. To further augment your
 
 1. Copy the file to the folder you want to use as the _home folder_ for your MedInfo.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medinfo.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Run the application by
+   2. Double-clicking the jar file or 
+   2. Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medinfo.jar` command to run the application.<br>
+1. A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+      ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -46,8 +61,12 @@ on every page to take you back to the Table of Contents. To further augment your
 
 1. Refer to the [Features](#features) below for details of each command.
 
----
+[Back to Table of Contents](#logic-component)
 
+---
+## User Interface Overview
+
+![UiOverview](images/UiOverview.png)
 ## Features
 
 <div markdown="block" class="alert alert-info">
