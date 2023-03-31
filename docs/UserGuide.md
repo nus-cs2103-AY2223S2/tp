@@ -172,7 +172,7 @@ Examples:
 
 Edits a student's info _(all info except remark)_. To remove a student's field, leave the value after the prefix blank _(eg. `a/ p/` to remove address & phone number)_.
 
-> Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [t/TAG]... [m/MODULE]...`
+> Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM_HANDLE] [t/TAG]... [m/MODULE]...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -259,16 +259,20 @@ Examples:
 
 ---
 
-### Find/filter students: `find`
+### Find/filter students: `find`/`filter`
 
 Finds entries of students based on a keyword in the field that you want. <br>
 
-The `find` command allows you to match keywords or partial keywords with the entries, for example:<br><br>
+The `find` and `filter` command allows you to match keywords or partial keywords with the entries, for example:<br><br>
 `find Sh` displays the students with names which contain `sh` in them, such as `Shaun` or `Amresh`.<br>
 This applies to all fields EXCEPT tags and modules, where you will have to enter and find them by the 
-tags and modules in full.
+tags and modules in full. <br>
+the `find` command allows you to hone in on an entry that matches ALL your criteria, but `filter` will also show you 
+those who only match with some criteria.
 
-> Format: `find FIELD KEYWORDS...` <br>
+> Format: <br>
+> `find FIELD... KEYWORDS...` <br>
+> `filter FIELD... KEYWORDS...`
 * `FIELD` refers to the type of details such as name, address, email and so on.
 * Input the field like so:
   * Name: `n/`
