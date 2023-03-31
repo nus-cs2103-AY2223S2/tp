@@ -109,15 +109,21 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
         if (clientNameKeywords.isEmpty()) {
             return Optional.empty();
         }
-        List<String> clientNameKeywordsSet = clientNameKeywords.size() == 1 && clientNameKeywords.contains("")
-                ? Collections.emptyList()
-                : clientNameKeywords.stream().flatMap(s -> splitKeywords(s)).collect(Collectors.toList());
-        for (String s : clientNameKeywordsSet) {
-            if (!Name.isValidName(s)) {
-                throw new ParseException(Name.MESSAGE_CONSTRAINTS);
-            }
+        if (clientNameKeywords.size() == 1 && clientNameKeywords.contains("")) {
+            return Optional.of(Collections.emptyList());
         }
-        return Optional.of(clientNameKeywordsSet);
+        List<String> clientNameKeywordsList = clientNameKeywords.stream().flatMap(s -> splitKeywords(s))
+                .collect(Collectors.toList());
+        if (clientNameKeywordsList.stream().anyMatch(s -> s.equals(""))) {
+            throw new ParseException("There should not be a mix of empty and non-empty client keywords");
+        }
+
+        List<String> filteredKeywordsList = clientNameKeywordsList.stream().filter(s -> Name.isValidName(s))
+                .collect(Collectors.toList());
+        if (filteredKeywordsList.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(filteredKeywordsList);
     }
 
     /**
