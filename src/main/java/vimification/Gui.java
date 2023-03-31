@@ -26,6 +26,7 @@ import vimification.storage.TaskListRefStorage;
 import vimification.storage.Storage;
 import vimification.storage.StorageManager;
 import vimification.storage.UserPrefsStorage;
+import vimification.ui.MainScreen;
 import vimification.ui.Ui;
 import vimification.ui.UiManager;
 

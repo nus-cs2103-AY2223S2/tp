@@ -84,11 +84,11 @@ public class CommandInput extends UiPart<HBox> {
         String commandString = cleanCommandString(input);
         // System.out.println("Your command is " + input);
 
-        boolean isUiCommand = processUiCommand(commandString);
+        // boolean isUiCommand = processUiCommand(commandString);
 
-        if (isUiCommand) {
-            return;
-        }
+        // if (isUiCommand) {
+        // return;
+        // }
 
         try {
             CommandResult result = logic.execute(commandString);
