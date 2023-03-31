@@ -17,11 +17,5 @@
             <Label fx:id="title" styleClass="cell_big_label" wrapText="true" />
             <Label fx:id="description" styleClass="cell_big_label" />
         </VBox>
-      <columnConstraints>
-         <ColumnConstraints />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
     </GridPane>
 </HBox>
