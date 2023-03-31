@@ -742,19 +742,19 @@ If this is not ideal, we recommend to avoid deleting any customers.
 
 ### Order
 
-| Action                    | Format, Examples                                                                                   |
-|---------------------------|----------------------------------------------------------------------------------------------------|
-| **Add Order**             | `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS]` <br> e.g., `addo 1 n/Banana Cake 1 q/2`      |
-| **List Order**            | `listo` <br>                                                                                       |
-| **Find Order**            | `findo KEYWORD [MORE_KEYWORDS]` <br> e.g., `findo banana muffin`                                   |
-| **View Order**            | `viewo INDEX` <br> e.g. `viewo 2`                                                                  |
-| **Edit Order**            | `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]` <br> e.g., `edito 2 n/Brownies q/10` |
-| **Advance Order**         | `advo INDEX`<br> e.g., `advo 1`                                                                    |
-| **Revert Order**          | `revo INDEX`<br> e.g., `revo 2`                                                                    |
-| **Cancel Order**          | `cancelo INDEX`<br> e.g., `cancelo 3`                                                              |
-| **Delete Order**          | `deleteo INDEX`<br> e.g., `deletec 3`                                                              |                                                                                                                                     |
-| **Set Note for Order**    | `setnoteo INDEX nt/NOTE` <br> e.g., `setnoteo 2 nt/Very friendly!`                                 |
-| **Append Note for Order** | `appendnoteo INDEX nt/NOTE` <br> e.g., `appendnoteo 2 nt/Very friendly!`                           |
+|                     Action | Format, Examples                                                                                   |
+|---------------------------:|----------------------------------------------------------------------------------------------------|
+|              **Add Order** | `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS]` <br> e.g., `addo 1 n/Banana Cake 1 q/2`      |
+|             **List Order** | `listo` <br>                                                                                       |
+|             **Find Order** | `findo KEYWORD [MORE_KEYWORDS]` <br> e.g., `findo banana muffin`                                   |
+|             **View Order** | `viewo INDEX` <br> e.g. `viewo 2`                                                                  |
+|             **Edit Order** | `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]` <br> e.g., `edito 2 n/Brownies q/10` |
+|          **Advance Order** | `advo INDEX`<br> e.g., `advo 1`                                                                    |
+|           **Revert Order** | `revo INDEX`<br> e.g., `revo 2`                                                                    |
+|           **Cancel Order** | `cancelo INDEX`<br> e.g., `cancelo 3`                                                              |
+|           **Delete Order** | `deleteo INDEX`<br> e.g., `deletec 3`                                                              |                                                                                                                                     |
+|     **Set Note for Order** | `setnoteo INDEX nt/NOTE` <br> e.g., `setnoteo 2 nt/Very friendly!`                                 |
+|  **Append Note for Order** | `appendnoteo INDEX nt/NOTE` <br> e.g., `appendnoteo 2 nt/Very friendly!`                           |
 
 ### Miscellaneous
 
