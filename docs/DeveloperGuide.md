@@ -139,6 +139,7 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a bookmark).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -170,6 +171,7 @@ The `Model` component,
 * stores the currently 'selected' `Bookmark` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Bookmark>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Library`, which `Bookmark` references. This allows `Library` to only require one `Tag` object per unique tag, instead of each `Bookmark` needing their own `Tag` objects.<br>
 
@@ -195,7 +197,6 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.library.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -235,7 +236,6 @@ Step 3. The user executes `add n/Hobbit …​` to add a new bookmark. The `add`
 Step 4. The user now decides that adding the bookmark was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLibraryk()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous library state, and restores the library to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
-<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Library state, then there are no previous Library states to restore. The `undo` command uses `Model#canUndoLibrary()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -251,7 +251,6 @@ The following sequence diagram shows how the undo operation works:
 </div>
 
 The `redo` command does the opposite — it calls `Model#redoLibrary()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the Library to that state.
-<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `libraryStateList.size() - 1`, pointing to the latest Library state, then there are no undone Library states to restore. The `redo` command uses `Model#canRedoLibrary()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
@@ -480,10 +479,7 @@ books in the `Library`.
 
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
-
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
