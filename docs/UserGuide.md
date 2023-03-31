@@ -73,18 +73,20 @@ For **new users** visit [quick start](#quick-start).
 [Scroll back to Table of Contents](#table-of-contents)
 
 ## Command Summary
-| Command             | Shorthand | What it does                                                                              |
-|---------------------|-----------|-------------------------------------------------------------------------------------------|
-| add-doc / add-ptn   | ad / ap   | Adds a doctor or patient into Docedex.                                                    |
-| edit-doc / edit-ptn | ed / ep   | Edits the specified doctor or patient.                                                    |
-| del-doc / del-ptn   | dd / dp   | Removes the specified doctor or patient from Docedex. **This action cannot be undone.**   |
-| find-doc / find-ptn | fd / fp   | Finds the doctor(s) and patient(s) which matches the search query.                        |
-| list-doc / list-ptn | lsd / lsp | Lists all doctors or patients.                                                            |
-| assign-ptn          | asn       | Assigns a patient to a doctor.                                                            |
-| unassign-ptn        | uasn      | Unassigns a patient from a doctor.                                                        |
-| sd / sp             | sd / sp   | Selects the specified doctor or patient and displays the person's information on the GUI. |
-| help                | N/A       | Displays the link to the User Guide.                                                      |
-| clear               | N/A       | Clears all entries from Docedex. **This action cannot be undone.**                            |
+
+| Command               | Shorthand   | What it does                                                                              |
+|-----------------------|-------------|-------------------------------------------------------------------------------------------|
+| `add-doc / add-ptn`   | `ad / ap`   | Adds a doctor or patient into Docedex.                                                    |
+| `edit-doc / edit-ptn` | `ed / ep`   | Edits the specified doctor or patient.                                                    |
+| `del-doc / del-ptn`   | `dd / dp`   | Removes the specified doctor or patient from Docedex. **This action cannot be undone.**   |
+| `find-doc / find-ptn` | `fd / fp`   | Finds the doctor(s) and patient(s) which matches the search query.                        |
+| `list-doc / list-ptn` | `lsd / lsp` | Lists all doctors or patients.                                                            |
+| `assign-ptn`          | `asn`       | Assigns a patient to a doctor.                                                            |
+| `unassign-ptn`        | `uasn`      | Unassigns a patient from a doctor.                                                        |
+| `sd / sp`             | `sd / sp`   | Selects the specified doctor or patient and displays the person's information on the GUI. |
+| `help`                | N/A         | Displays the link to the User Guide.                                                      |
+| `clear`               | N/A         | Clears all entries from Docedex. **This action cannot be undone.**                        |
+| `exit`                | N/A         | Exits the application (equivalent to closing the application).                            |
 
 [Scroll back to Table of Contents](#table-of-contents)
 
@@ -391,31 +393,5 @@ For Mac Users you may wish to follow the instructions listed [here](https://nus-
 
 **Q**: How can I load data from another computer into Docedex installed on another computer?<br>
 **A**: Delete the `docedex.json` file (stored at `[JAR file location]/data/docedex.json`) from the computer that you wish to use Docedex on. Then, copy over the `docedex.json` file from the computer which you no longer wish to use Docedex on. After which, boot up Docedex to check whether your doctor information is properly loaded into the new computer.
-
-[Scroll back to Table of Contents](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-| Action               | Format, Examples                                                                                                                                                                                                                               |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Doctor**       | `add-doc n/NAME p/PHONE_NUMBER e/EMAIL s/SPECIALTY y/YEARS_OF_EXPERIENCE [t/TAGS]…` <br> E.g. `add-doc n/John Doe p/98765432 e/johnd@example.com s/Cardiology y/5 t/surgeon`                                                                   |
-| **Add Patient**      | `add-ptn n/NAME p/PHONE e/EMAIL h/HEIGHT w/WEIGHT d/DIAGNOSIS st/STATUS r/REMARK [t/TAGS]…` <br> E.g. `add-ptn n/John Doe p/98765432 e/jdoe@gmail.com h/1.85 w/70.5 d/Fever st/Outpatient r/Patient was given paracetamol for fever t/friends` |
-| **Assign Patient**   | `assign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`<br> E.g. `assign-ptn ptn/1 doc/1`                                                                                                                                                              |
-| **Unassign Patient** | `unassign-ptn ptn/PATIENT_INDEX doc/DOCTOR_INDEX`<br> E.g. `unassign-ptn ptn/1 doc/1`                                                                                                                                                          |
-| **Delete Doctor**    | `del-doc INDEX`<br> E.g. `del-doc 3`                                                                                                                                                                                                           |
-| **Delete Patient**   | `del-ptn INDEX`<br> E.g. `del-ptn 3`                                                                                                                                                                                                           |
-| **Edit Doctor**      | `edit-doc INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-doc 3 n/Gabriel Tan p/12345678`                                                                                                                                                      |
-| **Edit Patient**     | `edit-ptn INDEX [n/NAME] [p/PHONE_NUMBER]`<br> E.g. `edit-ptn 3 n/Gabriel Tan p/12345678`                                                                                                                                                      |
-| **Find Doctor**      | `find-doc [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [s/SPECIALTY] [y/YEARS_OF_EXPERIENCE] [t/TAGS]…`<br> E.g. `find-doc n/Gabriel`                                                                                                                   |
-| **Find Patient**     | `find-ptn [n/NAME] [p/PHONE] [e/EMAIL] [h/HEIGHT] [w/WEIGHT] [d/DIAGNOSIS] [st/STATUS] [r/REMARK] [t/TAGS]…`<br> E.g. `find-ptn n/Gabriel`                                                                                                     |
-| **Select Doctor**    | `sd INDEX` <br> E.g. `sd 1`                                                                                                                                                                                                                    |
-| **Select Patient**   | `sp INDEX` <br> E.g. `sp 1`                                                                                                                                                                                                                    |
-| **List Doctors**     | `list-doc`                                                                                                                                                                                                                                     |
-| **List Patients**    | `list-ptn`                                                                                                                                                                                                                                     |
-| **Help**             | `help`                                                                                                                                                                                                                                         |
-| **Clear**            | `clear`                                                                                                                                                                                                                                        |
-| **Exit**             | `exit`                                                                                                                                                                                                                                         |
 
 [Scroll back to Table of Contents](#table-of-contents)
