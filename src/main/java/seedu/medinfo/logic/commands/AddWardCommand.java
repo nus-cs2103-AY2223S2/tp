@@ -17,7 +17,7 @@ public class AddWardCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a ward to MedInfo. \n"
             + "Parameters: "
-            + PREFIX_WARD + "WARDNAME "
+            + PREFIX_WARD + "WARD "
             + " [optional]" + PREFIX_CAPACITY + "CAPACITY \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_WARD + "A03 " + PREFIX_CAPACITY + "100\n";
