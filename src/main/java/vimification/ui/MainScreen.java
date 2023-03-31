@@ -83,6 +83,7 @@ public class MainScreen extends UiPart<VBox> {
     }
 
     private void setupComponents() {
+        loadRightComponent(new WelcomePanel());
         intializeCommandInput();
         initializeTaskTabPanel();
     }

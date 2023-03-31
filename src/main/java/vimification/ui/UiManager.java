@@ -40,8 +40,11 @@ public class UiManager implements Ui {
             primaryStage.setTitle("Vimification");
             primaryStage.setHeight(500);
             primaryStage.setWidth(1000);
+            primaryStage.setMinHeight(500);
+            primaryStage.setMinWidth(1000);
 
             MainScreen mainScreen = new MainScreen(logic);
+            logic.setMainScreen(mainScreen);
             mainScreen.getRoot().prefWidthProperty().bind(primaryStage.widthProperty());
             mainScreen.getRoot().prefHeightProperty().bind(primaryStage.heightProperty());
             Scene scene = new Scene(mainScreen.getRoot());

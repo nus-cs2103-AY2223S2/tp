@@ -1,23 +1,17 @@
 package vimification.internal.parser;
 
-import vimification.internal.command.ui.SearchCommand;
-import vimification.internal.command.ui.SearchRequest;
+import vimification.internal.command.ui.FilterCommand;
+import vimification.internal.command.ui.FilterRequest;
 
-public class SearchCommandParser implements CommandParser<SearchCommand> {
+public class FilterCommandParser implements CommandParser<FilterCommand> {
 
-    private static final ApplicativeParser<ApplicativeParser<SearchCommand>> INTERNAL_PARSER =
+    private static final ApplicativeParser<ApplicativeParser<FilterCommand>> INTERNAL_PARSER =
             ApplicativeParser
-                    .string("s") // search
-                    .map(SearchCommandParser::parseArguments)
-                    .dropNext(ApplicativeParser.skipWhitespaces())
-                    .dropNext(ApplicativeParser.eof());
+                    .string("f") // filter
+                    .map(FilterCommandParser::parseArguments);
 
-    private static final SearchCommandParser INSTANCE = new SearchCommandParser();
-
-    private SearchCommandParser() {}
-
-    private static ApplicativeParser<SearchCommand> parseArguments(Object ignore) {
-        SearchRequest request = new SearchRequest();
+    private static ApplicativeParser<FilterCommand> parseArguments(Object ignore) {
+        FilterRequest request = new FilterRequest();
         ArgumentCounter counter = new ArgumentCounter(
                 Pair.of(CommandParserUtil.KEYWORD_FLAG, 1),
                 Pair.of(CommandParserUtil.STATUS_FLAG, 1),
@@ -25,13 +19,13 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
                 Pair.of(CommandParserUtil.PRIORITY_FLAG, 1),
                 Pair.of(CommandParserUtil.BEFORE_FLAG, 1),
                 Pair.of(CommandParserUtil.AFTER_FLAG, 1),
-                Pair.of(CommandParserUtil.SEARCH_FLAG, 1));
+                Pair.of(CommandParserUtil.FILTER_FLAG, 1));
 
         ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
                 CommandParserUtil.KEYWORD_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
-                        .takeNext(CommandParserUtil.WORD_PARSER)
+                        .takeNext(CommandParserUtil.STRING_PARSER)
                         .consume(request::setSearchedKeyword),
                 CommandParserUtil.STATUS_FLAG_PARSER
                         .consume(counter::add)
@@ -58,16 +52,16 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.DATE_TIME_PARSER)
                         .consume(request::setSearchedDeadlineAfter),
-                CommandParserUtil.SEARCH_FLAG_PARSER
+                CommandParserUtil.FILTER_FLAG_PARSER
                         .consume(flag -> {
                             counter.add(flag);
                             LiteralArgumentFlag literalFlag = flag.getActualFlag();
                             if (literalFlag.equals(CommandParserUtil.AND_FLAG)) {
-                                request.setMode(SearchRequest.Mode.AND);
+                                request.setMode(FilterRequest.Mode.AND);
                                 return;
                             }
                             if (literalFlag.equals(CommandParserUtil.OR_FLAG)) {
-                                request.setMode(SearchRequest.Mode.OR);
+                                request.setMode(FilterRequest.Mode.OR);
                                 return;
                             }
                             throw new ParserException("Should not reach here!");
@@ -76,18 +70,24 @@ public class SearchCommandParser implements CommandParser<SearchCommand> {
         return ApplicativeParser
                 .skipWhitespaces1()
                 .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
-                .filter(ignore1 -> !request.getMode().equals(SearchRequest.Mode.DEFAULT)
-                        || counter.totalCount() <= 2)
-                .constMap(new SearchCommand(request));
+                .filter(ignore1 -> !request.getMode().equals(FilterRequest.Mode.DEFAULT)
+                        || counter.totalCount() == 1)
+                .constMap(new FilterCommand(request))
+                .dropNext(ApplicativeParser.skipWhitespaces())
+                .dropNext(ApplicativeParser.eof());
 
     }
 
-    public static SearchCommandParser getInstance() {
+    private static final FilterCommandParser INSTANCE = new FilterCommandParser();
+
+    private FilterCommandParser() {}
+
+    public static FilterCommandParser getInstance() {
         return INSTANCE;
     }
 
     @Override
-    public ApplicativeParser<ApplicativeParser<SearchCommand>> getInternalParser() {
+    public ApplicativeParser<ApplicativeParser<FilterCommand>> getInternalParser() {
         return INTERNAL_PARSER;
     }
 }

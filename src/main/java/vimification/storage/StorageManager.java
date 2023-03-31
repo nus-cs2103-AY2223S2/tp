@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 import vimification.commons.exceptions.DataConversionException;
-import vimification.model.LogicTaskList;
+import vimification.model.MacroMap;
+import vimification.model.TaskListRef;
 import vimification.model.UserPrefs;
 
 /**
@@ -12,7 +13,8 @@ import vimification.model.UserPrefs;
  */
 public class StorageManager implements Storage {
 
-    private LogicTaskListStorage logicTaskListStorage;
+    private TaskListRefStorage taskListRefStorage;
+    private JsonMacroMapStorage macroMapStorage;
     private UserPrefsStorage userPrefsStorage;
 
     /**
@@ -20,9 +22,11 @@ public class StorageManager implements Storage {
      * {@code UserPrefStorage}.
      */
     public StorageManager(
-            LogicTaskListStorage logicTaskListStorage,
+            TaskListRefStorage taskListRefStorage,
+            JsonMacroMapStorage macroMapStorage,
             UserPrefsStorage userPrefsStorage) {
-        this.logicTaskListStorage = logicTaskListStorage;
+        this.taskListRefStorage = taskListRefStorage;
+        this.macroMapStorage = macroMapStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -47,18 +51,29 @@ public class StorageManager implements Storage {
     // LogicTaskList methods
 
     @Override
-    public Path getLogicTaskListFilePath() {
-        return logicTaskListStorage.getLogicTaskListFilePath();
+    public Path getTaskListRefFilePath() {
+        return taskListRefStorage.getTaskListRefFilePath();
     }
 
     @Override
-    public LogicTaskList readLogicTaskList() throws DataConversionException, IOException {
-        return logicTaskListStorage.readLogicTaskList();
+    public TaskListRef readTaskListRef() throws DataConversionException, IOException {
+        return taskListRefStorage.readTaskListRef();
     }
 
     @Override
-    public void saveLogicTaskList(LogicTaskList logicTaskList) throws IOException {
-        logicTaskListStorage.saveLogicTaskList(logicTaskList);
+    public void saveTaskListRef(TaskListRef ref) throws IOException {
+        taskListRefStorage.saveTaskListRef(ref);
     }
 
+    public Path getMacroMapFilePath() {
+        return macroMapStorage.getMacroMapFilePath();
+    }
+
+    public MacroMap readMacroMap() throws IOException {
+        return macroMapStorage.readMacroMap();
+    }
+
+    public void saveMacroMap(MacroMap macroMap) throws IOException {
+        macroMapStorage.saveMacroMap(macroMap);
+    }
 }

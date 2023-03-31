@@ -11,22 +11,19 @@ import javafx.scene.web.WebView;
 /**
  * An UI component that displays the manual page for Vimification.
  */
-public class ManualPanel extends UiPart<VBox> {
+public class WelcomePanel extends UiPart<VBox> {
 
-    private static final String FXML = "ManualPanel.fxml";
+    private static final String FXML = "WelcomePanel.fxml";
 
     @FXML
     private WebView webView;
 
-    public ManualPanel() {
+    public WelcomePanel() {
         super(FXML);
-        Path manualHtml = Path.of(FXML_FILE_FOLDER, "ManualPanel.html");
-        System.out.println(manualHtml.toString());
         WebEngine webEngine = webView.getEngine();
-        webEngine.load(manualHtml.toString());
         String manualHtmlPath;
         try {
-            manualHtmlPath = getClass().getResource(FXML_FILE_FOLDER + "ManualPanel.html").toURI()
+            manualHtmlPath = getClass().getResource(FXML_FILE_FOLDER + "WelcomePanel.html").toURI()
                     .toString();
             webEngine.load(manualHtmlPath);
         } catch (URISyntaxException e) {

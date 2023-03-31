@@ -1,34 +1,33 @@
 package vimification.storage;
 
+import java.util.ArrayList;
 import java.util.List;
 // import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
 
 // import vimification.commons.core.LogsCenter;
 import vimification.commons.exceptions.IllegalValueException;
-import vimification.model.LogicTaskList;
+import vimification.model.TaskListRef;
 import vimification.model.task.Task;
 
 /**
  * An Immutable TaskPlanner that is serializable to JSON format.
  */
-@JsonRootName(value = "logicTaskList")
-public class JsonAdaptedLogicTaskList {
+public class JsonAdaptedTaskListRef {
 
     // private static final Logger LOGGER = LogsCenter.getLogger(JsonAdaptedLogicTaskList.class);
 
-    private final List<JsonAdaptedTask> tasks;
+    private final List<JsonAdaptedTask> taskList;
 
     @JsonCreator
-    public JsonAdaptedLogicTaskList(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
-        if (tasks == null) {
-            tasks = List.of();
+    public JsonAdaptedTaskListRef(@JsonProperty("taskList") List<JsonAdaptedTask> taskList) {
+        if (taskList == null) {
+            taskList = List.of();
         }
-        this.tasks = tasks;
+        this.taskList = taskList;
     }
 
     /**
@@ -37,8 +36,11 @@ public class JsonAdaptedLogicTaskList {
      * @param source future changes to this will not affect the created
      *        {@code JsonSerializableAddressBook}.
      */
-    public JsonAdaptedLogicTaskList(LogicTaskList source) {
-        tasks = source.stream().map(JsonAdaptedTask::new).collect(Collectors.toList());
+    public JsonAdaptedTaskListRef(TaskListRef source) {
+        taskList = source.getTaskList()
+                .stream()
+                .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList());
     }
 
 
@@ -47,17 +49,17 @@ public class JsonAdaptedLogicTaskList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public LogicTaskList toModelType() throws IllegalValueException {
-        LogicTaskList taskList = new LogicTaskList();
-        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
+    public TaskListRef toModelType() throws IllegalValueException {
+        List<Task> taskList = new ArrayList<>();
+        for (JsonAdaptedTask jsonAdaptedTask : this.taskList) {
             Task task = jsonAdaptedTask.toModelType();
             taskList.add(task);
         }
-        return taskList;
+        return new TaskListRef(taskList);
     }
 
     @Override
     public String toString() {
-        return "JsonAdpatedLogicTaskList: " + tasks;
+        return "JsonAdaptedTaskListRef [taskList=" + taskList + "]";
     }
 }

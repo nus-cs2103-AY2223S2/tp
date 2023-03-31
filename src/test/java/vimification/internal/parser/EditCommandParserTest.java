@@ -17,7 +17,7 @@ public class EditCommandParserTest {
         String input = "e \"description\" -t stickytag -p 0";
         assertThrows(EXPECTED_EXCEPTION_CLASS, () -> INSTANCE.parse(input));
 
-        String input1 = "e 10 -p 0 --before <deadline>";
+        String input1 = "e 10 -p 0 --before Thu";
         assertThrows(EXPECTED_EXCEPTION_CLASS, () -> INSTANCE.parse(input1));
 
         String input2 = "e 10 -l idola"; // must have 2 args for label
@@ -30,11 +30,11 @@ public class EditCommandParserTest {
         EditCommand cmd = INSTANCE.parse(input);
         assertTrue(cmd != null);
 
-        String input1 = "e 10 -d <deadline> -l haskell rust";
+        String input1 = "e 10 -d Mon -l haskell rust";
         EditCommand cmd1 = INSTANCE.parse(input1);
         assertTrue(cmd1 != null);
 
-        String input2 = "e 10 --deadline <deadline> --title 'empty?'";
+        String input2 = "e 10 --deadline 2023-01-01 --title 'empty?'";
         EditCommand cmd2 = INSTANCE.parse(input2);
         assertTrue(cmd2 != null);
     }

@@ -8,13 +8,13 @@ import vimification.internal.command.CommandResult;
 import vimification.model.task.Task;
 import vimification.ui.MainScreen;
 
-public class SearchCommand extends UiCommand {
+public class FilterCommand extends UiCommand {
 
     private static final String SUCCESS_MESSAGE = "Here are your search results:";
 
-    private final SearchRequest request;
+    private final FilterRequest request;
 
-    public SearchCommand(SearchRequest request) {
+    public FilterCommand(FilterRequest request) {
         this.request = request;
     }
 
@@ -38,7 +38,7 @@ public class SearchCommand extends UiCommand {
         request.getSearchedLabels()
                 .forEach(label -> predicates.add(task -> task.containsLabel(label)));
         Predicate<Task> predicate = predicates.stream()
-                .reduce(request.getMode() == SearchRequest.Mode.OR ? Predicate::or : Predicate::and)
+                .reduce(request.getMode() == FilterRequest.Mode.OR ? Predicate::or : Predicate::and)
                 .orElse(ignore -> true);
         mainScreen.getTaskTabPanel().searchForTask(predicate, 0); // TODO: refactor to pass enum
         return new CommandResult(SUCCESS_MESSAGE);
