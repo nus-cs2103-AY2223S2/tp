@@ -35,7 +35,7 @@ public class AddScoreCommand extends Command {
             + PREFIX_SCORE_DATE + "2012-08-09 ";
 
     public static final String MESSAGE_SUCCESS = "Added score to Student %1$s: %2$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This score already exists in this student's score list";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This score already exists in this student's score list";
 
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
     private final Index index;
@@ -64,8 +64,8 @@ public class AddScoreCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
 
         if (studentToEdit.hasScore(toAdd)) {
-            logger.info(MESSAGE_DUPLICATE_PERSON);
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            logger.info(MESSAGE_DUPLICATE_STUDENT);
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
         studentToEdit.addScore(toAdd);

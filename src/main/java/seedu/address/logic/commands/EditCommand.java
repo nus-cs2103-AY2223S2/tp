@@ -29,7 +29,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Edits the details of an existing student in the math tutoring.
+ * Edits the details of an existing student in the mathutoring.
  */
 public class EditCommand extends Command {
 

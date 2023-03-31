@@ -36,7 +36,7 @@ public class ExportProgressCommand extends Command {
     private String filePath;
 
     /**
-     * Creates an ExportProgressCommand to export the specified Person {@code Person}'s progress to a PDF file.
+     * Creates an ExportProgressCommand to export the specified Student {@code Student}'s progress to a PDF file.
      */
     public ExportProgressCommand(Index targetIndex, String filePath) {
         requireNonNull(targetIndex);

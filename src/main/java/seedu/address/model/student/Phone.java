@@ -12,6 +12,9 @@ public class Phone {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+
+    public static final String MESSAGE_EXCEED_MAX_IGITS =
+            "Phone numbers should not be more than 15 digits. Please recheck the phone number entered.";
     public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
@@ -23,6 +26,7 @@ public class Phone {
     public Phone(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        checkArgument(isMoreThanMaxDigits(phone), MESSAGE_EXCEED_MAX_IGITS);
         value = phone;
     }
 
@@ -31,6 +35,16 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given phone number is not exceed 15 digits long.
+     */
+    public static boolean isMoreThanMaxDigits(String test) {
+        if (test.length() > 15) {
+            return false;
+        }
+        return true;
     }
 
     @Override

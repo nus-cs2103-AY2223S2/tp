@@ -24,7 +24,7 @@ public class CheckCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_CHECK_PERSON_SUCCESS = "Check Student: %1$s";
+    public static final String MESSAGE_CHECK_STUDENT_SUCCESS = "Check Student: %1$s";
 
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
     private final Index targetIndex;
@@ -44,10 +44,10 @@ public class CheckCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Student personToCheck = studentList.get(targetIndex.getZeroBased());
-        model.checkStudent(personToCheck);
+        Student studentToCheck = studentList.get(targetIndex.getZeroBased());
+        model.checkStudent(studentToCheck);
 
-        return new CommandResult(String.format(MESSAGE_CHECK_PERSON_SUCCESS, personToCheck));
+        return new CommandResult(String.format(MESSAGE_CHECK_STUDENT_SUCCESS, studentToCheck));
     }
 
     @Override

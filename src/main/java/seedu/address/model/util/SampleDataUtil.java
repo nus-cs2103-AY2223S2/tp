@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods for populating {@code Mathutoring} with sample data.
  */
 public class SampleDataUtil {
-    public static Student[] getSamplePersons() {
+    public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Phone("93377418"),
@@ -43,7 +43,7 @@ public class SampleDataUtil {
 
     public static ReadOnlyMathutoring getSampleMathutoring() {
         Mathutoring sampleAb = new Mathutoring();
-        for (Student sampleStudent : getSamplePersons()) {
+        for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }
         return sampleAb;
