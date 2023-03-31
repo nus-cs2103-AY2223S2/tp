@@ -1,13 +1,17 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.employee.Employee;
 
-import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Class for filter command.
+ */
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";

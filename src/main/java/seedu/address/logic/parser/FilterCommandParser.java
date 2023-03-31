@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.employee.FilterByLeaveCountPredicate;
@@ -7,11 +9,10 @@ import seedu.address.model.employee.FilterByPayrollPredicate;
 import seedu.address.model.employee.LeaveCounter;
 import seedu.address.model.employee.Payroll;
 
-import java.util.Arrays;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-public class FilterCommandParser implements Parser<FilterCommand>{
+/**
+ * Class to parse the filter command.
+ */
+public class FilterCommandParser implements Parser<FilterCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
