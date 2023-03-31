@@ -53,10 +53,13 @@ public class SetPictureCommand extends Command {
             if (employee.getEmployeeId().equals(employeeId)) {
                 employeeToSetPicture = employee;
                 Path sourcePath = chooseSourcePicture();
-                PicturePath destPicturePath = new PicturePath(PicturePath.VALID_DIRECTORY
+                PicturePath destPicturePath = new PicturePath("data/employeepictures/"
                         + employeeToSetPicture.getName().fullName + PicturePath.VALID_EXTENSION);
-                Path destPath = destPicturePath.toPath();
+                Path destPath = destPicturePath.toPath().toAbsolutePath();
                 try {
+                    if (!destPath.toFile().exists()) {
+                        Files.createDirectories(destPath);
+                    }
                     Files.copy(sourcePath, destPath, StandardCopyOption.REPLACE_EXISTING);
                 } catch (IOException e) {
                     throw new CommandException(MESSAGE_IO_ERROR);
