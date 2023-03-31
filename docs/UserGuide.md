@@ -139,8 +139,8 @@ Format: `add-image INDEX ai/[PATH-TO-IMAGE]`
 
 Examples:
 
-* `list` followed by `add-image 2 C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person 
-in the address book
+* `list` followed by `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person in the address book
+
 
 ### Delete an Image for contacts
 
