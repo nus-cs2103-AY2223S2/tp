@@ -17,6 +17,6 @@ public interface ContinuousData {
      * @return A {@code Range<ContinuousData>}.
      */
     public static <R extends ContinuousData> Range<R> generateRange(Start<R> start, End<R> end) {
-        return new Range<R>(start, end);
+        return Range.<R>of(start, end);
     }
 }
