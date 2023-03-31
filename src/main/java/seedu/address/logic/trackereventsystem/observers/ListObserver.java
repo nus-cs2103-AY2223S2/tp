@@ -1,5 +1,7 @@
 package seedu.address.logic.trackereventsystem.observers;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
+
 import seedu.address.logic.trackereventsystem.OnLectureEditedEventObserver;
 import seedu.address.logic.trackereventsystem.OnModuleEditedEventObserver;
 import seedu.address.logic.trackereventsystem.OnVideoEditedEventObserver;
@@ -82,6 +84,10 @@ public class ListObserver implements
         ReadOnlyLecture curLecture = model.getListedVideosByLecture();
         DisplayListLevel curDisplayListLevel = model.getLastListLevel();
 
+        if (isModulesAffectedByModuleEdit(curDisplayListLevel)) {
+            model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        }
+
         if (isLecturesAffectedByModuleEdit(curDisplayListLevel, curModule, originalModule)) {
             model.updateFilteredLectureList(new LecturePredicate(editedModule), editedModule);
         }
@@ -89,6 +95,10 @@ public class ListObserver implements
         if (isVideosAffectedByModuleEdit(curDisplayListLevel, curModule, originalModule)) {
             model.updateFilteredVideoList(new VideoPredicate(curLecture), editedModule.getCode(), curLecture);
         }
+    }
+
+    private boolean isModulesAffectedByModuleEdit(DisplayListLevel curDisplayListLevel) {
+        return curDisplayListLevel == DisplayListLevel.MODULE;
     }
 
     private boolean isLecturesAffectedByModuleEdit(DisplayListLevel curDisplayListLevel,
