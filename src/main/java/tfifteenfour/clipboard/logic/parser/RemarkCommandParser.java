@@ -38,6 +38,8 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
 
         if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
             throw new CommandException("Wrong page. Navigate to student page to add a remark");
+        } else if (argMultimap.size() <= 1) {
+            throw new CommandException("Wrong command format. " + RemarkCommand.MESSAGE_USAGE);
         }
 
         try {
