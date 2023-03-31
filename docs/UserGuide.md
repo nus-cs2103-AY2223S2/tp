@@ -379,6 +379,7 @@ Format: `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM]
 You can add a contact using the `add` command followed by the parameters (as shown in the format above). While the `NAME` is mandatory, the rest of the fields (i.e. `ADDRESS`, `TELEGRAM`, `MODULE` etc.) are optional. 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+
 * A contact can have any number of tags, <u>modules</u> and <u>CCAs</u> (including 0)! 
 * A contact can have at most 2 majors. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters! 
 </div>
