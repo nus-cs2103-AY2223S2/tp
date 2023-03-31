@@ -36,7 +36,7 @@ public class ExportCommandParserTest {
 
     @Test
     public void parseCommand_overwriteFileCommand_successful() throws ParseException {
-        String argument = TEST_FILE + " /overwrite true";
+        String argument = TEST_FILE + " /overwrite";
         ExportCommand expectedCommand = new ExportCommand(TEST_FILE, true);
         assertEquals(expectedCommand, parser.parse(argument));
     }

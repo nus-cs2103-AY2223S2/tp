@@ -25,14 +25,9 @@ public class ImportCommandParser {
 
     public ImportCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OVERWRITE, PREFIX_MODULE);
-        boolean isOverwritingExistingModule = false;
+        boolean isOverwritingExistingModule = argMultimap.getValue(PREFIX_OVERWRITE).isPresent();
         boolean isImportingAllModules = false;
         Set<ModuleCode> moduleCodeSet = new HashSet<>();
-
-        String overwritingFileArgument = argMultimap.getValue(PREFIX_OVERWRITE).orElse("");
-        if (overwritingFileArgument.equals("true")) {
-            isOverwritingExistingModule = true;
-        }
 
         if (!argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             isImportingAllModules = true;
