@@ -1,6 +1,7 @@
 @startuml
 !include style.puml
 skinparam DefaultFontSize 50
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
@@ -14,7 +15,6 @@ participant ":Model" as Model MODEL_COLOR
 participant ":AddressBook" as AddressBook MODEL_COLOR
 participant ":DateTime" as DateTime MODEL_COLOR
 participant "e:Event" as Event MODEL_COLOR
-
 end box
 
 [-> LogicManager : execute("addevent ev/Carnival from/17-07-2023 12:00 to/23-07-2023 22:00")
