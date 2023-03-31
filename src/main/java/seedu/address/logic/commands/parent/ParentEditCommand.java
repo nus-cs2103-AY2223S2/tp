@@ -53,7 +53,7 @@ public class ParentEditCommand extends ParentCommand {
             + PREFIX_NEWNAME + "Tan Ah Seng "
             + PREFIX_NEWPHONEPARENT + "91274444 "
             + PREFIX_PARENTAGE + "31 "
-            + PREFIX_IMAGEPARENT + "C:// "
+            + PREFIX_IMAGEPARENT + "XX.png (where XX is your image name) "
             + PREFIX_EMAIL + "tanahcow@gmail.com "
             + PREFIX_ADDRESS + "Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245)";
 
