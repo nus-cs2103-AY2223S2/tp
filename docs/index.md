@@ -12,6 +12,7 @@ title: MedInfo
 
 * If you are interested in using MedInfo, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing MedInfo, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* Find out more about the team behind MedInfo [**here**](AboutUs.html).
 
 
 **Acknowledgements**

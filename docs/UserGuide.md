@@ -32,6 +32,7 @@ how your hospital attends to your patients. **MedInfo** has simplified, focused 
 tee, allowing you to in-process, update, and move patients around while looking at the overall stats of the hospital.<br>
 <br>
 [Back to Table of Contents](#logic-component)
+
 ---
 
 ## Quick start
