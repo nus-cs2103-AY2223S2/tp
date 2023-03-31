@@ -9,7 +9,6 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
-import seedu.address.model.person.fields.Name;
 
 /**
  * Wraps all data at the address-book level

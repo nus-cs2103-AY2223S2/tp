@@ -109,12 +109,6 @@ public class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-
-        for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
-        }
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -158,21 +152,28 @@ public class JsonAdaptedPerson {
         }
         final Favorite favoriteStatus = new Favorite(this.isFavorite);
 
-        Set<NusMod> personMods = new HashSet<>();
+        final Set<NusMod> personMods = new HashSet<>();
         for (JsonAdaptedNusMod mod: this.modules) {
             personMods.add(mod.toModelType());
         }
-        Modules modelModules = new Modules(personMods);
+        final Modules modelModules = new Modules(personMods);
 
-        CommunicationChannel modelComms = new CommunicationChannel(this.comms);
+        if (!CommunicationChannel.isValidComms(this.comms)) {
+            throw new IllegalValueException(CommunicationChannel.MESSAGE_CONSTRAINTS);
+        }
+        final CommunicationChannel modelComms = new CommunicationChannel(this.comms);
 
         if (!Faculty.isValidFaculty(this.faculty)) {
             throw new IllegalValueException(Faculty.MESSAGE_CONSTRAINTS);
         }
-
         final Faculty faculty = new Faculty(this.faculty);
 
-        final Tags modelTags = new Tags(new HashSet<>(personTags));
+        final Set<Tag> personTags = new HashSet<>();
+        for (JsonAdaptedTag tag : tagged) {
+            personTags.add(tag.toModelType());
+        }
+        final Tags modelTags = new Tags(personTags);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelMajor,
                 modelModules, modelRace, modelTags, modelComms, favoriteStatus, faculty);
     }
