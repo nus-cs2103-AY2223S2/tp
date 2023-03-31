@@ -52,10 +52,11 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 1. Copy the file to the folder you want to use as the _home folder_ for your Library.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
+   
+1. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
-   <img width="560" height="400"  src="images/Ui.png">
+    <img width="560" height="400"  src="images/Ui.png">
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -79,7 +80,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 ## **Graphical User Interface**<br>
 
-   <img width="560" src="images/annotated-UI.png">
+   <img width="680" src="images/annotated-UI.png">
 
 ### Purposes of each GUI component
 
@@ -307,6 +308,7 @@ Format: `exit`
 ### Saving the data
 
 MyLib data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+<div style="page-break-after: always;"></div>
 
 ### Editing the data file
 
@@ -315,7 +317,6 @@ MyLib data are saved as a JSON file `[JAR file location]/data/library.json`. Adv
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MyLib will discard all data and start with an empty data file at the next run.
 </div>
-<div style="page-break-after: always;"></div>
 
 ### Archiving data files `[coming in v2.0]`
 
