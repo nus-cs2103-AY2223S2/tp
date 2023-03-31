@@ -79,7 +79,7 @@ public class ArchiveCommandTest {
     @Test
     public void equals() {
         ArchiveCommand archiveFirstCommand = new ArchiveCommand(INDEX_FIRST_PET);
-        ArchiveCommand archiveSecondCommand = new ArchiveCommand(INDEX_THIRD_PET);
+        ArchiveCommand archiveSecondCommand = new ArchiveCommand(INDEX_SECOND_PET);
 
         // same object -> returns true
         assertEquals(archiveFirstCommand, archiveSecondCommand);

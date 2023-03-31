@@ -45,7 +45,7 @@ public interface Model {
     void setPetPalFilePath(Path petPalFilePath);
 
     /**
-     * Replaces pet pal data with the data in {@code addressBook}.
+     * Replaces pet pal data with the data in {@code petPal}.
      */
     void setPetPal(ReadOnlyPetPal petPal);
 
