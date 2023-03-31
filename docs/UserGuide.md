@@ -190,7 +190,7 @@ To advance an order's status, the [`advo`]() command will come in handy, which t
 
     advo 1
 
-[INSERT IMAGE HERE]
+![result after advancing order status](images/advanceOrderResult.png)
 
 Now, the status of the order should be 'Paid'. Doing this multiple times will eventually update the order's status to 'Completed'.
 Further attempts to advance the order status will return an error!
@@ -212,7 +212,8 @@ An order can be cancelled at any stage of the order. This can be performed with 
 
     cancelo 1
 
-[INSERT IMAGE HERE]
+![result after cancelling order](images/cancelOrderResult.png)
+
 
 Looking at the order status, it is now reflected as 'Cancelled'.
 
@@ -482,7 +483,7 @@ Examples:
 
 #### Adding an order : `addo`
 
-Adds an order tagged to a customer, to the list of orders.
+Adds an order tagged to a customer, to the current order list.
 
 Format: `addo INDEX n/NAME [q/QUANTITY] [a/ADDRESS]`
 
@@ -490,17 +491,17 @@ Format: `addo INDEX n/NAME [q/QUANTITY] [a/ADDRESS]`
 * The index refers to the index number shown in the displayed customer list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * ADDRESS is optional and will be set to the customer's address by default
-* QUANTITY is optional and will be set to 1 by default. Otherwise, it must be a positive integer 1, 2, 3...
+* QUANTITY is optional and will be set to 1 by default. Otherwise, it must be a positive integer (e.g. 1, 2, 3...999)
 
 Examples:
-* `addo 1 n/Banana Cake 1 q/2`
-  * Adds the order, 2 x Banana cakes to the list, tags it to customer 1, and status is "pending", address is the customer's address.
+* `addo 1 n/Banana Cake 1 q/2 a/Changi Airport`
+  * Adds the order, 2 x Banana cakes to the list, tags it to customer at index 1, and status is "pending", address is "Changi Airport".
 * `addo 4 n/Strawberry ice cream`
   * Adds the order 1 x Strawberry ice cream, tags it to customer 4, and sets status to "pending", address is the customer's address.
 
 #### Listing all customers : `listo`
 
-Shows a list of all orders.
+Shows a list of all orders, with an optional filter and sort option.
 
 Format: `listo [s/{created|name|status}] [f/STATUS]`
 
@@ -556,8 +557,45 @@ Format: `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]`
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edito 1 s/paid` Edits order of id 1, and changes the status to "paid".
-*  `edito 2 n/Brownies q/10` Edits the name of the 2nd order to be `Brownies` and the quantity to 10.
+*  `edito 1 q/100 a/Gardens by the Bay` Edits order quantity to 100, and changes the address to Gardens by the Bay.
+*  `edito 2 n/Brownies q/10` Edits the name of the 2nd order in the list to be `Brownies` and the quantity to 10.
+
+#### Advancing an order status: `advo`
+
+Advances the order status.
+
+Format: `advo ORDER_INDEX`
+
+* Advances the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+* If the order is completed, the status cannot be advanced further
+
+Examples:
+*  `advo 1`: The status that it advances to, follows this sequence: "Pending", "Paid", "Shipped", "Completed".
+
+#### Reverting an order status: `revo`
+
+Reverts the order status to its previous status. 
+
+Format: `revo ORDER_INDEX`
+
+* Edits the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+* If the order is "Pending", the status cannot be reverted further.
+* If the order is "Cancelled", `revo` will revert the status back to just before it was cancelled.
+
+Examples:
+*  `revo 1`: The status that it reverts to, follows this sequence: "Completed", "Shipped", "Paid", "Pending".
+* `revo 2`: If 2 was "Pending", before being cancelled, revo will revert back to "Pending"
+
+#### Cancel an order: `cancelo`
+
+Changes the order status to "Cancelled"
+
+Format: `cancelo ORDER_INDEX`
+
+* Cancels the order at the specified `ORDER_INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+*  `cancelo 1`: Changes the status of the order at index 1 to "Cancelled"
 
 #### Deleting an order : `deleteo`
 
@@ -685,16 +723,19 @@ If this is not ideal, we recommend to avoid deleting any customers.
 
 ### Order
 
-|                    Action | Format, Examples                                                                                   |
-|--------------------------:|----------------------------------------------------------------------------------------------------|
-|             **Add Order** | `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS]` <br> e.g., `addo 1 n/Banana Cake 1 q/2`      |
-|            **List Order** | `listo` <br>                                                                                       |
-|            **Find Order** | `findo KEYWORD [MORE_KEYWORDS]` <br> e.g., `findo banana muffin`                                   |
-|            **View Order** | `viewo INDEX` <br> e.g. `viewo 2`                                                                  |
-|            **Edit Order** | `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]` <br> e.g., `edito 2 n/Brownies q/10` |
-|          **Delete Order** | `deleteo INDEX`<br> e.g., `deletec 3`                                                              |                                                                                                                                     |
-|    **Set Note for Order** | `setnoteo INDEX nt/NOTE` <br> e.g., `setnoteo 2 nt/Very friendly!`                                 |
-| **Append Note for Order** | `appendnoteo INDEX nt/NOTE` <br> e.g., `appendnoteo 2 nt/Very friendly!`                           |
+|                     Action | Format, Examples                                                                                   |
+|---------------------------:|----------------------------------------------------------------------------------------------------|
+|              **Add Order** | `addo CUSTOMER_INDEX n/NAME [q/QUANTITY] [a/ADDRESS]` <br> e.g., `addo 1 n/Banana Cake 1 q/2`      |
+|             **List Order** | `listo` <br>                                                                                       |
+|             **Find Order** | `findo KEYWORD [MORE_KEYWORDS]` <br> e.g., `findo banana muffin`                                   |
+|             **View Order** | `viewo INDEX` <br> e.g. `viewo 2`                                                                  |
+|             **Edit Order** | `edito ORDER_INDEX [n/PRODUCT_NAME] [q/QUANTITY] [a/ADDRESS]` <br> e.g., `edito 2 n/Brownies q/10` |
+|          **Advance Order** | `advo INDEX`<br> e.g., `advo 1`                                                                    |
+|           **Revert Order** | `revo INDEX`<br> e.g., `revo 2`                                                                    |
+|           **Cancel Order** | `cancelo INDEX`<br> e.g., `cancelo 3`                                                              |
+|           **Delete Order** | `deleteo INDEX`<br> e.g., `deletec 3`                                                              |                                                                                                                                     |
+|     **Set Note for Order** | `setnoteo INDEX nt/NOTE` <br> e.g., `setnoteo 2 nt/Very friendly!`                                 |
+|  **Append Note for Order** | `appendnoteo INDEX nt/NOTE` <br> e.g., `appendnoteo 2 nt/Very friendly!`                           |
 
 ### Miscellaneous
 
