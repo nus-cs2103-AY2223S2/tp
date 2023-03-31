@@ -45,8 +45,11 @@ E-Lister is **a comprehensive desktop app**, **specially designed** for **insura
 
 **Some notices before going through this guide:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters for you to supply.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* Words separated by `|` indicate that you should only pick one of the keywords.<br>
+  e.g. `all|shown` indicates that you may enter either `all` or `shown`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -267,6 +270,34 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Import data from CSV : `import`
+
+Opens a file chooser to select a CSV file containing relevant data and merges with the existing data.
+
+Format: `import [combine|reset]`
+
+* If `combine` is entered, the existing data will be combined with the imported dataset.
+* If `reset` is entered, the existing data will be removed and replaced with the imported dataset.
+* If neither keyword is entered, the behaviour will be the same as `combine`.
+
+**Note: Your CSV file must have the following headers in this order: `Name, Phone, Email, Address, Income, Tags`**
+
+![CSV headers example](images/csvHeadersExample.png)
+
+### Export data to CSV : `export`
+
+Opens a file chooser to select a directory where you can save the data to a CSV file.
+
+If you wish to export to a new file, you may type its intended name in the **File Name** box and click **Save**. This will create the new CSV file with the exported data. Otherwise, you can select an existing CSV file to overwrite.
+
+Format: `export [shown|all]`
+
+* If `shown` is entered, only the current _selection_ of persons will be exported.
+* If `all` is entered, all persons will be exported, including those which are not displayed due to filters.
+* If neither keyword is entered, the behaviour will be the same as `shown`.
+
+![export example](images/exportExample.png)
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -285,19 +316,6 @@ E-Lister data is saved as a JSON file `[JAR file location]/data/addressbook.json
 If your changes to the data file makes its format invalid, E-Lister will discard all data and start with an empty data file at the next run.
 </div>
 
-### Import data from CSV : `import`
-
-Opens a file chooser to select a CSV file containing relevant data and merges with the existing data.
-
-Format: `import`
-
-### Export data to CSV : `export`
-
-Opens a file chooser to select a directory where you can save the data to a CSV file.
-
-If you wish to export to a new file which does not exist, you may type its intended name in the **File Name** box and click **Save**. This will create the new CSV file with the exported data.
-
-Format: `export`
 ### History Display
 As you can see, at the right side of the application, there is a section which is used to display the commands you inputted and were executed succesfully.
 
