@@ -54,9 +54,9 @@ public class CommandTestUtil {
     public static final String INVALID_TITLE_DESC =
             " " + PREFIX_TITLE + "Sushi&"; // '&' not allowed in names
     public static final String INVALID_DESC_DESC =
-            " " + PREFIX_DESCRIPTION + "Hooray!"; // 'a' not allowed in phones
+            " " + PREFIX_DESCRIPTION + "Hooray#"; // 'a' not allowed in phones
     public static final String INVALID_STEP_DESC =
-            " " + PREFIX_STEP + "boil water & flour"; // missing '@' symbol
+            " " + PREFIX_STEP + "boil water + flour"; // missing '@' symbol
     public static final String INVALID_INGREDIENT_DESC =
             " " + PREFIX_INGREDIENT; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC =
