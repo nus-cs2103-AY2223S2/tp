@@ -124,6 +124,13 @@
     -fx-text-fill: #3D4A5A;
 }
 
+.cell_big_small_label {
+    -fx-font-family: "Verdana";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: #3D4A5A;
+}
+
 .cell_small_label {
     -fx-font-family: "Lucida Sans Typewriter";
     -fx-font-size: 12px;
@@ -401,7 +408,7 @@
 }
 
 #overviewDisplay {
-    -fx-background-color: #CCD5AE;
+    -fx-background-color: #E7D6C5;
 }
 
 .overview-title {
