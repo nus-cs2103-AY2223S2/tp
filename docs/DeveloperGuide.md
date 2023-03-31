@@ -320,34 +320,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 5b1.  MATHUTORING informs the tutor that the index is invalid.
       
       Use case resumes at step 3.
-
-**Use case: Export a student's progress**
-
-**MSS**
-
-1. Tutor requests to export a student's progress.
-2. MATHUTORING shows an export progress window.
-3. Tutor requests to save the student's progress.
-4. MATHUTORING shows a browse files window.
-5. Tutor requests the directory and file name of the student's progress file.
-6. MATHUTORING saves the file.
-
-    Use case ends.
-
-**Extensions**
-
-* 5a. The given file name is invalid. 
-
-  * 5a1. File manager informs the tutor that the file name is invalid.
-    
-    Use case resumes at step 5.
-
-* 5b. A file with the exact same name and type exists and is currently being opened.
-
-  * 5b1. MATHUTORING informs the tutor that the file cannot be saved because the file with the same name exists and is
-  currently being opened.
-
-    Use case resumes at step 5.
     
 **Use case: Import application data via CLI**
 
@@ -416,9 +388,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   Use case resumes at step 1.
 
-* 2b. File explorer closed by Tutor
+* 2b. File explorer closed by Tutor.
 
   Use case ends.
+
+**Use case: Export student's progress via CLI**
+
+**MSS**
+
+1. Tutor requests to export student's progress.
+2. MATHUTORING saves the file.
+
+   Use case ends.
+
+**Extensions**
+* 1a. MATHUTORING detects a command format error.
+
+  Use case resumes at step 1.
+
+* 1b. MATHUTORING detects that a file with the exact same name and type exists in the selected directory and is currently being opened.
+
+    Use case ends.
+
+**Use case: Export student's progress via GUI**
+
+**MSS**
+
+1. Tutor requests to export student's progress.
+2. MATHUTORING shows an export progress window.
+3. MATHUTORING opens the OS file explorer.
+4. Tutor selects a directory and specifies the file name to save the PDF file.
+5. MATHUTORING saves the file.
+
+   Use case ends.
+
+**Extensions**
+* 2a. Export progress window closed by Tutor by mistake.
+    
+  Use case ends.
+
+* 2b. Export progress window closed by Tutor by mistake.
+
+  Use case ends.
+
+* 3a. File explorer closed by Tutor by mistake.
+
+  Use case resumes at step 2.
+
+* 3b. File explorer closed by Tutor.
+
+  Use case resumes at step 2.
+
+* 4a. File name specified is invalid.
+
+  * 4a1. File explorer informs the tutor that the file name is invalid.
+      
+    Use case resumes at step 2.
+
+* 4b. A file with the exact same name and type exists in the selected directory and is currently being opened.
+  
+  * 4b1. MATHUTORING informs the tutor that the file cannot be saved due to a file with the same name and type in the same directory is being opened. 
+  
+    Use case ends.
+
 
 *{More to be added}*
 
