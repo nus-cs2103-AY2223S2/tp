@@ -56,7 +56,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private VBox infoTabPlaceholder;
+    private StackPane infoTabPlaceholder;
 
     @FXML
     private VBox courseListPlaceholder;

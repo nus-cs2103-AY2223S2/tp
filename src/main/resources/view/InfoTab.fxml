@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="infoPane" fx:id="infoPane" alignment="TOP_CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox id="infoPane" fx:id="infoPane" alignment="TOP_CENTER" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-      <StackPane maxHeight="20.0" minHeight="20.0" />
-        <ImageView fx:id="profilePicture" fitHeight="100.0" fitWidth="100.0" />
+        <StackPane minHeight="20.0" minWidth="20.0" />
+      <StackPane fx:id="profilePicture" maxHeight="100.0" maxWidth="100" minHeight="100.0" minWidth="100">
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="200.0" />
+         </children></StackPane>
       <Text fx:id="name" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-header" text="Name" textAlignment="CENTER" wrappingWidth="320.0" VBox.vgrow="ALWAYS" />
         <Label fx:id="identity" alignment="CENTER" text="Identity">
             <font>

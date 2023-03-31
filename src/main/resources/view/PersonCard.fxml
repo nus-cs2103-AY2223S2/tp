@@ -3,10 +3,9 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -24,10 +23,13 @@
                <Insets left="5.0" />
             </HBox.margin>
              </Label>
-            <ImageView fx:id="profilePicture" fitHeight="50.0" fitWidth="50.0">
+            <StackPane fx:id="profilePicture" minHeight="50.0" minWidth="50.0">
             <HBox.margin>
                <Insets right="10.0" />
-            </HBox.margin></ImageView>
+            </HBox.margin>
+            <children>
+               <StackPane />
+            </children></StackPane>
             <VBox alignment="CENTER_LEFT" spacing="3.0">
                 <Label fx:id="name" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="cell_big_label" text="\$name" />
                <Label fx:id="course" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="160.0" styleClass="cell_small_label" text="\$course">
