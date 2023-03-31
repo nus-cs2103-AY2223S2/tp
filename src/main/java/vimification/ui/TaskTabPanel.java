@@ -1,9 +1,12 @@
 package vimification.ui;
 
+import java.util.function.Predicate;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import vimification.internal.Logic;
+import vimification.model.task.Task;
 
 public class TaskTabPanel extends UiPart<VBox> {
     private static final String FXML = "TaskTabPanel.fxml";
@@ -30,11 +33,10 @@ public class TaskTabPanel extends UiPart<VBox> {
 
     // TODO: Refactor this.
     protected void loadTaskListPanel() {
-        ongoingTaskListPanel = new TaskListPanel(logic.getViewTaskList());
+        ongoingTaskListPanel = new TaskListPanel(logic.getUiTaskList());
         ongoingTaskListPanel.setMainScreen(mainScreen);
 
-
-        completedTaskListPanel = new TaskListPanel(logic.getViewTaskList());
+        completedTaskListPanel = new TaskListPanel(logic.getUiTaskList());
         completedTaskListPanel.setMainScreen(mainScreen);
 
         ongoingTaskListComponent.getChildren().clear();
@@ -72,5 +74,11 @@ public class TaskTabPanel extends UiPart<VBox> {
         int selectedTabIndex = taskTabPane.getSelectionModel().getSelectedIndex();
         boolean isOngoingTabSelected = selectedTabIndex == 0;
         return isOngoingTabSelected;
+    }
+
+    public void searchForTask(Predicate<? super Task> predicate, int targetTabIndex) {
+        ongoingTaskListPanel.searchForTask(predicate);
+        completedTaskListPanel.searchForTask(predicate);
+        taskTabPane.getSelectionModel().clearSelection(targetTabIndex);
     }
 }

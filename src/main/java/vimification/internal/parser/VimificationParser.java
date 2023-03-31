@@ -6,7 +6,7 @@ import vimification.commons.core.LogsCenter;
 import vimification.internal.command.Command;
 import vimification.internal.command.logic.LogicCommand;
 import vimification.internal.command.macro.MacroCommand;
-import vimification.internal.command.view.ViewCommand;
+import vimification.internal.command.ui.UiCommand;
 import vimification.model.MacroMap;
 
 public class VimificationParser {
@@ -26,10 +26,13 @@ public class VimificationParser {
                     .or(EditCommandParser.getInstance())
                     .or(UndoCommandParser.getInstance());
 
-    private static final CommandParser<ViewCommand> VIEW_COMMAND_PARSER =
+    private static final CommandParser<UiCommand> UI_COMMAND_PARSER =
             SearchCommandParser.getInstance()
-                    .<ViewCommand>cast()
-                    .or(RefreshCommandParser.getInstance());
+                    .<UiCommand>cast()
+                    .or(RefreshCommandParser.getInstance())
+                    .or(HelpCommandParser.getInstance())
+                    .or(JumpCommandParser.getInstance())
+                    .or(QuitCommandParser.getInstance());
 
     private static final CommandParser<MacroCommand> MACRO_COMMAND_PARSER =
             MacroCommandParser.getInstance();
@@ -37,7 +40,7 @@ public class VimificationParser {
     private static final CommandParser<Command> COMMAND_PARSER =
             LOGIC_COMMAND_PARSER
                     .<Command>cast()
-                    .or(VIEW_COMMAND_PARSER)
+                    .or(UI_COMMAND_PARSER)
                     .or(MACRO_COMMAND_PARSER)
                     .updateInternalParser(parser -> parser.throwIfFail("Unknown command"));
 

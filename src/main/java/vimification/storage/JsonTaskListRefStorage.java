@@ -11,30 +11,29 @@ import vimification.commons.exceptions.DataConversionException;
 import vimification.commons.exceptions.IllegalValueException;
 import vimification.commons.util.JsonUtil;
 import vimification.model.LogicTaskList;
+import vimification.model.TaskListRef;
 
 /**
  * A class to access TaskPlanner data stored as a json file on the hard disk.
  */
-public class JsonLogicTaskListStorage implements LogicTaskListStorage {
+public class JsonTaskListRefStorage implements TaskListRefStorage {
 
-    private static final Logger LOGGER = LogsCenter.getLogger(JsonLogicTaskListStorage.class);
+    private static final Logger LOGGER = LogsCenter.getLogger(JsonTaskListRefStorage.class);
 
     private Path filePath;
 
-    public JsonLogicTaskListStorage(Path filePath) {
+    public JsonTaskListRefStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    @Override
-    public Path getLogicTaskListFilePath() {
+    public Path getTaskListRefFilePath() {
         return filePath;
     }
 
-    @Override
-    public LogicTaskList readLogicTaskList() throws DataConversionException, IOException {
+    public TaskListRef readTaskListRef() throws DataConversionException, IOException {
         try {
             return JsonUtil
-                    .readJsonFile(filePath, JsonAdaptedLogicTaskList.class)
+                    .readJsonFile(filePath, JsonAdaptedTaskListRef.class)
                     .toModelType();
         } catch (IllegalValueException ive) {
             LOGGER.info("Illegal values found in " + filePath + ": " + ive.getMessage());
@@ -42,9 +41,8 @@ public class JsonLogicTaskListStorage implements LogicTaskListStorage {
         }
     }
 
-    @Override
-    public void saveLogicTaskList(LogicTaskList taskList) throws IOException {
-        requireNonNull(taskList);
-        JsonUtil.saveJsonFile(new JsonAdaptedLogicTaskList(taskList), filePath);
+    public void saveTaskListRef(TaskListRef ref) throws IOException {
+        requireNonNull(ref);
+        JsonUtil.saveJsonFile(new JsonAdaptedTaskListRef(ref), filePath);
     }
 }

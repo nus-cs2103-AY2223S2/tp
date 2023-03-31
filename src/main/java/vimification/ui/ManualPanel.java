@@ -1,6 +1,7 @@
 package vimification.ui;
 
-import java.io.File;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
@@ -19,11 +20,19 @@ public class ManualPanel extends UiPart<VBox> {
 
     public ManualPanel() {
         super(FXML);
-        // TODO: Change to Path
-        File manualHtml = new File("./src/main/resources/view/ManualPanel.html");
-        System.out.println(manualHtml.exists());
+        Path manualHtml = Path.of(FXML_FILE_FOLDER, "ManualPanel.html");
+        System.out.println(manualHtml.toString());
         WebEngine webEngine = webView.getEngine();
-        webEngine.load(manualHtml.toURI().toString());
+        webEngine.load(manualHtml.toString());
+        String manualHtmlPath;
+        try {
+            manualHtmlPath = getClass().getResource(FXML_FILE_FOLDER + "ManualPanel.html").toURI()
+                    .toString();
+            webEngine.load(manualHtmlPath);
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         webView.prefWidthProperty().bind(this.getRoot().widthProperty());
         webView.prefHeightProperty().bind(this.getRoot().heightProperty());

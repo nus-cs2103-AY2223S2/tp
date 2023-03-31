@@ -2,7 +2,11 @@ package vimification.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import vimification.model.task.Priority;
+import vimification.model.task.Status;
 import vimification.model.task.Task;
 
 /**
@@ -15,9 +19,19 @@ public class TaskCard extends UiPart<HBox> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label description;
-    @FXML
     private Label id;
+
+    @FXML
+    private Label title;
+    @FXML
+    private Label deadline;
+    @FXML
+    private Label priorityMessage;
+
+    @FXML
+    private FlowPane priority;
+
+
     // @FXML
     // private FlowPane tags;
 
@@ -28,7 +42,25 @@ public class TaskCard extends UiPart<HBox> {
         super(FXML);
         // this.task = task;
         id.setText(displayedIndex + ". ");
-        description.setText(task.getTitle());
+
+        title.setText(task.getTitle());
+
+        if (task.getDeadline() != null) {
+            deadline.setText("deadline: " + task.getDeadlineToString());
+        } else {
+            deadline.setText("deadline: -");
+        }
+        Priority p = task.getPriority();
+        priorityMessage.setText(task.getPriority().toString());
+        if (p.equals(Priority.UNKNOWN)) {
+            priorityMessage.setStyle("-fx-background-color: #3e7b91");
+        } else if (p.equals(Priority.NOT_URGENT)) {
+            priorityMessage.setStyle("-fx-background-color: #8abc79");
+        } else if  (p.equals(Priority.URGENT)) {
+            priorityMessage.setStyle("-fx-background-color: #d3bc75");
+        } else {
+            priorityMessage.setStyle("-fx-background-color: #d46b70");
+        }
     }
 
 }
