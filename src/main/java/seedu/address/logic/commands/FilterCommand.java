@@ -18,7 +18,7 @@ public class FilterCommand extends Command {
             + "that matches with the filter condition (case-insensitive) and displays the "
             + "filtered result as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " friends";
+            + "Example: " + COMMAND_WORD + " primary";
 
     private final TagContainsKeywordsPredicate predicate;
 

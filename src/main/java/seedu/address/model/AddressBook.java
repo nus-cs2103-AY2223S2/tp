@@ -56,7 +56,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
+        this.selectedPerson = null;
         setPersons(newData.getPersonList());
     }
 
