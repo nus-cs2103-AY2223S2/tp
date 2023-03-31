@@ -17,7 +17,7 @@ public class Exam {
     private final LocalDateTime startTime;
     private final LocalDateTime endTime;
     private final Double weightage;
-    private Grade grade;
+    private final Grade grade;
 
 
     /**
@@ -136,7 +136,34 @@ public class Exam {
 
         return otherExam != null
                 && otherExam.getDescription().equals(getDescription())
-                && otherExam.getStartTime().equals(getStartTime());
+                && otherExam.getStartTime().equals(getStartTime())
+                && otherExam.getEndTime().equals(getEndTime())
+                && compareWeightages(otherExam.getWeightage(), getWeightage())
+                && compareGrades(otherExam.getGrade(), getGrade());
+    }
+
+    private boolean compareWeightages(Double first, Double second) {
+        if (first == null && second == null) {
+            return true;
+        } else {
+            if (first == null || second == null) {
+                return false;
+            } else {
+                return Double.compare(first, second) == 0;
+            }
+        }
+    }
+
+    private boolean compareGrades(Grade first, Grade second) {
+        if (first == null && second == null) {
+            return true;
+        } else {
+            if (first == null || second == null) {
+                return false;
+            } else {
+                return first.equals(second);
+            }
+        }
     }
 
     /**

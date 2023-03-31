@@ -97,8 +97,8 @@ public class CreateExamCommand extends Command {
 
         List<Student> studentList = model.getFilteredStudentList();
 
-        if (endTime.isBefore(LocalDateTime.now()) && grade != null) {
-            throw new CommandException("Exam is not yet completed, a grade cannot be assigned!");
+        if (endTime.isAfter(LocalDateTime.now()) && grade != null) {
+            throw new CommandException(Messages.MESSAGE_EXAM_NOT_COMPLETED);
         }
 
         Exam exam = new Exam(examDescription, startTime, endTime, weightage, grade);
