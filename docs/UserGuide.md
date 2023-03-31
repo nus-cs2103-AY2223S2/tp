@@ -206,6 +206,34 @@ Some example commands you can try:
 
 </div>
 
+---
+
+# Navigating the Application
+<p align="center">
+  <img src="images/Ui.png" />
+  <br>Figure 1: Homepage of Trackr
+</p>
+
+Upon start, you will see a convenient dashboard with everything you need for your business.
+
+### Orders
+Orders card show a condensed preview of your outstanding orders and their relevant details, such as your customer, promised delivery date and your progress on the purchase.
+
+### Tasks
+Tasks card show outstanding miscellaneous tasks that you may have in your daily operations.
+
+### Menu
+The Menu card shows all the items that you have up for sale, including their cost price, selling price and profit margin.
+
+### Revenue and Profit
+Trackr keeps track of all orders submitted and automatically updates the revenue and profit that your business has generated.
+- Price: revenue of all orders so far
+- Profit: profit of all orders so far
+
+Tabbed view is also available to view more details about your tasks, items, orders and contacts.
+
+---
+
 ### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
