@@ -60,8 +60,6 @@ CommandResult --> SortEventCommand
 deactivate CommandResult
 SortEventCommand --> LogicManager : result
 deactivate SortEventCommand
-SortEventCommand -[hidden]-> LogicManager
-destroy SortEventCommand
 
 [<--LogicManager
 deactivate LogicManager
