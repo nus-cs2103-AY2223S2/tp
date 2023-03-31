@@ -3,8 +3,6 @@ layout: page
 title: User Guide
 ---
 
-# User Guide
-
 ## What is Advis.io?
 
 Advis.io (AIO) is a all-in-one solution for financial advisors with problems managing their clientele. AIO is currently
