@@ -250,7 +250,7 @@ Examples:
 
 Edits the specified task from OfficeConnect.
 
-Format: `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE]`
+Format: `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE] [cd/CREATEDATE]`
 
 * Edits the task at the specified INDEX.
 * The INDEX refers to the INDEX shown in the displayed task list.
@@ -500,7 +500,7 @@ _Details coming soon ..._
 | **Delete Person**           | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                        |
 | **Delete Task**             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                        |
 | **Edit Person**             | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                               |
-| **Edit Tasks**              | `editt INDEX [title/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [createdate/CREATEDATE]`<br> e.g.,`editt 2 title/Submit report st/true`                                       |
+| **Edit Tasks**              | `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [cd/CREATEDATE]`<br> e.g.,`editt 2 title/Submit report st/true`                                       |
 | **Exit**                    | `exit`                                                                                                                                                                       |
 | **Filter Person**           | `filterp tag/TAG`<br> e.g.,`filterp tag/Logistics`                                                                                                                           |
 | **Find Person**             | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                                    |
