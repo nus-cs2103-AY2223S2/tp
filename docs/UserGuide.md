@@ -155,6 +155,7 @@ The features of FastTrack can be divided into 4 groups, **Category Features**, *
     * List categories
 3. **General features**
     * Set a budget
+    * Autocompletion
     * View help menu
     * Clear data
     * Exit application
@@ -457,7 +458,20 @@ Format `set p/AMOUNT`
 
 Examples:
 * `set p/50` sets the monthly budget of the expense tracker to $50
-* 
+
+
+## Category Autocomplete
+FastTrack will provide a list of suggested category names, displayed as a popup above the command box when `c/` is entered.
+
+### Select a Suggested Category from list
+Press the "UP" arrow key on your keyboard to navigate into the suggestions list. From here, you can choose a suggested category name using both the "UP" and "DOWN" arrow keys. 
+To select the highlighted category, press the "ENTER" key on the keyboard. The command box will autocomplete the selected category name suggestion.
+To navigate out of the suggestions list, press the "DOWN" arrow key until the bottom of the suggestions list has been reached, then press the "DOWN" arrow key once again to return the cursor to the command box.
+
+### Select the first Suggested Category
+To select the first (bottom-most) suggested category option without having to navigate into the suggestions list, press the "TAB" key on your keyboard to trigger the autocompletion.
+
+
 ## Clearing all entries : `CLEAR`
 
 Clears all entries from the expense log.
