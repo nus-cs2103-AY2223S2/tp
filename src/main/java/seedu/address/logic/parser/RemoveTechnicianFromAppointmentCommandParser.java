@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_ID;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SERVICE_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TECHNICIAN_ID;
 
 import java.util.stream.Stream;
@@ -31,9 +30,9 @@ public class RemoveTechnicianFromAppointmentCommandParser implements Parser<Remo
         }
 
         int techId = ParserUtil.parseInt(argMultimap.getValue(PREFIX_TECHNICIAN_ID).get());
-        int serviceId = ParserUtil.parseInt(argMultimap.getValue(PREFIX_SERVICE_ID).get());
+        int appointmentId = ParserUtil.parseInt(argMultimap.getValue(PREFIX_APPOINTMENT_ID).get());
 
-        return new RemoveTechnicianFromAppointmentCommand(techId, serviceId);
+        return new RemoveTechnicianFromAppointmentCommand(techId, appointmentId);
     }
 
     /**

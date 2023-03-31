@@ -57,6 +57,7 @@ public class RemoveTechnicianFromServiceCommand extends RedoableCommand {
             .findFirst()
             .orElseThrow();
         service.removeTechnician(technician);
+        model.resetMaps();
         return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, this.techId, this.serviceId),
                 Tab.SERVICES);
     }

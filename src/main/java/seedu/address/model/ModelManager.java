@@ -132,7 +132,8 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs(), new Shop());
     }
 
-    private void resetMaps() {
+    @Override
+    public void resetMaps() {
         this.customerVehicleMap.reset(this.shop.getCustomerList(), this.shop.getVehicleList(),
                 this.shop.getAppointmentList());
         this.vehicleDataMap.reset(this.shop.getVehicleList(), this.shop.getCustomerList(),
