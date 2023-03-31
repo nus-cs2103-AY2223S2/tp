@@ -126,7 +126,7 @@ Some example commands you can try:
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -451,12 +451,12 @@ from [OpenJDK](https://openjdk.org).
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AddressBook home folder.
 
-**Q**: Do I need an internet connection use Advisio?<br>
-**A**: Advisio is a local application that does not require an internet connection! Feel free to use our application
+**Q**: Do I need an internet connection use Advis.io?<br>
+**A**: Advis.io is a local application that does not require an internet connection! Feel free to use our application
 anywhere and anytime as you see fit!
 
 **Q**: Is my data stored on the cloud? How can I ensure that I do not lose such critical information?<br>
-**A**:Unfortunately, Advisio does not support cloud support. However, you can follow these steps to store your data
+**A**:Unfortunately, Advis.io does not support cloud support. However, you can follow these steps to store your data
 safely in existing cloud services such as Icloud or Google Drive. Firstly, locate the data
 file `<JAR file location>/data/clientbook.json`. Secondly, copy the file into your preferred cloud service.
 
@@ -468,7 +468,7 @@ should be able to add a new general policy if it's required.
 
 **Q**: Is there a limit to the number of clients or policies that I can add?<br>
 **A**: There is approximately a 2 million limit for both clients and policies separately. We have analysed and
-interviewed verteran Financial Adivsors and have concluded that it is very unlikely for a Financial Advisor to to exceed
+interviewed veteran Financial Advisors and have concluded that it is very unlikely for a Financial Advisor to to exceed
 those thresholds. However, the limit can be expanded in the future if necessary.
 
 --------------------------------------------------------------------------------------------------------------------
