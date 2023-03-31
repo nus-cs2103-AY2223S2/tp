@@ -288,20 +288,6 @@ Examples:
 * `re_edit 1 1 d/Tuesday`
 * `re_edit 1 1 t/14:00`
 
-#### 2) Export a person: `export`
-Export a person's details from the address book. 
-
-Format: `export [INDEX_OF_PERSON]`
-
-* Exports a person's details with the specified `INDEX`
-* All details except groups and tags are exported.
-* Export data is saved in the data/export.json
-* Exporting a person will overwrite any existing export.json file
-
-Examples:
-* `export 1`
-* `export 2`
-
 ### Find free time slots: `free`
 
 Displays the time slots in a week when all members of the specified group are free (no events).
@@ -325,6 +311,21 @@ Format: `import`
 * The imported person will not have any tags or groups.
 * If the imported person is already an entry in your address book with the same name (case-sensitive), their phone number, address, email as well as their event lists will be updated to the imported data.
 * If the imported person is not yet an entry in your address book, a new entry will be created with the imported person's details (excluding tags and groups).
+
+
+#### Export a person: `export`
+Export a person's details from the address book. 
+
+Format: `export [INDEX_OF_PERSON]`
+
+* Exports a person's details with the specified `INDEX`
+* All details except groups and tags are exported.
+* Export data is saved in the data/export.json
+* Exporting a person will overwrite any existing export.json file
+
+Examples:
+* `export 1`
+* `export 2`
 
 ### Clearing all entries : `clear`
 
