@@ -74,7 +74,7 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_SEX + "M "
             + PREFIX_ADDRESS + "Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) "
             + PREFIX_STUDENTAGE + "14 "
-            + PREFIX_IMAGESTUDENT + "C:// "
+            + PREFIX_IMAGESTUDENT + "XX.png (where XX is your image name) "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
             + PREFIX_PHONESTUDENT + "91234567 "
             + PREFIX_CCA + "Captain Ball "

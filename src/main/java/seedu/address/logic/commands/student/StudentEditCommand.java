@@ -81,7 +81,7 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_NEWCLASS + "1B "
             + PREFIX_SEX + "M"
             + PREFIX_STUDENTAGE + "10 "
-            + PREFIX_IMAGESTUDENT + "C:// "
+            + PREFIX_IMAGESTUDENT + "XX.png (where XX is your image name) "
             + PREFIX_CCA + "AIKIDO "
             //+ PREFIX_ATTENDANCE + "T "
             + PREFIX_COMMENT + "GOOD BOY "

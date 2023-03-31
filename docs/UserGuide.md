@@ -249,7 +249,7 @@ Examples:
 * `student 1A add n/TanAhCow in/03 pn/TanAhNiu pnP/91234567 rls/Father` <br>
 
   *Above is a situation where some of the student's information is not given!
-* `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 imgS/C:// eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T `
+* `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T `
 
 **Expected Outcome:**
 * `New student added:`
@@ -432,11 +432,11 @@ If you want to update all students under this student's parent, please kindly us
 
 Finds and generates all students with matching student name and class
 
-Format: `find <INDEX_NUMBER>  `
+Format: `find <NAME>  `
 
 Examples:
-* `student 3B find 26`
-* `student 3B find 27`
+* `student 3B find Russel`
+* `student 3B find Joseph`
 
 **Expected Outcome:**
 * Student found: Russel Ong class:3B cca: swimming grade: [sci:A, maths:B] id:26 age:14 email:ro@outlook.com ph:85349633 attendance: 2023-01-01 [y] hw: ip [x] notes:extroverted nok: David Ong
@@ -495,7 +495,7 @@ Format: `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOL
 
 Examples of Full Command:
 * `parent add n/TanAhNiu pnP/91234567`
-* `parent add n/Tan Ah Niu pnP/91234567 ageP/30 imgP/C:// e/tanahcow@gmail.com a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)` <br><br>
+* `parent add n/Tan Ah Niu pnP/91234567 ageP/30 e/tanahcow@gmail.com a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)` <br><br>
 
 **Expected outcome:**
 * `New parent added:`
