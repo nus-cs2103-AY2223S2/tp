@@ -43,7 +43,7 @@ import seedu.address.ui.person.AddressBookWindow;
  */
 public class AddDeliveryJobWindow extends UiPart<Stage> {
 
-    private static final String FXML = "AddDeliveryJobWindow.fxml";
+    private static final String FXML = "ModifyDeliveryJobWindow.fxml";
 
     private static final String EDIT_TITLE = "Edit Delivery Job";
 

@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandGroup;
 import seedu.address.logic.commands.ExitCommand;
@@ -19,6 +18,7 @@ import seedu.address.logic.commands.jobs.EditDeliveryJobCommand;
 import seedu.address.logic.commands.jobs.FindDeliveryJobCommand;
 import seedu.address.logic.commands.jobs.ListDeliveryJobCommand;
 import seedu.address.logic.commands.person.AddCommand;
+import seedu.address.logic.commands.person.ClearCommand;
 import seedu.address.logic.commands.person.DeleteCommand;
 import seedu.address.logic.commands.person.EditCommand;
 import seedu.address.logic.commands.person.FindCommand;
@@ -74,8 +74,8 @@ public class DukeDriverParser {
         case EditCommand.COMMAND_WORD:
         case DeleteCommand.COMMAND_WORD:
         case FindCommand.COMMAND_WORD:
-            return FindCommand.COMMAND_GROUP;
         case ClearCommand.COMMAND_WORD:
+            return FindCommand.COMMAND_GROUP;
         case ListCommand.COMMAND_WORD:
         case ExitCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
