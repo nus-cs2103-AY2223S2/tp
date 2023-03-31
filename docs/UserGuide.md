@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-E-Lister is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, E-Lister can get your contact management tasks done faster than traditional GUI apps.
+E-Lister is **a comprehensive desktop app**, **specially designed** for **insurance agents and other financial professionals** to **streamline the management of their customers' contact information**.  This powerful tool provides a simple and intuitive interface, allowing users to not only easily **add, edit, tag and filter out** for contact information via Graphical User Interface (GUI) but also **see the history of commands that the users keyed in and executed** so that they can keep **a record of their workflow progress**, hence improving productivity.
 
 * Table of Contents
 {:toc}
@@ -14,7 +14,7 @@ E-Lister is a **desktop app for managing contacts, optimized for use via a Comma
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `eLister.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `eLister.jar` from [here](https://github.com/AY2223S2-CS2103T-T17-3/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for E-Lister.
 
@@ -43,7 +43,7 @@ E-Lister is a **desktop app for managing contacts, optimized for use via a Comma
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Some notices before going through this guide:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -55,7 +55,7 @@ E-Lister is a **desktop app for managing contacts, optimized for use via a Comma
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. both the commands following `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` are acceptable with the same effect.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -70,24 +70,25 @@ E-Lister is a **desktop app for managing contacts, optimized for use via a Comma
 Shows a help message detailing the various commands available in E-Lister. 
 A link can also bring the user to the online user guide for more detailed help.
 
-![help message](images/helpMessage.png)
-
 Format: `help`
 
+![help message](images/helpMessage.png)
 
 ### Adding a person: `add`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/INCOME [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/400`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 i/200 t/criminal`
+
+![add example](images/addExample.png)
 
 ### Listing all persons : `list`
 
@@ -95,6 +96,9 @@ Shows a list of all persons in the address book.
 
 Format: `list`
 
+![list](images/listExample.png)
+
+*Why do we need this command?* This is mostly used to refresh the whole list of contacts storing in the app so far after you use **filter** command *(see later)*.
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -109,7 +113,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 e/alex_clone@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `alex_clone@example.com` respectively.![edit example](images/editExample.png)
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Locating persons by name: `find`
@@ -144,12 +148,13 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete 6` will deletes the 6th person in the address book (which is Betsy Crowe in this example).![delete example](images/deleteExample.png)
 
 ### Adding a tag : `tag`
 
 Adds a tag to any given person stored in the address book.
 
-Format: `tag INDEX [t/TAG]`
+Format: `tag INDEX t/TAG`
 
 * Adds `TAG` to the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -157,12 +162,13 @@ Format: `tag INDEX [t/TAG]`
 
 Examples:
 * `list` followed by `add_tag 2 banker` adds the tag “banker” to the 2nd person.
+* `tag 1 billionaire` will add the tag "billionaire" to the 1st person (which is Alex in this example).![add tag example](images/tagExample.png)
 
 ### Deleting a tag : `delete_tag`
 
 Deletes a tag on a person.
 
-Format: `delete_tag INDEX [t/TAG]`
+Format: `delete_tag INDEX TAG`
 
 * Deletes `TAG` on the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -170,7 +176,8 @@ Format: `delete_tag INDEX [t/TAG]`
 * The tag must be existed.
 
 Examples:
-* `list` followed by `delete_tag 3 teacher` deletes the tag “teacher” from the 2nd person.
+* `list` followed by `delete_tag 3 teacher` deletes the tag "teacher" from the 3rd person(only if there's a person with index 3 and carrying tag "teacher").
+* `delete_tg 1 t/billionaire` will delete the tag "billionair" from the 1st person (which is Alex in this example).![delete tag example](images/deleteTagExample.png)
 
 ### Filter by fields : `filter`
 
@@ -277,7 +284,21 @@ Opens a file chooser to select a directory where you can save the data to a CSV 
 If you wish to export to a new file which does not exist, you may type its intended name in the **File Name** box and click **Save**. This will create the new CSV file with the exported data.
 
 Format: `export`
+### History Display
+As you can see, at the right side of the application, there is a section which is used to display the commands you inputted and were executed succesfully.
 
+*Why do we need this?* Keeping a record of all commands executed in a contacts managing app is important for several reasons.
+- It provides a historical log of all actions taken by the insurance agent, which can be useful in case of any disputes or discrepancies that may arise in the future.
+- It allows the agent to keep track of their progress and performance, providing a clear overview of where they are in the workflow at any given time. This can be especially helpful when managing a large number of customers and tasks simultaneously, as it can be easy to lose track of what has been done and what still needs to be done
+- Finally, having a record of all commands executed in the app can help identify any issues or areas for improvement in the workflow, allowing the agent to refine their approach and optimize their performance over time.
+
+![history display](images/historyDisplay.png)
+### Applying Filters Display
+Right above the History box, you can see another small container where all the filters that were used on your persons list will be displayed
+
+*Why do we need this?* The reasoning is pretty the same as for History Display, imagine having to filter out your list of 1000 persons with 5 different eligibilities, don't you think it's great idea to have all the filters displayed so that you know what are people showing up in the app?
+
+![applying filters display](images/filtersDisplay.png)
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
@@ -298,6 +319,8 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Tag** | `tag INDEX t/TAG` <br> e.g., tag 2 teacher
+**Delete Tag** | `delete_tag INDEX TAG` <br> e.g, delete_tag 2 teacher
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Export** | `export`
 **Filter** | `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/INCOME] [t/TAG] [n/MORE_NAMES] ...`<br> e.g., `filter e/.*\.org$ n/rin e/.*\.net$`
@@ -306,8 +329,6 @@ Action | Format, Examples
 **Unfreeze** | `unfreeze`
 **List** | `list`
 **Mass** | `mass COMMAND [ARGS_WITHOUT_INDEX]`<br> e.g., `mass tag Noticed`
-**Tag** | `tag INDEX t/TAG`
-**Delete Tag** | `delete_tag INDEX t/TAG`
 **Undo** | `undo [NUM]`
 **Redo** | `redo [NUM]`
 **Help** | `help`
