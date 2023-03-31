@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -34,7 +35,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private ImageView profilePicture;
+    private StackPane profilePicture;
     @FXML
     private Label course;
     @FXML
@@ -53,9 +54,13 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         this.displayedIndex = displayedIndex;
         id.setText(displayedIndex + "");
-        String profilePicturePath = person.getProfilePicture().profilePicturePath;
-        Image image = new Image("file:" + profilePicturePath);
-        profilePicture.setImage(image);
+        //String profilePicturePath = person.getProfilePicture().profilePicturePath;
+        //Image image = new Image("file:" + profilePicturePath);
+        Image image = new Image(person.getProfilePicture().profilePicturePath);
+        ImageView imageView = new ImageView(image);
+        imageView.setFitWidth(50);
+        imageView.setFitHeight(50);
+        profilePicture.getChildren().set(0, imageView);
         name.setText(person.getName().fullName);
         year.setText("Year " + person.getYear().year);
         course.setText(person.getCourse().course);

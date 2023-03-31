@@ -26,7 +26,7 @@ public class InfoTab extends UiPart<Region> {
     private DetailedInfo detailedInfo;
 
     @FXML
-    private ImageView profilePicture;
+    private StackPane profilePicture;
 
     @FXML
     private Text name;
@@ -59,9 +59,13 @@ public class InfoTab extends UiPart<Region> {
         }
 
         if (protagonist != null) {
-            String profilePicturePath = protagonist.getProfilePicture().profilePicturePath;
-            Image image = new Image("file:" + profilePicturePath);
-            profilePicture.setImage(image);
+            //String profilePicturePath = protagonist.getProfilePicture().profilePicturePath;
+            //Image image = new Image("file:" + profilePicturePath);
+            Image image = new Image(protagonist.getProfilePicture().profilePicturePath);
+            ImageView imageView = new ImageView(image);
+            imageView.setFitHeight(100);
+            imageView.setFitWidth(100);
+            profilePicture.getChildren().set(0, imageView);
             name.setText(protagonist.getName().fullName);
             StringBuilder sb = new StringBuilder();
             sb.append("Year ");
