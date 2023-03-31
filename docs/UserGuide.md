@@ -27,6 +27,8 @@ If you need to switch to a new device, you can also export and import your previ
 
 **MATHUTORING** is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **MATHUTORING** can get your contact management tasks done faster than traditional GUI apps.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have `Java 11` or above installed in your Computer.
@@ -59,9 +61,10 @@ If you need to switch to a new device, you can also export and import your previ
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
 <div markdown="block" class="alert alert-info">
 
-### **:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -82,7 +85,6 @@ If you need to switch to a new device, you can also export and import your previ
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
 
 ### 1. Viewing help: `help`
 
@@ -340,12 +342,16 @@ Examples:
 * For Mac users
   * `export` p//Users/username/Desktop export `data.json` to desktop.
 
+<div markdown="block" class="alert alert-info">
+
 **:information_source: Note about the format of `FILE_PATH`:**<br>
 * For Windows users, the format of `FILE_PATH` must be `p/C:\Users\username\Downloads`.
 * For Mac users, the format of `FILE_PATH` must be `p//Users/username/Desktop`.
 
+</div>
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If `FILE_PATH` contains ` p/`, the path after the last occurrence of ` p/` will be taken as the `FILE_PATH`.
+If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
 
 ### 18. Import the student data in: `import`
@@ -363,12 +369,16 @@ Examples:
 * For Mac users
   * `import` p//Users/username/Desktop/data.json.
 
+<div markdown="block" class="alert alert-info">
+
 **:information_source: Note about the format of `FILE_PATH`:**<br>
 * For Windows users, the format of `FILE_PATH` must be `p/C:\bin\[FILE_NAME]`.
 * For Mac users, the format of `FILE_PATH` must be `p//Users/username/Desktop/[FILE_NAME]`.
 
+</div>
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If `FILE_PATH` contains ` p/`, the path after the last occurrence of ` p/` will be taken as the `FILE_PATH`.
+If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
 
 ### 19. Export student progress out as a PDF file: `exportp`
@@ -399,12 +409,16 @@ Examples:
 * For Mac users
   * `exportp 1 p//Users/johndoe/Documents`
 
+<div markdown="block" class="alert alert-info">
+
 **:information_source: Note about the format of `FILE_PATH`:**<br>
 * For Windows users, the format of `FILE_PATH` must be `p/C:\Users\username\Downloads`.
 * For Mac users, the format of `FILE_PATH` must be `p//Users/username/Desktop`.
 
+</div>
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If `FILE_PATH` contains ` p/`, the path after the last occurrence of ` p/` will be taken as the `FILE_PATH`.
+If `FILE_PATH` contains " p/", the path after the last occurrence of " p/" will be taken as the `FILE_PATH`.
 </div>
 
 ### Saving the data
