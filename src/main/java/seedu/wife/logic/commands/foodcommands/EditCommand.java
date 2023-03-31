@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static seedu.wife.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.wife.logic.parser.CliSyntax.PREFIX_UNIT;
 import static seedu.wife.model.Model.PREDICATE_SHOW_ALL_FOODS;
 
@@ -43,7 +42,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_UNIT + "UNIT] "
             + "[" + PREFIX_QUANTITY + "QUANTITY] "
             + "[" + PREFIX_EXPIRY_DATE + "EXPIRY DATE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Broccoli "
             + PREFIX_QUANTITY + "2";
@@ -221,8 +219,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getUnit().equals(e.getUnit())
                     && getQuantity().equals(e.getQuantity())
-                    && getExpiryDate().equals(e.getExpiryDate())
-                    && getTags().equals(e.getTags());
+                    && getExpiryDate().equals(e.getExpiryDate());
         }
     }
 }

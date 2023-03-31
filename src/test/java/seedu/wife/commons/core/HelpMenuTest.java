@@ -27,7 +27,7 @@ public class HelpMenuTest {
     }
     @Test
     void getCommandUsage_checkCorrectResult_success() {
-        String expected = "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]";
+        String expected = "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE";
         assertEquals(expected, HelpMenu.ADD.getCommandUsage());
     }
 
