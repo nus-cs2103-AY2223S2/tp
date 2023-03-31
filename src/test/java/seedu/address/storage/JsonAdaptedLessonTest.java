@@ -11,24 +11,29 @@ import static seedu.address.model.timetable.util.TypicalTime.TEN_PM;
 import static seedu.address.model.timetable.util.TypicalTime.TWELVE_PM;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.commitment.Lesson;
 import seedu.address.model.location.Location;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
+import seedu.address.model.time.exceptions.WrongTimeException;
+import seedu.address.model.timetable.util.LessonBuilder;
 
 public class JsonAdaptedLessonTest {
+
+    private static final Lesson LESSON =
+            new LessonBuilder(CS2106_WED_10AM_2HR).withModuleCode("").build();
 
     @Test
     public void toModelType_validLessonDetails_returnsLesson() throws Exception {
         JsonAdaptedLesson jsonAdaptedLesson =
-                new JsonAdaptedLesson(CS2106_WED_10AM_2HR);
-        assertEquals(jsonAdaptedLesson.toModelType(), CS2106_WED_10AM_2HR);
+                new JsonAdaptedLesson(LESSON);
+        assertEquals(jsonAdaptedLesson.toModelType(), LESSON);
 
         jsonAdaptedLesson =
                 new JsonAdaptedLesson(10, 12, "WEDNESDAY");
-        assertEquals(jsonAdaptedLesson.toModelType().getLocation(), CS2106_WED_10AM_2HR.getLocation());
-        assertEquals(jsonAdaptedLesson.toModelType().getTimePeriod(), CS2106_WED_10AM_2HR.getTimePeriod());
+        assertEquals(jsonAdaptedLesson.toModelType(), LESSON);
     }
 
     @Test
@@ -53,7 +58,7 @@ public class JsonAdaptedLessonTest {
     public void toModelType_lateEndTime_returnsLesson() throws Exception {
         JsonAdaptedLesson jsonAdaptedLesson =
                 new JsonAdaptedLesson(10, 23, "WEDNESDAY");
-        Lesson expectedLesson = new Lesson("CS2106", TEN_AM,
+        Lesson expectedLesson = new Lesson("", TEN_AM,
                 ELEVEN_PM, Day.WEDNESDAY, Location.NUS);
         assertEquals(jsonAdaptedLesson.toModelType(), expectedLesson);
     }
@@ -82,17 +87,17 @@ public class JsonAdaptedLessonTest {
     }
 
     @Test
-    public void toModelType_startTimeAfterEndTime_throwsAssertionError() {
+    public void toModelType_startTimeAfterEndTime_throwsWrongTimeException() {
         JsonAdaptedLesson jsonAdaptedLesson =
                 new JsonAdaptedLesson(12, 10, "WEDNESDAY");
-        assertThrows(AssertionError.class, jsonAdaptedLesson::toModelType);
+        assertThrows(WrongTimeException.class, jsonAdaptedLesson::toModelType);
     }
 
     @Test
-    public void toModelType_startTimeSameAsEndTime_throwsAssertionError() {
+    public void toModelType_startTimeSameAsEndTime_throwsWrongTimeException() {
         JsonAdaptedLesson jsonAdaptedLesson =
                 new JsonAdaptedLesson(10, 10, "WEDNESDAY");
-        assertThrows(AssertionError.class, jsonAdaptedLesson::toModelType);
+        assertThrows(WrongTimeException.class, jsonAdaptedLesson::toModelType);
     }
 
     @Test

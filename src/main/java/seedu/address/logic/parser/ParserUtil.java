@@ -236,6 +236,10 @@ public class ParserUtil {
      * MON will output MONDAY.
      */
     public static Day parseDay(String dayAsStr) throws ParseException {
+        if (dayAsStr.isEmpty()) {
+            throw new ParseException("Day is missing!");
+        }
+
         String upperDayAsStr = dayAsStr.toUpperCase();
 
         if (upperDayAsStr.equals("T")) {
@@ -247,7 +251,7 @@ public class ParserUtil {
                 return day;
             }
         }
-        throw new ParseException("Day is invalid");
+        throw new ParseException("Day is invalid!");
     }
 
     /**

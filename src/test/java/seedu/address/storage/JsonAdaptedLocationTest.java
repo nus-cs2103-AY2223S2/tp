@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.model.location.util.TypicalLocation.SENGKANG;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
+
 import seedu.address.model.location.Location;
 
 public class JsonAdaptedLocationTest {
@@ -26,30 +26,30 @@ public class JsonAdaptedLocationTest {
     }
 
     @Test
-    public void toModelType_latitudeTooHigh_throwsIllegalValueException() {
+    public void toModelType_latitudeTooHigh_throwsIllegalArgumentException() {
         JsonAdaptedLocation jsonAdaptedLocation =
                 new JsonAdaptedLocation(SENGKANG.getName(), 1.5, SENGKANG.getLongitude());
-        assertThrows(IllegalValueException.class, jsonAdaptedLocation::toModelType);
+        assertThrows(IllegalArgumentException.class, jsonAdaptedLocation::toModelType);
     }
 
     @Test
-    public void toModelType_latitudeTooLow_throwsIllegalValueException() {
+    public void toModelType_latitudeTooLow_throwsIllegalArgumentException() {
         JsonAdaptedLocation jsonAdaptedLocation =
                 new JsonAdaptedLocation(SENGKANG.getName(), 1.2, SENGKANG.getLongitude());
-        assertThrows(IllegalValueException.class, jsonAdaptedLocation::toModelType);
+        assertThrows(IllegalArgumentException.class, jsonAdaptedLocation::toModelType);
     }
 
     @Test
-    public void toModelType_longitudeTooHigh_throwsIllegalValueException() {
+    public void toModelType_longitudeTooHigh_throwsIllegalArgumentException() {
         JsonAdaptedLocation jsonAdaptedLocation =
                 new JsonAdaptedLocation(SENGKANG.getName(), SENGKANG.getLatitude(), 104.2);
-        assertThrows(IllegalValueException.class, jsonAdaptedLocation::toModelType);
+        assertThrows(IllegalArgumentException.class, jsonAdaptedLocation::toModelType);
     }
 
     @Test
-    public void toModelType_longitudeTooLow_throwsIllegalValueException() {
+    public void toModelType_longitudeTooLow_throwsIllegalArgumentException() {
         JsonAdaptedLocation jsonAdaptedLocation =
                 new JsonAdaptedLocation(SENGKANG.getName(), SENGKANG.getLatitude(), 103.6);
-        assertThrows(IllegalValueException.class, jsonAdaptedLocation::toModelType);
+        assertThrows(IllegalArgumentException.class, jsonAdaptedLocation::toModelType);
     }
 }

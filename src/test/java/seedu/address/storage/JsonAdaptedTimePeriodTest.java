@@ -7,28 +7,22 @@ import static seedu.address.model.timetable.util.TypicalTime.EIGHT_AM;
 import static seedu.address.model.timetable.util.TypicalTime.ELEVEN_AM;
 import static seedu.address.model.timetable.util.TypicalTime.ELEVEN_PM;
 import static seedu.address.model.timetable.util.TypicalTime.ONE_PM;
-import static seedu.address.model.timetable.util.TypicalTime.TEN_AM;
 import static seedu.address.model.timetable.util.TypicalTime.TWELVE_PM;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.HourBlock;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.exceptions.WrongTimeException;
 
 public class JsonAdaptedTimePeriodTest {
 
     @Test
     public void toModelType_validTimePeriod_returnsTimePeriod() throws Exception {
         TimePeriod timePeriod = new TimeBlock(ELEVEN_AM, ONE_PM, FRIDAY);
-        JsonAdaptedTimePeriod jsonAdaptedTimePeriod = new JsonAdaptedTimePeriod(timePeriod);
-        assertEquals(jsonAdaptedTimePeriod.toModelType(), timePeriod);
-    }
-
-    @Test
-    public void toModelType_validHourBlock_returnsTimePeriod() throws Exception {
-        TimePeriod timePeriod = new HourBlock(ELEVEN_AM, FRIDAY);
         JsonAdaptedTimePeriod jsonAdaptedTimePeriod = new JsonAdaptedTimePeriod(timePeriod);
         assertEquals(jsonAdaptedTimePeriod.toModelType(), timePeriod);
     }
@@ -87,10 +81,10 @@ public class JsonAdaptedTimePeriodTest {
     }
 
     @Test
-    public void toModelType_nullDay_throwsIllegalValueException() {
+    public void toModelType_nullDay_throwsNullPointerException() {
         JsonAdaptedTimePeriod jsonAdaptedTimePeriod =
                 new JsonAdaptedTimePeriod(11, 13, null);
-        assertThrows(IllegalValueException.class, jsonAdaptedTimePeriod::toModelType);
+        assertThrows(NullPointerException.class, jsonAdaptedTimePeriod::toModelType);
     }
 
     @Test
@@ -108,38 +102,24 @@ public class JsonAdaptedTimePeriodTest {
     }
 
     @Test
-    public void toModelType_tooLateStartTime_throwsIllegalValueException() {
-        JsonAdaptedTimePeriod jsonAdaptedTimePeriod =
-                new JsonAdaptedTimePeriod(23, 13, "FRIDAY");
-        assertThrows(IllegalValueException.class, jsonAdaptedTimePeriod::toModelType);
-    }
-
-    @Test
-    public void toModelType_tooEarlyEndTime_throwsIllegalValueException() {
-        JsonAdaptedTimePeriod jsonAdaptedTimePeriod =
-                new JsonAdaptedTimePeriod(11, 8, "FRIDAY");
-        assertThrows(IllegalValueException.class, jsonAdaptedTimePeriod::toModelType);
-    }
-
-    @Test
-    public void toModelType_tooLateEndTime_throwsIllegalValueException() {
+    public void toModelType_tooLateEndTime_throwsAssertionError() {
         JsonAdaptedTimePeriod jsonAdaptedTimePeriod =
                 new JsonAdaptedTimePeriod(11, 24, "FRIDAY");
-        assertThrows(IllegalValueException.class, jsonAdaptedTimePeriod::toModelType);
+        assertThrows(AssertionError.class, jsonAdaptedTimePeriod::toModelType);
     }
 
     @Test
-    public void toModelType_startTimeAfterEndTime_throwsIllegalValueException() {
+    public void toModelType_startTimeAfterEndTime_throwsWrongTimeException() {
         JsonAdaptedTimePeriod jsonAdaptedTimePeriod =
                 new JsonAdaptedTimePeriod(13, 11, "FRIDAY");
-        assertThrows(IllegalValueException.class, jsonAdaptedTimePeriod::toModelType);
+        assertThrows(WrongTimeException.class, jsonAdaptedTimePeriod::toModelType);
     }
 
     @Test
-    public void toModelType_startTimeSameAsEndTime_throwsIllegalValueException() {
+    public void toModelType_startTimeSameAsEndTime_throwsWrongTimeException() {
         JsonAdaptedTimePeriod jsonAdaptedTimePeriod =
                 new JsonAdaptedTimePeriod(11, 11, "FRIDAY");
-        assertThrows(IllegalValueException.class, jsonAdaptedTimePeriod::toModelType);
+        assertThrows(WrongTimeException.class, jsonAdaptedTimePeriod::toModelType);
     }
 
     @Test

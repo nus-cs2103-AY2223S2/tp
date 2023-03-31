@@ -7,6 +7,7 @@ import static seedu.address.model.timetable.util.TypicalTime.ELEVEN_AM;
 import static seedu.address.model.timetable.util.TypicalTime.ONE_PM;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.recommendation.Recommendation;
