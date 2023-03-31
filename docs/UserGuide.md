@@ -67,7 +67,7 @@ provided WIFE when you first start up.
 * Type the following command in the user input box at the bottom of WIFE and press 'Enter' on your keyboard
 to execute it.
   
-  `add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` </br>
+  `add n/Coca Cola u/Cans q/5 e/01-01-2099` </br>
 You should see your food list be updated as such!
 
   ![Ui_updated](images/UG/Ui_updated.png)
@@ -109,13 +109,13 @@ To see what the command format means, you can refer to the [Features](#features)
 ### Add a food: `add`
 Add a new food into WIFE. (This is the command when you tried out your first command!)
 
-Format: `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]...`
+Format: `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`
 
 *All parameters must be present in the command, except the 'tag' parameter which is surrounded by square brackets.
 
 Example:
 
-`add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` returns
+`add n/Coca Cola u/Cans q/5 e/01-01-2099` returns
 ```markdown
 New food added: Coca Cola (expires on: 01-01-2099)
 ```
@@ -139,7 +139,7 @@ Example:
 
 Edit food items in WIFE.
 
-Format: `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]...`
+Format: `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]`
 
 * Index must be a valid integer that refers to an an item currently in the fridge
 
@@ -385,8 +385,8 @@ Example 1:
 Example 2:
 `help add` displays the command format and example usages specific to the `add` command
 ```
-Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]...
-Example Usage: add n/Broccoli u/STALK q/2 e/03-03-2033 t/VEGETABLES t/HEALTHY
+Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE
+Example Usage: add n/Broccoli u/STALK q/2 e/03-03-2033
 ```
 
 ### Clearing WIFE : `clear`
@@ -439,15 +439,15 @@ There is no support for mobile devices yet.
 
 ### Food Commands
 
-| Feature  | Action                                | Command Format                                                         | Example                                                           |
-|----------|---------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------|
-| Add      | Adds a food item to the food list     | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]... `               | `add n/Coca Cola u/Cans q/5 e/01-01-2099 t/Soft Drink t/Beverage` |
-| List     | Lists all food items                  | `list`                                                                 | `list`                                                            |
-| Find     | Finds a food item                     | `find KEYWORD`                                                         | `find Broccoli`                                                   |
-| Edit     | Edits a food item                     | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]...` | `edit 1 n/Cauliflower q/20`                                       |
-| Increase | Increases the quantity of a food item | `inc INDEX [q/QUANTITY]`                                               | `inc 1 q/100`                                                     |
-| Decrease | Decreases the quantity of a food item | `dec INDEX [q/QUANTITY]`                                               | `dec 1 q/100`                                                     |
-| Delete   | Deletes a food item                   | `delete INDEX`                                                         | `del 3`                                                           |
+| Feature  | Action                                | Command Format                                              | Example                                   |
+|----------|---------------------------------------|-------------------------------------------------------------|-------------------------------------------|
+| Add      | Adds a food item to the food list     | `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`                | `add n/Coca Cola u/Cans q/5 e/01-01-2099` |
+| List     | Lists all food items                  | `list`                                                      | `list`                                    |
+| Find     | Finds a food item                     | `find KEYWORD`                                              | `find Broccoli`                           |
+| Edit     | Edits a food item                     | `edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]` | `edit 1 n/Cauliflower q/20`               |
+| Increase | Increases the quantity of a food item | `inc INDEX [q/QUANTITY]`                                    | `inc 1 q/100`                             |
+| Decrease | Decreases the quantity of a food item | `dec INDEX [q/QUANTITY]`                                    | `dec 1 q/100`                             |
+| Delete   | Deletes a food item                   | `delete INDEX`                                              | `del 3`                                   |
 
 ### Tag Commands
 
