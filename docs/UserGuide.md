@@ -349,6 +349,7 @@ This is a tutorial for **first-time** Docedex users.
 15. Congratulations! You are now ready to use Docedex.
 
 [Scroll back to features](#features)
+
 [Scroll back to Table of Contents](#table-of-contents)
 
 
