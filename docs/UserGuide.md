@@ -355,7 +355,6 @@ Format: `clear`
 ConnectUS comes with a set of default contacts. If you want to remove all default contacts, or you want to restart your ConnectUS contact list, you can use the `clear` command without any additional parameters.
 
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**<br>
-
 Once the contact data in ConnectUS is cleared, it cannot be retrieved. Do proceed with caution!
 
 </div>
@@ -383,6 +382,7 @@ You can add a contact using the `add` command followed by the parameters (as sho
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**<br>
 
 * A contact can have any number of tags, <u>modules</u> and <u>CCAs</u> (including 0)!
+
 * A contact can have at most 2 majors. If you input more than 2 majors, only the last 2 occurrences will be taken as parameters! 
 
 </div>
@@ -406,7 +406,6 @@ You can add a contact using the `add` command followed by the parameters (as sho
 Please refer to [Information Fields & Prefixes](#5-information-fields--prefixes) for details on how to use each parameter prefix.
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**<br>
-
 ConnectUS helps you to detect duplicate contacts by checking the existing contacts for the exact same name (case-sensitive) whenever you add a new contact.
 
 </div>
