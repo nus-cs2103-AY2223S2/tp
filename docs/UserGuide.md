@@ -221,10 +221,10 @@ Gets meetings from the address book
 Format: `meetingFind DATE `
 
 Required Information:
-* Date (dd/mm/yyyy)
+* Date (dd-mm-yyyy hh:mm)
 
 Examples:
-* `meetingFind 12/02/2023` Lists out all meetings that start on 12/02/2023
+* `meetingFind 09-11-2022 11:30` Lists out all meetings that start on 9th November 2022 at 11.30
 
 
 ### List meeting : `meetingList`
@@ -294,18 +294,30 @@ If your changes to the data file makes its format invalid, FAid will discard all
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
+|---
 | Action                 | Format, Examples                                                                                                                                                   |
-|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`<br>e.g, `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+|:----------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| **Add**                | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`<br>e.g, `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`  |
+|---
 | **Clear**              | `clear`                                                                                                                                                            |
+|---
 | **Delete**             | `delete INDEX` e.g., `delete 3`                                                                                                                                    |
-| **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                        |
+|---
+| **Edit**               | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                         |
+|---
 | **Find**               | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                         |
+|---
 | **List**               | `list`                                                                                                                                                             |
+|---
 | **Help**               | `help`                                                                                                                                                             |
+|---
 | **Add Meeting**        | `meetingAdd CLIENT_INDEX /md DESC /ms START DATE&TIME /md END DATE&TIME`                                                                                           |
+|---
 | **Remove Meeting**     | `meetingRemove CLIENT_INDEX MEETING_INDEX`                                                                                                                         |
-| **Find Meeting**       | ` meetingFind DATE[CLIENT_INDEX]`                                                                                                                                  |
+|---
+| **Find Meeting**       | `meetingFind DATE[CLIENT_INDEX]`                                                                                                                                   |
+|---
 | **List all meetings**  | `meetingList`                                                                                                                                                      |
+|---
 | **List all in Region** | `listRegion REGION`                                                                                                                                                |
+|---
