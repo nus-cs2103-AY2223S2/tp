@@ -20,7 +20,7 @@ title: User Guide
 * We are **still working** on making our user guide as user friendly as possible. You can help us by providing feedback [here](https://github.com/AY2223S2-CS2103T-T17-1/tp/issues/new)
 </div>
 
-**Team Builder (TB)** is a desktop app for students to manage their contacts and build a multidisciplinary team based on soft skills and technical skills.
+**Team Builder (TB)** is a desktop app primarily for Computer Science students to manage their contacts and build a multidisciplinary team based on soft skills and technical skills.
 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, TB can help you build your team through your contacts much faster than traditional GUI apps.
 
@@ -47,7 +47,7 @@ This guide is designed to be followed narratively from top to bottom. If you are
 
 * :exclamation: - are some warnings about certain actions
 
-* `keyword` - are command/special character to be typed.
+* `keyword s/` - are command/special character to be typed. **They are case-sensitive and strip excessive spaces.**
 
 * `UPPER_CASE` - are the parameters to be supplied by the user.<br/>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -60,7 +60,7 @@ This guide is designed to be followed narratively from top to bottom. If you are
 
 </div>
 
-**LABLED WINDOW IMAGE**
+<img class="center" src="images/LabelledAppWindow.png" alt="Labelled App Window" />
 
 ### This guide is split into 6 sections: <!-- omit in toc -->
 
@@ -86,12 +86,12 @@ Below is the full table of contents, in case you are looking for something very 
   - [Updating a contact : `edit`](#updating-a-contact--edit)
   - [Deleting a contact : `delete`](#deleting-a-contact--delete)
 - [Making a Team](#making-a-team)
-  - [Create team: `create`](#create-team-todo)
+  - [Creating a team: `create`](#creating-a-team-create)
   - [Finding the right teammate I : `find`](#finding-the-right-teammate-i--find)
   - [Finding the right teammate II : `sort`](#finding-the-right-teammate-ii--sort)
-  - [Add a person to a team : `edit`](#add-a-person-to-a-team--todo)
-  - [List all teammates in a team : `show`](#list-all-teammates-in-a-team--todo)
-  - [Remove a team : `remove`](#remove-a-team--remove)
+  - [Add a person to a team : `edit`](#add-a-person-to-a-team--edit)
+  - [Listing all teammates in a team : `show`](#listing-all-teammates-in-a-team--show)
+  - [Removing a team : `remove`](#removing-a-team--remove)
 - [Extra Team Builder Features](#extra-team-builder-features)
   - [Clearing all entries : `clear`](#clearing-all-entries--clear)
   - [Undoing a command : `undo`](#undoing-a-command--undo)
@@ -99,7 +99,6 @@ Below is the full table of contents, in case you are looking for something very 
   - [Exiting the program : `exit`](#exiting-the-program--exit)
   - [Saving the data](#saving-the-data)
   - [Editing the data file](#editing-the-data-file)
-  - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
 - [FAQ](#faq)
 
 </div>
@@ -110,16 +109,16 @@ Below is the full table of contents, in case you are looking for something very 
 
 Action |          Type          |Format, Examples
 :--------:|:----------------------:|:--------:
-[**Add**](#adding-a-new-contact--add) |       Modifying        |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...` <br> e.g., `add n/James Ho p/22224444`
+[**Add**](#adding-a-new-contact--add) |       Modifying        |`add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]... [T/TEAM_NAME]...`
 [**Clear**](#clearing-all-entries--clear) |       Modifying        |`clear`
 [**Delete**](#deleting-a-contact--delete) |       Modifying        |`delete INDEX`<br> e.g., `delete 3`
-[**Edit**](#updating-a-contact--edit) |       Modifying        |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]...​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+[**Edit**](#updating-a-contact--edit) |       Modifying        |`edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]... [T/TEAM_NAME]... ​`
 [**Find**](#finding-the-right-teammate-i--find) |        Listing         | `find NAME/MAJOR/TAG [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-[**Sort**](#finding-the-right-teammate-ii--sort) |        Listing         |`sort ORDER SORT_BY`<br> e.g., `sort desc tcount`
-[**Create**](#Creating-a-team--create) |       Modifying        |`create tn/TEAM_NAME td/TEAM_DESCRIPTION [t/SKILLTAG]` <br> e.g., `create tn/TeamA td/2103T_tP t/Java`
-[**Show**](#listing-all-contacts-within-a-team--show) |        Listing         |`show TEAM_NAME` <br> e.g., `show TeamA`
+[**Sort**](#finding-the-right-teammate-ii--sort) |        Listing         |`sort ORDER SORT_BY`<br> e.gg., `sort desc tcount`
+[**Create**](#creating-a-team-create) |       Modifying        |`create tn/TEAM_NAME td/TEAM_DESCRIPTION [t/SKILLTAG]` <br> e.g., `create tn/TeamA td/2103T_tP t/Java`
+[**Show**](#listing-all-teammates-in-a-team--show) |        Listing         |`show TEAM_NAME [OTHER_TEAM_NAME]...`
 [**List**](#listing-all-contacts--list) |        Listing         |`list`
-[**Remove**](#remove-a-team--remove) |       Modifying        |`remove`
+[**Remove**](#removing-a-team--remove) |       Modifying        |`remove TEAM_NAME`
 [**Undo**](#undoing-a-command--undo) | Special<br/> Modifying | `undo`
 [**Redo**](#redoing-an-undo-command--redo) |       Modifying        |`redo`
 [**Help**](#help-command) |         Window         |`help`
@@ -202,7 +201,7 @@ This includes:
 
 ### Adding a new contact : `add`
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]...​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]... [T/TEAM_NAME]...​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0). Tags are especially useful for keeping track of skills and traits!
@@ -242,7 +241,7 @@ These are all acceptable as anything after `list` is discarded.
 
 ### Updating a contact : `edit`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]… [T/TEAM_NAME]​`
 
 <img class="center" alt="**BACK OF JOHN'S CARD**" src="images/JohnContactCardBack.jpg" width="60%" />
 
@@ -252,15 +251,16 @@ We missed out the back of his card that has his **email**.
 
 Let's use the `edit` command to update his information.
 
-**Image of John in Team Builder, circled index** We see **John** is index 1 in our display.
+<img class="center" src="images/JohnIndex.png" alt="John at index 1" /> 
+We see **John** is index 1 in our display.
 
 **What to type**:
 
 `edit 1 e/john@example.com`
 
 **Result**:
+<img class="center" src="images/JohnFullContact.png" alt="John with email added />
 
-**Screen Cap**
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the edit command:**<br>
@@ -268,9 +268,9 @@ Let's use the `edit` command to update his information.
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags and teams, the existing tags and teams of the person will be removed i.e adding of tags and teams is not cumulative.
+* You can remove all the person’s tags or teams by respectively typing `t/` or `T/` without
+    specifying any after it.
 </div>
 
 ### Deleting a contact : `delete`
@@ -289,7 +289,6 @@ Again, we see **John** is index 1 in our display.
 
 **Result**:
 
-**deletus maximus**<br>
 John is no longer in your TeamBuilder contact list!
 
 <div style="page-break-after: always;"></div>
@@ -305,7 +304,7 @@ This includes:
 4. Listing all teammates in a team
 5. Remove a team
 
-### Create team: `create`
+### Creating a team: `create`
 
 Format: `create tn/TEAMNAME td/TEAMDESC [t/TAG]...`
 
@@ -406,9 +405,9 @@ You can only add a person to the team if the team has been created beforehand!
 
 <img class="center" alt="result for 'edit 1'" src="images/FindReact.png" width="50%" />
 
-### List all teammates in a team : `show`
+### Listing all teammates in a team : `show`
 
-Format: `show TEAM_NAME`
+Format: `show TEAM_NAME [OTHER_TEAM_NAME]...`
 
 The Hack&Roll announced that there is a limit on team size. You want to list all people who are currently added to your
 NUSMeets team.
@@ -422,7 +421,7 @@ NUSMeets team.
 <img class="center" alt="result for 'edit 1'" src="images/ShowNUSMeets.png" width="50%" />
 
 
-### Remove a team : `remove`
+### Removing a team : `remove`
 
 Format: `remove TEAMNAME`
 
@@ -518,16 +517,15 @@ TeamBuilder data are saved as a JSON file `[JAR file location]/data/teambuilder.
 If your changes to the data file makes its format invalid, TeamBuilder will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TeamBuilder home folder.
+
+**Q**: Why is my command text in red and not working?<br/>
+**A**: You might have input an invalid command. Either the command word doesn't exist or the parameters entered are invalid.
 
 --------------------------------------------------------------------------------------------------------------------
 
