@@ -31,7 +31,7 @@ of utmost priority, where the smallest delays or lapses in updating information 
 how your hospital attends to your patients. **MedInfo** has simplified, focused patient and ward management down to a
 tee, allowing you to in-process, update, and move patients around while looking at the overall stats of the hospital.<br>
 <br>
-[Back to Table of Contents](#logic-component)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 
@@ -62,7 +62,7 @@ tee, allowing you to in-process, update, and move patients around while looking 
 
 1. Refer to the [Features](#features) below for details of each command.
 
-[Back to Table of Contents](#logic-component)
+[Back to Table of Contents](#table-of-contents)
 
 ---
 ## User Interface Overview
