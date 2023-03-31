@@ -245,7 +245,7 @@ To use ConnectUS, type the [command](#321-command) along with its [parameters](#
 To use the Command Line Interface(CLI), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
    ![Command Box](images/ConnectUSCommandBox.png) <br>
 
-To familiarise yourself with ConnectUS, let's try out the `add` command! The `add` command allows you to add a new contact into the [Contact List](#313-contact-list).
+To familiarise yourself with ConnectUS, let's try out [the `add` command](#44-adding-a-contact-add) ! The `add` command allows you to add a new contact into the [Contact List](#313-contact-list).
 
 **Format:** `add n/NAME [p/PHONE] [a/ADDRESS] [e/EMAIL] [tg/TELEGRAM] [ig/INSTAGRAM] [wa/WHATSAPP] [b/BIRTHDAY] [mod/MODULE]…​ [cca/CCA[#CCA_POSITION]]…​ [maj/MAJOR]…​ [r/REMARK]…​`
 
