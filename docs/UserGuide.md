@@ -79,7 +79,7 @@ TeachMeSenpai has been designed to work for all Operating Systems!
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored.  
   _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
 
-<div>
+</div>
 
 ## Parameter descriptions
 
