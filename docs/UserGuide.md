@@ -3,46 +3,32 @@ layout: page
 title: User Guide
 ---
 
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
-<!---
-Outstanding TODOs:
-[ ] Add numbering to all the sections in both the TOC & section headings
 
---- STRUCTURE ---
---- Use double indents for each nested layer ---
-
-Table of Contents
-Introduction
-Purpose of User Guide
-Quick Start
-    Installation
-    For Windows
-    For Mac (M1 Chip)
-    Trying out the commands
-Navigating Vimification
-Using the commands
-Information on commands' parameters
-Features and commands
-    Viewing help
-    Adding a task
-    Adding a task with a deadline
-    Deleting a task
-    Exiting the application
-    Saving the tasklist data
-    Editing tasklist data stored
-    Archiving tasklist data
+**Table of Contents**
+- [Introduction](#introduction)
+- [Purpose of this User Guide](#purpose--of-this-User-Guide)
+- [Quick Start](#quick-start)
+    - [Installation](#installation)
+    - [For Windows](#for-windows)
+    - [For Mac (M1 Chip)](#for-Mac-(-M1-Chip-))
+    - [Trying out the commands](#trying-out-the-commands)
+- [Navigating Vimification](#navigating-vimification)
+- [Using the commands](#using-the-commands)
+- [Information on commands' parameters](#information-on-commands'-parameters)
+- [Features and commands](#features-and-commands)
+    - [Viewing help](#viewing-help)
+    - [Adding a task](#adding-a-task)
+    - [Adding a task with a deadline](#adding-a-task-with-deadline)
+    - [Deleting a task](#deleting-a-task)
+    - [Exiting the application](#exiting-the-application)
+    - [Saving the tasklist data](#saving-the-tasklist-data)
+    - [Editing tasklist data stored](#editing-tasklist-data-stored)
+    - [Archiving tasklist data](#arhiving-tasklist-data)
 FAQ
 Flag summary
 Command summary
--->
 
-## Table of Contents
-
-* Table of Contents
-{:toc}
 
 ## Introduction
 
@@ -107,9 +93,9 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
    Some example commands you can try:
 
-   - `:a Enhance CS2103T tp user guide` : Adds a task with the title `Enhance CS2103T tp user guide` to Vimification.
+   - `:a "tutorial"` : Adds a task with the title `tutorial` to Vimification.
 
-   - `:a Finish up weekly tp tasks -d 2023-04-01` : Adds a task with the title `Finish up weekly tp tasks` and deadline `2023-04-01` to Vimification.
+   - `:a "quiz for cs2103T" -d 2023-04-01` : Adds a task with the title `quiz for cs2103T` and deadline `2023-04-01` to Vimification.
 
    - `:d 2` : Deletes the 2nd task shown in the current list.
 
@@ -123,7 +109,7 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
 ## Navigating Vimification
 
-Vimification is designed to mimic Vim as closely as possible. Navigate Vimification as you would in Vim by using `h`,`j`,`k`,`l` to move to the left, down, up, right respectively.
+Vimification is designed to mimic Vim as closely as possible. Navigate Vimification as you would in Vim by using `h`,`j`,`k`,`l` to move to the left, down, up, right respectively. To open the detailed task list, use 'l'.
 
 Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be used as well.
 
@@ -131,7 +117,7 @@ Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be used as w
 
 ## Using the commands
 
-<p>Similar to Vim, you can access command mode by pressing the `:` key on your keyboard. This will bring the cursor to the command input field, which is at the bottom of the application.</p>
+Similar to Vim, you can access command mode by **pressing the `:` key** on your keyboard. This will bring the cursor to the command input field, which is at the bottom of the application.</p>
 Example:
 <img class="ui-img" src="images/ug-images/showCommand/commandExample.png" alt="Example of Show Command Image" title="How to bring up the command input">
 
@@ -147,24 +133,24 @@ _Take note of how the command format is being interpretted, to know what paramet
 
 Flags like `-d`, `-l` and `-p` act as identifier for the parameter that comes immediately after the flag.
 
-- e.g. `:a <title> [-d <deadline>]`, the `-d` indicates the deadline attribute of a task.
+- e.g. `:a <"title"> [-d <deadline>]`, the `-d` indicates the deadline attribute of a task.
 - Refer to the [Flag summary](#flag-summary) below for details of each flag.
 
 Words in **angle brackets** are **compulsory** parameters to be supplied by the user.
 
-- e.g. in `:a <title>`, the user must provide the `<title>` parameter, for example, `:a Do weekly quiz`.
+- e.g. in `:a <"title">`, the user must provide the `<"title">` parameter, for example, `:a "Do weekly quiz"`.
 
 Words in **square brackets** are **optional** parameters to be supplied by the user.
 
-- e.g. `:a <title> [-d <deadline>]`, the user need not provide the `<deadline>` parameter.
+- e.g. `:a <"title"> [-d <deadline>]`, the user need not provide the `<deadline>` parameter.
 
 Bracketed items with `…`​ behind means that user can provide multiple parameters.
 
-- e.g. `:a <title> [-l <label>]…​`, for example, `:a Do OP2 slides -t cs2101`, `:a Do OP2 slides -t cs2101 -t presentation` are both acceptable.
+- e.g. `:a <'title"> [-l <label>]…​`, for example, `:a "Do OP2 slides" -t cs2101`, `:a Do OP2 slides -t cs2101 -t presentation` are both acceptable.
 
 Parameters identified by flags can be in any order.
 
-- e.g. `:a Do OP2 slides -t cs2101 -p high`, `:a Do OP2 slides -p high -t cs2101` are both acceptable.
+- e.g. `:a "Do OP2 slides" -t cs2101 -p high`, `:a "Do OP2 slides" -p high -t cs2101` are both acceptable.
 
 For commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`), any parameter provided will be ignored.
 
@@ -190,38 +176,40 @@ Format: `:help`
 
 Adds a task to the current task list.
 
-Format: `:a <title> [-l <label>]... [-p <priority>]`
-
-| Parameter    | Detail                              | Compulsory | Example            |
-| ------------ | ----------------------------------- | ---------- | ------------------ |
-| `<title>`    | Title of the task                   | Yes        | `CS2103T UG`       |
-| `<label>`    | Label given to the task             | No         | `household chores` |
-| `<priority>` | Priority level assigned to the task | No         | `high`             |
-
-- SoC students can put module code as the label.
-
-Example after the command, `:a Enhance CS2103T tp user guide`:
-
-<img class="ui-img" src="images/ug-images/AddTaskCommandDemo.png" alt="Add Task Command Demo Image" title="Add Task Command Demo">
-
-### Adding task with deadline
-
-Adds a task with a deadline to the current task list.
-
-Format: `:a <title> -d <deadline>`
+Format: `:a <"title"> [-d <deadline>] [-l <label>]... [-p <priority>]`
 
 | Parameter    | Detail                                      | Compulsory | Example        |
 | ------------ | ------------------------------------------- | ---------- | -------------- |
 | `<title>`    | Title of the task                           | Yes        | `CS2103T UG`   |
-| `<deadline>` | Deadline of the task in `YYYY-MM-DD` format | Yes        | `2023-03-31`   |
+| `<deadline>` | Deadline of the task                        | No         | `2023-03-31`   |
 | `<label>`    | Label given to the task                     | No         | `presentation` |
-| `<priority>` | Priority level assigned to the task         | No         | `high`         |
+| `<priority>` | Priority level assigned to the task         | No         | `1`         |
 
 - SoC students can put module code as the label.
 
-Example after the command, `:a CS2130T v1.3 -d 2022-03-31`:
+Example of command
+1. `:a "Enhance CS2103T tp user guide" -d 2023-03-31 -l cs2103t -p 1`
+    
+### Inserting parameters to a task
 
-<img class="ui-img" src="images/ug-images/AddDeadlineCommandDemo.png" alt="Add Deadline Command Demo Image" title="Add Deadline Command Demo">
+Insert the parameter as specified by the flag of a task to the current task list as specified by the task number.
+
+Format: `:i <task_index> [-d <deadline>] [-l <label_name>]`
+
+| Parameter      | Detail                               | Example                                         |
+| -------------- | ------------------------------------ | ----------------------------------------------- |
+| `<task_index>` | Index of the target task             | 3 (assuming the task list has at least 3 tasks) |
+| `<deadline  >` | Deadline of task you want to insert  | 2023-04-05
+| `<label_name>` | Name of the label you want to insert | cs2103t(assuming the task list has this label)  |
+
+Example of command
+1. `:i 3 -d 2023-04-5` inserts the deadline to task 3
+2. `:i 3 -l cs2103t` inserts the "cs2103t" label to task 3
+
+- At least one for the flags should be present. 
+- The index refers to the index number shown in the displayed task list.
+- The index **must be a positive integer**, i.e 1, 2, 3 etc.
+- The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.    
 
 ### Deleting task
 
@@ -233,33 +221,70 @@ Format: `:d <task_index>`
 | -------------- | ------------------------------------ | ---------- | ----------------------------------------------- |
 | `<task_index>` | Index of the task you want to delete | Yes        | 3 (assuming the task list has at least 3 tasks) |
 
-- Deletes the task at the specified `<task_index>`.
+    
+Example of command 
+1. `:d 3` deletes task 3
+    
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
 
-Example:
+### Deleting parameters of a task
 
-<table style="width:100%; border:none;">
-<tr>
-<td style="width:50%;">Before the command <code>:d 4</code></td>
-<td style="width:50%;">After the command <code>:d 4</code></td>
-</tr>
-<tr>
-<td style="width:50%;"><img class="ui-img" src="images/ug-images/deleteCommand/before.png" alt="Delete Command Before Image" title="Before Delete Command"></td>
-<td style="width:50%;"><img class="ui-img" src="images/ug-images/deleteCommand/after.png" alt="Delete Command After Image" title="After Delete Command"></td>
-</tr>
-</table>
+Deletes the parameter as specified by the flag of a task from the current task list as specified by the task number.
 
+Format: `:d <task_index> [-d] [-l <label_name>]`
+
+| Parameter      | Detail                               | Example                                         |
+| -------------- | ------------------------------------ | ----------------------------------------------- |
+| `<task_index>` | Index of the target task             | 3 (assuming the task list has at least 3 tasks) |
+| `<label_name>` | Name of the label you want to delete | cs2103t (assuming the task list has this label)  |
+
+Example of command
+1. `:d 3 -d` deletes the deadline of task 3
+2. `:d 3 -l cs2103t` deletes the "cs2103t" label of task 3
+
+- At least one for the flags should be present. Else, command will be treated as deleting the task at index number.
+- The index refers to the index number shown in the displayed task list.
+- The index **must be a positive integer**, i.e 1, 2, 3 etc.
+- The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
+
+### Editing task
+
+Edit the parameters as specified by the flag of a task in the current task list as specified by the task number.
+
+Format: `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>]... `
+
+| Parameter    | Detail                                     | Example        |
+| ------------ | ------------------------------------------ | -------------- |
+| `<title>`    | New title of task                          | `"CS2103T UG"` |
+| `<deadline>` | New deadline of the task                   | `2023-03-31`   |
+| `<status>`   | New status of task                         | `2`            |
+| `<priority>` | Priority level assigned to the task        | `1`            |
+| `<previous_label>` | Name of the label you want to edit | cs2103t(assuming the task list has this label) |
+| `<new_label>` | New name of the label                   | `group project` |
+
+Example of command
+1. `:e 3 -t "quiz"` edits the title of task 3 to "quiz"
+2. `:e 3 -d 2023-04-05` edits the deadline of task 3 to 2023-04-05
+3. `:e 3 -s 1` edits the status of task 3 to be in progress 
+4. `:e 3 -p 1` edits the priority of task 3 to be in urgent      
+5. `:e 3 -l oldLabel newLabel` edits oldLabel of task 3 to be newLabel      
+                      
+                      
+- At least one for the flags should be present. 
+- The index refers to the index number shown in the displayed task list.
+- The index **must be a positive integer**, i.e 1, 2, 3 etc.
+- The index must not exceed the number of tasks in the displayed task list, otherwise Vimification will show an error message.
+
+    
+    
 ### Exiting the application
 
 Similar to Vim, we can use the `:wq!`, `:q!`,,`:wq`,`:q` commands to exit the application.
 
 Format: `:wq!`, `:q!`,,`:wq`,`:q`
 
-Example:
-
-<img class="ui-img" src="images/ug-images/quitCommand/quitExample1.png" alt="Quit Example 1 Image" title="Quit Example 1">
 
 ### Saving the task list data
 
@@ -292,9 +317,14 @@ _Details coming soon in v2.0 ..._
 
 ## Flag summary
 
-<p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
+| Flag                   | Meaning                    | Conditions                                         |
+| ---------------------- | -------------------------- | -------------------------------------------------- |
+|-t                      | title of description       | Cannot be empty, enclosed in open close quotation marks|
+|-d                      | deadline of description    | In the format of YYYY-MM-dd or YYYY-MM-dd HH:mm    |
+|-l                      | label of task              | cannot be empty                                    |
+|-p                      | priority of t              | 1 for very urgent, 2 for urgent, 3 for not urgent, 4 for unknown|
+|-s                      | status of t                | 0 for not done, 1 for in progress, 2 for completed, 3 for overdue|
 
-<!-- TODO: Complete this command summary box -->
 
 ## Command summary
 
