@@ -81,8 +81,11 @@ All commands are case insensitive.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `phone/12341234 phone/56785678`, only `phone/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as [help](#viewing-help-help), [list-client](#list-all-clients-list-client), [list-project](#listing-all-projects--list-project), [list-tag](#listing-all-tags--list-tag), [exit](#exiting-the-program--exit), [clear-client](#clear), [clear-project](#clear) and [sort-client](#sorting-all-clients--sort-client)) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as [help](#viewing-help-help), [list-client](#list-all-clients-list-client), [list-project](#listing-all-projects--list-project), [list-tag](#listing-all-tags--list-tag), [exit](#exiting-the-program--exit), [clear-client](#clearing-the-client-list--clear-client), [clear-project](#clear) and [sort-client](#sorting-all-clients--sort-client)) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* Extraneous parameters for commands that take in only one parameter (such as [delete-client](#deleting-a-client--delete-client)) will be ignored.<br>
+  e.g. if the command specifices `delete-client 1 abc` it will be interpreted as `delete-client 1`.
 
 * Most commands and parameters have shorter aliases that can be used the same way, such as [list-project](#listing-all-projects--list-project) having the alias `lp` and `name/` having the alias `n/`.<br>
   e.g. specifying `list-project` is the same as specifying `lp` and specifying `add-project name/John Doe` is the same as specifying `add-project n/John Doe`.
@@ -137,7 +140,9 @@ The email address and phone number must be in a valid format. E.g. `XXX@gmail.co
 
 Format: `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*`
 
-Note: each tag to be added needs a separate `tag/TAG` flag.
+Note:
+* each tag to be added needs a separate `tag/TAG` flag.
+* Empty prefixes for optional fields will be ignored.
 
 Examples:
 * `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend tag/default`
@@ -170,14 +175,29 @@ Examples:
 
 Deletes the client at the specified index of the client list.
 
-Notes:
+Note:
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This command cannot be undone. A deleted client cannot be restored.
+</div>
 
 Format: `delete-client <index>`
 
 Example:
 *  `list-client` followed by `delete-client 1` deletes the first client in the list (if there is one).
+
+### Clearing the client list : `clear-client`
+#### Alias: `cc`
+
+Deletes all clients in the client list.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This command cannot be undone. All deleted clients cannot be restored.
+</div>
+
+Format: `clear-client`
 
 ### Finding a client : `find-client`
 #### Alias: `fc`
@@ -186,6 +206,8 @@ Finds a client based on the details provided. Details that can be supplied are t
 
 Note: 
 * The matching with supplied names and tags are case-insensitive.
+* Names and tags can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
+* Invalid names and tags will be ignored
 
 Format: `find-client [name/NAME]* [tag/tag]*`
 
@@ -222,11 +244,13 @@ Prices must be in a recognisable price format, such as `3.08` or `5`.
 
 Clients can be linked by entering individual keywords that are part of the clients name. For example, if you wish to link the project to the client with the name `Alice Wheeler`, you can input `alice` or `wheeler`. Further steps to link to a client can be found [here](#linking-a-project-to-a-client).
 
-Format: `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]* [client/CLIENT]*`
-
 Note: 
 * Each tag to be added needs a separate `tag/TAG` flag.
-* Each client name keyword needs a separate `client/CLIENT` flag.
+* Client name keywords can be separated by either spaces or a prefix e.g. `client/alice client/wheeler` is the same as `client/alice wheeler`.
+* Invalid client name keywords will be ignored.
+* Empty prefixes for optional fields will be ignored.
+
+Format: `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]* [client/CLIENT]*`
 
 Examples:
 * `add-project name/Background Commission deadline/2023-05-05 price/500 tag/painting client/alice client/wheeler` Adds a project with the name Background Commision, a deadline of 5th May 2023, a price of $500, is tagged painting; and links this project to a client whose name contains any of the keywords `alice` or `wheeler`.
@@ -247,6 +271,9 @@ Fields that can be changed:
 
 Note:
 * Using an empty `tag/` flag removes all tags of the project. This cannot be used with any non-empty `tag/` flags e.g. `edit-project 1 tag/ tag/painting` is not valid.
+* Using an empty `client/` flag removes the linked client of the project. This cannot be used with any non-empty `client/` flags e.g. `edit-project 1 client/ client/alice` is not valid.
+* Client name keywords can be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
+* Invalid client name keywords will be ignored.
 * At least one field to edit must be provided.
 
 The steps to link to a client can be found [here](#linking-a-project-to-a-client).
@@ -299,6 +326,17 @@ Format: `delete-project <index>`
 Example:
 *  `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
 
+### Clearing the project list : `clear-project`
+#### Alias: cp
+
+Deletes all projects in the project list.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This command cannot be undone. All deleted projects cannot be restored.
+</div>
+
+Format: `clear-project`
+
 ### Finding a project: `find-project`
 #### Alias: fp
 
@@ -306,6 +344,8 @@ Finds a project based on details provided. Details that can be supplied are the 
 
 Note: 
 * The matching with supplied names and tags are case-insensitive.
+* Project names, tags and linked client names can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
+* Invalid project names, tags and linked client names will be ignored
 * Status must be specified as either `not done` or `done`.
 
 Format: `find-project [name/NAME]* [start/START] [end/END] [price/PRICE] [status/STATUS] [tag/TAG]* [client/CLIENT]*`
@@ -321,19 +361,28 @@ Sorts all projects that exist in the ArB. Projects can be sorted via the given o
 * Deadline
 * Price
 
+Note:
+* Option matching is case-insensitive
+
 Format: `sort-project <option/Option>`
 
 Examples: 
 * `sort-project option/name`
+* `sort-project option/n`
+* `sort-project option/deadline`
+* `sort-project option/d`
+* `sort-project option/price`
+* `sort-project option/pr`
 
 ### Linking a Project to a Client
 
 This is only applicable if the client parameter has been specified when [adding a project](#adding-a-project-add-project) or [editing a project](#editing-a-project--edit-project).
 
-ArB will display a list of clients that match the provided keywords. Entering an index specifies the client in the list to link to a project.
+ArB will display a list of clients that match the provided keywords. Entering an index specifies the client in the list to link to a project. Entering `0` will cancel the linking operation, but the previously added or edited project will remain.
 
 Examples:
 * `1` links the 1st client in the shown list of clients
+* `0` cancels the linking operation and returns to the project list
 
 ## Tag commands
 
@@ -361,6 +410,7 @@ Format: `list-tag`
 | **Add a Client**     | `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend` |
 | **Edit a Client**    | `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*​` <br> e.g.,`edit-client 3 name/Alice Risa phone/1234 tag/classmate` |
 | **Delete a Client**  | `delete-client <index>`<br> e.g., `delete-client 1`|
+| **Clearing the Client List** | `clear-client` |
 | **Finding a Client** | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend` |
 | **Sorting all Clients** | `sort-client` |
 | **List Projects**   | `list-project` |
@@ -369,6 +419,7 @@ Format: `list-tag`
 | **Mark a Project**   | `mark <index>` <br> e.g., `mark 3` |
 | **Unmark a Project** | `unmark <index>` <br> e.g., `unmark 3` |
 | **Delete a Project** | `delete-project <index>`<br> e.g., `delete-project 1` |
+| **Clearing the Project List** | `clear-project` |
 | **Finding a Project** | `find-project [name/NAME]* [start/START] [end/END] [tag/TAG]* [status/STATUS]` <br> e.g., `find-project name/sky start/yesterday tag/painting` |
 | **Sorting all Project**   | `sort-project option/Option` <br> e.g., `sort-project option/name` |
 
