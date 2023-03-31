@@ -74,15 +74,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         String profilePicturePath = files[randomIndex].getAbsolutePath();
         */
 
-        String[] picture = {"001-bear.png", "002-rabbit.png", "003-panda.png", "004-sloth.png", "005-hen.png",
-                "006-puffer-fish.png", "007-beaver.png", "008-hedgehog.png", "009-penguin.png", "010-owl.png",
-                "011-ostrich.png", "012-llama.png", "013-chicken.png", "014-giraffe.png", "015-bat.png",
-                "016-koala.png", "017-parrot.png", "018-lion.png", "019-ferret.png", "020-chameleons.png",
-                "021-octopus.png", "022-dog.png", "023-frog.png", "024-turtle.png", "025-cow.png", "026-wild-boar.png",
-                "027-wolf.png", "028-cat.png", "029-mouse.png", "030-hippopotamus.png", "031-snake.png", "032-rhino.png",
-                "033-horse.png", "034-gorilla.png", "036-monkey.png", "037-sheep.png", "038-duck.png", "042-walrus.png",
-                "043-pig.png", "044-zebra.png", "045-crab.png", "046-skunk.png", "047-squirrel.png", "048-camel.png",
-                "049-elephant.png", "050-bee.png"};
+        String[] picture = {"001-bear.png", "002-rabbit.png", "003-panda.png", "004-sloth.png", "005-hen.png", "006"
+                + "-puffer-fish.png", "007-beaver.png", "008-hedgehog.png", "009-penguin.png", "010-owl.png", "011"
+                + "-ostrich.png", "012-llama.png", "013-chicken.png", "014-giraffe.png", "015-bat.png", "016-koala"
+                + ".png", "017-parrot.png", "018-lion.png", "019-ferret.png", "020-chameleons.png", "021-octopus"
+                + ".png", "022-dog.png", "023-frog.png", "024-turtle.png", "025-cow.png", "026-wild-boar.png", "027"
+                + "-wolf.png", "028-cat.png", "029-mouse.png", "030-hippopotamus.png", "031-snake.png", "032-rhino"
+                + ".png", "033-horse.png", "034-gorilla.png", "036-monkey.png", "037-sheep.png", "038-duck.png", "042"
+                + "-walrus.png", "043-pig.png", "044-zebra.png", "045-crab.png", "046-skunk.png", "047-squirrel"
+                + ".png", "048-camel.png", "049-elephant.png", "050-bee.png"};
 
         int randomIndex = new Random().nextInt(picture.length);
 
