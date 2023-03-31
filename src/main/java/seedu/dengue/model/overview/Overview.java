@@ -115,6 +115,7 @@ public abstract class Overview {
                     return newArray;
                 })
                 .collect(Collectors.toList());
+    }
 
     @Override
     public boolean equals(Object obj) {
