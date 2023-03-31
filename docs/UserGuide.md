@@ -18,7 +18,7 @@ This user guide will help you use PowerCards with ease and integrate it into you
 ## How to use the User Guide
 
 * For a quick and easy way to **get started** with PowerCards, you can visit the [Quick Start](#quick-start) section.
-* To **understand the terms** we use in PowerCards, you can visit the [Glossary](#glossary) section.
+* To **understand the terms** we use in PowerCards, you can visit the [Key Terms](#key-terms) section.
 * To learn about the **features** that PowerCards provides and how to use them, you can visit the [Features](#features) section.
 * Having **issues**? Check out the [FAQ](#faq) section and see if you can find your solutions there!
 * Have a **question** for us or require our **assistance**? Feel free to [contact us](#contact-us), and we will do our best to assist you!
@@ -51,11 +51,11 @@ This user guide will help you use PowerCards with ease and integrate it into you
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type any command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
 6. Refer to the [Features](#features) below for details of each command.
 
-## Glossary
+## Key Terms
 
 ### Deck
 A deck refers to a collection of flashcards that are organized together based on a specific topic or subject.
@@ -93,15 +93,6 @@ This section explains some common components in a command.
 
 </div>
 
-### Viewing help : `help`
-
-If you are unsure about how to use PowerCard, you can always execute this command.
-This command creates a pop-up with a link to this User Guide, where you can access clear and concise instructions for each command and features of the app.
-
-[//]: # (![help message]&#40;images/helpMessage.png&#41;)
-
-Format: `help`
-
 ## Main Mode
 
 Welcome to the Main Mode of the PowerCards application! This is the default mode you will see when you open the app. 
@@ -110,14 +101,14 @@ In the Main Mode, you can quickly and easily create new decks, add new cards to 
 
 ![UiComponent](images/MainModeComponent.png)
 
-| Component         | Description                                                                                  |
-|-------------------|----------------------------------------------------------------------------------------------|
-| **Deck**          | A **deck** contains a list of **cards**. The existing decks are displayed in the left panel. |
-| **Selected Deck** | The **deck** currently selected. The cards in this deck are displayed in the right panel.    |
-| **Card**          | A card contains a question, an answer and an optional difficulty tag.                        |
-| **Question**      | The question that you assign to the card.                                                    |
-| **Answer**        | The corresponding answer to the question.                                                    |
-| **Tag**           | The tag indicating the difficulty level of the card, based on your evaluation.               |
+| Component         | Description                                                                                                                    |
+|-------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| **Deck**          | A **deck** contains a list of **cards**. The existing decks are displayed in the left panel.                                   |
+| **Selected Deck** | The **deck** currently selected. The cards in this deck are displayed in the right panel.                                      |
+| **Card**          | A card contains a question, an answer and an optional difficulty tag.                                                          |
+| **Question**      | The question that you assign to the card.                                                                                      |
+| **Answer**        | The corresponding answer to the question.                                                                                      |
+| **Tag**           | The tag indicating the difficulty level of the card, based on your evaluation. Each card can only be tagged with 1 difficulty. |
 
 ## Main Mode - Before Selecting a Deck
 
@@ -160,7 +151,8 @@ Example: `deleteDeck 1` deletes the deck at index 1 and all the cards in deck 1.
 
 ### Selecting a Deck : `selectDeck`
 
-Once you have created your deck, you can access the list of cards inside it with this command.
+Once you have created your deck, you can access the list of cards inside it with this command. 
+Refer to the [Main Mode - After Selecting a Deck](#Main-Mode---After-Selecting-a-Deck) section to find out what commands you can run with a deck selected!
 
 Format: `selectDeck INDEX`
 - `INDEX` is the index of the deck in the deck list.
@@ -178,7 +170,8 @@ You will not be able to make any deck-related changes (e.g. `addDeck`, `deleteDe
 
 ### Unselecting a Deck : `unselectDeck`
 
-Unselects the currently selected deck.
+Unselects the currently selected deck. 
+Refer to the [Main Mode - Before Selecting a Deck](#Main-Mode---Before-Selecting-a-Deck) section to find out what commands you can run without a deck selected!
 
 Format: `unselectDeck`
 
@@ -249,6 +242,22 @@ Note that this is irreversible!
 
 Format: `clear`
 
+## Before entering Review Mode
+
+### Setting the Limit of Cards per Review: `setLimit`
+
+Suppose you have a really long deck of cards but you only want to test yourself on 20 cards this session, use this function to set an upper limit on the number of cards per review.
+While a limit is set, the review deck will be truncated to the card limit. 
+
+You can set the limit back to 'none' to view all cards in the deck for future reviews.
+
+Format: `setLimit LIMIT_NUM` or `setLimit none`
+- LIMIT_NUM is a non-zero positive integer
+
+Examples:
+* `setLimit 30`
+* `setLimit none`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Review Mode
@@ -265,21 +274,7 @@ Flipping a card reveals the answer - based on how close your guess was to the an
 
 Your goal would be to eventually have all cards in a deck be tagged as easy!
 
-### Setting the Limit of Cards per Review: `setLimit`
-
-Sets an upper limit of the number of cards per review. 
-The review deck will be truncated to the card limit in future reviews.
-
-You can set the limit back to 'none' to view all cards in the deck for future reviews.
-
-Format: `setLimit LIMIT_NUM` or `setLimit none`
-- LIMIT_NUM is a non-zero positive integer
-
-Examples:
-* `setLimit 30`
-* `setLimit none`
-
-### Start a Review: `review`
+### Starting a Review: `review`
 From the Main Mode, run this command to enter the Review Mode!
 
 Format: `review INDEX [-e] [-m] [-h]`
@@ -300,11 +295,32 @@ Ends the review and returns to the main mode. You can use this when you reach th
 
 Format: `endReview`
 
+### Review Keystrokes
+
+![ReviewKeystrokes](images/ReviewKeystrokes.png)
+
+The diagram above shows the keystrokes you will use to interact with the cards in the Review mode. 
+Notice that the keys are all close to the enter key so that you can breeze through decks of cards with ease!
+- The top row of keys are commands to flip cards, or move to the previous/next cards. 
+- The bottom row of keys are commands to tag the difficulty of the current card.
+
 ### Flipping the Card: `p`
 
-Flips the card to reveal the answer.
+Flips the card to reveal the answer. 
 
 Format: `p`
+
+### Next Card: `]`
+
+Displays the next card. After tagging the current card, you use this command to move on to the next card.
+
+Format: `]`
+
+### Previous Card: `[`
+
+Displays the previous card. Useful if you want to amend the tag of the previous card!
+
+Format: `[`
 
 ### Tagging the Card as Easy: `l`
 
@@ -324,17 +340,16 @@ Tags the current card as hard. This replaces any previous tags.
 
 Format: `'`
 
-### Next Card: `]`
+--------------------------------------------------------------------------------------------------------------------
 
-Displays the next card.
+### Viewing help : `help`
 
-Format: `]`
+If you are unsure about how to use PowerCard, you can always execute this command.
+This command creates a pop-up with a link to this User Guide, where you can access clear and concise instructions for each command and features of the app.
 
-### Previous Card: `[`
+[//]: # (![help message]&#40;images/helpMessage.png&#41;)
 
-Displays the previous card.
-
-Format: `[`
+Format: `help`
 
 ### Exiting the program : `exit`
 
@@ -353,7 +368,7 @@ PCs data are saved in the hard disk automatically after any command that changes
 PCs data are saved as a JSON file `[JAR file location]/data/masterdeck.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PCs will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, PowerCards will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
