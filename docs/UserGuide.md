@@ -223,7 +223,7 @@ Examples:
 
 Adds an expense to the expense tracker.
 
-Format: `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE] [r/RECUR_PERIOD]`
+Format: `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`
 
 | Parameter       | Description                                                                                                                                                                       |
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -231,12 +231,11 @@ Format: `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE] [r/RECUR_PERIOD]`
 | `ITEM_NAME`     | Name of the expense being added.                                                                                                                                                  |
 | `PRICE`         | The price of the expense being added.<br/><br/>The specified price should be a `double`, e.g. 4, 4.50.                                                                            |
 | `DATE`           | The date of the expense being added.<br/><br/> This is an optional input, and if left unspecified, the date of which the command is issued will be the expense's date by default. |
-| `RECUR_PERIOD`   | The period with which the expense is recurring.<br/><br/> This is an optional input, and if left unspecified, the expense is assumed to be a one-time expense by default. The timeframes available are:<br/>1. week <br/>2. month<br/>3. year|
+
 
 Examples:
 * `add c/groceries n/milk p/4.50 `
 * `add c/entertainment p/20 n/movie night d/14/2/23`
-* `add c/subscriptions p/21.98 n/Netflix d/01/1/23 r/month`
 
 ## Deleting an expense : `delete`
 
@@ -280,11 +279,11 @@ Examples:
 * `list t/w`
 * `list c/Entertainment t/year r/month`
 
-## Editing a category : `ecat`
+## Editing a category : `edcat`
 
 Edits the category at the specified `INDEX`
 
-Format: `ecat INDEX [c/CATEGORY_NAME] [s/SUMMARY]`
+Format: `edcat INDEX [c/CATEGORY_NAME] [s/SUMMARY]`
 
 Both `CATEGORY_NAME` and `SUMMARY` are optional by themselves, but at least one of them MUST be specified in addition
 to `INDEX`, otherwise the command will not go through.
@@ -296,11 +295,11 @@ to `INDEX`, otherwise the command will not go through.
 | `SUMMARY`       | The new summary of the category being edited at the specified index.<br/><br/>Optional parameter. |
 
 
-## Editing an expense : `eexp`
+## Editing an expense : `edexp`
 
 Edits the expense at the specified `INDEX`
 
-Format: `eexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE] [r/RECUR_PERIOD]`
+Format: `edexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE] [r/RECUR_PERIOD]`
 
 Every parameter except for `INDEX` is optional by themselves, but at least one of other parameters MUST be
 specified, otherwise the command will not go through.
@@ -339,11 +338,71 @@ Date: 2023-03-03, Category: Groceries, Name: Milk, Price: $4.00
 * `find kfc milk` returns `Milk` and `KFC`
 * `find mcdonald's` returns `McDonald's`<br>
 
-## Clearing all entries : `clear`
+## Adding a Recurring Expense: `addrec`
+Adds a recurring expense to the expense tracker.
+Format: `addrec c/CATEGORY_NAME n/ITEM_NAME p/PRICE t/INTERVAL sd/START_DATE [ed/END_DATE]`
+
+| Parameter       | Description                                                                                                                                                                  |
+|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `CATEGORY_NAME` | The category which the recurring expense should be classified under.<br/><br/>If there is no such category, a new category will be created with the specified category name. |
+| `ITEM_NAME`     | Name of the recurring expense being added.                                                                                                                                   |
+| `PRICE`         | The price of the recurring expense being added.<br/><br/>The specified price should be a `double`, e.g. 4, 4.50.                                                             |
+| `INTERVAL`      | The period with which the expense is recurring.<br/><br/> The timeframes available are:<br/>1. day <br/>2. week <br/>3. month <br/> 4. year                                  |
+| `START_DATE`    | The starting date of the recurring expense                                                                                                                                   |
+| `END_DATE`      | The ending date of the recurring expense  <br><br> Optional parameter.                                                                                                       |
+
+## Deleting a recurring expense: `delrec`
+
+Deletes an expense category at the specified `INDEX`.
+
+Format: `delrec INDEX`
+
+| Parameter | Description                                                                                                              |
+|-----------|--------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`    | The index number shown in the displayed recurring expense list.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ... |
+
+Examples:
+* `lrec` followed by `delrec 2` deletes the second recurring expense in the log
+* `lrec` followed by `delrec 1` deletes the first recurring expense in the log
+
+## Editing a recurring expense : `edrec`
+
+Edits the expense at the specified `INDEX`
+
+Format: `edrec INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [p/PRICE] [t/INTERVAL] [ed/END_DATE]`
+
+Every parameter except for `INDEX` is optional by themselves, but at least one of other parameters MUST be
+specified, otherwise the command will not go through.
+
+| Parameter       | Description                                                                                                                                                                     |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INDEX`         | The index of the recurring expense to be edited.<br/><br/>It must be a positive integer i.e. 1, 2, 3, ...                                                                       |
+| `CATEGORY_NAME` | The new category name of the recurring expense to be changed to.<br/><br/>Optional parameter.                                                                                   |
+| `EXPENSE_NAME`  | The new expense name of the recurring expense to be changed to.<br/><br/>Optional parameter.                                                                                    |
+| `PRICE`         | The new price of the recurring expense to be changed to.<br/><br/>Optional parameter.                                                                                           |
+| `INTERVAL`      | The new recurrence period of the expense to be changed. <br>The timeframes available are:<br/>1. day <br/>2. week <br/>3. month <br/> 4. year  to.<br/><br/>Optional parameter. |
+|`END_DATE`| The new ending date of recurring expense. <br/><br/>Optional parameter.|
+
+## Listing Recurring Expense: `lrec`
+Shows a list of recurring expense in the log.
+
+Format: `lrec`
+
+## Setting Budget: `set`
+Sets the monthly budget of the expense tracker.
+
+Format `set p/AMOUNT`
+
+| Parameter | Description                       |
+|-----------|-----------------------------------|
+| `AMOUNT`  | The monthly budget amount to set. |
+
+
+## Clearing all entries : `CLEAR`
 
 Clears all entries from the expense log.
 
-Format: `clear`
+Format: `CLEAR`
 
 ## Exiting the program : `exit`
 
@@ -381,24 +440,30 @@ _Details coming soon ..._
 
 ### Category Commands
 
-| Action                                             | Format                                     | Examples                          |
-|----------------------------------------------------|--------------------------------------------|-----------------------------------|
-| [**Add Category**](#adding-a-category-addcat)      | `addcat c/CATEGORY_NAME s/SUMMARY`         | `addcat c/Groceries s/for living` |
-| [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX`                             | `delcat 1`                        |
-| [**Edit Category**](#editing-a-category--ecat)     | `ecat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `ecat 1 c/New Name s/New Summary` |
-| [**List Categories**](#listing-categories-lcat)    | `lcat`                                     | `lcat`                            |
+| Action                                             | Format                                      | Examples                           |
+|----------------------------------------------------|---------------------------------------------|------------------------------------|
+| [**Add Category**](#adding-a-category-addcat)      | `addcat c/CATEGORY_NAME s/SUMMARY`          | `addcat c/Groceries s/for living`  |
+| [**Delete Category**](#deleting-a-category-delcat) | `delcat INDEX`                              | `delcat 1`                         |
+| [**Edit Category**](#editing-a-category--edcat)    | `edcat INDEX [c/CATEGORY_NAME] [s/SUMMARY]` | `edcat 1 c/New Name s/New Summary` |
+| [**List Categories**](#listing-categories-lcat)    | `lcat`                                      | `lcat`                             |
 
 ### Expense Commands
-| Action                                                  | Format                                                             | Examples                         |
-|---------------------------------------------------------|--------------------------------------------------------------------|----------------------------------|
-| [**Add Expense**](#adding-an-expense-add)| `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`| `add c/Food p/20 n/Mac d/14/2/23`|
-| [**Delete Expense**](#deleting-an-expense--delete)| `delete INDEX`| `delete 1`|
-| [**Edit Expense**](#editing-an-expense--eexp)| `eexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]`| `eexp 1 c/Food n/Mac d/20/4/23 p/10`|
-| [**List Expenses**](#listing-expenses--list)| `list [c/CATEGORY_NAME] [t/TIMEFRAME]`| `list c/Food t/month`|
-| [**Find Expense**](#search-for-an-expense-by-name-find)| `find KEYWORD [MORE_KEYWORDS]`| `find KFC chicken`|
+| Action                                                                | Format                                                                              | Examples                                                       |
+|-----------------------------------------------------------------------|-------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| [**Add Expense**](#adding-an-expense-add)                             | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`                                  | `add c/Food p/20 n/Mac d/14/2/23`                              |
+| [**Delete Expense**](#deleting-an-expense--delete)                    | `delete INDEX`                                                                      | `delete 1`                                                     |
+| [**Edit Expense**](#editing-an-expense--edexp)                        | `edexp INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [d/DATE] [p/PRICE]`                 | `edexp 1 c/Food n/Mac d/20/4/23 p/10`                          |
+| [**List Expenses**](#listing-expenses--list)                          | `list [c/CATEGORY_NAME] [t/TIMEFRAME]`                                              | `list c/Food t/month`                                          |
+| [**Find Expense**](#search-for-an-expense-by-name-find)               | `find KEYWORD [MORE_KEYWORDS]`                                                      | `find KFC chicken`                                             |
+| [**Add Recurring Expense**](#adding-a-recurring-expense--addrec)      | `addrec c/CATEGORY_NAME n/ITEM_NAME p/PRICE t/INTERVAL sd/START_DATE [ed/END_DATE]` | `addrec c/Shows n/Netflix p/10 t/month sd/10/3/23 ed/10/03/24` |
+| [**Delete Recurring Expense**](#deleting-a-recurring-expense--delrec) | `delrec INDEX`                                                                      | `delrec 1`                                                     |
+|[**Edit Recurring Expense**](#editing-a-recurring-expense--edrec)| `edrec INDEX [c/CATEGORY_NAME] [n/EXPENSE_NAME] [p/PRICE] [t/INTERVAL] [ed/END_DATE]` | `edrec 1 c/Show n/Disney Plus p/2 t/week ed/10/5/24`|
+|[**List Recurring Expense**](#listing-recurring-expense--lrec)| `lrec` |`lrec`|
+
 ### General Commands
 | Action                                         | Format  | Examples |
 |------------------------------------------------|---------|----------|
+|[**Set Budget**](#setting-budget--set)| `set p/AMOUNT`| `set p/1000`|
 | [**Help**](#viewing-help--help)| `help`| `help`|
 | [**Exit program**](#exiting-the-program--exit)| `exit`| `exit`|
 | [**Clear data**](#clearing-all-entries--clear)| `CLEAR`| `CLEAR`|
