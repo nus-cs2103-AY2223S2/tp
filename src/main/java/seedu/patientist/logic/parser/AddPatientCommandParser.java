@@ -69,7 +69,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
             Patient patient = new Patient(idNumber, name, phone, email, address, priority, details, toDos, tagList);
             return new AddPatientCommand(ward.getWardName(), patient);
         } catch (IllegalArgumentException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPatientCommand.MESSAGE_USAGE));
+            throw new ParseException(e.getMessage());
         }
     }
 
