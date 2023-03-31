@@ -30,6 +30,7 @@ title: User Guide
 6. [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1. How to Use This Guide <a name="how-to"></a>
 
@@ -46,7 +47,7 @@ Not sure what features **MODTrek** has or how to use them? Our [Features](#featu
 explanation of **MODTrek** can do and how you can use them effectively. Alternatively, you can go to our [Command Summary](#command-summary)
 section for a quick overview of all the commands.
 
-Commonly asked questions and answers can be found in our [FAQ](#faq) but if you can still unable to find what you are
+Commonly asked questions and answers can be found in our [FAQ](#faq) but if you are still unable to find what you are
 looking for, feel free to contact us at our [GitHub](https://github.com/AY2223S2-CS2103T-T13-1/tp).
 
 Before going any further, here are some useful notations that you should know.
@@ -81,6 +82,7 @@ Cautions are in place to warn you of potential pitfalls new users may encounter.
 [Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 2. Quick Start <a name="quick-start"></a>
 
@@ -89,28 +91,30 @@ Cautions are in place to warn you of potential pitfalls new users may encounter.
 3. Copy the file to the folder you want to use as the _home folder_ for **MODTrek**.
 4. Lauch the app by double-clicking the file or by navigating to the file using your command terminal, and
 running `java -jar modtrek.jar` in your terminal. 
-5. A GUI similar to the below should appear in a few seconds. ![Ui QuickStart](images/Ui-quickstart2.png)
+5. A GUI similar to the one below should appear in a few seconds. ![Ui QuickStart](images/Ui-quickstart2.png)
 6. Type commands within the command line interface (CLI) and press enter to execute it. For a list of executable commands, refer to the [Features](#features) section.
 
 [Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 3. GUI Overview <a name="gui-overview"></a>
 
 The following is an annotated breakdown of **MODtrek's** GUI:
 ![UI Breakdown](images/Ui-breakdown.png)
 
-1. Command Input: User inputs commands here.
-2. Command Screen: Relevant messages from the application will be displayed here. This includes success messages, error
-messages and results from the commands. 
-3. Results Section: This panel shows the degree progression of the user by default. This panel can be changed using the `view` command
-to toggle between the module list in **MODTrek** or the user's degree progression as well as when using the `find` command which will
-change to the module search screen.
+1. **Command Input:** User inputs commands here.
+2. **Command Screen:** Relevant messages from the application will be displayed here. This includes success messages, error
+messages and resul
+3. **Results Section:** This panel shows the degree progression of the user by default. This panel can be changed using the `view` command
+to toggle between the module list in **MODTrek** or the user's degree progression as well as using the `sort` and `find` command when making 
+a query on the module list.
 
 [Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 4. Features <a name="features"></a>
 
@@ -165,7 +169,7 @@ Additional details:
 
 #### 4.2 Delete a Module : `delete` <a name="delete-module"></a>
 
-Deletes all/the specified module(s) from the module list.
+Deletes the specified module(s) from the module list.
 
 **Syntax:**
 * _To delete specific modules:_ `delete /m <code1> (/m <code2>...)`
@@ -227,7 +231,14 @@ Refer to [Add a module](#add-module) for the tags that you can use.
 
 Displays specific module(s) and their details previously logged by the user which satisfies the keyword(s) queried.
 
-**Syntax:** `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)`
+**Syntax:** `find <keyword>...`
+
+Specify one or more parameters in `<keywords>` that you want to find your modules by. This can be:
+* `/m <code>`
+* `/c <credit>`
+* `/y <year-semester>`
+* `/g <grade>`
+* `/t <tag>`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -261,7 +272,7 @@ Categories that modules can be sorted by are:
 
 #### 4.7 Toggle screens : `view` <a name="change-view"></a>
 
-Toggles between the display of degree progress or module lists.
+Toggles between the display of degree progress or module list.
 
 **Syntax:**
 * _To view degree progression:_ `view progress` ![Ui progress](images/Ui-viewprogress.png)
@@ -295,6 +306,7 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 [Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 5. Frequently Asked Questions (FAQ) <a name="faq"></a>
 
@@ -309,19 +321,20 @@ are provided only by NUS.
 [Back to Table of Contents](#toc)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 6. Command Summary <a name="command-summary"></a>
 
-| Action                   | Format, Examples                                                                                                                                          |
-|--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`<br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`                            |
-| **Delete**               | `delete /m <code1> (/m <code2>...)` or `delete all`<br> e.g. `delete /m CS2100 /m CS2040S`                                                                |
-| **Edit**                 | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                  |
-| **Tag**                  | `tag /m <code> include <tag1> (<tag2>...)` or `tag /m <code> remove <tag1> (<tag2>...)` <br> e.g., `tag CS2030S include CSF`, `tag ES2660 remove ULR ITP` |
-| **Find**                 | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `find A+`                                                                  |
-| **Sort**                 | `sort <category>`<br> e.g. `sort /m`                                                                                                                      |
-| **View Degree Progress** | `view progress` or `view modules`                                                                                                                         |
-| **Exit**                 | `exit`                                                                                                                                                    |
+| Action   | Format, Examples                                                                                                                                          |
+|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**  | `add /m <code> /c <credits> /y <year-semester> (/g <grade>) (/t <tag>...)`<br> e.g., `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`                            |
+| **Delete** | `delete /m <code1> (/m <code2>...)` or `delete all`<br> e.g. `delete /m CS2100 /m CS2040S`                                                                |
+| **Edit** | `edit <existing code> (/m <new code>) (/c <credits>) (/y <year-semester>) (/g <grade>) (/t <tag>...)` <br> e.g., `edit ES2660 /m CS2101`                  |
+| **Tag**  | `tag /m <code> include <tag1> (<tag2>...)` or `tag /m <code> remove <tag1> (<tag2>...)` <br> e.g., `tag CS2030S include CSF`, `tag ES2660 remove ULR ITP` |
+| **Find** | `find (/m <code>) (/c <credits>) (/y <year-semester>) (/g <grade>)` <br> e.g., `find /g A+`                                                               |
+| **Sort** | `sort <category>`<br> e.g. `sort /m`                                                                                                                      |
+| **View** | `view progress` or `view modules`                                                                                                                         |
+| **Exit** | `exit`                                                                                                                                                    |
 
 <div markdown="span" class="alert alert-info">
 
@@ -331,3 +344,5 @@ For `edit`, at least one optional parameter has to be specified.
 </div>
 
 [Back to Table of Contents](#toc)
+
+<div style="page-break-after: always;"></div>
