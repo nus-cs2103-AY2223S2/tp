@@ -7,36 +7,36 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
 * Table of Contents
    *	Features
-         * Delivery tasking management system:
-            * View jobs
-            * Add jobs individually
-            * Mass import jobs and associated customers
-            * Find jobs
-            * Mark job as done
-            * Delete jobs
-            * Edit jobs
-         * Address book - Customers contacts management system:
-            * View contacts
-            * Add contacts individually
-            * Find contacts
-            * Delete contacts
-            * Edit contacts
-            * Clear all contacts
-         * Reminder and notifications:
-            * Set reminder for upcoming deadlines
-            * Get notified as soon as you open the app
-         * Timetable:
-            * Linked with list of jobs
-            * Sort job list by date and slot
-            * Display timetable of all scheduled/upcoming jobs in the week
-            * Display list of invalid and completed jobs
-         * Stats dashboard:
-            * Show statistics on:
-              * Total number of jobs
-              * Pending jobs
-              * Completed jobs
-              * Total earnings
-              * Statistics from previous week
+             * Address book - Customers contacts management system:
+                * List and view contacts
+                * Add contacts individually
+                * Find contacts
+                * Delete contacts
+                * Edit contacts
+                * Clear all contacts
+             * Delivery tasking management system:
+                * View jobs
+                * Add jobs individually
+                * Mass import jobs and associated customers
+                * Find jobs
+                * Mark job as done
+                * Delete jobs
+                * Edit jobs
+             * Reminder and notifications:
+                * Set reminder for upcoming deadlines
+                * Get notified as soon as you open the app
+             * Timetable:
+                * Linked with list of jobs
+                * Sort job list by date and slot
+                * Display timetable of all scheduled/upcoming jobs in the week
+                * Display list of invalid and completed jobs
+             * Stats dashboard:
+                * Show statistics on:
+                  * Total number of jobs
+                  * Pending jobs
+                  * Completed jobs
+                  * Total earnings
+                  * Statistics from previous week
 
 
 --------------------------------------------------------------------------------------------------------------------
