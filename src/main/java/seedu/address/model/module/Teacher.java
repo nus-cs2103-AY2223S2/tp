@@ -15,8 +15,8 @@ public class Teacher {
      * @param teacher A valid name of teacher.
      */
     public Teacher(String teacher) {
-        //teacher is optional and hence we do not requireNonNull.
-        //requireNonNull(deadline);
+        // teacher is optional and hence we do not requireNonNull.
+        // requireNonNull(teacher);
         value = teacher;
     }
     /**
