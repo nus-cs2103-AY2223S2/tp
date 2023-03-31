@@ -27,13 +27,13 @@ public class FindPredicate extends PredicateUtil<Person> {
      * A class that represents the predicate which is used to filter through the persons list to test for whether
      * the person belongs to the filtered list.
      *
-     * @param name
-     * @param subPostal
-     * @param age
-     * @param date
-     * @param variants
-     * @param dateRange
-     * @param ageRange
+     * @param name optional name of the input passed in by user
+     * @param subPostal optional substring of a postal of the input passed in by user
+     * @param age optional age of the input passed in by user
+     * @param date optional date of the input passed in by user
+     * @param variants set of variants of the input passed in by user
+     * @param dateRange range containing optional dates of the input passed in by user
+     * @param ageRange range containing optional ages of the input passed in by user
      */
     public FindPredicate(Optional<Name> name, Optional<SubPostal> subPostal, Optional<Age> age, Optional<Date> date,
                          Set<Variant> variants, Range<Date> dateRange, Range<Age> ageRange) {
