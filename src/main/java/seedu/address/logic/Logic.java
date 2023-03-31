@@ -8,7 +8,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Meeting;
 import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
 import java.util.function.Predicate;

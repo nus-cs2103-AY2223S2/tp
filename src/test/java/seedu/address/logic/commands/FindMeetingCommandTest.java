@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalPersons.*;
 
 import java.time.LocalDate;
+
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.MeetingStartDatePredicate;
 
-
 public class FindMeetingCommandTest {
 
     private static class Hi {
@@ -28,6 +28,7 @@ public class FindMeetingCommandTest {
     private final FindMeetingCommand standardCommand = new FindMeetingCommand(VALID_MEETING_START_DATE_AMY);
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
 
     @Test
     public void equals() {
@@ -42,7 +43,8 @@ public class FindMeetingCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // Different command -> return false
-        assertFalse(standardCommand.equals(new Hi()));
+        assertFalse(standardCommand.equals(new FindCommand(new NameContainsKeywordsPredicate(
+            Collections.singletonList("Test")))));
 
         // Different inputs -> return false
         assertFalse(standardCommand.equals(diffValue));

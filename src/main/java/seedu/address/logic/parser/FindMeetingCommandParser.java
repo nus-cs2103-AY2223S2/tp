@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
+import java.time.LocalDateTime;
 
 import seedu.address.logic.commands.FindMeetingCommand;
 
@@ -18,4 +17,11 @@ import java.time.LocalDate;
             return new FindMeetingCommand(meetingStart);
         }
 
+
+    @Override
+    public FindMeetingCommand parse(String userInput) throws ParseException {
+        LocalDateTime meetingStart = ParserUtil.parseDateTime(userInput);
+        return new FindMeetingCommand(meetingStart);
     }
+
+}
