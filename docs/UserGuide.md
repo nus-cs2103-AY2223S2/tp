@@ -184,6 +184,13 @@ Examples:
 * To add an application with tags, you can use `add-app` as described in the section on 
 [adding an application](#411-adding-an-application--add-app).
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
+When adding and editing tags of an application, the tag must be inputted as a single word with no spacing and symbols.
+</div>
+
+This means that for example, if you wish to tag an application to remind yourself that it is to your dream company, 
+you have to use `t/dreamCompany` or `t/dreamcompany`, instead of `t/dream company`, `t/dream-company` and so on.
+
 **Example:**
 `add-app r/SWE Intern c/Google e/google_careers@gmail.com s/interested t/creditBearing t/overseas`
 * Later on, you can remove all of an application’s tags simply by typing `t/` without specifying any values after it.
@@ -193,8 +200,8 @@ Examples:
 * You can also change an existing application's tags by using `edit-app`.
 
 **Example:**
-`edit-app 1 t/overseas t/dream company` changes the tags of the 1st application in the displayed list to
-`overseas` and `dream company`.
+`edit-app 1 t/overseas t/dreamCompany` changes the tags of the 1st application in the displayed list to
+`overseas` and `dreamCompany`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
 When editing tags of an application, the existing tags for that application will be removed! 
