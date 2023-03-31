@@ -105,6 +105,22 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 ## Features
 
+### Autocompletion
+
+Start typing the first letters of a command to get shadow-like autocomplete suggestions. The format of the suggested arguments are as described in the [**Guide on using Features**](#guide-on-using-features).
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Tip:** You can press the `TAB` to fill in the next suggested word!
+</div>
+
+![help popup gui](images/user-guide/autocomplete.jpg)
+
+<br>
+
+For the `module`, `tag`, `education` fields, it will also autocomplete for existing values.
+
+![help popup gui](images/user-guide/autocomplete_arg_values.jpg)
+
 ### Viewing help: `help`
 
 Shows a URL to the `User Guide` page.
