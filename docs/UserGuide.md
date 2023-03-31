@@ -17,7 +17,7 @@ Without further ado, let's get started!
 
 ----------------------------------------------------------------------------------------------------------------
 
-<a name="tableofcontents"/>
+<a name="table-of-contents"/>
 
 ## Table of Contents
 1. [Quick Start](#quick-start)
@@ -34,22 +34,24 @@ Without further ado, let's get started!
          7. [Editing a student's particulars: `edit`](#editstudent)
          8. [Searching students: `find`](#findstudent)
          9. [Deleting a student: `delete`](#deletestudent)
-       3. [Parent Features: `parent`](#parent)
-           1. [Add Parent/Next-of-Kin: `add`](#addparent)
-           2. [Listing all Parents/Next-of-Kins: `list`](#listparent)
-           3. [Editing a Parent/Next-of-Kin particulars: `edit`](#editparent)
-           4. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
-       4. [General Features](#general)
-          1. [List all students / parents](#listing)
-          2. [Viewing help: `help`](#help)
-          3. [Exiting program: `exit`](#exit)
+    3. [Parent Features: `parent`](#parent)
+        1. [Add Parent/Next-of-Kin: `add`](#addparent)
+        2. [Listing all Parents/Next-of-Kins: `list`](#listparent)
+        3. [Editing a Parent/Next-of-Kin particulars: `edit`](#editparent)
+        4. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
+    4. [General Features](#general)
+       1. [List all students / parents](#listing)
+       2. [Viewing help: `help`](#help)
+       3. [Exiting program: `exit`](#exit)
 4. [Saving the data](#savingdata)
 5. [Editing the data file](#editdatafile)
-6. [Images](#images)
-7. [FAQ](#faq)
-8. [Command Summary](#summary)
-   1. [Command Summary for Student](#summarystudent)
-   2. [Command Summary for Parent](#summaryparent)
+6. [Clearing the data](#clearing-the-data)
+7. [Images](#images)
+8. [FAQ](#faq)
+9. [Command Summary](#command-summary)
+   1. [Command Summary for Student](#command-summary-for-student-student-class)
+   2. [Command Summary for Parent](#command-summary-for-parent--nok-parent-)
+   3. [Prefix Summary](#prefix-summary)
 
 <div style="page-break-after: always;"></div>
 
@@ -82,7 +84,6 @@ Without further ado, let's get started!
 
     * `student 1A grade in/13 test/CA1 score/75 deadline/15/05/2023 weightage/20`: Adds a test named CA1, score of 75, deadline of 15/05/2023, weightage 20% to student index number 13 in class 1A
     * `student 1A gradedelete in/13 test/CA1`: Deletes a test named CA1 for student in class 1A with index 13
-    * `clear` : Deletes all contacts.
     * `exit` : Exits the app.
 
 
@@ -100,14 +101,15 @@ Without further ado, let's get started!
    By default, it should be stored in the images folder as mentioned [here](#images). <br><br>
 2. Attributes: Information of a student / parent. <br>
    For example, name, phone number, email address etc <br><br>
-3. CLI: Command Line Interface <br><br>
-4. Hard disk: Non-volatile data storage device, your OS's storage in short. <br><br>
-5. JSON: JavaScript Object Notation, open standard file format for storing text. <br>
+3. CCA: Co-curricular activities <br><br>
+4. CLI: Command Line Interface <br><br>
+5. Hard disk: Non-volatile data storage device, your OS's storage in short. <br><br>
+6. JSON: JavaScript Object Notation, open standard file format for storing text. <br>
    Examples of other commonly known file formats: `.TXT`, `.DOC`, `.PDF`, `.XLS`, `.HTML` etc <br><br>
-6. LMS: Learning Management System, application used by schools to provide students a platform to access their lessons materials online. <br>
+7. LMS: Learning Management System, application used by schools to provide students a platform to access their lessons materials online. <br>
    Examples of LMS: Canvas, LumiNUS, Blackboard, Google Classroom, Quizlet <br><br>
-7. NOK: Next-of-kin, could be either blood related family members or guardian <br><br>
-8. OS: Operating System <br>
+8. NOK: Next-of-kin, could be either blood related family members or guardian <br><br>
+9. OS: Operating System <br>
    Examples of OS: Windows, Linux, Mac etc <br><br>
 
 [Back to Table of Contents](#table-of-contents)
@@ -288,12 +290,15 @@ Examples:
 
 **Expected Outcome:**
 * `Attendance marked as present`
+  ![attendance image](images/attendance.png)
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
 Date is in DD/MM/YYYY format <br>
-This date can be set to:
-* T (Indicates that the student was present today)
-* F (Default when adding student)
-* Specific date (Used when you want to update the attendance of the student in the past)
+This date can be set to: <br>
+* T (Indicates that the student was present today) <br>
+* F (Default when adding student) <br>
+* Specific date (Used when you want to update the attendance of the student in the past)<br><br>
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -317,13 +322,16 @@ Examples:
 
 **Expected Outcome:**
 * `New test added:`
+![add test image](images/addtest.png)
 * `New homework added:`
+![add homework image](images/addhomework.png)
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-1. Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.
-2. hwdone is compulsory for homework.
-3. Score is out of 100
-4. Weightage is out of 100%
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+1. Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.<br>
+2. hwdone is compulsory for homework.<br>
+3. Score is out of 100<br>
+4. Weightage is out of 100%<br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -338,15 +346,16 @@ Examples:
 
 Deletes a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
 
-Duplicate test/homework  is checked through having the same name
+Duplicate test/homework is checked through having the same name
 
 Format: `gradedelete in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>]`
 
 Examples:
-* `student 1A gradedelete in/13 test/CA1`
+* `student 1A gradedelete in/13 hw/Chapter 1`
 
 **Expected Outcome:**
-* `Test deleted successfully`
+* `Homework deleted successfully`
+![delete homework image](images/deletehomework.png)
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -364,9 +373,9 @@ Examples:
 
 * `student 3A comment in/25 com/Quiet person, needs to interact more with classmates`
 
-Note: <br>
-If an existing comment is already available for the selected student, the new comment will OVERRIDE the old comment! Hence, users should check on existing comments before adding a new comment!
-<a name = "liststudent"/> <br><br>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+If an existing comment is already available for the selected student, the new comment will **OVERWRITE** the old comment! Hence, users should check on existing comments before adding a new comment! <br><br>
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -415,7 +424,7 @@ Examples:
 * Edited student: TanAhCow; Student Class: 1A; Index Number: 03; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
 * Edited student: TanAhCow; Student Class: 1B; Index Number: 03; Sex: M; Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: badminton
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 If you want to change the parent for this student only, please kindly fill in the **NEW** parent/NOK **NAME**, **PHONE NUMBER** and **RELATIONSHIP**. <br><br>
 If you want to update all students under this student's parent, please kindly use the [PARENT EDIT COMMAND](#editparent) instead!!! <br><br>
 </div>
@@ -620,7 +629,7 @@ Format: `exit` <br><br>
 
 ----------------------------------------------------------------------------------------------------------------
 
-<a name = "savingdata"/>
+<a name = "saving-the-data"/>
 
 ## Saving the data
 
@@ -630,7 +639,7 @@ PowerConnect data are saved in the [hard disk](#glossary) automatically after an
 
 ----------------------------------------------------------------------------------------------------------------
 
-<a name = "editdatafile"/>
+<a name = "edit-the-data-file"/>
 
 ## Editing the data file
 
@@ -638,6 +647,28 @@ PowerConnect data are saved as a [JSON](#glossary) file `[JAR file location]/dat
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, PowerConnect will discard all data and start with an empty data file at the next run. <br><br>
+</div>
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
+<a name = "clearing-the-data"/>
+
+## Clearing the data
+
+While PowerConnect do not currently support the `clear` function in this version, you may clear all saved `Students'` and `Parents'/NOKs'` information in the following 2 ways:
+1. Locate the folder `data`, double click into it and ***REMOVE*** these two files `parents.json` and `pcclass.json`.
+2. Locate the folder `data`, double click into it, ***OPEN*** both files `parents.json` and `pcclass.json` and ***MANUALLY*** clear all data inside and save both files as ***EMPTY*** files.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+**DO NOT** type `clear` and enter as a command to avoid any unwanted errors!!! <br><br>
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
+In the scenario where you accidentally carried out the scenario mentioned in the **CAUTION** section, to remedy the scenario, simply carry out the **APPROPRIATE** steps as mentioned above to **PROPERLY** clear the data.<br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -673,7 +704,7 @@ Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-<a name = "faq" />
+<a name = "faq"/>
 
 ## FAQ
 
@@ -703,9 +734,11 @@ program. Essentially you do not need a mouse to run this program at all!
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-<a name = "summary" />
+<a name = "command-summary"/>
 
 ## Command Summary
+
+<a name = "command-summary-for-student-student-class"/>
 
 ### Command Summary for Student `student <CLASS>`
 
@@ -720,9 +753,13 @@ program. Essentially you do not need a mouse to run this program at all!
 | **Find**    | `find <NAME> `                                                                                                                                                                                                                                                                                                         |
 | **Delete**  | `delete in/<INDEX_NUMBER>`                                                                                                                                                                                                                                                                                             |
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
-### Command Summary for Parent / NOK `parent`
+<a name = "command-summary-for-parent--nok-parent-"/>
+
+### Command Summary for Parent / NOK `parent` 
 
 | Action     | Format, Examples                                                                                                                                 |
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -732,5 +769,52 @@ program. Essentially you do not need a mouse to run this program at all!
 | **Delete** | `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]` |
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+<a name = "prefix-summary"/>
+
+### Prefix Summary
+
+| Prefix        | Prefix Details                     | Notes                                                                                                                               |
+|---------------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `add`         | Add Command                        | Used to identify command as an Add Command;<br><br> Used in Student Add and Parent/NOK Add commands                                 |
+| `attendance`  | Attendance Command                 | Used in Student Attendance Command;<br><br> Used to input attendance for `Student`s                                                 |                                                            |
+| `comment`     | Comment Command                    | Used in Student Comment Command;<br><br> Used to input comment for `Student`                                                        |
+| `delete`      | Delete Command                     | Used to identify command as a Delete Command;<br><br> Used in Student Delete and Parent/NOK Delete commands                         |
+| `edit`        | Edit Command                       | Used to identify command as an Edit Command;<br><br> Used in Student Edit and Parent Edit commands                                  |
+| `find`        | Find Command                       | Used to identify command as a Find Command;<br><br> Used in Student Find and Parent Find commands                                   |                                                                                           
+| `grade`       | Grade Command                      | Used in Student Grade Command;<br><br> Used to input `Student`'s assessments / assignment grades                                    |
+| `gradedelete` | Grade Delete Command               | Used in Student Grade Delete Command;<br><br> Used to remove `Student`'s grades for assessments / assignments                       |
+| `list`        | List Command                       | Used to identify command as a List Command;<br><br> Used in List Parent/NOK and List Student commands                               |
+| `n/`          | Name                               | Used to retrieve `Name` of individual (`Student` / `Parent / NOK`)                                                                  |
+| `nn/`         | New Name                           | Used to retrieve **NEW** `Name` of individual (`Student` / `Parent / NOK`)                                                          |
+| `pn/`         | Parent/NOK Name                    | Used to retrieve `Parent/NOK`'s `Name`                                                                                              |
+| `npn/`        | New Parent/NOK Name                | Used to retrieve **NEW** `Name` of `Parent/NOK`;<br><br>Used in the case where `Parent/NOK` and/or `Student` can have **NEW** names |
+| `ageS`        | Student's Age                      | Used to retrieve `Student`'s `Age`                                                                                                  |
+| `ageP/`       | Parent's/NOK's Age                 | Used to retrieve `Parent/NOK`'s `Age`                                                                                               |
+| `att/`        | Attendance                         | Used to retrieve `Student`'s Attendance for a particular date or current date (by default)                                          |
+| `cca/`        | CCA                                | Used to retrieve `Student`'s co-curricular activity                                                                                 |
+| `com/`        | Comment                            | Used to retrieve `Student`'s comment                                                                                                |
+| `e/`          | Parent's/NOK's Email Address       | Used to retrieve email `Address` of `Parent / NOK`                                                                                  |
+| `eS/`         | Student's Email Address            | Used to retrieve email `Address` of `Student`                                                                                       |
+| `a/`          | Residential Address                | Used to retrieve residential `Address` of individual (`Student` / `Parent / NOK`)                                                   |
+| `hw/`         | Homework                           | Used to retrieve `Student`'s homework                                                                                               |
+| `imgS/`       | Student's Image                    | Used to retrieve `Student`'s image                                                                                                  |
+| `imgP/`       | Parent's Image                     | Used to retrieve `Parent`'s image                                                                                                   |
+| `in/`         | Index Number                       | Used to retrieve `Student`'s `Index Number`                                                                                         |
+| `nin/`        | New Index Number                   | Used to retrieve `Student`'s **NEW** `Index Number`                                                                                 |
+| `nc/`         | New Class                          | Used to retrieve `Student`'s **NEW** `Class`                                                                                        |
+| `pnS/`        | Student phone number               | Used to retrieve `Student`'s phone number                                                                                           |
+| `pnP/`        | Parent/NOK phone number            | Used to retrieve `Parent/NOK`'s phone number                                                                                        |
+| `npnP/`       | New Parent/NOK phone number        | Used to retrieve `Parent/NOK`'s **NEW** phone number                                                                                |
+| `rls/`        | Parent/NOK relationship to Student | Used to retrieve the relationship between the `Student` and specified `Parent/NOK`                                                  |
+| `s/`          | Gender                             | Used to retrieve `Student`'s gender                                                                                                 |
+| `t/`          | Tag                                | Used to retrieve individual's tag (`Student` / `Parent / NOK`)                                                                      | 
+| `test/`       | Assessment                         | Used to retrieve `Student`'s assessments (includes tests and exams)                                                                 |                                                                                                                            
+| `score/`      | Assessment Score                   | Used to retrieve `Student`'s score for assessment                                                                                   |
+| `deadline/`   | Deadline                           | Used to retrieve deadline for `Student`'s assignments                                                                               |
+| `weightage/`  | Weightage                          | Used to retrieve weightage for `Student`'s assignments/assessments                                                                  |
+| `hwdone/`     | Completion Status for Assignments  | Used to retrieve the completion status for `Student`'s assignments                                                                  |
 
 --------------------------------------------------------------------------------------------------------------------
