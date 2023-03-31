@@ -9,6 +9,6 @@ public class HelpCommand extends UiCommand {
     public CommandResult execute(MainScreen mainScreen) {
         ManualPanel manualPanel = new ManualPanel();
         mainScreen.loadRightComponent(manualPanel);
-        return new CommandResult("");
+        return new CommandResult("Displaying Manual Page.");
     }
 }
