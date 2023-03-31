@@ -13,6 +13,7 @@ import seedu.modtrek.model.module.CodePrefix;
 import seedu.modtrek.model.module.Credit;
 import seedu.modtrek.model.module.Grade;
 import seedu.modtrek.model.module.SemYear;
+import seedu.modtrek.model.module.Tags;
 import seedu.modtrek.model.tag.Tag;
 
 /**
@@ -170,6 +171,10 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    public static Tags parseTagsForSort(Set<Tag> tags) {
+        return new Tags(tags);
     }
 
     /**

@@ -54,16 +54,16 @@ Before going any further, here are some useful notations that you should know.
 
 **Tips**
 
-Tips are useful suggestions that will help you become a seasoned sprINT user more quickly.
+Tips are useful suggestions that will help you become a seasoned **MODTrek** user more quickly.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Tips are useful information. They can give you a better experience with sprINT.
+:bulb: **Tip:** Tips are useful information. They can give you a better experience with **MODTrek**.
 </div>
 
 **Notes**
 
-Notes are important information that you should pay attention to when using sprINT.
+Notes are important information that you should pay attention to when using **MODTrek**.
 
 <div markdown="span" class="alert alert-info">
 
@@ -106,7 +106,7 @@ The following is an annotated breakdown of **MODtrek's** GUI:
 
 1. **Command Input:** User inputs commands here.
 2. **Command Screen:** Relevant messages from the application will be displayed here. This includes success messages, error
-messages and results from the commands. 
+messages and resul
 3. **Results Section:** This panel shows the degree progression of the user by default. This panel can be changed using the `view` command
 to toggle between the module list in **MODTrek** or the user's degree progression as well as using the `sort` and `find` command when making 
 a query on the module list.
@@ -203,7 +203,7 @@ Specify one or more parameters in `<toEdit>` that you want to edit. This can be:
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: Past data will be overridden and not be saved
+:exclamation: **Caution:** Past data will be overridden and not be saved
 </div>
 
 **Example:** 
@@ -296,7 +296,12 @@ Saves the modified data regarding the modules into the hard disk automatically a
 
 #### 4.10 Editing MODTrek data <a name="edit-data"></a>
 
-ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.<br> <br>:warning: **Caution!** If your changes to the data file makes its format invalid, ModTrek will discard all data and start with an empty data file at the next run.
+ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** If your changes to the data file makes its format invalid, **MODTrek** will discard all data and start with an empty data file at the next run.
+</div>
 
 [Back to Table of Contents](#toc)
 
@@ -318,7 +323,7 @@ are provided only by NUS.
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## 6. Command Summary <a name="command_summary"></a>
+## 6. Command Summary <a name="command-summary"></a>
 
 | Action   | Format, Examples                                                                                                                                          |
 |----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -333,9 +338,9 @@ are provided only by NUS.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** 
-* Parameters encapsulated in between brackets `()` are optional.
-* For `edit`, at least one optional parameter has to be specified.
+:information_source: **Note:** Parameters encapsulated in between brackets `()` are optional.
+
+For `edit`, at least one optional parameter has to be specified.
 </div>
 
 [Back to Table of Contents](#toc)

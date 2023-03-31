@@ -67,7 +67,7 @@ public class ModuleCard extends UiPart<Region> {
         moduleCardCredits.setText(module.getCredit() + "MC");
 
         String grade = module.getGrade().toString();
-        moduleCardGrade.setText(!grade.isEmpty() ? grade : "–");
+        moduleCardGrade.setText(!grade.equals("NO GRADE") ? grade : "–");
 
         for (Tag tag : module.getTags()) {
             String tagNameShort = ValidTag.getShortForm(tag.tagName).toString();

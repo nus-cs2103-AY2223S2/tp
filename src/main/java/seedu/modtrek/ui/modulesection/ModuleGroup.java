@@ -39,7 +39,9 @@ public class ModuleGroup extends UiPart<Region> {
     public void displayModuleCards(ObservableList<Module> modules, String title) {
         if (title.length() > 0) {
             Label groupLabel = new Label(title);
-            groupLabel.getStyleClass().addAll("module-group-title", "h4");
+            groupLabel.getStyleClass().addAll("module-group-title", (
+                    title.length() > 1 ? "module-group-title-long"
+                            : "module-group-title-short"), "h4");
             moduleGroup.getChildren().add(0, groupLabel);
         }
 

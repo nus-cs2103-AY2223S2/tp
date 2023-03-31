@@ -24,8 +24,8 @@ public class HelpCommand extends Command {
             + "\n" + COMMAND_WORD + " " + TagCommand.COMMAND_WORD
             + "\n" + COMMAND_WORD + " " + ViewCommand.COMMAND_WORD
             + "\n" + COMMAND_WORD + " " + FindCommand.COMMAND_WORD
-            + "\n" + COMMAND_WORD + " " + ExitCommand.COMMAND_WORD
-            + "\n" + COMMAND_WORD + " " + SortCommand.COMMAND_WORD;
+            + "\n" + COMMAND_WORD + " " + SortCommand.COMMAND_WORD
+            + "\n" + COMMAND_WORD + " " + ExitCommand.COMMAND_WORD;
 
     private final String selectedMessage;
 
