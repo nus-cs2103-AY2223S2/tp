@@ -48,7 +48,7 @@ The rest of the App consists of four components.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-* [**`Files`**](#storage-component): Manage the uploaded and created files to the hard disk.
+* [**`Files`**](#files-component): Manage the uploaded and created files to the hard disk.
 
 
 **How the architecture components interact with each other**
@@ -146,7 +146,7 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Files component
-**API** : [`Files.java`](https://github.com/AY2223S2-CS2103T-W11-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Files.java`](https://github.com/AY2223S2-CS2103T-W11-4/tp/blob/master/src/main/java/seedu/address/files/Files.java)
 
 <img src="images/FilesClassDiagram.png" width="550" />
 
