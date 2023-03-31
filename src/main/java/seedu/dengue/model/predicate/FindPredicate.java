@@ -34,6 +34,7 @@ public class FindPredicate extends PredicateUtil<Person> {
      * @param dateRange Range containing (Optional) Date of the input passed in by user.
      * @param ageRange Range containing (Optional) Age of the input passed in by user.
      */
+
     public FindPredicate(Optional<Name> name, Optional<SubPostal> subPostal, Optional<Age> age, Optional<Date> date,
                          Set<Variant> variants, Range<Date> dateRange, Range<Age> ageRange) {
         this.name = name;
