@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+    <GridPane id="tankCardBody" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
@@ -31,7 +31,6 @@
             </HBox>
          <HBox prefWidth="130.0">
             <children>
-               <Label fx:id="alignment" />
                <ImageView fitHeight="50.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../images/fishicon.png" />
