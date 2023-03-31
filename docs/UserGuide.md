@@ -79,14 +79,14 @@ Format: `addservicetech s/SERVICE_ID t/TECHNICIAN_ID`
 
 Example: `addservicetech s/1 t/3`
 
-### Adding a vehicle: `add vehicle`
+### Adding a vehicle: `addvehicle`
 Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID.
 
 Format: `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE`
 
 Example: `addvehicle p/SBA1234A b/Toyota c/1 t/car`
 
-### Adding a vehicle part: `add part`
+### Adding a vehicle part: `addpart`
 Adds a vehicle part to the system.
 
 Format: `addpart n/NAME q/Quantity`
@@ -102,7 +102,7 @@ Format: `addservicepart s/SERVICE ID n/PART NAME q/QUANTITY`
 
 Example: `addservicepart s/2 n/Cylinder Head q/20`
 
-### Adding a service to a vehicle: `add service`
+### Adding a service to a vehicle: `addservice`
 Adds a service to perform on the specified vehicle plate number.
 
 Format: `addservice v/VEHICLE_ID [l/SERIVCE LENGTH (days)] [s/STATUS] [d/DESCRIPTION]`
@@ -113,12 +113,19 @@ Examples:
 Note: Adding service without specifying the type of service will default to “to repair” \
 Note: Adding service without specifying the service length will default to 7 days
 
-### Adding a customer appointment: `add appointment`
+### Adding a customer appointment: `addappointment`
 Adds a customer appointment to the system.
 
 Format: `addappointment c/CUSTOMER_ID d/DATE t/TIME`
 
 Example: `addappointment c/5 d/2023-03-05 t/14:00`
+
+### Adding a technician to an appointment: `addappointmenttech`
+Adds an existing technician to an exiting appointment.
+
+Format: `addappointmenttech a/APPOINTMENT_ID t/TECHNICIAN_ID`
+
+Example: `addappointmenttech a/1 t/2` 
 
 ---
 ### List/Sort
@@ -157,11 +164,12 @@ Examples:
 
 Finds all entities whose attributes match the specified keywords (case-insensitive) or the given date, to filter and displays them in the relevant tab lists.
 
-Format: `find KEYWORD`
+Format: `find KEYWORD [MORE SPACE-SEPERATED KEYWORDS]`
 
 Examples:
-* `find alex`
+* `find alex alex@gmail.com`
 * `find toyota`
+* `find completed Oil`
 ---
 ### View
 
@@ -184,15 +192,15 @@ Examples:
 
 Updates the specified (Vehicle/Customer/Appointment) information
 
-Format: `edit(vehicle/customer/appointment/service/technician) ID [?/PARAM] …​`
+Format: `edit(vehicle/customer/appointment/service/technician) i/ID [?/PARAM] …​`
 
 * Edits the specified object at the specified `ID`. The id refers to the index number shown in the displayed list from the list or find command. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `editcustomer 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with id 1 to be `91234567` and `johndoe@example.com` respectively.
-*  `editvehicle 2 p/SBA9876G` Edits the plate number of the vehicle with id 2 to be `SBA9876G`.
+*  `editcustomer i/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the person with id 1 to be `91234567` and `johndoe@example.com` respectively.
+*  `editvehicle i/2 p/SBA9876G` Edits the plate number of the vehicle with id 2 to be `SBA9876G`.
 
 ---
 ### Delete
