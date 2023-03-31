@@ -54,6 +54,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
    <img width="560" height="400"  src="images/Ui.png">
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -76,8 +77,24 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Features
+## **Graphical User Interface**<br>
 
+   <img width="560" src="images/annotated-UI.png">
+
+### Purposes of each GUI component
+
+|     Component      |                          Purpose                          |
+|:------------------:|:---------------------------------------------------------:|
+|    Command Box     |                 To accept user commands.                  |
+|     Result Box     | To display the result of the commands that user executed. |
+| BookmarkList Panel |         To display the current list of bookmarks          |
+|     View Panel     |      To display the details of a specified bookmark       |
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -111,14 +128,6 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 </div>
 <div style="page-break-after: always;"></div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
 
 ### Adding a tag: `addtag`
 
@@ -281,6 +290,14 @@ Shows list of all valid Genres.
 
 Format: `genre`
 
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -312,10 +329,10 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MyLib home folder.
 
-**Q**: Do I need an internet connection to run MyLib?
+**Q**: Do I need an internet connection to run MyLib?<br>
 **A**: No, MyLib can boot up and run all functionalities without an internet connection.
 
-**Q**: Can I use MyLib on my mobile device?
+**Q**: Can I use MyLib on my mobile device?<br>
 **A**: Unfortunately, MyLib is only designed to run on your desktop/laptop such that you can use the command line interface.
 
 --------------------------------------------------------------------------------------------------------------------

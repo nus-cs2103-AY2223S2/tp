@@ -6,19 +6,19 @@ title: Developer Guide
 {:toc}
 
 # **Introduction**
---------------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------------------------------
 ## **Software OverView**
 
 * MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read. MyLib is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). This means that most of MyLib’s features are meant to be accessed through typed commands rather than mouse clicks.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Intended Audience**
 
 This guide is intended primarily for developers who want to work on the MyLib code base at https://github.com/AY2223S2-CS2103T-T13-4/tp.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Using the Guide**
 
@@ -27,32 +27,27 @@ This guide contains certain visuals to aid in conveying information more effecti
 Visual: :bulb: GMFD: `:bulb:` Meaning: Useful supplementary information for the developer
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **About Us**
 Please refer to the [About Us](AboutUs.md) page for information about the developers.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 * This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
 * Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **About MyLib**
 This Developer Guide provides in-depth documentation on how MyLib is designed and implemented. It covers the architecture of MyLib, detailed specifications on smaller pieces of the design, and an outline of all parts of the software and how they will work.
 
 You can use this guide to maintain and evolve FoodRem.
 
 This Developer Guide is accurate as of 30 March 2023.
-<div style="page-break-after: always;"></div>
 
 ### Setting up, getting started
 
 Head over to [Setting up and getting started](#SettingUp.md) to get started!
-
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -109,6 +104,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -127,6 +123,7 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Bookmark` object residing in the `Model`.
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -149,6 +146,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -157,6 +155,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `LibraryParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `LibraryParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -177,7 +176,7 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -196,6 +195,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.library.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -218,6 +218,7 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 Step 1. The user launches the application for the first time. The `VersionedLibrary` will be initialized with the initial library state, and the `currentStatePointer` pointing to that single Library state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
+<div style="page-break-after: always;"></div>
 
 Step 2. The user executes `delete 5` command to delete the 5th bookmark in the library. The `delete` command calls `Model#commitLibrary()`, causing the modified state of the Library after the `delete 5` command executes to be saved in the `libraryStateList`, and the `currentStatePointer` is shifted to the newly inserted Library state.
 
@@ -234,6 +235,7 @@ Step 3. The user executes `add n/Hobbit …​` to add a new bookmark. The `add`
 Step 4. The user now decides that adding the bookmark was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoLibraryk()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous library state, and restores the library to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial Library state, then there are no previous Library states to restore. The `undo` command uses `Model#canUndoLibrary()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -254,6 +256,7 @@ The `redo` command does the opposite — it calls `Model#redoLibrary()`, whi
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `libraryStateList.size() - 1`, pointing to the latest Library state, then there are no undone Library states to restore. The `redo` command uses `Model#canRedoLibrary()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the Library, such as `list`, will usually not call `Model#commitLibrary()`, `Model#undoLibrary()` or `Model#redoLibrary()`. Thus, the `libraryStateList` remains unchanged.
 
@@ -262,6 +265,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 Step 6. The user executes `clear`, which calls `Model#commitLibrary()`. Since the `currentStatePointer` is not pointing at the end of the `libraryStateList`, all Library states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -281,6 +285,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+<div style="page-break-after: always;"></div>
 
 ### GoTo Feature
 
@@ -298,6 +303,7 @@ The `GoToCommand` will then open the site in the default browser of the user. Be
 The following Activity diagram depicts what happens when the `GoToCommand` is executed.
 
 ![GoToActivity](images/GoToActivityDiagram.png)
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows the interaction between the objects when a user executes the GoTo command.
 
@@ -319,6 +325,7 @@ The benefits of using `String` is that it is easy to saved and retrieve from Jso
 * **Alternative 2:** url stored as a URI object in Bookmark
     * Pros: Will use be safer as errors are caught before object is created
     * Cons: Difficulty in implementing as harder to parse for user input due to format of URI
+<div style="page-break-after: always;"></div>
 
 ### Progress Field
 
@@ -346,6 +353,7 @@ The format for user input is: `p/VOLUME CHAPTER PAGE`.
 The valid range of values for `VOLUME`, `CHAPTER` and `PAGE` are identical to that of the `volume`, `chapter` and `page`
 attributes. Similarly, the value of the 3 attributes is identical to the value stored in JSON when the `Bookmark` is
 saved. For example, if `page` has the value `~`, that exact value is saved into the JSON file.
+<div style="page-break-after: always;"></div>
 
 #### Design considerations:
 
@@ -380,6 +388,7 @@ The main reason is to simplify the logic for parsing user input.
 A considered alternative is to simply leave empty fields as an empty string `""`. However, a possible user input would
 then look like `"1 50"` and it becomes impossible to differentiate between the 3 attributes. It is possible to use a
 prefixes to differentiate them, but parsing becomes more complex.
+<div style="page-break-after: always;"></div>
 
 ### Find Feature
 
@@ -412,6 +421,7 @@ The main reason is that it is intuitive to use these fields to identify one book
 A considered field to be included in `find` is the `progress` field. However, it seems counter-intuitive to search a
 bookmark by the `progress` field as it is not common for people to remember how far they have read a book, so users are
 unlikely to search for a bookmark using `progress`.
+<div style="page-break-after: always;"></div>
 
 ### Tags Feature
 
@@ -436,6 +446,7 @@ The tag list is stored as a JSON file which will be saved to the user's local de
 
 The main reason for this is due to the need for the user's tag list to be saved even after the user exist
 the application. When the user starts the application in the future, the tag list must be how the user left it.
+<div style="page-break-after: always;"></div>
 
 ### Rating Field
 #### Implementation
@@ -471,8 +482,8 @@ books in the `Library`.
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -500,7 +511,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * Manage books for the user.
 * Keeps track of books they have not started, is currently reading, has finished reading.
 * Manage books faster than a typical mouse/GUI driven app
-
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -533,6 +544,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | user | find bookmarks based on their status    | view only bookmarks of a certain status easily                |
 
 *{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -626,6 +638,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 *{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
