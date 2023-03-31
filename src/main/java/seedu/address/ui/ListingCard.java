@@ -39,6 +39,8 @@ public class ListingCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
+    private Label applicantCount;
+    @FXML
     private FlowPane applicants;
 
     /**
@@ -49,6 +51,7 @@ public class ListingCard extends UiPart<Region> {
         this.listing = listing;
         id.setText(displayedIndex + ". ");
         title.setText(listing.getTitle().fullTitle);
+        applicantCount.setText("Number of applicants: " + listing.getApplicantCount());
         description.setText(listing.getDescription().fullDescription);
 
         Set<String> repeatedNames = getRepeatedNames(listing.getApplicants());

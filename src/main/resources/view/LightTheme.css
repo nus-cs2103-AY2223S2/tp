@@ -444,6 +444,12 @@
     -fx-effect: innershadow(gaussian, white, 10, 0, 0, 0);
 }*/
 
+#applicantCount { /* for the applicant counter */
+    -fx-font-size: 14;
+    -fx-border-radius: 2;
+    -fx-background-radius: 3;
+}
+
 #applicants { /* for the applicant tags */
     -fx-hgap: 7;
     -fx-vgap: 3;
