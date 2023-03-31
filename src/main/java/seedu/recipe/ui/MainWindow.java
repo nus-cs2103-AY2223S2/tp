@@ -127,6 +127,8 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Handles the import file action for importing an existing Recipe Book JSON file into the app.
+     * This is done by prompting the user to select an existing Recipe Book JSON file and importing its contents
+     * into the application.
      */
     @FXML
     private void handleImport() {
@@ -140,6 +142,8 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Handles the export file action for exporting the current Recipe Book JSON file.
+     * This is done by prompting the user to select an existing directory and exporting the current Recipe Book data
+     * in the form of a JSON file there.
      */
     @FXML
     private void handleExport() {

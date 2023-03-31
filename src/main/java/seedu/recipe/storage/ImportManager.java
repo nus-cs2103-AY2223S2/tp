@@ -6,7 +6,6 @@ import static seedu.recipe.logic.commands.ImportCommand.NOT_JSON_FILE;
 
 import java.io.File;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -32,10 +31,15 @@ import seedu.recipe.model.tag.Tag;
  */
 public class ImportManager {
 
-    private final Path recipeBookFilePath = Paths.get("data", "recipebook.json");
     private final Stage owner;
     private final Logger logger = LogsCenter.getLogger(getClass());
 
+    /**
+     * Constructs an instance of the ImportManager that is responsible for importing a JSON file to the current
+     * Recipe Book.
+     *
+     * @param owner The UI stage to show the file chooser dialog.
+     */
     public ImportManager(Stage owner) {
         this.owner = owner;
     }
