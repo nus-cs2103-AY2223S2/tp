@@ -250,7 +250,7 @@ Examples:
 
 Edits the specified task from OfficeConnect.
 
-Format: `editt INDEX`
+Format: `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE]`
 
 * Edits the task at the specified INDEX.
 * The INDEX refers to the INDEX shown in the displayed task list.
@@ -455,7 +455,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 The keyboard shortcut for the help function is assigned to the F2 key.
 </div>
 
-<<<<<<< HEAD
 Sets the overall theme of OfficeConnect to light mode. This mode is chosen as the default theme.
 
 ![startup_whitebackground.jpg](images%2Fproduct-screenshots%2Fstartup_whitebackground.jpg)
