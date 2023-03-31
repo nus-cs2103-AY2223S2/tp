@@ -1,6 +1,7 @@
 package seedu.dengue.model.overview;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -82,5 +83,26 @@ public abstract class Overview {
         ObservableList<DataBin> tempBin = FXCollections.observableArrayList();
         tempBin.setAll(getAnalyst().getSortedBins());
         return tempBin;
+    }
+
+    /**
+     * Enumerates the elements of a List of String arrays. Each element of the resulting
+     * array will contain the original index, followed by the elements of the original array.
+     * The first element of each row will start at 1.
+     *
+     * @param inputList the List of String arrays to enumerate
+     * @return a List of String arrays with each element enumerated
+     * @throws IllegalArgumentException if the input List is null or contains any null elements
+     */
+    public static List<String[]> enumList(List<String[]> inputList) {
+        AtomicInteger index = new AtomicInteger(1);
+        return inputList.stream()
+                .map(array -> {
+                    String[] newArray = new String[array.length + 1];
+                    newArray[0] = String.valueOf(index.getAndIncrement());
+                    System.arraycopy(array, 0, newArray, 1, array.length);
+                    return newArray;
+                })
+                .collect(Collectors.toList());
     }
 }

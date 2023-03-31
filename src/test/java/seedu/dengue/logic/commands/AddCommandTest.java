@@ -194,6 +194,11 @@ public class AddCommandTest {
         public void exportCsv(Path filePath) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void checkout(Path filePath) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

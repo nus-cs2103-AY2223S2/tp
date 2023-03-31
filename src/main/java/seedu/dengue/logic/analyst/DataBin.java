@@ -2,6 +2,8 @@ package seedu.dengue.logic.analyst;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+
 import seedu.dengue.model.person.Person;
 
 /**
@@ -81,5 +83,18 @@ public class DataBin implements Comparable<DataBin> {
     public String toString() {
         return String.format("Bin '%s': %s",
                 getName(), getSize());
+    }
+
+    /**
+     * Returns an array of Strings representing the fields of this DataBin object formatted as a CSV string.
+     * The string array is generated in the following order: binName, binSize.
+     * @return A String[] representing the fields of this Person formatted as a CSV string
+     */
+    public String[] toCsvString() {
+        ArrayList<String> result = new ArrayList<>();
+        result.add(this.binName);
+        result.add(String.valueOf(this.binSize));
+        String[] csvString = new String[2];
+        return result.toArray(csvString);
     }
 }
