@@ -35,7 +35,7 @@ The user guide contains certain visuals to aid in conveying information more eff
 
 :exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
 
-<div style="page-break-after: always;"></div>
+
 
 ### Getting Started
 Head on over to the [Quick start](#quick-start) section to get started with MyLib!
@@ -268,6 +268,7 @@ Examples:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Our Application also supports this feature in gui format, clicking on the url in the right panel will open it on your default browser .
 </div>
+<div style="page-break-after: always;"></div>
 
 ### Clearing all entries : `clear`
 
@@ -297,13 +298,14 @@ MyLib data are saved as a JSON file `[JAR file location]/data/library.json`. Adv
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MyLib will discard all data and start with an empty data file at the next run.
 </div>
+<div style="page-break-after: always;"></div>
 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
+
 
 ## FAQ
 
