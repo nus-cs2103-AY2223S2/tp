@@ -47,6 +47,8 @@ public class DetailsPopup extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label priority;
+    @FXML
     private VBox status;
     @FXML
     private VBox todos;
@@ -76,6 +78,8 @@ public class DetailsPopup extends UiPart<Region> {
         idNumber.setText(s);
         if (personToView instanceof Patient) {
             Patient patientToView = (Patient) personToView;
+            priority.setText(patientToView.getPriority().tagName);
+            textToColor(priority.getText());
             List<PatientStatusDetails> details = patientToView.getPatientStatusDetails();
             for (int i = 1; i < details.size() + 1; i++) {
                 status.getChildren().add(new Label(String.format("%d. ", i) + details.get(i - 1).getDetails()));
@@ -86,8 +90,38 @@ public class DetailsPopup extends UiPart<Region> {
                         .add(new Label(String.format("%d. ", i) + todos.get(i - 1).getTodo()));
             }
         }
+        tags.getChildren().add(new Label(person.getRoleTag().tagName));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+    }
+
+    private void textToColor(String text) {
+        switch(text) {
+            case "LOW":
+                priority.setStyle("-fx-background-color: #5FA051;"
+                                  + " -fx-text-fill: white;"
+                                  + " -fx-padding: 1 3 1 3;"
+                                  + " -fx-border-radius: 2;"
+                                  + " -fx-background-radius: 2;"
+                                  + " -fx-font-size: 13;");
+                return;
+            case "MEDIUM":
+                priority.setStyle("-fx-background-color: #EB9C5C;"
+                                  + " -fx-text-fill: white;"
+                                  + " -fx-padding: 1 3 1 3;"
+                                  + " -fx-border-radius: 2;"
+                                  + " -fx-background-radius: 2;"
+                                  + " -fx-font-size: 13;");
+                return;
+            case "HIGH":
+                priority.setStyle("-fx-background-color: #A90505;"
+                                  + " -fx-text-fill: white;"
+                                  + " -fx-padding: 1 3 1 3;"
+                                  + " -fx-border-radius: 2;"
+                                  + " -fx-background-radius: 2;"
+                                  + " -fx-font-size: 13;");
+                return;
+        }
     }
 }

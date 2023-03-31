@@ -18,6 +18,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="5">
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:  " />
                     <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                    <Label fx:id="priority"/>
                     <VBox.margin>
                         <Insets bottom="5.0" />
                     </VBox.margin>
