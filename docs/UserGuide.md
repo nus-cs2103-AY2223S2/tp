@@ -156,6 +156,8 @@ Finds all persons with names containing any of the specified keywords and displa
 
 **Examples: `find Alice Tan`** will display all persons with `Alice` or `Tan` in their name.
 
+[Go back to [Table of Contents](#table-of-contents)]
+
 ---
 ## Finding a patient by ID number: findpat
 
@@ -268,6 +270,8 @@ Lists all the patients found in the given `WARD_NAME`.
 
 **Examples: `lswardpat Block A Ward 1`** will list all patients in Block A Ward 1.
 
+[Go back to [Table of Contents](#table-of-contents)]
+
 ---
 
 ## Listing all staff in a particular ward: lswardstf
@@ -276,6 +280,8 @@ Lists all the staff found in the given `WARD_NAME`.
 **Format: `lswardstf WARD_NAME`**
 
 **Examples: `lswardstf Block A Ward 1`** will list all staff in Block A Ward 1.
+
+[Go back to [Table of Contents](#table-of-contents)]
 
 ---
 
