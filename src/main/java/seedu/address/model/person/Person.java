@@ -70,7 +70,7 @@ public class Person implements Comparable<Person> {
         return businessSize;
     }
 
-    public Long getBusinessSizeInt() { return businessSize.getLongValue(); }
+    public Long getBusinessSizeLong() { return businessSize.getLongValue(); }
 
     public Company getCompany() {
         return company;
@@ -177,7 +177,6 @@ public class Person implements Comparable<Person> {
                 .append("; Transaction Count: ")
                 .append(getTransactionCount());
 
-
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
@@ -199,9 +198,9 @@ public class Person implements Comparable<Person> {
      */
     @Override
     public int compareTo(Person o) {
-        if (o.getBusinessSizeInt() - this.getBusinessSizeInt() > 0) {
+        if (o.getBusinessSizeLong() - this.getBusinessSizeLong() > 0) {
             return 1;
-        } else if (o.getBusinessSizeInt() - this.getBusinessSizeInt() < 0) {
+        } else if (o.getBusinessSizeLong() - this.getBusinessSizeLong() < 0) {
             return -1;
         } else {
             return  0;

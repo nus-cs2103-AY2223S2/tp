@@ -70,10 +70,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         List<Person> sortedOldList;
         if (ascending) {
             sortedOldList = this.getPersonList()
-                    .sorted(Comparator.comparing(Person::getBusinessSizeInt));
+                    .sorted(Comparator.comparing(Person::getBusinessSizeLong));
         } else {
             sortedOldList = this.getPersonList()
-                    .sorted(Comparator.comparing(Person::getBusinessSizeInt).reversed());
+                    .sorted(Comparator.comparing(Person::getBusinessSizeLong).reversed());
         }
         this.setPersons(sortedOldList);
     }
