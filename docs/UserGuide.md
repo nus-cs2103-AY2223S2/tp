@@ -9,8 +9,39 @@ events and their friends' events **via a Command Line Interface (CLI)** while st
 Graphical User Interface (GUI). If you can type fast, WGT can help you find a date that all your friends are free to 
 meet instead of having to manually compare timetables with each other.
 
-* Table of Contents
-  {:toc}
+- [Quick start](#quick-start)
+- [Features](#features)
+- [Person-related commands](#person-related-commands)
+    * [Adding a person: `add`](#adding-a-person---add-)
+    * [Listing all persons : `list`](#listing-all-persons----list-)
+    * [Editing a person : `edit` <a id="EditPerson" />](#editing-a-person----edit---a-id--editperson----)
+    * [Locating persons by name: `find`](#locating-persons-by-name---find-)
+    * [Deleting a person : `delete`](#deleting-a-person----delete-)
+- [Group-related commands](#group-related-commands)
+    * [Creating a group : `group_create`](#creating-a-group----group-create-)
+    * [Deleting a group : `group_delete`](#deleting-a-group----group-delete-)
+    * [List all groups: `group_list`](#list-all-groups---group-list-)
+    * [Find a group: `group_find`](#find-a-group---group-find-)
+- [Event-related commands](#event-related-commands)
+    * [Creating an event:](#creating-an-event-)
+        + [1) Isolated event: `event_create`](#1--isolated-event---event-create-)
+        + [2) Weekly Recurring Event `event_create_recur`](#2--weekly-recurring-event--event-create-recur-)
+    * [Deleting an event:](#deleting-an-event-)
+        + [1) Delete an isolated event: `ie_delete`](#1--delete-an-isolated-event---ie-delete-)
+        + [2) Delete recurring event: `re_delete`](#2--delete-recurring-event---re-delete-)
+    * [Editing an event:](#editing-an-event-)
+        + [1) Edit an isolated event: `ie_edit`](#1--edit-an-isolated-event---ie-edit-)
+        + [2) Edit a recurring event: `re_edit`](#2--edit-a-recurring-event---re-edit-)
+    * [List all events: `event list`  [coming soon]](#list-all-events---event-list----coming-soon-)
+    * [Clearing all entries : `clear` <a id="Clear" />](#clearing-all-entries----clear---a-id--clear----)
+    * [Exiting the program : `exit` <a id="Exit" />](#exiting-the-program----exit---a-id--exit----)
+    * [Viewing help : `help`](#viewing-help----help-)
+    * [Saving the data](#saving-the-data)
+    * [Editing the data file](#editing-the-data-file)
+    * [Archiving data files `[coming in v2.0]`](#archiving-data-files---coming-in-v20--)
+- [FAQ](#faq)
+- [Command summary](#command-summary)
+
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
