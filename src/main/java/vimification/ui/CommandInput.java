@@ -90,20 +90,32 @@ public class CommandInput extends UiPart<HBox> {
             return;
         }
 
-        try {
-            CommandResult result = logic.execute(commandString);
-            mainScreen.initializeTaskTabPanel();
-            mainScreen.loadCommandResultComponent(result);
+        // try {
+        // CommandResult result = logic.execute(commandString);
+        // mainScreen.initializeTaskTabPanel();
+        // mainScreen.loadCommandResultComponent(result);
 
-            // TODO: Should only clear if the task has been deleted.
-            if (result.getFeedbackToUser().contains("Deleted Task:")) {
-                mainScreen.clearRightComponent();
-            }
-            System.out.println(result.getFeedbackToUser());
-        } catch (ParserException e) {
-            e.printStackTrace();
-            CommandResult errorResult = new CommandResult("[Not a valid command] " + input);
-            mainScreen.loadCommandResultComponent(errorResult);
+        // // TODO: Should only clear if the task has been deleted.
+        // if (result.getFeedbackToUser().contains("Deleted Task:")) {
+        // mainScreen.clearRightComponent();
+        // }
+        // System.out.println(result.getFeedbackToUser());
+        // } catch (CommandException e) {
+        // e.printStackTrace();
+        // System.out.println("[Your command] " + input + " is invalid");
+        // } catch (ParserException e) {
+        // e.printStackTrace();
+        // CommandResult errorResult = new CommandResult("[Not a valid command] " + input);
+        // mainScreen.loadCommandResultComponent(errorResult);
+        // }
+
+        CommandResult result = logic.execute(commandString);
+        mainScreen.initializeTaskTabPanel();
+        mainScreen.loadCommandResultComponent(result);
+
+        // TODO: Should only clear if the task has been deleted.
+        if (result.getFeedbackToUser().contains("Deleted Task:")) {
+            mainScreen.clearRightComponent();
         }
     }
 
