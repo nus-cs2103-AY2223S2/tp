@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPetAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PET;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PET;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PET;
 import static seedu.address.testutil.TypicalPets.getTypicalArchive;
 import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
 

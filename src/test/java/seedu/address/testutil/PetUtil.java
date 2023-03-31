@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 
 import java.util.Set;
 
@@ -35,6 +36,8 @@ public class PetUtil {
         sb.append(PREFIX_PHONE + pet.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + pet.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + pet.getAddress().value + " ");
+        sb.append(PREFIX_TIMESTAMP + pet.getTimeStamp().toString() + " ");
+
         pet.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
