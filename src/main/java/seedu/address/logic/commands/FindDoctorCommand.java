@@ -21,6 +21,8 @@ import seedu.address.model.person.doctor.DoctorContainsKeywordsPredicate;
 public class FindDoctorCommand extends Command {
 
     public static final String COMMAND_WORD = "find-doc";
+    public static final String SHORTHAND_COMMAND_WORD = "fd";
+
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds a doctor in the address book. "
             + "Parameters: "
