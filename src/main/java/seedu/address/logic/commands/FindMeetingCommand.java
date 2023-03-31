@@ -9,9 +9,6 @@ import seedu.address.model.person.*;
 import java.time.LocalDate;
 
 
-import java.time.LocalDateTime;
-
-import java.util.function.Predicate;
 
 
 public class FindMeetingCommand extends Command{

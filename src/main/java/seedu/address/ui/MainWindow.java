@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -22,6 +23,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Meeting;
+import seedu.address.model.person.MeetingStartDatePredicate;
+import seedu.address.model.ModelManager;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -35,6 +38,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+
+    private ModelManager model;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -122,8 +127,9 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-
-        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        LocalDate today = LocalDate.now();
+        MeetingStartDatePredicate predicate = new MeetingStartDatePredicate(today);
+        meetingListPanel = new MeetingListPanel(logic.updateFilteredMeetingList(predicate));
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
