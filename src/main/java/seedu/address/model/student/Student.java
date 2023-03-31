@@ -309,14 +309,14 @@ public class Student {
         lessonsList.setLesson(target, editedLesson);
     }
 
-    public void setExam(Integer target, Exam editedLesson) {
-        requireAllNonNull(target, editedLesson);
+    public void setExam(Integer target, Exam editedExam) {
+        requireAllNonNull(target, editedExam);
         //        UniqueExamList tempExamList = examList;
-        //        tempExamList.setExam(target, editedLesson);
+        //        tempExamList.setExam(target, editedExam);
         //        if (!(tempExamList.validExams())) {
         //            throw new ConflictingExamsException();
         //        }
-        examList.setExam(target, editedLesson);
+        examList.setExam(target, editedExam);
     }
 
     /**

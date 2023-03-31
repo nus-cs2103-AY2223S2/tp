@@ -39,6 +39,13 @@ public class Messages {
     public static final String MESSAGE_EXAMS_LISTED_OVERVIEW = "%d exams from %d students listed: \n%s";
     public static final String MESSAGE_ALL_EXAMS_LISTED_OVERVIEW = "%d exams from all students listed:\n%s";
     public static final String MESSAGE_NO_EXAM_FOUND = "No exam is found!";
+    public static final String MESSAGE_EXAM_NOT_COMPLETED = "Exam is not yet completed, a grade cannot be assigned!";
+    public static final String MESSAGE_EXAM_UPDATED_SUCCESS = "Exam %s of student %s is updated to:\n"
+            + "Exam name: %s\n"
+            + "Start Time: %s\n"
+            + "End Time: %s\n"
+            + "Weightage: %s" + "%%" + "\n"
+            + "Grade: %s\n";
     public static final String MESSAGE_HOMEWORK_UPDATED_SUCCESS = "Homework %s of student %s is updated to:\n"
             + "Homework name: %s\n"
             + "Deadline: %s\n";

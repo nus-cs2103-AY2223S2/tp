@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,6 +24,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Grade;
 import seedu.address.model.student.NamePredicate;
 
 /**
@@ -40,11 +43,13 @@ public class UpdateExamCommandParser implements Parser<UpdateExamCommand> {
 
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INDEX, PREFIX_EXAM, PREFIX_STARTTIME,
-                PREFIX_ENDTIME);
+                PREFIX_ENDTIME, PREFIX_WEIGHT, PREFIX_GRADE);
 
         if ((!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_EXAM)
             && !arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_STARTTIME)
-            && !arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_ENDTIME))
+            && !arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_ENDTIME)
+            && !arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_WEIGHT)
+            && !arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX, PREFIX_GRADE))
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 UpdateExamCommand.MESSAGE_USAGE));
@@ -70,10 +75,10 @@ public class UpdateExamCommandParser implements Parser<UpdateExamCommand> {
 
         if (nameKeywords.size() > 1) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                "Only one name is allowed for update homework command."));
+                "Only one name is allowed for update exam command."));
         }
 
-        // if homework name is not present, set it to null, else parse it
+        // if exam name is not present, set it to null, else parse it
         Optional<String> examName = Optional.empty();
         if (argMultimap.getValue(PREFIX_EXAM).isPresent()) {
             examName = Optional.of(argMultimap.getValue(PREFIX_EXAM).get());
@@ -90,8 +95,18 @@ public class UpdateExamCommandParser implements Parser<UpdateExamCommand> {
             endTime = Optional.of(ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get()));
         }
 
+        Optional<Double> weight = Optional.empty();
+        if (argMultimap.getValue(PREFIX_WEIGHT).isPresent()) {
+            weight = Optional.of(ParserUtil.parseWeightage(argMultimap.getValue(PREFIX_WEIGHT).get()));
+        }
+
+        Optional<Grade> grade = Optional.empty();
+        if (argMultimap.getValue(PREFIX_GRADE).isPresent()) {
+            grade = Optional.of(ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
+        }
+
         return new UpdateExamCommand(names, index, new NamePredicate(nameKeywords),
-            examName, startTime, endTime);
+            examName, startTime, endTime, weight, grade);
     }
 
     /**
