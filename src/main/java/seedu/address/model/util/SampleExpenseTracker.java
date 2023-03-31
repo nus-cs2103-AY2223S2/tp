@@ -35,11 +35,11 @@ public class SampleExpenseTracker {
      */
     public static Expense[] getSampleExpenses() {
         return new Expense[] {
-                new Expense("Meal at JE", 4.50, LocalDate.now(), food),
-                new Expense("Movie ticket", 12.99, LocalDate.of(2023, 3, 15), entertainment),
-                new Expense("MRT fare", 45.80, LocalDate.of(2023, 3, 10), transportation),
-                new Expense("Shoes", 75.00, LocalDate.of(2023, 3, 20), shopping),
-                new Expense("Groceries", 56.30, LocalDate.of(2023, 3, 25), food)
+            new Expense("Meal at JE", 4.50, LocalDate.now(), food),
+            new Expense("Movie ticket", 12.99, LocalDate.of(2023, 3, 15), entertainment),
+            new Expense("MRT fare", 45.80, LocalDate.of(2023, 3, 10), transportation),
+            new Expense("Shoes", 75.00, LocalDate.of(2023, 3, 20), shopping),
+            new Expense("Groceries", 56.30, LocalDate.of(2023, 3, 25), food)
         };
     }
 

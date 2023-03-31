@@ -30,7 +30,7 @@
            <Label fx:id="expenseName" styleClass="cell_label" text="\$expenseName" />
          </HBox>
          <Label fx:id="price" alignment="CENTER" contentDisplay="CENTER" minWidth="-Infinity" prefWidth="80.0" styleClass="cell_label" text="\$price" />
-         <Label fx:id="category" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="90.0" styleClass="category_tag" text="\$category" />
+         <Label fx:id="category" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="110.0" styleClass="category_tag" text="\$category" />
          <Label fx:id="date" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" text="\$date">
                <styleClass>
                   <String fx:value="cell_label" />
