@@ -23,7 +23,9 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Nric;
@@ -96,6 +98,14 @@ public class EditCommandParser implements Parser <EditCommand> {
         return new EditCommand(nric, editDescriptor);
     }
 
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                EditCommand.COMMAND_WORD,
+                EditCommand.COMMAND_PROMPTS,
+                EditCommandParser::validate);
+    }
+
     private Nric checkPreamble(String preamble) throws ParseException {
         if (preamble.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
@@ -134,7 +144,10 @@ public class EditCommandParser implements Parser <EditCommand> {
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        return !(map.getPreamble().split(" ").length > 1);
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (!Nric.isValidNric(map.getPreamble())) {
+            throw new RecommendationException("A valid nric should be specified");
+        }
+        return true;
     }
 }

@@ -3,11 +3,13 @@ package seedu.address.logic.commands;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.commons.util.CheckedFunction;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.AddElderlyCommandParser;
 import seedu.address.logic.parser.AddPairCommandParser;
 import seedu.address.logic.parser.AddVolunteerCommandParser;
@@ -25,145 +27,93 @@ import seedu.address.logic.parser.ExitCommandParser;
 import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.logic.parser.HelpCommandParser;
 import seedu.address.logic.parser.ListCommandParser;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.StatsCommandParser;
 
 /**
  * Recommends a command based on the user input.
  * Implementation adapted from
- * https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions
+ * <a href="https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions"/>
  */
 public class CommandRecommendationEngine {
-    public static final Map<String, CommandInfo> COMMAND_INFO_MAP = new LinkedHashMap<>();
-    private static final String INVALID_COMMAND_MESSAGE = "No such command exists!"
-            + " Please refer to our user guide for the list of valid commands.";
-    private static final String INVALID_PREFIX_MESSAGE = "Invalid prefix!"
-            + " Please refer to our user guide for the list of valid arguments.";
+    private static CommandRecommendationEngine commandRecommendationEngine;
+    private static final CommandInfoMap commandRegistry = new CommandInfoMap();
+
+    private static final String delimiter = "                ";
 
     static {
-        registerCommandInfo(new CommandInfo(
-                DeleteVolunteerCommand.COMMAND_WORD,
-                DeleteVolunteerCommand.COMMAND_PROMPTS,
-                DeleteVolunteerCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                DeleteElderlyCommand.COMMAND_WORD,
-                DeleteElderlyCommand.COMMAND_PROMPTS,
-                DeleteElderlyCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                AddVolunteerCommand.COMMAND_WORD,
-                AddVolunteerCommand.COMMAND_PROMPTS,
-                AddVolunteerCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                EditElderlyCommand.COMMAND_WORD,
-                EditElderlyCommand.COMMAND_PROMPTS,
-                EditElderlyCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                EditVolunteerCommand.COMMAND_WORD,
-                EditVolunteerCommand.COMMAND_PROMPTS,
-                EditVolunteerCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                DeletePairCommand.COMMAND_WORD,
-                DeletePairCommand.COMMAND_PROMPTS,
-                DeletePairCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                AddElderlyCommand.COMMAND_WORD,
-                AddElderlyCommand.COMMAND_PROMPTS,
-                AddElderlyCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                AddPairCommand.COMMAND_WORD,
-                AddPairCommand.COMMAND_PROMPTS,
-                AddPairCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                ClearCommand.COMMAND_WORD,
-                ClearCommand.COMMAND_PROMPTS,
-                ClearCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                FindCommand.COMMAND_WORD,
-                FindCommand.COMMAND_PROMPTS,
-                FindCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                ExitCommand.COMMAND_WORD,
-                ExitCommand.COMMAND_PROMPTS,
-                ExitCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                ListCommand.COMMAND_WORD,
-                ListCommand.COMMAND_PROMPTS,
-                ListCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                EditCommand.COMMAND_WORD,
-                EditCommand.COMMAND_PROMPTS,
-                EditCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                HelpCommand.COMMAND_WORD,
-                HelpCommand.COMMAND_PROMPTS,
-                HelpCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                StatsCommand.COMMAND_WORD,
-                StatsCommand.COMMAND_PROMPTS,
-                StatsCommandParser::validate));
-        registerCommandInfo(new CommandInfo(
-                AutoPairCommand.COMMAND_WORD,
-                AutoPairCommand.COMMAND_PROMPTS,
-                AutoPairCommandParser::validate
-        ));
+        registerCommand(new DeleteVolunteerCommandParser());
+        registerCommand(new DeleteElderlyCommandParser());
+        registerCommand(new AddVolunteerCommandParser());
+        registerCommand(new AddElderlyCommandParser());
+        registerCommand(new AddPairCommandParser());
+        registerCommand(new EditElderlyCommandParser());
+        registerCommand(new EditVolunteerCommandParser());
+        registerCommand(new DeletePairCommandParser());
+        registerCommand(new ClearCommandParser());
+        registerCommand(new FindCommandParser());
+        registerCommand(new ExitCommandParser());
+        registerCommand(new ListCommandParser());
+        registerCommand(new EditCommandParser());
+        registerCommand(new HelpCommandParser());
+        registerCommand(new StatsCommandParser());
+        registerCommand(new AutoPairCommandParser());
     }
 
-    /**
-     * Adds a new command info to the engine
-     *
-     * @param commandInfo Command info to add
-     */
-    private static void registerCommandInfo(CommandInfo commandInfo) {
-        COMMAND_INFO_MAP.put(commandInfo.getCmdWord(), commandInfo);
+    private static <T extends Command> void registerCommand(Parser<T> commandParser) {
+        CommandInfo commandInfo = commandParser.getCommandInfo();
+        commandRegistry.put(commandInfo.getCmdWord(), commandInfo);
     }
 
-    /**
-     * Recommends a string with respect to the user input
-     *
-     * @param userInput Input by user
-     * @return Recommended command
-     * @throws CommandException If the user input is invalid
-     */
-    public String recommendCommand(String userInput) throws CommandException {
-        // find entered command
+    private CommandRecommendationEngine() { }
+
+    public static CommandRecommendationEngine getInstance() {
+        if (commandRecommendationEngine == null) {
+            commandRecommendationEngine = new CommandRecommendationEngine();
+        }
+        return commandRecommendationEngine;
+    }
+
+    public CommandInfoMap getCommandInfoMap() {
+        return commandRegistry;
+    }
+
+    public String generateCommandRecommendations(String userInput) throws RecommendationException {
+        if (userInput == null || userInput.isEmpty()) {
+            return "";
+        }
+
+        // Find entered command
         int commandIndex = userInput.indexOf(" ");
-        String commandWord;
-        String commandArgs;
-        CommandInfo commandInfo;
 
-        // not a complete command
+        // Incomplete command
         if (commandIndex == -1) {
-            //  Checking only for prefix matching since the command is incomplete
-            commandInfo = findMatchingCommandInfo(userInput, false);
+            CommandInfo commandInfo = findMatchingCommandInfo(userInput, false);
             if (commandInfo == null) {
-                throw new CommandException(INVALID_COMMAND_MESSAGE);
+                throw new RecommendationException(userInput + delimiter + "Command cannot be found!");
             }
-            return commandInfo.getCmdWord() + generateArgumentRecommendation(commandInfo, null);
+            return commandInfo.getCmdWord() + generateArgumentRecommendation(commandInfo, null, userInput);
         }
 
-        // complete command
-        commandWord = userInput.substring(0, commandIndex);
+        // Complete command
+        String commandWord = userInput.substring(0, commandIndex);
         String parsedArgs = userInput.substring(commandIndex);
-        // Forcing exact matching since the command must be complete
-        commandInfo = findMatchingCommandInfo(commandWord, true);
 
-        if (commandInfo == null || !commandWord.equals(commandInfo.getCmdWord())) {
-            throw new CommandException(INVALID_COMMAND_MESSAGE);
+        // Enforcing exact matching since the command must be complete
+        CommandInfo commandInfo = findMatchingCommandInfo(commandWord, true);
+        if (commandInfo == null) {
+            throw new RecommendationException(userInput + delimiter + "Command cannot be found!");
         }
 
-        commandArgs = parsedArgs.isBlank() ? null : parsedArgs;
-        String recommendedArguments = generateArgumentRecommendation(commandInfo, commandArgs);
+        String commandArgs = parsedArgs.isBlank() ? null : parsedArgs;
+        String recommendedArguments = generateArgumentRecommendation(commandInfo, commandArgs, userInput);
         return userInput + recommendedArguments;
     }
 
-    /**
-     * Returns the autocompleted command.
-     *
-     * @param userInput          Input by user
-     * @param recommendedCommand Recommendation string given
-     * @return String to be autocompleted
-     */
-    public String autocompleteCommand(String userInput, String recommendedCommand) {
+    public String autocompleteCommand(String userInput) throws RecommendationException {
+        userInput = userInput.trim();
+        String recommendedCommand = generateCommandRecommendations(userInput);
         String suggestedCommand = recommendedCommand.substring(userInput.length());
         boolean isCompleteCommand = isCommandPrefixComplete(userInput, " ");
         int commandIdx = recommendedCommand.indexOf(" ");
@@ -174,7 +124,7 @@ public class CommandRecommendationEngine {
             return command;
         } else {
             int nextIdx = suggestedCommand.indexOf("/") + 1;
-            return userInput.trim() + suggestedCommand.substring(0, nextIdx);
+            return recommendedCommand.substring(0, userInput.length() + nextIdx);
         }
     }
 
@@ -183,13 +133,10 @@ public class CommandRecommendationEngine {
     }
 
     private CommandInfo findMatchingCommandInfo(String commandWord, boolean isExactMatching) {
-        return COMMAND_INFO_MAP.keySet()
-                .stream()
+        return commandRegistry.keySet().stream()
                 .filter(command -> isExactMatching ? command.equals(commandWord) : command.startsWith(commandWord))
-                .sorted()
-                .map(COMMAND_INFO_MAP::get)
-                .findFirst()
-                .orElse(null);
+                .sorted().map(commandRegistry::get)
+                .findFirst().orElse(null);
     }
 
     private Prefix findMatchingPrefix(HashMap<Prefix, String> cmdPrompt, String prefix) {
@@ -200,18 +147,11 @@ public class CommandRecommendationEngine {
                 .orElse(null);
     }
 
-    /**
-     * Generates recommendations for parsed arguments. This function is invoked on each keystroke.
-     *
-     * @param commandInfo   The information for a particular command
-     * @param userArgs      The current user input in the command textbox
-     * @return The recommended arguments
-     * @throws CommandException User typed an invalid prefix.
-     */
-    private String generateArgumentRecommendation(CommandInfo commandInfo, String userArgs)
-            throws CommandException {
+    private String generateArgumentRecommendation(CommandInfo commandInfo, String userArgs, String userInput)
+            throws RecommendationException {
 
-        HashMap<Prefix, String> cmdPrompt = commandInfo.getCmdPrompts();
+        @SuppressWarnings("unchecked")
+        HashMap<Prefix, String> cmdPrompt = (HashMap<Prefix, String>) commandInfo.getCmdPrompts().clone();
         String command = commandInfo.getCmdWord();
         StringBuilder argumentRecommendation = new StringBuilder();
         if (userArgs == null) {
@@ -223,19 +163,25 @@ public class CommandRecommendationEngine {
 
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs, cmdPrompt.keySet()
                 .toArray(new Prefix[]{}));
-        boolean isValidArgs = isValidArgs(command, argumentMultimap);
-        if (!isValidArgs) {
-            throw new CommandException(INVALID_PREFIX_MESSAGE);
+
+        try {
+            isValidArgs(command, argumentMultimap);
+        } catch (RecommendationException e){
+            if (e.getMessage().isEmpty()) {
+                throw new RecommendationException(userInput + delimiter + "Invalid argument");
+            } else {
+                throw new RecommendationException(userInput + delimiter + e.getMessage());
+            }
         }
 
+        // To retrieve the last entered string
         String[] userInputArray = userArgs.split(" ");
-
         String currPrefixString = userInputArray[userInputArray.length - 1];
         boolean isCompletePrefix = isCommandPrefixComplete(userInputArray[userInputArray.length - 1], "/");
         Prefix matchingPrefix = findMatchingPrefix(cmdPrompt, currPrefixString.split("/")[0]);
 
         if (isCompletePrefix && matchingPrefix == null) {
-            throw new CommandException(INVALID_PREFIX_MESSAGE);
+            throw new RecommendationException(userInput + delimiter + "Invalid argument");
         }
 
         if (isCompletePrefix) {
@@ -245,12 +191,14 @@ public class CommandRecommendationEngine {
         if (!isCompletePrefix && matchingPrefix != null) {
             argumentRecommendation.append(matchingPrefix.getPrefix().substring(currPrefixString.length()));
             argumentRecommendation.append(cmdPrompt.get(matchingPrefix));
+            cmdPrompt.remove(matchingPrefix);
         }
 
         // current set of arguments is complete -> return remaining recommendation
         getRemainingArguments(cmdPrompt,
                 key -> argumentRecommendation.append(" ").append(key).append(cmdPrompt.get(key)),
                 key -> argumentMultimap.getValue(key).isEmpty());
+
         return argumentRecommendation.toString();
     }
 
@@ -261,17 +209,36 @@ public class CommandRecommendationEngine {
      * @param argumentMultimap The map of arguments.
      * @return A boolean value indicating if the set of arguments specified is valid.
      */
-    public static boolean isValidArgs(String command, ArgumentMultimap argumentMultimap) {
-        CommandInfo commandInfo = COMMAND_INFO_MAP.get(command);
-        Function<ArgumentMultimap, Boolean> argumentValidator = commandInfo.getCmdValidator();
+    public static boolean isValidArgs(String command, ArgumentMultimap argumentMultimap) throws RecommendationException {
+        CommandInfo commandInfo = commandRegistry.get(command);
+        CheckedFunction<ArgumentMultimap, Boolean> argumentValidator = commandInfo.getCmdValidator();
         return argumentValidator.apply(argumentMultimap);
     }
 
-    private static void getRemainingArguments(HashMap<Prefix, String> cmdPrompt, Consumer<? super Prefix> consumer,
-                                              Predicate<Prefix> predicate) {
+    public static void getRemainingArguments(HashMap<Prefix, String> cmdPrompt,
+            Consumer<? super Prefix> consumer, Predicate<Prefix> predicate) {
         cmdPrompt.keySet()
                 .stream()
                 .filter(predicate)
                 .forEach(consumer);
+    }
+
+    /**
+     * A map that stores the command information of all registered commands.
+     */
+    public static class CommandInfoMap {
+        private final Map<String, CommandInfo> map = new LinkedHashMap<>();
+
+        public void put(String cmdWord, CommandInfo commandInfo) {
+            map.put(cmdWord, commandInfo);
+        }
+
+        public CommandInfo get(String cmdWord) {
+            return map.get(cmdWord);
+        }
+
+        public Set<String> keySet() {
+            return map.keySet();
+        }
     }
 }

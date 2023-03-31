@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -31,6 +32,14 @@ public class ListCommandParser implements Parser<ListCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
+    }
+
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                ListCommand.COMMAND_WORD,
+                ListCommand.COMMAND_PROMPTS,
+                ListCommandParser::validate);
     }
 
     /**

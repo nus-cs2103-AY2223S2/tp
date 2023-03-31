@@ -16,7 +16,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.EditVolunteerCommand;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -94,14 +96,25 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
         return new EditVolunteerCommand(index, editDescriptor);
     }
 
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                EditVolunteerCommand.COMMAND_WORD,
+                EditVolunteerCommand.COMMAND_PROMPTS,
+                EditVolunteerCommandParser::validate);
+    }
+
     /**
      * Validates the given ArgumentMultimap by checking that it fulfils certain criteria.
      *
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        return map.getPreamble().length() == 1 && StringUtil.isNonZeroUnsignedInteger(map.getPreamble());
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (map.getPreamble().length() == 1 && StringUtil.isNonZeroUnsignedInteger(map.getPreamble())) {
+            throw new RecommendationException("Invalid index");
+        }
+        return true;
     }
 }
 

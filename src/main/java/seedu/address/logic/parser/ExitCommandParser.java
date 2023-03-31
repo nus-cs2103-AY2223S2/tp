@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -29,5 +30,13 @@ public class ExitCommandParser implements Parser<ExitCommand> {
     public ExitCommand parse(String userInput) throws ParseException {
         assert false : "This method should not be invoked";
         return null;
+    }
+
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                ExitCommand.COMMAND_WORD,
+                ExitCommand.COMMAND_PROMPTS,
+                ExitCommandParser::validate);
     }
 }

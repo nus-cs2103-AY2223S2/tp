@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import java.util.HashMap;
 import java.util.function.Function;
 
+import seedu.address.commons.util.CheckedFunction;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.Prefix;
 
@@ -14,7 +15,7 @@ public class CommandInfo {
 
     private final HashMap<Prefix, String> commandPrompts;
 
-    private final Function<ArgumentMultimap, Boolean> commandValidator;
+    private final CheckedFunction<ArgumentMultimap, Boolean> commandValidator;
 
     /**
      * Constructs a new CommandInfo object with the given command word and command prompts.
@@ -24,7 +25,7 @@ public class CommandInfo {
      * @param commandValidator validator used to validate user args.
      */
     public CommandInfo(String commandWord, HashMap<Prefix, String> commandPrompts,
-                       Function<ArgumentMultimap, Boolean> commandValidator) {
+                       CheckedFunction<ArgumentMultimap, Boolean> commandValidator) {
         this.commandWord = commandWord;
         this.commandPrompts = commandPrompts;
         this.commandValidator = commandValidator;
@@ -38,7 +39,7 @@ public class CommandInfo {
         return commandPrompts;
     }
 
-    public Function<ArgumentMultimap, Boolean> getCmdValidator() {
+    public CheckedFunction<ArgumentMultimap, Boolean> getCmdValidator() {
         return commandValidator;
     }
 }

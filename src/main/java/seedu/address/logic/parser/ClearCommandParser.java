@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommandInfo;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -15,8 +17,8 @@ public class ClearCommandParser implements Parser<ClearCommand> {
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        return false;
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        throw new RecommendationException("There should not be any argument specified");
     }
 
     /**
@@ -30,5 +32,13 @@ public class ClearCommandParser implements Parser<ClearCommand> {
     public ClearCommand parse(String userInput) throws ParseException {
         assert false : "This method should not be invoked";
         return null;
+    }
+
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                ClearCommand.COMMAND_WORD,
+                ClearCommand.COMMAND_PROMPTS,
+                ClearCommandParser::validate);
     }
 }

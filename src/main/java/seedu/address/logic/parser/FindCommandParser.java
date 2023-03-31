@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Elderly;
@@ -68,6 +69,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());
         }
+    }
+
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                FindCommand.COMMAND_WORD,
+                FindCommand.COMMAND_PROMPTS,
+                FindCommandParser::validate);
     }
 
     /**
