@@ -26,6 +26,9 @@ jobs:
       #    working-directory:  ${{ github.workspace }}/.github
       #    run: ./run-checks.sh
 
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
       - name: Validate Gradle Wrapper
         uses: gradle/wrapper-validation-action@v1
 
