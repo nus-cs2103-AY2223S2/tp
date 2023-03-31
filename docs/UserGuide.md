@@ -98,7 +98,7 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]…​`
+Format: `edit INDEX [/m] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GROUP]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -114,7 +114,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/ g/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags and groups.
 *  `edit 3 m/ t/Borrowed $10` Edit the tags of the 2nd person to be `Borrowed $10` plus the existing tag of that person.
-*  `edit 3 m/ t/CS2103T` Edit the groups of the 2nd person to be `CS2103T` plus the existing groups of that person.
+*  `edit 3 m/ g/CS2103T` Edit the groups of the 2nd person to be `CS2103T` plus the existing groups of that person.
 
 ### Locating persons by name: `find`
 
@@ -314,6 +314,17 @@ Format: free GROUP_INDEX [START_DATE]
   not provided, then the current date will be used.
 * `START_DATE` must be of the format: `dd/MM/yyyy`
 
+
+### Importing data : `import`
+Import one person into your address book to update their details and events.
+
+Format: `import`
+
+* Stored data must be in a file called `export.json` and the file must be placed in the folder `data` which is in the same location as the JAR file.
+* Stored data can only contain 1 person.
+* The imported person will not have any tags or groups.
+* If the imported person is already an entry in your address book with the same name (case-sensitive), their phone number, address, email as well as their event lists will be updated to the imported data.
+* If the imported person is not yet an entry in your address book, a new entry will be created with the imported person's details (excluding tags and groups).
 
 ### Clearing all entries : `clear`
 
