@@ -10,9 +10,10 @@ import static seedu.recipe.commons.util.AppUtil.checkArgument;
 public class Step {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "A step should only contain alphanumeric characters and spaces, and it should not be blank";
+            "A step should only contain alphanumeric characters, "
+                    + "spaces, and these punctuation marks `,.!?`, and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum},.!?][\\p{Alnum} ,.!?]*";
 
     public final String step;
 
