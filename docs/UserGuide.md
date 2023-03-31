@@ -85,7 +85,7 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 # About the Interface
 
 The *Fish Ahoy!* interface consists of three main components, the **Command Line**, **Alerts**, and **Panels**, 
-and two buttons, **Hile** and **Help**.
+and two buttons, **File** and **Help**.
 
 ![Ui](images/UiIntro.png)
 
@@ -97,6 +97,7 @@ The **Alerts** will display the results of each command, and display additional 
 <div markdown="block" class="alert alert-info">
 **:information_source: If you are unsure of the command format, simply enter the category you want to use, e.g. `fish`, followed by the command
 you would like to use `add`. Information on prefixes will be displayed in the Alerts!:**<br>
+</div>
 
 The **Panels** will display all the information on your Tanks, Fishes and Tasks. These panels will automatically update 
 whenever you enter a command. Try it out!
