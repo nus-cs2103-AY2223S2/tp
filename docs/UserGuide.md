@@ -16,8 +16,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 - [Features](#features)
 - [Main Features](#main-features-tracking-applied-internships)
     - [View guide : `help`](#view-help--help)
-    - [Add an internship application](#adding-an-internship--add)
-        - [Add](#adding-an-internship--add)
+    - [Add an internship application : `add`](#add-an-internship--add)
     - [List currently ongoing internship applications : `list`](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications : `sort`](#sort-all-internship-applications--sort)
     - [Find internship applications by the company name, job title, status, or interview date : `find`](#find-internship-applications-by-the-company-name-job-title-status-or-interview-date--find)
@@ -36,7 +35,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
         - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
     - [Edit](#)
-    - [Remind](#displaying-the-internship-application-with-the-most-imminent-interview--remind)
+    - [Displaying reminders : `remind`](#displaying-the-internship-application-with-the-most-imminent-interview--remind)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
         - [Clear all internship applications : `clear`](#clearing-all-internship-application-entries--clear)
@@ -140,7 +139,7 @@ Shows user the link to user guide.
 
 Format: help
 
-### Adding an internship : `add`
+### Add an internship : `add`
 
 Adds an internship application to the tracker
 
