@@ -9,39 +9,38 @@ available on PC, and is optimized for use via a Command Line Interface (CLI) whi
 a Graphical User Interface (GUI). If you can type fast, AIO will be the biggest boost in your productivity that you'll
 see in your career.
 
----
 
 ## Table of Contents
 
-* ### How to Get Started
-  * ### Features
-      * #### General Management
-          * Viewing help : `help`
-          * Undo previous operation : `undo`
-          * Redo previous operation : `redo`
-          * Clear all entries : `clear`
-          * Exiting the program : `exit`
-          * Saving the data
-          * Editing the data file
-      * #### Client Management
-          * Adding a client: `add`
-          * Selecting a client: `select`
-          * Listing all clients : `list`
-          * Editing a client : `edit`
-          * Filtering clients by name: `find`
-          * Deleting a client : `delete`
-          * Sorting Clients by Email address : `sortClientEmail`
-          * Sorting Clients by Name : `sortClientName`
-          * Sorting Clients by Phone Number : `sortClientPhone`
-      * #### Policy Management
-          * Adding a policy: `addPolicy`
-          * Editing a policy : `editPolicy`
-          * Deleting a policy : `deletePolicy`
-      * #### Policy Management
-          * Adding an appointment: `addApt`
-          * Deleting an appointment: `deleteApt`
-* ### FAQ
-* ### Command Summary
+* #### [How to Get Started](#how-to-get-started)
+    * #### [Features](#features)
+        * #### [General Management](#general-management)
+            * Viewing help : `help`
+            * Undo previous operation : `undo`
+            * Redo previous operation : `redo`
+            * Clear all entries : `clear`
+            * Exiting the program : `exit`
+            * Saving the data
+            * Editing the data file
+        * #### [Client Management](#client-management)
+            * Adding a client: `add`
+            * Selecting a client: `select`
+            * Listing all clients : `list`
+            * Editing a client : `edit`
+            * Filtering clients by name: `find`
+            * Deleting a client : `delete`
+            * Sorting Clients by Email address : `sortClientEmail`
+            * Sorting Clients by Name : `sortClientName`
+            * Sorting Clients by Phone Number : `sortClientPhone`
+        * #### [Policy Management](#policy-management)
+            * Adding a policy: `addPolicy`
+            * Editing a policy : `editPolicy`
+            * Deleting a policy : `deletePolicy`
+        * #### [Appointment Management](#appointment-management)
+            * Adding an appointment: `addApt`
+            * Deleting an appointment: `deleteApt`
+* #### [FAQ](#faq)
+* #### [Command Summary](#command-summary)
 
 ## How to Get Started
 
@@ -121,7 +120,7 @@ Some example commands you can try:
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -438,12 +437,12 @@ from [OpenJDK](https://openjdk.org).
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AddressBook home folder.
 
-**Q**: Do I need an internet connection use Advisio?<br>
-**A**: Advisio is a local application that does not require an internet connection! Feel free to use our application
+**Q**: Do I need an internet connection use Advis.io?<br>
+**A**: Advis.io is a local application that does not require an internet connection! Feel free to use our application
 anywhere and anytime as you see fit!
 
 **Q**: Is my data stored on the cloud? How can I ensure that I do not lose such critical information?<br>
-**A**:Unfortunately, Advisio does not support cloud support. However, you can follow these steps to store your data
+**A**:Unfortunately, Advis.io does not support cloud support. However, you can follow these steps to store your data
 safely in existing cloud services such as Icloud or Google Drive. Firstly, locate the data
 file `<JAR file location>/data/clientbook.json`. Secondly, copy the file into your preferred cloud service.
 
@@ -455,7 +454,7 @@ should be able to add a new general policy if it's required.
 
 **Q**: Is there a limit to the number of clients or policies that I can add?<br>
 **A**: There is approximately a 2 million limit for both clients and policies separately. We have analysed and
-interviewed verteran Financial Adivsors and have concluded that it is very unlikely for a Financial Advisor to to exceed
+interviewed veteran Financial Advisors and have concluded that it is very unlikely for a Financial Advisor to to exceed
 those thresholds. However, the limit can be expanded in the future if necessary.
 
 --------------------------------------------------------------------------------------------------------------------
