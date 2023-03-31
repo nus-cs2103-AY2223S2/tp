@@ -64,7 +64,7 @@ If you need to switch to a new device, you can also export and import your previ
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+### **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -86,36 +86,38 @@ If you need to switch to a new device, you can also export and import your previ
 
 </div>
 
-### Viewing help : `help`
+
+### 1. Viewing help : `help`
 
 Prompts the help page link.
 
-![help message](images/helpMessage.png)
+<img width="793" alt="Screenshot 2023-03-30 at 3 08 08 PM" src="https://user-images.githubusercontent.com/97392685/228756824-377ceb52-0585-4eed-ae6e-62c4b4394ab9.png">
 
 Format: `help`
 
-
-### Adding a student's contact: `add`
+### 2. Adding a student's contact: `add`
 
 Adds a student to the student list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/CONTACT_PARENT [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+   A student can have any number of tags (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
 
-### Viewing students contacts as a list : `list`
+
+### 3. Viewing students contacts as a list : `list`
 
 Lists all the students in the student list.
 
 Format: `list`
 
-### Editing a student : `edit`
+
+### 4. Editing a student : `edit`
 
 Edits an existing student in the student list.
 
@@ -132,7 +134,8 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### Locating students by name: `find`
+
+### 5. Locating students by name: `find`
 
 Finds students whose names contain any of the given keywords.
 
@@ -150,7 +153,8 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a student : `delete`
+
+### 6. Deleting a student : `delete`
 
 Deletes the specified student from the student list.
 
@@ -164,7 +168,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Checking a student
+
+### 7. Checking a student : `check`
 
 Displays the information of the student being checked, including their task list and score list.
 
@@ -175,9 +180,10 @@ Format: `check INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `check 2` checks the 2nd student in the student list.
+* `check 2` checks the 2nd student in the student list.
 
-### Adding a task for a student: `addTask`
+
+### 8. Adding a task for a student: `addTask`
 
 Adds a task to a specific student.
 
@@ -196,7 +202,8 @@ Examples:
 * `check 2` followed by `addTask 1 t/Complete A Math Exercise` adds the task `Complete A Math Exercise` to the student
   being checked.
 
-### Deleting a task of a student: `deleteTask`
+
+### 9. Deleting a task of a student: `deleteTask`
 
 Deletes the specified task from the task list of a student.
 
@@ -213,7 +220,8 @@ Examples:
 * `find Betsy` followed by `deleteTask 1 6` deletes the sixth task of the 1st student in the results of the 
 `find` command.
 
-### Marking a task of a student: `markComplete`, `markInProgress`, `markLate`
+
+### 10. Marking a task of a student: `markComplete`, `markInProgress`, `markLate`
 
 Marks the specified task from the task list of a student as complete, in progress or late.
 
@@ -233,7 +241,8 @@ Examples:
 * `find Betsy` followed by `markLate 1 6` marks the sixth task of the 1st student in the results of the
   `find` command as late.
 
-### Adding a score for a student: `addScore`
+
+### 11. Adding a score for a student: `addScore`
 
 Adds a score to a specific student.
 
@@ -259,7 +268,8 @@ Examples:
 * `check 5` followed by `addScore 1 l/CA2 A Math v/50 d/2021-09-09` adds a `CA2 A Math` score with a
   value of `50` and dated `2021-09-09` to the student being checked.
 
-### Deleting a score of a student: `deleteScore`
+
+### 12. Deleting a score of a student: `deleteScore`
 
 Deletes the specified score from the score list of a student.
 
@@ -277,27 +287,42 @@ Examples:
 
 ### Exporting a student's progress : `exportp`
 
-Exports the specified student's progress into a PDF file.
+Exports the specified student progress into a PDF file.
 
 Format: `exportp INDEX [p/FILE PATH TO DIRECTORY]`
 
-* Exports the specified student's scores list and task list in the form of a PDF file.
+* Exports the score list and task list of the specified student (`INDEX`) in the form of a PDF file.
+* The `INDEX` **must be a positive integer** 1, 2, 3, ...
+* If `FILE PATH TO DIRECTORY` is not specified, the PDF file will be saved into the same folder as  `mathutoring.jar`.
+* `FILE PATH TO DIRECTORY` should be a valid path in the desktop.
+* Task list is sorted by status:
+  * 1. 
+* Expected PDF output file: 
 
-### Clearing all entries : `clear`
+Examples:
+
+* `exportp 1`
+* `exportp 1 p/C:\Users\John Doe\Downloads`
+* `exportp 1 p//Users/johndoe/Documents`
+
+### 13. Clearing all entries : `clear`
 
 Clears all entries from the address book.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+
+### 14. Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
+
 ### Saving the data
 
 MATHUTORING data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
 
 ### Editing the data file
 
@@ -306,10 +331,6 @@ MATHUTORING data are saved as a JSON file `[JAR file location]/data/addressbook.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MATHUTORING will discard all data and start with an empty data file at the next run.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
