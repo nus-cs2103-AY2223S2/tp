@@ -302,7 +302,7 @@ Choose your favourite theme !
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MODCheck home folder.
+**A**: Install the app in the other computer. `load` the contents of the previous data file into your new ModCheck.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -310,7 +310,7 @@ Choose your favourite theme !
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                      |
 |------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                              |
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                                                                                                                 |
 | **View**   | `view INDEX`<br> e.g., `view 2`                                                                                                                                                                                                                                                       |
 | **Clear**  | `clear`                                                                                                                                                                                                                                                                               |
 | **Delete** | `delete INDEX` or `delete INDEXES` or `delete NAME` <br> e.g., `delete 3` or `delete 1,2,3` or `delete James`                                                                                                                                                                         |
@@ -321,4 +321,5 @@ Choose your favourite theme !
 | **Filter** | `filter n/NAME` <br> `filter p/PHONE_NUMBER`<br> `filter e/EMAIL_ADDRESS` <br> `filter d/DESCRIPTION` <br> `filter t/TAG` <br> e.g. `filter n/Alex` <br> e.g. `filter p/91031282` <br> e.g. `filter e/royb@example.com` <br> e.g. `filter d/helpful` <br> e.g. `filter t/family` <br> |
 | **Undo**   | `undo`                                                                                                                                                                                                                                                                                |
 | **Redo**   | `redo`                                                                                                                                                                                                                                                                                |
+| **Load**   | `load` OR `load <path>`                                                                                                                                                                                                                                                               |
 | **Export** | `export INDEX`<br> e.g., `export 2`<br/>                                                                                                                                                                                                                                              |
