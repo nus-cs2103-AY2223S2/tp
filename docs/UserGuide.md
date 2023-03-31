@@ -37,7 +37,7 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
   - [3.4 How to Use the CLI](#34-how-to-use-the-cli)
 - [4. Features](#4-features)
   - [4.1 Viewing help: `help`](#41-viewing-help-help)
-- [4.2 Listing all contacts: `list`](#42-listing-all-contacts-list)
+  - [4.2 Listing all contacts: `list`](#42-listing-all-contacts-list)
   - [4.3 Clearing all entries: `clear`](#43-clearing-all-entries-clear)
   - [4.4 Adding a contact: `add`](#44-adding-a-contact-add)
   - [4.5 Editing a contact: `edit`](#45-editing-a-contact-edit)
