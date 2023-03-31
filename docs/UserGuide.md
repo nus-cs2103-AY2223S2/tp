@@ -22,14 +22,14 @@ easy-to-understand explanations and examples.
     - [Adding a person: `add`](#adding-a-person--add)
     - [Importing multiple persons from a CSV file: `importcsv`](#importing-multiple-persons-from-a-csv-file--importcsv)
     - [Listing all persons : `list`](#listing-all-persons--list)
-    - [Copy information to clipboard : `copy`](#copy-information-to-clipboard--copy)
+    - [Copying information to clipboard : `copy`](#copying-information-to-clipboard--copy)
     - [Editing a person : `edit`](#editing-a-person--edit)
     - [Locating persons by name: `find`](#locating-persons-by-name--find)
     - [Locating persons using filters on fields: `filter`](#locating-persons-using-filters-on-fields--filter)
     - [Deleting a person : `delete`](#deleting-a-person--delete)
     - [Clearing all entries : `clear`](#clearing-all-entries--clear)
-    - [Undo last modification : `undo`](#undo-last-modification--undo)
-    - [Favorite a person : `favorite`](#favorite-a-person--favorite)
+    - [Undoing last modification : `undo`](#undoing-last-modification--undo)
+    - [Adding a person to favorites: `favorite`](#adding-a-person-to-favorites--favorite)
     - [Exiting the program : `exit`](#exiting-the-program--exit)
     - [Saving the data](#saving-the-data)
     - [Editing the data file](#editing-the-data-file)
@@ -50,7 +50,8 @@ easy-to-understand explanations and examples.
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+
+![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -165,9 +166,11 @@ The given CSV file must fulfill the following conditions:
 Examples:
 
 - example of a Google Sheet that would be valid once converted to CSV.
-  ![demo sheets](images/demoSheets.png)
+
+![demo sheets](images/demoSheets.png)
 - valid CSV file:
-  ![demo CSV](images/demoCsv.png)
+
+![demo CSV](images/demoCsv.png)
 
 - `importcsv C:\file\6coy_platoon_four_data.csv`
 
@@ -179,7 +182,7 @@ Shows a list of all persons in AIMS.
 
 Format: `list`
 
-### Copy information to clipboard : `copy`
+### Copying information to clipboard : `copy`
 
 Copies the information of a person to the user's clipboard.
 
@@ -203,7 +206,9 @@ Examples:
 
 - Suppose you want to copy the second person, `Bernice Yu`, entering the command `copy 2` will copy all information into
   your clipboard.
-  ![result for 'copy 2'](images/copy2Result.png)
+
+
+![result for 'copy 2'](images/copy2Result.png)
 
 After running the command, the following text is copied into your clipboard.
 
@@ -309,7 +314,7 @@ Clears all entries from AIMS.
 
 Format: `clear`
 
-### Undo last modification : `undo`
+### Undoing last modification : `undo`
 
 Undoes the last modification done to AIMS.
 
@@ -321,7 +326,7 @@ Undoes the last modification done to AIMS.
 
 Format: `undo`
 
-### Favorite a person : `favorite`
+### Adding a person to favorites : `favorite`
 
 Favorites the specified person from AIMS.
 
