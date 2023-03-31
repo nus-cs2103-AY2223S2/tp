@@ -7,6 +7,14 @@ Calidr is a **time-management and scheduling calendar application** for universi
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). Calidr helps you
 manage your time and tasks more effectively.
 
+## How To Use This Guide
+
+Welcome to the user guide for Calidr! This guide provides detailed instructions on how to use the features and functionality of our product. Whether you're a new user getting started with the basics or an experienced user looking for advanced tips and tricks, this guide has everything you need to know.
+
+To get started, read through the Quick Start section to set up the application. Refer to the Definitions section to familiarize yourself with the terminology used in this guide.
+
+If you have any questions or run into problems, check out the FAQ for solutions to commonly faced issues.
+
 * Table of Contents
 {:toc}
 
@@ -79,7 +87,7 @@ manage your time and tasks more effectively.
 
 1. Elements on a calendar are refered to as **Tasks**.
 1. Tasks must have a **title**.
-1. A task can have an optional **description**, **location**, and **comment**.
+1. A task can have an optional **description**, **location**, and multiple **tags(s)**.
 1. Tasks have an associated **priority**.
     1. Priority is one of `HIGH`, `MEDIUM` or `LOW`.
     3. Tasks have a default priority of `MEDIUM`.
@@ -144,6 +152,37 @@ Please refer to the terminology [specified above](#data-terminology) if you are 
   Examples:
     - `event t/ CS2103T Lecture from/ 31-03-2023 1400 to/ 31-03-2023 1600`
     - `event t/ CS2103T Lecture from/ today to/ 31-03-2023 1600 d/ Lecture on UML l/ Online p/ HIGH tag/ CS2103T tag/ Lecture`
+
+#### Editing tasks: `edit`
+
+Edits information about a particular task specified by its index. Edits the title, date-times (*by, from, to*), description, location and tags of the referenced task.
+
+
+A few points to take note of:
+- When modifying an event, fields unique to todo will be parsed as strings, and vice versa.
+- Coming soon: incompatible fields will not be parsed, and therefore, will be ignored.
+
+Format: `edit TASK_INDEX [t/ <title>] [by/ <date-time>] [from/ <date-time>] [to/ <date-time>] [d/ <description>] [l/ <location>] [p/ <priority>] [tag/ <tag>]...`
+
+Examples:
+- `edit 4 from/ 05-03-2023 2000 to/ 06-03-2023 2000 l/ NUS`
+- `edit 2 t/ Essay by/ 04-04-2023 2359 tag/ ES2660`
+
+#### Updating task status
+
+- #### Marking as *done*: `mark`
+  Marks the task specified by its index as *done*.
+
+  Format: `mark TASK_INDEX`
+
+  Example: `mark 3`
+
+- #### Marking as *not done*: `unmark`
+  Marks the task specified by its index as *not done*.
+
+  Format: `unmark TASK_INDEX`
+
+  Example: `unmark 1`
 
 #### Searching and filtering for tasks: `search`
 
@@ -219,8 +258,10 @@ Example: `show 2`
 |-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Todo**    | `todo t/ <title> by/ <date-time> [d/ <description>] [l/ <location>] [p/ <priority>] [tag/ <tag>]...` <br> e.g., `event t/ CS2103T Lecture from/ today to/ 31-03-2023 1600 d/ Lecture on UML l/ Online p/ HIGH tag/ CS2103T tag/ Lecture`                             |
 | **Add Event**   | `event t/ <title> from/ <start-date-time> to/ <end-date-time> [d/ <description>] [l/ <location>] [p/ <priority>] [tag/ <tag>]...` <br> e.g. `event t/ CS2103T Lecture from/ today to/ 31-03-2023 1600 d/ Lecture on UML l/ Online p/ HIGH tag/ CS2103T tag/ Lecture` |
-| **Delete**      | `delete TASK_INDEX`<br> e.g., `delete 2`                                                                                                                                                                                                                             |
-| **Edit**        | `edit TASK_INDEX (OPTION <argument>) ...`<br> e.g.,`edit 4 from/ 05-03-2023 2000 to/ 06-03-2023 2000`                                                                                                                                                                |
+| **Edit**        | `edit TASK_INDEX [t/ <title>] [by/ <date-time>] [from/ <date-time>] [to/ <date-time>] [d/ <description>] [l/ <location>] [p/ <priority>] [tag/ <tag>]...` <br> e.g. `edit 2 t/ Essay by/ 04-04-2023 2359 d/700 words p/ high tag/ ES2660`                            |
+| **Mark**        | `mark TASK_INDEX`<br> e.g., `mark 3`                                                                                                                                                                                                                                 |
+| **Unmark**      | `unmark TASK_INDEX`<br> e.g., `unmark 1`                                                                                                                                                                                                                             |                                                                                                                                                                                                      
+| **Delete**      | `delete TASK_INDEX`<br> e.g., `delete 2`                                                                                                                                                                                                                             |                                                                                                                                                             |
 | **Help**        | `help`                                                                                                                                                                                                                                                               |
 | **Switch Page** | `page LAYOUT`<br> e.g., `page day`                                                                                                                                                                                                                                   |
 | **View Date**   | `view <date-time>`<br> e.g., `view next week`                                                                                                                                                                                                                        |
