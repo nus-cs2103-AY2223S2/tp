@@ -405,8 +405,8 @@ Format: `help`
 
 | Type     | Attribute                 | Prefix   |
 |----------|---------------------------|----------|
-| Fish     | **Name**                  | **n/**   |
-| Fish     | **Last fed date**         | **lfd/** |
+| **Fish** | **Name**                  | **n/**   |
+| **Fish** | **Last fed date**         | **lfd/** |
 | **Fish** | **Species**               | **s/**   |
 | **Fish** | **Feeding Interval**      | **fi/**  |
 | **Fish** | **Tag**                   | **tg/**  |
@@ -416,5 +416,3 @@ Format: `help`
 | **Tank** | **PH reading**            | **ph/**  |
 | **Tank** | **Temperature reading**   | **tp/**  |
 | **All**  | **Tank**                  | **tk/**  |
-
-[]: #listing-tanks-list-tank
