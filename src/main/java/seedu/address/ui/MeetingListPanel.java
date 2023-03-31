@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.MeetingWithPerson;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of meetings.
  */
 public class MeetingListPanel extends UiPart<Region> {
     private static final String FXML = "MeetingListPanel.fxml";

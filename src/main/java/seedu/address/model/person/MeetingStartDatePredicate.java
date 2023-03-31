@@ -1,17 +1,19 @@
 package seedu.address.model.person;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 /**
  * Represents the start date and time to be used to check against
  * {@code Person} list of {@code Meetings}
  */
+
 public class MeetingStartDatePredicate implements Predicate<MeetingWithPerson> {
     /**
-     * Tests that a {@code Person} lives in the given region
+     * Tests that a {@code MeetingWithPerson} starts in given day
      */
-    private LocalDateTime startDate;
+    private LocalDate startDate;
+
 
     /**
      * Constructs a new predicate that tests for the target region <p>
@@ -19,17 +21,13 @@ public class MeetingStartDatePredicate implements Predicate<MeetingWithPerson> {
      *
      * @param startDate target region that predicate will return {@code True} for
      */
-    public MeetingStartDatePredicate(LocalDateTime startDate) {
+    public MeetingStartDatePredicate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
 
-    public boolean test(Meeting m) {
-        return m.getStart().equals(startDate);
+    public boolean test(MeetingWithPerson m) {
+        return m.getStart().toLocalDate().equals(startDate);
     }
 
-    @Override
-    public boolean test(MeetingWithPerson meetingWithPerson) {
-        return false;
-    }
 }
