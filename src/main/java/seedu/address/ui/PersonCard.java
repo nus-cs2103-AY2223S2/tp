@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Module;
 
 /**
@@ -56,6 +57,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane modules;
     @FXML
     private Label remark;
+    @FXML
+    private Label telegram;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -69,6 +72,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getOptionalAddress().map(Address::toString).orElse(null));
         email.setText(person.getOptionalEmail().map(Email::toString).orElse(null));
         remark.setText(person.getOptionalRemark().map(Remark::truncateRemark).orElse(null));
+        telegram.setText(person.getOptionalTelegram().map(Telegram::toString).orElse(null));
         person.getOptionalEducation()
                 .map(education -> new Label("Education: " + education.value))
                 .ifPresent(label -> tags.getChildren().add(setStyleEducationLabel(label)));
@@ -78,7 +82,7 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        List<Label> labels = Arrays.asList(phone, address, email, remark);
+        List<Label> labels = Arrays.asList(phone, address, email, telegram, remark);
         resizeLabels(labels);
         resizeFlowPane(tags);
     }
