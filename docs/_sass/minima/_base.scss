@@ -294,8 +294,7 @@ table {
     font-size: 32px;
   }
   a {
-      color: #0000EE !important;
-      content: attr(href);
+      content: attr(href) !important;
   }
 }
 
