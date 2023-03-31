@@ -564,7 +564,7 @@ To retrieve your contacts after a <code>search</code>, type <code>list</code> in
 
 ## 4.9 Searching for contact information: `search`
 
-Format: `search [KEYWORD]... [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [b/BIRTHDAY_KEYWORD] [ig/INSTAGRAM_KEYWORD] [wa/WHATSAPP_KEYWORD] [tg/TELEGRAM_KEYWORD] [r/REMARK_KEYWORD]... [mod/MODULE_KEYWORD]... [cca/CCA_KEYWORD]... [maj/MAJOR_KEYWORD]...`
+Format: `search [KEYWORD]... [n/NAME_KEYWORD] [p/PHONE_KEYWORD] [e/EMAIL_KEYWORD] [b/BIRTHDAY_KEYWORD] [ig/INSTAGRAM_KEYWORD] [wa/WHATSAPP_KEYWORD] [tg/TELEGRAM_KEYWORD] [r/REMARK_KEYWORD]... [mod/MODULE_KEYWORD]... [cca/CCA_KEYWORD#CCA_POSITION_KEYWORD]... [maj/MAJOR_KEYWORD]...`
 
 > For keywords without a specified field, finds all contacts whose information from any field contains the given keywords.<br>For keywords in a specified field, finds all contacts whose field contains given keyword.
 
@@ -592,6 +592,7 @@ From the earlier example, if you have 2 contacts, one with the name January, and
 * `search n\alex n\may` returns all contacts whose name contains the keyword `alex` and whose birthday contains the keyword `may`
 * `search mod\cs mod\ma` returns all contacts who have at least one module which contains the keyword `cs` and at least one module which contain the keyword `ma`
 * `search ig\al cca\chess` returns all contacts whose instagram handle contains the keyword `al` and who has at least one cca with the word `chess` in it
+* `search cca\#president` returns all contacts who have a position that contains the keyword `president` in at least one cca
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
 * The keywords are case-insensitive! This means that `search january`, `search JANUARY` and `search jAnUaRy` will all return the contacts whose information fields contain the keyword `january`.
