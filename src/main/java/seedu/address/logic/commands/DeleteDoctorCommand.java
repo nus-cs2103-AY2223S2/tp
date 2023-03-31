@@ -17,7 +17,7 @@ public class DeleteDoctorCommand extends Command {
     public static final String COMMAND_WORD = "del-doc";
     public static final String SHORTHAND_COMMAND_WORD = "dd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
             + ": Deletes the doctor identified by the index number used in the displayed doctor list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";

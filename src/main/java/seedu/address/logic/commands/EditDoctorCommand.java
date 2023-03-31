@@ -38,7 +38,8 @@ public class EditDoctorCommand extends Command {
     public static final String SHORTHAND_COMMAND_WORD = "ed";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the doctor identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+            + ": Edits the details of the doctor identified "
             + "by the index number used in the displayed doctors list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
