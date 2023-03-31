@@ -3,11 +3,15 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -22,24 +26,37 @@ public class FindCommandParser implements Parser<FindCommand> {
         String keyWords = "";
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, Prefix.NAME, Prefix.PHONE, Prefix.EMAIL,
-                        Prefix.ADDRESS, Prefix.TELEGRAM_HANDLE,
+                        Prefix.STATION, Prefix.TELEGRAM_HANDLE,
                         Prefix.GROUP_TAG, Prefix.MODULE_TAG);
-        if (!onePrefixPresent(argMultimap, Prefix.NAME, Prefix.ADDRESS, Prefix.PHONE, Prefix.EMAIL,
+        if (!atLeastOnePrefixPresent(argMultimap, Prefix.NAME, Prefix.STATION, Prefix.PHONE, Prefix.EMAIL,
                 Prefix.TELEGRAM_HANDLE,
                 Prefix.GROUP_TAG, Prefix.MODULE_TAG)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        Prefix prefixPresent = findPrefixPresent(argMultimap, Prefix.NAME, Prefix.ADDRESS, Prefix.PHONE, Prefix.EMAIL,
+        List<Prefix> prefixPresent = findPrefixPresent(argMultimap, Prefix.NAME, Prefix.STATION, Prefix.PHONE,
+                Prefix.EMAIL,
                 Prefix.TELEGRAM_HANDLE,
-                Prefix.GROUP_TAG, Prefix.MODULE_TAG);
-        if (argMultimap.getValue(prefixPresent).isPresent()) {
-            keyWords = argMultimap.getValue(prefixPresent).get();
-        }
-        String[] keyWordArr = trimArgs(keyWords);
+                Prefix.GROUP_TAG,
+                Prefix.MODULE_TAG);
 
-        return new FindCommand(new ContainsKeywordsPredicate(Arrays.asList(keyWordArr), prefixPresent));
+        Predicate<Person> predicate = null;
+        for (Prefix prefix : prefixPresent) {
+            if (argMultimap.getValue(prefix).isPresent()) {
+                keyWords = argMultimap.getValue(prefix).get();
+            }
+
+            String[] keyWordArr = trimArgs(keyWords);
+            if (predicate == null) {
+                predicate = new ContainsKeywordsPredicate(Arrays.asList(keyWordArr), prefix);
+            } else {
+                predicate = predicate.and(new ContainsKeywordsPredicate(Arrays.asList(keyWordArr), prefix));
+            }
+        }
+
+
+        return new FindCommand(predicate);
     }
 
     private String[] trimArgs(String args) throws ParseException {
@@ -52,18 +69,17 @@ public class FindCommandParser implements Parser<FindCommand> {
         return trimmedArgs.split("\\s+");
     }
 
-    private static boolean onePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static boolean atLeastOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         long count = Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
                 .count();
-        return count == 1;
+        return count >= 1;
     }
 
-    private static Prefix findPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    private static List<Prefix> findPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
-                .findFirst()
-                .orElse(null);
+                .collect(Collectors.toList());
     }
 
 }

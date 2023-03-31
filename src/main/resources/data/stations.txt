@@ -1,5 +1,3 @@
-NUS|1.29551|103.77693
-National University of Singapore|1.29551|103.77693
 Choa Chu Kang|1.385|103.74444
 Fajar|1.38444|103.77083
 Segar|1.38778|103.76944

@@ -1,7 +1,7 @@
 package seedu.address.model.util;
 
-import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,12 +24,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.EduMate;
 import seedu.address.model.ReadOnlyEduMate;
 import seedu.address.model.commitment.Lesson;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Station;
 import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.person.User;
 import seedu.address.model.tag.GroupTag;
@@ -112,18 +113,18 @@ public class SampleDataUtil {
         Name name = new Name(personDataList.get(0));
         Phone phone = new Phone(personDataList.get(1));
         Email email = new Email(personDataList.get(2));
-        Address address = new Address(personDataList.get(3));
+        Station station = new Station(personDataList.get(3));
         TelegramHandle telegramHandle = new TelegramHandle(personDataList.get(4));
         Set<GroupTag> groupTagSet = getGroupTagSetFromUnsplitted(personDataList.get(5));
 
-        Person person = new Person(name, phone, email, address,
+        Person person = new Person(name, phone, email, station,
                 telegramHandle, contactIndex, groupTagSet, new HashSet<>());
 
         Set<ModuleTag> moduleTagSet = getModuleTagSetFromLines(personDataList.get(6).split(","));
 
         assignModuleTagsToPerson(person, moduleTagSet);
 
-        logger.info(String.format("Person parsed: %s", person));
+        logger.log(Level.FINE, String.format("Person parsed: %s", person));
 
         return person;
     }
@@ -135,7 +136,7 @@ public class SampleDataUtil {
         return new User(new Name("Linus Richards"),
                 new Phone("90102030"),
                 new Email("linusrichards@gmail.com"),
-                new Address("National University of Singapore"),
+                new Station("Kent Ridge"),
                 new TelegramHandle("@linusrichards"),
                 new ContactIndex(0),
                 getGroupTagSet(),
@@ -151,11 +152,11 @@ public class SampleDataUtil {
     }
 
     private static Optional<ModuleTag> getModuleTagFromLine(String tag) {
-        logger.info(String.format("Tag to be formatted: %s", tag));
+        logger.log(Level.FINE, String.format("Tag to be formatted: %s", tag));
 
         try {
             ModuleTag moduleTag = ParserUtil.parseModuleTag(tag);
-            logger.info(String.format("Module Tag parsed: %s", moduleTag));
+            logger.log(Level.FINE, String.format("Module Tag parsed: %s", moduleTag));
             return Optional.of(moduleTag);
         } catch (ParseException pe) {
             return Optional.empty();
@@ -186,7 +187,10 @@ public class SampleDataUtil {
      * Returns a sample array of Persons.
      */
     public static List<Person> getSamplePersons() throws FileNotFoundException {
-        File sampleDataFile = new File("src/main/resources/data/sampleData.txt");
+        InputStreamReader sampleDataFile =
+                new InputStreamReader(
+                        SampleDataUtil.class.getClassLoader()
+                                .getResourceAsStream("data/sampleData.txt"));
         Scanner scanner = new Scanner(sampleDataFile);
         List<String> lines = new ArrayList<>();
 

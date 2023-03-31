@@ -9,29 +9,43 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+<HBox id="cardPane" fx:id="cardPane" styleClass="no-background" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane styleClass="no-background" HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
-            <HBox alignment="CENTER_LEFT" spacing="5" styleClass="person-card-box">
-                <Label fx:id="id" styleClass="person-card-upper-box-element">
+        <VBox alignment="CENTER_LEFT" styleClass="meet-list-card" GridPane.columnIndex="0">
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="id" styleClass="meet-list-bold-text" text="\$id">
                     <minWidth>
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
                 </Label>
-                <Label fx:id="name" styleClass="person-card-upper-box-element" text="\$first" wrapText="true">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font></Label>
+                <Label fx:id="place" styleClass="meet-list-regular-text" text="\$location" wrapText="true">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin></Label>
+            <VBox.margin>
+               <Insets top="7.0" />
+            </VBox.margin>
             </HBox>
-            <FlowPane fx:id="allTimings">
+            <FlowPane fx:id="time" styleClass="meet-list-regular-text">
                 <VBox.margin>
-                    <Insets bottom="5.0" top="5.0" />
+                    <Insets top="5.0" />
                 </VBox.margin>
+            <padding>
+               <Insets bottom="5.0" />
+            </padding>
             </FlowPane>
         </VBox>
         <rowConstraints>

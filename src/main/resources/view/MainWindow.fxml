@@ -12,15 +12,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root maxHeight="680.0" maxWidth="1150.0" minHeight="680.0" minWidth="1150.0" onCloseRequest="#handleExit" title="eduMate" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="680.0" maxWidth="1150.0" minHeight="680.0" minWidth="1150.0" onCloseRequest="#handleExit"
+         title="eduMate" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19"
+         xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/glasses_icon.png" />
+        <Image url="@/images/glasses_icon.png"/>
     </icons>
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@Extensions.css" />
-                <URL value="@MainWindow.css" />
+                <URL value="@Extensions.css"/>
+                <URL value="@MainWindow.css"/>
             </stylesheets>
 
             <HBox VBox.vgrow="ALWAYS">
@@ -35,8 +37,7 @@
                         </VBox.margin>
                     </ImageView>
                     <Button fx:id="profileButton" mnemonicParsing="false" onAction="#handleShowUserProfile"
-                            prefHeight="25.0" prefWidth="54.0" style="-fx-text-fill: white;"
-                            styleClass="side-button">
+                            prefHeight="25.0" prefWidth="54.0" styleClass="side-button">
                         <graphic>
                             <ImageView fitHeight="32.0" fitWidth="30.0" preserveRatio="true"
                                        style="-fx-opacity: 0.5;">
@@ -99,8 +100,7 @@
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="24.0" prefWidth="179.0"
                                styleClass="profile-text-light" text="Keep your details up to date!"/>
                         <Button fx:id="profileButton1" mnemonicParsing="false" onAction="#handleShowUserProfile"
-                                prefHeight="25.0" prefWidth="54.0" style="-fx-text-fill: white;"
-                                styleClass="side-button">
+                                prefHeight="25.0" prefWidth="54.0" styleClass="side-button">
                             <graphic>
                                 <Label fx:id="userName" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity"
                                        maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0"
@@ -109,7 +109,7 @@
                         </Button>
                     </VBox>
                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                     </padding>
                 </VBox>
                 <VBox minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" HBox.hgrow="ALWAYS">
@@ -135,35 +135,35 @@
                         </VBox>
                         <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="550.0"
                               styleClass="right-pane" HBox.hgrow="ALWAYS">
-                            <VBox fx:id="meetPlaceholder" minHeight="0.0" minWidth="-Infinity"
-                                  prefHeight="245.0" prefWidth="519.0" styleClass="meet-placeholder"
-                                  VBox.vgrow="ALWAYS">
+                            <VBox fx:id="meetPlaceholder" maxHeight="230.0" maxWidth="528.0" minWidth="-Infinity"
+                                  prefHeight="199.0" prefWidth="528.0" styleClass="meet-placeholder" VBox.vgrow="NEVER">
                                 <VBox.margin>
                                     <Insets bottom="15.0" left="10.0" right="10.0" top="10.0"/>
                                 </VBox.margin>
                             </VBox>
-                            <HBox prefHeight="184.0" prefWidth="528.0" VBox.vgrow="ALWAYS">
+                            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                  prefHeight="269.0" prefWidth="550.0" VBox.vgrow="ALWAYS">
                                 <VBox.margin>
                                     <Insets bottom="10.0"/>
                                 </VBox.margin>
                                 <opaqueInsets>
                                     <Insets left="10.0" right="10.0"/>
                                 </opaqueInsets>
-                                <StackPane fx:id="userProfilePlaceholder" maxWidth="-Infinity"
-                                           minWidth="-Infinity" prefHeight="185.0" prefWidth="285.0"
-                                           styleClass="user-profile-placeholder" HBox.hgrow="ALWAYS">
+                                <StackPane fx:id="userProfilePlaceholder" minHeight="-Infinity" minWidth="-Infinity"
+                                           prefHeight="264.0" prefWidth="285.0" styleClass="user-profile-placeholder"
+                                           HBox.hgrow="NEVER">
                                     <HBox.margin>
                                         <Insets left="10.0" right="10.0"/>
                                     </HBox.margin>
                                 </StackPane>
-                                <StackPane fx:id="scheduledMeetsPlaceholder" maxWidth="-Infinity"
-                                           minWidth="-Infinity" prefHeight="185.0" prefWidth="235.0"
-                                           styleClass="user-profile-placeholder" HBox.hgrow="SOMETIMES"/>
+                                <StackPane fx:id="scheduledMeetsPlaceholder" minHeight="-Infinity" minWidth="-Infinity"
+                                           prefHeight="264.0" prefWidth="235.0" styleClass="user-profile-placeholder"
+                                           HBox.hgrow="NEVER"/>
                             </HBox>
-                            <StackPane fx:id="resultDisplayPlaceholder" alignment="BOTTOM_RIGHT"
-                                       maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                                       minWidth="-Infinity" prefHeight="59.0" prefWidth="538.0"
-                                       styleClass="result-display-placeholder" VBox.vgrow="NEVER">
+                            <StackPane fx:id="resultDisplayPlaceholder" alignment="BOTTOM_RIGHT" maxHeight="-Infinity"
+                                       maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0"
+                                       prefWidth="538.0" styleClass="result-display-placeholder" VBox.vgrow="NEVER">
+
                                 <padding>
                                     <Insets top="5.0"/>
                                 </padding>

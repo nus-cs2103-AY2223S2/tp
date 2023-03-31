@@ -64,6 +64,8 @@ public class MeetCommand extends Command {
         model.setRecommendations(recommendations);
         model.updateObservableRecommendationList();
 
+        model.setParticipants(indices);
+
         return new CommandResult("");
     }
 

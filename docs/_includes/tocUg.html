@@ -1,19 +1,145 @@
-<a href="#quick-start" id="markdown-toc-quick-start">Quick start</a>
+<a href="#quick-start"><strong>Quick start</strong></a><br>
+<a href="#table-of-contents"><strong>Table of Contents</strong></a>
 
 <details>
-    <summary><a href="#features" id="markdown-toc-features">Features</a></summary>
-
+    <summary><a href="#overview"><strong>Overview</strong></a></summary>
     <ul>
-        <li><a href="#viewing-help--help" id="markdown-toc-viewing-help--help">Viewing help : <code class="language-plaintext highlighter-rouge">help</code></a></li>
-        <li><a href="#viewing-user-profile-user" id="markdown-toc-viewing-user-profile-user">Viewing user profile: <code class="language-plaintext highlighter-rouge">user</code></a></li>
-        <li><a href="#listing-all-persons--list" id="markdown-toc-listing-all-persons--list">Listing all persons : <code class="language-plaintext highlighter-rouge">list</code></a></li>
-        <li><a href="#adding-a-contact-to-list--add" id="markdown-toc-adding-a-contact-to-list--add">Adding a contact to list : <code class="language-plaintext highlighter-rouge">add</code></a></li>
-        <li><a href="#deleting-a-contact-delete" id="markdown-toc-deleting-a-contact-delete">Deleting a contact: <code class="language-plaintext highlighter-rouge">delete</code></a></li>
-        <li><a href="#tagging-a-module-to-contact--tag" id="markdown-toc-tagging-a-module-to-contact--tag">Tagging a module to contact : <code class="language-plaintext highlighter-rouge">tag</code></a></li>
-        <li><a href="#untagging-a-module-from-an-existing-contact--untag" id="markdown-toc-untagging-a-module-from-an-existing-contact--untag">Untagging a module from an existing contact : <code class="language-plaintext highlighter-rouge">untag</code></a></li>
-        <li><a href="#locating-persons-by-keyowrds--find" id="markdown-toc-locating-persons-by-keyowrds--find">Locating persons by keywords : <code class="language-plaintext highlighter-rouge">find</code></a></li>
-        <li><a href="#view-contacts--view" id="markdown-toc-view-contacts--view">View Contacts : <code class="language-plaintext highlighter-rouge">view</code></a></li>
+        <li><a href="#what-is-edumate">What is EduMate?</a></li>
+        <li><a href="#understanding-the-symbols">Understanding the Symbols</a></li>
+        <li><a href="#glossary">Glossary</a></li>
     </ul>
 </details>
-<a href="#faq" id="markdown-toc-faq">FAQ</a><br>
-<a href="#command-summary" id="markdown-toc-command-summary">Command summary</a>
+
+<details>
+    <summary><a href="#quick-start"><strong>Quick Start</strong></a></summary>
+    <ul>
+        <li><a href="#system-requirements">System Requirements</a></li>
+        <li><a href="#installation-instructions">Installation Instructions</a></li>
+        <li><a href="#try-it-out-recommended">Try it out! (Recommended)</a></li>
+        <li><a href="#getting-help">Getting Help</a></li>
+    </ul>
+</details>
+
+<details>
+    <summary><a href="#user-interface"><strong>User Interface</strong></a></summary>
+    <ul>
+        <li><a href="#person-list">Person List</a></li>
+        <li><a href="#profile-panel">Profile Panel</a></li>
+        <li><a href="#command-box">Command Box</a></li>
+        <li><a href="#command-response">Command Response</a></li>
+        <li><a href="#meet-up-recommendation-panel">Meet Up Recommendation Panel</a></li>
+        <li><a href="#scheduled-meet-up-panel">Scheduled Meet Up Panel</a></li>
+    </ul>
+</details>
+
+<a href="#set-your-own-profile"><strong>Set Your Own Profile</strong></a>
+
+<details>
+    <summary><a href="#commands"><strong>Commands</strong></a></summary>
+    <ul>
+        <li><a href="#how-to-interpret-the-command-format">How to interpret the command format</a></li>
+        <li><a href="#attributes">Attributes</a></li>
+        <li>
+            <details>
+                <summary><a href="#basic-commands">Basic Commands</a></summary>
+                <ul>
+                    <li><a href="#add-a-contact-add">Add a contact <code class="language-plaintext highlighter-rouge">add</code></a>
+                    </li>
+                    <li><a href="#view-a-contacts-profile-view">View a contact’s profile <code
+                            class="language-plaintext highlighter-rouge">view</code></a></li>
+                    <li><a href="#edit-a-contacts-details-edit">Edit a contact’s details <code
+                            class="language-plaintext highlighter-rouge">edit</code></a></li>
+                    <li><a href="#delete-a-contact-delete">Delete a contact <code
+                            class="language-plaintext highlighter-rouge">delete</code></a></li>
+                    <li><a href="#add-a-label-to-a-contact-tag">Add a label to a contact <code
+                            class="language-plaintext highlighter-rouge">tag</code></a></li>
+                    <li><a href="#remove-a-label-from-a-contact-untag">Remove a label from a contact <code
+                            class="language-plaintext highlighter-rouge">untag</code></a></li>
+                    <li><a href="#listing-all-your-contacts-list">Listing all your contacts <code
+                            class="language-plaintext highlighter-rouge">list</code></a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary><a href="#advanced-commands">Advanced Commands</a></summary>
+                <ul>
+                    <li>
+                        <details>
+                            <summary><a href="#search-commands">Search Commands</a></summary>
+                            <ul>
+                                <li><a href="#filter-contacts-by-keywords-find">Filter contacts by keywords <code
+                                        class="language-plaintext highlighter-rouge">find</code></a></li>
+                                <li><a href="#arrange-contacts-based-on-criteria-sort">Arrange contacts based on
+                                    criteria <code class="language-plaintext highlighter-rouge">sort</code></a></li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <details>
+                            <summary><a href="#storage-commands">Storage Commands</a></summary>
+                            <ul>
+                                <li><a href="#save-a-copy-of-edumate-save">Save a copy of EduMate <code
+                                        class="language-plaintext highlighter-rouge">save</code></a></li>
+                                <li><a href="#load-a-copy-of-edumate-load">Load a copy of EduMate <code
+                                        class="language-plaintext highlighter-rouge">load</code></a></li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <details>
+                            <summary><a href="#meet-commands">Meet Commands</a></summary>
+                            <ul>
+                                <li><a href="#meet-commands">Suggest places to meet
+                                    with your contacts <code
+                                            class="language-plaintext highlighter-rouge">meet</code></a></li>
+                            </ul>
+                        </details>
+                    </li>
+
+                    <li>
+                        <details>
+                            <summary><a href="#schedule-commands">Schedule Commands</a></summary>
+
+                            <ul>
+                                <li><a href="#organise-a-meet-up-organise">Schedule a meet up with your contacts <code class="language-plaintext highlighter-rouge">organise</code></a>
+                                </li>
+
+                                <li><a href="#unorganise-a-meet-up-unorganise">Remove a meet up with your contacts<code class="language-plaintext highlighter-rouge">unorganise</code> </a></li>
+
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+            </details>
+        </li>
+
+        <li>
+            <details>
+                <summary><a href="#other-commands">Other Commands</a></summary>
+                <ul>
+                    <li><a href="#exit-the-application">Exit the application</a></li>
+                </ul>
+            </details>
+        </li>
+    </ul>
+</details>
+
+<a href="#faq"><strong>FAQ</strong></a>
+
+<details>
+    <summary><a href="#summary"><strong>Summary</strong></a></summary>
+    <ul>
+        <li><a href="#prefixes">Prefixes</a></li>
+        <li><a href="#command-summary">Command Summary</a></li>
+    </ul>
+</details>
+
+<details>
+    <summary><a href="#troubleshooting"><strong>Troubleshooting</strong></a></summary>
+    <ul>
+        <li><a href="#how-to-check-your-java-version">How to check your Java version</a></li>
+    </ul>
+</details>

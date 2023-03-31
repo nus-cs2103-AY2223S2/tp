@@ -14,11 +14,11 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Station;
 import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
@@ -27,7 +27,7 @@ public class ParserUtilTest {
 
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_STATION = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TELEGRAM = "hellothere";
     private static final String INVALID_GROUP = "#friend";
@@ -35,7 +35,7 @@ public class ParserUtilTest {
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "Rochor";
+    private static final String VALID_STATION = "Rochor";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TELEGRAM = "@rachelwalker";
     private static final String VALID_GROUP_1 = "friend";
@@ -127,26 +127,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseStation_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseStation((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseStation_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseStation(INVALID_STATION));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseStation_validValueWithoutWhitespace_returnsStation() throws Exception {
+        Station expectedStation = new Station(VALID_STATION);
+        assertEquals(expectedStation, ParserUtil.parseStation(VALID_STATION));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseStation_validValueWithWhitespace_returnsTrimmedStation() throws Exception {
+        String stationWithWhitespace = WHITESPACE + VALID_STATION + WHITESPACE;
+        Station expectedStation = new Station(VALID_STATION);
+        assertEquals(expectedStation, ParserUtil.parseStation(stationWithWhitespace));
     }
 
     @Test

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="261px" preserveAspectRatio="none" style="width:309px;height:261px;background:#FFFFFF;" version="1.1" viewBox="0 0 309 261" width="309px" zoomAndPan="magnify"><defs/><g><!--MD5=[a53f52562f589408082301437dd9ab5b]
+class Timetable--><g id="elem_Timetable"><rect codeLine="8" fill="#D42E12" height="26.0986" id="Timetable" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="69" x="112" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="63" x="115" y="25.1318">Timetable</text></g><!--MD5=[b22c4d9db343cab2da54871f588c4b5e]
+class HourBlock--><g id="elem_HourBlock"><rect codeLine="10" fill="#D42E12" height="26.0986" id="HourBlock" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="71" x="15" y="118"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="65" x="18" y="136.1318">HourBlock</text></g><!--MD5=[cff4d1dfabf1e80e04b31c5c669534b5]
+class Day--><g id="elem_Day"><rect codeLine="11" fill="#D42E12" height="42.1973" id="Day" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="118" x="184.5" y="110"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="112" x="187.5" y="128.1318">&lt;&lt;enumeration&gt;&gt;</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="25" x="231" y="144.2305">Day</text></g><!--MD5=[52c8b682a39acc8c73dc0876e2c18c9e]
+class Commitment--><g id="elem_Commitment"><rect codeLine="12" fill="#D42E12" height="26.0986" id="Commitment" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="87" x="7" y="229"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="81" x="10" y="247.1318">Commitment</text></g><!--MD5=[b9976c2a6aebe3a78d671940df4a4f3d]
+link Day to Timetable--><g id="link_Day_Timetable"><path codeLine="14" d="M225.45,109.72 C205.41,87.2 173.73,51.59 157.25,33.08 " fill="none" id="Day-Timetable" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="#000000" points="205.8239,75.3905,202.0064,66.6797,197.6154,70.5871,205.8239,75.3905" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="211.5" y="76.5684">has</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="192.9984" y="99.2099">5</text></g><!--MD5=[c7efcc54c72ea71950f144388f4e9d2d]
+reverse link Timetable to HourBlock--><g id="link_Timetable_HourBlock"><path codeLine="15" d="M126.28,43.96 C106.54,66.38 77.24,99.64 61.48,117.53 " fill="none" id="Timetable-backto-HourBlock" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="#D42E12" points="134.86,34.22,127.8934,36.082,126.9328,43.2288,133.8993,41.3668,134.86,34.22" style="stroke:#D42E12;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53" x="58.7269" y="53.6193">consists</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="13" x="76.7269" y="68.9299">of</text></g><!--MD5=[e9e28c0297c5b70b94ab28ab80ea5909]
+link HourBlock to Day--><g id="link_HourBlock_Day"><path codeLine="16" d="M86.35,131 C112,131 147.25,131 177.88,131 " fill="none" id="HourBlock-to-Day" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="#D42E12" points="182.82,131,173.82,127,177.82,131,173.82,135,182.82,131" style="stroke:#D42E12;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="62" x="104.25" y="124.5684">occurs on</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="8" x="168.5746" y="127.7077">1</text></g><!--MD5=[e007f5f28b260b4f08573abe82f7eded]
+link HourBlock to Commitment--><g id="link_HourBlock_Commitment"><path codeLine="17" d="M50.5,144.08 C50.5,162.97 50.5,199.64 50.5,222.06 " fill="none" id="HourBlock-to-Commitment" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="#D42E12" points="50.5,227.02,54.5,218.02,50.5,222.02,46.5,218.02,50.5,227.02" style="stroke:#D42E12;stroke-width:1.1;"/><polygon fill="#000000" points="55.5,195.6553,58.4389,186.6102,52.5611,186.6102,55.5,195.6553" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="64.5" y="195.5684">contains</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="28" x="17.1625" y="218.1439">0...1</text></g><!--MD5=[673b558b365f25c114e92f2e42f69230]
+@startuml
+'https://plantuml.com/class-diagram
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+class Timetable
+
+class HourBlock
+enum "<<enumeration>>\nDay" as Day
+class Commitment
+
+Day "5    " - -right- - Timetable : has <
+HourBlock -up-*"consists   \nof    " Timetable
+HourBlock - - -right- - -> "  1" Day : occurs on
+HourBlock - -> "0...1" Commitment : contains >
+
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #9900AA
+    Color #9900AA
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+skinparam sequenceReferenceBackgroundColor #C7CEC9
+
+hide footbox
+hide members
+hide circle
+skinparam arrowThickness 1.1
+skinparam arrowColor #D42E12
+skinparam classBackgroundColor #D42E12
+
+class Timetable
+
+class HourBlock
+enum "<<enumeration>>\nDay" as Day
+class Commitment
+
+Day "5    " - -right- - Timetable : has <
+HourBlock -up-*"consists   \nof    " Timetable
+HourBlock - - -right- - -> "  1" Day : occurs on
+HourBlock - -> "0...1" Commitment : contains >
+
+@enduml
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

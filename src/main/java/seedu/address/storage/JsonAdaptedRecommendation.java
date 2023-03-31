@@ -64,6 +64,7 @@ public class JsonAdaptedRecommendation {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, TimePeriod.class.getSimpleName()));
         }
+
         final TimePeriod modelTimePeriod = timePeriod.toModelType();
 
         final ContactIndex modelContactIndex = new ContactIndex(index);

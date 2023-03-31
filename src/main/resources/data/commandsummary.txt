@@ -1,0 +1,59 @@
+Prefix:
+------------------------------------------------------------------------------------------------
+n/NAME
+p/PHONE
+s/STATION
+e/EMAIL
+t/TELEGRAM
+g/[GROUP...] : Accepts multiple keywords
+m/[MODULE…] : Accepts multiple keywords
+====================================================================
+
+Command Usage:
+------------------------------------------------------------------------------------------------
+exit : Exits the application
+------------------------------------------------------------------------------------------------
+help : Displays help window
+------------------------------------------------------------------------------------------------
+add n/NAME : Adds a contact, name is compulsory
+add n/NAME p/PHONE s/STATION e/EMAIL t/TELEGRAM [g/GROUP]… [m/MODULE]…
+------------------------------------------------------------------------------------------------
+edit INDEX [z/FIELD]... : Edits the fields for the contact at index
+edit [z/FIELD] : Edits your user profile
+------------------------------------------------------------------------------------------------
+view : Views your profile
+view INDEX : Views the contact at index
+view n/FULLNAME	: Views the contact with name
+------------------------------------------------------------------------------------------------
+delete INDEX : Deletes contact at index
+------------------------------------------------------------------------------------------------
+tag CONTACT_INDEX m/MODULE_TAG : Tags the contact with the module tag
+tag m/MODULE_TAG : Tags your user profile with module tag
+------------------------------------------------------------------------------------------------
+untag CONTACT_INDEX m/MODULE_TAG : Tags the contact with the module tag
+untag m/MODULE_TAG : Tags your user profile with module tag
+------------------------------------------------------------------------------------------------
+sample NUMBER : Generates a sample list of contacts
+------------------------------------------------------------------------------------------------
+find z/[FIELD] [MORE_FIELDS]... : Accepts only one Prefix, accepts multiple keywords
+------------------------------------------------------------------------------------------------
+sort : Sorts the contacts by their indices
+sort z/a : Sorts the contacts by their z attribute in ascending order
+sort z/d : Sorts the contacts by their z attribute in descending order
+sort z/	: Sorts the contacts by their z attribute based on the default order
+sort z1/ z2/ : Sorts the contacts by their z1 attribute, and breaks ties using their z2 attribute
+sort [z/]... : Sorts the contacts by multiple attributes
+------------------------------------------------------------------------------------------------
+save FILENAME : Saves your data into a file at FILENAME.json
+------------------------------------------------------------------------------------------------
+load FILENAME : Loads your data from a file at FILENAME.json
+------------------------------------------------------------------------------------------------
+meet [INDEX]... : Suggests locations to meet with contacts at the indexes
+eat [INDEX]... : Suggests locations to eat with contacts at the indexes
+study [INDEX]... : Suggests locations to study with contacts at the indexes
+====================================================================
+
+Tips:
+------------------------------------------------------------------------------------------------
+Press UP key when textfield is selected : Loads previous command into textfield
+Press DOWN key when textfield is selected : Loads next command into textfield

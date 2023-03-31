@@ -1,6 +1,23 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.tag.util.TypicalModuleTag.CFG1002_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2040S_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS2101_KE;
+import static seedu.address.model.tag.util.TypicalModuleTag.CS3245_F;
+import static seedu.address.model.tag.util.TypicalModuleTag.LAJ1201_F;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2101_MON_8AM_2HR;
+import static seedu.address.model.timetable.util.TypicalLesson.CS2101_THU_8AM_2HR;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALBERT;
+import static seedu.address.testutil.TypicalPersons.ISAAC;
+import static seedu.address.testutil.TypicalPersons.OWEN;
+import static seedu.address.testutil.TypicalPersons.getContactIndexOfPerson;
+import static seedu.address.testutil.TypicalPersons.getPersonFromIndexHandler;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
 
 import java.util.HashSet;
@@ -24,90 +41,185 @@ import seedu.address.model.tag.ModuleTag;
 public class TagCommandTest {
     private final Model model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
     private final IndexHandler indexHandler = new IndexHandler(model);
+    private final TagCommand tagCommand =
+            new TagCommand(new ContactIndex(1), Set.of(CS2040S_F), TagType.MODULE);
 
     @Test
-    public void execute_addTwoModulesToAng() throws CommandException {
+    public void execute_addNewNonClashingModuleTags_success() {
         Set<ModuleTag> modulesToAdd = new HashSet<>();
-        modulesToAdd.add(new ModuleTag("CS1234"));
-        modulesToAdd.add(new ModuleTag("CS2345"));
+        modulesToAdd.add(CS2040S_F);
+        modulesToAdd.add(CS3245_F);
 
-        ContactIndex index2 = new ContactIndex(2);
+        Person isaacToUpdate = getPersonFromIndexHandler(indexHandler, ISAAC);
+        ContactIndex indexIsaac = getContactIndexOfPerson(ISAAC);
 
-        TagCommand tag2 = new TagCommand(index2, modulesToAdd, TagType.MODULE);
-        tag2.execute(model);
-        Person personToEdit2 = indexHandler.getPersonByIndex(index2).orElseThrow(() ->
-                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        Set<ModuleTag> isaacModuleTags = new HashSet<>(isaacToUpdate.getImmutableModuleTags());
 
-        Set<ModuleTag> tags2 = new HashSet<>();
-        tags2.add(new ModuleTag("CS2108"));
-        tags2.add(new ModuleTag("GEN2061"));
-        tags2.add(new ModuleTag("CS2107"));
-        tags2.add(new ModuleTag("DSA2102"));
-        tags2.add(new ModuleTag("CS2102"));
-        tags2.add(new ModuleTag("CS2106"));
-        tags2.add(new ModuleTag("CS1234"));
-        tags2.add(new ModuleTag("CS2345"));
-        assertEquals(personToEdit2.getImmutableModuleTags(), tags2);
+        assertFalse(isaacModuleTags.contains(CS2040S_F));
+        assertFalse(isaacModuleTags.contains(CS3245_F));
 
-        UntagCommand untag2 = new UntagCommand(index2, modulesToAdd, TagType.MODULE);
-        untag2.execute(model);
+        isaacModuleTags.add(CS2040S_F);
+        isaacModuleTags.add(CS3245_F);
+
+        TagCommand tagIsaac = new TagCommand(indexIsaac, modulesToAdd, TagType.MODULE);
+        assertDoesNotThrow(() -> tagIsaac.execute(model));
+
+        Person updatedIsaac = getPersonFromIndexHandler(indexHandler, ISAAC);
+
+        assertEquals(updatedIsaac.getImmutableModuleTags(), isaacModuleTags);
     }
 
     @Test
-    public void execute_addOneModuleToAlbert() throws CommandException {
-        Set<ModuleTag> moduleToAdd = new HashSet<>();
-        moduleToAdd.add(new ModuleTag("CS1234"));
+    void execute_addOldClashingModuleTags_throwsCommandException() {
+        Set<ModuleTag> modulesToAdd = new HashSet<>();
+        modulesToAdd.add(LAJ1201_F);
 
-        ContactIndex index1 = new ContactIndex(1);
+        Person isaacToUpdate = getPersonFromIndexHandler(indexHandler, ISAAC);
+        ContactIndex indexIsaac = getContactIndexOfPerson(ISAAC);
 
-        TagCommand tag1 = new TagCommand(index1, moduleToAdd, TagType.MODULE);
-        tag1.execute(model);
-        Person personToEdit1 = indexHandler.getPersonByIndex(index1).orElseThrow(() ->
-                new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+        Set<ModuleTag> isaacModuleTags = new HashSet<>(isaacToUpdate.getImmutableModuleTags());
+        assertTrue(isaacModuleTags.contains(LAJ1201_F));
 
-        Set<ModuleTag> tags1 = new HashSet<>();
-        tags1.add(new ModuleTag("CS2105"));
-        tags1.add(new ModuleTag("CS2104"));
-        tags1.add(new ModuleTag("CS2103"));
-        tags1.add(new ModuleTag("CS1010"));
-        tags1.add(new ModuleTag("CHC5338"));
-        tags1.add(new ModuleTag("BT2103"));
-        tags1.add(new ModuleTag("CS1234"));
-        assertEquals(personToEdit1.getImmutableModuleTags(), tags1);
+        isaacModuleTags.add(LAJ1201_F);
 
-        UntagCommand untag1 = new UntagCommand(index1, moduleToAdd, TagType.MODULE);
-        untag1.execute(model);
+        TagCommand tagIsaac = new TagCommand(indexIsaac, modulesToAdd, TagType.MODULE);
+        assertThrows(CommandException.class, () -> tagIsaac.execute(model));
     }
 
     @Test
-    public void execute_addModulesToUser() throws CommandException {
-
+    void execute_addNewClashingModuleTags_throwsCommandException() {
         Set<ModuleTag> modulesToAdd = new HashSet<>();
-        modulesToAdd.add(new ModuleTag("CS1234"));
-        modulesToAdd.add(new ModuleTag("CS2345"));
+        modulesToAdd.add(CS2101_KE);
 
-        TagCommand userTest = new TagCommand(null, modulesToAdd, TagType.MODULE);
-        userTest.execute(model);
+        Person owenToUpdate = getPersonFromIndexHandler(indexHandler, OWEN);
+        ContactIndex indexOwen = getContactIndexOfPerson(OWEN);
 
-        Set<ModuleTag> tags = new HashSet<>() {{
-                add(new ModuleTag("CS2100"));
-                add(new ModuleTag("CS2101"));
-                add(new ModuleTag("CS2102"));
-                add(new ModuleTag("CS2103"));
-                add(new ModuleTag("CS2104"));
-                add(new ModuleTag("CS2105"));
-                add(new ModuleTag("CS2106"));
-                add(new ModuleTag("CS1234"));
-                add(new ModuleTag("CS2345"));
-            }};
+        Set<ModuleTag> owenModuleTags = new HashSet<>(owenToUpdate.getImmutableModuleTags());
 
-        Person userAct = model.getUser();
+        assertFalse(owenModuleTags.contains(CS2101_KE));
 
-        assertEquals(userAct.getImmutableModuleTags(), tags);
+        owenModuleTags.add(CS2101_KE);
 
-        UntagCommand untag = new UntagCommand(null, modulesToAdd, TagType.MODULE);
-        untag.execute(model);
+        TagCommand tagOwen = new TagCommand(indexOwen, modulesToAdd, TagType.MODULE);
+        assertThrows(CommandException.class, () -> tagOwen.execute(model));
 
+        Person updatedOwen = getPersonFromIndexHandler(indexHandler, OWEN);
+        assertFalse(updatedOwen.getImmutableModuleTags().contains(CS2101_KE));
+    }
+
+    @Test
+    void execute_someClashing_throwsCommandException() {
+        Set<ModuleTag> modulesToAdd = new HashSet<>();
+        modulesToAdd.add(CS2101_KE);
+        modulesToAdd.add(CFG1002_F);
+
+        Person owenToUpdate = getPersonFromIndexHandler(indexHandler, OWEN);
+        ContactIndex indexOwen = getContactIndexOfPerson(OWEN);
+
+        Set<ModuleTag> owenModuleTags = new HashSet<>(owenToUpdate.getImmutableModuleTags());
+
+        assertFalse(owenModuleTags.contains(CS2101_KE));
+        assertFalse(owenModuleTags.contains(CFG1002_F));
+
+        owenModuleTags.add(CS2101_KE);
+        owenModuleTags.add(CFG1002_F);
+
+        TagCommand tagOwen = new TagCommand(indexOwen, modulesToAdd, TagType.MODULE);
+        assertThrows(CommandException.class, () -> tagOwen.execute(model));
+
+        Person updatedOwen = getPersonFromIndexHandler(indexHandler, OWEN);
+        assertFalse(updatedOwen.getImmutableModuleTags().contains(CS2101_KE));
+        assertFalse(updatedOwen.getImmutableModuleTags().contains(CFG1002_F));
+    }
+
+    @Test
+    void execute_nameClashesButLessonsDont_success() {
+        Set<ModuleTag> modulesToAdd = new HashSet<>();
+        modulesToAdd.add(CFG1002_F);
+
+        Person isaacToUpdate = getPersonFromIndexHandler(indexHandler, ISAAC);
+        ContactIndex indexIsaac = getContactIndexOfPerson(ISAAC);
+
+        Set<ModuleTag> isaacModuleTags = new HashSet<>(isaacToUpdate.getImmutableModuleTags());
+
+        assertFalse(isaacModuleTags.contains(CFG1002_F));
+
+        isaacModuleTags.add(CFG1002_F);
+
+        TagCommand tagIsaac = new TagCommand(indexIsaac, modulesToAdd, TagType.MODULE);
+        assertDoesNotThrow(() -> tagIsaac.execute(model));
+        Person updatedIsaac = getPersonFromIndexHandler(indexHandler, ISAAC);
+        assertTrue(updatedIsaac.getImmutableModuleTags().contains(CFG1002_F));
+
+        TagCommand anotherTagIsaac = new TagCommand(indexIsaac, modulesToAdd, TagType.MODULE);
+        assertDoesNotThrow(() -> anotherTagIsaac.execute(model));
+        updatedIsaac = getPersonFromIndexHandler(indexHandler, ISAAC);
+        assertTrue(updatedIsaac.getImmutableModuleTags().contains(CFG1002_F));
+
+        assertEquals(updatedIsaac.getImmutableModuleTags(), isaacModuleTags);
+    }
+
+    @Test
+    public void execute_addNewLessons_success() {
+        Person albertToUpdate = getPersonFromIndexHandler(indexHandler, ALBERT);
+        ContactIndex indexAlbert = getContactIndexOfPerson(ALBERT);
+
+        Set<ModuleTag> albertModuleTags = new HashSet<>(albertToUpdate.getImmutableModuleTags());
+
+        assertTrue(albertModuleTags.isEmpty());
+
+        ModuleTag tagWithOneLesson = new ModuleTag("CS2101", CS2101_MON_8AM_2HR);
+        TagCommand tagOneLesson = new TagCommand(indexAlbert,
+                Set.of(tagWithOneLesson), TagType.MODULE);
+        assertDoesNotThrow(() -> tagOneLesson.execute(model));
+        Person updatedAlbert = getPersonFromIndexHandler(indexHandler, ALBERT);
+        assertEquals(updatedAlbert.getImmutableModuleTags(), Set.of(tagWithOneLesson));
+
+        ModuleTag anotherTagWithOneLesson = new ModuleTag("CS2101", CS2101_THU_8AM_2HR);
+        TagCommand tagAnotherLesson = new TagCommand(indexAlbert,
+                Set.of(anotherTagWithOneLesson), TagType.MODULE);
+        assertDoesNotThrow(() -> tagAnotherLesson.execute(model));
+
+        updatedAlbert = getPersonFromIndexHandler(indexHandler, ALBERT);
+
+        ModuleTag mergedTag = tagWithOneLesson.mergeWith(anotherTagWithOneLesson);
+        assertEquals(updatedAlbert.getImmutableModuleTags(), Set.of(mergedTag));
+        assertNotEquals(updatedAlbert.getImmutableModuleTags(),
+                Set.of(tagWithOneLesson, anotherTagWithOneLesson));
+    }
+
+    @Test
+    void execute_addEmptyModuleTags_success() {
+        Person albertToUpdate = getPersonFromIndexHandler(indexHandler, ALBERT);
+        ContactIndex indexAlbert = getContactIndexOfPerson(ALBERT);
+
+        Set<ModuleTag> albertModuleTags = new HashSet<>(albertToUpdate.getImmutableModuleTags());
+
+        assertTrue(albertModuleTags.isEmpty());
+
+        TagCommand tagNothing = new TagCommand(indexAlbert, Set.of(), TagType.MODULE);
+
+        assertDoesNotThrow(() -> tagNothing.execute(model));
+
+        Person updatedAlbert = getPersonFromIndexHandler(indexHandler, ALBERT);
+        assertTrue(updatedAlbert.getImmutableModuleTags().isEmpty());
+    }
+
+    @Test
+    void execute_addEmptyLesson_success() {
+        Person albertToUpdate = getPersonFromIndexHandler(indexHandler, ALBERT);
+        ContactIndex indexAlbert = getContactIndexOfPerson(ALBERT);
+
+        Set<ModuleTag> albertModuleTags = new HashSet<>(albertToUpdate.getImmutableModuleTags());
+
+        assertTrue(albertModuleTags.isEmpty());
+
+        TagCommand tagNothing = new TagCommand(indexAlbert, Set.of(CFG1002_F), TagType.MODULE);
+
+        assertDoesNotThrow(() -> tagNothing.execute(model));
+
+        Person updatedAlbert = getPersonFromIndexHandler(indexHandler, ALBERT);
+        assertTrue(updatedAlbert.getImmutableModuleTags().contains(CFG1002_F));
     }
 
     @Test
@@ -186,4 +298,20 @@ public class TagCommandTest {
 
     }
 
+    @Test
+    void equals_sameObject_true() {
+        assertEquals(tagCommand, tagCommand);
+    }
+
+    @Test
+    void equals_sameValues_true() {
+        TagCommand other = new TagCommand(new ContactIndex(1),
+                Set.of(CS2040S_F), TagType.MODULE);
+        assertEquals(tagCommand, other);
+    }
+
+    @Test
+    void getLessons() {
+        assertEquals(tagCommand.getLessons(), CS2040S_F.getImmutableLessons());
+    }
 }

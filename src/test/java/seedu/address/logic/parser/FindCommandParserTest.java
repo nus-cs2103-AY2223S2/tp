@@ -37,10 +37,10 @@ public class FindCommandParserTest {
         );
 
         createValidArgsReturnsFindCommand(
-                Prefix.ADDRESS,
+                Prefix.STATION,
                 Arrays.asList("2", "Blackmore", "Drive"),
-                " a/2 Blackmore Drive",
-                " a/2 \n \t Blackmore \t \n \t Drive\t"
+                " s/2 Blackmore Drive",
+                " s/2 \n \t Blackmore \t \n \t Drive\t"
         );
 
         createValidArgsReturnsFindCommand(

@@ -9,6 +9,9 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.Participants;
+import seedu.address.model.meetup.UniqueMeetUpList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.User;
@@ -24,7 +27,9 @@ public class EduMate implements ReadOnlyEduMate {
 
     private static final Logger logger = LogsCenter.getLogger(EduMate.class);
 
+    protected Participants participants;
     private final UniquePersonList persons;
+    private final UniqueMeetUpList meets;
     private User user;
     private final UniqueRecommendationList recommendations;
 
@@ -38,6 +43,8 @@ public class EduMate implements ReadOnlyEduMate {
     {
         persons = new UniquePersonList();
         user = SampleDataUtil.getSampleUser();
+        meets = new UniqueMeetUpList();
+        participants = new Participants();
         recommendations = new UniqueRecommendationList();
     }
 
@@ -100,6 +107,8 @@ public class EduMate implements ReadOnlyEduMate {
         setPersons(newData.getPersonList());
         setRecommendations(newData.getRecommendationList());
         setUser(newData.getUser());
+        setParticipants(newData.getParticipantList());
+        setMeetUps(newData.getMeetUpList());
     }
 
     //// person-level operations
@@ -229,5 +238,57 @@ public class EduMate implements ReadOnlyEduMate {
     @Override
     public int hashCode() {
         return Objects.hash(persons, user);
+    }
+
+    //// meetup methods
+    /**
+     * Replaces the contents of meet up list with {@code meetUps}.
+     * @param meetUps List of meet ups.
+     */
+    public void setMeetUps(List<MeetUp> meetUps) {
+        this.meets.setMeetUps(meetUps);
+    }
+
+    /**
+     * Replaces the contents of the meet ups list with an empty list of meet ups.
+     */
+    public void resetMeetUps() {
+        this.meets.setMeetUps(new ArrayList<>());
+    }
+
+    @Override
+    public ObservableList<MeetUp> getMeetUpList() {
+        return meets.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns true if a meet up with the same identity as
+     * {@code meetUp} exists in the address book.
+     */
+    public boolean hasMeetUp(MeetUp meetUp) {
+        requireNonNull(meetUp);
+        return meets.contains(meetUp);
+    }
+
+    public void addMeetUp(MeetUp meetUp) {
+        meets.add(meetUp);
+    }
+
+    //// participants methods
+
+    public Participants getParticipantList() {
+        return participants;
+    }
+
+    /**
+     * Replaces the contents of participants with {@code participants}.
+     * @param participants New participants.
+     */
+    public void setParticipants(Participants participants) {
+        this.participants = participants;
+    }
+
+    public void removeMeetUp(MeetUp meetUp) {
+        meets.remove(meetUp);
     }
 }

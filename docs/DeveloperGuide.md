@@ -26,7 +26,7 @@ title: Developer Guide
    * [Model Component](#model-component)
      * [Person](#person)
          * [Name](#name)
-         * [Address](#address)
+         * [Station](#station)
          * [Phone](#phone)
          * [Email](#email)
          * [Telegram Handle](#telegram-handle)
@@ -37,7 +37,13 @@ title: Developer Guide
          * [Module Tag](#module-tag)
      * [Time](#time)
        * [Day](#day)
-       * [TimePeriod](#timeperiod)
+       * [HourBlock](#hourblock)
+       * [TimeBlock](#timeblock)
+     * [Location](#location)
+       * [DistanceUtil](#distance-util)
+       * [LocationDataUtil](#location-data-util)
+     * [Commitment](#commitment)
+       * [Lesson](#lesson)
      * [Timetable](#timetable)
        * [Module](#module)
      * [Utils](#utils)
@@ -58,8 +64,9 @@ title: Developer Guide
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
      * [Recommenders](#recommenders)
-       * [Timing Recommender](#timingRecommender)
+       * [Timing Recommender](#timing-recommender)
        * [Location Recommender](#location-recommender)
+       * [Location Tracker](#location-tracker)
    * [Storage Component](#storage-component)
    * [Commons Component](#common-classes)
      * [MathUtil](#math-util)
@@ -250,7 +257,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CC
 | Name            | Bee Shan                                |
 | Phone           | 81121128                                |
 | Email           | beeshan@gmail.com                       |
- | Address         | 200 Bishan Road                         |
+ | Station         | 200 Bishan Road                         |
  | Telegram Handle | @beeshan                                |
  | Groups          | NS, CCA                                 |
  | Modules         | CS3242, BT3101, CS1010E, CS3219, CE3165 |
@@ -392,12 +399,32 @@ The `Model` component,
 </div>
 
 #### **Name**
-#### **Address**
+
+Represents the name of the user or the contact in `EduMate`.
+
+#### **Station**
+
+Represents the nearest MRT station to the user or contact's home.
+
 #### **Phone**
+
+Represents the contact number of the user or the contact.
+
 #### **Email**
+
+Represents the Email Address of the user or contact.
+
 #### **Telegram Handle**
+
+Represents the Telegram Handle of the user or contact.
+
 #### **Group Tag Set**
+
+Represents a collection of **unique** groups that the user or contact belong to.
+
 #### **Module Tag Set**
+
+Represents a collection of **unique** modules that the user or contact is enrolled into.
 
 ### **Tag**
 #### **Group Tag**
@@ -408,7 +435,7 @@ The `Model` component,
 We use `org.joda.time.LocalTime` as the very basis of how we construct our time-related
 objects which is then used elsewhere in the codebase.
 
-<img src="images/TimeGroup.png" style="width:80%;margin:0 10%">
+<img src="images/TimeGroup.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.3.3</b> Class Diagram for classes in Time Package.
 </div>
@@ -425,10 +452,108 @@ objects which is then used elsewhere in the codebase.
 #### **TimeBlock**
 `TimeBlock` is an object which can represent any (non-negative) hour of time.
 
+### **Location**
+
+A `Location` represents a point in Singapore. We use them to recommend places for the user to meet up with friends. It consists of a latitude (how far north it is), and a longitude (how far east it is).
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Restrictions on location attributes:**<br>
+
+* Latitude: must be between *1.23776* and *1.47066*
+* Longitude: must be between *103.61751* and *104.04360*
+
+This is to ensure that the location falls within the bounds of Singapore.
+
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **The location can be *named* or *unnamed*:**<br>
+
+* *Named locations* are meant for actual locations in Singapore. For example, we may have "Bishan", "NUS", and "Suntec City".
+* *Unnamed locations* are reserved for computational purposes. For example, a location in between "Bishan" and "Ang Mo Kio" may be used to recommend suitable meet up locations.
+
+</div>
+
+There are also two other classes within the `location` package that help to process this data.
+
+#### Distance Util
+
+The `DistanceUtil` class deals with computing the distances between locations. It is used by the following classes:
+
+* It is used by the [Recommenders](#recommenders) to suggest ideal and central locations for people to meet.
+* It is used by the [LocationTrackers](#location-tracker) to give us approximate locations for a person.
+
+#### Location Data Util
+
+The `LocationDataUtil` class deals with reading and parsing location data from files. For example, the set of destinations to eat and study are stored in the [resources/data](https://github.com/AY2223S2-CS2103T-W14-2/tp/tree/master/src/main/resources/data) folder and are saved within this class. We also store the locations of MRT stations, which allow us to convert user-inputted strings into named locations.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tips for using Locations:**
+
+Notice that locations are immutable. This allows us to pass around locations as references, thereby reducing the amount of data we need to store.
+
+</div>
+
+### **Commitment**
+
+A `Commitment` is something that a person needs to do at a certain time and place. Notice that we can only create `Lesson`s at the moment. Having this as a separate class can allow us to easily extend this application to fit more kinds of commitments.
+
+<img src="images/CommitmentClassDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.1</b> Class Diagram for Commitment Components
+</div>
+<br>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **What are commitments used for** <br>
+
+* They tell us when the person is unavailable, so that we do not recommend inappropriate timings.
+* They tell us where the person is expected to be at a particular time, so that we can recommend better locations to meet up. 
+
+</div>
+
+#### **Lesson**
+
+`Lesson` is inherited from `Commitment`, and represents a time and location that a person is attending a class. In addition, `Lesson` stores the module code for the lesson. For example, a person takes CS2040S on Monday at 9AM for 2 hours.
+
+<div markdown="span" class="alert alert-dark">
+
+:construction: **Potential extensions**
+Currently, all `Lessons` are in NUS, but this can be improved upon in the future, by adding additional arguments to the `tag` command.
+
+</div>
+
 ### **Timetable**
 
+The `Timetable` represents the daily schedule of the user or contact.
+
+<img src="images/TimetableClass.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.4.5</b> Class Diagram for Timetable and related classes.
+</div>
+
+<br>
+For each `Day` in the `Timetable`, there are 15 `HourBlock` objects each representing an hour starting from 8 AM - 9 AM and ending at 10 PM - 11 PM.
+
 ### **Utils**
+
 #### **Sample Data Util**
+
+The `SampleDataUtil` class deals with reading and parsing persons data from a file. In particular, these are the people that will appear upon first load of EduMate, as well as during the execution of `SampleCommand`. The sample data is stored within [this file](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/resources/data/sampleData.txt).
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tips for reading the sample data:**<br>
+
+* Each row of data corresponds to a single person, and their fields are separated by the `|`, also known as the "pipe" character.
+* The attributes are: `NAME|PHONE|EMAIL|ADDRESS|TELEGRAM_HANDLE|GROUP_TAGS|MODULE_TAGS`.
+* Notice that the `MODULE_TAGS` are separated by a comma `,` instead, as its parser uses spaces to separate out the arguments. 
+
+</div>
 
 ---
 
@@ -465,7 +590,7 @@ The `add` command allows users to create a new person and insert them into the a
 
 :information_source: **Command Formats:** <br>
 
-* `add n/NAME p/PHONE a/ADDRESS e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
+* `add n/NAME p/PHONE s/STATION e/EMAIL t/TELEGRAM [g/GROUP]…​ [m/MODULE]…​`
 
 </div>
 
@@ -543,12 +668,6 @@ From these two sources of information, we can create a `descriptor` that keeps t
 
 * `editPersonDescriptor.getName().orElse(userToEdit.getName())`.
 
-<div markdown="span" class="alert alert-warning">
-
-:warning: **Warning**:
-If no fields have been changed, an exception is thrown. This is handled in the `EditCommandParser`.
-
-</div>
 
 In summary, the activity diagram is as such:
 
@@ -641,13 +760,13 @@ The last viewed profile will remain displayed on the profile panel should there 
 
 Below is a Sequence Diagram which summarises the behaviour of `ViewCommandParser`.
 
-<img src="images/ViewParserSequenceDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/ViewParserSequenceDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.6a</b> Sequence Diagram for a typical <code>ViewCommandParser</code>
 </div>
 <br>
 Below is an Activity Diagram for the execution of the `ViewCommand`.
-<img src="images/ViewActivityDiagram.png" style="width:60%;margin:0 20%">
+<img src="images/ViewActivityDiagram.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.4.6b</b> Sequence Diagram for a typical <code>ViewCommand</code> execution 
 </div>
@@ -673,7 +792,9 @@ For example, if the user wants to search for a person but does not know the full
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:**
-This command can be used before the other commands to return a list of contacts the user wants to work with. 
+* This command can be used before the other commands to return a list of contacts the user wants to work with.
+* The `find` command returns a filtered list, so command operations only work on persons present in the filtered list.<br>
+  e.g. If the filtered list does not contain any person with contact index 2, any operation relating to contact index 2 will throw error.
 
 </div>
 
@@ -827,13 +948,13 @@ The `ArgumentMultimap` utilises a `HashMap` to store an `ArrayList<String>` of a
 
 #### **Prefix**
 
-The `Prefix` is an `enum` consisting of `n/` ,`a/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Address](#address), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
+The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Station](#station), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
 
 ## **Recommenders**
 
-**API** : `Recommender.java` {to be filled in}
+**API** : `Recommender.java`
 
-<img src="images/RecommenderClassDiagram.png" style="width:80%;margin:0 10%">
+<img src="images/RecommenderClassDiagram.svg" style="width:80%;margin:0 10%">
 <div style="width:80%;margin:0 10%;text-align:center">
     <b>Figure 4.6</b> Class Diagram for Recommender Module
 </div>
@@ -845,18 +966,26 @@ The `Recommender` component,
 
 How the `Recommender` Component works:
 1. User enters a `meet/eat/study` command.
-2. Triggers the `TimingRecommender` to recommend common available timings amongst users and participants.
-3. `TimingRecommender` passes the recommended timings to `LocationRecommender`
-4. `LocationRecommender` recommends optimal meeting points paired with suitable timings based on
-   their `Location` at that particular timing.
-5. Feedbacks to user the recommended meetup locations and timings.
+2. The `TimingRecommender` is initialised with a set of participants.
+3. The `LocationRecommender` is initialised with a set of destinations.
+4. New `LocationTracker`s are created to give approximate locations of each person.
+5. The `TimingRecommender` recommends common available timings amongst users and participants.
+6. Based on the timings provided, the `LocationTracker`s return each person's approximate locations.
+7. The `LocationRecommender` recommends optimal meeting points based on the locations provided by the `LocationTracker`s.
+8. Feedbacks to user the recommended meetup locations and timings.
+
+<img src="images/RecommenderSequenceDiagram.svg" style="width:80%;margin:0 10%">
+<div style="width:80%;margin:0 10%;text-align:center">
+    <b>Figure 4.6.1</b> Sequence Diagram for Recommender Module
+</div>
+<br>
 
 #### Timing Recommender
 The `TimingRecommender`'s role is to recommend timings in which the user and all participants are available.
 The `TimingRecommedner` uses the participants' schedule to find common time periods that everyone
 will be free so that a meetup could be scheduled.
 
-<img src="images/SchedulerActivity.png" style="width:60%;margin:0 20%">
+<img src="images/SchedulerActivity.svg" style="width:60%;margin:0 20%">
 <div style="width:60%;margin:0 20%;text-align:center">
     <b>Figure 4.6.1</b> Activity Diagram for <code>TimingRecommender</code>
 </div>
@@ -871,7 +1000,35 @@ the participants could meet up.
 
 #### Location Recommender
 
-{to be filled by Hafeez}
+The `LocationRecommender`'s role is to recommend a **central location** where persons can meet. It accepts two sets of locations:
+1. A set of `destinations` to be suggested. They could be places to study, eat or both.
+2. A set of `sources` representing the participants' locations given a particular time.
+
+The midpoint of these `sources` is calculated, and then we compare the `destinations` based on how close they are to this midpoint. In this way, we recommend the locations that are the closest for everybody.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **DistanceUtil**
+As part of abstraction, most of the logic is handled by the `DistanceUtil` class, which calculates distances and finds the nearest destinations.
+
+</div>
+
+#### Location Tracker
+
+The `LocationTracker`'s role is to give an approximate location of a person given a certain timing. These approximations are then fed into the `LocationRecommender` to give more accurate recommendations.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **How we approximate a location**
+A person is assumed to be travelling gradually between known locations. For example, if the person is in NUS at 9AM and at home at 11AM, they are assumed to be somewhere in the middle at 10AM.
+
+</div>
+
+The process of getting a recommendation is as follows:
+1. From the person's timetable, we gather their set of **known locations**. For example, if the person has a lesson at NUS on Monday 8AM to 9AM, we know their location at that time period.
+2. Next, between any two **consecutive known locations**, we calculate the number of unknown locations between them.
+3. Based on this calculation, the `DistanceUtil` will return a list of approximations that achieve what was mentioned earlier.
+4. Finally, these locations are put in their respective places in the `LocationTracker`.
 
 ---
 
@@ -902,14 +1059,26 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ## **Unit Tests**
 
-{to be filled}
+Our organisation primarily utilizes `JUnit5`for conducting unit tests. `JUnit5` is a popular testing framework in the Java programming language that enables developers to write and run unit tests for their code.
+
+Each individual unit of the program is tested to ensure each piece works correctly and stubs are commonly used to test the units in isolation.
 
 ### **Testing Models**
-{to be filled}
+
+Models used:
+* Waterfall model
+* Agile model
+* Breadth-first iterative model
+
+We used a mixture of models to suit our needs for different features. We applied the waterfall model to features that required individual work and the agile model for the others that required teamwork. We also had considerations for the time-limit imposed on this project so we applied the breadth-first iterative model to ensure basic functionalities.
+
 ### **Testing Commands**
-{to be filled}
+
+Equivalence partitions and stubs were mainly used to test commands.
+
 ### **Testing Parsers**
-{to be filled}
+
+Positive and negative test cases were mainly used to test parsers.
 
 ---
 
@@ -1249,7 +1418,7 @@ testers are expected to do more *exploratory* testing.
 
 ### **Add a new person**
 
-`add n/Thomas a/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
+`add n/Thomas s/Bedok p/12345678 e/thomas@gmail.com t/@thomas`
 
 Expected Output in the Person List: New person added to EduMate.
 
@@ -1286,7 +1455,7 @@ Expected Output in Profile Panel: The user's name is changed to Gordon.
 
 Expected Output in the Person List: The fourth person has been removed, and there is no fourth index.
 
-`delete 4`, `add n/James e/james@gmail.com t/@james a/Bishan p/87654321`
+`delete 4`, `add n/James e/james@gmail.com t/@james s/Bishan p/87654321`
 
 Expected Output in the Person List: New person has been added to EduMate, with an index of 4.
 
@@ -1336,7 +1505,17 @@ Expected Output in the PersonList: the third person has the `GroupTag` with `tag
 
 ### **Filter persons by keywords**
 
-{to be filled}
+`find n/Albert`
+
+Expected Output in Person List: All contacts that have the word 'Albert' in their name.
+
+`find m/CS2103T`
+
+Expected Output in Person List: All contacts with CS2103T tag under `Module`.
+
+`find n/Albert m/CS2103T`
+
+Expected Output in Person List: All contacts that have the word 'Albert' in their name and CS2103T tag under `Module`.
 
 ### **Arrange persons by criteria**
 
@@ -1384,6 +1563,7 @@ Expected Output in Command Output Box: Suggestions on where and when to study.
 * **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: National University of Singapore
+* **MRT** : Also known as the Mass Rapid Transit, Singapore high-speed railway system.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Pull Request (PR)**: An event that takes place in software development when a contributor/developer is ready to begin the process of merging new code changes with the main project repository
 * **Repo (Repository)**: A storage location for software packages, mainly residing on GitHub

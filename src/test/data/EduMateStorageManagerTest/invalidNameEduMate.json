@@ -3,41 +3,219 @@
     "name": "Linus Richards",
     "email": "linusrichards@gmail.com",
     "telegramHandle": "@linusrichards",
-    "address": "NUS",
+    "station": "NUS",
     "phone": "90102030",
     "groups": [
       "User"
     ],
     "modules": [
-      "CS2100",
-      "CS2101",
-      "CS2102",
-      "CS2103",
-      "CS2104",
-      "CS2105",
-      "CS2106"
+      {
+        "moduleCode": "CS2105",
+        "lessons": [
+          {
+            "startHour": 12,
+            "endHour": 14,
+            "day": "TUESDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 10,
+            "day": "WEDNESDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "EL1101E",
+        "lessons": [
+          {
+            "startHour": 14,
+            "endHour": 15,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 12,
+            "day": "WEDNESDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 11,
+            "day": "MONDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2103T",
+        "lessons": [
+          {
+            "startHour": 16,
+            "endHour": 17,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 11,
+            "endHour": 13,
+            "day": "FRIDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2103",
+        "lessons": [
+          {
+            "startHour": 16,
+            "endHour": 17,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 19,
+            "endHour": 21,
+            "day": "WEDNESDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 10,
+            "day": "TUESDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2102",
+        "lessons": [
+          {
+            "startHour": 18,
+            "endHour": 19,
+            "day": "THURSDAY"
+          },
+          {
+            "startHour": 9,
+            "endHour": 11,
+            "day": "MONDAY"
+          },
+          {
+            "startHour": 10,
+            "endHour": 12,
+            "day": "THURSDAY"
+          }
+        ]
+      },
+      {
+        "moduleCode": "CS2107",
+        "lessons": [
+          {
+            "startHour": 17,
+            "endHour": 19,
+            "day": "MONDAY"
+          }
+        ]
+      }
     ],
     "index": 0
   },
   "persons": [
     {
       "name": "Goon Se-Rang",
+<<<<<<< HEAD
+      "email": "quincydawson@gmail.com",
+      "telegramHandle": "@quincydawson",
+      "station": "Queenstown",
+=======
       "email": "booneleigh@gmail.com",
       "telegramHandle": "@booneleigh",
-      "address": "Boon Lay",
+      "station": "Boon Lay",
+>>>>>>> master
       "groups": [
-        "JC",
         "Groupmate"
       ],
-      "phone": "83278152",
-      "index": 8,
+      "phone": "92936812",
       "modules": [
-        "UTC1409",
-        "CS2105",
-        "EN3224",
-        "IS2103",
-        "CS2102",
-        "GE2103"
-      ]
+        {
+          "moduleCode": "CS2108",
+          "lessons": [
+            {
+              "startHour": 16,
+              "endHour": 18,
+              "day": "THURSDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "ST2137",
+          "lessons": [
+            {
+              "startHour": 14,
+              "endHour": 15,
+              "day": "TUESDAY"
+            },
+            {
+              "startHour": 18,
+              "endHour": 20,
+              "day": "MONDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2040C",
+          "lessons": [
+            {
+              "startHour": 8,
+              "endHour": 10,
+              "day": "MONDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "UD5626",
+          "lessons": [
+            {
+              "startHour": 8,
+              "endHour": 10,
+              "day": "WEDNESDAY"
+            },
+            {
+              "startHour": 17,
+              "endHour": 18,
+              "day": "FRIDAY"
+            },
+            {
+              "startHour": 14,
+              "endHour": 15,
+              "day": "THURSDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2102",
+          "lessons": [
+            {
+              "startHour": 14,
+              "endHour": 15,
+              "day": "THURSDAY"
+            },
+            {
+              "startHour": 18,
+              "endHour": 20,
+              "day": "TUESDAY"
+            }
+          ]
+        },
+        {
+          "moduleCode": "CS2220",
+          "lessons": [
+            {
+              "startHour": 13,
+              "endHour": 14,
+              "day": "FRIDAY"
+            },
+            {
+              "startHour": 15,
+              "endHour": 17,
+              "day": "WEDNESDAY"
+            }
+          ]
+        }
+      ],
+      "index": 75
     }
-  ]}\n
+  ]
+}

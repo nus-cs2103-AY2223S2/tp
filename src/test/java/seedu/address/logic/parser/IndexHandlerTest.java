@@ -62,7 +62,7 @@ class IndexHandlerTest {
     @Test
     public void execute_consecutiveIndexPresent_assignLastIndex() {
         model = new ModelManager(getTypicalEduMate(), new UserPrefs(), new EduMateHistory());
-        assertEquals(indexHandler.assignIndex(), new ContactIndex(16));
+        assertEquals(indexHandler.assignIndex(), new ContactIndex(21));
     }
 
     @Test

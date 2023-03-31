@@ -1,82 +1,40 @@
-<?xml version="1.0" encoding="us-ascii" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css"
-     height="351px" preserveAspectRatio="none" style="width:415px;height:351px;background:#FFFFFF;" version="1.1"
-     viewBox="0 0 415 351" width="415px" zoomAndPan="magnify">
-    <defs/>
-    <g>
-        <ellipse cx="214.75" cy="20" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/>
-        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="183"
-              x="123.25" y="50"/>
-        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="163" x="133.25"
-              y="72.8281">User enters delete command
-        </text>
-        <polygon fill="#F1F1F1"
-                 points="82.5,106.3441,82.5,106.3441,94.5,118.3441,82.5,130.3441,82.5,130.3441,70.5,118.3441,82.5,106.3441"
-                 style="stroke:#181818;stroke-width:0.5;"/>
-        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="99" x="86.5"
-              y="142.103">[Invalid argument]
-        </text>
-        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="143"
-              x="11" y="163.603"/>
-        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="123" x="21"
-              y="186.4311">Error: Message usage
-        </text>
-        <ellipse cx="82.5" cy="230.9471" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
-        <ellipse cx="82.5" cy="230.9471" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
-        <polygon fill="#F1F1F1"
-                 points="285,106.3441,285,106.3441,297,118.3441,285,130.3441,285,130.3441,273,118.3441,285,106.3441"
-                 style="stroke:#181818;stroke-width:0.5;"/>
-        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="76" x="289"
-              y="142.103">[Invalid index]
-        </text>
-        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="3" x="297"
-              y="115.1211">&#160;
-        </text>
-        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="167"
-              x="201.5" y="163.603"/>
-        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="147" x="211.5"
-              y="186.4311">Error: Invalid person index
-        </text>
-        <ellipse cx="285" cy="230.9471" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
-        <ellipse cx="285" cy="230.9471" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
-        <rect fill="#F1F1F1" height="36.3441" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="198"
-              x="115.75" y="261.9471"/>
-        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="178" x="125.75"
-              y="284.7752">Person appears on view window
-        </text>
-        <ellipse cx="214.75" cy="329.2913" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
-        <ellipse cx="214.75" cy="329.2913" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="214.75" x2="214.75" y1="30" y2="50"/>
-        <polygon fill="#181818" points="210.75,40,214.75,50,218.75,40,214.75,44"
-                 style="stroke:#181818;stroke-width:1.0;"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="82.5" x2="82.5" y1="199.9471" y2="219.9471"/>
-        <polygon fill="#181818" points="78.5,209.9471,82.5,219.9471,86.5,209.9471,82.5,213.9471"
-                 style="stroke:#181818;stroke-width:1.0;"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="285" x2="285" y1="199.9471" y2="219.9471"/>
-        <polygon fill="#181818" points="281,209.9471,285,219.9471,289,209.9471,285,213.9471"
-                 style="stroke:#181818;stroke-width:1.0;"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="82.5" x2="82.5" y1="130.3441" y2="163.603"/>
-        <polygon fill="#181818" points="78.5,153.603,82.5,163.603,86.5,153.603,82.5,157.603"
-                 style="stroke:#181818;stroke-width:1.0;"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="285" x2="285" y1="130.3441" y2="163.603"/>
-        <polygon fill="#181818" points="281,153.603,285,163.603,289,153.603,285,157.603"
-                 style="stroke:#181818;stroke-width:1.0;"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="94.5" x2="273" y1="118.3441" y2="118.3441"/>
-        <polygon fill="#181818" points="263,114.3441,273,118.3441,263,122.3441,267,118.3441"
-                 style="stroke:#181818;stroke-width:1.0;"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="214.75" x2="214.75" y1="86.3441" y2="91.3441"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="214.75" x2="82.5" y1="91.3441" y2="91.3441"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="82.5" x2="82.5" y1="91.3441" y2="106.3441"/>
-        <polygon fill="#181818" points="78.5,96.3441,82.5,106.3441,86.5,96.3441,82.5,100.3441"
-                 style="stroke:#181818;stroke-width:1.0;"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="297" x2="403.5" y1="118.3441" y2="118.3441"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="403.5" x2="403.5" y1="118.3441" y2="246.9471"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="403.5" x2="214.75" y1="246.9471" y2="246.9471"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="214.75" x2="214.75" y1="246.9471" y2="261.9471"/>
-        <polygon fill="#181818" points="210.75,251.9471,214.75,261.9471,218.75,251.9471,214.75,255.9471"
-                 style="stroke:#181818;stroke-width:1.0;"/>
-        <line style="stroke:#181818;stroke-width:1.0;" x1="214.75" x2="214.75" y1="298.2913" y2="318.2913"/>
-        <polygon fill="#181818" points="210.75,308.2913,214.75,318.2913,218.75,308.2913,214.75,312.2913"
-                 style="stroke:#181818;stroke-width:1.0;"/><!--SRC=[ROwn3i8m34JtV8N7zXVIcO41YOK9CKJaMYArJcIdBP-FIyLIuU5awUwUJckGwlnD8GIk4AM84HNqpDCKE7OkzTIqL5zWQkvdNiAO8WKPviaAZzQHdJ-9PF5qWMeOGFEctTVIcel3gFZBIHpnFa1-Nh4rcVV8WMKa1uwfT_wwfq8f2BRUtYLXfTLgUUtSLla0]-->
-    </g>
-</svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="494px" preserveAspectRatio="none" style="width:677px;height:494px;background:#FFFFFF;" version="1.1" viewBox="0 0 677 494" width="677px" zoomAndPan="magnify"><defs/><g><ellipse cx="341.5" cy="20" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="176" x="253.5" y="50"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="156" x="263.5" y="71.6016">User enters view command</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="138" x="263.5" y="85.7344">with optional arguments</text><polygon fill="#F1F1F1" points="140.25,118.2656,140.25,118.2656,152.25,130.2656,140.25,142.2656,140.25,142.2656,128.25,130.2656,140.25,118.2656" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="125" x="144.25" y="152.9004">[contact index present]</text><rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="144" x="68.25" y="174.4004"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="120" x="82.25" y="196.002">Find Person in Model</text><polygon fill="#F1F1F1" points="140.25,228.5332,140.25,228.5332,152.25,240.5332,140.25,252.5332,140.25,252.5332,128.25,240.5332,140.25,228.5332" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="80" x="48.25" y="238.2129">[Person exists]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="152.25" y="238.2129">[else]</text><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="114" x="11" y="262.5332"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="90" x="25" y="284.1348">Retrieve Person</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="66" x="37" y="298.2676">from Model</text><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="135" x="145" y="262.5332"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="98" x="159" y="284.1348">No Person Found</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="99" x="171" y="298.2676">feedback to User</text><ellipse cx="212.5" cy="356.7988" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/><ellipse cx="212.5" cy="356.7988" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/><polygon fill="#F1F1F1" points="440.75,118.2656,440.75,118.2656,452.75,130.2656,440.75,142.2656,440.75,142.2656,428.75,130.2656,440.75,118.2656" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="115" x="444.75" y="152.9004">[has Name argument]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="452.75" y="127.9453">[else]</text><rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="144" x="368.75" y="174.4004"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="120" x="382.75" y="196.002">Find Person in Model</text><polygon fill="#F1F1F1" points="440.75,228.5332,440.75,228.5332,452.75,240.5332,440.75,252.5332,440.75,252.5332,428.75,240.5332,440.75,228.5332" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="80" x="348.75" y="238.2129">[Person exists]</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="29" x="452.75" y="238.2129">[else]</text><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="114" x="320" y="262.5332"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="90" x="334" y="284.1348">Retrieve Person</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="66" x="346" y="298.2676">from Model</text><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="101" x="454" y="262.5332"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="77" x="468" y="284.1348">Retrieve User</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="66" x="476" y="298.2676">from Model</text><polygon fill="#F1F1F1" points="440.75,316.7988,452.75,328.7988,440.75,340.7988,428.75,328.7988,440.75,316.7988" style="stroke:#181818;stroke-width:0.5;"/><rect fill="#F1F1F1" height="48.2656" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="97" x="569.75" y="238.9893"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="77" x="579.75" y="260.5908">Retrieve User</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="66" x="583.75" y="274.7236">from Model</text><rect fill="#F1F1F1" height="34.1328" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="205" x="239" y="407.7988"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="185" x="249" y="429.4004">Person appears on view window</text><ellipse cx="341.5" cy="472.9316" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/><ellipse cx="341.5" cy="472.9316" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="341.5" x2="341.5" y1="30" y2="50"/><polygon fill="#181818" points="337.5,40,341.5,50,345.5,40,341.5,44" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="310.7988" y2="345.7988"/><polygon fill="#181818" points="208.5,335.7988,212.5,345.7988,216.5,335.7988,212.5,339.7988" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="128.25" x2="68" y1="240.5332" y2="240.5332"/><line style="stroke:#181818;stroke-width:1.0;" x1="68" x2="68" y1="240.5332" y2="262.5332"/><polygon fill="#181818" points="64,252.5332,68,262.5332,72,252.5332,68,256.5332" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="152.25" x2="212.5" y1="240.5332" y2="240.5332"/><line style="stroke:#181818;stroke-width:1.0;" x1="212.5" x2="212.5" y1="240.5332" y2="262.5332"/><polygon fill="#181818" points="208.5,252.5332,212.5,262.5332,216.5,252.5332,212.5,256.5332" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="68" x2="68" y1="310.7988" y2="372.7988"/><line style="stroke:#181818;stroke-width:1.0;" x1="68" x2="140.25" y1="372.7988" y2="372.7988"/><line style="stroke:#181818;stroke-width:1.0;" x1="140.25" x2="140.25" y1="372.7988" y2="387.7988"/><polygon fill="#181818" points="136.25,377.7988,140.25,387.7988,144.25,377.7988,140.25,381.7988" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="140.25" x2="140.25" y1="208.5332" y2="228.5332"/><polygon fill="#181818" points="136.25,218.5332,140.25,228.5332,144.25,218.5332,140.25,222.5332" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="428.75" x2="377" y1="240.5332" y2="240.5332"/><line style="stroke:#181818;stroke-width:1.0;" x1="377" x2="377" y1="240.5332" y2="262.5332"/><polygon fill="#181818" points="373,252.5332,377,262.5332,381,252.5332,377,256.5332" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="452.75" x2="504.5" y1="240.5332" y2="240.5332"/><line style="stroke:#181818;stroke-width:1.0;" x1="504.5" x2="504.5" y1="240.5332" y2="262.5332"/><polygon fill="#181818" points="500.5,252.5332,504.5,262.5332,508.5,252.5332,504.5,256.5332" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="377" x2="377" y1="310.7988" y2="328.7988"/><line style="stroke:#181818;stroke-width:1.0;" x1="377" x2="428.75" y1="328.7988" y2="328.7988"/><polygon fill="#181818" points="418.75,324.7988,428.75,328.7988,418.75,332.7988,422.75,328.7988" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="504.5" x2="504.5" y1="310.7988" y2="328.7988"/><line style="stroke:#181818;stroke-width:1.0;" x1="504.5" x2="452.75" y1="328.7988" y2="328.7988"/><polygon fill="#181818" points="462.75,324.7988,452.75,328.7988,462.75,332.7988,458.75,328.7988" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="440.75" x2="440.75" y1="208.5332" y2="228.5332"/><polygon fill="#181818" points="436.75,218.5332,440.75,228.5332,444.75,218.5332,440.75,222.5332" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="140.25" x2="140.25" y1="142.2656" y2="174.4004"/><polygon fill="#181818" points="136.25,164.4004,140.25,174.4004,144.25,164.4004,140.25,168.4004" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="440.75" x2="440.75" y1="142.2656" y2="174.4004"/><polygon fill="#181818" points="436.75,164.4004,440.75,174.4004,444.75,164.4004,440.75,168.4004" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="440.75" x2="440.75" y1="340.7988" y2="387.7988"/><polygon fill="#181818" points="436.75,377.7988,440.75,387.7988,444.75,377.7988,440.75,381.7988" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="152.25" x2="428.75" y1="130.2656" y2="130.2656"/><polygon fill="#181818" points="418.75,126.2656,428.75,130.2656,418.75,134.2656,422.75,130.2656" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="341.5" x2="341.5" y1="98.2656" y2="103.2656"/><line style="stroke:#181818;stroke-width:1.0;" x1="341.5" x2="140.25" y1="103.2656" y2="103.2656"/><line style="stroke:#181818;stroke-width:1.0;" x1="140.25" x2="140.25" y1="103.2656" y2="118.2656"/><polygon fill="#181818" points="136.25,108.2656,140.25,118.2656,144.25,108.2656,140.25,112.2656" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="452.75" x2="618.25" y1="130.2656" y2="130.2656"/><line style="stroke:#181818;stroke-width:1.0;" x1="618.25" x2="618.25" y1="130.2656" y2="238.9893"/><polygon fill="#181818" points="614.25,228.9893,618.25,238.9893,622.25,228.9893,618.25,232.9893" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="618.25" x2="618.25" y1="287.2549" y2="387.7988"/><polygon fill="#181818" points="614.25,377.7988,618.25,387.7988,622.25,377.7988,618.25,381.7988" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="140.25" x2="618.25" y1="387.7988" y2="387.7988"/><line style="stroke:#181818;stroke-width:1.0;" x1="341.5" x2="341.5" y1="387.7988" y2="407.7988"/><polygon fill="#181818" points="337.5,397.7988,341.5,407.7988,345.5,397.7988,341.5,401.7988" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="341.5" x2="341.5" y1="441.9316" y2="461.9316"/><polygon fill="#181818" points="337.5,451.9316,341.5,461.9316,345.5,451.9316,341.5,455.9316" style="stroke:#181818;stroke-width:1.0;"/><!--MD5=[ee85be5c3cc1667b830c12478df3abba]
+@startuml
+start
+:User enters view command
+with optional arguments;
+if () then ([contact index present])
+    : Find Person in Model;
+    if () then ([Person exists])
+    : Retrieve Person
+        from Model;
+    else ([else])
+    : No Person Found
+        feedback to User;
+        stop;
+    endif
+elseif () then ([has Name argument])
+    : Find Person in Model;
+    if () then ([Person exists])
+    : Retrieve Person
+        from Model;
+    else ([else])
+    : Retrieve User
+       from Model;
+    endif
+else ([else])
+    :Retrieve User
+     from Model;
+endif
+:Person appears on view window;
+stop
+@enduml
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: GB
+--></g></svg>

@@ -27,7 +27,7 @@ public class ContainsKeywordsPredicateTest {
                 secondPredicateKeywordList
         );
         createEquals(
-                Prefix.ADDRESS,
+                Prefix.STATION,
                 firstPredicateKeywordList,
                 secondPredicateKeywordList
         );
@@ -115,8 +115,8 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createContainsKeywordsReturnsTrue(
-                Prefix.ADDRESS,
-                new PersonBuilder().withAddress("King Albert Park").build(),
+                Prefix.STATION,
+                new PersonBuilder().withStation("King Albert Park").build(),
                 Collections.singletonList("Albert"),
                 Arrays.asList("Alberto", "Park"),
                 Arrays.asList("AlBert", "Parker"),
@@ -176,7 +176,7 @@ public class ContainsKeywordsPredicateTest {
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         List<String> emptyList = Collections.emptyList();
         Person person = new PersonBuilder().withName("Albert").withPhone("12345").withEmail("albert@email.com")
-                .withAddress("King Albert Park").withTelegramHandle("@albert")
+                .withStation("King Albert Park").withTelegramHandle("@albert")
                 .withModuleTags("CS2030S", "CS2103T", "CS2101").withGroupTags("TA", "CCA").build();
 
         createDoesNotContainKeywordsReturnsFalse(
@@ -204,7 +204,7 @@ public class ContainsKeywordsPredicateTest {
         );
 
         createDoesNotContainKeywordsReturnsFalse(
-                Prefix.ADDRESS,
+                Prefix.STATION,
                 person,
                 emptyList,
                 List.of("Side", "Drive"),

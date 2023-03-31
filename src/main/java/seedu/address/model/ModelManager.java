@@ -4,8 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -15,6 +18,10 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.IndexHandler;
+import seedu.address.logic.parser.MeetUpIndexHandler;
+import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.MeetUpIndex;
+import seedu.address.model.meetup.Participants;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
@@ -34,6 +41,10 @@ public class ModelManager implements Model {
     private final FilteredList<Recommendation> filteredRecommendations;
     private final SortedList<Recommendation> observableRecommendations;
     private final IndexHandler indexHandler;
+    private final MeetUpIndexHandler meetUpIndexHandler;
+    private final FilteredList<MeetUp> filteredMeetUps;
+    private final SortedList<MeetUp> observableMeetUps;
+
 
     /**
      * Initializes a ModelManager with the given eduMate and userPrefs.
@@ -47,8 +58,14 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.eduMateHistory = new EduMateHistory(eduMateHistory);
         indexHandler = new IndexHandler(this);
+        meetUpIndexHandler = new MeetUpIndexHandler(this);
+
         filteredPersons = new FilteredList<>(this.eduMate.getPersonList());
         observablePersons = new SortedList<>(filteredPersons);
+
+        filteredMeetUps = new FilteredList<>(this.eduMate.getMeetUpList());
+        observableMeetUps = new SortedList<>(filteredMeetUps);
+
         filteredRecommendations = new FilteredList<>(this.eduMate.getRecommendationList());
         observableRecommendations = new SortedList<>(filteredRecommendations);
 
@@ -168,9 +185,6 @@ public class ModelManager implements Model {
         // The only place in the entire code that can set Contact Index.
         ContactIndex contactIndex = indexHandler.assignRecommendationIndex();
         Recommendation indexedRecommendation = recommendation.setContactIndex(contactIndex);
-
-        logger.info(indexedRecommendation.toString());
-
         eduMate.addRecommendation(indexedRecommendation);
         updateObservableRecommendationList();
         return indexedRecommendation;
@@ -214,6 +228,11 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedEduMate}
      */
+
+    @Override
+    public Optional<Person> getPersonByIndex(ContactIndex index) {
+        return indexHandler.getPersonByIndex(index);
+    }
     @Override
     public ObservableList<Person> getObservablePersonList() {
         return observablePersons;
@@ -281,6 +300,67 @@ public class ModelManager implements Model {
         return eduMate.equals(other.eduMate)
                 && userPrefs.equals(other.userPrefs)
                 && observablePersons.equals(other.observablePersons);
+    }
+
+    @Override
+    public Optional<Recommendation> getRecommendationByIndex(ContactIndex index) {
+        return indexHandler.getRecommendationByIndex(index);
+    }
+
+    //=========== Participants Accessors =============================================================
+
+    @Override
+    public Participants getParticipants() {
+        return eduMate.getParticipantList();
+    }
+
+    @Override
+    public void setParticipants(Set<ContactIndex> participants) {
+        List<Person> people = new ArrayList<>();
+        for (ContactIndex i : participants) {
+            Optional<Person> person = indexHandler.getPersonByIndex(i);
+            person.ifPresent(people::add);
+        }
+        eduMate.setParticipants(new Participants(people));
+    }
+
+    //=========== Meet Up List Accessors =============================================================
+
+    @Override
+    public void updateObservableMeetUpList() {
+        filteredMeetUps.setPredicate(PREDICATE_SHOW_ALL_MEETUPS);
+        observableMeetUps.setComparator(COMPARATOR_CONTACT_INDEX_MEETUP);
+    }
+
+    @Override
+    public void addMeetUp(MeetUp meetUp) {
+        eduMate.addMeetUp(meetUp);
+    }
+
+    @Override
+    public void deleteMeetUp(MeetUpIndex meetUpIndex) {
+        eduMate.removeMeetUp(this.getMeetUpByIndex(meetUpIndex).get());
+    }
+
+    @Override
+    public MeetUpIndex getMeetUpIndex() {
+        return meetUpIndexHandler.assignMeetUpIndex();
+    }
+
+    @Override
+    public ObservableList<MeetUp> getObservableMeetUpList() {
+        return observableMeetUps;
+    }
+
+    @Override
+    public Optional<MeetUp> getMeetUpByIndex(MeetUpIndex meetUpIndex) {
+        return meetUpIndexHandler.getMeetUpByIndex(meetUpIndex);
+    }
+
+    @Override
+    public boolean hasMeetUp(MeetUp meetUp) {
+        requireNonNull(meetUp);
+        return eduMate.hasMeetUp(meetUp);
     }
 
 }

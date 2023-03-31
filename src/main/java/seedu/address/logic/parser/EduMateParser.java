@@ -17,10 +17,12 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.LoadCommand;
 import seedu.address.logic.commands.MeetCommand;
+import seedu.address.logic.commands.OrganiseCommand;
 import seedu.address.logic.commands.SampleCommand;
 import seedu.address.logic.commands.SaveCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UnorganiseCommand;
 import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -105,6 +107,12 @@ public class EduMateParser {
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
+
+        case OrganiseCommand.COMMAND_WORD:
+            return new OrganiseCommandParser().parse(arguments);
+
+        case UnorganiseCommand.COMMAND_WORD:
+            return new UnorganiseCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

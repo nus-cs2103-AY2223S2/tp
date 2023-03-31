@@ -6,7 +6,7 @@ import static seedu.address.testutil.TypicalPersons.ALBERT;
 import static seedu.address.testutil.TypicalPersons.ANG;
 import static seedu.address.testutil.TypicalPersons.BART;
 import static seedu.address.testutil.TypicalPersons.CLARK;
-import static seedu.address.testutil.TypicalPersons.DAKOTA;
+import static seedu.address.testutil.TypicalPersons.DONG;
 import static seedu.address.testutil.TypicalPersons.EDWARD;
 import static seedu.address.testutil.TypicalPersons.FORD;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
@@ -46,7 +46,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_byName_correctPersonQueried() throws CommandException {
-        ViewCommand command1 = new ViewCommand("Dakota Dunman", null);
+        ViewCommand command1 = new ViewCommand("Dong Yu Lang", null);
         ViewCommand command2 = new ViewCommand("Edward Richards", null);
         ViewCommand command3 = new ViewCommand("Ford Canning", null);
 
@@ -54,7 +54,7 @@ public class ViewCommandTest {
         ViewCommandResult result2 = command2.execute(model);
         ViewCommandResult result3 = command3.execute(model);
 
-        assertEquals(Optional.of(DAKOTA), result1.getDisplayPerson());
+        assertEquals(Optional.of(DONG), result1.getDisplayPerson());
         assertEquals(Optional.of(EDWARD), result2.getDisplayPerson());
         assertEquals(Optional.of(FORD), result3.getDisplayPerson());
 

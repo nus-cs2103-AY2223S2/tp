@@ -1,5 +1,7 @@
 package seedu.address.model.commitment;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 
 import org.joda.time.LocalTime;
@@ -20,6 +22,7 @@ public class Lesson extends Commitment {
      */
     public Lesson(String moduleCode, LocalTime startTime, LocalTime endTime, Day schoolDay, Location location) {
         super(location, new TimeBlock(startTime, endTime, schoolDay));
+        requireNonNull(moduleCode);
         this.moduleCode = moduleCode;
     }
 
@@ -28,6 +31,7 @@ public class Lesson extends Commitment {
      */
     public Lesson(String moduleCode, Location location, TimePeriod timePeriod) {
         super(location, timePeriod);
+        requireNonNull(moduleCode);
         this.moduleCode = moduleCode;
     }
 
@@ -44,6 +48,7 @@ public class Lesson extends Commitment {
      * Used for handling empty module code strings.
      */
     public Lesson updateModuleCode(String moduleCode) {
+        requireNonNull(moduleCode);
         return new Lesson(moduleCode, location, timePeriod);
     }
 
@@ -58,9 +63,7 @@ public class Lesson extends Commitment {
     @Override
     public String toString() {
         return "Lesson{"
-                + getDay()
-                + ", " + getStartTime()
-                + " to " + getEndTime()
+                + timePeriod.toString()
                 + " at " + location + '}';
     }
 

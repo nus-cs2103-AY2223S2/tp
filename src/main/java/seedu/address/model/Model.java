@@ -3,10 +3,16 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.meetup.MeetUp;
+import seedu.address.model.meetup.MeetUpIndex;
+import seedu.address.model.meetup.Participants;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.recommendation.Recommendation;
@@ -27,6 +33,10 @@ public interface Model {
     /** {@code Comparator} that sorts by contact index */
     Comparator<Recommendation> COMPARATOR_CONTACT_INDEX_RECOMMENDATION =
             Comparator.comparing(Recommendation::getContactIndex);
+
+    Predicate<MeetUp> PREDICATE_SHOW_ALL_MEETUPS = unused -> true;
+
+    Comparator<MeetUp> COMPARATOR_CONTACT_INDEX_MEETUP = Comparator.comparing(MeetUp::getMeetUpIndex);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -146,6 +156,8 @@ public interface Model {
      */
     void setUser(User user);
 
+    Optional<Person> getPersonByIndex(ContactIndex index);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getObservablePersonList();
 
@@ -166,6 +178,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateObservablePersonList();
+
+    /**
+     * Gets a recommendation by its index.
+     * @param contactIndex Recommendation index.
+     * @return Recommendation with the given index if it exists.
+     */
+    Optional<Recommendation> getRecommendationByIndex(ContactIndex contactIndex);
 
     /** Returns an unmodifiable view of the filtered recommendation list */
     ObservableList<Recommendation> getObservableRecommendationList();
@@ -189,4 +208,22 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateObservableRecommendationList();
+
+    void updateObservableMeetUpList();
+
+    Optional<MeetUp> getMeetUpByIndex(MeetUpIndex meetUpIndex);
+
+    void deleteMeetUp(MeetUpIndex meetUpIndex);
+
+    void addMeetUp(MeetUp meetUp);
+
+    boolean hasMeetUp(MeetUp meetUp);
+
+    MeetUpIndex getMeetUpIndex();
+
+    ObservableList<MeetUp> getObservableMeetUpList();
+
+    void setParticipants(Set<ContactIndex> indices);
+
+    Participants getParticipants();
 }

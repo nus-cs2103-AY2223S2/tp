@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.EditCommand.createEditedUser;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalEduMate;
@@ -22,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.results.ViewCommandResult;
 import seedu.address.model.EduMate;
 import seedu.address.model.EduMateHistory;
 import seedu.address.model.Model;
@@ -91,12 +93,14 @@ public class EditCommandTest {
     public void execute_nullIndex_success() {
         EditCommand editCommand = new EditCommand(null, new EditPersonDescriptor());
         User originalUser = model.getUser();
+        User editedUser = createEditedUser(originalUser, new EditPersonDescriptor());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_USER_SUCCESS, originalUser);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_USER_SUCCESS, editedUser);
 
         Model expectedModel = new ModelManager(new EduMate(model.getEduMate()), new UserPrefs(), new EduMateHistory());
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        ViewCommandResult expectedResult = new ViewCommandResult(expectedMessage, editedUser);
+        assertCommandSuccess(editCommand, model, expectedResult, expectedModel);
 
         model.setUser(originalUser);
     }

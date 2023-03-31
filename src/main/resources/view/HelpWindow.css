@@ -1,9 +1,26 @@
+/* ---- Fonts ---- */
+
+@font-face {
+    font-family: 'Inter Regular';
+    src: url('../fonts/Inter/static/Inter-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Inter SemiBold';
+    src: url('../fonts/Inter/static/Inter-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Inter Bold';
+    src: url('../fonts/Inter/static/Inter-Bold.ttf');
+}
+
 #copyButton, #helpMessage {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: rgb(150, 146, 223);
 }
 
 #copyButton:hover {
@@ -15,5 +32,90 @@
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: rgba(186, 156, 218, 0.3);
+}
+
+#commandSummary {
+    -fx-background-color: rgba(238, 225, 246, 0.3);
+}
+
+.prefix {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 12;
+    -fx-background-color: rgb(150, 146, 223);
+    -fx-padding: 2 5 2 5;
+    -fx-background-radius: 5;
+    -fx-font-family: "Inter SemiBold"
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+.prefix-type2 {
+    -fx-text-fill: black;
+    -fx-font-size: 12;
+    -fx-background-color: rgb(227, 211, 238);
+    -fx-padding: 2 5 2 5;
+    -fx-background-radius: 5;
+    -fx-font-family: "Inter SemiBold"
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+.prefix:hover, .prefix-type2:hover, .command-word:hover {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.prefix-label {
+    -fx-text-fill: rgb(150, 146, 223);
+    -fx-padding: 2 5 2 5;
+    -fx-font-family: "Inter Bold"
+    -fx-font-size: 18;
+    -fx-background-radius: 5;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color:  rgb(227, 211, 238);
+    -fx-opacity: 0.2;
+    -fx-background-radius: 5;
+}
+
+.command-word {
+    -fx-background-color: rgb(94, 40, 102);
+    -fx-text-fill: white;
+    -fx-padding: 2 5 2 5;
+    -fx-font-family: "Inter SemiBold"
+    -fx-font-size: 18;
+    -fx-background-radius: 5;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-width: 72;
+}
+
+.command-explanation {
+    -fx-text-fill: rgb(94, 40, 102);
+    -fx-padding: 2 5 2 5;
+    -fx-font-size: 12;
+    -fx-font-family: "Inter Regular"
+    -fx-font-size: 18;
+}
+
+.box-pad {
+    -fx-padding: 5 0 5 0;
+}
+
+.box-pad2 {
+    -fx-background-color: rgb(227, 211, 238);
+    -fx-padding: 5 0 5 0;
 }

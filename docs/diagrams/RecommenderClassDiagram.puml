@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include style.puml
+skinparam arrowThickness 1.1
+
+package Recommender LOGIC_COLOR_BACKGROUND {
+    class Recommender LOGIC_COLOR
+    class TimingRecommender LOGIC_COLOR
+    class LocationRecommender LOGIC_COLOR
+    class LocationTracker LOGIC_COLOR
+}
+
+package Model MODEL_COLOR_BACKGROUND {
+    class Person MODEL_COLOR
+    class Location MODEL_COLOR
+    class TimePeriod MODEL_COLOR
+    class Timetable MODEL_COLOR
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside .right.> Recommender
+
+Recommender -[LOGIC_COLOR]-> LocationRecommender
+Recommender -[LOGIC_COLOR]up-> TimingRecommender
+Recommender -[LOGIC_COLOR]right-> "*" LocationTracker
+
+LocationTracker -[hidden]up-> TimingRecommender
+LocationTracker -[hidden]down-> LocationRecommender
+
+LocationTracker -[LOGIC_COLOR]up-> "1" Person
+LocationTracker -[LOGIC_COLOR]-> "*" Location
+LocationTracker .[LOGIC_COLOR].> TimePeriod
+
+TimingRecommender .[LOGIC_COLOR]up.> TimePeriod
+TimingRecommender -[LOGIC_COLOR]-> "1" Person
+
+LocationRecommender .[LOGIC_COLOR].> TimePeriod
+LocationRecommender -[LOGIC_COLOR]up-> "*" Location
+
+Person -[hidden]up-> TimePeriod
+Person -[hidden]down-> Location
+
+Person -[MODEL_COLOR]right-> Timetable
+Timetable -[MODEL_COLOR]up-> "*" TimePeriod
+Timetable -[MODEL_COLOR]down-> "*" Location
+
+@enduml
