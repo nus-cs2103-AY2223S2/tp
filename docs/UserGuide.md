@@ -220,16 +220,6 @@ Example: `deletepart Cylinder Head` deletes the part 'Cylinder Head' and all the
 ---
 ### Actions
 
-### Finds the number of appointments on a specified date: `totalAppointment`
-
-Counts how many customer appointments are there on a specified date.
-
-Format: `totalAppointment d\DATE`
-
-* Finds  at the specified `DATE`.
-* The `DATE` must follow a YYYY-MM-DD format. The range of allowable years is 0001 to 9999.
-
-
 ### Undo a previously executed command: `undo`
 
 Undoes the previously typed command
@@ -269,13 +259,16 @@ After deleting a customer at Index 3 and using `undo` to reverse the deletion of
 ---
 ### Others
 
+
 ### Get number of appointments : `totalappointment`
 
 Finds the number of appointments on the specified date.
 
-Format: `totalappointment d/DATE`
+Format: `totalAppointment d\DATE`
 
 Example: `totalappointment d/2023-02-03`
+
+* The `DATE` must follow a YYYY-MM-DD format. The range of allowable years is 0001 to 9999.
 
 ### Exiting the program : `exit`
 
