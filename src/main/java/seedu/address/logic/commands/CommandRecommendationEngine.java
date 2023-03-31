@@ -5,7 +5,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.CheckedFunction;
@@ -32,14 +31,25 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.StatsCommandParser;
 
 /**
- * Recommends a command based on the user input.
- * Implementation adapted from
+ * @@author Lee Zong Xun
+ * A class representing a recommendation engine that recommends a command based on the user input.
+ * This class is implemented by using a command registry and a command info map.
+ *
+ * Adapted from Agolia Documentation
  * <a href="https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions"/>
  */
 public class CommandRecommendationEngine {
+    /**
+     * A singleton instance of the CommandRecommendationEngine class.
+     */
     private static CommandRecommendationEngine commandRecommendationEngine;
+    /**
+     * A map containing the command registry with command word as key and CommandInfo as value.
+     */
     private static final CommandInfoMap commandRegistry = new CommandInfoMap();
-
+    /**
+     * Used to format the error messages
+     */
     private static final String delimiter = "                ";
 
     static {
@@ -68,6 +78,11 @@ public class CommandRecommendationEngine {
 
     private CommandRecommendationEngine() { }
 
+    /**
+     * Gets a singleton instance of the CommandRecommendationEngine class.
+     *
+     * @return the singleton instance of the CommandRecommendationEngine class.
+     */
     public static CommandRecommendationEngine getInstance() {
         if (commandRecommendationEngine == null) {
             commandRecommendationEngine = new CommandRecommendationEngine();
@@ -75,10 +90,22 @@ public class CommandRecommendationEngine {
         return commandRecommendationEngine;
     }
 
+    /**
+     * Gets the command registry with command word as key and CommandInfo as value.
+     *
+     * @return the command registry.
+     */
     public CommandInfoMap getCommandInfoMap() {
         return commandRegistry;
     }
 
+    /**
+     * Generates the recommended command based on the user input.
+     *
+     * @param userInput the user input.
+     * @return the recommended command.
+     * @throws RecommendationException if there is no matching command in the command registry.
+     */
     public String generateCommandRecommendations(String userInput) throws RecommendationException {
         if (userInput == null || userInput.isEmpty()) {
             return "";
@@ -111,6 +138,13 @@ public class CommandRecommendationEngine {
         return userInput + recommendedArguments;
     }
 
+    /**
+     * Autocompletes a command based on user input.
+     *
+     * @param userInput the user input to use for generating recommendations
+     * @return the recommended command
+     * @throws RecommendationException if there is an error generating recommendations
+     */
     public String autocompleteCommand(String userInput) throws RecommendationException {
         userInput = userInput.trim();
         String recommendedCommand = generateCommandRecommendations(userInput);
@@ -168,7 +202,7 @@ public class CommandRecommendationEngine {
             isValidArgs(command, argumentMultimap);
         } catch (RecommendationException e){
             if (e.getMessage().isEmpty()) {
-                throw new RecommendationException(userInput + delimiter + "Invalid argument");
+                throw new RecommendationException(userInput + delimiter + "Invalid prefix");
             } else {
                 throw new RecommendationException(userInput + delimiter + e.getMessage());
             }
@@ -181,7 +215,7 @@ public class CommandRecommendationEngine {
         Prefix matchingPrefix = findMatchingPrefix(cmdPrompt, currPrefixString.split("/")[0]);
 
         if (isCompletePrefix && matchingPrefix == null) {
-            throw new RecommendationException(userInput + delimiter + "Invalid argument");
+            throw new RecommendationException(userInput + delimiter + "Invalid prefix");
         }
 
         if (isCompletePrefix) {
@@ -207,14 +241,20 @@ public class CommandRecommendationEngine {
      *
      * @param command          The command type.
      * @param argumentMultimap The map of arguments.
-     * @return A boolean value indicating if the set of arguments specified is valid.
      */
-    public static boolean isValidArgs(String command, ArgumentMultimap argumentMultimap) throws RecommendationException {
+    public static void isValidArgs(String command, ArgumentMultimap argumentMultimap) throws RecommendationException {
         CommandInfo commandInfo = commandRegistry.get(command);
         CheckedFunction<ArgumentMultimap, Boolean> argumentValidator = commandInfo.getCmdValidator();
-        return argumentValidator.apply(argumentMultimap);
+        argumentValidator.apply(argumentMultimap);
     }
 
+    /**
+     * Returns the remaining arguments from the provided command prompt as a list of prefixes.
+     *
+     * @param cmdPrompt a HashMap containing the command prompt prefixes and their values.
+     * @param consumer a Consumer that will receive each remaining argument's prefix.
+     * @param predicate a Predicate that will be used to filter the prefixes.
+     */
     public static void getRemainingArguments(HashMap<Prefix, String> cmdPrompt,
             Consumer<? super Prefix> consumer, Predicate<Prefix> predicate) {
         cmdPrompt.keySet()
