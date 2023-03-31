@@ -326,6 +326,20 @@ public class TagCommandTest {
     }
 
     @Test
+    void tagGroups_invalidContactIndex_throwsCommandException() {
+        TagCommand tagCommand = new TagCommand(new ContactIndex(1000),
+                Set.of(), TagType.GROUP);
+        assertThrows(CommandException.class, () -> tagCommand.execute(model));
+    }
+
+    @Test
+    void tagPersonModules_invalidContactIndex_throwsCommandException() {
+        TagCommand tagCommand = new TagCommand(new ContactIndex(1000),
+                Set.of(), TagType.MODULE);
+        assertThrows(CommandException.class, () -> tagCommand.execute(model));
+    }
+
+    @Test
     void equals_sameObject_true() {
         assertEquals(tagCommand, tagCommand);
     }
@@ -335,6 +349,11 @@ public class TagCommandTest {
         TagCommand other = new TagCommand(new ContactIndex(1),
                 Set.of(CS2040S_F), TagType.MODULE);
         assertEquals(tagCommand, other);
+    }
+
+    @Test
+    void equals_differentTypes_false() {
+        assertNotEquals(tagCommand, 2);
     }
 
     @Test
