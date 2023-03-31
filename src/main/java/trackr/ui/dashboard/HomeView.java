@@ -1,7 +1,6 @@
 package trackr.ui.dashboard;
 
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;

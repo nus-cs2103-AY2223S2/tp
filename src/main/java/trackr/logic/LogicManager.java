@@ -117,7 +117,7 @@ public class LogicManager implements Logic {
         Double total = allOrders.stream()
                         .map(x -> x.getTotalRevenue().getValue())
                         .collect(Collectors.summingDouble(Double::doubleValue));
-        return new ItemPrice(total);        
+        return new ItemPrice(total);
     }
 
     @Override
