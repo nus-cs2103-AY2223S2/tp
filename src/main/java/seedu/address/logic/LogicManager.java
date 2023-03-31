@@ -89,6 +89,16 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public boolean isUpPressedBefore() {
+        return model.getEduMateHistory().isUpPressedBefore();
+    }
+
+    @Override
+    public String getCurrentCommand() {
+        return model.getEduMateHistory().getCurrentCommand();
+    }
+
+    @Override
     public ObservableList<Person> getObservablePersonList() {
         return model.getObservablePersonList();
     }

@@ -10,8 +10,8 @@ import java.util.ArrayList;
 public class EduMateHistory implements ReadOnlyEduMateHistory {
 
     private ArrayList<String> eduMateHistory;
-    private int index = 0;
-    private final int minIndex = 0;
+    private int index = -1;
+    private final int minIndex = -1;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -57,7 +57,7 @@ public class EduMateHistory implements ReadOnlyEduMateHistory {
     public void addCommand(String command) {
         assert command != null;
         eduMateHistory.add(0, command);
-        index = 0;
+        index = -1;
     }
 
     /**
@@ -68,20 +68,31 @@ public class EduMateHistory implements ReadOnlyEduMateHistory {
     @Override
     public String getPreviousCommand(boolean isUp) {
         if (eduMateHistory.size() == 0) {
-            return "";
+            return null;
         }
         if (isUp) {
-            String previousCommand = eduMateHistory.get(index);
             if (index < eduMateHistory.size() - 1) {
                 index++;
             }
-            return previousCommand;
         } else {
             if (index > minIndex) {
                 index--;
             }
-            return eduMateHistory.get(index);
+            if (index == -1) {
+                return "";
+            }
         }
+        return eduMateHistory.get(index);
+    }
+
+    @Override
+    public String getCurrentCommand() {
+        return eduMateHistory.get(index);
+    }
+
+    @Override
+    public boolean isUpPressedBefore() {
+        return index != -1;
     }
 
     /**
