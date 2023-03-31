@@ -125,7 +125,6 @@ Format: `addtag [t/TAG]…`
 Examples: 
 * `addtag t/Novel t/MaleProtagonist`
 * `addtag t/FemaleProtagonist`
-![add_tag](images/add-tag.png)
 
 ### Deleting a tag: `dtag`
 
@@ -153,7 +152,7 @@ A bookmark can have any number of tags (including 0)
 
 Examples:
 * `add n/Hobbit a/J. R. R. Tolkien p/Finished r/4 g/Fantasy`
-* `add n/The Odyssey a/Homer p/Reading g/Action r/5 n/Literature class readings`
+* `add n/The Odyssey a/Homer p/Reading g/Action r/5 t/Literature class readings`
 
 ### Listing all bookmarks : `list`
 
@@ -197,10 +196,10 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`
 
 Examples:
-* `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
 *  `find a/Yoo Heonhwa` returns every bookmark whose author of the book is Yoo Heonhwa<br>
-
+* `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
+![find_reply](images/find-chainsaw%20man.png)
 
 ### Deleting a person : `delete`
 
@@ -215,6 +214,24 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd bookmark in the library.
 * `find n/Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
+
+### Viewing a bookmark's details : `view`
+
+Displays details of Bookmark in the right side panel.
+
+Format: `view INDEX`
+
+* gets bookmark at the specified `INDEX` and displays its details.
+* The index refers to the index number shown in the displayed bookmark list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `view 2` displays the 2nd bookmark in the library.
+* `find n/Chainsaw Man` followed by `goto 1` displays 1st bookmark in the results of the `find` command.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Our Application also supports this feature in gui format, simply click onto the bookmark you want and watch the magic happen.
+</div>
 
 ### Going to a url : `goto`
 
