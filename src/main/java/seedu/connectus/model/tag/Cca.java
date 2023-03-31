@@ -18,13 +18,9 @@ public class Cca extends Tag {
     public final String ccaPositionName;
     public final String coupledCcaName;
 
-    private String cca;
+    private final String cca;
     private String position;
     private boolean isPosition = false;
-
-    public boolean hasPosition() {
-        return isPosition;
-    }
 
     /**
      * Constructs a {@code Cca}.
@@ -45,6 +41,9 @@ public class Cca extends Tag {
         ccaPositionName = position;
     }
 
+    public boolean hasPosition() {
+        return isPosition;
+    }
     /**
      * Decouples command into CCA Name and CCA Position.
      */

@@ -9,7 +9,6 @@ import java.util.function.Predicate;
 
 import seedu.connectus.commons.util.CollectionUtil;
 import seedu.connectus.commons.util.StringUtil;
-import seedu.connectus.model.tag.Cca;
 
 /**
  * Tests that a {@code Person}'s information fields matches any of the keywords given.
