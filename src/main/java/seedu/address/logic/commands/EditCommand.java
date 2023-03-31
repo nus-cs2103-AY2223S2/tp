@@ -22,6 +22,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.event.Consultation;
+import seedu.address.model.event.Lab;
+import seedu.address.model.event.Tutorial;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -76,6 +79,9 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+        List<Tutorial> lastShownTutorialList = model.getFilteredTutorialList();
+        List<Lab> lastShownLabList = model.getFilteredLabList();
+        List<Consultation> lastShownConsultationList = model.getFilteredConsultationList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -89,6 +95,20 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
+
+        for (Tutorial tutorial: lastShownTutorialList) {
+            tutorial.replaceStudent(personToEdit, editedPerson);
+        }
+
+        for (Lab lab: lastShownLabList) {
+            lab.replaceStudent(personToEdit, editedPerson);
+        }
+
+        for (Consultation consultation: lastShownConsultationList) {
+            consultation.replaceStudent(personToEdit, editedPerson);
+        }
+
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
