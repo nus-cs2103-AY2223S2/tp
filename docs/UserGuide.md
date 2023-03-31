@@ -24,6 +24,9 @@ You can click on any of the links below to navigate to the respective sections f
 # Table of Contents
 
 <!-- TOC -->
+* [Overview](#overview)
+* [About This Guide](#about-this-guide)
+* [Table of Contents](#table-of-contents)
 * [Quick start](#quick-start)
   * [Prerequisites](#prerequisites)
     * [Java](#java)
@@ -43,6 +46,7 @@ You can click on any of the links below to navigate to the respective sections f
     * [Editing a menu item : `edit_item` / `edit_i`](#editing-a-menu-item--edititem--editi)
   * [Find](#find)
     * [Finding a supplier: `find_supplier` or `find_s`](#finding-a-supplier-findsupplier-or-finds)
+    * [Finding an order: `find_order` or `find_o`](#finding-an-order-findorder-or-findo)
     * [Finding a task: `find_task` or `find_t`](#finding-a-task-findtask-or-findt)
     * [Finding a menu item : `find_item` / `find_i`](#finding-a-menu-item--finditem--findi)
   * [Delete](#delete)
@@ -50,14 +54,27 @@ You can click on any of the links below to navigate to the respective sections f
     * [Deleting an order: `delete_order` or `delete_o`](#deleting-an-order-deleteorder-or-deleteo)
     * [Deleting a task: `delete_task` or `delete_t`](#deleting-a-task-deletetask-or-deletet)
     * [Deleting a menu item: `delete_item` / `delete_i`](#deleting-a-menu-item-deleteitem--deletei)
-  * [Switch](#switch)
+  * [Sort](#sort)
     * [Sorting a task: `sort_task` / `sort_t`](#sorting-a-task-sorttask--sortt)
+    * [Sorting a order: `sort_order` / `sort_o`](#sorting-a-order-sortorder--sorto)
+  * [List](#list)
+    * [Listing all suppliers: `list_supplier` or `list_s`](#listing-all-suppliers-listsupplier-or-lists)
+    * [Listing all orders: `list_order` or `list_o`](#listing-all-orders-listorder-or-listo)
+    * [Listing all tasks: `list_task` or `list_t`](#listing-all-tasks-listtask-or-listt)
+    * [Listing all menu items: `list_item` or `list_i`](#listing-all-menu-items-listitem-or-listi)
+  * [Clear](#clear)
+    * [Clear all supplier entries: `clear_supplier` or `clear_s`](#clear-all-supplier-entries-clearsupplier-or-clears)
+    * [Clear all order entries: `clear_order` or `clear_o`](#clear-all-order-entries-clearorder-or-clearo)
+    * [Clear all task entries: `clear_task` or `clear_t`](#clear-all-task-entries-cleartask-or-cleart)
+    * [Clear all menu item entries: `clear_item` or `clear_i`](#clear-all-menu-item-entries-clearitem-or-cleari)
+  * [Switch](#switch)
     * [Switching tabs: `tab`](#switching-tabs-tab)
   * [Others](#others)
+    * [Uploading a csv file](#uploading-a-csv-file)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
+* [Data](#data)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
-    * [Uploading a csv file](#uploading-a-csv-file)
     * [Upcoming features `[coming soon]`](#upcoming-features-coming-soon)
 * [FAQ](#faq)
 * [Command summary](#command-summary)
@@ -212,7 +229,7 @@ Examples:
 
 Adds an order into the list of orders.
 
-Syntax: `add_order n/CUSTOMER_NAME l/CUSTOMER_LOCATION {p/CUSTOMER_PHONE_NUMBER e/CUSTOMER_EMAIL} d/DEADLINE q/QUANTITY f/FOOD_NAME [s/STATUS] [r/REMARKS]…​`
+Syntax: `add_order n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER d/DEADLINE q/QUANTITY on/ORDER_NAME [s/STATUS]…​`
 
 * An order can have any number of remarks.
 * Either customer phone number or email address must be provided.
@@ -222,8 +239,8 @@ Syntax: `add_order n/CUSTOMER_NAME l/CUSTOMER_LOCATION {p/CUSTOMER_PHONE_NUMBER 
 
 Examples:
 
-* `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567`
-* `add_o r/Urgent f/Birthday Cake q/1 n/Betsy Cow l/Betsy Street d/2023-03-03 s/N`
+* `add_order n/John Doe a/John Street d/2023-12-12 q/10 on/Cupcakes p/91234567`
+* `add_o on/Birthday Cake q/1 n/Betsy Cow a/Betsy Street d/2023-03-03 s/N`
 
 ### Adding a task: `add_task` or `add_t`
 
@@ -285,7 +302,7 @@ Examples:
 
 Edits an order that is present in the order list.
 
-Syntax: `edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [f/FOOD_NAME] [s/STATUS] [r/REMARKS]…​`
+Syntax: `edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [on/ORDER_NAME] [s/STATUS]…​`
 
 * Edits the order at the specific `INDEX`. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
 * You have to key in at least one of the optional fields.
@@ -296,7 +313,7 @@ Syntax: `edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PH
 Examples:
 
 * `edit_order 1 p/91234567 d/2023-05-05` edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
-* `edit_o 3 q/20 r/` edits the quantity of food for the 3rd order to 20 and clears all remarks
+* `edit_o 3 q/20` edits the quantity of food for the 3rd order to 20 and clears all remarks
 
 ### Editing a task: `edit_task` or `edit_t`
 
@@ -350,6 +367,24 @@ Examples:
 
 * `find_task n/PHOON HUAT` returns supplier `Phoon Huat` and `John Phoon`
 * `find_s n/PHOON t/eggs t/flour` returns supplier `Phoon Huat` that supplies both `eggs` and `flour`
+
+### Finding an order: `find_order` or `find_o`
+
+Find orders whose information matches with any of the given parameters.
+
+Syntax: `find_order [on/ORDER_NAME] [q/QUANTITY] [s/STATUS] [d/DEADLINE] [n/CUSTOMER_NAME] [p/CUSTOMER_PHONE_NUMBER] [a/CUSTOMER_ADDRESS]…​`
+
+* Search is case-insensitive, e.g. `mark` will match `Mark`.
+* The order of the keywords does not matter, e.g. `n/Mark Lee` will match with `Lee Mark`.
+* At least one of the optional fields must be keyed in.
+* Only full words will match e.g. `Mar` will not match with `Mark`.
+* People matching with at least one keyword will be returned (i.e. `OR` search).
+  e.g. `n/Mark Lee` will return `Mark Tan`, `Lee Chan`.
+
+Examples:
+
+* `find_order on/Chocolate` returns orders `Chocolate Cake` and `Chocolate Cookies`
+* `find_s on/Cake d/01/01/2023` returns order `Chocolate Cake` that has a delivery dateline of `01/01/2023`
 
 ### Finding a task: `find_task` or `find_t`
 
@@ -507,6 +542,58 @@ Examples:
   <br>Figure 2: `sort_o` Example
 </p>
 
+## List
+
+### Listing all suppliers: `list_supplier` or `list_s`
+
+Shows a list of all suppliers in the supplier list.
+
+Syntax `list_supplier`
+
+### Listing all orders: `list_order` or `list_o`
+
+Shows a list of all orders in the order list.
+
+Syntax `list_order`
+
+### Listing all tasks: `list_task` or `list_t`
+
+Shows a list of all tasks in the task list.
+
+Syntax `list_task`
+
+### Listing all menu items: `list_item` or `list_i`
+
+Shows a list of all menu items in the menu item list.
+
+Syntax `list_item`
+
+## Clear
+
+### Clear all supplier entries: `clear_supplier` or `clear_s`
+
+Clears all supplier entries from the supplier list.
+
+Syntax: `clear_supplier`
+
+### Clear all order entries: `clear_order` or `clear_o`
+
+Clears all order entries from the order list.
+
+Syntax: `clear_order`
+
+### Clear all task entries: `clear_task` or `clear_t`
+
+Clears all task entries from the task list.
+
+Syntax: `clear_task`
+
+### Clear all menu item entries: `clear_item` or `clear_i`
+
+Clears all menu item entries from the menu item list.
+
+Syntax: `clear_item`
+
 ## Switch
 
 ### Switching tabs: `tab`
@@ -573,13 +660,13 @@ If your changes to the data file makes its format invalid, Trackr will discard a
 
 # Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                                                                  |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add_supplier / add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order / add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes` <br> <br> `add_task / add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed` |
-| **Edit**   | `edit_supplier / edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order / edit_o` <br> e.g., `edit_o 3 q/20 r/` <br> <br> `edit_task / edit_t` <br> e.g., `edit_t 1 s/`                                                                                                          |
-| **Delete** | `delete_supplier / delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order / delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task / delete_t` <br> e.g., `delete_t 4`                                                                                                                                       |
-| **Find**   | `find_supplier / find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order / find_o` <br> e.g., `find_order r/No almonds r/No frosting` <br> <br> `find_task / find_t` <br> e.g., `find_t s/N`                                                                                                             |
-| **Sort**   | `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline`                                                                                                                                                                                                                                                             |
-| **Tab**    | `tab` <br> e.g., `tab Home`                                                                                                                                                                                                                                                                                       |
-| **Help**   | `help`                                                                                                                                                                                                                                                                                                            |
-| **Exit**   | `exit`                                                                                                                                                                                                                                                                                                            |
+| Action     | Format, Examples                                                                                                                                                                                                                                                                                                   |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add_supplier / add_s` <br> e.g., `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat` <br> <br> `add_order / add_o` <br> e.g., `add_o n/John Doe l/John Street d/2023-12-12 q/10 on/Cupcakes` <br> <br> `add_task / add_t` <br> e.g., `add_t d/Buy a card d/2023-12-23 s/Completed` |
+| **Edit**   | `edit_supplier / edit_s` <br> e.g., `edit_s 3 t/Supplies Flour e/mark@example.com` <br> <br> `edit_order / edit_o` <br> e.g., `edit_o 3 q/20` <br> <br> `edit_task / edit_t` <br> e.g., `edit_t 1 s/`                                                                                                              |
+| **Delete** | `delete_supplier / delete_s` <br> e.g., `delete_s 2` <br> <br> `delete_order / delete_o` <br> e.g., `delete_o 1` <br> <br> `delete_task / delete_t` <br> e.g., `delete_t 4`                                                                                                                                        |
+| **Find**   | `find_supplier / find_s` <br> e.g., `find_s n/PHOON t/eggs` <br> <br> `find_order / find_o` <br> e.g., `find_order on/Chocolate` <br> <br> `find_task / find_t` <br> e.g., `find_t s/N`                                                                                                                            |
+| **Sort**   | `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline`                                                                                                                                                                                                                                                              |
+| **Tab**    | `tab` <br> e.g., `tab Home`                                                                                                                                                                                                                                                                                        |
+| **Help**   | `help`                                                                                                                                                                                                                                                                                                             |
+| **Exit**   | `exit`                                                                                                                                                                                                                                                                                                             |
