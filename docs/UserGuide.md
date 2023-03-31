@@ -97,6 +97,69 @@ will be ignored.<br>
 
 ## Features
 
+Format: `help` 
+
+
+### Adding a module: `add`
+
+Adds an item to the module tracker.
+
+Format: `add n/MODULE_NAME t/TAG [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS] [c/RESOURCE]`
+
+<!-- <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A module can have any number of tags (including 0)
+</div> -->
+
+Examples:
+* `add n/CS2103T t/Lecture`
+* `add n/CS1101S t/Tutorial e/03042023 10:00 a/COM1-0217 s/Sam Wan`
+* `add n/CS2030S t/Lab a/COM1-B112 d/04042023 23:59 r/Attendance not compulsory :)`
+
+### Listing all modules : `list`
+
+Shows a list of all items in the module tracker.
+
+Format: `list`
+
+### Editing a module : `edit`
+
+Edits an existing item in the module tracker.
+
+Format: `edit INDEX [n/MODULE_NAME] [t/TAG] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS] [c/RESOURCE]`
+
+* Edits the items at the specified INDEX. The index refers to the index number shown in the displayed module list. 
+The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the module will be removed i.e adding of tags is not cumulative.
+
+
+Examples:
+* `edit 1 n/CS2101 t/Tutorial` Edits the module name, item type and date of the 1st item to be `CS2101` and `Tutorial` 
+respectively.
+* `edit 2 a/COM3-B110 s/Professor Franklin Stein r/Funny lecturer haha` Edits the venue, teacher and remark of the 2nd 
+item to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
+* `edit 5 n/CS1231S d/02042023 23:59` Edits the module name and deadline of the 5th item to be `CS1231S` 
+and `02042023 23:59` respectively.
+
+### Finding a module or type : `find`
+
+finds the specified module or type from the module tracker.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+* The KEYWORD refers to the module name or type name such as CS2103T or tutorial.
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* Only the module name and type are searched.
+* Only full words will be matched e.g. `CS2103` will not match `CS2103T`
+* Modules matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `CS2103T tutorial` will return the CS2103T module and tutorials in the module tracker
+
+Examples:
+* `list` followed by `find CS2103T` finds all instances where there is a module named CS2103T in the list.
+* `list` followed by `find tutorial` finds all instances of tutorials in the list
+* `list` followed by `CS2103T tutorial` will return modules named CS2103T and all tutorial type in the module tracker
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
