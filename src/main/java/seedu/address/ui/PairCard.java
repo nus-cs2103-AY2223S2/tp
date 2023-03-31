@@ -103,7 +103,7 @@ public class PairCard extends UiPart<Region> {
             if (y + popupHeight >= bounds.getMaxY()) {
                 y = bounds.getMaxY() - popupHeight - 10;
             }
-            popover.show(cardPane, x, y - 100);
+            popover.show(cardPane, x, y - 50);
         });
 
         cardPane.setOnMouseExited(event -> popover.hide());

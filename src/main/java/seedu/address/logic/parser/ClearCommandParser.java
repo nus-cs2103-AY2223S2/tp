@@ -18,7 +18,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
-        throw new RecommendationException("There should not be any argument specified");
+        throw new RecommendationException("There should not be a preamble");
     }
 
     /**

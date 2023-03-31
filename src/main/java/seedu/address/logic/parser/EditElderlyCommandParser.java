@@ -111,9 +111,9 @@ public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
-        if (map.getPreamble().length() == 1 && StringUtil.isNonZeroUnsignedInteger(map.getPreamble())) {
-            throw new RecommendationException("Invalid index");
+        if (StringUtil.isNonZeroUnsignedInteger(map.getPreamble())) {
+            return true;
         }
-        return true;
+        throw new RecommendationException("Invalid index");
     }
 }

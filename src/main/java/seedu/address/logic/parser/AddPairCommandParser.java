@@ -86,7 +86,10 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
         if (map.getPreamble().isEmpty()) {
             return true;
         }
-        return Arrays.stream(availablePrefixes).anyMatch(prefix -> prefix.getPrefix().startsWith(map.getPreamble()));
+        if (Arrays.stream(availablePrefixes).noneMatch(prefix -> prefix.getPrefix().startsWith(map.getPreamble()))) {
+            throw new RecommendationException("There should not be a preamble");
+        }
+        return true;
     }
 
 }

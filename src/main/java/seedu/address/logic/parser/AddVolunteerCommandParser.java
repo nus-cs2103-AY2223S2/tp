@@ -19,6 +19,7 @@ import java.util.Set;
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.logic.commands.CommandInfo;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Address;
@@ -95,10 +96,13 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
         if (map.getPreamble().isEmpty()) {
             return true;
         }
-        return Arrays.stream(availablePrefixes).anyMatch(prefix -> prefix.getPrefix().startsWith(map.getPreamble()));
+        if (Arrays.stream(availablePrefixes).noneMatch(prefix -> prefix.getPrefix().startsWith(map.getPreamble()))) {
+            throw new RecommendationException("There should not be a preamble");
+        }
+        return true;
     }
 }
