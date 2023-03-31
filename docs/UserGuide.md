@@ -16,8 +16,8 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 - [Features](#features)
 - [Main Features](#main-features-tracking-applied-internships)
     - [View guide : `help`](#view-help--help)
-    - [Add an internship application](#)
-        - [Add](#)
+    - [Add an internship application](#adding-an-internship--add)
+        - [Add](#adding-an-internship--add)
     - [List currently ongoing internship applications : `list`](#display-a-list-of-ongoing-internship-applications--list)
     - [Sort all internship applications : `sort`](#sort-all-internship-applications--sort)
     - [Find internship applications by the company name, job title, status, or interview date : `find`](#find-internship-applications-by-the-company-name-job-title-status-or-interview-date--find)
@@ -35,7 +35,6 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
         - [Archive an application : `archive`](#archive-an-internship-application--archive)
         - [Unarchive an application : `unarchive`](#unarchive-an-internship-application--unarchive)
         - [List all archived applications : `list_archived`](#display-a-list-of-archived-internship-applications--list_archived)
-    - [Edit](#)
     - [Remind](#displaying-the-internship-application-with-the-most-imminent-interview--remind)
     - [Remove entry(entries)](#delete-an-application-of-internship--delete)
         - [Delete an internship application : `delete`](#delete-an-application-of-internship--delete)
@@ -76,14 +75,14 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 
 1. Have Java `11` or above installed in local laptop or Computer.
 
-2. Download the latest version (InternEase v1.3) of `InternEase.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-4/tp/releases).<br>
+2. Download the latest version (InternEase v1.3) of `internease.jar` from [here](https://github.com/AY2223S2-CS2103T-W15-4/tp/releases).<br>
 
 3. Copy the file to the folder you want to use as the _home folder_ for your InternEaseApp.
 
 4. Start the app by:
-    - Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar InternEase.jar` command to run the program.<br>
+    - Opening a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar internease.jar` command to run the program.<br>
       or
-    - Double-clicking the downloaded `InternEase.jar` file.<br>
+    - Double-clicking the downloaded `internease.jar` file.<br>
    > **Note**<br>
    > You should see the app is running now. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -138,13 +137,13 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
 ### View help : `help`
 Shows user the link to user guide.
 
-Format: help
+Format: `help`
 
 ### Adding an internship : `add`
 
 Adds an internship application to the tracker
 
-Format: ` add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...`
+Format: `add n/COMPANY_NAME j/JOB_TITLE [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...`
 
 - `Salary` should be in the form of amount followed by space currency in upper case.
 - 
