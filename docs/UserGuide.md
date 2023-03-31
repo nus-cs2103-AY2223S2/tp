@@ -161,7 +161,7 @@ Format: `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…`
 
 Examples:
 * `addp n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addp n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
+* `addp n/Betsy Crowe tag/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
 
 #### 3.2.2 Deleting a person : `deletep`
 
