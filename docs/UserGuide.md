@@ -279,21 +279,6 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Selecting A Particular Contact To View: `select'
-
-Want to see the details of a particular contact?
-
-You can either use your cursor to click on the contact or use this command!
-
-**Syntax:**
-
-`select INDEX`
-
-Here are some important requirements for you to take note:
-
-* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer**.
-
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
