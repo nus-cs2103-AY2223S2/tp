@@ -75,10 +75,6 @@ public class EditExpenseCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EDIT_FOR_EXPENSE);
         }
 
-        //Check if index is valid
-        if (targetIndex == null) {
-            throw new CommandException(MESSAGE_USAGE);
-        }
         if (targetIndex.getZeroBased() >= lastShownListOfExpenses.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
         }

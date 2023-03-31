@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUMMARY;
 
 import java.util.List;
 
@@ -18,6 +20,13 @@ import seedu.address.ui.ScreenType;
  */
 public class EditCategory extends Command {
     public static final String COMMAND_WORD = "edcat";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the category identified by the index number used in the displayed category list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "[" + PREFIX_CATEGORY + "CATEGORY] "
+            + "[" + PREFIX_SUMMARY + "SUMMARY] "
+            + "Example: " + COMMAND_WORD + " edcat 1 c/food s/for meals";
 
     private final Index targetIndex;
 

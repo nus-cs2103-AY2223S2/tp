@@ -26,7 +26,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists expenses based on a filter"
             + "Parameters: "
             + PREFIX_CATEGORY + "CATEGORY "
-            + PREFIX_TIMESPAN + "TIMESPAN (Week, Month, Year) "
+            + PREFIX_TIMESPAN + "TIMESPAN (Week, Month, Year)\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CATEGORY + "Food "
             + PREFIX_TIMESPAN + "week ";

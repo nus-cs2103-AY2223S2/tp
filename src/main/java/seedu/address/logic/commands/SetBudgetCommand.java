@@ -14,10 +14,10 @@ public class SetBudgetCommand extends Command {
 
     public static final String COMMAND_WORD = "set";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets monthly budget.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets monthly budget\n"
             + "Parameters: "
-            + PREFIX_PRICE + "BUDGET_AMOUNT "
-            + "Example: " + COMMAND_WORD + " " + PREFIX_PRICE + " 1000";
+            + PREFIX_PRICE + "BUDGET_AMOUNT\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PRICE + "1000";
 
     public static final String MESSAGE_SUCCESS = "Monthly budget successfully set to ";
     private final Budget budget;

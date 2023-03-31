@@ -91,6 +91,11 @@ public interface AnalyticModel {
     double getBudget();
 
     /**
+     * Gets the Property of the users current monthly budget
+     */
+    DoubleProperty getMonthlyBudgetProperty();
+
+    /**
      * A convenience method to re-calculate and update all statistics
      */
     void updateAllStatistics();
