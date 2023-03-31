@@ -18,9 +18,9 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
     * [List all events](#list) : `list` command
     * [Retrieve next event](#next) : `next` command
     * [Locate events by keyword](#find) : `find` command
+    * [Undo previous command](#undo) : `undo` command
     * [View help](#help) : `help` command
     * [Exit application](#exit) : `exit` command
-    * [Undo previous command](#undo) : `undo` command
   * [GUI](#gui)
     * [Command Box](#command-box)
     * [Response Box](#response-box)
@@ -45,18 +45,18 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
 
 <h2 id="command-summary">Command Summary</h2>
 
-| Action | Command Format                                               |
-|:-------|:-------------------------------------------------------------|
- | Add    | `add n/<event> d/<date> s/<start time> e/<end time>`         |
-| Repeat | `recur <index> d/<end date> every/<RECUR FACTOR>`            |
-| Edit   | `edit <index> n/<name> d/<date> s/<start time> e/<end time>` |
-| Delete | `delete <index>` or `delete <index index ... index>`         |
-| List   | `list`                                                       |
-| Next   | `next` or `next <count>`                                     |
-| Find   | `find n/<name> d/<date>`                                     |
-| Help   | `help`                                                       |
-| Exit   | `exit`                                                       |
-| Undo   | `undo`                                                       |
+| Action | Command Format                                                    |
+|:-------|:------------------------------------------------------------------|
+ | Add    | `add n/<event> d/<date> s/<start time> e/<end time>`              |
+| Repeat | `recur <index> d/<end date> every/<RECUR FACTOR>`                 |
+| Edit   | `edit <index> n/<name> d/<date> s/<start time> e/<end time>`      |
+| Delete | `delete <index>` or `delete <index index ... index>`              |
+| List   | `list`                                                            |
+| Next   | `next` or `next <count>`                                          |
+| Find   | `find n/<name> d/<date>`                                          |
+| Undo   | `undo`                                                            |
+| Help   | `help`                                                            |
+| Exit   | `exit`                                                            |
 
 [[Back to top](#index)]
 
@@ -178,17 +178,6 @@ Example: `find n/tennis` or `find d/2023-03-01` or `find n/tennis d/2023-03-01`
 [[Back to top](#index)]
 
 
-<h3 id="help">View Help</h3>
-
-Provide a link to access this website.
-
-Format: `help`
-
-Example: `help`<br><br>
-
-[[Back to top](#index)]
-
-
 <h3 id="undo">Undo Previous Command</h3>
 
 Undo previous command (Only applicable for `add`, `delete`, `edit` & `recur` commands).
@@ -196,6 +185,17 @@ Undo previous command (Only applicable for `add`, `delete`, `edit` & `recur` com
 Format: `undo`
 
 Example: `undo`<br><br>
+
+[[Back to top](#index)]
+
+
+<h3 id="help">View Help</h3>
+
+Provide a link to access this website.
+
+Format: `help`
+
+Example: `help`<br><br>
 
 [[Back to top](#index)]
 
@@ -213,20 +213,20 @@ Example: `exit`<br><br>
 
 <h3 id="command-box">Command Box</h3>
 
-![command-box.png](..%2Fsrc%2Fmain%2Fresources%2Fimages%2Fcommand-box.png)
+![command-box.png](../src/main/resources/images/command-box.png)
 
 Allows you to type the command in the command box and press Enter to execute the command. 
 E.g., typing help and pressing Enter will open the help window
 
 <h3 id="response-box">Response Box</h3>
 
-![response-box.png](..%2Fsrc%2Fmain%2Fresources%2Fimages%2Fresponse-box.png)
+![response-box.png](../src/main/resources/images/response-box.png)
 
 Displays to you the feedback of the command you typed into the command box.
 
 <h3 id="event-list">Event List</h3>
 
-![event-list.png](..%2Fsrc%2Fmain%2Fresources%2Fimages%2Fevent-list.png)
+![event-list.png](../src/main/resources/images/event-list.png)
 
 Displays to you all the events that you have.
 Use commands such as `list` and `find` to show you the events you have in your list.
@@ -237,14 +237,14 @@ Use commands such as `list` and `find` to show you the events you have in your l
 
 <h3 id="upcoming">Upcoming Events</h3>
 
-![upcoming-events.png](..%2Fsrc%2Fmain%2Fresources%2Fimages%2Fupcoming-events.png)
+![upcoming-events.png](../src/main/resources/images/upcoming-events.png)
 
 Displays to you the upcoming events you have.
 Use `next` command to change the number of upcoming events you want to show.
 
 <h3 id="calender">Calender</h3>
 
-![calendar.png](..%2Fsrc%2Fmain%2Fresources%2Fimages%2Fcalendar.png)
+![calendar.png](../src/main/resources/images/calendar.png)
 
 Provides an overview of all the event that you have.
 
