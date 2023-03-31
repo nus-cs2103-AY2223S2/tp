@@ -4,12 +4,9 @@ title: User Guide
 ---
 ## About TeachMeSenpai
 
-TeachMeSenpai is a **desktop app targeted at teaching assistants who have many students to keep track of.** 
-It is tailored to assist the user in monitoring their students' progress, and details. 
-As a teaching assistant, you can easily view and edit your student's details on the go. 
-Tailored for fast typers, TeachMeSenpai is built around a **Command Line Interface (CLI)**, 
-complete with an **autocomplete** feature
-to help you manage your students quicker than a traditional point-and-click interface can.
+TeachMeSenpai is a **desktop app targeted at teaching assistants who have many students to keep track of.** It is tailored to assist the user in monitoring their students' progress, and details. 
+As a teaching assistant, you can easily view and edit your student's details on the go. Tailored to fast-typist, TeachMeSenpai is built around a **Command Line Interface (CLI)**, complete with an **autocomplete** feature
+to help you manage your students quicker than a traditional point-and-click app can.
 
 ## About this User Guide
 This user guide provides everything you need to know to get started with TeachMeSenpai and how to use its features.
@@ -40,7 +37,7 @@ this user guide for more information, or to external websites to learn more!
 ## **Table of Contents**
 {:.no_toc}
 
-1. Table of Contents
+* Table of Contents
 {:toc}
 
 ---
@@ -77,10 +74,13 @@ TeachMeSenpai has been designed to work for all Operating Systems!
 > - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.  
 >   _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
 > 
-> - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.  
+> - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored.  
 >   _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
 
 ## Parameter descriptions
+
+Firstly, parameters are the inputs/information you have to enter together with their respective commands in the command line 
+when using TeachMeSenpai!
 
 Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
 
@@ -219,22 +219,20 @@ Examples:
 
 - `remark 2'
 
-[//]: # (<p align=center>)
+<p align=center>
+    <img alt="remark before" src="images/user-guide/remark_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>remark</code> command</i>
+</p>
 
-[//]: # (    <img alt="remark before" src="images/user-guide/remark_before.jpg" />)
+<p align=center>
+    <img alt="remark after" src="images/user-guide/remark_during.jpg" />
+    <br><i><b>Above:</b> After pressing Ctrl + S <code>remark</code> command</i>
+</p>
 
-[//]: # (    <br><i><b>Above:</b> Before entering <code>remark</code> command</i>)
-
-[//]: # (</p>)
-
-[//]: # ()
-[//]: # (<p align=center>)
-
-[//]: # (    <img alt="remark after" src="images/user-guide/remark_after.jpg" />)
-
-[//]: # (    <br><i><b>Above:</b> After entering <code>remark</code> command</i>)
-
-[//]: # (</p>)
+<p align=center>
+    <img alt="remark during" src="images/user-guide/remark_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>remark</code> command</i>
+</p>
 
 [↑ Back to top](#table-of-contents)
 
@@ -269,12 +267,12 @@ Examples:
 
 Finds entries of students based on a keyword in the field that you want. <br>
 
-The `find` and `filter` command allows you to match keywords or partial keywords with the entries, for example:<br><br>
+The `find` and `filter` command allows you to match keywords or partial keywords with the entries, for example:<br>
 `find n/Sh` displays the students with names which contain `sh` in them, such as `Shaun` or `Amresh`.<br>
 This applies to all fields EXCEPT tags and modules, where you will have to enter and find them by the 
-tags and modules in full. <br>
-the `find` command allows you to hone in on an entry that matches ALL your criteria, but `filter` will also show you 
-those who only match with some criteria.
+tags and modules in full. <br><br>
+the `find` command allows you to hone in on an entry that matches **all** your `FIELD` and `KEYWORDS`
+, but `filter` will also show you those who match with **at least one** of the criteria.
 
 > Format: <br>
 > `find FIELD... KEYWORDS...` <br>
@@ -293,7 +291,6 @@ those who only match with some criteria.
 
 <div markdown="block" class="alert alert-info">
 
-:bulb: **Note:** No input in the `FIELD` defaults to finding by name.
 
 </div>
 
@@ -304,6 +301,7 @@ Examples:
 - `find t/ URGENT` will display students who have the exact tag `URGENT`
 - `find m/ CS2101` will display students who have the exact module `CS2101`
 
+**Using the following input fields `find n/a m/CS2103T`:**
 <p align=center>
     <img alt="find before" src="images/user-guide/find_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>find</code> command</i>
@@ -313,6 +311,20 @@ Examples:
     <img alt="find after" src="images/user-guide/find_after.jpg" />
     <br><i><b>Above:</b> After entering <code>find</code> command</i>
 </p>
+
+:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
+<p align=center>
+    <img alt="filter before" src="images/user-guide/filter_before.jpg" />
+    <br><i><b>Above:</b> Before entering <code>filter</code> command</i>
+</p>
+
+<p align=center>
+    <img alt="filter after" src="images/user-guide/filter_after.jpg" />
+    <br><i><b>Above:</b> After entering <code>filter</code> command</i>
+</p>
+
+:bulb: **Note:** Here, other entries that match some criteria like `Roy Balakrishnan`
+are shown too.
 
 [↑ Back to top](#table-of-contents)
 
@@ -349,10 +361,56 @@ You can combine `find` and `delete` when you have a very long list of students. 
 For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
 </div>
 
+---
+
+### Undo a previous command: `undo`
+
+Did you make a mistake with a command? Don't worry, simply `undo` it!
+
+You can `undo` as many times as required, as long as the previous commmand is **undoable**.
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands 
+that change the data of your TeachMeSenpai app!
+Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message.
+
+</div>
+
+> Format: `undo` 
+
+Example: `delete 1 4` followed by `undo`. <br>
+
+### Redo a previous `undo`: `redo`
+
+Did you `undo` a command on accident? Fret not, you may use `redo` to reverse the changes done by `undo`!
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** You can only redo an `undo` command.
+Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
+
+</div>
+
+>Format: `redo`
+
+Example: `delete 1 4`, followed by `undo`, then `redo`.
+
 [↑ Back to top](#table-of-contents)
 
 ---
 
+### Clearing all entries: `clear`
+
+Need to clear all your entries? Simply use `clear` to help you delete all your entries at once!
+
+>Format: `clear`
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that 
+if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
+</div>
 ### Saving the data
 
 TeachMeSenpai data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually 🙂
@@ -378,8 +436,10 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 | Edit   | `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
 | Exit   | `exit`, `bye`, `quit`                                                                                                                                                                                                                                                 |
 | Find   | `find PREFIX/KEYWORD1 [PREFIX/KEYWORD2]` <br/>eg. `find n/Sh` <br/>                                                                                                                                                                                                   |
-| List   | `list`                                                                                                                                                                                                                                                                |
-| Remark | `remark INDEX [r/REMARK]` <br/>eg. `remark 2 r/Not good in Japanese`                                                                                                                                                                                                  |
+| List   | `list`     
+| Redo   | `redo`
+| Remark | `remark INDEX [r/REMARK]` <br/>eg. `remark 2 r/Not good in Japanese`    
+| Undo   | `undo`
 | Show   | `show INDEX` <br/>eg. `show 1`                                                                                                                                                                                                                                        |
 
 [↑ Back to top](#table-of-contents)
