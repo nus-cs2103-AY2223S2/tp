@@ -100,7 +100,9 @@ public class SessionListPanel extends UiPart<Region> {
         sessionListView.setItems(sessionList);
         sessionListView.setCellFactory(listView -> new SessionListViewCell());
 
-        updateDisplay(sessionListView.getItems().get(0));
+        if (sessionListView.getItems() != null) {
+            updateDisplay(sessionListView.getItems().get(0));
+        }
         getStatistics(sessionList);
         setClickEventListener();
         setUpdateEventListener(logic);

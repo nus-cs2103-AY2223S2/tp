@@ -256,6 +256,81 @@ SportSync data is saved as a JSON file `[JAR file location]/data/addressbook.jso
 If your changes to the data file makes its format invalid, SportSync will discard all data and start with an empty data file at the next run.
 </div>
 
+### Create a session : `create-session`
+
+Adds a new session to the session list.
+
+Format: `create-session n/NAME s/SESSION l/LOCATION `
+
+* Creates a session with the specified name, session date-time, and location.
+* Duplicate sessions cannot be created.
+
+Examples:
+* `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2` creates a session with name Hall from 10 March 2022, 10-11 a.m. at MPSH2.
+
+### Delete an existing session : `delete-session`
+
+Removes an existing session from the address book.
+
+Format: `delete-session INDEX `
+
+* Deletes the session existing at the index specified.
+* Sessions that do not exist cannot be deleted.
+
+Examples:
+* `delete-session 3` deletes the 3rd session in the session list.
+
+### Edit an existing session : `session-edit`
+
+Edits the details of an existing session in the address book.
+
+Format: `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`
+
+* At least one of the fields must be provided.
+* Session must already exist.
+
+Examples:
+* `session-edit 2 n/Hall` changes the location of the 2nd session in the session list to Hall.
+
+### Mark an athlete's attendance : `mark`
+
+Marks the athlete as present for a specified session.
+
+Format: `mark INDEX n/NAME`
+
+* Session and athlete must already exist.
+
+Examples:
+* `mark 1 n/John Doe` marks John Doe's attendance as present in the 1st session in the session list.
+
+### Unmark an athlete's attendance : `unmark`
+
+Marks the athlete as absent for a specified session.
+
+Format: `unmark INDEX n/NAME`
+
+* Session and athlete must already exist.
+
+Examples:
+* `unmark 1 n/John Doe` marks John Doe's attendance as absent in the 1st session in the session list.
+
+### Adding an athlete to a session: `student-add`
+
+Adds an athlete of a specified index to the specified session.
+
+Format: `student-add INDEX n/HALL`
+
+Examples:
+- `student-add 1 n/hall` Adds an athlete at index 1 of the contact list to the session “Hall”.
+
+### Removing an athlete from a session: `student-remove`
+
+Removes an athlete of a specified index from the specified session.
+
+Format: `student-remove INDEX n/HALL`
+
+Examples:
+* `student-remove 1 n/hall` Removes an athlete at index 1 of the contact list from the session “Hall”.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **FAQ**
