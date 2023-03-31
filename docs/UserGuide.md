@@ -24,7 +24,7 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
   * [GUI](#gui)
     * [Command Box](#command-box)
     * [Response Box](#response-box)
-    * [Event List](#event=list)
+    * [Event List](#event-list)
     * [Upcoming Events](#upcoming)
     * [Calendar](#calender)
 * [Limitations](#limitations)
