@@ -209,7 +209,6 @@ public class ModelManager implements Model {
     private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Session> lastShownList) {
         calendarEventList.clear();
         lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
-        System.out.println(calendarEventList);
         return calendarEventList;
     }
 

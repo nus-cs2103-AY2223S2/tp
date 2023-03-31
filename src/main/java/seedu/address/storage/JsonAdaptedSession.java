@@ -59,6 +59,9 @@ public class JsonAdaptedSession {
         attendanceMap.addAll(source.getNameBooleanMap().stream()
                 .map(JsonAdaptedNameBooleanPair::new)
                 .collect(Collectors.toList()));
+        payRateMap.addAll(source.getNamePayRateMap().stream()
+                .map(JsonAdaptedNamePayRatePair::new)
+                .collect(Collectors.toList()));
     }
     /**
      * Converts this Jackson-friendly adapted session object into the model's {@code Session} object.
@@ -103,13 +106,13 @@ public class JsonAdaptedSession {
         final int modelId = Integer.parseInt(id);
 
         ArrayList<NameBooleanPair> modelAttendanceList = new ArrayList<>();
-        for (JsonAdaptedNameBooleanPair jsonAdaptedPair: attendanceMap) {
+        for (JsonAdaptedNameBooleanPair jsonAdaptedPair : attendanceMap) {
             NameBooleanPair pair = jsonAdaptedPair.toModelType();
             modelAttendanceList.add(pair);
         }
 
         ArrayList<NamePayRatePair> modelPayRateList = new ArrayList<>();
-        for (JsonAdaptedNamePayRatePair jsonAdaptedPair: payRateMap) {
+        for (JsonAdaptedNamePayRatePair jsonAdaptedPair : payRateMap) {
             NamePayRatePair pair = jsonAdaptedPair.toModelType();
             modelPayRateList.add(pair);
         }

@@ -12,7 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PayRate;
@@ -27,13 +29,14 @@ public class Session implements Comparable<Session> {
     public static final String MESSAGE_CONSTRAINTS = "Start date time should be before end date time.";
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     private String command;
+    private final Logger logger = LogsCenter.getLogger(getClass());
     private final String startDateTime;
     private final String endDateTime;
     private final SessionName name;
     private final int id;
     private final Location location;
     private HashMap<String, Boolean> attendanceMap = new HashMap<>();
-    private HashMap<String, PayRate> payRateMap = new HashMap<>();
+    private HashMap<String, Integer> payRateMap = new HashMap<>();
 
     /**
      * Every field must be present and not null.
@@ -119,7 +122,7 @@ public class Session implements Comparable<Session> {
         String name = person.getName().formattedName;
         PayRate payRate = person.getPayRate();
         attendanceMap.put(name, false);
-        payRateMap.put(name, payRate);
+        payRateMap.put(name, payRate.toInt());
     }
 
     /**
@@ -329,14 +332,19 @@ public class Session implements Comparable<Session> {
         float totalPay = 0;
         long durationInMins = getSessionDuration().toMinutes();
 
-        for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
-            if (entry.getValue()) {
-                float indivPay = payRateMap.get(entry.getKey()).toInt();
-                totalPay += indivPay / 60 * durationInMins;
+        try {
+            for (Map.Entry<String, Boolean> entry : attendanceMap.entrySet()) {
+                if (entry.getValue()) {
+                    float indivPay = payRateMap.get(entry.getKey());
+                    totalPay += indivPay / 60 * durationInMins;
+                }
             }
+        } catch (NullPointerException e) {
+            logger.warning("No pay rates for session " + getName());
         }
         return totalPay;
     }
+
 
     /**
      * Returns a string representation of the attendance count for the session.
@@ -451,7 +459,7 @@ public class Session implements Comparable<Session> {
 
     public ArrayList<NamePayRatePair> getNamePayRateMap() {
         ArrayList<NamePayRatePair> map = new ArrayList<>();
-        for (Map.Entry<String, PayRate> set
+        for (Map.Entry<String, Integer> set
                 : payRateMap.entrySet()) {
             NamePayRatePair toAdd =
                     new NamePayRatePair(
