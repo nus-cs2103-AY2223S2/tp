@@ -1079,11 +1079,13 @@ Positive and negative test cases were mainly used to test parsers.
 ---
 
 ## **Measuring Coverage of Integration Tests**
-{to be filled}
+We have used `Jacoco` and `Codecev` to monitor the code coverage of integration tests. 
+
 ### **Create Code Coverage Report**
-{to be filled}
+Refer to the [documentation](https://docs.codecov.com/docs) on setting up `Codecev` for setting up on CI/CD.
+
 ### **Read Code Coverage Report**
-{to be filled}
+For more information, check [this](https://github.com/apps/codecov). The above [link](https://docs.codecov.com/docs) also contains information on this.
 
 ---
 
