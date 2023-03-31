@@ -10,10 +10,6 @@ public class FilterCommandParser implements CommandParser<FilterCommand> {
                     .string("f") // filter
                     .map(FilterCommandParser::parseArguments);
 
-    private static final FilterCommandParser INSTANCE = new FilterCommandParser();
-
-    private FilterCommandParser() {}
-
     private static ApplicativeParser<FilterCommand> parseArguments(Object ignore) {
         FilterRequest request = new FilterRequest();
         ArgumentCounter counter = new ArgumentCounter(
@@ -29,7 +25,7 @@ public class FilterCommandParser implements CommandParser<FilterCommand> {
                 CommandParserUtil.KEYWORD_FLAG_PARSER
                         .consume(counter::add)
                         .takeNext(ApplicativeParser.skipWhitespaces1())
-                        .takeNext(CommandParserUtil.WORD_PARSER)
+                        .takeNext(CommandParserUtil.STRING_PARSER)
                         .consume(request::setSearchedKeyword),
                 CommandParserUtil.STATUS_FLAG_PARSER
                         .consume(counter::add)
@@ -75,12 +71,16 @@ public class FilterCommandParser implements CommandParser<FilterCommand> {
                 .skipWhitespaces1()
                 .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
                 .filter(ignore1 -> !request.getMode().equals(FilterRequest.Mode.DEFAULT)
-                        || counter.totalCount() <= 2)
+                        || counter.totalCount() == 1)
                 .constMap(new FilterCommand(request))
                 .dropNext(ApplicativeParser.skipWhitespaces())
                 .dropNext(ApplicativeParser.eof());
 
     }
+
+    private static final FilterCommandParser INSTANCE = new FilterCommandParser();
+
+    private FilterCommandParser() {}
 
     public static FilterCommandParser getInstance() {
         return INSTANCE;
