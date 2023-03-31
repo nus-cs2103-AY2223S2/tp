@@ -27,6 +27,8 @@ If you need to switch to a new device, you can also export and import your previ
 
 **MATHUTORING** is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, **MATHUTORING** can get your contact management tasks done faster than traditional GUI apps.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have `Java 11` or above installed in your Computer.
@@ -62,7 +64,7 @@ If you need to switch to a new device, you can also export and import your previ
 
 <div markdown="block" class="alert alert-info">
 
-### **:information_source: Notes about the command format:**<br>
+**:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -83,7 +85,6 @@ If you need to switch to a new device, you can also export and import your previ
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
 
 ### 1. Viewing help: `help`
 
