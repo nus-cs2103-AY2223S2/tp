@@ -26,21 +26,26 @@ public class ReviewStatsPanel extends UiPart<Region> {
     public ReviewStatsPanel(ObservableList<Pair<String, String>> reviewStatsList) {
         super(FXML);
         reviewStatsView.setItems(reviewStatsList);
-        reviewStatsView.setCellFactory(listView -> new ReviewStatsPanel.ReviewStatsViewCell());
+        reviewStatsView.setCellFactory(listView -> new ReviewStatsViewCell());
     }
 
-    class ReviewStatsViewCell extends ListCell<Pair<String, String>> {
+    static class ReviewStatsViewCell extends ListCell<Pair<String, String>> {
         @Override
         protected void updateItem(Pair<String, String> pair, boolean empty) {
             super.updateItem(pair, empty);
             if (empty || pair == null) {
                 setGraphic(null);
                 setText(null);
-
             } else {
-                setGraphic(new ReviewStat(pair).getRoot());
-                setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px;  "
-                        + "-fx-background-color:transparent ");
+                if (pair.getKey().equals("")) {
+                    setGraphic(new NavGuide().getRoot());
+                    setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px;  "
+                            + "-fx-background-color:transparent ");
+                } else {
+                    setGraphic(new ReviewStatsPane(pair).getRoot());
+                    setStyle("-fx-border-insets: 10px; -fx-background-insets: 10px;  "
+                            + "-fx-background-color:transparent ");
+                }
             }
         }
     }

@@ -45,8 +45,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private CardListPanel cardListPanel;
-    private UiPart<Region> leftPanel;
-    private UiPart<Region> rightTitle;
+    private UiPart<Region> deckListPanel;
+    private UiPart<Region> rightDeckTitle;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
 
@@ -79,8 +79,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private TextFlow rightFilterText;
-
-
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -144,23 +142,23 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         titlePanel.getChildren().add(MAIN_TITLE);
 
-        rightTitle = new DeckNamePanel(logic.getDeckNameList());
-        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
+        rightDeckTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitlePlaceholder.getChildren().add(rightDeckTitle.getRoot());
 
         cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
 
-        leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
-        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+        deckListPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
+        leftPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMasterDeckFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -226,9 +224,9 @@ public class MainWindow extends UiPart<Stage> {
      * Shows the review stats panel.
      */
     public void handleStartReview() {
-        leftPanel = new ReviewStatsPanel(logic.getReviewStatsList());
+        deckListPanel = new ReviewStatsPanel(logic.getReviewStatsList());
         leftPanelPlaceholder.getChildren().clear();
-        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+        leftPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
 
         cardListPanel = new CardListPanel(logic.getReviewCardList(), true);
         rightPanelPlaceholder.getChildren().clear();
@@ -238,9 +236,9 @@ public class MainWindow extends UiPart<Stage> {
         titlePanel.getChildren().add(REVIEW_TITLE);
 
         rightPanelTitlePlaceholder.getChildren().clear();
-        rightTitle = new DeckNamePanel(EMPTY_TITLE);
-        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
 
+        rightDeckTitle = new DeckNamePanel(EMPTY_TITLE);
+        rightPanelTitlePlaceholder.getChildren().add(rightDeckTitle.getRoot());
         rightFilterText.getChildren().clear();
     }
 
@@ -250,9 +248,10 @@ public class MainWindow extends UiPart<Stage> {
     public void handleEndReview() {
         updateDeckTitle();
 
-        leftPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
+        deckListPanel = new DeckListPanel(logic.getFilteredDeckList(), false);
         leftPanelPlaceholder.getChildren().clear();
-        leftPanelPlaceholder.getChildren().add(leftPanel.getRoot());
+        leftPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
+
 
         cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().clear();
@@ -260,7 +259,6 @@ public class MainWindow extends UiPart<Stage> {
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(MAIN_TITLE);
-
         rightFilterText.getChildren().clear();
     }
 
@@ -270,8 +268,8 @@ public class MainWindow extends UiPart<Stage> {
     public void updateDeckTitle() {
         rightPanelTitlePlaceholder.getChildren().clear();
         rightPanelTitlePlaceholder.getChildren().clear();
-        rightTitle = new DeckNamePanel(logic.getDeckNameList());
-        rightPanelTitlePlaceholder.getChildren().add(rightTitle.getRoot());
+        rightDeckTitle = new DeckNamePanel(logic.getDeckNameList());
+        rightPanelTitlePlaceholder.getChildren().add(rightDeckTitle.getRoot());
     }
 
     /**

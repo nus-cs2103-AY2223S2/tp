@@ -17,7 +17,7 @@ public class DeckName extends UiPart<Region> {
     private Label description;
 
     /**
-     * Creates a {@code ReviewStat} with the given {@code pair}.
+     * Creates a {@code DeckName} with the given {@code name}.
      */
     public DeckName(String name) {
         super(FXML);

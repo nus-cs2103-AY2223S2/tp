@@ -149,6 +149,14 @@
     -fx-background-color: #e6eaeb;
 }
 
+#deckNameView .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 0;
+}
+
+#deckNameView .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 0;
+}
+
 #rightPanelTitlePlaceholder {
     -fx-padding: 0 0 0 0;
 }
@@ -177,7 +185,7 @@
     /* this is the same grey colour for deck pane, and the background of output and card panel */
 }
 
-#deckPane .label{
+#deckPane .label {
     -fx-font-size: 20px;
     -fx-text-fill: black;
 }
@@ -237,6 +245,12 @@
     -fx-font-weight: bold;
     -fx-padding: 10 0 0 25;
 }
+
+/* ============ BOTTOM SPLIT PANE ========== */
+
+/*#commandBox .split-pane-divider {*/
+/*    -fx-vertical-zero-line-visible: true;*/
+/*}*/
 
 /* ============ COMMAND INPUT BOX ========== */
 #commandTextField {

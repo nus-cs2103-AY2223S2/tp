@@ -38,7 +38,9 @@ public class DeckNamePanel extends UiPart<Region> {
 
             } else {
                 setGraphic(new DeckName(deckName).getRoot());
-                setStyle("-fx-background-color: transparent");
+
+                // ensures title does not expand so that horizontal scrollbar does not appear
+                setStyle("-fx-background-color: transparent; -fx-max-width: 100; -fx-pref-width: 100");
             }
         }
     }

@@ -222,10 +222,8 @@ public class Review {
         Pair<String, String> tagCount = new Pair<>("Current Tags:",
                  String.format("%d Easy, %d Medium, %d Hard",
                          getNoOfEasyTags(), getNoOfMediumTags(), getNoOfHardTags()));
-        Pair<String, String> flip = new Pair<>("Enter p to flip", "");
-        Pair<String, String> next = new Pair<>("Enter [ to go back, ] to go forward", "");
-        Pair<String, String> tagging = new Pair<>("To tag, enter l for easy, ; for medium and ' for hard", "");
+        Pair<String, String> navGuide = new Pair<>("", "");
         this.reviewStatsList.clear();
-        this.reviewStatsList.addAll(title, cardsSeen, tagCount, flip, next, tagging); // warning being called here
+        this.reviewStatsList.addAll(title, cardsSeen, tagCount, navGuide); // warning being called here
     }
 }
