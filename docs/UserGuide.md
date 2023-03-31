@@ -3,9 +3,13 @@ layout: page
 title: User Guide
 ---
 
+# GoodMatch
+
 ## **Overview**
 
-GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps
+GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI), specifically catering to HR managers in charge of tracking job listings across many platforms. If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps
+
+---
 
 ### Table of Contents
 
@@ -23,15 +27,23 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
-### Purpose
+---
 
-Welcome to the user guide for GoodMatch. This guide will help you understand how to use GoodMatch to streamline your recruitment process and find the best candidates for your company.
+### Purpose of this guide
+
+Welcome to the user guide for GoodMatch. This guide will help you understand how to use GoodMatch to streamline your recruitment process. We aim to help you find the best candidates for your company. 
 
 ### How to use this guide
 
 To make the most of this guide, start by reading it from beginning to end. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
 
 Use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
+
+### Legends
+
+ℹ️ **Notes**: You can find additional information about the command or feature here.
+
+❗ **Caution**: Be careful not to make this deadly mistake.
 
 ---
 
@@ -59,20 +71,46 @@ Some example commands you can try:
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
+---
+
 ## **Features**
+Here is a list of GM features, click on them to jump to the section!
+
+1.  [`help`](#viewing-help--help)
+2.  [`list`](#listing-all-job-listings--list)
+3.  [`add`](#adding-a-job-listing--add)
+4.  [`edit`](#editing-a-job-listing--edit)
+5.  [`delete`](#deleting-a-job-listing--delete)
+6.  [`find`](#locating-job-listings-by-title--find)
+7.  [`sort`](#sorting-job-listings--sort)
+8.  [Saving data](#saving-the-data)
+9.  [Editing data file](#editing-the-data-file)
+
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
 - Words in `UPPER_CASE` are the parameters to be **supplied by the user**. E.g. in `add t/TITLE`, `TITLE` is a parameter which can be used as `add t/Chicken Rice Uncle`.
+
+
 - Items in square brackets are **optional**. E.g. `t/TITLE [a/APPLICANT]...` can be used as `t/Chicken Rice Uncle a/John Tan` or as `t/Chicken Rice Uncle`.
+
+
 - Items with `…` after them can be used **multiple times** including **zero times**. E.g. `[a/APPLICANT]…` can be used as `` (i.e. 0 times), `a/applicant1`, `a/applicant2 a/application3` etc.
+
+
 - Parameters can be in **any order**. E.g. if the command specifies `t/TITLE d/DESCRIPTION`, `d/DESCRIPTION t/TITLE` is also acceptable.
+
+
 - If a parameter is expected only once in the command, but you specified it multiple times, only the **last occurrence** of the parameter will be taken. E.g. if you specify `t/Chicken Rice Uncle t/Chicken Rice Auntie`, only `t/Chicken Rice Auntie` will be taken.
+
+
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `view` and `exit`) will be **ignored**. E.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+---
 
 ### Viewing help: `help`
 
@@ -99,6 +137,8 @@ Listed all listings
 ```
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
 
 ## Adding a job listing: `add`
 
@@ -137,6 +177,8 @@ Example: add t/Cool job title d/Informative job description a/John a/Sam
 ```
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
 
 ### Editing a job listing: `edit`
 
@@ -189,6 +231,8 @@ The listing index provided is invalid!
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
+---
+
 ### Deleting a job listing: `delete`
 
 Deletes a job listing from the listing book.
@@ -229,6 +273,8 @@ The listing index provided is invalid
 ```
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
 
 ### Locating job listings by title: `find`
 
@@ -276,6 +322,8 @@ Example: find chicken rice
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
+---
+
 ### Sorting job listings: `sort`
 
 Sort job listings by the field specified by the user and display the sorted list of job listings.
@@ -315,11 +363,15 @@ Example: sort f/applicants
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
 
+---
+
 ### Saving the data
 
 GoodMatch data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
 
 ### Editing the data file
 
@@ -333,6 +385,8 @@ If your changes to the data file makes its format invalid, GoodMatch will discar
 </div>
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
+
+---
 
 ### Filtering job listings [coming soon!]
 

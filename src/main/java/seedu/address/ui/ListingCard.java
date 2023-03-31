@@ -43,6 +43,8 @@ public class ListingCard extends UiPart<Region> {
     @FXML
     private FlowPane platforms;
     @FXML
+    private Label applicantCount;
+    @FXML
     private FlowPane applicants;
 
     /**
@@ -53,6 +55,7 @@ public class ListingCard extends UiPart<Region> {
         this.listing = listing;
         id.setText(displayedIndex + ". ");
         title.setText(listing.getTitle().fullTitle);
+        applicantCount.setText("Number of applicants: " + listing.getApplicantCount());
         description.setText(listing.getDescription().fullDescription);
         if (listing.getPlatformCount() > 0) {
             platformsHeader.setText("Platforms released: " + listing.getPlatformCount());

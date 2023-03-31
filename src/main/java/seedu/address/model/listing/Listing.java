@@ -52,6 +52,10 @@ public class Listing {
         return platforms.size();
     }
 
+    public int getApplicantCount() {
+        return applicants.size();
+    }
+
     public String getUniqueID() {
         return uniqueID;
     }

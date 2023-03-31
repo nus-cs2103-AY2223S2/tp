@@ -36,7 +36,10 @@
         <Label fx:id="platformsHeader" />
         <FlowPane fx:id="platforms" />
       </VBox>
-      <FlowPane fx:id="applicants" />
+      <VBox alignment="CENTER_LEFT" minHeight="40">
+        <Label fx:id="applicantCount" id="applicantCount"/>
+        <FlowPane fx:id="applicants" />
+      </VBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />

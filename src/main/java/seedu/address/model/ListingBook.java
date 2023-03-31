@@ -9,8 +9,8 @@ import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.UniqueListingList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the listing-book level
+ * Duplicates are not allowed (by .isSameListing comparison)
  */
 public class ListingBook implements ReadOnlyListingBook {
 
@@ -30,7 +30,7 @@ public class ListingBook implements ReadOnlyListingBook {
     public ListingBook() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an ListingBook using the Listings in the {@code toBeCopied}
      */
     public ListingBook(ReadOnlyListingBook toBeCopied) {
         this();
@@ -40,15 +40,15 @@ public class ListingBook implements ReadOnlyListingBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the listing list with {@code listings}.
+     * {@code listings} must not contain duplicate listings.
      */
     public void setListings(List<Listing> listings) {
         this.listings.setListings(listings);
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ListingBook} with {@code newData}.
      */
     public void resetData(ReadOnlyListingBook newData) {
         requireNonNull(newData);
@@ -59,7 +59,7 @@ public class ListingBook implements ReadOnlyListingBook {
     //// listing-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a listing with the same identity as {@code listing} exists in the listing book.
      */
     public boolean hasListing(Listing listing) {
         requireNonNull(listing);
@@ -67,17 +67,18 @@ public class ListingBook implements ReadOnlyListingBook {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a listing to the listing book.
+     * The person must not already exist in the listing book.
      */
     public void addListing(Listing l) {
         listings.add(l);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given listing {@code target} in the list with {@code editedListing}.
+     * {@code target} must exist in the listing book.
+     * The listing identity of {@code editedListing} must not be the same as
+     * another existing listing in the listing book.
      */
     public void setListing(Listing target, Listing editedListing) {
         requireNonNull(editedListing);
@@ -86,8 +87,8 @@ public class ListingBook implements ReadOnlyListingBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ListingBook}.
+     * {@code key} must exist in the listing book.
      */
     public void removeListing(Listing key) {
         listings.remove(key);
