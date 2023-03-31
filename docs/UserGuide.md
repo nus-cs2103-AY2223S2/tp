@@ -208,26 +208,27 @@ Format: `exit`
 
 Example: `exit`<br><br>
 
+[[Back to top](#index)]
 
 <h2 id="gui">GUI</h2>
 
 <h3 id="command-box">Command Box</h3>
-
 ![command-box.png](images/command-box.png)
-
 Allows you to type the command in the command box and press Enter to execute the command. 
 E.g., typing help and pressing Enter will open the help window
 
+[[Back to top](#index)]
+
+
 <h3 id="response-box">Response Box</h3>
-
 ![response-box.png](images/response-box.png)
-
 Displays to you the feedback of the command you typed into the command box.
 
+[[Back to top](#index)]
+
+
 <h3 id="event-list">Event List</h3>
-
 ![event-list.png](images/event-list.png)
-
 Displays to you all the events that you have.
 Use commands such as `list` and `find` to show you the events you have in your list.
 
@@ -235,24 +236,30 @@ Use commands such as `list` and `find` to show you the events you have in your l
 > Events that have past is marked with a completed label and check mark.  
 > Events are orders in chronological order.
 
+[[Back to top](#index)]
+
+
 <h3 id="upcoming">Upcoming Events</h3>
-
 ![upcoming-events.png](images/upcoming-events.png)
-
 Displays to you the upcoming events you have.
 Use `next` command to change the number of upcoming events you want to show.
 
+[[Back to top](#index)]
+
+
 <h3 id="calender">Calender</h3>
-
 ![calendar.png](images/calendar.png)
-
 Provides an overview of all the event that you have.
 
 Functionality:  
-1. Events that are added will be shown in it's respective calendar box.
+1. Events that are added will be shown in its respective calendar box.
 2. On click of `now` button will jump you directly back to the current date.
 3. On click of any calendar date boxes that have events will display the events in event list.
 4. `find` command will highlight the calendar boxes that has the event.
+
+[[Back to top](#index)]
+
+
 
 <h1 id="limitations">Limitations</h1>
 -------------------------------------
@@ -266,6 +273,6 @@ Functionality:
 ---------------------
 **Q:** On a scale of 1 to 10, how awesome is this product?
 
-**A:** 10<br><br>
+**A:** 10
 
 [[Back to top](#index)]
