@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,7 +28,7 @@ public class StudentAttendanceCommand extends StudentCommand {
 
     public static final String COMMAND_FORMAT = "student <CLASS_NAME> attendance <INDEX> <DATE>";
 
-    public static final String MESSAGE_SUCCESS = "Attendance marked as present";
+    public static final String MESSAGE_SUCCESS = "Attendance marked for student";
 
     public static final String MESSAGE_USAGE = "student CLASS_NAME " + COMMAND_WORD
             + ": Marks student as present. \n"
@@ -93,12 +94,23 @@ public class StudentAttendanceCommand extends StudentCommand {
                 studentToEdit = curr;
                 break;
             }
-
+        }
+        if (studentToEdit == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
         Set<Attendance> attendanceSet = studentToEdit.getAttendance();
         Set<Attendance> attendanceSetReplaced = new HashSet<>();
-        attendanceSetReplaced.addAll(attendanceSet);
-        attendanceSetReplaced.add(attendance);
+        if (attendance.isAbsent()) {
+            LocalDate today = LocalDate.now();
+            for (Attendance att : attendanceSet) {
+                if (!att.isPresent(today)) {
+                    attendanceSetReplaced.add(att);
+                }
+            }
+        } else {
+            attendanceSetReplaced.addAll(attendanceSet);
+            attendanceSetReplaced.add(attendance);
+        }
         Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
                 studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
                 studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
