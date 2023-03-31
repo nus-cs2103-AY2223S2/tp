@@ -6,6 +6,7 @@ import static seedu.address.model.location.util.TypicalLocation.SENGKANG;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.location.Location;
 
 public class JsonAdaptedLocationTest {
@@ -23,6 +24,13 @@ public class JsonAdaptedLocationTest {
         assertEquals(jsonAdaptedLocation.toModelType(), SENGKANG);
         assertEquals(jsonAdaptedLocation.toModelType(),
                 new Location(SENGKANG.getLatitude(), SENGKANG.getLongitude()));
+    }
+
+    @Test
+    public void toModelType_nullName_throwsIllegalValueException() {
+        JsonAdaptedLocation jsonAdaptedLocation =
+                new JsonAdaptedLocation(null, SENGKANG.getLatitude(), SENGKANG.getLongitude());
+        assertThrows(IllegalValueException.class, jsonAdaptedLocation::toModelType);
     }
 
     @Test
