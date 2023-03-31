@@ -53,42 +53,55 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+
+        case AddDoctorCommand.SHORTHAND_COMMAND_WORD:
         case AddDoctorCommand.COMMAND_WORD:
             return new AddDoctorCommandParser().parse(arguments);
 
+        case AddPatientCommand.SHORTHAND_COMMAND_WORD:
         case AddPatientCommand.COMMAND_WORD:
             return new AddPatientCommandParser().parse(arguments);
 
+        case AssignPatientCommand.SHORTHAND_COMMAND_WORD:
         case AssignPatientCommand.COMMAND_WORD:
             return new AssignPatientCommandParser().parse(arguments);
 
+        case UnassignPatientCommand.SHORTHAND_COMMAND_WORD:
         case UnassignPatientCommand.COMMAND_WORD:
             return new UnassignPatientCommandParser().parse(arguments);
 
+        case EditDoctorCommand.SHORTHAND_COMMAND_WORD:
         case EditDoctorCommand.COMMAND_WORD:
             return new EditDoctorCommandParser().parse(arguments);
 
+        case EditPatientCommand.SHORTHAND_COMMAND_WORD:
         case EditPatientCommand.COMMAND_WORD:
             return new EditPatientCommandParser().parse(arguments);
 
+        case DeleteDoctorCommand.SHORTHAND_COMMAND_WORD:
         case DeleteDoctorCommand.COMMAND_WORD:
             return new DeleteDoctorCommandParser().parse(arguments);
 
+        case DeletePatientCommand.SHORTHAND_COMMAND_WORD:
         case DeletePatientCommand.COMMAND_WORD:
             return new DeletePatientCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case FindDoctorCommand.SHORTHAND_COMMAND_WORD:
         case FindDoctorCommand.COMMAND_WORD:
             return new FindDoctorCommandParser().parse(arguments);
 
+        case FindPatientCommand.SHORTHAND_COMMAND_WORD:
         case FindPatientCommand.COMMAND_WORD:
             return new FindPatientCommandParser().parse(arguments);
 
+        case ListDoctorCommand.SHORTHAND_COMMAND_WORD:
         case ListDoctorCommand.COMMAND_WORD:
             return new ListDoctorCommand();
 
+        case ListPatientCommand.SHORTHAND_COMMAND_WORD:
         case ListPatientCommand.COMMAND_WORD:
             return new ListPatientCommand();
 
