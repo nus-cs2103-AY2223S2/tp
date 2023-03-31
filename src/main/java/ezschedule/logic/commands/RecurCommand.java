@@ -22,10 +22,10 @@ public class RecurCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Recurs event in the scheduler by "
             + "the index number used in the displayed event list. "
-            + "\nParameters: INDEX (must be a positive integer) "
-            + CliSyntax.PREFIX_DATE + "ENDING DATE "
+            + "\nParameters: INDEX (must exist)\n "
+            + CliSyntax.PREFIX_DATE + "ENDING DATE\n "
             + CliSyntax.PREFIX_EVERY + "{DAY, WEEK, MONTH, YEAR} "
-            + "\nExample: " + COMMAND_WORD + " 1 "
+            + "\nExample: \n" + COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_DATE + "2024-02-20 "
             + CliSyntax.PREFIX_EVERY + "MONTH ";
 
@@ -57,7 +57,8 @@ public class RecurCommand extends Command {
         List<Event> lastShownList = model.getFilteredEventList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX,
+                    index.getZeroBased() + 1));
         }
 
         Event eventToRecur = lastShownList.get(index.getZeroBased());
