@@ -8,21 +8,22 @@ title: User Guide
 Tutee managing system (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 # TABLE OF CONTENTS
-
+[Quick Start](#quick start)
 [FEATURES](#features)
-1. [Add student](#add)
-2. [Delete student](#delete)
-3. [List student](#list)
-4. [Filter student](#filter)
-5. [Add a lesson](#learn)
-6. [Remove a lesson](#unlearn)
-7. [Local save](#save)
-8. [Local load](#load)
-9. [Exit program](#exit)
+1. [Viewing help](#help)
+2. [Add student](#add)
+3. [Delete student](#delete)
+4. [List student](#list)
+5. [Filter student](#filter)
+6. [Add a lesson](#learn)
+7. [Remove a lesson](#unlearn)
+8. [Local save](#save)
+9. [Local load](#load)
+10. [Exit program](#exit)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick start <a name="quick start"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -51,7 +52,7 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FEATURES 
+## FEATURES <a name="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -77,7 +78,7 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 
 </div>
 
-### Viewing help : `help`
+## Viewing help <a name="help"></a>
 
 Shows a message explaning how to access the help page.
 
