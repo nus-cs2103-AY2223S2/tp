@@ -9,7 +9,6 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;

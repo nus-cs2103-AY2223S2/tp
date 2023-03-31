@@ -14,7 +14,6 @@ import static seedu.patientist.logic.parser.CliSyntax.PREFIX_WARD;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 

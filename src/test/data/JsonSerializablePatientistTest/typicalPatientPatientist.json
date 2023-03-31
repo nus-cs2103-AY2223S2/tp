@@ -8,6 +8,7 @@
       "phone" : "11111111",
       "email" : "amy@example.com",
       "address" : "Block 312, Amy Street 1",
+      "priority" : "LOW",
       "tagged" : [ ],
       "details" : [ ]
     }, {
@@ -16,6 +17,7 @@
       "phone" : "2136784",
       "email" : "charlie@example.com",
       "address" : "123, abc, #08-111",
+      "priority" : "LOW",
       "tagged" : [ ],
       "details" : [ "Doing good" ]
     }],
@@ -35,6 +37,7 @@
       "phone" : "94351253",
       "email" : "adam@example.com",
       "address" : "123, Jurong West Ave 6, #08-111",
+      "priority" : "LOW",
       "tagged" : [ ],
       "details" : [ "Doing fine" ]
     }, {
@@ -43,6 +46,7 @@
       "phone" : "222222222",
       "email" : "bob@example.com",
       "address" : "Block 123, Bobby Street 3",
+      "priority" : "LOW",
       "tagged" : [ ],
       "details" : [ ]
     }],

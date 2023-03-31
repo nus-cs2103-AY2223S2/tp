@@ -2,17 +2,11 @@ package seedu.patientist.ui;
 
 import java.util.Comparator;
 
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.patientist.model.person.patient.Patient;
 
 /**
@@ -93,30 +87,32 @@ public class PatientCard extends UiPart<Region> {
 
     private void textToColor(String text) {
         switch(text) {
-            case "LOW":
-                priority.setStyle("-fx-background-color: #5FA051;"
-                                  + " -fx-text-fill: white;"
-                                  + " -fx-padding: 1 3 1 3;"
-                                  + " -fx-border-radius: 2;"
-                                  + " -fx-background-radius: 2;"
-                                  + " -fx-font-size: 13;");
-                return;
-            case "MEDIUM":
-                priority.setStyle("-fx-background-color: #EB9C5C;"
-                                  + " -fx-text-fill: white;"
-                                  + " -fx-padding: 1 3 1 3;"
-                                  + " -fx-border-radius: 2;"
-                                  + " -fx-background-radius: 2;"
-                                  + " -fx-font-size: 13;");
-                return;
-            case "HIGH":
-                priority.setStyle("-fx-background-color: #A90505;"
-                                  + " -fx-text-fill: white;"
-                                  + " -fx-padding: 1 3 1 3;"
-                                  + " -fx-border-radius: 2;"
-                                  + " -fx-background-radius: 2;"
-                                  + " -fx-font-size: 13;");
-                return;
+        case "LOW":
+            priority.setStyle("-fx-background-color: #5FA051;"
+                              + " -fx-text-fill: white;"
+                              + " -fx-padding: 1 3 1 3;"
+                              + " -fx-border-radius: 2;"
+                              + " -fx-background-radius: 2;"
+                              + " -fx-font-size: 13;");
+            return;
+        case "MEDIUM":
+            priority.setStyle("-fx-background-color: #EB9C5C;"
+                              + " -fx-text-fill: white;"
+                              + " -fx-padding: 1 3 1 3;"
+                              + " -fx-border-radius: 2;"
+                              + " -fx-background-radius: 2;"
+                              + " -fx-font-size: 13;");
+            return;
+        case "HIGH":
+            priority.setStyle("-fx-background-color: #A90505;"
+                              + " -fx-text-fill: white;"
+                              + " -fx-padding: 1 3 1 3;"
+                              + " -fx-border-radius: 2;"
+                              + " -fx-background-radius: 2;"
+                              + " -fx-font-size: 13;");
+            return;
+        default:
+            return;
         }
     }
 }

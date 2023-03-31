@@ -30,7 +30,7 @@ public class JsonAdaptedPatientTest {
     private static final String VALID_PHONE = AMY.getPhone().toString();
     private static final String VALID_EMAIL = AMY.getEmail().toString();
     private static final String VALID_ADDRESS = AMY.getAddress().toString();
-    private static final String VALID_PRIORITY = AMY.getPriority().toString();
+    private static final String VALID_PRIORITY = "LOW";
     private static final List<JsonAdaptedStatus> VALID_STATUS = AMY.getPatientStatusDetails().stream()
             .map(JsonAdaptedStatus::new)
             .collect(Collectors.toList());
