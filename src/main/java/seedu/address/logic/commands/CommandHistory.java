@@ -24,7 +24,6 @@ public class CommandHistory {
 
     public void updateAsModifyingHistory(String lastExecutedCommand) {
         requireNonNull(lastExecutedCommand);
-        assert (!commandList.isEmpty());
         commandList.add(lastExecutedCommand);
         int outdatedCommandIndex = currentStatePointer + 1;
         modifyHistoryCommandList.subList(outdatedCommandIndex, modifyHistoryCommandList.size()).clear();
