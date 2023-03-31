@@ -18,8 +18,7 @@ import seedu.address.model.person.fields.Name;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final ReadOnlyObjectWrapper<Person> observableSelectedPerson =
-            new ReadOnlyObjectWrapper<>(new Person(new Name("Default"))); //figure what to replace with
+    private final ReadOnlyObjectWrapper<Person> observableSelectedPerson = new ReadOnlyObjectWrapper<>(null);
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
