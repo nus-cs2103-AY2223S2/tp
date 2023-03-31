@@ -13,6 +13,10 @@ public class ItemProfit extends ItemPrice {
         super(itemPrice, itemCost);
     }
 
+    public ItemProfit(Double val) {
+        super(val);
+    }
+
     @Override
     public String toString() {
         return "Profit: $" + this.getFormattedValue();

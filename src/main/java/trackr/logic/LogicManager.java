@@ -3,6 +3,7 @@ package trackr.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import trackr.commons.core.GuiSettings;
@@ -17,6 +18,8 @@ import trackr.model.ReadOnlyMenu;
 import trackr.model.ReadOnlyOrderList;
 import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
+import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemProfit;
 import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
@@ -97,6 +100,24 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Order> getFilteredOrderList() {
         return model.getFilteredOrderList();
+    }
+
+    @Override
+    public ItemProfit getTotalProfits() {
+        ObservableList<Order> allOrders = model.getFilteredOrderList();
+        Double total = allOrders.stream()
+                        .map(x -> x.getTotalProfit().getValue())
+                        .collect(Collectors.summingDouble(Double::doubleValue));
+        return new ItemProfit(total);
+    }
+
+    @Override
+    public ItemPrice getTotalSales() {
+        ObservableList<Order> allOrders = model.getFilteredOrderList();
+        Double total = allOrders.stream()
+                        .map(x -> x.getTotalRevenue().getValue())
+                        .collect(Collectors.summingDouble(Double::doubleValue));
+        return new ItemPrice(total);        
     }
 
     @Override

@@ -1,10 +1,14 @@
 package trackr.ui.dashboard;
 
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import trackr.logic.Logic;
+import trackr.model.order.Order;
 import trackr.ui.UiPart;
 import trackr.ui.listpanels.MenuListPanel;
 import trackr.ui.listpanels.SummarisedOrderListPanel;
@@ -20,6 +24,11 @@ public class HomeView extends UiPart<Region> {
     private SummarisedOrderListPanel summarisedOrderListPanel;
     private MenuListPanel menuListPanel;
 
+    @FXML
+    private Text profitPlaceholder;
+
+    @FXML
+    private Text revenuePlaceholder;
 
     @FXML
     private GridPane homeWindow;
@@ -59,5 +68,18 @@ public class HomeView extends UiPart<Region> {
         // Add menu items
         menuListPanel = new MenuListPanel(logic.getFilteredMenu());
         menuPlaceholder.getChildren().add(menuListPanel.getRoot());
+
+        // Initial Profit
+        profitPlaceholder.setText(logic.getTotalProfits().toString());
+        // Initial Revenue
+        revenuePlaceholder.setText(logic.getTotalSales().toString());
+
+        logic.getFilteredOrderList().addListener(new ListChangeListener<Order>() {
+            @Override
+            public void onChanged(ListChangeListener.Change change) {
+                profitPlaceholder.setText(logic.getTotalProfits().toString());
+                revenuePlaceholder.setText(logic.getTotalSales().toString());
+            }
+        });
     }
 }
