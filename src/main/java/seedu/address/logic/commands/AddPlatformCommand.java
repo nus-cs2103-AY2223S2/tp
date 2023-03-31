@@ -89,7 +89,7 @@ public class AddPlatformCommand extends Command {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof AddApplicantCommand)) {
+        if (!(o instanceof AddPlatformCommand)) {
             return false;
         }
 
