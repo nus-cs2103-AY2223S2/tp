@@ -23,7 +23,7 @@ public class UnassignPatientCommand extends Command {
     public static final String SHORTHAND_COMMAND_WORD = "uasn";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
             + ": Removes the assignment of "
             + "patient identified by the patient index number used in the displayed patients list "
             + "with the doctor identified by the doctor index number used in the displayed doctor list.\n"

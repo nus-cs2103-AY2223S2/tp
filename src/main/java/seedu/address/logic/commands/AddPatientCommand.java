@@ -22,7 +22,8 @@ public class AddPatientCommand extends Command {
     public static final String COMMAND_WORD = "add-ptn";
     public static final String SHORTHAND_COMMAND_WORD = "ap";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+            + ": Adds a patient to the address book.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

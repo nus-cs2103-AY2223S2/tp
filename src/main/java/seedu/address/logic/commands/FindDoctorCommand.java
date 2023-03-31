@@ -24,7 +24,8 @@ public class FindDoctorCommand extends Command {
     public static final String SHORTHAND_COMMAND_WORD = "fd";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds a doctor in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+            + ": Finds a doctor in the address book. "
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "

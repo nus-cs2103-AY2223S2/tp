@@ -44,7 +44,8 @@ public class EditPatientCommand extends Command {
     public static final String SHORTHAND_COMMAND_WORD = "ep";
 
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " (short form: " + SHORTHAND_COMMAND_WORD + ")"
+            + ": Edits the details of the patient identified "
             + "by the index number used in the displayed patients list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
