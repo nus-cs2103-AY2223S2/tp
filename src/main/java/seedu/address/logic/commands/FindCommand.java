@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,18 +33,19 @@ public class FindCommand extends Command {
             PREFIX_EMAIL.asOptional().asRepeatable(),
             PREFIX_ADDRESS.asOptional().asRepeatable(),
             PREFIX_EDUCATION.asOptional().asRepeatable(),
+            PREFIX_TELEGRAM.asOptional().asRepeatable(),
             PREFIX_REMARK.asOptional().asRepeatable(),
             PREFIX_TAG.asOptional().asRepeatable(),
             PREFIX_MODULE.asOptional().asRepeatable()
     ));
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain ALL of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
             + ARGUMENT_PREFIXES.stream()
                     .map(Prefix::toString)
                     .collect(Collectors.joining(" "))
-            + "\nExample: " + COMMAND_WORD + " alice bob charlie";
+            + "\nExample: " + COMMAND_WORD + " n/alice n/tan t/hasSubmitted";
 
     private final boolean isModifying = false;
 

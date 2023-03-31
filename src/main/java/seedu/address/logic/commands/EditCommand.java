@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -25,13 +26,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Education;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
 
@@ -48,6 +43,7 @@ public class EditCommand extends Command {
             PREFIX_EMAIL.asOptional(),
             PREFIX_ADDRESS.asOptional(),
             PREFIX_EDUCATION.asOptional(),
+            PREFIX_TELEGRAM.asOptional(),
             PREFIX_TAG.asOptional().asRepeatable(),
             PREFIX_MODULE.asOptional().asRepeatable()
     ));
@@ -126,10 +122,11 @@ public class EditCommand extends Command {
         Education updatedEducation = editPersonDescriptor.getEducation()
                 .orElse(personToEdit.getOptionalEducation()).orElse(null);
         Remark oldRemark = personToEdit.getOptionalRemark().orElse(null); // edit command does not allow editing remarks
+        Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getOptionalTelegram()).orElse(null);;
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Module> updatedModules = editPersonDescriptor.getModules().orElse(personToEdit.getModules());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedEducation, oldRemark,
-                    updatedModules, updatedTags);
+                    updatedTelegram, updatedModules, updatedTags);
     }
 
     @Override
@@ -161,6 +158,7 @@ public class EditCommand extends Command {
         private Optional<Address> address;
         private Optional<Education> education;
         private Optional<Remark> remark;
+        private Optional<Telegram> telegram;
         private Set<Module> modules;
         private Set<Tag> tags;
 
@@ -177,6 +175,7 @@ public class EditCommand extends Command {
             setEducation(toCopy.education);
             setAddress(toCopy.address);
             setModules(toCopy.modules);
+            setTelegram(toCopy.telegram);
             setRemark(toCopy.remark);
             setTags(toCopy.tags);
         }
@@ -185,7 +184,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, education, modules, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, education, telegram, modules, tags);
         }
 
         public void setName(Name name) {
@@ -256,6 +255,18 @@ public class EditCommand extends Command {
             return Optional.ofNullable(remark);
         }
 
+        public void setTelegram(Telegram telegram) {
+            this.telegram = Optional.ofNullable(telegram);
+        }
+
+        public void setTelegram(Optional<Telegram> telegram) {
+            this.telegram = telegram;
+        }
+
+        public Optional<Optional<Telegram>> getTelegram() {
+            return Optional.ofNullable(telegram);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -309,7 +320,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getAddress().equals(e.getAddress())
+                    && getAddress().equals(e.getAddress())  // ?!
+                    && getTelegram().equals(e.getTelegram())
                     && getModules().equals(e.getModules())
                     && getTags().equals(e.getTags());
         }

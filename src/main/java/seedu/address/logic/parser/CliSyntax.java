@@ -14,6 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_REMARK = new Prefix("r/", "REMARK");
     public static final Prefix PREFIX_TAG = new Prefix("t/", "TAG");
     public static final Prefix PREFIX_MODULE = new Prefix("m/", "MODULE");
+    public static final Prefix PREFIX_TELEGRAM = new Prefix("tele/", "TELEGRAM_HANDLE");
 
     /** Not a prefix, but a placeholder for a keyword argument. */
     public static final Prefix KEYWORD_PLACEHOLDER = new Prefix("", "KEYWORD");

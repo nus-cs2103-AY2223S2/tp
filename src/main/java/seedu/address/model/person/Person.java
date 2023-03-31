@@ -25,6 +25,7 @@ public class Person {
     // Data fields
     private final Optional<Address> address;
     private final Optional<Remark> remark;
+    private final Optional<Telegram> telegram;
     private final Optional<Education> education;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Module> modules = new HashSet<>();
@@ -33,7 +34,7 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Education education, Remark remark,
-            Set<Module> modules, Set<Tag> tags) {
+            Telegram telegram, Set<Module> modules, Set<Tag> tags) {
         requireAllNonNull(name);
         this.name = name;
         this.phone = Optional.ofNullable(phone);
@@ -41,6 +42,7 @@ public class Person {
         this.address = Optional.ofNullable(address);
         this.education = Optional.ofNullable(education);
         this.remark = Optional.ofNullable(remark);
+        this.telegram = Optional.ofNullable(telegram);
         this.tags.addAll(tags);
         this.modules.addAll(modules);
     }
@@ -67,6 +69,10 @@ public class Person {
 
     public Optional<Remark> getOptionalRemark() {
         return remark;
+    }
+
+    public Optional<Telegram> getOptionalTelegram() {
+        return telegram;
     }
 
     /**
@@ -120,13 +126,14 @@ public class Person {
                 && otherPerson.getOptionalEducation().equals(getOptionalEducation())
                 && otherPerson.getModules().equals(getModules())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getOptionalRemark().equals(getOptionalRemark());
+                && otherPerson.getOptionalRemark().equals(getOptionalRemark())
+                && otherPerson.getOptionalTelegram().equals(getOptionalTelegram());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, education, modules, remark, tags);
+        return Objects.hash(name, phone, email, address, education, modules, remark, tags, telegram);
     }
 
     @Override
@@ -138,6 +145,7 @@ public class Person {
         getOptionalEmail().ifPresent(email -> builder.append("; Email: ").append(email));
         getOptionalAddress().ifPresent(address -> builder.append("; Address: ").append(address));
         getOptionalEducation().ifPresent(education -> builder.append("; Education: ").append(education));
+        getOptionalTelegram().ifPresent(telegram -> builder.append("; Telegram: ").append(telegram));
         getOptionalRemark().ifPresent(remark -> builder.append("; Remark: ").append(remark));
 
         Set<Module> modules = getModules();
