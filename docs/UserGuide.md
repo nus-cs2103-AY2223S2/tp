@@ -6,7 +6,7 @@ title: User Guide
 
 TeachMeSenpai is a **desktop app targeted at teaching assistants who have many students to keep track of.** It is tailored to assist the user in monitoring their students' progress, and details. 
 As a teaching assistant, you can easily view and edit your student's details on the go. Tailored to fast-typist, TeachMeSenpai is built around a **Command Line Interface (CLI)**, complete with an **autocomplete** feature
-to help you manage your students quicker than a traditional point-and-click interface can.
+to help you manage your students quicker than a traditional point-and-click app can.
 
 ## About this User Guide
 This user guide provides everything you need to know to get started with TeachMeSenpai and how to use its features.
@@ -37,7 +37,7 @@ this user guide for more information, or to external websites to learn more!
 ## **Table of Contents**
 {:.no_toc}
 
-1. Table of Contents
+* Table of Contents
 {:toc}
 
 ---
@@ -72,10 +72,13 @@ this user guide for more information, or to external websites to learn more!
 > - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.  
 >   _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
 > 
-> - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.  
+> - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored.  
 >   _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
 
-## What are parameters
+## Types of parameters
+
+Firstly, parameters are the inputs/information you have to enter together with their respective commands in the command line 
+when using TeachMeSenpai!
 
 Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
 
@@ -342,10 +345,56 @@ You can combine `find` and `delete` when you have a very long list of students. 
 For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
 </div>
 
+---
+
+### Undo a previous command: `undo`
+
+Did you make a mistake with a command? Don't worry, simply `undo` it!
+
+You can `undo` as many times as required, as long as the previous commmand is **undoable**.
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands 
+that change the data of your TeachMeSenpai app!
+Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message.
+
+</div>
+
+> Format: `undo` 
+
+Example: `delete 1 4` followed by `undo`. <br>
+
+### Redo a previous `undo`: `redo`
+
+Did you `undo` a command on accident? Fret not, you may use `redo` to reverse the changes done by `undo`!
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** You can only redo an `undo` command.
+Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
+
+</div>
+
+>Format: `redo`
+
+Example: `delete 1 4`, followed by `undo`, then `redo`.
+
 [↑ Back to top](#table-of-contents)
 
 ---
 
+### Clearing all entries: `clear`
+
+Need to clear all your entries? Simply use `clear` to help you delete all your entries at once!
+
+>Format: `clear`
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that 
+if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
+</div>
 ### Saving the data
 
 TeachMeSenpai data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually 🙂
@@ -364,16 +413,18 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 # Command summary
 
-| Action | Format, Examples                                                                                                                                                                                                                                       |
-|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action | Format, Examples                                                                                                                                                                                                                                      |
+|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Add    | `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
-| Delete | `delete INDEX`<br>eg. `delete 3`                                                                                                                                                                                                                       |
+| Delete | `delete INDEX`<br>eg. `delete 3`                                                                                                                                                                                                                      |
 | Edit   | `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
-| Exit   | `exit`, `bye`, `quit`                                                                                                                                                                                                                                  |
-| Find   | `find KEYWORD1 [KEYWORD2]` <br/>eg. `find Sh` <br/>eg. `find Shao Hong`                                                                                                                                                                                |
-| List   | `list`                                                                                                                                                                                                                                                 |
-| Remark | `remark INDEX [r/REMARK]` <br/>eg. `remark 2 r/Not good in Japanese`                                                                                                                                                                                   |
-| Show   | `show INDEX` <br/>eg. `show 1`                                                                                                                                                                                                                         |
+| Exit   | `exit`, `bye`, `quit`                                                                                                                                                                                                                                 |
+| Find   | `find KEYWORD1 [KEYWORD2]` <br/>eg. `find Sh` <br/>eg. `find Shao Hong`                                                                                                                                                                               |
+| List   | `list`                                                                                                                                                                                                                                                |
+| Redo   | `redo`                                                                                                                                                                                                                                                |
+| Remark | `remark INDEX [r/REMARK]` <br/>eg. `remark 2 r/Not good in Japanese`                                                                                                                                                                                  |
+| Undo   | `undo`                                                                                                                                                                                                                                                 |
+| Show   | `show INDEX` <br/>eg. `show 1`                                                                                                                                                                                                                        |
 
 [↑ Back to top](#table-of-contents)
 
