@@ -3,24 +3,24 @@ package trackr.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_DONE;
+//import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_DONE;
 import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TypicalOrders.CHEESE_CAKES;
 import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES;
-import static trackr.testutil.TypicalOrders.getTypicalOrderList;
+//import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 
-import java.util.Arrays;
-import java.util.Collection;
+//import java.util.Arrays;
+//import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
+//import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+//import javafx.collections.FXCollections;
+//import javafx.collections.ObservableList;`
 import trackr.model.item.exceptions.DuplicateItemException;
-import trackr.model.order.Order;
-import trackr.testutil.OrderBuilder;
+//import trackr.model.order.Order;
+//import trackr.testutil.OrderBuilder;
 
 public class OrderListTest {
 
@@ -36,22 +36,22 @@ public class OrderListTest {
         assertThrows(NullPointerException.class, () -> orderList.resetData(null));
     }
 
-//    @Test
-//    public void resetData_withValidReadOnlyOrderList_replacesData() {
-//        OrderList newData = getTypicalOrderList();
-//        orderList.resetData(newData);
-//        assertEquals(newData, orderList);
-//    }
-//
-//    @Test
-//    public void resetData_withDuplicateOrders_throwsDuplicateOrderException() {
-//        Order editedOrder = new OrderBuilder(CHOCOLATE_COOKIES)
-//                .withOrderStatus(VALID_ORDER_STATUS_DONE).build();
-//        List<Order> newOrders = Arrays.asList(CHOCOLATE_COOKIES, editedOrder);
-//        OrderListStub newData = new OrderListStub(newOrders);
-//
-//        assertThrows(DuplicateItemException.class, () -> orderList.resetData(newData));
-//    }
+    //    @Test
+    //    public void resetData_withValidReadOnlyOrderList_replacesData() {
+    //        OrderList newData = getTypicalOrderList();
+    //        orderList.resetData(newData);
+    //        assertEquals(newData, orderList);
+    //    }
+    //
+    //    @Test
+    //    public void resetData_withDuplicateOrders_throwsDuplicateOrderException() {
+    //        Order editedOrder = new OrderBuilder(CHOCOLATE_COOKIES)
+    //                .withOrderStatus(VALID_ORDER_STATUS_DONE).build();
+    //        List<Order> newOrders = Arrays.asList(CHOCOLATE_COOKIES, editedOrder);
+    //        OrderListStub newData = new OrderListStub(newOrders);
+    //
+    //        assertThrows(DuplicateItemException.class, () -> orderList.resetData(newData));
+    //    }
 
     @Test
     public void hasOrder_nullOrder_throwsNullPointerException() {
@@ -69,13 +69,13 @@ public class OrderListTest {
         assertTrue(orderList.hasItem(CHOCOLATE_COOKIES));
     }
 
-//    @Test
-//    public void hasOrder_orderWithSameIdentityFieldsInOrderList_returnsTrue() {
-//        orderList.addItem(CHOCOLATE_COOKIES);
-//        Order editedOrder = new OrderBuilder(CHOCOLATE_COOKIES)
-//                .withOrderStatus(VALID_ORDER_STATUS_DONE).build();
-//        assertTrue(orderList.hasItem(editedOrder));
-//    }
+    //    @Test
+    //    public void hasOrder_orderWithSameIdentityFieldsInOrderList_returnsTrue() {
+    //        orderList.addItem(CHOCOLATE_COOKIES);
+    //        Order editedOrder = new OrderBuilder(CHOCOLATE_COOKIES)
+    //                .withOrderStatus(VALID_ORDER_STATUS_DONE).build();
+    //        assertTrue(orderList.hasItem(editedOrder));
+    //    }
 
     @Test
     public void setOrderList_nullOrder_throwsNullPointerException() {
@@ -130,17 +130,16 @@ public class OrderListTest {
         assertFalse(orderList.equals(1)); //different objects
     }
 
-    private static class OrderListStub implements ReadOnlyOrderList {
-        private final ObservableList<Order> orders = FXCollections.observableArrayList();
-
-        OrderListStub(Collection<Order> orders) {
-            this.orders.setAll(orders);
-        }
-
-        @Override
-        public ObservableList<Order> getItemList() {
-            return orders;
-        }
-    }
-
+    //    private static class OrderListStub implements ReadOnlyOrderList {
+    //        private final ObservableList<Order> orders = FXCollections.observableArrayList();
+    //
+    //        OrderListStub(Collection<Order> orders) {
+    //            this.orders.setAll(orders);
+    //        }
+    //
+    //        @Override
+    //        public ObservableList<Order> getItemList() {
+    //            return orders;
+    //        }
+    //    }
 }

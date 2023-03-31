@@ -1,6 +1,6 @@
 package trackr.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static trackr.storage.JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT;
 import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TypicalCustomer.AMY;
@@ -39,11 +39,11 @@ public class JsonAdaptedOrderTest {
     private static final String VALID_ORDER_STATUS = CHOCOLATE_COOKIES.getOrderStatus().toJsonString();
     private static final String VALID_TIME_ADDED = LocalDateTime.now().toString();
 
-//    @Test
-//    public void toModelType_validOrderDetails_returnsOrder() throws Exception {
-//        JsonAdaptedOrder order = new JsonAdaptedOrder(CHOCOLATE_COOKIES);
-//        assertEquals(CHOCOLATE_COOKIES, order.toModelType());
-//    }
+    //    @Test
+    //    public void toModelType_validOrderDetails_returnsOrder() throws Exception {
+    //        JsonAdaptedOrder order = new JsonAdaptedOrder(CHOCOLATE_COOKIES);
+    //        assertEquals(CHOCOLATE_COOKIES, order.toModelType());
+    //    }
 
     @Test
     public void toModelType_invalidCustomerName_throwsIllegalValueException() throws Exception {
