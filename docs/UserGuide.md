@@ -103,7 +103,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all clients : `list`
+### Listing all clients : `listPerson`
 
 Shows a list of all clients in the address book.
 
@@ -221,7 +221,7 @@ Gets meetings from the address book
 Format: `meetingFind DATE `
 
 Required Information:
-* Date (dd-mm-yyyy hh:mm)
+* Date (dd/mm/yyyy)
 
 Examples:
 * `meetingFind 11/03/2023` Lists out all meetings that start on 9th November 2022 at 11.30
