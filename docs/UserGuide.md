@@ -259,7 +259,7 @@ Format: `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE] [cd/CREATED
 * Existing values will be updated to the input values.
 
 Examples:
-- `listt` followed by `editt 2 title/Submit report` edits the title of the 2nd task in the task list.
+- `listt` followed by `editt 2 t/Submit report` edits the title of the 2nd task in the task list.
 - `findt book` followed by `editt 1 c/Claim $200 from Bob` edits the content of the 1st task in the results of the `findt` command.
 
 
