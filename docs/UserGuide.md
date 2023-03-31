@@ -381,7 +381,7 @@ specified, otherwise the command will not go through.
 | `EXPENSE_NAME`  | The new expense name of the recurring expense to be changed to.<br/><br/>Optional parameter.                                                                                    |
 | `PRICE`         | The new price of the recurring expense to be changed to.<br/><br/>Optional parameter.                                                                                           |
 | `INTERVAL`      | The new recurrence period of the expense to be changed. <br>The timeframes available are:<br/>1. day <br/>2. week <br/>3. month <br/> 4. year  to.<br/><br/>Optional parameter. |
-|`END_DATE`| The new ending date of recurring expense. <br/><br/>Optional parameter.|                                                                                                         
+|`END_DATE`| The new ending date of recurring expense. <br/><br/>Optional parameter.|
 
 ## Listing Recurring Expense: `lrec`
 Shows a list of recurring expense in the log.
