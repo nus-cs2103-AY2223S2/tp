@@ -1,18 +1,20 @@
 package seedu.patientist.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.patientist.model.person.Person;
+import seedu.patientist.model.person.patient.Patient;
+import seedu.patientist.model.person.staff.Staff;
+
+import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Person}.
  */
-public class PersonCard extends UiPart<Region> {
+public class StaffCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
@@ -24,7 +26,7 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on Patientist level 4</a>
      */
 
-    public final Person person;
+    public final Staff staff;
 
     @FXML
     private HBox cardPane;
@@ -46,18 +48,19 @@ public class PersonCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public PersonCard(Person person, int displayedIndex) {
+    public StaffCard(Staff staff, int displayedIndex) {
         super(FXML);
 
-        this.person = person;
+        this.staff = staff;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        String s = person.getIdNumber().toString();
+        name.setText(staff.getName().fullName);
+        phone.setText(staff.getPhone().value);
+        address.setText(staff.getAddress().value);
+        email.setText(staff.getEmail().value);
+        String s = staff.getIdNumber().toString();
         idNumber.setText(s);
-        person.getTags().stream()
+        tags.getChildren().add(new Label(staff.getRoleTag().tagName));
+        staff.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -70,13 +73,13 @@ public class PersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonCard)) {
+        if (!(other instanceof StaffCard)) {
             return false;
         }
 
         // state check
-        PersonCard card = (PersonCard) other;
+        StaffCard card = (StaffCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+               && staff.equals(card.staff);
     }
 }
