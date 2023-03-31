@@ -34,30 +34,30 @@ public class JsonAdaptedLocationTest {
     }
 
     @Test
-    public void toModelType_latitudeTooHigh_throwsIllegalArgumentException() {
+    public void toModelType_latitudeTooHigh_throwsIllegalValueException() {
         JsonAdaptedLocation jsonAdaptedLocation =
                 new JsonAdaptedLocation(SENGKANG.getName(), 1.5, SENGKANG.getLongitude());
-        assertThrows(IllegalArgumentException.class, jsonAdaptedLocation::toModelType);
+        assertThrows(IllegalValueException.class, jsonAdaptedLocation::toModelType);
     }
 
     @Test
-    public void toModelType_latitudeTooLow_throwsIllegalArgumentException() {
+    public void toModelType_latitudeTooLow_throwsIllegalValueException() {
         JsonAdaptedLocation jsonAdaptedLocation =
                 new JsonAdaptedLocation(SENGKANG.getName(), 1.2, SENGKANG.getLongitude());
-        assertThrows(IllegalArgumentException.class, jsonAdaptedLocation::toModelType);
+        assertThrows(IllegalValueException.class, jsonAdaptedLocation::toModelType);
     }
 
     @Test
-    public void toModelType_longitudeTooHigh_throwsIllegalArgumentException() {
+    public void toModelType_longitudeTooHigh_throwsIllegalValueException() {
         JsonAdaptedLocation jsonAdaptedLocation =
                 new JsonAdaptedLocation(SENGKANG.getName(), SENGKANG.getLatitude(), 104.2);
-        assertThrows(IllegalArgumentException.class, jsonAdaptedLocation::toModelType);
+        assertThrows(IllegalValueException.class, jsonAdaptedLocation::toModelType);
     }
 
     @Test
-    public void toModelType_longitudeTooLow_throwsIllegalArgumentException() {
+    public void toModelType_longitudeTooLow_throwsIllegalValueException() {
         JsonAdaptedLocation jsonAdaptedLocation =
                 new JsonAdaptedLocation(SENGKANG.getName(), SENGKANG.getLatitude(), 103.6);
-        assertThrows(IllegalArgumentException.class, jsonAdaptedLocation::toModelType);
+        assertThrows(IllegalValueException.class, jsonAdaptedLocation::toModelType);
     }
 }
