@@ -9,6 +9,7 @@ available on PC, and is optimized for use via a Command Line Interface (CLI) whi
 a Graphical User Interface (GUI). If you can type fast, AIO will be the biggest boost in your productivity that you'll
 see in your career.
 
+---
 
 ## Table of Contents
 
