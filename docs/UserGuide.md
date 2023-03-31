@@ -96,13 +96,7 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
 </div>
 
-### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
 
 
 ## 1. Features related to Customers
@@ -178,6 +172,12 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### 1.6. Clearing all contacts in Address Book : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
 
 ## 2. Features related to Delivery Jobs
 ### *Can only access from Main Window*
@@ -299,6 +299,12 @@ Example:
 * `com_job ALBE29E66F`
 * `uncom_job ALBE29E66F`
 
+### 2.8. Clearing all contacts in Address Book : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
 
 ## 3. Features available for Reminders
 ### *Can only access from Main Window*
@@ -391,11 +397,14 @@ Similar statistics are shown for jobs in the previous week
 
 
 ## Other features
-### Clearing all contacts in Address Book : `clear`
 
-Clears all entries from the address book.
+### Viewing help : `help`
 
-Format: `clear`
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Exiting the program : `exit`
 
