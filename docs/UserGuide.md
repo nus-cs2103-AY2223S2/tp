@@ -88,6 +88,9 @@ Once you are in the correct directory, type the following command and hit Enter:
 This command will start the application, and the data folder should appear in the same directory as the 
 ExecutivePro.jar file after the application is run successfully.
 
+If the data folder is still missing, simply create a `data` folder by creating a new folder in the same
+folder where the jar file is located.
+
 Now that the application is running, you can follow the steps in the user guide to perform various tasks 
 such as adding employees using the batchadd command and exporting the database using the batchexport command.
 
