@@ -66,6 +66,14 @@ public class Consultation extends Event {
     }
 
     /**
+     * Replaces a specific student in the list of students
+     * @param student
+     */
+    public void replaceStudent(Person student, Person modifiedStudent) {
+        super.replaceStudent(student, modifiedStudent);
+    }
+
+    /**
      * Removes student based on his 0 based index in the list of students
      *
      * @param index

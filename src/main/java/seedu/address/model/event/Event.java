@@ -163,6 +163,18 @@ public abstract class Event {
     }
 
     /**
+     * Replaces a specific student in the list of students
+     * @param student
+     */
+    public void replaceStudent(Person student, Person modifiedStudent) {
+        for (int i = 0; i < students.size(); i++) {
+            if (students.get(i).equals(student)) {
+                students.set(i, modifiedStudent);
+            }
+        }
+    }
+
+    /**
      * Removes student based on his 0 based index in the list of students
      * @param index
      */
