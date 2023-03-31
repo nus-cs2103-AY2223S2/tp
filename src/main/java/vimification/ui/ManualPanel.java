@@ -21,7 +21,7 @@ public class ManualPanel extends UiPart<VBox> {
     public ManualPanel() {
         super(FXML);
         Path manualHtml = Path.of(FXML_FILE_FOLDER, "ManualPanel.html");
-        // System.out.println(manualHtml.exists());
+        System.out.println(manualHtml.toString());
         WebEngine webEngine = webView.getEngine();
         webEngine.load(manualHtml.toString());
         String manualHtmlPath;

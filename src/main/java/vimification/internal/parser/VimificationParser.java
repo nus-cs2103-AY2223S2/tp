@@ -27,8 +27,9 @@ public class VimificationParser {
                     .or(UndoCommandParser.getInstance());
 
     private static final CommandParser<UiCommand> UI_COMMAND_PARSER =
-            SearchCommandParser.getInstance()
+            FilterCommandParser.getInstance()
                     .<UiCommand>cast()
+                    .or(SortCommandParser.getInstance())
                     .or(RefreshCommandParser.getInstance())
                     .or(HelpCommandParser.getInstance())
                     .or(JumpCommandParser.getInstance())

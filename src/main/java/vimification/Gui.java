@@ -2,6 +2,7 @@ package vimification;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
@@ -16,15 +17,17 @@ import vimification.internal.LogicManager;
 import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;
 import vimification.model.MacroMap;
+import vimification.model.TaskListRef;
 import vimification.model.UserPrefs;
 import vimification.model.util.SampleDataUtil;
-import vimification.storage.JsonLogicTaskListStorage;
+import vimification.storage.JsonTaskListRefStorage;
 import vimification.storage.JsonMacroMapStorage;
 import vimification.storage.JsonUserPrefsStorage;
-import vimification.storage.LogicTaskListStorage;
+import vimification.storage.TaskListRefStorage;
 import vimification.storage.Storage;
 import vimification.storage.StorageManager;
 import vimification.storage.UserPrefsStorage;
+import vimification.ui.MainScreen;
 import vimification.ui.Ui;
 import vimification.ui.UiManager;
 
@@ -51,16 +54,16 @@ public class Gui extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initUserPrefs(userPrefsStorage);
 
-        LogicTaskListStorage logicTaskListStorage =
-                new JsonLogicTaskListStorage(userPrefs.getLogicTaskListFilePath());
+        TaskListRefStorage logicTaskListStorage =
+                new JsonTaskListRefStorage(userPrefs.getLogicTaskListFilePath());
         JsonMacroMapStorage macroMapStorage =
-                new JsonMacroMapStorage(userPrefs.getMacroMapFilePath()); // TODO: change this
+                new JsonMacroMapStorage(userPrefs.getMacroMapFilePath());
 
-        storage = new StorageManager(logicTaskListStorage, userPrefsStorage);
+        storage = new StorageManager(logicTaskListStorage, macroMapStorage, userPrefsStorage);
         initLogging(config);
         logic = new LogicManager(
-                initLogicTaskList(storage),
-                initMacroMap(),
+                initTaskListRef(storage),
+                initMacroMap(storage),
                 initCommandStack(),
                 storage);
         ui = new UiManager(logic);
@@ -78,16 +81,16 @@ public class Gui extends Application {
      * is not found, or an empty address book will be used instead if errors occur when reading
      * {@code storage}'s address book.
      */
-    private LogicTaskList initLogicTaskList(Storage storage) {
-        LogicTaskList initialData;
+    private TaskListRef initTaskListRef(Storage storage) {
+        TaskListRef initialData;
         try {
-            initialData = storage.readLogicTaskList();
+            initialData = storage.readTaskListRef();
         } catch (DataConversionException e) {
             LOGGER.warning("Data file not in the correct format.");
-            initialData = new LogicTaskList();
+            initialData = new TaskListRef(new ArrayList<>());
         } catch (IOException e) {
             LOGGER.warning("Problem while reading from the file.");
-            initialData = SampleDataUtil.getSampleData();
+            initialData = new TaskListRef(new ArrayList<>());
         }
         return initialData;
     }
@@ -151,8 +154,15 @@ public class Gui extends Application {
         return initializedPrefs;
     }
 
-    private MacroMap initMacroMap() {
-        return new MacroMap();
+    private MacroMap initMacroMap(Storage storage) {
+        MacroMap initialData;
+        try {
+            initialData = storage.readMacroMap();
+        } catch (IOException e) {
+            LOGGER.warning("Problem while reading from the file.");
+            initialData = new MacroMap();
+        }
+        return initialData;
     }
 
     private CommandStack initCommandStack() {

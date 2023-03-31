@@ -4,440 +4,110 @@
     <link rel="stylesheet" href="./ManualPanel.css" />
   </head>
   <body>
-    <h1>Vimification Manual Page.</h1>
-    <p>
-      Vimification is a
-      <strong
-        >desktop app for managing tasks, optimized for use via a Command Line
-        Interface</strong
-      >
-    </p>
+<h1>Vimification Manual Page.</h1>
+<p>
+  Vimification is a
+  <strong
+    >desktop app for managing tasks, optimized for use via a Command Line
+    Interface</strong
+  >
+</p>
 
-    <hr />
-    <h2 id="quick-start">Quick Start</h2>
-    <h3 id="trying-out-the-commands">Trying out the commands</h3>
-    <ol>
-      <li>
-        <p>
-          Type the command in the command box and press Enter to execute it.
-          e.g. typing <strong><code>:help</code></strong> and pressing Enter
-          will open the help window.<br />
-        </p>
-        <p>Some example commands you can try:</p>
-        <ul>
-          <li>
-            <p>
-              <code>:a "Enhance CS2103T tp user guide"</code> : Adds a task with
-              the title <code>Enhance CS2103T tp user guide</code> to
-              Vimification.
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>:a "Finish up weekly tp tasks -d 2023-04-01"</code> : Adds a
-              task with the title <code>Finish up weekly tp tasks</code> and
-              deadline <code>2023-04-01</code> to Vimification.
-            </p>
-          </li>
-          <li>
-            <p>
-              <code>:d 2</code> : Deletes the 2nd task shown in the current
-              list.
-            </p>
-          </li>
-          <li>
-            <p><code>:wq</code> : Exits the app.</p>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <p>
-          Refer to the <a href="#features">Features</a> below for details of
-          each command.
-        </p>
-      </li>
-    </ol>
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
+<h2 id="purpose-of-this-user-guide">Purpose of this User Guide</h2>
+<p>
+  The purpose of this user guide is to provide you with a comprehensive resource
+  that will guide you through the various features and functionality of the app,
+  so that you can efficiently manage your tasks and deadlines using
+  VimPlanner&#39;s powerful and intuitive interface.
+</p>
+<p>
+  The guide will walk you through the process of creating and managing tasks,
+  setting due dates, prioritizing work, and tracking progress, among other
+  topics. It will provide you with clear and concise instructions that are easy
+  to follow, whether you are a new Vim user or an experienced Vim enthusiast.
+</p>
+<p>
+  Additionally, it will offer troubleshooting tips and solutions to common
+  issues that you may encounter while using VimPlanner, and provide you with a
+  comprehensive resource that will help you optimize your productivity and stay
+  on top of your tasks and deadlines.
+</p>
+<p>
+  Overall, we hope to empower you to streamline your daily workflows and
+  increase your productivity. So, let&#39;s get started!
+</p>
+<p class="back-to-top" style="text-align: right">
+  <a href="#table-of-contents">Back to Top &#8593;</a>
+</p>
 
-    <hr />
-    <h2 id="navigating-vimification">Navigating Vimification</h2>
+<hr />
+<h3 id="quick-start">Quick Start</h3>
+<p>Some example commands you can try:</p>
+<ul>
+  <li>
     <p>
-      Vimification is designed to mimic Vim as closely as possible. Navigate
-      Vimification as you would in Vim by using
-      <code>h</code>,<code>j</code>,<code>k</code>,<code>l</code> to move to the
-      left, down, up, right respectively.
+      "<code>:a Enhance CS2103T tp user guide</code>" to add a task with the
+      title "<code>Enhance CS2103T tp user guide</code>" to Vimification.
     </p>
+  </li>
+  <li>
     <p>
-      Moreover, the usual arrow keys (&uarr;, &darr;, &larr;, &rarr;) can be
-      used as well.
+      "<code>:a Finish up weekly tp tasks -d 2023-04-01</code>" to add a task
+      with the title "<code>Finish up weekly tp tasks</code>" and deadline
+      "<code>2023-04-01</code>" to Vimification.
     </p>
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
+  </li>
+  <li>
+    <p>
+      "<code>:d 2</code>" to delete the 2nd task shown in the current list.
     </p>
+  </li>
+  <li>
+    <p>"<code>:wq</code>" to exit the app.</p>
+  </li>
+</ul>
 
-    <h2 id="using-the-commands">Using the commands</h2>
-    <p>
-      Similar to Vim, you can access command mode by pressing the
-      <code>:</code> key on your keyboard. This will bring the cursor to the
-      command input field, which is at the bottom of the application.
-    </p>
-    Example:
-    <img
-      class="ui-img"
-      style="width: 50%"
-      src="../manual-images/showCommand/commandExample.png"
-      alt="Example of Show Command Image"
-      title="How to bring up the command input"
-    />
+<hr />
+<h2 id="navigating-vimification">Navigation</h2>
+<p>
+  Use <code>h</code>,<code>j</code>,<code>k</code>,<code>l</code> (or the usual arrow keys) to move to the
+  left, down, up, right respectively.
+</p>
 
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
+<h2 id="viewing-help">Viewing help</h2>
+<p>Key in "<code>:help</code>" to access the help page.</p>
 
-    <h2 id="information-on-commands-parameters">
-      Information on commands&#39; parameters
-    </h2>
-    <div markdown="block" class="alert alert-info">
-      <!-- *IMPORTANT: Take note of how the command format is being interpretted, to know what parameters it requires.* -->
-      <em
-        >Take note of how the command format is being interpretted, to know what
-        parameters it requires.</em
-      >
 
-      Flags like <code>-d</code>, <code>-l</code> and <code>-p</code> act as
-      identifier for the parameter that comes immediately after the flag. - e.g.
-      <code>:a &lt;title&gt; [-d &lt;deadline&gt;]</code>, the
-      <code>-d</code> indicates the deadline attribute of a task. - Refer to the
-      <a href="#flag-summary">Flag summary</a> below for details of each flag.
-      Words in <strong>angle brackets</strong> are
-      <strong>compulsory</strong> parameters to be supplied by the user. - e.g.
-      in <code>:a &lt;title&gt;</code>, the user must provide the
-      <code>&lt;title&gt;</code> parameter, for example,
-      <code>:a Do weekly quiz</code>. Words in
-      <strong>square brackets</strong> are <strong>optional</strong> parameters
-      to be supplied by the user. - e.g.
-      <code>:a &lt;title&gt; [-d &lt;deadline&gt;]</code>, the user need not
-      provide the <code>&lt;deadline&gt;</code> parameter. Bracketed items with
-      <code>…</code>​ behind means that user can provide multiple parameters. -
-      e.g. <code>:a &lt;title&gt; [-l &lt;label&gt;]…​</code>, for example,
-      <code>:a Do OP2 slides -t cs2101</code>,
-      <code>:a Do OP2 slides -t cs2101 -t presentation</code> are both
-      acceptable. Parameters identified by flags can be in any order. - e.g.
-      <code>:a Do OP2 slides -t cs2101 -p high</code>,
-      <code>:a Do OP2 slides -p high -t cs2101</code> are both acceptable. For
-      commands that do not take in parameters (such as <code>help</code>,
-      <code>list</code>, <code>exit</code> and <code>clear</code>), any
-      parameter provided will be ignored. - e.g. if the user inputs
-      <code>:help 123</code>, it will be interpreted as <code>help</code>.
-    </div>
+<h2 id="buy-grocery">To add "Buy grocery" as a task and inidicate its priority as not urgent</h2>
+<p>
+  <code>:a Buy grocery -p not_urgent</code>
+</p>
 
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
+<h2 id="essay-deadline">To add "Essay deadline" as a task, put a deadline with it and inidicate its priority as very urgent</h2>
+<p>
+  <code>:a Essay deadline -d 2023-03-31 2359 -p very_urgent</code>
+</p>
 
-    <hr />
-    <h2 id="features-and-commands">Features and commands</h2>
-    <h3 id="viewing-help">Viewing help</h3>
-    <p>Shows a message explaning how to access the help page.</p>
-    <p>
-      <img
-        src="../manual-images/helpMessage.png"
-        style="width: 50%"
-        alt="help message"
-      />
-    </p>
-    <p>Format: <code>:help</code></p>
-    <h3 id="adding-task">Adding task</h3>
-    <p>Adds a task to the current task list.</p>
-    <p>
-      Format:
-      <code>:a &lt;title&gt; [-l &lt;label&gt;]... [-p &lt;priority&gt;]</code>
-    </p>
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Detail</th>
-          <th>Compulsory</th>
-          <th>Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>&lt;title&gt;</code></td>
-          <td>Title of the task</td>
-          <td>Yes</td>
-          <td><code>CS2103T UG</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;label&gt;</code></td>
-          <td>Label given to the task</td>
-          <td>No</td>
-          <td><code>household chores</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;priority&gt;</code></td>
-          <td>Priority level assigned to the task</td>
-          <td>No</td>
-          <td><code>high</code></td>
-        </tr>
-      </tbody>
-    </table>
-    <ul>
-      <li>SoC students can put module code as the label.</li>
-    </ul>
-    <p>
-      Example after the command, <code>:a Enhance CS2103T tp user guide</code>:
-    </p>
-    <p>
-      <img
-        class="ui-img"
-        style="width: 50%"
-        src="../manual-images/AddTaskCommandDemo.png"
-        alt="Add Task Command Demo Image"
-        title="Add Task Command Demo"
-      />
-    </p>
-    <h3 id="adding-task-with-deadline">Adding task with deadline</h3>
-    <p>Adds a task with a deadline to the current task list.</p>
-    <p>Format: <code>:a &lt;title&gt; -d &lt;deadline&gt;</code></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Detail</th>
-          <th>Compulsory</th>
-          <th>Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>&lt;title&gt;</code></td>
-          <td>Title of the task</td>
-          <td>Yes</td>
-          <td><code>CS2103T UG</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;deadline&gt;</code></td>
-          <td>Deadline of the task in <code>YYYY-MM-DD</code> format</td>
-          <td>Yes</td>
-          <td><code>2023-03-31</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;label&gt;</code></td>
-          <td>Label given to the task</td>
-          <td>No</td>
-          <td><code>presentation</code></td>
-        </tr>
-        <tr>
-          <td><code>&lt;priority&gt;</code></td>
-          <td>Priority level assigned to the task</td>
-          <td>No</td>
-          <td><code>high</code></td>
-        </tr>
-      </tbody>
-    </table>
-    <ul>
-      <li>SoC students can put module code as the label.</li>
-    </ul>
-    <p>
-      Example after the command, <code>:a CS2130T v1.3 -d 2022-03-31</code>:
-    </p>
-    <p>
-      <img
-        class="ui-img"
-        style="width: 50%"
-        src="../manual-images/AddDeadlineCommandDemo.png"
-        alt="Add Deadline Command Demo Image"
-        title="Add Deadline Command Demo"
-      />
-    </p>
-    <h3 id="deleting-task">Deleting task</h3>
-    <p>
-      Deletes a task from the current task list by specifying the task number.
-    </p>
-    <p>Format: <code>:d &lt;task_index&gt;</code></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Parameter</th>
-          <th>Detail</th>
-          <th>Compulsory</th>
-          <th>Example</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><code>&lt;task_index&gt;</code></td>
-          <td>Index of the task you want to delete</td>
-          <td>Yes</td>
-          <td>3 (assuming the task list has at least 3 tasks)</td>
-        </tr>
-      </tbody>
-    </table>
-    <ul>
-      <li>
-        Deletes the task at the specified <code>&lt;task_index&gt;</code>.
-      </li>
-      <li>
-        The index refers to the index number shown in the displayed task list.
-      </li>
-      <li>
-        The index <strong>must be a positive integer</strong>, i.e 1, 2, 3 etc.
-      </li>
-      <li>
-        The index must not exceed the number of tasks in the displayed task
-        list, otherwise Vimification will show an error message.
-      </li>
-    </ul>
-    <p>Example:</p>
-    <table style="width: 100%; border: none">
-      <tr>
-        <td style="width: 50%">Before the command <code>:d 4</code></td>
-        <td style="width: 50%">After the command <code>:d 4</code></td>
-      </tr>
-      <tr>
-        <td style="width: 50%">
-          <img
-            class="ui-img"
-            style="width: 100%"
-            src="../manual-images/deleteCommand/before.png"
-            alt="Delete Command Before Image"
-            title="Before Delete Command"
-          />
-        </td>
-        <td style="width: 50%">
-          <img
-            class="ui-img"
-            style="width: 100%"
-            src="../manual-images/deleteCommand/after.png"
-            alt="Delete Command After Image"
-            title="After Delete Command"
-          />
-        </td>
-      </tr>
-    </table>
+<h2 id="cs2105-assignment">To add "Prepare OP2 slides" as a task and tag it under the labels <code>CS2101</code> and <code>presentation</code></h2>
+<p>
+  <code>:a Prepare OP2 slides -l CS2101 -l presentation</code>
+<br />
+  or <code>:a Prepare OP2 slides -l presentation -l CS2101</code>
+</p>
 
-    <h3 id="exiting-the-application">Exiting the application</h3>
-    <p>
-      Similar to Vim, we can use the <code>:wq!</code>,
-      <code>:q!</code>,,<code>:wq</code>,<code>:q</code> commands to exit the
-      application.
-    </p>
-    <p>
-      Format: <code>:wq!</code>, <code>:q!</code>,,<code>:wq</code>,<code
-        >:q</code
-      >
-    </p>
-    <p>Example:</p>
-    <p>
-      <img
-        class="ui-img"
-        style="width: 50%"
-        src="../manual-images/quitCommand/quitExample1.png"
-        alt="Quit Example 1 Image"
-        title="Quit Example 1"
-      />
-    </p>
-    <h3 id="saving-the-task-list-data">Saving the task list data</h3>
-    <p>
-      The task list data is saved in the hard disk automatically after any
-      command that changes the data. There is no need to save manually.
-    </p>
-    <h3 id="editing-existing-task-list-data">
-      Editing existing task list data
-    </h3>
-    <p>
-      Existing task list data is saved as a JSON file
-      <code>[JAR file location]/data/tasklist.json</code>. Advanced users are
-      welcome to update data directly by editing that data file.
-    </p>
-    <div markdown="span" class="alert alert-warning">
-      :exclamation: <strong>Caution:</strong>
-      If your changes to the data file makes its format invalid, Vimification
-      will discard all data and start with an empty data file at the next run.
-    </div>
+<p><strong>Notes:</strong>
+  <ul>
+    <li>Attributes like label (<code>-l</code>), deadline (<code>-d</code>) and priority (<code>-p</code>) are all optional.</li>
+    <li>You can input these optional attributes in any order.</li>
+  </ul>
+</p>
+<h2 id="deleting-task">Delete task number 4</h2>
+<p>
+  <code>:d 4</code>
+</p>
 
-    <h3 id="archiving-data-files-future-feature-">
-      Archiving data files (future feature)
-    </h3>
-    <p><em>Details coming soon in v2.0 ...</em></p>
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
-
-    <hr />
-    <h2 id="faq">FAQ</h2>
-    <p>
-      <strong>Q</strong>: How do I transfer my data to another Computer?<br />
-      <strong>A</strong>: Install the app in the other computer and overwrite
-      the empty data file it creates with the file that contains the data of
-      your previous Vimification home folder.
-    </p>
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
-
-    <hr />
-    <h2 id="flag-summary">Flag summary</h2>
-    <p class="back-to-top" style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
-
-    <!-- TODO: Complete this command summary box -->
-    <h2 id="command-summary">Command summary</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Action</th>
-          <th>Format</th>
-          <th>Examples</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>View help</td>
-          <td><code>:help</code></td>
-          <td>No variation thus no example</td>
-        </tr>
-        <tr>
-          <td>Add task</td>
-          <td><code>:a &lt;title&gt;</code></td>
-          <td><code>:a Enhance formatting of CS2103T UG</code></td>
-        </tr>
-        <tr>
-          <td>Add task with deadline</td>
-          <td><code>:a &lt;title&gt; -d &lt;deadline&gt;</code></td>
-          <td><code>:a Finalise CS2103T milestone v1.3 -d 2022-03-31</code></td>
-        </tr>
-        <tr>
-          <td>Delete task</td>
-          <td><code>:d [index]</code></td>
-          <td><code>:d 3</code></td>
-        </tr>
-        <tr>
-          <td>Exit the application</td>
-          <td>
-            <code>:wq!</code>, <code>:q!</code>, <code>:wq</code>,
-            <code>:q</code>
-          </td>
-          <td>No variation thus no example</td>
-        </tr>
-        <tr>
-          <td>Save current data</td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Edit existing data</td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
-    <p style="text-align: right">
-      <a href="#table-of-contents">Back to Top &#8593;</a>
-    </p>
-  </body>
-</html>
+<h2 id="exiting-the-application">Exit the application</h2>
+<p>
+  <code>:wq!</code>,
+  <code>:q!</code>,<code>:wq</code> or <code>:q</code>
+</p>
