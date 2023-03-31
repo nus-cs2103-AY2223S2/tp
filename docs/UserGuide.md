@@ -172,6 +172,7 @@ The features of FastTrack can be divided into 4 groups, **Category Features**, *
    
 
 ### Category Features Summary
+
 | Feature                                            | Command Format                              | Examples                           |
 |----------------------------------------------------|---------------------------------------------|------------------------------------|
 | [**Add Category**](#adding-a-category-addcat)      | `addcat c/CATEGORY_NAME s/SUMMARY`          | `addcat c/Groceries s/for living`  |
@@ -180,6 +181,7 @@ The features of FastTrack can be divided into 4 groups, **Category Features**, *
 | [**List Categories**](#listing-categories-lcat)    | `lcat`                                      | `lcat`                             |
 
 ### Expense Features Summary
+
 | Feature                                                               | Command Format                                                                        | Examples                                                       |
 |-----------------------------------------------------------------------|---------------------------------------------------------------------------------------|----------------------------------------------------------------|
 | [**Add Expense**](#adding-an-expense-add)                             | `add c/CATEGORY_NAME n/ITEM_NAME p/PRICE [d/DATE]`                                    | `add c/Food p/20 n/Mac d/14/2/23`                              |
@@ -193,6 +195,7 @@ The features of FastTrack can be divided into 4 groups, **Category Features**, *
 | [**List Recurring Expense**](#listing-recurring-expense--lrec)        | `lrec`                                                                                | `lrec`                                                         |
 
 ### General Features Summary
+
 | Feature                                        | Command Format | Examples     |
 |------------------------------------------------|----------------|--------------|
 | [**Set Budget**](#setting-budget--set)         | `set p/AMOUNT` | `set p/1000` |
