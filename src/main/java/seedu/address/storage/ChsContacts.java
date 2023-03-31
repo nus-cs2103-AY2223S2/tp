@@ -20,11 +20,11 @@ import seedu.address.model.tag.Tag;
 public class ChsContacts {
     private static final Person chngShuSin = new Person(new Name("Chng Shu Sin"), new Status("Prof"),
             new Phone("99999999"), new Email("abcd@nus.u.edu"), new Address("1234 Street"),
-            new HashSet<Tag>(List.of(new Tag("CHS"), new Tag("Professor"))), new Image());
+            new HashSet<Tag>(List.of(new Tag("CHS"), new Tag("Professor"))), new Image("chngshusin.jpeg"));
 
     private static final Person chewFookTim = new Person(new Name("Chew Fook Tim"), new Status("Prof"),
             new Phone("99999999"), new Email("abcd@nus.u.edu"), new Address("1234 Street"),
-            new HashSet<Tag>(List.of(new Tag("CHS"), new Tag("Professor"))), new Image());
+            new HashSet<Tag>(List.of(new Tag("CHS"), new Tag("Professor"))), new Image("chewfooktim.jpeg"));
 
     public static final ArrayList<Person> CHS_CONTACTS = new ArrayList<Person>(
             Arrays.asList(chngShuSin, chewFookTim));
