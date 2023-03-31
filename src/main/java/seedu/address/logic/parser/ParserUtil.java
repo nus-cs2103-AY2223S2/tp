@@ -299,7 +299,16 @@ public class ParserUtil {
         if (!Attendance.isValidAttendance(trimmedAttendance)) {
             throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
         }
-        return new Attendance(attendance);
+        try {
+            return new Attendance(LocalDate.parse(trimmedAttendance, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        } catch (DateTimeParseException e) {
+            if (trimmedAttendance.equals("T") || trimmedAttendance.equals("F")) {
+                return new Attendance(trimmedAttendance);
+            } else {
+                throw new ParseException("Date must be in the format dd/mm/yyyy");
+            }
+
+        }
     }
 
     /**
