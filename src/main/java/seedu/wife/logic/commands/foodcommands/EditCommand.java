@@ -43,7 +43,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_UNIT + "UNIT] "
             + "[" + PREFIX_QUANTITY + "QUANTITY] "
             + "[" + PREFIX_EXPIRY_DATE + "EXPIRY DATE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Broccoli "
             + PREFIX_QUANTITY + "2";

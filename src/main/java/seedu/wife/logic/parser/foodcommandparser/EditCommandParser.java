@@ -61,7 +61,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             editFoodDescriptor.setExpiryDate(ParserUtil.parseExpiryDate(
                     argMultimap.getValue(PREFIX_EXPIRY_DATE).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editFoodDescriptor::setTags);
 
         if (!editFoodDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

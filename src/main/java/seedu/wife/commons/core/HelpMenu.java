@@ -15,13 +15,13 @@ public enum HelpMenu {
     ADD("add") {
         @Override
         public String getCommandUsage() {
-            return "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]";
+            return "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE";
         }
     },
     EDIT("edit") {
         @Override
         public String getCommandUsage() {
-            return "Edit a food item - edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE] [t/TAG]"
+            return "Edit a food item - edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]"
                     + OPTIONAL_MESSAGE;
         }
     },
