@@ -68,7 +68,7 @@ title: Developer Guide
        * [Location Recommender](#location-recommender)
        * [Location Tracker](#location-tracker)
    * [Storage Component](#storage-component)
-   * [Commons Component](#common-classes)
+   * [Commons Classes](#common-classes)
      * [MathUtil](#math-util)
 5. [Testing](#5-testing)
    * [Unit Tests](#unit-tests)
@@ -1043,6 +1043,10 @@ The `Storage` component,
 ## **Common Classes**
 
 Classes used by multiple components are in the `seedu.address.commons` package.
+
+## **MathUtil**
+
+The `MathUtil` class contains generic functions for mathematical operations such as Cartesian Product and indexing.
 
 # **5. Testing**
 
