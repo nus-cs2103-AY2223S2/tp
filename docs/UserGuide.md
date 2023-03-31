@@ -7,8 +7,40 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
-{:toc}
-
+- [Table of Contents](#table-of-contents)
+- [Quick start](#quick-start)
+  * [Glossary](#glossary)
+- [GUI](#gui)
+  * [Quick Access Buttons and Detailed Information Section](#quick-access-buttons-and-detailed-information-section)
+    + [Profile Page](#profile-page)
+    + [Homework Page](#homework-page)
+    + [Lessons Page](#lessons-page)
+    + [Exams Page](#exams-page)
+- [Commands](#commands)
+  * [Profile Commands](#profile-commands)
+    + [Create a new student profile](#create-a-new-student-profile)
+    + [Update Student Information](#update-student-information)
+  * [Homework Commands](#homework-commands)
+    + [Assign Homework to a Student](#assign-homework-to-a-student)
+    + [View the Homework of Students](#view-the-homework-of-students)
+    + [Delete Homework from a Student](#delete-homework-from-a-student)
+    + [Mark the Homework of a Student as Done](#mark-the-homework-of-a-student-as-done)
+    + [Unmark Homework of a Student as Undone](#unmark-homework-of-a-student-as-undone)
+    + [Update Homework of a Student](#update-homework-of-a-student)
+  * [Lessons Commands](#lessons-commands)
+    + [Create a New Lesson Plan for the Upcoming Lesson](#create-a-new-lesson-plan-for-the-upcoming-lesson)
+    + [View Lessons History](#view-lessons-history)
+  * [Exams Commands](#exams-commands)
+    + [Add an Exam to be tracked](#add-an-exam-to-be-tracked)
+    + [Remove an exam](#remove-an-exam)
+    + [View exams tracked by TutorPro](#view-exams-tracked-by-tutorpro)
+    + [Edit exam details](#edit-exam-details)
+    + [Calculate grade](#calculate-grade)
+- [FAQ](#faq)
+- [Summary](#summary)
+  * [List of Commands](#list-of-commands)
+  * [List of Prefixes](#list-of-prefixes)
+  * [Supported date-time formats](#supported-date-time-formats)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -116,7 +148,9 @@ It includes a past exams list, showing all the past exams information and all th
 * Unless otherwise specified, the order of prefixes does not matter.<br>
   e.g. if the command specifies `n/NAME ph/PHONE_NUMBER`, `ph/PHONE_NUMBER n/NAME` is also acceptable unless stated otherwise in a particular command.
 
-### Create a new student profile
+### Profile Commands
+
+#### Create a new student profile
 
 Creates a new profile for a student given the student’s name.
 
@@ -129,7 +163,7 @@ Example:
 * SCHOOL and GRADE_LEVEL consist of numbers and letters only (no symbols or spaces).
 
 
-### Update Student Information
+#### Update Student Information
 
 Updates the student's information given the student's label, field to change, and updated field value 
 
@@ -144,8 +178,9 @@ Examples:
 * `update-info name/John f/address` Displays the value stored in the Address Field and prompts the user for a new Address.
 * `update-info name/John f/address v/Block 123 #12-34` Updates student info and displays the new value to the user.
 
+### Homework Commands
 
-### Assign Homework to a Student
+#### Assign Homework to a Student
 
 Creates a homework assignment with a deadline for a student
 
@@ -162,7 +197,7 @@ Examples:
 :exclamation: **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
 
 
-### View the Homework of Students
+#### View the Homework of Students
 
 Displays a list of homework with the ability to filter by student name and homework status.
 
@@ -182,7 +217,7 @@ Examples:
 
 :exclamation: **Caution:** STATUS should only appear at most once and should not be empty. STUDENT_NAME can be zero or multiple but they all cannot be empty.
 
-### Delete Homework from a Student
+#### Delete Homework from a Student
 
 Deletes a homework assignment for a student.
 
@@ -199,7 +234,7 @@ Examples:
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
-### Mark the Homework of a Student as Done
+#### Mark the Homework of a Student as Done
 
 Marks homework of a student as done.
 
@@ -217,7 +252,7 @@ Examples:
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
 
-### Unmark Homework of a Student as Undone
+#### Unmark Homework of a Student as Undone
 
 Marks homework of a student as undone.
 
@@ -234,7 +269,7 @@ Examples:
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
-### Update Homework of a Student
+#### Update Homework of a Student
 
 Updates the information on a homework of a student
 
@@ -255,7 +290,9 @@ Examples:
 
 :exclamation:  **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
 
-### Create a New Lesson Plan for the Upcoming Lesson
+### Lessons Commands
+
+#### Create a New Lesson Plan for the Upcoming Lesson
 
 Creates a new lesson for a given student, with a lesson title and time.
 
@@ -267,7 +304,7 @@ Examples:
 `new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500`
 
 
-### View Lessons History
+#### View Lessons History
 
 Displays the lesson history for a given student/all students.
 
@@ -281,7 +318,9 @@ Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
 * `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then ask which one to show.
 
-### Add an Exam to be tracked: `add-exam`
+### Exams Commands
+
+#### Add an Exam to be tracked
 
 Creates an Exam within TutorPro to be tracked for a given student.
 
@@ -300,7 +339,7 @@ Examples:
 * `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00`
 * `new-exam name/John Doe name/Faye Doe exam/Science MYE start/2023-05-22 12:00 end/2023-05-22 14:00`
 
-### Remove an exam: `delete-exam`
+#### Remove an exam
 
 Format: `delete-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [index/INDEX_OF_EXAM]`
 
@@ -313,7 +352,7 @@ Examples:
 * `delete-exam name/John Doe index/1`
 * `delete-exam name/John Doe name/Faye Doe index/1`
 
-### View exams tracked by TutorPro: `view-exam`
+#### View exams tracked by TutorPro
 
 Format: `view-exam (optional)[name/STUDENT_NAME] (optional)[date/DATE] (optional)[exam/NAME_OF_EXAM] (optional)
 [done/IS_DONE]`
@@ -328,7 +367,7 @@ Examples:
 * `view-exam name/John date/2023-05-01 exam/MYE done/` -list exams attributed to student 'John' on date '2023-05-01' 
 with description 'MYE' which are undone.
 
-### Edit exam details: `update-exam`
+#### Edit exam details
 
 Format: `update-exam [name/STUDENT_NAME] [index/INDEX] (optional)[exam/NEW_EXAM_NAME] (optional)[start/START_TIME] 
 (optional)[end/END_TIME] (optional)[grade/GRADE]`
@@ -342,7 +381,7 @@ student.
 Examples:
 * `update-exam name/John index/1 grade/20/25`
 
-### Calculate grade:  `calculate-grade`
+#### Calculate grade
 
 Format: `calculate-grade [name/STUDENT_NAME] [subject/SUBJECT]`
 
@@ -355,8 +394,6 @@ Examples:
 * `calculate-grade name/John subject/Econs`
 
 --------------------------------------------------------------------------------------------------------------------
-
-
 
 ## FAQ
 
