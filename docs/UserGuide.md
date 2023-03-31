@@ -8,7 +8,7 @@ title: User Guide
 Tutee managing system (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 # TABLE OF CONTENTS
-[Quick Start](#quick start)
+[Quick Start](#quickstart)
 [FEATURES](#features)
 1. [Viewing help](#help)
 2. [Add student](#add)
@@ -23,7 +23,7 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start <a name="quick start"></a>
+## Quick start <a name="quickstart"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -121,7 +121,7 @@ Examples:
 * ```list``` 
 
 
-### Editing a person : `edit`
+## Editing a person : `edit`
 
 Edits an existing person in the address book.
 
@@ -138,7 +138,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating students by name: `find`
+## Locating students by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
