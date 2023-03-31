@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2223S2-CS2103-W17-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103-W17-2/tp/actions)
 
-![Ui](docs/images/Ui.png?)
+![Ui](docs/images/Ui.png)
 
 * This is a team project by five students, entitled Dengue Hotspot Tracker, targeted towards NEA personnel or
 members within the Singapore government.<br>
