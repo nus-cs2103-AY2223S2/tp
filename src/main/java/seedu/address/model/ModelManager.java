@@ -37,7 +37,6 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-//        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         targetPerson = new FilteredList<Person>(this.addressBook.getPersonList());
         updateShowPerson(new NameContainsKeywordsPredicate(new ArrayList<>()));
         versionedAddressBook = new VersionedAddressBook(this.addressBook);
@@ -109,6 +108,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         versionedAddressBook.addPerson(person);
+        this.addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -173,6 +173,9 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Person> getShowPerson() {
+//        ObservableList<Person> target = targetPerson;
+//        targetPerson.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+//        return target;
         return targetPerson;
     }
 

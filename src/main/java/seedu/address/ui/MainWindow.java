@@ -123,7 +123,6 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        System.out.println("make new reuslt person list panel fill inner parts called");
         resultPersonlistPanel = new ResultPersonListPanel(logic.getShowPerson());
         resultPersonListPlaceholder.getChildren().add(resultPersonlistPanel.getRoot());
 
