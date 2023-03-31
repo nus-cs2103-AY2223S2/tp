@@ -32,10 +32,10 @@ public class AddCommand extends Command {
             PREFIX_EMAIL.asOptional(),
             PREFIX_ADDRESS.asOptional(),
             PREFIX_EDUCATION.asOptional(),
+            PREFIX_TELEGRAM.asOptional(),
             PREFIX_REMARK.asOptional(),
             PREFIX_TAG.asOptional().asRepeatable(),
-            PREFIX_MODULE.asOptional().asRepeatable(),
-            PREFIX_TELEGRAM.asOptional()
+            PREFIX_MODULE.asOptional().asRepeatable()
     ));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
