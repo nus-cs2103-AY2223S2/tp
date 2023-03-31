@@ -31,6 +31,13 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
         <FlowPane fx:id="tags" />
+        <Label fx:id="telegram" styleClass="cell_small_label" text="\$phone">
+            <graphic>
+                <ImageView fitHeight="17" fitWidth="17" preserveRatio="true">
+                    <Image url="@/images/telegram.png"/>
+                </ImageView>
+            </graphic>
+        </Label>
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
         <graphic>
         <ImageView fitHeight="17" fitWidth="17" preserveRatio="true">
@@ -48,7 +55,7 @@
       <Label fx:id="email" styleClass="cell_small_label" text="\$email">
           <graphic>
               <ImageView fitHeight="17" fitWidth="17" preserveRatio="true">
-                  <Image url="@/images/email.png"/>
+                  <Image url="@/images/email2.png"/>
               </ImageView>
           </graphic>
       </Label>
