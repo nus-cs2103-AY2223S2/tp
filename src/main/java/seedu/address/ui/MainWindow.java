@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -235,11 +237,12 @@ public class MainWindow extends UiPart<Stage> {
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(REVIEW_TITLE);
 
-        rightPanelTitlePlaceholder.getChildren().clear();
-
         rightDeckTitle = new DeckNamePanel(EMPTY_TITLE);
+        rightPanelTitlePlaceholder.getChildren().clear();
         rightPanelTitlePlaceholder.getChildren().add(rightDeckTitle.getRoot());
+
         rightFilterText.getChildren().clear();
+        leftFilterText.getChildren().clear();
     }
 
     /**
@@ -252,21 +255,18 @@ public class MainWindow extends UiPart<Stage> {
         leftPanelPlaceholder.getChildren().clear();
         leftPanelPlaceholder.getChildren().add(deckListPanel.getRoot());
 
-
         cardListPanel = new CardListPanel(logic.getFilteredCardList(), false);
         rightPanelPlaceholder.getChildren().clear();
         rightPanelPlaceholder.getChildren().add(cardListPanel.getRoot());
 
         titlePanel.getChildren().clear();
         titlePanel.getChildren().add(MAIN_TITLE);
-        rightFilterText.getChildren().clear();
     }
 
     /**
-     * Updates the deck Title.
+     * Updates the deck title to show the current deck selected.
      */
     public void updateDeckTitle() {
-        rightPanelTitlePlaceholder.getChildren().clear();
         rightPanelTitlePlaceholder.getChildren().clear();
         rightDeckTitle = new DeckNamePanel(logic.getDeckNameList());
         rightPanelTitlePlaceholder.getChildren().add(rightDeckTitle.getRoot());
@@ -276,7 +276,8 @@ public class MainWindow extends UiPart<Stage> {
      * Gets the argument from a command
      */
     private String getArgs(String commandText) {
-        return commandText.split(" ")[1];
+        String[] commandArray = commandText.split(" ", 2);
+        return commandArray[1].trim();
     }
 
     /**
@@ -284,6 +285,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void handleFindCards(String commandText) {
         Text args = new Text(FILTER_CARD_PREFIX + getArgs(commandText));
+        rightFilterText.getChildren().clear();
         rightFilterText.getChildren().add(args);
     }
 
@@ -292,6 +294,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void handleFindDecks(String commandText) {
         Text args = new Text(FILTER_DECK_PREFIX + getArgs(commandText));
+        leftFilterText.getChildren().clear();
         leftFilterText.getChildren().add(args);
     }
 
