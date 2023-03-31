@@ -85,7 +85,7 @@ to keep track of your progress, deadlines, and follow-up actions, so you can foc
     - Double-clicking the downloaded `internease.jar` file.<br>
    > **Note**<br>
    > You should see the app is running now. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](https://github.com/AY2223S2-CS2103T-W15-4/tp/blob/master/docs/images/Ui.png)
+   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
