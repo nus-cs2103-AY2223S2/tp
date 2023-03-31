@@ -392,7 +392,7 @@ Example:
 - `viewunassignedall` displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
 
 
-#### 3.6.8 Filter Persons: `filterp tag/TAG`
+#### 3.6.8 Filter Persons: `filterp`
 
 Displays a list of all persons with the assigned tag. Only ONE tag can be keyed as input.
 
