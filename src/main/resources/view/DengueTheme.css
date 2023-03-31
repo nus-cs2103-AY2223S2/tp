@@ -265,6 +265,7 @@
     -fx-text-fill: #3D4A5A;
     -fx-padding: 10px;
     -fx-background-radius: 10 10 10 10;
+    -fx-border-color: transparent
 }
 
 #copyButton {
