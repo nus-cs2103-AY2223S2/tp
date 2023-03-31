@@ -15,10 +15,11 @@ import seedu.address.commons.exceptions.IllegalValueException;
 public class JsonAdaptedModuleTagTest {
 
     private static final String MODULE_CODE = CS2101_HA.tagName;
-    List<JsonAdaptedLesson> JSON_LESSONS = CS2101_HA.getImmutableLessons()
-            .stream()
-            .map(JsonAdaptedLesson::new)
-            .collect(Collectors.toList());
+    private static final List<JsonAdaptedLesson> JSON_LESSONS =
+            CS2101_HA.getImmutableLessons()
+                    .stream()
+                    .map(JsonAdaptedLesson::new)
+                    .collect(Collectors.toList());
 
     @Test
     public void toModelType_validModuleTagDetails_returnsModuleTag() throws Exception {
