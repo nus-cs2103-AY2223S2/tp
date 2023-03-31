@@ -2,8 +2,6 @@ package seedu.address.ui;
 
 import java.util.Optional;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
