@@ -158,19 +158,22 @@ Examples:
 ### Book appointment : `appointment`
 
 Schedules an appointment with a specific doctor for the specified person.
+Note that this updates the appointment list for the specified patient, and the specified doctor in the detailed person view when 'display' command is used.
 
 Format: `appointment ic/NRIC d/DATE dric/NRIC`
 
 * Schedules an appointment on the given `DATE` for the patient with `ic/NRIC` with the doctor with `dric/NRIC`
 
 Examples:
-* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment on 01-04-2023 10:00, for patient with NRIC number S1234567A, with doctor with NRIC number S7654321Z.
+* `appointment ic/S1234567A d/01-04-2023 10:00 dric/S7654321Z` schedules an appointment on 01-04-2023 10:00, for patient with NRIC number S1234567A, with doctor with NRIC number S7654321Z. 
 
 ![Appointment](images/Appointment.png)
 
 ### Delete appointment : `deleteAppointment`
 
-Deletes an appointment specified by the index of the person’s appointment list.
+Deletes an appointment specified by the index of the patient’s appointment list.
+Note that this command can only be used on patients (ie. you can only delete an appointment from the patient's end, and not from the doctor's end).
+Similarly, this updates the appointment list for the specified patient, and the specified doctor in the detailed person view when 'display' command is used.
 
 Format: `deleteAppointment INDEX ic/NRIC`
 
