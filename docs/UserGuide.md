@@ -34,38 +34,38 @@ You can click on any of the links below to navigate to the respective sections f
 * [Features](#features)
     * [Viewing help: `help`](#viewing-help-help)
   * [Add](#add)
-    * [Adding a supplier: `add_supplier`](#adding-a-supplier-addsupplier)
-    * [Adding an order: `add_order`](#adding-an-order-addorder)
-    * [Adding a task: `add_task`](#adding-a-task-addtask)
-    * [Adding a menu item: `add_item`](#adding-a-menu-item-additem)
+    * [Adding a supplier: `add_supplier`](#adding-a-supplier-add_supplier)
+    * [Adding an order: `add_order`](#adding-an-order-add_order)
+    * [Adding a task: `add_task`](#adding-a-task-add_task)
+    * [Adding a menu item: `add_item`](#adding-a-menu-item-add_item)
   * [Edit](#edit)
-    * [Editing a supplier: `edit_supplier`](#editing-a-supplier-editsupplier)
-    * [Editing an order: `edit_order`](#editing-an-order-editorder)
-    * [Editing a task: `edit_task`](#editing-a-task-edittask)
-    * [Editing a menu item : `edit_item`](#editing-a-menu-item--edititem)
+    * [Editing a supplier: `edit_supplier`](#editing-a-supplier-edit_supplier)
+    * [Editing an order: `edit_order`](#editing-an-order-edit_order)
+    * [Editing a task: `edit_task`](#editing-a-task-edit_task)
+    * [Editing a menu item : `edit_item`](#editing-a-menu-item-edit_item)
   * [Find](#find)
-    * [Finding a supplier: `find_supplier`](#finding-a-supplier-findsupplier)
-    * [Finding an order: `find_order`](#finding-an-order-findorder)
-    * [Finding a task: `find_task`](#finding-a-task-findtask)
-    * [Finding a menu item : `find_item`](#finding-a-menu-item--finditem)
+    * [Finding a supplier: `find_supplier`](#finding-a-supplier-find_supplier)
+    * [Finding an order: `find_order`](#finding-an-order-find_order)
+    * [Finding a task: `find_task`](#finding-a-task-find_task)
+    * [Finding a menu item : `find_item`](#finding-a-menu-item-find_item)
   * [Delete](#delete)
-    * [Deleting a supplier: `delete_supplier`](#deleting-a-supplier-deletesupplier)
-    * [Deleting an order: `delete_order`](#deleting-an-order-deleteorder)
-    * [Deleting a task: `delete_task`](#deleting-a-task-deletetask)
-    * [Deleting a menu item: `delete_item`](#deleting-a-menu-item-deleteitem)
+    * [Deleting a supplier: `delete_supplier`](#deleting-a-supplier-delete_supplier)
+    * [Deleting an order: `delete_order`](#deleting-an-order-delete_order)
+    * [Deleting a task: `delete_task`](#deleting-a-task-delete_task)
+    * [Deleting a menu item: `delete_item`](#deleting-a-menu-item-delete_item)
   * [Sort](#sort)
-    * [Sorting a task: `sort_task`](#sorting-a-task-sorttask)
-    * [Sorting a order: `sort_order`](#sorting-a-order-sortorder)
+    * [Sorting a task: `sort_task`](#sorting-a-task-sort_task)
+    * [Sorting a order: `sort_order`](#sorting-a-order-sort_order)
   * [List](#list)
-    * [Listing all suppliers: `list_supplier`](#listing-all-suppliers-listsupplier)
-    * [Listing all orders: `list_order`](#listing-all-orders-listorder)
-    * [Listing all tasks: `list_task`](#listing-all-tasks-listtask)
-    * [Listing all menu items: `list_menu`](#listing-all-menu-items-listmenu)
+    * [Listing all suppliers: `list_supplier`](#listing-all-suppliers-list_supplier)
+    * [Listing all orders: `list_order`](#listing-all-orders-list_order)
+    * [Listing all tasks: `list_task`](#listing-all-tasks-list_task)
+    * [Listing all menu items: `list_menu`](#listing-all-menu-items-list_menu)
   * [Clear](#clear)
-    * [Clear all supplier entries: `clear_supplier`](#clear-all-supplier-entries-clearsupplier)
-    * [Clear all order entries: `clear_order`](#clear-all-order-entries-clearorder)
-    * [Clear all task entries: `clear_task`](#clear-all-task-entries-cleartask)
-    * [Clear all menu item entries: `clear_menu`](#clear-all-menu-item-entries-clearmenu)
+    * [Clear all supplier entries: `clear_supplier`](#clear-all-supplier-entries-clear_supplier)
+    * [Clear all order entries: `clear_order`](#clear-all-order-entries-clear_order)
+    * [Clear all task entries: `clear_task`](#clear-all-task-entries-clear_task)
+    * [Clear all menu item entries: `clear_menu`](#clear-all-menu-item-entries-clear_menu)
   * [Switch](#switch)
     * [Switching tabs: `tab`](#switching-tabs-tab)
   * [Others](#others)
@@ -362,7 +362,7 @@ Examples:
 * `edit_task 1 n/Get creamer` edits the 1st task description to be "Get creamer"
 * `edit_t 3 d/2023-12-31 s/N` edits the 3rd task deadline to 2023-12-31 and sets the status as not done
 
-### Editing a menu item : `edit_item`
+### Editing a menu item: `edit_item`
 
 Edits an item present in the menu.
 Syntax: edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]
@@ -436,7 +436,7 @@ Examples:
 * `find_t n/buy eggs d/2023-02-17` returns tasks with `buy` or `egg` with deadline of `2023-02-17`
 * `find_t s/N` returns all tasks not done
 
-### Finding a menu item : `find_item`
+### Finding a menu item: `find_item`
 
 Find tasks with information that matches with any of the given parameters.
 
