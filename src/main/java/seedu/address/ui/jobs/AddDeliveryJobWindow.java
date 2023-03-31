@@ -322,7 +322,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
             });
         }
 
-        if (!inputDeliverySlot.getValue().isEmpty()) {
+        if (inputDeliverySlot.getValue() != null) {
             // slot field has value
             job.getDeliverySlot().ifPresentOrElse(val -> {
                 // slot is different from existing value, overwrite.

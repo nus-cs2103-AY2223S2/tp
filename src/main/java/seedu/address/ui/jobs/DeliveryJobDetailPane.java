@@ -90,18 +90,18 @@ public class DeliveryJobDetailPane extends UiPart<Region> {
 
         job.getDeliveryDate().ifPresentOrElse(val -> {
             if (val.date.equals(DeliveryDate.placeholder().toString())) {
-                deliveryTimeDate.setText("N.A");
+                deliveryTimeDate.setText("Not scheduled");
             } else {
                 deliveryTimeDate.setText(val.date);
             }
         }, () -> {
-            deliveryTimeDate.setText("N.A");
+            deliveryTimeDate.setText("Not scheduled");
         });
 
         job.getDeliverySlot().ifPresentOrElse(val -> {
             deliveryTimeSlot.setText(val.getDescription());
         }, () -> {
-            deliveryTimeSlot.setText("N.A");
+            deliveryTimeSlot.setText("Not scheduled");
         });
 
         job.getEarning().ifPresentOrElse(val -> {
