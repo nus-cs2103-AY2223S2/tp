@@ -66,6 +66,31 @@ Here are some of the symbols to take note of when going through this user guide:
 * Items with `…` after them can either be omitted or used one or more times.<br>
   e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+  
+:warning: **Note:**
+To get started with ExecutivePro, the HR manager will need to run the application using 
+their terminal or command prompt. Follow the steps below:
+
+Step 1 (Opening Terminal or Command Prompt) :
+
+On Windows, press Windows + R, type cmd, and hit Enter to open Command Prompt.
+On macOS, press Cmd + Space, type terminal, and hit Enter to open Terminal.
+
+Step 2 (Navigating to the Jar File Location) :
+
+Use the cd command to navigate to the directory where the ExecutivePro.jar file is located. 
+For example, if the file is located in the Downloads folder, you can type cd Downloads and hit Enter.
+
+Step 3 (Running the Application) :
+Once you are in the correct directory, type the following command and hit Enter:
+`java -jar ExecutivePro.jar`
+
+This command will start the application, and the data folder should appear in the same directory as the 
+ExecutivePro.jar file after the application is run successfully.
+
+Now that the application is running, you can follow the steps in the user guide to perform various tasks 
+such as adding employees using the batchadd command and exporting the database using the batchexport command.
+
 </div>
 
 ### Viewing help : `help`
@@ -166,14 +191,15 @@ Sample `.csv` file:
 </div>
 
 **Step 2 (Uploading CSV file) :**
+Before we proceed to uploading the CSV file, you would need to have done the first steps of entering 
+`java -jar ExecutivePro.jar` in your terminal as per the instructions at the start of this section, in order
+to upload your csv file in the `data` folder
+
+Once that is done,
 
 1. Go to the folder where you stored the `jar` file.
 2. Move CSV file to the `data` folder.
    ![](images/UserGuide/movingFile.png)
-
-_If you are a new user (have not run any command yet), you will not see the `data` folder.
-You can run the [`clear` command](#clearing-the-data--clear) to remove the sample employees first.
-After this, you should be able to see the `data` folder._
 
 **Step 3 (Running CSV file) :**
 
