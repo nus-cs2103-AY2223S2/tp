@@ -20,7 +20,7 @@ public class EditCommand extends UndoableLogicCommand {
             + "          : Date time must be valid in the format of YYYY-MM-DD.\n"
             + "Example: " + COMMAND_WORD + " 1" + " 2023-01-01";
 
-    public static final String SUCCESS_MESSAGE_FORMAT = "Field(s) of task %1$s has been updated.";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Field(s) of task %1$s are updated.";
     public static final String UNDO_MESSAGE =
             "The command has been undone. Field(s) of the updated task has been restored.";
 
