@@ -29,6 +29,7 @@ public class StartTime {
         requireNonNull(startTime);
         checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
         this.time = LocalTime.parse(startTime, TIME_FORMATTER);
+        this.startTime = startTime;
     }
 
     /**

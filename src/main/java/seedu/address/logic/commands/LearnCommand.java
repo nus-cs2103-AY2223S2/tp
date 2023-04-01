@@ -19,7 +19,7 @@ public class LearnCommand extends Command {
     public static final String COMMAND_WORD = "learn";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits learning process of the tutee identified "
                 + "by the index number used in the last tutee listing.\n"
-                + "Example: " + COMMAND_WORD + " 1 Rational Number";
+                + "Example: " + COMMAND_WORD + " 1 l/Rational Number";
 
     private final Index index;
     private final String lesson;
