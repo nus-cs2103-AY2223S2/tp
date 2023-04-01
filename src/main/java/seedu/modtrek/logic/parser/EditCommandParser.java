@@ -42,8 +42,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
-        Code code = ParserUtil.parseCode(preamble);
-
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
 
         boolean isCodePrefixPresent = argMultimap.getValue(PREFIX_CODE).isPresent();
@@ -80,8 +78,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editModuleDescriptor::setTags);
 
         if (!editModuleDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+
+        Code code = ParserUtil.parseCode(preamble);
 
         return new EditCommand(code, editModuleDescriptor);
     }
