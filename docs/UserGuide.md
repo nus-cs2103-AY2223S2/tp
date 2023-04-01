@@ -118,6 +118,10 @@ Examples:
 
 Marks a parcel from a delivery with a status.
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Once a parcel is marked with a status, you cannot unmark it, you will have to delete delivery and start again.
+</div>
+
 Format: `mark_pc INDEX_OF_DELIVERY pc/INDEX_OF_PARCEL s/STATUS`
 
 * `INDEX_OF_DELIVERY` indicates which delivery you are choosing your parcel from.
@@ -176,8 +180,7 @@ Format: `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [pc/PARCEL]…​`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing parcels, the existing parcels of the person will be removed i.e adding of parcels is not cumulative.
-* You can remove all the person’s parcels by typing `pc/` without
-    specifying any parcels after it.
+* You can remove all the person’s parcels by typing `pc/` without specifying any parcels after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -186,6 +189,11 @@ Examples:
 ### Finding delivery by name: `find`
 
 Finds deliveries which contain any of the given keywords.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+After executing `find` command, a sub list will be generated and subsequent commands will only affect the current sub list showing. 
+To revert back to the full list, use `list` command
+</div>
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -227,14 +235,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Bookopedia data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Bookopedia data are saved as a JSON file `[JAR file location]/data/bookopedia.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, Bookopedia will discard all data and start with an empty data file at the next run.
 </div>
 
 
@@ -243,7 +251,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Bookopedia home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
