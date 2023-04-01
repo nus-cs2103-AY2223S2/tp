@@ -58,7 +58,6 @@ public class WingmanParser extends FactoryParser {
                     ),
                     new LinkPilotToFlightCommandFactory(),
                     new UnlinkPilotToFlightCommandFactory(),
-                    new CheckPilotCommandFactory(),
                     new LinkPilotToLocationCommandFactory(),
                     new UnlinkPilotToLocationCommandFactory()
             )),
@@ -75,7 +74,6 @@ public class WingmanParser extends FactoryParser {
                     ),
                     new LinkCrewToFlightCommandFactory(),
                     new UnlinkCrewToFlightCommandFactory(),
-                    new CheckCrewCommandFactory(),
                     new LinkCrewToLocationCommandFactory(),
                     new UnlinkCrewToLocationCommandFactory()
             )),
@@ -92,7 +90,6 @@ public class WingmanParser extends FactoryParser {
                     ),
                     new LinkPlaneToFlightCommandFactory(),
                     new UnlinkPlaneToFlightCommandFactory(),
-                    new CheckPlaneCommandFactory(),
                     new LinkPlaneToLocationCommandFactory(),
                     new UnlinkPlaneToLocationCommandFactory()
             )),
