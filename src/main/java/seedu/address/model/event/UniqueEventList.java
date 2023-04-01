@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -82,8 +83,8 @@ public class UniqueEventList implements Iterable<Event> {
 
         int zeroBasedIndex = index.getZeroBased();
 
-        if (zeroBasedIndex > this.internalList.size() - 1 || zeroBasedIndex < 0) {
-            throw new PersonNotFoundException();
+        if (zeroBasedIndex > this.internalList.size() - 1) {
+            throw new EventNotFoundException();
         }
         return this.internalList.get(zeroBasedIndex);
     }
@@ -184,9 +185,9 @@ public class UniqueEventList implements Iterable<Event> {
      * Updates all events to their next earliest occurence.
      */
     public void updateAllDateTimes() {
-        ArrayList<Event> eventsReplacements = new ArrayList<>();
-        for (int i = 0; i < this.internalList.size(); i++) {
-            eventsReplacements.add(this.internalList.get(i).updateDateTime());
+        List<Event> eventsReplacements = new LinkedList<>();
+        for (Event event : this.internalList) {
+            eventsReplacements.add(event.updateDateTime());
         }
         this.internalList.clear();
         this.internalList.addAll(eventsReplacements);

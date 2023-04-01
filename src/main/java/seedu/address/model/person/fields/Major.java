@@ -11,7 +11,7 @@ public class Major extends Field {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Major should only contain alphabets and spaces";
-    public static final String VALIDATION_REGEX = "^[A-Za-z\\s]+$$";
+    public static final String VALIDATION_REGEX = "^[A-Za-z\\s]+$";
 
     /**
      * Constructs a {@code Major}.

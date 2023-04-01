@@ -34,7 +34,7 @@ public class ModelManager implements Model {
     private final TabUtil tabUtil;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given {@code addressBook}, {@code userPrefs}, and {@code userData}.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyUserData userData) {
         requireAllNonNull(addressBook, userPrefs);
@@ -44,7 +44,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.userData = new UserData(userData);
-        filteredPersons = new FilteredList<>(this.addressBook.getData());
+        this.filteredPersons = new FilteredList<>(this.addressBook.getData());
         this.tabUtil = new TabUtil(TabType.getAll());
     }
 

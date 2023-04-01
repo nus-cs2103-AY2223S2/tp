@@ -40,7 +40,7 @@ public abstract class EditPersonCommand extends Command {
         Major updatedMajor = editPersonDescriptor.getMajor().orElse(personToEdit.getMajor());
         Race updatedRace = editPersonDescriptor.getRace().orElse(personToEdit.getRace());
         CommunicationChannel updatedComms = editPersonDescriptor.getComms().orElse(personToEdit.getComms());
-        Favorite currentFavorite = personToEdit.getIsFavorite();
+        Favorite currentFavorite = personToEdit.getFavorite();
         Faculty updatedFaculty = editPersonDescriptor.getFaculty().orElse(personToEdit.getFaculty());
 
         Tags updatedTags = editPersonDescriptor.getTags()
