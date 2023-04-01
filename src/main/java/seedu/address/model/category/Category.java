@@ -34,17 +34,7 @@ public abstract class Category {
     };
     public String getSummary() {
         return this.summary;
-    };
-
-    /**
-     * Returns true if a given category matches the current category
-     */
-    public boolean isSameCategory(Category toCheck) {
-        if (this == toCheck) {
-            return true;
-        }
-        return toCheck != null && toCheck.getCategoryName().equalsIgnoreCase(this.getCategoryName());
-    }
+    };  
 
     @Override
     public boolean equals(Object other) {
@@ -57,9 +47,10 @@ public abstract class Category {
         }
 
         Category otherTypecasted = (Category) other;
-
-        return this.getCategoryName().equals(otherTypecasted.getCategoryName())
-                && this.getSummary().equals(otherTypecasted.getSummary());
+        // Remove extra whitespace between words and trim
+        otherTypecasted.categoryName = otherTypecasted.categoryName.replaceAll("\\s+", " ").trim();
+        String thisCategoryName = this.categoryName.replaceAll("\\s+", " ").trim();
+        return otherTypecasted.categoryName.equals(thisCategoryName);
     }
 
     @Override

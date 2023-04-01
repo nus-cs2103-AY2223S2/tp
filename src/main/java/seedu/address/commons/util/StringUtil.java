@@ -65,4 +65,16 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if {@code s} represents a valid string for a field
+     */
+    public static boolean isValidField(String s) {
+        if (s == null) {
+            return false;
+        }
+        // Regex to strip extra whitespace between words
+        s = s.replaceAll("\\s+", " ");
+        return s.matches("[\\p{Alnum}][\\p{Alnum} ]*");
+    }
 }

@@ -15,10 +15,12 @@ public class UserDefinedCategory extends Category {
     }
 
     public void setCategoryName(String newName) {
+        newName = newName.replaceAll("\\s+", " ");
         this.categoryName = newName;
     }
 
     public void setDescription(String newSummary) {
+        newSummary = newSummary.replaceAll("\\s+", " ");
         this.summary = newSummary;
     }
 }

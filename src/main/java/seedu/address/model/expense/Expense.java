@@ -89,24 +89,15 @@ public class Expense {
         if (Double.compare(expense.amount, amount) != 0) {
             return false;
         }
-        if (!Objects.equals(name, expense.name)) {
+        if (!Objects.equals(name.toLowerCase().
+        replaceAll("\\s+", " ").trim(), 
+        expense.name.toLowerCase().replaceAll("\\s+", " ").trim())) {
             return false;
         }
         if (!Objects.equals(date, expense.date)) {
             return false;
         }
         return Objects.equals(category, expense.category);
-    }
-
-    /**
-     * Returns true if a given expense matches the current expense
-     */
-    public boolean isSameExpense(Expense otherExpense) {
-        if (otherExpense == this) {
-            return true;
-        }
-        return otherExpense != null
-                && otherExpense.equals(this);
     }
 
     @Override
@@ -129,6 +120,9 @@ public class Expense {
     }
 
     public void setAmount(double amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException("Amount cannot be negative");
+        }
         this.amount = amount;
     }
 

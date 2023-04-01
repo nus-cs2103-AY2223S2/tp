@@ -59,12 +59,13 @@ public class EditCategory extends Command {
         }
 
         UserDefinedCategory categoryToEdit = (UserDefinedCategory) lastShownList.get(targetIndex.getZeroBased());
+
         if (newCategoryName == null && newSummaryName == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_EDIT_FOR_CATEGORIES);
         }
 
         if (newCategoryName != null && newSummaryName != null) {
-            categoryToEdit.setCategoryName(newCategoryName);
+            categoryToEdit.setCategoryName(newCategoryName.replaceAll("\\s+", " "));
             categoryToEdit.setDescription(newSummaryName);
             return new CommandResult(
                     String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,

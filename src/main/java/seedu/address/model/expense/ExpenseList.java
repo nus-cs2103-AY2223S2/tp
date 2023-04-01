@@ -140,7 +140,7 @@ public class ExpenseList implements Iterable<Expense> {
      */
     public boolean contains(Expense toCheck) {
         requireNonNull(toCheck);
-        return internalListOfExpenses.stream().anyMatch(toCheck::isSameExpense);
+        return internalListOfExpenses.stream().anyMatch(toCheck::equals);
     }
 
     @Override
