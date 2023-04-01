@@ -1,9 +1,8 @@
 package seedu.address.model.expense;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 /**
  * Represents a Price of an Expense in FastTrack.
  * Guarantees: immutable; is valid as declared in {@link #isValidPrice(String)}
@@ -17,7 +16,6 @@ public class Price {
 
     /**
      * Constructs a {@code Price}.
-     *
      * @param price A valid price.
      */
     public Price(String price) {
@@ -27,7 +25,10 @@ public class Price {
         }
         value = price;
     }
-
+    /**
+     * Constructs a {@code Price}.
+     * @param price A valid price.
+     */
     public Price(double price) {
         requireNonNull(price);
         String priceString = String.format("%d", price);

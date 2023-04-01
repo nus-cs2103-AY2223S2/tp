@@ -164,7 +164,6 @@ public class ModelManager implements Model {
     @Override
     public boolean hasCategory(Category category) {
         requireNonNull(category);
-        
         return expenseTracker.hasCategory(category);
     }
 

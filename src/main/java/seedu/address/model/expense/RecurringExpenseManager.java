@@ -21,7 +21,6 @@ public class RecurringExpenseManager {
     /**
      * The constructor for the RecurringExpenseManager class with a start and end
      * date.
-     * 
      * @param expenseName          The name of the recurring expense.
      * @param expenseAmount        The amount of the recurring expense.
      * @param expenseCategory      The category of the recurring expense.
@@ -44,7 +43,6 @@ public class RecurringExpenseManager {
     /**
      * The constructor for the RecurringExpenseManager class with a start and end
      * date.
-     * 
      * @param expenseName          The name of the recurring expense.
      * @param expenseAmount        The amount of the recurring expense.
      * @param expenseCategory      The category of the recurring expense.
@@ -66,7 +64,6 @@ public class RecurringExpenseManager {
 
     /**
      * The constructor for the RecurringExpenseManager class with no end date.
-     * 
      * @param expenseName          The name of the recurring expense.
      * @param amount               The amount of the recurring expense.
      * @param expenseCategory      The category of the recurring expense.
@@ -85,7 +82,6 @@ public class RecurringExpenseManager {
 
     /**
      * The constructor for the RecurringExpenseManager class with no end date.
-     * 
      * @param expenseName          The name of the recurring expense.
      * @param amount               The amount of the recurring expense.
      * @param expenseCategory      The category of the recurring expense.

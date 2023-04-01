@@ -34,7 +34,7 @@ public abstract class Category {
     };
     public String getSummary() {
         return this.summary;
-    };  
+    };
 
     @Override
     public boolean equals(Object other) {

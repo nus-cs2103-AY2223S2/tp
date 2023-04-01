@@ -117,9 +117,9 @@ public class Expense {
         if (!expense.amount.equals(o)) {
             return false;
         }
-        if (!Objects.equals(name.toLowerCase().
-        replaceAll("\\s+", " ").trim(), 
-        expense.name.toLowerCase().replaceAll("\\s+", " ").trim())) {
+        if (!Objects.equals(name.toLowerCase()
+                .replaceAll("\\s+", " ").trim(),
+                expense.name.toLowerCase().replaceAll("\\s+", " ").trim())) {
             return false;
         }
         if (!Objects.equals(date, expense.date)) {

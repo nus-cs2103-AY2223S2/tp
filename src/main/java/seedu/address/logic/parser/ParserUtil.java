@@ -82,8 +82,8 @@ public class ParserUtil {
         String trimmedPrice = price.trim().replaceAll("0*$", "").replaceAll(",", "").replaceAll("\\$", "")
                 .replaceAll(" ", "");
         if (!Price.isValidPrice(trimmedPrice)) {
-                throw new ParseException(Price.MESSAGE_CONSTRAINTS);
-            }
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
         return new Price(trimmedPrice);
     }
 

@@ -15,6 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
+import seedu.address.model.expense.Price;
 import seedu.address.model.expense.RecurringExpenseManager;
 import seedu.address.model.expense.RecurringExpenseType;
 import seedu.address.ui.ScreenType;
@@ -45,7 +46,6 @@ public class EditRecurringExpenseManagerCommand extends Command {
     /**
      * Creates an EditRecurringExpenseManagerCommand to edit the specified
      * {@code RecurringExpenseManager}
-     * 
      * @param targetIndex                index of the recurringexpensemanager in the
      *                                   filtered recurringexpensemanager list to
      *                                   edit.
@@ -112,6 +112,9 @@ public class EditRecurringExpenseManagerCommand extends Command {
         }
 
         if (newExpenseAmount != null) {
+            if (!Price.isValidPrice(String.format("%d", newExpenseAmount))) {
+                throw new CommandException(Price.MESSAGE_CONSTRAINTS);
+            }
             generatorToEdit.setAmount(newExpenseAmount);
         }
 

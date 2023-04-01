@@ -29,7 +29,6 @@ public class JsonAdaptedRecurringExpenseManager {
     /**
      * Constructs a {@code JsonAdaptedRecurringExpenseManager} with the given
      * category details.
-     * 
      * @param expenseName          Name of the expense.
      * @param expenseAmount        Amount of the expense.
      * @param expenseCategory      Category of the expense.
@@ -62,7 +61,6 @@ public class JsonAdaptedRecurringExpenseManager {
     /**
      * Converts a given {@code RecurringExpenseManager} into this class for Jackson
      * use.
-     * 
      * @param source future changes to this will not affect the created
      *               {@code JsonAdaptedRecurringExpenseManager}
      */
@@ -81,7 +79,6 @@ public class JsonAdaptedRecurringExpenseManager {
      * Converts this Jackson-friendly adapted RecurringExpenseManager object into
      * the model's
      * {@code RecurringExpenseManager} object.
-     * 
      * @throws IllegalValueException if there were any data constraints violated
      *                               in the adapted category.
      */
@@ -123,7 +120,7 @@ public class JsonAdaptedRecurringExpenseManager {
         }
 
         RecurringExpenseManager toReturn = new RecurringExpenseManager(expenseName, amount,
-        toBeUsed, modelStartDate, modelRecurringType);
+            toBeUsed, modelStartDate, modelRecurringType);
         toReturn.setNextExpenseDate(modelNextExpenseDate);
         return toReturn;
     }
