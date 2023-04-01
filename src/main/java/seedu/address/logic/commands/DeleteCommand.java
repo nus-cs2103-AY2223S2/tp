@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.commands.results.ViewCommandResult;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.model.Model;
 import seedu.address.model.person.ContactIndex;
@@ -33,7 +33,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         IndexHandler indexHandler = new IndexHandler(model);
         Optional<Person> targetPerson = indexHandler.getPersonByIndex(contactIndex);
@@ -44,7 +44,7 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = targetPerson.get();
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        return new ViewCommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete), model.getUser());
     }
 
 

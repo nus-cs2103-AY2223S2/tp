@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -93,6 +94,13 @@ public class Timetable {
      */
     public boolean canFitCommitment(Commitment commitment) {
         return commitment.canFitIntoDaySchedule(schedule.get(commitment.getDay()));
+    }
+
+    /**
+     * Returns the set of commitments that clash with the one given.
+     */
+    public Set<Commitment> getClashingCommitments(Commitment commitment) {
+        return commitment.getClashingCommitments(schedule.get(commitment.getDay()));
     }
 
     /**

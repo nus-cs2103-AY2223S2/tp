@@ -51,6 +51,8 @@ public class GroupTagTest {
                 "")); // empty string
         assertFalse(GroupTag.isValidTagName(
                 "!Friend")); // contains non-alphanumeric
+        assertFalse(GroupTag.isValidTagName(
+                "FriendWithAVeryLongTagNameThatIsOver20Characters"));
     }
 
     @Test
