@@ -1,4 +1,7 @@
-### TechTrack Developer Guide
+---
+layout: page
+title: Developer Guide
+---
 
 TechTrack is a software which helps students with internship search and optimizes their search progress. Computing
 students are more familiar with and used to using CLI.
