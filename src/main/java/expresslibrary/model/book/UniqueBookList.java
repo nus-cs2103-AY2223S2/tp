@@ -51,7 +51,7 @@ public class UniqueBookList implements Iterable<Book> {
                 return b;
             }
         }
-        return null;
+        throw new BookNotFoundException();
     }
 
     /**

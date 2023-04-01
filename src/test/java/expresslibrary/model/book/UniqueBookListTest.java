@@ -7,20 +7,16 @@ import static expresslibrary.logic.commands.CommandTestUtil.VALID_TITLE_HARRY;
 import static expresslibrary.testutil.Assert.assertThrows;
 import static expresslibrary.testutil.TypicalBooks.A_GAME_OF_THRONES;
 import static expresslibrary.testutil.TypicalBooks.BELOVED;
-// import static expresslibrary.testutil.TypicalPersons.ALICE;
-// import static expresslibrary.testutil.TypicalPersons.BOB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import expresslibrary.commons.util.DateUtil;
 import expresslibrary.model.book.exceptions.BookNotFoundException;
 import expresslibrary.model.book.exceptions.DuplicateBookException;
 import expresslibrary.testutil.BookBuilder;
@@ -28,8 +24,6 @@ import expresslibrary.testutil.BookBuilder;
 public class UniqueBookListTest {
 
     private final UniqueBookList uniqueBookList = new UniqueBookList();
-    private final String borrowDate = DateUtil.formatDate(LocalDate.now());
-    private final String returnDate = DateUtil.formatDate(LocalDate.now().plusDays(14));
 
     @Test
     public void contains_nullBook_throwsNullPointerException() {
@@ -53,6 +47,22 @@ public class UniqueBookListTest {
         Book editedAGameOfThrones = new BookBuilder(A_GAME_OF_THRONES).withTitle(VALID_TITLE_ANIMAL)
                 .withAuthor(VALID_AUTHOR_ALEX).build();
         assertTrue(uniqueBookList.contains(editedAGameOfThrones));
+    }
+
+    @Test
+    public void get_correctBook() {
+        uniqueBookList.add(A_GAME_OF_THRONES);
+        assertEquals(A_GAME_OF_THRONES, uniqueBookList.get(A_GAME_OF_THRONES));
+    }
+
+    @Test
+    public void get_nullBook_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueBookList.get(null));
+    }
+
+    @Test
+    public void get_bookNotInList_throwsBookNotFoundException() {
+        assertThrows(BookNotFoundException.class, () -> uniqueBookList.get(A_GAME_OF_THRONES));
     }
 
     @Test
