@@ -7,7 +7,7 @@ title: pzaiming's Project Portfolio Page
 
 {{ site.data.techtrack.about.summary }}
 
-I worked on the backend and I was mainly in charge of implementation and testing of the new features.
+I worked on the backend and documentation. I was mainly in charge of implementation and testing of the new features.
 
 ## Table of Contents
 
