@@ -697,3 +697,6 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
 5. Switch to the relevant tab when a command is executed.
    1. Using commands for contacts in the events tab and vice versa may not show any visible changes, causing confusion in whether the user did anything.
    2. Certain commands should bring the user to the relevant tab, if they are not currently in said tab (e.g. `list` should navigate to the contacts tab).
+6. Enhancing the `select` command to accept parameters beyond just the index of the contact.
+   1. User cannot see the indices of contacts further down the list, and needs to scroll.
+   2. The `select` command can integrate `find` functionality.
