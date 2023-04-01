@@ -362,9 +362,10 @@ EduMate is a command-driven application, which means that its various functional
 
 :bulb: **General format of commands:** <br>
 
+
 <img src="images/general_command_format.png" style="width:80%;margin:0 10%">
 
-- **Bolded** portions of the command format implies that inputs could be optional.
+* **Bolded** portions of the command format implies that inputs could be optional.
 
 </div>
 
