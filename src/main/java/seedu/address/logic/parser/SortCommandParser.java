@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -84,9 +85,14 @@ public class SortCommandParser implements Parser<SortCommand> {
                 .map(pp -> isAscending(pp, args));
 
         // string to show to the user
-        String comparatorDesc = CollectionUtil
+        List<String> comparatorDescs = CollectionUtil
                 .zip(comparatorNameStream, isAscendingStream, this::getComparatorDesc)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.toList());
+
+        Collections.reverse(comparatorDescs);
+        comparatorDescs.add("Index: Ascending");
+
+        String comparatorDesc = String.join("\n", comparatorDescs);
 
         return new SortCommand(comparator, comparatorDesc);
     }
