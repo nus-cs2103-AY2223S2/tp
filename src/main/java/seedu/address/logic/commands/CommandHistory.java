@@ -8,13 +8,13 @@ import java.util.List;
 public class CommandHistory {
     private List<String> commandList;
     private List<Integer> modifyHistoryCommandList;
-    private int currentStatePointer;
+    private int currentVersionPointer;
 
     public CommandHistory() {
         commandList = new ArrayList<>();
         modifyHistoryCommandList = new ArrayList<>();
         modifyHistoryCommandList.add(-1);
-        currentStatePointer = 0;
+        currentVersionPointer = 0;
     }
 
     public void updateCommandHistory(String lastExecutedCommand) {
@@ -25,29 +25,31 @@ public class CommandHistory {
     public void updateAsModifyingHistory(String lastExecutedCommand) {
         requireNonNull(lastExecutedCommand);
         commandList.add(lastExecutedCommand);
-        int outdatedCommandIndex = currentStatePointer + 1;
-        modifyHistoryCommandList.subList(outdatedCommandIndex, modifyHistoryCommandList.size()).clear();
+        int outdatedCommandIndex = currentVersionPointer + 1;
+        for (int i = modifyHistoryCommandList.size() - 1; i > outdatedCommandIndex; i--) {
+            modifyHistoryCommandList.remove(i);
+        }
         modifyHistoryCommandList.add(commandList.size() - 1);
-        currentStatePointer++;
+        currentVersionPointer++;
     }
 
     public String getLastExecutedCommand() {
-        assert(currentStatePointer <= 0);
-            currentStatePointer--;
-            int index = modifyHistoryCommandList.get(currentStatePointer + 1);
-            return commandList.get(index);
+        assert(currentVersionPointer <= 0);
+        currentVersionPointer--;
+        int index = modifyHistoryCommandList.get(currentVersionPointer + 1);
+        return commandList.get(index);
     }
 
     public String getLastModifyingCommand() {
-        int index = modifyHistoryCommandList.get(currentStatePointer);
+        int index = modifyHistoryCommandList.get(currentVersionPointer);
         return commandList.get(index);
     }
 
     public String getLatestModifyingCommand() {
-        assert(currentStatePointer < modifyHistoryCommandList.size());
-            currentStatePointer++;
-            int index = modifyHistoryCommandList.get(currentStatePointer);
-            return commandList.get(index);
+        assert(currentVersionPointer < modifyHistoryCommandList.size());
+        currentVersionPointer++;
+        int index = modifyHistoryCommandList.get(currentVersionPointer);
+        return commandList.get(index);
     }
 
     public boolean checkModifyingCommand(Command command) {
