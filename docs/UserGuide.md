@@ -1,8 +1,6 @@
-# TechTrack User Guide
-
 TechTrack is a powerful internship/job tracking application that combines the flexibility of a Command Line Interface (CLI) with the benefits of a Graphical User Interface (GUI).
 
-Designed for computing students and professionals, TechTrack helps you manage your internship search project by setting goals, tracking deadlines, and providing clear feedback on your progress. Its CLI interface is optimized for speed, efficiency, and ease of use.
+Designed for computing students and professionals, TechTrack helps you manage your internship search project by setting goals, tracking deadlines, and providing clear details (salary, job descriptions, skills needed, etc.) of the role. Its CLI interface is optimized for speed, efficiency, and ease of use.
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
@@ -27,7 +25,7 @@ Designed for computing students and professionals, TechTrack helps you manage yo
 
 # Quick Start
 Ensure you have Java `11` or above installed in your Computer.
-Download the latest `TechTrack.jar` from here.
+Download the latest [TechTrack.jar](https://github.com/AY2223S2-CS2103-W16-2/tp/releases) from here.
 Copy the file to the folder you want to use as the home folder for your AddressBook.
 Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TechTrack.jar` command to run the application.
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
@@ -69,9 +67,10 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
 | `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only.                          |
 | `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                               |
 | `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information. |
-| `Yes`    | coy    | COMPANY              | At least 1 character.                                |
-| `Yes`    | jd     | JOB DESCRIPTION      | At least 1 character.                                |
-| `No`     | t      | TAG                  | At least 1 character                                                                 |
+| `Yes`    | coy    | COMPANY              | At least 1 character.                                             |
+| `No`     | t      | TAG                  | At least 1 character                                              |
+| `No`     | w      | WEBSITE              | Must be in www.{Any character}.com                                |
+| `Yes`    | jd     | JOB DESCRIPTION      | At least 1 character.                                             |
 | `Yes`    | $      | SALARY               | Positive integers only.                                           |
 | `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.      |
 | `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 character                                              |
@@ -131,12 +130,12 @@ Searches for roles with the provided tag.
 
 Format: `tag {keyword}`
 
-Example: `tag Tech`
+Example: `tag frontend`
 
 ![Salary](images/UICommandImages/TagCommand0.png)
 
 ### Sorting by Salary
-Sort roles based on salary, in ascending/descending orderParser.
+Sort roles based on salary, in ascending/descending orderParser. For ascending, the role with the lowest salary will be displayed at the top, while for descending, the role with the highest salary will be displayed at the top.
 
 Format: `salary asc/desc`
 
@@ -168,7 +167,7 @@ Format: `view {index}`
 
 * [List all roles](#list-list)
 * [Clear all roles](#clear-clear)
-* [Help (Displays user guide)](#help-help)
+* [Help (Display command format)](#help-help)
 * [Exit TechTrack](#exit-exit)
 
 ### List: `list`
