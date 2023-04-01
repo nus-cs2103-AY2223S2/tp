@@ -63,8 +63,6 @@ public class EditBookCommandParser implements Parser<EditBookCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         Messages.MESSAGE_INVALID_DATE));
             }
-        } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookCommand.MESSAGE_USAGE));
         }
         if (argMultimap.getValue(PREFIX_DUE_DATE).isPresent()) {
             String dateString = argMultimap.getValue(PREFIX_DUE_DATE).orElse("");
@@ -75,8 +73,6 @@ public class EditBookCommandParser implements Parser<EditBookCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         Messages.MESSAGE_INVALID_DATE));
             }
-        } else {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookCommand.MESSAGE_USAGE));
         }
         if (!editBookDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditBookCommand.MESSAGE_NOT_EDITED);

@@ -18,8 +18,8 @@ public class Messages {
     public static final String MESSAGE_BORROWER_NOT_FOUND = "The person is not found in the person list";
     public static final String MESSAGE_BOOK_NOT_BORROWED = "The book is not borrowed";
     public static final String MESSAGE_BOOK_INVALID_BORROWER = "The book is not borrowed by this person";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-    public static final String MESSAGE_BOOK_FOUND_OVERVIEW = "%1$d books found!";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d person(s) listed!";
+    public static final String MESSAGE_BOOK_FOUND_OVERVIEW = "%1$d book(s) found!";
     public static final String MESSAGE_BORROW_DATE_AFTER_CURRENT_DATE = "Borrowed date cannot be past today's date!";
     public static final String MESSAGE_BORROW_DATE_AFTER_DUE_DATE = "Borrowed date cannot be past due date!";
     public static final String MESSAGE_INVALID_DATE = "Date(s) must be valid and provided in the form dd/mm/yyyy!";

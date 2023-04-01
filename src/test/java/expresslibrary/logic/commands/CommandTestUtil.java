@@ -17,6 +17,8 @@ import expresslibrary.commons.core.index.Index;
 import expresslibrary.logic.commands.exceptions.CommandException;
 import expresslibrary.model.ExpressLibrary;
 import expresslibrary.model.Model;
+import expresslibrary.model.book.Book;
+import expresslibrary.model.book.TitleContainsKeywordsPredicate;
 import expresslibrary.model.person.NameContainsKeywordsPredicate;
 import expresslibrary.model.person.Person;
 import expresslibrary.testutil.EditPersonDescriptorBuilder;
@@ -37,8 +39,10 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String VALID_AUTHOR_ROWLING = "JK Rowling";
+    public static final String VALID_TITLE_ANIMAL = "Animal Farm";
     public static final String VALID_TITLE_HARRY = "Harry Potter";
+    public static final String VALID_AUTHOR_ALEX = "Alexandra Harris";
+    public static final String VALID_AUTHOR_ROWLING = "JK Rowling";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -130,6 +134,21 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the book at the given
+     * {@code targetIndex} in the
+     * {@code model}'s express library.
+     */
+    public static void showBookAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
+
+        Book book = model.getFilteredBookList().get(targetIndex.getZeroBased());
+        final String[] splitName = book.getTitle().title.split("\\s+");
+        model.updateFilteredBookList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredBookList().size());
     }
 
 }
