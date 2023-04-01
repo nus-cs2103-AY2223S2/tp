@@ -482,6 +482,8 @@ The `add-t` command:
 * The index **must be a positive integer** e.g. 1, 2, 3, …​
 * At least one of the optional fields must be provided (e.g. `r/REMARK_NAME`, `mod/MODULE_CODE`).
 * A new tag will be created and assigned to the person specified at the `PERSON_INDEX`.
+* No duplicate tags are allowed. This means that if there is a pre-existing **tag type** with a certain tag name, the tag will not show up in the UI. 
+  * e.g. If there is an existing **remark** tag for `classmates` for `PERSON_INDEX` 1, doing `add-t 1 r/classmates` _WILL NOT_ add an additional **remark** tag.
 
 <div style="page-break-after: always"></div>
 
