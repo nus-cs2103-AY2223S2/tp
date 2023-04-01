@@ -49,7 +49,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Application> {
             for (Prefix prefix : prefixArray) {
                 if (keywordsMap.get(prefix) != null) {
                     checks[checkCounter] = keywordsMap.get(prefix).stream()
-                            .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                                     getAttributeString(application, prefix), keyword));
                 } else {
                     checks[checkCounter] = true;
@@ -58,19 +58,22 @@ public class NameContainsKeywordsPredicate implements Predicate<Application> {
             }
             return checks[0] && checks[1] && checks[2];
         }
-
         boolean roleCheck = keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         application.getRole().toString(), keyword));
+
         boolean companyNameCheck = keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         application.getCompanyName().toString(), keyword));
+
         boolean companyEmailCheck = keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         application.getCompanyEmail().toString(), keyword));
+
         boolean statusCheck = keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         application.getStatus().toString(), keyword));
+
         return roleCheck || companyNameCheck || companyEmailCheck || statusCheck;
     }
 
