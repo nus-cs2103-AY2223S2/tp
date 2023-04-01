@@ -20,7 +20,6 @@ import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 
@@ -37,17 +36,6 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
-     *
-     * @throws ParseException if the user input does not conform the expected format
-     */
-    public AddCommand parse(String args) throws ParseException {
-        RecipeDescriptor recipeDescriptor = parseToRecipeDescriptor(args);
-        return new AddCommand(recipeDescriptor);
-    }
-
-    /**
      * Generates a RecipeDescriptor object based on the string input by the user,
      * which we then use to create a new AddCommand object.
      *
@@ -58,7 +46,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public static RecipeDescriptor parseToRecipeDescriptor(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION,
-                                   PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
+                PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
@@ -73,27 +61,37 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         // 1. Parse Duration
         argMultimap.getValue(PREFIX_DURATION)
-                .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseDuration, s))
-                .ifPresent(recipeDescriptor::setDuration);
+            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseDuration, s))
+            .ifPresent(recipeDescriptor::setDuration);
 
         // 2. Parse Portion
         argMultimap.getValue(PREFIX_PORTION)
-                .flatMap(s -> TryUtil.safeCompute(ParserUtil::parsePortion, s))
-                .ifPresent(recipeDescriptor::setPortion);
+            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parsePortion, s))
+            .ifPresent(recipeDescriptor::setPortion);
 
         // 3. Parse Tags
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         recipeDescriptor.setTags(tags);
 
         // 4. Parse Ingredients
-        List<IngredientBuilder> ingredients = ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT));
-        HashMap<Ingredient, IngredientInformation> ingredientTable = new HashMap<>();
-        ingredients.forEach(ingredientBuilder -> ingredientTable.putAll(ingredientBuilder.build()));
+        HashMap<Ingredient, IngredientInformation> ingredientTable = ParserUtil.parseIngredients(
+            argMultimap.getAllValues(PREFIX_INGREDIENT));
         recipeDescriptor.setIngredients(ingredientTable);
 
         // 5. Parse Steps
         List<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
         recipeDescriptor.setSteps(steps);
         return recipeDescriptor;
+    }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddCommand
+     * and returns an AddCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public AddCommand parse(String args) throws ParseException {
+        RecipeDescriptor recipeDescriptor = parseToRecipeDescriptor(args);
+        return new AddCommand(recipeDescriptor);
     }
 }

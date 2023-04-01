@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,7 +16,9 @@ import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 
 /**
@@ -90,11 +93,12 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static IngredientBuilder parseIngredient(String ingredient) throws ParseException {
+    public static HashMap<Ingredient, IngredientInformation> parseIngredient(String ingredient) throws ParseException {
         requireNonNull(ingredient);
         String trimmedIngredient = ingredient.trim();
         try {
-            return new IngredientBuilder(trimmedIngredient);
+            IngredientBuilder ingredientBuilder = new IngredientBuilder(trimmedIngredient);
+            return ingredientBuilder.build();
         } catch (IllegalArgumentException e) {
             throw new ParseException(IngredientBuilder.MESSAGE_CONSTRAINTS);
         }
@@ -106,13 +110,14 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static List<IngredientBuilder> parseIngredients(Collection<String> ingredients) throws ParseException {
+    public static HashMap<Ingredient, IngredientInformation> parseIngredients(
+        Collection<String> ingredients) throws ParseException {
         requireNonNull(ingredients);
-        List<IngredientBuilder> ingredientList = new ArrayList<>();
+        HashMap<Ingredient, IngredientInformation> ingredientMap = new HashMap<>();
         for (String ingredientName : ingredients) {
-            ingredientList.add(parseIngredient(ingredientName));
+            ingredientMap.putAll(parseIngredient(ingredientName));
         }
-        return ingredientList;
+        return ingredientMap;
     }
 
     /**
