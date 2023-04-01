@@ -50,7 +50,7 @@ public class DeleteTagFromPersonCommand extends Command {
      * @param personIndex      of the person in the filtered person list to edit
      * @param moduleIndex      of the module in the module list to delete
      * @param ccaIndex         of the CCA in the CCA list to delete
-     * @param majorIndex of the CCA Position in the CCA Position list to delete
+     * @param majorIndex of the major in the major list to delete
      * @param remarkIndex      of the remark in the remark list to delete
      */
     public DeleteTagFromPersonCommand(Index personIndex, Index moduleIndex, Index ccaIndex, Index majorIndex,
