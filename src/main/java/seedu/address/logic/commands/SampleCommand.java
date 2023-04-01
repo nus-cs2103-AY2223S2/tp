@@ -5,7 +5,11 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.person.User;
+import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.util.SampleDataUtil;
+
+import java.util.Set;
 
 /**
  * Command for generating sample data in EduMate.
@@ -30,7 +34,15 @@ public class SampleCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
+        User user = model.getUser();
         model.setEduMate(SampleDataUtil.getSampleEduMate(size));
+        model.setUser(user);
+
+        Set<ModuleTag> userModuleTags = user.getImmutableModuleTags();
+
+        model.getObservablePersonList().forEach(person ->
+                person.setCommonModules(userModuleTags));
+
         model.updateObservablePersonList();
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getObservablePersonList().size()));
