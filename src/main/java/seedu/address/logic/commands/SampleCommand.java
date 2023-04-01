@@ -2,14 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.person.User;
 import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.util.SampleDataUtil;
-
-import java.util.Set;
 
 /**
  * Command for generating sample data in EduMate.
