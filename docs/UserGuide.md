@@ -358,11 +358,11 @@ EduMate is a command-driven application, which means that its various functional
 
 </div>
 
-<div markdown="span" class="alert alert-success">
+<div markdown="block" class="alert alert-success">
 
 :bulb: **General format of commands:** <br>
 
-
+<br>
 <img src="images/general_command_format.png" style="width:80%;margin:0 10%">
 
 * **Bolded** portions of the command format implies that inputs could be optional.
