@@ -935,18 +935,30 @@ If you wish to remove a scheduled meetup from your [Scheduled Meet Up Panel](#sc
 
 If you want to end the application, simply type `exit`, or click on the `Exit` button located on the left of the interface.
 
+---
+
 ## FAQ
 
 **Q**: Can I add multiple module tags to a user
+
 **A**: Yes, you can add multiple tags to a single user by using the "Module Tagging" feature multiple times.
 
+
 **Q**: Can I edit my own profile?
+
 **A**: Yes you may! Refer to [Editing a Contact's Details](#edit-a-contacts-details-edit)
 
 **Q**: How is `EduMate` better than Microsoft Outlook or uWave?
+
 **A**: We have features that Microsoft Outlook or uWave don't have but we think should be integrated into these platforms, like the [meet up recommenders](#meet-commands)
 and several search functions like [sort](#arrange-contacts-based-on-criteria-sort) and [find](#filter-contacts-by-keywords-find). It is also open-source so student developers can 
-suggest new features and it is easily extensible!
+suggest new features, and it is easily extensible!
+
+**Q**: What is the difference between `tag` and `edit` feature when it comes to tagging groups and modules?
+
+**A**: When you edit a profile, you might have to type in a lot of information and the command can get very long. This may
+potentially lead to careless edits. We want to have a dedicated command to do specific tagging (or untagging) so you have
+the option to do editing of tags separately.
 
 
 ## Summary
