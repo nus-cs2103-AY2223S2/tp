@@ -702,6 +702,15 @@ With the `list` command, you can get EduMate to display all your contacts in the
 
 </div>
 
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tips:** `list` is especially useful when<br>
+
+- You need to view all contacts again after [`find`](#filter-contacts-by-keywords-find) and [`sort`](#arrange-contacts-based-on-criteria-sort).
+- Find out the index of the contact you want to view on the [Person List](#person-list).
+
+</div>
+
 
 ## Advanced Commands
 
