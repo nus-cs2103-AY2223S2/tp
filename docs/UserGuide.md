@@ -50,7 +50,8 @@ If you have any questions or run into problems, check out the [FAQ](#faq) for so
 
 <details>
           
-Test
+1. We will use the word "**string**" to describe any general sequence of characters.
+2. We will use the word "**word**" to describe a sequence of characters terminated by a whitespace.
 </details>
 
 1. We will use the word "**string**" to describe any general sequence of characters.
