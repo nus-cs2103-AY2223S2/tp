@@ -62,6 +62,8 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+   
+* For commands that require index, the index is based on the current person/group list shown.
 
 </div>
 
