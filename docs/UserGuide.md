@@ -239,7 +239,7 @@ This section aims to provide a brief overview of the features available in Power
 
 Adds a student to the database.
 
-Format: `student <class> add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<NOK_RELATIONSHIP_TO_STUDENT> [s/<SEX> a/<REISDENTIAL_ADDRESS> ageS/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> pnS/<PHONE_NUMBER> cca/<CCA>]`
+Format: `student <class> add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<NOK_RELATIONSHIP_TO_STUDENT> [s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] ]`
 
 ***Click [HERE](#images) to find out more on what to input for inserting image!!!***
 
@@ -751,7 +751,7 @@ program. Essentially you do not need a mouse to run this program at all!
 
 ### Command Summary for Student `student <CLASS>`
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Need to add student <class> before each command!
+Need to add **student** and **class** before each command!
 </div>
 
 | Action      | Format, Examples                                                                                                                                                                                                                                                                                                       |
@@ -840,5 +840,7 @@ Need to add parent before each command!!
 | `deadline/`   | Deadline                           | Used to retrieve deadline for `Student`'s assignments                                                                               |
 | `weightage/`  | Weightage                          | Used to retrieve weightage for `Student`'s assignments/assessments                                                                  |
 | `hwdone/`     | Completion Status for Assignments  | Used to retrieve the completion status for `Student`'s assignments                                                                  |
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
