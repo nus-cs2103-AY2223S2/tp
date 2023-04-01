@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import seedu.address.model.applicant.Applicant;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.listing.JobTitle;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.platform.Platform;
 
 /**
  * Edits a listing in the listing book.
@@ -33,11 +35,13 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_APPLICANT + "APPLICANT]...\n"
+            + "[" + PREFIX_APPLICANT + "APPLICANT]..."
+            + "[" + PREFIX_PLATFORM + "PLATFORM]..."
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TITLE + "Cool job title "
             + PREFIX_APPLICANT + "John "
-            + PREFIX_APPLICANT + "Sam";
+            + PREFIX_APPLICANT + "Sam"
+            + PREFIX_PLATFORM + "linkedin";
 
     public static final String MESSAGE_EDIT_LISTING_SUCCESS = "Edited listing:%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -92,8 +96,10 @@ public class EditCommand extends Command {
                 listingToEdit.getDescription());
         ArrayList<Applicant> updatedApplicants = editListingDescriptor.getApplicants().orElse(
                 listingToEdit.getApplicants());
+        ArrayList<Platform> updatedPlatforms = editListingDescriptor.getPlatforms().orElse(
+                listingToEdit.getPlatforms());
 
-        return new Listing(updatedJobTitle, updatedJobDescription, updatedApplicants);
+        return new Listing(updatedJobTitle, updatedJobDescription, updatedApplicants, updatedPlatforms);
     }
 
     @Override
@@ -122,6 +128,7 @@ public class EditCommand extends Command {
         private JobTitle jobTitle;
         private JobDescription jobDescription;
         private ArrayList<Applicant> applicants;
+        private ArrayList<Platform> platforms;
 
         public EditListingDescriptor() {}
 
@@ -133,13 +140,14 @@ public class EditCommand extends Command {
             setJobTitle(listingToCopy.jobTitle);
             setJobDescription(listingToCopy.jobDescription);
             setApplicants(listingToCopy.applicants);
+            setPlatforms(listingToCopy.platforms);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(jobTitle, jobDescription, applicants);
+            return CollectionUtil.isAnyNonNull(jobTitle, jobDescription, applicants, platforms);
         }
 
         public void setJobTitle(JobTitle jobTitle) {
@@ -176,6 +184,25 @@ public class EditCommand extends Command {
                     new ArrayList<>(Collections.unmodifiableList(applicants))) : Optional.empty();
         }
 
+
+        /**
+         * Sets {@code platforms} to this object's {@code platforms}.
+         * A defensive copy of {@code platforms} is used internally.
+         */
+        public void setPlatforms(ArrayList<Platform> platforms) {
+            this.platforms = (platforms != null) ? new ArrayList<>(platforms) : null;
+        }
+
+        /**
+         * Returns an unmodifiable platforms array list, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code platforms} is null.
+         */
+        public Optional<ArrayList<Platform>> getPlatforms() {
+            return (platforms != null) ? Optional.of(
+                    new ArrayList<>(Collections.unmodifiableList(platforms))) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -193,7 +220,8 @@ public class EditCommand extends Command {
 
             return getJobTitle().equals(e.getJobTitle())
                     && getJobDescription().equals(e.getJobDescription())
-                    && getApplicants().equals(e.getApplicants());
+                    && getApplicants().equals(e.getApplicants())
+                    && getPlatforms().equals(e.getPlatforms());
         }
     }
 }

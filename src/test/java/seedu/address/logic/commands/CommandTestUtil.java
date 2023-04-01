@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT_WITH_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -19,6 +20,7 @@ import seedu.address.model.Model;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.TitleContainsKeywordsPredicate;
+import seedu.address.model.platform.Platform;
 import seedu.address.testutil.EditListingDescriptorBuilder;
 
 /**
@@ -38,6 +40,16 @@ public class CommandTestUtil {
     public static final String VALID_APPLICANT_NAME_CHRIS_DESC = " " + PREFIX_APPLICANT
             + VALID_APPLICANT_NAME_CHRIS;
 
+    public static final String VALID_PLATFORM_NAME_LINKEDIN = "Linkedin";
+    public static final String VALID_PLATFORM_NAME_LINKEDIN_DESC = " " + PREFIX_PLATFORM
+            + VALID_PLATFORM_NAME_LINKEDIN;
+    public static final String VALID_PLATFORM_NAME_INDEED = "Indeed";
+    public static final String VALID_PLATFORM_NAME_INDEED_DESC = " " + PREFIX_PLATFORM
+            + VALID_PLATFORM_NAME_INDEED;
+    public static final String VALID_PLATFORM_NAME_GLINTS = "Glints";
+    public static final String VALID_PLATFORM_NAME_GLINTS_DESC = " " + PREFIX_PLATFORM
+            + VALID_PLATFORM_NAME_GLINTS;
+
     public static final String VALID_TITLE =
             "Entry Level Software Developer – Mentorship program and option to work remotely!";
     public static final String VALID_TITLE_ALT =
@@ -55,7 +67,7 @@ public class CommandTestUtil {
                     + "Salary is $35,000 a year with opportunity for advancement, bonuses and paid sick leave. "
                     + "Remote work is possible.";
     public static final ArrayList<Applicant> VALID_NO_APPLICANTS = new ArrayList<>();
-
+    public static final ArrayList<Platform> VALID_NO_PLATFORMS = new ArrayList<>();
     public static final String VALID_TITLE_DESC = " " + PREFIX_TITLE + VALID_TITLE;
     public static final String VALID_TITLE_DESC_ALT = " " + PREFIX_TITLE + VALID_TITLE_ALT;
     public static final String VALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
@@ -69,6 +81,8 @@ public class CommandTestUtil {
             " " + PREFIX_APPLICANT_WITH_ID + VALID_APPLICANT_NAME_BENEDICT;
     public static final String VALID_ID_WITH_HASHCODE_BENEDICT_DESC =
             " " + PREFIX_APPLICANT_WITH_ID + VALID_APPLICANT_NAME_BENEDICT + "#2103";
+    public static final String VALID_PLATFORMS_DESC = " " + PREFIX_PLATFORM + VALID_PLATFORM_NAME_LINKEDIN
+            + " " + PREFIX_PLATFORM + VALID_PLATFORM_NAME_INDEED + " " + PREFIX_PLATFORM + VALID_PLATFORM_NAME_GLINTS;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "TITLE\n"; // '\n' not allowed in titles
     public static final String INVALID_DESCRIPTION_DESC =
@@ -79,6 +93,8 @@ public class CommandTestUtil {
             " " + PREFIX_APPLICANT_WITH_ID + "peter*"; // '*' not allowed in applicant names
     public static final String INVALID_ID_WITH_HASHCODE_DESC =
             " " + PREFIX_APPLICANT_WITH_ID + "peter#2I03"; // 'I' not allowed in hash, which is 4-digit integer
+    public static final String INVALID_PLATFORM_DESC =
+            " " + PREFIX_PLATFORM + "Job*"; // '*' not allowed in platform names
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -89,10 +105,12 @@ public class CommandTestUtil {
     static {
         DESC_LISTING = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE)
                 .withJobDescription(VALID_DESCRIPTION)
-                .withApplicants(VALID_APPLICANT_NAME_BENEDICT).build();
+                .withApplicants(VALID_APPLICANT_NAME_BENEDICT)
+                .withPlatform(VALID_PLATFORM_NAME_LINKEDIN).build();
         DESC_LISTING_ALT = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE_ALT)
                 .withJobDescription(VALID_DESCRIPTION_ALT)
-                .withApplicants(VALID_APPLICANT_NAME_BENEDICT, VALID_APPLICANT_NAME_CHRIS).build();
+                .withApplicants(VALID_APPLICANT_NAME_BENEDICT, VALID_APPLICANT_NAME_CHRIS)
+                .withPlatform(VALID_PLATFORM_NAME_LINKEDIN, VALID_PLATFORM_NAME_GLINTS).build();
     }
 
     /**

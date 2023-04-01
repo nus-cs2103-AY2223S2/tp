@@ -128,7 +128,7 @@ public class EditApplicantCommand extends Command {
         });
 
         Listing editedListing = new Listing(listing.getTitle(),
-                listing.getDescription(), finalApplicants);
+                listing.getDescription(), finalApplicants, listing.getPlatforms());
 
         return editedListing;
     }

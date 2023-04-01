@@ -14,6 +14,8 @@ import seedu.address.model.applicant.Name;
 import seedu.address.model.comparator.ListingComparator;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.listing.JobTitle;
+import seedu.address.model.platform.Platform;
+import seedu.address.model.platform.PlatformName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -78,6 +80,37 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Applicant(new Name(trimmedName));
+    }
+
+    /**
+     * Parses a {@code String platformName} into a {@code Platform}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code platformName} is invalid.
+     */
+    public static Platform parsePlatform(String platformName) throws ParseException {
+        requireNonNull(platformName);
+        String trimmedName = platformName.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        return new Platform(new PlatformName(trimmedName));
+    }
+
+
+
+    /**
+     * Parses {@code List<String> allPlatforms} into a {@code ArrayList<Platform>}
+     *
+     * @throws ParseException if the given {@code allPlatforms} is invalid.
+     */
+    public static ArrayList<Platform> parsePlatforms(List<String> allPlatforms) throws ParseException {
+        requireNonNull(allPlatforms);
+        final ArrayList<Platform> platformArrayList = new ArrayList<>();
+        for (String platformName : allPlatforms) {
+            platformArrayList.add(parsePlatform(platformName));
+        }
+        return platformArrayList;
     }
 
     /**

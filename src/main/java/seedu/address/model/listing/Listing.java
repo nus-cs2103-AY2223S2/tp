@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 import seedu.address.model.applicant.Applicant;
+import seedu.address.model.platform.Platform;
 
 /**
  * Represents a Listing in GoodMatch.
@@ -20,14 +21,17 @@ public class Listing {
 
     // Optional fields
     private ArrayList<Applicant> applicants = new ArrayList<>();
+    private ArrayList<Platform> platforms = new ArrayList<>();
     /**
      * Every field must be present and not null.
      */
-    public Listing(JobTitle jobTitle, JobDescription jobDescription, ArrayList<Applicant> applicants) {
-        requireAllNonNull(jobTitle, jobDescription, applicants);
+    public Listing(JobTitle jobTitle, JobDescription jobDescription, ArrayList<Applicant> applicants,
+                   ArrayList<Platform> platforms) {
+        requireAllNonNull(jobTitle, jobDescription, applicants, platforms);
         this.jobTitle = jobTitle;
         this.jobDescription = jobDescription;
         this.applicants.addAll(applicants);
+        this.platforms.addAll(platforms);
     }
 
     public JobTitle getTitle() {
@@ -40,6 +44,16 @@ public class Listing {
 
     public ArrayList<Applicant> getApplicants() {
         return applicants;
+    }
+
+    public ArrayList<Platform> getPlatforms() { return platforms; }
+
+    public int getPlatformCount() {
+        return platforms.size();
+    }
+
+    public int getApplicantCount() {
+        return applicants.size();
     }
 
     public String getUniqueID() {
@@ -81,7 +95,7 @@ public class Listing {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(jobTitle, jobDescription, applicants, uniqueID);
+        return Objects.hash(jobTitle, jobDescription, applicants, platforms, uniqueID);
     }
 
     @Override
@@ -101,6 +115,19 @@ public class Listing {
                     applicant += ", ";
                 }
                 builder.append(applicant);
+            }
+        }
+
+        ArrayList<Platform> platforms = getPlatforms();
+        if (!platforms.isEmpty()) {
+            builder.append("\nPlatforms: ");
+            for (int index = 0; index < platforms.size(); index++) {
+                String platform = platforms.get(index).toString();
+                //work on the element
+                if (index != platforms.size() - 1) {
+                    platform += ", ";
+                }
+                builder.append(platform);
             }
         }
         return builder.toString();

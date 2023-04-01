@@ -8,15 +8,18 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddApplicantCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPlatformCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteApplicantCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeletePlatformCommand;
 import seedu.address.logic.commands.EditApplicantCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -74,11 +77,20 @@ public class ListingBookParser {
         case AddApplicantCommand.COMMAND_WORD:
             return new AddApplicantCommandParser().parse(arguments);
 
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
         case EditApplicantCommand.COMMAND_WORD:
             return new EditApplicantCommandParser().parse(arguments);
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case AddPlatformCommand.COMMAND_WORD:
+            return new AddPlatformCommandParser().parse(arguments);
+
+        case DeletePlatformCommand.COMMAND_WORD:
+            return new DeletePlatformCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
