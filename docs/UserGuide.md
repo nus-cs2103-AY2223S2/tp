@@ -41,6 +41,8 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
 ## Features
 
+**WARNING: Directly editing the saved json file which cause the app to malfunction**
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -62,6 +64,8 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+   
+* For commands that require index, the index is based on the current person/group list shown.
 
 </div>
 
@@ -78,10 +82,13 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GROUP]…​`
+
+* A person can only be added to an **existing** group
+* Tags can only contain alphanumeric number and spaces
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+A person can have any number of tags and groups (including 0)
 </div>
 
 Examples:
@@ -113,8 +120,8 @@ Format: `edit INDEX [m/] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG] [g/GRO
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/ g/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags and groups.
-*  `edit 3 m/ t/Borrowed $10` Edit the tags of the 2nd person to be `Borrowed $10` plus the existing tag of that person.
-*  `edit 3 m/ g/CS2103T` Edit the groups of the 2nd person to be `CS2103T` plus the existing groups of that person.
+*  `edit 3 m/ t/Borrowed $10` Edit the tags of the 3rd person to be `Borrowed $10` plus the existing tag of that person.
+*  `edit 3 m/ g/CS2103T` Edit the groups of the 3rd person to be `CS2103T` plus the existing groups of that person.
 
 ### Locating persons by name: `find`
 
@@ -156,6 +163,8 @@ Format: `group_create g/GROUP_NAME`
 
 * Creates a group with the specified group name `GROUP_NAME`.
 * The group name cannot be empty
+* Only one group can be created
+* If more than one group is specified, only the last occurrence of a group will be taken
 
 Examples:
 * `group_create g/CS2103T`
@@ -299,6 +308,7 @@ Format: free GROUP_INDEX [START_DATE]
 * The `START_DATE` field is optional. The time slots will be shown for the week ahead, starting from that date. If it is
   not provided, then the current date will be used.
 * `START_DATE` must be of the format: `dd/MM/yyyy`
+* Note that if there are any changes to a person's event(s), the time table will only be updated upon entering the `free` command.
 
 
 ### Importing data : `import`
