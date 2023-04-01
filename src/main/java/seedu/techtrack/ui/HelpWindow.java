@@ -21,7 +21,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "$/{SALARY} d/{DEADLINE} x/{EXPERIENCE}"
             + "\n2. edit {index} [r/{ROLE}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] "
             + "[t/{TAG}]... [w/{WEBSITE}] [$/{SALARY}] [d/{DEADLINE}] [x/{EXPERIENCE}]"
-            + "\n3. find {keyword}"
+            + "\n3. name {keyword}"
             + "\n4. delete {index}"
             + "\n5. view {index}"
             + "\n6. salary asc/desc"
