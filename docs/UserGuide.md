@@ -289,7 +289,7 @@ Examples:
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Format: `export p/ INDEX1 p/ INDEX2`
+Format: `export [p/INDEX]...`
 
 ### Importing of contacts : `import`
 * Imports the persons in the provided JSON.
