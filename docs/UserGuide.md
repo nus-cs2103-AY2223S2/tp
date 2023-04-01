@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 TechTrack is a powerful internship/job tracking application that combines the flexibility of a Command Line Interface (CLI) with the benefits of a Graphical User Interface (GUI).
 
 Designed for computing students and professionals, TechTrack helps you manage your internship search project by setting goals, tracking deadlines, and providing clear details (salary, job descriptions, skills needed, etc.) of the role. Its CLI interface is optimized for speed, efficiency, and ease of use.
