@@ -77,7 +77,7 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
             leaveToAdd = model.getInternalLeaveIfExist(leaveToAdd);
 
             if (leaveToAdd.hasEmployee(employeeToAdd)) {
-                throw new CommandException(String.format(MESSAGE_DUPLICATE_EMPLOYEE, employeeToAdd, leaveToAdd));
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_EMPLOYEE));
             }
             leavesToAdd.add(leaveToAdd);
         }

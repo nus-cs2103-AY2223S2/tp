@@ -81,8 +81,8 @@ public class AddEmployeeToLeaveFromToCommandTest {
         dates.add(new LeaveDate(LocalDate.parse(VALID_THIRD_DAY_LEAVE_DATE)));
         dates.add(new LeaveDate(LocalDate.parse(VALID_END_LEAVE_DATE)));
 
-        assertThrows(CommandException.class, Messages.MESSAGE_EMPLOYEE_NOT_FOUND, () ->
-                new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, dates).execute(modelStub));
+        assertThrows(CommandException.class, Messages.MESSAGE_EMPLOYEE_NOT_FOUND,
+                () -> new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, dates).execute(modelStub));
     }
 
     // handle adding to leave objects that already exists
@@ -127,11 +127,8 @@ public class AddEmployeeToLeaveFromToCommandTest {
                 new LeaveDate(LocalDate.parse(VALID_THIRD_DAY_LEAVE_DATE))).execute(modelStub);
 
         assertThrows(CommandException.class,
-                String.format(
-                        AddEmployeeToLeaveFromToCommand.MESSAGE_DUPLICATE_EMPLOYEE, TypicalEmployees.ALICE, new Leave(
-                                new LeaveDate(LocalDate.parse(
-                                        VALID_THIRD_DAY_LEAVE_DATE)))), () ->
-                new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, dates).execute(modelStub));
+                AddEmployeeToLeaveFromToCommand.MESSAGE_DUPLICATE_EMPLOYEE, () ->
+                        new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, dates).execute(modelStub));
 
         assertFalse(modelStub.sudoHr.getInternalLeaveIfExist(new Leave(
                 new LeaveDate(LocalDate.parse(VALID_START_LEAVE_DATE)))).hasEmployee(TypicalEmployees.ALICE));
@@ -156,8 +153,8 @@ public class AddEmployeeToLeaveFromToCommandTest {
     public void execute_addEmployeeToNullLeave_throwsCommandException() throws CommandException {
         ModelStubAcceptingEmployeeAdded modelStub = new ModelStubAcceptingEmployeeAdded();
 
-        assertThrows(NullPointerException.class, () ->
-                new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, null).execute(modelStub));
+        assertThrows(NullPointerException.class,
+                () -> new AddEmployeeToLeaveFromToCommand(TypicalEmployees.ALICE_ID, null).execute(modelStub));
     }
 
     /**
