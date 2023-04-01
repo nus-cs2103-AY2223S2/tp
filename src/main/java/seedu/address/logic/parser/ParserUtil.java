@@ -196,7 +196,6 @@ public class ParserUtil {
         return tagSet;
     }
 
-    //Parse event commands
     /**
      * Parses a {@code String name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -390,6 +389,16 @@ public class ParserUtil {
         }
     }
 
+
+    /**
+     * Removes the current event date that is to be eddited. Thereafter, check if there is still conflicting
+     * timings. If there is, add the current event date back. If there is no conflicting schedule, then leave the
+     * current event date as removed, and add the new date range
+     * @param oldDateStart          LocalDateTime
+     * @param newDateStart          LocalDateTime
+     * @param plus                  int
+     * @throws ParseException       Exception handling
+     */
     public static void editEventDateException(LocalDateTime oldDateStart,
                                               LocalDateTime newDateStart, int plus) throws ParseException {
 
