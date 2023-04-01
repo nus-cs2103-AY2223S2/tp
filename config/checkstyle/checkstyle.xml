@@ -49,7 +49,7 @@
     -->
 
     <!-- Checks the ordering of import statements follow the rules that the default Eclipse formatter uses.
-    The order rule "STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE" consists of:
+    The orderParser rule "STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE" consists of:
       1. STATIC: static imports
       2. STANDARD_JAVA_PACKAGE: standard java/javax imports
       3. SPECIAL_IMPORTS: defined as org imports
@@ -232,12 +232,12 @@
     ORDER CHECKS
     -->
 
-    <!-- Checks that the order of at-clauses follows the tagOrder default property value order.
+    <!-- Checks that the orderParser of at-clauses follows the tagOrder default property value orderParser.
          @author, @version, @param, @return, @throws, @exception, @see, @since, @serial, @serialField, @serialData, @deprecated
     -->
     <module name="AtclauseOrder"/>
 
-    <!-- Checks if the Class and Interface declarations is organized in this order
+    <!-- Checks if the Class and Interface declarations is organized in this orderParser
       1. Class (static) variables. Order: public, protected, package level (no access modifier), private.
       2. Instance variables. Order: public, protected, package level (no access modifier), private.
       3. Constructors
@@ -249,8 +249,8 @@
     <module name="DefaultComesLast"/>
 
     <module name="ModifierOrder">
-      <!-- Warn if modifier order is inconsistent with JLS3 8.1.1, 8.3.1, and
-           8.4.3.  The prescribed order is:
+      <!-- Warn if modifier orderParser is inconsistent with JLS3 8.1.1, 8.3.1, and
+           8.4.3.  The prescribed orderParser is:
            public, protected, private, abstract, static, final, transient, volatile,
            synchronized, native, strictfp
         -->
