@@ -132,4 +132,19 @@ public class Plane implements Item {
     public String toString() {
         return getModel();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Plane)) {
+            return false;
+        }
+
+        Plane other = (Plane) obj;
+
+        return other.getModel().equals(getModel());
+    }
 }

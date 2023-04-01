@@ -142,12 +142,18 @@ public class Location implements Item {
      * Returns true if both locations have the same name.
      * This defines a weaker notion of equality between two locations.
      */
-    public boolean equals(Location otherLocation) {
-        if (otherLocation == this) {
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
 
-        return otherLocation != null
-                && otherLocation.getId().equals(getId());
+        if (!(obj instanceof Location)) {
+            return false;
+        }
+
+        Location other = (Location) obj;
+
+        return other.getName().equals(getName());
     }
 }

@@ -133,4 +133,19 @@ public class Crew implements Item {
                 rank,
                 name);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Crew)) {
+            return false;
+        }
+
+        Crew other = (Crew) obj;
+
+        return other.getName().equals(getName());
+    }
 }

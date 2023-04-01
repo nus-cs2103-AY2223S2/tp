@@ -12,7 +12,7 @@ import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import wingman.commons.util.CollectionUtil;
-import wingman.model.item.exceptions.ItemDuplicateException;
+import wingman.model.item.exceptions.DuplicateItemException;
 import wingman.model.item.exceptions.ItemNotFoundException;
 
 /**
@@ -79,7 +79,7 @@ public class UniqueList<T extends Item> implements Iterable<T> {
         requireNonNull(internalList);
         CollectionUtil.requireAllNonNull(internalList.toArray());
         if (!internalList.isEmpty() && itemsHaveDuplicate(internalList)) {
-            throw new ItemDuplicateException(internalList.get(0).getClass());
+            throw new DuplicateItemException(internalList.get(0).getClass());
         }
         return new UniqueList<>(internalList);
     }
@@ -92,7 +92,9 @@ public class UniqueList<T extends Item> implements Iterable<T> {
      *         argument.
      */
     public boolean contains(T toCheck) {
-        return this.internalMap.containsKey(toCheck.getId());
+        return internalMap.containsKey(toCheck.getId())
+                ||
+                internalList.contains(toCheck);
     }
 
     /**
@@ -113,7 +115,7 @@ public class UniqueList<T extends Item> implements Iterable<T> {
     public void add(T toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new ItemDuplicateException(toAdd.getClass());
+            throw new DuplicateItemException(toAdd.getClass());
         }
         internalList.add(toAdd);
         internalMap.put(toAdd.getId(), toAdd);
@@ -135,7 +137,7 @@ public class UniqueList<T extends Item> implements Iterable<T> {
         }
 
         if (!Item.isSame(target, editedItem) && contains(editedItem)) {
-            throw new ItemDuplicateException(editedItem.getClass());
+            throw new DuplicateItemException(editedItem.getClass());
         }
         internalMap.remove(target.getId());
         internalMap.put(editedItem.getId(), editedItem);
@@ -171,7 +173,7 @@ public class UniqueList<T extends Item> implements Iterable<T> {
     public void setItems(List<T> replacement) {
         requireNonNull(replacement);
         if (UniqueList.itemsHaveDuplicate(replacement)) {
-            throw new ItemDuplicateException(replacement.get(0).getClass());
+            throw new DuplicateItemException(replacement.get(0).getClass());
         }
         internalList.setAll(replacement);
         internalMap.clear();

@@ -7,6 +7,7 @@ import wingman.logic.core.CommandParam;
 import wingman.logic.core.exceptions.ParseException;
 import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
+import wingman.model.item.exceptions.DuplicateItemException;
 import wingman.model.pilot.Gender;
 import wingman.model.pilot.Pilot;
 import wingman.model.pilot.PilotRank;
@@ -99,7 +100,7 @@ public abstract class PilotSyntax {
      * @param model the model to which the pilot is added.
      * @param pilot the pilot that which is added to the model.
      */
-    public static void add(Model model, Pilot pilot) {
+    public static void add(Model model, Pilot pilot) throws DuplicateItemException {
         model.addPilot(pilot);
     }
 

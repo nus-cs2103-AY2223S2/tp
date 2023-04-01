@@ -207,4 +207,19 @@ public class Pilot implements Item {
                 rank,
                 name);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Pilot)) {
+            return false;
+        }
+
+        Pilot other = (Pilot) obj;
+
+        return other.getName().equals(getName());
+    }
 }

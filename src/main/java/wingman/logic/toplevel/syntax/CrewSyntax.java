@@ -9,6 +9,7 @@ import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
 import wingman.model.crew.Crew;
 import wingman.model.crew.CrewRank;
+import wingman.model.item.exceptions.DuplicateItemException;
 
 /**
  * The class that stores the syntax for a crew.
@@ -68,7 +69,7 @@ public abstract class CrewSyntax {
      * @param model the model to which the crew shall be added.
      * @param crew  the crew that which will be added to the model.
      */
-    public static void add(Model model, Crew crew) {
+    public static void add(Model model, Crew crew) throws DuplicateItemException {
         model.addCrew(crew);
     }
 

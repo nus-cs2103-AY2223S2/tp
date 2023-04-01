@@ -3,7 +3,7 @@ package wingman.model.item.exceptions;
 /**
  * The exception thrown when an operation would result in duplicate objects.
  */
-public class ItemDuplicateException extends RuntimeException {
+public class DuplicateItemException extends RuntimeException {
     /**
      * The class of the object that is duplicated.
      */
@@ -15,7 +15,7 @@ public class ItemDuplicateException extends RuntimeException {
      *
      * @param clazz
      */
-    public ItemDuplicateException(Class<?> clazz) {
+    public DuplicateItemException(Class<?> clazz) {
         super("Operation would result in duplicate " + clazz.getSimpleName()
                 + "s");
         this.clazz = clazz;

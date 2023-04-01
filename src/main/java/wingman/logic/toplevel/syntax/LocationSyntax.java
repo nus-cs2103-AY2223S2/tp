@@ -6,6 +6,7 @@ import wingman.logic.core.CommandParam;
 import wingman.logic.core.exceptions.ParseException;
 import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
+import wingman.model.item.exceptions.DuplicateItemException;
 import wingman.model.location.Location;
 
 /**
@@ -41,7 +42,7 @@ public abstract class LocationSyntax {
      * @param model    the model.
      * @param location the location.
      */
-    public static void add(Model model, Location location) {
+    public static void add(Model model, Location location) throws DuplicateItemException {
         model.addLocation(location);
     }
 

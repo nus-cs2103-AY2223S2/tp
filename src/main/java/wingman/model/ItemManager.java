@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import wingman.model.exception.IndexOutOfBoundException;
 import wingman.model.item.Item;
 import wingman.model.item.UniqueList;
+import wingman.model.item.exceptions.DuplicateItemException;
 
 /**
  * Implementation of a read-only item manager, this has other methods
@@ -95,7 +96,7 @@ public class ItemManager<T extends Item> implements
      *
      * @param item the item to add
      */
-    public void addItem(T item) {
+    public void addItem(T item) throws DuplicateItemException {
         items.add(item);
     }
 

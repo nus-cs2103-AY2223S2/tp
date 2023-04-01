@@ -6,6 +6,7 @@ import wingman.logic.core.CommandParam;
 import wingman.logic.core.exceptions.ParseException;
 import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
+import wingman.model.item.exceptions.DuplicateItemException;
 import wingman.model.plane.Plane;
 
 /**
@@ -49,7 +50,7 @@ public abstract class PlaneSyntax {
      * @param model the model to which the plane shall be added.
      * @param plane the plane that which shall be added to the model.
      */
-    public static void add(Model model, Plane plane) {
+    public static void add(Model model, Plane plane) throws DuplicateItemException {
         model.addPlane(plane);
     }
 
