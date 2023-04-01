@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -26,8 +29,12 @@ public class EditContactCommand extends EditPersonCommand {
                     "Existing values will be overwritten by the given parameters",
                     "for all fields except Modules and Tags.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
-                    "INDEX",
-                    "[PREFIX/PARAMETER]...")
+                    "INDEX", "[PREFIX/PARAMETER]...")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
+                    COMMAND_WORD, "1",
+                    PREFIX_PHONE + "87654321",
+                    PREFIX_EMAIL + "johnd@apple.com",
+                    PREFIX_TAG + "colleagues")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
                     "Note that INDEX must be a positive integer.",
                     "For more information on prefixes, refer to the user guide using the help command.",

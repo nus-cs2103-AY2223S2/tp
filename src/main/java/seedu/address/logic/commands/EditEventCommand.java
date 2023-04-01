@@ -21,6 +21,7 @@ import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
 import seedu.address.model.event.fields.Recurrence;
 import seedu.address.model.person.Person;
+import seedu.address.ui.result.ResultDisplay;
 
 /**
  * Represents a command that edits an event object.
@@ -29,19 +30,18 @@ public class EditEventCommand extends Command {
 
     public static final String COMMAND_WORD = "editevent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an event in the event list. "
-            + "Parameters: "
-            + "INDEX "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + PREFIX_START_DATE_TIME + "START DATE TIME "
-            + PREFIX_END_DATE_TIME + "END DATE TIME"
-            + "[" + PREFIX_RECURRENCE + "INTERVAL] "
-            + "Example: " + COMMAND_WORD + " "
-            + "2 "
-            + PREFIX_DESCRIPTION + "Do CS2103T Tutorial "
-            + PREFIX_START_DATE_TIME + "2023-03-10 16:00 "
-            + PREFIX_END_DATE_TIME + "2023-03-10 18:00"
-            + PREFIX_RECURRENCE + "weekly ";
+    public static final String MESSAGE_USAGE =
+            ResultDisplay.formatMessage(COMMAND_WORD, "Edits an event in the event list.")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
+                    "INDEX",
+                    "[" + PREFIX_DESCRIPTION + "DESCRIPTION]",
+                    "[" + PREFIX_START_DATE_TIME + "START DATE TIME]",
+                    "[" + PREFIX_END_DATE_TIME + "END DATE TIME]",
+                    "[" + PREFIX_RECURRENCE + "INTERVAL]")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
+                    COMMAND_WORD, "2",
+                    PREFIX_DESCRIPTION + "CS2103T Tutorial",
+                    PREFIX_RECURRENCE + "weekly");
 
     private static final String MESSAGE_EDIT_EVENT_SUCCESS = "Event edited: %1$s";
     private static final String MESSAGE_INVALID_EVENT = "This event does not exist in the Calendar!";
