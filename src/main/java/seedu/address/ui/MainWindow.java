@@ -252,24 +252,15 @@ public class MainWindow extends UiPart<Stage> {
     public void handleViewPane(String feedback, String commandText) {
         viewPanePlaceHolder.getChildren().clear();
 
-        if (feedback.startsWith("Edited Person:")) {
-            updateViewAfterEdit(commandText);
-        }
-
-        if (feedback.startsWith("Deleted Persons:")) {
-            updateViewAfterDelete();
-        }
-
         if (feedback.equals(ViewCommand.MESSAGE_VIEW_PERSON_SUCCESS)) {
             applyView();
         }
-    }
 
-    /**
-     * Updates the view pane to the first person after successfully deletion.
-     */
-    private void updateViewAfterDelete() {
-        if (logic.getAddressBook().getPersonList().size() > 0) {
+        else if (feedback.startsWith("Edited Person:")) {
+            updateViewAfterEdit(commandText);
+        }
+
+        else if (logic.getAddressBook().getPersonList().size() > 0) {
             viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
             viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
         }
