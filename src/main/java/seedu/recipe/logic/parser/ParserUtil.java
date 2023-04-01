@@ -13,12 +13,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.StringUtil;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.logic.parser.functional.TryUtil;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.RecipeDuration;
@@ -190,17 +190,23 @@ public class ParserUtil {
     public static RecipeDescriptor parseToRecipeDescriptor(ArgumentMultimap argMultimap) throws ParseException {
         RecipeDescriptor recipeDescriptor = new RecipeDescriptor();
 
-        argMultimap.getValue(PREFIX_NAME)
-            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseName, s))
-            .ifPresent(recipeDescriptor::setName);
+        Optional<String> nameString = argMultimap.getValue(PREFIX_NAME);
+        if (nameString.isPresent()) {
+            Name name = parseName(nameString.get());
+            recipeDescriptor.setName(name);
+        }
 
-        argMultimap.getValue(PREFIX_DURATION)
-            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseDuration, s))
-            .ifPresent(recipeDescriptor::setDuration);
+        Optional<String> durationString = argMultimap.getValue(PREFIX_DURATION);
+        if (durationString.isPresent()) {
+            RecipeDuration duration = parseDuration(durationString.get());
+            recipeDescriptor.setDuration(duration);
+        }
 
-        argMultimap.getValue(PREFIX_PORTION)
-            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parsePortion, s))
-            .ifPresent(recipeDescriptor::setPortion);
+        Optional<String> portionString = argMultimap.getValue(PREFIX_PORTION);
+        if (portionString.isPresent()) {
+            RecipePortion portion = parsePortion(portionString.get());
+            recipeDescriptor.setPortion(portion);
+        }
 
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         if (!tags.isEmpty()) {
@@ -220,5 +226,5 @@ public class ParserUtil {
 
         return recipeDescriptor;
     }
-    
+
 }
