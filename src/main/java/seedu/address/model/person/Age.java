@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Age {
     public static final String MESSAGE_CONSTRAINTS =
             "Person's age should be integer (non-integer not allowed for this version)\n"
-                    + "Person's age should not exceed 120";
+                    + "Person's age should not exceed 120 and should be larger than 0";
 
     // treat age also as a string
     private String age;
@@ -37,7 +37,7 @@ public class Age {
         // check if valid age
         try {
             int ageInt = Integer.parseInt(age);
-            return ageInt <= 120;
+            return ageInt <= 120 && ageInt > 0;
         } catch (NumberFormatException e) {
             return false;
         }
