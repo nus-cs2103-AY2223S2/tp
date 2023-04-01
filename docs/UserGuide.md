@@ -208,6 +208,69 @@ be ignored.<br>e.g. `help 123` will be interpreted as `help`.
 
 </div>
 
+### Date and Time Formats
+
+QuickContacts allow for various date and time formats to be inputted for commands that takes them in as arguments, for
+example [`addm`](#adding-a-meeting--addm). Below, we can find the valid date and time formats.
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+Date and time formats can be mixed and matched. For example, `ddMMyyyy HH`
+
+</div>
+
+#### Date Formats
+
+|   | Date Format | Example    | Meaning                         |
+|---|-------------|------------|---------------------------------|
+| 1 | ddMMyyyy    | 01012023   | 1st January 2023                |
+| 2 | dd-MM-yyyy  | 01-01-2023 | 1st January 2023                |
+| 3 | dd.MM.yyyy  | 01.01.2023 | 1st January 2023                |
+| 4 | dd/MM/yyyy  | 01/01/2023 | 1st January 2023                |
+| 5 | ddMM        | 0101       | 1st January of the current year |
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**
+
+* `dd` refers to the date represented with 2 digits (e.g. `01` for the first day of the month instead of `1`)
+* `MM` refers to the month represented with 2 digits (e.g. `08` for August instead of `8`)
+* `yyyy` refers to the year represented with 4 digits (e.g. `2023` instead of `23`)
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+`ddMM` is a quick way to specify a date of the current year without needing the year. For example, specifying `0101`
+in year 2023 is the same as `01012023`.
+
+</div>
+
+#### Time Formats
+
+|   | Time Format | Example |
+|---|-------------|---------|
+| 1 | HHmm        | 0100    |
+| 2 | HH:mm       | 01:00   |
+| 3 | HH.mm       | 01.00   |
+| 4 | hmma        | 100AM   |
+| 5 | h:mma       | 1:00AM  |
+| 5 | h.mma       | 1.00AM  |
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**
+
+* `HH` refers to the hour in 24-hour time format represented with 2 digits (e.g. `00` for 12 midnight instead of `1`)
+* `h` refers to the hour in 12-hour time format represented with 1 or 2 digits (e.g. `1` for 1 o'clock, `12` for 12
+o'clock)
+* `mm` refers to the minute represented with 2 digits (e.g. `01` for the first minute instead of `1`)
+* `a` represents `AM` or `PM` for 12-hour time format
+
+</div>
+
 ## Features
 
 ### Theme toggling
