@@ -403,10 +403,10 @@ Example: `g/Groupmate`
 <div markdown="block" class="alert alert-info">
 
 :information_source: Important!<br>
-* EduMate's [Person List](#person-list) will only show common group labels that you are in. Do not be alarmed that some groups you tagged did not
+* EduMate's [Person List](#person-list) will only show labels of common groups that you are in with that contact. Do not be alarmed that some groups you tagged did not
 appear in the Person List.
 * You may still view the label when you [view the contact's profile](#view-a-contacts-profile-view).
-* * When you tag (untag) a group common to you to (from) a contact, it will appear (disappear) on the person's contact card in the Person List automatically.
+* When you tag (untag) a group common to you to (from) a contact, it will appear (disappear) on the person's contact card in the Person List automatically.
 
 </div>
 
@@ -420,7 +420,7 @@ Example: `m/CS2107`
 <div markdown="block" class="alert alert-info">
 
 :information_source: Important!<br>
-* EduMate's [Person List](#person-list) will only show common modules that you are enrolled in. Do not be alarmed that some modules you tagged did not
+* EduMate's [Person List](#person-list) will only show common modules that you are enrolled in with the contact. Do not be alarmed that some modules you tagged did not
 appear in the Person List.
 * You may still view the label when you [view the contact's profile](#view-a-contacts-profile-view).
 * When you tag (untag) a module common to you to (from) a contact, it will appear (disappear) on the person's contact card in the Person List automatically.
@@ -477,8 +477,8 @@ The `add` command creates a new contact for a friend named Weixiang whose inform
     * Station: `NUS`
     * Email: `wenqing@gmail.com`
     * Telegram handle: `@wenqing00000`
-    * Groups:
-    * Modules:
+    * Groups: Empty
+    * Modules: Empty
 
 </div>
 
@@ -486,7 +486,9 @@ The `add` command creates a new contact for a friend named Weixiang whose inform
 
 :information_source: Important!<br>
 As you may have already see above, when adding a contact with some fields present, EduMate will give placeholders for the respective
-missing information. Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g Wen Qing results in `@wenqing0000`).
+missing information. <br>
+
+Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g Wen Qing results in `@wenqing0000`).
 This is done to conform to Telegram's username restrictions of being at least 5 characters long for short names like Bob, Sam etc.
 
 </div>
