@@ -574,7 +574,7 @@ In any context: `find {keywords} [/mod {module_code} /lec {lecture_name}]`
 
 Examples:
 
-- In module context of module `CS2040S`: `find vid1, vid2 /lec Week 2`\
+- In module context of module `CS2040S`: `find vid1, vid2 /lec Week 2`
 - In any context: `find vid1, vid2 /mod CS2040S /lec Week 2`
 
 _\* Both commands searches for videos `vid1` or `vid2` from the video list of lecture `Week 2` of module `CS2040S`_
@@ -595,8 +595,8 @@ Module `CS2040S` has lecture `Week 2` which has video `Vid 1` which has tags `["
 
 Examples:
 
-- In module context of module `CS2040S`: `find content /byTag /lec Week 2`\
-- In any context: `find content /byTag /mod CS2040S /lec Week 2`\
+- In module context of module `CS2040S`: `find content /byTag /lec Week 2`
+- In any context: `find content /byTag /mod CS2040S /lec Week 2`
 
 _\* Both commands will show video `Vid 1` from the video list of lecture `Week 2` of module `CS2040S`_
 
