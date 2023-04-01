@@ -79,4 +79,4 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=pzaiming&breakdown=true)
 [Commit History](https://github.com/AY2223S2-CS2103-W16-2/tp/commits?author=pzaiming)
 [Pull Requests](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+author%3Apzaiming)
-[Issues](https://github.com/AY2223S2-CS2103-W16-2/tp/issues?q=is%3Aissue+author%3Apzaiming)
+[Issues](https://github.com/AY2223S2-CS2103-W16-2/tp/issues?q=is%3Aissue+assignee%3Apzaiming)
