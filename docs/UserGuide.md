@@ -796,7 +796,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 
 * Phone is an *optional* field, i.e. a contact can exist even if it does not have a phone number.
 * The prefix for a phone is `p/`.
-* Phone numbers should only contain <u>numeric</u> characters.
+* Phone numbers should only contain <u>numeric</u> characters. This also means no spaces are allowed!
 * Phone numbers should be at least 3 digits long.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
@@ -860,7 +860,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
 * WhatsApp is an *optional* field, i.e. a contact can exist even if it does not have a WhatsApp.
 * The prefix for adding a WhatsApp is `wa/`.
 * A WhatsApp's user identifier is a phone number, which should adhere to the following constraints:
-    * Phone numbers should only contain <u>numeric</u> characters.
+    * Phone numbers should only contain <u>numeric</u> characters. This also means no spaces are allowed!
     * Phone numbers should be at least 3 digits long.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
