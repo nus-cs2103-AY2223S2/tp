@@ -3,9 +3,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -23,7 +29,17 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE =
             ResultDisplay.formatMessage(COMMAND_WORD, "Adds a contact to the address book.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
-                    PREFIX_NAME + "NAME [PREFIX/PARAMETER]...")
+                    PREFIX_NAME.toString("NAME"),
+                    PREFIX_PHONE.toString("PHONE", true),
+                    PREFIX_EMAIL.toString("EMAIL", true),
+                    PREFIX_ADDRESS.toString("ADDRESS", true),
+                    PREFIX_GENDER.toString("GENDER", true),
+                    PREFIX_RACE.toString("RACE", true),
+                    PREFIX_COMMS.toString("COMMUNICATION_CHANNEL", true),
+                    PREFIX_MAJOR.toString("MAJOR", true),
+                    PREFIX_FACULTY.toString("FACULTY", true),
+                    PREFIX_MODULES.toString("MODULE", true, true),
+                    PREFIX_TAG.toString("TAG", true, true))
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
                     PREFIX_NAME + "John Doe",
                     PREFIX_PHONE + "98765432",
