@@ -219,7 +219,51 @@ The parsing and execution of FindMeeting command can be shown with the following
 sequence diagram:
 
 ### 5. Find Meeting Feature
+### 5.1 Update Meeting Feature
+
+The find meeting feature is handled by the following classes:
+* `FindMeetingCommandParser` - Checks that the command is in the right format, then
+  parses the input to extract PersonID, MeetingID and updated Meeting details.
+    * `FindMeetingCommandParser#parse()` is called and returns an
+      `FindMeetingCommand` object with the extracted PersonID, MeetingID
+* `FindMeetingCommand` - The update Meeting command that will be executed by FAid
+    * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()` method.
+
+Just like other commands, the `Command#execute()` method of `FindMeetingCommand` is handled by
+`Logic` component. Please refer to the 'Logic component' under 'Design' for more
+information on how the `Logic` component handles a command.
+
+The parsing and execution of FindMeeting command can be shown with the following
+sequence diagram:
+
 ![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
+
+### 6. Policy Tag Feature
+
+#### 6.1 Implementation
+
+Every `Person` contains a `PolicyTag`, which represents financial policies adopted by the user's clients and prosepctive clients.
+Every time a new `Person` is created, it contains a list of `PolicyTag` objects, which can be empty or non-empty. A new `PolicyTag` object
+is created with the use of `add` command when a new `Person` is added or `edit` command when a new policy needs to be added
+under an existing `Person`.
+
+### 7. Find Policy Feature
+
+#### 7.1 Implementation
+
+The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
+`FindPolicyCommandParser#parse()` is called, which returns an `FindPolicyCommand` object.
+
+* `FindPolicyCommandParser`:
+  * checks that the command contains `FindPolicyCommand.COMMAND_WORD`.
+  * checks that the arguments given are Strings.
+* `FindPolicyCommand`:
+  * updates list of `Person` objects with a filtered list of `Person` objects with matching policy names
+
+After being parsed, the `FindPolicyCommand#execute()` method is called, a filtered list of `Person` objects with matching
+policy names are displayed. The following sequence diagram illustrates the description for finding policy:
+
+![FindPolicySequenceDiagram](images/FindPolicySequenceDiagram.PNG)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -305,24 +349,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Update Meeting Feature
 
-The find meeting feature is handled by the following classes:
-* `FindMeetingCommandParser` - Checks that the command is in the right format, then
-  parses the input to extract PersonID, MeetingID and updated Meeting details.
-    * `FindMeetingCommandParser#parse()` is called and returns an
-      `FindMeetingCommand` object with the extracted PersonID, MeetingID
-* `FindMeetingCommand` - The update Meeting command that will be executed by FAid
-    * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()` method.
-
-Just like other commands, the `Command#execute()` method of `FindMeetingCommand` is handled by
-`Logic` component. Please refer to the 'Logic component' under 'Design' for more
-information on how the `Logic` component handles a command.
-
-The parsing and execution of FindMeeting command can be shown with the following
-sequence diagram:
-
-![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
