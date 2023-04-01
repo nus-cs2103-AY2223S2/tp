@@ -29,7 +29,6 @@ public class FindCourseCommand extends FindCommand {
     /**
      * Creates a FindCourseCommand to find the specified courses with the given predicate.
      * @param predicate The predicate to filter courses with.
-     * @param currentSelection The current selection of the LogicManager.
      */
     public FindCourseCommand(CourseNameContainsPredicate predicate) {
         this.predicate = predicate;
