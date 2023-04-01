@@ -15,7 +15,7 @@ With its easy-to-use **text-based interface** and contact management features, s
 
 ## Before you Begin
 
-Please read this section before skipping to specific parts in the `Features` section.
+Please read this section before skipping to specific parts in the [Features](#features) section.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Notes on display resolution**
 
@@ -30,7 +30,7 @@ This guide aims to teach you how to navigate and use FriendlyLink
 
 ### How to use this User Guide
 
-This guide quickly gets you started to use FriendlyLink, describing our features and providing their instruction format and examples. Some terms used have specific meanings and are explained below and summarised in the `Glossary`.
+This guide quickly gets you started to use FriendlyLink, describing our features and providing their instruction format and examples. Some terms used have specific meanings and are explained below and summarised in the [Glossary](#glossary).
 
 We suggest reading this guide in sequential order (or at least the whole of this section) to familiarise yourself with the keywords used in this guide in the glossary and differently styled text which have special meanings.
 
@@ -62,7 +62,7 @@ FriendlyLink is a command line based tool. This means that it is mainly designed
 FriendlyLink stores paired elderly and volunteers, which you can add, modify or remove.
 
 #### Commands
-A command is an instruction given by you to FriendlyLink to perform a specific task. For example, `add_elderly n/John Doe ...` tells FriendlyLink to record the information of a new person in FriendlyLink. More details about each command is given in the `Features` section.
+A command is an instruction given by you to FriendlyLink to perform a specific task. For example, `add_elderly n/John Doe ...` tells FriendlyLink to record the information of a new person in FriendlyLink. More details about each command is given in the [Features](#features) section.
 
 #### Prefixes
 Prefixes are the characters appearing before a slash in a command. Prefixes label the information that they represent. For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
@@ -167,7 +167,7 @@ A tag is a generic description for a group of people.
 
 #### Code highlights
 
-`Highlights` are used to denote specific terms, commands or output from the application. These are case-sensitive and may not give the correct results if you use different capitalisation or if you include additional space in them.
+`Highlights` are used to denote specific commands or output from the application. These are case-sensitive and may not give the correct results if you use different capitalisation or if you include additional space in them.
 
 * Highlighted commands consists special characters or capitalisation, which have special meaning.
     * Words that are `CAPITALISED` are placeholders that should be replaced by you.<br>
@@ -183,7 +183,7 @@ A tag is a generic description for a group of people.
 
 ## Glossary
 
-These terms have specific meanings in the context of FriendlyLink. For a more detailed description, refer to the `How to Use FriendlyLink` section.
+These terms have specific meanings in the context of FriendlyLink. For a more detailed description, refer to the [How to Use FriendlyLink](#how-to-use-friendlylink) section.
 
 | Term                  | Meaning                                                                                                                                                     |
 |-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -268,7 +268,7 @@ Adds an elderly to FriendlyLink.
 
 Format: `add_elderly n/NAME ic/NRIC bd/BIRTH_DATE [re/REGION] [r/RISK_LEVEL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
-* Every elderly must have a unique `NRIC`. Refer to the [NRIC section](#nric) for the required format for NRIC.
+* Every elderly must have a unique `NRIC`. Refer to [NRIC](#nric) for its required format.
 * Alphabets in `NRIC` are case-insensitive.
 * The `REGION` can only take 5 values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`.
 * The `RISK_LEVEL` can only takes 3 values: `LOW`, `MEDIUM` or `HIGH`.
