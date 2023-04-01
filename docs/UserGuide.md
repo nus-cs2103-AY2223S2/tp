@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TechTrack User Guide
+title: User Guide
 ---
 
 TechTrack is a powerful internship/job tracking application that combines the flexibility of a Command Line Interface (CLI) with the benefits of a Graphical User Interface (GUI).
