@@ -13,7 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
@@ -181,19 +181,19 @@ public class ParserUtil {
     }
 
     /**
-     * Parses age to Age
-     * @param studentAge
-     * @return an Age
+     * Parses birthdate to Birthdate
+     * @param studentBirthdate
+     * @return a birthdate
      * @throws ParseException
      */
 
-    public static Age parseAge(String studentAge) throws ParseException {
-        requireNonNull(studentAge);
-        String trimmedStudentAge = studentAge.trim();
-        if (!Age.isValidAge(trimmedStudentAge)) {
-            throw new ParseException(Age.MESSAGE_CONSTRAINTS);
+    public static Birthdate parseBirthdate(String studentBirthdate) throws ParseException {
+        requireNonNull(studentBirthdate);
+        String trimmedStudentBirthdate = studentBirthdate.trim();
+        if (!Birthdate.isValidBirthdate(trimmedStudentBirthdate)) {
+            throw new ParseException(Birthdate.MESSAGE_CONSTRAINTS);
         }
-        return new Age(trimmedStudentAge);
+        return new Birthdate(trimmedStudentBirthdate);
     }
 
     /**

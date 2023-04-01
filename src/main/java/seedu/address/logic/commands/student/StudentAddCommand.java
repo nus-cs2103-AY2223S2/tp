@@ -10,13 +10,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTBIRTHDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTBIRTHDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -28,12 +28,8 @@ import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Image;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.*;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.exceptions.DuplicateParentException;
 import seedu.address.model.person.exceptions.DuplicateStudentException;
 import seedu.address.model.person.parent.Parent;
@@ -58,7 +54,7 @@ public class StudentAddCommand extends StudentCommand {
             + "["
             + PREFIX_SEX + "SEX "
             + PREFIX_ADDRESS + "RESIDENTIAL ADDRESS "
-            + PREFIX_STUDENTAGE + "AGE "
+            + PREFIX_STUDENTBIRTHDATE + "BIRTHDATE "
             + PREFIX_IMAGESTUDENT + "IMAGE STUDENT "
             + PREFIX_EMAILSTUDENT + "EMAIL STUDENT "
             + PREFIX_PHONESTUDENT + "PHONE STUDENT "
@@ -73,7 +69,7 @@ public class StudentAddCommand extends StudentCommand {
             + PREFIX_RELATIONSHIP + "Father "
             + PREFIX_SEX + "M "
             + PREFIX_ADDRESS + "Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) "
-            + PREFIX_STUDENTAGE + "14 "
+            + PREFIX_STUDENTBIRTHDATE + "12/31/2000 "
             + PREFIX_IMAGESTUDENT + "XX.png (where XX is your image name) "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
             + PREFIX_PHONESTUDENT + "91234567 "
@@ -146,10 +142,10 @@ public class StudentAddCommand extends StudentCommand {
         ArgumentMultimap argMultimap = new ArgumentMultimap();
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
-        Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_PARENTAGE).get()));
+        Birthdate birthdate = ParserUtil.parseBirthdate((argMultimap.getValue(PREFIX_PARENTBIRTHDATE).get()));
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Parent newParent = new Parent(parentName, age, image, email, parentNumber,
+        Parent newParent = new Parent(parentName, birthdate, image, email, parentNumber,
                 address, tagList); //create new parent as there isnt any matching parent
         newParent.addStudent(student); //bind student to parent
         if (model.hasParent(newParent)) {

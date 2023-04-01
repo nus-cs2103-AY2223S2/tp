@@ -3,15 +3,9 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
+import seedu.address.model.person.*;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Class;
-import seedu.address.model.person.Comment;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Image;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
 import seedu.address.model.person.exceptions.DuplicateClassException;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
@@ -53,8 +47,8 @@ public class StudentBuilder {
     private IndexNumber indexNumber;
     private Sex sex;
     private Parent parent;
-    private Age age;
-    private Age parentAge;
+    private Birthdate birthdate;
+    private Birthdate parentBirthdate;
     private Phone studentPhone;
     private Phone parentPhone;
     private Cca cca;
@@ -81,8 +75,8 @@ public class StudentBuilder {
         parentName = new Name(DEFAULT_PARENTNAME);
         indexNumber = new IndexNumber(DEFAULT_INDEXNUMBER);
         sex = new Sex(DEFAULT_SEX);
-        age = new Age(DEFAULT_AGE);
-        parentAge = new Age(DEFAULT_PARENTAGE);
+        birthdate = new Birthdate(DEFAULT_AGE);
+        parentBirthdate = new Birthdate(DEFAULT_PARENTAGE);
         studentPhone = new Phone(DEFAULT_STUDENTPHONE);
         parentPhone = new Phone(DEFAULT_PARENTPHONE);
         cca = new Cca(DEFAULT_CCA);
@@ -103,8 +97,8 @@ public class StudentBuilder {
         } catch (DuplicateClassException dc) {
             dc.printStackTrace();
         }
-        parent = new Parent(parentName, parentAge, parentImage, parentEmail, parentPhone, parentAddress, tags);
-        student = new Student(name, studentClass, indexNumber, sex, parentName, parentPhone, relationship, age,
+        parent = new Parent(parentName, parentBirthdate, parentImage, parentEmail, parentPhone, parentAddress, tags);
+        student = new Student(name, studentClass, indexNumber, sex, parentName, parentPhone, relationship, birthdate,
                 studentImage, studentEmail, studentPhone, cca, studentAddress, studentAttendance, homework, test,
                 tags, comment);
     }
@@ -120,7 +114,7 @@ public class StudentBuilder {
         parentName = studentToCopy.getParentName();
         parentPhone = studentToCopy.getParentNumber();
         relationship = studentToCopy.getRls();
-        age = studentToCopy.getAge();
+        birthdate = studentToCopy.getBirthdate();
         studentImage = studentToCopy.getImage();
         studentEmail = studentToCopy.getEmail();
         studentPhone = studentToCopy.getPhone();
@@ -165,7 +159,7 @@ public class StudentBuilder {
      * @return Student
      */
     public Student build() {
-        return new Student(name, studentClass, indexNumber, sex, parentName, parentPhone, relationship, age,
+        return new Student(name, studentClass, indexNumber, sex, parentName, parentPhone, relationship, birthdate,
                 studentImage, studentEmail, studentPhone, cca, studentAddress, studentAttendance, homework, test,
                 tags, comment);
     }
