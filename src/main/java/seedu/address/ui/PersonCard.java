@@ -56,6 +56,8 @@ public class PersonCard extends UiPart<Region> {
     private Label jobTitle;
     @FXML
     private Label status;
+    @FXML
+    private Label lastUpdate;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -70,8 +72,6 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         remark.setText(person.getRemark().value);
-        //Note to Jing Jie - updated this line below and 1 other line in PersonListCard.fxml to show Tasks currently
-        //Allows me to be able to check if it can be shown properly
         task.setText(person.getTasks().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -80,7 +80,8 @@ public class PersonCard extends UiPart<Region> {
         company.setText(person.getCompany().value);
         occupation.setText(person.getOccupation().value);
         jobTitle.setText(person.getJobTitle().value);
-        status.setText(person.getStatus().getStatusName().getLabel());
+        status.setText(person.getStatus().getStatusName().getLabel()
+                + " (" + person.getLastUpdate() + ")");
     }
 
     @Override

@@ -10,7 +10,7 @@
 
 <fx:root minHeight="600.0" minWidth="800.0" onCloseRequest="#handleExit" title="SalesPUNCH" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/salespunch.png" />
   </icons>
   <scene>
     <Scene>
@@ -46,6 +46,10 @@
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
+                     <Label style="-fx-font-weight: bold;" styleClass="window_title" text="Contacts">
+                        <VBox.margin>
+                           <Insets bottom="5.0" left="5.0" />
+                        </VBox.margin></Label>
                 <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
                   <VBox fx:id="transactionList" minWidth="340" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
@@ -53,6 +57,10 @@
                         <Insets bottom="10" left="10" right="10" top="10" />
                      </padding>
                      <children>
+                         <Label styleClass="window_title" text="Transactions">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" />
+                           </VBox.margin></Label>
                         <StackPane fx:id="transactionListPanelPlaceholder" minWidth="400.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>

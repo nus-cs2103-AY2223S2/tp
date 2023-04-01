@@ -9,7 +9,7 @@ import seedu.address.model.person.exceptions.TaskNotFoundException;
  * Guarantees: immutable, is always valid
  */
 public class TaskList {
-    static final String EMPTY_TASKLIST_MESSAGE = "The Tasklist for this individual is empty.";
+    static final String EMPTY_TASKLIST_MESSAGE = "No tasks currently.";
 
     private final ArrayList<Task> tasks;
 
@@ -75,11 +75,11 @@ public class TaskList {
         if (tasks.size() == 0) {
             return EMPTY_TASKLIST_MESSAGE;
         }
-        String returnString = "Tasks:\n";
+        StringBuilder returnString = new StringBuilder("Tasks:\n");
         for (int i = 0; i < tasks.size(); i++) {
-            returnString += String.format("%d. %s\n", i + 1, tasks.get(i));
+            returnString.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
         }
-        return returnString;
+        return returnString.toString();
     }
 
     @Override

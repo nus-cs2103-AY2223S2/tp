@@ -38,6 +38,8 @@ public class TransactionCard extends UiPart<Region> {
     private Label status;
     @FXML
     private Label owner;
+    @FXML
+    private Label lastUpdate;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -47,7 +49,8 @@ public class TransactionCard extends UiPart<Region> {
         this.txn = txn;
         id.setText(displayedIndex + ". ");
         description.setText(txn.getDescription().toString());
-        status.setText(txn.getStatus().getStatusName().getLabel());
+        status.setText(txn.getStatus().getStatusName().getLabel()
+                + " (" + txn.getLastUpdate() + ")");
         value.setText(txn.getValue().toString());
         owner.setText(txn.getOwner().toString());
     }

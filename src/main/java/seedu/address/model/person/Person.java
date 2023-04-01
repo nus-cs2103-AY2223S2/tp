@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.Status;
 import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.person.status.LeadStatusName;
 import seedu.address.model.tag.Tag;
@@ -175,6 +176,13 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns the String representation of the time elapsed since the status has changed.
+     */
+    public String getLastUpdate() {
+        return Status.formatDuration(status.getDurationSinceLastUpdate()) + " ago";
     }
 
     /**

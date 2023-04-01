@@ -126,6 +126,14 @@
     -fx-text-fill: #010504;
 }
 
+.window_title {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-face: bold
+}
+
+
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;

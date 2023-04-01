@@ -17,6 +17,36 @@ public abstract class Status {
     public abstract Duration getDurationSinceLastUpdate();
 
     /**
+     * Returns the English representation of a Duration, only showing the least granular time.
+     */
+    public static String formatDuration(Duration duration) {
+        long seconds = duration.getSeconds();
+        if (seconds < 0) {
+            throw new IllegalArgumentException("Duration must be positive");
+        }
+        if (seconds == 0) {
+            return "0 seconds";
+        }
+        if (seconds >= 60 * 60 * 24 * 365) {
+            long years = seconds / (60 * 60 * 24 * 365);
+            return years + " year" + (years > 1 ? "s" : "");
+        }
+        if (seconds >= 60 * 60 * 24) {
+            long days = seconds / (60 * 60 * 24);
+            return days + " day" + (days > 1 ? "s" : "");
+        }
+        if (seconds >= 60 * 60) {
+            long hours = seconds / (60 * 60);
+            return hours + " hour" + (hours > 1 ? "s" : "");
+        }
+        if (seconds >= 60) {
+            long minutes = seconds / 60;
+            return minutes + " minute" + (minutes > 1 ? "s" : "");
+        }
+        return seconds + " second" + (seconds > 1 ? "s" : "");
+    }
+
+    /**
      *  Returns true if the input String is parsable into a timestamp.
      */
     public static boolean isValidTimestamp(String test) {

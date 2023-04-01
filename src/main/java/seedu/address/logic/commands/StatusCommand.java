@@ -49,8 +49,6 @@ public class StatusCommand extends Command {
     private final Index index;
     private final LeadStatus status;
 
-    //TODO add DateTime timestamp of when the status was set.
-
     /**
      * Constructor for a StatusCommand. Takes in an index of a person valid lead status.
      * @param index a valid index for a person
