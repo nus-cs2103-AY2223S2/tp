@@ -133,7 +133,7 @@ public class PersonListPanel extends UiPart<Region> {
 
     private List<PersonListCardData> getFavoriteData(Collection<PersonListCardData> data) {
         return data.stream()
-                .filter(d -> d.getPerson().getIsFavorite().getFavoriteStatus())
+                .filter(d -> d.getPerson().getFavorite().getFavoriteStatus())
                 .map(d -> new PersonListCardData(d.getPerson(), d.getIndex()))
                 .collect(Collectors.toList());
     }

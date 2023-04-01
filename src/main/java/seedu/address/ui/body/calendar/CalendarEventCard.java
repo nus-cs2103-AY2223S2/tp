@@ -60,7 +60,6 @@ public class CalendarEventCard extends UiPart<Region> {
         recurrence.setText(event.getRecurrence().toString());
         indexTag.setText(String.format("Index %d", index.getOneBased()));
 
-        // TODO: replace with actual list of people
         Set<Person> people = event.getTaggedPeople();
         if (people.isEmpty()) {
             eventContainer.getChildren().remove(attendeesCard);

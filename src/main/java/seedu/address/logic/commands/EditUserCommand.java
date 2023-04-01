@@ -25,15 +25,12 @@ public class EditUserCommand extends EditPersonCommand {
                     "Edits the details of the user.",
                     "Existing values will be overwritten by the given parameters",
                     "for all fields except Modules and Tags.")
-            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
-                    "INDEX",
-                    "[PREFIX/PARAMETER]...")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS, "[PREFIX/PARAMETER]...")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
-                    "Note that INDEX must be a positive integer.",
                     "For more information on prefixes, refer to the user guide using the help command.",
-                    "Editing Modules and Tags have a different behaviour from editing the other fields.",
-                    "If a module or tag already exists in the contact, it will be removed.",
-                    "Otherwise, it will be added to the contact.");
+                    "Editing Modules have a different behaviour from editing the other fields.",
+                    "If a module already exists, it will be removed.",
+                    "Otherwise, it will be added.");
 
     private final PersonDescriptor editUserDescriptor;
 

@@ -32,7 +32,7 @@ import seedu.address.model.person.fields.subfields.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer";
 
     public static final String MESSAGE_NO_PREAMBLE_REQUIRED = "There is no need for a preamble for this command";
 

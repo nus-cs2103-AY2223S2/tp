@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class Gender extends Field {
 
-    public static final String MESSAGE_CONSTRAINTS = "Gender must be alphanumeric.";
+    public static final String MESSAGE_CONSTRAINTS = "Gender must be alphanumeric";
     public static final String VALIDATION_REGEX = "^[a-zA-Z0-9]+$";
 
     /**

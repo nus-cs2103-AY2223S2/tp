@@ -21,9 +21,9 @@ import seedu.address.storage.userpref.UserPrefsStorage;
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private JsonAddressBookStorage addressBookStorage;
-    private UserPrefsStorage userPrefsStorage;
-    private JsonUserDataStorage userDataStorage;
+    private final JsonAddressBookStorage addressBookStorage;
+    private final UserPrefsStorage userPrefsStorage;
+    private final JsonUserDataStorage userDataStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
