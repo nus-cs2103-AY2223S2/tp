@@ -39,6 +39,12 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
 * [**Commands**](#commands)
   * [**How to interpret the command format**](#how-to-interpret-the-command-format)
   * [**Attributes**](#attributes)
+    * [**Basic Attributes**](#basic-attributes)
+      * [**Basic Attributes Table**](#basic-attributes-table)
+    * [**Other Attributes**](#other-attributes)
+      * [**Group**](#group)
+      * [**Module**](#module)
+      * [**Module with Lessons**](#module-with-lessons)
   * [**Basic Commands**](#basic-commands)
     * [**Add a contact `add`**](#add-a-contact-add)
     * [**View a contact's profile `view`**](#view-a-contacts-profile-view)
@@ -257,8 +263,14 @@ s/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
 <br>
 <div markdown="span" class="alert alert-success">
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: To know more about what `n/`, `/e` etc. symbolises, you may want to check out [Prefixes](#prefixes).
+
+</div>
+
 :bulb: **Tip:** <br>
-You do not have to enter all your information at once! You can omit some of the information
+You do not have to enter all your information at once! You can omit some information
 and **its corresponding prefix** and enter them in the future!
 <br>
 
@@ -341,8 +353,18 @@ EduMate is a command-driven application, which means that its various functional
 * Indices must be positive numbers.<br>
   e.g. `delete one` is not an accepted command.
 
-* [Prefixes]() must be preceded by a space.<br>
+* [Prefixes](#prefixes) must be preceded by a space.<br>
   e.g. `sort m/an/Tan` is not an accepted command for prefixes `m/` and `n/`.
+
+</div>
+
+<div markdown="span" class="alert alert-success">
+
+:bulb: **General format of commands:** <br>
+
+<img src="images/general_command_format.png" style="width:80%;margin:0 10%">
+
+- **Bolded** portions of the command format implies that inputs could be optional.
 
 </div>
 
@@ -356,49 +378,33 @@ Single-valued attributes for each contact can only have one value. Examples of s
 
 Multi-valued attributes, on the other hand, can have multiple values associated with a single contact. Examples of multi-valued attributes include the groups and modules that a contact belongs to.
 
-### Name
+### Basic Attributes
 
-Description: The name of the person.<br>
-Pattern: `n/NAME`<br>
-Rules: `NAME` should only contain alphanumeric characters and spaces. It **must also be unique**.<br>
-Example: `n/Wen Li`
+Below, you can find the basic attributes we use to make up a person's profile in `EduMate`.
 
-### Phone Number
+#### **Basic Attributes Table**
 
-Description: The phone number of the person.<br>
-Pattern: `p/PHONE_NUMBER`<br>
-Rules: `PHONE_NUMBER` should only contain numbers, and be at least 3 digits long.<br>
-Example: `p/89229358`
+| Attribute       | Description                                                    | Format           | Rules                                                                                                                                                                                                  | Example             |
+|-----------------|----------------------------------------------------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
+| Name            | The name of the person.                                        | `n/NAME`         | - Only contain alphanumeric characters and spaces. <br/> - **Must also be unique**.                                                                                                                    | `n/Wen Li`          |
+| Phone Number    | The phone number of the person.                                | `p/PHONE_NUMBER` | - Should only contain numbers. <br/>- At least 3 digits long. Maximum of 15 digits allowed.                                                                                                            | `p/89229358`        | 
+| Email Address   | The email address of the person.                               | `e/EMAIL`        | Should be of the form `local@domain`, where:<br/>- `local` consists of only alphanumeric and the special characters `+`, `_`, `.`, `-`.<br/>-`domain` consists of an `@` symbol followed by web site.  | `e/wenli@gmail.com` |
+| Home Station    | The name of the **closest MRT station** to the person's home.  | `s/STATION`      | Name of a valid MRT station.                                                                                                                                                                           | `s/Boon Lay`        |
+| Telegram Handle | The Telegram Handle of the person.                             | `t/TELEGRAM`     | - Should start with `@` symbol <br/>- At least 5 characters long<br/>- Only combinations of letters, numbers and underscores are allowed after the `@` symbol                                          | `t/@wenli`          |
 
-### Email Address
+### Other Attributes
 
-Description: The email address of the person.<br>
-Pattern: `e/EMAIL`<br>
-Rules: `EMAIL` should be of the form `local@domain`, where
-* `local` consists of only alphanumeric and the special characters `+`, `_`, `.`, `-`.
-* `domain` {can someone fill up}<br>
-  Example: `e/wenli@gmail.com`
+Below are some special attributes that complement the [Basic Attributes](#basic-attributes) of a person's profile.
 
-### Home Station
+#### **Group**
 
-Description: The name of the **closest MRT station** to their home.<br>
-Pattern: `s/STATION`<br>
-Rules: `STATION` should be the name of a valid MRT station.<br>
-Example: `s/Boon Lay`
+**Description:** The group that you and the person belong to.<br>
 
-### Telegram Handle
+**Pattern:** `g/GROUP`<br>
 
-Description: The telegram handle of the person.<br>
-Pattern: `t/TELEGRAM`<br>
-Rules: `TELEGRAM` should start with an `@` symbol and be at least 5 characters long. Only combinations of letters, numbers and underscores are allowed after the `@` symbol.<br>
-Example: `t/@wenli`
+**Rules:** `GROUP` should only contain alphanumeric characters.<br>
 
-### Group
-
-Description: The group that you and the person belong to.<br>
-Pattern: `g/GROUP`<br>
-Rules: `GROUP` should only contain alphanumeric characters.<br>
-Example: `g/Groupmate`
+**Example:** `g/Groupmate`
 
 <div markdown="block" class="alert alert-info">
 
@@ -410,12 +416,15 @@ appear in the Person List.
 
 </div>
 
-### Module
+#### **Module**
 
-Description: The name of the module the person is taking.<br>
-Pattern: `m/MODULE`<br>
-Rules: `MODULE` should be the name of a valid NUS module.<br>
-Example: `m/CS2107`
+**Description:** The name of the module the person is taking.<br>
+
+**Pattern:** `m/MODULE`<br>
+
+**Rules:** `MODULE` should be the name of a valid NUS module.<br>
+
+**Example:** `m/CS2107`
 
 <div markdown="block" class="alert alert-info">
 
@@ -427,12 +436,15 @@ appear in the Person List.
 
 </div>
 
-### Module with Lessons
+#### **Module with Lessons**
 
-Description: The name of the module the person is taking, and a lesson associate with the module.<br>
-Pattern: `m/MODULE DAY START_TIME END_TIME`<br>
-Rules: `MODULE` should be the name of a valid NUS module. `DAY` should be a valid day of the week. `START_TIME` and `END_TIME` should be valid hour in a day.<br>
-Example: `m/CS1234 mon 12 13`
+**Description:** The name of the module the person is taking, and a lesson associate with the module.<br>
+
+**Pattern:** `m/MODULE DAY START_TIME END_TIME`<br>
+
+**Rules:** `MODULE` should be the name of a valid NUS module. `DAY` should be a valid day of the week. `START_TIME` and `END_TIME` should be valid hour in a day.<br>
+
+**Example:** `m/CS1234 mon 12 13`
 
 ## Basic Commands
 
