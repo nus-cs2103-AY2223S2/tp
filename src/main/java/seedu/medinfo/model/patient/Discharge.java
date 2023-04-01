@@ -3,19 +3,25 @@ package seedu.medinfo.model.patient;
 import static java.util.Objects.requireNonNull;
 import static seedu.medinfo.commons.util.AppUtil.checkArgument;
 
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 /**
  * Represents a Patient's discharge date in MedInfo.
  */
 public class Discharge {
 
-    public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be of the form dd/MM/yyyy HHmm";
+    public static final String MESSAGE_CONSTRAINTS = "Discharge date-time should be a valid date-time" +
+            " of the form dd/MM/yyyy HHmm";
     public static final String DEFAULT_DISCHARGE = "To Be Confirmed";
 
     public final String value;
+
+    final static String DATE_FORMAT = "dd/MM/yyyy HHmm";
 
     /**
      * Constructs a {@code Discharge}.
@@ -28,24 +34,29 @@ public class Discharge {
         value = discharge;
     }
 
+
     /**
      * Returns true if a given discharge date-time is valid.
      */
-    public static boolean isValidDischarge(String discharge) {
-        if (discharge.equals(DEFAULT_DISCHARGE)) {
+
+    public static boolean isValidDischarge(String date) {
+        if (date.equals(DEFAULT_DISCHARGE)) {
             return true;
         }
-
         try {
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-            LocalDateTime.parse(discharge, format);
-        } catch (DateTimeParseException e) {
+            DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+            df.setLenient(false);
+            df.parse(date);
+            return true;
+        } catch (ParseException e) {
             return false;
         }
-
-        return true;
     }
 
+    /**
+     * Returns the dateTime.
+     * @return LocalDateTime
+     */
     public LocalDateTime getDateTime() {
         try {
             DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
