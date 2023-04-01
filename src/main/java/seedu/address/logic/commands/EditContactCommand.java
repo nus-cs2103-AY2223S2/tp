@@ -30,11 +30,6 @@ public class EditContactCommand extends EditPersonCommand {
                     "for all fields except Modules and Tags.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
                     "INDEX", "[PREFIX/PARAMETER]...")
-            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
-                    COMMAND_WORD, "1",
-                    PREFIX_PHONE + "87654321",
-                    PREFIX_EMAIL + "johnd@apple.com",
-                    PREFIX_TAG + "colleagues")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
                     "Note that INDEX must be a positive integer.",
                     "For more information on prefixes, refer to the user guide using the help command.",

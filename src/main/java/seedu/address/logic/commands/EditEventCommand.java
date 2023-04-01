@@ -41,6 +41,8 @@ public class EditEventCommand extends Command {
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
                     COMMAND_WORD, "2",
                     PREFIX_DESCRIPTION + "CS2103T Tutorial",
+                    PREFIX_START_DATE_TIME + "2023-03-10 1600",
+                    PREFIX_END_DATE_TIME + "2023-03-10 1800",
                     PREFIX_RECURRENCE + "weekly");
 
     private static final String MESSAGE_EDIT_EVENT_SUCCESS = "Event edited: %1$s";

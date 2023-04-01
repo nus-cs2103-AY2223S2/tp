@@ -22,12 +22,12 @@ public class AddEventCommand extends Command {
     public static final String MESSAGE_USAGE =
             ResultDisplay.formatMessage(COMMAND_WORD, "Adds an event to the event list.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
-                    COMMAND_WORD,
                     PREFIX_DESCRIPTION + "DESCRIPTION",
                     PREFIX_START_DATE_TIME + "START DATE TIME",
                     PREFIX_END_DATE_TIME + "END DATE TIME",
                     "[" + PREFIX_RECURRENCE + "INTERVAL]")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
+                    COMMAND_WORD,
                     PREFIX_DESCRIPTION + "CS2103T Lecture",
                     PREFIX_START_DATE_TIME + "2023-03-10 1600",
                     PREFIX_END_DATE_TIME + "2023-03-10 1800",
