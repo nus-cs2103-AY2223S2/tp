@@ -7,7 +7,7 @@ title: User Guide
 Overall structure of this user guide is adapted from https://ay2223s1-cs2103t-t12-2.github.io/tp/UserGuide.html
 --->
 
-## About QuickContacts
+# About QuickContacts
 
 QuickContacts is a **contacts and schedule management system** that enables you to track your contacts and manage your
 schedule with ease! As a busy individual with a considerable number of contacts and meetings to attend, you can
@@ -36,7 +36,7 @@ This user guide provides a detailed documentation on QuickContacts and serves as
 QuickContacts into your daily workflow. From having QuickContacts installed to making the best use out of QuickContacts,
 this user guide has everything you need. Head over to the [Getting started](#getting-started) section to get onboard!
 
-## Table of Contents
+# Table of Contents
 
 * Table of Contents
 {:toc}
@@ -210,22 +210,10 @@ be ignored.<br>e.g. `help 123` will be interpreted as `help`.
 
 ## Features
 
-### Theme toggling
 
-Toggles the theme from dark to light or vice versa.
+## Person-Related Commands
 
-![toggle theme](images/toggleTheme.png)
-
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
+### Adding a person : `add`
 
 Adds a person to the address book.
 
@@ -262,7 +250,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Finding persons by name : `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -294,82 +282,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sorting Meetings: `sortm`
-
-Sorts meetings in the address book by a specified attribute.
-
-Format: `sortm ATTRIBUTE [r]`
-
-* Sorts the meetings in the address book by the specified `ATTRIBUTE`, which can be one of the following: `m/` (meeting title), `dt/` (date/time), `l/` (location), or `des/` (description).
-* If the `r` option is included, the meetings will be sorted in reverse order.
-* Meetings with the same value for the specified attribute will be sorted by date/time in ascending order.
-* Example: `sortm m/` sorts meetings by title in ascending order.
-* Example: `sortm dt/r` sorts meetings by date/time in descending order.
-
-### Editing a meeting: `editm`
-
-Edits an existing meeting in the meeting book.
-
-Format: `editm INDEX [t/TITLE] [dt/DATE] [l/LOCATION] [des/DESCRIPTION]`
-
-* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* The `DATE`, `START_TIME` and `END_TIME` must be provided in the format `YYYY-MM-DD`, `HH:MM` (24-hour) respectively.
-
-Examples:
-* `editm 1 t/Project Update dt/2023-04-01 10:00`  Edits the date first meeting to be on `2023-04-01`, and change its title to "Project Update".
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-### Adding a Meeting : `addm`
-
-Adds a meeting to the address book.
-
-Format: `addm m/TITLE [p/PERSON]... dt/DATE_TIME l/LOCATION des/DESCRIPTION`
-
-Examples:
-* `addm m/CS2103T Tutorial p/John Doe p/Jane Doe dt/2022-02-22 10:00 l/COM1-B103 des/CS2103T Tutorial`
-* `addm m/CS2103T Tutorial p/John Doe p/Mary Jane dt/2022-02-22 22:22 l/COM1-B103 des/CS2101 Tutorial`
-
-### Finding Meetings by name : `findm`
-
-Find meetings whose names contain any of the given keywords.
-
-Format: `findm KEYWORD [MORE_KEYWORDS]`
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* Space is delimiter, so if you search `John Doe` it will list all people with either `John` or `Doe` in their name.
-* Only the name of attendees in meeting are searched
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Meetings matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `John Doe` will return Meetings that contain either `John Doe`, or `Doe John`
-
-Examples:
-* `findm John` returns `Meeting` that contains `attendees` whose Name contains `John`
-* `findm John Mary` returns `Meeting` that contains `attendees` whose Name contains `John` or `Mary`
-
-### Saving the data
-
-QuickContacts data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-QuickContacts data are saved as a JSON file `[JAR file location]/data/quickcontacts.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, QuickContacts will discard all data and start with an empty data file at the next run.
-</div>
-
 ### Exporting of contact : `export`
 * Exports the persons at the specified `INDEX`es.
 * The index refers to the index number shown in the displayed person list.
@@ -379,7 +291,7 @@ Format: `export p/ INDEX1 p/ INDEX2`
 
 ### Importing of contacts : `import`
 * Imports the persons in the provided JSON.
-* The JSON **must contain a valid array of persons** 
+* The JSON **must contain a valid array of persons**
 
 Example:
 ```json
@@ -409,7 +321,76 @@ Optional Parameter `f/` that forces imports regardless of duplicate values.
 
 Format: `import JSON f/`
 
-### Export meetings : `exportm`
+## Meeting-Related Commands
+
+### Adding a Meeting : `addm`
+
+Adds a meeting to the address book.
+
+Format: `addm m/TITLE [p/PERSON]... dt/DATE_TIME l/LOCATION des/DESCRIPTION`
+
+Constraints:
+* `TITLE` must be provided.
+* `DATE_TIME` must be provided in the format `dd-MM-yyyy HH:mm`.
+* `Person` must be a valid person in the address book.
+* 
+Examples:
+* `addm m/CS2103T Tutorial p/John Doe p/Jane Doe dt/04-01-2023 10:00 l/COM1-B103 des/CS2103T Tutorial`
+* `addm m/CS2103T Tutorial p/John Doe p/Mary Jane dt/04-01-2023 22:22 l/COM1-B103 des/CS2101 Tutorial`
+
+### Editing a Meeting : `editm`
+
+Edits an existing meeting in the meeting book.
+
+Format: `editm INDEX [t/TITLE] [dt/DATE] [l/LOCATION] [des/DESCRIPTION]`
+
+* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* The `DATE`, `START_TIME` and `END_TIME` must be provided in the format `DD-MM-YYYY`, `HH:MM` (24-hour) respectively.
+
+Examples:
+* `editm 1 t/Project Update dt/04-01-2023 10:00`  Edits the date first meeting to be on `04-01-2023`, and change its title to "Project Update".
+
+### Sorting Meetings : `sortm`
+
+Sorts meetings in the currently displayed address book by a specified attribute.
+
+Format: `sortm ATTRIBUTE [r]`
+
+* Sorts the meetings in the address book by the specified `ATTRIBUTE`, which can be one of the following: `m/` (meeting title), `dt/` (date/time), `l/` (location), or `des/` (description).
+* If the `r` option is included, the meetings will be sorted in reverse order.
+* Meetings with the same value for the specified attribute will be sorted by date/time in ascending order.
+* Example: `sortm m/` sorts meetings by title in ascending order.
+* Example: `sortm dt/r` sorts meetings by date/time in descending order.
+
+### Finding Meetings by Attendee Name : `findm`
+
+Find meetings whose names contain any of the given keywords.
+
+Format: `findm KEYWORD [MORE_KEYWORDS]`
+* The search is case-insensitive. e.g. `hans` will match `Hans`
+* Space is delimiter, so if you search `John Doe` it will list all people with either `John` or `Doe` in their name.
+* Only the name of attendees in meeting are searched
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Meetings matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `John Doe` will return Meetings that contain either `John Doe`, or `Doe John`
+
+Examples:
+* `findm John` returns `Meeting` that contains `attendees` whose Name contains `John`
+* `findm John Mary` returns `Meeting` that contains `attendees` whose Name contains `John` or `Mary`
+
+### View all Meetings : `findm` without arguments
+
+Shows a list of all meetings in the meeting book.
+
+Format: `findm`
+* No parameters are required.
+* If arguments are given, will instead behave like as stated [here](#finding-meetings-by-attendee-name--findm)
+
+
+
+### Export Meetings : `exportm`
 * Exports the meetings at the specified `INDEX`es, between `start` and `end` dates.
 * The indexes refer to the index numbers shown in the displayed meetings list.
 * The indexes **must be positive integers** 1, 2, 3
@@ -417,7 +398,7 @@ Format: `import JSON f/`
 
 Format: `exportm p/ INDEX1 p/ INDEX2 start/ START_DATE end/ END_DATE`
 
-### Import meetings : `importm`
+### Import Meetings : `importm`
 * Imports the meetings in the provided JSON.
 * The JSON **must contain a valid array of meetings**
 
@@ -492,7 +473,7 @@ Optional Parameter `f/` that forces imports regardless of duplicate values.
 
 Format: `import JSON f/`
 
-### Delete meetings : `delm`
+### Delete Meetings : `delm`
 
 Deletes the specified meeting.
 
@@ -506,7 +487,7 @@ Examples:
 
 * `listm` followed by `delm 2` deletes the 2nd meeting.
 
-### Marking meetings as done or undone: `mark` or `unmark`
+### Marking Meetings as done or undone : `mark` or `unmark`
 
 Marks the specified meeting as either done or undone.
 
@@ -514,12 +495,51 @@ Format: "mark INDEX" or "unmark INDEX"
 
 * The index refers to the index number shown in the displayed meetings list.
 * The index must be a positive integer 1, 2, 3...
-* 
-### Showing meetings that are done or over: `pending`
+
+### Showing Meetings that are done or over : `pending`
 
 Shows meetings that either have dates that are in the past or not marked as done.
 
-Format: "pending"
+Format: `pending`
+## General Features
+
+### Theme toggling
+
+Toggles the theme from dark to light or vice versa.
+
+![toggle theme](images/toggleTheme.png)
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Saving the data
+
+QuickContacts data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+QuickContacts data are saved as a JSON file `[JAR file location]/data/quickcontacts.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, QuickContacts will discard all data and start with an empty data file at the next run.
+</div>
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -541,10 +561,11 @@ Format: "pending"
 | **Find a contact**    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List all contacts** | `list`                                                                                                                                                                |
 | **Help**              | `help`                                                                                                                                                                |
-| **List all meetings** | `listm`                                                                                                                                                               |
 | **Create a meeting**  | `addm m/TITLE dt/DATE_TIME p/CONTACT_NAME... l/LOCATION des/DESCRIPTION`                                                                                              |
 | **Edit a meeting**    | `editm INDEX [m/TITLE] [dt/DATE_TIME] [p/CONTACT_NAME]... [l/LOCATION] [des/DESCRIPTION]`                                                                             |
-| **Delete a meeting**  | `delm INDEX` <br> e.g., `deletem 3`                                                                                                                                   |
+| **Find a meeting**    | `findm KEYWORD [MORE_KEYWORDS]` <br> e.g, `findm James Jake`                                                                                                          |
+| **List all meetings** | `findm`                                                                                                                                                               |
+| **Delete a meeting**  | `delm INDEX` <br> e.g., `delm 3`                                                                                                                                      |
 | **Export a contact**  | `export p/INDEX...` <br> e.g., `export p/1 p/2 p/3`                                                                                                                   |
 | **Export a meeting**  | `exportm m/INDEX...` <br> e.g., `exportm m/1 m/2 m/3`                                                                                                                 |
 | **Import a contact**  | `import VALID_JSON`                                                                                                                                                   |
