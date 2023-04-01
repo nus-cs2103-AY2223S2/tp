@@ -2,6 +2,7 @@ package seedu.address.model.person.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -53,5 +54,11 @@ class AddressContainsKeywordPredicateTest {
         AddressContainsKeywordPredicate<Person> predicate = new AddressContainsKeywordPredicate<>("BLK 543");
         assertFalse(predicate.test(new ElderlyBuilder().withAddress("Bishan").build()));
         assertFalse(predicate.test(new VolunteerBuilder().withAddress("Bishan").build()));
+    }
+
+    @Test
+    public void test_emptyAddress_throwsIllegalArgumentException() {
+        String invalidAddress = "";
+        assertThrows(IllegalArgumentException.class, () -> new AddressContainsKeywordPredicate<>(invalidAddress));
     }
 }

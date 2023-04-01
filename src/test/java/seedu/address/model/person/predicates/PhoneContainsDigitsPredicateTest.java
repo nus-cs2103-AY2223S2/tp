@@ -2,6 +2,7 @@ package seedu.address.model.person.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,5 +50,11 @@ class PhoneContainsDigitsPredicateTest {
         PhoneContainsDigitsPredicate<Person> predicate = new PhoneContainsDigitsPredicate<>("81234567");
         assertFalse(predicate.test(new ElderlyBuilder().withPhone("89586567").build()));
         assertFalse(predicate.test(new VolunteerBuilder().withPhone("89586567").build()));
+    }
+
+    @Test
+    public void test_emptyPhone_throwsIllegalArgumentException() {
+        String invalidPhone = "";
+        assertThrows(IllegalArgumentException.class, () -> new PhoneContainsDigitsPredicate<>(invalidPhone));
     }
 }

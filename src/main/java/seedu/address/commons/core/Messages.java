@@ -33,5 +33,7 @@ public class Messages {
             + "do not match";
     public static final String MESSAGE_WARNING_AVAILABLE_DATES = "\nWarning: The paired elderly and volunteer "
             + "do not have common available dates";
+    public static final String MESSAGE_FIELD_CANNOT_BE_EMPTY = "Invalid arguments. \n"
+            + "%s can take any values, but it should not be empty";
 
 }
