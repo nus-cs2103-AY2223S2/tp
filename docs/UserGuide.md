@@ -188,10 +188,10 @@ Creates a new lesson for a given student, with a lesson title, start time, and e
 
 Format: `new-lesson [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
 
-* All fields, except for additional studetn names, are mandatory.
+* All fields, except for additional student names, are mandatory.
 
 Examples:
-`new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `25 Mar 2023 13:00` and ending at `25 Mar 2023 15:00`.
+`new-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `25 Mar 2023 13:00` and ending at `25 Mar 2023 15:00`.
 
 
 ### View Lessons
@@ -230,7 +230,7 @@ Format: `update-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON_TI
 * At least one of the fields must be specified.
 
 Example:
-* `update-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500` updates the lesson for John Doe with the new information.
+* `update-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` updates the lesson for John Doe with the new information.
 
 ### Add an Exam to be tracked: `add-exam`
 
