@@ -181,11 +181,12 @@ public class ParserUtil {
     public static Deadline parseDateline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
-        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+        if (!Deadline.doesNotExist(trimmedDeadline)) {
+            throw new ParseException(Deadline.getMessageConstraint());
+        } else if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.getMessageConstraint());
         } else if (!Deadline.isNotPassed(trimmedDeadline)) {
             throw new ParseException(Deadline.getMessageConstraint());
-
         }
         return new Deadline(trimmedDeadline);
     }
