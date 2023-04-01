@@ -7,6 +7,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 
 import seedu.address.model.AddressBook;
 
+//@@author wendy0107-reused
+// Reused from https://github.com/AY2223S1-CS2103T-W17-4 and adapted from proposed implementation in AB3's Developer
+// Guide https://se-education.org/addressbook-level3/DeveloperGuide.html
+// with minor modifications such as renaming and some different implementation.
+
 public class VersionedAddressBook extends AddressBook {
     private final List<ReadOnlyAddressBook> versionStateHistory;
     private int currentVersionPointer;
@@ -71,4 +76,5 @@ public class VersionedAddressBook extends AddressBook {
         return super.equals(otherVersionedAddressBook)
                 && currentVersionPointer == otherVersionedAddressBook.currentVersionPointer;
     }
+    //@@author
 }

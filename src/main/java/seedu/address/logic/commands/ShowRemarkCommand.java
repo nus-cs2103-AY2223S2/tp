@@ -35,8 +35,6 @@ public class ShowRemarkCommand extends Command {
     public static final String MESSAGE_SHOWN_REMARK_SUCCESS = "Remarks: %1$s";
     public static final String MESSAGE_SHOWN_REMARK_EMPTY = "No remarks yet...";
 
-    private final boolean isModifying = false;
-
     private final Index index;
 
     /**
@@ -47,11 +45,6 @@ public class ShowRemarkCommand extends Command {
         requireNonNull(index);
 
         this.index = index;
-    }
-
-    @Override
-    public boolean checkModifiable() {
-        return isModifying;
     }
 
     @Override

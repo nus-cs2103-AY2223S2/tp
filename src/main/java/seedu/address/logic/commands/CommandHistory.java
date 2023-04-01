@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+//@@author wendy0107-reused
+//Reused from https://github.com/AY2223S1-CS2103T-W17-4
+// with modifications such as renaming and different implementation.
 public class CommandHistory {
     private List<String> commandList;
     private List<Integer> modifyHistoryCommandList;
@@ -40,20 +43,17 @@ public class CommandHistory {
         return commandList.get(index);
     }
 
-    public String getLastModifyingCommand() {
-        int index = modifyHistoryCommandList.get(currentVersionPointer);
-        return commandList.get(index);
-    }
-
     public String getLatestModifyingCommand() {
         assert(currentVersionPointer < modifyHistoryCommandList.size());
         currentVersionPointer++;
         int index = modifyHistoryCommandList.get(currentVersionPointer);
         return commandList.get(index);
     }
+    //@@author
 
-    public boolean checkModifyingCommand(Command command) {
-        return command.checkModifiable();
+    public String getLastModifyingCommand() {
+        int index = modifyHistoryCommandList.get(currentVersionPointer);
+        return commandList.get(index);
     }
 
 }

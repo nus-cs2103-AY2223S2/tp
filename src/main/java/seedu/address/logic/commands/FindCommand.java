@@ -47,17 +47,10 @@ public class FindCommand extends Command {
                     .collect(Collectors.joining(" "))
             + "\nExample: " + COMMAND_WORD + " n/alice n/tan t/hasSubmitted";
 
-    private final boolean isModifying = false;
-
     private final FullMatchKeywordsPredicate predicate;
 
     public FindCommand(FullMatchKeywordsPredicate predicate) {
         this.predicate = predicate;
-    }
-
-    @Override
-    public boolean checkModifiable() {
-        return isModifying;
     }
 
     @Override

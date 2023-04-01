@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 
+//author
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>();
@@ -17,12 +18,6 @@ public class RedoCommand extends Command {
     public static final String MESSAGE_FAILURE =
             "TeachMeSenpai is already in the latest version! There is nothing to redo";
     private String commandToRedo;
-    private final boolean isModifying = false;
-
-    @Override
-    public boolean checkModifiable() {
-        return isModifying;
-    }
 
     @Override
     public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {
