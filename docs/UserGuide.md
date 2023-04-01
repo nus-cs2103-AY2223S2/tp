@@ -108,12 +108,12 @@ Example: `delete 1`
 The commands in this segment are focused on viewing formats and details of the preexisting roles.
 These commands are:
 
-* [Find roles by name](#find-roles-by-name)
-* [Find roles by company](#find-roles-by-company)
-* [Find roles by tag](#find-roles-by-tag)
-* [Sorting a role by deadline](#sorting-by-deadline)
-* [Sorting a role by salary](#sorting-by-salary)
-* [Viewing a role](#viewing-a-role)
+* [Find roles by name](#find-roles-by-name-name)
+* [Find roles by company](#find-roles-by-company-company)
+* [Find roles by tag](#find-roles-by-tag-tag)
+* [Sorting a role by deadline](#sorting-by-deadline-deadline)
+* [Sorting a role by salary](#sorting-by-salary-salary)
+* [Viewing a role](#viewing-a-role-view)
 
 ### Find roles by Name: `name`
 Searches for roles with the provided names.
@@ -140,18 +140,7 @@ Format: `tag {keyword}`
 
 Example: `tag frontend`
 
-![Salary](images/UICommandImages/TagCommand0.png)
-
-### Sorting by Salary: `salary`
-Sort roles based on salary, in ascending/descending orderParser. For ascending, the role with the lowest salary will be displayed at the top, while for descending, the role with the highest salary will be displayed at the top.
-
-Format: `salary asc/desc`
-
-Example 1: `salary asc`
-![Salary](images/UICommandImages/SalaryCommand1.png)
-
-Example 2: `salary desc`
-![Salary](images/UICommandImages/SalaryCommand2.png)
+![Tag](images/UICommandImages/TagCommand0.png)
 
 ### Sorting by Deadline: `deadline`
 Sort roles based on deadline, in ascending/descending orderParser.
@@ -163,6 +152,17 @@ Example 1: `deadline asc`
 
 Example 2: `deadline desc`
 ![Deadline](images/UICommandImages/DeadlineCommand2.png)
+
+### Sorting by Salary: `salary`
+Sort roles based on salary, in ascending/descending orderParser. For ascending, the role with the lowest salary will be displayed at the top, while for descending, the role with the highest salary will be displayed at the top.
+
+Format: `salary asc/desc`
+
+Example 1: `salary asc`
+![Salary](images/UICommandImages/SalaryCommand1.png)
+
+Example 2: `salary desc`
+![Salary](images/UICommandImages/SalaryCommand2.png)
 
 ### Viewing a role: `view`
 Displays more details about a particular role.
@@ -205,14 +205,21 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Action   | Format, Examples                        |
-|----------|-----------------------------------------|
-| add      | add roleID (e.g. add 221574)            |
-| delete   | delete roleID (e.g. delete 221574)      |
-| view     | view roleID (e.g. view 221574)          |
-| list     | list                                    |
-| exit     | exit                                    |
-| salary   | salary asc/desc (e.g. salary asc)       |
-| deadline | deadline asc/desc (e.g. deadline asc)   |
-| company  | company {keyword} (e.g. company google) |
-| tag      | tag  {keyword} (e.g. tag tech)          |
+| Action   | Format                                                             | Example                                                                                                                                                                                                   |
+|----------|--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| add      | add {Prefix}/{Parameter}…​ (all parameters are required)           | `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year` |
+| edit     | edit {index} {Prefix}/{Parameter}…​ (only 1 parameter is required) | `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed $/4000 d/2023-10-20 x/Javascript - 1 Year`                                                     |
+| delete   | delete {index}                                                     | `delete 1`                                                                                                                                                                                                |
+| name     | name {keywords}...                                                 | `name analyst engineer data`                                                                                                                                                                              |
+| company  | company {keywords}...                                              | `company Google`                                                                                                                                                                                          |
+| tag      | tag  {keywords}...                                                 | `tag frontend`                                                                                                                                                                                            |
+| deadline | deadline {asc/desc}                                                | `deadline asc`                                                                                                                                                                                            |
+| salary   | salary {asc/desc}                                                  | `salary desc`                                                                                                                                                                                             |
+| view     | view {index}                                                       | `view 1`                                                                                                                                                                                                  |
+| list     | list                                                               | `list`                                                                                                                                                                                                    |
+| clear    | clear                                                              | `clear`                                                                                                                                                                                                   |
+| help     | help                                                               | `help`                                                                                                                                                                                                    |
+| exit     | exit                                                               | `exit`                                                                                                                                                                                                    |
+
+
+
