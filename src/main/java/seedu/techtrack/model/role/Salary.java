@@ -9,8 +9,9 @@ import static seedu.techtrack.commons.util.AppUtil.checkArgument;
  */
 public class Salary {
     public static final String MESSAGE_CONSTRAINTS =
-            "Salaries should be more than 0 and not start with '0' at the front!'";
-    public static final String VALIDATION_REGEX = "^[1-9]\\d{1,}";
+            "Salary should be a positive number with up to 2 decimal points.\n"
+                    + "Salary should also be more than 0 and not start with '0' at the front!'";
+    public static final String VALIDATION_REGEX = "^\\d+(\\.\\d{1,2})?$";
     public final String salary;
 
     /**
