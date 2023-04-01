@@ -259,21 +259,15 @@ public class MainWindow extends UiPart<Stage> {
             personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
             viewPane = new ViewPane(logic.getFilteredPersonList().get(0));
             viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
-        }
-
-        else if (feedback.startsWith("Edited Person:")) {
+        } else if (feedback.startsWith("Edited Person:")) {
             int index = Character.getNumericValue(commandText.charAt(5));
             viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(index - 1));
             viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
-        }
-
-        else if (feedback.startsWith("New person")) {
+        } else if (feedback.startsWith("New person")) {
             int len = logic.getAddressBook().getPersonList().size();
             viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(len-1));
             viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
-        }
-
-        else if (logic.getAddressBook().getPersonList().size() > 0) {
+        } else if (logic.getAddressBook().getPersonList().size() > 0) {
             viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
             viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
         }
