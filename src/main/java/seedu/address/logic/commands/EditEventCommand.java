@@ -15,6 +15,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Event;
@@ -71,7 +73,7 @@ public class EditEventCommand extends Command {
      * @throws CommandException
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
         if (isTutorial) {
             return executeTutorial(model);
@@ -88,7 +90,7 @@ public class EditEventCommand extends Command {
      * @return CommandResult
      * @throws CommandException
      */
-    public CommandResult executeTutorial(Model model) throws CommandException {
+    public CommandResult executeTutorial(Model model) throws CommandException, ParseException {
         List<Tutorial> lastShownList = model.getFilteredTutorialList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -102,6 +104,8 @@ public class EditEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
+        ParserUtil.editEventDateException(tutorialToEdit.getDate(), editedTutorial.getDate(), 1);
+
         model.setTutorial(tutorialToEdit, editedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedTutorial),
@@ -114,7 +118,7 @@ public class EditEventCommand extends Command {
      * @return CommandResult
      * @throws CommandException
      */
-    public CommandResult executeLab(Model model) throws CommandException {
+    public CommandResult executeLab(Model model) throws CommandException, ParseException {
         List<Lab> lastShownList = model.getFilteredLabList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -128,6 +132,8 @@ public class EditEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
+        ParserUtil.editEventDateException(labToEdit.getDate(), editedLab.getDate(), 2);
+
         model.setLab(labToEdit, editedLab);
         model.updateFilteredLabList(PREDICATE_SHOW_ALL_LABS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedLab), false, false, false, true);
@@ -139,7 +145,7 @@ public class EditEventCommand extends Command {
      * @return CommandResult
      * @throws CommandException
      */
-    public CommandResult executeConsultation(Model model) throws CommandException {
+    public CommandResult executeConsultation(Model model) throws CommandException, ParseException {
         List<Consultation> lastShownList = model.getFilteredConsultationList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -153,6 +159,8 @@ public class EditEventCommand extends Command {
                 && model.hasConsultation(editedConsultation)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
+
+        ParserUtil.editEventDateException(consultationToEdit.getDate(), editedConsultation.getDate(), 1);
 
         model.setConsultation(consultationToEdit, editedConsultation);
         model.updateFilteredConsultationList(PREDICATE_SHOW_ALL_CONSULTATIONS);

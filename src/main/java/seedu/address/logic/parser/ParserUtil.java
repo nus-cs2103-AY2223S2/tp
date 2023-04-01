@@ -311,7 +311,7 @@ public class ParserUtil {
                 .withResolverStyle(ResolverStyle.STRICT);
         if (!trimmedDate.matches(
                 "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)")) {
-            throw new ParseException("Invalid date format!");
+            throw new ParseException("Invalid date!");
         }
 
         try {
@@ -330,7 +330,35 @@ public class ParserUtil {
     }
 
     /**
-     * Ensure a user cannot create a conflicting event when the TA is already busy during the new event's timeslot
+     * Parses a {@code String date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDateTime parseEditEventDate(String date, int hours) throws ParseException {
+        //date can be null or empty as it is optional
+        String trimmedDate = date.trim();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm")
+                .withResolverStyle(ResolverStyle.STRICT);
+        if (!trimmedDate.matches(
+                "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)")) {
+            throw new ParseException("Invalid date!");
+        }
+        try {
+            LocalDateTime newDateStart = LocalDateTime.parse(trimmedDate, formatter);
+            LocalDateTime newDateEnd = LocalDateTime.parse(trimmedDate, formatter).plusHours(hours);
+            LocalDateTime[] newRange = new LocalDateTime[]{newDateStart, newDateEnd};
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Invalid date!");
+        }
+
+        sortDate();
+
+        return LocalDateTime.parse(trimmedDate, formatter);
+    }
+
+    /**
+     * Ensures a user cannot create a conflicting event when the TA is already busy during the new event's timeslot
      * @param newDateStart LocalDateTime
      * @param newDateEnd LocalDateTime
      * @param newRange LocalDateTime[]
@@ -360,6 +388,57 @@ public class ParserUtil {
         if (newDateStart.isBefore(LocalDateTime.now()) || newDateEnd.isBefore(LocalDateTime.now())) {
             throw new ParseException("You cannot create a historical event!");
         }
+    }
+
+    public static void editEventDateException(LocalDateTime oldDateStart,
+                                              LocalDateTime newDateStart, int plus) throws ParseException {
+
+        LocalDateTime[] oldDateRange = new LocalDateTime[]{oldDateStart, oldDateStart.plusHours(plus)};
+        LocalDateTime newDateEnd = newDateStart.plusHours(plus);
+        LocalDateTime[] newDateRange = new LocalDateTime[]{newDateStart, newDateEnd};
+
+        for (int i = 0; i < MASTER_TIME.size(); i++) {
+            if (MASTER_TIME.size() == 0) {
+                throw new ParseException("There are no events to edit!");
+            }
+            LocalDateTime[] currentRange = MASTER_TIME.get(i);
+            if (oldDateRange[0].isEqual(currentRange[0]) || oldDateRange[1].isEqual(currentRange[1])) {
+                MASTER_TIME.remove(i);
+            }
+        }
+
+        for (int i = 0; i < MASTER_TIME.size(); i++) {
+            if (MASTER_TIME.size() == 0) {
+                throw new ParseException("There are no events to edit!");
+            }
+            LocalDateTime[] currentRange = MASTER_TIME.get(i);
+
+            if (newDateStart.isAfter(currentRange[0]) && newDateStart.isBefore(currentRange[1])) {
+                MASTER_TIME.add(oldDateRange);
+                throw new ParseException("You are already busy during that period!");
+            }
+            if (newDateStart.isEqual(currentRange[0]) || newDateStart.isEqual(currentRange[1])) {
+                MASTER_TIME.add(oldDateRange);
+                throw new ParseException("You are already busy during that period!");
+            }
+            if (newDateEnd.isAfter(currentRange[0]) && newDateEnd.isBefore(currentRange[1])) {
+                MASTER_TIME.add(oldDateRange);
+                throw new ParseException("You are already busy during that period!");
+            }
+            if (newDateEnd.isEqual(currentRange[0]) && newDateEnd.isEqual(currentRange[1])) {
+                MASTER_TIME.add(oldDateRange);
+                throw new ParseException("You are already busy during that period!");
+            }
+        }
+        //Ensures user cannot create event in the past
+        if (newDateStart.isBefore(LocalDateTime.now()) || newDateEnd.isBefore(LocalDateTime.now())) {
+            MASTER_TIME.add(oldDateRange);
+            throw new ParseException("You cannot create a historical event!");
+        }
+
+        MASTER_TIME.add(newDateRange);
+
+        sortDate();
     }
 
     /**
