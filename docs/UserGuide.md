@@ -1,6 +1,6 @@
 ---
 layout: page
-title: TechTrack User Guide
+title: User Guide
 ---
 
 TechTrack is a powerful internship/job tracking application that combines the flexibility of a Command Line Interface (CLI) with the benefits of a Graphical User Interface (GUI).
@@ -68,20 +68,26 @@ Format: `add {Prefix}/{Parameter}…​`
 
 Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year `
 
+- Adding multiple similar parameters will take the details of latter command.
+
+   Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year n/Frontend Developer`
+   
+   In this case, the name 'Software Engineering' will be replaced by 'Frontend Developer'.
+
 **The prefixes and their respective parameters are as follows:**
 
 | Required | Prefix | Parameter            | Restrictions                                                      |
 |----------|--------|----------------------|-------------------------------------------------------------------|
-| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only.                          |
+| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only. Should not just contain a space.                           |
 | `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                               |
 | `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information. |
-| `Yes`    | coy    | COMPANY              | At least 1 character.                                             |
-| `No`     | t      | TAG                  | At least 1 character                                              |
+| `Yes`    | coy    | COMPANY              | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
+| `No`     | t      | TAG                  | Alphanumeric characters and spaces only. Should not just contain a space.                                              |
 | `No`     | w      | WEBSITE              | Must be in www.{Any character}.com                                |
-| `Yes`    | jd     | JOB DESCRIPTION      | At least 1 character.                                             |
+| `Yes`    | jd     | JOB DESCRIPTION      | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
 | `Yes`    | $      | SALARY               | Positive integers only.                                           |
 | `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.      |
-| `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 character                                              |
+| `Yes`    | x      | EXPERIENCE REQUIRED  | Alphanumeric characters and spaces only. Should not just contain a space.                                              |
 
 
 ### Editing a Role: `edit`
@@ -221,5 +227,17 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | help     | help                                                               | `help`                                                                                                                                                                                                    |
 | exit     | exit                                                               | `exit`                                                                                                                                                                                                    |
 
+**The prefixes and their respective parameters are as follows:**
 
-
+| Required | Prefix | Parameter            | Restrictions                                                      |
+|----------|--------|----------------------|-------------------------------------------------------------------|
+| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only. Should not just contain a space.                           |
+| `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                               |
+| `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information. |
+| `Yes`    | coy    | COMPANY              | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
+| `No`     | t      | TAG                  | Alphanumeric characters and spaces only. Should not just contain a space.                                              |
+| `No`     | w      | WEBSITE              | Must be in www.{Any character}.com                                |
+| `Yes`    | jd     | JOB DESCRIPTION      | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
+| `Yes`    | $      | SALARY               | Positive integers only.                                           |
+| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.      |
+| `Yes`    | x      | EXPERIENCE REQUIRED  | Alphanumeric characters and spaces only. Should not just contain a space.                                              |
