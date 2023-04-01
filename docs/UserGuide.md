@@ -438,7 +438,7 @@ appear in the Person List.
 
 #### **Module with Lessons**
 
-**Description:** The name of the module the person is taking, and a lesson associate with the module.<br>
+**Description:** The name of the module the person is taking, and a lesson associated with the module.<br>
 
 **Pattern:** `m/MODULE DAY START_TIME END_TIME`<br>
 
@@ -486,7 +486,7 @@ The `add` command creates a new contact for a friend named Weixiang whose inform
 * `add n/Wen Qing`: Adds a contact with the following details. Note the default values for each attribute:
     * Name: `Wen Qing`
     * Phone number: `00000000`
-    * Station: `NUS`
+    * Station: `Kent Ridge`
     * Email: `wenqing@gmail.com`
     * Telegram handle: `@wenqing00000`
     * Groups: Empty
