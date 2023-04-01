@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -305,14 +307,37 @@ public class ParserUtil {
     public static LocalDateTime parseEventDate(String date, int hours) throws ParseException {
         //date can be null or empty as it is optional
         String trimmedDate = date.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm")
+                .withResolverStyle(ResolverStyle.STRICT);
         if (!trimmedDate.matches(
                 "(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[012])/((19|20)\\d\\d)\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)")) {
             throw new ParseException("Invalid date format!");
         }
-        LocalDateTime newDateStart = LocalDateTime.parse(trimmedDate, formatter);
-        LocalDateTime newDateEnd = LocalDateTime.parse(trimmedDate, formatter).plusHours(hours);
-        LocalDateTime[] newRange = new LocalDateTime[]{newDateStart, newDateEnd};
+
+        try {
+            LocalDateTime newDateStart = LocalDateTime.parse(trimmedDate, formatter);
+            LocalDateTime newDateEnd = LocalDateTime.parse(trimmedDate, formatter).plusHours(hours);
+            LocalDateTime[] newRange = new LocalDateTime[]{newDateStart, newDateEnd};
+            eventDateException(newDateStart, newDateEnd, newRange);
+            MASTER_TIME.add(newRange);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Invalid date!");
+        }
+
+        sortDate();
+
+        return LocalDateTime.parse(trimmedDate, formatter);
+    }
+
+    /**
+     * Ensure a user cannot create a conflicting event when the TA is already busy during the new event's timeslot
+     * @param newDateStart LocalDateTime
+     * @param newDateEnd LocalDateTime
+     * @param newRange LocalDateTime[]
+     * @throws ParseException Already Busy Exception
+     */
+    public static void eventDateException(LocalDateTime newDateStart, LocalDateTime newDateEnd,
+                                               LocalDateTime[] newRange) throws ParseException {
         for (int i = 0; i < MASTER_TIME.size(); i++) {
             if (MASTER_TIME.size() == 0) {
                 break;
@@ -331,13 +356,16 @@ public class ParserUtil {
                 throw new ParseException("You are already busy during that period!");
             }
         }
-
         //Ensures user cannot create event in the past
         if (newDateStart.isBefore(LocalDateTime.now()) || newDateEnd.isBefore(LocalDateTime.now())) {
             throw new ParseException("You cannot create a historical event!");
         }
+    }
 
-        MASTER_TIME.add(newRange);
+    /**
+     * Sorts all the dates based on chronological order of start time
+     */
+    public static void sortDate() {
         Collections.sort(MASTER_TIME, (range1, range2) -> {
             if (range1[0].isBefore(range2[0])) {
                 return -1;
@@ -347,7 +375,6 @@ public class ParserUtil {
                 return 0;
             }
         });
-        return LocalDateTime.parse(trimmedDate, formatter);
     }
 
     /**
