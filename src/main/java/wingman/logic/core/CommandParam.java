@@ -219,7 +219,7 @@ public class CommandParam {
      */
     public String getNamedValuesOrThrow(String prefix, String message) throws ParseException {
         final Optional<String> value = getNamedValues(prefix);
-        if (value.isEmpty()) {
+        if (value.isEmpty() || value.get().isEmpty()) {
             throw new ParseException(message);
         }
         return value.get();
@@ -231,9 +231,10 @@ public class CommandParam {
      * @see #getNamedValuesOrThrow(String, String)
      */
     public String getNamedValuesOrThrow(String prefix) throws ParseException {
-        return getNamedValuesOrThrow(prefix, String.format(
-                "Missing value for prefix %s.\n"
-                        + "Please try entering a value following %s.",
+        return getNamedValuesOrThrow(prefix,
+                String.format(
+                    "Missing value for prefix %s.\n"
+                            + "Please try entering a value following %s.",
                 prefix,
                 prefix
         ));
