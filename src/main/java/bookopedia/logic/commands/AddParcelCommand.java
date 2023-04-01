@@ -1,5 +1,6 @@
 package bookopedia.logic.commands;
 
+import static bookopedia.commons.core.Messages.MESSAGE_EXISTING_PARCEL;
 import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static java.util.Objects.requireNonNull;
 
@@ -53,7 +54,14 @@ public class AddParcelCommand extends Command {
 
         final Set<Parcel> updatedParcels = new HashSet<>();
         updatedParcels.addAll(personToAddParcel.getParcels());
+
+        int initialSize = updatedParcels.size();
         updatedParcels.add(newParcel);
+
+        if (initialSize == updatedParcels.size()) {
+            throw new CommandException(String.format(MESSAGE_EXISTING_PARCEL, newParcel.toString()));
+        }
+
         Person updatedPerson = new Person(personToAddParcel.getName(), personToAddParcel.getPhone(),
                 personToAddParcel.getEmail(), personToAddParcel.getAddress(), updatedParcels,
                 personToAddParcel.getDeliveryStatus(), personToAddParcel.getNoOfDeliveryAttempts());
