@@ -52,7 +52,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(String.format("No search keywords entered"));
         }
 
-        String[] keywords = parseFindKeywords(trimmedArgs);
+        String[] keywords = parseFindKeywords(trimmedArgs, findCommandType);
 
         switch (findCommandType) {
         case MODULE:
@@ -77,7 +77,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindStudentCommand(new StudentParticularsContainsPredicate(keywords), currentSelection);
         case TASK:
             if (currentSelection.getCurrentPage() != PageType.TASK_PAGE) {
-                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
+                throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "task"));
             }
             return new FindTaskCommand(new TaskNameContainsPredicate(keywords), currentSelection);
         default:
@@ -92,12 +92,24 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @return String array of search keywords.
      * @throws ParseException If user input does not meet expected format.
      */
-    public String[] parseFindKeywords(String args) throws ParseException {
+    public String[] parseFindKeywords(String args, CommandTargetType findCommandType) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
 
         if (tokens.length < 2) {
-            System.out.println("token length " + tokens.length);
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCourseCommand.MESSAGE_USAGE));
+            switch (findCommandType) {
+            case MODULE:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCourseCommand.MESSAGE_USAGE));
+            case GROUP:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindGroupCommand.MESSAGE_USAGE));
+            case SESSION:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindSessionCommand.MESSAGE_USAGE));
+            case STUDENT:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindStudentCommand.MESSAGE_USAGE));
+            case TASK:
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
+            default:
+                throw new ParseException("Invalid type for find command");
+            }
         }
         String[] result = new String[tokens.length - 1];
         for (int i = 0; i < tokens.length - 1; i++) {
