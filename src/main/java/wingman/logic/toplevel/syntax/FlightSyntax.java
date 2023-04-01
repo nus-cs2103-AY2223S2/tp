@@ -12,7 +12,7 @@ import wingman.model.item.exceptions.DuplicateItemException;
 /**
  * The syntax for flight.
  */
-public abstract class FlightSyntax {
+public abstract class FlightSyntax extends ModelSyntax {
     /**
      * The prefix for code.
      */
@@ -32,6 +32,7 @@ public abstract class FlightSyntax {
      */
     public static Flight factory(CommandParam param) throws ParseException {
         final String code = param.getNamedValuesOrThrow(PREFIX_CODE);
+        requireAllAlphanumericOrSpace(code);
         return new Flight(code);
     }
 

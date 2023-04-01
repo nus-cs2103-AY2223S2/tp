@@ -12,7 +12,7 @@ import wingman.model.plane.Plane;
 /**
  * The syntax for a plane.
  */
-public abstract class PlaneSyntax {
+public abstract class PlaneSyntax extends ModelSyntax {
     /**
      * The prefix for model.
      */
@@ -41,6 +41,10 @@ public abstract class PlaneSyntax {
     public static Plane factory(CommandParam param) throws ParseException {
         String model = param.getNamedValuesOrThrow(PREFIX_MODEL);
         int age = param.getNamedIntOrThrow(PREFIX_AGE);
+
+        requireAllAlphanumericOrSpace(model);
+        requireAllNonNegative(age);
+
         return new Plane(model, age);
     }
 

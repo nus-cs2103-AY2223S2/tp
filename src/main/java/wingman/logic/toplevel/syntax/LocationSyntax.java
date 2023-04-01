@@ -12,7 +12,7 @@ import wingman.model.location.Location;
 /**
  * The syntax for location.
  */
-public abstract class LocationSyntax {
+public abstract class LocationSyntax extends ModelSyntax {
     /**
      * The prefix for name.
      */
@@ -33,6 +33,7 @@ public abstract class LocationSyntax {
      */
     public static Location factory(CommandParam param) throws ParseException {
         final String name = param.getNamedValuesOrThrow(PREFIX_NAME);
+        requireAllAlphanumericOrSpace(name);
         return new Location(name);
     }
 

@@ -16,7 +16,7 @@ import wingman.model.pilot.exceptions.InvalidGenderException;
 /**
  * The syntax related to a pilot.
  */
-public abstract class PilotSyntax {
+public abstract class PilotSyntax extends ModelSyntax {
     /**
      * The type name.
      */
@@ -128,6 +128,9 @@ public abstract class PilotSyntax {
         final int genderId = param.getNamedIntOrThrow(PREFIX_GENDER);
         final Gender gender = parseGenderFromNumber(genderId);
         final int flightHour = param.getNamedIntOrThrow(PREFIX_FLIGHT_HOUR);
+
+        requireAllNonNegative(age, flightHour);
+        requireAllAlphanumericOrSpace(name);
 
         return new Pilot(name, age, gender, rank, flightHour);
     }

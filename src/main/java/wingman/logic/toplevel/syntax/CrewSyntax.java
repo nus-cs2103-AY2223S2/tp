@@ -14,7 +14,7 @@ import wingman.model.item.exceptions.DuplicateItemException;
 /**
  * The class that stores the syntax for a crew.
  */
-public abstract class CrewSyntax {
+public abstract class CrewSyntax extends ModelSyntax {
     /**
      * The prefix for name.
      */
@@ -49,6 +49,8 @@ public abstract class CrewSyntax {
      */
     public static Crew factory(CommandParam param) throws ParseException {
         final String name = param.getNamedValuesOrThrow(PREFIX_NAME);
+        requireAllAlphanumericOrSpace(name);
+
         final int rankId = param.getNamedIntOrThrow(PREFIX_RANK);
 
         if (!(Stream.of(0, 1, 2, 3)
