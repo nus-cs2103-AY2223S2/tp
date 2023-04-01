@@ -700,3 +700,4 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
 6. Enhancing the `select` command to accept parameters beyond just the index of the contact.
    1. User cannot see the indices of contacts further down the list, and needs to scroll.
    2. The `select` command can integrate `find` functionality.
+7. The description field of events can be split into title and description fields, so as not to clutter the UI with long descriptions.
