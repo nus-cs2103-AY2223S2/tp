@@ -34,10 +34,7 @@ This guide quickly gets you started to use FriendlyLink, describing our features
 
 We suggest reading this guide in sequential order (or at least the whole of this section) to familiarise yourself with the keywords used in this guide in the glossary and differently styled text which have special meanings.
 
-### How to Use FriendlyLink
-
-#### Information Boxes
-
+#### Information Box
 You may see the following icons throughout our user guide, which are styled differently according to their purpose.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
@@ -54,7 +51,9 @@ This provides some quick and convenient hacks that you can use to optimize your 
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
 Danger zone! Do pay attention to the information here carefully.
-</div>
+</div
+
+### How to Use FriendlyLink
 
 #### FriendlyLink
 FriendlyLink is a command line based tool. This means that it is mainly designed to receive your text commands, and show you the output after each command is carried out.
