@@ -112,7 +112,7 @@ public class ParserUtil {
             IngredientBuilder ingredientBuilder = new IngredientBuilder(trimmedIngredient);
             return ingredientBuilder.build();
         } catch (IllegalArgumentException e) {
-            throw new ParseException(IngredientBuilder.MESSAGE_CONSTRAINTS);
+            throw new ParseException(e.getMessage());
         }
     }
 
