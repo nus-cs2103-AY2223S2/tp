@@ -321,10 +321,7 @@ Displays a pop-up window with a simple summary of all the commands and their for
 
 Format: `help`
 
-You should see the following help window pop up:
-![HelpWindow](images/HelpWindow.png)
-
-At the bottom is a button you can click to access the URL to this guide.
+The help window that pops up will also have a button you can click to access the URL to this guide.
 
 #### 4.4.2 Undoing a command : `undo`
 
