@@ -26,14 +26,14 @@ Its CLI interface is optimized for speed, efficiency, and ease of use, making it
       2. [Clear all roles `clear`](#clear-clear)
       3. [Help (Display command format) `help`](#help-help)
       4. [Exit TechTrack `exit`](#exit-exit)
-   4. [Editing raw data]
+   4. [Editing raw data](#editing-raw-data)
 5. [FAQ](#faq)
 6. [Command Summary](#command-summary)
 
 # Quick Start
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest [TechTrack.jar](https://github.com/AY2223S2-CS2103-W16-2/tp/releases) from here.
-3. Copy the file to the folder you want to use as the home folder for your AddressBook.
+3. Copy the file to the folder you want to use as the home folder for TechTrack.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TechTrack.jar` command to run the application.
 5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
