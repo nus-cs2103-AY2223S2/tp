@@ -124,8 +124,7 @@ public class Plane implements Item {
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s", model),
-                String.format("%s: %s", AGE_STRING, age),
-                String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
+                String.format("%s: %s", AGE_STRING, age)
         );
     }
 

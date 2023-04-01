@@ -122,8 +122,7 @@ public class Crew implements Item {
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s", name),
-                String.format("%s: %s", RANK_STRING, rank),
-                String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
+                String.format("%s: %s", RANK_STRING, rank)
         );
     }
 

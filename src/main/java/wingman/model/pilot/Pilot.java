@@ -191,8 +191,7 @@ public class Pilot implements Item {
                 String.format("%s: %s", RANK_STRING, rank),
                 String.format("%s: %s", AGE_STRING, age),
                 String.format("%s: %s", GENDER_STRING, gender),
-                String.format("%s: %s", FLIGHT_HR_STRING, flightHour),
-                String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
+                String.format("%s: %s", FLIGHT_HR_STRING, flightHour)
         );
     }
 
