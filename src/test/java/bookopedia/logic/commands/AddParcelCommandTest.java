@@ -1,6 +1,7 @@
 package bookopedia.logic.commands;
 
 import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
+import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_SHOPEE;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -61,6 +62,14 @@ public class AddParcelCommandTest {
         AddParcelCommand addParcelCommand = new AddParcelCommand(outOfBoundIndex, newParcel);
 
         assertCommandFailure(addParcelCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_sameParcel_throwsCommandException() {
+        Parcel existingParcel = new Parcel(VALID_PARCEL_SHOPEE);
+        AddParcelCommand addParcelCommand = new AddParcelCommand(INDEX_FIRST_PERSON, existingParcel);
+
+        assertCommandFailure(addParcelCommand, model, String.format(Messages.MESSAGE_EXISTING_PARCEL, existingParcel));
     }
 
 }
