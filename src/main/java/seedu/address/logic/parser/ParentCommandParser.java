@@ -25,10 +25,15 @@ import seedu.address.logic.commands.parent.ParentCommand;
 import seedu.address.logic.commands.parent.ParentDeleteCommand;
 import seedu.address.logic.commands.parent.ParentEditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthdate;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Image;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * ParentCommandParser that parses commands starting with "parent"

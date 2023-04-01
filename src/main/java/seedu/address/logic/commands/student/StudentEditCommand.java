@@ -27,9 +27,14 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.*;
-import seedu.address.model.person.Birthdate;
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Class;
+import seedu.address.model.person.Comment;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Image;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
 import seedu.address.model.person.student.Attendance;
@@ -39,6 +44,7 @@ import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.Test;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Birthdate;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -115,8 +121,8 @@ public class StudentEditCommand extends StudentCommand {
      */
     public StudentEditCommand(Name newName, IndexNumber indexNumber, IndexNumber newIndexNumber,
                               Class studentClass, Class newStudentClass, Sex newSex, Phone newParentPhoneNumber,
-                              Name newParentName, Relationship newRelationship, Birthdate newBirthdate, Image newImage, Cca newCca,
-                              Comment newComment, Phone newStudentPhoneNumber, Email newEmail,
+                              Name newParentName, Relationship newRelationship, Birthdate newBirthdate, Image newImage,
+                              Cca newCca, Comment newComment, Phone newStudentPhoneNumber, Email newEmail,
                               Address newAddress, Set<Tag> newTagList) {
         requireNonNull(indexNumber);
         requireNonNull(studentClass);
@@ -205,9 +211,9 @@ public class StudentEditCommand extends StudentCommand {
                 this.newAttendance = student.getAttendance();
 
                 Student newStudent = new Student(newName, this.newStudentClass, this.newIndexNumber, this.newSex,
-                        this.newParentName, this.newParentPhoneNumber, this.newRelationship, this.newBirthdate, this.newImage,
-                        this.newEmail, this.newStudentPhoneNumber, this.newCca, this.newAddress, this.newAttendance,
-                        newHomework, this.newTest, this.newTagList, this.newComment);
+                        this.newParentName, this.newParentPhoneNumber, this.newRelationship, this.newBirthdate,
+                        this.newImage, this.newEmail, this.newStudentPhoneNumber, this.newCca, this.newAddress,
+                        this.newAttendance, newHomework, this.newTest, this.newTagList, this.newComment);
 
                 ObservableList<Parent> parents = model.getFilteredParentList();
                 model.setStudent(student, setParent(parents, newStudent, model, student));
@@ -235,8 +241,8 @@ public class StudentEditCommand extends StudentCommand {
                 for (Parent p : parents) {
                     if ((p.getPhone().equals(oldStudent.getParentNumber())) && (p.getName().equals(
                             oldStudent.getParentName()))) {
-                        Parent newParent = new Parent(student.getParentName(), p.getBirthdate(), p.getImage(), p.getEmail(),
-                                p.getPhone(), p.getAddress(), p.getTags());
+                        Parent newParent = new Parent(student.getParentName(), p.getBirthdate(), p.getImage(),
+                                p.getEmail(), p.getPhone(), p.getAddress(), p.getTags());
                         newParent = editParent(p, newParent, model);
                         model.setParent(p, newParent);
                         student.setParent(newParent);

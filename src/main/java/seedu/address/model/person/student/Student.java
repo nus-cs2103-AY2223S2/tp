@@ -4,12 +4,21 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.person.*;
+
+import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Class;
+import seedu.address.model.person.Comment;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Image;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Sex;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Represents a Student object extends from Person class.
@@ -55,8 +64,9 @@ public class Student extends Person {
      * @param tags Tag given to student.
      */
     public Student(Name name, Class sc, IndexNumber indexNumber, Sex sex, Name parentName, Phone parentPhone,
-                   Relationship rls, Birthdate birthdate, Image image, Email email, Phone phone, Cca cca, Address address,
-                   Set<Attendance> attendance, Set<Homework> homework, Set<Test> test, Set<Tag> tags, Comment comment) {
+                   Relationship rls, Birthdate birthdate, Image image, Email email, Phone phone, Cca cca,
+                   Address address, Set<Attendance> attendance, Set<Homework> homework, Set<Test> test, Set<Tag> tags,
+                   Comment comment) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
