@@ -15,7 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWPHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTBIRTHDATE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
@@ -28,7 +28,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
@@ -62,7 +62,7 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_NEWINDEXNUMBER + "NEW INDEX NUMBER "
             + PREFIX_NEWCLASS + "NEW STUDENT CLASS "
             + PREFIX_SEX + "SEX "
-            + PREFIX_STUDENTAGE + "AGE "
+            + PREFIX_STUDENTBIRTHDATE + "BIRTHDATE "
             + PREFIX_IMAGESTUDENT + "IMAGE STUDENT "
             + PREFIX_CCA + "CCA "
             //+ PREFIX_ATTENDANCE + "ATTENDANCE"
@@ -80,7 +80,7 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_NEWINDEXNUMBER + "03 "
             + PREFIX_NEWCLASS + "1B "
             + PREFIX_SEX + "M"
-            + PREFIX_STUDENTAGE + "10 "
+            + PREFIX_STUDENTBIRTHDATE + "12/31/2000 "
             + PREFIX_IMAGESTUDENT + "XX.png (where XX is your image name) "
             + PREFIX_CCA + "AIKIDO "
             //+ PREFIX_ATTENDANCE + "T "
@@ -98,7 +98,7 @@ public class StudentEditCommand extends StudentCommand {
     private IndexNumber newIndexNumber;
     private Class studentClass;
     private Class newStudentClass;
-    private Age newAge;
+    private Birthdate newBirthdate;
     private Image newImage;
     private Cca newCca;
     private Set<Attendance> newAttendance;
@@ -121,8 +121,8 @@ public class StudentEditCommand extends StudentCommand {
      */
     public StudentEditCommand(Name newName, IndexNumber indexNumber, IndexNumber newIndexNumber,
                               Class studentClass, Class newStudentClass, Sex newSex, Phone newParentPhoneNumber,
-                              Name newParentName, Relationship newRelationship, Age newAge, Image newImage, Cca newCca,
-                              Comment newComment, Phone newStudentPhoneNumber, Email newEmail,
+                              Name newParentName, Relationship newRelationship, Birthdate newBirthdate, Image newImage,
+                              Cca newCca, Comment newComment, Phone newStudentPhoneNumber, Email newEmail,
                               Address newAddress, Set<Tag> newTagList) {
         requireNonNull(indexNumber);
         requireNonNull(studentClass);
@@ -133,7 +133,7 @@ public class StudentEditCommand extends StudentCommand {
         this.indexNumber = indexNumber;
         this.studentClass = studentClass;
         this.newParentPhoneNumber = newParentPhoneNumber;
-        this.newAge = newAge;
+        this.newBirthdate = newBirthdate;
         this.newImage = newImage;
         this.newCca = newCca;
         this.newComment = newComment;
@@ -174,8 +174,8 @@ public class StudentEditCommand extends StudentCommand {
                 if (Phone.isDefaultPhone(newStudentPhoneNumber.value)) {
                     this.newStudentPhoneNumber = student.getPhone();
                 }
-                if (Age.isDefaultAge(newAge.value)) {
-                    this.newAge = student.getAge();
+                if (Birthdate.isDefaultBirthdate(newBirthdate.value)) {
+                    this.newBirthdate = student.getBirthdate();
                 }
                 if (Image.isDefaultImage(newImage.value)) {
                     this.newImage = student.getImage();
@@ -211,9 +211,9 @@ public class StudentEditCommand extends StudentCommand {
                 this.newAttendance = student.getAttendance();
 
                 Student newStudent = new Student(newName, this.newStudentClass, this.newIndexNumber, this.newSex,
-                        this.newParentName, this.newParentPhoneNumber, this.newRelationship, this.newAge, this.newImage,
-                        this.newEmail, this.newStudentPhoneNumber, this.newCca, this.newAddress, this.newAttendance,
-                        newHomework, this.newTest, this.newTagList, this.newComment);
+                        this.newParentName, this.newParentPhoneNumber, this.newRelationship, this.newBirthdate,
+                        this.newImage, this.newEmail, this.newStudentPhoneNumber, this.newCca, this.newAddress,
+                        this.newAttendance, newHomework, this.newTest, this.newTagList, this.newComment);
 
                 ObservableList<Parent> parents = model.getFilteredParentList();
                 model.setStudent(student, setParent(parents, newStudent, model, student));
@@ -241,8 +241,8 @@ public class StudentEditCommand extends StudentCommand {
                 for (Parent p : parents) {
                     if ((p.getPhone().equals(oldStudent.getParentNumber())) && (p.getName().equals(
                             oldStudent.getParentName()))) {
-                        Parent newParent = new Parent(student.getParentName(), p.getAge(), p.getImage(), p.getEmail(),
-                                p.getPhone(), p.getAddress(), p.getTags());
+                        Parent newParent = new Parent(student.getParentName(), p.getBirthdate(), p.getImage(),
+                                p.getEmail(), p.getPhone(), p.getAddress(), p.getTags());
                         newParent = editParent(p, newParent, model);
                         model.setParent(p, newParent);
                         student.setParent(newParent);
@@ -283,7 +283,7 @@ public class StudentEditCommand extends StudentCommand {
                             return student;
                         }
                     }
-                    Parent newParent = new Parent(student.getParentName(), new Age("Insert parent age here!"),
+                    Parent newParent = new Parent(student.getParentName(), new Birthdate("Insert parent age here!"),
                             new Image("Insert parent image here!"), new Email("Insert parent email here!"),
                             student.getParentNumber(), new Address("Insert Address here!"), p.getTags());
                     // Created new parent since it does not exist in existing parents

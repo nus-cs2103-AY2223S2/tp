@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWPHONEPARENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTBIRTHDATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -26,13 +26,14 @@ import seedu.address.logic.commands.parent.ParentDeleteCommand;
 import seedu.address.logic.commands.parent.ParentEditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * ParentCommandParser that parses commands starting with "parent"
@@ -58,15 +59,15 @@ public class ParentCommandParser {
                 ArgumentTokenizer.tokenize(args, PREFIX_FIND);
         ArgumentMultimap argMultimapAdd =
                 ArgumentTokenizer.tokenize(args, PREFIX_ADD, PREFIX_ADDRESS,
-                        PREFIX_NAME, PREFIX_PARENTAGE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
+                        PREFIX_NAME, PREFIX_PARENTBIRTHDATE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
                         PREFIX_EMAIL);
 
         ArgumentMultimap argMultimapDelete =
                 ArgumentTokenizer.tokenize(args, PREFIX_DELETE, PREFIX_ADDRESS,
-                        PREFIX_NAME, PREFIX_PARENTAGE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
+                        PREFIX_NAME, PREFIX_PARENTBIRTHDATE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
                         PREFIX_EMAIL);
         ArgumentMultimap argMultimapEdit =
-                ArgumentTokenizer.tokenize(args, PREFIX_EDIT, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_PARENTAGE,
+                ArgumentTokenizer.tokenize(args, PREFIX_EDIT, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_PARENTBIRTHDATE,
                         PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT, PREFIX_EMAIL, PREFIX_NEWNAME, PREFIX_NEWPHONEPARENT);
 
         if (argMultimapAdd.getValue(PREFIX_ADD).isPresent()) {
@@ -97,14 +98,14 @@ public class ParentCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParentAddCommand.MESSAGE_USAGE));
         }
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_PARENTAGE).get()));
+        Birthdate birthdate = ParserUtil.parseBirthdate((argMultimap.getValue(PREFIX_PARENTBIRTHDATE).get()));
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Parent parent = new Parent(name, age, image, email, phone, address, tagList);
+        Parent parent = new Parent(name, birthdate, image, email, phone, address, tagList);
         return new ParentAddCommand(parent);
     }
 
@@ -142,12 +143,12 @@ public class ParentCommandParser {
         Phone newPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_NEWPHONEPARENT).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Name newName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NEWNAME).get());
-        Age newAge = ParserUtil.parseAge(argMultimap.getValue(PREFIX_PARENTAGE).get());
+        Birthdate newBirthdate = ParserUtil.parseBirthdate(argMultimap.getValue(PREFIX_PARENTBIRTHDATE).get());
         Address newAddress = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Image newImage = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGEPARENT).get());
         Email newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Set<Tag> newTagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        return new ParentEditCommand(name, newName, newAge, newImage, newEmail, phoneNumber, newPhoneNumber,
+        return new ParentEditCommand(name, newName, newBirthdate, newImage, newEmail, phoneNumber, newPhoneNumber,
                 newAddress, newTagList);
     }
 

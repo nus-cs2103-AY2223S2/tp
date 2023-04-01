@@ -61,7 +61,7 @@ public class StudentCard extends UiPart<Region> {
     @FXML
     private Label rls;
     @FXML
-    private Label age;
+    private Label birthdate;
     // @FXML
     // private Label image;
     @FXML
@@ -103,7 +103,7 @@ public class StudentCard extends UiPart<Region> {
         parentName.setText(student.getParentName().fullName);
         parentPhoneNumber.setText(student.getParentNumber().value);
         rls.setText(student.getRls().toString());
-        age.setText(student.getAge().value);
+        birthdate.setText(student.getBirthdate().value);
         //image.setText(student.getImage().value);
         cca.setText(student.getCca().value);
         comment.setText(student.getComment().value);

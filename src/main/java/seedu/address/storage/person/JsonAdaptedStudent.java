@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Age;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
@@ -27,8 +27,6 @@ import seedu.address.model.person.student.Test;
 import seedu.address.storage.academics.JsonAdaptedAttendance;
 import seedu.address.storage.academics.JsonAdaptedHomework;
 import seedu.address.storage.academics.JsonAdaptedTest;
-
-
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -96,7 +94,7 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
         super(student);
         this.indexNumber = student.getIndexNumber().value;
         this.sex = student.getSex().value;
-        this.age = student.getAge().value;
+        this.age = student.getBirthdate().value;
         this.image = student.getImage().value;
         this.cca = student.getCca().value;
         this.sc = student.getSc().getClassName();
@@ -143,10 +141,10 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
         if (age == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Index Number"));
         }
-        if (!Age.isValidAge(age)) {
-            throw new IllegalValueException(Age.MESSAGE_CONSTRAINTS);
+        if (!Birthdate.isValidBirthdate(age)) {
+            throw new IllegalValueException(Birthdate.MESSAGE_CONSTRAINTS);
         }
-        final Age modelAge = new Age(age);
+        final Birthdate modelBirthdate = new Birthdate(age);
 
         if (image == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Image"));
@@ -214,7 +212,7 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
         final Set<Attendance> modelAttendance = new HashSet<>(studentAttendance);
 
         return new Student(person.getName(), Class.of(sc), modelIndexNumber, modelSex, modelParentName,
-                modelParentNumber, modelRls, modelAge, modelImage, person.getEmail(), person.getPhone(), modelCca,
+                modelParentNumber, modelRls, modelBirthdate, modelImage, person.getEmail(), person.getPhone(), modelCca,
                 person.getAddress(), modelAttendance, modelHomework, modelTest, person.getTags(), person.getComment());
     }
 

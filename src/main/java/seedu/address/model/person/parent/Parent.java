@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Age;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
@@ -14,13 +14,14 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 
+
 /**
  * A Parent Class that creates a Parent / Next-of-kin who is also a Person
  */
 public class Parent extends Person {
     public static final String MESSAGE_NUMBER_CONSTRAINTS = "Parent's phone should be a numeric value";
     public static final String VALIDATION_NUMBER_REGEX = "\\d+";
-    private final Age age;
+    private final Birthdate birthdate;
     private final Image image;
     private final List<Student> children = new ArrayList<>();
 
@@ -28,17 +29,17 @@ public class Parent extends Person {
      * A constructor that creates a Parent Object with particulars about the Parent.
      *
      * @param name Parent's / NOK's name.
-     * @param age Parent's / NOK's age.
+     * @param birthdate Parent's / NOK's age.
      * @param image Image of Parent / NOK.
      * @param email Email Address of Parent / NOK.
      * @param phone Phone number of Parent / NOK.
      * @param address Residential Address of Parent / NOK.
      * @param tags Tags given to Parent.
      */
-    public Parent(Name name, Age age, Image image,
+    public Parent(Name name, Birthdate birthdate, Image image,
                   Email email, Phone phone, Address address, Set<Tag> tags) {
         super(name, phone, email, address, tags);
-        this.age = age;
+        this.birthdate = birthdate;
         this.image = image;
     }
 
@@ -65,8 +66,8 @@ public class Parent extends Person {
      *
      * @return Age of Parent / NOK.
      */
-    public Age getAge() {
-        return age;
+    public Birthdate getBirthdate() {
+        return birthdate;
     }
 
     /**
@@ -136,7 +137,7 @@ public class Parent extends Person {
 
         Parent otherParent = (Parent) other;
         return otherParent.getName().equals(getName())
-                && otherParent.getAge().equals(getAge())
+                && otherParent.getBirthdate().equals(getBirthdate())
                 && otherParent.getImage().equals(getImage())
                 && otherParent.getPhone().equals(getPhone())
                 && otherParent.getEmail().equals(getEmail())
@@ -150,8 +151,8 @@ public class Parent extends Person {
         final StringBuilder builder = new StringBuilder();
 
         builder.append(getName())
-                .append("; Parent Age: ")
-                .append(getAge())
+                .append("; Parent Birthdate: ")
+                .append(getBirthdate())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Image Path: ")
