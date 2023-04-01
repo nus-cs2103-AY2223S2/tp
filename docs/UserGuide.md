@@ -274,7 +274,7 @@ Edit an existing isolated event from person's isolated event list in the address
 Format: `ie_edit INDEX_OF_PERSON INDEX_OF_EVENT [ie/NAME] [f/START_DATE] [t/END_DATE]`
 
 * Edit a weekly recurring event with the specified `INDEX_OF_EVENT` that belong to a person with a specified `INDEX_OF_PERSON`
-* At least one attribute of isolated event must be included. The attributes are `[ie/NAME]`, `[f/START_DATE]` and `[t/END_DATE]`
+* At least one attribute from isolated event must be included. The attributes are `[ie/NAME]`, `[f/START_DATE]` and `[t/END_DATE]`
 * Any attributes being edited on must be valid
 * `NAME` must only be in alphabetic or numeric terms
 * `START_DATE` and `END_DATE` must be in the format of `dd/MM/yyyy HH:mm`
@@ -289,7 +289,7 @@ Edit an existing recurring event from person's recurring event list in the addre
 Format: `re_edit INDEX_OF_PERSON INDEX_OF_EVENT [re/NAME] [d/DAY_OF_WEEK] [f/START_TIME] [t/END_TIME]`
 
 * Edit a weekly recurring event with the specified `INDEX_OF_EVENT` that belong to a person with a specified `INDEX_OF_PERSON`
-* At least one attribute of isolated event must be included. The attributes are `[re/NAME]`, `[d/DAY_OF_WEEK]`, `[f/START_TIME]` and `[t/END_TIME]`
+* At least one attribute from recurring event must be included. The attributes are `[re/NAME]`, `[d/DAY_OF_WEEK]`, `[f/START_TIME]` and `[t/END_TIME]`
 * Any attributes being edited on must be valid
 * `NAME` must only be in alphabetic or numeric terms
 * `DAY_OF_WEEK` must be either `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday or Sunday`
