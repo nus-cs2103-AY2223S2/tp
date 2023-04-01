@@ -216,6 +216,9 @@ public class CommandParam {
 
     /**
      * Gets the value of the named token with the given prefix or throws an exception.
+     *
+     * @throws ParseException if there is no value following a prefix,
+     *                          the input is an empty string.
      */
     public String getNamedValuesOrThrow(String prefix, String message) throws ParseException {
         final Optional<String> value = getNamedValues(prefix);
