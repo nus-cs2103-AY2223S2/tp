@@ -217,6 +217,8 @@ be ignored.<br>e.g. `help 123` will be interpreted as `help`.
 
 Adds a person to the address book.
 
+- The name of a person is case-sensitive, thus `John Doe` and `john doe` are considered different persons.
+
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
