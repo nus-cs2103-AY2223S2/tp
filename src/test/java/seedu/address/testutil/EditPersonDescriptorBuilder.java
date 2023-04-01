@@ -9,8 +9,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Industry;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
@@ -42,7 +42,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setCompany(person.getCompany());
-        descriptor.setIndustry(person.getIndustry());
+        descriptor.setLocation(person.getLocation());
         descriptor.setOccupation(person.getOccupation());
         descriptor.setJobTitle(person.getJobTitle());
         descriptor.setAddress(person.getAddress());
@@ -90,10 +90,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Industry} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Location} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withIndustry(String industry) {
-        descriptor.setIndustry(new Industry(industry));
+    public EditPersonDescriptorBuilder withLocation(String location) {
+        descriptor.setLocation(new Location(location));
         return this;
     }
 

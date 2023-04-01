@@ -68,6 +68,7 @@
              </children>
          </GridPane>
      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+     <Label fx:id="task" styleClass="cell_small_label" text="\$task" />
  </VBox>
     <VBox minHeight="40.0" HBox.hgrow="ALWAYS">
         <GridPane prefWidth="214.0">
@@ -82,11 +83,11 @@
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
         </rowConstraints>
             <children>
-                <Label alignment="TOP_LEFT" styleClass="cell_small_label" text="Industry" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.valignment="TOP" />
+                <Label alignment="TOP_LEFT" styleClass="cell_small_label" text="Location" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.valignment="TOP" />
                 <Label alignment="TOP_LEFT" styleClass="cell_small_label" text="Company" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                 <Label alignment="TOP_LEFT" styleClass="cell_small_label" text="Occupation" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.valignment="TOP" />
                 <Label alignment="TOP_LEFT" styleClass="cell_small_label" text="Job Title" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-                <Label fx:id="industry" alignment="TOP_LEFT" styleClass="cell_small_label" text="\$industry" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="TOP" />
+                <Label fx:id="locationn" alignment="TOP_LEFT" styleClass="cell_small_label" text="\$locationn" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="TOP" />
                 <Label fx:id="company" alignment="TOP_LEFT" styleClass="cell_small_label" text="\$company" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                 <Label fx:id="occupation" alignment="TOP_LEFT" styleClass="cell_small_label" text="\$occupation" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP" />
                 <Label fx:id="jobTitle" alignment="TOP_LEFT" styleClass="cell_small_label" text="\$jobTitle" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP" />

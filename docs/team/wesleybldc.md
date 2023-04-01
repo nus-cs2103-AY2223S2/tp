@@ -18,22 +18,24 @@ for fast typists.
 
 * **Code contributed**: [RepoSense link]()
 
-Setup the CS2103 team organisation and codecov setup
+Setup the CS2103 Team Repo, Organisation and Codecov setup
 Adding description for Saving the data file and Editing the data file
+
 Implemented the findtag feature
 Implemented the unit tests for findtag
 UG for findtag feature
 
 Wrote the findlead feature
 Wrote the findall feature
+Wrote the findtxn feature
 
-Contributions to the DG
-  In terms of what
+Contributions to the DG based on each feature that I wrote.
 
 * **Project management**:
 
-Setup the codecov and github repo organisation
-Approve and comment on teammate PRs
+Setup the CS2103 Team Repo, Organisation and Codecov setup
+
+Review, comment and approve teammate PRs
 
 * **Enhancements to existing features**:
   * example

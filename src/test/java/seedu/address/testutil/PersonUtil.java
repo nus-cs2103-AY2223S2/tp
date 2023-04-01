@@ -4,8 +4,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDUSTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_JOBTITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OCCUPATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -40,7 +40,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_COMPANY + person.getCompany().value + " ");
-        sb.append(PREFIX_INDUSTRY + person.getIndustry().value + " ");
+        sb.append(PREFIX_LOCATION + person.getLocation().value + " ");
         sb.append(PREFIX_OCCUPATION + person.getOccupation().value + " ");
         sb.append(PREFIX_JOBTITLE + person.getJobTitle().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
@@ -60,7 +60,7 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getCompany().ifPresent(company -> sb.append(PREFIX_COMPANY).append(company.value).append(" "));
-        descriptor.getIndustry().ifPresent(industry -> sb.append(PREFIX_INDUSTRY).append(industry.value).append(" "));
+        descriptor.getLocation().ifPresent(location -> sb.append(PREFIX_LOCATION).append(location.value).append(" "));
         descriptor.getOccupation().ifPresent(occupation -> sb.append(PREFIX_OCCUPATION)
                 .append(occupation.value).append(" "));
         descriptor.getJobTitle().ifPresent(jobTitle -> sb.append(PREFIX_JOBTITLE).append(jobTitle.value).append(" "));

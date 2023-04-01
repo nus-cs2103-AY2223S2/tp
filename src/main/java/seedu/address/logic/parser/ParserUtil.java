@@ -14,8 +14,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Industry;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Phone;
@@ -188,16 +188,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String industry} into a {@code Industry}.
+     * Parses a {@code String location} into a {@code Location}.
      *
-     * @throws ParseException if the given {@code industry} is invalid.
+     * @throws ParseException if the given {@code location} is invalid.
      */
-    public static Industry parseIndustry(String industry) throws ParseException {
-        requireNonNull(industry);
-        if (!Industry.isValidIndustry(industry)) {
-            throw new ParseException(Industry.MESSAGE_CONSTRAINTS);
+    public static Location parseLocation(String location) throws ParseException {
+        requireNonNull(location);
+        if (!Location.isValidLocation(location)) {
+            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
         }
-        return new Industry(industry);
+        return new Location(location);
     }
 
     /**

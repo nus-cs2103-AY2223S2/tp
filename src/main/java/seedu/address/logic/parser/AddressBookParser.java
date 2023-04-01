@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearTaskCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -17,6 +18,7 @@ import seedu.address.logic.commands.FindAllCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindLeadStatusCommand;
 import seedu.address.logic.commands.FindTagCommand;
+import seedu.address.logic.commands.FindTxnByPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
@@ -77,8 +79,11 @@ public class AddressBookParser {
 
         case FindLeadStatusCommand.COMMAND_WORD:
             return new FindLeadStatusCommandParser().parse(arguments);
+
         case FindAllCommand.COMMAND_WORD:
             return new FindAllCommandParser().parse(arguments);
+        case FindTxnByPersonCommand.COMMAND_WORD:
+            return new FindTxnByPersonCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -94,6 +99,9 @@ public class AddressBookParser {
 
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
+
+        case ClearTaskCommand.COMMAND_WORD:
+            return new ClearTaskCommandParser().parse(arguments);
 
         case StatusCommand.COMMAND_WORD:
             return new StatusCommandParser().parse(arguments);

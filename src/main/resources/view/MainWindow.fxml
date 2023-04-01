@@ -10,7 +10,7 @@
 
 <fx:root minHeight="600.0" minWidth="800.0" onCloseRequest="#handleExit" title="SalesPUNCH" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/salespunch.png" />
   </icons>
   <scene>
     <Scene>

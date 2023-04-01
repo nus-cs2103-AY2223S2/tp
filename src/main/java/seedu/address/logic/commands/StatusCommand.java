@@ -15,14 +15,14 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
-import seedu.address.model.person.Industry;
 import seedu.address.model.person.JobTitle;
+import seedu.address.model.person.Location;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
-import seedu.address.model.person.Task;
+import seedu.address.model.person.TaskList;
 import seedu.address.model.person.status.LeadStatus;
 import seedu.address.model.tag.Tag;
 
@@ -96,15 +96,15 @@ public class StatusCommand extends Command {
         Email email = toBeUpdated.getEmail();
         Address address = toBeUpdated.getAddress();
         Company company = toBeUpdated.getCompany();
-        Industry industry = toBeUpdated.getIndustry();
+        Location location = toBeUpdated.getLocation();
         Occupation occupation = toBeUpdated.getOccupation();
         JobTitle jobTitle = toBeUpdated.getJobTitle();
         Remark remark = toBeUpdated.getRemark();
         Set<Tag> tags = toBeUpdated.getTags();
-        Task task = toBeUpdated.getTask();
+        TaskList tasks = toBeUpdated.getTasks();
 
-        return new Person(name, gender, phone, email, company, industry, occupation, jobTitle, address,
-                remark, tags, task, status);
+        return new Person(name, gender, phone, email, company, location, occupation, jobTitle, address,
+                remark, tags, tasks, status);
     }
 
     @Override

@@ -37,25 +37,9 @@ public class AddTaskCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withTask(TASK_STUB).build();
 
-        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(editedPerson.getTask().value));
+        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(TASK_STUB));
 
         String expectedMessage = String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(firstPerson, editedPerson);
-
-        assertCommandSuccess(addTaskCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_deleteTaskUnfilteredList_success() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withTask("").build();
-
-        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON,
-                new Task(editedPerson.getTask().toString()));
-
-        String expectedMessage = String.format(AddTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
@@ -71,7 +55,7 @@ public class AddTaskCommandTest {
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withTask(TASK_STUB).build();
 
-        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(editedPerson.getTask().value));
+        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(TASK_STUB));
 
         String expectedMessage = String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, editedPerson);
 
