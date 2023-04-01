@@ -223,7 +223,6 @@ public class CommandRecommendationEngine {
 
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs, cmdPrompt.keySet()
                 .toArray(new Prefix[]{}));
-
         boolean isValidArgs = isValidArgs(command, argumentMultimap);
         if (!isValidArgs) {
             throw new CommandException(INVALID_PREFIX_MESSAGE);

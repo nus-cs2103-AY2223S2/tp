@@ -15,7 +15,11 @@ import java.util.Collection;
 public class AvailableDate {
     public static final String MESSAGE_CONSTRAINTS = "Invalid arguments. \n"
             + "Please ensure the specified dates follow this format: YYYY-MM-DD";
-    public static final String INVALID_DATES_SPECIFIED = "Invalid dates specified.";
+    public static final String INVALID_DATES_SPECIFIED =
+            "Invalid dates specified. The dates must satisfy the following condition: \n"
+            + "1. The date must follow this fomat: YYYY-MM-DD \n"
+            + "2. The start date must be before the end date \n"
+            + "3. The date must be a valid date on calendar";
     public static final String INVALID_NUMBER_OF_DATES =
             "Invalid format for date ranges. Format should be <YYYY-MM-DD>, <YYYY-MM-DD>";
     public static final String VALIDATION_REGEX =
