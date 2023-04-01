@@ -113,7 +113,7 @@ public class StudentAttendanceCommand extends StudentCommand {
         }
         Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
                 studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
-                studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getBirthdate(),
+                studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
                 studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
                 studentToEdit.getCca(), studentToEdit.getAddress(), attendanceSetReplaced,
                 studentToEdit.getHomework(), studentToEdit.getTest(),
