@@ -40,7 +40,7 @@ This provides some quick and convenient hacks that you can use to optimize your 
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning:**
 Danger zone! Do pay attention to the information here carefully.
-</div
+</div>
 
 ### How to Use FriendlyLink
 
@@ -103,7 +103,7 @@ The domain name must:
 * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 #### Date
-A date represents a point in time, such as aa birthdate or starting or ending days where someone is available for meet ups.
+A date represents a point in time, such as aa birthdate or starting or ending days when someone is available for meet ups.
 * Date must be in the format `YYYY-MM-DD`
 * Entering dates that have already passed is allowed.
 * When a person's available dates have passed, it will not be removed.
@@ -162,7 +162,7 @@ A tag is a generic description for a group of people.
       E.g. in `add n/NAME`, `NAME` should be replaced with actual information `add n/John Doe`.
 
     * Items in `[square brackets]` are optional.<br>
-      E.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.
+      E.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.
 
     * Items with `[ellipsis]…` after them can be used 0 or more times.<br>
       E.g. `add_elderly n/NAME [t/TAG]…` can be used as `add_elderly n/John Doe` (no tags included), `add_elderly n/John Doe t/friend` (1 tag), `add_elderly n/John Doe t/friend t/family` (2 tags) and more.
@@ -515,7 +515,7 @@ Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRT
     * Such fields have to be valid.
 * For `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` date ranges that starts before or equal to `AVAILABLE_DATE_START` and ends after or equal to `AVAILABLE_DATE_END` will match.
 * For `[mt/MEDICAL_QUALIFICATIONS]` you can either specify just the type E.g. `mt/cpr` or the type and its level separated by comma E.g. `mt/cpr, basic`.
-    * The type need not be specified in full so it can contain any non-empty value.
+    * The type need not be specified in full, so it can contain any non-empty value.
     * Qualification level needs to be fully specified if present.
 
 Examples:
