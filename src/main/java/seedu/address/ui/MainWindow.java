@@ -265,7 +265,7 @@ public class MainWindow extends UiPart<Stage> {
             viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
         } else if (feedback.startsWith("New person")) {
             int len = logic.getAddressBook().getPersonList().size();
-            viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(len-1));
+            viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(len - 1));
             viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
         } else if (logic.getAddressBook().getPersonList().size() > 0) {
             viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
