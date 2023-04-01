@@ -16,23 +16,26 @@ to learn more about what TeachMeSenpai can do for you!
 ### Navigating the User Guide
 **Note Box**
 <div markdown="block" class="alert alert-success">
+
 **:bulb: Note:** Provides information that is useful to know.
 </div>
 
 **Tip Box**
 <div markdown="block" class="alert alert-info">
+
 **:information_source: Tip:** Provides information that can help enhance the user experience but is not necessary to know.
 </div>
 
 **Warning Box**
 <div markdown="block" class="alert alert-danger">
+
 **:exclamation: Warning:** Important information to take note of to avoid any unintended effects!
 </div>
 
 [Links](#navigating-the-user-guide): Words highlighted in blue are clickable and will direct you to a relevant section within
 this user guide for more information, or to external websites to learn more!
 
----notes
+---
 
 ## **Table of Contents**
 {:.no_toc}
@@ -134,7 +137,7 @@ Shows a URL to the `User Guide` page.
 
 ---
 
-### Exiting the program: `exit` / `bye` / `quit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -152,7 +155,8 @@ Exits the program.
 
 ### Listing all students: `list`
 
-Shows a list of the saved all students. Useful for resetting the list after using commands that modifies the list _(eg. [`find`](#findfilter-students-find))_.
+Shows a list of the saved all students. 
+This is useful for displaying the full list after using commands that modifies the list _(eg. [`find`](#findfilter-students-findfilter))_.
 
 > Format: `list`
 
@@ -170,6 +174,7 @@ Adds a student to the list, along with their education level and any student-spe
 
 :bulb: **Note:** `EDUCATION_LEVEL`, `TAG`,  and  `MODULE` will be displayed as blue tags.
 * Only the name ie. `n/` is compulsory. You can add details for other fields using commands that we will explore later!
+
 </div>
 
 Examples:
@@ -311,6 +316,8 @@ the `find` command allows you to hone in on an entry that matches **all** your `
 
 <div markdown="block" class="alert alert-info">
 
+**:information_source: Tip:** Using `find` without any `FIELDS` has the same outcome as `list`! TeachMeSenpai will 
+simply display the list of all your students.
 
 </div>
 
@@ -332,7 +339,11 @@ Examples:
     <br><i><b>Above:</b> After entering <code>find</code> command</i>
 </p>
 
+<div markdown="block" class="alert alert-info">
+
 :bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
+</div>
+
 <p align=center>
     <img alt="filter before" src="images/user-guide/filter_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>filter</code> command</i>
@@ -343,8 +354,11 @@ Examples:
     <br><i><b>Above:</b> After entering <code>filter</code> command</i>
 </p>
 
+<div markdown="block" class="alert alert-info">
+
 :bulb: **Note:** Here, other entries that match some criteria like `Roy Balakrishnan`
 are shown too.
+</div>
 
 [↑ Back to top](#table-of-contents)
 
@@ -394,7 +408,6 @@ You can `undo` as many times as required, as long as the previous commmand is **
 :bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands 
 that change the data of your TeachMeSenpai app!
 Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message.
-
 </div>
 
 > Format: `undo` 
@@ -409,7 +422,6 @@ Did you `undo` a command on accident? Fret not, you may use `redo` to reverse th
 
 :bulb: **Note:** You can only redo an `undo` command.
 Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
-
 </div>
 
 >Format: `redo`
@@ -431,6 +443,7 @@ Need to clear all your entries? Simply use `clear` to help you delete all your e
 :bulb: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that 
 if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
 </div>
+
 ### Saving the data
 
 TeachMeSenpai data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually 🙂
@@ -441,7 +454,11 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 ### Editing the data file
 
-**:exclamation: Warning:** If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file at the next run.
+<div markdown="block" class="alert alert-danger">
+
+**:exclamation: Warning:** If your changes to the data file makes its format invalid, 
+TeachMeSenpai will discard all data and start with an empty data file the next time you launch it.
+</div>
 
 [↑ Back to top](#table-of-contents)
 
@@ -452,14 +469,15 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 | Action | Format, Examples                                                                                                                                                                                                                                                      |
 |--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Add    | `add n/STUDENT_NAME [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [r/REMARK] [t/TAG]... [m/MODULE]...`<br>eg. `add n/Shaun a/123 NUS Street e/shaun123@gmail.com edu/Year 1 r/Good in Japanese t/active t/hardworking m/CS2103T m/CS2101` |
+| Clear  | `clear`                                                                                                                                                                                                                                                                |
 | Delete | `delete INDEX [INDEX]...`<br>eg. `delete 3` or `delete 1 2 3 4`                                                                                                                                                                                                       |
 | Edit   | `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...` <br/>eg. `edit 1 n/Wen Li edu/Year 2`                                                                                                |
-| Exit   | `exit`, `bye`, `quit`                                                                                                                                                                                                                                                 |
-| Find   | `find PREFIX/KEYWORD1 [PREFIX/KEYWORD2]` <br/>eg. `find n/Sh` <br/>                                                                                                                                                                                                   |
-| List   | `list`     
-| Redo   | `redo`
-| Remark | `remark INDEX [r/REMARK]` <br/>eg. `remark 2 r/Not good in Japanese`    
-| Undo   | `undo`
+| Exit   | `exit`                                                                                                                                                                                                                                                                |
+| Find   | `find PREFIX/KEYWORD1 [PREFIX/KEYWORD2]` <br/>eg. `find n/Sh` <br/>                                                                                                                                                                                                   |                                                                                                                                                                                           |
+| List   | `list`                                                                                                                                                                                                                                                                |
+| Redo   | `redo`                                                                                                                                                                                                                                                                |
+| Remark | `remark INDEX [r/REMARK]` <br/>eg. `remark 2 r/Not good in Japanese`                                                                                                                                                                                                  |
+| Undo   | `undo`                                                                                                                                                                                                                                                                |
 | Show   | `show INDEX` <br/>eg. `show 1`                                                                                                                                                                                                                                        |
 
 [↑ Back to top](#table-of-contents)
@@ -476,7 +494,7 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 | a/     | Address of student                      | `a/16 Bukit Timah Road, S156213`      |
 | edu/   | Education level of student              | `edu/P6`                              |
 | r/     | Remark for student                      | `r/Good in German`                    |
-| t/     | Tag of student                          | `t/active` or `t/submited t/late ...` |
+| t/     | Tag of student                          | `t/active` or `t/hardworking ...`     |
 | m/     | Module that the student is being taught | `m/CS2101` or `m/CS2101 m/CS4243 ...` |
 | tele/  | Telegram handle of the student          | `tele/@chuuchuu` or `tele/@sO_m4nY`   |
 

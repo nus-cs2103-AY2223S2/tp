@@ -2,11 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.model.tag.Module;
 import seedu.address.model.tag.Tag;
@@ -92,7 +88,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name, number, or telegram handle.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -100,8 +96,13 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        boolean isSameName = otherPerson.getName().fullName.equalsIgnoreCase(getName().fullName);
+        boolean isSameNumber = otherPerson.getOptionalPhone().equals(getOptionalPhone());
+        boolean isSameTele = otherPerson.getOptionalTelegram().equals(getOptionalTelegram());
+
+        return (otherPerson != null && isSameName)
+                || (otherPerson != null && isSameNumber)
+                || (otherPerson != null && isSameTele);
     }
 
     /**
