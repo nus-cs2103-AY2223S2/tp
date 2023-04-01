@@ -107,6 +107,7 @@ Here is a breakdown of the different symbols and colours we will use throughout 
 * **Command Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
 * **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mass Rapid Transit (MRT)**: Singapore's high-speed rail system.
 
 [Return to the top](#table-of-contents)
 
@@ -389,7 +390,7 @@ Example: `s/Boon Lay`
 
 Description: The telegram handle of the person.<br>
 Pattern: `t/TELEGRAM`<br>
-Rules: `TELEGRAM` should start with an `@` symbol.<br>
+Rules: `TELEGRAM` should start with an `@` symbol and be at least 5 characters long. Only combinations of letters, numbers and underscores are allowed after the `@` symbol.<br>
 Example: `t/@wenli`
 
 ### Group
@@ -399,12 +400,32 @@ Pattern: `g/GROUP`<br>
 Rules: `GROUP` should only contain alphanumeric characters.<br>
 Example: `g/Groupmate`
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: Important!<br>
+* EduMate's [Person List](#person-list) will only show common group labels that you are in. Do not be alarmed that some groups you tagged did not
+appear in the Person List.
+* You may still view the label when you [view the contact's profile](#view-a-contacts-profile-view).
+* * When you tag (untag) a group common to you to (from) a contact, it will appear (disappear) on the person's contact card in the Person List automatically.
+
+</div>
+
 ### Module
 
 Description: The name of the module the person is taking.<br>
 Pattern: `m/MODULE`<br>
 Rules: `MODULE` should be the name of a valid NUS module.<br>
 Example: `m/CS2107`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Important!<br>
+* EduMate's [Person List](#person-list) will only show common modules that you are enrolled in. Do not be alarmed that some modules you tagged did not
+appear in the Person List.
+* You may still view the label when you [view the contact's profile](#view-a-contacts-profile-view).
+* When you tag (untag) a module common to you to (from) a contact, it will appear (disappear) on the person's contact card in the Person List automatically.
+
+</div>
 
 ### Module with Lessons
 
@@ -455,9 +476,18 @@ The `add` command creates a new contact for a friend named Weixiang whose inform
     * Phone number: `00000000`
     * Station: `NUS`
     * Email: `wenqing@gmail.com`
-    * Telegram handle: `@wenqing`
+    * Telegram handle: `@wenqing00000`
     * Groups:
     * Modules:
+
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: Important!<br>
+As you may have already see above, when adding a contact with some fields present, EduMate will give placeholders for the respective
+missing information. Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g Wen Qing results in `@wenqing0000`).
+This is done to conform to Telegram's username restrictions of being at least 5 characters long for short names like Bob, Sam etc.
 
 </div>
 
