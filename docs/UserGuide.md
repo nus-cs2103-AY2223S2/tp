@@ -14,12 +14,17 @@ title: User Guide
 ## **1. Introduction**
 
 ### 1.1 What is sprINT
+Are you a student who wants to avoid the hassle of managing internship applications? Look no further than sprINT, 
+the ideal tool for streamlining this daunting process!
 
-Welcome to **sprINT's User Guide**. sprINT is a **desktop application** for managing internship applications,
-optimized for use by typing while offering a beautiful user interface.
+sprINT is a **desktop application** that can help YOU track your internship applications.
+Optimized for use by typing while offering a beautiful user interface, it will be a great asset in your internship application journey.
 
-If you are comfortable typing, sprINT can help maximise your speed and efficiency in documenting internship applications,
-making it a great asset in your internship application journey.
+### 1.2 Purpose of this document
+This document serves as a User Guide for anyone who wants to use sprINT! If you are a new user, 
+read through the section on **[Quick start](#2-quick-start)** to learn how to set up the app quickly and the
+section on **[Basics](#3-basics)** to pick up a few simple commands. If you have already used sprINT before, use the table
+of contents to skip to the specific feature or command in **[Features](#4-features)** you want to know more about!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -218,10 +223,10 @@ Format: `add-task INDEX d/DESCRIPTION by/DEADLINE`
 Example:
 I have recently applied to `Google` for their `Software Engineer` role, and made an entry for it in the internship book.
 Then, `Google` reaches out to me for a technical interview on the 24th July 2023. I can add this
-as a task to the application entry I have created before (suppose it is showing up as the second one in the list) by typing:
-`add-task 2 d/Technical Interview by/24-07-2023`
+as a task to the application entry I have created before (suppose it is showing up as the first one in the list) by typing:
+`add-task 1 d/Technical Interview by/24-07-2023`
 
-You can see how the new task will then appear for the 2nd application entry in the list:
+You can see how the new task will then appear for the 1st application entry in the list:
 ![UiAfterAddTask](images/UiAfterAddTask.png)
 
 #### 4.2.2 Editing an application task : `edit-task`
