@@ -115,6 +115,9 @@ public class ParserUtil {
         if (!Dob.isValidDob(trimmedDob)) {
             throw new ParseException(Dob.MESSAGE_CONSTRAINTS);
         }
+        if (!Dob.isTooOld(trimmedDob)) {
+            throw new ParseException(Dob.MESSAGE_CONSTRAINTS_OLD);
+        }
         return new Dob(trimmedDob);
     }
 

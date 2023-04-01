@@ -15,9 +15,11 @@ import seedu.vms.logic.parser.exceptions.ParseException;
  * Guarantees: immutable; is valid as declared in {@link #isValidDob(String)}
  */
 public class Dob {
+    private static final int MAX_AGE = 130;
+    // https://en.wikipedia.org/wiki/List_of_the_verified_oldest_people wiki shows that oldest person recorded was 122 Y/O
 
-    public static final String MESSAGE_CONSTRAINTS =
-        "Date of birth can take any date earlier than today, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Date of birth can take any date earlier than today, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS_OLD = "Hey, the date of birth you've entered is too old. Please check to ensure that you've entered an legitimate birthdate";
 
     public final LocalDateTime value;
 
@@ -29,6 +31,7 @@ public class Dob {
     public Dob(String dob) {
         requireNonNull(dob);
         checkArgument(isValidDob(dob), MESSAGE_CONSTRAINTS);
+        checkArgument(isTooOld(dob), MESSAGE_CONSTRAINTS_OLD);
         try {
             value = parseDate(dob);
         } catch (ParseException e) {
@@ -45,6 +48,7 @@ public class Dob {
         requireNonNull(dob);
         LocalDateTime cleanDob = LocalDateTime.of(dob.getYear(), dob.getMonthValue(), dob.getDayOfMonth(), 0, 0);
         checkArgument(isValidDob(cleanDob), MESSAGE_CONSTRAINTS);
+        checkArgument(isTooOld(cleanDob), MESSAGE_CONSTRAINTS_OLD);
         value = cleanDob;
     }
 
@@ -66,6 +70,26 @@ public class Dob {
      */
     public static boolean isValidDob(LocalDateTime test) {
         return test.isBefore(LocalDateTime.now());
+    }
+
+    /**
+     * Returns true if a given string is a valid date that is not MAX_AGE years ago.
+     */
+    public static boolean isTooOld(String test) {
+        LocalDateTime testDate;
+        try {
+            testDate = parseDate(test);
+        } catch (ParseException e) {
+            return false;
+        }
+        return testDate.isAfter(LocalDateTime.now().minusYears(MAX_AGE));
+    }
+    
+    /**
+     * Returns true if a given string is a valid date that is not MAX_AGE years ago.
+     */
+    public static boolean isTooOld(LocalDateTime test) {
+        return test.isAfter(LocalDateTime.now().minusYears(MAX_AGE));
     }
 
     @Override
