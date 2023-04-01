@@ -16,12 +16,6 @@ public class UndoCommand extends Command {
     public static final String MESSAGE_SUCCESS = "The last command %s has successfully been undone!";
     public static final String MESSAGE_FAILURE = "There has not been a recent modification to TeachMeSenpai to undo!";
     private String commandToUndo;
-    private final boolean isModifying = false;
-
-    @Override
-    public boolean checkModifiable() {
-        return isModifying;
-    }
 
     @Override
     public CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException {

@@ -47,17 +47,10 @@ public class FilterCommand extends Command {
                     .collect(Collectors.joining(" "))
             + "Example: " + COMMAND_WORD + " n/alice n/tan t/hasSubmitted";
 
-    private final boolean isModifying = false;
-
     private final ContainsKeywordsPredicate predicate;
 
     public FilterCommand(ContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
-    }
-
-    @Override
-    public boolean checkModifiable() {
-        return isModifying;
     }
 
     @Override

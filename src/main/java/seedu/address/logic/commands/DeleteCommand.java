@@ -35,17 +35,10 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Persons: %1$s";
 
-    private final boolean isModifying = true;
-
     private final List<Index> targetIndexes;
 
     public DeleteCommand(List<Index> targetIndexes) {
         this.targetIndexes = targetIndexes;
-    }
-
-    @Override
-    public boolean checkModifiable() {
-        return isModifying;
     }
 
     @Override

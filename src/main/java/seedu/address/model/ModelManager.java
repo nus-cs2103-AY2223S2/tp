@@ -173,9 +173,6 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Person> getShowPerson() {
-//        ObservableList<Person> target = targetPerson;
-//        targetPerson.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
-//        return target;
         return targetPerson;
     }
 

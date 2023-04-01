@@ -16,6 +16,4 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model, CommandHistory commandHistory) throws CommandException;
-
-    public abstract boolean checkModifiable();
 }
