@@ -186,6 +186,12 @@ public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFl
                     String.format("Arrival location is out of bound.")
             );
         }
+
+        if (departureId == arrivalId) {
+            throw new CommandException(
+                    "Departure location and arrival location cannot be the same."
+            );
+        }
     }
 
     @Override
