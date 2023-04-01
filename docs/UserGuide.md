@@ -174,6 +174,11 @@ Additional details:
 :information_source: **Note:** You cannot add 2 modules with the same module code into **MODTrek**. Modules must have distinct module codes.
 </div>
 
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** You must only use valid NUS module codes in **MODTrek**. They are of the form <2-4 alphabets><4 numbers>(<1 alphabet>). Refer to NUSMODS for a list of valid module codes.
+</div>
+
 **Example:** 
 * `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`
 * `add /m GESS1025 /c 4 /y y1s2`
@@ -234,9 +239,14 @@ Refer to [Add a module](#add-module) for the tags that you can use.
 * _To include tags:_ `tag <code> include <tag1> (<tag2>...)`
 * _To remove tags:_ `tag <code> remove <tag1> (<tag2>...)`
 
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** Remember to include /t before each tag so that it can be detected. Refer to our examples.
+</div>
+
 **Example:**
-* `tag CS2030S include CSF`
-* `tag ES2660 remove ULR ITP`
+* `tag CS2030S include /t CSF`
+* `tag ES2660 remove /t ULR /t ITP`
 
 [Back to Table of Contents](#toc)
 
