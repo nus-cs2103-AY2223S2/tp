@@ -26,14 +26,14 @@ I worked on the backend and documentation. I was mainly in charge of implementat
       YYYY-MM-DD'.
 
 
-* **New Feature & Refactoring**: Add a new `salary` command to allow the sorting of roles based on salary.
+* **New Feature**: Add a new `salary` command to allow the sorting of roles based on salary.
     * What it does: Allow user to see which roles are the most attractive or least attractive depending on the salary.
     * Justification: This is an important feature from the user point of view as salary is tied closely to the
       importance of different roles.
     * Highlights: Makes it more friendly for the user to search through different roles.
 
 
-* **New Feature & Refactoring**: Add a new `OrderParser` class to allow order in asc/desc of sorting commands.
+* **New Feature**: Add a new `OrderParser` class to allow order in asc/desc of sorting commands.
     * What it does: Allow developers to easy parse the sorting requirement for their sorting commands.
     * Justification: The order needs to be either ascending or descending and makes it more OOP by creating a Parser
       class.
