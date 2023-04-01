@@ -395,18 +395,9 @@ You can `undo` an `undo` command
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits the program. Data is [automatically saved](#saving-the-data)
 
-Format: `exit`
-
-<div markdown="block" class="alert alert-block alert-info">
-
-:white_check_mark: **Input Shortcut:**
-You can replace `exit` with `e` for convenience.
-
-</div>
-
-
+Format: `exit` or `e`
 
 
 ### Saving the data
