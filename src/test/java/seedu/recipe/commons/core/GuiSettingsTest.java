@@ -1,17 +1,18 @@
 package seedu.recipe.commons.core;
 
-import org.junit.jupiter.api.Test;
-
-import java.awt.*;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.awt.Point;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
+
+import org.junit.jupiter.api.Test;
+
 
 /**
  * Contains tests that validate that the GuiSettings class performs as expected.
@@ -52,6 +53,7 @@ public class GuiSettingsTest {
         assertDoesNotThrow(() -> settings.set(new GuiSettings(1, 1, 0, 1)));
 
         //Test that the last Point was initialised properly
+        assertNotNull(settings.get().getWindowCoordinates());
         assertEquals(new Point(0, 1), settings.get().getWindowCoordinates());
         assertEquals(1, settings.get().getWindowHeight());
         assertEquals(1, settings.get().getWindowWidth());
