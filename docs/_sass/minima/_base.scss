@@ -114,7 +114,6 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: $link-base-color;
   text-decoration: none;
-  content: attr(href);
 
   &:visited {
     color: $link-visited-color;
@@ -293,8 +292,8 @@ table {
     content: "MedInfo";
     font-size: 32px;
   }
-  a {
-      content: attr(href) !important;
-  }
+  a::after {
+      content: " (link)";
+    }
 }
 
