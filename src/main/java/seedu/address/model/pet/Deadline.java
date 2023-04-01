@@ -1,6 +1,8 @@
 package seedu.address.model.pet;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline description can take any values, and it should not be blank";
+            "Deadline should be in the future";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -31,17 +33,17 @@ public class Deadline {
      */
     public Deadline(String description, LocalDateTime deadline) {
         requireNonNull(description);
-        //checkArgument(isValidDeadline(description, deadline), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
         this.description = description;
         this.deadline = deadline;
     }
 
     /**
-     * Returns true if a given description is valid and that deadline is in the future.
+     * Returns true if a deadline is in the future.
      */
-    public static boolean isValidDeadline(String test, LocalDateTime d) {
+    public static boolean isValidDeadline(LocalDateTime d) {
 
-        return test.matches(VALIDATION_REGEX) && d.isAfter(LocalDateTime.now());
+        return isNull(d) || d.isAfter(LocalDateTime.now());
     }
 
     public LocalDateTime getDate() {
