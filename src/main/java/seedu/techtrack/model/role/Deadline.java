@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.techtrack.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 
 /**
@@ -44,12 +45,25 @@ public class Deadline {
      */
     public static boolean isNotPassed(String test) {
         LocalDate lDate = LocalDate.parse(test);
-        if (lDate.isAfter(LocalDate.now())) {
+        if (lDate.isAfter(LocalDate.now()) || lDate.isEqual(LocalDate.now())) {
             return true;
         } else {
-            setMessageConstraint("Deadline should not have passed");
+            setMessageConstraint("Deadline should not have passed. Please enter a date that has not passed.");
             return false;
         }
+    }
+
+    /**
+     * Returns true if a given string is a dateline that does not exist.
+     */
+    public static boolean doesNotExist(String test) {
+        try {
+            LocalDate lDate = LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            setMessageConstraint("Deadline does not exist. Please key in a date that exists.");
+            return false;
+        }
+        return true;
     }
 
     /**
