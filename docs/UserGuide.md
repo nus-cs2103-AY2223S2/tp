@@ -136,9 +136,9 @@ Format: `mark_pc INDEX_OF_DELIVERY pc/INDEX_OF_PARCEL s/STATUS`
 * Parcel `lazada3` is both fragile and bulky
 
 Examples:
-* `mark 1 pc/1 s/fragile` Marks the 1st parcel of the 1st delivery as fragile.
-* `mark 1 pc/2 s/bulky` Marks the 2nd parcel of the 1st delivery as bulky.
-* `mark 2 pc/1 s/fragile` Marks the 1st parcel of the 2nd delivery as fragile.
+* `mark_pc 1 pc/1 s/fragile` Marks the 1st parcel of the 1st delivery as fragile.
+* `mark_pc 1 pc/2 s/bulky` Marks the 2nd parcel of the 1st delivery as bulky.
+* `mark_pc 2 pc/1 s/fragile` Marks the 1st parcel of the 2nd delivery as fragile.
 
 ### Viewing a delivery : `view`
 
@@ -255,7 +255,7 @@ Action | Format, Examples
 **Add** | `add n/DELIVERY a/ADDRESS [p/PHONE_NUMBER] [e/EMAIL] [pc/PARCEL]…​` <br> e.g., `add n/Shopee a/Yusof Ishak House, #04-420 pc/lazada123`
 **Add Parcel** | `add_pc INDEX pc/PARCEL` <br> e.g., `add_pc 1 pc/alibaba420`
 **Mark** | `mark INDEX s/STATUS` <br> e.g., `mark 1 s/otw`
-**Mark Parcel** | `mark_PC INDEX_OF_DELIVERY pc/INDEX_OF_PARCEL s/STATUS` <br> e.g., `mark_pc 1 pc/1 s/fragile`
+**Mark Parcel** | `mark_pc INDEX_OF_DELIVERY pc/INDEX_OF_PARCEL s/STATUS` <br> e.g., `mark_pc 1 pc/1 s/fragile`
 **View** | `view INDEX` <br> e.g., `view 1`
 **List** | `list`
 **Sort** | `sort`
