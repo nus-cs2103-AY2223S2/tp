@@ -146,18 +146,19 @@ Use this command to add him/her to your NeoBook.
 
 Here are all the prefixes that can be used:
 
-| Prefix  | Name of Field                   | Optional? |
-|---------|---------------------------------|-----------|
-| n       | Name                            | No        |
-| e       | Email address                   | Yes       |
-| a       | Address                         | Yes       |
-| m       | Major                           | Yes       |
-| mt      | Mods Taken                      | Yes       |
-| f       | Faculty                         | Yes       |
-| g       | Gender                          | Yes       |
-| t       | Tags                            | Yes       |
-| c       | Preferred Communication Channel | Yes       |
-| f       | Faculty                         | Yes       |
+| Prefix | Name of Field                   | Optional? |
+|--------|---------------------------------|-----------|
+| n      | Name                            | No        |
+| e      | Email address                   | Yes       |
+| p      | Phone Number                    | Yes       |
+| a      | Address                         | Yes       |
+| m      | Major                           | Yes       |
+| mt     | Mods Taken                      | Yes       |
+| f      | Faculty                         | Yes       |
+| g      | Gender                          | Yes       |
+| t      | Tags                            | Yes       |
+| c      | Preferred Communication Channel | Yes       |
+| f      | Faculty                         | Yes       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and modules taken(including 0).
@@ -172,6 +173,7 @@ to prevent any messiness and also allows for future syncing with the Events.
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com mt/CS2030s mt/CS2103T`
+
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -254,40 +256,28 @@ A `SuperField` can contain many parameters in that single field.
 When using edit, the command looks for each parameter in the `SuperField`:
 * If the parameter already exists in the `SuperField` it will be removed.
 * Otherwise, the parameter will be added into the `SuperField`.
-  * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field
-of a person if it already exists and adds it if it does not.
+  * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field of a contact if it already exists and adds it if it does not.
+  * e.g. `edit t/10x Coder t/Intern Friend`
+    * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
+    * For a contact which has `10x Coder` as a tag, he will have the `10x Coder` removed and `Intern Friend` added as a tag.
   
 | Prefix | Name of Field                   | Optional? |
-|-----------|---------------------------------|-----------|
-| n         | name                            | No        |
-| e         | Email address                   | Yes       |
-| a         | Address                         | Yes       |
-| m         | Major                           | Yes       |
-| mt        | Mods Taken                      | Yes       |
-| f         | Faculty                         | Yes       |
-| g         | Gender                          | Yes       |
-| t         | Tags                            | Yes       |
-| c         | Preferred Communication Channel | Yes       |
+|--------|---------------------------------|-----------|
+| n      | Name                            | No        |
+| e      | Email address                   | Yes       |
+| p      | Phone Number                    | Yes       |
+| a      | Address                         | Yes       |
+| m      | Major                           | Yes       |
+| mt     | Mods Taken                      | Yes       |
+| f      | Faculty                         | Yes       |
+| g      | Gender                          | Yes       |
+| t      | Tags                            | Yes       |
+| c      | Preferred Communication Channel | Yes       |
 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Selecting A Particular Contact To View: `select'
-
-Want to see the details of a particular contact?
-
-You can either use your cursor to click on the contact or use this command!
-
-**Syntax:**
-
-`select INDEX`
-
-Here are some important requirements for you to take note:
-
-* `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer**.
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -302,17 +292,18 @@ Use this command to find contacts using keywords and fields you specify!
 
 `find KEYWORD PREFIX/KEYWORDS...`
 
-| Prefix   | Name of Field                   | Optional? |
-|----------|---------------------------------|-----------|
-| n        | name                            | No        |
-| e        | Email address                   | Yes       |
-| a        | Address                         | Yes       |
-| m        | Major                           | Yes       |
-| mt       | Mods Taken                      | Yes       |
-| f        | Faculty                         | Yes       |
-| g        | Gender                          | Yes       |
-| t        | Tags                            | Yes       |
-| c        | Preferred Communication Channel | Yes       |
+| Prefix | Name of Field                   | Optional? |
+|--------|---------------------------------|-----------|
+| n      | Name                            | No        |
+| e      | Email address                   | Yes       |
+| p      | Phone Number                    | Yes       |
+| a      | Address                         | Yes       |
+| m      | Major                           | Yes       |
+| mt     | Mods Taken                      | Yes       |
+| f      | Faculty                         | Yes       |
+| g      | Gender                          | Yes       |
+| t      | Tags                            | Yes       |
+| c      | Preferred Communication Channel | Yes       |
 
 _Here are some important requirements for you to take note:_
 * The keywords are case-insensitive.
@@ -450,6 +441,7 @@ Use this command to exit the application!
 | **Exit**    | `exit`                                                                                                                                           |                                                                                                                                |
 
 [Back To Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Events Features
@@ -686,3 +678,18 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
 [Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Future Plans
+1. Making the following fields accept multiple parameters instead of just one. 
+   1. Since the groundwork was completed in the Tags and Modules fields, we considered it trivial to implement the rest of these fields to accept multiple parameters.
+      - Phone
+      - Address    
+      - Email
+      - Race
+      - Communication Channels
+      - Major
+      - Faculty
+2. Making the user's events be able to import other contact's events.
+   1. Since the User is a form of Contact, it is once again trivial to extend the same functionality to other contacts
+3. Making NeoBook accept more symbols and emojis
+   1. Currently, the validation regex for all the fields for contacts do not accept special symbols (and also do not render them properly). In the future, we will attempt to add-in support for this.
