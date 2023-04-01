@@ -176,7 +176,7 @@ Additional details:
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** You must only use valid NUS module codes in **MODTrek**. They are of the form <2-4 alphabets><4 numbers>(<1 alphabet>). Refer to NUSMODS for a list of valid module codes.
+:information_source: **Note:** You must only use valid NUS module codes in **MODTrek**. They are of the form <2-4 alphabets><4 numbers>(<1 alphabet>). Refer to [NUSMODS](https://nusmods.com/modules?sem[0]=1&sem[1]=2&sem[2]=3&sem[3]=4) for a list of valid module codes.
 </div>
 
 **Example:** 
@@ -241,7 +241,7 @@ Refer to [Add a module](#add-module) for the tags that you can use.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:** Remember to include /t before each tag so that it can be detected. Refer to our examples.
+:exclamation: **Caution:** Remember to add /t before each tag so that it can be detected. Refer to our examples.
 </div>
 
 **Example:**
