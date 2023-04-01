@@ -12,10 +12,12 @@ import seedu.recipe.model.recipe.unit.PortionUnit;
  */
 public class RecipePortion {
     public static final String MESSAGE_CONSTRAINTS =
-        "Recipe Portion's upper and lower ranges should only contain numbers, and its unit should only contain "
-            + "alphanumeric characters, and it should not be blank";
+        "A Recipe portion's ranges must be numeric.\n"
+            + "If a lower and upper range is provided, they must be separated by \"-\" or \"to\".\n"
+            + "Its unit should only contain alphabetic characters and spaces, and it should not be blank";
     // format: {number} {unit} OR {number} {- or to} {number} {unit}
-    public static final Pattern VALIDATION_REGEX = Pattern.compile("(\\d+)(?:\\s*(?:-|to)\\s*(\\d+))?\\s*([A-Za-z ]+)");
+    public static final Pattern VALIDATION_REGEX =
+        Pattern.compile("(\\d+)(?:\\s*(?:-|to)\\s*(\\d+))?\\s*([A-Za-z ]+)");
 
     private final int lowerRange;
     private final int upperRange;
