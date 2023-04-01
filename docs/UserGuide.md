@@ -689,7 +689,7 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
       - Communication Channels
       - Major
       - Faculty
-2. Adding better input validation to Email and Address fields, such as minimum lengths or certain formats.
+2. Adding better input validation to Phone, Email and Address fields, such as minimum lengths or certain formats.
 3. Making the user's events be able to import other contact's events.
    1. Since the User is a form of Contact, it is once again trivial to extend the same functionality to other contacts
 4. Making NeoBook accept more symbols and emojis.
