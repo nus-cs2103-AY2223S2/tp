@@ -306,6 +306,7 @@ Format: free GROUP_INDEX [START_DATE]
 * The `START_DATE` field is optional. The time slots will be shown for the week ahead, starting from that date. If it is
   not provided, then the current date will be used.
 * `START_DATE` must be of the format: `dd/MM/yyyy`
+* Note that if there are any changes to a person's event(s), the time table will only be updated upon entering the `free` command.
 
 
 ### Importing data : `import`
