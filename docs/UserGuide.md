@@ -153,6 +153,13 @@ Before we dive into exploring the various features of EduMate, please choose whe
 1. For a guided experience, please enter `sample 100` in the command box located at the top left of the application. This will generate 100 sample contacts in your EduMate, which you can use to familiarize yourself with the application's functionalities.
 2. If you would like to start with a fresh EduMate, simply type `clear` in the same command box.
 
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Before you clear or sample**
+Performing either action will remove any contacts you currently have on your EduMate. To save your progress, have a look at our [Save Command](#save-a-copy-of-edumate-save).
+
+</div>
+
 As you navigate through the application, we encourage you to experiment with different [commands](#commands) to further enhance your understanding.
 
 ### Getting help

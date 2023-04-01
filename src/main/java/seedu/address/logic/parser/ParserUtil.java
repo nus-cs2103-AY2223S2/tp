@@ -215,7 +215,7 @@ public class ParserUtil {
         Day day = parseDay(args.get(1));
         LocalTime startTime = parseLocalTime(args.get(2), true);
         LocalTime endTime = parseLocalTime(args.get(3), false);
-        TimeBlock timeBlock = new TimeBlock(startTime, endTime, day);
+        TimeBlock timeBlock = parseTimeBlock(startTime, endTime, day);
 
         Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
 
@@ -260,6 +260,14 @@ public class ParserUtil {
         } catch (NumberFormatException nfe) {
             throw new ParseException("Invalid time");
         }
+    }
+
+    private static TimeBlock parseTimeBlock(LocalTime startTime, LocalTime endTime, Day day) throws ParseException {
+        if (startTime.isAfter(endTime) || startTime.isEqual(endTime)) {
+            throw new ParseException("Start Time must be STRICTLY BEFORE End Time!");
+        }
+
+        return new TimeBlock(startTime, endTime, day);
     }
 
     /**

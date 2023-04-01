@@ -3,7 +3,10 @@ package seedu.address.model.commitment;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
 import org.joda.time.LocalTime;
 
@@ -58,6 +61,18 @@ public class Commitment {
             canFit &= slots.get(i).isFree();
         }
         return canFit;
+    }
+
+    /**
+     * Gets the set of Commitments that will clash with this.
+     */
+    public Set<Commitment> getClashingCommitments(ArrayList<HourBlock> slots) {
+        Set<Commitment> clashingCommitments = new HashSet<>();
+        for (int i = getStartTime().getHourOfDay() - 8; i < getEndTime().getHourOfDay() - 8; i++) {
+            Optional<Commitment> commitment = slots.get(i).getCommitment();
+            commitment.ifPresent(clashingCommitments::add);
+        }
+        return clashingCommitments;
     }
 
     @Override

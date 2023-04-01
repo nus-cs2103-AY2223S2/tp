@@ -253,6 +253,7 @@ public class ModelManager implements Model {
     @Override
     public void updateObservablePersonList() {
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+        observablePersons.setComparator(COMPARATOR_CONTACT_INDEX_PERSON.reversed());
         observablePersons.setComparator(COMPARATOR_CONTACT_INDEX_PERSON);
     }
 

@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import seedu.address.model.commitment.Lesson;
+import seedu.address.model.time.TimePeriod;
 
 /**
  * Represents a ModuleTag in the address book.
@@ -84,7 +85,8 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      */
     public String getLessonsAsStr() {
         return lessons.stream()
-                .map(Lesson::toString)
+                .map(Lesson::getTimePeriod)
+                .map(TimePeriod::toString)
                 .collect(Collectors.joining(", "));
     }
 
@@ -163,7 +165,11 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * Format state as text for viewing.
      */
     public String toString() {
-        return String.format("%s: Lessons: %s", tagName, getLessonsAsStr());
+        String lessonsStr = getLessonsAsStr();
+        if (lessonsStr.isEmpty()) {
+            lessonsStr = "None";
+        }
+        return String.format("%s: Lessons: %s", tagName, lessonsStr);
     }
 
     @Override
