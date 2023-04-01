@@ -68,10 +68,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
         }
 
-        else {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-
         editPersonDescriptor.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
 
         ParserUtil.parseRemarksOptional(argMultimap.getAllValues(PREFIX_REMARK))
@@ -85,6 +81,10 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         ParserUtil.parseMajorsOptional(argMultimap.getAllValues(PREFIX_MAJOR))
                 .ifPresent(editPersonDescriptor::setMajors);
+
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
 
         return new EditCommand(index, editPersonDescriptor);
     }
