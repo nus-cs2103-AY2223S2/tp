@@ -329,7 +329,7 @@ Format: `import JSON f/`
 
 Adds a meeting to the address book.
 
-Format: `addm m/TITLE [p/PERSON]... dt/DATE_TIME l/LOCATION des/DESCRIPTION`
+Format: `addm m/TITLE [p/PERSON]... [dt/DATE_TIME] [l/LOCATION] [des/DESCRIPTION]`
 
 Constraints:
 * `TITLE` must be provided.
