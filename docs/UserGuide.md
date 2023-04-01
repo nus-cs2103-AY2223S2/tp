@@ -256,7 +256,7 @@ Format: `add {lecture_name} [/mod {module_code}] [/tags {tag_1}, [{tag_2}, ...]]
 
 Examples:
 
-- `add Week 1 /module CS2040S /tags Intro, Important`
+- `add Week 1 /mod CS2040S /tags Intro, Important`
 
 ### Add a Video
 
@@ -355,7 +355,7 @@ Parameters:
 
 Note: Calling mark or unmark would only prompt an error for already marked or unmarked videos if calling on a single video, not when calling on multiple videos in one command
 
-- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos can be specified to be deleted by specying multiple video namese, separating them by commas(",")
+- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos can be specified to be marked/unmarked by specifying multiple video names, separating them by commas(",")
 - Video Names must be of valid format
 - If any video specified does not exist or has already been marked or unmarked (accordingly to the command called), nothing changes within the model
 
@@ -383,7 +383,7 @@ Examples:
 
 > Deletes the specified lecture(s) and all its embodied content from the same specified module
 
-Format: `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] /mod {module_code}`
+Format: `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] [/mod {module_code}]`
 
 - `lecture_name_1`, `lecture_name_2`, `lecture_name_3`, ...: Multiple lectures within the same module can be specified to be deleted by specifying their lecture names, separating them by commas(",")
 - `module_code` must be of valid format and have a module of `module_code` exist in Le Tracker
@@ -410,7 +410,7 @@ Format: `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {
 Examples:
 
 - `delete video 3 /mod CS2040 /lec lecture 1` deletes `video 3` from lecture `lecture 1` of module `CS2040`
-- `delete video 1, video 3 /mod CS2040 /leclecture 1` deletes `video 1` and `video 3` from lecture `lecture 1` of module `CS2040`
+- `delete video 1, video 3 /mod CS2040 /lec lecture 1` deletes `video 1` and `video 3` from lecture `lecture 1` of module `CS2040`
 
 ### Tag a module
 
@@ -532,7 +532,7 @@ Examples:
 
 - In root level, `find heavy /byTag` will show module `CS2040S` from the module list.
 - In module level within `CS2040S`, `find array /byTag` will show lecture `Week 1` from the lecture list of module `CS2040S`.
-- In lecture level within `Week 1` of `CS2040S`, `find cont /byTag` will show video `Vid 1` from the video list of lecture `Week 2` of module `CS2040S`.
+- In lecture level within `Week 1` of `CS2040S`, `find cont /byTag` will show video `Vid 1` from the video list of lecture `Week 1` of module `CS2040S`.
 
 ### Find Lectures in a Module
 
