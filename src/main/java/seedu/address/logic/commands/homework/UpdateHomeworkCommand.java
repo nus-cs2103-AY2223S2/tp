@@ -84,6 +84,9 @@ public class UpdateHomeworkCommand extends Command {
             String newHomeworkName = this.homeworkName.orElse(homeworkToUpdate.getDescription());
             LocalDateTime newDeadline = this.deadline.orElse(homeworkToUpdate.getDeadline());
             Homework newHomework = new Homework(newHomeworkName, newDeadline);
+            if (homeworkToUpdate.isCompleted()) {
+                newHomework.markAsDone();
+            }
             updateHomework(student, homeworkToUpdate, newHomework);
 
             return new CommandResult(

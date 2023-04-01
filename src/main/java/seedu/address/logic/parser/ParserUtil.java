@@ -46,9 +46,10 @@ public class ParserUtil {
         "yyyy/MM/dd'T'HH:mm", "yyyy-MM-dd HHmm",
         "yyyy-MM-dd HH:mm", "dd MMM yyyy HHmm",
         "dd MMM yyyy HH:mm", "MMM dd, yyyy HHmm",
-        "MMM dd, yyyy HH:mm", "dd-mm-yyyy HHmm"
+        "MMM dd, yyyy HH:mm"
     };
     //@@author
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -432,4 +433,5 @@ public class ParserUtil {
         }
         return res;
     }
+
 }

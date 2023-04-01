@@ -1,5 +1,7 @@
 package seedu.address.ui.exam;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -11,7 +13,7 @@ import seedu.address.ui.UiPart;
  * A UI component that displays information of a {@code Person}.
  */
 public class ExamCard extends UiPart<Region> {
-
+    private static final DateTimeFormatter PRINT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
     private static final String FXML = "ExamListCard.fxml";
 
     @FXML
@@ -35,8 +37,8 @@ public class ExamCard extends UiPart<Region> {
         super(FXML);
         this.id.setText(id + ". ");
         title.setText(exam.getDescription());
-        startTime.setText(exam.getStartTime().toString());
-        endTime.setText(exam.getEndTime().toString());
+        startTime.setText(exam.getStartTime().format(PRINT_FORMATTER));
+        endTime.setText(exam.getEndTime().format(PRINT_FORMATTER));
     }
 
     @Override
