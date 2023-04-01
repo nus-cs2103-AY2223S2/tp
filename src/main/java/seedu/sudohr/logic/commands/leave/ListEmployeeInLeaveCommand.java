@@ -25,7 +25,7 @@ public class ListEmployeeInLeaveCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists the employees part of the leave identified by the index number "
             + "used in the displayed employees list.\n"
-            + "Parameters: Date (must be a date in the form of YYYY-mm-dd)\n"
+            + "Parameters: DATE\n"
             + "Example: " + COMMAND_WORD + " 2022-03-04";
 
     private final LeaveDate targetDate;

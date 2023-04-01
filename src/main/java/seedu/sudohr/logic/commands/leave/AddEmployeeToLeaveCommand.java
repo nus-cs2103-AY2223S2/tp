@@ -24,8 +24,8 @@ import seedu.sudohr.model.leave.LeaveDate;
 public class AddEmployeeToLeaveCommand extends Command {
     public static final String COMMAND_WORD = "aetl";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a leave on a specific day to the SudoHR. \n"
-            + "Parameters: \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a leave on a specific day to SudoHR. \n"
+            + "Parameters: "
             + PREFIX_EMPLOYEE + "ID "
             + PREFIX_DATE + "DATE \n"
             + "Example: " + COMMAND_WORD + " "
@@ -33,9 +33,9 @@ public class AddEmployeeToLeaveCommand extends Command {
             + PREFIX_DATE + "2022-03-04 ";
 
     // maybe rename to duplicate leave? not sure if the right naming is used here
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee has already leave on this day "
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee has already taken leave on this day "
             + "in SudoHR";
-    public static final String MESSAGE_ADD_LEAVE_SUCCESS = "New employee %1$s has taken leave on %2$s";
+    public static final String MESSAGE_ADD_LEAVE_SUCCESS = "New employee %1$s has taken a new %2$s";
 
     private final LeaveDate leaveDate;
     private final Id employeeId;
@@ -75,6 +75,8 @@ public class AddEmployeeToLeaveCommand extends Command {
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
         model.updateFilteredEmployeeList(predicate);
+        final Leave leaveToFilter = leaveToAdd;
+        model.updateFilteredLeaveList(l -> l.equals(leaveToFilter));
 
         return new CommandResult(String.format(MESSAGE_ADD_LEAVE_SUCCESS, employeeToAdd, leaveToAdd));
     }

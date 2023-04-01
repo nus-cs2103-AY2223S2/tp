@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="departmentListView" VBox.vgrow="ALWAYS" />
+  <Label text="Departments" styleClass="header-department" prefWidth="Infinity"/>
+  <ListView fx:id="departmentListView" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
 </VBox>

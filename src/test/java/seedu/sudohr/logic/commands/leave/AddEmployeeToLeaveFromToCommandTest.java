@@ -492,6 +492,10 @@ public class AddEmployeeToLeaveFromToCommandTest {
         }
 
         @Override
+        public void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave) {
+        }
+
+        @Override
         public boolean checkEmployeeExists(Id id) {
             requireNonNull(id);
             return sudoHr.checkEmployeeExists(id);

@@ -5,6 +5,7 @@ import static seedu.sudohr.logic.parser.CliSyntax.PREFIX_DEPARTMENT_NAME;
 
 import java.util.Optional;
 
+import seedu.sudohr.commons.core.Messages;
 import seedu.sudohr.commons.util.CollectionUtil;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.CommandResult;
@@ -22,7 +23,7 @@ public class EditDepartmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the department identified "
             + "by the department name. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: DEPARTMENT_NAME "
+            + "Parameters: OLD_DEPARTMENT_NAME "
             + PREFIX_DEPARTMENT_NAME + "NEW_DEPARTMENT_NAME \n"
             + "Example: " + COMMAND_WORD + " Engineering "
             + PREFIX_DEPARTMENT_NAME + "Software Engineering";
@@ -30,7 +31,6 @@ public class EditDepartmentCommand extends Command {
     public static final String MESSAGE_EDIT_DEPARTMENT_SUCCESS = "Edited Department: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_DEPARTMENT = "This department already exists in SudoHR.";
-    public static final String MESSAGE_DEPARTMENT_NOT_FOUND = "The department to edit does not exist in SudoHR.";
 
     private final DepartmentName name;
     private final EditDepartmentCommand.EditDepartmentDescriptor editDepartmentDescriptor;
@@ -55,7 +55,7 @@ public class EditDepartmentCommand extends Command {
         Department departmentToEdit = model.getDepartment(name);
 
         if (departmentToEdit == null) {
-            throw new CommandException(MESSAGE_DEPARTMENT_NOT_FOUND);
+            throw new CommandException(Messages.MESSAGE_DEPARTMENT_NOT_FOUND);
         }
 
         Department editedDepartment = createEditedDepartment(departmentToEdit, editDepartmentDescriptor);
@@ -65,7 +65,7 @@ public class EditDepartmentCommand extends Command {
         }
 
         model.setDepartment(departmentToEdit, editedDepartment);
-        // MISSING STEP: Update Department view?
+        model.updateFilteredDepartmentList(Model.PREDICATE_SHOW_ALL_DEPARTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_DEPARTMENT_SUCCESS, editedDepartment));
     }
 

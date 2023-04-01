@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <ListView fx:id="employeeListView" VBox.vgrow="ALWAYS" />
+  <Label text="Employees" styleClass="header-employee" prefWidth="Infinity"/>
+  <ListView  fx:id="employeeListView" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
 </VBox>

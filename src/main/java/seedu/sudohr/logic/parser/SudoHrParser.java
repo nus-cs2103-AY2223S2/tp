@@ -10,6 +10,7 @@ import seedu.sudohr.logic.commands.ClearCommand;
 import seedu.sudohr.logic.commands.Command;
 import seedu.sudohr.logic.commands.ExitCommand;
 import seedu.sudohr.logic.commands.HelpCommand;
+import seedu.sudohr.logic.commands.ShowAllCommand;
 import seedu.sudohr.logic.commands.department.AddDepartmentCommand;
 import seedu.sudohr.logic.commands.department.AddEmployeeToDepartmentCommand;
 import seedu.sudohr.logic.commands.department.DeleteDepartmentCommand;
@@ -23,6 +24,7 @@ import seedu.sudohr.logic.commands.department.RemoveEmployeeFromDepartmentComman
 import seedu.sudohr.logic.commands.employee.AddCommand;
 import seedu.sudohr.logic.commands.employee.DeleteCommand;
 import seedu.sudohr.logic.commands.employee.EditCommand;
+import seedu.sudohr.logic.commands.employee.FindByIdCommand;
 import seedu.sudohr.logic.commands.employee.FindCommand;
 import seedu.sudohr.logic.commands.employee.ListCommand;
 import seedu.sudohr.logic.commands.leave.AddEmployeeToLeaveCommand;
@@ -43,6 +45,7 @@ import seedu.sudohr.logic.parser.department.RemoveEmployeeFromDepartmentCommandP
 import seedu.sudohr.logic.parser.employee.AddCommandParser;
 import seedu.sudohr.logic.parser.employee.DeleteCommandParser;
 import seedu.sudohr.logic.parser.employee.EditCommandParser;
+import seedu.sudohr.logic.parser.employee.FindByIdCommandParser;
 import seedu.sudohr.logic.parser.employee.FindCommandParser;
 import seedu.sudohr.logic.parser.exceptions.ParseException;
 import seedu.sudohr.logic.parser.leave.AddEmployeeToLeaveCommandParser;
@@ -124,6 +127,9 @@ public class SudoHrParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FindByIdCommand.COMMAND_WORD:
+            return new FindByIdCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -149,6 +155,8 @@ public class SudoHrParser {
 
         case ListLeaveCommand.COMMAND_WORD:
             return new ListLeaveCommand();
+        case ShowAllCommand.COMMAND_WORD:
+            return new ShowAllCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

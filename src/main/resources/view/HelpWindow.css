@@ -3,6 +3,7 @@
 }
 
 #copyButton {
+    top: 0;
     -fx-background-color: dimgray;
 }
 

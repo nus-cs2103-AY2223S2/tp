@@ -65,7 +65,14 @@ public class RemoveEmployeeFromDepartmentCommand extends Command {
             throw new CommandException(MESSAGE_EMPLOYEE_NOT_FOUND_IN_DEPARTMENT);
         }
 
-        department.removeEmployee(employee);
+
+        model.removeEmployeeFromDepartment(employee, department);
+        // only show the relevant department
+        model.updateFilteredDepartmentList(d -> d.equals(department));
+
+        // show the employees within this department
+        model.updateFilteredEmployeeList(e -> department.hasEmployee(e));
+
         return new CommandResult(String.format(MESSAGE_REMOVE_EMPLOYEE_FROM_DEPARTMENT_SUCCESS, employee, department));
     }
 

@@ -39,7 +39,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New employee added: %1$s";
+    public static final String MESSAGE_SUCCESS = "Newly Added Employee: %1$s";
     public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee already exists in SudoHR";
     public static final String MESSAGE_DUPLICATE_EMAIL = "There already exists someone with this email!";
     public static final String MESSAGE_DUPLICATE_PHONE = "There already exists someone with this phone number!";
@@ -72,7 +72,7 @@ public class AddCommand extends Command {
 
         model.addEmployee(toAdd);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toStringAllFields()));
     }
 
     @Override

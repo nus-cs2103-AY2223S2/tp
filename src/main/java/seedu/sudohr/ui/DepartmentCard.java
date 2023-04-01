@@ -1,10 +1,7 @@
 package seedu.sudohr.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.sudohr.model.department.Department;
@@ -25,10 +22,9 @@ public class DepartmentCard extends UiPart<Region> {
     @FXML
     private Label number;
     @FXML
-    private Label name;
+    private Label totalEmployees;
     @FXML
-    private FlowPane employees;
-
+    private Label name;
     /**
      * Creates a {@code DepartmentCard} with the given {@code Department} and index to display.
      * @param department The department to be featured on the card
@@ -39,11 +35,8 @@ public class DepartmentCard extends UiPart<Region> {
         super(FXMl);
         this.department = department;
         number.setText(displayedIndex + ". ");
+        totalEmployees.setText("Number of employees: " + department.employeeCount());
         name.setText(department.getName().toString());
-        department.getEmployees().stream()
-                .sorted(Comparator.comparing(person-> person.getName().toString()))
-                .forEach(employee -> employees.getChildren().add(new Label(employee.getName().toString())));
-
     }
 
     @Override

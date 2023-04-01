@@ -2,6 +2,7 @@ package seedu.sudohr.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.sudohr.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.sudohr.model.Model.PREDICATE_SHOW_ALL_NON_EMPTY_LEAVES;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -46,7 +47,7 @@ public class ModelManager implements Model {
 
         filteredEmployees = new FilteredList<>(this.sudoHr.getEmployeeList());
         filteredDepartments = new FilteredList<>(this.sudoHr.getDepartmentList());
-        filteredLeaves = new FilteredList<>(this.sudoHr.getLeavesList());
+        filteredLeaves = new FilteredList<>(this.sudoHr.getLeavesList(), PREDICATE_SHOW_ALL_NON_EMPTY_LEAVES);
         sortedLeaves = new SortedList<>(this.filteredLeaves, new LeaveSortedByDateComparator());
     }
 

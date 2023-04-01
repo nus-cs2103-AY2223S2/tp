@@ -25,30 +25,30 @@ import seedu.sudohr.model.leave.LeaveDate;
 public class AddEmployeeToLeaveFromToCommand extends Command {
     public static final String COMMAND_WORD = "aelr";
 
-    public static final String DATE_CONSTRAINTS = "start date must be before end date.\n"
-            + "end date must be at most 6 days after start date";
+    public static final String DATE_CONSTRAINTS = "The start date must be before end date.\n"
+            + "The end date must be at most 6 days after start date";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an employee's leave on days from the start date to end date inclusive in SudoHR .\n"
             + "Parameters: "
             + PREFIX_EMPLOYEE + "ID "
             + PREFIX_START_DATE + "START_DATE "
-            + PREFIX_END_DATE + "END_DATE "
+            + PREFIX_END_DATE + "END_DATE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_EMPLOYEE + "1 "
             + PREFIX_START_DATE + "2023-02-04 "
             + PREFIX_END_DATE + "2023-02-06 ";
 
     // maybe rename to duplicate leave? not sure if the right naming is used here
-    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "The employee %1$s has already taken leave on %2$s"
+    public static final String MESSAGE_DUPLICATE_EMPLOYEE = "This employee has already leave on one of the days "
             + "in SudoHR";
-    public static final String MESSAGE_ADD_LEAVE_SUCCESS = "Employee %1$s leave is added on %2$s";
+    public static final String MESSAGE_ADD_LEAVE_SUCCESS = "New employee %1$s has taken a new %2$s";
 
     private final List<LeaveDate> leaveDatesToAdd;
     private final Id employeeId;
 
     /**
-     * Creates an AddEmployeeToLeaveFromToCommand to add the leave for a employee at a
+     * Creates an AddEmployeeToLeaveFromToCommand to add the leave for an employee at a
      * specified
      * {@code employeeIndex} on the specified {@code date}
      */
@@ -88,6 +88,10 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
             model.addEmployeeToLeave(leavesToAdd.get(i), employeeToAdd);
             builder.append(String.format(MESSAGE_ADD_LEAVE_SUCCESS, employeeToAdd, leavesToAdd.get(i)) + "\n");
         }
+
+        final List<Leave> leavesToFilter = leavesToAdd;
+
+        model.updateFilteredLeaveList(l -> leavesToFilter.contains(l));
 
         return new CommandResult(builder.toString());
     }

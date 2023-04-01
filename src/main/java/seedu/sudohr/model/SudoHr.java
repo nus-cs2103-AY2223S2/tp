@@ -190,6 +190,8 @@ public class SudoHr implements ReadOnlySudoHr {
     public void setEmployee(Employee target, Employee editedEmployee) {
         requireNonNull(editedEmployee);
         employees.setEmployee(target, editedEmployee);
+        refreshDepartments();
+        refreshLeaves();
     }
 
     /**
@@ -198,6 +200,8 @@ public class SudoHr implements ReadOnlySudoHr {
      */
     public void removeEmployee(Employee key) {
         employees.remove(key);
+        refreshDepartments();
+        refreshLeaves();
     }
 
     // =========== Department-Level Operations
@@ -258,6 +262,7 @@ public class SudoHr implements ReadOnlySudoHr {
     public void addEmployeeToDepartment(Employee p, Department d) {
         requireAllNonNull(p, d);
         d.addEmployee(p);
+        refreshDepartments();
     }
 
     /**
@@ -269,6 +274,19 @@ public class SudoHr implements ReadOnlySudoHr {
     public void removeEmployeeFromDepartment(Employee p, Department d) {
         requireAllNonNull(p, d);
         d.removeEmployee(p);
+        refreshDepartments();
+    }
+
+    /**
+     * Refreshes the department list.
+     */
+    public void refreshDepartments() {
+        UniqueDepartmentList currList = new UniqueDepartmentList();
+        for (Department d : departments) {
+            currList.add(d);
+        }
+        departments.setDepartments(new UniqueDepartmentList());
+        departments.setDepartments(currList);
     }
 
     /**
@@ -294,6 +312,8 @@ public class SudoHr implements ReadOnlySudoHr {
                 dept.removeEmployee(employeeToDelete);
             }
         }
+        refreshDepartments(); // defensive programming
+        refreshLeaves(); // defensive programming
     }
 
     /**
@@ -309,6 +329,8 @@ public class SudoHr implements ReadOnlySudoHr {
                 dept.setEmployee(employeeToEdit, editedEmployee);
             }
         }
+        refreshDepartments(); // defensive programming
+        refreshLeaves(); // defensive programming
     }
 
     // =========== Leave-Level Operations
@@ -355,6 +377,8 @@ public class SudoHr implements ReadOnlySudoHr {
      */
     public void deleteLeave(Leave leave) {
         leaves.remove(leave);
+        refreshDepartments();
+        refreshLeaves();
     }
 
     /**
@@ -388,6 +412,7 @@ public class SudoHr implements ReadOnlySudoHr {
     public void addEmployeeToLeave(Leave leave, Employee employee) {
         requireAllNonNull(leave, employee);
         leave.addEmployee(employee);
+        refreshLeaves();
     }
 
     /**
@@ -396,6 +421,19 @@ public class SudoHr implements ReadOnlySudoHr {
     public void deleteEmployeeFromLeave(Leave leave, Employee employee) {
         requireAllNonNull(leave, employee);
         leave.deleteEmployee(employee);
+        refreshLeaves();
+    }
+
+    /**
+     * Refreshes the leave list
+     */
+    public void refreshLeaves() {
+        UniqueLeaveList currList = new UniqueLeaveList();
+        for (Leave l : leaves) {
+            currList.addLeave(l);
+        }
+        leaves.setLeaves(new UniqueLeaveList());
+        leaves.setLeaves(currList);
     }
 
     /**
@@ -419,6 +457,8 @@ public class SudoHr implements ReadOnlySudoHr {
                 leave.setEmployee(employeeToEdit, editedEmployee);
             }
         }
+        refreshDepartments();
+        refreshLeaves();
     }
 
     /**
@@ -431,6 +471,8 @@ public class SudoHr implements ReadOnlySudoHr {
                 leave.deleteEmployee(employeeToDelete);
             }
         }
+        refreshDepartments();
+        refreshLeaves();
     }
 
     /**

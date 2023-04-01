@@ -64,7 +64,15 @@ public class AddEmployeeToDepartmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EMPLOYEE);
         }
 
-        department.addEmployee(employee);
+        model.addEmployeeToDepartment(employee, department);
+
+        // only show the relevant department
+        model.updateFilteredDepartmentList(d -> d.equals(department));
+
+        // show the employees within this department
+        model.updateFilteredEmployeeList(e -> department.hasEmployee(e));
+
+
         return new CommandResult(String.format(MESSAGE_ADD_EMPLOYEE_TO_DEPARTMENT_SUCCESS, employee, department));
     }
 
@@ -75,4 +83,6 @@ public class AddEmployeeToDepartmentCommand extends Command {
                 && toAdd.equals(((AddEmployeeToDepartmentCommand) other).toAdd)
                 && departmentName.equals(((AddEmployeeToDepartmentCommand) other).departmentName));
     }
+
+
 }

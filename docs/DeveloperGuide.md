@@ -191,7 +191,7 @@ Sequence Diagram:
 3. A `Department` object is constructed from the `DepartmentName` and handed over to the `AddDepartmentCommand`.
 4. The command is executed. It first checks if the department contains the employee being added. This is done to prevent the addition of duplicate
 employees in the same department.
-5. If there is no duplicate, the model adds the department to SudoHR. 
+5. If there is no duplicate, the model adds the department to SudoHR.
 
 After that, the command result is returned.
 
@@ -253,7 +253,7 @@ Sequence Diagram:
 
 ##### Flow
 
-1. The user enters the command, eg. `deldep n/Sales`. Sales is the department to be deleted. 
+1. The user enters the command, eg. `deldep n/Sales`. Sales is the department to be deleted.
 2. The parser will instantiate a new `DepartmentName` object constructed from the input of the argument `/n` which represents the new department name.
 3. The `DepartmentName` is passed down to the command.
 4. The command is executed. It first tries to find the department called Sales.
@@ -454,7 +454,7 @@ An important design consideration to note for Employee is the multiple different
 
 An employee is identified by his ID field, and this field is used to get an employee object.
 
-However, there are other fields to guard against duplication, specifically email and phone number fields. 
+However, there are other fields to guard against duplication, specifically email and phone number fields.
 For instance, two employees should not share email field or phone number as those two fields are known to be unique.
 
 ##### Departments
@@ -463,8 +463,8 @@ For instance, two employees should not share email field or phone number as thos
 
 ##### Cascading employee updates and deletion to department and leave
 An important functionality is to ensure updates to employee is cascaded down to department-level and leave-level because
-each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files 
-where employee objects are separately created for department's and leave's employee lists. 
+each department and leave has its own list of employees. This issue becomes more prominent during loading of storage files
+where employee objects are separately created for department's and leave's employee lists.
 Hence, any modification to an employee after SudoHR is initialized from storage needs to be cascaded down to modify the equivalent employee object.
 
 
@@ -580,7 +580,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC3 - List Employees in department**
 
 **MSS:**
-1. User requests to list the employees in a specified department. 
+1. User requests to list the employees in a specified department.
 2. SudoHr lists all the employees in the department.
 
    Use case ends.
@@ -711,7 +711,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC11 - Delete event**
 **MSS:**
-1. User request to list event
+1. User request to __list events(UC6)__
 2. SudoHR shows all events
 3. User requests to delete event from SudoHR
 4. SudoHR deletes event.
@@ -732,7 +732,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC12 - Update event**
 **MSS:**
-1. User resuest to list event
+1. User requests to __list events(UC6)__
 2. SudoHR shows all events and their details
 3. User requests to update event details on SudoHR
 4. SudoHR update event.
@@ -765,12 +765,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC14 - Add employee to event**
 **MSS:**
-1. User requests to list event
+1. User requests to __list events(UC6)__
 2. SudoHR shows all events and their details
 3. User requests to list employees
 4. SudoHR shows all employees and their details
 5. User requests to add employee to event on SudoHR
-6. SudoHR add employee to event.
+6. SudoHR adds employee to event.
 7. Use case ends.
 
 **Extensions**
@@ -797,9 +797,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC15 - List employees in an event**
 **MSS:**
-1. User request to list events
+1. User requests to __list events(UC6)__
 2. SudoHR shows all events and their details
-3. User requests to list employees added to an event
+3. User requests to __list employees in a event(UC8)__
 4. SudoHR shows all employees added to an event and their details
 5. Use case ends.
 

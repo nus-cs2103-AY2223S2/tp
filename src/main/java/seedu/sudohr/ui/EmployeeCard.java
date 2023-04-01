@@ -2,11 +2,13 @@ package seedu.sudohr.ui;
 
 import java.util.Comparator;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.sudohr.model.department.Department;
 import seedu.sudohr.model.employee.Employee;
 
 /**
@@ -27,9 +29,11 @@ public class EmployeeCard extends UiPart<Region> {
     public final Employee employee;
 
     @FXML
-    private HBox cardPane;
+    private HBox cardPane2;
     @FXML
     private Label name;
+    @FXML
+    private Label hashId;
     @FXML
     private Label employeeId;
     @FXML
@@ -46,11 +50,12 @@ public class EmployeeCard extends UiPart<Region> {
     /**
      * Creates a {@code EmployeeCard} with the given {@code Employee} and index to display.
      */
-    public EmployeeCard(Employee employee, int displayedIndex) {
+    public EmployeeCard(Employee employee, int displayedIndex, ObservableList<Department> departments) {
         super(FXML);
         this.employee = employee;
         index.setText(displayedIndex + ". ");
         name.setText(employee.getName().fullName);
+        hashId.setText("#" + employee.getId().value);
         employeeId.setText("Employee ID: " + employee.getId().value);
         phone.setText(employee.getPhone().value);
         address.setText(employee.getAddress().value);

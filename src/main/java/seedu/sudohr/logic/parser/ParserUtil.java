@@ -212,7 +212,7 @@ public class ParserUtil {
             throw new ParseException(AddEmployeeToLeaveFromToCommand.DATE_CONSTRAINTS);
         }
 
-        if (startDay.until(endDay).getDays() > 5) {
+        if (startDay.until(endDay).getDays() > 6) {
             throw new ParseException(AddEmployeeToLeaveFromToCommand.DATE_CONSTRAINTS);
         }
 

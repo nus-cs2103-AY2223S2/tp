@@ -13,12 +13,12 @@
 <?import javafx.scene.layout.HBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="SudoHR" minWidth="750" minHeight="600" onCloseRequest="#handleExit" >
+         title="SudoHR" minWidth="1400" minHeight="900" onCloseRequest="#handleExit" >
   <icons>
     <Image url="@/images/SudoHR_icon.png"/>
   </icons>
   <scene>
-    <Scene>
+    <Scene fill="#000101">
       <stylesheets>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
@@ -41,26 +41,19 @@
         </StackPane>
 
         <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+                   prefHeight="550" >
           <padding>
             <Insets top="5" right="10" bottom="5" left="10" />
           </padding>
         </StackPane>
 
-        <HBox prefHeight="5000">
-          <VBox fx:id="employeeList" styleClass="pane-with-border" minWidth="340" prefWidth="5000" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="employeeListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-
-          <VBox fx:id="departmentList" styleClass="pane-with-border" minWidth="340" prefWidth="5000" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="departmentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
+        <HBox prefHeight="1000" styleClass="pane-with-border">
+          <StackPane fx:id="departmentListPanelPlaceholder" styleClass="pane-with-border" minWidth="350" prefWidth="375"
+                     VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="employeeListPanelPlaceholder" styleClass="pane-with-border" minWidth="500" prefWidth="5000"
+                     VBox.vgrow="ALWAYS"/>
+          <StackPane fx:id="leaveListPanelPlaceholder" styleClass="pane-with-border" minWidth="375" prefWidth="400"
+                     VBox.vgrow="ALWAYS"/>
         </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

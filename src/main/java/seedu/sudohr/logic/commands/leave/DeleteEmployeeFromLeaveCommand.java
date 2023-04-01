@@ -23,11 +23,11 @@ import seedu.sudohr.model.leave.LeaveDate;
 public class DeleteEmployeeFromLeaveCommand extends Command {
     public static final String COMMAND_WORD = "defl";
 
-    public static final String MESSAGE_SUCCESS = "employee %1$s is deleted from %2$s";
+    public static final String MESSAGE_SUCCESS = "Employee %1$s is deleted from %2$s \n";
 
-    public static final String MESSAGE_INVALID_DATE = "The employee has not taken a leave";
+    public static final String MESSAGE_INVALID_DATE = "The employee has not taken leave on the input date ";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a employee from leave in SudoHR. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an employee from a leave in SudoHR. \n"
             + "Parameters: "
             + PREFIX_EMPLOYEE + "ID "
             + PREFIX_DATE + "DATE\n"
@@ -71,6 +71,8 @@ public class DeleteEmployeeFromLeaveCommand extends Command {
         LeaveContainsEmployeePredicate predicate = new LeaveContainsEmployeePredicate(employeesToList);
 
         model.updateFilteredEmployeeList(predicate);
+        final Leave leaveToFilter = leaveToDelete;
+        model.updateFilteredLeaveList(l -> l.equals(leaveToFilter));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, employeeToDelete, leaveToDelete));
     }

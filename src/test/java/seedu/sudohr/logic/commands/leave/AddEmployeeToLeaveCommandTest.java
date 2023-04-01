@@ -372,6 +372,7 @@ public class AddEmployeeToLeaveCommandTest {
         public boolean checkEmployeeExists(Id id) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
@@ -458,6 +459,10 @@ public class AddEmployeeToLeaveCommandTest {
         // for this we do not modify the filtered list to facilitate testing
         @Override
         public void updateFilteredEmployeeList(Predicate<Employee> predicate) {
+        }
+
+        @Override
+        public void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave) {
         }
 
         @Override

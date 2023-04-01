@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private EmployeeListPanel employeeListPanel;
     private DepartmentListPanel departmentListPanel;
+    private LeaveListPanel leaveListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane departmentListPanelPlaceholder;
+
+    @FXML
+    private StackPane leaveListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -114,11 +118,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList());
+        employeeListPanel = new EmployeeListPanel(logic.getFilteredEmployeeList(), logic.getFilteredDepartmentList());
         employeeListPanelPlaceholder.getChildren().add(employeeListPanel.getRoot());
 
         departmentListPanel = new DepartmentListPanel(logic.getFilteredDepartmentList());
         departmentListPanelPlaceholder.getChildren().add(departmentListPanel.getRoot());
+
+        leaveListPanel = new LeaveListPanel(logic.getFilteredLeaveList());
+        leaveListPanelPlaceholder.getChildren().add(leaveListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

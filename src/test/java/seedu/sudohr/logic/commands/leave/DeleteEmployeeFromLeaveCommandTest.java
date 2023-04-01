@@ -357,6 +357,11 @@ public class DeleteEmployeeFromLeaveCommandTest {
         }
 
         @Override
+        public void updateFilteredLeaveList(Predicate<Leave> predicateShowAllLeave) {
+            return;
+        }
+
+        @Override
         public Employee getEmployee(Id employeeId) {
             requireNonNull(employeeId);
             return sudoHr.getEmployee(employeeId);

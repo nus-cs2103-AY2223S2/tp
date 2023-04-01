@@ -23,6 +23,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true for leave */
     Predicate<Leave> PREDICATE_SHOW_ALL_NON_EMPTY_LEAVES = leave -> leave.getNumberOnLeave() > 0;
 
+    /** {@code Predicate} that always evaluate to true for departments */
     Predicate<Department> PREDICATE_SHOW_ALL_DEPARTMENTS = unused -> true;
 
 
