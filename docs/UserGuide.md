@@ -164,7 +164,7 @@ An application can have multiple tags or none at all.
 
 Examples:
 * `add-app r/SWE Intern c/Google e/google_careers@gmail.com s/interested t/creditBearing`
-* `add-app r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com`
+* `add-app r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com s/applied`
 
 
 #### 4.1.2 Editing an application : `edit-app`
