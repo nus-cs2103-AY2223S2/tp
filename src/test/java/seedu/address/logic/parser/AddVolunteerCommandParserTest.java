@@ -9,7 +9,6 @@ import static seedu.address.logic.commands.CommandTestUtil.BIRTH_DATE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.BIRTH_DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AVAILABLE_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_BIRTH_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -53,7 +52,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddVolunteerCommand;
 import seedu.address.model.person.Volunteer;
-import seedu.address.model.person.information.Address;
 import seedu.address.model.person.information.AvailableDate;
 import seedu.address.model.person.information.BirthDate;
 import seedu.address.model.person.information.Email;
@@ -181,11 +179,6 @@ public class AddVolunteerCommandParserTest {
                 + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + TAG_DESC_SINGLE
                 + TAG_DESC_STRONG + AVAILABLE_DATES_ONE, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + TAG_DESC_SINGLE
-                + TAG_DESC_STRONG + AVAILABLE_DATES_ONE, Address.MESSAGE_CONSTRAINTS);
-
         // invalid nric
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_NRIC_DESC + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB + TAG_DESC_SINGLE
@@ -196,7 +189,7 @@ public class AddVolunteerCommandParserTest {
                 + NRIC_DESC_BOB + INVALID_BIRTH_DATE_DESC + REGION_DESC_BOB + TAG_DESC_SINGLE
                 + TAG_DESC_STRONG + AVAILABLE_DATES_ONE, BirthDate.MESSAGE_CONSTRAINTS);
 
-        // ivalid region
+        // invalid region
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + INVALID_REGION_DESC + TAG_DESC_SINGLE
                 + TAG_DESC_STRONG, Region.MESSAGE_CONSTRAINTS);
@@ -208,7 +201,7 @@ public class AddVolunteerCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_ADDRESS_DESC + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + REGION_DESC_BOB,
+                + ADDRESS_DESC_BOB + NRIC_DESC_BOB + BIRTH_DATE_DESC_BOB + INVALID_REGION_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid date

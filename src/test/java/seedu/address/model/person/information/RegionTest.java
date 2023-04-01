@@ -11,7 +11,7 @@ class RegionTest {
 
     @Test
     public void constructor_invalidRegion_throwsIllegalArgumentException() {
-        String invalidRegion = "";
+        String invalidRegion = "abc";
         assertThrows(IllegalArgumentException.class, () -> new Region(invalidRegion));
     }
 
@@ -21,7 +21,6 @@ class RegionTest {
         assertFalse(Region.isValidRegion(null));
 
         // invalid region
-        assertFalse(Region.isValidRegion("")); // empty string
         assertFalse(Region.isValidRegion(" ")); // spaces only
         assertFalse(Region.isValidRegion("hello")); // random letters
 

@@ -4,13 +4,11 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -59,8 +57,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
-
-    private final Popup popup = new Popup();
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -135,9 +131,9 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        String footerMessage = "Elderly: " + logic.getElderlyFilePath()
-                + " Volunteer: " + logic.getVolunteerFilePath()
-                + " Pair: " + logic.getPairFilePath();
+        String footerMessage = "Data is saved to " + logic.getElderlyFilePath()
+                + ", " + logic.getVolunteerFilePath()
+                + ", " + logic.getPairFilePath();
         StatusBarFooter statusBarFooter = new StatusBarFooter(footerMessage);
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -216,21 +212,6 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
-
-            Label label = new Label(e.getMessage().split("\n")[0]);
-            label.setStyle(
-                    "-fx-background-color: #F0FFE3;"
-                            + "-fx-border-radius: 10; -fx-background-radius: 10;"
-                            + "-fx-padding: 5; -fx-opacity: 100%; -fx-border-color: #457C51"
-
-            );
-            popup.getContent().remove(0, popup.getContent().size());
-            popup.getContent().add(label);
-            label.setMinWidth(80);
-            label.setMinHeight(50);
-            popup.setAutoHide(true);
-            popup.setHideOnEscape(true);
-            popup.show(primaryStage, 10, primaryStage.getHeight());
             throw e;
         }
     }

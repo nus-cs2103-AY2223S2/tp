@@ -60,6 +60,9 @@ public class RiskLevel {
 
     @Override
     public String toString() {
+        if (riskStatus == Risk.NOT_SPECIFIED) {
+            return FIELD_NOT_SPECIFIED;
+        }
         return riskStatus.toString().toLowerCase();
     }
 

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <VBox styleClass="listView" fx:id="elderlyListBox" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-   <Label styleClass="listLabel" VBox.vgrow="ALWAYS" prefWidth="248.0" text="Elderly">
+   <Label styleClass="listLabel"  minHeight="-Infinity"  VBox.vgrow="ALWAYS" prefWidth="248.0" text="Elderly">
       <font>
          <Font/>
       </font>

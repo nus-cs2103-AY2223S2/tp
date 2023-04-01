@@ -257,6 +257,9 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param key Elderly to remove.
      */
     public void removeElderly(Elderly key) {
+        for (Volunteer volunteer : getPairedVolunteers(key.getNric())) {
+            removePair(key.getNric(), volunteer.getNric());
+        }
         elderly.remove(key);
     }
 
@@ -267,6 +270,9 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param key Volunteer to remove.
      */
     public void removeVolunteer(Volunteer key) {
+        for (Elderly elderly : getPairedElderly(key.getNric())) {
+            removePair(elderly.getNric(), key.getNric());
+        }
         volunteers.remove(key);
     }
 

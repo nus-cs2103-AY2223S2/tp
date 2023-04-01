@@ -37,17 +37,17 @@ public class FindCommand extends Command {
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
 
     static {
-        COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
-        COMMAND_PROMPTS.put(PREFIX_NRIC, "<nric>");
-        COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
-        COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
-        COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
-        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
-        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
-        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
-        COMMAND_PROMPTS.put(PREFIX_MEDICAL_TAG, "<medical_qualifications>");
-        COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
-        COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+        COMMAND_PROMPTS.put(PREFIX_NAME, "[NAME]");
+        COMMAND_PROMPTS.put(PREFIX_NRIC, "[NRIC]");
+        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "[BIRTH_DATE]");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "[REGION]");
+        COMMAND_PROMPTS.put(PREFIX_RISK, "[RISK]");
+        COMMAND_PROMPTS.put(PREFIX_ADDRESS, "[ADDRESS]");
+        COMMAND_PROMPTS.put(PREFIX_PHONE, "[PHONE]");
+        COMMAND_PROMPTS.put(PREFIX_EMAIL, "[EMAIL]");
+        COMMAND_PROMPTS.put(PREFIX_MEDICAL_TAG, "[MEDICAL_QUALIFICATION]");
+        COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "[AVAILABLE_DATE_START, AVAILABLE_DATE_END]");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "[TAG]");
     }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all volunteers and elderly whose attributes"
@@ -61,12 +61,12 @@ public class FindCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NRIC + "NRIC] "
-            + "[" + PREFIX_BIRTH_DATE + "BIRTH DATE] "
+            + "[" + PREFIX_BIRTH_DATE + "BIRTHDATE] "
             + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_RISK + "RISK LEVEL] "
             + "[" + PREFIX_MEDICAL_TAG + "MEDICAL_TAG] "
             + "[" + PREFIX_TAG + "TAG]... "
-            + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
+            + "[" + PREFIX_AVAILABILITY + "AVAILABLE_DATE_START,AVAILABLE_DATE_END]...\n"
             + "Example: " + COMMAND_WORD + " n/John";
 
     private final List<Predicate<Person>> sharedFilterList;

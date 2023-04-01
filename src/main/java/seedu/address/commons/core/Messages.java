@@ -12,7 +12,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_TO_EDIT_NRIC = "The NRIC of the to be edited person is invalid.\n%s";
     public static final String MESSAGE_INVALID_PERSON_NRIC = "The %1$s NRIC provided is invalid.\n%2$s";
     public static final String MESSAGE_BOTH_INVALID_NRIC = "Both NRICs provided are invalid.\n%s";
-    public static final String MESSAGE_LISTED_OVERVIEW = "%1$d volunteer, %2$d elderly and %3$d pair listed.";
+    public static final String MESSAGE_LISTED_OVERVIEW = "Listed %1$d volunteer, %2$d elderly and %3$d pair.";
     public static final String MESSAGE_NRIC_NOT_EXIST = "There is no such person with the given NRIC.";
     public static final String MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS =
             "The NRIC provided belongs to an existing volunteer in the database.";
@@ -33,5 +33,7 @@ public class Messages {
             + "do not match";
     public static final String MESSAGE_WARNING_AVAILABLE_DATES = "\nWarning: The paired elderly and volunteer "
             + "do not have common available dates";
+    public static final String MESSAGE_FIELD_CANNOT_BE_EMPTY = "Invalid arguments. \n"
+            + "%s can take any values, but it should not be empty";
 
 }

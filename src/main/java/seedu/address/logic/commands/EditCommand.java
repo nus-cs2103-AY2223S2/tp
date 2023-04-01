@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -37,16 +38,17 @@ public class EditCommand extends Command {
     public static final HashMap<Prefix, String> COMMAND_PROMPTS = new LinkedHashMap<>();
 
     static {
-        COMMAND_PROMPTS.put(PREFIX_NAME, "<name>");
-        COMMAND_PROMPTS.put(PREFIX_NRIC, "<nric>");
-        COMMAND_PROMPTS.put(PREFIX_ADDRESS, "<address>");
-        COMMAND_PROMPTS.put(PREFIX_PHONE, "<phone>");
-        COMMAND_PROMPTS.put(PREFIX_EMAIL, "<email>");
-        COMMAND_PROMPTS.put(PREFIX_TAG, "<tag>");
-        COMMAND_PROMPTS.put(PREFIX_REGION, "<region>");
-        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "<birth_date>");
-        COMMAND_PROMPTS.put(PREFIX_RISK, "<risk>");
-        COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "<start_date,end_date>");
+        COMMAND_PROMPTS.put(PREFIX_NAME, "[NAME]");
+        COMMAND_PROMPTS.put(PREFIX_NRIC, "[NRIC]");
+        COMMAND_PROMPTS.put(PREFIX_BIRTH_DATE, "[BIRTH_DATE]");
+        COMMAND_PROMPTS.put(PREFIX_REGION, "[REGION]");
+        COMMAND_PROMPTS.put(PREFIX_RISK, "[RISK]");
+        COMMAND_PROMPTS.put(PREFIX_ADDRESS, "[ADDRESS]");
+        COMMAND_PROMPTS.put(PREFIX_PHONE, "[PHONE]");
+        COMMAND_PROMPTS.put(PREFIX_EMAIL, "[EMAIL]");
+        COMMAND_PROMPTS.put(PREFIX_MEDICAL_TAG, "[MEDICAL_QUALIFICATION]");
+        COMMAND_PROMPTS.put(PREFIX_AVAILABILITY, "[AVAILABLE_DATE_START, AVAILABLE_DATE_END]");
+        COMMAND_PROMPTS.put(PREFIX_TAG, "[TAG]");
     }
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
@@ -58,10 +60,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_BIRTH_DATE + "BIRTH DATE] "
+            + "[" + PREFIX_BIRTH_DATE + "BIRTHDATE] "
             + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_TAG + "TAG]... "
-            + "[" + PREFIX_AVAILABILITY + "START_DATE,END_DATE]...\n"
+            + "[" + PREFIX_AVAILABILITY + "AVAILABLE_DATE_START,AVAILABLE_DATE_END]...\n"
             + "Example: " + COMMAND_WORD + " S4263131J "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com"

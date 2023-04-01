@@ -8,7 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public interface Parser<T extends Command> {
 
-    public static final String FIELD_NOT_SPECIFIED = "Not specified";
+    public static final String FIELD_NOT_SPECIFIED = "";
 
     /**
      * Parses {@code userInput} into a command and returns it.

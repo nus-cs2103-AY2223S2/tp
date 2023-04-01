@@ -52,7 +52,7 @@ public class ListCommandTest {
     @Test
     public void executeShowPaired_listsAreNotFiltered_showsFilteredPairedLists() {
         ListCommand listCommand = new ListCommand("paired");
-        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST_PAIRED, 2, 3);
+        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST_PAIRED, 2, 3, 3);
         Predicate<Elderly> elderlyPredicate = elderly -> {
             String name = elderly.getName().fullName;
             return name.contains("Alice") || name.contains("Benson") || name.contains("Carl");
@@ -69,7 +69,7 @@ public class ListCommandTest {
     @Test
     public void executeShowPaired_listsAreFiltered_showsFilteredPairedLists() {
         ListCommand listCommand = new ListCommand("paired");
-        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST_PAIRED, 2, 3);
+        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST_PAIRED, 2, 3, 3);
 
         showElderlyAtIndex(model, INDEX_FIRST_PERSON);
         showVolunteerAtIndex(model, INDEX_FIRST_PERSON);
@@ -91,7 +91,7 @@ public class ListCommandTest {
     @Test
     public void executeShowUnpaired_listsAreNotFiltered_showsFilteredUnpairedLists() {
         ListCommand listCommand = new ListCommand("unpaired");
-        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST_UNPAIRED, 5, 4);
+        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST_UNPAIRED, 5, 4, 3);
         Predicate<Elderly> elderlyPredicate = elderly -> {
             String name = elderly.getName().fullName;
             return !(name.contains("Alice") || name.contains("Benson") || name.contains("Carl"));
@@ -108,7 +108,7 @@ public class ListCommandTest {
     @Test
     public void executeShowUnpaired_listsAreFiltered_showsFilteredUnpairedLists() {
         ListCommand listCommand = new ListCommand("unpaired");
-        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST_UNPAIRED, 5, 4);
+        String expectedMessage = String.format(ListCommand.MESSAGE_SUCCESS_LIST_UNPAIRED, 5, 4, 3);
 
         showElderlyAtIndex(model, INDEX_FIRST_PERSON);
         showVolunteerAtIndex(model, INDEX_FIRST_PERSON);

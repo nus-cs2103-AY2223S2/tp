@@ -47,7 +47,7 @@ public class VolunteerListPanel extends UiPart<Region> {
         imageView.setImage(image);
 
         emptyBox.getChildren().add(imageView);
-        Label label = new Label("Add a volunteer to see something here!");
+        Label label = new Label("There is nothing to see here.");
         emptyBox.getChildren().add(label);
 
         emptyBox.setAlignment(Pos.CENTER);
@@ -55,7 +55,8 @@ public class VolunteerListPanel extends UiPart<Region> {
         emptyBox.setMinHeight(400);
 
         label.setStyle(
-                "-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"
+                "-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10; "
+                        + "-fx-font-family: Segoe UI Semibold"
         );
 
         if (volunteerList.size() == 0) {

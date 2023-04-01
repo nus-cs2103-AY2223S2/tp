@@ -47,12 +47,12 @@ public class PairListPanel extends UiPart<Region> {
         imageView.setImage(image);
 
         emptyBox.getChildren().add(imageView);
-        Label label = new Label("Add a pair to see something here!");
+        Label label = new Label("There is nothing to see here.");
         emptyBox.getChildren().add(label);
 
         emptyBox.setAlignment(Pos.CENTER);
         emptyBox.setMaxHeight(Region.USE_COMPUTED_SIZE);
-        emptyBox.setMinHeight(400);
+        emptyBox.setMinHeight(290);
 
         label.setStyle(
                 "-fx-text-fill: whitesmoke; -fx-font-size: 23; -fx-label-padding: 10"

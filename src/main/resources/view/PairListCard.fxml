@@ -11,14 +11,14 @@
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" prefWidth="340"/>
+      <ColumnConstraints hgrow="ALWAYS" prefWidth="200"/>
     </columnConstraints>
-    <HBox alignment="CENTER_LEFT" minHeight="25" HBox.hgrow="ALWAYS">
+    <HBox minHeight="50" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" GridPane.columnIndex="0" spacing="3">
       <padding>
         <Insets top="5" right="5" bottom="5" left="5"/>
       </padding>
-      <VBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" minWidth="190" maxWidth="190">
-        <Label fx:id="elderlyName" text="\$first" styleClass="cell_big_label"/>
+      <VBox HBox.hgrow="ALWAYS" alignment="CENTER_LEFT" prefWidth="100">
+        <Label fx:id="elderlyName" text="\$first" styleClass="cell_big_label" wrapText="true"/>
         <Label fx:id="elderlyNric" styleClass="cell_small_label" text="\$nric" minWidth="-Infinity"
                HBox.hgrow="ALWAYS">
           <graphic>
@@ -31,8 +31,8 @@
       <ImageView fitHeight="25" pickOnBounds="true" preserveRatio="true" style="-fx-padding: 10">
         <Image url="@/images/paired.png"/>
       </ImageView>
-      <VBox HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" minWidth="190" maxWidth="190">
-        <Label fx:id="volunteerName" text="\$first" styleClass="cell_big_label"/>
+      <VBox HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT" prefWidth="100">
+        <Label textAlignment="RIGHT" fx:id="volunteerName" text="\$first" styleClass="cell_big_label" wrapText="true" alignment="CENTER_RIGHT"/>
         <Label fx:id="volunteerNric" styleClass="cell_small_label" text="\$nric" minWidth="-Infinity">
           <graphic>
             <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">

@@ -70,7 +70,7 @@ public class Volunteer extends Person {
                 .append(getNric())
                 .append("; Age: ")
                 .append(getBirthDate().getAge())
-                .append(";\n Phone: ")
+                .append(";\nPhone: ")
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())

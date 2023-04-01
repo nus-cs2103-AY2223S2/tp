@@ -68,9 +68,11 @@ public class PairCard extends UiPart<Region> {
         vbox.getChildren().add(volunteerLabel);
         vbox.getChildren().add(volunteerCard.getRoot());
 
+        vbox.maxHeight(500);
+
         elderlyCard.getRoot().setMaxWidth(400);
         volunteerCard.getRoot().setMaxWidth(400);
-        vbox.getStyleClass().add("popup");
+        vbox.getStyleClass().add("popupBox");
         elderlyLabel.setStyle(
                 "-fx-font-size: 20; -fx-text-fill: black; -fx-font-weight: 700"
         );
@@ -86,7 +88,6 @@ public class PairCard extends UiPart<Region> {
         cardPane.setOnMouseEntered(event -> {
             // Show the popover anchored to the position of the HBox
             Bounds bounds = cardPane.localToScreen(cardPane.getBoundsInLocal());
-
             double popupWidth = popover.getWidth();
             double popupHeight = popover.getHeight();
             double x = event.getSceneX();
@@ -94,12 +95,15 @@ public class PairCard extends UiPart<Region> {
 
             if (x + popupWidth >= bounds.getMaxX()) {
                 x = bounds.getMaxX() - popupWidth - 10;
+                if (popupHeight >= y) {
+                    x = 1.75 * x;
+                }
             }
 
             if (y + popupHeight >= bounds.getMaxY()) {
                 y = bounds.getMaxY() - popupHeight - 10;
             }
-            popover.show(cardPane, x, y - 50);
+            popover.show(cardPane, x, y - 100);
         });
 
         cardPane.setOnMouseExited(event -> popover.hide());

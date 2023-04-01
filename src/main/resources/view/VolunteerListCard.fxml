@@ -20,20 +20,20 @@
     </Label>
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="ALWAYS" prefWidth="350"/>
+            <ColumnConstraints hgrow="ALWAYS" prefWidth="250"/>
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" spacing="3">
+
+        <VBox  minHeight="105" GridPane.columnIndex="0" spacing="3">
             <padding>
                 <Insets bottom="5" left="5" right="5" top="5"/>
             </padding>
-            <HBox styleClass="cell-title" alignment="CENTER_LEFT">
-                <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" minWidth="200">
-                    <Label fx:id="name" prefHeight="17.0" styleClass="cell_big_label" wrapText="true"
-                           text="\$first"/>
+            <HBox alignment="CENTER_LEFT">
+                <HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS" minWidth="300">
+                    <Label fx:id="name"  styleClass="cell_big_label" wrapText="true" HBox.hgrow="ALWAYS" text="\$first"/>
                 </HBox>
             </HBox>
 
-            <HBox spacing="10">
+            <HBox spacing="5" fx:id="regionBox">
                 <Label>
                     <graphic>
                         <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
@@ -43,8 +43,14 @@
                 </Label>
                 <FlowPane fx:id="region" alignment="CENTER_LEFT"/>
             </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="5" fx:id="addressBox">
+                <ImageView fitHeight="15" pickOnBounds="true"  preserveRatio="true">
+                    <Image url="@/images/home-address.png"/>
+                </ImageView>
+                <Label alignment="TOP_LEFT" fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+            </HBox>
 
-            <HBox spacing="10">
+            <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="nric" styleClass="cell_small_label" text="\$nric" minWidth="-Infinity"
                        HBox.hgrow="ALWAYS">
                     <graphic>
@@ -62,38 +68,19 @@
                     </graphic>
                 </Label>
 
-                <Label fx:id="availability" styleClass="cell_small_label" text="\$availability" minWidth="-Infinity"
-                       HBox.hgrow="ALWAYS">
-                    <graphic>
-                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@/images/availability.png"/>
-                        </ImageView>
-                    </graphic>
-                </Label>
-            </HBox>
-
-            <HBox spacing="10">
-
-                <Label fx:id="phone" minWidth="-Infinity" styleClass="cell_small_label" text="\$phone"
-                       HBox.hgrow="ALWAYS">
+                <VBox HBox.hgrow="ALWAYS" fx:id="phoneBox">
+                <Label fx:id="phone"  styleClass="cell_small_label" text="\$phone" wrapText="true" HBox.hgrow="ALWAYS">
                     <graphic>
                         <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
                             <Image url="@/images/phone.png"/>
                         </ImageView>
                     </graphic>
                 </Label>
+                </VBox>
+            </HBox>
 
-                <Label fx:id="address" styleClass="cell_small_label" text="\$address" minWidth="-Infinity"
-                       HBox.hgrow="ALWAYS">
-                    <graphic>
-                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@/images/home-address.png"/>
-                        </ImageView>
-                    </graphic>
-                </Label>
-
-                <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" minWidth="-Infinity"
-                       HBox.hgrow="ALWAYS">
+            <HBox spacing="5" alignment="CENTER_LEFT" fx:id="emailBox">
+                <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" HBox.hgrow="ALWAYS">
                     <graphic>
                         <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
                             <Image url="@/images/email.png"/>
@@ -102,9 +89,7 @@
                 </Label>
 
             </HBox>
-
-
-            <HBox spacing="10" fx:id="tagsBox">
+            <HBox spacing="5" fx:id="tagsBox" alignment="CENTER_LEFT">
                 <Label>
                     <graphic>
                         <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
@@ -115,7 +100,7 @@
                 <FlowPane fx:id="tags" alignment="CENTER_LEFT"/>
             </HBox>
 
-            <HBox spacing="10" fx:id="medicalTagsBox">
+            <HBox spacing="5" fx:id="medicalTagsBox" alignment="CENTER_LEFT">
                 <Label>
                     <graphic>
                         <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
@@ -124,6 +109,17 @@
                     </graphic>
                 </Label>
                 <FlowPane fx:id="medicalTags" alignment="CENTER_LEFT"/>
+            </HBox>
+
+            <HBox spacing="5" fx:id="availableDatesBox" alignment="CENTER_LEFT">
+                <Label>
+                    <graphic>
+                        <ImageView fitHeight="15" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/images/calendar.png"/>
+                        </ImageView>
+                    </graphic>
+                </Label>
+                <FlowPane fx:id="availableDates" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS"/>
             </HBox>
         </VBox>
         <rowConstraints>
