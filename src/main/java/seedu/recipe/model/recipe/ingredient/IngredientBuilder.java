@@ -24,10 +24,10 @@ import seedu.recipe.logic.parser.Prefix;
  */
 public class IngredientBuilder {
     public static final String MESSAGE_CONSTRAINTS =
-            "Ingredients should follow this format: \n"
-            + "`[-a AMOUNT] [-e ESTIMATED AMOUNT] -n NAME `"
-            + "`[-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...\n"
-            + "i.e. `-a 1 oz. -n butter -r cubed -s margarine`";
+        "Ingredients should follow this format: \n"
+            + "[-a AMOUNT] [-e ESTIMATED AMOUNT] -n NAME "
+            + "[-cn COMMON NAME] [-r REMARKS]... [-s SUBSTITUTION]...\n"
+            + "i.e. -a 1 oz. -n butter -r cubed -s margarine";
 
     private final String commandString;
 
@@ -49,25 +49,26 @@ public class IngredientBuilder {
     /**
      * Constructs an {@code IngredientBuilder} instance, from a Recipe instance's Ingredient Key-Value pair.
      * This is used for UI conversion for the Edit form functionality.
+     *
      * @param mainIngredient The Recipe instance's valid ingredient key.
-     * @param information The Recipe instance's valid IngredientInformation value assigned to the Ingredient key.
+     * @param information    The Recipe instance's valid IngredientInformation value assigned to the Ingredient key.
      */
     public IngredientBuilder(Ingredient mainIngredient, IngredientInformation information) {
         StringBuilder commandString = new StringBuilder();
 
         //Quantity
         information.getQuantity()
-                .map(v -> AMOUNT_PREFIX.getPrefix() + " " + v + " ")
-                .ifPresent(commandString::append);
+            .map(v -> AMOUNT_PREFIX.getPrefix() + " " + v + " ")
+            .ifPresent(commandString::append);
         //Estimated Amount
         information.getEstimatedQuantity()
-                .map(v -> ESTIMATE_PREFIX.getPrefix() + " " + v + " ")
-                .ifPresent(commandString::append);
+            .map(v -> ESTIMATE_PREFIX.getPrefix() + " " + v + " ")
+            .ifPresent(commandString::append);
         //Name
         commandString.append(NAME_PREFIX)
-                .append(" ")
-                .append(mainIngredient.getName())
-                .append(" ");
+            .append(" ")
+            .append(mainIngredient.getName())
+            .append(" ");
         //Common Name
         if (!mainIngredient.getCommonName().isEmpty()) {
             commandString.append(COMMON_NAME_PREFIX.getPrefix())
@@ -77,18 +78,18 @@ public class IngredientBuilder {
         }
         //Remarks
         information.getRemarks().forEach(remark ->
-            commandString.append(REMARK_PREFIX.getPrefix())
-                .append(" ")
-                .append(remark)
-                .append(" ")
-        );
+                commandString.append(REMARK_PREFIX.getPrefix())
+                    .append(" ")
+                    .append(remark)
+                    .append(" ")
+                                        );
         //Substitutions
         information.getSubstitutions().forEach(ingredient ->
                 commandString.append(SUBSTITUTION_PREFIX.getPrefix())
-                .append(" ")
-                .append(ingredient.getName())
-                .append(" ")
-        );
+                    .append(" ")
+                    .append(ingredient.getName())
+                    .append(" ")
+                                              );
 
         HashMap<Prefix, List<String>> tokens = IngredientParser.parse(commandString.toString());
         checkArgument(tokens.containsKey(NAME_PREFIX), MESSAGE_CONSTRAINTS);
@@ -108,6 +109,7 @@ public class IngredientBuilder {
     /**
      * Generates and returns a Key-Value pair for the enclosing {@code Recipe}
      * instance to store.
+     *
      * @return The {@code HashMap} instance containing the key-value pair.
      */
     public HashMap<Ingredient, IngredientInformation> build() {
@@ -119,6 +121,7 @@ public class IngredientBuilder {
     /**
      * Parses the prefix table for the fields pertaining to an Ingredient instance, creates, and returns a new
      * Ingredient instance around those fields.
+     *
      * @return The new Ingredient instance.
      */
     private Ingredient createMainIngredient() {
@@ -133,6 +136,7 @@ public class IngredientBuilder {
     /**
      * Parses the prefix table for the fields pertaining to an IngredientInformation instance, creates,
      * and returns an IngredientInformation instance around those fields.
+     *
      * @return The IngredientInformation instance.
      */
     private IngredientInformation createInformation() {
@@ -154,15 +158,15 @@ public class IngredientBuilder {
             remarks.addAll(remarkList.stream()
                 .filter(s -> s.matches("^[A-Za-z]+(\\s+[A-Za-z]+)*"))
                 .collect(Collectors.toList()
-                ));
+                        ));
         }
         if (arguments.containsKey(SUBSTITUTION_PREFIX)) { //Substitutions
             //Invalid substitutions will indicate to the system via errors thrown by Ingredient.
             substitutes.addAll(arguments.get(SUBSTITUTION_PREFIX)
-                .stream()
-                .map(Ingredient::of)
-                .collect(Collectors.toList())
-            );
+                    .stream()
+                    .map(Ingredient::of)
+                    .collect(Collectors.toList())
+                              );
         }
         return new IngredientInformation(
             quantity,
@@ -180,9 +184,9 @@ public class IngredientBuilder {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof IngredientBuilder // instanceof handles nulls
-                && commandString.equals(((IngredientBuilder) other).commandString)) // state check
-                && arguments.equals(((IngredientBuilder) other).arguments);
+            || (other instanceof IngredientBuilder // instanceof handles nulls
+            && commandString.equals(((IngredientBuilder) other).commandString)) // state check
+            && arguments.equals(((IngredientBuilder) other).arguments);
     }
 
     @Override
