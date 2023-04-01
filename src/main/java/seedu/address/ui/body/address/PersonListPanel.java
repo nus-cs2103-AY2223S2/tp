@@ -76,10 +76,6 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.scrollTo(0);
     }
 
-    public int getSelectedIndex() {
-        return personListView.getSelectionModel().getSelectedIndex();
-    }
-
     public void setSelectedPerson(Person selectedPerson) {
         if (allData == null) {
             return;
@@ -89,6 +85,10 @@ public class PersonListPanel extends UiPart<Region> {
                 .filter(data -> Objects.equals(data.getPerson(), selectedPerson))
                 .findFirst()
                 .orElse(null));
+    }
+
+    public PersonListCellData getSelectedData() {
+        return personListView.getSelectionModel().getSelectedItem();
     }
 
     private void setSelectedData(PersonListCellData data) {
@@ -166,7 +166,10 @@ public class PersonListPanel extends UiPart<Region> {
         }
     }
 
-    private interface PersonListCellData {
+    /**
+     * Wrapper for a {@code Person} with an {@code Index}.
+     */
+    public interface PersonListCellData {
         Person getPerson();
 
         int getIndex();

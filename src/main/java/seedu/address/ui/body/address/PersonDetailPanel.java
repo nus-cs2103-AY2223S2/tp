@@ -49,7 +49,6 @@ public class PersonDetailPanel extends UiPart<Region> {
     }
 
     public void setPerson(Person person) {
-        clearPerson();
         if (person == null) {
             return;
         }
@@ -77,9 +76,13 @@ public class PersonDetailPanel extends UiPart<Region> {
     /**
      * Sets specified selected person and corresponding index in detail panel.
      */
-    public void setSelectedPerson(Person person, int indexOfPerson) {
-        this.setPerson(person);
-        this.setDisplayedIndex(indexOfPerson);
+    public void setSelectedPerson(PersonListPanel.PersonListCellData data) {
+        clearPerson();
+        if (data == null) {
+            return;
+        }
+        this.setPerson(data.getPerson());
+        this.setDisplayedIndex(data.getIndex());
     }
 
     /**
