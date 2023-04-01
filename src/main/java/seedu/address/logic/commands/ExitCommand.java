@@ -8,6 +8,7 @@ import seedu.address.model.Model;
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
+    public static final String SHORTCUT_WORD = "e";
 
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting PetPal as requested ...";
 

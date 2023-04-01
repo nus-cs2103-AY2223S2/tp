@@ -70,6 +70,7 @@ public class PetPalParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case ExitCommand.SHORTCUT_WORD:
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
