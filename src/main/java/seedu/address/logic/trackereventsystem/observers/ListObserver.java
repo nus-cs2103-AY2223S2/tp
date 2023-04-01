@@ -47,14 +47,13 @@ public class ListObserver implements
                 && editedInLectureName.equals(curLecture.getName());
     }
 
-
     @Override
     public void onLectureEdited(ModuleCode moduleCode, ReadOnlyLecture originalLecture, ReadOnlyLecture editedLecture) {
         ReadOnlyModule curModule = model.getListedLecturesByModule();
         ReadOnlyLecture curLecture = model.getListedVideosByLecture();
         DisplayListLevel curDisplayListLevel = model.getLastListLevel();
 
-        if (isLecturesAffectedByLectureEdit(curDisplayListLevel, curModule, curLecture, originalLecture, moduleCode)) {
+        if (isLecturesAffectedByLectureEdit(curDisplayListLevel, curModule, originalLecture, moduleCode)) {
             model.updateFilteredLectureList(new LecturePredicate(curModule), curModule);
         }
 
@@ -65,7 +64,7 @@ public class ListObserver implements
 
     private boolean isLecturesAffectedByLectureEdit(DisplayListLevel curDisplayListLevel,
             ReadOnlyModule curModule, ReadOnlyLecture curLecture,
-            ReadOnlyLecture originalLecture, ModuleCode editedInModuleCode) {
+            ModuleCode editedInModuleCode) {
         return curDisplayListLevel == DisplayListLevel.LECTURE
                 && editedInModuleCode.equals(curModule.getCode());
     }
@@ -89,10 +88,18 @@ public class ListObserver implements
         }
 
         if (isLecturesAffectedByModuleEdit(curDisplayListLevel, curModule, originalModule)) {
+            if (editedModule == null) { // Module is deleted
+                model.updateAllFilteredListAsHidden();
+                return;
+            }
             model.updateFilteredLectureList(new LecturePredicate(editedModule), editedModule);
         }
 
         if (isVideosAffectedByModuleEdit(curDisplayListLevel, curModule, originalModule)) {
+            if (editedModule == null) { // Module is deleted
+                model.updateAllFilteredListAsHidden();
+                return;
+            }
             model.updateFilteredVideoList(new VideoPredicate(curLecture), editedModule.getCode(), curLecture);
         }
     }
