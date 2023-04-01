@@ -352,7 +352,7 @@ Format: `editm INDEX [t/TITLE] [dt/DATE] [l/LOCATION] [des/DESCRIPTION]`
 * The `DATE`, `START_TIME` and `END_TIME` must be provided in the format `DD-MM-YYYY`, `HH:MM` (24-hour) respectively.
 
 Example:
-* `editm 1 t/Project Update dt/04-01-2023 10:00`  Edits the date first meeting to be on `04-01-2023`, and change its title to "Project Update".
+* `editm 1 t/Project Update dt/04-01-2023 10:00`  Edits the date/time first meeting to be on `04-01-2023 10:00`, and changes its title to `Project Update`.
 
 ### Sorting Meetings : `sortm`
 
