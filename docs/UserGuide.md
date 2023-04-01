@@ -5,7 +5,8 @@ title: TechTrack User Guide
 
 TechTrack is a powerful internship/job tracking application that combines the flexibility of a Command Line Interface (CLI) with the benefits of a Graphical User Interface (GUI).
 
-Designed for computing students and professionals, TechTrack helps you manage your internship search project by setting goals, tracking deadlines, and providing clear details (salary, job descriptions, skills needed, etc.) of the role. Its CLI interface is optimized for speed, efficiency, and ease of use.
+Designed for computing students and professionals, TechTrack helps you manage your internship/job search project by tracking deadlines and information regarding various roles.
+Its CLI interface is optimized for speed, efficiency, and ease of use, making it a valuable tool for students who are already familiar with CLI environments.
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
@@ -14,27 +15,29 @@ Designed for computing students and professionals, TechTrack helps you manage yo
       2. [Edit Role: `edit`](#editing-a-role-edit)
       3. [Delete Role: `delete`](#deleting-a-role-delete)
    2. [Viewing Role Info](#viewing-role-info)
-      1. [Find roles by name](#find-roles-by-name)
-      2. [Find roles by company](#find-roles-by-company)
-      3. [Find roles by tag](#find-roles-by-tag)
-      4. [Sorting a role by deadline](#sorting-by-deadline)
-      5. [Sorting a role by salary](#sorting-by-salary)
-      6. [Viewing a role](#viewing-a-role)
+      1. [Find roles by name `name`](#find-roles-by-name-name)
+      2. [Find roles by company `company`](#find-roles-by-company-company)
+      3. [Find roles by tag `tag`](#find-roles-by-tag-tag)
+      4. [Sorting a role by deadline `deadline`](#sorting-by-deadline-deadline)
+      5. [Sorting a role by salary `salary`](#sorting-by-salary-salary)
+      6. [Viewing a role `view`](#viewing-a-role-view)
    3. [General Commands](#general-commands)
-      1. [List all roles](#list-list)
-      2. [Clear all roles](#clear-clear)
-      3. [Help (Displays user guide)](#help-help)
-      4. [Exit TechTrack](#exit-exit)
+      1. [List all roles `list`](#list-list)
+      2. [Clear all roles `clear`](#clear-clear)
+      3. [Help (Display command format) `help`](#help-help)
+      4. [Exit TechTrack `exit`](#exit-exit)
+   4. [Editing raw data]
 5. [FAQ](#faq)
 6. [Command Summary](#command-summary)
 
 # Quick Start
-Ensure you have Java `11` or above installed in your Computer.
-Download the latest [TechTrack.jar](https://github.com/AY2223S2-CS2103-W16-2/tp/releases) from here.
-Copy the file to the folder you want to use as the home folder for your AddressBook.
-Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TechTrack.jar` command to run the application.
-A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+1. Ensure you have Java `11` or above installed in your Computer.
+2. Download the latest [TechTrack.jar](https://github.com/AY2223S2-CS2103-W16-2/tp/releases) from here.
+3. Copy the file to the folder you want to use as the home folder for your AddressBook.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TechTrack.jar` command to run the application.
+5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
+![QuickStart](images/UICommandImages/QuickStart.png)
 
 ## Features
 
@@ -81,7 +84,7 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
 | `Yes`    | x      | EXPERIENCE REQUIRED  | At least 1 character                                              |
 
 
-### Editing a Role: `edit`:
+### Editing a Role: `edit`
 Edit any parameters of a preexisting role. 
 
 Format: `edit {index} {Prefix}/{Parameter}…​`
@@ -92,7 +95,7 @@ $/4000 d/2023-10-20 x/Javascript - 1 Year`
 ![Edit](images/UICommandImages/editCommand.png)
 
 
-### Deleting a role `delete`:
+### Deleting a role: `delete`
 Deletes the role from the current list of roles. Uses a 1-based index.
 
 Format: `delete {index}`
@@ -112,7 +115,7 @@ These commands are:
 * [Sorting a role by salary](#sorting-by-salary)
 * [Viewing a role](#viewing-a-role)
 
-### Find roles by name
+### Find roles by Name: `name`
 Searches for roles with the provided names.
 
 Format: `name {keywords}...`
@@ -121,7 +124,7 @@ Example: `name analyst engineer data`
 
 ![Name](images/UICommandImages/nameCommand.png)
 
-### Find roles by company
+### Find roles by Company: `company`
 Searches for roles with the provided companies.
 
 Format: `company {keywords}...`
@@ -130,7 +133,7 @@ Example: `company Google`
 
 ![Company](images/UICommandImages/CompanyCommand1.png)
 
-### Find roles by tag
+### Find roles by Tag: `tag`
 Searches for roles with the provided tag.
 
 Format: `tag {keyword}`
@@ -139,7 +142,7 @@ Example: `tag frontend`
 
 ![Salary](images/UICommandImages/TagCommand0.png)
 
-### Sorting by Salary
+### Sorting by Salary: `salary`
 Sort roles based on salary, in ascending/descending orderParser. For ascending, the role with the lowest salary will be displayed at the top, while for descending, the role with the highest salary will be displayed at the top.
 
 Format: `salary asc/desc`
@@ -150,7 +153,7 @@ Example 1: `salary asc`
 Example 2: `salary desc`
 ![Salary](images/UICommandImages/SalaryCommand2.png)
 
-### Sorting by Deadline
+### Sorting by Deadline: `deadline`
 Sort roles based on deadline, in ascending/descending orderParser.
 
 Format: `deadline asc/desc`
@@ -161,7 +164,7 @@ Example 1: `deadline asc`
 Example 2: `deadline desc`
 ![Deadline](images/UICommandImages/DeadlineCommand2.png)
 
-### Viewing a role
+### Viewing a role: `view`
 Displays more details about a particular role.
 
 Format: `view {index}`
@@ -190,6 +193,11 @@ Display commands that are available in TechTrack and the proper format for usage
 
 ### Exit: `exit`
 Exits and closes TechTrack.
+
+## Editing raw data
+You can directly edit TechTrack's data file after running and exiting the app. 
+
+**Important Note:** if the data file is in an invalid format, TechTrack will discard that data file and start with an empty list of roles.
 
 ## FAQ
 Q: How do I transfer my data to another Computer?
