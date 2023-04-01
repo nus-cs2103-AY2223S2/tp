@@ -553,10 +553,6 @@ public class MainWindow extends UiPart<Stage> {
                 }
             }
 
-            /*if (commandResult.isShowTimetable()) {
-                handleTimetable();
-            }*/
-
             if (commandResult.isShowUnschedule()) {
                 handleUnscheduledTimetable();
             }

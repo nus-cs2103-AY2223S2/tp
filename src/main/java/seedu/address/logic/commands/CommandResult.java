@@ -52,11 +52,6 @@ public class CommandResult {
     private final boolean showAddressBook;
 
     /**
-     * Main window should be shown and focused to the user.
-     */
-    private final boolean showJobList;
-
-    /**
      * The application should exit.
      */
     private final boolean exit;
@@ -68,7 +63,7 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable,
                          boolean showUnschedule, boolean showComplete, boolean showReminderList,
                          boolean showStatistics, boolean showAddressBook,
-                         boolean showJobList, boolean exit) {
+                         boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
@@ -78,7 +73,6 @@ public class CommandResult {
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.showAddressBook = showAddressBook;
-        this.showJobList = showJobList;
         this.exit = exit;
     }
 
@@ -98,7 +92,6 @@ public class CommandResult {
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.showAddressBook = false;
-        this.showJobList = false;
         this.exit = exit;
     }
 
@@ -124,7 +117,6 @@ public class CommandResult {
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.showAddressBook = false;
-        this.showJobList = false;
         this.exit = exit;
     }
 
@@ -198,13 +190,6 @@ public class CommandResult {
      */
     public boolean isShowAddressBook() {
         return showAddressBook;
-    }
-
-    /**
-     * Checks if main window is required to focus
-     */
-    public boolean isShowJobList() {
-        return showJobList;
     }
 
     /**
