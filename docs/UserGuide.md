@@ -367,7 +367,7 @@ Data in the internship book are automatically saved in your local storage after 
 
 #### 4.4.7 Editing the data file
 
-Data in the internship book are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update their data directly by editing that data file.
+Data in the internship book are saved as a JSON file `[JAR file location]/data/sprint.json`. Advanced users are welcome to update their data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
