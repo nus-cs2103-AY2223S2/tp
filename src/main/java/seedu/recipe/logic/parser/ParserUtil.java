@@ -74,10 +74,12 @@ public class ParserUtil {
     public static RecipeDuration parseDuration(String duration) throws ParseException {
         requireNonNull(duration);
         String trimmedDuration = duration.trim();
-        if (!RecipeDuration.isValidRecipeDuration(trimmedDuration)) {
-            throw new ParseException(RecipeDuration.MESSAGE_CONSTRAINTS);
+
+        try {
+            return RecipeDuration.of(trimmedDuration);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        return RecipeDuration.of(trimmedDuration);
     }
 
     /**
