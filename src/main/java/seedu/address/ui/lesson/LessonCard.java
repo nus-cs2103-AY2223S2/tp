@@ -7,10 +7,13 @@ import javafx.scene.layout.Region;
 import seedu.address.model.student.Lesson;
 import seedu.address.ui.UiPart;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * A UI component that displays information of a {@code Person}.
  */
 public class LessonCard extends UiPart<Region> {
+    private static final DateTimeFormatter PRINT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
     private static final String FXML = "LessonListCard.fxml";
     private static final String DOT = ". ";
 
@@ -35,8 +38,8 @@ public class LessonCard extends UiPart<Region> {
         super(FXML);
         this.id.setText(id + DOT);
         title.setText(lesson.getTitle());
-        startTime.setText(lesson.getStartTimeString());
-        endTime.setText(lesson.getEndTimeString());
+        startTime.setText(lesson.getStartTime().format(PRINT_FORMATTER));
+        endTime.setText(lesson.getEndTime().format(PRINT_FORMATTER));
     }
 
     @Override

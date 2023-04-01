@@ -19,13 +19,13 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 
 3. Copy the file to the folder you want to use as the _home folder_ for your address book.
 
-4. Open a command terminal, `cd` into the folder in which you put the jar file, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder in which you put the jar file, and use the `java -jar TutorPro.jar` command to run the application.<br>
    A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the Features below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Glossary
@@ -63,7 +63,7 @@ When you first run the app, you may see a display window pop up similar to the o
 
 You may enter the following commands in the Command Box to see how the Display List changes:
 * `list` lists all students.
-* `delete-b 1` deletes the student with index 1.
+* `delete 1` deletes the student with index 1.
 * `view-homework` displays all the homework from all students.
 
 You may also click the quick access buttons one each student card to see how the Detailed Information Section changes.
@@ -128,7 +128,6 @@ Example:
 * SCHOOL and GRADE_LEVEL are optional.
 * SCHOOL and GRADE_LEVEL consist of numbers and letters only (no symbols or spaces).
 
-
 ### Update Student Information
 
 Updates the student's information given the student's label, field to change, and updated field value 
@@ -145,7 +144,7 @@ Examples:
 * `update-info name/John f/address v/Block 123 #12-34` Updates student info and displays the new value to the user.
 
 
-### Assign Homework to a Student
+### Create New Homework to a Student
 
 Creates a homework assignment with a deadline for a student
 
@@ -156,8 +155,9 @@ Format: `new-homework [name/STUDENT_NAME] [homework/HOMEWORK_NAME] [deadline/DEA
 * The `DEADLINE` must be in the future.
 
 Examples:
-* `assign-homework name/John homework/listening comprehension ex1 deadline/02-12-2023-2359` adds the assignment `listening comprehension ex1` to the student named `John. The deadline is 02 Dec 2023 at 23:25.
+* `new-homework name/John homework/listening comprehension ex1 deadline/2023-04-30 2359` adds the assignment `listening comprehension ex1` to the student named `John. The deadline is 02 Dec 2023 at 23:25.
 
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
 
@@ -180,6 +180,8 @@ Examples:
 * `view-homework status/completed` displays all completed homework from all students.
 * `view-homework name/John status/pending` displays pending homework for a student named `John`.
 
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+
 :exclamation: **Caution:** STATUS should only appear at most once and should not be empty. STUDENT_NAME can be zero or multiple but they all cannot be empty.
 
 ### Delete Homework from a Student
@@ -196,6 +198,8 @@ Examples:
 
 * `delete-homework name/John index/1` deletes the first homework assignment for the student named John.
 * `delete-homework name/Susan index/3` deletes the third homework assignment for the student named Susan.
+
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -214,8 +218,9 @@ Examples:
 * `mark-homework name/John index/1` marks the first homework assignment for the student named John.
 * `mark-homework name/Susan index/3` marks the third homework assignment for the student named Susan.
 
-:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
+:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
 ### Unmark Homework of a Student as Undone
 
@@ -231,6 +236,8 @@ Examples:
 
 * `unmark-homework name/John index/1`unmarks the first homework assignment for the student named John.
 * `unmark-homework name/Susan index/3` unmarks the third homework assignment for the student named Susan.
+
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -252,6 +259,8 @@ Examples:
 * `update-homework name/John index/1 homework/Math Assignment 1` updates the name of homework 1 of John to be `Math Assignment 1`.
 * `updates-homework name/Susan index/3 deadline/2023-05-12 23:59` updates the deadline of homework 3 of Susan to be `2023-05-12 23:59`.
 * `updates-homework name/Donald index/2 homework/Math Assignment 1 deadline/2023-05-12 23:59` updates the name of homework 2 of Donald to be `Math Assignment 1` and updates the deadline of homework 2 of Donald to be `2023-05-12 23:59`.
+
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation:  **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
 
@@ -424,4 +433,3 @@ Examples:
 * `dd MMM yyyy HH:mm `
 * `MMM dd, yyyy HHmm`
 * `MMM dd, yyyy HH:mm `
-* `dd-mm-yyyy HHmm`
