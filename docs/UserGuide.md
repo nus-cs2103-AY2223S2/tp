@@ -83,6 +83,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GROUP]…​`
 
 * A person can only be added to an **existing** group
+* Tags can only contain alphanumeric number and spaces
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and groups (including 0)
