@@ -505,6 +505,4 @@ public interface Model {
      * @return      a boolean determining whether the index is valid.
      */
     <T extends Item> boolean isIndexValid(int index, ReadOnlyItemManager<T> itemManager);
-
-
 }

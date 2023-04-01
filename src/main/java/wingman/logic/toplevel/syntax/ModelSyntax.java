@@ -18,7 +18,7 @@ public abstract class ModelSyntax {
      * @param integers integers to check, expected user-input integers
      * @throws ParseException when any of the integers is negative
      */
-    protected static void requireAllNonNegative(int... integers) throws ParseException {
+    public static void requireAllNonNegative(int... integers) throws ParseException {
         for (int integer: integers) {
             if (integer < 0) {
                 throw new ParseException(NON_NEGATIVE_ERROR_MESSAGE);

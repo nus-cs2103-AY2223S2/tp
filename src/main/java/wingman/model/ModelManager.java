@@ -694,6 +694,6 @@ public class ModelManager implements Model {
             int index,
             ReadOnlyItemManager<T> itemManager
     ) {
-        return index <= itemManager.size() && index >= 0;
+        return index <= itemManager.size() && index > 0;
     }
 }
