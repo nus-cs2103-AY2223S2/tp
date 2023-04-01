@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.Status;
 import seedu.address.model.transaction.status.TxnStatus;
 
 
@@ -64,6 +65,13 @@ public class Transaction {
                 && other.getValue().equals(value)
                 && other.getStatus().equals(status)
                 && other.getOwner().equals(owner);
+    }
+
+    /**
+     * Returns the String representation of the time elapsed since the status has changed
+     */
+    public String getLastUpdate() {
+        return Status.formatDuration(status.getDurationSinceLastUpdate()) + " ago";
     }
 
     /**

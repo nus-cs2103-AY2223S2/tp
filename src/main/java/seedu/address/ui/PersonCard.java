@@ -56,6 +56,8 @@ public class PersonCard extends UiPart<Region> {
     private Label jobTitle;
     @FXML
     private Label status;
+    @FXML
+    private Label lastUpdate;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -77,7 +79,8 @@ public class PersonCard extends UiPart<Region> {
         company.setText(person.getCompany().value);
         occupation.setText(person.getOccupation().value);
         jobTitle.setText(person.getJobTitle().value);
-        status.setText(person.getStatus().getStatusName().getLabel());
+        status.setText(person.getStatus().getStatusName().getLabel()
+                + " (" + person.getLastUpdate() + ")");
     }
 
     @Override

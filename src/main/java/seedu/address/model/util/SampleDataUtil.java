@@ -51,7 +51,7 @@ public class SampleDataUtil {
                 EMPTY_REMARK,
                 getTagSet("friends"),
                 EMPTY_TASK,
-                new LeadStatus(UNCONTACTED.getLabel())),
+                new LeadStatus(UNCONTACTED.getLabel(), "2023-03-30T03:10:23.603617Z")),
             new Person(new Name("Bernice Yu"),
                 new Gender("female"),
                 new Phone("99272758"),
@@ -64,7 +64,7 @@ public class SampleDataUtil {
                 EMPTY_REMARK,
                 getTagSet("colleagues", "friends"),
                 EMPTY_TASK,
-                new LeadStatus(WORKING.getLabel())),
+                new LeadStatus(WORKING.getLabel(), "2023-03-31T10:21:33.603617Z")),
             new Person(new Name("Charlotte Oliveiro"),
                 new Gender("female"),
                 new Phone("93210283"),
@@ -77,7 +77,7 @@ public class SampleDataUtil {
                 EMPTY_REMARK,
                 getTagSet("neighbours"),
                 EMPTY_TASK,
-                new LeadStatus(UNCONTACTED.getLabel())),
+                new LeadStatus(UNCONTACTED.getLabel(), "2023-04-01T03:57:01.603617Z")),
             new Person(new Name("David Li"),
                 new Gender("male"),
                 new Phone("91031282"),
@@ -90,7 +90,7 @@ public class SampleDataUtil {
                 EMPTY_REMARK,
                 getTagSet("family"),
                 EMPTY_TASK,
-                new LeadStatus(UNQUALIFIED.getLabel())),
+                new LeadStatus(UNQUALIFIED.getLabel(), "2023-04-01T05:43:32.603617Z")),
             new Person(new Name("Irfan Ibrahim"),
                 new Gender("male"),
                 new Phone("92492021"),
@@ -103,7 +103,7 @@ public class SampleDataUtil {
                 EMPTY_REMARK,
                 getTagSet("classmates"),
                 EMPTY_TASK,
-                new LeadStatus(QUALIFIED.getLabel())),
+                new LeadStatus(QUALIFIED.getLabel(), "2023-03-27T04:19:45.603617Z")),
             new Person(new Name("Roy Balakrishnan"),
                 new Gender("male"),
                 new Phone("92624417"),
@@ -116,7 +116,7 @@ public class SampleDataUtil {
                 EMPTY_REMARK,
                 getTagSet("colleagues"),
                 EMPTY_TASK,
-                new LeadStatus(QUALIFIED.getLabel()))
+                new LeadStatus(QUALIFIED.getLabel(), "2023-03-28T03:34:35.603617Z"))
         };
     }
 
@@ -124,24 +124,24 @@ public class SampleDataUtil {
         return new Transaction[] {
             new Transaction(new Description("18 AwfullyHot CoffeePots for Singapore National University"),
                 new Value("2700"),
-                new TxnStatus("Open"),
+                new TxnStatus("Open", "2023-03-31T07:23:35.603617Z"),
                 new Owner("Roy Balakrishnan")),
             new Transaction(new Description("3 KoffeeMaster Espresso Machines for SalesPUNCH Inc."),
                 new Value("6000"),
-                new TxnStatus("Open"),
+                new TxnStatus("Open", "2023-04-01T06:01:35.603617Z"),
                 new Owner("Irfan Ibrahim")),
             new Transaction(new Description("150kg Grade 4 Busta Robusta Brazilian Coffe Beans for Singapore National "
                     + "University"),
                 new Value("750"),
-                new TxnStatus("Closed"),
+                new TxnStatus("Closed", "2023-03-30T02:22:35.603617Z"),
                 new Owner("Roy Balakrishnan")),
             new Transaction(new Description("5 KoffeeGuru Espresso Machines for Mac King"),
                 new Value("12000"),
-                new TxnStatus("Open"),
+                new TxnStatus("Open", "2023-04-01T04:10:35.603617Z"),
                 new Owner("Charlotte Oliveiro")),
             new Transaction(new Description("3 FrappeBlaster Machine Rental for Corporate Event at Tesleh"),
                 new Value("750"),
-                new TxnStatus("Open"),
+                new TxnStatus("Open", "2023-04-01T01:52:35.603617Z"),
                 new Owner("Bernice Yu"))
         };
     }
