@@ -17,13 +17,6 @@ With its easy-to-use **text-based interface** and contact management features, s
 
 Please read this section before skipping to specific parts in the [Features](#features) section.
 
-<div markdown="block" class="alert alert-danger">:exclamation: **Notes on display resolution**
-
-The application has been tested extensively on a display resolution of 1920 X 1200 and a display zoom of 125%. 
-It is recommended that you switch to this resolution before proceeding with the rest of the user guide. 
-
-</div>
-
 ### How to use this User Guide
 
 This guide aims to quickly gets you started to use and navigate FriendlyLink. [Features](#features) are described below together with examples. Some terms used have specific meanings and are explained below and summarised in the [Glossary](#glossary).
@@ -203,6 +196,13 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | VWO                   | Voluntary Welfare Organisations such as yourself                                                                                                            |
 
 ## Quick Start
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Notes on display resolution**
+
+The application has been tested extensively on a display resolution of 1920 X 1200 and a display zoom of 125%.
+It is recommended that you switch to this resolution before proceeding with the rest of the user guide.
+
+</div>
 
 1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) installed in your Computer.
 
