@@ -14,27 +14,27 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/pzaiming.png" width="200px">
 
 [[github](https://github.com/pzaiming)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/pzaiming.md)]
 
-* Role: Full-Stack Developer
-* Responsibilities: Frontend development + backend development
+* Role: Developer
+* Responsibilities: Development + Documentation
 
 ### Dylan Sng Jie An
 
 <img src="images/dsja612.png" width="200px">
 
 [[github](https://github.com/dsja612)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/dsja612.md)]
 
-* Role: Developer
-* Responsibilities: Development + Documentation
+* Role: Full-Stack Developer
+* Responsibilities: Frontend development + backend development
 
 ### Adriel Kee
 
 <img src="images/amoonguss1.png" width="200px">
 
 [[github](http://github.com/amoonguss1)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/amoonguss1.md)]
 
 * Role: Coding, UI
 * Responsibilities: Data
@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/ryanqiu1.png" width="200px">
 
 [[github](http://github.com/ryanqiu1)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/ryanqiu1.md)]
 
 * Role: Developer
 * Responsibilities: Coding, UI
@@ -54,7 +54,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/unwilledtangent.png" width="200px">
 
 [[github](https://github.com/UnwilledTangent)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/UnwilledTangent.md)]
 
 * Role: Software Developer
 * Responsibilities: UI
