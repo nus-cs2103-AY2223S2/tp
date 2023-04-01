@@ -166,8 +166,8 @@ A bookmark can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/Hobbit a/J. R. R. Tolkien p/Finished r/4 g/Fantasy`
-* `add n/The Odyssey a/Homer p/Reading g/Action r/5 t/Literature class readings`
+* `add n/Hobbit a/J. R. R. Tolkien p/1 1 1 r/4 g/Fantasy`
+* `add n/The Odyssey a/Homer p/3 5 44 g/Action r/5 t/Literature class readings`
 
 ### Listing all bookmarks : `list`
 
@@ -187,7 +187,7 @@ Examples:
 * sort desc
 <div style="page-break-after: always;"></div>
 
-### Editing a person : `edit`
+### Editing a bookmark : `edit`
 
 Edits an existing bookmark in the library.
 
@@ -197,12 +197,12 @@ Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/UR
 * At least one of the optional fields must be provided.
 * The genre and tags provided must be in the list of existing genre and tags respectively.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* When editing tags, the existing tags of the bookmark will be removed i.e adding of tags is not cumulative.
+* You can remove all the bookmark’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 n/Hobbit a/J. R. R. Tolkien` Edits the title and author of the 1st bookmark to be `Hobbit` and `J. R. R. Tolkien` respectively.
-*  `edit 2 n/The Odyssey t/` Edits the name of the 2nd person to be `The Odyssey` and clears all existing tags.
+*  `edit 2 n/The Odyssey t/` Edits the name of the 2nd bookmark to be `The Odyssey` and clears all existing tags.
 
 ### Locating bookmarks by specific fields: `find`
 

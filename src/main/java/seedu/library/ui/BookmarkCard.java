@@ -114,7 +114,7 @@ public class BookmarkCard extends UiPart<Region> {
      */
     public void rateCard(Bookmark bookmark) throws IOException {
         InputStream rating0 = this.getClass().getResourceAsStream("/images/Rating0.png");
-        InputStream rating1 = this.getClass().getResourceAsStream("images/Rating1.png");
+        InputStream rating1 = this.getClass().getResourceAsStream("/images/Rating1.png");
         InputStream rating2 = this.getClass().getResourceAsStream("/images/Rating2.png");
         InputStream rating3 = this.getClass().getResourceAsStream("/images/Rating3.png");
         InputStream rating4 = this.getClass().getResourceAsStream("/images/Rating4.png");
