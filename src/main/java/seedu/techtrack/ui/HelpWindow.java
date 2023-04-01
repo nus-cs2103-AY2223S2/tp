@@ -17,13 +17,13 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2223s2-cs2103-w16-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Here are the list of commands available: "
-            + "\n1. add n/{NAME} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} "
+            + "\n1. add n/{name} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} "
             + "$/{SALARY} d/{DEADLINE} x/{EXPERIENCE}"
-            + "\n2. edit {index} [r/{ROLE}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] "
+            + "\n2. edit {index} [n/{name}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] "
             + "[t/{TAG}]... [w/{WEBSITE}] [$/{SALARY}] [d/{DEADLINE}] [x/{EXPERIENCE}]"
-            + "\n3. name {keyword}"
-            + "\n4. delete {index}"
-            + "\n5. view {index}"
+            + "\n3. delete {index}"
+            + "\n4. view {index}"
+            + "\n5. name {keyword}"
             + "\n6. salary asc/desc"
             + "\n7. deadline asc/desc"
             + "\n8. company {company}"
