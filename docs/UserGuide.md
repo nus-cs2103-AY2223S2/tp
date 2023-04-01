@@ -175,7 +175,7 @@ Displays more details about a particular role.
 
 Format: `view {index}`
 
-![View](images/UICommandImages/viewcommand.png)
+![View](images/UICommandImages/ViewCommand0.png)
 
 ## General Commands
 

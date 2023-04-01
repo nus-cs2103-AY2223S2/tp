@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/pzaiming)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Developer
-* Responsibilities: Development + Documentation
+* Role: Full-Stack Developer
+* Responsibilities: Frontend development + backend development
 
 ### Dylan Sng Jie An
 
