@@ -304,8 +304,8 @@ Finds internship applications with information containing any of the given keywo
 Format: `find keywords(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
 
 * The keywords are case-insensitive. e.g. You can type `GOoGlE` and it will match with `Google`.
-* In `find keyword(s)`, when none of the prefixes is specified, the keyword(s) will be searched globally in the information for all prefixes.
 * In `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`, `r/`, `c/` and `s/` are prefixes that stand for `ROLE`, `COMPANY NAME` and `STATUS` respectively.
+* In `find keyword(s)`, when none of the prefixes is specified, the keyword(s) will be searched according to the information under all 3 prefixes mentioned.
 * When at least one prefix is provided, the keyword(s) is searched according to the information under that particular prefix.
 * Only full words will be matched e.g. `Han` will not match `Hans` but `Google` will match with `Google LLC`.
 
