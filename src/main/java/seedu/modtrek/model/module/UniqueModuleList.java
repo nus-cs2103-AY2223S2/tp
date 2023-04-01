@@ -5,7 +5,12 @@ import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.modtrek.logic.commands.SortCommand.DEFAULT_SORT;
 import static seedu.modtrek.logic.parser.ParserUtil.parseTagsForSort;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeMap;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -169,12 +174,12 @@ public class UniqueModuleList implements Iterable<Module> {
         return result;
     }
 
-    public TreeMap<Object, ObservableList<Module>> sortByTag() {
+    private TreeMap<Object, ObservableList<Module>> sortByTag() {
         TreeMap<Object, ObservableList<Module>> result = new TreeMap<>();
-        Set<Tag> OverallUniqueSingleTags = new HashSet<>();
+        Set<Tag> OverallTags = new HashSet<>();
         for (Module m : internalList) {
             Set<Tag> tagSet = m.getTags();
-            OverallUniqueSingleTags.addAll(tagSet);
+            OverallTags.addAll(tagSet);
             String tags = parseTagsForSort(tagSet).toString();
             if (tags.contains(",") || tagSet.isEmpty()) {
                 ObservableList<Module> existingList = result.get(tags);
@@ -187,7 +192,7 @@ public class UniqueModuleList implements Iterable<Module> {
                 }
             }
         }
-        for (Tag t : OverallUniqueSingleTags) {
+        for (Tag t : OverallTags) {
             ObservableList<Module> newList = FXCollections.observableArrayList();
             internalList.stream().filter(x -> x.getTags().contains(t)).forEach(y -> newList.add(y));
             result.put(t.getShortForm(), newList);
