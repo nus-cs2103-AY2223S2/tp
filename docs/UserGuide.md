@@ -321,7 +321,7 @@ Example:
 ```
 Optional Parameter `f/` that forces imports regardless of duplicate values.
 
-Format: `import JSON f/`
+Format: `import JSON [f/]`
 
 ## Meeting-Related Commands
 
