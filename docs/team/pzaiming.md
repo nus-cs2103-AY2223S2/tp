@@ -32,9 +32,11 @@ I worked on the backend and I was mainly in charge of implementation and testing
       importance of different roles.
     * Highlights: Makes it more friendly for the user to search through different roles.
 
+
 * **New Feature & Refactoring**: Add a new `OrderParser` class to allow order in asc/desc of sorting commands.
     * What it does: Allow developers to easy parse the sorting requirement for their sorting commands.
-    * Justification: The order needs to be either ascending or descending and makes it more OOP by creating a Parser class.
+    * Justification: The order needs to be either ascending or descending and makes it more OOP by creating a Parser
+      class.
     * Highlights: OOP design to allow more sorting features to develop in the future by accessing this class.
 
 
@@ -46,10 +48,9 @@ I worked on the backend and I was mainly in charge of implementation and testing
 
 * **Testing**: Tests new implementation and class created.
     * What it does: Allow the code to be covered by more tests and making it more robust.
-    * Justification: New classes such as `OrderParser` needs to be added to allow the sorting of salary and deadline.
-      Tests need to be written to ensure the accuracy of it by writing assertion.
-    * Highlights: Better code coverage and overall robustness of TechTrack.
-
+    * Justification: New classes such as `OrderParser`, `Deadline` and `DeadlineCommand` needs to be added to allow the
+      sorting of salary and deadline. Tests need to be written to ensure the accuracy of it by writing assertion.
+    * Highlights: Better code coverage and robustness of TechTrack.
 
 ## Enhancements
 
