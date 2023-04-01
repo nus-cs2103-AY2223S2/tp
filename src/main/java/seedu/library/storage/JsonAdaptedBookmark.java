@@ -63,7 +63,7 @@ class JsonAdaptedBookmark {
         title = source.getTitle().value;
         progress = (source.getProgress() == null) ? null : new JsonAdaptedProgress(source.getProgress());
         genre = source.getGenre().value;
-        author = (source.getProgress() == null) ? null : source.getAuthor().value;
+        author = (source.getAuthor() == null) ? null : source.getAuthor().value;
         rating = (source.getRating() == null) ? null : source.getRating().value;
         url = source.getUrl().value;
         tagged.addAll(source.getTags().stream()
