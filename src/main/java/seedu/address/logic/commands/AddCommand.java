@@ -41,6 +41,7 @@ public class AddCommand extends Command {
                     PREFIX_MODULES.toString("MODULE", true, true),
                     PREFIX_TAG.toString("TAG", true, true))
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
+                    COMMAND_WORD,
                     PREFIX_NAME + "John Doe",
                     PREFIX_PHONE + "98765432",
                     PREFIX_EMAIL + "johnd@example.com",

@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class Address extends Field {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values";
+    public static final String MESSAGE_CONSTRAINTS = "Addresses must not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

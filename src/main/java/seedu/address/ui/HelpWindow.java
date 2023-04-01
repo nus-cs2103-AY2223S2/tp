@@ -19,6 +19,7 @@ import seedu.address.logic.commands.DarkModeCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.logic.commands.EditContactCommand;
+import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.EditUserCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FavoriteCommand;
@@ -136,6 +137,7 @@ public class HelpWindow extends UiPart<Stage> {
                 DeleteCommand.MESSAGE_USAGE,
                 DeleteEventCommand.MESSAGE_USAGE,
                 EditContactCommand.MESSAGE_USAGE,
+                EditEventCommand.MESSAGE_USAGE,
                 EditUserCommand.MESSAGE_USAGE,
                 ExitCommand.MESSAGE_USAGE,
                 FavoriteCommand.MESSAGE_USAGE,

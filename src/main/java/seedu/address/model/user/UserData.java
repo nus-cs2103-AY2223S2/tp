@@ -45,6 +45,7 @@ public class UserData implements ReadOnlyUserData {
      * Replaces the contents of the user with {@code user}.
      */
     public void setUser(User user) {
+        requireNonNull(user);
         this.user.setValue(user);
     }
 

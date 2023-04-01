@@ -43,7 +43,7 @@ public class AddressPanel extends UiPart<Region> {
     private void bindSelectedPerson(ReadOnlyObjectProperty<Person> selectedPerson) {
         selectedPerson.addListener((observable, oldValue, newValue) -> {
             personListPanel.setSelectedPerson(newValue);
-            personDetailPanel.setSelectedPerson(newValue, personListPanel.getSelectedIndex());
+            personDetailPanel.setSelectedPerson(personListPanel.getSelectedData());
         });
     }
 }
