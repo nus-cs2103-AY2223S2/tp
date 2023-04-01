@@ -689,7 +689,16 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
       - Communication Channels
       - Major
       - Faculty
-2. Making the user's events be able to import other contact's events.
+2. Adding better input validation to Phone, Email and Address fields, such as minimum lengths or certain formats.
+3. Adding duplicate names support, which is available in most contact lists.
+4. Making the user's events be able to import other contact's events.
    1. Since the User is a form of Contact, it is once again trivial to extend the same functionality to other contacts
-3. Making NeoBook accept more symbols and emojis
+5. Making NeoBook accept more symbols and emojis.
    1. Currently, the validation regex for all the fields for contacts do not accept special symbols (and also do not render them properly). In the future, we will attempt to add-in support for this.
+6. Switching to the relevant tab when a command is executed.
+   1. Using commands for contacts in the events tab and vice versa may not show any visible changes, causing confusion in whether the user did anything.
+   2. Certain commands should bring the user to the relevant tab, if they are not currently in said tab (e.g. `list` should navigate to the contacts tab).
+7. Enhancing the `select` command to accept parameters beyond just the index of the contact.
+   1. User cannot see the indices of contacts further down the list, and needs to scroll.
+   2. The `select` command can integrate `find` functionality.
+8. Splitting the description field of events into title and description fields, so as not to clutter the UI with long descriptions.
