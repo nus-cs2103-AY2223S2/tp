@@ -62,4 +62,8 @@ public class Tag {
     public String toString() {
         return ValidTag.getLongForm(tagName).toString().replace("_", " ");
     }
+
+    public String getShortForm() {
+        return ValidTag.getShortForm(tagName).toString();
+    }
 }

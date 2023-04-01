@@ -5,16 +5,14 @@ import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.modtrek.logic.commands.SortCommand.DEFAULT_SORT;
 import static seedu.modtrek.logic.parser.ParserUtil.parseTagsForSort;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.modtrek.logic.commands.SortCommand;
 import seedu.modtrek.model.module.exceptions.DuplicateModuleException;
 import seedu.modtrek.model.module.exceptions.ModuleNotFoundException;
+import seedu.modtrek.model.tag.Tag;
 
 /**
  * UniqueModuleList is a list of modules where each modules must be unique.
@@ -136,6 +134,9 @@ public class UniqueModuleList implements Iterable<Module> {
         TreeMap<Object, ObservableList<Module>> result = new TreeMap<>();
         Comparator<Module> comparator = Comparator.comparing(Module::toString);
         this.sort = sort;
+        if (sort == SortCommand.Sort.TAG) {
+            return sortByTag();
+        }
         for (Module m : internalList) {
             Object obj;
             switch (sort) {
@@ -163,6 +164,33 @@ public class UniqueModuleList implements Iterable<Module> {
                 existingList.add(m);
                 FXCollections.sort(existingList, comparator);
             }
+        }
+        moduleGroups = result;
+        return result;
+    }
+
+    public TreeMap<Object, ObservableList<Module>> sortByTag() {
+        TreeMap<Object, ObservableList<Module>> result = new TreeMap<>();
+        Set<Tag> OverallUniqueSingleTags = new HashSet<>();
+        for (Module m : internalList) {
+            Set<Tag> tagSet = m.getTags();
+            OverallUniqueSingleTags.addAll(tagSet);
+            String tags = parseTagsForSort(tagSet).toString();
+            if (tags.contains(",") || tagSet.isEmpty()) {
+                ObservableList<Module> existingList = result.get(tags);
+                if (existingList == null) {
+                    ObservableList<Module> newList = FXCollections.observableArrayList();
+                    newList.add(m);
+                    result.put(tags, newList);
+                } else {
+                    existingList.add(m);
+                }
+            }
+        }
+        for (Tag t : OverallUniqueSingleTags) {
+            ObservableList<Module> newList = FXCollections.observableArrayList();
+            internalList.stream().filter(x -> x.getTags().contains(t)).forEach(y -> newList.add(y));
+            result.put(t.getShortForm(), newList);
         }
         moduleGroups = result;
         return result;
