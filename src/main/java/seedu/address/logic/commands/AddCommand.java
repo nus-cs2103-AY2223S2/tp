@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.util.SampleDataUtil.SAMPLE_PERSON;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -40,14 +41,13 @@ public class AddCommand extends Command {
                     PREFIX_FACULTY.toString("FACULTY", true),
                     PREFIX_MODULES.toString("MODULE", true, true),
                     PREFIX_TAG.toString("TAG", true, true))
-            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
-                    COMMAND_WORD,
-                    PREFIX_NAME + "John Doe",
-                    PREFIX_PHONE + "98765432",
-                    PREFIX_EMAIL + "johnd@example.com",
-                    PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25",
-                    PREFIX_TAG + "friends",
-                    PREFIX_TAG + "owesMoney")
+            + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE, COMMAND_WORD,
+                    PREFIX_NAME.toString(SAMPLE_PERSON.getName().toString()),
+                    PREFIX_PHONE.toString(SAMPLE_PERSON.getPhone().toString()),
+                    PREFIX_EMAIL.toString(SAMPLE_PERSON.getEmail().toString()),
+                    PREFIX_ADDRESS.toString(SAMPLE_PERSON.getAddress().toString()),
+                    PREFIX_TAG.toString("friends"),
+                    PREFIX_TAG.toString("basketball"))
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
                     "For more information on prefixes, refer to the user guide using the help command.");
 
