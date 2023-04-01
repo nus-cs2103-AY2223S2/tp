@@ -26,5 +26,6 @@ public class Messages {
             + "any of the parents in our parent list!";
     public static final String MESSAGE_DUPLICATE_ATTENDANCE = "This attendance already exists!";
     public static final String MESSAGE_BLANK_FIND = "Please enter letters to find a name!";
-    public static final String MESSAGE_INVALID_WEIGHTAGE = "Error! The weightage should add up to less than or equals to 100%";
+    public static final String MESSAGE_INVALID_WEIGHTAGE =
+            "Error! The weightage should add up to less than or equals to 100%";
 }
