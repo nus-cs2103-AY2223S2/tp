@@ -106,7 +106,7 @@ public class BodyPanel extends UiPart<Region> {
                 return;
             }
             logic.setSelectedTab(Index.fromZeroBased(newValue.intValue()));
-            resultDisplay.setFeedbackToUser("Enter command below");
+            resultDisplay.showDefaultMessage();
         });
     }
 }

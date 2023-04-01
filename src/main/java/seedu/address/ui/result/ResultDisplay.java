@@ -41,6 +41,7 @@ public class ResultDisplay extends UiPart<Region> {
     public static final String KEYWORD_MORE_INFO = "More Info";
 
     private static final String FXML = "result/ResultDisplay.fxml";
+    private static final String DEFAULT_TEXT = "Enter command below";
     private static final List<String> KEYWORDS = List.of(AddCommand.COMMAND_WORD, AddEventCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, DeleteEventCommand.COMMAND_WORD,
             EditContactCommand.COMMAND_WORD, EditUserCommand.COMMAND_WORD, EditEventCommand.COMMAND_WORD,
@@ -61,7 +62,11 @@ public class ResultDisplay extends UiPart<Region> {
      */
     public ResultDisplay() {
         super(FXML);
-        resultDisplayLabel.setText("Enter command below");
+        showDefaultMessage();
+    }
+
+    public void showDefaultMessage() {
+        resultDisplayLabel.setText(DEFAULT_TEXT);
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
