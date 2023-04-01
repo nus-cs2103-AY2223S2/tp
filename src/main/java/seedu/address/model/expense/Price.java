@@ -1,5 +1,7 @@
 package seedu.address.model.expense;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -11,7 +13,7 @@ public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Prices should only contain numbers, and should not be negative";
     public static final String VALIDATION_REGEX = "^(0|[1-9]\\d*)(\\.\\d+)?$";
-    public final String value;
+    private String value;
 
     /**
      * Constructs a {@code Price}.
@@ -20,14 +22,26 @@ public class Price {
      */
     public Price(String price) {
         requireNonNull(price);
+        if (!isValidPrice(price)) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
         value = price;
+    }
+
+    public Price(double price) {
+        requireNonNull(price);
+        String priceString = String.format("%d", price);
+        if (!isValidPrice(priceString)) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
+        value = priceString;
     }
 
     /**
      * Returns true if a given string is a valid price.
      */
     public static boolean isValidPrice(String test) {
-        return test.matches(VALIDATION_REGEX) && Double.parseDouble(test) >= 0;
+        return test.matches(VALIDATION_REGEX) && Double.parseDouble(test) >= -0;
     }
 
 
@@ -50,6 +64,17 @@ public class Price {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String price) throws CommandException {
+        if (!isValidPrice(price)) {
+            throw new CommandException(MESSAGE_CONSTRAINTS);
+        }
+        value = price;
     }
 
 }

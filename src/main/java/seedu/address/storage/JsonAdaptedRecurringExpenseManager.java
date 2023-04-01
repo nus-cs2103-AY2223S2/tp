@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
+import seedu.address.model.expense.Price;
 import seedu.address.model.expense.RecurringExpenseManager;
 import seedu.address.model.expense.RecurringExpenseType;
 import seedu.address.model.util.StorageUtility;
@@ -26,23 +27,29 @@ public class JsonAdaptedRecurringExpenseManager {
     private final String recurringExpenseType;
 
     /**
-     * Constructs a {@code JsonAdaptedRecurringExpenseManager} with the given category details.
-     * @param expenseName Name of the expense.
-     * @param expenseAmount Amount of the expense.
-     * @param expenseCategory Category of the expense.
-     * @param nextExpenseDate The next date at which the expense will be charged.
-     * @param startDate The starting date at which the recurring expense was first added.
-     * @param endDate The ending date at which the recurring expense will end.
-     * @param recurringExpenseType Frequency-interval of which the expense will be added.
+     * Constructs a {@code JsonAdaptedRecurringExpenseManager} with the given
+     * category details.
+     * 
+     * @param expenseName          Name of the expense.
+     * @param expenseAmount        Amount of the expense.
+     * @param expenseCategory      Category of the expense.
+     * @param nextExpenseDate      The next date at which the expense will be
+     *                             charged.
+     * @param startDate            The starting date at which the recurring expense
+     *                             was first added.
+     * @param endDate              The ending date at which the recurring expense
+     *                             will end.
+     * @param recurringExpenseType Frequency-interval of which the expense will be
+     *                             added.
      */
     @JsonCreator
     public JsonAdaptedRecurringExpenseManager(@JsonProperty("expenseName") String expenseName,
-                               @JsonProperty("expenseAmount") String expenseAmount,
-                              @JsonProperty("expenseCategory") JsonAdaptedCategory expenseCategory,
-                          @JsonProperty("nextExpenseDate") String nextExpenseDate,
-                      @JsonProperty("startDate") String startDate,
-                  @JsonProperty("endDate") String endDate,
-              @JsonProperty("recurringExpenseType") String recurringExpenseType) {
+            @JsonProperty("expenseAmount") String expenseAmount,
+            @JsonProperty("expenseCategory") JsonAdaptedCategory expenseCategory,
+            @JsonProperty("nextExpenseDate") String nextExpenseDate,
+            @JsonProperty("startDate") String startDate,
+            @JsonProperty("endDate") String endDate,
+            @JsonProperty("recurringExpenseType") String recurringExpenseType) {
         this.expenseName = expenseName;
         this.expenseAmount = expenseAmount;
         this.expenseCategory = expenseCategory;
@@ -53,12 +60,15 @@ public class JsonAdaptedRecurringExpenseManager {
     }
 
     /**
-     * Converts a given {@code RecurringExpenseManager} into this class for Jackson use.
-     * @param source future changes to this will not affect the created {@code JsonAdaptedRecurringExpenseManager}
+     * Converts a given {@code RecurringExpenseManager} into this class for Jackson
+     * use.
+     * 
+     * @param source future changes to this will not affect the created
+     *               {@code JsonAdaptedRecurringExpenseManager}
      */
     public JsonAdaptedRecurringExpenseManager(RecurringExpenseManager source) {
         this.expenseName = source.getExpenseName();
-        this.expenseAmount = Double.toString(source.getExpenseAmount());
+        this.expenseAmount = Double.toString(source.getAmount());
         this.expenseCategory = new JsonAdaptedCategory(source.getExpenseCategory().getCategoryName(),
                 source.getExpenseCategory().getSummary());
         this.nextExpenseDate = String.valueOf(source.getNextExpenseDate());
@@ -68,10 +78,12 @@ public class JsonAdaptedRecurringExpenseManager {
     }
 
     /**
-     * Converts this Jackson-friendly adapted RecurringExpenseManager object into the model's
+     * Converts this Jackson-friendly adapted RecurringExpenseManager object into
+     * the model's
      * {@code RecurringExpenseManager} object.
+     * 
      * @throws IllegalValueException if there were any data constraints violated
-     *     in the adapted category.
+     *                               in the adapted category.
      */
     public RecurringExpenseManager toModelType() throws IllegalValueException {
         if (expenseName == null) {
@@ -94,8 +106,6 @@ public class JsonAdaptedRecurringExpenseManager {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
         }
 
-        Double modelAmount = Double.parseDouble(expenseAmount);
-
         LocalDate modelStartDate = StorageUtility.parseDateFromJson(startDate);
 
         LocalDate modelNextExpenseDate = StorageUtility.parseDateFromJson(nextExpenseDate);
@@ -103,17 +113,17 @@ public class JsonAdaptedRecurringExpenseManager {
         RecurringExpenseType modelRecurringType = RecurringExpenseType.valueOf(recurringExpenseType);
 
         Category toBeUsed = expenseCategory.toModelType();
-
+        Price amount = new Price(expenseAmount);
         if (!endDate.equals("null")) {
             LocalDate modelEndDate = StorageUtility.parseDateFromJson(endDate);
-            RecurringExpenseManager toReturn = new RecurringExpenseManager(expenseName, modelAmount,
+            RecurringExpenseManager toReturn = new RecurringExpenseManager(expenseName, amount,
                     toBeUsed, modelStartDate, modelEndDate, modelRecurringType);
             toReturn.setNextExpenseDate(modelNextExpenseDate);
             return toReturn;
         }
 
-        RecurringExpenseManager toReturn = new RecurringExpenseManager(expenseName, modelAmount, toBeUsed,
-                modelStartDate, modelRecurringType);
+        RecurringExpenseManager toReturn = new RecurringExpenseManager(expenseName, amount,
+        toBeUsed, modelStartDate, modelRecurringType);
         toReturn.setNextExpenseDate(modelNextExpenseDate);
         return toReturn;
     }

@@ -77,10 +77,13 @@ public class ParserUtil {
      * @throws ParseException if the specified price is invalid (not non-negative and numeric).
      */
     public static Price parsePrice(String price) throws ParseException {
-        String trimmedPrice = price.trim();
+        requireNonNull(price);
+        // remove trailing zeroes, commas, dollar signs, and spaces
+        String trimmedPrice = price.trim().replaceAll("0*$", "").replaceAll(",", "").replaceAll("\\$", "")
+                .replaceAll(" ", "");
         if (!Price.isValidPrice(trimmedPrice)) {
-            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
-        }
+                throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+            }
         return new Price(trimmedPrice);
     }
 

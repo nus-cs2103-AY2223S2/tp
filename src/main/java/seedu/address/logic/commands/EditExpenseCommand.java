@@ -12,9 +12,11 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.Price;
 import seedu.address.ui.ScreenType;
 
 /**
@@ -82,6 +84,7 @@ public class EditExpenseCommand extends Command {
         Expense expenseToEdit = lastShownListOfExpenses.get(targetIndex.getZeroBased());
         String name = expenseToEdit.getName();
         double amount = expenseToEdit.getAmount();
+
         Category category = expenseToEdit.getCategory();
         LocalDate date = expenseToEdit.getDate();
 

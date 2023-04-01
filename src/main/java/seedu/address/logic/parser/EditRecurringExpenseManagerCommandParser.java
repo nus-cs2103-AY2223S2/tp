@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditRecurringExpenseManagerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.expense.Price;
 
 /**
  * Parses input arguments and creates a new EditRecurringExpenseManagerCommand object
@@ -50,6 +51,9 @@ public class EditRecurringExpenseManagerCommandParser implements Parser<EditRecu
 
         if (isPrefixPresent(argMultiMap, PREFIX_PRICE)) {
             String inputPriceInString = argMultiMap.getValue(PREFIX_PRICE).get();
+            if (!Price.isValidPrice(inputPriceInString)) {
+                throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+            }
             try {
                 newPrice = Double.parseDouble(inputPriceInString);
             } catch (NumberFormatException nfe) {

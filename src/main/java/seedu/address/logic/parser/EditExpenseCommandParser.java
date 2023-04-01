@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditExpenseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.expense.Price;
 
 /**
  * Parses input arguments and creates a new EditExpenseCommand object
@@ -47,6 +48,9 @@ public class EditExpenseCommandParser implements Parser<EditExpenseCommand> {
 
         if (isPrefixPresent(argMultiMap, PREFIX_PRICE)) {
             String inputPriceInString = argMultiMap.getValue(PREFIX_PRICE).get();
+            if (!Price.isValidPrice(inputPriceInString)) {
+                throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+            }
             try {
                 newPrice = Double.parseDouble(inputPriceInString);
             } catch (NumberFormatException nfe) {

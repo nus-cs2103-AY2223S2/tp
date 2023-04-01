@@ -48,8 +48,10 @@ public abstract class Category {
 
         Category otherTypecasted = (Category) other;
         // Remove extra whitespace between words and trim
-        otherTypecasted.categoryName = otherTypecasted.categoryName.replaceAll("\\s+", " ").trim();
-        String thisCategoryName = this.categoryName.replaceAll("\\s+", " ").trim();
+        otherTypecasted.categoryName = otherTypecasted.categoryName.toLowerCase()
+                .replaceAll("\\s+", " ").trim();
+        String thisCategoryName = this.categoryName.toLowerCase()
+                .replaceAll("\\s+", " ").trim();
         return otherTypecasted.categoryName.equals(thisCategoryName);
     }
 

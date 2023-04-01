@@ -10,7 +10,7 @@ import seedu.address.model.category.Category;
  */
 public class RecurringExpenseManager {
     private String expenseName;
-    private double expenseAmount;
+    private Price amount;
     private Category expenseCategory;
     private int numberOfExpenses = 0;
     private LocalDate nextExpenseDate = null;
@@ -18,21 +18,45 @@ public class RecurringExpenseManager {
     private LocalDate endDate = null;
     private RecurringExpenseType recurringExpenseType;
 
+    /**
+     * The constructor for the RecurringExpenseManager class with a start and end
+     * date.
+     * 
+     * @param expenseName          The name of the recurring expense.
+     * @param expenseAmount        The amount of the recurring expense.
+     * @param expenseCategory      The category of the recurring expense.
+     * @param startDate            The start date of the recurring expense.
+     * @param endDate              The end date of the recurring expense.
+     * @param recurringExpenseType The type of the recurring expense.
+     */
+    public RecurringExpenseManager(String expenseName, Price expenseAmount,
+            Category expenseCategory, LocalDate startDate, LocalDate endDate,
+            RecurringExpenseType recurringExpenseType) {
+        this.expenseName = expenseName;
+        this.amount = expenseAmount;
+        this.expenseCategory = expenseCategory;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.recurringExpenseType = recurringExpenseType;
+        this.nextExpenseDate = startDate;
+    }
 
     /**
-     * The constructor for the RecurringExpenseManager class with a start and end date.
-     * @param expenseName The name of the recurring expense.
-     * @param expenseAmount The amount of the recurring expense.
-     * @param expenseCategory The category of the recurring expense.
-     * @param startDate The start date of the recurring expense.
-     * @param endDate The end date of the recurring expense.
+     * The constructor for the RecurringExpenseManager class with a start and end
+     * date.
+     * 
+     * @param expenseName          The name of the recurring expense.
+     * @param expenseAmount        The amount of the recurring expense.
+     * @param expenseCategory      The category of the recurring expense.
+     * @param startDate            The start date of the recurring expense.
+     * @param endDate              The end date of the recurring expense.
      * @param recurringExpenseType The type of the recurring expense.
      */
     public RecurringExpenseManager(String expenseName, double expenseAmount,
             Category expenseCategory, LocalDate startDate, LocalDate endDate,
             RecurringExpenseType recurringExpenseType) {
         this.expenseName = expenseName;
-        this.expenseAmount = expenseAmount;
+        this.amount = new Price(expenseAmount);
         this.expenseCategory = expenseCategory;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -42,27 +66,46 @@ public class RecurringExpenseManager {
 
     /**
      * The constructor for the RecurringExpenseManager class with no end date.
-     * @param expenseName The name of the recurring expense.
-     * @param expenseAmount The amount of the recurring expense.
-     * @param expenseCategory The category of the recurring expense.
-     * @param startDate The start date of the recurring expense.
+     * 
+     * @param expenseName          The name of the recurring expense.
+     * @param amount               The amount of the recurring expense.
+     * @param expenseCategory      The category of the recurring expense.
+     * @param startDate            The start date of the recurring expense.
      * @param recurringExpenseType The type of the recurring expense.
      */
-    public RecurringExpenseManager(String expenseName, double expenseAmount,
+    public RecurringExpenseManager(String expenseName, Price amount,
             Category expenseCategory, LocalDate startDate, RecurringExpenseType recurringExpenseType) {
         this.expenseName = expenseName;
-        this.expenseAmount = expenseAmount;
+        this.amount = amount;
         this.expenseCategory = expenseCategory;
         this.startDate = startDate;
         this.recurringExpenseType = recurringExpenseType;
         this.nextExpenseDate = startDate;
     }
 
+    /**
+     * The constructor for the RecurringExpenseManager class with no end date.
+     * 
+     * @param expenseName          The name of the recurring expense.
+     * @param amount               The amount of the recurring expense.
+     * @param expenseCategory      The category of the recurring expense.
+     * @param startDate            The start date of the recurring expense.
+     * @param recurringExpenseType The type of the recurring expense.
+     */
+    public RecurringExpenseManager(String expenseName, double amount,
+            Category expenseCategory, LocalDate startDate, RecurringExpenseType recurringExpenseType) {
+        this.expenseName = expenseName;
+        this.amount = new Price(amount);
+        this.expenseCategory = expenseCategory;
+        this.startDate = startDate;
+        this.recurringExpenseType = recurringExpenseType;
+        this.nextExpenseDate = startDate;
+    }
 
     public ArrayList<Expense> getExpenses() {
         ArrayList<Expense> expenses = new ArrayList<>();
         while (nextExpenseDate.isBefore(LocalDate.now())) {
-            expenses.add(new Expense(expenseName, expenseAmount, nextExpenseDate, expenseCategory));
+            expenses.add(new Expense(expenseName, amount, nextExpenseDate, expenseCategory));
             nextExpenseDate = recurringExpenseType.getNextExpenseDate(nextExpenseDate);
         }
         numberOfExpenses = expenses.size();
@@ -77,8 +120,12 @@ public class RecurringExpenseManager {
         this.expenseName = expenseName;
     }
 
-    public void setExpenseAmount(double expenseAmount) {
-        this.expenseAmount = expenseAmount;
+    public void setAmount(String expenseAmount) {
+        this.amount = new Price(expenseAmount);
+    }
+
+    public void setAmount(double expenseAmount) {
+        this.amount = new Price(expenseAmount);
     }
 
     public void setEndDate(LocalDate endDate) {
@@ -93,8 +140,8 @@ public class RecurringExpenseManager {
         expenseName = name;
     }
 
-    public void editRecurringExpenseAmount(double amount) {
-        expenseAmount = amount;
+    public void editRecurringExpenseAmount(String expenseAmount) {
+        amount = new Price(expenseAmount);
     }
 
     public void editRecurringExpenseCategory(Category category) {
@@ -106,7 +153,7 @@ public class RecurringExpenseManager {
     }
 
     public double getTotalAmount() {
-        return expenseAmount * numberOfExpenses;
+        return amount.getPriceAsDouble() * numberOfExpenses;
     }
 
     public LocalDate getNextExpenseDate() {
@@ -129,14 +176,12 @@ public class RecurringExpenseManager {
         return expenseName;
     }
 
-
-
     public Category getExpenseCategory() {
         return expenseCategory;
     }
 
-    public double getExpenseAmount() {
-        return expenseAmount;
+    public double getAmount() {
+        return amount.getPriceAsDouble();
     }
 
     public void setNextExpenseDate(LocalDate nextExpenseDate) {
@@ -145,7 +190,7 @@ public class RecurringExpenseManager {
 
     @Override
     public String toString() {
-        return "Recurring Expense: " + expenseName + " Amount: " + expenseAmount + " Category: "
+        return "Recurring Expense: " + expenseName + " Amount: " + amount + " Category: "
                 + expenseCategory + " Start Date: " + startDate + " End Date: " + endDate
                 + " Recurring Expense Type: " + recurringExpenseType;
     }
@@ -165,7 +210,7 @@ public class RecurringExpenseManager {
             return false;
         }
 
-        if (recurringExpense.expenseAmount != this.expenseAmount) {
+        if (recurringExpense.amount != this.amount) {
             return false;
         }
 

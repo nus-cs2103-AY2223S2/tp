@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
@@ -44,18 +43,27 @@ public class EditRecurringExpenseManagerCommand extends Command {
     private final LocalDate newExpenseEndDate;
 
     /**
-     * Creates an EditRecurringExpenseManagerCommand to edit the specified {@code RecurringExpenseManager}
-     * @param targetIndex index of the recurringexpensemanager in the filtered recurringexpensemanager list to edit.
-     * @param newExpenseName String representation of the new category name to be edited to, if applicable.
-     * @param newExpenseAmount New expense price to be edited to, if applicable.
-     * @param newExpenseCategoryInString String representation of the new category's name to be edited to,
-     *                                  if applicable.
-     * @param newFrequencyInString String representation of the frequency to be edited to, if applicable.
-     * @param newExpenseEndDate New recurring expense end date to be edited to, if applicable.
+     * Creates an EditRecurringExpenseManagerCommand to edit the specified
+     * {@code RecurringExpenseManager}
+     * 
+     * @param targetIndex                index of the recurringexpensemanager in the
+     *                                   filtered recurringexpensemanager list to
+     *                                   edit.
+     * @param newExpenseName             String representation of the new category
+     *                                   name to be edited to, if applicable.
+     * @param newExpenseAmount           New expense price to be edited to, if
+     *                                   applicable.
+     * @param newExpenseCategoryInString String representation of the new category's
+     *                                   name to be edited to,
+     *                                   if applicable.
+     * @param newFrequencyInString       String representation of the frequency to
+     *                                   be edited to, if applicable.
+     * @param newExpenseEndDate          New recurring expense end date to be edited
+     *                                   to, if applicable.
      */
     public EditRecurringExpenseManagerCommand(Index targetIndex, String newExpenseName, Double newExpenseAmount,
-                                              String newExpenseCategoryInString, String newFrequencyInString,
-                                              LocalDate newExpenseEndDate) {
+            String newExpenseCategoryInString, String newFrequencyInString,
+            LocalDate newExpenseEndDate) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.newExpenseName = newExpenseName;
@@ -85,7 +93,7 @@ public class EditRecurringExpenseManagerCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EDIT_FOR_EXPENSE);
         }
 
-        //Check if index is valid
+        // Check if index is valid
         if (targetIndex == null || targetIndex.getZeroBased() >= lastShownListOfRecurringExpenseManagers.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
         }
@@ -104,7 +112,7 @@ public class EditRecurringExpenseManagerCommand extends Command {
         }
 
         if (newExpenseAmount != null) {
-            generatorToEdit.setExpenseAmount(newExpenseAmount);
+            generatorToEdit.setAmount(newExpenseAmount);
         }
 
         if (newExpenseEndDate != null) {
@@ -112,7 +120,7 @@ public class EditRecurringExpenseManagerCommand extends Command {
         }
 
         if (newFrequencyInString != null) {
-            //Check if it belongs in the enum
+            // Check if it belongs in the enum
             try {
                 RecurringExpenseType newTypeToSet = RecurringExpenseType.valueOf(newFrequencyInString);
                 generatorToEdit.setRecurringExpenseType(newTypeToSet);
@@ -121,7 +129,7 @@ public class EditRecurringExpenseManagerCommand extends Command {
             }
         }
         return new CommandResult(
-            String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_RECURRING, generatorToEdit),
-            ScreenType.RECURRING_EXPENSE_SCREEN);
+                String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_RECURRING, generatorToEdit),
+                ScreenType.RECURRING_EXPENSE_SCREEN);
     }
 }
