@@ -34,7 +34,7 @@ public enum Gender {
      * @param index the index
      * @return gender.
      */
-    public static Gender fromIndex(int index) {
+    public static Gender fromIndex(int index) throws InvalidGenderException {
         switch (index) {
         case 0:
             return MALE;

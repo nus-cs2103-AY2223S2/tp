@@ -13,4 +13,13 @@ public class InvalidPilotRankException extends RuntimeException {
     public InvalidPilotRankException(Object rank) {
         super("Invalid pilot rank" + rank.toString());
     }
+
+    /**
+     * Constructs a new {@code InvalidPilotRankException} with the specified string.
+     *
+     * @param string the message to display.
+     */
+    public InvalidPilotRankException(String string) {
+        super(string);
+    }
 }

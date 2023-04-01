@@ -198,5 +198,4 @@ public class ItemManager<T extends Item> implements
     public int hashCode() {
         return items.hashCode();
     }
-
 }
