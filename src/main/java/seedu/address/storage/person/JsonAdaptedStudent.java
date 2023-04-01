@@ -15,9 +15,9 @@ import seedu.address.model.person.Class;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.parent.Relationship;
+import seedu.address.model.person.Sex;
 import seedu.address.model.person.student.Attendance;
 import seedu.address.model.person.student.Cca;
 import seedu.address.model.person.student.Homework;
@@ -27,8 +27,6 @@ import seedu.address.model.person.student.Test;
 import seedu.address.storage.academics.JsonAdaptedAttendance;
 import seedu.address.storage.academics.JsonAdaptedHomework;
 import seedu.address.storage.academics.JsonAdaptedTest;
-
-
 
 /**
  * Jackson-friendly version of {@link Student}.

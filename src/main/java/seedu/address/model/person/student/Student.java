@@ -12,10 +12,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Sex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Relationship;
+import seedu.address.model.person.Sex;
 import seedu.address.model.tag.Tag;
 
 
