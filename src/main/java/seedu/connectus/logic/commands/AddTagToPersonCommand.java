@@ -42,8 +42,8 @@ public class AddTagToPersonCommand extends Command {
         + PREFIX_CCA + "ICS#Director "
         + PREFIX_MAJOR + "Computer Science "
         + PREFIX_MAJOR + "BBA "
-        + PREFIX_REMARK + "friends "
-        + PREFIX_REMARK + "owesMoney";
+        + PREFIX_REMARK + "Year 2 "
+        + PREFIX_REMARK + "Classmates";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to Person: %1$s";
 

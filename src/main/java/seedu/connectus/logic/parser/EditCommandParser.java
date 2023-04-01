@@ -36,7 +36,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                 PREFIX_ADDRESS, PREFIX_BIRTHDAY,
-            PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP);
+                PREFIX_SOCMED_INSTAGRAM, PREFIX_SOCMED_TELEGRAM, PREFIX_SOCMED_WHATSAPP);
 
         Index index;
 
@@ -47,35 +47,44 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
+
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
+
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
+
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
+
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
             editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
         }
-        {
-            editPersonDescriptor.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
-        }
-        ParserUtil.parseRemarksOptional(argMultimap.getAllValues(PREFIX_REMARK))
-                .ifPresent(editPersonDescriptor::setRemarks);
-        ParserUtil.parseModulesOptional(argMultimap.getAllValues(PREFIX_MODULE))
-                .ifPresent(editPersonDescriptor::setModules);
-        ParserUtil.parseCcasOptional(argMultimap.getAllValues(PREFIX_CCA)).ifPresent(editPersonDescriptor::setCcas);
-        ParserUtil.parseMajorsOptional(argMultimap.getAllValues(PREFIX_MAJOR))
-                .ifPresent(editPersonDescriptor::setMajors);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        else {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
+
+        editPersonDescriptor.setSocialMedia(ParserUtil.parseSocialMedia(argMultimap));
+
+        ParserUtil.parseRemarksOptional(argMultimap.getAllValues(PREFIX_REMARK))
+                .ifPresent(editPersonDescriptor::setRemarks);
+
+        ParserUtil.parseModulesOptional(argMultimap.getAllValues(PREFIX_MODULE))
+                .ifPresent(editPersonDescriptor::setModules);
+
+        ParserUtil.parseCcasOptional(argMultimap.getAllValues(PREFIX_CCA))
+                .ifPresent(editPersonDescriptor::setCcas);
+
+        ParserUtil.parseMajorsOptional(argMultimap.getAllValues(PREFIX_MAJOR))
+                .ifPresent(editPersonDescriptor::setMajors);
 
         return new EditCommand(index, editPersonDescriptor);
     }
