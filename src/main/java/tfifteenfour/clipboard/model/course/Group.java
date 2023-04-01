@@ -150,6 +150,10 @@ public class Group {
         for (Session session : sessions) {
             session.setStudents(students);
         }
+
+        for (Task task : tasks) {
+            task.setStudents(students);
+        }
     }
 
     /**
