@@ -89,10 +89,12 @@ public class ParserUtil {
     public static RecipePortion parsePortion(String portion) throws ParseException {
         requireNonNull(portion);
         String trimmedPortion = portion.trim();
-        if (!RecipePortion.isValidRecipePortion(trimmedPortion)) {
-            throw new ParseException(RecipePortion.MESSAGE_CONSTRAINTS);
+
+        try {
+            return RecipePortion.of(trimmedPortion);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
-        return RecipePortion.of(trimmedPortion);
     }
 
     /**
