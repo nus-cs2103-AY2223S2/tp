@@ -685,11 +685,11 @@ OpenJDK 64-Bit Server VM Zulu11.62+17-CA (build 11.0.18+10-LTS, mixed mode)
 ```
 
 ## Glossary
-| **Term**        | **Definition**                            |
-|-----------------|-------------------------------------------|
-| Resource        | `add /prefix_A value_A /prefix_B value_B` |
-| Resource Entity | `delete resource_index`                   |
-| Prefix          | `delete resource_index`                   |
+| **Term**        | **Definition**                                                            |
+|-----------------|---------------------------------------------------------------------------|
+| Resource        | Crews, Pilots, Planes, Flights or Locations                               |
+| Resource Entity | An entity of any of the resource types specified above (e.g. Captain Bob) |
+| Prefix          | A placeholder term referring to an attribute name (e.g. /g for gender)    |
 
 ## Other information
 This App is developed at the National University of Singapore.
