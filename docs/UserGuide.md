@@ -203,14 +203,15 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Action   | Format, Examples                        |
-|----------|-----------------------------------------|
-| add      | add roleID (e.g. add 221574)            |
-| delete   | delete roleID (e.g. delete 221574)      |
-| view     | view roleID (e.g. view 221574)          |
-| list     | list                                    |
-| exit     | exit                                    |
-| salary   | salary asc/desc (e.g. salary asc)       |
-| deadline | deadline asc/desc (e.g. deadline asc)   |
-| company  | company {keyword} (e.g. company google) |
-| tag      | tag  {keyword} (e.g. tag tech)          |
+| Action   | Format, Examples                                                                                                                                                                        |
+|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| add      | add {Prefix}/{Parameters}...<br/>(e.g. add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java w/www.google.com jd/Data Engineering $/4000 d/2023-10-20 x/Javascript) |
+| delete   | delete roleID (e.g. delete 221574)                                                                                                                                                      |
+| name     | name {keyword} (e.g. name Software Engineer)                                                                                                                                            |
+| view     | view roleID (e.g. view 221574)                                                                                                                                                          |
+| list     | list                                                                                                                                                                                    |
+| exit     | exit                                                                                                                                                                                    |
+| salary   | salary asc/desc (e.g. salary asc)                                                                                                                                                       |
+| deadline | deadline asc/desc (e.g. deadline asc)                                                                                                                                                   |
+| company  | company {keyword} (e.g. company google)                                                                                                                                                 |
+| tag      | tag  {keyword} (e.g. tag tech)                                                                                                                                                          |
