@@ -124,8 +124,6 @@ Format: `undo`
 launch of HospiSearch application. Undo can be executed up to the initial starting state.
 </div>
 
-Format: `undo`
-
 ![Undo](images/command_result/Undo.png)
 
 Above is the execution result of the input `undo` (the list has been cleared).
