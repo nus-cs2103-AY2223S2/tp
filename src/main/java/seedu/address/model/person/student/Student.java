@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthdate;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
@@ -29,7 +29,7 @@ public class Student extends Person {
     protected Phone studentNumber;
     private final IndexNumber indexNumber;
     private final Sex sex;
-    private final Birthdate birthdate;
+    private final Age age;
     private final Image image;
     private final Cca cca;
     private final Class sc;
@@ -50,7 +50,7 @@ public class Student extends Person {
      * @param parentName Student's Parent / NOK name.
      * @param parentPhone Student's Parent / NOK contact number.
      * @param rls Parent / NOK relationship to student.
-     * @param birthdate Student's age.
+     * @param age Student's age.
      * @param image Student's image.
      * @param email Student's email address.
      * @param phone Student's contact number.
@@ -62,13 +62,12 @@ public class Student extends Person {
      * @param tags Tag given to student.
      */
     public Student(Name name, Class sc, IndexNumber indexNumber, Sex sex, Name parentName, Phone parentPhone,
-                   Relationship rls, Birthdate birthdate, Image image, Email email, Phone phone, Cca cca,
-                   Address address, Set<Attendance> attendance, Set<Homework> homework, Set<Test> test, Set<Tag> tags,
-                   Comment comment) {
+                   Relationship rls, Age age, Image image, Email email, Phone phone, Cca cca, Address address,
+                   Set<Attendance> attendance, Set<Homework> homework, Set<Test> test, Set<Tag> tags, Comment comment) {
         super(name, phone, email, address, tags);
         this.indexNumber = indexNumber;
         this.sex = sex;
-        this.birthdate = birthdate;
+        this.age = age;
         this.image = image;
         this.cca = cca;
         this.sc = sc;
@@ -162,8 +161,8 @@ public class Student extends Person {
      *
      * @return Student's Age.
      */
-    public Birthdate getBirthdate() {
-        return birthdate;
+    public Age getAge() {
+        return age;
     }
 
     /**
@@ -277,8 +276,8 @@ public class Student extends Person {
                 .append(getIndexNumber())
                 .append("; Sex: ")
                 .append(getSex())
-                .append("; Student birthdate: ")
-                .append(getBirthdate())
+                .append("; Student Age: ")
+                .append(getAge())
                 .append("; Image Path: ")
                 .append(getImage())
                 .append("; Student Email: ")

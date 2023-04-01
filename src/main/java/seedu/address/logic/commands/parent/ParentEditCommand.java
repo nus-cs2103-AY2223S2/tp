@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWPHONEPARENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTBIRTHDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthdate;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Name;
@@ -41,8 +41,8 @@ public class ParentEditCommand extends ParentCommand {
             + PREFIX_PHONEPARENT + "PHONE "
             + "["
             + PREFIX_NEWNAME + "NEW NAME "
-            + PREFIX_NEWPHONEPARENT + "PARENT PHONE NUMBER "
-            + PREFIX_PARENTBIRTHDATE + "BIRTHDATE "
+            + PREFIX_NEWPHONEPARENT + "NEW  "
+            + PREFIX_PARENTAGE + "AGE "
             + PREFIX_IMAGEPARENT + "IMAGE PARENT "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -52,7 +52,7 @@ public class ParentEditCommand extends ParentCommand {
             + PREFIX_PHONEPARENT + "91234567 "
             + PREFIX_NEWNAME + "Tan Ah Seng "
             + PREFIX_NEWPHONEPARENT + "91274444 "
-            + PREFIX_PARENTBIRTHDATE + "31 "
+            + PREFIX_PARENTAGE + "31 "
             + PREFIX_IMAGEPARENT + "XX.png (where XX is your image name) "
             + PREFIX_EMAIL + "tanahcow@gmail.com "
             + PREFIX_ADDRESS + "Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245)";
@@ -60,7 +60,7 @@ public class ParentEditCommand extends ParentCommand {
     public static final String MESSAGE_EDIT_PARENT_SUCCESS = "Edited Parent: %1$s";
 
     private Address newAddress;
-    private Birthdate newBirthdate;
+    private Age newAge;
     private Email newEmail;
     private Image newImage;
     private final Name name;
@@ -72,12 +72,12 @@ public class ParentEditCommand extends ParentCommand {
     /**
      * Creates a ParentEditCommand to edit the specified {@code Parent}
      */
-    public ParentEditCommand(Name name, Name newName, Birthdate newBirthdate, Image newImage, Email newEmail,
+    public ParentEditCommand(Name name, Name newName, Age newAge, Image newImage, Email newEmail,
                              Phone phoneNumber, Phone newPhoneNumber, Address newAddress, Set<Tag> newTagList) {
         this.phoneNumber = phoneNumber;
         this.name = name;
         this.newName = newName;
-        this.newBirthdate = newBirthdate;
+        this.newAge = newAge;
         this.newImage = newImage;
         this.newEmail = newEmail;
         this.newPhoneNumber = newPhoneNumber;
@@ -97,8 +97,8 @@ public class ParentEditCommand extends ParentCommand {
                 if (Phone.isDefaultPhone(newPhoneNumber.value)) {
                     this.newPhoneNumber = this.phoneNumber;
                 }
-                if (Birthdate.isDefaultBirthdate(newBirthdate.value)) {
-                    this.newBirthdate = parent.getBirthdate();
+                if (Age.isDefaultAge(newAge.value)) {
+                    this.newAge = parent.getAge();
                 }
                 if (Image.isDefaultImage(newImage.value)) {
                     this.newImage = parent.getImage();
@@ -110,7 +110,7 @@ public class ParentEditCommand extends ParentCommand {
                     this.newAddress = parent.getAddress();
                 }
                 this.newTagList = parent.getTags();
-                Parent newParent = new Parent(this.newName, this.newBirthdate, this.newImage, this.newEmail,
+                Parent newParent = new Parent(this.newName, this.newAge, this.newImage, this.newEmail,
                         this.newPhoneNumber, this.newAddress, this.newTagList);
                 model.setParent(parent, editParent(parent, newParent, model));
                 return new CommandResult(String.format(MESSAGE_EDIT_PARENT_SUCCESS, parent));
