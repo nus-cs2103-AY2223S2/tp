@@ -22,6 +22,11 @@ public class CommandResult {
     private final boolean showTimetable;
 
     /**
+     * Timetable information of specific date should be shown to the user.
+     */
+    private boolean showTimetableDate;
+
+    /**
      * List of unscheduled jobs should be shown to user.
      */
     private final boolean showUnschedule;
@@ -67,6 +72,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
+        this.showTimetableDate = false;
         this.showUnschedule = showUnschedule;
         this.showComplete = showComplete;
         this.showReminderList = showReminderList;
@@ -86,6 +92,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
+        this.showTimetableDate = false;
         this.showUnschedule = showUnschedule;
         this.showComplete = showComplete;
         this.showReminderList = showReminderList;
@@ -111,6 +118,7 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
+        this.showTimetableDate = false;
         this.showUnschedule = false;
         this.showComplete = false;
         this.showReminderList = showReminderList;
@@ -143,10 +151,17 @@ public class CommandResult {
     }
 
     /**
-     * Checks if timetable window is shown
+     * Checks if timetable window for any date is shown
      */
     public boolean isShowTimetable() {
         return showTimetable;
+    }
+
+    /**
+     * Checks if timetable window for specific date is shown
+     */
+    public boolean isShowTimetableDate() {
+        return showTimetableDate;
     }
 
     /**
@@ -197,6 +212,14 @@ public class CommandResult {
      */
     public boolean isExit() {
         return exit;
+    }
+
+    /**
+     * Sets status of show timetable for specific date
+     * @param isShowTimetableDate
+     */
+    public void setShowTimetableDate(boolean isShowTimetableDate) {
+        this.showTimetableDate = isShowTimetableDate;
     }
 
     @Override

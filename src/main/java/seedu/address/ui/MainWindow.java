@@ -343,21 +343,21 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleTimetable() {
-        if (!timetableWindow.isShowing()) {
-            logger.info("Opened timetable window of current week.");
-            try {
-                CommandResult commandResult = logic.execute("timetable");
-                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            } catch (CommandException | ParseException e) {
-                resultDisplay.setFeedbackToUser(e.getMessage());
-            } catch (FileNotFoundException e) {
-                resultDisplay.setFeedbackToUser(e.getMessage());
-            }
-            timetableWindow.show();
-            timetableWindow.fillInnerParts();
-        } else {
-            timetableWindow.focus();
+        logger.info("Opened timetable window of current week.");
+        try {
+            CommandResult commandResult = logic.execute("timetable");
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        } catch (CommandException | ParseException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
+        } catch (FileNotFoundException e) {
+            resultDisplay.setFeedbackToUser(e.getMessage());
         }
+        if (timetableWindow.isShowing()) {
+            timetableWindow.focus();
+        } else {
+            timetableWindow.show();
+        }
+        timetableWindow.fillInnerParts();
     }
 
     /**
@@ -365,11 +365,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void openTimetable() {
         if (!timetableWindow.isShowing()) {
-            logger.info("Opened timetable window of current week.");
+            logger.info("Opened timetable window of week containing " + logic.getFocusDate());
             timetableWindow.show();
             timetableWindow.fillInnerParts();
         } else {
             timetableWindow.focus();
+            timetableWindow.fillInnerParts();
         }
     }
 
@@ -545,7 +546,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowTimetable()) {
-                openTimetable();
+                if (commandResult.isShowTimetableDate()) {
+                    openTimetable();
+                } else {
+                    handleTimetable();
+                }
             }
 
             /*if (commandResult.isShowTimetable()) {
