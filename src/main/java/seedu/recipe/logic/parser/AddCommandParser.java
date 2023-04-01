@@ -8,20 +8,11 @@ import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PORTION;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.recipe.logic.commands.AddCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.logic.parser.functional.TryUtil;
 import seedu.recipe.logic.util.RecipeDescriptor;
-import seedu.recipe.model.recipe.Name;
-import seedu.recipe.model.recipe.Step;
-import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientInformation;
-import seedu.recipe.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -48,39 +39,11 @@ public class AddCommandParser implements Parser<AddCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PORTION, PREFIX_DURATION,
                 PREFIX_TAG, PREFIX_INGREDIENT, PREFIX_STEP);
 
+        // validate input
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
-        RecipeDescriptor recipeDescriptor = new RecipeDescriptor();
-
-        // we call Optional<Name>::get here without checking ifPresent
-        // this is safe since we already check if a Name argument is present
-        //noinspection OptionalGetWithoutIsPresent
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        recipeDescriptor.setName(name);
-
-        // 1. Parse Duration
-        argMultimap.getValue(PREFIX_DURATION)
-            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseDuration, s))
-            .ifPresent(recipeDescriptor::setDuration);
-
-        // 2. Parse Portion
-        argMultimap.getValue(PREFIX_PORTION)
-            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parsePortion, s))
-            .ifPresent(recipeDescriptor::setPortion);
-
-        // 3. Parse Tags
-        Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        recipeDescriptor.setTags(tags);
-
-        // 4. Parse Ingredients
-        HashMap<Ingredient, IngredientInformation> ingredientTable = ParserUtil.parseIngredients(
-            argMultimap.getAllValues(PREFIX_INGREDIENT));
-        recipeDescriptor.setIngredients(ingredientTable);
-
-        // 5. Parse Steps
-        List<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
-        recipeDescriptor.setSteps(steps);
+        RecipeDescriptor recipeDescriptor = ParserUtil.parseToRecipeDescriptor(argMultimap);
         return recipeDescriptor;
     }
 

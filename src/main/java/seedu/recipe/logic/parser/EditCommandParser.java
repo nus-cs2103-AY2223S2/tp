@@ -19,7 +19,6 @@ import java.util.Set;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.EditCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
-import seedu.recipe.logic.parser.functional.TryUtil;
 import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
@@ -38,6 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditCommand parse(String args) throws ParseException {
+        System.out.println("args: " + args);
         requireNonNull(args);
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DURATION, PREFIX_PORTION,
@@ -50,28 +50,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        RecipeDescriptor recipeDescriptor = new RecipeDescriptor();
-
-        argMultimap.getValue(PREFIX_NAME)
-            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseName, s))
-            .ifPresent(recipeDescriptor::setName);
-
-        argMultimap.getValue(PREFIX_DURATION)
-            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseDuration, s))
-            .ifPresent(recipeDescriptor::setDuration);
-
-        argMultimap.getValue(PREFIX_PORTION)
-            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parsePortion, s))
-            .ifPresent(recipeDescriptor::setPortion);
-
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG))
-            .ifPresent(recipeDescriptor::setTags);
-
-        parseIngredientsForEdit(argMultimap.getAllValues(PREFIX_INGREDIENT))
-            .ifPresent(recipeDescriptor::setIngredients);
-
-        parseStepsForEdit(argMultimap.getAllValues(PREFIX_STEP))
-            .ifPresent(recipeDescriptor::setSteps);
+        RecipeDescriptor recipeDescriptor = ParserUtil.parseToRecipeDescriptor(argMultimap);
 
         if (!recipeDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

@@ -1,6 +1,12 @@
 package seedu.recipe.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_PORTION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +18,8 @@ import java.util.Set;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.StringUtil;
 import seedu.recipe.logic.parser.exceptions.ParseException;
+import seedu.recipe.logic.parser.functional.TryUtil;
+import seedu.recipe.logic.util.RecipeDescriptor;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.RecipePortion;
@@ -178,4 +186,39 @@ public class ParserUtil {
         }
         return stepList;
     }
+
+    public static RecipeDescriptor parseToRecipeDescriptor(ArgumentMultimap argMultimap) throws ParseException {
+        RecipeDescriptor recipeDescriptor = new RecipeDescriptor();
+
+        argMultimap.getValue(PREFIX_NAME)
+            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseName, s))
+            .ifPresent(recipeDescriptor::setName);
+
+        argMultimap.getValue(PREFIX_DURATION)
+            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parseDuration, s))
+            .ifPresent(recipeDescriptor::setDuration);
+
+        argMultimap.getValue(PREFIX_PORTION)
+            .flatMap(s -> TryUtil.safeCompute(ParserUtil::parsePortion, s))
+            .ifPresent(recipeDescriptor::setPortion);
+
+        Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        if (!tags.isEmpty()) {
+            recipeDescriptor.setTags(tags);
+        }
+
+        HashMap<Ingredient, IngredientInformation> ingredientTable = ParserUtil.parseIngredients(
+            argMultimap.getAllValues(PREFIX_INGREDIENT));
+        if (!ingredientTable.isEmpty()) {
+            recipeDescriptor.setIngredients(ingredientTable);
+        }
+
+        List<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
+        if (!steps.isEmpty()) {
+            recipeDescriptor.setSteps(steps);
+        }
+
+        return recipeDescriptor;
+    }
+    
 }
