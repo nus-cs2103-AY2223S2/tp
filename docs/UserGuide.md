@@ -1,52 +1,51 @@
 ### Wingman User Guide
 Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
-flights, locations, pilots, and planes via a Command Line Interface (CLI) while still providing the benefits of a 
-Graphical User Interface (GUI). The functionalities include adding, deleting, checking, or associating these 
-flight-related resources.
+flights, locations, pilots, and planes via command lines. The functionalities include adding, deleting, checking, or associating these 
+flight-related resources. The program is highly optimized for fast typers, while having a intuitive graphical interface
+for managers to monitor the status of flight-related resources. 
 
-This guide is to guide you on how to use Wingman to efficiently manage the various aspects of airline operations, 
+In this flight, we will guide you on how to use Wingman to efficiently manage the various aspects of airline operations, 
 such as flight scheduling and management of crew, pilot, plane and location.
+
+## How to use this guide?
+
+This user guide provides a complete documentation on the multiple features that enable Wingman
+to assist you in managing your resources.
+
+Here is a reference for you to quickly achieve your objective with the guide:
+* View summary of commands: [command summary](#command-summary)
+* Check summary of prefixes: [Command summary](#command-summary)
+* Troubleshoot JAVA installation: [FAQ](#faq)
+
+For a complete reference, please check out [Table Of Contents](#table-of-contents).
 
 ## Table of Contents
 - **[How to use this guide?](#how-to-use-this-guide)**
 - **[Getting Started](#getting-started)**
 - **[Features](#features)**
-   - **[Modal Editing](#modal-editing)**
-   - **[Shared Commands](#shared-commands)**
-   - **[Mode-specific Commands](#mode-specific-commands)**
-   - **[Application Commands](#application-commands)**
+  - **[Modal Editing](#modal-editing)**
+  - **[Shared Commands](#shared-commands)**
+  - **[Mode-specific Commands](#mode-specific-commands)**
+  - **[Application Commands](#application-commands)**
+- **[Prefix Summary](#prefix-summary)**
 - **[Command summary](#command-summary)**
 - **[FAQ](#faq)**
 - **[Other information](#other-information)**
 
 <div style="page-break-after: always;"></div>
 
-## How to use this guide?
-
-This user guide provides an in-depth documentation on the multiple features that enable Wingman
-to assist you in managing your resources.
-We have also included a handy [command summary](#command-summary) where you can view all the commands at a glance.
-Refer to the next section to see how you can get started in just a few steps!
-
-For the description of commands, `{resource}_index` (e.g. `plane_index`) acts a placeholder in the command format where a 
-plane's index would be inputted. The index of any resource can be found as the number next to it in the list. Please 
-refer to the image below for clarity.
-
 ## Getting Started
 
 You can get started with Wingman in just 3 simple steps:
-1. Click [here](https://github.com/AY2223S2-CS2103T-W11-1/tp/releases/tag/v1.3) to download the Wingman.jar file
-2. Open the terminal or command prompt (for Windows users) application in your device
-3. Run the following command in your terminal under the directory: `java -jar Wingman.jar`
+1. Ensure you have `JAVA 11` installed on your computer. If you are unsure how to check JAVA version on your computer,
+please check out [FAQ](#faq). 
+2. Click [here](https://github.com/AY2223S2-CS2103T-W11-1/tp/releases/tag/v1.3) to download the Wingman.jar file
+3. Open a command terminal on your computing, and run the command to start the application:  `java -jar Wingman.jar`
 
-You should now be in the Wingman application. 
-
-A GUI similar to the below should appear in a few seconds. 
-Note how the app contains some sample data.
+You should be able to see a window popping up, and that is our Wingman application. 
+The app already contains some sample data for you to try out our features!
 
 <img src = "images/UG-index-reference.png" width="2032" alt="Wingman home page">
-
-If that is not the case, head over to our [FAQ](#faq) section to troubleshoot
 
 
 <div style="page-break-after: always;"></div>
@@ -215,14 +214,14 @@ This command has no variations across modes:
 
 ##### All modes: `delete 3`
 Prefix:
-- `index_number`: the index number of the resource entity you wish to delete. Note that the indexing starts from 0.
+- `index_number`: the index number of the resource entity you wish to delete. Note that the indexing starts from 1.
 
 The index number of an entity can be obtained from its position in the displayed list.
 
 Example (in `plane` mode):
 ```
 Input:
-delete 0
+delete 1
 
 Output: 
 Deleted A380.
@@ -254,8 +253,6 @@ This commands links an entity of the current resource mode to a specified locati
 For example, if you are currently in the `plane` mode, then this command will link a `plane` to a specified location 
 entity in the database. It shall be noted, however, that the prefixes specified in different modes are different.
 
-Note: Indexing for `location_index` and `resource_index` starts from 0.
-
 Here are some examples of how the command works in each mode:
 
 ##### Crew mode: `linklocation /lo location_index /cr crew_index`
@@ -267,7 +264,7 @@ Prefixes:
 Example:
 ```
 Input:
-linklocation /lo 0 /cr 1
+linklocation /lo 1 /cr 2
 
 Output: 
 Linked Cabin Service Director John Smith to Tokyo.
@@ -283,7 +280,7 @@ Prefixes:
 Example:
 ```
 Input:
-linklocation /fl 0 /from 0 /to 1
+linklocation /fl 1 /from 1 /to 2
 
 Output: 
 Linked flight SQ230 departing from Tokyo, arriving in Paris.
@@ -298,7 +295,7 @@ Prefixes:
 Example:
 ```
 Input:
-linklocation /lo 0 /pi 1
+linklocation /lo 1 /pi 2
 
 Output: 
 Linked Cadet Amelia Earhart to Tokyo.
@@ -313,7 +310,7 @@ Prefixes:
 Example:
 ```
 Input:
-linklocation /lo 0 /pl 1
+linklocation /lo 1 /pl 2
 
 Output: 
 Linked A380 to Tokyo.
@@ -341,8 +338,6 @@ For example, if you are currently in the `plane` mode, then this command will un
 from the specified location entity in the database. It shall be noted, however,
 that the prefixes that are specified in different modes are different.
 
-Note: Indexing for `location_index` and `resource_index` starts from 0.
-
 Here are some examples of how the command works in each mode:
 
 ##### Crew mode: `unlinklocation /lo location_index /cr crew_index`
@@ -354,7 +349,7 @@ Prefixes:
 Example:
 ```
 Input:
-unlinklocation /lo 0 /cr 1
+unlinklocation /lo 1 /cr 2
 
 Output: 
 Unlinked Cabin Service Director John Smith from Tokyo.
@@ -370,7 +365,7 @@ Prefixes:
 Example:
 ```
 Input:
-unlinklocation /fl 0 /from 0 /to 1
+unlinklocation /fl 1 /from 1 /to 2
 
 Output: 
 Unlinked flight SQ230 from Tokyo and Paris.
@@ -385,7 +380,7 @@ Prefixes:
 Example:
 ```
 Input:
-unlinklocation /lo 0 /pi 1
+unlinklocation /lo 1 /pi 2
 
 Output: 
 Unlinked Cadet Amelia Earhart from Tokyo.
@@ -400,7 +395,7 @@ Prefixes:
 Example:
 ```
 Input:
-unlinklocation /lo 0 /pl 1
+unlinklocation /lo 1 /pl 2
 
 Output: 
 Unlinked A380 from Tokyo.
@@ -423,8 +418,6 @@ This commands links an entity of the current resource mode to a specified flight
 if you are currently in the `plane` mode, then this command will link a `plane` to a specified flight in the database. 
 It shall be noted, however, that the indexes specified in different modes are different.
 
-Note: Indexing for `flight_index` and `resource_index` starts from 0.
-
 Here are some examples of how the command works in each mode:
 
 ##### Crew mode: 
@@ -442,7 +435,7 @@ Note: In each `linkflight` command under crew mode, you only need to fill up **a
 Example:
 ```
 Input:
-linkflight /fl 0 /csd 1
+linkflight /fl 1 /csd 2
 
 Output: 
 Linked Cabin Service Director John Smith to SQ230.
@@ -460,7 +453,7 @@ Note: In each `linkflight` command under pilot mode, you only need to fill up **
 Example:
 ```
 Input:
-linkflight /fl 0 /csd 1
+linkflight /fl 1 /csd 2
 
 Output: 
 Linked Cadet Amelia Earhart to SQ230.
@@ -475,7 +468,7 @@ Prefixes:
 Example:
 ```
 Input:
-linkflight /fl 0 /pl 1
+linkflight /fl 1 /pl 2
 
 Output: 
 Linked A380 to SQ230.
@@ -498,8 +491,6 @@ This command unlinks an entity of the current resource mode from a specified fli
 if you are currently in the `plane` mode, then this command will unlink a `plane` from a specified flight in the 
 database. It shall be noted, however, that the prefixes specified in different modes are different.
 
-Note: Indexing for `flight_index` and `resource_index` starts from 0.
-
 Here are some examples of how the command works in each mode:
 
 ##### Crew mode: 
@@ -517,7 +508,7 @@ Note: In each `unlinkflight` command in crew mode, you only need to fill up **at
 Example:
 ```
 Input:
-unlinkflight /fl 0 /csd 1
+unlinkflight /fl 1 /csd 2
 
 Output: 
 Unlinked Cabin Service Director John Smith from SQ230.
@@ -535,7 +526,7 @@ Note: In each `unlinkflight` command in pilot mode, you only need to fill up **a
 Example:
 ```
 Input:
-unlinkflight /fl 0 /csd 1
+unlinkflight /fl 1 /csd 2
 
 Output: 
 Unlinked Cadet Amelia Earhart from SQ230.
@@ -550,7 +541,7 @@ Prefixes:
 Example:
 ```
 Input:
-unlinkflight /fl 0 /pl 1
+unlinkflight /fl 1 /pl 2
 
 Output: 
 Unlinked A380 from SQ230.
@@ -576,12 +567,10 @@ to any flights or not and indicate its availability.
 
 This command is the same across `crew`, `pilot`, and `plane`.
 
-Note: Indexing for `resource_index` starts from 0.
-
 Example (in `plane` mode):
 ```
 Input:
-check /id 0
+check /id 1
 
 Output: 
 A380 is available.
@@ -649,7 +638,10 @@ All your changes to your resources will be saved for you to get back to when you
 ### 1. Why is Wingman not opening when I run the `java -jar` command?
 - You might be running the command in the wrong directory.
 Navigate to the directory where you downloaded the application file and run the same command again. 
-- Verify that your java version is 11. You may run `java -version` in your terminal to see your Java SDK version. 
+- Verify that your java version is 11. See the following question.
+
+### 2. How to check my `JAVA` version?
+You may run `java -version` in your terminal to see your Java SDK version. 
 If you need to install Java 11, please follow this [guide](https://nus-cs2103-ay2223s2.github.io/website/admin/programmingLanguages.html#programming-language).
 Below is one example showing the correct version: 
 ```agsl
