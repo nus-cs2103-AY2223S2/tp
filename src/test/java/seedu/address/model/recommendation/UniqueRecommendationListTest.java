@@ -262,4 +262,15 @@ public class UniqueRecommendationListTest {
 
         assertNotEquals(otherRecommendations, uniqueRecommendationList);
     }
+
+    @Test
+    public void hashCode_sameValues_sameHashCode() {
+        UniqueRecommendationList recommendations = new UniqueRecommendationList();
+        UniqueRecommendationList otherRecommendations = new UniqueRecommendationList();
+
+        recommendations.add(RECOMMENDATION);
+        otherRecommendations.add(RECOMMENDATION);
+
+        assertEquals(recommendations.hashCode(), otherRecommendations.hashCode());
+    }
 }
