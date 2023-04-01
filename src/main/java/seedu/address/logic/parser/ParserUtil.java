@@ -31,6 +31,10 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_INDEXES =
             "There should be exactly two non-zero unsigned integer indexes provided.";
+
+    private static final String MAX_SIZE = "2147483647";
+
+    private static final String MESSAGE_OUT_OF_RANGE = "Index provided is greater than maximum number of records.";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -38,6 +42,10 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        System.out.println(trimmedIndex.compareTo(MAX_SIZE));
+        if (trimmedIndex.compareTo(MAX_SIZE) >= 0) {
+            throw new ParseException(MESSAGE_OUT_OF_RANGE);
+        }
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }

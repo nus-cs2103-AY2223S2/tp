@@ -41,7 +41,7 @@ public class EditDoctorCommandParser implements Parser<EditDoctorCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format("%s\n%s", pe.getMessage(),
                     EditDoctorCommand.MESSAGE_USAGE), pe);
         }
 

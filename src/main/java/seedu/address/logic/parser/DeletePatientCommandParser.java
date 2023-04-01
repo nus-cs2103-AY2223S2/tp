@@ -24,7 +24,7 @@ public class DeletePatientCommandParser implements Parser<DeletePatientCommand> 
             return new DeletePatientCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePatientCommand.MESSAGE_USAGE), pe);
+                    String.format("%s\n%s", pe.getMessage(), DeletePatientCommand.MESSAGE_USAGE), pe);
         }
     }
 }
