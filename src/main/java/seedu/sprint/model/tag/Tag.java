@@ -11,7 +11,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric, "
             + "and it should not contain spaces.\n"
-            + "Tag names should not be left blank unless you intend to remove all existing Tags.";
+            + "Tag names should not be left blank except when using the edit-app command to remove all Tags.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
