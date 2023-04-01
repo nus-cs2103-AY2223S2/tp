@@ -65,9 +65,9 @@ so there's no need to worry about updating it manually. Pretty neat, right?
 * `clear` : Deletes all application entries. Do this if you want to get rid of the current sample data.
 * `exit` : Exits the app.
 
-You can refer to the [Command summary](#6-command-summary) section for the complete list of commands.
+You can refer to the **[Command summary](#7-command-summary)** section for the complete list of commands.
 
-You can refer to the [Features](#4-features) section below for more details of each command.
+You can refer to the **[Features](#4-features)** section below for more details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -148,6 +148,9 @@ an optional argument.
 Adds an internship application to be tracked.
 
 Format: `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​`
+
+You can refer to our **[Glossary](#6-glossary)** for more information about each field (ROLE, COMPANY_NAME, etc.) and
+other sprINT-specific terminology.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tag is an optional field when adding an application.
@@ -364,9 +367,9 @@ Format: `exit`
 
 Data in the internship book are automatically saved in your local storage after any command that modifies the data. There is no need to save manually.
 
-#### 4.4.7 Editing the data file
+#### 4.4.7 Editing the data file **(for Advanced users)**
 
-Data in the internship book are saved as a JSON file `[JAR file location]/data/sprint.json`. Advanced users are welcome to update their data directly by editing that data file.
+Data in the internship book are actually saved as a JSON file `[JAR file location]/data/sprint.json`. Advanced users are welcome to update their data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
@@ -376,7 +379,7 @@ If your changes to the data file makes its format invalid, the internship book w
 
 <div style="page-break-after: always;"></div>
 
-## **5.FAQ**
+## **5. FAQ**
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous internship book's home folder.
@@ -385,7 +388,28 @@ If your changes to the data file makes its format invalid, the internship book w
 
 <div style="page-break-after: always;"></div>
 
-## **6. Command Summary**
+## **6. Glossary**
+
+#### Application
+Represents an internship application entry in the internship book. Each application contains a role,
+company name, company email and one of four possible statuses.
+
+#### Status
+Represents the current stage of the internship application. Can be one of 4 values:
+* **Interested**: An internship that the user is interested in, but has yet to apply to.
+* **Applied**: An internship that the user has applied to, but has yet to receive an offer or rejection for.
+* **Offered**: An internship that the user has received an offer for.
+* **Rejected**: An internship that the user has been rejected for.
+
+#### Task
+Represents additional milestones that are part of the internship application process. Examples include online
+assessment, technical interview, etc.
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
+## **7. Command Summary**
 
 | Action                      | Format, Examples                                                                                                                                                         |
 |-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
