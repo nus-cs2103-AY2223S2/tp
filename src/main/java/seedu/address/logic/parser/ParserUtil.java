@@ -59,7 +59,7 @@ public class ParserUtil {
     }
 
     /**
-     * Returns a ContactIndex from the string index.
+     * Returns a non-zero ContactIndex from the string index.
      */
     public static ContactIndex parseContactIndex(String contactIndex) throws ParseException {
         String trimmedIndex = contactIndex.trim();

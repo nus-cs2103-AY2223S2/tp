@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.person.ContactIndex.USER_CONTACT_INDEX;
 
 import java.util.Optional;
 
@@ -26,6 +27,8 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
+    public static final String MESSAGE_CANNOT_DELETE_OWN_PROFILE = "Cannot delete your own profile!";
+
     private final ContactIndex contactIndex;
 
     public DeleteCommand(ContactIndex contactIndex) {
@@ -35,6 +38,11 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (contactIndex.equals(USER_CONTACT_INDEX)) {
+            throw new CommandException(MESSAGE_CANNOT_DELETE_OWN_PROFILE);
+        }
+
         IndexHandler indexHandler = new IndexHandler(model);
         Optional<Person> targetPerson = indexHandler.getPersonByIndex(contactIndex);
 
