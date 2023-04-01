@@ -69,11 +69,8 @@ Prefixes are the characters appearing before a slash in a command. Prefixes labe
 * Prefixes should be entered in all lower case (E.g. n/Abdul instead of N/Abdul)
 * Fields after prefixes have leading and trailing whitespaces removed (e.g. `n/ Mary` is truncated to `n/Mary`)
 
-#### Entities
-An entity is a generic term for an object stored in FriendlyLink. It includes elderly, volunteers and pairs.
-
 #### Indexes
-Indexes are natural numbers (numbers used for counting) that are used for numbering entities in a list.
+Indexes are natural numbers (numbers used for counting) that are used for numbering persons in a list.
 * An index must be a positive integer (E.g. 1, 2, 3, …​)
 
 #### Fields
@@ -196,10 +193,9 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | Duplicate Persons     | Two persons having the same NRIC are considered a duplicate entry in FriendlyLink                                                                           |
 | Elderly               | Elderly are people under the care of your VWO                                                                                                               |
 | Email                 | The email of a person, in the `localPart@domain` format, containing the `@`                                                                                 |
-| Entity                | A generic term to describe an object stored in FriendlyLink, such as elderly, volunteer and pairs                                                           |
 | FriendlyLink          | The name of our application                                                                                                                                 |
 | Field                 | A field is the information following the slash in a command.                                                                                                |
-| Index                 | An index represents the position of the referred item in a displayed list of entities. It must be a positive integer.                                       |
+| Index                 | An index represents the position of the referred item in a displayed list of persons. It must be a positive integer.                                        |
 | Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
 | NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
 | Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
