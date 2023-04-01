@@ -5,6 +5,7 @@ import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.modtrek.logic.commands.SortCommand.DEFAULT_SORT;
 import static seedu.modtrek.logic.parser.ParserUtil.parseTagsForSort;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
@@ -133,6 +134,7 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public TreeMap<Object, ObservableList<Module>> sortByObject(SortCommand.Sort sort) {
         TreeMap<Object, ObservableList<Module>> result = new TreeMap<>();
+        Comparator<Module> comparator = Comparator.comparing(Module::toString);
         this.sort = sort;
         for (Module m : internalList) {
             Object obj;
@@ -159,6 +161,7 @@ public class UniqueModuleList implements Iterable<Module> {
                 result.put(obj, newList);
             } else {
                 existingList.add(m);
+                FXCollections.sort(existingList, comparator);
             }
         }
         moduleGroups = result;
