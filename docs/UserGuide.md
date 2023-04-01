@@ -7,6 +7,7 @@ title: User Guide
 <img src="images/logo.png" width="200px"><br>
 
 **MODTrek** is a desktop application for managing a typical NUS Computer Science student’s modules and degree progression, optimised for use via a Command Line Interface (CLI). The app provides a convenient platform for students to easily access and update their modules within presses of a keyboard.<br><br>
+This application is currently geared towards NUS Computer Science Students of the AY2021-2022 cohort only. We hope to expand our application's scope in the coming years.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -174,6 +175,19 @@ Additional details:
 :information_source: **Note:** You cannot add 2 modules with the same module code into **MODTrek**. Modules must have distinct module codes.
 </div>
 
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:** We currently do not support "W" grades for modules. If you have withdrawn from a module, please do not add this module to MODTrek. You may also delete modules you have withdrawn from using the [Delete module](#42-delete-a-module--delete-a-namedelete-module-a) function.
+We decided not to include them since they do not contribute to degree progression or CAP.
+
+Grades we support are A+, A, A-, B+, B, B-, C+, C, C-, D, F, S and U.
+We only support years from 0 to 5 and semesters S1, S2, ST1 and ST2.
+
+We understand that the NUS curriculum is **very** flexible so application tries to accomodate as any different curriculums as possible. 
+Any deviations from these constraints for any reason (eg. Exchange modules, Retaken modules or MOOCs) should be mapped to modules within the application's constraints.
+For example, one may use dummy module codes like TEST1001 to include these modules in their degree progression and CAP calculation.
+</div>
+
 **Example:** 
 * `add /m CS2103T /c 4 /y y2s2 /g A /t ULR`
 * `add /m GESS1025 /c 4 /y y1s2`
@@ -245,14 +259,22 @@ Refer to [Add a module](#add-module) for the tags that you can use.
 Displays specific module(s) and their details previously logged by the user which satisfies the keyword(s) queried.
 Use this command to find modules that match the keywords are interested in without needing to manually scroll through the list of modules.
 
-**Syntax:** `find <keyword>...`
+**Syntax:** `find <keyword>...` or `find <module-code>`
 
 Specify one or more parameters in `<keywords>` that you want to find your modules by. This parameter can be from the following category:
-* `/m <code>`
+* `/m <code prefix>`
 * `/c <credit>`
 * `/y <year-semester>`
 * `/g <grade>`
 * `/t <tag>`
+
+Alternatively, you may find a specific module by its module code.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** Code prefix refers to the first alphabetic part of a module code.
+For example, CS is the code prefix of Computer Science modules like CS1101S and CS2106.
+</div>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -264,6 +286,7 @@ Using more keywords from the same category will return you all the modules that 
 * `find /c 4 /g A+`
 * `find /y y2s2`
 * `find /m cs /m ma /m ge` ![Ui Find](images/Ui-find3.png)
+* `find cs1101s`
 <p align="center"><em>Result of find command</em><br></p>
 
 [Back to Table of Contents](#toc)
