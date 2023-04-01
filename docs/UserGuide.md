@@ -156,6 +156,8 @@ Format: `group_create g/GROUP_NAME`
 
 * Creates a group with the specified group name `GROUP_NAME`.
 * The group name cannot be empty
+* Only one group can be created
+* If more than one group is specified, only the last occurrence of a group will be taken
 
 Examples:
 * `group_create g/CS2103T`
