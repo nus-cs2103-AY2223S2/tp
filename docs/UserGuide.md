@@ -49,11 +49,11 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 ![LabelledUi](images/LabelledUi.png)
 1. Notice the **Command Box** at the bottom. This will be where you will type all your commands. Press Enter to execute them.
 2. The **Command Result Box** is right above the Command Box. It gives you feedback immediately after you press Enter to execute
-a command, informing you if you have executed it successfully, and if not, what to watch out in the formatting.
-In the above image, you can see the box telling me that I have successfully added an application with the role `ML Engineer Intern`
-at `Datature`.
+a command, informing you if you have executed it successfully, and if not, what to watch out for in the formatting.
+Suppose you have executed a command to add a new application entry with the role `ML Engineer Intern` at `Datature`.
+Then you will be able to see the box informing you that it has been successfully added, just like in the image above.
 3. Each application entry shows up in the list above in its own box. In the image above, you can see the **Application Details**
-of the application entry I have just added.
+of the application entry to `Datature` that you have just added.
 4. A pie chart at the right shows your **Application Statistics**. It will update immediately after every command you execute,
 so there's no need to worry about updating it manually. Pretty neat, right?
 5. Here are some simple commands to get you started with:
