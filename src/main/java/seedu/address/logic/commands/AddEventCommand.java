@@ -27,6 +27,7 @@ public class AddEventCommand extends Command {
                     PREFIX_END_DATE_TIME + "END DATE TIME",
                     "[" + PREFIX_RECURRENCE + "INTERVAL]")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
+                    COMMAND_WORD,
                     PREFIX_DESCRIPTION + "CS2103T Lecture",
                     PREFIX_START_DATE_TIME + "2023-03-10 1600",
                     PREFIX_END_DATE_TIME + "2023-03-10 1800",

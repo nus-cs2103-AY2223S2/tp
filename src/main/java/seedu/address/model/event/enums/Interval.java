@@ -1,5 +1,7 @@
 package seedu.address.model.event.enums;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.event.fields.Recurrence;
 
 /**
@@ -18,6 +20,7 @@ public enum Interval {
     private final String value;
 
     Interval(String value) {
+        requireNonNull(value);
         this.value = value;
     }
 

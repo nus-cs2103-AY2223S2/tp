@@ -47,7 +47,7 @@ public class Recurrence {
             this.interval = Interval.YEARLY;
             break;
         default:
-            throw new IllegalArgumentException(Recurrence.MESSAGE_CONSTRAINTS + " " + interval);
+            throw new IllegalArgumentException(Recurrence.MESSAGE_CONSTRAINTS + "; Received: " + interval);
         }
     }
 

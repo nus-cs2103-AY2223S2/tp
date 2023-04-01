@@ -50,11 +50,11 @@ public class FavoriteCommand extends Command {
 
         Person personToFav = lastShownList.get(index.getZeroBased());
 
-        if (personToFav.getIsFavorite().getFavoriteStatus()) {
+        if (personToFav.getFavorite().getFavoriteStatus()) {
             return new CommandResult(String.format(MESSAGE_ISFAVORITED, personToFav));
         }
 
-        Person favoritedPerson = personToFav.favorite();
+        Person favoritedPerson = personToFav.setFavorite(true);
 
         model.setPerson(personToFav, favoritedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

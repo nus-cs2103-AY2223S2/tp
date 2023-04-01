@@ -164,7 +164,7 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(this.name, this.phone, this.email, this.address, this.gender,
-                this.major, this.modules, this.race, this.tags, this.comms, this.faculty);
+                this.major, this.modules, this.race, this.tags, this.comms, null, this.faculty);
     }
 
 }

@@ -62,7 +62,8 @@ public class AddCommandParser implements Parser<AddCommand> {
         CommunicationChannel comms = ParserUtil.parseComms(argMultimap.getValue(PREFIX_COMMS).orElse(""));
         Faculty faculty = ParserUtil.parseFaculty(argMultimap.getValue(PREFIX_FACULTY).orElse(""));
 
-        Person person = new Person(name, phone, email, address, gender, major, modules, race, tags, comms, faculty);
+        Person person = new Person(name, phone, email, address, gender, major,
+                modules, race, tags, comms, null, faculty);
 
         return new AddCommand(person);
     }

@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.fields.Address;
@@ -34,88 +35,43 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Address address;
     private final Gender gender;
     private final Major major;
     private final Modules modules;
     private final Race race;
-    private final CommunicationChannel comms;
-    private final Faculty faculty;
-    private final Address address;
     private final Tags tags;
-
-    private final Favorite isFavorite;
-
-    /**
-     * Every field must be present and not null.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, Gender gender,
-                  Major major, Modules modules, Race race, Tags tags, CommunicationChannel comms, Faculty faculty) {
-        requireAllNonNull(name);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags = tags;
-        this.gender = gender;
-        this.major = major;
-        this.modules = modules;
-        this.race = race;
-        this.comms = comms;
-        this.isFavorite = new Favorite(false);
-        this.faculty = faculty;
-    }
+    private final CommunicationChannel comms;
+    private final Favorite favorite;
+    private final Faculty faculty;
 
     /**
-     * Returns a new Person who is Favourited.
-     * Require all fields to be present and not null
+     * Creates a {@code Person} with all fields nullable except {@code name}.
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender,
                   Major major, Modules modules, Race race, Tags tags, CommunicationChannel comms,
                   Favorite favorite, Faculty faculty) {
-        requireAllNonNull(name, favorite);
-        this.name = name;
-        this.isFavorite = favorite;
-
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags = tags;
-        this.gender = gender;
-        this.major = major;
-        this.modules = modules;
-        this.race = race;
-        this.comms = comms;
-        this.faculty = faculty;
-    }
-
-    /**
-     * Constructor to create a Person with only a name. Will assign the rest of the fields as blank.
-     */
-    public Person(Name name) {
         requireAllNonNull(name);
         this.name = name;
-        this.isFavorite = new Favorite(false);
-        this.phone = new Phone("");
-        this.email = new Email("");
-        this.address = new Address("");
-        this.tags = new Tags(new HashSet<>());
-        this.gender = new Gender("");
-        this.major = new Major("");
-        this.modules = new Modules(new HashSet<>());
-        this.race = new Race("");
-        this.comms = new CommunicationChannel("");
-        this.faculty = new Faculty("");
+        this.phone = Optional.ofNullable(phone).orElse(new Phone(""));
+        this.email = Optional.ofNullable(email).orElse(new Email(""));
+        this.address = Optional.ofNullable(address).orElse(new Address(""));
+        this.gender = Optional.ofNullable(gender).orElse(new Gender(""));
+        this.major = Optional.ofNullable(major).orElse(new Major(""));
+        this.modules = Optional.ofNullable(modules).orElse(new Modules(new HashSet<>()));
+        this.race = Optional.ofNullable(race).orElse(new Race(""));
+        this.tags = Optional.ofNullable(tags).orElse(new Tags(new HashSet<>()));
+        this.comms = Optional.ofNullable(comms).orElse(new CommunicationChannel(""));
+        this.favorite = Optional.ofNullable(favorite).orElse(new Favorite(false));
+        this.faculty = Optional.ofNullable(faculty).orElse(new Faculty(""));
     }
 
     /**
-     * Factory method to create a Person with no fields. Will assign the rest of the fields as blank.
-     * Only for use for UserData. Should not be used anywhere else. Todo: Deprecate
+     * Creates a {@code Person} with all fields blank except {@code name}.
      */
-    public static Person ofDefaultUser() {
-        return new Person(new Name("Neo"));
+    public Person(Name name) {
+        this(name, null, null, null, null, null, null, null, null, null, null, null);
     }
-
-
 
     public Name getName() {
         return this.name;
@@ -133,8 +89,8 @@ public class Person {
         return this.address;
     }
 
-    public Favorite getIsFavorite() {
-        return this.isFavorite;
+    public Favorite getFavorite() {
+        return this.favorite;
     }
 
     public Gender getGender() {
@@ -194,22 +150,9 @@ public class Person {
                 && otherPerson.getName().equals(getName());
     }
 
-    /**
-     * Returns same Person who is Favorited.
-     */
-    public Person favorite() {
-        Favorite newFavorite = new Favorite(true);
-        return new Person(name, phone, email, address, gender,
-                major, modules, race, tags, comms, newFavorite, faculty);
-    }
-
-    /**
-     * Returns same Person who is Unfavorited.
-     */
-    public Person unfavorite() {
-        Favorite newFavorite = new Favorite(false);
-        return new Person(name, phone, email, address, gender,
-                major, modules, race, tags, comms, newFavorite, faculty);
+    public Person setFavorite(boolean isFavorite) {
+        return new Person(name, phone, email, address, gender, major, modules,
+                race, tags, comms, new Favorite(isFavorite), faculty);
     }
 
     /**
@@ -262,14 +205,6 @@ public class Person {
     }
 
     /**
-     * Returns true if {@code p} has the exact same name as {@code this}.
-     */
-    public boolean hasSameNameAs(Person p) {
-        return this.name.value.equals(p.name.value);
-    }
-
-
-    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -300,7 +235,7 @@ public class Person {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, address, gender, major,
-                modules, race, comms, faculty, tags, isFavorite);
+                modules, race, comms, faculty, tags, favorite);
     }
 
     @Override
@@ -308,6 +243,6 @@ public class Person {
         return getName() + "; Phone: " + getPhone() + "; Email: " + getEmail() + "; Address: " + getAddress()
                 + "; Gender: " + this.getGender() + "; Major: " + this.getMajor() + "; Race: " + this.getRace()
                 + "; Preferred Communication: " + this.getComms() + "; Faculty: " + this.getFaculty() + "; Tags: "
-                + this.getTags() + "; Modules: " + this.getModules();
+                + this.getTags() + "; Modules: " + this.getModules() + "; Favorite: " + getFavorite();
     }
 }
