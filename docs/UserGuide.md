@@ -58,15 +58,15 @@ These commands are:
 
 Adds a role to TechTrack.
 
+Format: `add {Prefix}/{Parameter}…​`
+
+Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year `
+
 - Adding multiple similar parameters will take the details of latter command.
 
    Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year n/Frontend Developer`
    
    In this case, the name 'Software Engineering' will be replaced by 'Frontend Developer'.
-
-Format: `add {Prefix}/{Parameter}…​`
-
-Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year `
 
 **The prefixes and their respective parameters are as follows:**
 
