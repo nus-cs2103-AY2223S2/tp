@@ -48,11 +48,6 @@ If you have any questions or run into problems, check out the [FAQ](#faq) for so
 🕮 From now on we'll be using a slightly modifided version of the <a href="http://docopt.org/">docopt</a> command description language.
 </div>
 
-<details>
-          
-Test
-</details>
-
 1. We will use the word "**string**" to describe any general sequence of characters.
 2. We will use the word "**word**" to describe a sequence of characters terminated by a whitespace.
 3. Words ending with a backslash `/` are interpreted as _compulsory_, _position-independent_ **options**.
