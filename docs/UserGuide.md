@@ -16,10 +16,9 @@ title: User Guide
 ### 1.1 What is sprINT
 
 Welcome to **sprINT's User Guide**. sprINT is a **desktop application** for managing internship applications,
-optimized for use via a Command Line Interface (CLI) while incorporating the benefits of a Graphical User
-Interface (GUI).
+optimized for use by typing while offering a beautiful user interface.
 
-If you're a *fast typer*, sprINT is the perfect tool. The app is designed to maximise speed and efficiency,
+If you are comfortable typing, sprINT can help maximise your speed and efficiency in documenting internship applications,
 making it a great asset in your internship application journey.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -38,7 +37,7 @@ Step 4: Double-click on the jar file to run the application.
 If it doesn't work, open a command terminal, enter `cd` with the path to the folder you put the jar file in, 
 and type: `java -jar sprINT.jar` to run the application.<br>
 
-A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data already.<br>
+An interface similar to the one shown below should appear in a few seconds. Note how the app contains some sample data already.<br>
 ![Ui](images/Ui.png)
 
 <div markdown="span" class="alert alert-primary">:bulb:
