@@ -51,7 +51,7 @@ public class PersonListPanel extends UiPart<Region> {
         personListView.setCellFactory(listView -> new PersonListCell());
         personListView.setFocusTraversable(false);
         personListView.setOnMouseClicked(event -> {
-            resultDisplay.setFeedbackToUser("Enter command below");
+            resultDisplay.showDefaultMessage();
             PersonListCellData nextData = personListView.getSelectionModel().getSelectedItem();
             int nextIndex = personListView.getSelectionModel().getSelectedIndex();
             if (selectedIndex == nextIndex) { // clear selection on same selection
