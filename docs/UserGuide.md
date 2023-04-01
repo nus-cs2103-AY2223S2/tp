@@ -60,7 +60,7 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
     * [**Organise a meet up with your contacts `organise`**](#organise-a-meet-up-organise)
     * [**Unorganise a meet up with your contacts `unorganise`**](#unorganise-a-meet-up-unorganise)
 * [**Other Commands**](#other-commands)
-    * [**Exit the application `exit`**](#exit-the-application)
+    * [**Exit the application `exit`**](#exit-the-application-exit)
 * [**FAQ**](#faq)
 * [**Summary**](#summary)
   * [**Prefixes**](#prefixes)
@@ -565,13 +565,12 @@ With EduMate's `tag` command, you can tag your existing contacts with groups and
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `tag INDEX m/MODULE_TAG`
 * `tag m/MODULE_TAG`
 * `tag m/MODULE_TAG DAY START END`
+* `tag INDEX m/MODULE_TAG`
 * `tag INDEX m/MODULE_TAG DAY START END`
-* `tag m/MOUDLE_TAG DAY START END`
-* `tag INDEX g/GROUP`
 * `tag g/GROUP`
+* `tag INDEX g/GROUP`
 
 </div>
 
@@ -610,13 +609,12 @@ With EduMate's `untag` command, you can remove groups or modules from your exist
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `untag INDEX m/MODULE_TAG`
 * `untag m/MODULE_TAG`
 * `untag m/MODULE_TAG DAY START END`
+* `untag INDEX m/MODULE_TAG`
 * `untag INDEX m/MODULE_TAG DAY START END`
-* `untag m/MOUDLE_TAG DAY START END`
-* `untag INDEX g/GROUP`
 * `untag g/GROUP`
+* `untag INDEX g/GROUP`
 
 </div>
 
@@ -929,9 +927,9 @@ If you wish to remove a scheduled meetup from your [Scheduled Meet Up Panel](#sc
 </div>
 
 
-## Other Commands
+### Other Commands
 
-### Exit the application
+#### Exit the application `exit`
 
 If you want to end the application, simply type `exit`, or click on the `Exit` button located on the left of the interface.
 
