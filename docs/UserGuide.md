@@ -343,7 +343,7 @@ Format: `undo`
 
 Redo the previous command that you have undo-ed.
 
-<div markdown="span" class="alert alert-warning">exclamation: **Caution:** 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
 If you executed another command immediately after undo, you will no longer be able to redo the undo-ed command.
 </div>
 
