@@ -87,16 +87,24 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns the index of the first duplicate found between {@code newPersons} and the address book.
      * Returns -1 if none are found.
      */
-    public int findDuplicateIndex(List<Person> newPersons) {
+    public int getDuplicateIndex(List<Person> newPersons) {
         requireAllNonNull(newPersons);
-        return persons.findDuplicateIndex(newPersons);
+        return persons.getDuplicateIndex(newPersons);
     }
 
     /**
      * Returns the duplicated field that was found between {@code duplicatedPerson} and the address book.
      */
-    public String findDuplicateString(Person duplicatedPerson) {
-        return persons.findDuplicatedString(duplicatedPerson);
+    public String getDuplicateString(Person duplicatedPerson) {
+        return persons.getDuplicatedString(duplicatedPerson);
+    }
+
+    /**
+     * Returns the duplicates field that was found between {@code duplicatedEditedPerson} and the address book,
+     * not considering the {@code notCounted}.
+     */
+    public String getDuplicateStringForEdit(Person duplicateEditedPerson, Person notCounted) {
+        return persons.getDuplicateStringExceptFor(duplicateEditedPerson, notCounted);
     }
 
     /**
@@ -113,6 +121,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPersons(List<Person> p) {
         persons.addPersons(p);
+    }
+
+    /**
+     * Checks if the {@code editedPerson} is a valid Person to replace the {@code target}, and that it is not a
+     * duplicate of another existing person in the address book.
+     */
+    public boolean canEdit(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        return persons.canEdit(target, editedPerson);
     }
 
     /**

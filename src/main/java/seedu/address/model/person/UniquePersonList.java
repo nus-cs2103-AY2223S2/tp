@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -65,7 +66,7 @@ public class UniquePersonList implements Iterable<Person> {
      * the list. Given {@code newPersons} should not contain any duplicates.
      * Returns -1 if none are found.
      */
-    public int findDuplicateIndex(List<Person> newPersons) {
+    public int getDuplicateIndex(List<Person> newPersons) {
         requireAllNonNull(newPersons);
 
         assert !PersonUtil.hasDuplicates(internalList) : "internal list should not contain duplicates";
@@ -81,7 +82,7 @@ public class UniquePersonList implements Iterable<Person> {
      * Returns the String representing the duplicate field found between {@code newPerson} and the list.
      * Gives an empty String if none are found.
      */
-    public String findDuplicatedString(Person duplicatedPerson) {
+    public String getDuplicatedString(Person duplicatedPerson) {
         requireNonNull(duplicatedPerson);
 
         for (int i = 0; i < internalList.size(); i++) {
@@ -91,6 +92,29 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return "";
     }
+
+    /**
+     * Returns the {@code String} representation of the duplicate field found between the given
+     * {@code duplicateEditedPerson} and the entire address book, not considering any duplicates found between the
+     * {@code duplicateEditedPerson} and the {@code notCounted} entry.
+     * Returns empty {@code String} if no duplicates are found.
+     */
+    public String getDuplicateStringExceptFor(Person duplicatePerson, Person exceptFor) {
+        requireAllNonNull(duplicatePerson, exceptFor);
+
+        List<Person> tempList = new ArrayList<>(List.copyOf(internalList));
+        if (!tempList.remove(exceptFor)) {
+            throw new NoSuchElementException();
+        }
+
+        for (int i = 0; i < tempList.size(); i++) {
+            if (tempList.get(i).isSamePerson(duplicatePerson)) {
+                return PersonUtil.findDuplicateFieldString(duplicatePerson, tempList.get(i));
+            }
+        }
+        return "";
+    }
+
 
     /**
      * Adds a person to the list.
@@ -117,6 +141,24 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
+     * Checks if the given {@code editedPerson} is a valid Person to replace the {@code target}, and that it is not a
+     * duplicate of another existing person in the address book.
+     */
+    public boolean canEdit(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new PersonNotFoundException();
+        }
+
+        List<Person> tempList = new ArrayList<>(List.copyOf(internalList));
+        // removes the target, to check if the new editedPerson is a duplicate of any other existing person
+        tempList.remove(index);
+        return !tempList.stream().anyMatch(editedPerson::isSamePerson);
+    }
+
+    /**
      * Replaces the person {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
@@ -129,7 +171,7 @@ public class UniquePersonList implements Iterable<Person> {
             throw new PersonNotFoundException();
         }
 
-        if (!target.isSamePerson(editedPerson) && contains(editedPerson)) {
+        if (!canEdit(target, editedPerson)) {
             throw new DuplicatePersonException();
         }
 

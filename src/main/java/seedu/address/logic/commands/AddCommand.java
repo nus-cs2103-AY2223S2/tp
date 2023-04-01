@@ -65,7 +65,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, model.findDuplicateString(toAdd)));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, model.getDuplicateString(toAdd)));
         }
 
         model.addPerson(toAdd);

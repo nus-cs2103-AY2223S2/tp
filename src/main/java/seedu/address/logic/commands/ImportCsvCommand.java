@@ -66,9 +66,9 @@ public class ImportCsvCommand extends Command {
 
     private void addPersonsToModel(Model model) throws CommandException {
         if (model.hasPersons(personsToAdd)) {
-            int index = model.findDuplicateIndex(personsToAdd);
+            int index = model.getDuplicateIndex(personsToAdd);
             assert index >= 0 : "no duplicate found even though duplicates between CSV and address book were reported";
-            String duplicatedField = model.findDuplicateString(personsToAdd.get(index));
+            String duplicatedField = model.getDuplicateString(personsToAdd.get(index));
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_ADDRESS_BOOK,
                     index + HEADER_AND_ZERO_INDEX_OFFSET, duplicatedField));
         }

@@ -105,15 +105,20 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public int findDuplicateIndex(List<Person> persons) {
+    public int getDuplicateIndex(List<Person> persons) {
         requireAllNonNull(persons);
-        return addressBook.findDuplicateIndex(persons);
+        return addressBook.getDuplicateIndex(persons);
     }
 
     @Override
-    public String findDuplicateString(Person person) {
+    public String getDuplicateString(Person person) {
         requireNonNull(person);
-        return addressBook.findDuplicateString(person);
+        return addressBook.getDuplicateString(person);
+    }
+
+    @Override
+    public String getDuplicateStringForEdit(Person duplicateEditedPerson, Person notCounted) {
+        return addressBook.getDuplicateStringForEdit(duplicateEditedPerson, notCounted);
     }
 
     @Override
@@ -131,6 +136,13 @@ public class ModelManager implements Model {
     public void addPersons(List<Person> persons) {
         addressBook.addPersons(persons);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public boolean canEdit(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        return addressBook.canEdit(target, editedPerson);
     }
 
     @Override
