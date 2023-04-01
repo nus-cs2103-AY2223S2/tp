@@ -28,7 +28,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
-    private static final String WELCOME_MESSAGE = "Welcome to TechTrack! \n\nHere are the list of commands available: "
+    private static final String COMMANDS_MESSAGE = "Here are the list of commands available: "
             + "\n1. add n/{name} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} "
             + "$/{SALARY} d/{DEADLINE} x/{EXPERIENCE}"
             + "\n2. edit {index} [n/{name}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] "
@@ -46,6 +46,9 @@ public class MainWindow extends UiPart<Stage> {
             + "\n13. exit";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
+
+    // Message received when starting the app
+    private String initMessage;
 
     private Stage primaryStage;
     private Logic logic;
@@ -73,12 +76,13 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic, String initMessage) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.initMessage = initMessage;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -134,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         roleListPanelPlaceholder.getChildren().add(roleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
-        resultDisplay.place(StringDisplay.of(WELCOME_MESSAGE));
+        resultDisplay.place(StringDisplay.of(initMessage + "\n\n" + COMMANDS_MESSAGE));
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getRoleBookFilePath());

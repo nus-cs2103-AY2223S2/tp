@@ -33,7 +33,7 @@ public class UiManager implements Ui {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage, String initMessage) {
         logger.info("Starting UI...");
 
         //Set the application icon.
@@ -41,7 +41,7 @@ public class UiManager implements Ui {
 
         try {
             primaryStage.setResizable(false);
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logic, initMessage);
             logger.info("Main Window set");
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
