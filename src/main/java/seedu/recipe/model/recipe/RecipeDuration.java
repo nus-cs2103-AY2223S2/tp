@@ -12,11 +12,9 @@ import seedu.recipe.model.recipe.unit.TimeUnit;
 public class RecipeDuration {
     public static final String MESSAGE_CONSTRAINTS =
         "A Recipe Duration should consist of a numeric/decimal section and an alphabetic time unit";
-    private static final String VALIDATION_REGEX =
-        "^(([2-9]\\d{0,2}|1\\d{1,2})(\\.\\d{1,3})?|[01]\\.\\d{0,2}[1-9])\\s+((hour|minute|second|day)s|min|h)$|"
-            + "^(1|1.0)\\s+(hour|minute|day|second|min|h)$";
 
-    private static final Pattern NEW_REGEX = Pattern.compile("((\\d+)(?:([.\\/])(\\d+))?)\\s+([A-Za-z ]+)");
+    // format: {number} {unit} OR {number}{. or /}{number} {unit}
+    private static final Pattern VALIDATION_REGEX = Pattern.compile("((\\d+)(?:([.\\/])(\\d+))?)\\s+([A-Za-z ]+)");
 
     private final double time;
     private final TimeUnit timeUnit;
@@ -39,7 +37,7 @@ public class RecipeDuration {
      * @return The generated RecipeDuration instance, if the parameter is valid.
      */
     public static RecipeDuration of(String candidate) {
-        Matcher matcher = NEW_REGEX.matcher(candidate);
+        Matcher matcher = VALIDATION_REGEX.matcher(candidate);
 
         if (!matcher.matches()) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
