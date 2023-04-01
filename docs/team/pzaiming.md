@@ -33,7 +33,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
     * Highlights: Makes it more friendly for the user to search through different roles.
 
 
-* **New Feature**: Add a new `OrderParser` class to allow order in asc/desc of sorting commands.
+* **Implementation**: Add a new `OrderParser` class to allow order in asc/desc of sorting commands.
     * What it does: Allow developers to easy parse the sorting requirement for their sorting commands.
     * Justification: The order needs to be either ascending or descending and makes it more OOP by creating a Parser
       class.
