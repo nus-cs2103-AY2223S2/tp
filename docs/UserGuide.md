@@ -7,9 +7,7 @@ title: User Guide
 
 Tutee managing system (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
-# TABLE OF CONTENTS
-[Quick Start](#quickstart)
-[FEATURES](#features)
+[TABLE OF CONTENTS](#table-of-content)
 1. [Viewing help](#help)
 2. [Add student](#add)
 3. [Delete student](#delete)
@@ -53,6 +51,7 @@ Tutee managing system (TMS) is a **desktop application designed for private tuto
 --------------------------------------------------------------------------------------------------------------------
 
 ## FEATURES <a name="features"></a>
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -225,3 +224,15 @@ Exit the program.
 
 Format: ```exit```
 
+## Mark/Unmark attendance
+Use `mark` to indicate that the tutee was present on the given dates, `unmark` to indicate that
+they were absent. If a date is not specified, the current date is used.\
+If the tutee was already absent or present, the command will have no effect.
+
+Format: `mark/unmark <index> [date...]`
+
+## Query Command
+Use this command to check the tutee's attendance. If no date is given, all of the dates that tutee was present on.\
+Otherwise, the command will return if the tutee was present on the given date.
+
+Format: `query <index> [date]`
