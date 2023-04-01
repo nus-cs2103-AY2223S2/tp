@@ -11,7 +11,8 @@ import seedu.recipe.model.recipe.unit.TimeUnit;
  */
 public class RecipeDuration {
     public static final String MESSAGE_CONSTRAINTS =
-        "A Recipe Duration should consist of a numeric/decimal section and an alphabetic time unit";
+        "A Recipe's duration should consist of an integer/fraction/decimal section and an alphabetic time unit "
+            + "(spaces allowed)";
 
     // format: {number} {unit} OR {number}{. or /}{number} {unit}
     private static final Pattern VALIDATION_REGEX = Pattern.compile("((\\d+)(?:([.\\/])(\\d+))?)\\s+([A-Za-z ]+)");
