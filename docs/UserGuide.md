@@ -24,13 +24,9 @@ It is recommended that you switch to this resolution before proceeding with the 
 
 </div>
 
-### Purpose of Guide
-
-This guide aims to teach you how to navigate and use FriendlyLink
-
 ### How to use this User Guide
 
-This guide quickly gets you started to use FriendlyLink, describing our features and providing their instruction format and examples. Some terms used have specific meanings and are explained below and summarised in the [Glossary](#glossary).
+This guide aims to quickly gets you started to use and navigate FriendlyLink. [Features](#features) are described below together with examples. Some terms used have specific meanings and are explained below and summarised in the [Glossary](#glossary).
 
 We suggest reading this guide in sequential order (or at least the whole of this section) to familiarise yourself with the keywords used in this guide in the glossary and differently styled text which have special meanings.
 
