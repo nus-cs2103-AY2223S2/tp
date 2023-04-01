@@ -65,7 +65,7 @@ public class UntagCommandParser implements Parser<UntagCommand> {
 
     private boolean isValidUntagCommand(List<Prefix> presentPrefixes) {
         return Stream.of(isUntaggingMod(presentPrefixes), isUntaggingLec(presentPrefixes),
-                isUntaggingVideo(presentPrefixes)).anyMatch(isPresent -> true);
+                isUntaggingVideo(presentPrefixes)).anyMatch(isPresent -> isPresent.equals(true));
     }
 
     private boolean isUntaggingMod(List<Prefix> presentPrefixes) {
