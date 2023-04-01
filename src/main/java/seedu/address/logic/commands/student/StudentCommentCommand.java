@@ -78,6 +78,9 @@ public class StudentCommentCommand extends StudentCommand {
                 break;
             }
         }
+        if (studentToEdit == null) {
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_CLASS);
+        }
         Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
                 studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
                 studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getBirthdate(),
