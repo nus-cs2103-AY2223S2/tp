@@ -6,6 +6,7 @@ package seedu.connectus.commons.core;
 public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
+    public static final String MESSAGE_HELP = "Use help to see available commands!";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT_HELP = "Command does not exist!"
             + "\nRefer to the User Guide for a list of supported commands.\n%1$s";
@@ -17,5 +18,4 @@ public class Messages {
     public static final String MESSAGE_PERSON_FIELD_NOT_PRESENT = "The person has no such field";
     public static final String MESSAGE_PERSON_TOO_MANY_MAJORS = "The total number of majors cannot be "
             + "greater than 2!";
-
 }

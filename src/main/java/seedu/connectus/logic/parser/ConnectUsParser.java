@@ -1,5 +1,6 @@
 package seedu.connectus.logic.parser;
 
+import static seedu.connectus.commons.core.Messages.MESSAGE_HELP;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.connectus.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -33,11 +34,6 @@ public class ConnectUsParser {
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
-     * Default return message.
-     */
-    private static final String MESSAGE_USAGE = "Use help to see available commands!";
-
-    /**
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
@@ -47,7 +43,7 @@ public class ConnectUsParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_HELP));
         }
 
         final String commandWord = matcher.group("commandWord");

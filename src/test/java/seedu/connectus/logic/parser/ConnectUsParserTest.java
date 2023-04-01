@@ -2,6 +2,7 @@ package seedu.connectus.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.connectus.commons.core.Messages.MESSAGE_HELP;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.connectus.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.connectus.testutil.Assert.assertThrows;
@@ -91,7 +92,7 @@ public class ConnectUsParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
+                MESSAGE_HELP), () -> parser.parseCommand(""));
     }
 
     @Test
