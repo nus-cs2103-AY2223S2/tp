@@ -202,6 +202,12 @@ In this case, `NAME` is the information field that you wish to input. The `n/` p
 * The list of information fields, prefixes and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes). 
 * You can also find a condensed summary of these information fields in the [Prefix Summary](#8-prefix-summary).
 
+<div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
+
+As of now, using non-English languages (e.g. Chinese, French) as information fields are not yet supported. Be sure to look out for it in a future iteration!
+
+</div>
+
 ## 3.3 Command Format
 
 To use ConnectUS, type the [command](#321-command) along with its [parameters](#322-parameter), if required. You can leave the parameters empty if it is optional (i.e. if it is wrapped in square brackets like this: `help [COMMAND]`).
@@ -455,7 +461,7 @@ ConnectUS helps you to detect duplicate contacts by checking the existing contac
 <br>
 <div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
 
-As of now, removing a contact's information field is not supported yet. Be sure to look out for it in a future iteration!
+As of now, removing a contact's information field is not yet supported. Be sure to look out for it in a future iteration!
 
 </div>
 
@@ -937,6 +943,12 @@ If you wish to assign a CCA Position to a contact, you can do so with the CCA pr
 * If a tag you want to add to a contact does not exist, you can use the remark tag. 
 * The difference in tag colours in the UI can help you differentiate between the different kinds of tags.
 
+<div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
+
+As of now, using non-English languages (e.g. Chinese, French) as information fields are not yet supported. Be sure to look out for it in a future iteration!
+
+</div>
+
 [↑ Back to prefix list](#5-information-fields--prefixes)
 
 [↑ Back to top](#table-of-contents)
@@ -953,8 +965,11 @@ If you wish to assign a CCA Position to a contact, you can do so with the CCA pr
 **Q**: Why do we need remark tags if we already have other kinds of tags?<br>
 **A**: Remarks are used for assigning other information to a contact, e.g. their Year of Study, Faculty, Company etc. If a tag you want to add to a contact does not exist, you can use the remark tag. The difference in tag colours in the UI can help you differentiate between the different kinds of tags.
 
+**Q**: When adding information fields in non-English languages, why is there no response from the application?<br>
+**A**: As of now, using non-English languages (e.g. Chinese, French) as information fields are not yet supported. Be sure to look out for it in a future iteration!
+
 **Q**: Why can't I remove an information field after I add it with `edit`?<br>
-**A**: As of now, removing a contact's information field is not supported yet. Be sure to look out for it in a future iteration!
+**A**: As of now, removing a contact's information field is not yet supported. Be sure to look out for it in a future iteration!
 
 
 [↑ Back to top](#table-of-contents)
@@ -1014,7 +1029,7 @@ If you wish to assign a CCA Position to a contact, you can do so with the CCA pr
 
 ### A
 > **Alphanumeric:**
-> Alphabet letters and numbers only.
+> English alphabet letters and numbers only. 
 
 ### C
 > **CCA:**
