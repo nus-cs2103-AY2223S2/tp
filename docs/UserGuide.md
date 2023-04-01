@@ -118,8 +118,6 @@ Information that you need to know
 
 ## Features
 
-[Return to Table of Contents](#table-of-contents)
-
 ### General
 
 #### Viewing help : `help`
@@ -234,11 +232,11 @@ Find your pets whose name contain any of the given keywords.
 Format: `find n/PET_NAME`
 
 ![find](images/UG/find.png)
-Example given: `find n/Milo Charlie`
+Example given: `find Milo Charlie`
 
 Other examples:
-* `find n/John` returns `john` and `John Doe`
-* `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
+* `find Max` returns `max` and `Max Leo`
+* `find Super Wolf` returns `Super Wolf`, `Super Dog`, `Wolf Hunter`<br>
 
 <div markdown="block" class="alert alert-block alert-info">
 
@@ -290,7 +288,7 @@ the edit will override the existing tag
 
 
 
-#### Changing the cost : `changecost` or `cc`
+#### Changing the cost : `changecost`
 
 Changes the parameters for cost calculation for each dog
 Cost is incremented in 10 seconds intervals and is calculated based on `FLAT_RATE + (TIMESTAMP * RATE)`.
@@ -300,6 +298,13 @@ Format: `changecost INDEX RATE FLAT_RATE`
 
 ![update](images/UG/changecost.png)
 Example given `changecost 1 0.1 0.5`
+
+<div markdown="block" class="alert alert-block alert-info">
+
+* :white_check_mark: **Input Shortcut:**
+  You can also use the shortcut `cc` to replace `changecost`
+</div>
+
 Additional example:
 * `cc 2 1.0 1.5`
 
@@ -368,24 +373,21 @@ If you run this command by accident, you can [undo](#undoing-a-previous-command-
 
 #### Undoing a previous command : `undo`
 
-Undos your last command.
-
-You can use this command when:
-1. When you make a mistake editing the contact book.
-   <br>
+Undo the last command executed, only works for supported commands. You can use this if you
+make a mistake while using PetPal.
 
 **Constraints**
 * The command intended to be undone should be an undoable command.
-* Undoable commands are: `create`, `delete`, `update`, `clear`, `description`, `meeting`, `deletemeeting` and `redo`
-* Non-undoable commands are: `exit`, `find`, `help`, `list`, `file`, `sync` and `filepath`
+* Supported commands: `add`, `delete`, `edit`, `clear`, `undo`
+* **NOT SUPPORTED** commands: `exit`, `find`, `help`, `list`, `remind`, `changecost`, `archive`
 
 Format: `undo`
 
 ![undo](images/UG/undo.png)
 
-<div markdown="block" class="alert alert-block alert-warning">
+<div markdown="block" class="alert alert-block alert-success">
 
-:heavy_exclamation_mark: **Important**
+* :bulb: **Note:**
 You can `undo` an `undo` command
 
 </div>
@@ -442,17 +444,19 @@ If you wish to transfer only 1 of the files over, repeat the same steps, and rep
 
 </div>
 
+<br><br>
+
 **Q**: How do I view the entire pet list after a `find` command?
 
 **A**: Run `list` or `l` to view the entire unfiltered list.
 
+<br><br>
 
 **Q**: When I run the `archive` command, nothing happens
 
-**A**: If you have previously run `undo` on an `archive` command on that specific Pet, just delete that pet entry from the PetPal
+**A**: If you have previously run `undo` on an `archive` command on that specific Pet, delete that pet entry from the PetPal
 
-**Recommended** to double-check that the pet entry exists on the `data/archive.json` file **before** deleting the pet entry from PetPal
-
+<br><br>
 
 If you have additional questions that is not present in the User Guide, feel free to contact us via our email `contact@petpal.com`
 or raise an issue in our [GitHub](https://github.com/AY2223S2-CS2103T-T14-2/tp/issues)
