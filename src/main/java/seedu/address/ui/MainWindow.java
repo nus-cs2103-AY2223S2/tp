@@ -250,11 +250,13 @@ public class MainWindow extends UiPart<Stage> {
      * @param commandText
      */
     public void handleViewPane(String feedback, String commandText) {
+        viewPanePlaceHolder.getChildren().clear();
+
         if (feedback.startsWith("Edited Person:")) {
             updateViewAfterEdit(commandText);
         }
 
-        if (feedback.startsWith("Deleted Persons: ")) {
+        if (feedback.startsWith("Deleted Persons:")) {
             updateViewAfterDelete();
         }
 
@@ -270,8 +272,6 @@ public class MainWindow extends UiPart<Stage> {
         if (logic.getAddressBook().getPersonList().size() > 0) {
             viewPane = new ViewPane(logic.getAddressBook().getPersonList().get(0));
             viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
-        } else {
-            viewPanePlaceHolder.getChildren().clear();
         }
     }
 
@@ -295,7 +295,6 @@ public class MainWindow extends UiPart<Stage> {
     private void applyView() {
         personListPanel = new PersonListPanel(logic.getAddressBook().getPersonList(), this);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-        viewPanePlaceHolder.getChildren().clear();
         viewPane = new ViewPane(logic.getFilteredPersonList().get(0));
         viewPanePlaceHolder.getChildren().add(viewPane.getRoot());
     }
