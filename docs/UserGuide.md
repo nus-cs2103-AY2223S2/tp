@@ -31,10 +31,10 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
 * [**User Interface**](#user-interface)
   * [**Breakdown of EduMate's UI**](#breakdown-of-edumates-ui)
   * [**Person List**](#person-list)
+  * [**Meet Up Recommendation Panel**](#meet-up-recommendation-panel)
   * [**Profile Panel**](#profile-panel)
   * [**Command Box**](#command-box)
   * [**Command Response**](#command-response)
-  * [**Meet Up Recommendation Panel**](#meet-up-recommendation-panel)
   * [**Scheduled Meet Up Panel**](#scheduled-meet-up-panel)
 * [**Set Your Own Profile**](#set-your-own-profile)
 * [**Commands**](#commands)
@@ -235,7 +235,7 @@ Not all modules that are tagged to the contact is shown on the Person List. Only
 The Meet Up Recommendation Panel (located at the top right of `EduMate`) suggests recommendations of optimal timings and locations
 where you can meet your friends.
 
-<img src="images/UG_ui_pictures/MeetUpRecommendationUnlabelled.svg" style="width:40%;margin:1% 1% 1% 30%">
+<img src="images/UG_ui_pictures/MeetUpRecommendationUnlabelled.svg" style="width:80%;margin:1% 1% 1% 10%">
 
 <center>Diagram 6: Recommended timings and locations for meetups displayed</center>
 <br>
@@ -266,6 +266,14 @@ The Profile Panel will display basic information like your / contact's
 
 <center>Diagram 8: Sample user profile displayed on Profile Panel.</center>
 
+### Scheduled Meet Up Panel
+
+The Scheduled Meet Up Panel (located directly to the right of [Profile Panel](#profile-panel)) will show your confirmed meetings with your contacts.
+
+<img src="images/UG_ui_pictures/meetup_panel.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 7: Sample scheduled meet ups displayed.</center>
+
 ### Command Box
 
 The Command Box is where you can input the [Commands](#commands) when using `EduMate`.
@@ -290,14 +298,6 @@ The Command Response box is located directly below the [Profile Panel](#profile-
 <img src="images/UG_ui_pictures/command_feedback.png" style="width:80%;margin:0 10%">
 
 <center>Diagram 5: Successful command execution feedback shown</center>
-
-### Scheduled Meet Up Panel
-
-The Scheduled Meet Up Panel (located directly to the right of [Profile Panel](#profile-panel)) will show your confirmed meetings with your contacts.
-
-<img src="images/UG_ui_pictures/meetup_panel.png" style="width:80%;margin:0 10%">
-
-<center>Diagram 7: Sample scheduled meet ups displayed.</center>
 
 [Return to the top](#table-of-contents)
 
