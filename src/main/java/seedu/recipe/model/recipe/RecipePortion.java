@@ -9,7 +9,6 @@ import seedu.recipe.model.recipe.unit.PortionUnit;
 
 /**
  * Represents a Recipe's portion in the RecipeBook.
- * Guarantees: immutable; is valid as declared in {@link #isValidRecipePortion(String)}
  */
 public class RecipePortion {
     public static final String MESSAGE_CONSTRAINTS =
