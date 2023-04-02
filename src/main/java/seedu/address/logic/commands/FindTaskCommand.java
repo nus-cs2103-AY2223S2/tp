@@ -63,7 +63,7 @@ public class FindTaskCommand extends Command {
 
         displayAssignedTasksAndPersons(model, taskModelManager, assignedPersonList, tIdList);
 
-        if (assignedPersonList.isEmpty()) {
+        if (taskList.isEmpty()) {
             return new CommandResult(MESSAGE_NO_TASK_FOUND);
         } else {
             int numOfTaskFound = taskModelManager.getFilteredListSize();
