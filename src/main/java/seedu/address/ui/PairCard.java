@@ -2,11 +2,13 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Bounds;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
+import javafx.stage.Screen;
 import seedu.address.model.pair.Pair;
 
 /**
@@ -73,13 +75,9 @@ public class PairCard extends UiPart<Region> {
         elderlyCard.getRoot().setMaxWidth(400);
         volunteerCard.getRoot().setMaxWidth(400);
         vbox.getStyleClass().add("popupBox");
-        elderlyLabel.setStyle(
-                "-fx-font-size: 20; -fx-text-fill: black; -fx-font-weight: 700"
-        );
+        elderlyLabel.getStyleClass().add("pairLabel");
+        volunteerLabel.getStyleClass().add("pairLabel");
 
-        volunteerLabel.setStyle(
-                "-fx-font-size: 20; -fx-text-fill: black; -fx-font-weight: 700"
-        );
 
         popover.getContent().add(vbox);
         // Set the popover to hide when the user clicks outside of it
@@ -87,23 +85,17 @@ public class PairCard extends UiPart<Region> {
 
         cardPane.setOnMouseEntered(event -> {
             // Show the popover anchored to the position of the HBox
+            Rectangle2D screenBounds = Screen.getPrimary().getBounds();
             Bounds bounds = cardPane.localToScreen(cardPane.getBoundsInLocal());
-            double popupWidth = popover.getWidth();
             double popupHeight = popover.getHeight();
             double x = event.getSceneX();
-            double y = event.getSceneY();
 
-            if (x + popupWidth >= bounds.getMaxX()) {
-                x = bounds.getMaxX() - popupWidth - 10;
-                if (popupHeight >= y) {
-                    x = 1.75 * x;
-                }
-            }
+            double midScreenHeight = screenBounds.getMaxY() / 2;
 
-            if (y + popupHeight >= bounds.getMaxY()) {
-                y = bounds.getMaxY() - popupHeight - 10;
+            if (popupHeight >= midScreenHeight) {
+                x = bounds.getMaxX();
             }
-            popover.show(cardPane, x, y - 50);
+            popover.show(cardPane, x + 10, bounds.getMinY() - popupHeight);
         });
 
         cardPane.setOnMouseExited(event -> popover.hide());
