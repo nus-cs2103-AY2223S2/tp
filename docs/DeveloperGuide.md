@@ -195,29 +195,70 @@ The following sequence diagram shows the interaction between the objects when a 
 #### Implementation Details
 The adding of a parcel uses a new command argument prefix, `pc/`, to capture the parcel's name.
 
-The following activity diagram summarizes what happens when a user tries to add a parcel to an existing delivery:
+The `AddParcelCommand` will add in a new `Parcel` to the target `Person` indicated by the given user index.
+Before `AddParcelCommand` is created, `AddParcelCommandParser` checks if the command arguments are of the correct format, `AddParcelCommand` requires the person index and the parcel.
+`AddParcelCommand` will then be executed: it will first retrieve the current address book list, get the target person at the given index, create a copy of the person with the newly added parcel, and then replacing the target person with its new copy.
+
+The following activity diagram summarizes what happens when a user tries to add a parcel to an existing delivery.
 
 <img src="images/AddParcelActivityDiagram.png"/>
 
+The following sequence diagram shows the interaction between the objects when a user executes the add parcel command - `add_pc 1 pc/lazada`.
+
+<img src="images/AddParcelSequenceDiagram.png"/>
+
 #### Design Considerations
-**Aspect: Number of parcel(s) to be added in each command:**
-* **Alternative 1 (current choice):** 1 parcel at a time.
-    * Pros: Easy to implement, less prone to errors.
-    * Cons: A little more troublesome for users to repeatedly type `add_pc` each time.
-* **Alternative 2:** Allowing multiple parcels to be added at a time.
-    * Pros: Seems more convenient for user as command line `add_pc` will not need to be repeated.
-    * Cons: More prone to user errors and also harder to implement the type (fragile, bulky) of each of the parcel (future feature).
+**Aspect: Number of parcel(s) to be added in each command**
+* **Alternative 1 (current choice):** 1 parcel at a time
+    * Pros: Easy to implement, less prone to errors
+    * Cons: A little more troublesome for users to repeatedly type `add_pc` each time
+* **Alternative 2:** Allowing multiple parcels to be added at a time
+    * Pros: Seems more convenient for user as command line `add_pc` will not need to be repeated
+    * Cons: More prone to user errors
 
 ### Mark Parcel feature
 #### Implementation Details
 The mark parcel feature is supported by `ParcelStatus` enumerable that represents the possible parcel statuses:
 - FRAGILE (parcel that needs to be handled with care)
 - BULKY (parcel that needs to be handled with extra assistance e.g. trolley)
-- _More can be added in the future_
+- _More types of statuses can be added in the future_
 
-_{More details to be added in v1.4}_
+The command argument prefix, `pc/` is now used to capture the parcel's index of the target person.
+
+Additionally, `s/`,  is used to capture the parcel status argument.
+The argument can either be lowercase or uppercase of the aforementioned statuses.
+
+The `Parcel` class will have variables `isFragile` and `isBulky`  to indicate the status of the parcel, as a parcel can take up any number of statuses (>= 0).
+
+The `MarkParcelCommand` will update the statuses of the target `Parcel` of the target `Person` with the aforementioned statuses. 
+Before `MarkParcelCommand` is created, `MarkParcelCommandParser` checks if the command arguments are of the correct format, `MarkParcelCommand` requires the person index, parcel index and the status.
+`MarkParcelCommand` will then be executed: it will first retrieve the current address book list, get the target parcel of the target person, create a copy of the person with the new updated parcel, and then replacing the target person with its new copy.
+
+The following activity diagram summarizes what happens when a user tries to mark a parcel.
+
+<img src="images/MarkParcelActivityDiagram.png"/>
+
+The following sequence diagram shows the interaction between the objects when a user executes the mark parcel command - `mark_pc 1 pc/1 s/fragile`.
+
+<img src="images/MarkParcelSequenceDiagram.png"/>
+
 #### Design Considerations
-_{More details to be added in v1.4}_
+**Aspect: Method to choose which parcel to be marked**
+* **Alternative 1:** Name of parcel
+    * Pros: Easier to implement as parcel can be immediately found based off name
+    * Cons: More prone to user errors
+* **Alternative 2 (current choice):** Index of parcel
+    * Pros: Less prone to user errors, as the full name of parcel do not have to be typed out
+    * Cons: Harder to implement as will have to keep track of parcel list for each person
+
+**Aspect: Number of statuses a parcel can have**
+* **Alternative 1: Each parcel only have one status** 
+    * Pros: Easier to implement with the use of `ParcelStatus` enumerable only
+    * Cons: In reality, a parcel can have more than one status (e.g. a parcel can be both bulky and fragile at the same time)
+* **Alternative 2 (current choice): Each parcel only have any number of statuses** 
+    * Pros: A parcel can now have more than one status
+    * Cons: Harder to implement as just using the `ParcelStatus` enumerable won't suffice
+
 
 ### View Delivery feature
 #### Implementation Details
