@@ -78,18 +78,16 @@ public class IngredientBuilder {
         }
         //Remarks
         information.getRemarks().forEach(remark ->
-                commandString.append(REMARK_PREFIX.getPrefix())
-                    .append(" ")
-                    .append(remark)
-                    .append(" ")
-                                        );
+            commandString.append(REMARK_PREFIX.getPrefix())
+                .append(" ")
+                .append(remark)
+                .append(" "));
         //Substitutions
         information.getSubstitutions().forEach(ingredient ->
-                commandString.append(SUBSTITUTION_PREFIX.getPrefix())
-                    .append(" ")
-                    .append(ingredient.getName())
-                    .append(" ")
-                                              );
+            commandString.append(SUBSTITUTION_PREFIX.getPrefix())
+                .append(" ")
+                .append(ingredient.getName())
+                .append(" "));
 
         HashMap<Prefix, List<String>> tokens = IngredientParser.parse(commandString.toString());
         checkArgument(tokens.containsKey(NAME_PREFIX), MESSAGE_CONSTRAINTS);
@@ -157,16 +155,14 @@ public class IngredientBuilder {
             List<String> remarkList = arguments.get(REMARK_PREFIX);
             remarks.addAll(remarkList.stream()
                 .filter(s -> s.matches("^[A-Za-z]+(\\s+[A-Za-z]+)*"))
-                .collect(Collectors.toList()
-                        ));
+                .collect(Collectors.toList()));
         }
         if (arguments.containsKey(SUBSTITUTION_PREFIX)) { //Substitutions
             //Invalid substitutions will indicate to the system via errors thrown by Ingredient.
             substitutes.addAll(arguments.get(SUBSTITUTION_PREFIX)
-                    .stream()
-                    .map(Ingredient::of)
-                    .collect(Collectors.toList())
-                              );
+                .stream()
+                .map(Ingredient::of)
+                .collect(Collectors.toList()));
         }
         return new IngredientInformation(
             quantity,

@@ -45,14 +45,6 @@ public class RecipePortion {
 
     /**
      * Checks if the provided String is formatted properly and can be split into the appropriate tokens to
-     * generate a RecipePortion instance.
-     *
-     * @param test The string to test.
-     * @return The boolean indicating if it is valid.
-     */
-
-    /**
-     * Checks if the provided String is formatted properly and can be split into the appropriate tokens to
      * generate a RecipePortion instance. Returns a RecipePortion instance if the candidate is valid.
      *
      * @param candidate The string to construct around.

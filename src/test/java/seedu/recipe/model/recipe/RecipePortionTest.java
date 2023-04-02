@@ -28,7 +28,7 @@ public class RecipePortionTest {
     private static final String INVALID_UNIT = "13 - 15 of Granny's Friends";
 
     @Test
-    public void of_validInputs_RecipePortionCreated() {
+    public void of_validInputs_recipePortionCreated() {
         assertEquals(RecipePortion.of(DASH_CONCAT), new RecipePortion(1, 2, new PortionUnit("servings")));
         assertEquals(RecipePortion.of(TO_CONCAT), new RecipePortion(1, 2, new PortionUnit("servings")));
         assertEquals(RecipePortion.of(DASH_WHITESPACE), new RecipePortion(1, 2, new PortionUnit("servings")));

@@ -199,6 +199,13 @@ public class ParserUtil {
         return stepList;
     }
 
+    /**
+     * Creates a RecipeDescriptor from a multimap of recipe arguments.
+     *
+     * @param argMultimap Multimap of recipe arguments.
+     * @return RecipeDescriptor created from given argument multimap.
+     * @throws ParseException Thrown when any argument is unable to be properly parsed.
+     */
     public static RecipeDescriptor parseToRecipeDescriptor(ArgumentMultimap argMultimap) throws ParseException {
         RecipeDescriptor recipeDescriptor = new RecipeDescriptor();
 
