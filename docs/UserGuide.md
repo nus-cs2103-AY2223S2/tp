@@ -146,11 +146,11 @@ Words in **square brackets** are **optional** parameters to be supplied by the u
 
 Bracketed items with `…`​ behind means that user can provide multiple parameters.
 
-- e.g. `:a <'title"> [-l <label>]…​`, for example, `:a "Do OP2 slides" -t cs2101`, `:a Do OP2 slides -t cs2101 -t presentation` are both acceptable.
+- e.g. `:a <'title"> [-l <label>]…​`, for example, `:a "Do OP2 slides" -l cs2101`, `:a Do OP2 slides -l cs2101 -l presentation` are both acceptable.
 
 Parameters identified by flags can be in any order.
 
-- e.g. `:a "Do OP2 slides" -t cs2101 -p high`, `:a "Do OP2 slides" -p high -t cs2101` are both acceptable.
+- e.g. `:a "Do OP2 slides" -l cs2101 -p high`, `:a "Do OP2 slides" -p high -l cs2101` are both acceptable.
 
 For commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`), any parameter provided will be ignored.
 
