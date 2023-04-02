@@ -26,7 +26,7 @@ public class Instagram implements Openable {
 
     public final String value;
 
-    private Instagram(String telegram) {
+    public Instagram(String telegram) {
         value = telegram;
     }
 

@@ -20,7 +20,7 @@ public class WhatsApp implements Openable, Chatable {
 
     public final String value;
 
-    private WhatsApp(String phone) {
+    public WhatsApp(String phone) {
         value = phone;
     }
 
