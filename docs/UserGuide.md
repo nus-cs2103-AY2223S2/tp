@@ -95,16 +95,22 @@ Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
 Examples:
 
 The original recipe book:
-![Before typing commands](images/UiInWindows.png)
+
+<img src="images/UiInWindows.png" width=500 height=400>
+
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange` is valid and a recipe look like the picture
 shown below will be added to the recipe book:
-![AddCommand example1 result](images/AddResult1.png)
+  
+<img src="images/AddResult1.png" width=500 height=400>
+
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because `s/` is compulsory and you will see an
 error message like the one in the picture shown below:
-![AddCommand error](images/AddError.png)
+<img src="images/AddError.png" width=500 height=400>
+
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar, 50, g, 0.10 s/Juice the orange` is valid because we can have
 multiple `i/` flags and a recipe look like the picture shown below will be added to the recipe book:
-![AddCommand example2 result](images/AddResult2.png)
+<img src="images/AddResult2.png" width=500 height=400>
+
 
 ---
 ### Edit a recipe: `edit {recipe number}`
@@ -119,15 +125,19 @@ Format: `edit {recipe number} $[t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP]
 Example:
 
 The original recipe book:
-![Before changing](images/UiInWindows.png)
+<img src="images/UiInWindows.png" width=500 height=400>
+
 - `edit 1 t/Corndog` is valid and the recipe will be edited like the picture shown below:
-![EditCommand example1 result](images/EditResult1.png)
+<img src="images/EditResult1.png" width=500 height=400>
+
 - `edit 1` is not valid as at least one flag is required and you will see an error message like the one in the picture
 shown below:
-![EditCommand error](images/EditError.png)
+<img src="images/EditError.png" width=500 height=400>
+
 - `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted and the recipe will be edited like
 the picture shown below:
-![EditCommand example2 result](images/EditResult2.png)
+<img src="images/EditResult2.png" width=500 height=400>
+
 
 ---
 ### Delete a recipe : `delete {recipe number}`
@@ -143,12 +153,16 @@ Expected outcome: You should see an updated list of recipes with the recipe at t
 Examples:
 
 The original recipe book:
-![Before changing](images/UiInWindows.png)
+<img src="images/UiInWindows.png" width=500 height=400>
+
 - `delete 1` will change the recipe book to:
 ![DeleteCommand example1 result](images/DeleteResult1.png)
+<img src="images/DeleteResult1.png" width=500 height=400>
+
 - `delete 2` is invalid as there is only 1 recipe in the recipe book for now and you will see an error message like the
 one in the picture shown below:
-![DeleteCommand example2 result](images/DeleteResult2.png)
+<img src="images/DeleteResult2.png" width=500 height=400>
+
 
 ---
 ### List recipe : `list`
@@ -160,7 +174,8 @@ Format: `list`
 Expected outcome: You should see a list of all the recipes in CookHub
 
 Example: `list` will list all the recipes like the picture shown below:
-![ListCommand example result](images/ListResult.png)
+<img src="images/ListResult.png" width=500 height=400>
+
 
 
 ---
@@ -173,7 +188,8 @@ Format: `clear`
 Expected outcome: You should see that CookHub has zero recipes in it
 
 Example: `clear` will clear all recipes like the picture shown below:
-![ClearCommand example result](images/ClearResult.png)
+<img src="images/ClearResult.png" width=500 height=400>
+
 
 ---
 ## Advanced commands
@@ -194,15 +210,19 @@ Format: `find $$[r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]$$`
 Examples:
 
 The original recipe book:
-![Before changing](images/AddResult2.png)
+<img src="images/AddResult2.png" width=500 height=400>
+
 - `find r/eggs` is valid and the result of the command is shown below:
-![FindCommand example result](images/FindResult.png)
+<img src="images/FindResult.png" width=500 height=400>
+
 - `find r/eggs s/fry the egg` is not valid because at most one flag is allowed and you will see an error message like
 the one in the picture shown below:
-![FindCommand error1](images/FindError1.png)
+<img src="images/FindError1.png" width=500 height=400>
+
 - `find` is not valid as at least one flag is required and you will see an error message like the one in the picture
 shown below:
-![FindCommand error2](images/FindError2.png)
+<img src="images/FindError2.png" width=500 height=400>
+
 
 ---
 ### Search recipe with limited ingredients: `only`
@@ -214,16 +234,20 @@ Format: `only INGREDIENT...`
 Examples:
 
 The original recipe book:
-![Before changing](images/AddResult2.png)
+<img src="images/AddResult2.png" width=500 height=400>
+
 - e.g. `only` is not valid as a parameter is needed and you will see an error message like the one in the picture shown
 below:
-![OnlyCommand error](images/OnlyError.png)
+<img src="images/OnlyError.png" width=500 height=400>
+
 - e.g. `only eggs` is valid, will search for recipes that have ingredients that at most contain eggs, and nothing more,
 and the result of the command is shown below:
-![OnlyCommand example1 result](images/OnlyResult1.png)
+<img src="images/OnlyResult1.png" width=500 height=400>
+
 - e.g. `only eggs flour` will search for recipes that have ingredients that at most contains eggs and flour.
 A recipe that only needs eggs will also be valid. The result of the command is shown below:
-![OnlyCommand example2 result](images/OnlyResult2.png)
+<img src="images/OnlyResult2.png" width=500 height=400>
+
 
 ---
 ### Sort recipe by cost: `sort {order}`
@@ -238,9 +262,11 @@ Expected outcome: You should see a list of recipes sorted in ascending order of 
 Example: 
 
 The original recipe book:
-![Before changing](images/AddResult2.png)
+<img src="images/AddResult2.png" width=500 height=400>
+
 - `sort desc` will give you the result of the picture shown below:
-![SortCommand example result](images/SortResult.png)
+<img src="images/SortResult.png" width=500 height=400>
+
 
 
 ---
@@ -256,9 +282,11 @@ Expected outcome: You should see a list of filtered recipes with price less than
 Example: 
 
 The original recipe book:
-![Before changing](images/AddResult2.png)
+<img src="images/AddResult2.png" width=500 height=400>
+
 - `fp < 4.50` will give you the result of the picture shown below:
-![FpCommand example result](images/FpResult.png)
+<img src="images/FpResult.png" width=500 height=400>
+
 
 ---
 ### Add a recipe to the favorites: `star {index}`
@@ -275,11 +303,13 @@ Expected outcome: You should see a star after the title of the recipe you marked
 Examples:
 
 The original recipe book:
-![Before changing](images/AddResult2.png)
+<img src="images/AddResult2.png" width=500 height=400>
+
 - `star 1` will give you the result of the picture shown below:
-![StarCommand example1 result](images/StarResult1.png)
+<img src="images/StarResult1.png" width=500 height=400>
 - `star 2` will give you the result of the picture shown below:
-![StarCommand example2 result](images/StarResult2.png)
+<img src="images/StarResult2.png" width=500 height=400>
+
 
 ---
 ### Remove a recipe from the favorites: `unstar {index}`
@@ -296,11 +326,14 @@ Expected outcome: You should not see the star after the title of the recipe you 
 Examples:
 
 The original recipe book:
-![Before changing](images/AllRecipesStarred.png)
+<img src="images/ALlRecipesStarred.png" width=500 height=400>
+
 - `unstar 1` will give you the result of the picture shown below:
-![UnstarCommand example1 result](images/UnstarResult1.png)
+<img src="images/UnstarResult1.png" width=500 height=400>
+
 - `unstar 2` will give you the result of the picture shown below:
-![UnstarCommand example2 result](images/UnstarResult2.png)
+<img src="images/UnstarResult2.png" width=500 height=400>
+
 
 ---
 ### List all recipes in the favorites : `favorites`
@@ -314,9 +347,11 @@ Expected outcome: You should see a list of all the recipes in your favorites
 Example:
 
 The original recipe book:
-![Before changing](images/StarResult1.png)
+<img src="images/StarResult1.png" width=500 height=400>
+
 - `favorites` will give you the result of the picture shown below:
-![FavoritesCommand example result](images/FavoritesResult.png)
+<img src="images/FavoritesResult.png" width=500 height=400>
+
 
 ---
 ### If you forget some commands, you are always welcome to check this page again!
@@ -326,7 +361,8 @@ Shows a message explaining how to access the help page.
 
 Expected outcome: You should see a window like the picture shown below:
 
-![help message](images/helpMessage.png)
+<img src="images/helpMessage.png" width=500 height=400>
+
 
 Format: `help`
 
