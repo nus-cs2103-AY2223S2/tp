@@ -1,7 +1,8 @@
 package seedu.connectus.logic.commands;
 
 import static seedu.connectus.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.connectus.logic.commands.HelpCommand.SHOWING_HELP_WINDOW;
+import static seedu.connectus.logic.commands.HelpCommand.MESSAGE_RETRIEVED_COMMAND_USAGE;
+import static seedu.connectus.logic.commands.HelpCommand.MESSAGE_SHOWING_HELP_WINDOW;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,16 +15,28 @@ public class HelpCommandTest {
 
     @Test
     public void execute_helpWithoutInput_success() {
-        CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_WINDOW, true, false);
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SHOWING_HELP_WINDOW, true, false);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_helpWithValidInput_success() {
+        ListCommand listCommand = new ListCommand();
+        CommandResult expectedListCommandResult = new CommandResult(MESSAGE_RETRIEVED_COMMAND_USAGE
+                + listCommand.MESSAGE_USAGE, false, false);
+        assertCommandSuccess(new HelpCommand(listCommand.MESSAGE_USAGE), model, expectedListCommandResult,
+                expectedModel);
+
         ClearCommand clearCommand = new ClearCommand();
-        CommandResult expectedCommandResult = new CommandResult("Command usage retrieved!\n"
+        CommandResult expectedClearCommandResult = new CommandResult(MESSAGE_RETRIEVED_COMMAND_USAGE
                 + clearCommand.MESSAGE_USAGE, false, false);
-        assertCommandSuccess(new HelpCommand(clearCommand.MESSAGE_USAGE), model, expectedCommandResult,
+        assertCommandSuccess(new HelpCommand(clearCommand.MESSAGE_USAGE), model, expectedClearCommandResult,
+                expectedModel);
+
+        HelpCommand helpCommand = new HelpCommand("help");
+        CommandResult expectedHelpCommandResult = new CommandResult(MESSAGE_RETRIEVED_COMMAND_USAGE
+                + helpCommand.MESSAGE_USAGE, false, false);
+        assertCommandSuccess(new HelpCommand(helpCommand.MESSAGE_USAGE), model, expectedHelpCommandResult,
                 expectedModel);
     }
 }

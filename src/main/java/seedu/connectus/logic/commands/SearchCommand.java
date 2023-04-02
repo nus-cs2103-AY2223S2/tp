@@ -19,7 +19,7 @@ import seedu.connectus.model.Model;
 import seedu.connectus.model.person.FieldsContainKeywordsPredicate;
 
 /**
- * Finds and lists all persons in ConnectUS whose fields contains any of the argument keywords.
+ * Finds and lists all persons in ConnectUS whose fields contain any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class SearchCommand extends Command {
