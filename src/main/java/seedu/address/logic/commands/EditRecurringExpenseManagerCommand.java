@@ -100,6 +100,9 @@ public class EditRecurringExpenseManagerCommand extends Command {
         }
 
         if (newExpenseName != null) {
+            if (newExpenseName.stripTrailing().isEmpty()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_NAME);
+            }
             generatorToEdit.setExpenseName(newExpenseName);
         }
 

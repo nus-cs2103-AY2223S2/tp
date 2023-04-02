@@ -72,6 +72,15 @@ public class EditCategory extends Command {
         }
 
         if (newCategoryName != null) {
+            if (newCategoryName.strip().isEmpty()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_CATEGORY_NAME);
+            }
+
+            String summaryOfCategoryToEdit = categoryToEdit.getSummary();
+            Category checkIfCanBeChanged = new UserDefinedCategory(newCategoryName, summaryOfCategoryToEdit);
+            if (model.hasCategory(checkIfCanBeChanged)) {
+                throw new CommandException(Messages.MESSAGE_ALREADY_EXISTING_CATEGORY);
+            }
             categoryToEdit.setCategoryName(newCategoryName);
             return new CommandResult(
                     String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
