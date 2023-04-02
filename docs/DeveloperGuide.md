@@ -175,9 +175,9 @@ This section describes some noteworthy details on how certain features are imple
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Delete student feature
+## Delete student feature
 
-#### Current Implementation
+### Current Implementation
 PowerConnect allows users to delete a student from the `UniqueStudentList` of `Class`.
 
 When the user enters the delete student command, `MainWindow#executeCommand()` will be called. It will then call
@@ -185,7 +185,7 @@ When the user enters the delete student command, `MainWindow#executeCommand()` w
 class. When `StudentDeleteCommand#execute` is called, it will call `deleteStudent()` method from model. This would call
 `removeStudent` method from Class which in turn deletes the student from the `UniqueStudentList`.
 
-##### General Flow for StudentDeleteCommand
+#### General Flow for StudentDeleteCommand
 
 The flow for StudentDeleteCommand#execute is as such:
 
@@ -227,9 +227,9 @@ identify the student that needs to be deleted.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Attendance feature
+## Attendance feature
 
-#### Current Implementation
+### Current Implementation
 
 The attendance feature is facilitated by `Attendance`. It is composed by a `Person` with an `Attendance` object.
 
@@ -272,9 +272,9 @@ We want to make it easy for the user to set current date as present. Thus we all
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Grade feature
+## Grade feature
 
-#### Current Implementation
+### Current Implementation
 
 The grade feature is facilitated by `grade`. It is composed by a `Student` with an `Assignment` object.
 
@@ -317,18 +317,60 @@ We want to make it easy for the user to set tests without inputting all the deta
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Parent/NOK Add Feature
+## Parent/NOK Add Feature
 
-#### Current Implementation
+### Current Implementation
 The add feature for parent/NOK is facilitated by `parent add`.
+
+Given below are example usage scenarios and how the add mechanism behaves at each step.<br><br>
+Scenario 1:
+1. User launches the application.
+2. User wants to add a new `Parent / NOK`. 
+3. User keys in the parent add command to add a new `Parent / NOK` to PowerConnect.
+4. PowerConnect creates a new `Parent / NOK` and automatically saves its data into its storage file (parents.json).
+
+Scenario 2:
+1. As user executes the `Student Add` command, PowerConnect cannot locate the `Parent / NOK` to bind to the `Student`.
+2. PowerConnect hence **AUTOMATICALLY** creates a new `Parent / NOK`.
+3. PowerConnect retrieves the information required for `Parent Add` command from `Student Add` command.
+4. PowerConnect automatically saves all changes into its storage files (parents.json & pcclass.json). <br><br>
+
+
+**Activity Diagram**
+![Activity Diagram](images/ParentAddActivityDiagram.png)
+
+**Full implementation sequence diagram**
+
+### Design considerations
+We want to make it simple for users to add a new `Parent / NOK` to PowerConnect without having the need to include students attached to him/her. <br><br>
+We also want to have a centralized way and adopt defensive coding practices for binding of `Student` and `Parent / NOK`. <br><br>
+Furthermore, we do not want to trouble users by forcing them to have **ALL** particulars of a `Parent / NOK`. Hence, we made the command such that it **ONLY** requires minimal information from users: <br>
+1. Parent's / NOK's `Name`
+2. Parent's / NOK's `Phone number` <br><br>
+
+#### Aspect: How Parent Add executes
+* **Alternative 1 (current choice):** Users provide **COMPULSORY** details about the parent / NOK only + binding of student and parent / NOK is done at `Student` side **ONLY**
+    * Pro: Defensive coding is applied, reducing chances of bugs
+    * Pro: Users are **NOT FORCED** to come up with arbitrary values to fill up **OPTIONAL** details for the parent / NOK to create a new `Parent / NOK`.
+    * Con: Hard to implement
+* **Alternative 2:** Users provide **ALL** particulars of the `Parent / NOK` + binding of student and parent / NOK is done at `Student` side **ONLY**
+    * Pro: Slightly easier to implement as compared to Alternative 1
+    * Pro: Defensive coding is applied, reducing chances of bugs
+    * Con: Users are **FORCED** to come up with arbitrary values to fill up any missing values for **OPTIONAL** section.
+* **Alternative 3:** Users provide **ALL** particulars of the `Parent / NOK` + binding of student and parent / NOK are done at **BOTH** `Student` and `Parent / NOK`
+    * Pro: Slightly easier to implement as compared to Alternative 2
+    * Con: Defensive coding is **NOT** applied, increasing chances of bugs
+    * Con: Users are **FORCED** to come up with arbitrary values to fill up any missing values for **OPTIONAL** section.
+    * Con: Need to test the feature exhaustively / create sufficient automated tests to ensure `Students` and `Parents / NOKs` are properly bound together.
+
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Parent/NOK Edit Feature
+## Parent/NOK Edit Feature
 
-#### Current Implementation
+### Current Implementation
 The edit feature for parent / NOK is facilitated by `parent edit`. <br>
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
