@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="cardPane" fx:id="viewDisplay" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
@@ -18,12 +17,12 @@
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <Label fx:id="deliveryStatusToView" text="\$deliveryStatus" />
-            <Label fx:id="name" styleClass="view_label" text="\$first" />
-            <Label fx:id="address" styleClass="view_label" text="\$address" />
-            <Label fx:id="phone" styleClass="view_label" text="\$phone" />
-            <Label fx:id="email" styleClass="view_label" text="\$email" />
-            <Label fx:id="parcelLabel" styleClass="view_label" text="\$parcelLabel"/>
+            <Label fx:id="deliveryStatusToView" text="\$deliveryStatus" wrapText="true"/>
+            <Label fx:id="name" styleClass="view_label" text="\$first" wrapText="true"/>
+            <Label fx:id="address" styleClass="view_label" text="\$address" wrapText="true"/>
+            <Label fx:id="phone" styleClass="view_label" wrapText="true"/>
+            <Label fx:id="email" styleClass="view_label" text="\$email" wrapText="true"/>
+            <Label fx:id="parcelLabel" styleClass="view_label" text="\$parcelLabel" wrapText="true"/>
             <FlowPane fx:id="parcelsToView" />
             <Label fx:id="noOfDeliveryAttemptsToView" text="\$noOfDeliveryAttemptsToView" />
         </VBox>
