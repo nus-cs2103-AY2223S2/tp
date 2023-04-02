@@ -325,7 +325,7 @@ The add feature for parent/NOK is facilitated by `parent add`.
 Given below are example usage scenarios and how the add mechanism behaves at each step.<br><br>
 Scenario 1:
 1. User launches the application.
-2. User wants to add a new `Parent / NOK`. 
+2. User wants to add a new `Parent / NOK`.
 3. User keys in the parent add command to add a new `Parent / NOK` to PowerConnect.
 4. PowerConnect creates a new `Parent / NOK` and automatically saves its data into its storage file (parents.json).
 
@@ -378,7 +378,7 @@ Given below is an example usage scenario and how the edit mechanism behaves at e
 1. User launches the application for the first time. <br>
 2. User creates a new `Parent` using ***Parent Add Command*** or gets a new `Parent` created by PowerConnect while executing the ***Student Add Command***. <br>
 3. During creation of `Parent`, User encountered one of the two scenarios and requires to edit the `Parent`:
-   1. Did not include certain particulars of the `Parent`. 
+   1. Did not include certain particulars of the `Parent`.
    2. Keyed in wrong particulars for the `Parent`.
 4. User wants to edit the `Parent` particulars and hence executes the `parent edit` command with the `Name` and `Phone Number` of the corresponding `Parent` and the `Particulars` to be edited.<br>
    Example of parent edit command: `"parent edit n/Tan Ah Niu pnP/91234567 npnP/65656565"` <br>
@@ -803,7 +803,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Glossary
 
-**Attributes**: Information of a student / parent. <br> 
+**Attributes**: Information of a student / parent. <br>
 For example, name, phone number, email address etc <br><br>
 **CCA**: Co-curricular activities <br><br>
 **CLI**: Command Line Interface <br><br>

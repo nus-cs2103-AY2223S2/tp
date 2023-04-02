@@ -262,8 +262,8 @@ Examples:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 1. You cannot create two students of the same index number and same class.
 2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get bound to the matching parent.
-3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update. 
-Please delete the student and add without the image source path. 
+3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update.
+Please delete the student and add without the image source path.
 4. If you have entered the `ABSOLUTE PATH TO IMAGE`, note that once the image changes location, the picture will not render properly.
 It is recommended to store the images using the folder [method](#images) instead.
 
@@ -355,7 +355,7 @@ Deletes a test OR homework grade for the student corresponding to the `INDEX_NUM
 
 Duplicate test/homework is checked through having the same name.
 
-Format: 
+Format:
 
 `student <class> gradedelete in/<INDEX_NUMBER> test/<TEST_NAME>`
 
@@ -771,7 +771,7 @@ Need to add **student** and **class** before each command!
 [Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
-  
+
 <a name = "command-summary-for-parent--nok-parent-"/>
 
 ### Command Summary for Parent / NOK `parent`
@@ -806,11 +806,11 @@ Need to add parent before each command!!
 | Prefix        | Prefix Details                     | Notes                                                                                                                               |
 |---------------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
 | `add`         | Add Command                        | Used to identify command as an Add Command;<br><br> Used in Student Add and Parent/NOK Add commands                                 |
-| `attendance`  | Attendance Command                 | Used in Student Attendance Command;<br><br> Used to input attendance for `Student`s                                                 |                                                            |
+| `attendance`  | Attendance Command                 | Used in Student Attendance Command;<br><br> Used to input attendance for `Student`s                                                 |
 | `comment`     | Comment Command                    | Used in Student Comment Command;<br><br> Used to input comment for `Student`                                                        |
 | `delete`      | Delete Command                     | Used to identify command as a Delete Command;<br><br> Used in Student Delete and Parent/NOK Delete commands                         |
 | `edit`        | Edit Command                       | Used to identify command as an Edit Command;<br><br> Used in Student Edit and Parent Edit commands                                  |
-| `find`        | Find Command                       | Used to identify command as a Find Command;<br><br> Used in Student Find and Parent Find commands                                   |                                                                                           
+| `find`        | Find Command                       | Used to identify command as a Find Command;<br><br> Used in Student Find and Parent Find commands                                   |
 | `grade`       | Grade Command                      | Used in Student Grade Command;<br><br> Used to input `Student`'s assessments / assignment grades                                    |
 | `gradedelete` | Grade Delete Command               | Used in Student Grade Delete Command;<br><br> Used to remove `Student`'s grades for assessments / assignments                       |
 | `list`        | List Command                       | Used to identify command as a List Command;<br><br> Used in List Parent/NOK and List Student commands                               |
@@ -837,8 +837,8 @@ Need to add parent before each command!!
 | `npnP/`       | New Parent/NOK phone number        | Used to retrieve `Parent/NOK`'s **NEW** phone number                                                                                |
 | `rls/`        | Parent/NOK relationship to Student | Used to retrieve the relationship between the `Student` and specified `Parent/NOK`                                                  |
 | `s/`          | Gender                             | Used to retrieve `Student`'s gender                                                                                                 |
-| `t/`          | Tag                                | Used to retrieve individual's tag (`Student` / `Parent / NOK`)                                                                      | 
-| `test/`       | Assessment                         | Used to retrieve `Student`'s assessments (includes tests and exams)                                                                 |                                                                                                                            
+| `t/`          | Tag                                | Used to retrieve individual's tag (`Student` / `Parent / NOK`)                                                                      |
+| `test/`       | Assessment                         | Used to retrieve `Student`'s assessments (includes tests and exams)                                                                 |
 | `score/`      | Assessment Score                   | Used to retrieve `Student`'s score for assessment                                                                                   |
 | `deadline/`   | Deadline                           | Used to retrieve deadline for `Student`'s assignments                                                                               |
 | `weightage/`  | Weightage                          | Used to retrieve weightage for `Student`'s assignments/assessments                                                                  |
