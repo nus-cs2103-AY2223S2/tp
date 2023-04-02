@@ -559,107 +559,20 @@ The following is a description of the code execution flow:
 5. If no errors occur (no exceptions are thrown), the command succeeds in removing the tags from the module, lecture,
    or video.
 
-### \[Proposed\] Undo/redo feature
+### Import archived data feature
 
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-#### Proposed Implementation
-
-- The proposed undo/redo mechanism is facilitated
-
-#### Reasons for such implementation
-
-- The user need to save storage space after finished studying a module. The UI will also be less packed
-
-### \[Proposed\] Import archived data
-
-#### Reasons for such implementation
+**Reasons for such implementation**
 
 - The user need to retrieved data when the user wants to review the concepts taught in a module,
   lecture, or video
 
-### \[Proposed\] Add Video's timestamp comment
+### Exporting data feature
 
-## **Documentation, logging, testing, configuration, dev-ops**
+**Reasons for such implementation**
+
+- The user need to save storage space after finished studying a module. The UI will also be less packed
+
+## Documentation, logging, testing, configuration, dev-ops
 
 - [Documentation guide](Documentation.md)
 - [Testing guide](Testing.md)
@@ -669,7 +582,7 @@ _{more aspects and alternatives to be added}_
 
 ---
 
-## **Appendix: Requirements**
+## Appendix: Requirements
 
 ### Product scope
 
@@ -963,37 +876,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-_{More to be added}_
-
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 lectures without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Should be easy to navigate through using commands.
-5. Should be easy to pick up on how to use the application.
-6. Should allow multiple users to use the application.
-7. Will not be pulling data from any third party APIs.
+Usability:
 
-_{More to be added}_
+- The app should be easy to navigate and use, with a user-friendly interface that is intuitive and clear.
+- The app should be accessible to users of different skill levels and backgrounds.
+- A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+
+Reliability:
+
+- The app should be reliable and stable, with minimal downtime or disruptions. It should be able to handle a large number of users and requests without crashing or malfunctioning.
+- The app should be able to continue functioning even if a component or service fails, with backup systems or redundancy in place.
+
+Performance:
+
+- The app should respond quickly to user requests, with minimal loading times or delays.
+- The app should be able to hold up to 1000 lectures without a noticeable sluggishness in performance for typical usage.
+
+Security:
+
+- The app should be secure, with measures in place to protect user data and prevent unauthorized access. This may include encryption, authentication, and authorization mechanisms.
+
+Scalability:
+
+- The app should be scalable, with the ability to handle an increasing number of users and data as the user base grows.
+
+Compatibility:
+
+- The app should work on any _mainstream OS_ as long as it has Java `11` or above installed so that it can be accessed and used by a wide range of users.
+
+Maintainability:
+
+- The app should be easy to maintain and update, with clear and well-organized code, documentation, and version control. This will help ensure that the app remains functional and up-to-date over time.
 
 ### Glossary
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
-- **Module Code**: Unique code for each module
-- **Lecture Index**: Unique identifier for each lecture (Starting from 0)
-- **Video Index**: Unique identifier for each video (Starting from 0)
+- **Module Code**: Unique code identifier for each module
+- **Lecture Name**: Unique name identifier for each lecture
+- **Video Name**: Unique name identifier for each video
+- **Timestamp**: A video timestamp set by user in the format of `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being 2 digits long
 
----
-
-## **Appendix: Instructions for manual testing**
+## Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
+**Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more _exploratory_ testing.
 
 ### Launch and shutdown
 
@@ -1007,7 +937,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by double-clicking the jar file.
       Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -1018,13 +948,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete 1`
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete 0`
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
