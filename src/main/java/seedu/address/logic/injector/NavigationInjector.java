@@ -49,8 +49,9 @@ public class NavigationInjector extends Injector {
         boolean lectureArgSpecified = argMultimap.getValue(PREFIX_LECTURE).isPresent();
         boolean moduleArgSpecified = argMultimap.getValue(PREFIX_MODULE).isPresent();
 
+        commandText = removeRootPrefix(commandText);
         if (rootSpecified && !lectureArgSpecified && !moduleArgSpecified) {
-            return removeRootPrefix(commandText);
+            return commandText;
         }
 
         if (!moduleArgSpecified) {
@@ -64,7 +65,7 @@ public class NavigationInjector extends Injector {
     }
 
     private String removeRootPrefix(String commandText) {
-        return commandText.replaceAll(" " + PREFIX_ROOT.getPrefix(), "");
+        return commandText.replaceAll("\\" + PREFIX_ROOT.getPrefix() + "[^\\/]*", "");
     }
 
     private String injectModulePrefixArg(String commandText, NavigationContext navContext) {
