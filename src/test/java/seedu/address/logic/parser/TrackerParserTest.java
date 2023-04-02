@@ -16,7 +16,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_204
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EASY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V2;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;

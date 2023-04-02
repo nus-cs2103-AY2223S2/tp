@@ -48,7 +48,7 @@ public class CommandResult {
 
     /** Information on whether the command is to export tracker to archive */
     private final boolean isExporting;
-    /** Information on whether the command is to importing all modules from archive to current tracker */
+    /** Information on whether the command is to import all modules from archive to current tracker */
     private final boolean isImportingWholeArchive;
     /** Information on whether the command to importing modules/ export modules will overwrite existing data */
     private final boolean isOverwriting;
@@ -226,7 +226,11 @@ public class CommandResult {
                 && lectureEditInfoList.equals(otherCommandResult.lectureEditInfoList)
                 && videoEditInfoList.equals(otherCommandResult.videoEditInfoList)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && isExporting == otherCommandResult.isExporting
+                && isImportingWholeArchive == otherCommandResult.isImportingWholeArchive
+                && isOverwriting == otherCommandResult.isOverwriting
+                && moduleCodesToImport.equals(otherCommandResult.moduleCodesToImport);
     }
 
     @Override

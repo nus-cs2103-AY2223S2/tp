@@ -151,7 +151,7 @@ public class UntagCommandTest {
     public void execute_untagVideo_videoNotFound() {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2040s());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.CS2040S_WEEK_1_TAG));
-        LectureName lectureName = TypicalLectures.getCs2107Lecture1().getName();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
         ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         VideoName videoName = new VideoName("Probability");
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode, lectureName, videoName);
@@ -163,7 +163,7 @@ public class UntagCommandTest {
         ModelStubWithModule moduleStub = new ModelStubWithModule(TypicalModules.getCs2040s());
         Set<Tag> tagSet = new HashSet<>(List.of(TypicalTags.VIDEO_TAG_1, TypicalTags.VIDEO_TAG_2));
         VideoName videoName = TypicalVideos.INTRO_VIDEO.getName();
-        LectureName lectureName = TypicalLectures.getCs2107Lecture1().getName();
+        LectureName lectureName = TypicalLectures.getCs2040sWeek1().getName();
         ModuleCode moduleCode = TypicalModules.getCs2040s().getCode();
         UntagCommand untagCommand = new UntagCommand(tagSet, moduleCode, lectureName, videoName);
         assertThrows(CommandException.class, () -> untagCommand.execute(moduleStub));

@@ -231,18 +231,18 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseMultiModuleCOde_invalidModuleCode_throwParseException() {
+    public void parseMultiModuleCode_invalidModuleCode_throwParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseMultiModuleCode(INVALID_MODULE_CODE));
     }
 
     @Test
-    public void parseMultiModuleCOde_stringOfInvalidModuleCodes_throwParseException() {
-        assertThrows(ParseException.class,
-                () -> ParserUtil.parseMultiModuleCode(VALID_MODULE_CODE_1 + ", " + INVALID_MODULE_CODE));
+    public void parseMultiModuleCode_stringOfInvalidModuleCodes_throwParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultiModuleCode(
+                VALID_MODULE_CODE_1 + ", " + INVALID_MODULE_CODE));
     }
 
     @Test
-    public void parseMultiModuleCOde_stringOfValidModuleCodes_returnSetOfModuleCodes() throws ParseException {
+    public void parseMultiModuleCode_stringOfValidModuleCodes_returnSetOfModuleCodes() throws ParseException {
         assertEquals(new HashSet<>(List.of(new ModuleCode(VALID_MODULE_CODE_1), new ModuleCode(VALID_MODULE_CODE_2))),
                 ParserUtil.parseMultiModuleCode(VALID_MODULE_CODE_1 + ", " + VALID_MODULE_CODE_2));
     }
