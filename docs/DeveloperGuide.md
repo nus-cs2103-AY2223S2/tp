@@ -167,19 +167,15 @@ Step 2. The Coach keys in some athletes and their details with the `add` method.
 
 Step 3. After adding his athletes, the Coach wants to view his athletes in alphabetical order, so he wants to sort them by name in ascending order.
 
-Step 4. The Coach then decides to execute the command `sort 1 1`.
+Step 4. The Coach then decides to execute the command `sort 1`.
 
 #### Design considerations:
 
 Restricting attribute and order to an integer value allows for the input to be easily anticipated and controlled.
 
-* **Alternative 1 (current choice):** Allow coaches to specify what and how to sort their list.
+* **Alternative 1 (current choice):** Allow coaches to specify how to sort their list.
     * Pros: More flexible and customisable to the needs of the coach.
     * Cons: More troublesome as coach needs to check the User Guide to learn what integers to use.
-
-* **Alternative 2:** Coach types `sort` and it sorts based on a pre-determined attribute and order.
-    * Pros: Easy for coach to use.
-    * Cons: Not flexible nor customisable.
 
 ### Undo/redo feature
 
@@ -292,7 +288,7 @@ The following activity diagram summarizes what happens when a Coach executes a n
 
 ### Coach stories
 
-Priorities:<br>**High (must have)** - `* * *`<br>Medium (nice to have) - `* *`<br>Low (unlikely to have) - `*`
+Priorities:<br>High (must have) - `* * *`<br>Medium (nice to have) - `* *`<br>Low (unlikely to have) - `*`
 
 | Priority | As a …​                           | I want to …​                              | So that I can…​                                                           |
 |----------|-----------------------------------|-------------------------------------------|---------------------------------------------------------------------------|
@@ -393,6 +389,15 @@ Priorities:<br>**High (must have)** - `* * *`<br>Medium (nice to have) - `* *`<b
 
       Use case resumes at step 1.
 
+#### Use case: List all athletes
+
+**MSS**
+
+1. Coach requests to list out all athletes.
+2. SportSync displays all athletes.
+
+    Use case ends.
+
 #### Use case: Clear the list
 
 **MSS**
@@ -411,12 +416,12 @@ Priorities:<br>**High (must have)** - `* * *`<br>Medium (nice to have) - `* *`<b
 
     Use case ends.
 
-#### Use case: Sort the list by pay rate in increasing / decreasing order
+#### Use case: Sort the list by pay rate in increasing order
 
 **MSS**
 
-1.  Coach requests to sort all athletes in the list by pay rate in increasing / decreasing order.
-2.  SportSync sorts all athletes in the list by pay rate in increasing / decreasing order.
+1.  Coach requests to sort all athletes in the list by pay rate in increasing order.
+2.  SportSync sorts all athletes in the list by pay rate in increasing order.
 
     Use case ends.
 

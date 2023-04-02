@@ -37,6 +37,14 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
 
 Refer to the [Features](#features) below for details of each command.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Here are some useful shortcuts that can help you save time:<br>
+**F1**: Opens the help menu.
+**CTRL + 1**: Switches to the session tab.
+**CTRL + 2**: Switches to the contacts tab.
+**CTRL + 3**: Switches to the calendar tab.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Features**
@@ -185,19 +193,16 @@ Format: `exit`
 
 Sorts all athletes in the athlete list according to provided attribute.
 
-Format: `sort ATTRIBUTE ORDER`
+Format: `sort ATTRIBUTE`
 
-* Sorts the athlete according to specified attribute `ATTRIBUTE` and in specified `ORDER`.
+* Sorts the athlete according to specified attribute `ATTRIBUTE`.
 * Attributes:
   * 1 - Name
   * 2 - Pay rate
-* Order:
-  * 1 - Ascending
-  * 2 - Descending
 
 Examples:
-* `sort 1 1` sorts the athlete list by name in alphabetical order.
-* `sort 2 1` sorts the athlete list according to pay rate, from cheapest to most expensive.
+* `sort 1` sorts the athlete list by name in alphabetical order.
+* `sort 2` sorts the athlete list according to pay rate, from cheapest to most expensive.
 
 ### Adding a tag : `add-tag`
 
@@ -234,18 +239,6 @@ Examples:
 * `show varsity` shows people belonging to tag `varsity`.
 * `show hockey tennis` shows people belonging to either tag `hockey`, `tennis` or both.
 
-### Saving the data
-
-SportSync data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-SportSync data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced coaches are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, SportSync will discard all data and start with an empty data file at the next run.
-</div>
-
 ### Create a session : `create-session`
 
 Adds a new session to the session list.
@@ -260,7 +253,7 @@ Examples:
 
 ### Delete an existing session : `delete-session`
 
-Removes an existing session from the address book.
+Removes an existing session from the session list.
 
 Format: `delete-session INDEX `
 
@@ -272,7 +265,7 @@ Examples:
 
 ### Edit an existing session : `session-edit`
 
-Edits the details of an existing session in the address book.
+Edits the details of an existing session in the session list.
 
 Format: `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`
 
@@ -321,6 +314,19 @@ Format: `student-remove INDEX n/HALL`
 
 Examples:
 * `student-remove 1 n/hall` Removes an athlete at index 1 of the contact list from the session “Hall”.
+
+### Saving the data
+
+SportSync data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+SportSync data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced coaches are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, SportSync will discard all data and start with an empty data file at the next run.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **FAQ**
@@ -341,16 +347,16 @@ Examples:
 
 ## **Command summary**
 
-| Action        | Format, Examples                                                                                                                                       |
-|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME p/PHONE_NUMBER r/PAY_RATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 r/7 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**     | `clear`                                                                                                                                                |
-| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                    |
-| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee r/3`                                           |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                             |
-| **List**      | `list`                                                                                                                                                 |
-| **Help**      | `help`                                                                                                                                                 |
-| **Sort**      | `sort ATTRIBUTE ORDER`<br> e.g., `sort 1 2`                                                                                                            |                                                              |
-| **Show**      | `show [TAG1]…​`<br> e.g., `show Hall…​`                                                                                                                |
-| **Undo**      | `undo`                                                                                                                                                 |
-| **Redo**      | `redo`                                                                                                                                                 |
+| Action     | Format, Examples                                                                                                                                       |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER r/PAY_RATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 r/7 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                    |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee r/3`                                           |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                             |
+| **List**   | `list`                                                                                                                                                 |
+| **Help**   | `help`                                                                                                                                                 |
+| **Sort**   | `sort ATTRIBUTE`<br> e.g., `sort 1`                                                                                                                    |                                                              |
+| **Show**   | `show [TAG1]…​`<br> e.g., `show Hall…​`                                                                                                                |
+| **Undo**   | `undo`                                                                                                                                                 |
+| **Redo**   | `redo`                                                                                                                                                 |
