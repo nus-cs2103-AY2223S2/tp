@@ -173,10 +173,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+--------------------------------------------------------------------------------------------------------------------
+
 ### Delete student feature
 
 #### Current Implementation
-
 PowerConnect allows users to delete a student from the `UniqueStudentList` of `Class`.
 
 When the user enters the delete student command, `MainWindow#executeCommand()` will be called. It will then call
@@ -222,6 +223,10 @@ identify the student that needs to be deleted.
     * Pros: More flexibility for users
     * Cons: Hard to implement, need to check the different prefixes to determine which field to delete
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Attendance feature
 
 #### Current Implementation
@@ -262,6 +267,11 @@ We want to make it easy for the user to set current date as present. Thus we all
     * Cons: Hard to read and write to storage
     * Cons: Hard to add more features if more features are added eg. mark as MC, Late..
 <br><br>
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Grade feature
 
 #### Current Implementation
@@ -302,6 +312,20 @@ We want to make it easy for the user to set tests without inputting all the deta
     * Cons: Hard to read and write to storage
     * Cons: Hard to add more features if more features are added
 <br><br>
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Parent/NOK Add Feature
+
+#### Current Implementation
+The add feature for parent/NOK is facilitated by `parent add`.
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Parent/NOK Edit Feature
 
 #### Current Implementation
@@ -348,6 +372,8 @@ We also do not want to trouble user with inputting multiple **PREFIXES** to edit
     * Con: Troublesome for the user as there is a need to input **ALL** particulars of a `Parent / NOK` even if he/she is just amending one of the particulars of the `Parent / NOK`.
     * Con: It may cause regressions, user may key in wrong details for some of the `Parent / NOK` particulars as he/she is keying in the command. This will cause much inconvenience for Users especially when the `Parent / NOK` they are amending has **TONS** of information.
     * Con: It is no longer **FAST** and **EASY** for the user to use.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -437,6 +463,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -447,6 +474,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -466,6 +495,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * Keep track of homework given and deadline
 * Streamline administration processes because they have a lot of stuff to keep track of (eg. Attendance, assignments, grades, contact details)
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### User Stories
 
@@ -506,6 +538,10 @@ _{Explain here how the data archiving feature will be implemented}_
 | 33  | Teacher                     | Track the date and time of the classes that I have                          | I am able to reach on time and teach the correct module for the particular lesson slot.                                                    | Out of scope                                                                                                                              | NA       |
 | 34  | Teacher                     | Amend date and time of certain lesson timings                               | I am able to change lesson dates and timings easily when lessons shift                                                                     |                                                                                                                                           | NA       |
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Use Cases
 
 ***For all use cases below, the System is PowerConnect and the Actor is the teacher, unless specified otherwise***
@@ -539,6 +575,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case resumes at step 2. <br><br>
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 **Use Case: UC02 - Adding `comment` for a `student`**
 
 **MSS:**
@@ -562,6 +602,10 @@ _{Explain here how the data archiving feature will be implemented}_
       ended.
 
       Use case ends. <br><br>
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 **Use Case: UC03 - Adding a new `student` to an existing `class`**
 
@@ -592,6 +636,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case ends. <br><br>
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 **Use Case: UC04 - Listing all `students` in the selected `class`**
 
 **MSS:**
@@ -611,6 +659,10 @@ _{Explain here how the data archiving feature will be implemented}_
     + 2a1. System displays an empty list.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 **Use Case: UC05 - Editing `personal details` of `students`**
 
@@ -632,6 +684,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 **Use Case: UC06 - Finding `student` by `student id`**
 
 **MSS:**
@@ -651,6 +707,10 @@ _{Explain here how the data archiving feature will be implemented}_
     + 1b1. System displays an error message with an example on how to use the command.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 **Use Case: UC07 - Deleting `student` or `student information` from the `database`**
 
@@ -674,6 +734,10 @@ _{Explain here how the data archiving feature will be implemented}_
 
 *{More to be added}* <br></br>
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
@@ -691,14 +755,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 *{More to be added}* <br></br>
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Glossary
 
-**Attributes**: Information of a student / parent. <br> For example, name, phone number, email address etc <br><br>
+**Attributes**: Information of a student / parent. <br> 
+For example, name, phone number, email address etc <br><br>
+**CCA**: Co-curricular activities <br><br>
 **CLI**: Command Line Interface <br><br>
-**Mainstream OS**: Windows, Linux, Unix, OS-X <br><br>
-**NOK**: Refers to Next-of-Kin, that could be a family member of a student or a guardian of a student.
+**Hard disk**: Non-volatile data storage device, your OS's storage in short <br><br>
+**LMS**: Learning Management System, application used by schools to provide students a platform to access their lessons materials online. <br>
+Examples of LMS: Canvas, LumiNUS, Blackboard, Google Classroom, Quizlet <br><br>
+**NOK**: Refers to Next-of-Kin, could be either blood related or a guardian <br><br>
+**OS**: Operating Systems <br>
+Examples of OS: Windows, Linux, Unix, OS-X <br><br>
+**Parameters**: The actual information of a student/parent
+For example, Tan Ah Kow, 91234567 etc.
 
 *{More to be added}*
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -728,6 +806,10 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -745,6 +827,10 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -752,3 +838,7 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
