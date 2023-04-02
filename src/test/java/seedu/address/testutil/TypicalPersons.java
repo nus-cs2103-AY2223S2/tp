@@ -43,6 +43,7 @@ public class TypicalPersons {
             .withEducation("P2")
             .withRemark("He can't take beer!")
             .withModules("CS2103T", "CS2030")
+            .withTelegram("@bensonboy")
             .withTags("owesMoney", "friends")
             .build();
     public static final Person CARL = new PersonBuilder()
