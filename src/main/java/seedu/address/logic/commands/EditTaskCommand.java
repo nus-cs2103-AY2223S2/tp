@@ -44,7 +44,7 @@ public class EditTaskCommand extends Command {
         + PREFIX_TASK_CREATEDATE + "CREATEDATE "
         + PREFIX_TASK_DEADLINE + "DEADLINE ";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "New task added: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Task edited: %1$s";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
