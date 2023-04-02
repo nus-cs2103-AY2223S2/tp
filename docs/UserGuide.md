@@ -714,7 +714,7 @@ If you no longer need a contact in EduMate, you can remove them using the `delet
 
 </div>
 
-##### Scenario
+##### Scenario:
 
 Suppose you do not need Astrid's contact anymore and you want to delete her contact from `EduMate`.
 From the `view n/Astrid Holland` command, her `EduMate` index is 8.
@@ -760,17 +760,22 @@ With EduMate's `tag` command, you can tag your existing contacts with groups and
 
 </div>
 
+##### Scenario:
+
+Suppose you now have a senior, Amirul, taking MA2101. You are interested and might want to contact Amirul for some advice.
+You then `tag` Amirul's contact in `EduMate` with the following Monday 4pm - 6pm lesson slot and its corresponding module code.
+
+Amirul has index 6 in `EduMate`.
+
+Command entered: `tag 6 m/MA2101 Monday 16 18`
+
 What you should see:<br>
 
-<img src="images/ug_cmds_pics/tag_cmd.png" style="width:80%;margin:0 10%">
+<img src="images/ug_cmds_pics/TagCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 12: Amirah tagged with CS2109S Module Tag with a lesson from 4pm - 6pm on a Monday</center>
+<center>Diagram 17: Amirul successfully tagged with MA2101 with a lesson from 4pm - 6pm on a Monday</center>
 
-
-##### Explanation:
-
-Say you know that Amirah has got a CS2109S lesson from 4pm - 6pm, tagging CS2109S with the lesson information will allow you result in
-CS2109S tag displaying at her profile in the Profile Panel.
+##### More Examples of Usage:
 
 <div markdown="block" class="alert alert-success">
 
@@ -804,18 +809,22 @@ With EduMate's `untag` command, you can remove groups or modules from your exist
 
 </div>
 
+##### Scenario:
+
+You are now informed by Amirul that MA2101 is too hard and he has dropped the module. You then proceed to 
+`untag` that module from Amirul's contact.
+
+Command entered: `untag 6 m/MA2101`
+
 What you should see:<br>
 
-<img src="images/ug_cmds_pics/untag_cmd.png" style="width:80%;margin:0 10%">
+<img src="images/ug_cmds_pics/UntagCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 13: Amirah after removing the CS2109S Module Tag.</center>
+<center>Diagram 18: Amirul after removing the MA2101 Module Tag.</center>
 
 <br>
 
-##### Explanation:
-Say you realise that Amirah accidentally told you the wrong information, you can remove the CS2109S module tag
-with the `untag 1 m/CS2109S MONDAY  16 18` command. The tag will disappear from Amirah's profile in the Profile Panel. 
-
+##### More Examples of Usage:
 
 <div markdown="block" class="alert alert-success">
 
