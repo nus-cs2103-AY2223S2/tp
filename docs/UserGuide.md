@@ -172,7 +172,7 @@ If the above format is not followed, an error message will be displayed.
 ```ignorelang
 Invalid Command Format!
 add: Adds a listing to the listing book.
-Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]...
+Parameters: t/TITLE d/DESCRIPTION [a/APPLICANT]... [p/PLATFORMS]...
 Example: add t/Cool job title d/Informative job description a/John a/Sam
 ```
 
@@ -184,7 +184,7 @@ Example: add t/Cool job title d/Informative job description a/John a/Sam
 
 Edits the details of a job listing.
 
-**Format:** `edit NUMBER t/TITLE d/DESCRIPTION [a/APPLICANTS...]`
+**Format:** `edit NUMBER [t/TITLE] [d/DESCRIPTION] [a/APPLICANTS]... [p/PLATFORMS]...`
 
 **Notes:**
 
