@@ -101,7 +101,7 @@ Overall, we hope to empower you to streamline your daily workflows and increase 
 
    - `:wq` : Exits the app.
 
-2. Refer to the [Features](#features) below for details of each command.
+2. Refer to the [Features and commands](#features-and-commands) below for details of each command.
 
 <p class="back-to-top" style="text-align: right"><a href="#table-of-contents">Back to Top &#8593;</a></p>
 
