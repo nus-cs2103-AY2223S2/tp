@@ -345,7 +345,7 @@ Lists all tasks created.
 
 Use this command to list all tasks.
 
-Format: `list task`
+Format: `list tasks`
 
 ### Feeding reminders
 
