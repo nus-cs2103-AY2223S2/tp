@@ -210,14 +210,26 @@ public class ParserUtil {
 
         Optional<String> durationString = argMultimap.getValue(PREFIX_DURATION);
         if (durationString.isPresent()) {
-            RecipeDuration duration = parseDuration(durationString.get());
+            RecipeDuration duration = null;
+            // handle the case where empty duration string is provided
+            // interpret this as: user wants to clear the duration field
+            if (!durationString.get().equals("")) {
+                duration = parseDuration(durationString.get());
+            }
             recipeDescriptor.setDuration(duration);
+            recipeDescriptor.setDurationChanged(true);
         }
 
         Optional<String> portionString = argMultimap.getValue(PREFIX_PORTION);
         if (portionString.isPresent()) {
-            RecipePortion portion = parsePortion(portionString.get());
+            RecipePortion portion = null;
+            // handle the case where empty portion string is provided
+            // interpret this as: user wants to clear the portion field
+            if (!portionString.get().equals("")) {
+                portion = parsePortion(portionString.get());
+            }
             recipeDescriptor.setPortion(portion);
+            recipeDescriptor.setPortionChanged(true);
         }
 
         if (argMultimap.containsKey(PREFIX_TAG)) {

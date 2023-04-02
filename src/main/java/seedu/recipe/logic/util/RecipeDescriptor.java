@@ -27,12 +27,16 @@ import seedu.recipe.model.tag.Tag;
 public class RecipeDescriptor {
     private Name name;
     private RecipeDuration duration;
+    private boolean durationChanged;
     private RecipePortion portion;
+    private boolean portionChanged;
     private Set<Tag> tags;
     private HashMap<Ingredient, IngredientInformation> ingredients;
     private List<Step> steps;
 
     public RecipeDescriptor() {
+        this.durationChanged = false;
+        this.portionChanged = false;
     }
 
     /**
@@ -46,6 +50,9 @@ public class RecipeDescriptor {
         setTags(toCopy.tags);
         setIngredients(toCopy.ingredients);
         setSteps(toCopy.steps);
+
+        this.durationChanged = toCopy.durationChanged;
+        this.portionChanged = toCopy.portionChanged;
     }
 
     /**
@@ -58,18 +65,20 @@ public class RecipeDescriptor {
         Name updatedName = getName().orElse(recipeToEdit.getName());
         Recipe newRecipe = new Recipe(updatedName);
 
-        RecipeDuration updatedDuration = getDuration().orElse(recipeToEdit.getDurationNullable());
+        RecipeDuration updatedDuration = getDuration().orElseGet(() -> durationChanged ? null :
+            recipeToEdit.getDurationNullable());
         newRecipe.setDuration(updatedDuration);
 
-        RecipePortion updatedPortion = getPortion().orElse(recipeToEdit.getPortionNullable());
+        RecipePortion updatedPortion = getPortion().orElseGet(
+            () -> portionChanged ? null : recipeToEdit.getPortionNullable());
         newRecipe.setPortion(updatedPortion);
 
         Tag[] updatedTags = getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
         newRecipe.setTags(updatedTags);
 
         HashMap<Ingredient, IngredientInformation> updatedIngredients = getIngredients()
-                .map(HashMap::new)
-                .orElse(recipeToEdit.getIngredients());
+            .map(HashMap::new)
+            .orElse(recipeToEdit.getIngredients());
         newRecipe.setIngredients(updatedIngredients);
 
         Step[] updatedSteps = getSteps().orElse(recipeToEdit.getSteps()).toArray(Step[]::new);
@@ -90,7 +99,8 @@ public class RecipeDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, duration, portion, tags, ingredients, steps);
+        return durationChanged || portionChanged || CollectionUtil.isAnyNonNull(name, duration, portion, tags,
+            ingredients, steps);
     }
 
     public Optional<Name> getName() {
@@ -106,7 +116,9 @@ public class RecipeDescriptor {
     }
 
     public void setDuration(RecipeDuration duration) {
-        this.duration = duration;
+        if (duration != null) {
+            this.duration = duration;
+        }
     }
 
     public Optional<RecipePortion> getPortion() {
@@ -156,6 +168,14 @@ public class RecipeDescriptor {
         this.steps = (steps != null) ? new ArrayList<>(steps) : null;
     }
 
+    public void setDurationChanged(boolean durationChanged) {
+        this.durationChanged = durationChanged;
+    }
+
+    public void setPortionChanged(boolean portionChanged) {
+        this.portionChanged = portionChanged;
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -172,10 +192,10 @@ public class RecipeDescriptor {
         RecipeDescriptor e = (RecipeDescriptor) other;
 
         return getName().equals(e.getName())
-                && getDuration().equals(e.getDuration())
-                && getPortion().equals(e.getPortion())
-                && getTags().equals(e.getTags())
-                && getIngredients().equals(e.getIngredients())
-                && getSteps().equals(e.getSteps());
+            && getDuration().equals(e.getDuration())
+            && getPortion().equals(e.getPortion())
+            && getTags().equals(e.getTags())
+            && getIngredients().equals(e.getIngredients())
+            && getSteps().equals(e.getSteps());
     }
 }
