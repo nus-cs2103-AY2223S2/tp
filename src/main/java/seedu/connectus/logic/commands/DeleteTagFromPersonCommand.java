@@ -50,7 +50,7 @@ public class DeleteTagFromPersonCommand extends Command {
      * @param personIndex      of the person in the filtered person list to edit
      * @param moduleIndex      of the module in the module list to delete
      * @param ccaIndex         of the CCA in the CCA list to delete
-     * @param majorIndex of the CCA Position in the CCA Position list to delete
+     * @param majorIndex       of the major in the major list to delete
      * @param remarkIndex      of the remark in the remark list to delete
      */
     public DeleteTagFromPersonCommand(Index personIndex, Index moduleIndex, Index ccaIndex, Index majorIndex,
@@ -98,7 +98,7 @@ public class DeleteTagFromPersonCommand extends Command {
         if (majorIndex != null) {
             var originalMajors = convertSetToList(personToEdit.getMajors());
             if (!isIndexValid(majorIndex, originalMajors)) {
-                throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "CCA position"));
+                throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "major"));
             }
             editedMajors = createEditedTagList(originalMajors, majorIndex);
         }
@@ -106,7 +106,7 @@ public class DeleteTagFromPersonCommand extends Command {
         if (remarkIndex != null) {
             var originalRemarks = convertSetToList(personToEdit.getRemarks());
             if (!isIndexValid(remarkIndex, originalRemarks)) {
-                throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "tag"));
+                throw new CommandException(String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "remark"));
             }
             editedRemarks = createEditedTagList(originalRemarks, remarkIndex);
         }
