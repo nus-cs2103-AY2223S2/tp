@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
+import seedu.connectus.model.person.Name;
+import seedu.connectus.model.person.Person;
 
 public class InstagramTest {
     @Test
@@ -35,5 +37,45 @@ public class InstagramTest {
         var username = "va.li.d1.username";
         assertTrue(Instagram.isValid(username));
         assertEquals(Instagram.of(username).toString(), username);
+    }
+
+    @Test
+    public void getUserLink_Instagram_returnsExpectedLink() {
+        String expectedLink = "https://www.instagram.com/johndoe";
+        Instagram instagram = new Instagram("johndoe");
+
+        String actualLink = instagram.getUserLink();
+
+        assertEquals(expectedLink, actualLink);
+    }
+
+    @Test
+    public void getUserLink_withUser_returnsExpectedLink() {
+        String expectedLink = "https://www.instagram.com/johndoe";
+        Person person = new Person(new Name("John Doe"));
+        person.setSocialMedia(new SocialMedia(Instagram.of("johndoe"), null, null));
+
+        String actualLink = Instagram.getUserLink(person);
+
+        assertEquals(expectedLink, actualLink);
+    }
+
+    @Test
+    public void getUserLink_withNullUser_returnsEmptyString() {
+        Person person = new Person(new Name("John Doe"));
+
+        String actualLink = Instagram.getUserLink(person);
+
+        assertEquals("", actualLink);
+    }
+
+    @Test
+    public void getUserLink_withNullSocialMedia_returnsEmptyString() {
+        Person person = new Person(new Name("John Doe"));
+        person.setSocialMedia(new SocialMedia(null, null, null));
+
+        String actualLink = Instagram.getUserLink(person);
+
+        assertEquals("", actualLink);
     }
 }
