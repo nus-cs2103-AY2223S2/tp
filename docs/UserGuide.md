@@ -296,7 +296,7 @@ internships, because they have different values for `COMPANY_NAME`.
 <div style="page-break-after: always;"></div>
 
 ### Duplicate Tags
-If you attempt to store duplicate tags in the same internship entry, Intern Buddy would only store one of them. A duplicate tag refers to a tag that is identical to another tag in every way, including the spelling and capitalization (tags are case-sensitive). In other words, a duplicate tag is a tag that is an exact copy of another tag.
+If you attempt to store duplicate tags within the same internship entry, InternBuddy would only store one of them. A duplicate tag refers to a tag that is identical to another tag in every way, including the spelling and capitalization (tags are case-sensitive). In other words, a duplicate tag is a tag that is an exact copy of another tag.
 
 ## **Features**
 
