@@ -37,7 +37,7 @@ public class ParentCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label birthdate;
+    private Label age;
     // @FXML
     // private Label image;
     @FXML
@@ -57,7 +57,7 @@ public class ParentCard extends UiPart<Region> {
         phone.setText(parent.getPhone().value);
         email.setText(parent.getEmail().value);
         address.setText(parent.getAddress().value);
-        birthdate.setText(parent.getBirthdate().value);
+        age.setText(parent.getAge().value);
         //image.setText(student.getImage().value);
         parent.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

@@ -581,7 +581,7 @@ _{Explain here how the data archiving feature will be implemented}_
 + 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
     + 1b1. User keys in invalid `SEX` type not supported by system or `SEX` type contain numbers.
     + 1b2. User keys the same information for the student's `name` and NOK’s `name`.
-    + 1b3. User keys in `birthdate` or `phone number` that are not of an integer.
+    + 1b3. User keys in `age` or `phone number` that are not of an integer.
     + 1b4. User keys in invalid path to `image`.
     + 1b5. System displays an error message to the user indicating that he/she has keyed in wrong information for the `student` along with a sample of the correct way to key in information for a new `student`.
 

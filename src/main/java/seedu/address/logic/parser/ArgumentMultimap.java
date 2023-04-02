@@ -61,12 +61,12 @@ public class ArgumentMultimap {
             case "npn/":
                 Optional<String> missingNewParentName = Optional.of("Insert new name here!");
                 return missingNewParentName;
-            case "bdS/":
-                Optional<String> missingStudentBirthdate = Optional.of("Insert student birthdate here!");
-                return missingStudentBirthdate;
-            case "bdP/":
-                Optional<String> missingParentBirthdate = Optional.of("Insert parent birthdate here!");
-                return missingParentBirthdate;
+            case "ageS/":
+                Optional<String> missingStudentAge = Optional.of("Insert student age here!");
+                return missingStudentAge;
+            case "ageP/":
+                Optional<String> missingParentAge = Optional.of("Insert parent age here!");
+                return missingParentAge;
             case "imgS/":
                 Optional<String> missingImage = Optional.of("Insert student image here!");
                 return missingImage;

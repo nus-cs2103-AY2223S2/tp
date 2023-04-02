@@ -33,7 +33,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTBIRTHDATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEST;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
@@ -55,7 +55,7 @@ import seedu.address.logic.commands.student.StudentGradeDeleteCommand;
 import seedu.address.logic.commands.student.StudentListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Birthdate;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Class;
 import seedu.address.model.person.Comment;
 import seedu.address.model.person.Email;
@@ -99,21 +99,21 @@ public class StudentCommandParser implements Parser<StudentCommand> {
 
         ArgumentMultimap argMultimapAdd =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_ADD, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
-                        PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTBIRTHDATE,
+                        PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
                         PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
                         PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE,
                         PREFIX_ADDRESS);
 
         ArgumentMultimap argMultimapDelete =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_DELETE, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
-                        PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTBIRTHDATE,
+                        PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
                         PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
                         PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_ADDRESS);
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_LIST, PREFIX_COMMENTCOMMAND, PREFIX_FIND, PREFIX_COMMENT,
                         PREFIX_ADD, PREFIX_INDEXNUMBER, PREFIX_SEX, PREFIX_PARENTNAME, PREFIX_PHONEPARENT,
-                        PREFIX_RELATIONSHIP, PREFIX_STUDENTBIRTHDATE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
+                        PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE, PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT,
                         PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST, PREFIX_ATTENDANCE, PREFIX_HOMEWORK,
                         PREFIX_ADDRESS);
 
@@ -127,7 +127,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
 
         ArgumentMultimap argMultimapEdit =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_EDIT, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
-                        PREFIX_NEWPARENTNAME, PREFIX_NEWPHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTBIRTHDATE,
+                        PREFIX_NEWPARENTNAME, PREFIX_NEWPHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
                         PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
                         PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE,
                         PREFIX_ADDRESS, PREFIX_NEWCLASS, PREFIX_NEWINDEXNUMBER, PREFIX_NEWNAME);
@@ -199,7 +199,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Name parentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENTNAME).get());
         Phone parentNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
         Relationship rls = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
-        Birthdate birthdate = ParserUtil.parseBirthdate((argMultimap.getValue(PREFIX_STUDENTBIRTHDATE).get()));
+        Age age = ParserUtil.parseAge((argMultimap.getValue(PREFIX_STUDENTAGE).get()));
         Image image = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGESTUDENT).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAILSTUDENT).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONESTUDENT).get());
@@ -222,7 +222,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Set<Attendance> attendanceSet = new HashSet<>();
         attendanceSet.add(attendance);
         Student student = new Student(name, sc, indexNumber, sex, parentName, parentNumber, rls,
-                birthdate, image, email, phone, cca, address, attendanceSet, homeworkSet, testSet, tagList, comment);
+                age, image, email, phone, cca, address, attendanceSet, homeworkSet, testSet, tagList, comment);
         return new StudentAddCommand(student);
     }
 
@@ -354,7 +354,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         IndexNumber indexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_INDEXNUMBER).get());
         IndexNumber newIndexNumber = ParserUtil.parseIndexNumber(argMultimap.getValue(PREFIX_NEWINDEXNUMBER).get());
         Sex newSex = ParserUtil.parseSex(argMultimap.getValue(PREFIX_SEX).get());
-        Birthdate newBirthdate = ParserUtil.parseBirthdate(argMultimap.getValue(PREFIX_STUDENTBIRTHDATE).get());
+        Age newAge = ParserUtil.parseAge(argMultimap.getValue(PREFIX_STUDENTAGE).get());
         Image newImage = ParserUtil.parseImage(argMultimap.getValue(PREFIX_IMAGESTUDENT).get());
         Cca newCca = ParserUtil.parseCca(argMultimap.getValue(PREFIX_CCA).get());
         Class studentClass = ParserUtil.parseStudentClass(sc);
@@ -366,7 +366,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Relationship newRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
 
         return new StudentEditCommand(newName, indexNumber, newIndexNumber, studentClass, newStudentClass, newSex,
-                newParentPhoneNumber, newParentName, newRelationship, newBirthdate, newImage, newCca,
+                newParentPhoneNumber, newParentName, newRelationship, newAge, newImage, newCca,
                 newComment, newStudentPhoneNumber, newEmail, newAddress, newTagList);
     }
 
