@@ -1,8 +1,8 @@
 ### Wingman User Guide
 Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
-flights, locations, pilots, and planes via command lines. The functionalities include adding, deleting, checking, or associating these 
-flight-related resources. The program is highly optimized for fast typers, while having a intuitive graphical interface
-for managers to monitor the status of flight-related resources. 
+flights, locations, pilots, and planes via command lines. The functionalities include adding, deleting, checking, or associating these
+airline-related resources. The program is highly optimized for fast typers, while having an intuitive graphical interface
+for managers to monitor the status of airline-related resources. 
 
 In this flight, we will guide you on how to use Wingman to efficiently manage the various aspects of airline operations, 
 such as flight scheduling and management of crew, pilot, plane and location.
@@ -50,10 +50,6 @@ You can get started with Wingman in just 3 simple steps:
 please check out [FAQ](#faq). 
 2. Click [here](https://github.com/AY2223S2-CS2103T-W11-1/tp/releases/tag/v1.3) to download the Wingman.jar file
 3. Open a command terminal on your computing, and run the command to start the application:  `java -jar Wingman.jar`
-
-You should be able to see a window popping up, and that is our Wingman application. 
-The app already contains some sample data for you to try out our features!
-You should now be in the Wingman application. 
 
 A GUI similar to the one below should appear in a few seconds.
 
@@ -276,7 +272,6 @@ entity in the database.
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
-Here are some examples of how the command works in each mode:
 
 ##### Crew mode: `linklocation /lo location_index /cr crew_index`
 
@@ -364,8 +359,6 @@ from the specified location entity in the database.
 Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
-Here are some examples of how the command works in each mode:
-
 ##### Crew mode: `unlinklocation /lo location_index /cr crew_index`
 
 Prefixes:
@@ -448,7 +441,6 @@ if you are currently in the `plane` mode, then this command will link a `plane` 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
-Here are some examples of how the command works in each mode:
 
 ##### Crew mode: 
 `linkflight /fl flight_index /csd crew_index /sfa crew_index /fa crew_index /tr crew_index`
@@ -531,7 +523,6 @@ database.
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
-Here are some examples of how the command works in each mode:
 
 ##### Crew mode: 
 `unlinkflight /fl flight_index /csd crew_index /sfa crew_index /fa crew_index /tr crew_index`
