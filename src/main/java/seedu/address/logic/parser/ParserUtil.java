@@ -29,6 +29,7 @@ import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
+import seedu.address.model.time.TimePeriod;
 import seedu.address.model.time.util.TimeUtil;
 
 /**
@@ -215,13 +216,22 @@ public class ParserUtil {
         Day day = parseDay(args.get(1));
         LocalTime startTime = parseLocalTime(args.get(2), true);
         LocalTime endTime = parseLocalTime(args.get(3), false);
-        TimeBlock timeBlock = new TimeBlock(startTime, endTime, day);
 
-        Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
+        TimePeriod timePeriod = parseTimePeriod(startTime, endTime, day);
+
+        Lesson lesson = new Lesson(moduleCode, Location.NUS, timePeriod);
 
         logger.log(Level.FINE, String.format("Lesson parsed: %s", lesson));
 
         return new ModuleTag(moduleCode, lesson);
+    }
+
+    private static TimePeriod parseTimePeriod(LocalTime startTime, LocalTime endTime, Day day) throws ParseException {
+        if (!startTime.isBefore(endTime)) {
+            throw new ParseException("Start Time must be STRICTLY BEFORE End Time!");
+        }
+
+        return new TimeBlock(startTime, endTime, day);
     }
 
     private static ModuleTag parseModuleTagFromSingle(String tag) throws ParseException {
