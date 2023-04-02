@@ -27,17 +27,26 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name.trim().replaceAll("\\s{2,}", " ");
+        fullName = trimName(name);
     }
 
     /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        test = test.trim().replaceAll("\\s{2,}", " ");
+        test = trimName(test);
         return test.matches(VALIDATION_REGEX) && test.length() <= MAX_LENGTH;
     }
 
+    /**
+     * Trims a name to delete excessive whitespaces.
+     * @param name A name.
+     * @return A trimmed name, where excessive (consecutive) whitespaces,
+     * as well as whitespaces at the front and back are removed.
+     */
+    public static String trimName(String name) {
+        return name.trim().replaceAll("\\s{2,}", " ");
+    }
     @Override
     public String toString() {
         return fullName;
