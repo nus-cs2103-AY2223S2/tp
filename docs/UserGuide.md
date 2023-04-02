@@ -4,36 +4,34 @@ title: User Guide
 ---
 
 Army Information Management System (AIMS) is a **desktop app for managing the personal information of military
-personnel,
-optimized for use via a Command Line Interface** (**CLI**) while still having the benefits of a Graphical User
-Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional GUI
-apps.
+personnel, optimized for use via a Command Line Interface** (**CLI**) while still having the benefits of a Graphical
+User Interface (**GUI**). If you can type fast, AIMS can get your contact management tasks done faster than traditional
+GUI apps.
 
 This user guide shows you how to get started using AIMS and how to make use of the features by following the
 easy-to-understand explanations and examples.
 
 <!-- omit from toc -->
-
 ## Table of Contents
 
 - [Quick start](#quick-start)
 - [Features](#features)
-    - [Viewing help : `help`](#viewing-help--help)
-    - [Adding a person: `add`](#adding-a-person--add)
-    - [Importing multiple persons from a CSV file: `importcsv`](#importing-multiple-persons-from-a-csv-file--importcsv)
-    - [Listing all persons : `list`](#listing-all-persons--list)
-    - [Copy information to clipboard : `copy`](#copy-information-to-clipboard--copy)
-    - [Editing a person : `edit`](#editing-a-person--edit)
-    - [Locating persons by name: `find`](#locating-persons-by-name--find)
-    - [Locating persons using filters on fields: `filter`](#locating-persons-using-filters-on-fields--filter)
-    - [Deleting a person : `delete`](#deleting-a-person--delete)
-    - [Clearing all entries : `clear`](#clearing-all-entries--clear)
-    - [Undo last modification : `undo`](#undo-last-modification--undo)
-    - [Favorite a person : `favorite`](#favorite-a-person--favorite)
-    - [Exiting the program : `exit`](#exiting-the-program--exit)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-    - [Archiving data files `[coming in v2.0]`](#archiving-data-files-coming-in-v20)
+  - [Viewing help : `help`](#viewing-help--help)
+  - [Adding a person : `add`](#adding-a-person--add)
+  - [Importing multiple persons from a CSV file : `importcsv`](#importing-multiple-persons-from-a-csv-file--importcsv)
+  - [Listing all persons : `list`](#listing-all-persons--list)
+  - [Copying information to clipboard : `copy`](#copying-information-to-clipboard--copy)
+  - [Editing a person : `edit`](#editing-a-person--edit)
+  - [Locating persons by any field : `find`](#locating-persons-by-any-field--find)
+  - [Locating persons using filters on fields : `filter`](#locating-persons-using-filters-on-fields--filter)
+  - [Deleting a person : `delete`](#deleting-a-person--delete)
+  - [Clearing all entries : `clear`](#clearing-all-entries--clear)
+  - [Undoing last modification : `undo`](#undoing-last-modification--undo)
+  - [Viewing command history](#viewing-command-history)
+  - [Adding a person to favorites : `favorite`](#adding-a-person-to-favorites--favorite)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
 - [FAQ](#faq)
 - [Command summary](#command-summary)
 
@@ -41,16 +39,17 @@ easy-to-understand explanations and examples.
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 1. Download the latest `aims.jar` from [here](https://github.com/AY2223S2-CS2103T-W10-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for AIMS.
+1. Copy the file to the folder you want to use as the *home folder* for AIMS.
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar aims.jar` command to
    run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+
+![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -58,11 +57,11 @@ easy-to-understand explanations and examples.
 
     - `list` : Lists all contacts.
 
-    - `add r/3SG n/Jaden Ng u/3 SIR c/Alpha pl/4 p/91297723 e/jadend@gmail.com a/Smith Street, Block 13, #07-04 \` adds
+    - `add r/3SG n/Jaden Ng u/3 SIR c/Alpha pl/4 p/91297723 e/jadend@gmail.com a/Smith Street, Block 13, #07-04` adds
       a new person `Jaden Ng` to AIMS with the following information:
 
    | Field        | Value                          |
-            | ------------ | ------------------------------ |
+   |--------------|--------------------------------|
    | rank         | 3SG                            |
    | name         | Jaden Ng                       |
    | unit         | 3 SIR                          |
@@ -92,7 +91,7 @@ easy-to-understand explanations and examples.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 - Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 - Items with `…` after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as <code>&nbsp;</code> (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -100,7 +99,7 @@ easy-to-understand explanations and examples.
 - Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
+- If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
@@ -122,7 +121,7 @@ Format: `help`
 
 Adds a person to AIMS.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…​ `
+Format: `add r/RANK n/NAME [u/UNIT] [c/COMPANY] [pl/PLATOON] p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">
 
@@ -136,7 +135,7 @@ Examples:
   adds a new person `Lawrence Tay` to AIMS with the following information:
 
   | Field        | Value                 |
-      | ------------ | --------------------- |
+  |--------------|-----------------------|
   | rank         | 3SG                   |
   | name         | Lawrence Tay          |
   | unit         | 1 GDS                 |
@@ -165,9 +164,11 @@ The given CSV file must fulfill the following conditions:
 Examples:
 
 - example of a Google Sheet that would be valid once converted to CSV.
-  ![demo sheets](images/demoSheets.png)
+
+![demo sheets](images/demoSheets.png)
 - valid CSV file:
-  ![demo CSV](images/demoCsv.png)
+
+![demo CSV](images/demoCsv.png)
 
 - `importcsv C:\file\6coy_platoon_four_data.csv`
 
@@ -179,7 +180,7 @@ Shows a list of all persons in AIMS.
 
 Format: `list`
 
-### Copy information to clipboard : `copy`
+### Copying information to clipboard : `copy`
 
 Copies the information of a person to the user's clipboard.
 
@@ -203,11 +204,12 @@ Examples:
 
 - Suppose you want to copy the second person, `Bernice Yu`, entering the command `copy 2` will copy all information into
   your clipboard.
-  ![result for 'copy 2'](images/copy2Result.png)
+
+![result for 'copy 2'](images/copy2Result.png)
 
 After running the command, the following text is copied into your clipboard.
 
-```
+```text
 Rank: CPL
 Name: Bernice Yu
 Unit: 1 GDS
@@ -239,7 +241,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [
   The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
-- When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+- When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
 - You can remove all the person's tags by typing `t/` without
   specifying any tags after it.
 
@@ -249,32 +251,34 @@ Examples:
   and `johndoe@example.com` respectively.
 - `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name : `find`
+### Locating persons by any field : `find`
 
-Finds persons whose names contain any of the given keywords.
+You can look for all persons that have any fields that match any of the given keywords. This is useful for when you
+can't remember which field the information belongs to.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
+- The search is case-insensitive. e.g., `alpha` will match `Alpha`
+- The order of the keywords does not matter. e.g. `Ris Pasir` will match `Pasir Ris`
+- All person fields are searched.
+- Partial matching is performed e.g., `@gmail.com` will match all persons with a Gmail account
 - Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Jacob Lim` will return `Jacob Tan` and `Nicholas Lim`
 
 Examples:
 
-- `find John` returns `john` and `John Doe`
+- `find tan` returns `Frederick Tan`, `Tanny Lim`, anyone that that has `tan` in their email address and anyone that
+  lives in `Tanjong Pagar`
 - `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Locating persons using filters on fields : `filter`
 
-Filters all persons to only show those whose fields contain all of the given keywords.
+Filters all persons to only show those whose fields contain all the given keywords.
 
 Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [p/PLATOON] [t/TAG]…​`
 
-- The search is case-insensitive. e.g `hanS` will match `Hans`
+- The search is case-insensitive. e.g. `hanS` will match `Hans`
 - The order of the keywords does not matter. e.g. `n/Hans r/3sg` will match `r/3sg n/Hans`
 - Only persons matching all keywords will be returned (i.e. `AND` search).
 - If multiple keywords for the same field are provided, only the last keyword for that field will be used (
@@ -285,7 +289,7 @@ Format: `filter [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/CO
 Examples:
 
 - `filter n/Jo` returns `john`, `John Doe` and `joseph`
-- `filter a/street r/sg ` returns `David Li`, `S Lee Chong Wei`<br>
+- `filter a/street r/sg` returns `David Li`, `S Lee Chong Wei`<br>
   ![result for 'filter david lee'](images/filterDavidLeeResult.png)
 
 ### Deleting a person : `delete`
@@ -309,9 +313,10 @@ Clears all entries from AIMS.
 
 Format: `clear`
 
-### Undo last modification : `undo`
+### Undoing last modification : `undo`
 
-Undoes the last modification done to AIMS.
+Undoes the last modification done to AIMS. Specifically, commands like `list`, `find` and `filter` that do not modify
+AIMS are not recorded in the undo history.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -321,20 +326,37 @@ Undoes the last modification done to AIMS.
 
 Format: `undo`
 
-### Favorite a person : `favorite`
+### Viewing command history
+
+You can view the history of previously run commands and re-run them as needed -- this saves you from having to retype
+the entire command again. To view the command history, in the command box, press the up arrow (`↑`) on your keyboard to
+view an earlier command and the down arrow (`↓`) on your keyboard to view a later command.
+
+- The command that you've entered into the command box before viewing the command history will be saved temporarily --
+  you can navigate back to it by pressing the down arrow (`↓`) multiple times.
+- If you're already at the *earliest* command, pressing the up arrow (`↑`) will move the cursor to the *beginning* of
+  the text in the command box instead.
+- If you're already at the *latest* command, pressing the down arrow (`↓`) will move the cursor to the *end* of the text
+  in the command box instead.
+- At any point in the command history, you can simply edit the command and re-run it. Note that once you navigate away
+  from this point in the command history, the changes you've made to this current command in history will be lost.
+- The command history file is located at `[JAR file location]/data/command_history.txt`. Whenever you run a command **successfully**, the command history file will be automatically updated. In other words, commands that fail to run due to syntax errors or otherwise will **not** be recorded in the command history.
+
+### Adding a person to favorites : `favorite`
 
 Favorites the specified person from AIMS.
 
 Format: `favorite INDEX`
 
 - Favorites the person at the specified `INDEX`.
-- Running this command on a person who is already in the favorite list will him from the favorite list.
+- Running this command on a person who is already in the favorite list will remove him from the favorite list.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
 Example:
+
 - `favorite 3` will pin the third person in the favorites panel.
-![result for `favorite 3`](images/favorite3.png)
+  ![result for `favorite 3`](images/favorite3.png)
 
 ### Exiting the program : `exit`
 
@@ -359,15 +381,11 @@ start with an empty data file at the next run.
 
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-(_coming soon_)
-
 ---
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous AIMS home folder.
 
@@ -375,14 +393,16 @@ the data of your previous AIMS home folder.
 
 ## Command summary
 
- Action       | Format, Examples                                                                                                                                                                                                                            
---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]… ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/3SG u/9 SIR c/Charlie pl/1 t/friend t/colleague` 
- **Clear**    | `clear`                                                                                                                                                                                                                                     
- **Copy**     | `copy INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]`<br> e.g., `copy 1 n/ e/ t/`                                                                                                 
- **Delete**   | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                         
- **Edit**     | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                       
- **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                  
- **Favorite** | `favorite INDEX`<br> e.g., `favorite 3`                                                                                                                                                                                                     
- **List**     | `list`                                                                                                                                                                                                                                      
- **Help**     | `help`                                                                                                                                                                                                                                      
+| Action              | Format, Examples                                                                                                                                                                                                                           |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS r/RANK [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 r/3SG u/9 SIR c/Charlie pl/1 t/friend t/colleague` |
+| **Clear**           | `clear`                                                                                                                                                                                                                                    |
+| **Copy**            | `copy INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]`<br> e.g., `copy 1 n/ e/ t/`                                                                                                |
+| **Delete**          | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                        |
+| **Edit**            | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [r/RANK] [u/UNIT] [c/COMPANY] [pl/PLATOON] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                      |
+| **Find**            | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                 |
+| **Favorite**        | `favorite INDEX`<br> e.g., `favorite 3`                                                                                                                                                                                                    |
+| **Undo**            | `undo`                                                                                                                                                                                                                                     |
+| **Command history** | `↑` / `↓`                                                                                                                                                                                                                                  |
+| **List**            | `list`                                                                                                                                                                                                                                     |
+| **Help**            | `help`                                                                                                                                                                                                                                     |
