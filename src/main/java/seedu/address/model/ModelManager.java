@@ -161,6 +161,28 @@ public class ModelManager implements Model {
         return count >= 2;
     }
 
+    @Override
+    public boolean hasDuplicateNameAdd(String name) {
+        int count = 0;
+        for (Student s : filteredPersons) {
+            if (s.getName().toString().contains(name)) {
+                count++;
+            }
+        }
+        return count >= 1;
+    }
+
+    @Override
+    public boolean hasDuplicateNameEdit(String name, Integer index) {
+        int count = 0;
+        for (int i = 0; i < filteredPersons.size(); i++) {
+            if (filteredPersons.get(i).getName().toString().contains(name) && i != index) {
+                count++;
+            }
+        }
+        return count >= 1;
+    }
+
     /**
      * Returns true if the model has a student whose name is part of the input name.
      */
@@ -169,6 +191,17 @@ public class ModelManager implements Model {
         int count = 0;
         for (Student s : filteredPersons) {
             if (name.contains(s.getName().toString())) {
+                count++;
+            }
+        }
+        return count >= 1;
+    }
+
+    @Override
+    public boolean hasExtendedNameEdit(String name, Integer index) {
+        int count = 0;
+        for (int i = 0; i < filteredPersons.size(); i++) {
+            if (name.contains(filteredPersons.get(i).getName().toString()) && i != index) {
                 count++;
             }
         }

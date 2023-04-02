@@ -78,12 +78,12 @@ public class EditCommand extends Command {
         Student editedPerson = createEditedPerson(personToEdit, editStudentDescriptor);
         String newName = editedPerson.getName().toString();
         if (!newName.equals(personToEdit.getName().toString())) {
-            if (model.hasDuplicateName(newName)) {
+            if (model.hasDuplicateNameEdit(newName, index.getZeroBased())) {
                 throw new CommandException(String.format(Messages.MESSAGE_CONTAIN_STUDENT_NAME,
                     newName));
             }
 
-            if (model.hasExtendedName(newName)) {
+            if (model.hasExtendedNameEdit(newName, index.getZeroBased())) {
                 throw new CommandException(String.format(Messages.MESSAGE_EXTENDED_STUDENT_NAME,
                     newName));
             }

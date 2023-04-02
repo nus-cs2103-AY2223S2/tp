@@ -61,7 +61,7 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        if (model.hasDuplicateName(toAdd.getName().toString())) {
+        if (model.hasDuplicateNameAdd(toAdd.getName().toString())) {
             throw new CommandException(String.format(Messages.MESSAGE_CONTAIN_STUDENT_NAME,
                 toAdd.getName().toString()));
         }

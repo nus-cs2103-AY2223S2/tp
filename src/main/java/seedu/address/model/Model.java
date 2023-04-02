@@ -86,8 +86,9 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     boolean hasDuplicateName(String name);
-
+    boolean hasDuplicateNameEdit(String name, Integer index);
     boolean hasExtendedName(String name);
-
+    boolean hasExtendedNameEdit(String name, Integer index);
     boolean noSuchStudent(String name);
+    boolean hasDuplicateNameAdd(String toString);
 }
