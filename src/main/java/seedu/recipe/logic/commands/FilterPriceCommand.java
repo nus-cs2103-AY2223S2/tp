@@ -2,8 +2,11 @@ package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.model.Model;
+import seedu.recipe.model.recipe.Recipe;
 import seedu.recipe.model.recipe.SatisfyPriceConditionPredicate;
 
 /**
@@ -29,7 +32,14 @@ public class FilterPriceCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredRecipeList(predicate);
+
+        if (model.getCurrentPredicate() != null) {
+            Predicate<Recipe> newPredicate = model.getCurrentPredicate().and(predicate);
+            model.updateFilteredRecipeList(newPredicate);
+        } else {
+            model.updateFilteredRecipeList(predicate);
+        }
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW, model.getFilteredRecipeList().size()));
     }
