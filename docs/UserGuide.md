@@ -2,7 +2,8 @@
 
 Greetings! Welcome to PowerConnect! <br>
 
-Looking for a simple and all in one solution for your teaching needs? Look no further. <br>
+Are you looking for a simple and all in one solution for your teaching needs? Look no further. <br>
+
 
 PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. We are still working to scale our features so we mainly target tuition teachers currently. However, school teachers, do still give us a try. While our
 features are limited at this stage, we are working hard to scale them and be a useful tool in conjunction with [Learning Managment System (LMS)](#glossary) tools currently in the market. <br>
@@ -128,24 +129,18 @@ Without further ado, let's get started!
 This section aims to provide a brief overview of the features available in PowerConnect and the appropriate [CLI](#glossary) command to call them. <br>
 
 ### Legend
-* Command lines supplied by the user are NOT case-sensitive. User needs to be ensure they have typed in the command in the correct case.
-  e.g. in the list feature, user can call it via this method:
+* Command lines supplied by the teachers are NOT case-sensitive. You need to ensure that you have typed the command in the correct case.
+  e.g. in the list feature, you can call it via this method:
   `student 5A list`.
 
-
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.
+* Words in `UPPER_CASE` are the parameters to be supplied by the teachers.
   e.g. in `…add <NAME>...`, `NAME` is a parameter which can be used as `…add John…`.
 
-
-* Items in `<>` brackets are the values that the user should fill in and is compulsory.
+* Items in `<>` brackets are the values that the teachers should fill in and is compulsory.
   e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`.
 
-
 * All items in the square brackets are OPTIONAL.
-  e.g. in `…add…[..c/<CCA>.. ]...` , `CCA` is an optional parameter that need not be given by the user and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…`.
-
-
+  e.g. in `…add…[..c/[CCA].. ]...` , `CCA` is an optional parameter that need not be given by the teachers and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…`.
 
 * Student Particulars:
   * Compulsory:
@@ -238,7 +233,7 @@ This section aims to provide a brief overview of the features available in Power
 
 Adds a student to the database.
 
-Format: `student <class> add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<NOK_RELATIONSHIP_TO_STUDENT> [s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] ]`
+Format: `student <class> add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls/<NOK_RELATIONSHIP_TO_STUDENT> [s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] ]`
 
 ***Click [HERE](#images) to find out more on what to input for inserting image!!!***
 
@@ -257,13 +252,15 @@ Examples:
 **Expected Outcome:**
 * `New student added:`
 
-Image source will be displayed in decreasing priority: <br>
-* Absolute or relative file path.
-* images/<STUDENT_NAME><STUDENT_CLASS>.png.
-* Default Image (?). <br>
+**For student image:**
+* `Advanced` CLI users could specify the absolute file path.
+* `beginners` could add the image to the images folder and use images/<STUDENT_NAME><STUDENT_CLASS>.png as input.
+
+**If the source of the image is not specified:**
+* A Default Image of a question mark will be displayed. <br>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
-1. User cannot create two students of the same index number and same class.
+1. You cannot create two students of the same index number and same class.
 2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get bound to the matching parent.
 3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update. 
 Please delete the student and add without the image source path. 
@@ -317,8 +314,11 @@ Adds a test OR homework grade for the student corresponding to the `INDEX_NUMBER
 
 You cannot have different test/homework with the same name.
 
-Format: `student <class> grade in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>] [score/<score> deadline/<DEADLINE(DD/MM/YYYY)> weightage/<WEIGHTAGE>] [hwdone/<HOMEWORK_DONE(true/false)>]`
+Format:
 
+`student <class> grade in/<INDEX_NUMBER> test/<TEST_NAME> [score/[score] deadline/[DEADLINE(DD/MM/YYYY)] weightage/[WEIGHTAGE] ]`
+
+`student <class> grade in/<INDEX_NUMBER> hw/<HOMEWORK_NAME> [score/[score] deadline/[DEADLINE(DD/MM/YYYY)] weightage/[WEIGHTAGE] hwdone/[HOMEWORK_DONE(true/false)] ]`
 Examples:
 * `student 1A grade in/13 test/CA1 score/75 weightage/10`
 * `student 1A grade in/13 hw/homework1 score/75 deadline/25/04/2023 weightage/10 hwdone/true`<br><br>
@@ -355,7 +355,7 @@ Deletes a test OR homework grade for the student corresponding to the `INDEX_NUM
 
 Duplicate test/homework is checked through having the same name.
 
-Format: `student <class> gradedelete in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>]`
+Format: `student <class> gradedelete in/<INDEX_NUMBER> [test/<xTEST_NAME> OR hw/<HOMEWORK_NAME>]`
 
 Examples:
 * `student 1A gradedelete in/13 hw/Chapter 1`
@@ -382,7 +382,7 @@ Examples:
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 If an existing comment is already available for the selected student, the new comment will **OVERWRITE** the old comment!<br>
-Users should check on existing comments before adding a new comment! <br><br>
+You should check on existing comments before adding a new comment! <br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -416,11 +416,11 @@ Examples:
 
 ### Edit Student:  `student <class> edit`
 
-Edits personal details of students for the student corresponding to the `INDEX_NUMBER` in the `CLASS` based on the particulars given by the user.
+Edits personal details of students for the student corresponding to the `INDEX_NUMBER` in the `CLASS` based on the particulars given by the teacher.
 
-Format: `student <class> edit in/<INDEX_NUMBER (of student)> [nn/<NEWNAME> nin/<NEWINDEXNUMBER> nc/<NEWCLASS> s/<SEX> ageS/<STUDENT AGE>
-imgS/<IMAGE> cca/<CCA> att/<ATTENDANCE> com/<COMMENTS> pnS/<STUDENT PHONE NUMBER> eS/<STUDENT EMAIL> a/<ADDRESS>
-npn/<NEW PARENT NAME> npnP/<NEW PARENT PHONE NUMBER> rls/<RELATIONSHIP>]`
+Format: `student <class> edit in/<INDEX_NUMBER (of student)> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE]
+imgS/[IMAGE] cca/[CCA] att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS]
+npn/[NEW PARENT NAME] npnP/[NEW PARENT PHONE NUMBER] rls/[RELATIONSHIP] ]`
 
 ***Click [HERE](#glossary) to understand `ABSOLUTE PATH TO IMAGE`!!!***
 
@@ -571,11 +571,11 @@ Examples of Full Command:
 
 Deletes parent with corresponding `NAME` and `PARENT_PHONE_NUMBER` from the database.
 
-Format: `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]`
+Format: `delete n/NAME pnP/PHONE `
 
 Examples:
 * `parent delete n/TanAhCow pnP/91234567` <br>
-* `parent delete n/TanAhNiu pnP/91234566 e/bestniuinthetown@gmail.com` <br>
+* `parent delete n/TanAhNiu pnP/91234566` <br>
 
 Expected Outcome: <br>
 ```
@@ -585,7 +585,7 @@ Deleted Parent: TanAhCow; Parent Age: Insert parent age here!; Address: Insert A
 Deleted Parent: TanAhNiu; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: bestniuinthetown@gmail.com; Parent Phone: 91234566;
 ```
 **Note:**
-1. User *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BINDED* to him/her. System will display an error message for this. <br><br>
+1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BINDED* to him/her. System will display an error message for this. <br><br>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -728,7 +728,7 @@ Feel free to ask any questions [here](https://docs.google.com/forms/d/e/1FAIpQLS
 program. Essentially you do not need a mouse to run this program at all!
 
 **Q**: Do I need to pay for this product?<br>
-**A**: No! We made a commitment to keep this program free for all users. Feel free to run and use our program, but remember to like, share and comment down below any feedback.
+**A**: No! We made a commitment to keep this program free for all teachers. Feel free to run and use our program, but remember to like, share and comment down below any feedback.
 
 **Q**: Why is my command not working?<br>
 **A**: PowerConnect is particular with the prefixes (/) and they need to be in the exact format as specified in the user guide. Don’t worry, with practice, it would be second nature to you.
@@ -753,16 +753,16 @@ program. Essentially you do not need a mouse to run this program at all!
 Need to add **student** and **class** before each command!
 </div>
 
-| Action      | Format, Examples                                                                                                                                                                                                                                                                                                       |
-|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**     | `add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls/<RELATIONSHIP> [ s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] att/[ATTENDANCE] ]`                                                                               |
-| **Attendance** | `attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`                                                                                                                                                                                                                                                                                                                       |
-| **Grade**   | `grade in/[INDEX_NUMBER] test/[TEST_NAME] hw/[HOMEWORK_NAME] [score/[SCORE] deadline/[DEADLINE] weightage/[WEIGHTAGE] hwdone/[HOMEWORK DONE OR NOT] ]`                                                                                                                                                                 |
-| **Comment** | `comment in/<INDEX_NUMBER> com/<COMMENT>`                                                                                                                                                                                                                                                                              |
-| **List**    | `list`                                                                                                                                                                                                                                                                                                                 |
-| **Edit**    | `edit in/<INDEX_NUMBER (of student)> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE] id/[INDEX_NUMBER] imgS/[IMAGE] cca/[CCA]  att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS] pn/[PARENT NAME] pnP/[PARENT PHONE NUMBER] rls/[RELATIONSHIP] ] ` |
-| **Find**    | `find <NAME> `                                                                                                                                                                                                                                                                                                         |
-| **Delete**  | `delete in/<INDEX_NUMBER>`                                                                                                                                                                                                                                                                                             |
+| Action         | Format, Examples                                                                                                                                                                                                                                                                                                       |
+|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls/<RELATIONSHIP> [ s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] att/[ATTENDANCE] ]`                                                                               |
+| **Attendance** | `attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`                                                                                                                                                                                                                                                                      |
+| **Grade**      | `grade in/<INDEX_NUMBER> test/<TEST_NAME> or hw/<HOMEWORK_NAME> [score/[SCORE] deadline/[DEADLINE] weightage/[WEIGHTAGE] hwdone/[HOMEWORK DONE OR NOT] ]`                                                                                                                                                              |
+| **Comment**    | `comment in/<INDEX_NUMBER> com/<COMMENT>`                                                                                                                                                                                                                                                                              |
+| **List**       | `list`                                                                                                                                                                                                                                                                                                                 |
+| **Edit**       | `edit in/<INDEX_NUMBER (of student)> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE] id/[INDEX_NUMBER] imgS/[IMAGE] cca/[CCA]  att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS] pn/[PARENT NAME] pnP/[PARENT PHONE NUMBER] rls/[RELATIONSHIP] ] ` |
+| **Find**       | `find <NAME> `                                                                                                                                                                                                                                                                                                         |
+| **Delete**     | `delete in/<INDEX_NUMBER>`                                                                                                                                                                                                                                                                                             |
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -776,12 +776,12 @@ Need to add **student** and **class** before each command!
 Need to add parent before each command!!
 </div>
 
-| Action     | Format, Examples                                                                                                                                 |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS]`            |
-| **List**   | `list`                                                                                                                                           |
-| **Edit** | `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]` |
-| **Delete** | `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]` |
+| Action     | Format, Examples                                                                                                                                                              |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS]`                                         |
+| **List**   | `list`                                                                                                                                                                        |
+| **Edit**   | `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]` |
+| **Delete** | `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]`                                                                                               |
 
 ### General Command Summary
 
