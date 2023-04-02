@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes Parent Edit command;
+
+if () then ([found parent/NOK name with matching phone number])
+    :PowerConnect searches for parent/NOK information to create new parent/NOK;
+    if () then ([found from user's input])
+        :Retrieves parent/NOK information from user's input;
+    else ([else])
+        :Retrieves parent/NOK information from original parent/NOK;
+    endif
+    :PowerConnect creates new parent/NOK with retrieved information;
+        if () then ([Original parent/NOK has students])
+            :Unbinds all students bound to original parent/NOK;
+            :Binds all students of original parent/NOK to new parent/NOK;
+        else ([else)
+        endif
+    :Automatically saves all changes into parents.json and pcclass.json (Storage files);
+    :Output message = Parent/NOK has been successfully;
+else ([else])
+    :Output message = No parent/NOK was found with matching name and phone number;
+endif
+    :PowerConnect displays output message to User;
+stop
+@enduml

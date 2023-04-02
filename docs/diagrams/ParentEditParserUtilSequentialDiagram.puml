@@ -1,0 +1,124 @@
+@startuml
+!include style.puml
+mainframe sd get parent particulars
+
+box Logic LOGIC_COLOR_T1
+participant ":ParentCommandParser" as ParentCommandParser LOGIC_COLOR
+participant "<<class>>\n ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":Phone" as Phone LOGIC_COLOR
+participant "newPhone :Phone" as newPhone LOGIC_COLOR
+participant ":Name" as Name LOGIC_COLOR
+participant "newName :Name" as newName LOGIC_COLOR
+participant ":Address" as Address LOGIC_COLOR
+participant ":Age" as Age LOGIC_COLOR
+participant ":Email" as Email LOGIC_COLOR
+participant ":Image" as Image LOGIC_COLOR
+participant ":Tags" as Tags LOGIC_COLOR
+end box
+
+[-> ParentCommandParser
+activate ParentCommandParser
+
+ParentCommandParser -> ParserUtil: parsePhone("91234567")
+activate ParserUtil
+create Phone
+
+ParserUtil -> Phone
+
+Phone --> ParserUtil
+
+ParserUtil --> ParentCommandParser
+deactivate ParserUtil
+
+ParentCommandParser -> ParserUtil: parsePhone("65656565")
+activate ParserUtil
+create newPhone
+
+ParserUtil -> newPhone
+
+newPhone --> ParserUtil
+
+ParserUtil --> ParentCommandParser
+deactivate ParserUtil
+
+ParentCommandParser -> ParserUtil: parseName("Tan Ah Niu")
+activate ParserUtil
+create Name
+
+ParserUtil -> Name
+
+Name --> ParserUtil
+
+ParserUtil --> ParentCommandParser
+deactivate ParserUtil
+
+ParentCommandParser -> ParserUtil: parseName("Insert new name here!")
+activate ParserUtil
+create newName
+
+ParserUtil -> newName
+
+newName --> ParserUtil
+
+ParserUtil --> ParentCommandParser
+deactivate ParserUtil
+
+ParentCommandParser -> ParserUtil: parseAge("Insert parent age here!")
+activate ParserUtil
+create Age
+
+ParserUtil -> Age
+
+Age --> ParserUtil
+
+ParserUtil --> ParentCommandParser
+deactivate ParserUtil
+
+ParentCommandParser -> ParserUtil: parseAddress("Insert Address here!")
+activate ParserUtil
+create Address
+
+ParserUtil -> Address
+
+Address --> ParserUtil
+
+ParserUtil --> ParentCommandParser
+deactivate ParserUtil
+
+ParentCommandParser -> ParserUtil: parseImage("Insert parent image here!")
+activate ParserUtil
+create Image
+
+ParserUtil -> Image
+
+Image --> ParserUtil
+
+ParserUtil --> ParentCommandParser
+deactivate ParserUtil
+
+ParentCommandParser -> ParserUtil: parseEmail("Insert parent email here!")
+activate ParserUtil
+create Email
+
+ParserUtil -> Email
+
+Email --> ParserUtil
+
+ParserUtil --> ParentCommandParser
+deactivate ParserUtil
+
+ParentCommandParser -> ParserUtil: parseTags("")
+activate ParserUtil
+create Tags
+
+ParserUtil -> Tags
+
+Tags --> ParserUtil
+
+ParserUtil --> ParentCommandParser
+deactivate ParserUtil
+
+[<--ParentCommandParser
+deactivate ParentCommandParser
+
+@enduml
