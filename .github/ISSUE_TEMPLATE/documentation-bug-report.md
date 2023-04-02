@@ -2,7 +2,7 @@
 name: Documentation Bug report
 about: A template for documentation bugs
 title: ''
-labels: ''
+labels: type.Bug
 assignees: ''
 
 ---

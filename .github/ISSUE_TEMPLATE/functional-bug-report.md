@@ -2,7 +2,7 @@
 name: Functional Bug report
 about: A template for functionality bugs
 title: ''
-labels: ''
+labels: type.Bug
 assignees: ''
 
 ---
