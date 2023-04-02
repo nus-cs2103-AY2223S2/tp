@@ -10,10 +10,10 @@ import seedu.address.model.tag.Tag;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class TagContainsKeywordsPredicate implements Predicate<Person> {
+public class TagContainsKeywordPredicate implements Predicate<Person> {
     private final String keyword;
 
-    public TagContainsKeywordsPredicate(String keyword) {
+    public TagContainsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
 
@@ -27,8 +27,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TagContainsKeywordsPredicate // instanceof handles nulls
-                && keyword.equals(((TagContainsKeywordsPredicate) other).keyword)); // state check
+                || (other instanceof TagContainsKeywordPredicate // instanceof handles nulls
+                && keyword.equals(((TagContainsKeywordPredicate) other).keyword)); // state check
     }
 
 }

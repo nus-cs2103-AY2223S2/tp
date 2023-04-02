@@ -17,9 +17,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.AddressContainsKeywordPredicate;
 import seedu.address.model.person.predicates.EmailContainsKeywordPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordPredicate;
-import seedu.address.model.person.predicates.PhoneContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.StatusContainsKeywordsPredicate;
-import seedu.address.model.person.predicates.TagContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PhoneContainsKeywordPredicate;
+import seedu.address.model.person.predicates.StatusContainsKeywordPredicate;
+import seedu.address.model.person.predicates.TagContainsKeywordPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -63,15 +63,15 @@ public class FindCommandParser implements Parser<FindCommand> {
                 if (p == PREFIX_NAME) {
                     currentPredicate = new NameContainsKeywordPredicate(arg);
                 } else if (p == PREFIX_STATUS) {
-                    currentPredicate = new StatusContainsKeywordsPredicate(arg);
+                    currentPredicate = new StatusContainsKeywordPredicate(arg);
                 } else if (p == PREFIX_PHONE) {
-                    currentPredicate = new PhoneContainsKeywordsPredicate(arg);
+                    currentPredicate = new PhoneContainsKeywordPredicate(arg);
                 } else if (p == PREFIX_EMAIL) {
                     currentPredicate = new EmailContainsKeywordPredicate(arg);
                 } else if (p == PREFIX_ADDRESS) {
                     currentPredicate = new AddressContainsKeywordPredicate(arg);
                 } else if (p == PREFIX_TAG) {
-                    currentPredicate = new TagContainsKeywordsPredicate(arg);
+                    currentPredicate = new TagContainsKeywordPredicate(arg);
                 }
                 assert currentPredicate != null;
                 if (predicate == null) {
