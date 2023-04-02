@@ -298,6 +298,8 @@ Format: `:f [-w "<keywords>"] [-d --before/after <date>] [-s <status>] [-p <prio
 
 Example of command
 1. `:f -w "quiz"` filter for tasks with "quiz" as keyword
+
+
 2. `:f -d --before 2023-04-05` filter for tasks before 2023-04-05
 3. `:f -s 1` filter for tasks with status of in_progress
 4. `:f -p 1` filter for tasks with priority of urgent
