@@ -33,9 +33,11 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
   * [**Person List**](#person-list)
   * [**Meet Up Recommendation Panel**](#meet-up-recommendation-panel)
   * [**Profile Panel**](#profile-panel)
-  * [**Command Box**](#command-box)
-  * [**Command Response**](#command-response)
   * [**Scheduled Meet Up Panel**](#scheduled-meet-up-panel)
+  * [**Command Response Box**](#command-response-box)
+  * [**Command Box**](#command-box)
+  * [**Help Button**](#help-button)
+  * [**Exit Button**](#exit-button)
 * [**Set Your Own Profile**](#set-your-own-profile)
 * [**Commands**](#commands)
   * [**How to interpret the command format**](#how-to-interpret-the-command-format)
@@ -144,6 +146,14 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
 After a few seconds, a GUI resembling the one shown below will appear. Please take note that the application already includes some sample data.<br>
    ![Ui](images/Ui.png)
 <center>Figure 1: The GUI upon start up.</center>
+
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning!**
+`EduMate` will create a `data` folder which contains the data saved by `EduMate`. It is essential that you do not modify the contents
+of the `data` folder so as not to corrupt your data and result in an empty application by default.
+
+</div>
 
 ### Try it out! (Recommended)
 
@@ -317,6 +327,25 @@ You can now **save time and increase your productivity!**<br>
 That way, you can reuse commands from your previous session with ease!
 
 </div>
+
+### Help Button
+
+Should you need help with command syntax whilst using `EduMate`, you may click the Help Button located at the bottom left of `EduMate` ([see
+ Breakdown of `EduMate`'s UI](#breakdown-of-edumates-ui)).
+
+Clicking the Help Button is an alternative to the `help` command.
+
+Both commands will result in a Help Window appearing which shows the various command syntax used by  `EduMate`.
+
+<img src="images/UG_ui_pictures/HelpWindow.svg" style="width:40%;margin:1% 1% 1% 30%">
+
+<center>Diagram 12: Help Window of <code>EduMate</code></center>
+
+### Exit Button
+
+It is a faster alternative than typing the `exit` command into the Command Box. Clicking the Exit Button will cause `EduMate`
+to quit the application.
+
 [Return to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
