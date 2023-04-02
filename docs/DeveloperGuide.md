@@ -400,6 +400,10 @@ The following sequence diagram depicts a `find` command execution for finding a 
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
+Below is an activity diagram that showcase the event that occurs when find command is executed.
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
 The following is a description of the code execution flow:
 
 1. `FindCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `FindCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
@@ -461,19 +465,21 @@ Similar to the `cd` command which changes the current working directory in Unix-
 
 Instead, the navigation system will inject /mod /lec arguments into the user's command. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
 
-#### Usage scenario
+**Usage scenario**
 
 Given below is an example usage scenario and how the navigation system behaves at each step.
 
-Step 1. The user launches the application. The Navigation system is initialized with the root context which has no module code or lecture name.
+Steps:
 
-Step 2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command.
+1. The user launches the application. The Navigation system is initialized with the root context which has no module code or lecture name.
 
-![FindActivityDiagram](images/NavSequenceDiagram0.png)
+2. The user wants to navigate to the module CS2040S and executes the `nav CS2040S` command.
 
-Step 3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
+   ![FindActivityDiagram](images/NavSequenceDiagram0.png)
 
-Step 4. The user wants to list the videos of the CS2040S/Week 1 context and executes `list` command.
+3. The user wants to navigate to the lecture Week 1 in the CS2040S context and executes the `nav Week 1` command.
+
+4. The user wants to list the videos of the CS2040S/Week 1 context and executes `list` command.
 
 ### Tag module, lecture, and video feature
 
@@ -500,11 +506,11 @@ The following is a description of the code execution flow:
    below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
    A `ParseException` will be thrown, and the command will not be executed.
 
-| Intent      | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
-| ----------- | ----------------- | ----------------- | ----------------- | ------------------ |
-| Tag Module  | No                | No                | No                | Yes                |
-| Tag Lecture | Optional          | No                | No                | Yes                |
-| Tag Video   | Optional          | Optional          | No                | Yes                |
+   | Intent      | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
+   | ----------- | ----------------- | ----------------- | ----------------- | ------------------ |
+   | Tag Module  | No                | No                | No                | Yes                |
+   | Tag Lecture | Optional          | No                | No                | Yes                |
+   | Tag Video   | Optional          | Optional          | No                | Yes                |
 
 3. A set of tags to add is then determined from the user's input. Afterwards, The command creates an
    appropriate `TagCommand` object and returns it to the called.
@@ -538,11 +544,11 @@ The following is a description of the code execution flow:
    below. Any combination of inputs that do not satisfy the command's required prefixes will be considered an error.
    A `ParseException` will be thrown, and the command will not be executed.
 
-| Intent        | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
-| ------------- | ----------------- | ----------------- | ----------------- | ------------------ |
-| Untag Module  | No                | No                | No                | Yes                |
-| Untag Lecture | Optional          | No                | No                | Yes                |
-| Untag Video   | Optional          | Optional          | No                | Yes                |
+   | Intent        | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
+   | ------------- | ----------------- | ----------------- | ----------------- | ------------------ |
+   | Untag Module  | No                | No                | No                | Yes                |
+   | Untag Lecture | Optional          | No                | No                | Yes                |
+   | Untag Video   | Optional          | Optional          | No                | Yes                |
 
 3. A set of tags to remove is then determined from the user's input. Afterwards, The command creates an
    appropriate `UntagCommand` object and returns it to the called.
@@ -552,8 +558,6 @@ The following is a description of the code execution flow:
    user input that doesn't exist in the module, lecture, or video.
 5. If no errors occur (no exceptions are thrown), the command succeeds in removing the tags from the module, lecture,
    or video.
-
-### Edit tag feature
 
 ### \[Proposed\] Undo/redo feature
 
