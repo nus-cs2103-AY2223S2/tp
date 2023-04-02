@@ -1,17 +1,17 @@
 # User Guide
 
-* Quick Start
-* Features
-  * Adding a person: `add`
-  * Deleting a person: `delete`
-  * Editing a person: `edit`
-  * Locating persons by keywords: `find`
-  * Listing all contacts: `list`
-  * Viewing help: `help`
-  * Add an image for contacts: `add-image`
-  * Delete an image for contacts: `delete-image`
-  * Quick import admin contacts: `import`
-* Command summary
+* [Quick Start](#quick-start)
+* [Features](#features)
+  * [Add user contacts](#add-user-contacts-add)
+  * [Delete user contacts](#delete-user-contacts-delete)
+  * [Edit user contacts](#edit-user-contacts-edit)
+  * [Locating persons by keywords](#locating-persons-by-keywords-find)
+  * [Listing all contacts](#listing-all-contacts-list)
+  * [Help command](#help-command-help)
+  * [Add an image for contacts](#add-an-image-for-contacts-add-image)
+  * [Delete an image for contacts](#delete-an-image-for-contacts-delete-image)
+  * [Quick import admin contacts](#quick-import-for-admin-contacts-import)
+* [Command summary](#command-summary)
 
 ---
 
@@ -63,10 +63,9 @@ Format: `delete INDEX`
 * Show contact details specified by `INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index *must* be a positive integer 1, 2, 3, …
-* Extra: Will prompt user to re-confirm again before the contact is erased from BookFace
 
   Example:
-* `delete 2` Brings up the 2nd person in the address book and prompt user to confirm before deleting.
+* `delete 2` deletes the second person in the list of contacts.
 
 ### Edit user contacts: `edit`
 
@@ -86,15 +85,15 @@ Format: `edit INDEX [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [
 Finds persons whose contact details contain any of the given keywords based on the
 prefix specified.
 
-Format: `find [PREFIX]/KEYWORD [MORE [PREFIX]/KEYWORD]...`
+Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...`
 
 * The search is case-insensitive e.g. `hans` will match `Hans`
 * The search will filter by the `PREFIX` provided, e.g. `n/` searches through the
   names of the contacts, `p/` searches through the phone number of the contacts, `t/`
   searches through the tags of the contact, etc...
 * Each prefix must be followed by one and only one keyword. See below for example usage.
-* The search is done via the logical ***AND*** operator, i.e. `find n/john t/cs` will return
-  the list of contacts where his name is `john` and has a tag that contains `cs`.
+* The search is done via the logical ***AND*** operator, i.e., `find n/john t/cs` will return
+  the list of contacts where his name is `john` **and** has a tag that contains `cs`.
 * The following shows a list of allowed prefixes:
   1. `n/` which represents the name
   2. `s/` which represents the status
@@ -121,7 +120,7 @@ Shows a link to the user guide to help new users get familiar with the commands 
 
 Format: `help`
 
-### Add an image for contacts
+### Add an image for contacts: `add-image`
 
 Add a contact image for each contact.
 
@@ -142,7 +141,7 @@ Examples:
 * `list` followed by `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person in the address book
 
 
-### Delete an Image for contacts
+### Delete an Image for contacts: `delete-image`
 
 Delete the image of a contact.
 
@@ -174,16 +173,16 @@ Example:
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                                                                                        |
-|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action           | Format, Examples                                                                                                                                                                                                                    |
+|------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**          | `add [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]…​` <br> e.g., `add n/James Ho s/Y2 Science p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ct/soccer mt/cs1010s` |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                     |
-| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                             |
-| **Find**         | `find [PREFIX]/Keyword [MORE [PREFIX]/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                              |
-| **List**         | `list`                                                                                                                                                                                                                                  |
-| **Help**         | `help`                                                                                                                                                                                                                                  |
-| **Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                                    |
-| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                                       |                                                                                                                       |
-| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                                 |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                 |
+| **Edit**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                         |
+| **Find**         | `find PREFIX/Keyword [MORE PREFIX/KEYWORD]...`<br> e.g., `find n/amy t/cs2103 e/gmail`                                                                                                                                              |
+| **List**         | `list`                                                                                                                                                                                                                              |
+| **Help**         | `help`                                                                                                                                                                                                                              |
+| **Add-Image**    | `add-image INDEX ai/[PATH-TO-IMAGE]` <br> e.g., `add-image 2 ai/C:/Users/user/Downloads/weekiat.png`                                                                                                                                |
+| **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                                   |                                                                                                                       |
+| **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                             |
 
 
