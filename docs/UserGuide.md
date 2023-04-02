@@ -337,6 +337,7 @@ Sort job listings by the field specified by the user and display the sorted list
 - The `title` field sorts the listings in alphabetical order of their title fields.
 - The `description` field sorts the listings in alphabetical order of their listings.
 - The `applicants` field sorts the listings in increasing number of applicants.
+- The `none` field resets the sorter and stop sorting the listings.
 - Note that if more than one field is provided, the last field will be taken into consideration.
 
 **Examples:**
