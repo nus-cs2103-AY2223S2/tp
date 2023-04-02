@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -166,12 +165,9 @@ public class UniqueEventList implements Iterable<Event> {
      * Updates all events to their next earliest occurence.
      */
     public void updateAllDateTimes() {
-        List<Event> eventsReplacements = new LinkedList<>();
-        for (Event event : this.internalList) {
-            eventsReplacements.add(event.updateDateTime());
-        }
-        this.internalList.clear();
-        this.internalList.addAll(eventsReplacements);
+        internalList.setAll(internalList.stream()
+                .map(Event::updateDateTime)
+                .collect(Collectors.toList()));
     }
 
     /**
