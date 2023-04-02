@@ -19,7 +19,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - [Find](#find)
   - [Clear](#clear)
 - [Command Syntax](#command-syntax)
-- [Argument Validity](#argument-validity)
+- [Argument Formats](#argument-formats)
 - [Navigation](#navigation)
 - [Features](#features)
   - [Navigate to the Root Context](#navigate-to-the-root-context)
@@ -161,17 +161,23 @@ Refer to the [Features](#features) below for details of each command.
 
 ---
 
-## Argument Validity
+## Argument Formats
+
 - **Module Code**\
   Module codes should begin with uppercase alphabet characters, followed by numeric characters, optionally followed by more uppercase alphabet characters.
+
 - **Module Name**\
   Module names should only contain alphanumeric characters and spaces, and it can be blank.
+
 - **Lecture Name**\
   Lecture names should only contain alphanumeric characters and spaces, and it should not be blank.
+
 - **Video Name**\
   Video names should only contain alphanumeric characters and spaces, and it should not be blank.
+
 - **Tag**\
   Tags should only contain alphanumeric characters, and it should not be blank.
+
 - **Timestamp**\
   Timestamp should be of the format `HH:mm:ss` where `HH` is the number of hours, `mm` is the number of minutes, and `ss` is number of seconds, each integer being exactly 2 digits long.
 
@@ -266,11 +272,11 @@ Add a module to Le Tracker.
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module
   - Must be unique among the module code of the modules in Le Tracker
-  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid module code (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`module_name`</span> : The name of the module
-  - Must be a valid module name (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid module name (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the module
-  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - All tags must be valid (refer to [Argument Formats](#argument-formats) for more information)
   - Repeated tags (if any) will be ignored
 
 Examples:
@@ -286,13 +292,13 @@ Add a lecture to a module.
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
   - Must be unique among the names of the lectures belonging to the module specified in `module_code`
   - Uniqueness is case sensitive
-  - Must be a valid lecture name (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid lecture name (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to add the lecture to
   - Must belong to an existing module in Le Tracker
-  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid module code (refer to [Argument Formats](#argument-formats) for more information)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the lecture
-  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - All tags must be valid (refer to [Argument Formats](#argument-formats) for more information)
   - Repeated tags (if any) will be ignored
 
 Examples:
@@ -309,20 +315,20 @@ Add a video to a lecture.
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video
   - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
   - Uniqueness is case sensitive
-  - Must be a valid video name (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid video name (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module containing the lecture to add the video to
   - Must belong to an existing module in Le Tracker
-  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid module code (refer to [Argument Formats](#argument-formats) for more information)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to add the video to
   - Must belong to an existing lecture in the module specified in `module_code`
-  - Must be a valid lecture name (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid lecture name (refer to [Argument Formats](#argument-formats) for more information)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 - <span style="color:#e46c0a">`timestamp`</span> : The timestamp of the video where the user last stopped watching at
-  - Must be a valid timestamp (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid timestamp (refer to [Argument Formats](#argument-formats) for more information)
   - Defaults to `00:00:00` if not specified
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the video
-  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - All tags must be valid (refer to [Argument Formats](#argument-formats) for more information)
   - Repeated tags (if any) will be ignored
 
 Examples:
@@ -337,14 +343,14 @@ Edit the details of a module.
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to be edited
   - Must belong to an existing module in Le Tracker
-  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid module code (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`updated_code`</span> : The updated module code
   - Must be unique among the module code of the modules in Le Tracker
-  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid module code (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`updated_name`</span> : The updated module name
-  - Must be a valid module name (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid module name (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags that will replace the current tags applied to the module
-  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - All tags must be valid (refer to [Argument Formats](#argument-formats) for more information)
   - Repeated tags (if any) will be ignored
 
 Examples:
@@ -359,16 +365,16 @@ Edit the details of a lecture.
 
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be edited
   - Must belong to a lecture that exist within the module specified in `module_code`
-  - Must be a valid lecture name (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid lecture name (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture to be edited
   - Must belong to an existing module in Le Tracker
-  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid module code (refer to [Argument Formats](#argument-formats) for more information)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 - <span style="color:#e46c0a">`updated_name`</span> : The updated lecture name
   - Must be unique among the names of the lectures belonging to the module specified in `module_code`
-  - Must be a valid lecture name (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid lecture name (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags that will replace the current tags applied to the lecture
-  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - All tags must be valid (refer to [Argument Formats](#argument-formats) for more information)
   - Repeated tags (if any) will be ignored
 
 Examples:
@@ -387,22 +393,22 @@ Edit the details of a video.
   - If this argument is specified, then `/watch` should not be specified
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video to be edited
   - Must belong to a video that exist within the lecture specified in `lecture_name`
-  - Must be a valid video name (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid video name (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module containing the lecture which the video to be edited belongs to
   - Must belong to an existing module in Le Tracker
-  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid module code (refer to [Argument Formats](#argument-formats) for more information)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video to be edited
   - Must belong to an existing lecture in the module specified in `module_code`
-  - Must be a valid lecture name (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid lecture name (refer to [Argument Formats](#argument-formats) for more information)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 - <span style="color:#e46c0a">`updated_name`</span> : The updated video name
   - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
-  - Must be a valid video name (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid video name (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`updated_timestamp`</span> : The updated timestamp of the video where the user last stopped watching at
-  - Must be a valid timestamp (refer to [Argument Validity](#argument-validity) for more information)
+  - Must be a valid timestamp (refer to [Argument Formats](#argument-formats) for more information)
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags that will replace the current tags applied to the lecture
-  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - All tags must be valid (refer to [Argument Formats](#argument-formats) for more information)
   - Repeated tags (if any) will be ignored
 
 Examples:
