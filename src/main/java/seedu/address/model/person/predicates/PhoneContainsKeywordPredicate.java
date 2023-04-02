@@ -8,10 +8,10 @@ import seedu.address.model.person.Person;
 /**
  * Tests that a {@code Person}'s {@code Phone} matches any of the keywords given.
  */
-public class PhoneContainsKeywordsPredicate implements Predicate<Person> {
+public class PhoneContainsKeywordPredicate implements Predicate<Person> {
     private final String keyword;
 
-    public PhoneContainsKeywordsPredicate(String keyword) {
+    public PhoneContainsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
     public boolean test(Person person) {
@@ -21,8 +21,8 @@ public class PhoneContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof PhoneContainsKeywordsPredicate // instanceof handles nulls
-            && keyword.equals(((PhoneContainsKeywordsPredicate) other).keyword)); // state check
+            || (other instanceof PhoneContainsKeywordPredicate // instanceof handles nulls
+            && keyword.equals(((PhoneContainsKeywordPredicate) other).keyword)); // state check
     }
 
 }
