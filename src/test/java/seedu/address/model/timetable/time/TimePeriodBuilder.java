@@ -1,13 +1,17 @@
 package seedu.address.model.timetable.time;
 
+import static seedu.address.model.timetable.util.TypicalTime.ONE_PM;
+import static seedu.address.model.timetable.util.TypicalTime.TEN_AM;
+
 import org.joda.time.LocalTime;
+
 import seedu.address.model.time.Day;
 import seedu.address.model.time.TimeBlock;
 import seedu.address.model.time.TimePeriod;
 
-import static seedu.address.model.timetable.util.TypicalTime.ONE_PM;
-import static seedu.address.model.timetable.util.TypicalTime.TEN_AM;
-
+/**
+ * Creates Time Periods.
+ */
 public class TimePeriodBuilder {
     public static final LocalTime DEFAULT_START_TIME = TEN_AM;
     public static final LocalTime DEFAULT_END_TIME = ONE_PM;

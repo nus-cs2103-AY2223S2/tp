@@ -7,6 +7,9 @@ import seedu.address.model.location.Location;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.time.TimePeriod;
 
+/**
+ * Creates a recommendation.
+ */
 public class RecommendationBuilder {
     private static final Location DEFAULT_LOCATION = STEVENS;
     private static final TimePeriod DEFAULT_TIME_PERIOD = TIME_PERIOD;

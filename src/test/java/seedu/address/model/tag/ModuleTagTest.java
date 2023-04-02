@@ -10,9 +10,9 @@ import static seedu.address.model.timetable.util.TypicalLesson.CS2103T_WED_2PM_1
 import static seedu.address.model.timetable.util.TypicalLesson.CS2105_THU_4PM_2HR;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.List;
+
+import org.junit.jupiter.api.Test;
 
 public class ModuleTagTest {
     private static final String MODULE_TAG_STRING = "CS2103T";
