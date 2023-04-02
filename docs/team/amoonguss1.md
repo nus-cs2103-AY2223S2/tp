@@ -20,8 +20,9 @@ I worked on the backend mainly and documentation. I was mainly in charge of impl
 
 * **New Feature**: Added the `salary` parameter for `add` command.
   * What it does: User can input `salary` for the `roles`.
-  * Justification: The addition of `salary` is important for any applicant looking to apply for internships/jobs    
-    and is crucial information in job hunting.
+  * Justification: The addition of `salary` is important for any applicant looking to apply for internships/jobs,    
+    providing them with the information they need to make more informed
+    decisions about their job search.
   * Highlights: TechTrack users can now add salaries of respective roles. `salary` must be
     integers/float values and their values must not start with a 0.
 
@@ -34,50 +35,49 @@ I worked on the backend mainly and documentation. I was mainly in charge of impl
     The keyword entered is not case-sensitive.
 
 
-* **Implementation**: Add a new `OrderParser` class to allow order in asc/desc of sorting commands.
-  * What it does: Allow developers to easy parse the sorting requirement for their sorting commands.
-  * Justification: The order needs to be either ascending or descending and makes it more OOP by creating a Parser
-    class.
-  * Highlights: OOP design to allow more sorting features to develop in the future by accessing this class.
+* **Implementation**: Add a new `CompanyContainsKeywordPredicate` class to check for keywords in the `company` field.
+  * What it does: Allow developers to check for equivalence of keywords and testing.
+  * Justification: Follows the original Name command format of AB3 where the Name of the role is filtered
+    by `NameContainsKeywordPredicate`. 
+  * Highlights: Allows for a separate, unique predicate checking on keywords parsed to the `Company` command.
 
 
-* **Refactoring**: Refactored the `address` package to the `roles` package.
-  * What it does: The package is changed accordingly to the needs of the application.
-  * Justification: Roles fits towards TechTrack instead of address and would be clearer for future developments.
+* **Refactoring**: Refactored all instances of `Person` to `role` in all the files.
+  * What it does: Renamed all methods, classes and variables that contain `Person` or `person`
+    to `role`.
+  * Justification: Roles fits towards TechTrack instead of person in AB3 and would be clearer for future developments.
   * Highlights: Refactored AB3 code and tests.
 
 
 * **Testing**: Tests new implementation and class created.
   * What it does: Allow the code to be covered by more tests and making it more robust.
-  * Justification: New classes such as `OrderParser`, `Deadline` and `DeadlineCommand` needs to be added to allow the
-    sorting of salary and deadline. Tests need to be written to ensure the accuracy of it by writing assertion.
+  * Justification: New classes such as `CompanyCommandParser`, `Salary` and `CompanyCommand` have test cases in their
+    respective test classes. These tests are written to ensure the reliability of these classes.
   * Highlights: Better code coverage and robustness of TechTrack.
 
 ## Enhancements
 
-* Implementation of sorting especially for salary.
-* Allow the user to enter the deadline for adding of roles.
-* Enhanced the salary restriction to make it more intuitive for the user.
-* Add welcome message on startup to let the user know the avaliable commands.
+* Implementation of `Salary` in TechTrack.
+* Implementation of `CompanyCommand` where users can filter for various companies.
+* ...
 
 ## Bug Fixes
-
-* Fixed a bug where the left padding of salary is allowed, E.g.: $00001.
-* Fixed a bug where zero salary is allowed.
-* Fixed a bug where the sorting after searching commands such as tag, name deletes the original list in storage.
+* Fixed UG bugs. (missing commands in command summary)
+* ...
 
 * **Documentation:**
   * User Guide:
-    * Wrote to specify that add comamnd will take the latter if mutliple similar parameters is given.
-    * Wrote and provided the screenshots of salary asc/desc command.
+    * Added the `$/` parameter for the `salary` field in the `add` command
+    * Wrote and provided the screenshots of `company` command.
   * Developer Guide (TO BE ADDED):
-    * Wrote the implementation of SalaryCommand.
-    * Wrote the alternatives of SalaryCommand.
-    * Constructed the sequence diagram of SalaryCommand.
+    * Wrote the implementation of CompanyCommand.
+    * Wrote the alternatives of CompanyCommand.
+    * Constructed the sequence diagram of CompanyCommand.
+    * Added Use cases for TechTrack v2 commands. 
 
 ## Links to Contributions
 
-[RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=pzaiming&breakdown=true)
-[Commit History](https://github.com/AY2223S2-CS2103-W16-2/tp/commits?author=pzaiming)
-[Pull Requests](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+author%3Apzaiming)
-[Issues](https://github.com/AY2223S2-CS2103-W16-2/tp/issues?q=is%3Aissue+assignee%3Apzaiming)
+[RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=amoonguss1&breakdown=true)
+[Commit History](https://github.com/AY2223S2-CS2103-W16-2/tp/commits?author=amoonguss1)
+[Pull Requests](https://github.com/AY2223S2-CS2103-W16-2/tp/pulls?q=is%3Apr+author%3Aamoonguss1)
+[Issues](https://github.com/AY2223S2-CS2103-W16-2/tp/issues?q=is%3Aissue+assignee%3Aamoonguss1)
