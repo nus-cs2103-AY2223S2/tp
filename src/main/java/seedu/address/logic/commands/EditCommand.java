@@ -35,12 +35,12 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_APPLICANT + "APPLICANT]..."
-            + "[" + PREFIX_PLATFORM + "PLATFORM]..."
+            + "[" + PREFIX_APPLICANT + "APPLICANT]... "
+            + "[" + PREFIX_PLATFORM + "PLATFORM]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TITLE + "Cool job title "
             + PREFIX_APPLICANT + "John "
-            + PREFIX_APPLICANT + "Sam"
+            + PREFIX_APPLICANT + "Sam "
             + PREFIX_PLATFORM + "LinkedIn";
 
     public static final String MESSAGE_EDIT_LISTING_SUCCESS = "Edited listing:%1$s";
