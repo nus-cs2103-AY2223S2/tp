@@ -285,15 +285,15 @@ Condition
 
 Filter the parameters as specified by the flag.
 
-Format: `:f [-w <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]... `
+Format: `:f [-w "<keywords>"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]... `
 
-| Parameter    | Detail                                          | Example                                        |
-| ------------ | ----------------------------------------------- | ---------------------------------------------- |
-| `"<title>"`  | Title of task to filter                         | `"CS2103T UG"`                                 |
-| `<date>`     | Date of the task to filter before or after      | `2023-03-31`                                   |
-| `<status>`   | Status of task to filter                        | `2`                                            |
-| `<priority>` | Priority level of task to filter                | `1`                                            |
-| `<label>`    | Label of task to filter                         | cs2103t(assuming the task list has this label) |
+| Parameter       | Detail                                          | Example                                        |
+| --------------- | ----------------------------------------------- | ---------------------------------------------- |
+| `"<keywords>"`  | Keywords to filter                              | `"CS2103T UG"`                                 |
+| `<date>`        | Date of the task to filter before or after      | `2023-03-31`                                   |
+| `<status>`      | Status of task to filter                        | `2`                                            |
+| `<priority>`    | Priority level of task to filter                | `1`                                            |
+| `<label>`       | Label of task to filter                         | cs2103t(assuming the task list has this label) |
 
 
 Example of command
@@ -378,7 +378,7 @@ _Details coming soon in v2.0 ..._
 | Delete task            | `:d [index]`                                                                                                      |
 | Delete parameter       | `:d <task_index> [-d] [-l <label_name>]`                                                                          |
 | Edit parameter         | `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>] ` |
-| Filter                 | `:f [-w <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`                        |
+| Filter                 | `:f [-w "<keyword>"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`                        |
 | Sort                   | `:s [-t] [-d] [-p] `                                                                                              |
 | Exit the application   | `:wq!`, `:q!`, `:wq`, `:q`                                                                                        |
 
