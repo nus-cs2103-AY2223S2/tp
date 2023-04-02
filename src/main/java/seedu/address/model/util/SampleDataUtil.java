@@ -38,10 +38,10 @@ public class SampleDataUtil {
                 getTagSet("Investment"), EMPTYMEETINGLIST),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("Debt Management"), EMPTYMEETINGLIST),
+                getTagSet("DebtManagement"), EMPTYMEETINGLIST),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("Asset Management", "Investment"), EMPTYMEETINGLIST)
+                getTagSet("AssetManagement", "Investment"), EMPTYMEETINGLIST)
         };
     }
 
