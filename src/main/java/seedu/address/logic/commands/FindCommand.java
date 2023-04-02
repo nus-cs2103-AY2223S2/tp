@@ -16,7 +16,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all listings whose titles contain any of "
             + "the specified keywords (case-insensitive).\n\t  Displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "chicken rice";
+            + "Example: " + COMMAND_WORD + " chicken rice";
 
     private final TitleContainsKeywordsPredicate predicate;
 

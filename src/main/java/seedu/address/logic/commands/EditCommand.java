@@ -31,7 +31,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a listing identified "
             + "by the index used in the displayed listing book.\n"
-            + "Existing values will be overwritten by the input values.\n"
+            + "      Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "

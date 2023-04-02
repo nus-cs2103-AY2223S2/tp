@@ -146,7 +146,7 @@ Adds a listing to the listing book.
 
 **Format:** `add t/TITLE d/DESCRIPTION [a/APPLICANT]...`
 
-**Tips:**
+**Notes:**
 
 - A listing can have any number of applicants (including 0)
 
@@ -186,7 +186,7 @@ Edits the details of a job listing.
 
 **Format:** `edit NUMBER t/TITLE d/DESCRIPTION [a/APPLICANTS...]`
 
-**Tips:**
+**Notes:**
 
 - Ensure that `NUMBER` is valid (i.e. it is non-negative and not greater than the number of tasks) or an error will occur!
 - Only the details included in the command will be edited. E.g. if the command entered is:
@@ -220,7 +220,7 @@ messages shown below will be displayed.
 ```ignorelang
 Invalid command format!
 edit: Edits a listing identified by the index used in the displayed listing book.
-Existing values will be overwritten by the input values.
+      Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer) [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]...
 Example: edit 1 t/Cool job title a/John a/Sam
 ```
@@ -239,7 +239,7 @@ Deletes a job listing from the listing book.
 
 **Format:** `delete NUMBER`
 
-**Tips:**
+**Notes:**
 
 - Ensure that `NUMBER` is valid (ie. it is non-negative and not greater than the number of tasks) or an error will occur!
 
@@ -282,7 +282,7 @@ Finds job listings whose titles contain any of the given keywords.
 
 **Format:** `find KEYWORD [MORE_KEYWORDS]`
 
-**Tips:**
+**Notes:**
 
 - The search is case-insensitive. eg. `software` will match `Software`
 - The order of the keywords does not matter. e.g. `Software Developer` will match `Developer Software`
@@ -332,8 +332,9 @@ Sort job listings by the field specified by the user and display the sorted list
 
 - The possible fields are: `title` , `description` , `applicants`
 
-**Tips:**
+**Notes:**
 
+- The sorting logic will always be applied until it is overridden by a `sort f/none` command.
 - The `title` field sorts the listings in alphabetical order of their title fields.
 - The `description` field sorts the listings in alphabetical order of their listings.
 - The `applicants` field sorts the listings in increasing number of applicants.
@@ -395,7 +396,7 @@ Sort job listings by the field specified by the user and display the sorted list
 
 **Format:** `filter attribute/[POSSIBLE_FIELDS] by/[SOME_VALUE]`
 
-**Tips:**
+**Notes:**
 
 - The possible fields are: `expiry date` , `num_of_applicants` , `...`
 - Fields have to be numerical
