@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PowerConnectParser" as PowerConnectParser LOGIC_COLOR
+participant ":ParentCommandParser" as ParentCommandParser LOGIC_COLOR
+participant "<<class>>\n ParserUtil" as ParserUtil LOGIC_COLOR
+participant ":ParentEditCommand" as ParentEditCommand LOGIC_COLOR
+participant "newParent:Parent" as Parent LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("parent edit n/Tan Ah Niu pnP/91234567 npnP/65656565")
+activate LogicManager
+
+LogicManager -> PowerConnectParser : parseCommand("parent edit n/Tan Ah Niu pnP/91234567 npnP/65656565")
+activate PowerConnectParser
+create ParentCommandParser
+
+PowerConnectParser -> ParentCommandParser :
+activate ParentCommandParser
+
+ParentCommandParser --> PowerConnectParser:
+deactivate ParentCommandParser
+
+PowerConnectParser -> ParentCommandParser: parse("edit n/Tan Ah Niu pnP/91234567 npnP/65656565")
+activate ParentCommandParser
+
+ParentCommandParser -> ParentCommandParser: editCommand(ArgumentMultimap)
+activate ParentCommandParser
+create ParentEditCommand
+
+ref over ParentCommandParser, ParserUtil
+    get parent particulars
+
+end ref
+
+ParentCommandParser -> ParentEditCommand: ParentEditCommand(...)
+activate ParentEditCommand
+
+ParentEditCommand --> ParentCommandParser:
+deactivate ParentEditCommand
+
+ParentCommandParser -> ParentCommandParser
+deactivate ParentCommandParser
+
+ParentCommandParser -> PowerConnectParser
+deactivate ParentCommandParser
+
+PowerConnectParser -> LogicManager
+deactivate PowerConnectParser
+
+LogicManager -> ParentEditCommand: execute(Model)
+activate ParentEditCommand
+
+ParentEditCommand -> ModelManager: getFilteredParentList()
+activate ModelManager
+
+ModelManager --> ParentEditCommand
+deactivate ModelManager
+create Parent
+
+ParentEditCommand -> Parent
+activate Parent
+
+Parent --> ParentEditCommand
+deactivate Parent
+
+ParentEditCommand -> ParentEditCommand: editParent(Parent, newParent)
+
+ParentEditCommand -> ModelManager: setParent(Parent, newParent)
+activate ModelManager
+
+ModelManager --> ParentEditCommand
+deactivate ModelManager
+
+ParentEditCommand --> LogicManager:
+deactivate ParentEditCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
