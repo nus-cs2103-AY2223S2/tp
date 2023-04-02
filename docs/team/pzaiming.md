@@ -54,10 +54,10 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 
 ## Enhancements
 
-* Implementation of sorting especially for salary.
+* Implementation of sorting for salary.
 * Allow the user to enter the deadline for adding of roles.
 * Enhanced the salary restriction to make it more intuitive for the user.
-* Add welcome message on startup to let the user know the avaliable commands.
+* Add welcome message on startup to let the user know the available commands.
 
 ## Bug Fixes
 
@@ -67,7 +67,7 @@ I worked on the backend and documentation. I was mainly in charge of implementat
 
 * **Documentation:**
     * User Guide:
-        * Wrote to specify that add comamnd will take the latter if mutliple similar parameters is given.
+        * Wrote to specify that add command will take the latter if multiple similar parameters is given.
         * Wrote and provided the screenshots of salary asc/desc command.
     * Developer Guide (TO BE ADDED):
         * Wrote the implementation of SalaryCommand.
