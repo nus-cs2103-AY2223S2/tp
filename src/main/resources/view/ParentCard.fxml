@@ -38,8 +38,8 @@
                 <Label fx:id="address" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$address" />
             </HBox>
             <HBox>
-                <Text text="Birthdate:    " />
-                <Label fx:id="birthdate" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$birthdate" />
+                <Text text="Age:    " />
+                <Label fx:id="age" style="-fx-text-fill: black;" styleClass="cell_small_label" text="\$age" />
             </HBox>
 
             <HBox>

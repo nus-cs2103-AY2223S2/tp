@@ -6,12 +6,13 @@ package seedu.address.logic.parser;
 public class CliSyntax {
     /* Prefix definitions */
     public static final Prefix PREFIX_ADD = new Prefix("add");
+    public static final Prefix PREFIX_AGE = new Prefix("ageS/");
     public static final Prefix PREFIX_DELETE = new Prefix("delete");
     public static final Prefix PREFIX_EDIT = new Prefix("edit");
     public static final Prefix PREFIX_GRADE = new Prefix("grade");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_PARENTBIRTHDATE = new Prefix("bdP/");
-    public static final Prefix PREFIX_STUDENTBIRTHDATE = new Prefix("bdS/");
+    public static final Prefix PREFIX_PARENTAGE = new Prefix("ageP/");
+    public static final Prefix PREFIX_STUDENTAGE = new Prefix("ageS/");
     public static final Prefix PREFIX_ATTENDANCE = new Prefix("att/");
     public static final Prefix PREFIX_CCA = new Prefix("cca/");
     public static final Prefix PREFIX_COMMENT = new Prefix("com/");

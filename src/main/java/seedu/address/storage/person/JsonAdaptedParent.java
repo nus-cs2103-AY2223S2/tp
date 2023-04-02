@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Birthdate;
+import seedu.address.model.person.Age;
 import seedu.address.model.person.Image;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.parent.Parent;
@@ -50,7 +50,7 @@ public class JsonAdaptedParent extends JsonAdaptedPerson {
      */
     public JsonAdaptedParent(Parent parent) {
         super(parent);
-        this.age = parent.getBirthdate().value;
+        this.age = parent.getAge().value;
         this.image = parent.getImage().value;
         for (Student student : parent.getStudents()) {
             children.add(new JsonAdaptedStudent(student));
@@ -69,10 +69,10 @@ public class JsonAdaptedParent extends JsonAdaptedPerson {
         if (age == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Index Number"));
         }
-        if (!Birthdate.isValidBirthdate(age)) {
+        if (!Age.isValidAge(age)) {
             throw new IllegalValueException(IndexNumber.MESSAGE_CONSTRAINTS);
         }
-        final Birthdate modelBirthdate = new Birthdate(age);
+        final Age modelAge = new Age(age);
 
         if (image == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Index Number"));
@@ -86,7 +86,7 @@ public class JsonAdaptedParent extends JsonAdaptedPerson {
         for (JsonAdaptedStudent child : children) {
             modelChildren.add(child.toModelType());
         }
-        Parent parent = new Parent(person.getName(), modelBirthdate, modelImage, person.getEmail(), person.getPhone(),
+        Parent parent = new Parent(person.getName(), modelAge, modelImage, person.getEmail(), person.getPhone(),
                 person.getAddress(), person.getTags());
         parent.addStudents(modelChildren);
         return parent;

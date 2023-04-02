@@ -36,8 +36,10 @@ public class StudentGradeCommand extends StudentCommand {
             + ": Adds a grade to a student in the address book. \n"
             + "Parameters: "
             + PREFIX_INDEXNUMBER + "INDEX NUMBER "
+            + "["
             + PREFIX_TEST + "TEST NAME OR "
             + PREFIX_HOMEWORK + "HOMEWORK NAME "
+            + "] "
             + "["
             + PREFIX_SCORE + "SCORE "
             + PREFIX_DEADLINE + "DEADLINE (DD/MM/YYYY) "
@@ -112,7 +114,6 @@ public class StudentGradeCommand extends StudentCommand {
             if (curr.getIndexNumber().equals(indexNumber) && curr.getStudentClass().equals(sc)) {
                 Set<Homework> homeworkSet = curr.getHomework();
                 for (Homework hw : homeworkSet) {
-
                     if (hw.equals(homework)) {
                         throw new CommandException(Messages.MESSAGE_DUPLICATE_HOMEWORK);
                     }
@@ -132,21 +133,16 @@ public class StudentGradeCommand extends StudentCommand {
             Set<Homework> homeworkSet = studentToEdit.getHomework();
             Set<Homework> homeworkSetReplaced = new HashSet<>();
             homeworkSetReplaced.addAll(homeworkSet);
-            int weightage = 0;
             for (Homework hw:homeworkSetReplaced) {
                 if (hw.getName().equals("Insert student homework here!")) {
                     homeworkSetReplaced.remove(hw);
                     break;
                 }
-                weightage += hw.getWeightage();
-            }
-            if (weightage + homework.getWeightage() > 100) {
-                throw new CommandException(Messages.MESSAGE_INVALID_WEIGHTAGE);
             }
             homeworkSetReplaced.add(homework);
             Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
                     studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
-                    studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getBirthdate(),
+                    studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
                     studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
                     studentToEdit.getCca(), studentToEdit.getAddress(), studentToEdit.getAttendance(),
                     homeworkSetReplaced, studentToEdit.getTest(), studentToEdit.getTags(), studentToEdit.getComment());
@@ -159,21 +155,16 @@ public class StudentGradeCommand extends StudentCommand {
             Set<Test> testSet = studentToEdit.getTest();
             Set<Test> testSetReplaced = new HashSet<>();
             testSetReplaced.addAll(testSet);
-            int weightage = 0;
             for (Test t: testSetReplaced) {
                 if (t.getName().equals("Insert student test here!")) {
                     testSetReplaced.remove(t);
                     break;
                 }
-                weightage += t.getWeightage();
-            }
-            if (weightage + test.getWeightage() > 100) {
-                throw new CommandException(Messages.MESSAGE_INVALID_WEIGHTAGE);
             }
             testSetReplaced.add(test);
             Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getStudentClass(),
                     studentToEdit.getIndexNumber(), studentToEdit.getSex(), studentToEdit.getParentName(),
-                    studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getBirthdate(),
+                    studentToEdit.getParentNumber(), studentToEdit.getRls(), studentToEdit.getAge(),
                     studentToEdit.getImage(), studentToEdit.getEmail(), studentToEdit.getPhone(),
                     studentToEdit.getCca(), studentToEdit.getAddress(), studentToEdit.getAttendance(),
                     studentToEdit.getHomework(), testSetReplaced, studentToEdit.getTags(), studentToEdit.getComment());
