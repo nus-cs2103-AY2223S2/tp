@@ -16,6 +16,11 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
+/**
+ * @@author bakano98 reused
+ * Solution adapted from
+ * https://github.com/AY2122S2-CS2103T-T13-4/tp/commit/c896383a4b216daac2882ebc1b232684329dc59e
+ */
 
 public class UndoCommandTest {
     private static final StackUndoRedo EMPTY_STACK = new StackUndoRedo();
