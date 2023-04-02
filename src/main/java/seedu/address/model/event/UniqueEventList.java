@@ -3,7 +3,6 @@ package seedu.address.model.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -15,7 +14,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 
 /**
@@ -135,8 +133,8 @@ public class UniqueEventList implements Iterable<Event> {
 
         int zeroBasedIndex = index.getZeroBased();
 
-        if (zeroBasedIndex > this.internalList.size() - 1 || zeroBasedIndex < 0) {
-            throw new PersonNotFoundException();
+        if (zeroBasedIndex > this.internalList.size() - 1) {
+            throw new EventNotFoundException();
         }
 
         Event eventToTagged = this.internalList.get(zeroBasedIndex);

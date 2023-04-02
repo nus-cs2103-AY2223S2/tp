@@ -32,8 +32,8 @@ public class UnTagEventCommand extends Command {
                     PREFIX_PERSON_TO_TAG + "John Doe")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
                     "Note that the given contact name must be exact.");
-    private static final String MESSAGE_SUCCESS = "%1$s is now untagged from event %2$s";
-    private static final String MESSAGE_SUCCESS_2 = "%1$s is already untagged from event %2$s";
+    private static final String MESSAGE_SUCCESS = "%1$s is now untagged from the event indexed %2$s";
+    private static final String MESSAGE_SUCCESS_2 = "%1$s is already untagged from the event indexed %2$s";
     private static final String MESSAGE_INVALID_EVENT = "This event doesn't exist!";
     private static final String MESSAGE_INVALID_PERSON = "This contact doesn't exist!";
 

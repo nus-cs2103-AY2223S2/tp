@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.event.fields.DateTime;
@@ -110,8 +111,9 @@ public abstract class Event {
      * Creates a copy of this event with the {@code person} removed, if they exist.
      */
     public Event deleteTaggedPerson(Person person) {
+        /* Set#remove does not work here as Person#hashCode is stricter than Person#equals. */
         Event eventCopy = copy();
-        eventCopy.taggedPeople.remove(person);
+        eventCopy.taggedPeople.removeIf(p -> Objects.equals(person, p));
         return eventCopy;
     }
 
@@ -119,7 +121,9 @@ public abstract class Event {
      * Returns true iff the given {@code person} is tagged to this {@code event}.
      */
     public boolean hasTaggedPerson(Person person) {
-        return taggedPeople.contains(person);
+        /* Set#contains does not work here as Person#hashCode is stricter than Person#equals.
+         * TODO: Fix Person#hashCode (likely due to a problem with SuperField#hashCode). */
+        return taggedPeople.stream().anyMatch(p -> Objects.equals(person, p));
     }
 
     public DateTime getEffectiveStartDateTime() {
@@ -166,10 +170,12 @@ public abstract class Event {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder(
-                this.description + "; " + this.startDateTime + "; " + this.endDateTime + "; " + this.recurrence);
+        StringBuilder str = new StringBuilder(this.description + "; "
+                + this.startDateTime + "; "
+                + this.endDateTime + "; "
+                + this.recurrence + "; ");
         for (Person p: taggedPeople) {
-            str.append(p.getName());
+            str.append(String.format("[%s]", p.getName()));
         }
         return str.toString();
     }
