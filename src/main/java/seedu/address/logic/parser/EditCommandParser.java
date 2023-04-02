@@ -36,9 +36,9 @@ import seedu.address.model.person.information.Nric;
  * Parses input arguments for editing.
  */
 public class EditCommandParser implements Parser <EditCommand> {
-    private static final Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-            PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_AVAILABILITY,
-            PREFIX_RISK, PREFIX_TAG, PREFIX_MEDICAL_TAG};
+    private static final Prefix[] availablePrefixes = { PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_AVAILABILITY, PREFIX_RISK, PREFIX_TAG,
+        PREFIX_MEDICAL_TAG};
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.

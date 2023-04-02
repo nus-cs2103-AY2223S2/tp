@@ -43,9 +43,8 @@ public class CommandBox extends UiPart<Region> {
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      *
      * @param commandExecutor             Function that can execute commands.
-     * @param commandRecommendationEngine
      */
-    public  CommandBox(CommandExecutor commandExecutor, CommandRecommendationEngine commandRecommendationEngine) {
+    public CommandBox(CommandExecutor commandExecutor, CommandRecommendationEngine commandRecommendationEngine) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         this.commandRecommendationEngine = commandRecommendationEngine;

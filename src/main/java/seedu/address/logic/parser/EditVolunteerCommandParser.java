@@ -28,8 +28,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new EditVolunteerCommand object.
  */
 public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> {
-    private final static Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-            PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_TAG, PREFIX_MEDICAL_TAG, PREFIX_AVAILABILITY};
+    private static final Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_TAG, PREFIX_MEDICAL_TAG, PREFIX_AVAILABILITY};
     /**
      * Parses the given {@code String} of arguments in the context of the EditVolunteerCommand
      * and returns an EditVolunteerCommand object for execution.

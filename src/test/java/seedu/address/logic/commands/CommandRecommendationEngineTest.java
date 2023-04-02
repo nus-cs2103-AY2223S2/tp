@@ -26,7 +26,8 @@ import seedu.address.logic.parser.ListCommandParser;
 import seedu.address.logic.parser.Prefix;
 
 public class CommandRecommendationEngineTest {
-    private static final CommandRecommendationEngine commandRecommendationEngine = CommandRecommendationEngine.getInstance();
+    private static final CommandRecommendationEngine commandRecommendationEngine =
+            CommandRecommendationEngine.getInstance();
 
     @Test
     public void recommendCommand_validCommand_success() {
@@ -130,7 +131,8 @@ public class CommandRecommendationEngineTest {
                 .get(DeleteVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
         ArgumentMultimap finalArgumentMultimap8 = argumentMultimap;
-        assertThrows(RecommendationException.class, () -> DeleteVolunteerCommandParser.validate(finalArgumentMultimap8));
+        assertThrows(RecommendationException.class, () ->
+                DeleteVolunteerCommandParser.validate(finalArgumentMultimap8));
 
         userArgs = "n/Zon hello/<nric>";
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()

@@ -41,7 +41,7 @@ public class CommandRecommendationEngine {
      * A singleton instance of the CommandRecommendationEngine class.
      */
     private static CommandRecommendationEngine commandRecommendationEngine;
-    private final String INVALID_COMMAND_WORD = "Invalid command word";
+    private static final String INVALID_COMMAND_WORD = "Invalid command word";
     /**
      * A map containing the command registry with command word as key and CommandInfo as value.
      */
@@ -65,12 +65,12 @@ public class CommandRecommendationEngine {
         registerCommandParser(new AutoPairCommandParser());
     }
 
+    private CommandRecommendationEngine() { }
+
     private static <T extends Command> void registerCommandParser(Parser<T> commandParser) {
         CommandInfo commandInfo = commandParser.getCommandInfo();
         commandRegistry.put(commandInfo.getCmdWord(), commandInfo);
     }
-
-    private CommandRecommendationEngine() { }
 
     /**
      * Gets a singleton instance of the CommandRecommendationEngine class.

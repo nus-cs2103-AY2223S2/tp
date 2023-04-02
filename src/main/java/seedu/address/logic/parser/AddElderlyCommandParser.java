@@ -36,9 +36,8 @@ import seedu.address.model.tag.Tag;
  * Parses input arguments and creates a new AddElderlyCommand object.
  */
 public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
-    private static final Prefix[] availablePrefixes = { PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE,
-            PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK,
-            PREFIX_AVAILABILITY, PREFIX_TAG };
+    private static final Prefix[] availablePrefixes = { PREFIX_NAME, PREFIX_NRIC, PREFIX_PHONE, PREFIX_EMAIL,
+        PREFIX_ADDRESS, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_AVAILABILITY, PREFIX_TAG };
     private static final Prefix[] compulsoryPrefixes = { PREFIX_NAME, PREFIX_NRIC, PREFIX_BIRTH_DATE };
 
     /**

@@ -28,9 +28,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new EditElderlyCommand object.
  */
 public class EditElderlyCommandParser implements Parser<EditElderlyCommand> {
-
-    private final static Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-            PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_TAG, PREFIX_AVAILABILITY};
+    private static final Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_RISK, PREFIX_TAG, PREFIX_AVAILABILITY};
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditElderlyCommand

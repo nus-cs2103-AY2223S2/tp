@@ -18,8 +18,20 @@ public class CommandInfo {
 
     private boolean requiresPreamble = false;
 
-    public boolean isRequiresPreamble() {
-        return requiresPreamble;
+    /**
+     * Constructs a new CommandInfo object with the given command word and command prompts.
+     *
+     * @param commandWord      the word used to invoke the command.
+     * @param commandPrompts   a mapping of prefixes to prompts for the user.
+     * @param commandValidator validator used to validate user args.
+     * @param requiresPreamble command requires a preamble field
+     */
+    public CommandInfo(String commandWord, HashMap<Prefix, String> commandPrompts,
+                       CheckedFunction<ArgumentMultimap, Boolean> commandValidator, boolean requiresPreamble) {
+
+        this(commandWord, commandPrompts, commandValidator);
+        this.requiresPreamble = requiresPreamble;
+
     }
 
     /**
@@ -36,12 +48,8 @@ public class CommandInfo {
         this.commandValidator = commandValidator;
     }
 
-    public CommandInfo(String commandWord, HashMap<Prefix, String> commandPrompts,
-                       CheckedFunction<ArgumentMultimap, Boolean> commandValidator, boolean requiresPreamble) {
-
-        this(commandWord, commandPrompts, commandValidator);
-        this.requiresPreamble = requiresPreamble;
-
+    public boolean isRequiresPreamble() {
+        return requiresPreamble;
     }
 
     public String getCmdWord() {
