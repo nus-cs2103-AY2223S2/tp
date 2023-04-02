@@ -56,7 +56,7 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Type the command in the command box. Use the :arrow_up: and :arrow_down: arrow to toggle through previous commands that you have executed.
+2. Type the command in the command box. Use the :arrow_up: and :arrow_down: arrow to toggle through previous commands that you have inputted.
 
 3. Press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 

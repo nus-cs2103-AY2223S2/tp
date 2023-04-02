@@ -4,24 +4,15 @@ start
 :Parse input;
 if () then ([hasModuleCode])
     if () then ([hasLectureName])
-        :Search for videos in that
-        lecture with that moduleCode;
         :Update video filtered list;
         :Hide module and lecture list;
     else ([else])
-        :Search for lectures in that module;
         :Update lecture filtered list;
         :Hide module and video list;
     endif
 else ([else])
-    if () then ([hasLectureName])
-        :Invalid format;
-        :Show error message;
-    else ([else])
-        :Search for modules/lectures/videos depending on context;
-        :Update lecture filtered list;
-        :Hide module and video list;
-    endif
+    :Update module filtered list;
+    :Hide lecture and video list;
 endif
 :Display filtered list;
 stop

@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackerParser" as TrackerParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find CS2040S")
+activate LogicManager
+
+LogicManager -> TrackerParser : parseCommand("find CS2040S")
+activate TrackerParser
+
+create FindCommandParser
+TrackerParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> TrackerParser
+deactivate FindCommandParser
+
+TrackerParser -> FindCommandParser : parse("CS2040S")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser --> TrackerParser : f
+deactivate FindCommandParser
+
+FindCommandParser -[hidden]-> TrackerParser
+destroy FindCommandParser
+
+TrackerParser --> LogicManager : f
+deactivate TrackerParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> FindCommand : filterByVideoList(model)
+
+FindCommand -> Model : updateFilteredModuleList(predicate)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
