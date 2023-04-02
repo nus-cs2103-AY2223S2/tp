@@ -176,13 +176,10 @@ These values are not case sensitive.
 
 #### `<req>`
 
-`<req>` represents a requirement. It is used to evaluate if a patient's vaccination records meets a vaccination history
-requirement. For every vaccination that a patient has taken, that vaccination's groups are tested on all requirements
-that the vaccination has. A check is done to check if that vaccination's groups contains any or all of the groups
-within the requirement set and its truth value depends on the [type](#req-type) of the requirement. If all requirements
-are satisfied, the check passes and the patient satisfies the history requirement of the vaccination and vice versa.
+Represents a requirement that is used to evaluate if a patient's vaccination records meets a vaccination history
+requirement. It contains a [`<req-type>`](#req-type) and a set of [`<group-name>`](#group-name), which represents its requirement set.
 
-`<req>` arguments require 2 and only 2 parts. The general syntax is as follows:
+The general syntax is as follows:
 
 <pre>
 <var>REQ_TYPE</var> :: ...<var>REQUIREMENT</var>...
@@ -250,7 +247,7 @@ keyword add --k <var>MAIN_KEYWORD</var> --n <var>KEYWORD</var>
 Example assumes that the keyword does not exist yet.
 
 ```text
-keyword add --k patient --n pa 
+keyword add --k patient --n pa
 ```
 
 <br><br>
@@ -503,7 +500,7 @@ Output:
 
 ### `vaccination` - Vaccination functionalities
 
-Vaccinations are uniquely identified by their names. The following is a list of the attributes that a vaccination has and their description.
+Vaccinations are uniquely identified by their names. The following is a list of the attributes that a vaccination has and their description:
 
 * **Name** : `<group-name>` - the name of the vaccination.
 * **Groups** : list of `<group-name>` - The groups the vaccination classifies under.
@@ -514,9 +511,26 @@ Vaccinations are uniquely identified by their names. The following is a list of 
   * Default value = `200`.
 * **Ingredients** : list of `<group-name>` - ingredients of the vaccination. Similar to patient's allergies.
   * Default value = `empty list`.
-* **History requirements** - the list requirements of vaccination groups to take the vaccination.
+* **History requirements** : list of `<req>` - the list requirements of vaccination groups to take the vaccination.
   * Default value = `empty list`.
   * Requirements need not be unique, ie. a requirement of 2 `ANY :: grp1, grp2` is allowed. This would mean that to take this vaccination, the patient will have to have taken at least 2 vaccinations that satisfies that requirement.
+
+<div markdown="block" class="alert alert-info" id="vaccination-case-sensitive-name-note">
+:information_source: Vaccination **name** and the names of their **ingredients** are <u>case sensitive</u> to differentiate between simple chemical formulas, company names containing the same characters but in different case or certain serial numbers that are case sensitive.
+
+Therefore these vaccination names are different:
+
+* `VAX ABC (No CO)` - "CO" for carbon monoxide.
+* `VAX ABC (No Co)` - "Co" for cobalt.
+
+</div>
+
+In order for a patient to take a specific vaccination, the patient will have to satisfy <u>ALL</u> of the following:
+
+* Patient's age should be between the vaccination's **minimum age** and **maximum age** range inclusive.
+* The patient should not be allergic to any of the **ingredients** of the vaccination.
+* The patient should have a vaccination history record that satisfies <u>ALL</u> requirements of the vaccination's **history requirements**.
+  * When checking if a patient satisfies the history requirements of a vaccination, the group classifications of the vaccination that the patient has taken will be extracted and tested against the requirement's group set. The requirement type of the requirement will decide if the requirement is satisfied. In other words, a patient can satisfy a requirement by taking vaccinations with certain group types for `ALL` and `ANY` requirement types or not taking any vaccinations with certain group types for `NONE` requirement types.
 
 #### `add` - Add a vaccination type
 
@@ -542,14 +556,14 @@ vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN
 Example assumes that the vaccination `ABC VAX` does not exist yet.
 
 ```text
-vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION \
-    --lal 5 \
-    --a allergy1, allergy2, allergy3 \
-    --h NONE::DOES 1 \
+vaccination add ABC VAX --g ABC, VACCINATION \
+    --lal 5 --ual 50 \
+    --i ALC-0315, ALC-0159 \
+    --h NONE::ABC
 ```
 
 Copy and paste:<br>
-`vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --i allergy1, allergy2, allergy3 --h NONE::DOES 1`
+`vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --i ALC-0315, ALC-0159 --h NONE::ABC`
 <br><br>
 Output:<br>
 
@@ -562,6 +576,7 @@ Output:<br>
 ##### Restrictions
 
 * The name of the vaccination being added must not exist in the system.
+  * Names are case sensitive to account for vaccination names that contain simple chemical formulas or the rare case where company names have the same characters but different cases. Thus, the vaccinations `VAX ABC (No CO)` and `VAX ABC (No Co)` will be different.
 
 #### `edit` - Edit a vaccination type
 
