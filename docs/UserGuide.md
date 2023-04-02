@@ -173,8 +173,10 @@ Adds a new event.
 - Creates a new event with specified `NAME`, `RATE`, `ADDRESS`, `START_TIME`, `END_TIME` and optionally `TAGS`.
 
 **Note**:
-- Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
+- `NAME` should only contain alphanumeric characters and spaces.
 - `RATE` must be a positive number.
+- `ADDRESS` can be in any form, "John's House".
+- Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
 
 **Example**:
 - `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
