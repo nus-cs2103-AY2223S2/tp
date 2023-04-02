@@ -56,7 +56,7 @@ public class ModuleUtil {
         descriptor.getTimeSlot().ifPresent(timeSlot -> sb.append(PREFIX_TIMESLOT)
                 .append(timeSlot.toString()).append(" "));
         descriptor.getRemark().ifPresent(type -> sb.append(PREFIX_REMARK).append(type.value).append(" "));
-        descriptor.getDeadline().ifPresent(type -> sb.append(PREFIX_DEADLINE).append(type.value).append(" "));
+        descriptor.getDeadline().ifPresent(type -> sb.append(PREFIX_DEADLINE).append(type.toString()).append(" "));
         descriptor.getTeacher().ifPresent(type -> sb.append(PREFIX_TEACHER).append(type.value).append(" "));
         descriptor.getResource().ifPresent(type -> sb.append(PREFIX_RESOURCE).append(type.value).append(" "));
         if (descriptor.getTags().isPresent()) {
