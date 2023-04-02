@@ -41,4 +41,9 @@ public class RecurringEvent extends Event {
         }
         return new DateTime(current);
     }
+
+    @Override
+    public Event copy() {
+        return new RecurringEvent(description, startDateTime, endDateTime, recurrence, taggedPeople);
+    }
 }

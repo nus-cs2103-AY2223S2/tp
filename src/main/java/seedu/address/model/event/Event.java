@@ -4,7 +4,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,7 +24,7 @@ public abstract class Event {
     protected final DateTime startDateTime;
     protected final DateTime endDateTime;
     protected final Recurrence recurrence;
-    protected Set<Person> taggedPeople = new HashSet<>();
+    protected final Set<Person> taggedPeople;
 
     /**
      * Every field must be present and not null.
@@ -35,8 +37,14 @@ public abstract class Event {
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
         this.recurrence = recurrence;
+        this.taggedPeople = new HashSet<>();
         this.taggedPeople.addAll(taggedPeople);
     }
+
+    /**
+     * Returns a copy of this {@code Event}.
+     */
+    public abstract Event copy();
 
     public Description getDescription() {
         return description;
@@ -59,53 +67,41 @@ public abstract class Event {
      * are updated to reflect the next earliest occurrence.
      */
     public Event updateDateTime() {
-        Event event = this.copy();
-        if (!this.recurrence.isRecurring()) {
-            return event;
+        Event eventCopy = this.copy();
+        if (!isRecurring()) {
+            return eventCopy;
         }
-        ChronoUnit timeUnit = event.getRecurrence().getIncrementUnit();
-        while (event.endDateTime.getDateTime().isBefore(LocalDateTime.now())) {
-            event.startDateTime.plus(timeUnit);
-            event.endDateTime.plus(timeUnit);
+        ChronoUnit timeUnit = eventCopy.getRecurrence().getIncrementUnit();
+        while (eventCopy.endDateTime.getDateTime().isBefore(LocalDateTime.now())) {
+            eventCopy.startDateTime.plus(timeUnit);
+            eventCopy.endDateTime.plus(timeUnit);
         }
-        return event;
+        return eventCopy;
     }
 
     /**
-     * Creates a copy of this event, with the Person {@code p} removed.
+     * Creates a copy of this event, with the Person {@code person} removed.
      */
-    public Event deleteTaggedPerson(Person p) {
-        Set<Person> taggedPeople = new HashSet<>(this.taggedPeople);
-        taggedPeople.removeIf(p1 -> p1.equals(p));
-        Description description = this.getDescription();
-        DateTime startDateTime = this.getStartDateTime();
-        DateTime endDateTime = this.getEndDateTime();
-        Recurrence recurrence = this.getRecurrence();
-
-        if (recurrence.isRecurring()) {
-            return new RecurringEvent(description, startDateTime, endDateTime, recurrence, taggedPeople);
-        } else {
-            return new OneTimeEvent(description, startDateTime, endDateTime, taggedPeople);
-        }
+    public Event deleteTaggedPerson(Person person) {
+        Event eventCopy = copy();
+        eventCopy.getTaggedPeople().removeIf(p -> Objects.equals(person, p));
+        return eventCopy;
     }
 
     /**
      * Creates a copy of this event, with the {@code personToEdit} removed and the {@code editedPerson} added in.
      */
     public Event editTaggedPerson(Person personToEdit, Person editedPerson) {
-        Set<Person> taggedPeople = this.taggedPeople.stream()
-                .map(person -> person.equals(personToEdit) ? editedPerson : person)
-                .collect(Collectors.toSet());
-        Description description = this.getDescription();
-        DateTime startDateTime = this.getStartDateTime();
-        DateTime endDateTime = this.getEndDateTime();
-        Recurrence recurrence = this.getRecurrence();
+        requireAllNonNull(editedPerson);
+        Event eventCopy = copy();
+        eventCopy.setTaggedPeople(taggedPeople.stream()
+                .map(p -> Objects.equals(personToEdit, p) ? editedPerson : p)
+                .collect(Collectors.toList()));
+        return eventCopy;
+    }
 
-        if (recurrence.isRecurring()) {
-            return new RecurringEvent(description, startDateTime, endDateTime, recurrence, taggedPeople);
-        } else {
-            return new OneTimeEvent(description, startDateTime, endDateTime, taggedPeople);
-        }
+    public Event addTaggedPerson(Person person) {
+        editTaggedPerson(person, person);
     }
 
     /**
@@ -124,7 +120,15 @@ public abstract class Event {
         return this.taggedPeople;
     }
 
-    //Check if this is a recurring event.
+    public void setTaggedPeople(Collection<? extends Person> people) {
+        requireAllNonNull(people);
+        taggedPeople.clear();
+        taggedPeople.addAll(people);
+    }
+
+    /**
+     * @return Whether this event is recurring.
+     */
     public boolean isRecurring() {
         return recurrence.isRecurring();
     }
@@ -148,24 +152,6 @@ public abstract class Event {
 
         return otherEvent != null
                 && otherEvent.getDescription().equals(getDescription());
-    }
-
-    /**
-     * Returns a copy of this Event object.
-     */
-    public Event copy() {
-        Description description = this.getDescription();
-        DateTime startDateTime = this.getStartDateTime();
-        DateTime endDateTime = this.getEndDateTime();
-        Recurrence recurrence = this.getRecurrence();
-
-        Set<Person> people = this.getTaggedPeople();
-
-        if (recurrence.isRecurring()) {
-            return new RecurringEvent(description, startDateTime, endDateTime, recurrence, people);
-        } else {
-            return new OneTimeEvent(description, startDateTime, endDateTime, people);
-        }
     }
 
     /**
