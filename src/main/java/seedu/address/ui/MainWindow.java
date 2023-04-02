@@ -293,8 +293,8 @@ public class MainWindow extends UiPart<Stage> {
         });
         if (command.equalsIgnoreCase("clear")) {
             alert.setTitle("Warning");
-            alert.setHeaderText("Clear Address Book");
-            alert.setContentText("This operation will clear the address book. Are you sure you want to proceed?");
+            alert.setHeaderText("Clear Patient List");
+            alert.setContentText("This operation will clear the Patient List. Are you sure you want to proceed?");
         } else if (command.equalsIgnoreCase("delete")) {
             alert.setTitle("Warning");
             alert.setHeaderText("Delete Entry");
