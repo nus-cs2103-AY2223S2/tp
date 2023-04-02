@@ -7,7 +7,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.video.Video;
 
 /**
- * Tests that a {@code Lecture}'s {@code name} matches any of the keywords given.
+ * Tests that a {@code Video}'s {@code name} matches any of the keywords given.
  */
 public class VideoNameContainsKeywordsPredicate implements Predicate<Video> {
     private final List<String> keywords;
