@@ -33,7 +33,6 @@ import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
 import seedu.address.model.time.Day;
-import seedu.address.model.time.exceptions.WrongTimeException;
 
 public class ParserUtilTest {
 
