@@ -213,7 +213,7 @@ The following diagram shows the layout of components numbered exactly as above.
 
 You may locate the Person List at the center-left of `EduMate`. This is where you will see all your saved contacts (or sample data if you are trying out for the first time).
 
-<img src="images/UG_ui_pictures/contact_list.png" style="width:80%;margin:0 10%">
+<img src="images/UG_ui_pictures/contact_list.png" style="width:60%;margin:0 10% 0 20%">
 
 <center>Diagram 3: Person List with some contacts displayed.</center>
 
