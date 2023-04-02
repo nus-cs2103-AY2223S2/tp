@@ -33,6 +33,9 @@ public class AddImageCommandParser implements Parser<AddImageCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddImageCommand.MESSAGE_USAGE), ive);
         }
         String path = argMultimap.getValue(PREFIX_ADD_IMAGE).orElse("");
+        if (path == null || path.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddImageCommand.MESSAGE_USAGE));
+        }
         return new AddImageCommand(index, path);
 
     }
