@@ -105,11 +105,52 @@ public class DeleteTagFromPersonCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidPersonIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteTagFromPersonCommand cmd = new DeleteTagFromPersonCommand(outOfBoundIndex, null, null, null, null
+        DeleteTagFromPersonCommand command = new DeleteTagFromPersonCommand(outOfBoundIndex, null,
+                null, null, null
         );
 
-        assertCommandFailure(cmd, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidModuleIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+
+        DeleteTagFromPersonCommand command = new DeleteTagFromPersonCommand(INDEX_FIRST_PERSON, outOfBoundIndex,
+                null, null, null);
+
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "module"));
+    }
+
+    @Test
+    public void execute_invalidCcaIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+
+        DeleteTagFromPersonCommand command = new DeleteTagFromPersonCommand(INDEX_FIRST_PERSON, null,
+                outOfBoundIndex, null, null);
+
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "CCA"));
+    }
+
+    @Test
+    public void execute_invalidMajorIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+
+        DeleteTagFromPersonCommand command = new DeleteTagFromPersonCommand(INDEX_FIRST_PERSON, null,
+                null, outOfBoundIndex, null);
+
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "major"));
+    }
+
+    @Test
+    public void execute_invalidRemarkIndexUnfilteredList_throwsCommandException() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+
+        DeleteTagFromPersonCommand command = new DeleteTagFromPersonCommand(INDEX_FIRST_PERSON, null,
+                null, null, outOfBoundIndex);
+
+        assertCommandFailure(command, model, String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX, "remark"));
     }
 }
