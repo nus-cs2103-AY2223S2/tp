@@ -349,7 +349,7 @@ Favorites the specified person from AIMS.
 Format: `favorite INDEX`
 
 - Favorites the person at the specified `INDEX`.
-- Running this command on a person who is already in the favorite list will him from the favorite list.
+- Running this command on a person who is already in the favorite list will remove him from the favorite list.
 - The index refers to the index number shown in the displayed person list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
