@@ -323,13 +323,13 @@ Once you have familiarized yourself with EduMate, you are now ready to begin cus
 **Step 2.** On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
 s/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
 <br>
-<div markdown="span" class="alert alert-success">
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: To know more about what `n/`, `/e` etc. symbolises, you may want to check out [Prefixes](#prefixes).
 
 </div>
+<div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** <br>
 You do not have to enter all your information at once! You can omit some information
