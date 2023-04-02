@@ -28,9 +28,8 @@ public class DeleteEventCommand extends Command {
             + "Example: " + COMMAND_WORD + " Tutorial/1";
 
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
-    public static final String MESSAGE_DELETE_MULTIPLE_EVENTS_SUCCESS = "Deleted Multiple Events";
 
-    private final Index[] targetIndex;
+    private final Index targetIndex;
 
     private boolean isTutorial;
     private boolean isLab;
@@ -41,7 +40,7 @@ public class DeleteEventCommand extends Command {
      *
      * @param targetIndex
      */
-    public DeleteEventCommand(Index[] targetIndex) {
+    public DeleteEventCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         isTutorial = false;
         isLab = false;
@@ -107,15 +106,11 @@ public class DeleteEventCommand extends Command {
 
         List<Tutorial> lastShownList = model.getFilteredTutorialList();
 
-        if (targetIndex[0].getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        if (targetIndex[1].getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
-        }
-
-        Tutorial tutorialToDelete = lastShownList.get(targetIndex[0].getZeroBased());
+        Tutorial tutorialToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         LocalDateTime deleteDate = tutorialToDelete.getDate();
         LocalDateTime[] deleteRange = new LocalDateTime[]{deleteDate, deleteDate.plusHours(1)};
@@ -131,17 +126,11 @@ public class DeleteEventCommand extends Command {
             ParserUtil.MASTER_TIME.remove(toRemoveRange);
         }
 
-        for (int i = targetIndex[0].getZeroBased(); i <= targetIndex[1].getZeroBased(); i++) {
-            tutorialToDelete = lastShownList.get(targetIndex[0].getZeroBased());
-            model.deleteTutorial(tutorialToDelete);
-        }
+        tutorialToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteTutorial(tutorialToDelete);
 
-        if (targetIndex[0].getZeroBased() == targetIndex[1].getZeroBased()) {
-            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, tutorialToDelete),
-                    false, false, false, true);
-        } else {
-            return new CommandResult(String.format(MESSAGE_DELETE_MULTIPLE_EVENTS_SUCCESS), false, false, false, true);
-        }
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, tutorialToDelete),
+                false, false, false, true);
     }
 
     /**
@@ -155,15 +144,11 @@ public class DeleteEventCommand extends Command {
 
         List<Lab> lastShownList = model.getFilteredLabList();
 
-        if (targetIndex[0].getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        if (targetIndex[1].getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
-        }
-
-        Lab labToDelete = lastShownList.get(targetIndex[0].getZeroBased());
+        Lab labToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         LocalDateTime deleteDate = labToDelete.getDate();
         LocalDateTime[] deleteRange = new LocalDateTime[]{deleteDate, deleteDate.plusHours(2)};
@@ -179,19 +164,11 @@ public class DeleteEventCommand extends Command {
             ParserUtil.MASTER_TIME.remove(toRemoveRange);
         }
 
+        labToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteLab(labToDelete);
 
-        for (int i = targetIndex[0].getZeroBased(); i <= targetIndex[1].getZeroBased(); i++) {
-            labToDelete = lastShownList.get(targetIndex[0].getZeroBased());
-            model.deleteLab(labToDelete);
-        }
-
-        if (targetIndex[0].getZeroBased() == targetIndex[1].getZeroBased()) {
-            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, labToDelete),
-                    false, false, false, true);
-        } else {
-            return new CommandResult(String.format(MESSAGE_DELETE_MULTIPLE_EVENTS_SUCCESS),
-                    false, false, false, true);
-        }
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, labToDelete),
+                false, false, false, true);
     }
 
     /**
@@ -205,15 +182,11 @@ public class DeleteEventCommand extends Command {
 
         List<Consultation> lastShownList = model.getFilteredConsultationList();
 
-        if (targetIndex[0].getZeroBased() >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        if (targetIndex[1].getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
-        }
-
-        Consultation consultationToDelete = lastShownList.get(targetIndex[0].getZeroBased());
+        Consultation consultationToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         LocalDateTime deleteDate = consultationToDelete.getDate();
         LocalDateTime[] deleteRange = new LocalDateTime[]{deleteDate, deleteDate.plusHours(1)};
@@ -229,19 +202,11 @@ public class DeleteEventCommand extends Command {
             ParserUtil.MASTER_TIME.remove(toRemoveRange);
         }
 
+        consultationToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteConsultation(consultationToDelete);
 
-        for (int i = targetIndex[0].getZeroBased(); i <= targetIndex[1].getZeroBased(); i++) {
-            consultationToDelete = lastShownList.get(targetIndex[0].getZeroBased());
-            model.deleteConsultation(consultationToDelete);
-        }
-
-        if (targetIndex[0].getZeroBased() == targetIndex[1].getZeroBased()) {
-            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, consultationToDelete),
-                    false, false, false, true);
-        } else {
-            return new CommandResult(String.format(MESSAGE_DELETE_MULTIPLE_EVENTS_SUCCESS),
-                    false, false, false, true);
-        }
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, consultationToDelete),
+                false, false, false, true);
     }
 
     @Override
