@@ -2,29 +2,32 @@ package seedu.recipe.model.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.testutil.Assert.assertThrows;
 
 import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.recipe.model.recipe.exceptions.RecipePortionInvalidArgumentException;
 import seedu.recipe.model.recipe.unit.PortionUnit;
 
 public class RecipePortionTest {
-    private static final String RANGE_CONCAT = "1-2 servings";
-    private static final String RANGE_WHITESPACE = "1  - 2 servings";
-    private static final String TO_WHITESPACE = "1 to 2 servings";
-    private static final String SIMPLE_LOWER_RANGE = "1 serving";
-    private static final String SIMPLE_LOWER_RANGE_PLURAL = "2 servings";
+    // valid cases
+    private static final String DASH_CONCAT = "1-2 servings";
+    private static final String TO_CONCAT = "1-2 servings";
+    private static final String DASH_WHITESPACE = "1  - 2 servings";
+    private static final String TO_WHITESPACE = "1 to   2 people";
+    private static final String SIMPLE_LOWER_RANGE = "13 serving sizes";
 
-    private static final String EMPTY = "";
-    private static final String SINGLE_PLURAL_ADDEND = "1 servings";
-    private static final String PLURAL_NO_ADDEND = "2 portion";
-    private static final String TO_NO_WHITESPACE = "1to2 servings";
+    // invalid cases
+    private static final String INVALID_EMPTY = "";
+    private static final String INVALID_NO_RANGE = "people pleasers";
+    private static final String INVALID_NO_UNIT = "3 to 5";
     private static final String INVALID_RANGE = "3 to 1 servings";
+    private static final String INVALID_SIMPLE = "3.123 servings";
+    private static final String INVALID_DASH = "1.5 - 3321 servings";
+    private static final String INVALID_TO = "2    to 33.21 servings";
+    private static final String INVALID_WHITESPACE = "1321\tservings";
+    private static final String INVALID_UNIT = "13 - 15 of Granny's Friends";
 
     @Test
     public void test_null_constructor() {
@@ -32,18 +35,27 @@ public class RecipePortionTest {
     }
 
     @Test
-    public void isValidRecipePortion() {
-        assertFalse(RecipePortion.isValidRecipePortion(EMPTY));
-        assertFalse(RecipePortion.isValidRecipePortion(SINGLE_PLURAL_ADDEND));
-        assertFalse(RecipePortion.isValidRecipePortion(PLURAL_NO_ADDEND));
-        assertFalse(RecipePortion.isValidRecipePortion(TO_NO_WHITESPACE));
-        assertFalse(RecipePortion.isValidRecipePortion(INVALID_RANGE));
+    public void of_validInputs_RecipePortionCreated() {
+        assertEquals(RecipePortion.of(DASH_CONCAT), new RecipePortion(1, 2, new PortionUnit("servings")));
+        assertEquals(RecipePortion.of(TO_CONCAT), new RecipePortion(1, 2, new PortionUnit("servings")));
+        assertEquals(RecipePortion.of(DASH_WHITESPACE), new RecipePortion(1, 2, new PortionUnit("servings")));
+        assertEquals(RecipePortion.of(TO_WHITESPACE), new RecipePortion(1, 2, new PortionUnit("people")));
+        assertEquals(RecipePortion.of(SIMPLE_LOWER_RANGE), new RecipePortion(13, 0, new PortionUnit("serving sizes")));
+    }
 
-        assertTrue(RecipePortion.isValidRecipePortion(RANGE_CONCAT));
-        assertTrue(RecipePortion.isValidRecipePortion(RANGE_WHITESPACE));
-        assertTrue(RecipePortion.isValidRecipePortion(TO_WHITESPACE));
-        assertTrue(RecipePortion.isValidRecipePortion(SIMPLE_LOWER_RANGE));
-        assertTrue(RecipePortion.isValidRecipePortion(SIMPLE_LOWER_RANGE_PLURAL));
+    @Test
+    public void of_invalidInputs_exceptionThrown() {
+        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_EMPTY));
+        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_NO_RANGE));
+        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_NO_UNIT));
+        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_RANGE));
+        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_SIMPLE));
+        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_EMPTY));
+        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_DASH));
+        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_TO));
+        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_WHITESPACE));
+        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_UNIT));
+
     }
 
     @Test
@@ -55,14 +67,6 @@ public class RecipePortionTest {
         assertDoesNotThrow(() -> new RecipePortion(1, 3, new PortionUnit("portions")));
     }
 
-    @Test
-    public void testFactory() {
-        //Redirection if regex fail
-        assertThrows(RecipePortionInvalidArgumentException.class, () -> RecipePortion.of(TO_NO_WHITESPACE));
-
-        assertDoesNotThrow(() -> RecipePortion.of(RANGE_CONCAT));
-        assertDoesNotThrow(() -> RecipePortion.of(SIMPLE_LOWER_RANGE));
-    }
 
     @Test
     public void testToString() {
