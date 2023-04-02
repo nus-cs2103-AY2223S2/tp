@@ -198,8 +198,8 @@ We also used light purple and white as our main colour scheme as they are cool c
 2. [Meet Up Recommendation Panel](#meet-up-recommendation-panel)
 3. [Profile Panel](#profile-panel)
 4. [Scheduled Meet Up Panel](#scheduled-meet-up-panel)
-5. Command Response Box
-6. Command Input Box
+5. [Command Response Box](#command-response-box)
+6. [Command Box](#command-box)
 7. Help Button
 8. Exit Button
 
@@ -311,7 +311,7 @@ The Command Box is located at the bottom of the application. You may refer to th
 :bulb: **Pro Tip:** <br>
 Did you know that the **UP** and **DOWN** arrow keys can be used to quickly access previously typed commands in the Command Box?
 You can now **save time and increase your productivity!**<br>
-
+<br>
 
 <code>EduMate</code> saves up to 100 of your most recent commands to a file for your convenience when you relaunch the application as well!
 That way, you can reuse commands from your previous session with ease!
