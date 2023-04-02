@@ -12,6 +12,7 @@ import seedu.sprint.commons.exceptions.IllegalValueException;
 import seedu.sprint.model.InternshipBook;
 import seedu.sprint.model.ReadOnlyInternshipBook;
 import seedu.sprint.model.application.Application;
+import seedu.sprint.model.application.exceptions.DuplicateApplicationException;
 
 /**
  * An Immutable InternshipBook that is serializable to JSON format.
@@ -52,7 +53,11 @@ class JsonSerializableInternshipBook {
             Application application = jsonAdaptedApplication.toModelType();
             applications.add(application);
         }
-        internshipBook.setApplications(applications);
+        try {
+            internshipBook.setApplications(applications);
+        } catch (DuplicateApplicationException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
         return internshipBook;
     }
 
