@@ -334,7 +334,7 @@ Examples:
 
 > `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
-Edits the details of a module in Le Tracker.
+Edit the details of a module.
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module to be edited
   - Must belong to an existing module in Le Tracker
@@ -354,17 +354,23 @@ Examples:
 
 ### Edit a Lecture
 
-> Edits the details of a lecture.
+> `edit {lecture_name} /mod {module_code} [/name {updated_name}] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
-Format: `edit {lecture_name} [/mod {module_code}] [/name {updated_name}] [/tags {tag_1}, [{tag_2}, ...]]`
+Edit the details of a lecture.
 
-- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
-- `updated_name` must be a valid lecture name
-- `updated_name` must be unique among the names of the lectures belonging to the module specified in `module_code`
-- `tag_1`, `tag_2`, ... must be valid tags
-- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be edited
+  - Must belong to a lecture that exist within the module specified in `module_code`
+  - Must be a valid lecture name (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture to be edited
+  - Must belong to an existing module in Le Tracker
+  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`updated_name`</span> : The updated lecture name
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code`
+  - Must be a valid lecture name (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags that will replace the current tags applied to the lecture
+  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - Repeated tags (if any) will be ignored
 
 Examples:
 
