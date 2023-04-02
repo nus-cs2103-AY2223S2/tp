@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.recipe.model.recipe.exceptions.RecipePortionInvalidArgumentException;
 import seedu.recipe.model.recipe.unit.PortionUnit;
 
 /**
@@ -31,6 +32,12 @@ public class RecipePortion {
      * @param portionUnit The portion unit instance
      */
     public RecipePortion(int lowerRange, int upperRange, PortionUnit portionUnit) {
+        if (lowerRange < 0) {
+            throw new RecipePortionInvalidArgumentException(String.valueOf(upperRange));
+        }
+        if (upperRange != 0 && upperRange < lowerRange) {
+            throw new RecipePortionInvalidArgumentException(String.valueOf(upperRange));
+        }
         this.lowerRange = lowerRange;
         this.upperRange = upperRange;
         this.portionUnit = portionUnit;
@@ -68,10 +75,6 @@ public class RecipePortion {
 
         int lower = Integer.parseInt(lowerString);
         int upper = upperString == null ? 0 : Integer.parseInt(upperString);
-
-        if (upperString != null && upper < lower) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
-        }
 
         return new RecipePortion(lower, upper, new PortionUnit(unitString));
     }

@@ -183,14 +183,16 @@ public class ParserUtilTest {
 
     @Test
     public void parseIngredient_validValueWithoutWhitespace_returnsIngredient() throws Exception {
-        IngredientBuilder expectedIngredient = new IngredientBuilder(VALID_INGREDIENT_1);
+        HashMap<Ingredient, IngredientInformation> expectedIngredient = new IngredientBuilder(
+            VALID_INGREDIENT_1).build();
         assertEquals(expectedIngredient, ParserUtil.parseIngredient(VALID_INGREDIENT_1));
     }
 
     @Test
     public void parseIngredient_validValueWithWhitespace_returnsTrimmedIngredient() throws Exception {
         String ingredientWithWhitespace = WHITESPACE + VALID_INGREDIENT_1 + WHITESPACE;
-        IngredientBuilder expectedIngredient = new IngredientBuilder(VALID_INGREDIENT_1);
+        HashMap<Ingredient, IngredientInformation> expectedIngredient = new IngredientBuilder(
+            VALID_INGREDIENT_1).build();
         assertEquals(expectedIngredient, ParserUtil.parseIngredient(ingredientWithWhitespace));
     }
 

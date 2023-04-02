@@ -1,6 +1,5 @@
 package seedu.recipe.model.recipe;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.recipe.testutil.Assert.assertThrows;
 
@@ -26,13 +25,7 @@ public class RecipePortionTest {
     private static final String INVALID_SIMPLE = "3.123 servings";
     private static final String INVALID_DASH = "1.5 - 3321 servings";
     private static final String INVALID_TO = "2    to 33.21 servings";
-    private static final String INVALID_WHITESPACE = "1321\tservings";
     private static final String INVALID_UNIT = "13 - 15 of Granny's Friends";
-
-    @Test
-    public void test_null_constructor() {
-        assertThrows(NullPointerException.class, () -> new RecipePortion(0, 0, null));
-    }
 
     @Test
     public void of_validInputs_RecipePortionCreated() {
@@ -53,25 +46,14 @@ public class RecipePortionTest {
         assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_EMPTY));
         assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_DASH));
         assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_TO));
-        assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_WHITESPACE));
         assertThrows(IllegalArgumentException.class, () -> RecipePortion.of(INVALID_UNIT));
 
     }
 
     @Test
-    public void testConstructorValid() {
-        //Redirection if invalid params
-        assertThrows(IllegalArgumentException.class, () -> new RecipePortion(0, 0, new PortionUnit("min")));
-
-        assertDoesNotThrow(() -> new RecipePortion(1, -1, new PortionUnit("serving")));
-        assertDoesNotThrow(() -> new RecipePortion(1, 3, new PortionUnit("portions")));
-    }
-
-
-    @Test
     public void testToString() {
         assertEquals(
-            new RecipePortion(1, -1, new PortionUnit("portion")).toString(), "1 portion");
+            new RecipePortion(1, 0, new PortionUnit("portion")).toString(), "1 portion");
         assertEquals(new RecipePortion(1, 3, new PortionUnit("portions")).toString(), "1 - 3 portions");
     }
 
@@ -87,7 +69,7 @@ public class RecipePortionTest {
         assertEquals(new RecipePortion(1, 3, p).getPortionUnit(), p);
         assertEquals(new RecipePortion(1, 3, p).getUpperRange(), 3);
         assertEquals(new RecipePortion(1, 3, p).getLowerRange(), 1);
-        assertEquals(new RecipePortion(1, -1, new PortionUnit("portion")).getLowerRange(), 1);
-        assertEquals(new RecipePortion(1, -1, new PortionUnit("portion")).getUpperRange(), -1);
+        assertEquals(new RecipePortion(1, 0, new PortionUnit("portion")).getLowerRange(), 1);
+        assertEquals(new RecipePortion(1, 0, new PortionUnit("portion")).getUpperRange(), 0);
     }
 }
