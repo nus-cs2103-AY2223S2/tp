@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.recommendation.TypicalRecommendations.RECOMMENDATION_STEVENS_THU_10AM_2HR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
 import static seedu.address.testutil.TypicalPersons.BART;
@@ -80,8 +81,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasRecommendation_nullRecommendation_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasRecommendation(null));
+    }
+
+    @Test
     public void hasPerson_personNotInEduMate_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALBERT));
+    }
+
+    @Test
+    public void hasRecommendation_recommendationNotInEduMate_returnsFalse() {
+        assertFalse(modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
     }
 
     @Test
@@ -91,12 +102,28 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasRecommendation_recommendationInEduMate_returnsTrue() {
+        modelManager.addRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        assertTrue(modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
+    }
+
+    @Test
     public void deletePerson_personInEduMate_success() {
         if (!modelManager.hasPerson(ALBERT)) {
             modelManager.addPerson(ALBERT);
         }
         modelManager.deletePerson(ALBERT);
         assertFalse(modelManager.hasPerson(ALBERT));
+    }
+
+    @Test
+    public void deleteRecommendation_recommendationInEduMate_success() {
+        if (!modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR)) {
+            modelManager.addRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        }
+        assertTrue(modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
+        modelManager.deleteRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        assertFalse(modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
     }
 
     @Test

@@ -160,6 +160,35 @@ public class EduMateTest {
         assertFalse(eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR));
     }
 
+    @Test
+    public void setRecommendation_validTarget_success() {
+        if (!eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR)) {
+            eduMate.addRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR);
+        }
+
+        assertTrue(eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR));
+
+        if (eduMate.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR)) {
+            eduMate.removeRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        }
+
+        eduMate.setRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR, RECOMMENDATION_STEVENS_THU_10AM_2HR);
+
+        assertTrue(eduMate.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
+        assertFalse(eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR));
+    }
+
+    @Test
+    public void resetRecommendations() {
+        if (!eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR)) {
+            eduMate.addRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR);
+        }
+
+        eduMate.resetRecommendations();
+
+        assertFalse(eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR));
+    }
+
     /**
      * A stub ReadOnlyEduMate whose persons list or user can violate interface constraints.
      */
