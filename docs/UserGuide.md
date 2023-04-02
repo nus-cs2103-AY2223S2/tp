@@ -270,7 +270,7 @@ The Profile Panel will display basic information like your / contact's
 
 The Scheduled Meet Up Panel (located directly to the right of [Profile Panel](#profile-panel)) will show your confirmed meetings with your contacts.
 
-<img src="images/UG_ui_pictures/ScheduledMeetUpPanel.svg" style="width:60%;margin:1% 1% 1% 20%">
+<img src="images/UG_ui_pictures/ScheduledMeetUpPanel.svg" style="width:40%;margin:1% 1% 1% 30%">
 
 <center>Diagram 9: Sample scheduled meet ups displayed.</center>
 <br>
@@ -280,7 +280,7 @@ The Scheduled Meet Up Panel (located directly to the right of [Profile Panel](#p
 The panel contains all the information of every scheduled meet up with your contacts. You may expect to see each scheduled meet up as shown below.
 <br>
 
-<img src="images/UG_ui_pictures/ScheduledMeetUpPanelLabelled.png" style="width:60%;margin:1% 1% 1% 20%">
+<img src="images/UG_ui_pictures/ScheduledMeetUpPanelLabelled.png" style="width:40%;margin:1% 1% 1% 30%">
 
 <center>Diagram 10: Components of the Scheduled Meet Up Panel</center>
 </div>
