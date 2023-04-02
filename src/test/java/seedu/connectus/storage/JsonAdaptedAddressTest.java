@@ -1,14 +1,15 @@
 package seedu.connectus.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.connectus.commons.exceptions.IllegalValueException;
-import seedu.connectus.model.person.Address;
-
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.connectus.commons.exceptions.IllegalValueException;
+import seedu.connectus.model.person.Address;
 
 public class JsonAdaptedAddressTest {
     @Test
