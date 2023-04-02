@@ -241,7 +241,7 @@ Adds a fish to *Fish Ahoy!* .
 Use this command to add fishes to tanks. By adding fish in tanks that you own, you can easily categorise them and store
 important information about them.
 
-Format: `add fish n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTERVAL> tk/<TANK_INDEX> [tg/<TAG>]`
+Format: `fish add n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTERVAL> tk/<TANK_INDEX> [tg/<TAG>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A fish must belong to a tank.
