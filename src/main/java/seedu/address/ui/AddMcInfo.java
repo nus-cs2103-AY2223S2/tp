@@ -138,10 +138,6 @@ public class AddMcInfo extends UiPart<Stage> {
                 throw new DurationException("doctor name and medical condition is necessary");
             }
             filesManager.generateMc(doctorName, medical, duration);
-            if (filesManager.isHasError()) {
-                medicalCondition.setText(filesManager.getErrorMessage());
-                return;
-            }
             counter = 0;
             closeAddAppointmentWindow();
             mcStage.close();
