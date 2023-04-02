@@ -50,20 +50,20 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
                     DeleteEventCommand.MESSAGE_USAGE));
         }
 
-        Index[] index;
+        Index index;
         DeleteEventCommand deleteEventCommand;
 
         if (argMultimap.getValue(PREFIX_TUTORIAL).isPresent()) {
-            index = ParserUtil.parseIndexRange(argMultimap.getValue(PREFIX_TUTORIAL).get());
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TUTORIAL).get());
             deleteEventCommand = new DeleteEventCommand(index);
             deleteEventCommand.markTutorial();
         } else if (argMultimap.getValue(PREFIX_CONSULTATION).isPresent()) {
-            index = ParserUtil.parseIndexRange(argMultimap.getValue(PREFIX_CONSULTATION).get());
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONSULTATION).get());
             deleteEventCommand = new DeleteEventCommand(index);
             deleteEventCommand.markConsultation();
         } else {
             //If it is not tutorial and not a consultation, it has to be a lab
-            index = ParserUtil.parseIndexRange(argMultimap.getValue(PREFIX_LAB).get());
+            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_LAB).get());
             deleteEventCommand = new DeleteEventCommand(index);
             deleteEventCommand.markLab();
         }
