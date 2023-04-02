@@ -4,7 +4,6 @@ Greetings! Welcome to PowerConnect! <br>
 
 Looking for a simple and all in one solution for your teaching needs? Look no further. <br>
 
-
 PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. We are still working to scale our features so we mainly target tuition teachers currently. However, school teachers, do still give us a try. While our
 features are limited at this stage, we are working hard to scale them and be a useful tool in conjunction with [Learning Managment System (LMS)](#glossary) tools currently in the market. <br>
 
@@ -673,11 +672,11 @@ While PowerConnect do not currently support the `clear` function in this version
 2. Locate the folder `data`, double click into it, ***OPEN*** both files `parents.json` and `pcclass.json` and ***MANUALLY*** clear all data inside and save both files as ***EMPTY*** files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
-**DO NOT** type `clear` and enter as a command to avoid any unwanted errors!!! <br><br>
+If you happen to mess up the file data while ***EDITING*** the files mentioned above (**NOT RECOMMENDED** to edit this way **EVEN IF** you are an **EXPERIENCED USER**), you should always follow the steps above to perform a **FULL CLEAR** of data using the steps above to avoid any unwanted errors! <br><br>
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:** 
-In the scenario where you accidentally carried out the scenario mentioned in the **CAUTION** section, to remedy the scenario, simply carry out the **APPROPRIATE** steps as mentioned above to **PROPERLY** clear the data.<br><br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+You should also locate the folder `images`, and **REMOVE** all images within the folder to save storage space! <br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
