@@ -638,13 +638,22 @@ The `view` command retrieves either the user's information or the contact's info
 
 </div>
 
-What you should see:<br>
+##### Scenario:
 
-<img src="images/ug_cmds_pics/view_cmd.png" style="width:80%;margin:0 10%">
+As Weixiang is a new friend, and you are not familiar with him yet. You want to chat with him on Telegram but
+cannot remember his Telegram handle. You decided to use the `view` command to view his profile.
+
+Command entered: `view n/Weixiang` or `view 101` (if you know Weixiang's contact index)
+
+What you should see:
+
+<img src="images/ug_cmds_pics/View Command.svg" style="width:80%;margin:0 10%">
 
 <center>Diagram 9: Weixiang's profile displayed after execution of the <code>view</code> command</center>
 
 <br>
+
+##### More Examples of Usage:
 
 <div markdown="block" class="alert alert-success">
 
