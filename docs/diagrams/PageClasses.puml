@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T3
+skinparam classBackgroundColor UI_COLOR_T3
+
+package Page {
+class "{abstract}\nPage" as Page
+class InternshipInfoPage
+class ClashInfoPage
+class ClashInfoItem
+class StatsPage
+class HomePage
+class CalendarPage
+class EventCard
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Page
+
+
+package Model <<Rectangle>> {
+Class Event MODEL_COLOR
+Class Internship MODEL_COLOR
+}
+
+
+Page <|-down- InternshipInfoPage
+Page <|-down- HomePage
+Page <|-down- ClashInfoPage
+Page <|-down- StatsPage
+Page <|-down- CalendarPage
+
+ClashInfoPage -down-> "*" ClashInfoItem
+HomePage -down-> "*" EventCard
+InternshipInfoPage -down-> "*" EventCard
+
+EventCard .down.> Event
+ClashInfoItem .down.> Event
+CalendarPage .down.> Event
+
+InternshipInfoPage .down.> Internship
+
+StatsPage -[hidden]right- InternshipInfoPage
+InternshipInfoPage -[hidden]right- HomePage
+HomePage -[hidden]right- ClashInfoPage
+ClashInfoPage -[hidden]right- CalendarPage
+
+CalendarPage -[hidden]right- InternshipInfoPage
+
+
+EventCard -[hidden]down- Event
+InternshipInfoPage -[hidden]down- Internship
+
+
+
+@enduml
