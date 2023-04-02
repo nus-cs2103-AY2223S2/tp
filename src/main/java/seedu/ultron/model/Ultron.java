@@ -27,7 +27,8 @@ public class Ultron implements ReadOnlyUltron {
         openings = new UniqueOpeningList();
     }
 
-    public Ultron() {}
+    public Ultron() {
+    }
 
     /**
      * Creates an Ultron using the Openings in the {@code toBeCopied}
@@ -44,6 +45,8 @@ public class Ultron implements ReadOnlyUltron {
      * {@code openings} must not contain duplicate openings.
      */
     public void setOpenings(List<Opening> openings) {
+        System.out.println("3");
+        System.out.println(openings.size());
         this.openings.setOpenings(openings);
     }
 
@@ -52,7 +55,6 @@ public class Ultron implements ReadOnlyUltron {
      */
     public void resetData(ReadOnlyUltron newData) {
         requireNonNull(newData);
-
         setOpenings(newData.getOpeningList());
     }
 

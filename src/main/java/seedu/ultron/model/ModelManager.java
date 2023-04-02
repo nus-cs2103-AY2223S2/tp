@@ -84,6 +84,8 @@ public class ModelManager implements Model {
 
     @Override
     public void setUltron(ReadOnlyUltron ultron) {
+        System.out.println("1");
+        System.out.println(ultron.getOpeningList().size());
         this.ultron.resetData(ultron);
     }
 

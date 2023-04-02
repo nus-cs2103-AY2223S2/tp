@@ -1,6 +1,7 @@
 package seedu.ultron.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.ultron.model.Model.PREDICATE_SHOW_ALL_OPENINGS;
 
 import seedu.ultron.model.Model;
 import seedu.ultron.model.Ultron;
@@ -19,6 +20,7 @@ public class ClearCommand extends Command {
         requireNonNull(model);
         model.setUltron(new Ultron());
         model.setSelectedIndex(null);
+        model.updateFilteredOpeningList(PREDICATE_SHOW_ALL_OPENINGS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
