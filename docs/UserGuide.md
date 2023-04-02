@@ -30,12 +30,12 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
   * [**Getting Help**](#getting-help)
 * [**User Interface**](#user-interface)
   * [**Breakdown of EduMate's UI**](#breakdown-of-edumates-ui)
-    * [**Person List**](#person-list)
-    * [**Profile Panel**](#profile-panel)
-    * [**Command Box**](#command-box)
-    * [**Command Response**](#command-response)
-    * [**Meet Up Recommendation Panel**](#meet-up-recommendation-panel)
-    * [**Scheduled Meet Up Panel**](#scheduled-meet-up-panel)
+  * [**Person List**](#person-list)
+  * [**Profile Panel**](#profile-panel)
+  * [**Command Box**](#command-box)
+  * [**Command Response**](#command-response)
+  * [**Meet Up Recommendation Panel**](#meet-up-recommendation-panel)
+  * [**Scheduled Meet Up Panel**](#scheduled-meet-up-panel)
 * [**Set Your Own Profile**](#set-your-own-profile)
 * [**Commands**](#commands)
   * [**How to interpret the command format**](#how-to-interpret-the-command-format)
@@ -194,7 +194,7 @@ We also used light purple and white as our main colour scheme as they are cool c
 ### **Breakdown of EduMate's UI**
 
 `EduMate` consists of the following main UI components
-1. Person List
+1. [Person List](#person-list)
 2. Meet Up Recommendation Panel
 3. Profile Panel
 4. Scheduled Meet Up Panel
@@ -213,9 +213,20 @@ The following diagram shows the layout of components numbered exactly as above.
 
 You may locate the Person List at the center-left of `EduMate`. This is where you will see all your saved contacts (or sample data if you are trying out for the first time).
 
-<img src="images/UG_ui_pictures/contact_list.png" style="width:60%;margin:0 10% 0 20%">
+<img src="images/UG_ui_pictures/PersonList.svg" style="width:60%;margin:0 10% 0 20%">
 
-<center>Diagram 3: Person List with some contacts displayed.</center>
+<center>Diagram 4: Person List with some contacts displayed.</center>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:**Appearance of Module Tags**<br>
+Not all modules that are tagged to the contact is shown on the Person List. Only modules that you are tagged with will appear.
+<br>
+
+<img src="images/UG_ui_pictures/PersonListCommonMods.svg" style="width:80%;margin:0 10%">
+
+<center>Diagram 5: Person List (in red) with common modules boxed in green.</center>
+</div>
 
 ### Profile Panel
 
