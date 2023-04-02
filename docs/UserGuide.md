@@ -34,15 +34,14 @@ The following is a short overview of the features and capabilities of CookHub:
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `cookhub.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-1/tp/releases).
+2. Download the latest `cookhub.jar` from [here](https://github.com/AY2223S2-CS2103T-W09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your CookHub.
+3. Copy the file to the folder you want to use as the _home folder_ for your CookHub.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar cookhub.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar cookhub.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/UiInWindows.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   <img src="images/UiInWindows.png" width=500 height=400>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `add t/Watermelon juice d/Quick and easy watermelon juice i/One watermelon s/Juice the watermelon` : Add a new recipe titled `Watermelon juice` that has a description `Quick and easy watermelon juice`, an ingredient of `One watermelon`, and a step of `Juice the watermelon`
@@ -105,10 +104,12 @@ shown below will be added to the recipe book:
 
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because `s/` is compulsory and you will see an
 error message like the one in the picture shown below:
+
 <img src="images/AddError.png" width=500 height=400>
 
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar, 50, g, 0.10 s/Juice the orange` is valid because we can have
 multiple `i/` flags and a recipe look like the picture shown below will be added to the recipe book:
+
 <img src="images/AddResult2.png" width=500 height=400>
 
 
@@ -125,17 +126,21 @@ Format: `edit {recipe number} $[t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP]
 Example:
 
 The original recipe book:
+
 <img src="images/UiInWindows.png" width=500 height=400>
 
 - `edit 1 t/Corndog` is valid and the recipe will be edited like the picture shown below:
+
 <img src="images/EditResult1.png" width=500 height=400>
 
 - `edit 1` is not valid as at least one flag is required and you will see an error message like the one in the picture
 shown below:
+
 <img src="images/EditError.png" width=500 height=400>
 
 - `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted and the recipe will be edited like
 the picture shown below:
+
 <img src="images/EditResult2.png" width=500 height=400>
 
 
@@ -153,14 +158,16 @@ Expected outcome: You should see an updated list of recipes with the recipe at t
 Examples:
 
 The original recipe book:
+
 <img src="images/UiInWindows.png" width=500 height=400>
 
 - `delete 1` will change the recipe book to:
-![DeleteCommand example1 result](images/DeleteResult1.png)
+
 <img src="images/DeleteResult1.png" width=500 height=400>
 
 - `delete 2` is invalid as there is only 1 recipe in the recipe book for now and you will see an error message like the
 one in the picture shown below:
+
 <img src="images/DeleteResult2.png" width=500 height=400>
 
 
@@ -174,8 +181,8 @@ Format: `list`
 Expected outcome: You should see a list of all the recipes in CookHub
 
 Example: `list` will list all the recipes like the picture shown below:
-<img src="images/ListResult.png" width=500 height=400>
 
+<img src="images/ListResult.png" width=500 height=400>
 
 
 ---
@@ -188,6 +195,7 @@ Format: `clear`
 Expected outcome: You should see that CookHub has zero recipes in it
 
 Example: `clear` will clear all recipes like the picture shown below:
+
 <img src="images/ClearResult.png" width=500 height=400>
 
 
@@ -210,17 +218,21 @@ Format: `find $$[r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]$$`
 Examples:
 
 The original recipe book:
+
 <img src="images/AddResult2.png" width=500 height=400>
 
 - `find r/eggs` is valid and the result of the command is shown below:
+
 <img src="images/FindResult.png" width=500 height=400>
 
 - `find r/eggs s/fry the egg` is not valid because at most one flag is allowed and you will see an error message like
 the one in the picture shown below:
+
 <img src="images/FindError1.png" width=500 height=400>
 
 - `find` is not valid as at least one flag is required and you will see an error message like the one in the picture
 shown below:
+
 <img src="images/FindError2.png" width=500 height=400>
 
 
@@ -234,18 +246,22 @@ Format: `only INGREDIENT...`
 Examples:
 
 The original recipe book:
+
 <img src="images/AddResult2.png" width=500 height=400>
 
 - e.g. `only` is not valid as a parameter is needed and you will see an error message like the one in the picture shown
 below:
+
 <img src="images/OnlyError.png" width=500 height=400>
 
 - e.g. `only eggs` is valid, will search for recipes that have ingredients that at most contain eggs, and nothing more,
 and the result of the command is shown below:
+
 <img src="images/OnlyResult1.png" width=500 height=400>
 
 - e.g. `only eggs flour` will search for recipes that have ingredients that at most contains eggs and flour.
 A recipe that only needs eggs will also be valid. The result of the command is shown below:
+
 <img src="images/OnlyResult2.png" width=500 height=400>
 
 
@@ -262,9 +278,11 @@ Expected outcome: You should see a list of recipes sorted in ascending order of 
 Example: 
 
 The original recipe book:
+
 <img src="images/AddResult2.png" width=500 height=400>
 
 - `sort desc` will give you the result of the picture shown below:
+
 <img src="images/SortResult.png" width=500 height=400>
 
 
@@ -282,9 +300,11 @@ Expected outcome: You should see a list of filtered recipes with price less than
 Example: 
 
 The original recipe book:
+
 <img src="images/AddResult2.png" width=500 height=400>
 
 - `fp < 4.50` will give you the result of the picture shown below:
+
 <img src="images/FpResult.png" width=500 height=400>
 
 
@@ -303,11 +323,15 @@ Expected outcome: You should see a star after the title of the recipe you marked
 Examples:
 
 The original recipe book:
+
 <img src="images/AddResult2.png" width=500 height=400>
 
 - `star 1` will give you the result of the picture shown below:
+
 <img src="images/StarResult1.png" width=500 height=400>
+
 - `star 2` will give you the result of the picture shown below:
+
 <img src="images/StarResult2.png" width=500 height=400>
 
 
@@ -326,12 +350,15 @@ Expected outcome: You should not see the star after the title of the recipe you 
 Examples:
 
 The original recipe book:
+
 <img src="images/ALlRecipesStarred.png" width=500 height=400>
 
 - `unstar 1` will give you the result of the picture shown below:
+
 <img src="images/UnstarResult1.png" width=500 height=400>
 
 - `unstar 2` will give you the result of the picture shown below:
+
 <img src="images/UnstarResult2.png" width=500 height=400>
 
 
@@ -347,9 +374,11 @@ Expected outcome: You should see a list of all the recipes in your favorites
 Example:
 
 The original recipe book:
+
 <img src="images/StarResult1.png" width=500 height=400>
 
 - `favorites` will give you the result of the picture shown below:
+
 <img src="images/FavoritesResult.png" width=500 height=400>
 
 
@@ -361,7 +390,7 @@ Shows a message explaining how to access the help page.
 
 Expected outcome: You should see a window like the picture shown below:
 
-<img src="images/helpMessage.png" width=500 height=400>
+![help message](images/helpMessage.png)
 
 
 Format: `help`
