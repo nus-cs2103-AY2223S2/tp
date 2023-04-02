@@ -36,6 +36,7 @@ public class ShowRemarkCommand extends Command {
     public static final String MESSAGE_SHOWN_REMARK_EMPTY = "No remarks yet...";
 
     private final Index index;
+    private Person personToShow;
 
     /**
      * Constructor for ShowRemarkCommand command
@@ -43,7 +44,6 @@ public class ShowRemarkCommand extends Command {
      */
     public ShowRemarkCommand(Index index) {
         requireNonNull(index);
-
         this.index = index;
     }
 
@@ -55,7 +55,7 @@ public class ShowRemarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToShow = lastShownList.get(index.getZeroBased());
+        personToShow = lastShownList.get(index.getZeroBased());
         assert (personToShow != null);
         model.updateShowPerson(new FullNamePredicate(personToShow.getName().toString()));
         Remark toBeShown = personToShow.getOptionalRemark().orElse(new Remark(""));

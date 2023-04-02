@@ -50,7 +50,7 @@ public class ResultPersonCard extends UiPart<Region> {
     @FXML
     private Label telegram;
 
-    public ResultPersonCard(Person person, int displayedIndex) {
+    public ResultPersonCard(Person person) {
         super(FXML);
         this.person = person;
         name.setText(person.getName().fullName);
