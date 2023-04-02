@@ -9,6 +9,7 @@ import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,7 +20,9 @@ import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Name;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -39,10 +42,10 @@ public class ParserUtilTest {
     private static final String VALID_INGREDIENT_1 = "-a 1 pound -n lasagna sheets";
     private static final String VALID_INGREDIENT_2 = "-a 1 teaspoon -n salt";
     private static final String VALID_STEP_1 =
-            "Cook the lasagna noodles according to the package instructions. Drain and set aside.";
+        "Cook the lasagna noodles according to the package instructions. Drain and set aside.";
     private static final String VALID_STEP_2 =
-            "Add the crushed tomatoes, tomato paste, basil, oregano, salt, and black pepper to the skillet. "
-                    + "Stir to combine and simmer for 10-15 minutes.";
+        "Add the crushed tomatoes, tomato paste, basil, oregano, salt, and black pepper to the skillet. "
+            + "Stir to combine and simmer for 10-15 minutes.";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -54,7 +57,7 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-                -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -199,7 +202,7 @@ public class ParserUtilTest {
     @Test
     public void parseIngredients_collectionWithInvalidIngredients_throwsParseException() {
         assertThrows(ParseException.class, () ->
-                ParserUtil.parseIngredients(Arrays.asList(VALID_INGREDIENT_1, INVALID_INGREDIENT)));
+            ParserUtil.parseIngredients(Arrays.asList(VALID_INGREDIENT_1, INVALID_INGREDIENT)));
     }
 
     @Test
@@ -209,11 +212,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseIngredients_collectionWithValidIngredients_returnsIngredientsList() throws Exception {
-        List<IngredientBuilder> actualIngredientList =
-                ParserUtil.parseIngredients(Arrays.asList(VALID_INGREDIENT_1, VALID_INGREDIENT_2));
-        List<IngredientBuilder> expectedIngredientList =
-                new ArrayList<IngredientBuilder>(Arrays.asList(new IngredientBuilder(VALID_INGREDIENT_1),
-                                                        new IngredientBuilder(VALID_INGREDIENT_2)));
+        HashMap<Ingredient, IngredientInformation> actualIngredientList =
+            ParserUtil.parseIngredients(Arrays.asList(VALID_INGREDIENT_1, VALID_INGREDIENT_2));
+
+        HashMap<Ingredient, IngredientInformation> expectedIngredientList = new HashMap<>();
+        HashMap<Ingredient, IngredientInformation> ingredient1 = new IngredientBuilder(VALID_INGREDIENT_1).build();
+        HashMap<Ingredient, IngredientInformation> ingredient2 = new IngredientBuilder(VALID_INGREDIENT_2).build();
+        expectedIngredientList.putAll(ingredient1);
+        expectedIngredientList.putAll(ingredient2);
 
         assertEquals(expectedIngredientList, actualIngredientList);
     }
@@ -243,7 +249,7 @@ public class ParserUtilTest {
     @Test
     public void parseSteps_collectionWithInvalidSteps_throwsParseException() {
         assertThrows(ParseException.class, () ->
-                ParserUtil.parseSteps(Arrays.asList(VALID_STEP_1, INVALID_STEP)));
+            ParserUtil.parseSteps(Arrays.asList(VALID_STEP_1, INVALID_STEP)));
     }
 
     @Test
@@ -254,10 +260,10 @@ public class ParserUtilTest {
     @Test
     public void parseSteps_collectionWithValidSteps_returnsStepsList() throws Exception {
         List<Step> actualStepList =
-                ParserUtil.parseSteps(Arrays.asList(VALID_STEP_1, VALID_STEP_2));
+            ParserUtil.parseSteps(Arrays.asList(VALID_STEP_1, VALID_STEP_2));
         List<Step> expectedStepList =
-                new ArrayList<Step>(Arrays.asList(new Step(VALID_STEP_1),
-                                                  new Step(VALID_STEP_2)));
+            new ArrayList<Step>(Arrays.asList(new Step(VALID_STEP_1),
+                new Step(VALID_STEP_2)));
 
         assertEquals(expectedStepList, actualStepList);
     }
