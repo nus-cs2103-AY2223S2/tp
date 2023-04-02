@@ -11,8 +11,8 @@ public class ContactPhone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be 8 digits long";
-    public static final String VALIDATION_REGEX = "\\d{8,}";
+            "Phone numbers should only contain numbers, and it should be at least 8 digits long and not longer than 15 digits";
+    public static final String VALIDATION_REGEX = "\\d{8,15}";
     public final String value;
 
     /**
