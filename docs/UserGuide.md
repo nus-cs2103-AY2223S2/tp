@@ -248,15 +248,15 @@ _\* Both commands lists videos that belongs to lecture `Week 1` in module `CS204
 
 ### Add a Module
 
-> Adds a module to Le Tracker.
+> `add {module_code} [/name {module_name}] [/tags {tag_1}, [{tag_2}, ...]]`
 
-Format: `add {module_code} [/name {module_name}] [/tags {tag_1}, [{tag_2}, ...]]`
+Adds a module to Le Tracker
 
-- `module_code` must be unique among the module codes of the modules in Le Tracker
-- `module_code` must be a valid module code
-- `module_name` must be a valid module name
-- `tag_1`, `tag_2`, ... must be valid tags
-- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
+| Parameter     | Description             | Remarks                                                                                                      |
+| ------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `module_code` | The code of the module. | <li>Must be unique among the module code of the modules in Le Tracker</li>                                   |
+|               |                         | <li>Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)</li> |
+| `module_name` | The name of the module. | Must be a valid module name (refer to [Argument Validity](#argument-validity) for more information)          |
 
 Examples:
 
@@ -660,10 +660,10 @@ Format:
 <!-- TODO: Update this after user guide is finalised -->
 <!-- ## Command summary
 
-| Action               | Format, Examples                                                                                                                                         |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add a Module**     | `add-module /code {module_code} [/name {module_name}]` / e.g., `add-module /code CS2040 /name Data Structures & Algorithms`                           |
-| **Add a Lecture**    | `add-lecture /module {module_code}` / e.g., `add-lecture /module CS2040`                                                                              |
-| **Add a Video**      | `add-video /module {module_name} /lecture {lecture_index} /video {video_name}` / e.g., `add-video /module CS2040 /lecture 1 /video lecture-01-part-1` |
-| **Tag a Lecture**    | `tag /module {module_code} /lecture {lecture_id} /description {tag_description}` / e.g, `tag /module CS2040 /lecture 1 /description Boohoo`|
-| **Delete a Tag**     | `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}` / e.g,  `untag /module CS2040 /lecture 1 /tag 1` | -->
+| Action            | Format, Examples                                                                                                                                      |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Add a Module**  | `add-module /code {module_code} [/name {module_name}]` / e.g., `add-module /code CS2040 /name Data Structures & Algorithms`                           |
+| **Add a Lecture** | `add-lecture /module {module_code}` / e.g., `add-lecture /module CS2040`                                                                              |
+| **Add a Video**   | `add-video /module {module_name} /lecture {lecture_index} /video {video_name}` / e.g., `add-video /module CS2040 /lecture 1 /video lecture-01-part-1` |
+| **Tag a Lecture** | `tag /module {module_code} /lecture {lecture_id} /description {tag_description}` / e.g, `tag /module CS2040 /lecture 1 /description Boohoo`           |
+| **Delete a Tag**  | `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}` / e.g,  `untag /module CS2040 /lecture 1 /tag 1`                                    | --> |
