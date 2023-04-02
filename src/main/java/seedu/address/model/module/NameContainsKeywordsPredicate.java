@@ -3,8 +3,6 @@ package seedu.address.model.module;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Module}'s {@code Name} {@code Tag} matches any of the keywords given.
  */

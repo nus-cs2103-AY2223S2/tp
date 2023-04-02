@@ -1,29 +1,29 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_CS3230;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TIMESLOT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TYPE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_TUTORIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CS3230;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -55,7 +55,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_CS3230, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -67,10 +67,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + NAME_DESC_CS3230, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + NAME_DESC_CS3230, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -83,37 +83,44 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS); // invalid type
-        assertParseFailure(parser, "1" + INVALID_TIMESLOT_DESC, TimeSlot.MESSAGE_CONSTRAINTS); // invalid timeSlot
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1"
+                + INVALID_TIMESLOT_DESC, TimeSlot.MESSAGE_CONSTRAINTS); // invalid timeSlot
+        assertParseFailure(parser, "1"
+                + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid type followed by valid timeSlot
-        assertParseFailure(parser, "1" + INVALID_TYPE_DESC + TIMESLOT_DESC_AMY, Resource.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_TYPE_DESC
+                + TIMESLOT_DESC_CS3230, Resource.MESSAGE_CONSTRAINTS);
 
         // valid type followed by invalid type. The test case for invalid type followed by valid type
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + TYPE_DESC_BOB + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TYPE_DESC_CS3219 + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Module} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_TUTORIAL + TAG_DESC_LECTURE
+                + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_TUTORIAL + TAG_EMPTY
+                + TAG_DESC_LECTURE, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_TUTORIAL
+                + TAG_DESC_LECTURE, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_TIMESLOT_DESC + VALID_ADDRESS_AMY
-                        + VALID_RESOURCE_AMY, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_TIMESLOT_DESC + VALID_ADDRESS_CS3230
+                        + VALID_RESOURCE_CS3230, Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_MODULE;
-        String userInput = targetIndex.getOneBased() + TYPE_DESC_BOB + TAG_DESC_HUSBAND
-                + TIMESLOT_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + TYPE_DESC_CS3219 + TAG_DESC_LECTURE
+                + TIMESLOT_DESC_CS3230 + ADDRESS_DESC_CS3230 + NAME_DESC_CS3230 + TAG_DESC_TUTORIAL;
 
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withResource(VALID_RESOURCE_BOB).withTimeSlot(VALID_TIMESLOT_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3230)
+                .withResource(VALID_RESOURCE_CS3219).withTimeSlot(VALID_TIMESLOT_CS3230)
+                .withAddress(VALID_ADDRESS_CS3230)
+                .withTags(VALID_TAG_LECTURE, VALID_TAG_TUTORIAL).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -122,10 +129,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_MODULE;
-        String userInput = targetIndex.getOneBased() + TYPE_DESC_BOB + TIMESLOT_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + TYPE_DESC_CS3219 + TIMESLOT_DESC_CS3230;
 
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_BOB)
-                .withTimeSlot(VALID_TIMESLOT_AMY).build();
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_CS3219)
+                .withTimeSlot(VALID_TIMESLOT_CS3230).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -135,32 +142,32 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_MODULE;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        String userInput = targetIndex.getOneBased() + NAME_DESC_CS3230;
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3230).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // type
-        userInput = targetIndex.getOneBased() + TYPE_DESC_AMY;
-        descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_AMY).build();
+        userInput = targetIndex.getOneBased() + TYPE_DESC_CS3230;
+        descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_CS3230).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // timeSlot
-        userInput = targetIndex.getOneBased() + TIMESLOT_DESC_AMY;
-        descriptor = new EditModuleDescriptorBuilder().withTimeSlot(VALID_TIMESLOT_AMY).build();
+        userInput = targetIndex.getOneBased() + TIMESLOT_DESC_CS3230;
+        descriptor = new EditModuleDescriptorBuilder().withTimeSlot(VALID_TIMESLOT_CS3230).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AMY;
-        descriptor = new EditModuleDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
+        userInput = targetIndex.getOneBased() + ADDRESS_DESC_CS3230;
+        descriptor = new EditModuleDescriptorBuilder().withAddress(VALID_ADDRESS_CS3230).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditModuleDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_TUTORIAL;
+        descriptor = new EditModuleDescriptorBuilder().withTags(VALID_TAG_TUTORIAL).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -168,13 +175,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_MODULE;
-        String userInput = targetIndex.getOneBased() + TYPE_DESC_AMY + ADDRESS_DESC_AMY + TIMESLOT_DESC_AMY
-                + TAG_DESC_FRIEND + TYPE_DESC_AMY + ADDRESS_DESC_AMY + TIMESLOT_DESC_AMY + TAG_DESC_FRIEND
-                + TYPE_DESC_BOB + ADDRESS_DESC_BOB + TIMESLOT_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + TYPE_DESC_CS3230 + ADDRESS_DESC_CS3230 + TIMESLOT_DESC_CS3230
+                + TAG_DESC_TUTORIAL + TYPE_DESC_CS3230 + ADDRESS_DESC_CS3230 + TIMESLOT_DESC_CS3230 + TAG_DESC_TUTORIAL
+                + TYPE_DESC_CS3219 + ADDRESS_DESC_CS3219 + TIMESLOT_DESC_CS3219 + TAG_DESC_LECTURE;
 
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_BOB)
-                .withTimeSlot(VALID_TIMESLOT_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_FRIEND,
-                        VALID_TAG_HUSBAND).build();
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_CS3219)
+                .withTimeSlot(VALID_TIMESLOT_CS3219).withAddress(VALID_ADDRESS_CS3219).withTags(VALID_TAG_TUTORIAL,
+                        VALID_TAG_LECTURE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -184,16 +191,17 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_MODULE;
-        String userInput = targetIndex.getOneBased() + INVALID_TYPE_DESC + TYPE_DESC_BOB;
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_BOB).build();
+        String userInput = targetIndex.getOneBased() + INVALID_TYPE_DESC + TYPE_DESC_CS3219;
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_CS3219).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + TIMESLOT_DESC_BOB + INVALID_TYPE_DESC + ADDRESS_DESC_BOB
-                + TYPE_DESC_BOB;
-        descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_BOB).withTimeSlot(VALID_TIMESLOT_BOB)
-                .withAddress(VALID_ADDRESS_BOB).build();
+        userInput = targetIndex.getOneBased() + TIMESLOT_DESC_CS3219 + INVALID_TYPE_DESC + ADDRESS_DESC_CS3219
+                + TYPE_DESC_CS3219;
+        descriptor = new EditModuleDescriptorBuilder().withResource(VALID_RESOURCE_CS3219)
+                .withTimeSlot(VALID_TIMESLOT_CS3219)
+                .withAddress(VALID_ADDRESS_CS3219).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESLOT_CS3219;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,39 +20,40 @@ public class EditModuleDescriptorTest {
     @Test
     public void equals() {
         // same values -> returns true
-        EditModuleDescriptor descriptorWithSameValues = new EditModuleDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        EditModuleDescriptor descriptorWithSameValues = new EditModuleDescriptor(DESC_CS3230);
+        assertTrue(DESC_CS3230.equals(descriptorWithSameValues));
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertTrue(DESC_CS3230.equals(DESC_CS3230));
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertFalse(DESC_CS3230.equals(null));
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertFalse(DESC_CS3230.equals(5));
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertFalse(DESC_CS3230.equals(DESC_CS3219));
 
         // different name -> returns false
-        EditModuleDescriptor editedAmy = new EditModuleDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        EditModuleDescriptor editedAmy = new EditModuleDescriptorBuilder(DESC_CS3230)
+                .withName(VALID_NAME_CS3219).build();
+        assertFalse(DESC_CS3230.equals(editedAmy));
 
         // different type -> returns false
-        editedAmy = new EditModuleDescriptorBuilder(DESC_AMY).withResource(VALID_RESOURCE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditModuleDescriptorBuilder(DESC_CS3230).withResource(VALID_RESOURCE_CS3219).build();
+        assertFalse(DESC_CS3230.equals(editedAmy));
 
         // different timeSlot -> returns false
-        editedAmy = new EditModuleDescriptorBuilder(DESC_AMY).withTimeSlot(VALID_TIMESLOT_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditModuleDescriptorBuilder(DESC_CS3230).withTimeSlot(VALID_TIMESLOT_CS3219).build();
+        assertFalse(DESC_CS3230.equals(editedAmy));
 
         // different address -> returns false
-        editedAmy = new EditModuleDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditModuleDescriptorBuilder(DESC_CS3230).withAddress(VALID_ADDRESS_CS3219).build();
+        assertFalse(DESC_CS3230.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditModuleDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        editedAmy = new EditModuleDescriptorBuilder(DESC_CS3230).withTags(VALID_TAG_LECTURE).build();
+        assertFalse(DESC_CS3230.equals(editedAmy));
     }
 }

@@ -29,9 +29,9 @@ import seedu.address.testutil.EditModuleDescriptorBuilder;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
 
-public class AddressBookParserTest {
+public class ModuleTrackerParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ModuleTrackerParser parser = new ModuleTrackerParser();
 
     @Test
     public void parseCommand_add() throws Exception {

@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Module in the address book.
+ * Represents a Module in the module tracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Module {
@@ -147,6 +147,38 @@ public class Module {
             tags.forEach(builder::append);
         }
         return builder.toString();
+    }
+
+    /**
+     * Compares TimeSlot of two modules
+     * @param otherModule Module to be compared to
+     * @return 1 if this module has no TimeSlot else -1 if other module has no TimeSlot else result of comparison
+     */
+    public int compareTimeSlot(Module otherModule) {
+        if (this.timeSlot.getDay() == null) {
+            //if this module has no timeslot, this module should be moved to the end of the sorted list.
+            return 1;
+        } else if (otherModule.timeSlot.getDay() == null) {
+            //if other module has no timeslot, other module should be moved to the end of the sorted list.
+            return -1;
+        }
+        return this.timeSlot.compareTo(otherModule.timeSlot);
+    }
+
+    /**
+     * Compares Deadline of two modules
+     * @param otherModule Module to be compared to
+     * @return 1 if this module has no Deadline else -1 if other module has no Deadline else result of comparison
+     */
+    public int compareDeadline(Module otherModule) {
+        if (this.deadline.value == null) {
+            //if this module has no deadline, this module should be moved to the end of the sorted list.
+            return 1;
+        } else if (otherModule.deadline.value == null) {
+            //if other module has no deadline, other module should be moved to the end of the sorted list.
+            return -1;
+        }
+        return this.deadline.compareTo(otherModule.deadline);
     }
 
 }

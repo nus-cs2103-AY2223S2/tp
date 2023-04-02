@@ -14,7 +14,7 @@ import seedu.address.model.module.Module;
 
 
 /**
- * Changes the deadline of an existing module in the address book.
+ * Changes the deadline of an existing module in the module tracker.
  */
 public class DeadlineCommand extends Command {
 
@@ -49,7 +49,7 @@ public class DeadlineCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Module> lastShownList = model.getFilteredModuleList();
+        List<Module> lastShownList = model.getDisplayedModuleList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);

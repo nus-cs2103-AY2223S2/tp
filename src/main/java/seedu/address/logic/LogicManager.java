@@ -13,10 +13,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ModuleTrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyModuleTracker;
 import seedu.address.model.module.Module;
 import seedu.address.storage.Storage;
 
@@ -29,7 +29,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final ModuleTrackerParser moduleTrackerParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -37,7 +37,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        moduleTrackerParser = new ModuleTrackerParser();
     }
 
     @Override
@@ -45,11 +45,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = moduleTrackerParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveModuleTracker(model.getModuleTracker());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -58,18 +58,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyModuleTracker getModuleTracker() {
+        return model.getModuleTracker();
     }
 
     @Override
-    public ObservableList<Module> getFilteredModuleList() {
-        return model.getFilteredModuleList();
+    public ObservableList<Module> getDisplayedModuleList() {
+        return model.getDisplayedModuleList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getModuleTrackerFilePath() {
+        return model.getModuleTrackerFilePath();
     }
 
     @Override
@@ -87,9 +87,9 @@ public class LogicManager implements Logic {
         String deadlinesToday = "Deadlines Today: \n";
         String timeSlotsToday = "Time Slots Today: \n";
 
-        for (int i = 0; i < model.getFilteredModuleList().size(); i++) {
-            boolean isDeadlineNull = model.getFilteredModuleList().get(i).getDeadline().value == null;
-            boolean isSlotNull = model.getFilteredModuleList().get(i).getTimeSlot().value == null;
+        for (int i = 0; i < model.getDisplayedModuleList().size(); i++) {
+            boolean isDeadlineNull = model.getDisplayedModuleList().get(i).getDeadline().value == null;
+            boolean isSlotNull = model.getDisplayedModuleList().get(i).getTimeSlot().getDay() == null;
 
             // Handle deadlines
             if (!isDeadlineNull) {
@@ -107,12 +107,12 @@ public class LogicManager implements Logic {
 
     private String getDeadlinesToday(int index) {
         LocalDate today = LocalDate.now();
-        Module module = model.getFilteredModuleList().get(index);
+        Module module = model.getDisplayedModuleList().get(index);
         String fullLine = "";
 
         boolean isDeadlineToday = module.getDeadline().value.toLocalDate().isEqual(today);
 
-        if(isDeadlineToday) {
+        if (isDeadlineToday) {
             String moduleName = module.getName().fullName;
             String moduleType = module.getTags().toString();
             moduleType = moduleType.replace("[", "").replace("]", "");
@@ -130,17 +130,17 @@ public class LogicManager implements Logic {
     private String getSlotsToday(int index) {
         LocalDate today = LocalDate.now();
         String fullLine = "";
-        Module module = model.getFilteredModuleList().get(index);
+        Module module = model.getDisplayedModuleList().get(index);
 
-        boolean isSlotToday = module.getTimeSlot().value.toLocalDate().isEqual(today);
+        boolean isSlotToday = module.getTimeSlot().getLocalDateTime().toLocalDate().isEqual(today);
 
-        if(isSlotToday) {
+        if (isSlotToday) {
             String moduleName = module.getName().fullName;
             String moduleType = module.getTags().toString();
             moduleType = moduleType.replace("[", "").replace("]", "");
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
-            LocalDateTime date = module.getTimeSlot().value;
+            LocalDateTime date = module.getTimeSlot().getLocalDateTime();
             String formattedDate = formatter.format(date);
 
             fullLine = moduleName + " " + moduleType + " Starting at: " + formattedDate + "\n";

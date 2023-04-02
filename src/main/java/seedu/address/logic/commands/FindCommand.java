@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all modules in address book whose name contains any of the argument keywords.
+ * Finds and lists all modules in module tracker whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
@@ -31,7 +31,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredModuleList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
+                String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getDisplayedModuleList().size()));
     }
 
     @Override

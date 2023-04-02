@@ -12,7 +12,7 @@ import seedu.address.model.module.UniqueModuleList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameModule comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ModuleTracker implements ReadOnlyModuleTracker {
 
     private final UniqueModuleList modules;
 
@@ -27,12 +27,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         modules = new UniqueModuleList();
     }
 
-    public AddressBook() {}
+    public ModuleTracker() {}
 
     /**
-     * Creates an AddressBook using the Modules in the {@code toBeCopied}
+     * Creates an ModuleTracker using the Modules in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ModuleTracker(ReadOnlyModuleTracker toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -48,9 +48,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ModuleTracker} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyModuleTracker newData) {
         requireNonNull(newData);
 
         setModules(newData.getModuleList());
@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// module-level operations
 
     /**
-     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in the module tracker.
      */
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -67,8 +67,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a module to the address book.
-     * The module must not already exist in the address book.
+     * Adds a module to the module tracker.
+     * The module must not already exist in the module tracker.
      */
     public void addModule(Module p) {
         modules.add(p);
@@ -76,8 +76,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given module {@code target} in the list with {@code editedModule}.
-     * {@code target} must exist in the address book.
-     * The module identity of {@code editedModule} must not be the same as another existing module in the address book.
+     * {@code target} must exist in the module tracker.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the
+     * module tracker.
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
@@ -86,8 +87,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ModuleTracker}.
+     * {@code key} must exist in the module tracker.
      */
     public void removeModule(Module key) {
         modules.remove(key);
@@ -109,8 +110,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && modules.equals(((AddressBook) other).modules));
+                || (other instanceof ModuleTracker // instanceof handles nulls
+                && modules.equals(((ModuleTracker) other).modules));
     }
 
     @Override

@@ -2,26 +2,26 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RESOURCE_CS3219;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
-import static seedu.address.testutil.TypicalModules.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalModules.getTypicalModuleTracker;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditModuleDescriptor;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ModuleTracker;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
@@ -32,7 +32,7 @@ import seedu.address.testutil.ModuleBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalModuleTracker(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,28 +42,28 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
+        Model expectedModel = new ModelManager(new ModuleTracker(model.getModuleTracker()), new UserPrefs());
+        expectedModel.setModule(model.getDisplayedModuleList().get(0), editedModule);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastModule = Index.fromOneBased(model.getFilteredModuleList().size());
-        Module lastModule = model.getFilteredModuleList().get(indexLastModule.getZeroBased());
+        Index indexLastModule = Index.fromOneBased(model.getDisplayedModuleList().size());
+        Module lastModule = model.getDisplayedModuleList().get(indexLastModule.getZeroBased());
 
         ModuleBuilder moduleInList = new ModuleBuilder(lastModule);
-        Module editedModule = moduleInList.withName(VALID_NAME_BOB).withResource(VALID_RESOURCE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Module editedModule = moduleInList.withName(VALID_NAME_CS3219).withResource(VALID_RESOURCE_CS3219)
+                .withTags(VALID_TAG_LECTURE).build();
 
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withResource(VALID_RESOURCE_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3219)
+                .withResource(VALID_RESOURCE_CS3219).withTags(VALID_TAG_LECTURE).build();
         EditCommand editCommand = new EditCommand(indexLastModule, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ModuleTracker(model.getModuleTracker()), new UserPrefs());
         expectedModel.setModule(lastModule, editedModule);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -72,11 +72,11 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_MODULE, new EditModuleDescriptor());
-        Module editedModule = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        Module editedModule = model.getDisplayedModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ModuleTracker(model.getModuleTracker()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -85,22 +85,23 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
-        Module moduleInFilteredList = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
-        Module editedModule = new ModuleBuilder(moduleInFilteredList).withName(VALID_NAME_BOB).build();
+        Module moduleInFilteredList = model.getDisplayedModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        Module editedModule = new ModuleBuilder(moduleInFilteredList).withName(VALID_NAME_CS3219).build();
+
         EditCommand editCommand = new EditCommand(INDEX_FIRST_MODULE,
-                new EditModuleDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3219).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
+        Model expectedModel = new ModelManager(new ModuleTracker(model.getModuleTracker()), new UserPrefs());
+        expectedModel.setModule(model.getDisplayedModuleList().get(0), editedModule);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateModuleUnfilteredList_failure() {
-        Module firstModule = model.getFilteredModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
+        Module firstModule = model.getDisplayedModuleList().get(INDEX_FIRST_MODULE.getZeroBased());
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder(firstModule).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_MODULE, descriptor);
 
@@ -111,8 +112,8 @@ public class EditCommandTest {
     public void execute_duplicateModuleFilteredList_failure() {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
 
-        // edit module in filtered list into a duplicate in address book
-        Module moduleInList = model.getAddressBook().getModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
+        // edit module in filtered list into a duplicate in module tracker
+        Module moduleInList = model.getModuleTracker().getModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_MODULE,
                 new EditModuleDescriptorBuilder(moduleInList).build());
 
@@ -121,8 +122,9 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidModuleIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
-        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        Index outOfBoundIndex = Index.fromOneBased(model.getDisplayedModuleList().size() + 1);
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3219).build();
+
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
@@ -130,27 +132,27 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of module tracker
      */
     @Test
     public void execute_invalidModuleIndexFilteredList_failure() {
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
         Index outOfBoundIndex = INDEX_SECOND_MODULE;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getModuleList().size());
+        // ensures that outOfBoundIndex is still in bounds of module tracker list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getModuleTracker().getModuleList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditModuleDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditModuleDescriptorBuilder().withName(VALID_NAME_CS3219).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_MODULE, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_MODULE, DESC_CS3230);
 
         // same values -> returns true
-        EditModuleDescriptor copyDescriptor = new EditModuleDescriptor(DESC_AMY);
+        EditModuleDescriptor copyDescriptor = new EditModuleDescriptor(DESC_CS3230);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_MODULE, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -164,10 +166,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_MODULE, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_MODULE, DESC_CS3230)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_MODULE, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_MODULE, DESC_CS3219)));
     }
 
 }

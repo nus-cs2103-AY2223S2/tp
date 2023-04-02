@@ -1,7 +1,7 @@
 package seedu.address.model.module;
 
 /**
- * Represents a Module's type number in the address book.
+ * Represents a Module's type number in the module tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidResource(String)}
  */
 public class Resource {

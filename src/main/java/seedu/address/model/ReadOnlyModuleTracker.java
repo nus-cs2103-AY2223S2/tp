@@ -4,9 +4,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an module tracker
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyModuleTracker {
 
     /**
      * Returns an unmodifiable view of the modules list.

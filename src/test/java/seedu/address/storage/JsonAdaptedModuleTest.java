@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalModules.BENSON;
+import static seedu.address.testutil.TypicalModules.CS2103T_LEC;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,23 +24,23 @@ public class JsonAdaptedModuleTest {
     private static final String INVALID_TIMESLOT = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_TYPE = BENSON.getResource().toString();
-    private static final String VALID_TIMESLOT = BENSON.getTimeSlot().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_NAME = CS2103T_LEC.getName().toString();
+    private static final String VALID_TYPE = CS2103T_LEC.getResource().toString();
+    private static final String VALID_TIMESLOT = CS2103T_LEC.getTimeSlot().toString();
+    private static final String VALID_ADDRESS = CS2103T_LEC.getAddress().toString();
 
     private static final String VALID_REMARK = "Best module ever! I love computer science!";
     private static final String VALID_DEADLINE = "20th Feb 10am";
 
     private static final String VALID_TEACHER = "Prof Damyth";
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = CS2103T_LEC.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validModuleDetails_returnsModule() throws Exception {
-        JsonAdaptedModule module = new JsonAdaptedModule(BENSON);
-        assertEquals(BENSON, module.toModelType());
+        JsonAdaptedModule module = new JsonAdaptedModule(CS2103T_LEC);
+        assertEquals(CS2103T_LEC, module.toModelType());
     }
 
     @Test
