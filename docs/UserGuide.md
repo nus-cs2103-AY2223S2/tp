@@ -266,11 +266,17 @@ As clearly seen in the image above, if the due date is within 3 days of the curr
 
 ### Saving the data
 
-ExpressLibrary data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/DeveloperGuide.html#how-data-is-saved) for more details.
-
+ExpressLibrary data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 ### Editing the data file
 
-ExpressLibrary data is saved as a JSON file `[JAR file location]/data/expresslibrary.json`. Advanced users are welcome to update data directly by editing that data file.
+ExpressLibrary data is saved as a JSON file `[JAR file location]/data/expresslibrary-{version_num}.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** When editing book fields when it is borrowed, make sure to update **both** the `books` array in the person object and the **main** `books` array separate from `persons` in the json file. Please refer to [_How data is saved_](https://ay2223s2-cs2103t-t12-3.github.io/tp/DeveloperGuide.html#how-data-is-saved) for more details.
+
+
+</div>
 
 <div markdown="span" class="alert alert-warning">
 
