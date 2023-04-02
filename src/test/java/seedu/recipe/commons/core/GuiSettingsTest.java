@@ -33,6 +33,7 @@ public class GuiSettingsTest {
 
     @Test
     public void testOverloadedConstructor() {
+        //Referential consistency for Runnable Lambdas passed to assert statements
         AtomicReference<GuiSettings> settings = new AtomicReference<>();
         //Validate valid values work
         assertDoesNotThrow(() -> {
@@ -74,20 +75,20 @@ public class GuiSettingsTest {
     public void test_hashCode() {
         double height = 100.0;
         double width = 50.0;
-        int xCoord = 20;
-        int yCoord = -15;
-        assertEquals(Objects.hash(height, width, new Point(xCoord, yCoord)),
-            new GuiSettings(height, width, xCoord, yCoord).hashCode());
+        int xCoordinate = 20;
+        int yCoordinate = -15;
+        assertEquals(Objects.hash(width, height, new Point(xCoordinate, yCoordinate)),
+            new GuiSettings(width, height, xCoordinate, yCoordinate).hashCode());
     }
 
     @Test
     public void test_string() {
         double height = 100.0;
         double width = 50.0;
-        int xCoord = 20;
-        int yCoord = -15;
+        int xCoordinate = 20;
+        int yCoordinate = -15;
         String expectedFmt = String.format("Width : %s\nHeight : %s\nPosition : %s",
-            width, height, new Point(xCoord, yCoord));
-        assertEquals(expectedFmt, new GuiSettings(width, height, xCoord, yCoord).toString());
+            width, height, new Point(xCoordinate, yCoordinate));
+        assertEquals(expectedFmt, new GuiSettings(width, height, xCoordinate, yCoordinate).toString());
     }
 }

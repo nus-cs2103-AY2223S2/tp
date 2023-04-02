@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.recipe.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -41,8 +42,10 @@ public class FileUtilTest {
     public void isFileExists() {
         //Valid file exists
         assertTrue(FileUtil.isFileExists(VALID_PATH));
+
         //irregular file (Folder), exists
         assertFalse(FileUtil.isFileExists(TEST_DATA_FOLDER));
+
         //File does not exist
         assertFalse(FileUtil.isFileExists(Paths.get("doesNotExist")));
     }
@@ -63,12 +66,14 @@ public class FileUtilTest {
     public void createFile_createParentFile() {
         //New file, both parent folder and file should not error
         assertDoesNotThrow(() -> FileUtil.createFile(TEST_NEW_FILE));
+
         //Files should exist
         assertTrue(FileUtil.isFileExists(TEST_NEW_FILE));
     }
 
     @Test
     public void testCreateIfMissing() {
+        //Create, and test that it is created.
         assertDoesNotThrow(() -> FileUtil.createIfMissing(TEST_NEW_FILE));
         assertTrue(FileUtil.isFileExists(TEST_NEW_FILE));
     }
@@ -77,14 +82,17 @@ public class FileUtilTest {
     public void readWrite() {
         String testString = "hello world";
         assertDoesNotThrow(() -> FileUtil.createFile(TEST_NEW_FILE));
+
         //Writing to a valid file should work
         assertDoesNotThrow(() -> FileUtil.writeToFile(TEST_NEW_FILE, testString));
+
         //Validate what was written
         assertDoesNotThrow(() -> FileUtil.readFromFile(TEST_NEW_FILE));
+
         try {
             assertEquals(testString, FileUtil.readFromFile(TEST_NEW_FILE));
         } catch (IOException e) {
-            assert false;
+            fail();
         }
     }
 }

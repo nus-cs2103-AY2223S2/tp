@@ -15,7 +15,8 @@ public class CommonsExceptionsTest {
         String testMessage = "Test message";
         Exception wrappedException = new Exception(testMessage);
         DataConversionException e = new DataConversionException(wrappedException);
-        assertEquals("java.lang.Exception: " + testMessage, e.getMessage());
+        assertEquals(String.format("%s: %s", wrappedException.getClass().getCanonicalName(), testMessage),
+                e.getMessage());
         assertEquals(wrappedException, e.getCause());
     }
 

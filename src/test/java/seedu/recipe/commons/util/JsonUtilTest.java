@@ -3,6 +3,7 @@ package seedu.recipe.commons.util;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.recipe.testutil.TypicalRecipes.getTypicalRecipeBook;
 
 import java.io.IOException;
@@ -57,7 +58,7 @@ public class JsonUtilTest {
                 JsonUtil.readJsonFile(TYPICAL_RECIPE_BOOK, JsonSerializableRecipeBook.class);
             assertEquals(getTypicalRecipeBook(), serializableRecipeBook.get().toModelType());
         } catch (DataConversionException | IllegalValueException e) {
-            assert false;
+            fail();
         }
         //Test null
         assertThrows(NullPointerException.class, () -> JsonUtil.readJsonFile(null, Object.class));
@@ -66,7 +67,7 @@ public class JsonUtilTest {
         try {
             assertTrue(JsonUtil.readJsonFile(Paths.get("doesNotExist"), Object.class).isEmpty());
         } catch (DataConversionException ignored) { // Will never reach here, as file does not exist.
-            assert false;
+            fail();
         }
     }
 }

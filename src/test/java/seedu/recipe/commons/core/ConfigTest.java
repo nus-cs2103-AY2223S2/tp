@@ -11,12 +11,17 @@ import java.util.logging.Level;
 import org.junit.jupiter.api.Test;
 
 public class ConfigTest {
-    private static final Path USER_PREFS_FILE_PATH = Paths.get("preferences.json");
+    //Test base config
+    private static final String USER_PREFS_FILE_PATH_STRING = "preferences.json";
+    private static final Path USER_PREFS_FILE_PATH = Paths.get(USER_PREFS_FILE_PATH_STRING);
+    private static final Level CONFIG_BASE_LEVEL = Level.INFO;
+    private static final String DEFAULT_CONFIG_STRING = String.format("Current log level : %s\n"
+        + "Preference file Location : %s", CONFIG_BASE_LEVEL, USER_PREFS_FILE_PATH_STRING);
 
     @Test
     public void test_getLogLevel_initialInfo() {
         Config defaultConfig = new Config();
-        assertEquals(defaultConfig.getLogLevel(), Level.INFO);
+        assertEquals(defaultConfig.getLogLevel(), CONFIG_BASE_LEVEL);
     }
 
     @Test
@@ -48,14 +53,11 @@ public class ConfigTest {
 
     @Test
     public void test_hashCode() {
-        assertEquals(Objects.hash(Level.INFO, USER_PREFS_FILE_PATH), new Config().hashCode());
+        assertEquals(Objects.hash(CONFIG_BASE_LEVEL, USER_PREFS_FILE_PATH), new Config().hashCode());
     }
 
     @Test
     public void toString_defaultObject_stringReturned() {
-        String defaultConfigAsString = "Current log level : INFO\n"
-                + "Preference file Location : preferences.json";
-
-        assertEquals(defaultConfigAsString, new Config().toString());
+        assertEquals(DEFAULT_CONFIG_STRING, new Config().toString());
     }
 }
