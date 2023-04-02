@@ -1,7 +1,6 @@
 package seedu.connectus.model.socialmedia;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.connectus.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -25,12 +24,20 @@ public class InstagramTest {
     }
 
     @Test
+    public void constructor_validInstagram_parseFailure() {
+        assertFalse(Instagram.isValid("inva...liddooo123"));
+        assertFalse(Instagram.isValid("invaliddooo123."));
+        assertFalse(Instagram.isValid(".invaliddooo123"));
+        assertFalse(Instagram.isValid("invalid.invalid.invalid.123456."));
+    }
+
+    @Test
     public void constructor_validInstagram_parseSuccess() {
         assertTrue(Instagram.isValid("validUsername"));
         assertTrue(Instagram.isValid("a.valid.Username.123"));
         assertTrue(Instagram.isValid("32123"));
         assertTrue(Instagram.isValid("a"));
-        assertTrue(Instagram.isValid("jason.jason.jason.jason.jason")); // characters
+        assertTrue(Instagram.isValid("jason.jason.jason.jason.jason")); // 30 characters
     }
 
     @Test
