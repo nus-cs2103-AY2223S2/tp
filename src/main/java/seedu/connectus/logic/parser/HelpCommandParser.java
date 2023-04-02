@@ -25,8 +25,7 @@ import seedu.connectus.logic.parser.exceptions.ParseException;
  */
 public class HelpCommandParser implements Parser<HelpCommand> {
 
-    //@@author gremmyz-reused
-    //Reused HashMap idea from https://github.com/AY2223S1-CS2103T-W12-4/tp with modifications.
+    //Solution below adapted from https://github.com/AY2223S1-CS2103T-T13-3/tp with modifications.
     private static final Map<String, String> COMMAND_USAGE_MESSAGES = new HashMap<>();
 
     static {

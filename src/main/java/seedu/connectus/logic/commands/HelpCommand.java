@@ -13,10 +13,11 @@ public class HelpCommand extends Command {
             + "Entering '" + COMMAND_WORD
             + "' alone returns a separate window with the link to the User Guide.\n"
             + "Entering '" + COMMAND_WORD
-            + " [COMMAND]' will return the usage instructions for the specified command.\n"
-            + "Example: '" + COMMAND_WORD + " add' will return usage instructions for add.";
+            + " [COMMAND]' returns the usage instructions for the specified command.\n"
+            + "Example: '" + COMMAND_WORD + " add' returns usage instructions for add.";
 
-    public static final String SHOWING_HELP_WINDOW = "Opened help window.";
+    public static final String MESSAGE_SHOWING_HELP_WINDOW = "Opened help window.";
+    public static final String MESSAGE_RETRIEVED_COMMAND_USAGE = "Command usage retrieved!\n";
     private final boolean isHelpWindowShown;
     private final String helpMessage;
 
@@ -27,7 +28,7 @@ public class HelpCommand extends Command {
      */
     public HelpCommand() {
         this.isHelpWindowShown = true;
-        this.helpMessage = SHOWING_HELP_WINDOW;
+        this.helpMessage = MESSAGE_SHOWING_HELP_WINDOW;
     }
 
     /**
@@ -38,7 +39,7 @@ public class HelpCommand extends Command {
      */
     public HelpCommand(String command) {
         this.isHelpWindowShown = false;
-        this.helpMessage = "Command usage retrieved!\n" + command;
+        this.helpMessage = MESSAGE_RETRIEVED_COMMAND_USAGE + command;
     }
 
     @Override
