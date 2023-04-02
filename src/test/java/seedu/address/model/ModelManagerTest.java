@@ -1,10 +1,13 @@
 package seedu.address.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.COMPARATOR_CONTACT_INDEX_RECOMMENDATION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RECOMMENDATIONS;
 import static seedu.address.model.recommendation.TypicalRecommendations.RECOMMENDATION_STEVENS_THU_10AM_2HR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
@@ -18,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.ContainsKeywordsPredicate;
 import seedu.address.testutil.EduMateBuilder;
 
@@ -129,6 +133,35 @@ public class ModelManagerTest {
     @Test
     public void getObservablePersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getObservablePersonList().remove(0));
+    }
+
+    @Test
+    public void getObservableRecommendationList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, ()
+                -> modelManager.getObservableRecommendationList().remove(0));
+    }
+
+    @Test
+    public void updateObservableRecommendationList_validComparator_success() {
+        assertDoesNotThrow(() -> modelManager
+                .updateObservableRecommendationList(COMPARATOR_CONTACT_INDEX_RECOMMENDATION));
+    }
+
+    @Test
+    public void updateObservableRecommendationList_validPredicate_success() {
+        assertDoesNotThrow(() -> modelManager
+                .updateObservableRecommendationList(PREDICATE_SHOW_ALL_RECOMMENDATIONS));
+    }
+
+    @Test
+    public void getRecommendationByIndex_validIndex_success() {
+        if (!modelManager.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR)) {
+            modelManager.addRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        }
+
+        assertTrue(modelManager.getRecommendationByIndex(new ContactIndex(1)).isPresent());
+        assertEquals(RECOMMENDATION_STEVENS_THU_10AM_2HR,
+                modelManager.getRecommendationByIndex(new ContactIndex(1)).get());
     }
 
     @Test
