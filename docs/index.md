@@ -8,7 +8,7 @@ title: Le Tracker
 
 ![Ui](images/Ui.png)
 
-**Le Tracker** is a desktop application that focuses on tracking progress in watching lectures of modules, and is designed specifically to meet the needs of students.
+**Le Tracker** is a desktop application that focuses on tracking the watch progress of lectures, and is designed specifically to meet the needs of students.
 
 Unlike a traditional to-do list app, **Le Tracker** offers additional features that are tailored to the educational context, such as the ability to track the number of videos watched and the timestamp of each video. This extra information can help students stay organized and keep track of their progress more effectively.
 
