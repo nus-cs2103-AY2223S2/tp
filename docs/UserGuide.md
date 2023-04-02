@@ -81,7 +81,7 @@ placeholder
 | **Delete**   | `delete INDEX...` or <code>delete { d/DATE &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g., `delete 3`, `delete d/2023-03-10`                                                                                                                                             |
 | **Clear**    | `clear`                                                                                                                                                                                                                                                                |
 | **List**     | `list`                                                                                                                                                                                                                                                                 |
-| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \\</code><br><code>{ [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g., `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
+| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \\</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g., `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
 | **Sort**     | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.,`sort d/`                                                                                                                                                                                                                   |
 | **Undo**     | `undo [INTEGER]`<br> e.g., `undo 5`                                                                                                                                                                                                                                    |
 | **Redo**     | `redo [INTEGER]`<br> e.g., `redo 2`                                                                                                                                                                                                                                    |
@@ -273,7 +273,7 @@ Format: `list`
 Finds cases which match the given prefixes. Date ranges and age ranges are also supported using the new prefixes
 `sd/` `ed/` `sa/` `ea/`.
 
-Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] | [sa/START_AGE] [ea/END_AGE] } \`<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <code> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ [d/DATE] | [sd/START_DATE] [ed/END_DATE] }</code>
+Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] | [sa/START_AGE] [ea/END_AGE] } \`<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; { [d/DATE] | [sd/START_DATE] [ed/END_DATE] }</code>
 
 * The search is case-insensitive for all tags.
   * e.g. `n/hans` will match `Hans` or `hAns`
