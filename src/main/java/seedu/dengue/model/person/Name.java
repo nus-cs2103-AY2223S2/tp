@@ -42,7 +42,7 @@ public class Name {
      * Trims a name to delete excessive whitespaces.
      * @param name A name.
      * @return A trimmed name, where excessive (consecutive) whitespaces,
-     * as well as whitespaces at the front and back are removed.
+     *     as well as whitespaces at the front and back are removed.
      */
     public static String trimName(String name) {
         return name.trim().replaceAll("\\s{2,}", " ");
