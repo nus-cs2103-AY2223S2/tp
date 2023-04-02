@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.logic.autocompletion.Autocompletion;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -61,7 +62,7 @@ public class CommandBox extends UiPart<Region> {
     private void handleInputUpdated() {
         String input = commandTextField.getText();
 
-        if (suggestions.contains(input)) {
+        if (suggestions.contains(input) && !input.equalsIgnoreCase(AddCommand.COMMAND_WORD)) {
             return;
         }
 
