@@ -355,7 +355,11 @@ Deletes a test OR homework grade for the student corresponding to the `INDEX_NUM
 
 Duplicate test/homework is checked through having the same name.
 
-Format: `student <class> gradedelete in/<INDEX_NUMBER> [test/<xTEST_NAME> OR hw/<HOMEWORK_NAME>]`
+Format: 
+
+`student <class> gradedelete in/<INDEX_NUMBER> test/<TEST_NAME>`
+
+`student <class> gradedelete in/<INDEX_NUMBER> hw/<HOMEWORK_NAME>`
 
 Examples:
 * `student 1A gradedelete in/13 hw/Chapter 1`
