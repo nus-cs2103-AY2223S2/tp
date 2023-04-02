@@ -575,7 +575,7 @@ What you should see:
 
 <img src="images/ug_cmds_pics/addcommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 8: A new contact: Weixiang is added to <code>EduMate</code>.</center>
+<center>Diagram 13: A new contact: Weixiang is added to <code>EduMate</code>.</center>
 
 ##### More Examples of Usage:
 
@@ -649,7 +649,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/View Command.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 9: Weixiang's profile displayed after execution of the <code>view</code> command</center>
+<center>Diagram 14: Weixiang's profile displayed after execution of the <code>view</code> command</center>
 
 <br>
 
@@ -676,17 +676,23 @@ With EduMate's `edit` command, you can easily update the profile of a contact. Y
 * `edit [z/FIELD]…​`: Edits your user profile.
 
 </div>
+
+##### Scenario:
+
+Suppose now after talking to Weixiang, you realised that he has just moved to Little India. You then decide to edit the `Station` attribute of his contact from 
+'Boon Lay' to `Little India`. You also remembered that from the `view` command, Weixiang's index in `EduMate` is 101.
+
+Command entered: `edit 101 s/Little India`
+
 What you should see:<br>
 
-<img src="images/ug_cmds_pics/edit_cmd.png" style="width:80%;margin:0 10%">
+<img src="images/ug_cmds_pics/EditCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 10: MRT station nearest to his home updated to Little India after execution of the <code>edit</code>command.</center>
+<center>Diagram 15: MRT station nearest to Weixiang's home updated to Little India after execution of the <code>edit</code>command.</center>
 
 <br>
 
-##### Explanation:
-Suppose you realised that Weixiang has just moved house and the nearest MRT station from his house is Little India. Running
-`edit 101 s/Little India` will update the nearest station recorded on his profile.
+##### More Examples of Usage:
 
 <div markdown="block" class="alert alert-success">
 
@@ -708,16 +714,33 @@ If you no longer need a contact in EduMate, you can remove them using the `delet
 
 </div>
 
+##### Scenario
+
+Suppose you do not need Astrid's contact anymore and you want to delete her contact from `EduMate`.
+From the `view n/Astrid Holland` command, her `EduMate` index is 8.
+
+Command entered: `delete 8`
+
 What you should see:<br>
 
-<img src="images/ug_cmds_pics/delete_cmd.png" style="width:80%;margin:0 10%">
+<img src="images/ug_cmds_pics/DeleteCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 11: Weixiang's contact deleted after execution of the <code>delete</code>command.</center>
+<center>Diagram 16: Astrid's contact deleted after execution of the <code>delete</code>command.</center>
+
+##### More Examples of Usage:
 
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Example**<br>
 * `delete 5`: Removes the fifth contact from EduMate.
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+**:warning: Deleting your own profile**<br>
+
+You cannot delete your own profile.
 
 </div>
 
