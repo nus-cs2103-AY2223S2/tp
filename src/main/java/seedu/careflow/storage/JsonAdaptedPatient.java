@@ -66,7 +66,7 @@ public class JsonAdaptedPatient {
         } else {
             drugAllergy = null;
         }
-        if (source.getDrugAllergy() != null) {
+        if (source.getEmergencyContact() != null) {
             emergencyContact = source.getEmergencyContact().value;
         } else {
             emergencyContact = null;
