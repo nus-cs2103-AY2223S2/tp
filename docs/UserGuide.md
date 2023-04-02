@@ -2,20 +2,21 @@
 layout: page
 title: User Guide
 ---
+## Welcome to CookHub
+**CookHub** is a powerful, but lightweight application for your recipe management needs. 
+It sports a sleek and minimalist design that allows you to clearly view all your personal recipes at a glance!
 
-CookHub is a **desktop app for managing recipes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). This recipe tracking app is targeted for student chefs on a tight budget and schedule with limited ingredients. 
+**CookHub** mainly uses the [command line interface](#glossary) that is optimised for fast typists managing their recipes quickly, while still 
+having the benefits of a Graphical User Interface(GUI).
 
-**CookHub** operates via a [command line interface](#glossary) which aids fast typists in managing their recipes quickly, 
-while still providing the benefits of a graphical user interface.
-
-**CookHub** excels in its simplicity and optimisation for the university student's task management needs. Upon 
-download, it supports management via recipe ingredients and price. Having a gentle learning curve and requiring 
+**CookHub** excels in its simplicity and optimisation for the student cook's recipe management needs. 
+It supports management via recipe ingredients and price. Having a gentle learning curve and requiring 
 minimal setup, it is perfect for the contemporary student cook!
 
 The following is a short overview of the features and capabilities of CookHub:
-* Creating tasks with specified titles, ingredients, steps, and tags.
-* Starring and unstarring each recipe.
-* Getting all your favourite recipes. 
+* Creating recipes with specified titles, ingredients, steps, and tags.
+* [Starring](#glossary) and [unstarring](#glossary) each recipe.
+* Getting all your [favourite](#glossary) recipes. 
 * Finding recipes by titles, ingredients, steps, or tags.
 * Sorting or filtering by price.
 * Getting all the combined ingredients for a set of recipes. 
@@ -39,12 +40,13 @@ The following is a short overview of the features and capabilities of CookHub:
 3. Copy the file to the folder you want to use as the _home folder_ for your CookHub.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar cookhub.jar` command to run the application.<br>
+
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    <img src="images/UiInWindows.png" width=500 height=400>
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-   * `add t/Watermelon juice d/Quick and easy watermelon juice i/Watermelon, 3, Slices, 0.10 s/Juice the watermelon` : Add a new recipe titled `Watermelon juice` that has a description `Quick and easy watermelon juice`, an ingredient of `One watermelon`, and a step of `Juice the watermelon`
+   To get you familiarised, here are some example commands you can try:
+   * `add t/Watermelon juice d/Quick and easy watermelon juice i/Watermelon, 3, Slices, 0.10 s/Juice the watermelon` : Add a new recipe titled `Watermelon juice` that has a description `Quick and easy watermelon juice`, an ingredient of `Watermelon, 3, Slices, 0.10`, and a step of `Juice the watermelon`
    * `delete 1 ` : Delete a recipe at index 1
    * `list` : Lists all recipes
    * `exit`: Exits the app
@@ -60,7 +62,7 @@ The following is a short overview of the features and capabilities of CookHub:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `lower_case` are commands or flag that must be typed literally
+* Words in `lower_case` are commands or flag that must be typed literally.
 * Words in `UPPER_CASE` are placeholder texts that is to be replaced by the user.
 * Command flags (e.g. `t/`, `d/`) can be typed in any order
   - For example, the two commands below are the same, despite the swapped order of the command flags `t/` and `d/`
@@ -70,7 +72,7 @@ The following is a short overview of the features and capabilities of CookHub:
 * Items in square brackets are optional.
   - e.g  `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` is a valid command even though the command flag `tag/` is missing
 
-* TITLE, DESCRIPTION, STEP, TAG must be a word or sentence
+* TITLE, DESCRIPTION, STEP, TAG must be a word or sentence.
   - e.g. TITLE can be `I am a title`
   - e.g. TAG can be `Tag`
 
@@ -89,7 +91,7 @@ The following is a short overview of the features and capabilities of CookHub:
 
 ### Add a recipe : `add`
 
-Adds a recipe to the recipe book.
+This command adds a recipe to your recipe book.
 
 Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
 
@@ -98,7 +100,7 @@ Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
 
 Examples:
 
-The original recipe book:
+Our initial recipe book:
 
 <img src="images/UiInWindows.png" width=500 height=400>
 
@@ -120,7 +122,7 @@ multiple `i/` flags and a recipe look like the picture shown below will be added
 
 ---
 ### Edit a recipe: `edit RECIPE_NUMBER`
-Edits a recipe in the recipe book.
+This command edits a recipe in your recipe book.
 
 Format: `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...`
 :warning: CAUTION: At least one of the command flags need to be present
@@ -131,7 +133,7 @@ Format: `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [t
 
 Example:
 
-The original recipe book:
+Our initial recipe book:
 
 <img src="images/UiInWindows.png" width=500 height=400>
 
@@ -152,7 +154,7 @@ the picture shown below:
 
 ---
 ### Delete a recipe : `delete RECIPE_NUMBER`
-Deletes the recipe at the specified *task number* from the recipe book.
+This command deletes the recipe at the specified *task number* from your recipe book.
 
 Format: `delete RECIPE_NUMBER`
 
@@ -163,7 +165,7 @@ Expected outcome: You should see an updated list of recipes with the recipe at t
 
 Examples:
 
-The original recipe book:
+Our initial recipe book:
 
 <img src="images/UiInWindows.png" width=500 height=400>
 
@@ -180,11 +182,9 @@ one in the picture shown below:
 ---
 ### List recipe : `list`
 
-Lists out all the recipes that you have added to CookHub
+This command lists out all the recipes that you have added to the recipe book
 
 Format: `list`
-
-Expected outcome: You should see a list of all the recipes in CookHub
 
 Example: `list` will list all the recipes like the picture shown below:
 
@@ -194,7 +194,7 @@ Example: `list` will list all the recipes like the picture shown below:
 ---
 ### Clear recipe : `clear`
 
-Clears the entire CookHub of all recipes
+This command clears your recipe book of all its recipes.
 
 Format: `clear`
 
@@ -210,7 +210,7 @@ Example: `clear` will clear all recipes like the picture shown below:
 
 ### Find recipe : `find`
 
-Finds the recipes in CookHub according to what you are looking for
+This command finds the recipes in your recipe book according to what you are looking for.
 
 Format: `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
 :warning: WARNING: Only one command flag can be present
@@ -225,7 +225,7 @@ Format: `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
 
 Examples:
 
-The original recipe book:
+Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
@@ -247,14 +247,14 @@ shown below:
 ---
 ### Search recipe with limited ingredients: `only`
 
-Searches for recipes that can be made with only those ingredients
+This command searches for recipes that can be made with only those ingredients.
 
 Format: `only INGREDIENT...`
 :bulb: Reminder: One or more ingredients can be provided
 
 Examples:
 
-The original recipe book:
+Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
@@ -277,7 +277,7 @@ A recipe that only needs eggs will also be valid. The result of the command is s
 ---
 ### Sort recipe by cost: `sort ORDER`
 
-Sorts the recipes in the RecipeBook by price in the order specified. 
+This command sorts the recipes in your recipe book by price in the order specified. 
 
 Format: `sort ORDER`
 - *ORDER* can only be `asc` or `desc`.
@@ -286,7 +286,7 @@ Format: `sort ORDER`
 
 Example: 
 
-The original recipe book:
+Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
@@ -300,7 +300,7 @@ The original recipe book:
 
 ### Filter recipe by price: `fp COMPARATOR PRICE`
 
-Filters the recipes in the RecipeBook by price according to the comparator specified. 
+This command filters the recipes in your recipe book by price according to the comparator specified. 
 
 Format: `fp COMPARATOR PRICE`
 
@@ -312,7 +312,7 @@ Format: `fp COMPARATOR PRICE`
 - 
 Example: 
 
-The original recipe book:
+Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
@@ -324,7 +324,7 @@ The original recipe book:
 ---
 ### Add a recipe to the favorites: `star RECIPE_NUMBER`
 
-Add the recipe at the specified *task number* in the favorites, which include all recipes you favor the most.
+This command adds the recipe at the specified *task number* into your favorites, which include all recipes you like the most!
 
 Format: `star RECIPE_NUMBER`
 
@@ -333,7 +333,7 @@ Format: `star RECIPE_NUMBER`
 
 Examples:
 
-The original recipe book:
+Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
@@ -349,7 +349,7 @@ The original recipe book:
 ---
 ### Remove a recipe from the favorites: `unstar RECIPE_NUMBER`
 
-Remove the recipe at the specified *task number* from the favorites.
+This command removes the recipe at the specified *task number* from your favorites.
 
 Format: `unstar RECIPE_NUMBER`
 
@@ -358,7 +358,7 @@ Format: `unstar RECIPE_NUMBER`
 
 Examples:
 
-The original recipe book:
+Our initial recipe book:
 
 <img src="images/AllRecipesStarred.png" width=500 height=400>
 
@@ -374,13 +374,13 @@ The original recipe book:
 ---
 ### List all recipes in the favorites : `favorites`
 
-Lists out all the recipes that you have added to the favorites.
+This command lists out all the recipes that you have added to your favorites.
 
 Format: `favorites`
 
 Example:
 
-The original recipe book:
+Our initial recipe book:
 
 <img src="images/StarResult1.png" width=500 height=400>
 
@@ -390,12 +390,11 @@ The original recipe book:
 
 
 ---
-### If you forget some commands, you are always welcome to check this page again!
-### Showing the website for user guide : `help`
+### Provides link to the user guide : `help`
 
-Shows a message explaining how to access the help page.
+This command generates a link to our user guide.
 
-Expected outcome: You should see a window like the picture shown below:
+- A window should pop up, and it should look like the one in the image below:
 
 ![help message](images/helpMessage.png)
 
