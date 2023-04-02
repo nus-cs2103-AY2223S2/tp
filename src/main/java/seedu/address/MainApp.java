@@ -83,7 +83,7 @@ public class MainApp extends Application {
         ReadOnlyUserData initialUserData;
         try {
             addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
+            if (addressBookOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialAddressBookData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
@@ -97,10 +97,10 @@ public class MainApp extends Application {
 
         try {
             userDataOptional = storage.readUserData();
-            if (!userDataOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            if (userDataOptional.isEmpty()) {
+                logger.info("Data file not found. Will be starting with a sample UserData");
             }
-            initialUserData = userDataOptional.orElse(new UserData());
+            initialUserData = userDataOptional.orElseGet(SampleDataUtil::getSampleUserData);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with blank UserData");
             initialUserData = new UserData();
