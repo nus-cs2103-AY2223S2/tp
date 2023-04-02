@@ -33,8 +33,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_CS3219 = "CS3219";
     public static final String VALID_RESOURCE_CS3230 = "11111111";
     public static final String VALID_RESOURCE_CS3219 = "22222222";
-    public static final String VALID_TIMESLOT_CS3230 = "230223 18:00";
-    public static final String VALID_TIMESLOT_CS3219 = "300123 11:00";
+    public static final String VALID_TIMESLOT_CS3230 = "Tuesday 14:00 16:00";
+    public static final String VALID_TIMESLOT_CS3219 = "Tuesday 12:00 14:00";
     public static final String VALID_ADDRESS_CS3230 = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_CS3219 = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_LECTURE = "Lecture";

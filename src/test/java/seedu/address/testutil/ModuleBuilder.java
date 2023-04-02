@@ -21,11 +21,12 @@ public class ModuleBuilder {
 
     public static final String DEFAULT_NAME = "CS2103T";
     public static final String DEFAULT_RESOURCE = "www.google.com";
-    public static final String DEFAULT_TIMESLOT = "230323 14:00";
+    public static final String DEFAULT_TIMESLOT = "Tuesday 12:00 14:00";
     public static final String DEFAULT_ADDRESS = "COM1";
     public static final String DEFAULT_REMARK = "Zoom Class";
-    public static final String DEFAULT_DEADLINE = "120423 12:00";
+    public static final String DEFAULT_DEADLINE = "230223 18:00";
     public static final String DEFAULT_TEACHER = "Prof Tan";
+    public static final String DEFAULT_TAG = "Project";
 
     private Name name;
     private Resource resource;
@@ -45,6 +46,7 @@ public class ModuleBuilder {
         timeSlot = new TimeSlot(DEFAULT_TIMESLOT);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        tags.add(new Tag(DEFAULT_TAG));
         remark = new Remark(DEFAULT_REMARK);
         deadline = new Deadline(DEFAULT_DEADLINE);
         teacher = new Teacher(DEFAULT_TEACHER);
