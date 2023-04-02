@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.person.FullNamePredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,6 +27,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> targetPerson;
     private final VersionedAddressBook versionedAddressBook;
+    private final FullNamePredicate DEFAULT_EMPTY_NAME_PREDICATE = new FullNamePredicate("");
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,7 +40,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         targetPerson = new FilteredList<Person>(this.addressBook.getPersonList());
-        updateShowPerson(new NameContainsKeywordsPredicate(new ArrayList<>()));
+        setDefaultShowPerson();
         versionedAddressBook = new VersionedAddressBook(this.addressBook);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
     }
@@ -115,7 +117,7 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
+        this.addressBook.setPerson(target, editedPerson);
         versionedAddressBook.setPerson(target, editedPerson);
     }
 
@@ -163,6 +165,11 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void setDefaultShowPerson() {
+        targetPerson.setPredicate(DEFAULT_EMPTY_NAME_PREDICATE);
     }
 
     @Override

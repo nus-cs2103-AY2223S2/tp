@@ -86,6 +86,8 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    void setDefaultShowPerson();
+
     void updateShowPerson(Predicate<Person> predicate);
 
     ObservableList<Person> getShowPerson();
