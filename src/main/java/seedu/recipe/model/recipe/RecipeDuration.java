@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.recipe.model.recipe.exceptions.RecipeDurationInvalidDurationException;
 import seedu.recipe.model.recipe.unit.TimeUnit;
 
 /**
@@ -27,6 +28,9 @@ public class RecipeDuration {
      * @param timeUnit The time unit instance
      */
     public RecipeDuration(double time, TimeUnit timeUnit) {
+        if (time < 0) {
+            throw new RecipeDurationInvalidDurationException(String.valueOf(time));
+        }
         this.time = time;
         this.timeUnit = timeUnit;
     }

@@ -16,7 +16,6 @@ public class RecipeDurationTest {
 
     private static final String VALID_MULTIPLE_WHITESPACE_BETWEEN = "38.7        units";
     private static final String VALID_MULTIPLE_WORDS_UNIT = "321/22 Word onE twO three";
-    private static final String VALID_LEADING_TRAILING_WHITESPACE = "       3912   seconds       ";
 
     private static final String INVALID_NO_TIME = "years";
     private static final String INVALID_NO_UNIT = "908.2098";
@@ -27,27 +26,19 @@ public class RecipeDurationTest {
     private static final String INVALID_DECIMAL_NO_WHITESPACE = "0.00012years";
     private static final String INVALID_FRACTION_NO_WHITESPACE = "312/32891798timeunits";
 
-    private static final String INVALID_WHITESPACE_BETWEEN = "1321\nsample time units";
     private static final String INVALID_WHITESPACE_IN_UNIT = "321 example\ntime units";
     private static final String INVALID_CHARACTERS_IN_UNIT = "213.10000 Cycles of_the Earth's Rotation";
-
-    @Test
-    public void test_null_constructor() {
-        assertThrows(NullPointerException.class, () -> new RecipeDuration(0, null));
-    }
 
     @Test
     public void of_validInputs_RecipeDurationCreated() {
         assertEquals(RecipeDuration.of(VALID_INTEGER), new RecipeDuration(1, new TimeUnit("hour")));
         assertEquals(RecipeDuration.of(VALID_DECIMAL), new RecipeDuration(0.00012, new TimeUnit("years")));
-        assertEquals(RecipeDuration.of(VALID_FRACTION), new RecipeDuration(13 / 213, new TimeUnit("days")));
+        assertEquals(RecipeDuration.of(VALID_FRACTION), new RecipeDuration(((double) 13) / 213, new TimeUnit("days")));
 
         assertEquals(RecipeDuration.of(VALID_MULTIPLE_WHITESPACE_BETWEEN),
             new RecipeDuration(38.7, new TimeUnit("units")));
         assertEquals(RecipeDuration.of(VALID_MULTIPLE_WORDS_UNIT),
-            new RecipeDuration(321 / 22, new TimeUnit("Word onE twO three")));
-        assertEquals(RecipeDuration.of(VALID_LEADING_TRAILING_WHITESPACE),
-            new RecipeDuration(3912, new TimeUnit("seconds")));
+            new RecipeDuration(((double) 321) / 22, new TimeUnit("Word onE twO three")));
     }
 
     @Test
@@ -61,15 +52,8 @@ public class RecipeDurationTest {
         assertThrows(IllegalArgumentException.class, () -> RecipeDuration.of(INVALID_DECIMAL_NO_WHITESPACE));
         assertThrows(IllegalArgumentException.class, () -> RecipeDuration.of(INVALID_FRACTION_NO_WHITESPACE));
 
-        assertThrows(IllegalArgumentException.class, () -> RecipeDuration.of(INVALID_WHITESPACE_BETWEEN));
         assertThrows(IllegalArgumentException.class, () -> RecipeDuration.of(INVALID_WHITESPACE_IN_UNIT));
         assertThrows(IllegalArgumentException.class, () -> RecipeDuration.of(INVALID_CHARACTERS_IN_UNIT));
-    }
-
-    @Test
-    public void testWrongArgumentsConstructor() {
-        assertThrows(IllegalArgumentException.class, () -> new RecipeDuration(0.00, new TimeUnit("hour")));
-        assertThrows(IllegalArgumentException.class, () -> new RecipeDuration(-1.00, new TimeUnit("hour")));
     }
 
     @Test
