@@ -321,6 +321,7 @@ Add a video to a lecture
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 - <span style="color:#e46c0a">`timestamp`</span> : The timestamp of the video where the user last stopped watching at
   - Must be a valid timestamp (refer to [Argument Validity](#argument-validity) for more information)
+  - Defaults to `00:00:00` if not specified
 - <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the video
   - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
   - Repeated tags (if any) will be ignored
