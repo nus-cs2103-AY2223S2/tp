@@ -7,14 +7,20 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
   - [Nav](#nav)
   - [List](#list)
   - [Add](#add)
   - [Edit](#edit)
+  - [Mark/Unmark](#markunmark)
   - [Delete](#delete)
   - [Tag](#tag)
   - [Find](#find)
+  - [Clear](#clear)
+- [Command Syntax](#command-syntax)
+- [Navigation](#navigation)
+- [Argument Validity](#argument-validity)
 - [Features](#features)
   - [Navigate to the Root Context](#navigate-to-the-root-context)
   - [Navigate Relatively](#navigate-relatively)
@@ -46,9 +52,10 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
   - [Find Lectures in a Module By Tag](#find-lectures-in-a-module-by-tag)
   - [Find Videos in a Lecture](#find-videos-in-a-lecture)
   - [Find Videos in a Lecture By Tag](#find-videos-in-a-lecture-by-tag)
-- [Note](#note)
-- [Warning](#warning)
-- [FAQ](#faq)
+  - [Clear](#clear-1)
+  - [Note](#note)
+  - [Warning](#warning)
+  - [FAQ](#faq)
 
 ---
 
@@ -131,24 +138,19 @@ Refer to the [Features](#features) below for details of each command.
 
 ---
 
+## Command Syntax
+
+---
+
+## Navigation
+
+---
+
+## Argument Validity
+
+---
+
 ## Features
-
-**:information_source: Notes about the command format:**
-
-- Words encapsulated in `{}` are the parameters to be supplied by the user.\
-  e.g. in `add {module_code}`, `{module_code}` is a parameter which can be used as `add CS2040`.
-
-- Items in square brackets are optional.\
-  e.g. `add {module_code} [/name {module_name}]` can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
-
-- Named parameters can be specified in any order as long as it is after all unnamed parameters (if any).\
-  e.g. `edit {module_code} /code {updated_code} /name {updated_name}` can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
-
-- If a named parameter is expected only once in the command but the user specified it multiple times, only the last occurrence of the parameter will be taken.\
-  e.g. `add {module_code} [/name {module_name}]` if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be used as the value of the `/name` parameter.
-
-- Extraneous parameters will be ignored.\
-  e.g. `add {module_code} /name {module_name}` if used as `add CS2040 /name DSAG /foo bar`, the `/foo` parameter is ignored.
 
 ### Navigate to the Root Context
 
