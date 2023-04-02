@@ -369,6 +369,82 @@ The following is a description of the code execution flow
 
 - Collate `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` into one class, similar to `MarkAsWatchedCommand`
 
+### List module, lecture and video feature
+
+The `list` command supports:
+
+- Listing modules in the tracker
+- Listing lectures in a module in the tracker
+- Listing videos in a lecture which belongs to a module in the tracker
+
+It's behaviour is dependent on the arguments provided by the user.
+
+The feature utilises the following classes/variable:
+
+- `ListCommandParser` – Creates the appropriate `ListCommand` subclass object base on the user's input
+- `ListCommand` – Base class of any `Command` subclass that list some entity in the tracker
+- `PREDICATE_SHOW_ALL_MODULES` – Constant `Predicate` with type `ReadOnlyModule` that list all modules
+- `LecturePredicate` – Class that implements `Predicate` interface with type `ReadOnlyLecture`
+- `VideoPredicate` – Class that implements `Predicate` interface with type `Video`
+
+The following sequence diagram depicts a `list` command execution for listing lectures in a module in the tracker.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+![ListSequenceDiagramRefListLectures](images/ListSequenceDiagramRefListLectures.png)
+
+The following is a description of the code execution flow:
+
+1. `ListCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `ListCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
+
+   In Root Context:
+
+   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested           |
+   | ------------------- | ------------------- | ------------- | ---------------------------- |
+   | No                  | No                  | List modules  | `PREDICATE_SHOW_ALL_MODULES` |
+   | Yes                 | No                  | List lectures | `LecturePredicate`           |
+   | Yes                 | Yes                 | List videos   | `VideoPredicate`             |
+
+   In Module Context:
+
+   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested |
+   | ------------------- | ------------------- | ------------- | ------------------ |
+   | No                  | No                  | List lectures | `LecturePredicate` |
+   | Yes                 | No                  | List lectures | `LecturePredicate` |
+   | No                  | Yes                 | List videos   | `VideoPredicate`   |
+   | Yes                 | Yes                 | List videos   | `VideoPredicate`   |
+
+   In Lecture Context:
+
+   | Has `/mod` argument | Has `/lec` argument | Intent        | `Predicate` tested |
+   | ------------------- | ------------------- | ------------- | ------------------ |
+   | Yes                 | No                  | List lectures | `LecturePredicate` |
+   | No                  | Yes/No              | List videos   | `VideoPredicate`   |
+   | Yes                 | Yes                 | List videos   | `VideoPredicate`   |
+
+   In All Context:
+
+   | Has `/r` argument | Intent      | `Predicate` tested           |
+   | ----------------- | ----------- | ---------------------------- |
+   | Yes               | List module | `PREDICATE_SHOW_ALL_MODULES` |
+
+2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
+
+3. The appropriate `ListCommand` subclass object is created and then returned to the caller.
+
+4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `ListCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
+
+   - The `Module` which `Lectures` are to be listed does not exist
+   - The `Lecture` which `Videos` are to be listed does not exist
+
+5. Note that extra arguments are ignored.\
+   Examples:
+
+   - `list /r foo` or `list bar /r` :arrow_right: `list /r`
+   - `list bar /mod CS2040S` :arrow_right: `list /mod CS2040S`
+
+6. If no errors occur (no exceptions are thrown), the command succeeds in listing the modules/lectures/videos.
+
 ### Find module, lecture and video feature
 
 The `find` command supports:
