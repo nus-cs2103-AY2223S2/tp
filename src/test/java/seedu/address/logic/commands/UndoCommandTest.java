@@ -2,12 +2,9 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalCustomers.getTypicalCustomers;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalCustomers.getTypicalShop;
-
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,14 +12,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.entity.person.Customer;
-import seedu.address.model.entity.person.Person;
-import seedu.address.model.entity.shop.Shop;
 
 
 public class UndoCommandTest {
@@ -50,7 +42,7 @@ public class UndoCommandTest {
         assertCommandSuccess(undoCommand, model, UndoCommand.MESSAGE_USAGE_SUCCESS, expectedModel);
 
         // single command in undoStack
-        expectedModel = new ModelManager(getTypicalAddressBook(),new UserPrefs(), getTypicalShop());
+        expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalShop());
         assertCommandSuccess(undoCommand, model, UndoCommand.MESSAGE_USAGE_SUCCESS, expectedModel);
 
         // no command in undoStack

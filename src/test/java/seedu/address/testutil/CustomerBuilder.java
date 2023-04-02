@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.entity.person.Address;
+import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
-import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -43,7 +43,7 @@ public class CustomerBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        id =  DEFAULT_ID;
+        id = DEFAULT_ID;
         tags = new HashSet<>();
         vehicleIds = DEFAULT_VEHICLE_IDS;
         appointmentIds = DEFAULT_APPOINTMENT_IDS;
@@ -58,7 +58,7 @@ public class CustomerBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
-        id =  personToCopy.getId();
+        id = personToCopy.getId();
         vehicleIds = (Set<Integer>) personToCopy.getVehicleIds();
         appointmentIds = (Set<Integer>) personToCopy.getAppointmentIds();
     }

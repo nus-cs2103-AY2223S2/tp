@@ -1,12 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.model.entity.person.Customer;
-import seedu.address.model.entity.shop.Shop;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+
+import seedu.address.model.entity.person.Customer;
+import seedu.address.model.entity.shop.Shop;
 
 /**
  * A utility class containing a list of {@code Customer} objects to be used in tests.
