@@ -43,7 +43,6 @@ public class FavoritesListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 int filteredListPersonIndex = filteredPersonList.indexOf(person);
-                System.out.println("Filtered person index: " + filteredListPersonIndex);
                 setGraphic(new PersonCard(person, filteredListPersonIndex + 1).getRoot());
             }
         }
