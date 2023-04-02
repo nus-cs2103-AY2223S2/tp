@@ -11,11 +11,12 @@ import static seedu.dengue.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphabets and spaces, and it should not be blank";
+            "Names should only contain alphabets and spaces, and it should not be blank."
+                    + "\nTrimmed names can have a maximum length of 54 characters.";
 
 
     public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z\\s]*";
-    private static final int MAX_LENGTH = 50;
+    private static final int MAX_LENGTH = 54;
     public final String fullName;
 
     /**
@@ -33,6 +34,7 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
+        test = test.trim().replaceAll("\\s{2,}", " ");
         return test.matches(VALIDATION_REGEX) && test.length() <= MAX_LENGTH;
     }
 
