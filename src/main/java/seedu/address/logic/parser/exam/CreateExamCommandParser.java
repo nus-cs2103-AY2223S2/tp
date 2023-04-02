@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ENDTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Grade;
 import seedu.address.model.student.NamePredicate;
 
 /**
@@ -35,7 +38,8 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EXAM, PREFIX_STARTTIME, PREFIX_ENDTIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_EXAM, PREFIX_STARTTIME, PREFIX_ENDTIME,
+                        PREFIX_WEIGHT, PREFIX_GRADE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EXAM, PREFIX_STARTTIME, PREFIX_ENDTIME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -48,9 +52,21 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 CreateExamCommand.MESSAGE_USAGE));
         }
-        LocalDateTime startTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_STARTTIME).get());
-        LocalDateTime endTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ENDTIME).get());
+        LocalDateTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get());
+        LocalDateTime endTime = ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
+
+        Double weightage = null;
+        //if the weightage of an exam is provided, store the weight
+        if (argMultimap.getValue(PREFIX_WEIGHT).isPresent()) {
+            weightage = ParserUtil.parseWeightage(argMultimap.getValue(PREFIX_WEIGHT).get());
+        }
+
+        Grade grade = null;
+        //if the grade of an exam is provided, store the grade
+        if (argMultimap.getValue(PREFIX_GRADE).isPresent()) {
+            grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
+        }
 
         // for all the names, trim the name and only take the first word
         for (int i = 0; i < nameKeywords.size(); i++) {
@@ -69,7 +85,7 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
         names = nameKeywords;
 
         return new CreateExamCommand(names, new NamePredicate(nameKeywords),
-                examDescription, startTime, endTime);
+                examDescription, startTime, endTime, weightage, grade);
     }
 
     /**

@@ -88,14 +88,12 @@ public class ViewHomeworkCommand extends Command {
 
         List<Student> studentList = model.getFilteredStudentList();
 
-        int numberOfStudents = 0;
         int numberOfHomework = 0;
         StringBuilder sb = new StringBuilder();
 
         for (Student student : studentList) {
             List<Homework> homeworkList = student.getFilteredHomeworkList(homeworkStatusPredicate);
             if (!homeworkList.isEmpty()) {
-                numberOfStudents++;
                 sb.append(SEPERATOR);
                 sb.append(String.format(NAME_LABEL, student.getName()));
                 numberOfHomework += homeworkList.size();
@@ -104,16 +102,8 @@ public class ViewHomeworkCommand extends Command {
         }
 
         handleNoHomework(numberOfHomework);
-
-        // If the default predicate is used, display a different message
-        if (defaultPredicateFlag) {
-            return new CommandResult(
+        return new CommandResult(
                     String.format(Messages.MESSAGE_ALL_HOMEWORK_LISTED_OVERVIEW, numberOfHomework, sb.toString()));
-        } else {
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_HOMEWORK_LISTED_OVERVIEW,
-                            numberOfHomework, numberOfStudents, sb.toString()));
-        }
     }
 
     /**
