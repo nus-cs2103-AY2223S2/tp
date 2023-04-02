@@ -48,8 +48,6 @@ public class AddTagToPersonCommandParser implements Parser<AddTagToPersonCommand
                 .map(l -> l.stream().filter(s -> !s.isBlank())
                 .map(Major::new).collect(Collectors.toSet())).orElse(new HashSet<>()));
 
-
-
         if (addTagDescriptor.isEmpty()) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagToPersonCommand.MESSAGE_USAGE));
