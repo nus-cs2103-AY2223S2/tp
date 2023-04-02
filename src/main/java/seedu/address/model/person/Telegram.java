@@ -9,19 +9,23 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
 
-    public static final String EMPTY = "";
-    public static final String MESSAGE_CONSTRAINTS = "Telegram handle can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Telegram handle can take any valid Telegram handle, " +
+            "and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Matches a valid telegram handle. Currently, asserts (or tries to) the following constraints:
+     *   Begins with an alphabetic character
+     *   Has a minimum length of 5 and a maximum length of 32
+     *   Consists of only alphanumeric characters and underscores
+     *   Does not have consecutive underscores
+     *   Does not end on an underscore.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "^@(?=[a-zA-Z]\\w{4,31}\\b)[a-zA-Z0-9]+(?:_[a-zA-Z0-9]+)*$";
 
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs a {@code Telegram}.
      *
      * @param telegram A valid telegram handle.
      */

@@ -107,7 +107,13 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 | `REMARK`          | Your notes or remarks on the student                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                  |
 | `STUDENT_NAME`    | Name of the student                                                                  | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name will be removed by the app                                                                                                   |
 | `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add)    | Must be a single word containing alphanumeric characters                                                                                                                                                                              |
-| `TELEGRAM`        | Telegram handle of the student                                                       | Can only contain uppercase and lowercase alphabets, digits (0-9) and underscores. Minimum length is 5 characters                                                                                                                      |
+| `TELEGRAM`        | Telegram handle of the student                                                       | Must begin with "@". Can only contain uppercase and lowercase alphabets, digits (0-9) and underscores. Minimum length is 5 characters.                                                                                                |
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** The description for a valid Telegram handle has been shortened for brevity and thus might not cover all cases.
+* For example, one might think that "@hello__world" is allowed but it isn't due to having consecutive underscores.
+* TeachMeSenpai does validate handles according to Telegram specifications, but do check on the Telegram application for whether a handle is valid!
 
 [↑ Back to top](#table-of-contents)
 

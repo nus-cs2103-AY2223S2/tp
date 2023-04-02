@@ -36,7 +36,7 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub, new CommandHistory());
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
@@ -48,7 +48,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub, new CommandHistory()));
     }
 
     @Test
@@ -149,6 +149,56 @@ public class AddCommandTest {
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ArrayList<String> getExistingEducationValues() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public ArrayList<String> getExistingModuleValues() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public ArrayList<String> getExistingTagValues() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean checkUndoable() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean checkRedoable() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void undoAddressBook() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void redoAddressBook() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void commitAddressBook() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void updateShowPerson(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public ObservableList<Person> getShowPerson() {
+            throw new AssertionError("This method should not be called");
         }
     }
 
