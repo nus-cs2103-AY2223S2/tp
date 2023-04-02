@@ -213,14 +213,14 @@ The following diagram shows the layout of components numbered exactly as above.
 
 You may locate the Person List at the center-left of `EduMate`. This is where you will see all your saved contacts (or sample data if you are trying out for the first time).
 
-<img src="images/UG_ui_pictures/PersonList.svg" style="width:60%;margin:0 10% 0 20%">
+<img src="images/UG_ui_pictures/PersonList.svg" style="width:40%;margin:1% 1% 1% 30%">
 
 <center>Diagram 4: Person List with some contacts displayed.</center>
 <br>
 <div markdown="block" class="alert alert-info">
 
-:information_source:**Appearance of Module Tags**<br>
-Not all modules that are tagged to the contact is shown on the Person List. Only modules that you are tagged with will appear.
+:information_source: **Appearance of Module Tags**<br>
+Not all modules that are tagged to the contact is shown on the Person List. Only modules that you are tagged with will appear if the contact is also tagged with the same module as you.
 <br>
 
 <img src="images/UG_ui_pictures/PersonListCommonMods.svg" style="width:80%;margin:0 10%">
