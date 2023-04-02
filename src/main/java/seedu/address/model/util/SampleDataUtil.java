@@ -6,6 +6,13 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.OneTimeEvent;
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.fields.DateTime;
+import seedu.address.model.event.fields.Description;
+import seedu.address.model.event.fields.Recurrence;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.fields.CommunicationChannel;
@@ -21,6 +28,7 @@ import seedu.address.model.person.fields.Race;
 import seedu.address.model.person.fields.Tags;
 import seedu.address.model.person.fields.subfields.NusMod;
 import seedu.address.model.person.fields.subfields.Tag;
+import seedu.address.model.user.UserData;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -62,8 +70,27 @@ public class SampleDataUtil {
             new Tags(Set.of(new Tag("Advocate"), new Tag("Swimmer"), new Tag("Photographer"))),
             new CommunicationChannel("Skype"), new Favorite(true), new Faculty("Faculty of Arts and Social Sciences"));
 
+    public static final Event EVENT_1 = new OneTimeEvent(new Description("CS2101 Meeting"),
+            new DateTime("2023-03-31 1600"), new DateTime("2023-03-31 1700"), Set.of(PERSON_2, PERSON_5));
+    public static final Event EVENT_2 = new RecurringEvent(new Description("CS2103T Lecture"),
+            new DateTime("2023-03-31 1400"), new DateTime("2023-03-31 1600"), new Recurrence(Recurrence.WEEKLY_CASE),
+            Set.of(PERSON_1, PERSON_5));
+    public static final Event EVENT_3 = new RecurringEvent(new Description("Christmas Day"),
+            new DateTime("2023-12-25 0000"), new DateTime("2023-12-25 2359"), new Recurrence(Recurrence.YEARLY_CASE),
+            Set.of(PERSON_1, PERSON_2, PERSON_4));
+    public static final Event EVENT_4 = new RecurringEvent(new Description("Dinner with Olivia"),
+            new DateTime("2023-03-31 1800"), new DateTime("2023-03-31 1900"), new Recurrence(Recurrence.DAILY_CASE),
+            Set.of(PERSON_2));
+    public static final Event EVENT_5 = new RecurringEvent(new Description("Gym Session"),
+            new DateTime("2023-03-31 0800"), new DateTime("2023-03-31 0900"), new Recurrence(Recurrence.DAILY_CASE),
+            Set.of(PERSON_4, PERSON_5));
+
     public static Person[] getSamplePersons() {
         return new Person[]{PERSON_1, PERSON_2, PERSON_3, PERSON_4, PERSON_5};
+    }
+
+    public static Event[] getSampleEvents() {
+        return new Event[]{EVENT_1, EVENT_2, EVENT_3, EVENT_4, EVENT_5};
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
@@ -72,6 +99,14 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyUserData getSampleUserData() {
+        UserData userData = new UserData();
+        for (Event event : getSampleEvents()) {
+            userData.addEvent(event);
+        }
+        return userData;
     }
 
     /**
