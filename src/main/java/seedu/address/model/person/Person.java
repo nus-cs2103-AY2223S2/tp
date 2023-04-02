@@ -97,12 +97,18 @@ public class Person {
         }
 
         boolean isSameName = otherPerson.getName().fullName.equalsIgnoreCase(getName().fullName);
-        boolean isSameNumber = otherPerson.getOptionalPhone().equals(getOptionalPhone());
-        boolean isSameTele = otherPerson.getOptionalTelegram().equals(getOptionalTelegram());
 
-        return (otherPerson != null && isSameName)
-                || (otherPerson != null && isSameNumber)
-                || (otherPerson != null && isSameTele);
+        Phone thisNumber = this.getOptionalPhone().orElse(null);
+        Phone otherNumber = otherPerson.getOptionalPhone().orElse(null);
+        boolean isSameNumber = thisNumber == otherNumber
+                && thisNumber != null && otherNumber != null;
+
+        Telegram thisTele = this.getOptionalTelegram().orElse(null);
+        Telegram otherTele = otherPerson.getOptionalTelegram().orElse(null);
+        boolean isSameTele = thisTele == otherTele
+                && thisTele != null && otherTele != null;
+
+        return otherPerson != null && (isSameName || isSameNumber || isSameTele);
     }
 
     /**
