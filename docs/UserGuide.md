@@ -91,7 +91,7 @@ learn more about new features.
   e.g. in `addp n/NAME`, `NAME` is a parameter which can be used as `addp n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [tag/TAG]` can be used as `n/John Doe tag/friend` or as `n/John Doe`.
 
 
 * Items with `…` after them can be used multiple times including zero times.<br>
@@ -161,7 +161,7 @@ Format: `addp n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…`
 
 Examples:
 * `addp n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addp n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
+* `addp n/Betsy Crowe tag/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
 
 #### 3.2.2 Deleting a person : `deletep`
 
@@ -250,7 +250,7 @@ Examples:
 
 Edits the specified task from OfficeConnect.
 
-Format: `editt INDEX`
+Format: `editt INDEX [t/TITLE] [c/CONTENT] [st/STATUS] [dl/DEADLINE] [cd/CREATEDATE]`
 
 * Edits the task at the specified INDEX.
 * The INDEX refers to the INDEX shown in the displayed task list.
@@ -259,7 +259,7 @@ Format: `editt INDEX`
 * Existing values will be updated to the input values.
 
 Examples:
-- `listt` followed by `editt 2 title/Submit report` edits the title of the 2nd task in the task list.
+- `listt` followed by `editt 2 t/Submit report` edits the title of the 2nd task in the task list.
 - `findt book` followed by `editt 1 c/Claim $200 from Bob` edits the content of the 1st task in the results of the `findt` command.
 
 
@@ -392,7 +392,7 @@ Example:
 - `viewunassignedall` displays a list of all persons who have not been assigned to any task and all tasks that have not been assigned to any person.
 
 
-#### 3.6.8 Filter Persons: `filterp tag/TAG`
+#### 3.6.8 Filter Persons: `filterp`
 
 Displays a list of all persons with the assigned tag. Only ONE tag can be keyed as input.
 
@@ -444,7 +444,7 @@ OfficeConnect data are saved in the hard disk automatically after any command th
 
 #### 3.7.3 Editing the data file
 
-OfficeConnect data are saved as a JSON file `[JAR file location]/data/officeconnect.json`. Advanced users are welcome to update data directly by editing that data file.
+OfficeConnect data are saved as a JSON file `[JAR file location]/data/officeconnect.json`. Please do not tamper with the data as it might cause corruption of the data, which might cause the app to fail!
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -455,7 +455,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 The keyboard shortcut for the help function is assigned to the F2 key.
 </div>
 
-<<<<<<< HEAD
 Sets the overall theme of OfficeConnect to light mode. This mode is chosen as the default theme.
 
 ![startup_whitebackground.jpg](images%2Fproduct-screenshots%2Fstartup_whitebackground.jpg)
@@ -501,7 +500,7 @@ _Details coming soon ..._
 | **Delete Person**           | `deletep INDEX`<br> e.g., `deletep 3`                                                                                                                                        |
 | **Delete Task**             | `deletet INDEX`<br/> e.g. `deletet 2`                                                                                                                                        |
 | **Edit Person**             | `editp INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tag/TAG]…`<br> e.g.,`editp 2 n/James Lee e/jameslee@example.com`                                               |
-| **Edit Tasks**              | `editt INDEX [title/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [createdate/CREATEDATE]`<br> e.g.,`editt 2 title/Submit report st/true`                                       |
+| **Edit Tasks**              | `editt INDEX [t/TITLE] [c/CONTENT] [st/TRUE] [dl/DEADLINE] [cd/CREATEDATE]`<br> e.g.,`editt 2 t/Submit report st/true`                                       |
 | **Exit**                    | `exit`                                                                                                                                                                       |
 | **Filter Person**           | `filterp tag/TAG`<br> e.g.,`filterp tag/Logistics`                                                                                                                           |
 | **Find Person**             | `findp NAME`<br> e.g., `findp James Jake`                                                                                                                                    |
