@@ -6,14 +6,14 @@ title: User Guide
 **CookHub** is a powerful, but lightweight application for your recipe management needs. 
 It sports a sleek and minimalist design that allows you to clearly view all your personal recipes at a glance!
 
-**CookHub** mainly uses the [command line interface](#glossary) that is optimised for fast typists managing their recipes quickly, while still 
-having the benefits of a Graphical User Interface(GUI).
+**CookHub** mainly uses the [command line interface](#glossary) that is optimised for fast typists who aim to manage their recipes quickly, while still 
+enjoying the benefits of a Graphical User Interface(GUI).
 
 **CookHub** excels in its simplicity and optimisation for the student cook's recipe management needs. 
 It supports management via recipe ingredients and price. Having a gentle learning curve and requiring 
 minimal setup, it is perfect for the contemporary student cook!
 
-The following is a short overview of the features and capabilities of CookHub:
+Here is a short overview of the features and capabilities of CookHub:
 * Creating recipes with specified titles, ingredients, steps, and tags.
 * [Starring](#glossary) and [unstarring](#glossary) each recipe.
 * Getting all your [favourite](#glossary) recipes. 
@@ -62,24 +62,24 @@ The following is a short overview of the features and capabilities of CookHub:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `lower_case` are commands or flag that must be typed literally.
-* Words in `UPPER_CASE` are placeholder texts that is to be replaced by the user.
+* Words in `lower_case` are commands or flags that must be typed literally.
+* Words in `UPPER_CASE` are placeholder texts that are to be replaced by the user.
 * Command flags (e.g. `t/`, `d/`) can be typed in any order
   - For example, the two commands below are the same, despite the swapped order of the command flags `t/` and `d/`
     - `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` 
     - `add d/Delicious t/Corndogs i/Flour, 3.5, Cup, 0.30 s/Mix batter`
 
 * Items in square brackets are optional.
-  - e.g  `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` is a valid command even though the command flag `tag/` is missing
+  - e.g  `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` is a valid command, even though the command flag `tag/` is missing
 
-* TITLE, DESCRIPTION, STEP, TAG must be a word or sentence.
-  - e.g. TITLE can be `I am a title`
-  - e.g. TAG can be `Tag`
+* *TITLE*, *DESCRIPTION*, *STEP*, *TAG* must be a word or sentence.
+  - e.g. *TITLE* can be `I am a title`
+  - e.g. *TAG* can be `Tag`
 
-* INGREDIENT is of the format {INGREDIENT_NAME, QUANTITY, UNIT_OF_MEASUREMENT, PRICE_PER_UNIT}
-  - INGREDIENT_NAME, QUANTITY, UNIT_OF_MEASUREMENT, PRICE_PER_UNIT are placeholder text meant to be replaced by the user following the below rules:
-    - INGREDIENT_NAME, UNIT_OF_MEASUREMENT must be a word or sentence
-    - QUANTITY, PRICE_PER_UNIT must be numeric
+* INGREDIENT is of the format `INGREDIENT_NAME, QUANTITY, UNIT_OF_MEASUREMENT, PRICE_PER_UNIT`
+  - *INGREDIENT_NAME*, *QUANTITY*, *UNIT_OF_MEASUREMENT*, *PRICE_PER_UNIT* are placeholder text meant to be replaced by the user following the below rules:
+    - *INGREDIENT_NAME*, *UNIT_OF_MEASUREMENT* must be a word or sentence
+    - *QUANTITY*, *PRICE_PER_UNIT* must be numeric
   - e.g. INGREDIENT can be `White wine vinegar, 2, tbsp, 0.10`
   - e.g. INGREDIENT can be `Large egg, 4, unit, 0.80`
 
@@ -104,18 +104,17 @@ Our initial recipe book:
 
 <img src="images/UiInWindows.png" width=500 height=400>
 
-- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange` is valid and a recipe look like the picture
+- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 s/Juice the orange` is valid and a recipe similar to the image
 shown below will be added to the recipe book:
   
 <img src="images/AddResult1.png" width=500 height=400>
 
-- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because `s/` is compulsory and you will see an
-error message like the one in the picture shown below:
+- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because the command flag `s/` is compulsory. An error message will appear, similar to the one shown below:
 
 <img src="images/AddError.png" width=500 height=400>
 
-- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar, 50, g, 0.10 s/Juice the orange` is valid because we can have
-multiple `i/` flags and a recipe look like the picture shown below will be added to the recipe book:
+- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar, 50, g, 0.10 s/Juice the orange` is valid as 
+multiple `i/` command flags are allowed. A recipe similar to the image shown below will be added to the recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
@@ -125,6 +124,7 @@ multiple `i/` flags and a recipe look like the picture shown below will be added
 This command edits a recipe in your recipe book.
 
 Format: `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...`
+
 :warning: CAUTION: At least one of the command flags need to be present
 
 - The *RECIPE_NUMBER* should refer to the index number shown in the displayed recipe book
@@ -137,17 +137,15 @@ Our initial recipe book:
 
 <img src="images/UiInWindows.png" width=500 height=400>
 
-- `edit 1 t/Corndog` is valid and the recipe will be edited like the picture shown below:
+- `edit 1 t/Corndog` is valid and the recipe will be edited like the image shown below:
 
 <img src="images/EditResult1.png" width=500 height=400>
 
-- `edit 1` is not valid as at least one flag is required and you will see an error message like the one in the picture
-shown below:
+- `edit 1` is not valid as at least one flag is required and you will see an error message similar to that of the one shown below:
 
 <img src="images/EditError.png" width=500 height=400>
 
-- `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted and the recipe will be edited like
-the picture shown below:
+- `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted. The recipe will be edited as shown below:
 
 <img src="images/EditResult2.png" width=500 height=400>
 
@@ -161,20 +159,17 @@ Format: `delete RECIPE_NUMBER`
 - The *RECIPE_NUMBER* refers to the index number shown in the displayed recipe book
 - The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
 
-Expected outcome: You should see an updated list of recipes with the recipe at the specified index removed.
-
 Examples:
 
 Our initial recipe book:
 
 <img src="images/UiInWindows.png" width=500 height=400>
 
-- `delete 1` will change the recipe book to:
+- `delete 1` will result in a recipe book as shown below:
 
 <img src="images/DeleteResult1.png" width=500 height=400>
 
-- `delete 2` is invalid as there is only 1 recipe in the recipe book for now and you will see an error message like the
-one in the picture shown below:
+- `delete 2` is invalid. When there is currently only one recipe in the recipe book, you will see an error message as shown below:
 
 <img src="images/DeleteResult2.png" width=500 height=400>
 
@@ -186,7 +181,7 @@ This command lists out all the recipes that you have added to the recipe book
 
 Format: `list`
 
-Example: `list` will list all the recipes like the picture shown below:
+Example: `list` will list all the recipes similar to the image shown below:
 
 <img src="images/ListResult.png" width=500 height=400>
 
@@ -198,9 +193,7 @@ This command clears your recipe book of all its recipes.
 
 Format: `clear`
 
-Expected outcome: You should see that CookHub has zero recipes in it
-
-Example: `clear` will clear all recipes like the picture shown below:
+Example: `clear` will clear all recipes like the image shown below:
 
 <img src="images/ClearResult.png" width=500 height=400>
 
@@ -213,7 +206,8 @@ Example: `clear` will clear all recipes like the picture shown below:
 This command finds the recipes in your recipe book according to what you are looking for.
 
 Format: `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
-:warning: WARNING: Only one command flag can be present
+
+:warning: WARNING: Only one command flag can be present!
 
 - the flag `r/` searches through the entire recipe and its components
 - the flag `t/` searches only through the recipe's title
@@ -229,16 +223,16 @@ Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
-- `find r/eggs` is valid and the result of the command is shown below:
+- `find r/eggs` is valid and the result of the recipe book is as shown below:
 
 <img src="images/FindResult.png" width=500 height=400>
 
-- `find r/eggs s/fry the egg` is not valid because at most one flag is allowed and you will see an error message like
-the one in the picture shown below:
+- `find r/eggs s/fry the egg` is not valid as only one command flag is allowed. You should see an error message similar to
+the one in the image shown below:
 
 <img src="images/FindError1.png" width=500 height=400>
 
-- `find` is not valid as at least one flag is required and you will see an error message like the one in the picture
+- `find` is not valid as at least one flag is required. You should see an error message like the one in the image
 shown below:
 
 <img src="images/FindError2.png" width=500 height=400>
@@ -258,13 +252,12 @@ Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
-- e.g. `only` is not valid as a parameter is needed and you will see an error message like the one in the picture shown
+- e.g. `only` is not valid as at least one parameter is needed. You should see an error message similar to the one in the image shown
 below:
 
 <img src="images/OnlyError.png" width=500 height=400>
 
-- e.g. `only eggs` is valid, will search for recipes that have ingredients that at most contain eggs, and nothing more,
-and the result of the command is shown below:
+- e.g. `only eggs` is valid, and will search for recipes that have ingredients that at most contain eggs, and nothing more. The result of the command is as shown below:
 
 <img src="images/OnlyResult1.png" width=500 height=400>
 
@@ -290,7 +283,7 @@ Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
-- `sort desc` will give you the result of the picture shown below:
+- `sort desc` will display your sorted recipe book similar to the image shown below:
 
 <img src="images/SortResult.png" width=500 height=400>
 
@@ -309,14 +302,14 @@ Format: `fp COMPARATOR PRICE`
 - `>` is used to represent "more than"
 - *PRICE* can take on any positive real number
 - The price of a recipe is determined by cost of all ingredients required.
-- 
+
 Example: 
 
 Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
-- `fp < 4.50` will give you the result of the picture shown below:
+- `fp < 4.50` will display all recipes that have a lower price than $4.50, as shown in the image below:
 
 <img src="images/FpResult.png" width=500 height=400>
 
@@ -337,11 +330,11 @@ Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
-- `star 1` will give you the result of the picture shown below:
+- `star 1` will star the first recipe, as shown in the image below:
 
 <img src="images/StarResult1.png" width=500 height=400>
 
-- `star 2` will give you the result of the picture shown below:
+- `star 2` will star the second recipe, as shown in the image below:
 
 <img src="images/StarResult2.png" width=500 height=400>
 
@@ -362,11 +355,11 @@ Our initial recipe book:
 
 <img src="images/AllRecipesStarred.png" width=500 height=400>
 
-- `unstar 1` will give you the result of the picture shown below:
+- `unstar 1` will remove the star of the first recipe, as shown in the image below:
 
 <img src="images/UnstarResult1.png" width=500 height=400>
 
-- `unstar 2` will give you the result of the picture shown below:
+- `unstar 2` will remove the star of the second recipe, as shown in the image below:
 
 <img src="images/UnstarResult2.png" width=500 height=400>
 
@@ -384,7 +377,7 @@ Our initial recipe book:
 
 <img src="images/StarResult1.png" width=500 height=400>
 
-- `favorites` will give you the result of the picture shown below:
+- `favorites` will display all your starred recipes, as shown in the image below:
 
 <img src="images/FavoritesResult.png" width=500 height=400>
 
