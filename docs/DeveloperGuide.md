@@ -318,6 +318,9 @@ Given below is an example usage scenario and how the edit mechanism behaves at e
    Example of parent edit command: `"parent edit n/Tan Ah Niu pnP/91234567 npnP/65656565"` <br>
 5. Edited `Parent` is saved to the storage file automatically after the command. <br><br>
 
+**Activity Diagram**
+![Activity Diagram](images/ParentEditActivityDiagram.png)
+
 **Full implementation sequence diagram**
 ![Sequence Diagram](images/ParentEditSequentialDiagram.png)
 
