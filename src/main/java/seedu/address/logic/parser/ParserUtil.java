@@ -60,7 +60,7 @@ public class ParserUtil {
     }
 
     /**
-     * Returns a ContactIndex from the string index.
+     * Returns a non-zero ContactIndex from the string index.
      */
     public static ContactIndex parseContactIndex(String contactIndex) throws ParseException {
         String trimmedIndex = contactIndex.trim();
@@ -217,21 +217,13 @@ public class ParserUtil {
         LocalTime startTime = parseLocalTime(args.get(2), true);
         LocalTime endTime = parseLocalTime(args.get(3), false);
 
-        TimePeriod timePeriod = parseTimePeriod(startTime, endTime, day);
+        TimeBlock timeBlock = parseTimeBlock(startTime, endTime, day);
 
-        Lesson lesson = new Lesson(moduleCode, Location.NUS, timePeriod);
+        Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
 
         logger.log(Level.FINE, String.format("Lesson parsed: %s", lesson));
 
         return new ModuleTag(moduleCode, lesson);
-    }
-
-    private static TimePeriod parseTimePeriod(LocalTime startTime, LocalTime endTime, Day day) throws ParseException {
-        if (!startTime.isBefore(endTime)) {
-            throw new ParseException("Start Time must be STRICTLY BEFORE End Time!");
-        }
-
-        return new TimeBlock(startTime, endTime, day);
     }
 
     private static ModuleTag parseModuleTagFromSingle(String tag) throws ParseException {
@@ -279,6 +271,14 @@ public class ParserUtil {
         } catch (NumberFormatException nfe) {
             throw new ParseException("Invalid time");
         }
+    }
+
+    private static TimeBlock parseTimeBlock(LocalTime startTime, LocalTime endTime, Day day) throws ParseException {
+        if (startTime.isAfter(endTime) || startTime.isEqual(endTime)) {
+            throw new ParseException("Start Time must be STRICTLY BEFORE End Time!");
+        }
+
+        return new TimeBlock(startTime, endTime, day);
     }
 
     /**

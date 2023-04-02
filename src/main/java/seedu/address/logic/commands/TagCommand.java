@@ -109,7 +109,7 @@ public class TagCommand extends Command {
                 new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
         Person editedPerson = personToEdit.copy();
 
-        addModuleTags(editedPerson);
+        Set<ModuleTag> addedModuleTags = addModuleTags(editedPerson);
 
         // caches the common modules in each ModuleTagSet as running set
         // intersection is expensive if we only use it in the compareTo method
@@ -118,7 +118,12 @@ public class TagCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
 
-        return new ViewCommandResult(MESSAGE_MODULE_TAG_PERSON_SUCCESS, editedPerson);
+        String message = MESSAGE_MODULE_TAG_PERSON_SUCCESS
+                + addedModuleTags.stream()
+                .map(ModuleTag::toString)
+                .collect(Collectors.joining("\n"));
+
+        return new ViewCommandResult(message, editedPerson);
     }
 
     private ViewCommandResult tagGroups(Model model) throws CommandException {
@@ -131,18 +136,30 @@ public class TagCommand extends Command {
                     new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
         }
 
-        personToEdit.addGroupTags(this.groupTags);
+        Person editedPerson = personToEdit.copy();
+        editedPerson.setCommonModules(model.getUser().getImmutableModuleTags());
+        Set<GroupTag> addedGroupTags = editedPerson.addGroupTags(this.groupTags);
 
-        return (personToEdit instanceof User)
-                ? new ViewCommandResult(MESSAGE_GROUP_TAG_USER_SUCCESS, personToEdit)
-                : new ViewCommandResult(MESSAGE_GROUP_TAG_PERSON_SUCCESS, personToEdit);
+        if (editedPerson instanceof User) {
+            model.setUser((User) editedPerson);
+        } else {
+            model.setPerson(personToEdit, editedPerson);
+        }
+
+        String messageGroupTags = addedGroupTags.stream()
+                .map(GroupTag::toString)
+                .collect(Collectors.joining("\n"));
+
+        return (editedPerson instanceof User)
+                ? new ViewCommandResult(MESSAGE_GROUP_TAG_USER_SUCCESS + messageGroupTags, editedPerson)
+                : new ViewCommandResult(MESSAGE_GROUP_TAG_PERSON_SUCCESS + messageGroupTags, editedPerson);
     }
 
     private ViewCommandResult tagUserModules(Model model) throws CommandException {
         User userToEdit = model.getUser();
         User editedUser = userToEdit.copy();
 
-        addModuleTags(editedUser);
+        Set<ModuleTag> addedModuleTags = addModuleTags(editedUser);
         model.setUser(editedUser);
 
         Set<ModuleTag> userModuleTags = model.getUser().getImmutableModuleTags();
@@ -152,19 +169,28 @@ public class TagCommand extends Command {
         model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON.reversed());
         model.updateObservablePersonList(Model.COMPARATOR_CONTACT_INDEX_PERSON);
 
-        return new ViewCommandResult(MESSAGE_MODULE_TAG_USER_SUCCESS, editedUser);
+        String message = MESSAGE_MODULE_TAG_USER_SUCCESS
+                + addedModuleTags.stream()
+                .map(ModuleTag::toString)
+                .collect(Collectors.joining("\n"));
+
+        return new ViewCommandResult(message, editedUser);
     }
 
-    private void addModuleTags(Person editedPerson) throws CommandException {
+    private Set<ModuleTag> addModuleTags(Person editedPerson) throws CommandException {
         List<TimePeriod> timePeriods = lessons.stream()
                 .map(Lesson::getTimePeriod)
                 .collect(Collectors.toList());
 
-        if (!editedPerson.canAddCommitments(lessons) || TimeUtil.hasAnyClash(timePeriods)) {
-            throw new CommandException("There is a clash in commitments!");
+        if (TimeUtil.hasAnyClash(timePeriods)) {
+            throw new CommandException("There is a clash in the commitments provided!");
         }
 
-        editedPerson.addModuleTags(moduleTags);
+        if (!editedPerson.canAddCommitments(lessons)) {
+            throw new CommandException(editedPerson.getClashingCommitmentsAsStr(lessons));
+        }
+
+        return editedPerson.addModuleTags(moduleTags);
     }
 
     public ContactIndex getIndex() {
