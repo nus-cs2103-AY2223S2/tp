@@ -582,17 +582,22 @@ Refer to the [user guide](https://ay2223s2-cs2103-w16-1.github.io/tp/UserGuide.h
 
 ### Adding a delivery
 1. Adding a new delivery
-   1. Test case: `add n/tester a/address`<br>
+
+   Test case: `add n/tester a/address`<br>
       Expected: Delivery is added to the list. Details of the newly added delivery shown in the status message.
+
 2. Adding an existing delivery (continuing from previous test case)
-   1. Test case: `add n/tester a/address`<br>
-      Expected: No delivery is added. Error details shown in the status message. 
+
+   Test case: `add n/tester a/address`<br>
+      Expected: No delivery is added. Error details shown in the status message.
+
 3. Adding another new delivery (continuing from previous test cases)
-   1. Test case: `add n/tester a/newaddress`<br>
+
+   Test case: `add n/tester a/newaddress`<br>
       Expected: Delivery is added to the list. Details of the newly added delivery shown in the status message.
 
 ### Deleting a delivery
-1. Deleting a delivery while all deliveries are being shown
+Deleting a delivery while all deliveries are being shown
    1. Prerequisites: List all deliveries using the `list` command. At least one delivery in the list.
    1. Test case: `delete 1`<br>
       Expected: First delivery is deleted from the list. Details of the deleted delivery shown in the status message.
@@ -603,13 +608,13 @@ Refer to the [user guide](https://ay2223s2-cs2103-w16-1.github.io/tp/UserGuide.h
 
 ### Saving data
 
-1. Dealing with corrupted data file
-    1. In the data folder, corrupt the data file `bookopedia.json` by either adding in some random text or removing a chunk of the file
-    2. Launch Bookopedia as usual<br>
-       Expected: Bookopedia will still run normally but **without any data**
+Dealing with corrupted data file
+1. In the data folder, corrupt the data file `bookopedia.json` by either adding in some random text or removing a chunk of the file
+2. Launch Bookopedia as usual<br>
+   Expected: Bookopedia will still run normally but **without any data**
 
-1. Dealing with missing data file
-   1. Delete data file `bookopedia.json` found in the data folder
-   2. Launch Bookopedia as usual<br>
-      Expected: Bookopedia will still run normally but with some **sample data**
+Dealing with missing data file
+1. Delete data file `bookopedia.json` found in the data folder
+2. Launch Bookopedia as usual<br>
+   Expected: Bookopedia will still run normally but with some **sample data**
    

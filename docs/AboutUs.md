@@ -15,7 +15,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/mehvin.md)]
 
 * Role: Project Advisor & Developer
-* * Responsibilities: Documentation + Code quality
+* Responsibilities: Documentation + Code quality
 
 ### Muhammad Shazrin
 
