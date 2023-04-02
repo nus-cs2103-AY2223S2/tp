@@ -1,0 +1,35 @@
+@startuml
+!include ../../style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class UniqueEmployeeList
+Class Id
+Class Employee
+Class Address
+Class Email
+Class Name
+Class Phone
+Class Tag
+
+Class UniqueLeaveList
+Class Leave
+Class LeaveDate
+
+UniqueEmployeeList --> "~* all" Employee
+Employee *--> Id
+Employee *--> Name
+Employee *--> Phone
+Employee *--> Email
+Employee *--> Address
+Employee *--> "*" Tag
+
+UniqueLeaveList --> "~* all" Leave
+Leave *--> LeaveDate
+Leave *-->"1"UniqueEmployeeList
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+@enduml

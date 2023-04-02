@@ -1,0 +1,18 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters defl command;
+if () then ([else])
+  :Error: Invalid command format;
+  stop
+([Command format is valid])elseif () then ([else])
+  :Error: Employee does not exist in SudoHR;
+  stop
+([Employee exists in SudoHR])elseif () then ([else])
+  :Error: Employee has not taken leave on the given day;
+  stop
+ else ([Employee has taken leave on the given day])
+  :defl command successfully executes.;
+stop
+
+@enduml
