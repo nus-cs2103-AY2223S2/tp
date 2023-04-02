@@ -306,7 +306,6 @@ Examples:
 Add a video to a lecture.
 
 - <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as watched
-  - An argument that takes no value
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video
   - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
   - Uniqueness is case sensitive
@@ -378,22 +377,33 @@ Examples:
 
 ### Edit a Video
 
-> Edits the details of a video
+> `edit {video_name} /mod {module_code} /lec {lecture_name} [/name {updated_name}] [/timestamp {updated_timestamp}] [/watch] [/unwatch] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
-Format: `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}] [/timestamp {updated_timestamp}] [/watch] [/unwatch] [/tags {tag_1}, [{tag_2}, ...]]`
+Edit the details of a video.
 
-- `/watch` if specified, then `/unwatch` cannot be specified
-- `/unwatch` if specified, then `/watch` cannot be specified
-- `video_name` must belong to a video that exist within the lecture specified in `lecture_name`
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
-- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
-- `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
-- `updated_name` must be a valid video name
-- `updated_name` must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
-- `updated_timestamp` must be a valid timestamp
-- `tag_1`, `tag_2`, ... must be valid tags
-- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
+- <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as watched
+  - If this argument is specified, then `/unwatch` should not be specified
+- <span style="color:#e46c0a">`/unwatch`</span> : If specified, the video will be marked as not watched
+  - If this argument is specified, then `/watch` should not be specified
+- <span style="color:#e46c0a">`video_name`</span> : The name of the video to be edited
+  - Must belong to a video that exist within the lecture specified in `lecture_name`
+  - Must be a valid video name (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module containing the lecture which the video to be edited belongs to
+  - Must belong to an existing module in Le Tracker
+  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video to be edited
+  - Must belong to an existing lecture in the module specified in `module_code`
+  - Must be a valid lecture name (refer to [Argument Validity](#argument-validity) for more information)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`updated_name`</span> : The updated video name
+  - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
+  - Must be a valid video name (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`updated_timestamp`</span> : The updated timestamp of the video where the user last stopped watching at
+  - Must be a valid timestamp (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags that will replace the current tags applied to the lecture
+  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - Repeated tags (if any) will be ignored
 
 Examples:
 
