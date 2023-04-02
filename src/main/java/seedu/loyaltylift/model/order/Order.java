@@ -19,7 +19,7 @@ import seedu.loyaltylift.model.customer.Customer;
 public class Order {
 
     // Comparators
-    public static final Comparator<Order> SORT_CREATED_DATE = Comparator.comparing(Order::getCreatedDate);
+    public static final Comparator<Order> SORT_CREATED_DATE = Comparator.comparing(Order::getCreatedDate).reversed();
     public static final Comparator<Order> SORT_NAME = Comparator.comparing(Order::getName)
             .thenComparing(SORT_CREATED_DATE);
     public static final Comparator<Order> SORT_STATUS = Comparator.comparing(Order::getStatus)
