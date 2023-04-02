@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
 participant ":SalaryCommandParser" as SalaryCommandParser LOGIC_COLOR
 participant "s:SalaryCommand" as SalaryCommand LOGIC_COLOR
 participant "o:Order" as Order LOGIC_COLOR
@@ -18,17 +18,17 @@ end box
 [-> LogicManager : execute("salary asc")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("salary asc")
-activate AddressBookParser
+LogicManager -> RoleBookParser : parseCommand("salary asc")
+activate RoleBookParser
 
 create SalaryCommandParser
-AddressBookParser -> SalaryCommandParser
+RoleBookParser -> SalaryCommandParser
 activate SalaryCommandParser
 
-SalaryCommandParser --> AddressBookParser
+SalaryCommandParser --> RoleBookParser
 deactivate SalaryCommandParser
 
-AddressBookParser -> SalaryCommandParser : parse("asc")
+RoleBookParser -> SalaryCommandParser : parse("asc")
 activate SalaryCommandParser
 
 create SalaryCommand
@@ -46,14 +46,14 @@ Order --> SalaryCommand : o
 deactivate Order
 
 
-SalaryCommandParser --> AddressBookParser : s
+SalaryCommandParser --> RoleBookParser : s
 deactivate SalaryCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-SalaryCommandParser -[hidden]-> AddressBookParser
+SalaryCommandParser -[hidden]-> RoleBookParser
 destroy SalaryCommandParser
 
-AddressBookParser --> LogicManager : s
-deactivate AddressBookParser
+RoleBookParser --> LogicManager : s
+deactivate RoleBookParser
 
 
 LogicManager -> SalaryCommand : execute()
