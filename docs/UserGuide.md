@@ -143,7 +143,6 @@ placeholder
 This section describes the requirements of the specified data fields.
 
 ### Person names
-The first character of the name must not be a whitespace
 * Names must only contain alphabets and spaces.
 * Names have a maximum allowed length of 50 and cannot be blank.
 
