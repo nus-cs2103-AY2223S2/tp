@@ -226,7 +226,7 @@ Edits the specified event from the event book.
 
 **Example**:
 - `edit 2 r/100`
-  - This command will edit the rate of the 1st event to be `100`.
+  - This command will edit the rate of the 2nd event to be `100`.
   - Example expected output:
   ````
   Edited Event: DJ at wedding; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]; Tags: [dj][friends]
@@ -238,7 +238,7 @@ Edits the specified event from the event book.
   Edited Event: Wedding Dinner; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
   ````
 - `edit 2 n/Wedding Lunch`
-  - This command will edit the name of the 1st event to be `Wedding Lunch`.
+  - This command will edit the name of the 2nd event to be `Wedding Lunch`.
   - Example expected output:
   ````
   Edited Event: Wedding Lunch; Rate: 100.00; Address: 311, Clementi Ave 2, #02-25; Timing: 11-03-2023 11:00 to 11-03-2023 17:00; Mark: [ ]
