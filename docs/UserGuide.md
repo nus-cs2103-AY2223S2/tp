@@ -74,7 +74,7 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 5. Type a command in the command box and press Enter to execute it.
    Some examples:
-  * `fish add n/bobby lfd/01/01/2023 s/guppy fi/0d5h tk/1`: Add a fish to your fish book.
+  * `fish add n/Bobby lfd/01/01/2023 15:00 s/Guppy fi/0d5h tk/1`: Add a fish to your fish book.
 
 
 6. Refer to [About the Interface](#about-the-interface) below for details on the interface.
