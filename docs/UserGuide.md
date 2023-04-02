@@ -82,7 +82,7 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
 | `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                               |
 | `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information. |
 | `Yes`    | coy    | COMPANY              | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
-| `No`     | t      | TAG                  | Alphanumeric characters and spaces only. Should not just contain a space.                                              |
+| `No`     | t      | TAG                  | Alphanumeric characters and spaces only. Should not just contain a space. Multiple tag can be added.                                          |
 | `No`     | w      | WEBSITE              | Must be in www.{Any character}.com                                |
 | `Yes`    | jd     | JOB DESCRIPTION      | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
 | `Yes`    | $      | SALARY               | Positive integers only.                                           |
