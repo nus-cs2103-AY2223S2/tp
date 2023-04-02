@@ -5,18 +5,18 @@ import static seedu.connectus.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.CCA_DESC_ICS;
 import static seedu.connectus.logic.commands.CommandTestUtil.CCA_DESC_NES;
-import static seedu.connectus.logic.commands.CommandTestUtil.CCA_POSITION_DESC_DIRECTOR;
-import static seedu.connectus.logic.commands.CommandTestUtil.CCA_POSITION_DESC_PRESIDENT;
 import static seedu.connectus.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.connectus.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_CCA_DESC;
-import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_CCA_POSITION_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_MAJOR_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.connectus.logic.commands.CommandTestUtil.INVALID_REMARK_DESC;
+import static seedu.connectus.logic.commands.CommandTestUtil.MAJOR_DESC_BBA;
+import static seedu.connectus.logic.commands.CommandTestUtil.MAJOR_DESC_COMPUTER_SCIENCE;
 import static seedu.connectus.logic.commands.CommandTestUtil.MODULE_DESC_CS2101;
 import static seedu.connectus.logic.commands.CommandTestUtil.MODULE_DESC_CS2103T;
 import static seedu.connectus.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -30,9 +30,9 @@ import static seedu.connectus.logic.commands.CommandTestUtil.REMARK_DESC_HUSBAND
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_ICS;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_NES;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_DIRECTOR;
-import static seedu.connectus.logic.commands.CommandTestUtil.VALID_CCA_POSITION_PRESIDENT;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MAJOR_BBA;
+import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MAJOR_COMPUTER_SCIENCE;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2101;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_MODULE_CS2103T;
 import static seedu.connectus.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -53,7 +53,7 @@ import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.person.Phone;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 import seedu.connectus.testutil.PersonBuilder;
@@ -67,79 +67,79 @@ public class AddCommandParserTest {
         Person expectedPerson = new PersonBuilder(BOB)
                 .withRemarks(VALID_REMARK_FRIEND)
                 .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_NES)
-                .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
+                .withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + REMARK_DESC_FRIEND + MODULE_DESC_CS2101
-                + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR, new AddCommand(expectedPerson));
+                + CCA_DESC_NES + MAJOR_DESC_COMPUTER_SCIENCE, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + REMARK_DESC_FRIEND + MODULE_DESC_CS2101
-                + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR, new AddCommand(expectedPerson));
+                + CCA_DESC_NES + MAJOR_DESC_COMPUTER_SCIENCE, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + REMARK_DESC_FRIEND + MODULE_DESC_CS2101
-                + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR, new AddCommand(expectedPerson));
+                + CCA_DESC_NES + MAJOR_DESC_COMPUTER_SCIENCE, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + REMARK_DESC_FRIEND + MODULE_DESC_CS2101
-                + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR, new AddCommand(expectedPerson));
+                + CCA_DESC_NES + MAJOR_DESC_COMPUTER_SCIENCE, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + REMARK_DESC_FRIEND + MODULE_DESC_CS2101
-                + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR, new AddCommand(expectedPerson));
+                + CCA_DESC_NES + MAJOR_DESC_COMPUTER_SCIENCE, new AddCommand(expectedPerson));
 
         // multiple remarks - all accepted
         Person expectedPersonMultipleRemarks = new PersonBuilder(BOB)
                 .withRemarks(VALID_REMARK_FRIEND, VALID_REMARK_HUSBAND)
                 .withModules(VALID_MODULE_CS2101).withCcas(VALID_CCA_NES)
-                .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
+                .withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + REMARK_DESC_HUSBAND + REMARK_DESC_FRIEND + MODULE_DESC_CS2101
-                + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR, new AddCommand(expectedPersonMultipleRemarks));
+                + CCA_DESC_NES + MAJOR_DESC_COMPUTER_SCIENCE, new AddCommand(expectedPersonMultipleRemarks));
 
         // multiple modules - all accepted
         Person expectedPersonMultipleModules = new PersonBuilder(BOB)
                 .withRemarks(VALID_REMARK_FRIEND)
                 .withModules(VALID_MODULE_CS2103T, VALID_MODULE_CS2101)
                 .withCcas(VALID_CCA_NES)
-                .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
+                .withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + REMARK_DESC_FRIEND + MODULE_DESC_CS2103T + MODULE_DESC_CS2101
-                + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR,
+                + CCA_DESC_NES + MAJOR_DESC_COMPUTER_SCIENCE,
                 new AddCommand(expectedPersonMultipleModules));
 
         // multiple ccas - all accepted
         Person expectedPersonMultipleCcas = new PersonBuilder(BOB)
                 .withRemarks(VALID_REMARK_FRIEND)
                 .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_NES, VALID_CCA_ICS)
-                .withCcaPositions(VALID_CCA_POSITION_DIRECTOR).build();
+                .withMajors(VALID_MAJOR_COMPUTER_SCIENCE).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + REMARK_DESC_FRIEND + MODULE_DESC_CS2103T
-                        + CCA_DESC_NES + CCA_DESC_ICS + CCA_POSITION_DESC_DIRECTOR,
+                        + CCA_DESC_NES + CCA_DESC_ICS + MAJOR_DESC_COMPUTER_SCIENCE,
                 new AddCommand(expectedPersonMultipleCcas));
 
         // multiple ccaPositions - all accepted
-        Person expectedPersonMultipleCcaPositions = new PersonBuilder(BOB)
+        Person expectedPersonMultipleMajors = new PersonBuilder(BOB)
                 .withRemarks(VALID_REMARK_FRIEND)
                 .withModules(VALID_MODULE_CS2103T).withCcas(VALID_CCA_NES)
-                .withCcaPositions(VALID_CCA_POSITION_DIRECTOR, VALID_CCA_POSITION_PRESIDENT).build();
+                .withMajors(VALID_MAJOR_COMPUTER_SCIENCE, VALID_MAJOR_BBA).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + REMARK_DESC_FRIEND + MODULE_DESC_CS2103T
-                        + CCA_DESC_NES + CCA_POSITION_DESC_DIRECTOR + CCA_POSITION_DESC_PRESIDENT,
-                new AddCommand(expectedPersonMultipleCcaPositions));
+                        + CCA_DESC_NES + MAJOR_DESC_COMPUTER_SCIENCE + MAJOR_DESC_BBA,
+                new AddCommand(expectedPersonMultipleMajors));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
         Person expectedPersonZeroTags = new PersonBuilder(AMY).withRemarks().withModules()
-                .withCcas().withCcaPositions().build();
+                .withCcas().withMajors().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
                 new AddCommand(expectedPersonZeroTags));
     }
@@ -162,50 +162,50 @@ public class AddCommandParserTest {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + REMARK_DESC_HUSBAND + REMARK_DESC_FRIEND + MODULE_DESC_CS2103T + MODULE_DESC_CS2101
-                + CCA_DESC_ICS + CCA_POSITION_DESC_DIRECTOR,
+                + CCA_DESC_ICS + MAJOR_DESC_COMPUTER_SCIENCE,
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + REMARK_DESC_HUSBAND + REMARK_DESC_FRIEND + MODULE_DESC_CS2103T + MODULE_DESC_CS2101
-                + CCA_DESC_ICS + CCA_POSITION_DESC_DIRECTOR,
+                + CCA_DESC_ICS + MAJOR_DESC_COMPUTER_SCIENCE,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + REMARK_DESC_HUSBAND + REMARK_DESC_FRIEND + MODULE_DESC_CS2103T + MODULE_DESC_CS2101
-                + CCA_DESC_ICS + CCA_POSITION_DESC_DIRECTOR,
+                + CCA_DESC_ICS + MAJOR_DESC_COMPUTER_SCIENCE,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + REMARK_DESC_HUSBAND + REMARK_DESC_FRIEND + MODULE_DESC_CS2103T + MODULE_DESC_CS2101
-                + CCA_DESC_ICS + CCA_POSITION_DESC_DIRECTOR,
+                + CCA_DESC_ICS + MAJOR_DESC_COMPUTER_SCIENCE,
                 Address.MESSAGE_CONSTRAINTS);
 
         // invalid remark
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + REMARK_DESC_HUSBAND + INVALID_REMARK_DESC + MODULE_DESC_CS2103T + MODULE_DESC_CS2101
-                + CCA_DESC_ICS + CCA_POSITION_DESC_DIRECTOR,
+                + CCA_DESC_ICS + MAJOR_DESC_COMPUTER_SCIENCE,
                 Remark.MESSAGE_CONSTRAINTS);
 
         // invalid module
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + REMARK_DESC_HUSBAND + REMARK_DESC_FRIEND + INVALID_MODULE_DESC + MODULE_DESC_CS2101
-                + CCA_DESC_ICS + CCA_POSITION_DESC_DIRECTOR,
+                + CCA_DESC_ICS + MAJOR_DESC_COMPUTER_SCIENCE,
                 Module.MESSAGE_CONSTRAINTS);
 
         // invalid cca
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + REMARK_DESC_HUSBAND + VALID_REMARK_FRIEND + MODULE_DESC_CS2103T + MODULE_DESC_CS2101
-                        + INVALID_CCA_DESC + VALID_CCA_POSITION_DIRECTOR,
+                        + INVALID_CCA_DESC + VALID_MAJOR_COMPUTER_SCIENCE,
                 Cca.MESSAGE_CONSTRAINTS);
 
         // invalid cca position
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + REMARK_DESC_HUSBAND + VALID_REMARK_FRIEND + MODULE_DESC_CS2103T + MODULE_DESC_CS2101
-                        + CCA_DESC_ICS + INVALID_CCA_POSITION_DESC,
-                CcaPosition.MESSAGE_CONSTRAINTS);
+                        + CCA_DESC_ICS + INVALID_MAJOR_DESC,
+                Major.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
@@ -215,7 +215,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + REMARK_DESC_HUSBAND + REMARK_DESC_FRIEND
                 + MODULE_DESC_CS2103T + MODULE_DESC_CS2101
-                + CCA_DESC_ICS + CCA_POSITION_DESC_DIRECTOR,
+                + CCA_DESC_ICS + MAJOR_DESC_COMPUTER_SCIENCE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

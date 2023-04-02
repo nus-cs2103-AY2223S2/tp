@@ -1,5 +1,6 @@
 package seedu.connectus.logic.parser;
 
+import static seedu.connectus.commons.core.Messages.MESSAGE_HELP;
 import static seedu.connectus.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.connectus.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -8,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.connectus.logic.commands.AddCommand;
 import seedu.connectus.logic.commands.AddTagToPersonCommand;
+import seedu.connectus.logic.commands.ChatCommand;
 import seedu.connectus.logic.commands.ClearCommand;
 import seedu.connectus.logic.commands.Command;
 import seedu.connectus.logic.commands.DeleteCommand;
@@ -16,7 +18,9 @@ import seedu.connectus.logic.commands.EditCommand;
 import seedu.connectus.logic.commands.ExitCommand;
 import seedu.connectus.logic.commands.HelpCommand;
 import seedu.connectus.logic.commands.ListCommand;
+import seedu.connectus.logic.commands.OpenCommand;
 import seedu.connectus.logic.commands.SearchCommand;
+import seedu.connectus.logic.commands.UpcomingBirthdayCommand;
 import seedu.connectus.logic.parser.exceptions.ParseException;
 
 /**
@@ -39,7 +43,7 @@ public class ConnectUsParser {
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_HELP));
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -75,6 +79,14 @@ public class ConnectUsParser {
 
         case DeleteTagFromPersonCommand.COMMAND_WORD:
             return new DeleteTagFromPersonCommandParser().parse(arguments);
+
+        case OpenCommand.COMMAND_WORD:
+            return new OpenCommandParser().parse(arguments);
+
+        case ChatCommand.COMMAND_WORD:
+            return new ChatCommandParser().parse(arguments);
+        case UpcomingBirthdayCommand.COMMAND_WORD:
+            return new UpcomingBirthdayCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

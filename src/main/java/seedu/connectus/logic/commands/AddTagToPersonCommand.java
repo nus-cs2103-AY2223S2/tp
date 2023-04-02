@@ -1,8 +1,9 @@
 package seedu.connectus.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.connectus.commons.core.Messages.MESSAGE_PERSON_TOO_MANY_MAJORS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.connectus.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -18,7 +19,7 @@ import seedu.connectus.logic.commands.exceptions.CommandException;
 import seedu.connectus.model.Model;
 import seedu.connectus.model.person.Person;
 import seedu.connectus.model.tag.Cca;
-import seedu.connectus.model.tag.CcaPosition;
+import seedu.connectus.model.tag.Major;
 import seedu.connectus.model.tag.Module;
 import seedu.connectus.model.tag.Remark;
 
@@ -31,18 +32,18 @@ public class AddTagToPersonCommand extends Command {
         + "by the index number used in the displayed person list. \n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_MODULE + "MODULE]... "
-        + "[" + PREFIX_CCA + "CCA]... "
-        + "[" + PREFIX_CCA_POSITION + "CCA POSITION]... "
+        + "[" + PREFIX_CCA + "CCA#CCA_POSITION]... "
+        + "[" + PREFIX_MAJOR + "MAJOR]... "
         + "[" + PREFIX_REMARK + "REMARK]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_MODULE + "CS2103T "
         + PREFIX_MODULE + "CS2101 "
         + PREFIX_CCA + "NES "
-        + PREFIX_CCA + "ICS "
-        + PREFIX_CCA_POSITION + "Director "
-        + PREFIX_CCA_POSITION + "President "
-        + PREFIX_REMARK + "friends "
-        + PREFIX_REMARK + "owesMoney";
+        + PREFIX_CCA + "ICS#Director "
+        + PREFIX_MAJOR + "Computer Science "
+        + PREFIX_MAJOR + "BBA "
+        + PREFIX_REMARK + "Year 2 "
+        + PREFIX_REMARK + "Classmates";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "Added tag to Person: %1$s";
 
@@ -72,7 +73,9 @@ public class AddTagToPersonCommand extends Command {
 
         var personToEdit = lastShownList.get(index.getZeroBased());
         var editedPerson = createEditedPerson(personToEdit, addTagDescriptor);
-
+        if (editedPerson.getMajors().size() > Major.MAX_MAJOR_COUNT) {
+            throw new CommandException(MESSAGE_PERSON_TOO_MANY_MAJORS);
+        }
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPerson));
@@ -81,15 +84,15 @@ public class AddTagToPersonCommand extends Command {
     private Person createEditedPerson(Person personToEdit, AddTagDescriptor addTagDescriptor) {
         var modules = new HashSet<>(personToEdit.getModules());
         var ccas = new HashSet<>(personToEdit.getCcas());
-        var ccaPositions = new HashSet<>(personToEdit.getCcaPositions());
+        var majors = new HashSet<>(personToEdit.getMajors());
         var remarks = new HashSet<>(personToEdit.getRemarks());
 
         modules.addAll(addTagDescriptor.modules);
         ccas.addAll(addTagDescriptor.ccas);
-        ccaPositions.addAll(addTagDescriptor.ccaPositions);
+        majors.addAll(addTagDescriptor.majors);
         remarks.addAll(addTagDescriptor.remarks);
 
-        return new Person(personToEdit, remarks, modules, ccas, ccaPositions);
+        return new Person(personToEdit, remarks, modules, ccas, majors);
     }
 
     @Override
@@ -118,7 +121,7 @@ public class AddTagToPersonCommand extends Command {
     public static class AddTagDescriptor {
         protected final Set<Module> modules;
         protected final Set<Cca> ccas;
-        protected final Set<CcaPosition> ccaPositions;
+        protected final Set<Major> majors;
         protected final Set<Remark> remarks;
 
 
@@ -126,10 +129,10 @@ public class AddTagToPersonCommand extends Command {
          * Constructor.
          */
         public AddTagDescriptor(Set<Remark> remarks, Set<Module> modules,
-                                Set<Cca> ccas, Set<CcaPosition> ccaPositions) {
+                                Set<Cca> ccas, Set<Major> majors) {
             this.modules = modules;
             this.ccas = ccas;
-            this.ccaPositions = ccaPositions;
+            this.majors = majors;
             this.remarks = remarks;
         }
 
@@ -139,7 +142,7 @@ public class AddTagToPersonCommand extends Command {
         public AddTagDescriptor(AddTagDescriptor addTagDescriptor) {
             modules = addTagDescriptor.modules;
             ccas = addTagDescriptor.ccas;
-            ccaPositions = addTagDescriptor.ccaPositions;
+            majors = addTagDescriptor.majors;
             remarks = addTagDescriptor.remarks;
         }
 
@@ -174,18 +177,22 @@ public class AddTagToPersonCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable CCA set, which throws
+         * Returns an unmodifiable Major set, which throws
          * {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code ccaPositions} is null.
+         * Returns {@code Optional#empty()} if {@code majors} is null.
          */
-        public Optional<Set<CcaPosition>> getCcaPositions() {
-            return (ccaPositions != null) ? Optional.of(Collections.unmodifiableSet(ccaPositions)) : Optional.empty();
+        public Optional<Set<Major>> getMajors() {
+            return (majors != null) ? Optional.of(Collections.unmodifiableSet(majors)) : Optional.empty();
         }
 
         public boolean isEmpty() {
             return (remarks == null || remarks.isEmpty()) && (modules == null || modules.isEmpty())
-                && (ccas == null || ccas.isEmpty()) && (ccaPositions == null || ccaPositions.isEmpty());
+                && (ccas == null || ccas.isEmpty()) && (majors == null || majors.isEmpty());
+        }
+
+        public int getMajorCount() {
+            return getMajors().get().size();
         }
 
         @Override
@@ -204,7 +211,7 @@ public class AddTagToPersonCommand extends Command {
             var e = (AddTagDescriptor) other;
 
             return getRemarks().equals(e.getRemarks()) && getModules().equals(e.getModules())
-                && getCcas().equals(e.getCcas()) && getCcaPositions().equals(e.getCcaPositions());
+                && getCcas().equals(e.getCcas()) && getMajors().equals(e.getMajors());
         }
     }
 }

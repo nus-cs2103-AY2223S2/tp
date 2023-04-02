@@ -25,8 +25,8 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
     private Set<String> remarks;
     private String birthday;
     private Set<String> modules;
-    private Set<String> ccas;
-    private Set<String> ccaPositions;
+    private Set<String[]> ccas;
+    private Set<String> majors;
     public FieldsContainKeywordsPredicate() {}
     public FieldsContainKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
@@ -47,7 +47,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
         setRemarks(toCopy.remarks);
         setModules(toCopy.modules);
         setCcas(toCopy.ccas);
-        setCcaPositions(toCopy.ccaPositions);
+        setMajors(toCopy.majors);
         setBirthday(toCopy.birthday);
     }
 
@@ -56,7 +56,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      */
     public boolean isFieldKeywordPresent() {
         return CollectionUtil.isAnyNonNull(name, phone, email, address, instagram, telegram, whatsapp, remarks,
-                birthday, modules, ccas, ccaPositions, keywords);
+                birthday, modules, ccas, majors, keywords);
     }
 
     public void setKeywords(List<String> keywords) {
@@ -173,7 +173,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * Sets {@code ccas} to this object's {@code ccas}.
      * A defensive copy of {@code ccas} is used internally.
      */
-    public void setCcas(Set<String> ccas) {
+    public void setCcas(Set<String[]> ccas) {
         this.ccas = (ccas != null) ? new HashSet<>(ccas) : null;
     }
 
@@ -183,7 +183,7 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code ccas} is null.
      */
-    public Optional<Set<String>> getCcas() {
+    public Optional<Set<String[]>> getCcas() {
         return (ccas != null) ? Optional.of(Collections.unmodifiableSet(ccas)) : Optional.empty();
     }
 
@@ -191,8 +191,8 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * Sets {@code ccaPositions} to this object's {@code ccaPositions}.
      * A defensive copy of {@code ccaPositions} is used internally.
      */
-    public void setCcaPositions(Set<String> ccaPositions) {
-        this.ccaPositions = (ccaPositions != null) ? new HashSet<>(ccaPositions) : null;
+    public void setMajors(Set<String> majors) {
+        this.majors = (majors != null) ? new HashSet<>(majors) : null;
     }
 
     /**
@@ -201,8 +201,8 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code ccaPositions} is null.
      */
-    public Optional<Set<String>> getCcaPositions() {
-        return (ccaPositions != null) ? Optional.of(Collections.unmodifiableSet(ccaPositions)) : Optional.empty();
+    public Optional<Set<String>> getMajors() {
+        return (majors != null) ? Optional.of(Collections.unmodifiableSet(majors)) : Optional.empty();
     }
 
     @Override
@@ -228,14 +228,14 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
                 && getRemarks().equals(e.getRemarks())
                 && getModules().equals(e.getModules())
                 && getCcas().equals(e.getCcas())
-                && getCcaPositions().equals(e.getCcaPositions())
+                && getMajors().equals(e.getMajors())
                 && getBirthday().equals(e.getBirthday())
                 && getTelegram().equals(e.getTelegram())
                 && getWhatsapp().equals(e.getWhatsapp())
                 && getInstagram().equals(e.getInstagram());
     }
 
-    //todo ig, tele...,
+    //todo ig, tele, wa...,
     @Override
     public boolean test(Person person) {
         if (getName().isPresent()) {
@@ -305,16 +305,26 @@ public class FieldsContainKeywordsPredicate implements Predicate<Person> {
             }
         }
         if (getCcas().isPresent()) {
-            if (!ccas.stream().allMatch(ccaKey -> person.getCcas().stream().anyMatch(cca ->
-                    StringUtil.containsKeywordsListIgnoreCase(cca.toString(), ccaKey)))) {
+            boolean result = ccas.stream().allMatch(ccaKey -> person.getCcas().stream().anyMatch(cca -> {
+                boolean check = true;
+                check = check
+                        && (ccaKey[0].trim().isEmpty()
+                                    || StringUtil.containsKeywordsListIgnoreCase(cca.ccaName, ccaKey[0]));
+                if (ccaKey.length > 1) {
+                    check = check && cca.hasPosition() && StringUtil.containsKeywordsListIgnoreCase(cca.ccaPositionName,
+                            ccaKey[1]);
+                }
+                return check;
+            }));
+            if (!result) {
                 return false;
             }
         }
-        if (getCcaPositions().isPresent()) {
-            if (!ccaPositions.stream().allMatch(ccaPositionKey ->
-                    person.getCcaPositions().stream().anyMatch(ccaPosition ->
-                            StringUtil.containsKeywordsListIgnoreCase(ccaPosition.toString(),
-                                    ccaPositionKey)))) {
+        if (getMajors().isPresent()) {
+            if (!majors.stream().allMatch(majorKey ->
+                    person.getMajors().stream().anyMatch(major ->
+                            StringUtil.containsKeywordsListIgnoreCase(major.toString(),
+                                    majorKey)))) {
                 return false;
             }
         }

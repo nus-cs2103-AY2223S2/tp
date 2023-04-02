@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -27,7 +27,7 @@ public class SearchCommand extends Command {
     public static final String COMMAND_WORD = "search";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose fields contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers."
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE KEYWORDS]..."
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -39,10 +39,10 @@ public class SearchCommand extends Command {
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
             + "[" + PREFIX_MODULE + "MODULE]... "
             + "[" + PREFIX_CCA + "CCA]... "
-            + "[" + PREFIX_CCA_POSITION + "CCA_POSITION]... "
+            + "[" + PREFIX_MAJOR + "MAJOR]... "
             + "[" + PREFIX_REMARK + "REMARK]...\n"
-            + "Example: " + COMMAND_WORD
-            + PREFIX_MODULE + "CS"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_MODULE + "CS" + " "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_NO_KEYWORDS = "At least one keyword must be provided.";

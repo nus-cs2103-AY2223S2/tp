@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.connectus.logic.parser.CliSyntax.PREFIX_CCA_POSITION;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.connectus.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -36,10 +36,11 @@ public class AddCommand extends Command {
             + "[" + PREFIX_SOCMED_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_SOCMED_WHATSAPP + "WHATSAPP] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
-            + "[" + PREFIX_REMARK + "REMARK]... "
             + "[" + PREFIX_MODULE + "MODULE]... "
-            + "[" + PREFIX_CCA + "CCA$#CA_POSITION]... "
-            + "[" + PREFIX_CCA_POSITION + "CCA POSITION]...\n"
+            + "[" + PREFIX_CCA + "CCA#CCA]... "
+            + "[" + PREFIX_MAJOR + "MAJOR]... "
+            + "[" + PREFIX_REMARK + "REMARK]...\n"
+
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -49,10 +50,11 @@ public class AddCommand extends Command {
             + PREFIX_SOCMED_INSTAGRAM + "john.doe "
             + PREFIX_SOCMED_WHATSAPP + "98765432 "
             + PREFIX_BIRTHDAY + "01/01/1990 "
-            + PREFIX_REMARK + "friends " + PREFIX_REMARK + "owesMoney "
             + PREFIX_MODULE + "CS2103T " + PREFIX_MODULE + "CS2101 "
-            + PREFIX_CCA + "NES#Director " + PREFIX_CCA + "ICS "
-            + PREFIX_CCA_POSITION + "Director " + PREFIX_CCA_POSITION + "President";
+            + PREFIX_CCA + "NES " + PREFIX_CCA + "ICS#DIRECTOR "
+            + PREFIX_MAJOR + "Computer Science " + PREFIX_MAJOR + "BBA "
+            + PREFIX_REMARK + "Year 2 " + PREFIX_REMARK + "Classmates ";
+
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the ConnectUS";
