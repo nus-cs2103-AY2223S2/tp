@@ -87,6 +87,13 @@ public class JsonAdaptedLessonTest {
     }
 
     @Test
+    public void toModelType_tooEarlyEndTime_throwsIllegalValueException() {
+        JsonAdaptedLesson jsonAdaptedLesson =
+                new JsonAdaptedLesson(10, 8, "WEDNESDAY");
+        assertThrows(IllegalValueException.class, jsonAdaptedLesson::toModelType);
+    }
+
+    @Test
     public void toModelType_startTimeAfterEndTime_throwsWrongTimeException() {
         JsonAdaptedLesson jsonAdaptedLesson =
                 new JsonAdaptedLesson(12, 10, "WEDNESDAY");

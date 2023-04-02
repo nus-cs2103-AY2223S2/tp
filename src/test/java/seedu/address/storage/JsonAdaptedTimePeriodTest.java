@@ -109,6 +109,13 @@ public class JsonAdaptedTimePeriodTest {
     }
 
     @Test
+    public void toModelType_tooEarlyEndTime_throwsIllegalValueException() {
+        JsonAdaptedTimePeriod jsonAdaptedTimePeriod =
+                new JsonAdaptedTimePeriod(11, 8, "FRIDAY");
+        assertThrows(IllegalValueException.class, jsonAdaptedTimePeriod::toModelType);
+    }
+
+    @Test
     public void toModelType_startTimeAfterEndTime_throwsWrongTimeException() {
         JsonAdaptedTimePeriod jsonAdaptedTimePeriod =
                 new JsonAdaptedTimePeriod(13, 11, "FRIDAY");
