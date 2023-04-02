@@ -197,7 +197,7 @@ We also used light purple and white as our main colour scheme as they are cool c
 1. [Person List](#person-list)
 2. [Meet Up Recommendation Panel](#meet-up-recommendation-panel)
 3. [Profile Panel](#profile-panel)
-4. Scheduled Meet Up Panel
+4. [Scheduled Meet Up Panel](#scheduled-meet-up-panel)
 5. Command Response Box
 6. Command Input Box
 7. Help Button
@@ -285,22 +285,7 @@ The panel contains all the information of every scheduled meet up with your cont
 <center>Diagram 10: Components of the Scheduled Meet Up Panel</center>
 </div>
 
-### Command Box
-
-The Command Box is where you can input the [Commands](#commands) when using `EduMate`.
-
-The Command Box is located at the bottom of the application. You may refer to the [User Interface](#user-interface) section to locate it.
-
-<div markdown="span" class="alert alert-success">
-
-:bulb: **Pro Tip:** <br>
-Did you know that the UP and DOWN arrow keys can be used to quickly access previously typed commands in the Command Box? This feature has been specially designed for you to save time and increase your productivity.<br>
-<br>
-In the current session, all of your previously typed commands can be accessed using the UP and DOWN arrow keys. Additionally, we automatically save up to 100 of your most recent commands to a file for your convenience in the next session. This way, you can easily refer back to your previous commands without having to retype them, saving you time and increasing your efficiency.
-
-</div>
-
-### Command Response
+### Command Response Box
 
 The Command Response box is where you will receive feedback for any command you execute. It could give you some information if the command execution was successful or if you had executed a command of an invalid format.
 
@@ -308,8 +293,30 @@ The Command Response box is located directly below the [Profile Panel](#profile-
 
 <img src="images/UG_ui_pictures/command_feedback.png" style="width:80%;margin:0 10%">
 
-<center>Diagram 5: Successful command execution feedback shown</center>
+<center>Diagram 11: Successful command execution feedback shown in red</center>
 
+### Command Box
+
+The Command Box is where you can input the [Commands](#commands) when using `EduMate`.
+
+The Command Box is located at the bottom of the application. You may refer to the [User Interface](#user-interface) section to locate it.
+
+<img src="images/UG_ui_pictures/command_input_box.png" style="width:80%;margin:0 10%">
+
+<center>Diagram 11: Command input box in <code>EduMate</code> boxed in red</center>
+
+
+<div markdown="span" class="alert alert-success">
+
+:bulb: **Pro Tip:** <br>
+Did you know that the **UP** and **DOWN** arrow keys can be used to quickly access previously typed commands in the Command Box?
+You can now **save time and increase your productivity!**<br>
+
+
+<code>EduMate</code> saves up to 100 of your most recent commands to a file for your convenience when you relaunch the application as well!
+That way, you can reuse commands from your previous session with ease!
+
+</div>
 [Return to the top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
