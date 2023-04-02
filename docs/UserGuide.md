@@ -139,11 +139,11 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
 
 ### Installation Instructions
 
-**Step 1.** Download the latest `eduMate.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-2/tp/releases).
+**Step 1.** Download the latest `edumate.jar` from [here](https://github.com/AY2223S2-CS2103T-W14-2/tp/releases).
 
 **Step 2.** Copy the file to the folder you want to use as the _home folder_ for your EduMate.
 
-**Step 3.** Open a command terminal, change directory into the folder where you put the jar file in via the command `cd`, and use the `java -jar eduMate.jar` command to run the application.<br>
+**Step 3.** Open a command terminal, change directory into the folder where you put the jar file in via the command `cd`, and use the `java -jar edumate.jar` command to run the application.<br>
 
 
 After a few seconds, a GUI resembling the one shown below will appear. Please take note that the application already includes some sample data.<br>
@@ -356,7 +356,7 @@ to quit the application.
 
 Once you have familiarized yourself with EduMate, you are now ready to begin customizing the application to suit your preferences and needs!
 
-**Step 1.** Run `java -jar eduMate.jar`. The application window will open and show you where you have left off
+**Step 1.** Run `java -jar edumate.jar`. The application window will open and show you where you have left off
 (if you have tried out `sample` from earlier) <br>
 
 **Step 2.** On the Command Box, execute `edit n/[YOUR NAME] p/[YOUR CONTACT NUMBER] t/@[YOUR TELEGRAM HANDLE] 
