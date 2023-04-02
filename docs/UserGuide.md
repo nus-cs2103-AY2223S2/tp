@@ -221,6 +221,10 @@ Let's add his contacts to Team Builder as a new potential teammate for future ev
 
 **Result**: **Image**
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:**
+The order of persons added in the list may not be in chronological order.
+</div>
 
 ### Listing all contacts : `list`
 
