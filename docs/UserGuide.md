@@ -262,7 +262,7 @@ _\* Both commands lists videos that belongs to lecture `Week 1` in module `CS204
 
 > `add {module_code} [/name {name}] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
-Add a module to Le Tracker
+Add a module to Le Tracker.
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module
   - Must be unique among the module code of the modules in Le Tracker
@@ -303,7 +303,7 @@ Examples:
 
 > `add {video_name} /mod {module_code} /lec {lecture_name} [/timestamp {timestamp}] [/watch] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
-Add a video to a lecture
+Add a video to a lecture.
 
 - <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as watched
   - An argument that takes no value
@@ -332,16 +332,21 @@ Examples:
 
 ### Edit a Module
 
-> Edits the details of a module in Le Tracker.
+> `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
-Format: `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags {tag_1}, [{tag_2}, ...]]`
+Edits the details of a module in Le Tracker.
 
-- `module_code` must belong to an existing module
-- `updated_code` must be a valid module code
-- `updated_code` must be unique among the module codes of the modules in Le Tracker
-- `updated_name` must be a valid module name
-- `tag_1`, `tag_2`, ... must be valid tags
-- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to be edited
+  - Must belong to an existing module in Le Tracker
+  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`updated_code`</span> : The updated module code
+  - Must be unique among the module code of the modules in Le Tracker
+  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`updated_name`</span> : The updated module name
+  - Must be a valid module name (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags that will replace the current tags applied to the module
+  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - Repeated tags (if any) will be ignored
 
 Examples:
 
