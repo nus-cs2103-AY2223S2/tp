@@ -1100,9 +1100,20 @@ What you should see:<br>
 
 ### Schedule Commands
 
-The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. It is useful for keeping track of your upcoming meetups in an organised and efficient way. In addition, EduMate also offers the `unorganise` command, which helps you manage and clean up scheduled meetups by removing them - making it easy to stay on top of your schedule.
+The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. It is useful for keeping track of your upcoming meetups in an organised and efficient way. 
+
+In addition, EduMate also offers the `unorganise` command, which helps you manage and clean up scheduled meetups by removing them - making it easy to stay on top of your schedule.
 
 Any organised meet ups will be displayed at `EduMate`'s [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
+
+<div markdown="span" class="alert alert-danger">
+
+:warning:**Common Mistake**
+
+The American spelling `organize` is not accepted by `EduMate`.
+
+</div>
+
 
 #### Organise a meet up `organise`
 
