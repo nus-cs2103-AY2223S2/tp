@@ -445,10 +445,9 @@ This includes:
 1. Clearing all entries
 2. Undoing a command
 3. Redoing an undo command
-4. Listing all Tags
-5. Exiting the program
-6. Saving data
-7. Editing the data file
+4. Exiting the program
+5. Saving data
+6. Editing the data file
 
 ### Clearing all entries : `clear`
 
