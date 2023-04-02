@@ -57,8 +57,7 @@ public class Recipe {
     public void setIngredients(IngredientBuilder... ingredients) {
         for (IngredientBuilder ingredientBuilder : ingredients) {
             ingredientTable.putAll(
-                ingredientBuilder.build()
-                                  );
+                ingredientBuilder.build());
         }
     }
 
