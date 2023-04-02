@@ -8,10 +8,10 @@ import seedu.address.model.person.Person;
 /**
  * Tests that a {@code Person}'s {@code Status} matches any of the keywords given.
  */
-public class StatusContainsKeywordsPredicate implements Predicate<Person> {
+public class StatusContainsKeywordPredicate implements Predicate<Person> {
     private final String keyword;
 
-    public StatusContainsKeywordsPredicate(String keyword) {
+    public StatusContainsKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
 

@@ -71,7 +71,7 @@ deactivate CommandResult
 DeleteImageCommand --> LogicManager : result
 deactivate DeleteImageCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteImageCommandParser -[hidden]-> LogicManager
+DeleteImageCommand -[hidden]-> LogicManager
 destroy DeleteImageCommand
 
 [<--LogicManager : result
