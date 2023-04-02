@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -26,6 +27,8 @@ public class FavoritesListPanel extends UiPart<Region> {
     public FavoritesListPanel(ObservableList<Person> favoritesList, ObservableList<Person> filteredPersonList) {
         super(FXML);
         this.filteredPersonList = filteredPersonList;
+        filteredPersonList.addListener((ListChangeListener<Person>) change -> favoritesListView.refresh());
+
         favoritesListView.setItems(favoritesList);
         favoritesListView.setCellFactory(listView -> new PersonListViewCell());
     }
