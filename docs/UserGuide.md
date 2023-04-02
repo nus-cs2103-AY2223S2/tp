@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-## Hello from Cookhub!
+## Greetings from Cookhub!
 **CookHub** is a powerful, but lightweight application for your recipe management needs. 
 It sports a sleek and minimalist design that allows you to clearly view all your personal recipes at a glance!
 
