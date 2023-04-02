@@ -645,7 +645,7 @@ cannot remember his Telegram handle. You decided to use the `view` command to vi
 
 Command entered: `view n/Weixiang` or `view 101` (if you know Weixiang's contact index)
 
-What you should see:
+What you should see:<br>
 
 <img src="images/ug_cmds_pics/View Command.svg" style="width:80%;margin:0 10%">
 
