@@ -92,7 +92,7 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_DOB_DESC, Dob.MESSAGE_CONSTRAINTS); // invalid dob
+        assertParseFailure(parser, "1" + INVALID_DOB_DESC, Dob.MESSAGE_CONSTRAINTS_YOUNG); // invalid dob
         assertParseFailure(parser, "1" + INVALID_BLOODTYPE_DESC, BloodType.MESSAGE_CONSTRAINTS); // invalid allergy
         assertParseFailure(parser, "1" + INVALID_ALLERGY_DESC, GroupName.MESSAGE_CONSTRAINTS); // invalid allergy
         assertParseFailure(parser, "1" + INVALID_VACCINE_DESC, GroupName.MESSAGE_CONSTRAINTS); // invalid vaccine

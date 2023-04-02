@@ -79,7 +79,7 @@ public class JsonAdaptedPatientTest {
     public void toModelType_invalidDob_throwsIllegalValueException() {
         JsonAdaptedPatient patient = new JsonAdaptedPatient(VALID_NAME, VALID_PHONE, INVALID_DOB, VALID_BLOODTYPE,
                 VALID_ALLERGIES, VALID_VACCINES);
-        String expectedMessage = Dob.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Dob.MESSAGE_CONSTRAINTS_DATE;
         assertThrows(IllegalValueException.class, expectedMessage, patient::toModelType);
     }
 

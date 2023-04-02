@@ -125,7 +125,7 @@ public class AddCommandParserTest {
 
         // invalid dob
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_DOB_DESC + BLOODTYPE_DESC_BOB
-                + ALLERGY_DESC_SEAFOOD + ALLERGY_DESC_GLUTEN, Dob.MESSAGE_CONSTRAINTS);
+                + ALLERGY_DESC_SEAFOOD + ALLERGY_DESC_GLUTEN, Dob.MESSAGE_CONSTRAINTS_YOUNG);
 
         // invalid bloodtype
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + DOB_DESC_BOB + INVALID_BLOODTYPE_DESC
