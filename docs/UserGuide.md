@@ -886,18 +886,21 @@ The command can also be used with multiple prefixes to refine your search. The r
 
 </div>
 
+##### Scenario:
+
+Say you want to filter out contacts who are in the same CCA as you to study for the upcoming finals for CS2100.
+
+Command entered: `find g/CCA m/CS2100`
+
 What you should see:<br>
 
-<img src="images/ug_cmds_pics/find_cmd.png" style="width:80%;margin:0 10%">
+<img src="images/ug_cmds_pics/FindCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 14: Only contacts tagged with CCA and CS2100 are shown.</center>
+<center>Diagram 19: Only contacts tagged with CCA and CS2100 are shown.</center>
 
 <br>
 
-##### Explanation:
-
-Say you want to filter out contacts who are in the same CCA as you to study for the upcoming finals for CS2100. `find g/CCA m/CS2100`
-will filter out contacts who have are tagged with CCA and CS2100.
+##### More Examples of Usage:
 
 <div markdown="block" class="alert alert-success">
 
@@ -966,21 +969,33 @@ We will now teach you how to effectively use the `sort` command.
 
 </div>
 
+`sort` is one of the most complicated commands to get your head around. Perhaps a scenario can help you understand better!
+
+##### Scenario:
+
+Suppose you want to arrange contacts such from those that take the most number of common modules as you to the least. 
+
+If there is a tie in the number of common modules shared with you, you decide to just rank the name which is lexicographically smaller first.
+
+Command entered: `sort m/d n/a`
+
 What you should see:<br>
 
-<img src="images/ug_cmds_pics/sort_cmd.png" style="width:80%;margin:0 10%">
+<img src="images/ug_cmds_pics/SortCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 16: Contacts ranked according to sorting criteria specified in the Command Box</center>
+<center>Diagram 20: Contacts ranked according to sorting criteria specified in the Command Box</center>
 
 <br>
 
-##### Explanation:
+##### Extra Explanation:
 
 The command `sort m/d n/a` would mean that `EduMate` would first sort contacts by decreasing number of common modules with you, and tie-break by increasing alphabetical order.
 
-Hence, Alex Quinn is ranked higher than Astrid Holland as Alex's name is lexicographically smaller than Astrid even though they share the same common modules as you.
+Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same common modules as you.
 
 <div markdown="block" class="alert alert-success">
+
+##### More Examples of Usage:
 
 :bulb: **Examples**<br>
 * `sort n/d`: Sorts by name in descending order
@@ -1053,18 +1068,26 @@ The `meet` command in EduMate is used to suggest suitable meet-up locations and 
 
 </div>
 
+##### Scenario:
+
+After sorting your contacts, you decided to ask Tae Seong, Alex, Amirul and Kevin from your CCA to study for CS2100. 
+
+Problem is, you do not know when all of them are free! Luckily, you have `EduMate` to find out for you!
+
+You can execute the `study` variant of the `meet` command
+whilst referring to their index on the Person List and find out what are the most optimal places and the best possible time to meet and study for the final.
+
+Command entered: `study 35 29 10 23`
+
 What you should see:<br>
 
-<img src="images/ug_cmds_pics/meet_cmd.png" style="width:80%;margin:0 10%">
+<img src="images/ug_cmds_pics/MeetCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 17: Recommended study spots and the common available days and timings displayed</center>
+<center>Diagram 21: Recommended study spots and the common available days and timings displayed</center>
 
 <br>
 
-##### Explanation:
-
-After sorting your contacts, you decided to ask Astrid, Grover, Kevin and Alex from your CCA to study for CS2100. You can execute the `meet` command
-whilst referring to their index on the Person List and find out what are the most optimal places and the best possible time to meet and study for the final.
+##### More Examples of Usage:
 
 <div markdown="block" class="alert alert-success">
 
@@ -1079,6 +1102,8 @@ whilst referring to their index on the Person List and find out what are the mos
 
 The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. It is useful for keeping track of your upcoming meetups in an organised and efficient way. In addition, EduMate also offers the `unorganise` command, which helps you manage and clean up scheduled meetups by removing them - making it easy to stay on top of your schedule.
 
+Any organised meet ups will be displayed at `EduMate`'s [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
+
 #### Organise a meet up `organise`
 
 <div markdown="block" class="alert alert-info">
@@ -1089,13 +1114,21 @@ The `organise` command in EduMate is used to add meet ups with selected contacts
 
 </div>
 
+##### Scenario:
+
+You have decided that Queenstown Public Library is the most conducive library and have confirmed with your friends 
+the meeting time recommended by `EduMate`. 
+
+The recommendation given by `EduMate` for your preferred meet up is 2.
+
+Command entered: `organise 2`
+
 What you should see:<br>
 
-<img src="images/ug_cmds_pics/organise_cmd.png" style="width:80%;margin:0 10%">
-<center>Diagram 18: A new meet up: Monday 8AM to 11AM at Queenstown Public Library is added to <code>EduMate</code>.</center>
+<img src="images/ug_cmds_pics/OrganiseCommand.svg" style="width:80%;margin:0 10%">
+<center>Diagram 22: A new meet up: Thursday at Queenstown Public Library from 8pm - 11pm is added to <code>EduMate</code>'s Scheduled Meet Up Panel.</center>
 
-##### Explanation:
-After deciding you want to meet with Samantha and Ian, you execute the `meet` command to generate recommended timings and locations. Scrolling through the list of recommendations, you decide that Queenstown Public Library on a Monday morning sounds the best. You can then execute the `organise` command to add that recommendation to your scheduled meet ups list.
+##### More Examples of Usage:
 
 <div markdown="block" class="alert alert-success">
 
@@ -1123,12 +1156,20 @@ If you wish to remove a scheduled meetup from your [Scheduled Meet Up Panel](#sc
 
 </div>
 
-<div markdown="block" class="alert alert-success">
 
-:bulb: **Example : Removing a meet up from the scheduled meet up list**<br>
-* `unorganise 1`: Removes the scheduled meet up with index 1 on the [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
+##### Scenario:
 
-</div>
+Suppose Tae Seong has got Covid-19 and cannot make it to the meet up. Unfortunately, you have to cancel the meet up.
+
+The scheduled meet up has the index 1 on the [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
+
+Command entered: `unorganise 1`
+
+What you should see: <br>
+
+<img src="images/ug_cmds_pics/UnorganiseCommand.svg" style="width:80%;margin:0 10%">
+
+<center>Diagram 23: The Thursday study session at Queenstown Public Library from 8pm - 11pm is deleted from <code>EduMate</code>'s Scheduled Meet Up Panel.</center>
 
 
 ### Other Commands
