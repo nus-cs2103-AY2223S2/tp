@@ -248,9 +248,9 @@ _\* Both commands lists videos that belongs to lecture `Week 1` in module `CS204
 
 ### Add a Module
 
-> `add {module_code} [/name {module_name}] [/tags {tag_1}, [{tag_2}, ...]]`
+> `add {module_code} [/name {name}] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
-Adds a module to Le Tracker
+Add a module to Le Tracker
 
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module
   - Must be unique among the module code of the modules in Le Tracker
@@ -267,9 +267,9 @@ Examples:
 
 ### Add a Lecture
 
-> `add {lecture_name} [/mod {module_code}] [/tags {tag_1}, [{tag_2}, ...]]`
+> `add {lecture_name} /mod {module_code} [/tags {tag_1}[, {tag_2}[, ...]]]`
 
-Adds a lecture to a module.
+Add a lecture to a module.
 
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
   - Must be unique among the names of the lectures belonging to the module specified in `module_code`
@@ -289,20 +289,29 @@ Examples:
 
 ### Add a Video
 
-> Adds a video to a lecture.
+> `add {video_name} /mod {module_code} /lec {lecture_name} [/timestamp {timestamp}] [/watch] [/tags {tag_1}[, {tag_2}[, ...]]]`
 
-Format: `add {video_name} [/mod {module_code}] [/lec {lecture_name}] [/timestamp {timestamp}] [/watch] [/tags {tag_1}, [{tag_2}, ...]]`
+Add a video to a lecture
 
-- `video_name` must be a valid video name
-- `video_name` must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
-- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
-- `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
-- `timestamp` must be a valid timestamp
-- `watch` is a flag that when specified will mark the video as watched
-- `tag_1`, `tag_2`, ... must be valid tags
-- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
+- <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as watched
+  - An argument that takes no value
+- <span style="color:#e46c0a">`video_name`</span> : The name of the video
+  - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name`
+  - Uniqueness is case sensitive
+  - Must be a valid video name (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module containing the lecture to add the video to
+  - Must belong to an existing module in Le Tracker
+  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to add the video to
+  - Must belong to an existing lecture in the module specified in `module_code`
+  - Must be a valid lecture name (refer to [Argument Validity](#argument-validity) for more information)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`timestamp`</span> : The timestamp of the video where the user last stopped watching at
+  - Must be a valid timestamp (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the video
+  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - Repeated tags (if any) will be ignored
 
 Examples:
 
