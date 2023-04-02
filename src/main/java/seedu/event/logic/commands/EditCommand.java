@@ -3,7 +3,6 @@ package seedu.event.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.event.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_TIME_END;
