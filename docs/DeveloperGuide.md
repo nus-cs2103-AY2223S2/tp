@@ -280,11 +280,57 @@ import command:
 
 #### Find Implementation
 
-{Todo: Add find implementation}
+The Find feature allows users to filter out relevant contacts from their contact list.
+This feature is facilitated by the `FindCommand` class and the `FindCommandParser` class,
+as well as the various predicate classes listed below.
 
-#### Design Considerations
+* `AddressContainsKeywordPredicate`
+* `EmailContainsKeywordPredicate`
+* `NameContainsKeywordPredicate`
+* `PhoneContainsKeywordPredicate`
+* `StatusContainsKeywordPrediate`
+* `TagContainsKeywordPredicate`
 
-{Todo: Add design considerations for find}
+When the user inputs a `find` command, the `FindCommandParser` parses through the
+input to obtain the prefixes and keywords that the user has entered. For each
+prefix-keyword pair, an instance of its associated predicate class is created
+and all the instances are combined with `Predicate#and`. This final predicate
+object is then passed to `Model#findOrListContents` to display the filted list to
+the user.
+
+An example usage scenario is provided below to illustrate the mechanism of the
+`find` command.
+
+Step 1: User starts up the application and sees a list of all their contacts.
+
+Step 2: User inputs `find t/cs2103` to find the list of his contacts that takes
+CS2103.
+
+Step 3: `FindCommandParser` parses through the user input and creates an instance
+of `TagContainsKeywordPredicate` containing the keyword "cs2103". An instance of
+`FindCommand` with this predicate is then created and returned.
+
+Step 4: `FindCommand#execute` is called, which calls `Model#findOrListContents`
+to display the final filtered list to the user.
+
+The sequence diagram below illustrates this process.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+#### Design Considerations:
+
+**Aspect: Combining the predicates from multiple prefixes**
+
+- **Alternative 1 (current choice):** Using `Predicate#and`
+- **Alternative 2:** Using `Predicate#or`
+
+**Rationale:** Decision was made to use a logical `AND` instead of `OR` when
+combining multiple predicates as we believe this was the more intuitive approach.
+When a user is looking for a specific group of people on his contacts, they would
+expect the application to return a list of contacts that matches **all** of his
+given input requirements, instead of a list of contacts that contains one or more
+of the keywords that was entered. Hence, the logical `AND` was decided to be more
+appropriate, and `Predicate#and` was used.
 
 ---
 
