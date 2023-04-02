@@ -384,7 +384,7 @@ Our initial recipe book:
 
 
 ---
-### Provides link to the user guide : `help`
+### Provide link to the user guide : `help`
 
 This command generates a link to our user guide.
 
