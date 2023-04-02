@@ -2,10 +2,11 @@ package seedu.connectus.model.socialmedia;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.connectus.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.connectus.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 
@@ -42,7 +43,7 @@ public class WhatsAppTest {
     }
 
     @Test
-    public void getUserLinkSingapore_WhatsApp_returnsExpectedLink() {
+    public void whatsApp_getUserLinkSingapore_returnsExpectedLink() {
         String expectedLink = "whatsapp://send?phone=6591234567";
         WhatsApp whatsapp = new WhatsApp("91234567");
 
@@ -52,7 +53,7 @@ public class WhatsAppTest {
     }
 
     @Test
-    public void getUserLinkForeign_WhatsApp_returnsExpectedLink() {
+    public void whatsApp_getUserLinkForeign_returnsExpectedLink() {
         String expectedLink = "whatsapp://send?phone=60123456789";
         WhatsApp whatsapp = new WhatsApp("60123456789");
 

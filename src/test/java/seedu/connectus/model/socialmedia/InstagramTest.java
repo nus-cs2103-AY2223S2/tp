@@ -1,10 +1,11 @@
 package seedu.connectus.model.socialmedia;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.connectus.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.connectus.model.person.Name;
 import seedu.connectus.model.person.Person;
 
@@ -40,7 +41,7 @@ public class InstagramTest {
     }
 
     @Test
-    public void getUserLink_Instagram_returnsExpectedLink() {
+    public void instagram_getUserLink_returnsExpectedLink() {
         String expectedLink = "https://www.instagram.com/johndoe";
         Instagram instagram = new Instagram("johndoe");
 
