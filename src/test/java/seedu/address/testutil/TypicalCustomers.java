@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
 import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.shop.Shop;
 
@@ -8,17 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 /**
  * A utility class containing a list of {@code Customer} objects to be used in tests.
@@ -47,7 +35,7 @@ public class TypicalCustomers {
     public static final Customer DANIEL = new CustomerBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").withId(4)
                                                   .withVehicleIds(new HashSet<>(List.of(4)))
-                                                  .withAppointmentIds(new HashSet<>(List.of(4))).build();;
+                                                  .withAppointmentIds(new HashSet<>(List.of(4))).build();
     public static final Customer ELLE = new CustomerBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withId(5)
                                                 .withVehicleIds(new HashSet<>(List.of(5)))
@@ -60,9 +48,6 @@ public class TypicalCustomers {
             .withEmail("anna@example.com").withAddress("4th street").withId(7)
                                                   .withVehicleIds(new HashSet<>(List.of(7)))
                                                   .withAppointmentIds(new HashSet<>(List.of(7))).build();
-
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalCustomers() {} // prevents instantiation
 

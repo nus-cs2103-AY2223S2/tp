@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.model.entity.person.Address;
 import seedu.address.model.entity.person.Email;
 import seedu.address.model.entity.person.Name;
@@ -7,11 +11,6 @@ import seedu.address.model.entity.person.Customer;
 import seedu.address.model.entity.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * A utility class to help with building Customer objects.
