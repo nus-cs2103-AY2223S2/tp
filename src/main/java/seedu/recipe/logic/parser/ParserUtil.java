@@ -153,8 +153,12 @@ public class ParserUtil {
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+
+        // ensure tags are non-empty
+        if (tags.size() != 1 || !tags.contains("")) {
+            for (String tagName : tags) {
+                tagSet.add(parseTag(tagName));
+            }
         }
         return tagSet;
     }
@@ -185,8 +189,12 @@ public class ParserUtil {
     public static List<Step> parseSteps(Collection<String> steps) throws ParseException {
         requireNonNull(steps);
         List<Step> stepList = new ArrayList<>();
-        for (String stepDescription : steps) {
-            stepList.add(parseStep(stepDescription));
+
+        // ensure steps are non-empty
+        if (steps.size() != 1 || !steps.contains("")) {
+            for (String stepDescription : steps) {
+                stepList.add(parseStep(stepDescription));
+            }
         }
         return stepList;
     }
@@ -212,19 +220,19 @@ public class ParserUtil {
             recipeDescriptor.setPortion(portion);
         }
 
-        Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        if (!tags.isEmpty()) {
+        if (argMultimap.containsKey(PREFIX_TAG)) {
+            Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             recipeDescriptor.setTags(tags);
         }
 
-        HashMap<Ingredient, IngredientInformation> ingredientTable = ParserUtil.parseIngredients(
-            argMultimap.getAllValues(PREFIX_INGREDIENT));
-        if (!ingredientTable.isEmpty()) {
+        if (argMultimap.containsKey(PREFIX_INGREDIENT)) {
+            HashMap<Ingredient, IngredientInformation> ingredientTable = ParserUtil.parseIngredients(
+                argMultimap.getAllValues(PREFIX_INGREDIENT));
             recipeDescriptor.setIngredients(ingredientTable);
         }
 
-        List<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
-        if (!steps.isEmpty()) {
+        if (argMultimap.containsKey(PREFIX_STEP)) {
+            List<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
             recipeDescriptor.setSteps(steps);
         }
 
