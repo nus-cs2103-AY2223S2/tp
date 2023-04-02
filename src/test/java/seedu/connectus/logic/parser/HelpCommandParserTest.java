@@ -76,14 +76,18 @@ public class HelpCommandParserTest {
                 new HelpCommand(ListCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_SEARCH,
                 new HelpCommand(SearchCommand.MESSAGE_USAGE));
-        assertParseSuccess(parser, VALID_HELP_COMMAND_CLEAR_WITH_WHITESPACE,
-                new HelpCommand(ClearCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_CHAT,
                 new HelpCommand(ChatCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_OPEN,
                 new HelpCommand(OpenCommand.MESSAGE_USAGE));
         assertParseSuccess(parser, VALID_HELP_COMMAND_UPCOMING_B,
                 new HelpCommand(UpcomingBirthdayCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validArgsWithWhitespace_returnsHelpCommandWithArgs() {
+        assertParseSuccess(parser, VALID_HELP_COMMAND_CLEAR_WITH_WHITESPACE,
+                new HelpCommand(ClearCommand.MESSAGE_USAGE));
     }
 
     @Test
