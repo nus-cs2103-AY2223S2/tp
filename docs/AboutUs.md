@@ -14,7 +14,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/mehvin)]
 [[portfolio](team/mehvin.md)]
 
-* Role: Project Advisor
+* Role: Project Advisor & Developer
+* * Responsibilities: Documentation + Code quality
 
 ### Muhammad Shazrin
 
@@ -34,7 +35,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/skeltons.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI
 
 ### Joshua Tan
 
@@ -44,4 +45,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/joshua-tyh.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + UI
+* Responsibilities: Data

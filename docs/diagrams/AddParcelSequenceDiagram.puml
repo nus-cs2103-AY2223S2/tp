@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddParcelCommandParser" as AddParcelCommandParser LOGIC_COLOR
+participant ":AddParcelCommand" as AddParcelCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as AddressBook MODEL_COLOR
+participant "updatedPerson:Person" as Person MODEL_COLOR
+end box
+
+AddressBookParser -> AddParcelCommandParser : parseCommand("1 pc/lazada")
+activate AddressBookParser
+activate AddParcelCommandParser
+create AddParcelCommand
+AddParcelCommandParser -> AddParcelCommand : AddParcelCommand(index, parcel)
+activate AddParcelCommand
+AddParcelCommand --> AddParcelCommandParser
+deactivate AddParcelCommand
+AddressBookParser <-- AddParcelCommandParser
+deactivate AddParcelCommandParser
+
+AddressBookParser -> AddParcelCommand : execute()
+activate AddParcelCommand
+AddParcelCommand -> AddressBook : getFilteredPersonList()
+activate AddressBook
+AddressBook --> AddParcelCommand : lastShownList
+deactivate AddressBook
+create Person
+AddParcelCommand -> Person :
+activate Person
+Person --> AddParcelCommand
+deactivate Person
+AddParcelCommand -> AddressBook : setPerson(person, updatedPerson)
+activate AddressBook
+AddressBook --> AddParcelCommand
+deactivate AddressBook
+AddressBookParser<-- AddParcelCommand : commandResult
+deactivate AddParcelCommand
+deactivate AddressBookParser
+
+@enduml
