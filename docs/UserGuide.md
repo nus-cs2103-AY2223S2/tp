@@ -381,14 +381,14 @@ Finds patients whose names contain any of the given keywords. You can also inclu
 
 ```text
 patient find <string>
-patient find --name <string> --phone <phone-number> --d <date> \
-    --bloodtype <bloodType> --a <group-name> --v <group-name>
+patient find --n <string> --phone <phone-number> --d <date> \
+    --b <bloodType> --a <group-name> --v <group-name>
 ```
 
 ##### Example
 
 * `patient find john`
-* `patient find --name john --b B+`
+* `patient find --n john --b B+`
 
 Output:
 
