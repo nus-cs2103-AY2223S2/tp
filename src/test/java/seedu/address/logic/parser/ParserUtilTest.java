@@ -518,15 +518,15 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseModuleTag_endTimeBeforeStartTime_throwsWrongTimeException() {
+    public void parseModuleTag_endTimeBeforeStartTime_throwsParseException() {
         String userInput = VALID_MODULE_1 + " THURSDAY 10 9";
-        assertThrows(WrongTimeException.class, () -> ParserUtil.parseModuleTag(userInput));
+        assertThrows(ParseException.class, () -> ParserUtil.parseModuleTag(userInput));
     }
 
     @Test
-    public void parseModuleTag_startTimeSameAsEndTime_throwsWrongTimeException() {
+    public void parseModuleTag_startTimeSameAsEndTime_throwsParseException() {
         String userInput = VALID_MODULE_1 + " THURSDAY 10 10";
-        assertThrows(WrongTimeException.class, () -> ParserUtil.parseModuleTag(userInput));
+        assertThrows(ParseException.class, () -> ParserUtil.parseModuleTag(userInput));
     }
 
     @Test
