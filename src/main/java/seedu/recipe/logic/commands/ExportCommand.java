@@ -39,12 +39,8 @@ public class ExportCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         try {
             exportManager.execute();
-        } catch (IOException | CommandException e) {
-            if (e instanceof IOException) {
-                throw new CommandException(ERROR_MESSAGE + e.getMessage());
-            } else if (e instanceof CommandException) {
-                throw new CommandException(e.getMessage());
-            }
+        } catch (IOException e) {
+            throw new CommandException(ERROR_MESSAGE + e.getMessage());
         }
         return new CommandResult(SUCCESS_MESSAGE);
     }
