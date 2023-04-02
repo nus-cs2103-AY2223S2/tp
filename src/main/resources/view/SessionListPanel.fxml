@@ -25,7 +25,7 @@
                      <children>
                           <VBox fx:id="sessionDetailContainer" maxHeight="1.7976931348623157E308" style="-fx-background-color: #252745;" HBox.hgrow="ALWAYS">
                               <VBox maxWidth="120.0">
-                                  <Label fx:id="selectedName" maxHeight="Infinity" style="-fx-text-fill: white;" text="Please select a session" />
+                                  <Label fx:id="selectedName" maxHeight="Infinity" style="-fx-text-fill: white;" />
                               <VBox.margin>
                                  <Insets />
                               </VBox.margin>
