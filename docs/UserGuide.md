@@ -5,7 +5,7 @@ title: User Guide
 
 
 
-**Table of Contents**
+## **Table of Contents**
 - [Introduction](#introduction)
 - [Purpose of this User Guide](#purpose-of-this-user-guide)
 - [Quick Start](#quick-start)
