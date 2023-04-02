@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -111,35 +112,19 @@ public class UniqueEventList implements Iterable<Event> {
     /**
      * Removes person from all events in the event list.
      */
-    public void deletePersonFromAllEvents(Person target) {
-        ArrayList<Event> toRemove = new ArrayList<>();
-        ArrayList<Event> toAdd = new ArrayList<>();
-        for (Event e: this.internalList) {
-            if (e.hasTaggedPerson(target)) {
-                Event newEvent = e.deleteTaggedPerson(target);
-                toRemove.add(e);
-                toAdd.add(newEvent);
-            }
-        }
-        this.internalList.removeAll(toRemove);
-        this.internalList.addAll(toAdd);
+    public void deletePersonFromAllEvents(Person person) {
+        internalList.setAll(internalList.stream()
+                .map(event -> event.deleteTaggedPerson(person))
+                .collect(Collectors.toList()));
     }
 
     /**
      * Edits events that have {@code personToEdit} tagged to the {@code editedPerson}.
      */
     public void editPersonForAllEvents(Person personToEdit, Person editedPerson) {
-        ArrayList<Event> toRemove = new ArrayList<>();
-        ArrayList<Event> toAdd = new ArrayList<>();
-        for (Event e: this.internalList) {
-            if (e.hasTaggedPerson(personToEdit)) {
-                Event newEvent = e.editTaggedPerson(personToEdit, editedPerson);
-                toRemove.add(e);
-                toAdd.add(newEvent);
-            }
-        }
-        this.internalList.removeAll(toRemove);
-        this.internalList.addAll(toAdd);
+        internalList.setAll(internalList.stream()
+                .map(event -> event.editTaggedPerson(personToEdit, editedPerson))
+                .collect(Collectors.toList()));
     }
 
     /**

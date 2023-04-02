@@ -24,8 +24,8 @@ public class UnTagEventCommand extends Command {
     public static final String MESSAGE_USAGE =
             ResultDisplay.formatMessage(COMMAND_WORD, "Untags a contact from an event.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
-                    PREFIX_EVENT_TO_TAG + "EVENT INDEX",
-                    PREFIX_PERSON_TO_TAG + "CONTACT NAME")
+                    PREFIX_EVENT_TO_TAG + "EVENT_INDEX",
+                    PREFIX_PERSON_TO_TAG + "CONTACT_NAME")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_EXAMPLE,
                     COMMAND_WORD,
                     PREFIX_EVENT_TO_TAG + "1",

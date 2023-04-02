@@ -4,9 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.event.fields.DateTime;
@@ -90,11 +88,12 @@ public abstract class Event {
     }
 
     /**
-     * Creates a copy of this event, with the Person {@code person} removed.
+     * Creates a copy of this event with {@code person} added, if they were not previously in.
      */
-    public Event deleteTaggedPerson(Person person) {
+    public Event addTaggedPerson(Person person) {
+        requireAllNonNull(person);
         Event eventCopy = copy();
-        eventCopy.getTaggedPeople().removeIf(p -> Objects.equals(person, p));
+        eventCopy.taggedPeople.add(person);
         return eventCopy;
     }
 
@@ -102,26 +101,25 @@ public abstract class Event {
      * Creates a copy of this event, with the {@code personToEdit} removed and the {@code editedPerson} added in.
      */
     public Event editTaggedPerson(Person personToEdit, Person editedPerson) {
-        requireAllNonNull(editedPerson);
-        Event eventCopy = deleteTaggedPerson(personToEdit);
-        eventCopy.getTaggedPeople().add(editedPerson);
-        return eventCopy;
-    }
-
-    public Event addTaggedPerson(Person person) {
-        return editTaggedPerson(person, person);
+        return hasTaggedPerson(personToEdit)
+                ? deleteTaggedPerson(personToEdit).addTaggedPerson(editedPerson)
+                : copy();
     }
 
     /**
-     * Returns true if there is a person in the addressbook that is equal to the person {@code p}.
+     * Creates a copy of this event with the {@code person} removed, if they exist.
      */
-    public boolean hasTaggedPerson(Person p) {
-        for (Person p2: this.taggedPeople) {
-            if (p.equals(p2)) {
-                return true;
-            }
-        }
-        return false;
+    public Event deleteTaggedPerson(Person person) {
+        Event eventCopy = copy();
+        eventCopy.taggedPeople.remove(person);
+        return eventCopy;
+    }
+
+    /**
+     * Returns true iff the given {@code person} is tagged to this {@code event}.
+     */
+    public boolean hasTaggedPerson(Person person) {
+        return taggedPeople.contains(person);
     }
 
     public DateTime getEffectiveStartDateTime() {
