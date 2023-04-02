@@ -88,9 +88,13 @@ public class UniqueEventList implements Iterable<Event> {
         return this.internalList.get(zeroBasedIndex);
     }
 
-    public void setEvent(Event oldEvent, Event newEvent) {
-        this.internalList.remove(oldEvent);
-        this.internalList.add(newEvent);
+    public void setEvent(Index index, Event event) {
+        requireAllNonNull(index, event);
+        try {
+            internalList.set(index.getZeroBased(), event);
+        } catch (IndexOutOfBoundsException e) {
+            throw new EventNotFoundException();
+        }
     }
 
     /**

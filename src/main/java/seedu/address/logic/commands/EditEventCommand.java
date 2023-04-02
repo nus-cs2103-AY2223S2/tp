@@ -46,13 +46,10 @@ public class EditEventCommand extends Command {
                     PREFIX_RECURRENCE + "weekly");
 
     private static final String MESSAGE_EDIT_EVENT_SUCCESS = "Event edited: %1$s";
-    private static final String MESSAGE_INVALID_EVENT = "This event does not exist in the Calendar!";
 
     private static final String MESSAGE_INVALID_INTERVAL = "END DATE TIME ("
             + PREFIX_END_DATE_TIME + ") should be after START DATE TIME ("
             + PREFIX_START_DATE_TIME + ")";
-
-    // public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     protected final EventDescriptor editEventDescriptor;
     private final Index index;
@@ -76,18 +73,14 @@ public class EditEventCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
 
-        Event eventToEdit = eventList.get(index.getZeroBased());
+        Event eventToEdit = model.getEvent(index);
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
-
-        if (!model.hasEvent(eventToEdit)) {
-            throw new CommandException(MESSAGE_INVALID_EVENT);
-        }
 
         if (!DateTime.isValidInterval(editedEvent.getStartDateTime(), editedEvent.getEndDateTime())) {
             throw new CommandException(MESSAGE_INVALID_INTERVAL);
         }
 
-        model.setEvent(eventToEdit, editedEvent);
+        model.setEvent(index, editedEvent);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 
@@ -96,11 +89,7 @@ public class EditEventCommand extends Command {
     }
 
     /**
-     * Creates a new edited event to replace the original
-     *
-     * @param eventToEdit
-     * @param editEventDescriptor
-     * @return the new Event to be set
+     * Creates an edited event by applying {@code editEventDescriptor} to {@code eventToEdit}.
      */
     protected static Event createEditedEvent(Event eventToEdit, EventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
@@ -118,14 +107,16 @@ public class EditEventCommand extends Command {
         }
     }
 
-    /**
-     * Returns true if the two events have the same identity and data fields.
-     * This defines a weaker notion of equality between two events.
-     */
+    @Override
     public boolean equals(Object other) {
-        EditEventCommand otherEvent = (EditEventCommand) other;
-        return other == this
-            || (other instanceof EditEventCommand
-            && this.editEventDescriptor.equals(otherEvent));
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof EditEventCommand)) {
+            return false;
+        }
+        EditEventCommand that = (EditEventCommand) other;
+        return index.equals(that.index)
+                && editEventDescriptor.equals(that.editEventDescriptor);
     }
 }
