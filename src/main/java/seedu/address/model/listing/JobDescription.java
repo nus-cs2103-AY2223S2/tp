@@ -10,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class JobDescription {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Descriptions should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Descriptions should contain at least one alphanumeric character, and it should not be blank "
+                    + "nor exceed 500 characters.";
 
     /*
      * Validation regex
