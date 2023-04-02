@@ -133,16 +133,16 @@ _Take note of how the command format is being interpretted, to know what paramet
 
 Flags like `-d`, `-l` and `-p` act as identifier for the parameter that comes immediately after the flag.
 
-- e.g. `:a <"title"> [-d <deadline>]`, the `-d` indicates the deadline attribute of a task.
+- e.g. `:a "<title>" [-d <deadline>]`, the `-d` indicates the deadline attribute of a task.
 - Refer to the [Flag summary](#flag-summary) below for details of each flag.
 
 Words in **angle brackets** are **compulsory** parameters to be supplied by the user.
 
-- e.g. in `:a <"title">`, the user must provide the `<"title">` parameter, for example, `:a "Do weekly quiz"`.
+- e.g. in `:a "<title>"`, the user must provide the `"<title>"` parameter, for example, `:a "Do weekly quiz"`.
 
 Words in **square brackets** are **optional** parameters to be supplied by the user.
 
-- e.g. `:a <"title"> [-d <deadline>]`, the user need not provide the `<deadline>` parameter.
+- e.g. `:a "<title>" [-d <deadline>]`, the user need not provide the `<deadline>` parameter.
 
 Bracketed items with `…`​ behind means that user can provide multiple parameters.
 
@@ -176,11 +176,11 @@ Format: `:help`
 
 Adds a task to the current task list.
 
-Format: `:a <"title"> [-d <deadline>] [-l <label>]... [-p <priority>]`
+Format: `:a "<title>" [-d <deadline>] [-l <label>]... [-p <priority>]`
 
 | Parameter    | Detail                                      | Compulsory | Example        |
 | ------------ | ------------------------------------------- | ---------- | -------------- |
-| `<title>`    | Title of the task                           | Yes        | `CS2103T UG`   |
+| `"<title>"`    | Title of the task                           | Yes        | `"CS2103T UG"`   |
 | `<deadline>` | Deadline of the task                        | No         | `2023-03-31`   |
 | `<label>`    | Label given to the task                     | No         | `presentation` |
 | `<priority>` | Priority level assigned to the task         | No         | `1`            |
@@ -256,11 +256,11 @@ Condition
 
 Edit the parameters as specified by the flag of a task in the current task list as specified by the task number.
 
-Format: `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>]... `
+Format: `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>]... `
 
 | Parameter    | Detail                                     | Example        |
 | ------------ | ------------------------------------------ | -------------- |
-| `<title>`    | New title of task                          | `"CS2103T UG"` |
+| `"<title>"`    | New title of task                        | `"CS2103T UG"` |
 | `<deadline>` | New deadline of the task                   | `2023-03-31`   |
 | `<status>`   | New status of task                         | `2`            |
 | `<priority>` | Priority level assigned to the task        | `1`            |
@@ -289,7 +289,7 @@ Format: `:f [-w <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priori
 
 | Parameter    | Detail                                          | Example        |
 | ------------ | ----------------------------------------------- | -------------- |
-| `<title>`    | Title of task to filter                         | `"CS2103T UG"` |
+| `"<title>"`    | Title of task to filter                       | `"CS2103T UG"` |
 | `<date>`     | Date of the task to filter before or after      | `2023-03-31`   |
 | `<status>`   | Status of task to filter                        | `2`            |
 | `<priority>` | Priority level of task to filter                | `1`            |
@@ -373,11 +373,11 @@ _Details coming soon in v2.0 ..._
 | Action                 | Format                                                               |
 | ---------------------- | -------------------------------------------------------------------- |
 | View help              | `:help`                                                              |
-| Add task               | `:a <title> [-d <deadline>] [-p <priority>] [-l <label>] `           |
+| Add task               | `:a "<title>" [-d <deadline>] [-p <priority>] [-l <label>] `           |
 | Insert parameter       | `:i <task_index> [-d <deadline>] [-l <label_name>]`                   |
 | Delete task            | `:d [index]`                                                         |
 | Delete parameter       | `:d <task_index> [-d] [-l <label_name>]`                             |
-| Edit parameter         | `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>] `|
+| Edit parameter         | `:e <task_index> [-t "<title>"] [-d <deadline>] [-s <status>] [-p <priority>] [-l <previous_label> <new_label>] `|
 | Filter                 | `:f [-w <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priority>] [-l <label>]`|
 | Sort                   | `:s [-t] [-d] [-p] `                                                 |
 | Exit the application   | `:wq!`, `:q!`, `:wq`, `:q`                                           |
