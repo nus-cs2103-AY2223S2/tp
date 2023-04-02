@@ -195,8 +195,8 @@ We also used light purple and white as our main colour scheme as they are cool c
 
 `EduMate` consists of the following main UI components
 1. [Person List](#person-list)
-2. Meet Up Recommendation Panel
-3. Profile Panel
+2. [Meet Up Recommendation Panel](#meet-up-recommendation-panel)
+3. [Profile Panel](#profile-panel)
 4. Scheduled Meet Up Panel
 5. Command Response Box
 6. Command Input Box
@@ -230,6 +230,26 @@ Not all modules that are tagged to the contact is shown on the Person List. Only
 <center>Diagram 5: Person List (in red) with common modules boxed in green.</center>
 </div>
 
+### Meet Up Recommendation Panel
+
+The Meet Up Recommendation Panel (located at the top right of `EduMate`) suggests recommendations of optimal timings and locations
+where you can meet your friends.
+
+<img src="images/UG_ui_pictures/MeetUpRecommendationUnlabelled.svg" style="width:40%;margin:1% 1% 1% 30%">
+
+<center>Diagram 6: Recommended timings and locations for meetups displayed</center>
+<br>
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Components of Meet Up Recommendation Panel**<br>
+The panel contains all the recommended timings and locations to meet up and is displayed as shown below.
+<br>
+
+<img src="images/UG_ui_pictures/MeetUpRecommendationPanel.svg" style="width:80%;margin:0 10%">
+
+<center>Diagram 7: Components of the Meet Up Recommendation Panel</center>
+</div>
+
 ### Profile Panel
 
 The Profile Panel allows you to display your own or your contact's information.
@@ -244,7 +264,7 @@ The Profile Panel will display basic information like your / contact's
 
 <img src="images/UG_ui_pictures/Profile.svg" style="width:40%;margin:1% 1% 1% 30%">
 
-<center>Diagram 6: Sample user profile displayed on Profile Panel.</center>
+<center>Diagram 8: Sample user profile displayed on Profile Panel.</center>
 
 ### Command Box
 
@@ -270,15 +290,6 @@ The Command Response box is located directly below the [Profile Panel](#profile-
 <img src="images/UG_ui_pictures/command_feedback.png" style="width:80%;margin:0 10%">
 
 <center>Diagram 5: Successful command execution feedback shown</center>
-
-### Meet Up Recommendation Panel
-
-The Meet Up Recommendation Panel (located at the top right of `EduMate`) suggests recommendations of optimal timings and locations
-where you can meet your friends.
-
-<img src="images/UG_ui_pictures/recommender_panel.png" style="width:80%;margin:0 10%">
-
-<center>Diagram 6: Recommended timings and locations for meetups displayed</center>
 
 ### Scheduled Meet Up Panel
 
