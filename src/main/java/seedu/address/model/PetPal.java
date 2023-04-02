@@ -59,7 +59,7 @@ public class PetPal implements ReadOnlyPetPal {
     //// pet-level operations
 
     /**
-     * Returns true if a pet with the same identity as {@code pet} exists in the address book.
+     * Returns true if a pet with the same identity as {@code pet} exists in the PetPal list.
      */
     public boolean hasPet(Pet pet) {
         requireNonNull(pet);
@@ -67,8 +67,8 @@ public class PetPal implements ReadOnlyPetPal {
     }
 
     /**
-     * Adds a pet to the address book.
-     * The pet must not already exist in the address book.
+     * Adds a pet to the PetPal list.
+     * The pet must not already exist in the PetPal list.
      */
     public void addPet(Pet p) {
         pets.add(p);
@@ -76,8 +76,8 @@ public class PetPal implements ReadOnlyPetPal {
 
     /**
      * Replaces the given pet {@code target} in the list with {@code editedpet}.
-     * {@code target} must exist in the address book.
-     * The pet identity of {@code editedPet} must not be the same as another existing pet in the address book.
+     * {@code target} must exist in the PetPal list.
+     * The pet identity of {@code editedPet} must not be the same as another existing pet in the PetPal list.
      */
     public void setPet(Pet target, Pet editedPet) {
         requireNonNull(editedPet);
@@ -87,7 +87,7 @@ public class PetPal implements ReadOnlyPetPal {
 
     /**
      * Removes {@code key} from this {@code PetPal}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the PetPal list.
      */
     public void removePet(Pet key) {
         pets.remove(key);
@@ -95,7 +95,7 @@ public class PetPal implements ReadOnlyPetPal {
 
     /**
      * Archives {@code p} from the {@code PetPal}
-     * {@code p} must exists in the address book
+     * {@code p} must exists in the PetPal list
      */
     public void archivePet(Pet p) {
         pets.add(p);

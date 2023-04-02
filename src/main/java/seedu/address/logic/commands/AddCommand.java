@@ -15,19 +15,21 @@ import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
 
 /**
- * Adds a Pet to the address book.
+ * Adds a Pet to the PetPal list.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a pet to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a pet to the PetPal list. "
             + "Parameters: "
             + PREFIX_OWNER_NAME + "OWNER_NAME "
             + PREFIX_NAME + "PET_NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_TIMESTAMP + "TIMESTAMP "
+            + "[" + PREFIX_DEADLINE + "DEADLINE]"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_OWNER_NAME + "Alice "
@@ -41,7 +43,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "Chihuahua";
 
     public static final String MESSAGE_SUCCESS = "New pet added:\n%1$s";
-    public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the PetPal list";
 
     private final Pet toAdd;
 

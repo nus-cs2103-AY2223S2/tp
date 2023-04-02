@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Pet objects.
  */
 public class PetBuilder {
 
@@ -37,7 +37,7 @@ public class PetBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code PetBuilder} with the default details.
      */
     public PetBuilder() {
         ownerName = new OwnerName(DEFAULT_OWNER_NAME);
@@ -51,7 +51,7 @@ public class PetBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code petToCopy}.
+     * Initializes the PetBuilder with the data of {@code petToCopy}.
      */
     public PetBuilder(Pet petToCopy) {
         ownerName = petToCopy.getOwnerName();
@@ -72,7 +72,7 @@ public class PetBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Pet} that we are building.
      */
     public PetBuilder withName(String name) {
         this.name = new Name(name);
@@ -80,7 +80,7 @@ public class PetBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Pet} that we are building.
      */
     public PetBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -88,7 +88,7 @@ public class PetBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Pet} that we are building.
      */
     public PetBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -96,7 +96,7 @@ public class PetBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Pet} that we are building.
      */
     public PetBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -104,7 +104,7 @@ public class PetBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Pet} that we are building.
      */
     public PetBuilder withEmail(String email) {
         this.email = new Email(email);

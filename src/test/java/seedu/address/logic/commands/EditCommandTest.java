@@ -115,7 +115,7 @@ public class EditCommandTest {
     public void execute_duplicatePetFilteredList_failure() {
         showPetAtIndex(model, INDEX_FIRST_PET);
 
-        // edit Pet in filtered list into a duplicate in address book
+        // edit Pet in filtered list into a duplicate in PetPal list
         Pet petInList = model.getPetPal().getPetList().get(INDEX_SECOND_PET.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PET,
                 new EditPetDescriptorBuilder(petInList).build());
@@ -134,13 +134,13 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of PetPal list
      */
     @Test
     public void execute_invalidPetIndexFilteredList_failure() {
         showPetAtIndex(model, INDEX_FIRST_PET);
         Index outOfBoundIndex = INDEX_SECOND_PET;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of PetPal list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPetPal().getPetList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
