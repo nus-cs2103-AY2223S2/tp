@@ -9,7 +9,7 @@ import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
 import seedu.recipe.model.recipe.Recipe;
-import seedu.recipe.storage.ImportManager;
+import seedu.recipe.storage.filemanagers.ImportManager;
 
 /**
  * Represents the command used to import RecipeBook JSON file from another file location into this RecipeBook app.

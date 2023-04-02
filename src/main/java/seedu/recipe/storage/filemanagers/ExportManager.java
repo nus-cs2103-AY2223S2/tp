@@ -1,4 +1,4 @@
-package seedu.recipe.storage;
+package seedu.recipe.storage.filemanagers;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,7 +14,6 @@ import javafx.stage.Stage;
  * API to export current RecipeBook
  */
 public class ExportManager {
-
     private final Path recipeBookFilePath;
     private final Stage owner;
 

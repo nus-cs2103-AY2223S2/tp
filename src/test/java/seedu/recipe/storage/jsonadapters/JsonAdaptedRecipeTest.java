@@ -1,4 +1,4 @@
-package seedu.recipe.storage;
+package seedu.recipe.storage.jsonadapters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,15 +29,6 @@ import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedIngredient;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedName;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedPortionUnit;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipe;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipeDuration;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedRecipePortion;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedStep;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedTag;
-import seedu.recipe.storage.jsonadapters.JsonAdaptedTimeUnit;
 
 public class JsonAdaptedRecipeTest {
     private static final String INVALID_NAME = "7896";

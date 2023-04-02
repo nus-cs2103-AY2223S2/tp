@@ -1,4 +1,4 @@
-package seedu.recipe.storage;
+package seedu.recipe.storage.filemanagers;
 
 import static seedu.recipe.logic.commands.ImportCommand.EMPTY_COMMAND;
 import static seedu.recipe.logic.commands.ImportCommand.INVALID_VALUES;
@@ -25,6 +25,7 @@ import seedu.recipe.model.recipe.Step;
 import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 import seedu.recipe.model.tag.Tag;
+import seedu.recipe.storage.JsonRecipeBookStorage;
 
 /**
  * API to import a RecipeBook from other directories
