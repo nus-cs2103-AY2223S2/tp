@@ -144,6 +144,8 @@ This section describes the requirements of the specified data fields.
 
 ### Person names
 * Names must only contain alphabets and spaces.
+* If an input name contains unnecessary whitespaces, they will be trimmed first. 
+  The name will be read in without these whitespaces.
 * Names have a maximum allowed length of 54 by Singaporean law and cannot be blank.
 
 ### Postal codes
