@@ -9,7 +9,7 @@ import seedu.careflow.model.patient.Phone;
  */
 public class HospitalBuilder {
     public static final String DEFAULT_HOSPITAL_NAME = "National University Hospital";
-    public static final String DEFAULT_HOTLINE = "+65 6779 5555";
+    public static final String DEFAULT_HOTLINE = "67795555";
 
     private Name hospitalName;
     private Phone hotline;

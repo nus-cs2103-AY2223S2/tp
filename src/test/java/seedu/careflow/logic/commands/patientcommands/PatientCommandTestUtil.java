@@ -88,7 +88,7 @@ public class PatientCommandTestUtil {
             " " + PREFIX_DRUG_ALLERGY + "asp*irin"; // '*' are not allowed in drug allergy
     public static final String INVALID_EMERGENCY_CONTACT_DESC =
             " " + PREFIX_EMERGENCY_CONTACT_NUMBER
-                    + "+(65)-1111-2222-3333-4444"; // length of phone number shouldn't exceed 20
+                    + "11112222333-34444"; // length of phone number shouldn't contain special symbol
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -150,10 +150,10 @@ public class PatientCommandTestUtil {
                 actualCareFlowModel.getDrugInventory());
         // follow default hospital list of CareFlow
         expectedCareFlow.addHospital(new Hospital(new Name("KK Women's and Children's Hospital"),
-                new Phone("+65 62255554")));
-        expectedCareFlow.addHospital(new Hospital(new Name("Changi General Hospital"), new Phone("+65 67888833")));
-        expectedCareFlow.addHospital(new Hospital(new Name("Khoo Teck Puat Hospital"), new Phone("+65 65558000")));
-        expectedCareFlow.addHospital(new Hospital(new Name("Tan Tock Seng Hospital"), new Phone("+65 62566011")));
+                new Phone("62255554")));
+        expectedCareFlow.addHospital(new Hospital(new Name("Changi General Hospital"), new Phone("67888833")));
+        expectedCareFlow.addHospital(new Hospital(new Name("Khoo Teck Puat Hospital"), new Phone("65558000")));
+        expectedCareFlow.addHospital(new Hospital(new Name("Tan Tock Seng Hospital"), new Phone("62566011")));
 
         List<Patient> expectedFilteredList = new ArrayList<>(actualCareFlowModel.getFilteredPatientList());
 
