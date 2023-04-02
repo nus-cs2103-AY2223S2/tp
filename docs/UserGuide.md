@@ -139,6 +139,9 @@ Example: `name analyst engineer data`
 
 ![Name](images/UICommandImages/nameCommand.png)
 
+![image](https://user-images.githubusercontent.com/87350229/229332092-b37ec670-b27a-48b3-9019-885eea612cbc.png)
+
+
 ### Find roles by Company: `company`
 Searches for roles with the provided companies.
 
