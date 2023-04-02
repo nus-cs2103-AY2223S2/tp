@@ -179,14 +179,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateMeeting(Person personToEdit, Index meetingIndex, Meeting editedMeeting) {
-        addressBook.updateMeeting(personToEdit, meetingIndex, editedMeeting);
+    public Person updateMeeting(Person personToEdit, Index meetingIndex, Meeting editedMeeting) {
+        Person editedPerson = addressBook.updateMeeting(personToEdit, meetingIndex, editedMeeting);
         updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
+        return editedPerson;
     }
-
-    // @Override
-    // public void refreshedMeetingList() {
-    //     filteredMeetings = new FilteredList<>(this.addressBook.getMeetingList());
-    //     updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
-    // }
 }
