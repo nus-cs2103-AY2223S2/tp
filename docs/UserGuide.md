@@ -134,6 +134,8 @@ Adds a new contact.
 **Format**: `newcontact n/NAME p/NUMBER`
 
 - Creates a new contact with specified `NAME` and `NUMBER`
+- Name should only contain alphanumeric characters and spaces.
+- Number should only contain numbers between 8 and 15 digits long.
 
 **Example**:
 - `newcontact n/Deborah Tan p/91234567`
