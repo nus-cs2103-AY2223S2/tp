@@ -115,8 +115,11 @@ Here is a breakdown of the different symbols and colours we will use throughout 
 
 * **Command Line Interface (CLI)**: A text-based user interface (UI) used to run programs, manage computer files and interact with the computer
 * **Graphical User Interface (GUI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
+* **OS**: Operating System
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Mass Rapid Transit (MRT)**: Singapore's high-speed rail system.
+* **Co-Curricular Activities (CCA)**: Another name for extra-curricular activities.
+* **NUS**: National University of Singapore
 
 [Return to the top](#table-of-contents)
 
