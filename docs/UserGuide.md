@@ -83,7 +83,7 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
 | `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information. |
 | `Yes`    | coy    | COMPANY              | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
 | `No`     | t      | TAG                  | Alphanumeric characters and spaces only. Should not just contain a space. Multiple tag can be added.                                          |
-| `No`     | w      | WEBSITE              | Must be in www.{Any character}.com                                |
+| `Yes`     | w      | WEBSITE              | Must be in www.(Any Characters).com                                |
 | `Yes`    | jd     | JOB DESCRIPTION      | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
 | `Yes`    | $      | SALARY               | Positive integers only.                                           |
 | `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.      |
@@ -99,15 +99,48 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
     * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.|
 
 
+
 ### Editing a Role: `edit`
-Edit any parameters of a preexisting role. 
+Edit any parameters of a preexisting role. At least one filed must be provided `edit 1 n/Bob`
 
 Format: `edit {index} {Prefix}/{Parameter}…​`
 
 Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed 
 $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
+| Required | Prefix | Parameter            | Restrictions                                                      |
+|----------|--------|----------------------|-------------------------------------------------------------------|
+| `No`    | n      | NAME                 | Alphanumeric characters and spaces only. Should not just contain a space.                           |
+| `No`    | c      | CONTACT              | Numbers only and at least 3 digits.                               |
+| `No`    | e      | EMAIL                | Must follow a valid email format. See below for more information. |
+| `No`    | coy    | COMPANY              | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
+| `No`     | t      | TAG                  | Alphanumeric characters and spaces only. Should not just contain a space. Multiple tag can be added.                                          |
+| `No`     | w      | WEBSITE              | Must be in www.(Any Characters).com                                |
+| `No`    | jd     | JOB DESCRIPTION      | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
+| `No`    | $      | SALARY               | Positive integers only.                                           |
+| `No`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.      |
+| `No`    | x      | EXPERIENCE REQUIRED  | Alphanumeric characters and spaces only. Should not just contain a space.  
+
+**Although it states all not required, at least a single field has to be present to edit the role.
+
+**Email Format**
+* Emails should be of the format local-part@domain and adhere to the following constraints:
+* 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+* 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+* The domain name must:
+    * end with a domain label at least 2 characters long
+    * have each domain label start and end with alphanumeric characters
+    * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.|
+
 ![Edit](images/UICommandImages/editCommand.png)
+
+Example 1:
+
+![image](https://user-images.githubusercontent.com/87350229/229332390-1f1cd42e-8123-4308-ae39-9f7f8e2a1041.png)
+
+Key in `edit 1 n/Software Engineer`.
+
+![image](https://user-images.githubusercontent.com/87350229/229332413-cc41c3f9-ed0d-4d62-9ba1-fcd942220cf6.png)
 
 
 ### Deleting a role: `delete`
