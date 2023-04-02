@@ -336,7 +336,7 @@ Output:
 ##### Syntax
 
 <pre>
-patient detail <var>patient</var>
+patient detail <var>PATIENT_ID</var>
 </pre>
 
 ##### Example
@@ -361,9 +361,9 @@ Resets the view of the patient pane to display all the Patients. Useful command 
 
 ##### Syntax
 
-```text
+<pre>
 patient list
-```
+</pre>
 
 Output:
 
@@ -379,11 +379,11 @@ Finds patients whose names contain any of the given keywords. You can also inclu
 
 ##### Syntax
 
-```text
-patient find <string>
-patient find --n <string> --phone <phone-number> --d <date> \
-    --b <bloodType> --a <group-name> --v <group-name>
-```
+<pre>
+patient find <var>PATIENT_NAME</var>
+patient find --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
+    --b <var>BLOODTYPE</var> [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
+</pre>
 
 ##### Example
 
@@ -467,9 +467,9 @@ Deletes the patient using the PATIENT_ID
 
 ##### Syntax
 
-```text
-patient delete <PATIENT_ID>
-```
+<pre>
+patient delete <var>PATIENT_ID</var>
+</pre>
 
 ##### Example
 
@@ -487,9 +487,9 @@ Deletes all Patients from VMS. It is for users to clear the dummy patients out f
 
 ##### Syntax
 
-```text
+<pre>
 patient clear
-```
+</pre>
 
 ##### Example
 
