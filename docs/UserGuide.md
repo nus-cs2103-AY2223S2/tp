@@ -2,43 +2,62 @@
 layout: page
 title: User Guide
 ---
+# 1. Table of contents:
 
-# 1. What is SudoHR?
+    
+1. [Introduction](#introduction)
+    1. [What is SudoHR?](#11-what-is-sudohr)
+    2. [Features](#13-features)
+2. [Quick start](#2-quick-start)
+---
 
-SudoHR is a **desktop app specially catered for HR professionals in managing employees, departments and leaves data,
+
+# Introduction
+
+## 1.1 What is SudoHR?
+
+SudoHR is a **desktop app specially catered for HR professionals in managing employees, departments and leave data,
 optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface
 (GUI). If you can type fast, SudoHR can get your HR management tasks done faster than traditional GUI apps.
+## 1.2 Notations
 
+[//]: # (Explain notations used in the UG)
 
-# 2. Table of Contents
-Table of Contents
-* TBC
+You will see several types of annotations in the user guide:
 
-[//]: # ({:toc})
+<div markdown="span" class="alert alert-primary">:exclamation: **TIP:**
+Good practices you can follow to enhance your experience using SudoHR.
+</div>
 
---------------------------------------------------------------------------------------------------------------------
+<div markdown="span" class="alert alert-warning">:exclamation: **NOTE:**
+Things to remember when using SudoHR so you don't get confused.
+</div>
 
-# 3. Features
+<div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
+Important things to remember when using SudoHR that may cause problems.
+</div> 
+
+## 1.3 Features
 
 There are 3 main data types in SudoHR:
-* Employees
-* Departments
-* Leaves
+* [Employees](#321-employee)
+* [Departments](#322-department)
+* [Leaves](#323-leave)
 
-SudoHR allows you to manage these components by:
+SudoHR allows you to manage all of these by:
 1. Creating, updating, listing and deleting of the 3 data types.
 2. Adding/Removing employees in departments/leaves.
 3. Applying different filters on the data.
 
-<div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
-SudoHR can only hold up to 10,000 employees, 10,000 departments, 10,000 leaves
-and 10,000 tags! Exceeding this limit will result in slower performance or unforeseen
-problems.
+<div markdown="span" class="alert alert-primary">:exclamation: **TIP:**
+SudoHR can access the data at breakneck speeds, up to 10,000 employees, 10,000 departments, 10,000 leaves
+and 10,000 tags!
 </div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 4. Quick start
+# 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -59,29 +78,13 @@ problems.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 5. Notations
 
-[//]: # (Explain notations used in the UG)
-
-You will see several types of annotations in the user guide:
-
-<div markdown="span" class="alert alert-primary">:exclamation: **TIP:**
-Good practices you can follow to enhance your experience using SudoHR.
-</div>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **NOTE:**
-Things to remember when using SudoHR so you don't get confused.
-</div>
-
-<div markdown="span" class="alert alert-danger">:exclamation: **WARNING:**
-Important things to remember when using SudoHR that may cause problems.
-</div> 
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 6. Quick Reference Guide
+# 3. Quick Reference Guide
 
-## 6.1. Layout
+## 3.1. Layout
 
 ![Screenshot of SudoHR app](images/Ui.png)
 
@@ -93,30 +96,30 @@ Our app interface consists of 5 main components:
 4. Employee section
 5. Department section
 
-### 6.1.1 Command line
+### 3.1.1 Command line
 The command line box located at the top of the application window serves to receive your typed inputs. 
 
 To start typing a command, move your cursor over to the command line and click it.
 
-### 6.1.2 Result display
+### 3.1.2 Result display
 Underneath the command line is the result display. This text box displays necessary information when executing
 commands.
 
-### 6.1.3 Departments
-The leftmost panel is the Departments section. Here you can view what are is the status of the departments in your
-company. The main data you can view on hand is the number of employees available.
-
-### 6.1.4 Employees
-Next to the Departments panel is the Employee section. This panel displays all the information regarding your 
+### 3.1.3 Employees
+Next to the Departments panel is the Employees section. This panel displays all the information regarding your 
 employees. The information shown include the employee id, email, phone number, address, emails and tags given to the
 employee
 
-### 6.1.5 Leaves
+### 3.1.4 Departments
+The leftmost panel is the Departments section. Here you can view the status of the departments in your
+company. The main data you can view on hand is the number of employees available.
+
+### 3.1.5 Leaves
 The last panel on the right is the Leaves section. On this panel, you can view the dates in which employees have 
 applied for leave. Each leave date would contain the number of employees who applied leaves on that day.
 
 
-## 6.2. Key definitions
+## 3.2. Key definitions
 
 [//]: # (GENERAL FORMAT OF DATA TYPE DEFINITION:)
 
@@ -124,9 +127,9 @@ applied for leave. Each leave date would contain the number of employees who app
 [//]: # (2. Explain fields)
 [//]: # (3. Explain constraints)
 
-### 6.2.1. Employee
+### 3.2.1. Employee
 
-An employee models a person in the company. Employees can be added to SudoHR to better 
+Employees can be added to SudoHR to better 
 track their data, involvement in the company, as well as easy retrieval of information.
 
 An employee possesses the following attributes:
@@ -137,7 +140,7 @@ An employee possesses the following attributes:
 5. (Home) Address
 6. [Optional] Tags
 
-Employees are identified by their IDs. An employee's ID is a unique identification assigned by the company.
+Employees are identified by their IDs. An employee's ID is a unique identification number assigned by the company.
 So, no two employees should share the same ID.
 
 Similarly, email address and phone number are fields that are not intended for sharing. 
@@ -148,10 +151,9 @@ You cannot add an employee that share any of the following fields with a differe
 2. Phone Number
 3. Email Address
 
-### 6.2.2. Department
+### 3.2.2. Department
 
-A department is a group of employees. A department can have many employees and
-an employee can be in many departments.
+A department is made up of a group of employees. A department can have many employees and an employee can be in many departments.
 
 Every employee in a department must be unique.
 
@@ -161,7 +163,7 @@ The following attributes are stored for each department:
 Departments are unique by name and case-sensitive. You cannot add more than one
 department of the same name.
 
-### 6.2.3. Leave
+### 3.2.3. Leave
 
 [//]: # 
 A leave represents a day on which an employee would be absent from the company. It is not possible for the employee to take more than 1 leave in a day.
@@ -171,7 +173,7 @@ The following attributes are stored for each leave:
 
 Each employee can only take a leave once per day. Leaves are unique by date.
 
-### 6.2.4. Prefixes
+### 3.2.4. Prefixes
 
 [//]: # (Explain prefixes in the command and their corresponding placeholders)
 
@@ -195,7 +197,7 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 | e/     | END_DATE                   |
 
 
-### 6.2.5. Placeholders
+### 3.2.5. Placeholders
 
 
 ![table1](images/table1.png)
@@ -205,7 +207,7 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 
 [//]: # (Talk about their constraints, type, format, etc)
 
-## 6.3. Command Format
+## 3.3. Command Format
 
 [//]: # (Explain the general command format: command, prefixes, placeholders)
 
@@ -226,11 +228,11 @@ It consists of:
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 7. Commands
+# 5. Commands
 
-## 7.1. Employee Commands
+## 5.1. Employee Commands
 
-### 7.1.1. Adding an employee: `add`
+### 5.1.1. Adding an employee: `add`
 
 Adds an employee to SudoHR.
 
