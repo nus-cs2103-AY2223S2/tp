@@ -351,7 +351,7 @@ Examples:
 
 The original recipe book:
 
-<img src="images/ALlRecipesStarred.png" width=500 height=400>
+<img src="images/AllRecipesStarred.png" width=500 height=400>
 
 - `unstar 1` will give you the result of the picture shown below:
 
