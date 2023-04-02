@@ -15,7 +15,6 @@ import seedu.address.logic.parser.AddVolunteerCommandParser;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.AutoPairCommandParser;
-import seedu.address.logic.parser.ClearCommandParser;
 import seedu.address.logic.parser.DeleteElderlyCommandParser;
 import seedu.address.logic.parser.DeletePairCommandParser;
 import seedu.address.logic.parser.DeleteVolunteerCommandParser;
@@ -61,7 +60,6 @@ public class CommandRecommendationEngine {
         registerCommand(new EditElderlyCommandParser());
         registerCommand(new EditVolunteerCommandParser());
         registerCommand(new DeletePairCommandParser());
-        registerCommand(new ClearCommandParser());
         registerCommand(new FindCommandParser());
         registerCommand(new ExitCommandParser());
         registerCommand(new ListCommandParser());
