@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.INVALID_TIMESTAMP_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -11,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -44,6 +47,12 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TIMESTAMP)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime.parse(argMultimap.getValue(PREFIX_TIMESTAMP).get(), formatter);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(String.format(INVALID_TIMESTAMP_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         OwnerName ownerName = ParserUtil.parseOwnerName(argMultimap.getValue(PREFIX_OWNER_NAME).get());
