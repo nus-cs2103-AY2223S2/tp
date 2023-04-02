@@ -163,22 +163,16 @@ public class UniqueEventList implements Iterable<Event> {
      * Tags the given Person {@code taggingPerson} to the event at {@code index}.
      */
     public void tagPersonToEvent(Index index, Person taggingPerson) {
-        Event event = this.getEvent(index);
-        Event copy = event.copy();
-        copy.getTaggedPeople().add(taggingPerson);
-        this.internalList.remove(event);
-        this.internalList.add(copy);
+        Event eventCopy = getEvent(index).addTaggedPerson(taggingPerson);
+        internalList.set(index.getZeroBased(), eventCopy);
     }
 
     /**
      * Untags the given Person {@code taggingPerson} from the event at {@code index}.
      */
     public void untagPersonToEvent(Index index, Person taggingPerson) {
-        Event event = this.getEvent(index);
-        Event copy = event.copy();
-        copy.getTaggedPeople().removeIf(p -> p.equals(taggingPerson));
-        this.internalList.remove(event);
-        this.internalList.add(copy);
+        Event eventCopy = getEvent(index).deleteTaggedPerson(taggingPerson);
+        internalList.set(index.getZeroBased(), eventCopy);
     }
 
     /**

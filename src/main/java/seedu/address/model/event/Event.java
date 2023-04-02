@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.model.event.fields.DateTime;
 import seedu.address.model.event.fields.Description;
@@ -62,6 +61,17 @@ public abstract class Event {
         return recurrence;
     }
 
+    public Set<Person> getTaggedPeople() {
+        return this.taggedPeople;
+    }
+
+    /**
+     * @return Whether this event is recurring.
+     */
+    public boolean isRecurring() {
+        return recurrence.isRecurring();
+    }
+
     /**
      * Returns a copy of the event where all the dates and times of the event
      * are updated to reflect the next earliest occurrence.
@@ -93,15 +103,13 @@ public abstract class Event {
      */
     public Event editTaggedPerson(Person personToEdit, Person editedPerson) {
         requireAllNonNull(editedPerson);
-        Event eventCopy = copy();
-        eventCopy.setTaggedPeople(taggedPeople.stream()
-                .map(p -> Objects.equals(personToEdit, p) ? editedPerson : p)
-                .collect(Collectors.toList()));
+        Event eventCopy = deleteTaggedPerson(personToEdit);
+        eventCopy.getTaggedPeople().add(editedPerson);
         return eventCopy;
     }
 
     public Event addTaggedPerson(Person person) {
-        editTaggedPerson(person, person);
+        return editTaggedPerson(person, person);
     }
 
     /**
@@ -114,23 +122,6 @@ public abstract class Event {
             }
         }
         return false;
-    }
-
-    public Set<Person> getTaggedPeople() {
-        return this.taggedPeople;
-    }
-
-    public void setTaggedPeople(Collection<? extends Person> people) {
-        requireAllNonNull(people);
-        taggedPeople.clear();
-        taggedPeople.addAll(people);
-    }
-
-    /**
-     * @return Whether this event is recurring.
-     */
-    public boolean isRecurring() {
-        return recurrence.isRecurring();
     }
 
     public DateTime getEffectiveStartDateTime() {
