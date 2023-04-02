@@ -26,19 +26,17 @@ public class DeletePlatformCommand extends Command {
             + "the index number used in the displayed listing book.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_PLATFORM + "PLATFORM\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PLATFORM + "John Doe\n"
-            + "*If there are duplicated names, specify the id by adding the 4-digit unique identifier after the name.\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PLATFORM + "John Doe#2103\n";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_PLATFORM + "LinkedIn\n";
 
-    public static final String MESSAGE_SUCCESS = "Applicant: %1$s has been deleted from %2$s!";
+    public static final String MESSAGE_SUCCESS = "Platform: %1$s has been deleted from %2$s!";
     public static final String MESSAGE_PLATFORM_NOT_FOUND = "Platform %1$s cannot be found in %2$s.";
     private final Index targetIndex;
     private final String targetPlatform;
 
     /**
-     * Creates a DeleteApplicantCommand to remove a applicant from a listing.
-     * @param targetIndex index of the listing to delete the applicant from
-     * @param targetPlatform id of the applicant to be deleted
+     * Creates a DeletePlatformCommand to remove a platform from a listing.
+     * @param targetIndex index of the listing to delete the platform from
+     * @param targetPlatform name of the platform to be deleted
      */
     public DeletePlatformCommand(Index targetIndex, String targetPlatform) {
         requireNonNull(targetIndex);
@@ -89,9 +87,9 @@ public class DeletePlatformCommand extends Command {
     }
 
     /**
-     * Create a identical listing with applicant removed.
+     * Create an identical listing with platform removed.
      * @param listing previous listing for reference
-     * @param platformToDelete applicant to delete
+     * @param platformToDelete platform to delete
      * @return
      */
     private Listing createEditedListingWithoutPlatform(Listing listing, Platform platformToDelete) {

@@ -11,13 +11,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.platform.Platform;
 
 /**
- * Parses input arguments and creates a new AddApplicantCommand object
+ * Parses input arguments and creates a new AddPlatformCommand object
  */
 public class AddPlatformCommandParser implements Parser<AddPlatformCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddApplicantCommand
-     * and returns an AddApplicantCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPlatformCommand
+     * and returns an AddPlatformCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPlatformCommand parse(String args) throws ParseException {
