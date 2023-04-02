@@ -1,5 +1,6 @@
 package seedu.address.model.pet;
 
+
 import static java.util.Objects.requireNonNull;
 
 import java.time.Duration;
