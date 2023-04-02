@@ -41,7 +41,7 @@ public class EditCommand extends Command {
             + PREFIX_TITLE + "Cool job title "
             + PREFIX_APPLICANT + "John "
             + PREFIX_APPLICANT + "Sam"
-            + PREFIX_PLATFORM + "linkedin";
+            + PREFIX_PLATFORM + "LinkedIn";
 
     public static final String MESSAGE_EDIT_LISTING_SUCCESS = "Edited listing:%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
