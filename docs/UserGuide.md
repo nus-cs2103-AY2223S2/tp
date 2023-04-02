@@ -78,14 +78,14 @@ placeholder
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**      | `add n/NAME a/AGE p/POSTAL d/DATE [v/VARIANT]...`<br> e.g., `add n/James Ho a/23 p/S222244 d/2000-11-11 v/DENV1`                                                                                                                                                       |
 | **Edit**     | `edit INDEX [n/NAME] [a/AGE] [p/POSTAL] [d/DATE] [v/VARIANT]...`<br> e.g.,`edit 2 n/James Lee d/2001-11-11`                                                                                                                                                            |
-| **Delete**   | `delete INDEX...` or `delete { d/DATE &#124; [sd/START_DATE] [ed/END_DATE] } `<br> e.g., `delete 3`, `delete d/2023-03-10`                                                                                                                                             |
+| **Delete**   | `delete INDEX...` or <code>delete { d/DATE &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g., `delete 3`, `delete d/2023-03-10`                                                                                                                                             |
 | **Clear**    | `clear`                                                                                                                                                                                                                                                                |
 | **List**     | `list`                                                                                                                                                                                                                                                                 |
-| **Find**     | `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \`<br> `&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }`<br> e.g., `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
-| **Sort**     | `sort { n/ &#124; a/ &#124; d/ }`<br> e.g.,`sort d/`                                                                                                                                                                                                                   |
+| **Find**     | <code>find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \\</code><br><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }</code><br> e.g., `find n/James Jake`, `find sa/20 ea/29`, `find v/DENV1 v/DENV2` |
+| **Sort**     | <code>sort { n/ &#124; a/ &#124; d/ }</code><br> e.g.,`sort d/`                                                                                                                                                                                                                   |
 | **Undo**     | `undo [INTEGER]`<br> e.g., `undo 5`                                                                                                                                                                                                                                    |
 | **Redo**     | `redo [INTEGER]`<br> e.g., `redo 2`                                                                                                                                                                                                                                    |
-| **Overview** | `overview { p/ &#124; a/ &#124; v/ }`<br> e.g., `overview v/`                                                                                                                                                                                                          |
+| **Overview** | <code>overview { p/ &#124; a/ &#124; v/ }</code><br> e.g., `overview v/`                                                                                                                                                                                                          |
 | **Checkout** | `checkout [FILENAME]`<br> e.g. `checkout overview.csv`                                                                                                                                                                                                                 |
 | **Import**   | `import [FILENAME]`<br> e.g. `import sampledata.csv`                                                                                                                                                                                                                   |
 | **Export**   | `export [FILENAME]`<br> e.g. `export sampledata.csv`                                                                                                                                                                                                                   |
@@ -118,8 +118,8 @@ placeholder
   the first sequence of 4 digits will be read as `yyyy`, then the first sequence of 2 digits
   is read into `MM`, then `dd` is the last to be read in. Thus, `20000102` is read as 2nd Jan 2000.
 
-* Items in curly brackets `{ }` separated by vertical lines `&#124;` form a set from which one option is to be chosen.<br>
-  e.g `{ p/ &#124; a/ &#124; v/ }` means that exactly one of `p/`, `a/` and `v/` must be chosen.
+* Items in curly brackets `{ }` separated by vertical lines `|` form a set from which one option is to be chosen.<br>
+  e.g `{ p/ | a/ | v/ }` means that exactly one of `p/`, `a/` and `v/` must be chosen.
 
 * Items with `...` after them can be used multiple times including zero times.<br>
   e.g. `[v/VARIANT]...` can be used as ` ` (i.e. 0 times), `v/DENV1`, `v/DENV1 v/DENV2`, etc.
@@ -273,7 +273,7 @@ Format: `list`
 Finds cases which match the given prefixes. Date ranges and age ranges are also supported using the new prefixes
 `sd/` `ed/` `sa/` `ea/`.
 
-Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] &#124; [sa/START_AGE] [ea/END_AGE] } \`<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; { [d/DATE] &#124; [sd/START_DATE] [ed/END_DATE] }`
+Format: `find [n/NAME] [p/POSTAL] [v/VARIANT]... { [a/AGE] | [sa/START_AGE] [ea/END_AGE] } \`<br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; { [d/DATE] | [sd/START_DATE] [ed/END_DATE] }</code>
 
 * The search is case-insensitive for all tags.
   * e.g. `n/hans` will match `Hans` or `hAns`
@@ -318,7 +318,7 @@ Examples:
 
 Sorts the entire case list based on the specified criterion.
 
-Format: `sort { n/ &#124; a/ &#124; p/ &#124; d/ }`
+Format: `sort { n/ | a/ | p/ | d/ }`
 
 * Sorts cases based on the specified criterion.
 * One and only one of the prefixes must be specified: `n/` for name, `a/` for age, `p/` for postal code and 
@@ -350,7 +350,7 @@ Example:
 
 Switches between the three overview options to summarize the data based on: location by postal code (default), age group, or dengue variant.
 
-Format: `overview { p/ &#124; a/ &#124; v/ }`
+Format: `overview { p/ | a/ | v/ }`
 
 * The default setting upon app start-up is `p/`.
 * One and only one of the three prefixes can be chosen: `p/` (location), `a/` (age), or `v/` (dengue variant).
