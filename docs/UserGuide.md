@@ -333,12 +333,12 @@ Format: `stats`
 :man_technologist: **Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!**
 
 Displays in the tasks that fall within the window specified on the right panel. If not supplied, assumed to be 24 hours.
-On opening of app, the **alert panel** will open to show **Tasks** which have deadlines within the **latest** window specified.
+On opening of app, the **alert panel** will open to show **Tasks** which have **start or have deadlines** within the **latest** window specified.
 Have to specify `ALERT WINDOW` in hours and only integers.
 
 Examples:
-- `alert` followed by `48` will show the alert window with all tasks which end within 48 hours.
-- `alert` alone will show the alert window with all tasks which end within 24 hours.
+- `alert` followed by `48` will show the alert window with all tasks which **start or end** within 48 hours.
+- `alert` alone will show the alert window with all tasks which **start or end** within 24 hours.
 
 
 ### 3.9 Schedule of the day : `schedule D/SHORTDATE [E/EFFORT]`
