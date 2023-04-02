@@ -112,14 +112,8 @@ public class ParserUtil {
     public static Dob parseDob(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDob = dob.trim();
-        if (trimmedDob.isBlank()) {
-            throw new ParseException(Dob.MESSAGE_CONSTRAINTS_BLANK);
-        }
-        if (!Dob.isValidDate(trimmedDob)) {
-            throw new ParseException(Dob.MESSAGE_CONSTRAINTS_DATE);
-        }
         if (!Dob.isValidDob(trimmedDob)) {
-            throw new ParseException(Dob.MESSAGE_CONSTRAINTS_YOUNG);
+            throw new ParseException(Dob.MESSAGE_CONSTRAINTS);
         }
         if (!Dob.isTooOld(trimmedDob)) {
             throw new ParseException(Dob.MESSAGE_CONSTRAINTS_OLD);

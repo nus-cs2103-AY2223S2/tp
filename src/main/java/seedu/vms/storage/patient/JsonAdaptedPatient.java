@@ -108,7 +108,7 @@ public class JsonAdaptedPatient {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Dob.class.getSimpleName()));
         }
         if (!Dob.isValidDob(dob)) {
-            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS_DATE);
+            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS);
         }
         final Dob modelDob = new Dob(dob);
 
