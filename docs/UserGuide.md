@@ -44,7 +44,7 @@ The following is a short overview of the features and capabilities of CookHub:
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `add t/Watermelon juice d/Quick and easy watermelon juice i/One watermelon s/Juice the watermelon` : Add a new recipe titled `Watermelon juice` that has a description `Quick and easy watermelon juice`, an ingredient of `One watermelon`, and a step of `Juice the watermelon`
+   * `add t/Watermelon juice d/Quick and easy watermelon juice i/Watermelon, 3, Slices, 0.10 s/Juice the watermelon` : Add a new recipe titled `Watermelon juice` that has a description `Quick and easy watermelon juice`, an ingredient of `One watermelon`, and a step of `Juice the watermelon`
    * `delete 1 ` : Delete a recipe at index 1
    * `list` : Lists all recipes
    * `exit`: Exits the app
@@ -60,21 +60,26 @@ The following is a short overview of the features and capabilities of CookHub:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user. The parameters can also be input in any order.<br>
-  - The format of the add command: 
-  - `add t/TITLE d/DESCRIPTION i/INGREDIENT s/STEP [tag/TAG]`
-  - Example usages of the add command:
-  - `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` 
-  - `add s/Mix batter i/Flour, 3.5, Cup, 0.30 t/Corndogs d/Delicious`
+* Words in `lower_case` are commands or flag that must be typed literally
+* Words in `UPPER_CASE` are placeholder texts that is to be replaced by the user.
+* Command flags (e.g. `t/`, `d/`) can be typed in any order
+  - For example, the two commands below are the same, despite the swapped order of the command flags `t/` and `d/`
+    - `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` 
+    - `add d/Delicious t/Corndogs i/Flour, 3.5, Cup, 0.30 s/Mix batter`
 
-* Items in square brackets are optional.<br>
-  - e.g  `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` is without the `tag/` flag as it is optional
+* Items in square brackets are optional.
+  - e.g  `add t/Corndogs d/Delicious i/Flour, 3.5, Cup, 0.30 s/Mix batter` is a valid command even though the command flag `tag/` is missing
 
-* TITLE, DESCRIPTION, STEP are words or sentences (Java String).
-  - e.g. `t/I am a title d/I am a description s/I am a step`
+* TITLE, DESCRIPTION, STEP, TAG must be a word or sentence
+  - e.g. TITLE can be `I am a title`
+  - e.g. TAG can be `Tag`
 
-* INGREDIENT is of the format {ingredient_name, quantity, unit_of_measurement, price_per_unit}
-  - e.g. `i/White wine vinegar, 2, tbsp, 0.10 i/large egg, 4, unit, 0.80`
+* INGREDIENT is of the format {INGREDIENT_NAME, QUANTITY, UNIT_OF_MEASUREMENT, PRICE_PER_UNIT}
+  - INGREDIENT_NAME, QUANTITY, UNIT_OF_MEASUREMENT, PRICE_PER_UNIT are placeholder text meant to be replaced by the user following the below rules:
+    - INGREDIENT_NAME, UNIT_OF_MEASUREMENT must be a word or sentence
+    - QUANTITY, PRICE_PER_UNIT must be numeric
+  - e.g. INGREDIENT can be `White wine vinegar, 2, tbsp, 0.10`
+  - e.g. INGREDIENT can be `Large egg, 4, unit, 0.80`
 
 </div>
 
@@ -88,7 +93,7 @@ Adds a recipe to the recipe book.
 
 Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
 
-:bulb: Tip: A recipe can have any number of tags (including 0)
+:bulb: Reminder: A recipe can have one or more ingredients, and one or more steps. A recipe can also have zero or more tags.
 
 
 Examples:
@@ -114,13 +119,14 @@ multiple `i/` flags and a recipe look like the picture shown below will be added
 
 
 ---
-### Edit a recipe: `edit {recipe number}`
+### Edit a recipe: `edit RECIPE_NUMBER`
 Edits a recipe in the recipe book.
 
-Format: `edit {recipe number} $[t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...$`
+Format: `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...`
+:warning: CAUTION: At least one of the command flags need to be present
 
-- The *recipe number* refers to the index number shown in the displayed recipe book
-- The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
+- The *RECIPE_NUMBER* should refer to the index number shown in the displayed recipe book
+- The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
 
 
 Example:
@@ -145,13 +151,13 @@ the picture shown below:
 
 
 ---
-### Delete a recipe : `delete {recipe number}`
+### Delete a recipe : `delete RECIPE_NUMBER`
 Deletes the recipe at the specified *task number* from the recipe book.
 
-Format: `delete {recipe number}`
+Format: `delete RECIPE_NUMBER`
 
-- The *recipe number* refers to the index number shown in the displayed recipe book
-- The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
+- The *RECIPE_NUMBER* refers to the index number shown in the displayed recipe book
+- The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
 
 Expected outcome: You should see an updated list of recipes with the recipe at the specified index removed.
 
@@ -206,14 +212,16 @@ Example: `clear` will clear all recipes like the picture shown below:
 
 Finds the recipes in CookHub according to what you are looking for
 
-Format: `find $$[r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]$$`
+Format: `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
+:warning: WARNING: Only one command flag can be present
+
 - the flag `r/` searches through the entire recipe and its components
 - the flag `t/` searches only through the recipe's title
 - the flag `s/` searches only through the recipe's steps
 - the flag `i/` seaches only through the recipe's ingredient names
 - the flag `tag/` searches only through the recipe's tags
 
-:exclamation: Constraint: `find i/INGREDIENT` should only be used to find the name of  the ingredients, and not its quantity/unit of measurement/price per unit. e.g. `find i/lemons` is OK, but `find i/30g` should not be used.
+:exclamation: Constraint: `find i/INGREDIENT` should only be used to find the name of  the ingredients, and not its quantity, unit of measurement, or price per unit. e.g. `find i/lemons` is OK, but `find i/30g` should not be used.
 
 Examples:
 
@@ -242,6 +250,7 @@ shown below:
 Searches for recipes that can be made with only those ingredients
 
 Format: `only INGREDIENT...`
+:bulb: Reminder: One or more ingredients can be provided
 
 Examples:
 
@@ -266,14 +275,14 @@ A recipe that only needs eggs will also be valid. The result of the command is s
 
 
 ---
-### Sort recipe by cost: `sort {order}`
+### Sort recipe by cost: `sort ORDER`
 
-Sorts the recipes in the RecipeBook by price in the order specified. The order can only be `asc` for ascending order OR
-`desc` for descending order. The price of a recipe is determined by cost of all ingredients required.
+Sorts the recipes in the RecipeBook by price in the order specified. 
 
-Format: `sort {order}`
-
-Expected outcome: You should see a list of recipes sorted in ascending order of price.
+Format: `sort ORDER`
+- *ORDER* can only be `asc` or `desc`.
+- `asc` is used for ascending order, and `desc` is used for descending order
+- The price of a recipe is determined by cost of all ingredients required.
 
 Example: 
 
@@ -289,14 +298,18 @@ The original recipe book:
 
 ---
 
-### Filter recipe by price: `fp {comparator} {price}`
+### Filter recipe by price: `fp COMPARATOR PRICE`
 
-Filters the recipes in the RecipeBook by price according to the comparator specified. The `comparator` can only be `<` for less than OR `>` for more than. The `price` can take on any positive real value as the price of a recipe is determined by cost of all ingredients required.
+Filters the recipes in the RecipeBook by price according to the comparator specified. 
 
-Format: `fp {comparator} {price}`
+Format: `fp COMPARATOR PRICE`
 
-Expected outcome: You should see a list of filtered recipes with price less than $4.50.
-
+- *COMPARATOR* can only be `<` or `>`.
+- `<` is used to represent "less than"
+- `>` is used to represent "more than"
+- *PRICE* can take on any positive real number
+- The price of a recipe is determined by cost of all ingredients required.
+- 
 Example: 
 
 The original recipe book:
@@ -309,16 +322,14 @@ The original recipe book:
 
 
 ---
-### Add a recipe to the favorites: `star {index}`
+### Add a recipe to the favorites: `star RECIPE_NUMBER`
 
 Add the recipe at the specified *task number* in the favorites, which include all recipes you favor the most.
 
-Format: `star {recipe number}`
+Format: `star RECIPE_NUMBER`
 
-- The *recipe number* refers to the index number shown in the displayed recipe book
-- The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
-
-Expected outcome: You should see a star after the title of the recipe you marked on.
+- The *RECIPE_NUMBER* refers to the index number shown in the displayed recipe book
+- The *RECIPE_NUMBER* must be a positive integer starting from 1 and must exist in the recipe book
 
 Examples:
 
@@ -336,16 +347,14 @@ The original recipe book:
 
 
 ---
-### Remove a recipe from the favorites: `unstar {index}`
+### Remove a recipe from the favorites: `unstar RECIPE_NUMBER`
 
 Remove the recipe at the specified *task number* from the favorites.
 
-Format: `unstar {recipe number}`
+Format: `unstar RECIPE_NUMBER`
 
 - The *recipe number* refers to the index number shown in the displayed recipe book
 - The *recipe number* must be a positive integer starting from 1 and must exist in the recipe book
-
-Expected outcome: You should not see the star after the title of the recipe you unmarked on.
 
 Examples:
 
@@ -368,8 +377,6 @@ The original recipe book:
 Lists out all the recipes that you have added to the favorites.
 
 Format: `favorites`
-
-Expected outcome: You should see a list of all the recipes in your favorites
 
 Example:
 
@@ -432,11 +439,11 @@ Format meanings:
 - Words in [Square brackets] are optional parameters (Note:ls can stack filters)
 - Words that are followed by * are parameters that can be used multiple times
 
-| Action                   | Format | Examples  |
-|--------------------------|--------|-----------|
-| Delete Recipe            | delete {recipe number} | delete 1  |
-| Sort Recipes by price    | sort {order} | sort asc  |
-|  Filter Recipes by price | filter {comparator} {price} | fp < 4.20 |
+| Action                   | Format                  | Examples  |
+|--------------------------|-------------------------|-----------|
+| Delete Recipe            | delete RECIPE_NUMBER    | delete 1  |
+| Sort Recipes by price    | sort ORDER              | sort asc  |
+|  Filter Recipes by price | filter COMPARATOR PRICE | fp < 4.20 |
 
 <hr style="border:2px solid gray">
 
