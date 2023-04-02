@@ -73,6 +73,9 @@ public class HelpWindow extends UiPart<Stage> {
         urlLink.setText(USERGUIDE_URL);
         featuresHeader.setText(FEATURE_HEADER);
         helpMessage.setText(HELP_MESSAGE);
+        root.setResizable(true);
+
+
     }
 
     /**
