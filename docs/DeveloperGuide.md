@@ -305,40 +305,30 @@ We want to make it easy for the user to set tests without inputting all the deta
 ### Parent/NOK Edit Feature
 
 #### Current Implementation
-The edit feature for parent / NOK is facilitated by `edit`.
+The edit feature for parent / NOK is facilitated by `parent edit`. <br>
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 <br>
-
-Step 1. User launches the application for the first time. <br>
-Step 2. User creates a new `Parent` using **Parent Add Command** or automatically creates a new `Parent` while using **Student Add Command**. <br>
-Step 3. During creation of `Parent`, <br>
-User encountered one of the two scenarios and require to edit the `Parent`:
-1. Did not include certain particulars of the `Parent`.
-2. Keyed in wrong particulars for the `Parent`.
-
-Step 4. User wants to amend the details of the `Parent` and hence executes the `edit` command with the `Name` and `Phone Number` of Parent and the `Particulars` to be edited.<br>
-Step 5. Edited `Parent` is saved to the storage file automatically after the command.
+1. User launches the application for the first time. <br>
+2. User creates a new `Parent` using ***Parent Add Command*** or gets a new `Parent` created by PowerConnect while executing the ***Student Add Command***. <br>
+3. During creation of `Parent`, User encountered one of the two scenarios and requires to edit the `Parent`:
+   1. Did not include certain particulars of the `Parent`. 
+   2. Keyed in wrong particulars for the `Parent`.
+4. User wants to edit the `Parent` particulars and hence executes the `parent edit` command with the `Name` and `Phone Number` of the corresponding `Parent` and the `Particulars` to be edited.<br>
+   Example of parent edit command: `"parent edit n/Tan Ah Niu pnP/91234567 npnP/65656565"` <br>
+5. Edited `Parent` is saved to the storage file automatically after the command. <br><br>
 
 **Full implementation sequence diagram**
-![Sequence Diagram](images/ParentEditCmd(Full_Sequence_Diagram).jpg)
+![Sequence Diagram](images/ParentEditSequentialDiagram.png)
 
-**Partial Sequence Diagram 1**
-![Sequence Diagram](images/ParentEditCmd(Sequence_Diagram_PT1).jpg)
+**Reference to get parent particulars sequence diagram**
+![Sequence Diagram](images/ParentEditParserUtilSequentialDiagram.png)
 
-**Partial Sequence Diagram 2**
-![Sequence Diagram](images/ParentEditCmd(Sequence_Diagram_PT2).jpg)
-
-**Partial Sequence Diagram 3**
-![Sequence Diagram](images/ParentEditCmd(Sequence_Diagram_PT3).jpg)
-
-**Partial Sequence Diagram 4**
-![Sequence Diagram](images/ParentEditCmd(Sequence_Diagram_PT4).jpg)
 
 ### Design considerations
-We want to make it easy for the user to edit `Parent / NOK` particulars without manually deleting the `Parent` and creating a new `Parent` and reassigning each `Student` attached to original `Parent` with the new `Parent`.
+We want to make it easy for the User to edit `Parent / NOK` particulars without manually deleting the `Parent / NOK` and creating a new `Parent / NOK` and reassigning each `Student` attached to original `Parent / NOK` with the new `Parent / NOK`.
 <br><br>
-We also do not want to trouble the user with inputting multiple **PREFIXES** to edit parent / NOK. Hence, user will only need to input **ESSENTIAL PREFIXES and information** for these:
+We also do not want to trouble the User with inputting multiple **PREFIXES** to edit `Parent / NOK`. Hence, User only needs to input ***PREFIXES*** belonging to the edited information and the following:
 1. Parent's / NOK's `Name`
 2. Parent's / NOK's `Phone Number`
 3. Particulars that are being amended<br><br>
@@ -348,12 +338,12 @@ We also do not want to trouble the user with inputting multiple **PREFIXES** to 
     * Pro: Easy to use
     * Pro: Minimal input by user to edit `Parent / NOK` particulars
     * Con: Slightly harder than Alternative 2 to implement
-    * Con: Need to test the **Parent Edit Command** exhaustively to ensure when creating the new `Parent`, system takes input from original `Parent` if there is no edit.
-* **Alternative 2:** User provides all updated particulars of the `Parent` to be edited. From these details, system will create a new `Parent` and replace the original copy of `Parent`.
+    * Con: Need to test the ***Parent Edit Command*** exhaustively / come up with automated tests to ensure when creating the new `Parent / NOK`, system takes input from original `Parent / NOK` for particulars that are not amended.
+* **Alternative 2:** User provides **ALL** particulars of the `Parent / NOK` to be edited even if **SOME** of the particulars are the **SAME** as original. From these details, system will create a new `Parent / NOK` and replace the original copy of `Parent / NOK` with it.
     * Pro: Easy to implement
     * Pro: Makes use of existing features **Parent Add** and **Parent Delete**
-    * Con: Troublesome for the user as there is a need to input **ALL** particulars of a `Parent` even if he/she is just amending one particular of the `Parent`.
-    * Con: It may cause regressions, user may key in wrong details for some of the `Parent` particulars as he/she is keying in the command.
+    * Con: Troublesome for the user as there is a need to input **ALL** particulars of a `Parent / NOK` even if he/she is just amending one of the particulars of the `Parent / NOK`.
+    * Con: It may cause regressions, user may key in wrong details for some of the `Parent / NOK` particulars as he/she is keying in the command. This will cause much inconvenience for Users especially when the `Parent / NOK` they are amending has **TONS** of information.
     * Con: It is no longer **FAST** and **EASY** for the user to use.
 
 --------------------------------------------------------------------------------------------------------------------
