@@ -56,7 +56,7 @@ deactivate Model
 
 loop 4 times
 AddEmployeeToLeaveFromToCommand -> Model : addEmployeeToLeave(1,datesToAdd)
-activate Model 
+activate Model
 
 Model --> AddEmployeeToLeaveFromToCommand
 deactivate Model

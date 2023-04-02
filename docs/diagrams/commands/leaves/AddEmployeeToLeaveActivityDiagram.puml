@@ -16,4 +16,3 @@ else ([Employee has not taken leave on the given day])
 stop
 
 @enduml
-

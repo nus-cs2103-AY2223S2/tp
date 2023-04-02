@@ -14,5 +14,4 @@ if () then ([else])
  else ([Employee has taken leave on the given day])
   :defl command successfully executes.;
 stop
-
 @enduml

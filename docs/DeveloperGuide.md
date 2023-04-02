@@ -380,7 +380,7 @@ Sequence Diagram:
 3. The `Id` and `LeaveDate` is passed down to the command.
 4. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Leave` does not exist, a new one is created and added to `SudoHR`. If the `Employee` does not exist, an error message will be displayed.
 5. If the employee already exists in `Leave`, an error message will be displayed.
-6. Assuming if Step 5 completes without exception, the employee would be added to the `Leave`. 
+6. Assuming if Step 5 completes without exception, the employee would be added to the `Leave`.
 7. `FilteredEmployeeList` will be updated to only display all employees having leave on the input date.
 
 ##### Feature considerations
@@ -403,7 +403,7 @@ Sequence Diagram:
 3. The `Id` and `LeaveDate` is passed down to the newly created command.
 4. The command is executed. It first tries to find the `Employee` with ID 1 and the `Leave` that represents the date on which the leave is taken. If the `Employee` does not exist, an error message will be displayed.
 5. If the employee does not exists in `Leave` (The employee has yet take leave on the input date), an error will be thrown too.
-6. Assuming if Step 4 completes without exception, the employee would be added to the `Leave`. 
+6. Assuming if Step 4 completes without exception, the employee would be added to the `Leave`.
 7. `FilteredEmployeeList` will be updated to only display all employees having leave on the input date.
 
 #### Adding an employee's leave in a range
@@ -419,9 +419,8 @@ Sequence Diagram:
 ##### Flow
 
 1. The user types and enters the command `aelr eid/1 s/2022-03-04 e/2022-03-06` where 1 is the employee id, 2022-03-04 is the start date and 2022-03-06 is the end date.
-2. The parser checks that the end date `e/` is after the start date represented by `s/`.The end date `e/` also must be less than 7 days away from the start date `s/`. If both conditions are not satisfied, an error message will be shown. 
-3. The parser would initialise a `Id` constructed from the input of argument `eid/` and a list of `LeaveDate` objects representing every single day in the range between `s/` and `e/` with the end and start dates inclusive. 
-4. The list of `LeaveDate` and `Id` 
+2. The parser checks that the end date `e/` is after the start date represented by `s/`.The end date `e/` also must be less than 7 days away from the start date `s/`. If both conditions are not satisfied, an error message will be shown.
+3. The parser would initialise a `Id` constructed from the input of argument `eid/` and a list of `LeaveDate` objects representing every single day in the range between `s/` and `e/` with the end and start dates inclusive.
 4. The command is executed. The command first tries to find the `Employee` with ID 1. If the `Employee` does not exist, an error message will be displayed.
 5. The command then checks if the employee has taken leave on any of the days in the range between the start date `s/` and end date `e/` inclusive. If this is the case, an error message would be thrown. 
 5. Assuming step 6 completes with no exception, `Employee` is added to `Leave` on all the days in the range of the start day to end date inclusive
