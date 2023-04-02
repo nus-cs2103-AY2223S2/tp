@@ -131,7 +131,7 @@ These commands are:
 * [Viewing a role](#viewing-a-role-view)
 
 ### Find roles by Name: `name`
-Searches for roles with the provided names.
+Searches for roles with the provided names. If multiple keywords inputted, there may be multiple results that contains these key words.
 
 Format: `name {keywords}...`
 
