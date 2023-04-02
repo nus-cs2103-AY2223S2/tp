@@ -140,6 +140,25 @@ Refer to the [Features](#features) below for details of each command.
 
 ## Command Syntax
 
+**:information_source: The following are rules applicable to all commands:**
+
+1. Words encapsulated in `{}` are the parameters to be supplied by the user.\
+  e.g. in `add {module_code}`, `{module_code}` is a parameter which can be used as `add CS2040`.
+
+2. Items in square brackets are optional.\
+  e.g. `add {module_code} [/name {module_name}]` can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
+
+3. Named parameters can be specified in any order as long as it is after all unnamed parameters (if any).\
+  e.g. `edit {module_code} /code {updated_code} /name {updated_name}` can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
+
+4. If a named parameter is expected only once in the command but the user specified it multiple times, only the last occurrence of the parameter will be taken.\
+  e.g. `add {module_code} [/name {module_name}]` if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be used as the value of the `/name` parameter.
+
+5. Extraneous parameters will be ignored.\
+  e.g. `add {module_code} /name {module_name}` if used as `add CS2040 /name DSAG /foo bar`, the `/foo` parameter is ignored.
+
+6. Arguments must be specified in the format `/{argument_name} {value}`, if the argument takes a value, or `/{argument_name}`, if the argument takes no value, and there must be a whitespace before `/{argument_name}`.
+
 ---
 
 ## Navigation
