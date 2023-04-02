@@ -103,7 +103,11 @@ public class LogicManager implements Logic {
             }
 
         }
-        return deadlinesToday + "\n\n" + timeSlotsToday;
+        String output = deadlinesToday + "\n\n" + timeSlotsToday;
+        if (output.length() <= 40) {
+            output = "No Time Slots or Deadlines Today! :)";
+        }
+        return output;
     }
 
     private String getDeadlinesToday(int index) {
