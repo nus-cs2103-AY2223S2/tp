@@ -1110,7 +1110,7 @@ Any organised meet ups will be displayed at `EduMate`'s [Scheduled Meet Up Panel
 
 :warning:**Common Mistake**
 
-The American spelling `organize` is not accepted by `EduMate`.
+The American spellings, `organize` and `unorganize` are not accepted by `EduMate`.
 
 </div>
 
