@@ -204,7 +204,7 @@ Examples:
 Adds a specified tag to a specified athlete.
 
 Format: `add-tag INDEX t/TAGNAME`
-* Adds a tag of `TAGNAME` to the athelete at `INDEX`
+* Adds a tag of `TAGNAME` to the athlete at `INDEX`
 
 Examples:
 * add-tag 1 t/Hall adds a tag of name `Hall` to the person at Index 1.
@@ -215,34 +215,24 @@ Adds a specified tag to a specified athlete.
 
 Format: `remove-tag INDEX t/TAGNAME`
 
-* Removes a tag of `TAGNAME` to the athelete at `INDEX`
+* Removes a tag of `TAGNAME` to the athlete at `INDEX`
 
 
 Examples:
 * remove-tag 1 t/Hall remove a tag of name `Hall` to the person at Index 1.
 
-
 ### Showing athletes with the specified tag : `show`
 
 Shows all athletes belonging to at least one of the tags specified.
 
-Format: `show [GROUP1]…​`
+Format: `show [TAG1]…​`
 
-* Filters list of athletes to only contain athletes belonging to one or more of the specific group(s).
+* Filters list of athletes to only contain athletes belonging to one or more of the specific tag(s).
 * At least one tag name **must be provided.**
 
 Examples:
-* `show varsity` shows people belonging to group `varsity`.
-* `show hockey tennis` shows people belonging to either group `hockey`, `tennis` or both.
-
-### Listing all groups in SportSync : `display`
-
-Lists all groups created by the coach.
-
-Format: `display`
-
-* Displays all existing coach-created groups.
-* Only the group names themselves are displayed, not the athletes belonging to those groups.
+* `show varsity` shows people belonging to tag `varsity`.
+* `show hockey tennis` shows people belonging to either tag `hockey`, `tennis` or both.
 
 ### Saving the data
 
@@ -345,8 +335,8 @@ Examples:
 * **Attendance**: A record of the presence or absence of an athlete at a training session.
 * **Coach**: A person who trains and directs athletes or a team.
 * **Session**: A training period for athletes conducted by a coach.
+* **Tag**: A label attached to an athlete in SportSync, used to group athletes together for easier management.
 
-Tag: A label attached to an athlete in SportSync, used to group athletes together for easier management.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Command summary**
@@ -360,10 +350,7 @@ Tag: A label attached to an athlete in SportSync, used to group athletes togethe
 | **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                             |
 | **List**      | `list`                                                                                                                                                 |
 | **Help**      | `help`                                                                                                                                                 |
-| **Sort**      | `sort ATTRIBUTE ORDER`<br> e.g., `sort 1 2`                                                                                                            |
-| **Group**     | `group m/MODIFICATION g/GROUPNAME`<br> e.g., `group m/add g/Team Dynamite`                                                                             |
-| **Group Mod** | `groupmod INDEX m/MODIFICATION g/GROUPNAME`<br> e.g., `groupmod 2 m/add g/Team Dynamite`                                                               |
+| **Sort**      | `sort ATTRIBUTE ORDER`<br> e.g., `sort 1 2`                                                                                                            |                                                              |
 | **Show**      | `show [TAG1]…​`<br> e.g., `show Hall…​`                                                                                                                |
-| **Display**   | `display`                                                                                                                                              |
 | **Undo**      | `undo`                                                                                                                                                 |
 | **Redo**      | `redo`                                                                                                                                                 |
