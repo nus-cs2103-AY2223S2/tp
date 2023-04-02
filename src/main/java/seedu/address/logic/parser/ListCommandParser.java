@@ -24,11 +24,15 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String trimmedArgs = args.trim().toLowerCase();
-        return switch (trimmedArgs) {
-            case "", "unpaired", "paired" -> new ListCommand(trimmedArgs);
-            default -> throw new ParseException(
+        switch (trimmedArgs) {
+        case "":
+        case "unpaired":
+        case "paired":
+            return new ListCommand(trimmedArgs);
+        default:
+            throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
-        };
+        }
     }
 
     @Override
