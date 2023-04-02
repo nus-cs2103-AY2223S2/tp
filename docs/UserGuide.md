@@ -19,7 +19,13 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
 
 3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sportsync.jar` command to run the application.<br>
    e.g. `cd Desktop\New_Folder` and then `java -jar sportsync.jar`<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
+
+   A GUI similar to the below should appear in a few seconds. This shows the session list, which is currently empty.<br>
+   Below that is the income analytics, which tabulates how much you've earned through your sessions.<br><br>
+   ![EmptySessionUi](images/EmptySessionUi.png)<br><br>
+   Click the `Contacts` tab, or press the shortcut `CTRL + 2`. You have just navigated to the contact list.<br>
+   Note how the app contains some sample data.<br><br>
    ![Ui](images/Ui.png)
 
 4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -37,12 +43,16 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
 
 Refer to the [Features](#features) below for details of each command.
 
+5. Click the `Calendar` tab, or press the shortcut `CTRL + 3`. You have just navigated to the calendar, which is currently empty.<br>
+   All future scheduled sessions will automatically show up on the calendar.<br><br>
+   ![Ui](images/EmptyCalendarUi.png)<br>
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Here are some useful shortcuts that can help you save time:<br>
 **F1**: Opens the help menu.
-**CTRL + 1**: Switches to the session tab.
-**CTRL + 2**: Switches to the contacts tab.
-**CTRL + 3**: Switches to the calendar tab.
+**CTRL + 1**: Switches to the `Sessions` tab.
+**CTRL + 2**: Switches to the `Contacts` tab.
+**CTRL + 3**: Switches to the `Calendar` tab.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
