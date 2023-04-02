@@ -50,8 +50,8 @@ InternshipDetailsCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-InternshipDetailsCard ..> Model
-InternshipCard ..> Model
+InternshipDetailsCard ...> Model
+InternshipCard ...> Model
 
 UiManager -right-> Logic
 MainWindow -left-> Logic
