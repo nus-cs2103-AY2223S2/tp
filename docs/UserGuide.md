@@ -251,12 +251,13 @@ _\* Both commands lists videos that belongs to lecture `Week 1` in module `CS204
 > `add {module_code} [/name {module_name}] [/tags {tag_1}, [{tag_2}, ...]]`
 
 Adds a module to Le Tracker
+
 - <span style="color:#e46c0a">`module_code`</span> : The code of the module
   - Must be unique among the module code of the modules in Le Tracker
   - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
 - <span style="color:#e46c0a">`module_name`</span> : The name of the module
   - Must be a valid module name (refer to [Argument Validity](#argument-validity) for more information)
-- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags applied to the module
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the module
   - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
   - Repeated tags (if any) will be ignored
 
@@ -266,16 +267,21 @@ Examples:
 
 ### Add a Lecture
 
-> Adds a lecture to a module.
+> `add {lecture_name} [/mod {module_code}] [/tags {tag_1}, [{tag_2}, ...]]`
 
-Format: `add {lecture_name} [/mod {module_code}] [/tags {tag_1}, [{tag_2}, ...]]`
+Adds a lecture to a module.
 
-- `lecture_name` must be a valid lecture name
-- `lecture_name` must be unique among the names of the lectures belonging to the module specified in `module_code`
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
-- `tag_1`, `tag_2`, ... must be valid tags
-- `tag_1`, `tag_2`, ... if it contains repeated tags, the repeats will be ignored
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code`
+  - Uniqueness is case sensitive
+  - Must be a valid lecture name (refer to [Argument Validity](#argument-validity) for more information)
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module to add the lecture to
+  - Must belong to an existing module in Le Tracker
+  - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags to apply to the lecture
+  - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
+  - Repeated tags (if any) will be ignored
 
 Examples:
 
