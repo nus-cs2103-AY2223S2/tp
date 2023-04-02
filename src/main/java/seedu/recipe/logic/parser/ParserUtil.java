@@ -220,7 +220,7 @@ public class ParserUtil {
             RecipeDuration duration = null;
             // handle the case where empty duration string is provided
             // interpret this as: user wants to clear the duration field
-            if (!durationString.get().equals("")) {
+            if (!durationString.get().trim().isEmpty()) {
                 duration = parseDuration(durationString.get());
             }
             recipeDescriptor.setDuration(duration);
@@ -232,7 +232,7 @@ public class ParserUtil {
             RecipePortion portion = null;
             // handle the case where empty portion string is provided
             // interpret this as: user wants to clear the portion field
-            if (!portionString.get().equals("")) {
+            if (!portionString.get().trim().isEmpty()) {
                 portion = parsePortion(portionString.get());
             }
             recipeDescriptor.setPortion(portion);
