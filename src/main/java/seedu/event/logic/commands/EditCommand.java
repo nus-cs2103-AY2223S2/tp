@@ -48,7 +48,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TIME_END + "END_TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567";
+            + PREFIX_RATE + "30";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
