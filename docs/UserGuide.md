@@ -216,7 +216,7 @@ You may locate the Person List at the center-left of `EduMate`. This is where yo
 <img src="images/UG_ui_pictures/PersonList.svg" style="width:60%;margin:0 10% 0 20%">
 
 <center>Diagram 4: Person List with some contacts displayed.</center>
-
+<br>
 <div markdown="block" class="alert alert-info">
 
 :information_source:**Appearance of Module Tags**<br>
@@ -307,7 +307,7 @@ and **its corresponding prefix** and enter them in the future!
 <br>
 
 
-Moreover, eduMate will replace the missing fields with placeholders which you
+Moreover, EduMate will replace the missing fields with placeholders which you
 can then edit over later!
 
 </div>
