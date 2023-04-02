@@ -76,12 +76,12 @@ Here is a short overview of the features and capabilities of CookHub:
   - e.g. *TITLE* can be `I am a title`
   - e.g. *TAG* can be `Tag`
 
-* INGREDIENT is of the format `INGREDIENT_NAME, QUANTITY, UNIT_OF_MEASUREMENT, PRICE_PER_UNIT`
+* *INGREDIENT* is of the format `INGREDIENT_NAME, QUANTITY, UNIT_OF_MEASUREMENT, PRICE_PER_UNIT`
   - *INGREDIENT_NAME*, *QUANTITY*, *UNIT_OF_MEASUREMENT*, *PRICE_PER_UNIT* are placeholder text meant to be replaced by the user following the below rules:
     - *INGREDIENT_NAME*, *UNIT_OF_MEASUREMENT* must be a word or sentence
     - *QUANTITY*, *PRICE_PER_UNIT* must be numeric
-  - e.g. INGREDIENT can be `White wine vinegar, 2, tbsp, 0.10`
-  - e.g. INGREDIENT can be `Large egg, 4, unit, 0.80`
+  - e.g. *INGREDIENT* can be `White wine vinegar, 2, tbsp, 0.10`
+  - e.g. *INGREDIENT* can be `Large egg, 4, unit, 0.80`
 
 </div>
 
@@ -109,14 +109,15 @@ shown below will be added to the recipe book:
   
 <img src="images/AddResult1.png" width=500 height=400>
 
-- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because the command flag `s/` is compulsory. An error message will appear, similar to the one shown below:
-
-<img src="images/AddError.png" width=500 height=400>
-
 - `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50 i/Sugar, 50, g, 0.10 s/Juice the orange` is valid as 
 multiple `i/` command flags are allowed. A recipe similar to the image shown below will be added to the recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
+
+- `add t/Orange juice d/Yummy i/Orange, 1, piece, 0.50` is not valid because the command flag `s/` is compulsory. An error message will appear, similar to the one shown below:
+
+<img src="images/AddError.png" width=500 height=400>
+
 
 
 ---
@@ -141,13 +142,13 @@ Our initial recipe book:
 
 <img src="images/EditResult1.png" width=500 height=400>
 
-- `edit 1` is not valid as at least one flag is required and you will see an error message similar to that of the one shown below:
-
-<img src="images/EditError.png" width=500 height=400>
-
 - `edit 1 t/Corndogs i/flour, 200, g, 0.05` is valid as multiple flags are accepted. The recipe will be edited as shown below:
 
 <img src="images/EditResult2.png" width=500 height=400>
+
+- `edit 1` is not valid as at least one flag is required and you will see an error message similar to that of the one shown below:
+
+<img src="images/EditError.png" width=500 height=400>
 
 
 ---
@@ -193,7 +194,7 @@ This command clears your recipe book of all its recipes.
 
 Format: `clear`
 
-Example: `clear` will clear all recipes like the image shown below:
+Example: `clear` will clear all recipes similar to the image shown below:
 
 <img src="images/ClearResult.png" width=500 height=400>
 
@@ -228,7 +229,7 @@ Our initial recipe book:
 <img src="images/FindResult.png" width=500 height=400>
 
 - `find r/eggs s/fry the egg` is not valid as only one command flag is allowed. You should see an error message similar to
-the one in the image shown below:
+  the one in the image shown below:
 
 <img src="images/FindError1.png" width=500 height=400>
 
@@ -252,11 +253,6 @@ Our initial recipe book:
 
 <img src="images/AddResult2.png" width=500 height=400>
 
-- e.g. `only` is not valid as at least one parameter is needed. You should see an error message similar to the one in the image shown
-below:
-
-<img src="images/OnlyError.png" width=500 height=400>
-
 - e.g. `only eggs` is valid, and will search for recipes that have ingredients that at most contain eggs, and nothing more. The result of the command is as shown below:
 
 <img src="images/OnlyResult1.png" width=500 height=400>
@@ -265,6 +261,11 @@ below:
 A recipe that only needs eggs will also be valid. The result of the command is shown below:
 
 <img src="images/OnlyResult2.png" width=500 height=400>
+
+- e.g. `only` is not valid as at least one parameter is needed. You should see an error message similar to the one in the image shown
+  below:
+
+<img src="images/OnlyError.png" width=500 height=400>
 
 
 ---
