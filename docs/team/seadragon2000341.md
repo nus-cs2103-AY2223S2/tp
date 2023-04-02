@@ -10,31 +10,51 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Feature**: [To be added]
-* **New Feature**: [To be added]
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=seadragon2000341&breakdown=true)
 
-* **Project management**:
-  * [To be added]
+* **New Feature**: Added `upcoming` command [#93](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/93)
+  * What it does: Allows users to find internships that have upcoming events (interviews/assessments) or deadlines (application/acceptance deadline)
+  * Justification: 
+  
 
 * **Enhancements to existing features**:
-  * [To be added]
-  * [To be added]
+  * Update constraints for `COMPANY_NAME` and `ROLE` fields [#126](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/126)
+  * Fix inconsistencies with internship shown using the `LIST`command [#125](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/125)
+  * Change equality/duplicate notion that was inherited from Address Book to suit InternBuddy [#124](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/124)
+  * Create a new `STATUS` field `ACCPETED` to complement existing statuses [#87](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/87)
+  * Update `DATE` labels for `OFFERED` and `NEW` statuses [#87](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/87)
+  * Update `TAG` validation to be at most 30 characters and cannot be empty string [#47](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/47)
+  * Update `STATUS` field inputs to be non case-sensitive [#39](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/39)
+  * Enhance `DATE` validation tp make sure date is of the correct format and a valid date [#38](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/38)
+  
+
+* **Project management**:
+  * Create team's organisation and repository.
+  * Set up project's Continuous Integration and website.
+  * Enable assertion [#76](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/76)
+  * Reviewed and approved PRs for merging
+  * Update config.yml [#16] https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/16
+  * Set up certain milestones and issues
+
+
 * **Documentation**:
   * User Guide:
-    * [To be added]
+    * Added implementation for `upcoming` command [#120](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/120)
+    * Updated implementation for `edit` command [#120](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/120), [#22](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/22)
+    * Updated implementation for `help` command [#22](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/22)
+    * 
   * Developer Guide:
-    * [To be added]
+    * Added implementation for `upcoming` command [#122](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/122)
+    * Updated UML sequence diagram for `edit` command [#94](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/94)
+    * Updated implementation for `edit` command [#80](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/80)
+    * Wrote use cases for `add` command [#24](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/24/)
+    * Wrote use cases for `exit` command [#24](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/24/)
+    
+
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
+  * PRs merged: 
+  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S2/forum/issues/223), [2](https://github.com/nus-cs2103-AY2223S2/forum/issues/180), [3](https://github.com/nus-cs2103-AY2223S2/forum/issues/176), [4](https://github.com/nus-cs2103-AY2223S2/forum/issues/163), [5](https://github.com/nus-cs2103-AY2223S2/forum/issues/137), [6](https://github.com/nus-cs2103-AY2223S2/forum/issues/136), [7](https://github.com/nus-cs2103-AY2223S2/forum/issues/83), [8](https://github.com/nus-cs2103-AY2223S2/forum/issues/67), [9](https://github.com/nus-cs2103-AY2223S2/forum/issues/64), [10](https://github.com/nus-cs2103-AY2223S2/forum/issues/60), [11](https://github.com/nus-cs2103-AY2223S2/forum/issues/49), [12](https://github.com/nus-cs2103-AY2223S2/forum/issues/42). [13](https://github.com/nus-cs2103-AY2223S2/forum/issues/4))
+ 
 
