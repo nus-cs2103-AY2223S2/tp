@@ -189,7 +189,7 @@ Note: SoC students can put module code as the label.
 
 Example of command
 1. `:a "Enhance CS2103T tp user guide" -d 2023-03-31 -l cs2103t -p 1`
-    
+
 ### Inserting parameters to a task
 
 Insert the parameter as specified by the flag of a task to the current task list as specified by the task number.
@@ -207,10 +207,10 @@ Example of command
 2. `:i 3 -l cs2103t` inserts the "cs2103t" label to task 3
 
 Condition
-- At least one for the flags should be present. 
+- At least one for the flags should be present.
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
-- The index must not exceed the number of tasks in the displayed task list. 
+- The index must not exceed the number of tasks in the displayed task list.
 
 ### Deleting task
 
@@ -222,8 +222,8 @@ Format: `:d <task_index>`
 | -------------- | ------------------------------------ | ---------- | ----------------------------------------------- |
 | `<task_index>` | Index of the task you want to delete | Yes        | 3 (assuming the task list has at least 3 tasks) |
 
-    
-Example of command 
+
+Example of command
 1. `:d 3` deletes task 3
 
 Condition
@@ -246,7 +246,7 @@ Example of command
 1. `:d 3 -d` deletes the deadline of task 3
 2. `:d 3 -l cs2103t` deletes the "cs2103t" label of task 3
 
-Condition    
+Condition
 - At least one for the flags should be present. Else, command will be treated as deleting the task at index number.
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
@@ -270,17 +270,17 @@ Format: `:e <task_index> [-t <title>] [-d <deadline>] [-s <status>] [-p <priorit
 Example of command
 1. `:e 3 -t "quiz"` edits the title of task 3 to "quiz"
 2. `:e 3 -d 2023-04-05` edits the deadline of task 3 to 2023-04-05
-3. `:e 3 -s 1` edits the status of task 3 to be in progress 
-4. `:e 3 -p 1` edits the priority of task 3 to be in urgent      
-5. `:e 3 -l oldLabel newLabel` edits oldLabel of task 3 to be newLabel      
-                      
-Condition                   
-- At least one for the flags should be present. 
+3. `:e 3 -s 1` edits the status of task 3 to be in progress
+4. `:e 3 -p 1` edits the priority of task 3 to be in urgent
+5. `:e 3 -l oldLabel newLabel` edits oldLabel of task 3 to be newLabel
+
+Condition
+- At least one for the flags should be present.
 - The index refers to the index number shown in the displayed task list.
 - The index **must be a positive integer**, i.e 1, 2, 3 etc.
 - The index must not exceed the number of tasks in the displayed task list.
 
-    
+
 ### Filtering task
 
 Filter the parameters as specified by the flag.
@@ -299,14 +299,14 @@ Format: `:f [-w <"keyword"] [-d --before/after <date>] [-s <status>] [-p <priori
 Example of command
 1. `:f -w "quiz"` filter for tasks with "quiz" as keyword
 2. `:f -d --before 2023-04-05` filter for tasks before 2023-04-05
-3. `:f -s 1` filter for tasks with status of in_progress 
-4. `:f -p 1` filter for tasks with priority of urgent 
-5. `:f -l cs2103t` filter for tasks with label of cs2103t     
-    
-Condition
-- Only one flag should be present. 
+3. `:f -s 1` filter for tasks with status of in_progress
+4. `:f -p 1` filter for tasks with priority of urgent
+5. `:f -l cs2103t` filter for tasks with label of cs2103t
 
-    
+Condition
+- Only one flag should be present.
+
+
 ### Sorting task
 
 Sort the parameters as specified by the flag.
@@ -314,13 +314,13 @@ Sort the parameters as specified by the flag.
 Format: `:s [-t] [-d] [-p] `
 
 Example of command
-1. `:f -t` sort for tasks by title
-2. `:f -d` sort for tasks by deadline
-3. `:f -p` sort for tasks by priority level
-    
+1. `:s -t` sort for tasks by title
+2. `:s -d` sort for tasks by deadline
+3. `:s -p` sort for tasks by priority level
+
 Condition
-- Only one flag should be present. 
-    
+- Only one flag should be present.
+
 ### Exiting the application
 
 Similar to Vim, we can use the `:wq!`, `:q!`,,`:wq`,`:q` commands to exit the application.
