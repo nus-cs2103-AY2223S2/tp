@@ -8,13 +8,13 @@ title: Developer Guide
 
 ---
 
-## **Acknowledgements**
+## Acknowledgements
 
 - {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ---
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -161,6 +161,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Add module, lecture, and video feature
 
 The `add` command supports:
+
 - Adding a module to the tracker
 - Adding a lecture to a module in the tracker
 - Adding a video to a lecture which belongs to a module in the tracker
@@ -168,6 +169,7 @@ The `add` command supports:
 It's behaviour is dependent on the arguments provided by the user.
 
 The feature utilises the following classes:
+
 - `AddCommandParser` – Creates the appropriate `AddCommand` subclass object base on the user's input
 - `AddCommand` – Base class of any `Command` subclass that adds some entity to the tracker
 - `AddModuleCommand` – Subclass of `AddCommand` which handles adding a module to the tracker
@@ -184,17 +186,18 @@ The following is a description of the code execution flow:
 
 1. `AddCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `AddCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
 
-| Has preamble | Has `/mod` argument | Has `/lec` argument | Intent      | `AddCommand` subclass |
-| ------------ |---------------------| ------------------- | ----------- | --------------------- |
-| Yes          | No                  | No                  | Add module  | `AddModuleCommand`    |
-| Yes          | Yes                 | No                  | Add lecture | `AddLectureCommand`   |
-| Yes          | Yes                 | Yes                 | Add video   | `AddVideoCommand`     |
+   | Has preamble | Has `/mod` argument | Has `/lec` argument | Intent      | `AddCommand` subclass |
+   | ------------ | ------------------- | ------------------- | ----------- | --------------------- |
+   | Yes          | No                  | No                  | Add module  | `AddModuleCommand`    |
+   | Yes          | Yes                 | No                  | Add lecture | `AddLectureCommand`   |
+   | Yes          | Yes                 | Yes                 | Add video   | `AddVideoCommand`     |
 
 2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
 
 3. The appropriate `AddCommand` subclass object is created and then returned to the caller.
 
 4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `AddCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
+
    - The `Module`, `Lecture`, or `Video` being added already exist
    - The `Module` which a `Lecture` is being added to does not exist
    - The `Module` which a `Lecture` is specified to be in does not exist
@@ -202,34 +205,34 @@ The following is a description of the code execution flow:
 
 5. If no errors occur (no exceptions are thrown), the command succeeds in adding the module/lecture/video to the tracker.
 
-### Delete command feature
+### Delete module, lecture, and video feature
 
-The proposed delete command supports:
+The `delete` command supports:
 
-1. Deleting a single specified module.
-2. Deleting a single specified lecture under a specified module context.
-3. Deleting a single specified video under a specified module and specified lecture context.
-4. Deleting multiple specified modules / lectures / videos under the respective specified contexts mentioned in the above points.
-
-    - E.g.: User wishes to delete a module CS2040S.
-         Executing `delete CS2040S` would allow the user to do so, unless the module does not exist, in which case, Le Tracker will throw an error.
-    - E.g.: User wishes to delete multiple modules CS2107, ST2334 AND CS3230
-         Executing `delete CS2107, ST2334, CS3230` will allow the user to do so. If either module does not exist, nothing is deleted and Le Tracker will throw an error.
+- Deleting a single specified module.
+- Deleting a single specified lecture under a specified module context.
+- Deleting a single specified video under a specified module and specified lecture context.
+- Deleting multiple specified modules / lectures / videos under the respective specified contexts mentioned in the above points.
+  - E.g.: User wishes to delete a module CS2040S.\
+     Executing `delete CS2040S` would allow the user to do so, unless the module does not exist, in which case, Le Tracker will throw an error.
+  - E.g.: User wishes to delete multiple modules CS2107, ST2334 AND CS3230\
+     Executing `delete CS2107, ST2334, CS3230` will allow the user to do so. If either module does not exist, nothing is deleted and Le Tracker will throw an error.
 
 This feature's behaviour is dependent on the arguments provided by the user, as well as by the state of Le Tracker.
 
-#### Implementation Details
+**Implementation Details**
 
 The feature utilises the following classes:
-   - `DeleteCommandParser`: parses the arguments appropriately for the appropriate `DeleteCommand` to be returned to be executed
-   - `DeleteCommand`: Abstract class extending from `Commands` for commands that delete a specified entity from the tracker
-   - `DeleteModuleCommand`: Subclass of `DeleteCommand` which handles the deletion a module from the tracker
-   - `DeleteLectureCommand`: Subclass of `DeleteCommand` which handles the deletion a lecture from a module in the tracker
-   - `DeleteVideoCommand`: Subclass of `DeleteCommand` which handles the deletion a video from a lecture from a module in the tracker.
-   - `DeleteMultipleCommand`: Abstract class extending from `DeleteCommand` for delete commands that delete multiple specified entities from the tracker
-   - `DeleteMultipleModulesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple modules from the tracker
-   - `DeleteMultipleLecturesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple lectures from the same module in the tracker
-   - `DeleteMultipleVideosCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple videos from the same lecture in the same module in the tracker.
+
+- `DeleteCommandParser`: parses the arguments appropriately for the appropriate `DeleteCommand` to be returned to be executed
+- `DeleteCommand`: Abstract class extending from `Commands` for commands that delete a specified entity from the tracker
+- `DeleteModuleCommand`: Subclass of `DeleteCommand` which handles the deletion a module from the tracker
+- `DeleteLectureCommand`: Subclass of `DeleteCommand` which handles the deletion a lecture from a module in the tracker
+- `DeleteVideoCommand`: Subclass of `DeleteCommand` which handles the deletion a video from a lecture from a module in the tracker.
+- `DeleteMultipleCommand`: Abstract class extending from `DeleteCommand` for delete commands that delete multiple specified entities from the tracker
+- `DeleteMultipleModulesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple modules from the tracker
+- `DeleteMultipleLecturesCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple lectures from the same module in the tracker
+- `DeleteMultipleVideosCommand`: Subclass of `DeleteMultipleCommand` which handles the deletion of multiple videos from the same lecture in the same module in the tracker.
 
 The following diagram shows the Class Diagram of the `DeleteCommand` hierarchy:
 
@@ -240,20 +243,21 @@ The following diagram shows the Sequence Diagram of executing a `DeleteMultipleM
 ![DeleteMultpleModulesCommandSequential](images/delete/DeleteModuleSequenceDiagram.png)
 
 The following is a description of the code execution flow
-1. `DeleteCommandParser#parse(String)` takes the user's input as a `String` argument and determines the intention of the command (delete module, lecture or video).
-The following table below depicts the consideration of inputs  against the user's argument:
 
-| Has Preamble | has `/mod` argument | has `/lec` agrgument | Intent |
-| --- | --- | --- | --- |
-| Yes | No | No | Delete Module |
-| Yes | Yes | No | DeleteLecture |
-| Yes | Yes | Yes | DeleteVideo |
-|-----|-----|-----|-------------|
+1. `DeleteCommandParser#parse(String)` takes the user's input as a `String` argument and determines the intention of the command (delete module, lecture or video).
+   The following table below depicts the consideration of inputs against the user's argument:
+
+   | Has Preamble | has `/mod` argument | has `/lec` agrgument | Intent        |
+   | ------------ | ------------------- | -------------------- | ------------- |
+   | Yes          | No                  | No                   | Delete Module |
+   | Yes          | Yes                 | No                   | DeleteLecture |
+   | Yes          | Yes                 | Yes                  | DeleteVideo   |
 
 2. The argument values are then checked on as such:
-      - ModuleCode: valid mod code that begins with capital letters, followed by numbers. could end with capital letters at the end
-      - LectureName: valid lecture name that does not contain symbols
-      - VideoName: valid lecture name that does not contain symbols
+
+   - ModuleCode: valid mod code that begins with capital letters, followed by numbers. could end with capital letters at the end
+   - LectureName: valid lecture name that does not contain symbols
+   - VideoName: valid lecture name that does not contain symbols
 
    Note: LectureName and VideoName should not contain commas (","). Rather than throwing as errors, Le Tracker will treat it as though the user intended to delete multiple entities
 
@@ -261,132 +265,193 @@ The following table below depicts the consideration of inputs  against the user'
 
 4. If no exceptions are thrown, Le Tracker has successfully maanged to delete the specified module/lecture/video from itself
 
-#### Reasons for such implementation:
+**Reasons for such implementation**
 
-   1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification.
-   2. Having abstract classes to group multiple commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as `DeleteCommand.COMMAND_WORD` in every class
+1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification.
+2. Having abstract classes to group multiple commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as `DeleteCommand.COMMAND_WORD` in every class
 
-#### Alternatives considered:
+**Alternatives considered**
 
-   1. Combine all featured classes into one large single class
-      Pros:
-      - all file content in one single place
-      - easily adheres to DRY since there would be no need to repeat information across multiple files
-      Cons:
-      - violates Open-Close Principle
-      - creates a large file that needs to be edited. Hard to search through
+1. Combine all featured classes into one large single class
+   - Pros:
+     - all file content in one single place
+     - easily adheres to DRY since there would be no need to repeat information across multiple files
+   - Cons:
+     - violates Open-Close Principle
+     - creates a large file that needs to be edited. Hard to search through
 
-#### Possible further implementation
-    - encapsulate conditional checks in each delete command execution
+**Possible further implementation**
 
-### Mark / UnMARK
+- encapsulate conditional checks in each delete command execution
 
-The proposed mark command supports:
-1. Marking unmarked videos as watched
-2. Marking marked videos as unwatched
-3. Marking multiple videos in 1. and 2.
+### Mark / UnMark video feature
 
-      - E.g.: User wishes to mark a video "Vid 1" in lecture "Week 1" of module "CS2040S" as watched.
-         Executing `mark Vid 1 /mod CS2040S /lec Week 1` would allow the user to do so, unless either one of the following conditions are true:
-            1. the module (CS2040S) does not exist in the Tracker
-            2. the lecture (Week 1) does not exist in the module (CS2040S)
-            3. the video (Vid 1) does not exist in the lecture of the module (CS2040S > Week 1)
-            4. the video (CS2040S > Week 1 > Vid 1) has already been marked as watched
-      - E.g.: User wishes to mark multiple videos "Vid 3", "Vid 4" and "Lecture Summary" in lecture "Topic 4" of module "ST2334" as unwatched.
-         Executing `unmark Vid 3, Vid 4, Lecture Summary /mod ST2334 /lec Topic 1` would allow the user to do so, unless either on of the following conditions are true:
-            1. the module (ST2334) doese not exist in the Tracker
-            2. the lecture (Topic 1) does not exist in the module (ST2334)
-            3. either of the videos (Vid 3, Vid 4, Lecture Summary) does not exist in the lecture of the module (ST2334 > Topic 1)
-            4. either of the videos (Vid 3, Vid 4, Lecture Summary) has already been marked as unwatched
+The `mark` command supports:
+
+- Marking unmarked videos as watched
+- Marking marked videos as unwatched
+- Marking multiple videos in 1. and 2.
+  - E.g.: User wishes to mark a video "Vid 1" in lecture "Week 1" of module "CS2040S" as watched.\
+    Executing `mark Vid 1 /mod CS2040S /lec Week 1` would allow the user to do so, unless either one of the following conditions are true:
+    1. the module (CS2040S) does not exist in the Tracker
+    2. the lecture (Week 1) does not exist in the module (CS2040S)
+    3. the video (Vid 1) does not exist in the lecture of the module (CS2040S > Week 1)
+    4. the video (CS2040S > Week 1 > Vid 1) has already been marked as watched
+  - E.g.: User wishes to mark multiple videos "Vid 3", "Vid 4" and "Lecture Summary" in lecture "Topic 4" of module "ST2334" as unwatched.\
+    Executing `unmark Vid 3, Vid 4, Lecture Summary /mod ST2334 /lec Topic 1` would allow the user to do so, unless either on of the following conditions are true:
+    1. the module (ST2334) doese not exist in the Tracker
+    2. the lecture (Topic 1) does not exist in the module (ST2334)
+    3. either of the videos (Vid 3, Vid 4, Lecture Summary) does not exist in the lecture of the module (ST2334 > Topic 1)
+    4. either of the videos (Vid 3, Vid 4, Lecture Summary) has already been marked as unwatched
 
 This feature's behaviour is dependent on the arguments provided by the user, as well as the state of Le Tracker.
 
-#### Implementation Details
+**Implementation Details**
 
 The feature utilises the following classes:
-   - `MarkCommand`: Abstract class extending from `Command` for commands that mark a specified video as watched or unwatched
-   - `MarkAsWatchedCommandParser`: parses arguments appropriately for `MarkAsWatchedCommand` to be returned to be executed
-   - `MarkAsWatchedCommand`: Subclass of `MarkCommand` which handles marking a video as watched. Can handle marking multiple videos as well
 
-   - `MarkAsUnwatchedCommandParser`: parses arguments appropriately for `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` to be returned to be executed
-   - `MarkAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking a video as unwatched
-   - `MarkMultipleAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking multiple videos as unwatched
+- `MarkCommand`: Abstract class extending from `Command` for commands that mark a specified video as watched or unwatched
+- `MarkAsWatchedCommandParser`: parses arguments appropriately for `MarkAsWatchedCommand` to be returned to be executed
+- `MarkAsWatchedCommand`: Subclass of `MarkCommand` which handles marking a video as watched. Can handle marking multiple videos as well
+- `MarkAsUnwatchedCommandParser`: parses arguments appropriately for `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` to be returned to be executed
+- `MarkAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking a video as unwatched
+- `MarkMultipleAsUnwatchedCommand`: Subclass of `MarkCommand` which handles marking multiple videos as unwatched
 
 The following diagram shows the Sequence Diagram of executing a `MarkAsWatchedCommand`:
 
 ![MarkAsWatched](diagrams/MarkAsWatchedSequenceDiagram.png)
 
 The following is a description of the code execution flow
+
 1. `MarkAsWatchedCommandParser#parse(String)` / `MarkAsUnwatchedCommandParser#parse(String` takes the user's input as a `String` argument and determines the target video to be marked. The following table below depicts the command returned against the user's intent
 
-| Parser | Has Multiple Videos | Command |
-| --- | --- | --- |
-| `MarkAsWatchedCommandParser` | -- | `MarkAsWatchedCommand` |
-| `MarkAsUnwatchedCommandParser` | Yes | `MarkAsUnwatchedCommand` |
-| | No | `MarkMultipleAsUnwatchedCommand` |
-| --- | --- | --- |
+   | Parser                         | Has Multiple Videos | Command                          |
+   | ------------------------------ | ------------------- | -------------------------------- |
+   | `MarkAsWatchedCommandParser`   | --                  | `MarkAsWatchedCommand`           |
+   | `MarkAsUnwatchedCommandParser` | Yes                 | `MarkAsUnwatchedCommand`         |
+   |                                | No                  | `MarkMultipleAsUnwatchedCommand` |
+   | ---                            | ---                 | ---                              |
 
 2. The argument values are then checked on as such:
-      - ModuleCode: valid module code that complies with the module code format
-      - LectureName: valid lecture name that does not containt symbols
-      - VideoName: valid lecture name that does not contain symbols
+
+   - ModuleCode: valid module code that complies with the module code format
+   - LectureName: valid lecture name that does not containt symbols
+   - VideoName: valid lecture name that does not contain symbols
 
    Note: LectureName and VideoName should not contain commas (","). Rather than throwing errors, Le Tracker will treat it as though the user intended to delete multiple videos
 
 3. The appropriate `MarkCommand` subclass object is created then returned to its caller
 
 4. Upon execution, the argument values in the `MarkCommand` subclass object are then checked on as such:
-      - ModuleCode: if module with ModuleCode exists in Le Tracker
-      - LectureName: if lecture with LectureName exists in module ModuleCode
-      - VideoName: if video(s) with VideoName exists in lecture LectureName of module ModuleCode and whether the video(s) is/are marked or unmarked (differs according to whether `mark` or `unmark` is called)
+
+   - ModuleCode: if module with ModuleCode exists in Le Tracker
+   - LectureName: if lecture with LectureName exists in module ModuleCode
+   - VideoName: if video(s) with VideoName exists in lecture LectureName of module ModuleCode and whether the video(s) is/are marked or unmarked (differs according to whether `mark` or `unmark` is called)
 
 5. If no exceptions are thrown, Le Tracker has successfully managed to mark/unmark the specified video(s)
 
-#### Reasons for such implementation:
+**Reasons for such implementation**
 
-   1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification
-   2. Having abstract classes to group mark commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as success message formats in every class
+1. Adhering to Open-Close Principle: Open for Extension, Closed for Modification
+2. Having abstract classes to group mark commands together allows for adherance of DRY (Don't Repeat Yourself) in cases such as success message formats in every class
 
-#### Alternatives considered:
-   1. Combine all featured classes into one large single class
-      Pros:
-      - all file content in one single place
-      - easily adheres to DRY since there would be no need to repeat information across multiple files
-      Cons:
-      - violates Open-Close Principle
-      - creates a large file that needs to be edited. Hard to search through
+**Alternatives considered**
 
-#### Possible further implementation
-   - Collate `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` into one class, similar to `MarkAsWatchedCommand`
+1. Combine all featured classes into one large single class
+   Pros:
+   - all file content in one single place
+   - easily adheres to DRY since there would be no need to repeat information across multiple files
+     Cons:
+   - violates Open-Close Principle
+   - creates a large file that needs to be edited. Hard to search through
 
+**Possible further implementation**
 
+- Collate `MarkAsUnwatchedCommand` and `MarkMultipleAsUnwatchedCommand` into one class, similar to `MarkAsWatchedCommand`
 
-### Find command feature
+### Find module, lecture and video feature
 
-The proposed find command supports:
+The `find` command supports:
 
-1. Searching for modules/lectures/videos based on current context.
-   - Root layer - Modules
-   - Module layer - Lectures
-   - Lecture layer - Videos
-2. Searching for modules/lectures/videos from `any` layer context.
+- Finding a module in the tracker
+  1. By module code and name
+  2. By module tags
+- Finding a lecture in a module in the tracker
+  1. By lecture name
+  2. By lecture tags
+- Finding a video in a lecture which belongs to a module in the tracker
+  1. By video name
+  2. By video tags
 
-   - E.g: User navigates to a module CS2040S and she is currently in module layer. Executing `find {keywords} /mod CS2103` command show an error unless she navigates back to root layer. At this point, only below commands is valid.
-     Find lectures:
+It's behaviour is dependent on the arguments provided by the user.
 
-     - `find {keywords}`
-     - `find {keywords} /mod CS2040S`
+The feature utilises the following classes:
 
-     Find videos:
+- `FindCommandParser` – Creates the appropriate `FindCommand` subclass object base on the user's input
+- `FindCommand` – Base class of any `Command` subclass that finds some entity in the tracker
+- `ModuleContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyModule`
+- `ModuleTagContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyModule`
+- `LectureNameContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyLecture`
+- `LectureTagContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `ReadOnlyLecture`
+- `VideoNameContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `Video`
+- `VideoTagContainsKeywordsPredicate` – Class that implements `Predicate` interface with type `Video`
 
-     - `find {keywords} /lec Week1`
-     - `find {keywords} /mod CS2040S /lec Week1`
+The following sequence diagram depicts a `find` command execution for finding a module in the tracker.
 
-3. Searching for multiple modules/lectures/videos from `any` layer context.
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-Below is an activity diagram that showcase the event that occurs when find command is executed.
+The following is a description of the code execution flow:
 
-![FindActivityDiagram](images/FindActivityDiagram.png)
+1. `FindCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `FindCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
+
+   In Root Context:
+
+   | Has preamble | Has `/mod` argument | Has `/lec` argument | Has `/byTag` argument | Intent       | `Predicate` tested                     |
+   | ------------ | ------------------- | ------------------- | --------------------- | ------------ | -------------------------------------- |
+   | Yes          | No                  | No                  | No                    | Find module  | `ModuleContainsKeywordsPredicate`      |
+   | Yes          | No                  | No                  | Yes                   | Find module  | `ModuleTagContainsKeywordsPredicate`   |
+   | Yes          | Yes                 | No                  | No                    | Find lecture | `LectureNameContainsKeywordsPredicate` |
+   | Yes          | Yes                 | No                  | Yes                   | Find lecture | `LectureTagContainsKeywordsPredicate`  |
+   | Yes          | Yes                 | Yes                 | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
+   | Yes          | Yes                 | No                  | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
+
+   In Module Context:
+
+   | Has preamble | Has `/mod` argument | Has `/lec` argument | Has `/byTag` argument | Intent       | `Predicate` tested                     |
+   | ------------ | ------------------- | ------------------- | --------------------- | ------------ | -------------------------------------- |
+   | Yes          | Yes/No              | No                  | No                    | Find lecture | `LectureNameContainsKeywordsPredicate` |
+   | Yes          | Yes/No              | No                  | Yes                   | Find lecture | `LectureTagContainsKeywordsPredicate`  |
+   | Yes          | Yes/No              | Yes                 | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
+   | Yes          | Yes/No              | Yes                 | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
+
+   In Lecture Context:
+
+   | Has preamble | Has `/mod` argument | Has `/lec` argument | Has `/byTag` argument | Intent       | `Predicate` tested                     |
+   | ------------ | ------------------- | ------------------- | --------------------- | ------------ | -------------------------------------- |
+   | Yes          | Yes                 | No                  | No                    | Find lecture | `LectureNameContainsKeywordsPredicate` |
+   | Yes          | Yes                 | No                  | Yes                   | Find lecture | `LectureTagContainsKeywordsPredicate`  |
+   | Yes          | No                  | No                  | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
+   | Yes          | Yes                 | Yes                 | No                    | Find video   | `VideoNameContainsKeywordsPredicate`   |
+   | Yes          | No                  | No                  | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
+   | Yes          | Yes                 | Yes                 | Yes                   | Find video   | `VideoTagContainsKeywordsPredicate`    |
+
+   In All Context:
+
+   | Has preamble | Has `/r` argument | Has `/byTag` argument | Intent      | `Predicate` tested                   |
+   | ------------ | ----------------- | --------------------- | ----------- | ------------------------------------ |
+   | Yes          | Yes               | No                    | Find module | `ModuleContainsKeywordsPredicate`    |
+   | Yes          | Yes               | Yes                   | Find module | `ModuleTagContainsKeywordsPredicate` |
+
+2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
+
+3. The appropriate `FindCommand` subclass object is created and then returned to the caller.
+
+4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `FindCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
+
+   - The `Module` specified by user does not exist when listing `Lectures`
+   - The `Lecture` of a `Module` or the `Module` specified by user does not exist when listing `Videos`
+
+5. If no errors occur (no exceptions are thrown), the command succeeds in finding the module/lecture/video associated to the keyword.
 
 ### Navigation feature
 
@@ -397,6 +462,7 @@ Similar to the `cd` command which changes the current working directory in Unix-
 Instead, the navigation system will inject /mod /lec arguments into the user's command. Hence, commands will be able to infer the specified module or lecture from the current context without being directly coupled to the navigation system.
 
 #### Usage scenario
+
 Given below is an example usage scenario and how the navigation system behaves at each step.
 
 Step 1. The user launches the application. The Navigation system is initialized with the root context which has no module code or lecture name.
@@ -412,6 +478,7 @@ Step 4. The user wants to list the videos of the CS2040S/Week 1 context and exec
 ### Tag module, lecture, and video feature
 
 The `tag` command supports:
+
 - Tagging a module in the tracker
 - Tagging a lecture of a module in the tracker
 - Tagging a video of a lecture which belongs to a module in the tracker
@@ -421,10 +488,12 @@ multiple, unique tags. If a command contains new tags and tags that were already
 videos, only the new tags will be added.
 
 The feature utilises the following classes:
+
 - `TagCommandParser` – Creates the appropriate `TagCommand` subclass object based on the user's input
 - `TagCommand` – Execute the command to add tags to a module, lecture, or video based on the user's input
 
 The following is a description of the code execution flow:
+
 1. `TagCommandParser#parse(String)` takes in the user input and determine whether the user wanted to tag a module,
    a lecture, or a video based on the appropriate prefixes included in the user's input.
 2. The user input is then checked to determine whether it contains the required prefixes according to the table
@@ -432,11 +501,10 @@ The following is a description of the code execution flow:
    A `ParseException` will be thrown, and the command will not be executed.
 
 | Intent      | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
-|-------------|-------------------|-------------------|-------------------|--------------------|
+| ----------- | ----------------- | ----------------- | ----------------- | ------------------ |
 | Tag Module  | No                | No                | No                | Yes                |
 | Tag Lecture | Optional          | No                | No                | Yes                |
 | Tag Video   | Optional          | Optional          | No                | Yes                |
-
 
 3. A set of tags to add is then determined from the user's input. Afterwards, The command creates an
    appropriate `TagCommand` object and returns it to the called.
@@ -446,7 +514,9 @@ The following is a description of the code execution flow:
 5. If no errors occur (no exceptions are thrown), the command succeeds in tagging the module, lecture, or video.
 
 ### Untag module, lecture, and video feature
+
 The `untag` command supports:
+
 - Removing tags from a module in the tracker
 - Removing tags from a lecture of a module in the tracker
 - Removing tags from a video of a lecture which belongs to a module in the tracker
@@ -456,10 +526,12 @@ command. If a command contains nonexistent tags and tags that were already added
 videos, a `CommandException` will be thrown.
 
 The feature utilises the following classes:
+
 - `UntagCommandParser` – Creates the appropriate `UntagCommand` subclass object based on the user's input
 - `UntagCommand` – Execute the command to remove tags from a module, lecture, or video based on the user's input
 
 The following is a description of the code execution flow:
+
 1. `UntagCommandParser#parse(String)` takes in the user input and determine whether the user wanted to untag a module,
    a lecture, or a video based on the appropriate prefixes included in the user's input.
 2. The user input is then checked to determine whether it contains the required prefixes according to the table
@@ -467,7 +539,7 @@ The following is a description of the code execution flow:
    A `ParseException` will be thrown, and the command will not be executed.
 
 | Intent        | has `/mod` prefix | has `/lec` prefix | has `/vid` prefix | has `/tags` prefix |
-|---------------|-------------------|-------------------|-------------------|--------------------|
+| ------------- | ----------------- | ----------------- | ----------------- | ------------------ |
 | Untag Module  | No                | No                | No                | Yes                |
 | Untag Lecture | Optional          | No                | No                | Yes                |
 | Untag Video   | Optional          | Optional          | No                | Yes                |
@@ -482,7 +554,6 @@ The following is a description of the code execution flow:
    or video.
 
 ### Edit tag feature
-
 
 ### \[Proposed\] Undo/redo feature
 
@@ -568,19 +639,21 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 #### Proposed Implementation
+
 - The proposed undo/redo mechanism is facilitated
 
-#### Reasons for such implementation:
+#### Reasons for such implementation
+
 - The user need to save storage space after finished studying a module. The UI will also be less packed
 
 ### \[Proposed\] Import archived data
 
-#### Reasons for such implementation:
+#### Reasons for such implementation
+
 - The user need to retrieved data when the user wants to review the concepts taught in a module,
   lecture, or video
 
 ### \[Proposed\] Add Video's timestamp comment
-
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -771,15 +844,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 3a. Video to mark is already marked as watched.
 
-    3a1. LeTracker shows an error message.
+  3a1. LeTracker shows an error message.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
 
 - 3b. Video to unmark is already unmarked.
 
-    3b1. LeTracker shows an error message.
+  3b1. LeTracker shows an error message.
 
-    Use case reumes at step 1.
+  Use case reumes at step 1.
 
 **Use case: Delete a Module**
 
@@ -796,13 +869,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. There are no modules.
 
-    Use case ends.
+  Use case ends.
 
 - 4a. The given module code is invalid. (does not exist or does not follow the module code format)
 
-    4a1. Le Tracker shows an error message.
+  4a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+  Use case resumes at step 1.
 
 **Use case: Delete a Lecture**
 
