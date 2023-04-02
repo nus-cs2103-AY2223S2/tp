@@ -550,7 +550,9 @@ These commands will help you to perform basic functions on EduMate. These are fu
 
 ### Add a contact `add`
 
-You can easily add a new contact to EduMate using the `add` command. This allows you to quickly store their information for future reference, such as their name, phone number, email address, Telegram handle, and home station. Once added, you can also assign them to groups or modules using the `tag` command.
+You can easily add a new contact to EduMate using the `add` command. This allows you to quickly store their information for future reference, such as their name, phone number, email address, Telegram handle, and the closest MRT station to their home. 
+
+Once all the basic information has been added, you can then assign them to groups or modules using the `tag` command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -559,14 +561,23 @@ You can easily add a new contact to EduMate using the `add` command. This allows
 
 </div>
 
-What you should see:<br>
+##### Scenario:
 
-<img src="images/ug_cmds_pics/add_cmd.png" style="width:80%;margin:0 10%">
+You want to create a new contact for a friend named Weixiang whose information does not exist in `EduMate` yet. 
+You run the `add` command with his details following the above format.
+
+Command entered: `add n/Weixiang p/89229358 s/Boon Lay e/heavenlywang@gmail.com t/@wangkong g/Groupmate m/CS2101 m/ES2660` 
+
+What you should see:
+1. Weixiang's contact is added towards the end of the Person List.
+2. Weixiang's profile appears on the Profile Panel as such (below).
+3. Command Response Box shows that Weixiang is successfully added into `EduMate`.
+
+<img src="images/ug_cmds_pics/addcommand.svg" style="width:80%;margin:0 10%">
 
 <center>Diagram 8: A new contact: Weixiang is added to <code>EduMate</code>.</center>
 
-##### Explanation:
-The `add` command creates a new contact for a friend named Weixiang whose information does not exist in `EduMate` yet. The contact will be assigned index 101 and his information profile will be shown on the Profile Panel.
+##### More Examples of Usage:
 
 <div markdown="block" class="alert alert-success">
 
@@ -594,10 +605,11 @@ The `add` command creates a new contact for a friend named Weixiang whose inform
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Important!<br>
+:information_source: **Important!**<br>
 As you may have already see above, when adding a contact with some fields present, EduMate will give placeholders for the respective
 missing information. <br>
 
+<br>
 Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g Wen Qing results in `@wenqing0000`).
 This is done to conform to Telegram's username restrictions of being at least 5 characters long for short names like Bob, Sam etc.
 
