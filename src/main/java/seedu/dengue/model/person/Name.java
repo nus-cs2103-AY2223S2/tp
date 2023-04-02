@@ -13,10 +13,7 @@ public class Name {
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphabets and spaces, and it should not be blank";
 
-    /*
-     * The first character of the name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
+
     public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z\\s]*";
     private static final int MAX_LENGTH = 50;
     public final String fullName;
