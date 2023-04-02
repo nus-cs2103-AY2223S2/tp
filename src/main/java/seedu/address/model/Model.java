@@ -303,6 +303,11 @@ public interface Model {
             ModuleCode moduleCode, ReadOnlyLecture lecture);
 
     /**
+     * Updates the filter to hide all the contents of a list.
+     */
+    void updateAllFilteredListAsHidden();
+
+    /**
      * Returns the last list type to displayed to user.
      */
     DisplayListLevel getLastListLevel();
