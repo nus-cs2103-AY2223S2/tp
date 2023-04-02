@@ -213,6 +213,8 @@ The following diagram shows the layout of components numbered exactly as above.
 
 You may locate the Person List at the center-left of `EduMate`. This is where you will see all your saved contacts (or sample data if you are trying out for the first time).
 
+For each contact, you may see the index that `EduMate` has assigned to the contact directly to the left of the contact's display name.
+
 <img src="images/UG_ui_pictures/PersonList.svg" style="width:40%;margin:1% 1% 1% 30%">
 
 <center>Diagram 4: Person List with some contacts displayed.</center>
@@ -232,11 +234,17 @@ Not all modules that are tagged to the contact is shown on the Person List. Only
 
 The Profile Panel allows you to display your own or your contact's information.
 
-The Profile Panel will display basic information like your / contact's name, phone number, email address, nearest home station and the modules you are taking in NUS.
+The Profile Panel will display basic information like your / contact's 
+1. Name
+2. Phone number
+3. Email address
+4. Nearest home MRT station
+5. Current modules enrolled in NUS.
+6. Group association.
 
-<img src="images/UG_ui_pictures/user_profile.png" style="width:80%;margin:0 10%">
+<img src="images/UG_ui_pictures/Profile.svg" style="width:40%;margin:1% 1% 1% 30%">
 
-<center>Diagram 4: Sample user profile displayed on Profile Panel.</center>
+<center>Diagram 6: Sample user profile displayed on Profile Panel.</center>
 
 ### Command Box
 
