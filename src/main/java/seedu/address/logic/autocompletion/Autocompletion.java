@@ -43,7 +43,7 @@ public class Autocompletion {
             put(AddApplicantCommand.COMMAND_WORD, "INDEX " + PREFIX_APPLICANT + "APPLICANT");
             put(AddCommand.COMMAND_WORD, PREFIX_TITLE + "TITLE "
                     + PREFIX_DESCRIPTION + "DESCRIPTION "
-                    + PREFIX_APPLICANT + "APPLICANT"
+                    + PREFIX_APPLICANT + "APPLICANT "
                     + PREFIX_PLATFORM + "PLATFORM");
             put(DeleteApplicantCommand.COMMAND_WORD, "INDEX " + PREFIX_APPLICANT_WITH_ID + "APPLICANT#ID");
             put(DeleteCommand.COMMAND_WORD, "INDEX");

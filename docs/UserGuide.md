@@ -161,7 +161,7 @@ You should see a confirmation message showing the job title, description and app
 ```ignorelang
 Added new listing:
 Job Title: Chicken Rice Uncle
-JobDescription: Cooks tasty chicken rice
+Job Description: Cooks tasty chicken rice
 Applicants: Nicholas, Tom, Adele
 ```
 
