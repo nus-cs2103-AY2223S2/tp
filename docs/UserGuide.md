@@ -251,12 +251,12 @@ _\* Both commands lists videos that belongs to lecture `Week 1` in module `CS204
 > `add {module_code} [/name {module_name}] [/tags {tag_1}, [{tag_2}, ...]]`
 
 Adds a module to Le Tracker
-- <span style="color:#1d5bc1">`module_code`</span> : The code of the module
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module
   - Must be unique among the module code of the modules in Le Tracker
   - Must be a valid module code (refer to [Argument Validity](#argument-validity) for more information)
-- <span style="color:#1d5bc1">`module_name`</span> : The name of the module
+- <span style="color:#e46c0a">`module_name`</span> : The name of the module
   - Must be a valid module name (refer to [Argument Validity](#argument-validity) for more information)
-- <span style="color:#1d5bc1">`tag_1, tag_2, ...`</span> : The tags applied to the module
+- <span style="color:#e46c0a">`tag_1, tag_2, ...`</span> : The tags applied to the module
   - All tags must be valid (refer to [Argument Validity](#argument-validity) for more information)
   - Repeated tags (if any) will be ignored
 
