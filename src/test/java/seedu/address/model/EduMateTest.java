@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.STATION_BEN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_1;
+import static seedu.address.model.recommendation.TypicalRecommendations.RECOMMENDATION_NEWTON_THU_4PM_3HR;
+import static seedu.address.model.recommendation.TypicalRecommendations.RECOMMENDATION_STEVENS_THU_10AM_2HR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALBERT;
 import static seedu.address.testutil.TypicalPersons.BART;
@@ -22,10 +24,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.meetup.Participants;
+import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.recommendation.Recommendation;
+import seedu.address.model.recommendation.RecommendationBuilder;
+import seedu.address.model.recommendation.exceptions.DuplicateRecommendationException;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalUser;
 
@@ -63,8 +68,24 @@ public class EduMateTest {
     }
 
     @Test
+    public void resetData_withDuplicateRecommendations_throwsDuplicateRecommendationException() {
+        Recommendation differentIndex = new RecommendationBuilder(RECOMMENDATION_STEVENS_THU_10AM_2HR)
+                .withIndex(new ContactIndex(3)).build();
+        List<Recommendation> recommendations = List.of(RECOMMENDATION_STEVENS_THU_10AM_2HR, differentIndex);
+        EduMateStub newData = new EduMateStub(eduMate.getPersonList(),
+                eduMate.getUser(), recommendations);
+
+        assertThrows(DuplicateRecommendationException.class, () -> eduMate.resetData(newData));
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> eduMate.hasPerson(null));
+    }
+
+    @Test
+    public void hasRecommendation_nullRecommendation_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> eduMate.hasRecommendation(null));
     }
 
     @Test
@@ -73,9 +94,20 @@ public class EduMateTest {
     }
 
     @Test
+    public void hasRecommendation_recommendationNotInEduMate_returnsFalse() {
+        assertFalse(eduMate.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
+    }
+
+    @Test
     public void hasPerson_personInEduMate_returnsTrue() {
         eduMate.addPerson(ALBERT);
         assertTrue(eduMate.hasPerson(ALBERT));
+    }
+
+    @Test
+    public void hasRecommendation_recommendationInEduMate_returnsTrue() {
+        eduMate.addRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        assertTrue(eduMate.hasRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR));
     }
 
     @Test
@@ -87,8 +119,21 @@ public class EduMateTest {
     }
 
     @Test
+    public void hasRecommendation_personWithSameIdentityFieldsInEduMate_returnsTrue() {
+        eduMate.addRecommendation(RECOMMENDATION_STEVENS_THU_10AM_2HR);
+        Recommendation editedRecommendation = new RecommendationBuilder(RECOMMENDATION_STEVENS_THU_10AM_2HR)
+                .withIndex(new ContactIndex(3)).build();
+        assertTrue(eduMate.hasRecommendation(editedRecommendation));
+    }
+
+    @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> eduMate.getPersonList().remove(0));
+    }
+
+    @Test
+    public void getRecommendationList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> eduMate.getRecommendationList().remove(0));
     }
 
     @Test
@@ -103,6 +148,16 @@ public class EduMateTest {
         }
         eduMate.removePerson(BART);
         assertFalse(eduMate.hasPerson(BART));
+    }
+
+    @Test
+    public void removeRecommendation_validIndex_success() {
+        if (!eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR)) {
+            eduMate.addRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR);
+        }
+        assertTrue(eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR));
+        eduMate.removeRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR);
+        assertFalse(eduMate.hasRecommendation(RECOMMENDATION_NEWTON_THU_4PM_3HR));
     }
 
     /**
@@ -131,7 +186,7 @@ public class EduMateTest {
 
         @Override
         public ObservableList<Recommendation> getRecommendationList() {
-            return null;
+            return recommendations;
         }
 
         @Override
