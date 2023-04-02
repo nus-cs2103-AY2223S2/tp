@@ -66,10 +66,10 @@ public class RecipePortion {
         String upperString = matcher.group(2);
         String unitString = matcher.group(3);
 
-        Integer lower = Integer.parseInt(lowerString);
-        Integer upper = upperString == null ? null : Integer.parseInt(upperString);
+        int lower = Integer.parseInt(lowerString);
+        int upper = upperString == null ? 0 : Integer.parseInt(upperString);
 
-        if (upper < lower) {
+        if (upperString != null && upper < lower) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
 
