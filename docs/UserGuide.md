@@ -29,12 +29,13 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
   * [**Try it out! (Recommended)**](#try-it-out-recommended)
   * [**Getting Help**](#getting-help)
 * [**User Interface**](#user-interface)
-  * [**Person List**](#person-list)
-  * [**Profile Panel**](#profile-panel)
-  * [**Command Box**](#command-box)
-  * [**Command Response**](#command-response)
-  * [**Meet Up Recommendation Panel**](#meet-up-recommendation-panel)
-  * [**Scheduled Meet Up Panel**](#scheduled-meet-up-panel)
+  * [**Breakdown of EduMate's UI**](#breakdown-of-edumates-ui)
+    * [**Person List**](#person-list)
+    * [**Profile Panel**](#profile-panel)
+    * [**Command Box**](#command-box)
+    * [**Command Response**](#command-response)
+    * [**Meet Up Recommendation Panel**](#meet-up-recommendation-panel)
+    * [**Scheduled Meet Up Panel**](#scheduled-meet-up-panel)
 * [**Set Your Own Profile**](#set-your-own-profile)
 * [**Commands**](#commands)
   * [**How to interpret the command format**](#how-to-interpret-the-command-format)
@@ -183,10 +184,30 @@ A member of our core team will attend to you as soon as possible.
 
 ## User Interface
 
-`EduMate`'s UI components are built using FXML and JavaFX. Each of the UI components are built to fulfil a specific functionality. We also used light purple and white as our main colour scheme as they are cool colours.
+`EduMate`'s UI components are built to fulfil a specific functionality. We designed `EduMate` to be aesthetically pleasing and easy for users to navigate.
+
+We also used light purple and white as our main colour scheme as they are cool colours.
 
 ![Ui](images/UG_ui_pictures/user_interface.png)
 <center>Diagram 2: <code>EduMate</code>'s UI</center>
+
+### **Breakdown of EduMate's UI**
+
+`EduMate` consists of the following main UI components
+1. Person List
+2. Meet Up Recommendation Panel
+3. Profile Panel
+4. Scheduled Meet Up Panel
+5. Command Response Box
+6. Command Input Box
+7. Help Button
+8. Exit Button
+
+The following diagram shows the layout of components numbered exactly as above.
+
+<img src="images/UG_ui_pictures/ui_labelled.svg" style="width:80%;margin:0 10%">
+
+<center>Diagram 3: Labelled layout of <code>EduMate</code>'s UI components.</center>
 
 ### Person List
 
