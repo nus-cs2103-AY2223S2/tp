@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules whose names or types contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " CS4243"
+            + "Example: " + COMMAND_WORD + " CS4243\n"
             + "Example: " + COMMAND_WORD + " tutorial";
 
     private final NameContainsKeywordsPredicate predicate;

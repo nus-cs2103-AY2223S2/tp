@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -128,11 +129,11 @@ public class LogicManager implements Logic {
     }
 
     private String getSlotsToday(int index) {
-        LocalDate today = LocalDate.now();
+        DayOfWeek today = LocalDate.now().getDayOfWeek();
         String fullLine = "";
         Module module = model.getDisplayedModuleList().get(index);
 
-        boolean isSlotToday = module.getTimeSlot().getLocalDateTime().toLocalDate().isEqual(today);
+        boolean isSlotToday = module.getTimeSlot().getLocalDateTime().getDayOfWeek().equals(today);
 
         if (isSlotToday) {
             String moduleName = module.getName().fullName;
