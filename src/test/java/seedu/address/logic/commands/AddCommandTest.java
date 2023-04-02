@@ -172,7 +172,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateMeeting(Person personToEdit, Index indexMeeting, Meeting editedMeeting) {
+        public Person updateMeeting(Person personToEdit, Index indexMeeting, Meeting editedMeeting) {
             throw new AssertionError("This method should not be called.");
         }
     }
