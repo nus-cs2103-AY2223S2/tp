@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class JobTitle {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Titles should contain at least one alphanumeric characters, and it should not be blank";
 
     /*
      * Validation regex
