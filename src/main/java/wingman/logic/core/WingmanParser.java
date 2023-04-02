@@ -25,7 +25,6 @@ import wingman.logic.plane.unlinklocation.UnlinkPlaneToLocationCommandFactory;
 import wingman.logic.toplevel.add.AddCommandFactory;
 import wingman.logic.toplevel.changemode.ChangeModeCommandFactory;
 import wingman.logic.toplevel.delete.DeleteCommandFactory;
-import wingman.logic.toplevel.exit.ExitCommandFactory;
 import wingman.logic.toplevel.syntax.CrewSyntax;
 import wingman.logic.toplevel.syntax.FlightSyntax;
 import wingman.logic.toplevel.syntax.LocationSyntax;
@@ -131,8 +130,7 @@ public class WingmanParser extends FactoryParser {
      * The top level command factories that are available in the application.
      */
     private static final List<CommandFactory<?>> COMMAND_FACTORIES = List.of(
-            new ChangeModeCommandFactory(),
-            new ExitCommandFactory()
+            new ChangeModeCommandFactory()
     );
 
     /**
