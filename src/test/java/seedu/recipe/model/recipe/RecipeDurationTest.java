@@ -30,7 +30,7 @@ public class RecipeDurationTest {
     private static final String INVALID_CHARACTERS_IN_UNIT = "213.10000 Cycles of_the Earth's Rotation";
 
     @Test
-    public void of_validInputs_RecipeDurationCreated() {
+    public void of_validInputs_recipeDurationCreated() {
         assertEquals(RecipeDuration.of(VALID_INTEGER), new RecipeDuration(1, new TimeUnit("hour")));
         assertEquals(RecipeDuration.of(VALID_DECIMAL), new RecipeDuration(0.00012, new TimeUnit("years")));
         assertEquals(RecipeDuration.of(VALID_FRACTION), new RecipeDuration(((double) 13) / 213, new TimeUnit("days")));

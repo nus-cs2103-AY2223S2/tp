@@ -34,13 +34,16 @@ public class RecipeDescriptor {
     private HashMap<Ingredient, IngredientInformation> ingredients;
     private List<Step> steps;
 
+    /**
+     * Instantiates a new RecipeDescriptor object.
+     */
     public RecipeDescriptor() {
         this.durationChanged = false;
         this.portionChanged = false;
     }
 
     /**
-     * Copy constructor.
+     * Creates a copy of a given RecipeDescriptor object.
      * A defensive copy of {@code tags} is used internally.
      */
     public RecipeDescriptor(RecipeDescriptor toCopy) {
@@ -65,12 +68,12 @@ public class RecipeDescriptor {
         Name updatedName = getName().orElse(recipeToEdit.getName());
         Recipe newRecipe = new Recipe(updatedName);
 
-        RecipeDuration updatedDuration = getDuration().orElseGet(() -> durationChanged ? null :
-            recipeToEdit.getDurationNullable());
+        RecipeDuration updatedDuration = getDuration().orElseGet(() -> durationChanged ? null
+            : recipeToEdit.getDurationNullable());
         newRecipe.setDuration(updatedDuration);
 
-        RecipePortion updatedPortion = getPortion().orElseGet(
-            () -> portionChanged ? null : recipeToEdit.getPortionNullable());
+        RecipePortion updatedPortion = getPortion().orElseGet((
+        ) -> portionChanged ? null : recipeToEdit.getPortionNullable()); // checkstyle'd
         newRecipe.setPortion(updatedPortion);
 
         Tag[] updatedTags = getTags().orElse(recipeToEdit.getTags()).toArray(Tag[]::new);
