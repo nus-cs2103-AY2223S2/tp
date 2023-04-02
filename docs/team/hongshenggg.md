@@ -62,6 +62,11 @@ The diagrams contributed to the DG are reproduced below.
     <p style="margin-top: 0; margin-bottom: 2rem"><i>Figure 2: Delete image activity diagram</i></p>
 </div>
 
+<div style="text-align: center">
+    <img src="../images/FindSequenceDiagram.png" />
+    <p style="margin-top: 0; margin-bottom: 2rem"><i>Figure 3: Find sequence diagram</i></p>
+</div>
+
 ### Contributions to team-based tasks
 
 The following are the list of team-based tasks accomplished:
