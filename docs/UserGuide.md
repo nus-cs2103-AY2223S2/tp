@@ -251,22 +251,27 @@ Examples:
 
 ### Locating persons by name : `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons who have any fields that contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g `hans` will match `Hans`
+- Keywords cannot contain spaces. Instead, spaces are used to separate keywords.
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
+- All fields (rank, name, unit, company, platoon, phone, email, address, tags) are searched.
+- Only part of a field is needed for a successful match e.g. `tani` will match `Botanic Gardens`
 - Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` and `Bo Hans`
 
 Examples:
 
-- `find John` returns `john` and `John Doe`
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+- `find Jo` returns `john`, `John Doe`, `joseph moseph` and `anjolino`
+- `find live delta` returns 3 persons in this example:
+  - `Charlotte Oliveiro` (name matches `live`)
+  - `Irfan Ibrahim` (email matches `live`)
+  - `Roy Balakrishnan` (company matches `delta`)<br>
+
+![result for 'find charlotte irfan roy'](images/findCharlotteIrfanRoyResult.png)
 
 ### Locating persons using filters on fields : `filter`
 
