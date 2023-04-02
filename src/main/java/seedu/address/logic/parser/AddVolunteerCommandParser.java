@@ -100,7 +100,10 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
             throw new RecommendationException("Too many arguments.");
         } else if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
             throw new RecommendationException("Invalid prefix.");
+        } else if (map.getValue(PREFIX_TAG).orElse("").length() > 20) {
+            throw new RecommendationException("Length of tag is too long.");
+        } else {
+            return true;
         }
-        return true;
     }
 }

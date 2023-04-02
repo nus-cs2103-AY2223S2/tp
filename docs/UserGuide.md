@@ -161,6 +161,13 @@ please ensure your input available date ranges are non-overlapping.
 A tag is a generic description for a group of people.
 * Only alphanumeric, non-space characters are allowed.
 
+<div markdown="span" class="alert alert-info">:information_source: **Length of Tags**
+
+For the best UI experience, it is recommended that you keep your tags short and simple. We highly encourage a length of 1-20 characters.
+Beyond this, a warning will be given, but you are free to continue typing.
+
+</div>
+
 #### Duplicate Entries
 * Person (Elderly and Volunteers)
   * Two persons having the same `NRIC` are considered the same person and therefore a duplicate entry in FriendlyLink, and is not allowed.
