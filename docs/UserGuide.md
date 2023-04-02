@@ -220,13 +220,13 @@ messages shown below will be displayed.
 ```ignorelang
 Invalid command format!
 edit: Edits a listing identified by the index used in the displayed listing book.
-      Existing values will be overwritten by the input values.
+Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer) [t/TITLE] [d/DESCRIPTION] [a/APPLICANT]...
 Example: edit 1 t/Cool job title a/John a/Sam
 ```
 
 ```ignorelang
-The listing index provided is invalid!
+The listing index provided exceeded the number of listings shown!
 ```
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
@@ -269,7 +269,7 @@ Example: delete 1
 ```
 
 ```ignorelang
-The listing index provided is invalid
+The listing index provided exceeded the number of listings shown!
 ```
 
 ###### _< Back to [Table of Contents](#table-of-contents) >_
