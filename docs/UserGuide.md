@@ -135,6 +135,10 @@ Adds a new contact.
 
 - Creates a new contact with specified `NAME` and `NUMBER`
 
+**Note**:
+- `NAME` should only contain alphanumeric characters and spaces.
+- `NUMBER` should only contain numbers between 8 and 15 digits long.
+
 **Example**:
 - `newcontact n/Deborah Tan p/91234567`
   - This command will create a new contact named `Deborah Tan` with phone number `91234567`.
@@ -166,8 +170,11 @@ Please be careful when using this command.
 Adds a new event.
 
 **Format**: `newevent n/NAME r/RATE a/ADDRESS ds/START_TIME de/END_TIME [t/TAG]…`
+- Creates a new event with specified `NAME`, `RATE`, `ADDRESS`, `START_TIME`, `END_TIME` and optionally `TAGS`.
 
+**Note**:
 - Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
+- `RATE` must be a positive number.
 
 **Example**:
 - `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`
@@ -184,8 +191,10 @@ Deletes the specified event.
 **Format**: `delete INDEX`
 
 - Deletes the event at the specified `INDEX`
-  - The `INDEX` refers to the index number shown in the displayed event list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …
+
+**Note**:
+- The `INDEX` refers to the index number shown in the displayed event list.
+- The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
 - `delete 2`
@@ -202,14 +211,16 @@ Edits the specified event from the event book.
 **Format**: `edit INDEX [n/NAME] [r/RATE] [a/ADDRESS] [ds/TIMING] [de/TIMING] [t/TAG]...`
 
 - Edits the event at the specified `INDEX`
-  - The `INDEX` refers to the index number shown in the displayed event list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …
-  - `[]` are optional parameters.
-  - At least one of the optional fields must be provided.
-  - Edits will replace existing values, edits are not cumulative.
-  - Tags can be removed by typing `t/` without specifying any tags after it.
-  - Do note that `edit` is only for editing the event details, not the contact details.
-  - To link the event to a new contact, consider using [`linkcontact`](#link-contact-to-event) instead.
+
+**Note**:
+- The `INDEX` refers to the index number shown in the displayed event list.
+- The `INDEX` must be a positive integer 1, 2, 3, …
+- `[]` are optional parameters.
+- At least one of the optional fields must be provided.
+- Edits will replace existing values, edits are not cumulative.
+- Tags can be removed by typing `t/` without specifying any tags after it.
+- Do note that `edit` is only for editing the event details, not the contact details.
+- To link the event to a new contact, consider using [`linkcontact`](#link-contact-to-event) instead.
 
 **Example**:
 - `edit 2 r/100`
@@ -244,10 +255,12 @@ Finds event(s) from the event book based on the given search string.
 **Format**: `find KEYWORD [MORE_KEYWORDS]`
 
 - Finds the event using the specified `KEYWORD`
-  - The `KEYWORD` refers to the string to search the event list for.
-  - `[]` are optional parameters.
-  - `find` will return all events that contain the `KEYWORD` in their name.
-  - `find` is case-insensitive.
+
+**Note**:
+- The `KEYWORD` refers to the string to search the event list for.
+- `[]` are optional parameters.
+- `find` will return all events that contain the `KEYWORD` in their name.
+- `find` is case-insensitive.
 
 **Example**:
 - `find wedding`
@@ -262,9 +275,11 @@ Links a client contact to an event.
 **Format**: `linkcontact INDEX PHONE`
 
 - Links contact using `PHONE` to the event at the specified `INDEX`
-  - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …
-  - The `PHONE` must be a valid phone number in the contact list.
+
+**Note**:
+- The `INDEX` refers to the index number in the displayed events list.
+- The `INDEX` must be a positive integer 1, 2, 3, …
+- The `PHONE` must be a valid phone number in the contact list.
 
 **Example**:
 - `linkcontact 2 91234567`
@@ -286,8 +301,10 @@ Marks a specified event in Paidlancers as done.
 **Format**: `mark INDEX`
 
 - Marks the event at the specified `INDEX` as done
-  - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …
+
+**Note**:
+- The `INDEX` refers to the index number in the displayed events list.
+- The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
 - `mark 2`
@@ -303,8 +320,10 @@ Unmarks a specified event in Paidlancers.
 **Format**: `unmark INDEX`
 
 - Unmarks the event at the specified `INDEX`
-  - The `INDEX` refers to the index number in the displayed events list.
-  - The `INDEX` must be a positive integer 1, 2, 3, …
+
+**Note**:
+- The `INDEX` refers to the index number in the displayed events list.
+- The `INDEX` must be a positive integer 1, 2, 3, …
 
 **Example**:
 - `unmark 2`
@@ -331,9 +350,11 @@ Displays events that start within a specified number of days.
 **Format**: `remind DAYS`
 
 - Displays events that start within the specified number of `DAYS`
-  - `DAYS` must be a positive integer 1, 2, 3, …
-  - Only events that start after the current date and time will be displayed.
-  - The number of days to an event are the days from today's date to the event's start date. Their times are not considered.
+
+**Note**:
+- `DAYS` must be a positive integer 1, 2, 3, …
+- Only events that start after the current date and time will be displayed.
+- The number of days to an event are the days from today's date to the event's start date. Their times are not considered.
 
 **Example**:
 
