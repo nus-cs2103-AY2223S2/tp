@@ -13,13 +13,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.Set;
 
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.AddElderlyCommand;
 import seedu.address.logic.commands.CommandInfo;
-import seedu.address.logic.commands.DeleteElderlyCommand;
 import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Elderly;
@@ -94,11 +92,10 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
-        if (map.getPreamble().isEmpty()) {
-            return true;
-        }
-        if (Arrays.stream(availablePrefixes).noneMatch(prefix -> prefix.getPrefix().startsWith(map.getPreamble()))) {
-            throw new RecommendationException("There should not be a preamble");
+        if (PrefixUtil.hasNonEmptyPreamble(map, availablePrefixes)) {
+            throw new RecommendationException("Too many arguments.");
+        } else if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+            throw new RecommendationException("Invalid prefix.");
         }
         return true;
     }

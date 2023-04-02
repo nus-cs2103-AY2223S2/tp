@@ -1,15 +1,17 @@
 package seedu.address.ui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.CommandRecommendationEngine;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -33,7 +35,9 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandRecommendationTextField;
 
-    private CommandRecommendationEngine commandRecommendationEngine;
+    private final CommandRecommendationEngine commandRecommendationEngine;
+
+    private final Logger logger = LogsCenter.getLogger(CommandBox.class);
 
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
@@ -80,7 +84,8 @@ public class CommandBox extends UiPart<Region> {
                 e.consume();
             } catch (RecommendationException ce) {
                 setStyleToIndicateCommandFailure(true);
-                setRecommendationsWithUserInput(ce.getMessage());
+                commandRecommendationTextField.setText("");
+                logger.log(Level.WARNING, ce.getMessage());
                 e.consume();
             }
         });
@@ -163,7 +168,9 @@ public class CommandBox extends UiPart<Region> {
             commandRecommendationTextField.setText(recommendedText);
         } catch (RecommendationException e) {
             setStyleToIndicateCommandFailure(true);
-            commandRecommendationTextField.setText(e.getMessage());
+            logger.log(Level.WARNING, e.getMessage());
+            commandRecommendationTextField.setText("");
+
         }
     }
 
@@ -171,12 +178,6 @@ public class CommandBox extends UiPart<Region> {
         Text text = new Text();
         text.setFont(commandTextField.getFont());
         text.setText(commandTextField.getText() + "           ");
-        System.out.println(text.getLayoutBounds().getWidth());
         return commandTextField.getWidth() < text.getLayoutBounds().getWidth();
     }
-
-    private boolean isEmpty() {
-        return commandTextField.getText().isEmpty();
-    }
-
 }

@@ -30,7 +30,6 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.StatsCommandParser;
 
 /**
- * @@author Lee Zong Xun
  * A class representing a recommendation engine that recommends a command based on the user input.
  * This class is implemented by using a command registry and a command info map.
  *
@@ -42,34 +41,31 @@ public class CommandRecommendationEngine {
      * A singleton instance of the CommandRecommendationEngine class.
      */
     private static CommandRecommendationEngine commandRecommendationEngine;
+    private final String INVALID_COMMAND_WORD = "Invalid command word";
     /**
      * A map containing the command registry with command word as key and CommandInfo as value.
      */
     private static final CommandInfoMap commandRegistry = new CommandInfoMap();
-    /**
-     * Used to format the error messages
-     */
-    private static final String delimiter = "                ";
 
     static {
-        registerCommand(new DeleteVolunteerCommandParser());
-        registerCommand(new DeleteElderlyCommandParser());
-        registerCommand(new AddVolunteerCommandParser());
-        registerCommand(new AddElderlyCommandParser());
-        registerCommand(new AddPairCommandParser());
-        registerCommand(new EditElderlyCommandParser());
-        registerCommand(new EditVolunteerCommandParser());
-        registerCommand(new DeletePairCommandParser());
-        registerCommand(new FindCommandParser());
-        registerCommand(new ExitCommandParser());
-        registerCommand(new ListCommandParser());
-        registerCommand(new EditCommandParser());
-        registerCommand(new HelpCommandParser());
-        registerCommand(new StatsCommandParser());
-        registerCommand(new AutoPairCommandParser());
+        registerCommandParser(new DeleteVolunteerCommandParser());
+        registerCommandParser(new DeleteElderlyCommandParser());
+        registerCommandParser(new AddVolunteerCommandParser());
+        registerCommandParser(new AddElderlyCommandParser());
+        registerCommandParser(new AddPairCommandParser());
+        registerCommandParser(new EditElderlyCommandParser());
+        registerCommandParser(new EditVolunteerCommandParser());
+        registerCommandParser(new DeletePairCommandParser());
+        registerCommandParser(new FindCommandParser());
+        registerCommandParser(new ExitCommandParser());
+        registerCommandParser(new ListCommandParser());
+        registerCommandParser(new EditCommandParser());
+        registerCommandParser(new HelpCommandParser());
+        registerCommandParser(new StatsCommandParser());
+        registerCommandParser(new AutoPairCommandParser());
     }
 
-    private static <T extends Command> void registerCommand(Parser<T> commandParser) {
+    private static <T extends Command> void registerCommandParser(Parser<T> commandParser) {
         CommandInfo commandInfo = commandParser.getCommandInfo();
         commandRegistry.put(commandInfo.getCmdWord(), commandInfo);
     }
@@ -97,6 +93,26 @@ public class CommandRecommendationEngine {
         return commandRegistry;
     }
 
+
+    /**
+     * A map that stores the command information of all registered commands.
+     */
+    public static class CommandInfoMap {
+        private final Map<String, CommandInfo> map = new LinkedHashMap<>();
+
+        public void put(String cmdWord, CommandInfo commandInfo) {
+            map.put(cmdWord, commandInfo);
+        }
+
+        public CommandInfo get(String cmdWord) {
+            return map.get(cmdWord);
+        }
+
+        public Set<String> keySet() {
+            return map.keySet();
+        }
+    }
+
     /**
      * Generates the recommended command based on the user input.
      *
@@ -109,6 +125,10 @@ public class CommandRecommendationEngine {
             return "";
         }
 
+        boolean invalid = userInput.stripLeading().length() != userInput.length();
+
+        userInput = userInput.stripLeading();
+
         // Find entered command
         int commandIndex = userInput.indexOf(" ");
 
@@ -116,9 +136,11 @@ public class CommandRecommendationEngine {
         if (commandIndex == -1) {
             CommandInfo commandInfo = findMatchingCommandInfo(userInput, false);
             if (commandInfo == null) {
-                throw new RecommendationException(userInput + delimiter + "Command cannot be found!");
+                throw new RecommendationException(INVALID_COMMAND_WORD);
             }
-            return commandInfo.getCmdWord() + generateArgumentRecommendation(commandInfo, null, userInput);
+            return invalid ? ""
+                    : commandInfo.getCmdWord()
+                    + generateArgumentRecommendation(commandInfo, null);
         }
 
         // Complete command
@@ -128,12 +150,12 @@ public class CommandRecommendationEngine {
         // Enforcing exact matching since the command must be complete
         CommandInfo commandInfo = findMatchingCommandInfo(commandWord, true);
         if (commandInfo == null) {
-            throw new RecommendationException(userInput + delimiter + "Command cannot be found!");
+            throw new RecommendationException(INVALID_COMMAND_WORD);
         }
 
         String commandArgs = parsedArgs.isBlank() ? null : parsedArgs;
-        String recommendedArguments = generateArgumentRecommendation(commandInfo, commandArgs, userInput);
-        return userInput + recommendedArguments;
+        String recommendedArguments = generateArgumentRecommendation(commandInfo, commandArgs);
+        return invalid ? "" : userInput + recommendedArguments;
     }
 
     /**
@@ -145,18 +167,20 @@ public class CommandRecommendationEngine {
      */
     public String autocompleteCommand(String userInput) throws RecommendationException {
         userInput = userInput.trim();
-        String recommendedCommand = generateCommandRecommendations(userInput);
-        String suggestedCommand = recommendedCommand.substring(userInput.length());
+        String recommendation = generateCommandRecommendations(userInput);
+        String cmdWord = recommendation.split(" ")[0];
+        CommandInfo cmdInfo = findMatchingCommandInfo(cmdWord, true);
+        String suggestedCommand = recommendation.substring(userInput.length());
         boolean isCompleteCommand = isCommandPrefixComplete(userInput, " ");
-        int commandIdx = recommendedCommand.indexOf(" ");
-        String command = recommendedCommand.substring(0, commandIdx == -1
-                ? recommendedCommand.length()
+        int commandIdx = recommendation.indexOf(" ");
+        String command = recommendation.substring(0, commandIdx == -1
+                ? recommendation.length()
                 : commandIdx);
         if (!isCompleteCommand && !userInput.equals(command)) {
             return command;
         } else {
             int nextIdx = suggestedCommand.indexOf("/") + 1;
-            return recommendedCommand.substring(0, userInput.length() + nextIdx);
+            return recommendation.substring(0, userInput.length() + nextIdx);
         }
     }
 
@@ -179,7 +203,9 @@ public class CommandRecommendationEngine {
                 .orElse(null);
     }
 
-    private String generateArgumentRecommendation(CommandInfo commandInfo, String userArgs, String userInput)
+
+
+    private String generateArgumentRecommendation(CommandInfo commandInfo, String userArgs)
             throws RecommendationException {
 
         @SuppressWarnings("unchecked")
@@ -194,17 +220,10 @@ public class CommandRecommendationEngine {
         }
 
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs, cmdPrompt.keySet()
-                .toArray(new Prefix[]{}));
+                .toArray(Prefix[]::new));
 
-        try {
-            isValidArgs(command, argumentMultimap);
-        } catch (RecommendationException e){
-            if (e.getMessage().isEmpty()) {
-                throw new RecommendationException(userInput + delimiter + "Invalid prefix");
-            } else {
-                throw new RecommendationException(userInput + delimiter + e.getMessage());
-            }
-        }
+        // Validates arguments
+        isValidArgs(command, argumentMultimap);
 
         // To retrieve the last entered string
         String[] userInputArray = userArgs.split(" ");
@@ -213,7 +232,7 @@ public class CommandRecommendationEngine {
         Prefix matchingPrefix = findMatchingPrefix(cmdPrompt, currPrefixString.split("/")[0]);
 
         if (isCompletePrefix && matchingPrefix == null) {
-            throw new RecommendationException(userInput + delimiter + "Invalid prefix");
+            throw new RecommendationException("Invalid prefix.");
         }
 
         if (isCompletePrefix) {
@@ -261,22 +280,4 @@ public class CommandRecommendationEngine {
                 .forEach(consumer);
     }
 
-    /**
-     * A map that stores the command information of all registered commands.
-     */
-    public static class CommandInfoMap {
-        private final Map<String, CommandInfo> map = new LinkedHashMap<>();
-
-        public void put(String cmdWord, CommandInfo commandInfo) {
-            map.put(cmdWord, commandInfo);
-        }
-
-        public CommandInfo get(String cmdWord) {
-            return map.get(cmdWord);
-        }
-
-        public Set<String> keySet() {
-            return map.keySet();
-        }
-    }
 }

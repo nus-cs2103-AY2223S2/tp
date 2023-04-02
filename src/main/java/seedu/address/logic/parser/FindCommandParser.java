@@ -19,8 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Elderly;
 import seedu.address.model.person.Person;
@@ -175,7 +177,10 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+            throw new RecommendationException("Invalid prefix.");
+        }
         return true;
     }
 }

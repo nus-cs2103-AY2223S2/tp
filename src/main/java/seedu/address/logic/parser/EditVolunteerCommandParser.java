@@ -14,8 +14,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Arrays;
+
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
+import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.EditVolunteerCommand;
 import seedu.address.logic.commands.exceptions.RecommendationException;
@@ -26,7 +28,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new EditVolunteerCommand object.
  */
 public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> {
-
+    private final static Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+            PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_TAG, PREFIX_MEDICAL_TAG, PREFIX_AVAILABILITY};
     /**
      * Parses the given {@code String} of arguments in the context of the EditVolunteerCommand
      * and returns an EditVolunteerCommand object for execution.
@@ -38,9 +41,7 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
     public EditVolunteerCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION,
-                        PREFIX_TAG, PREFIX_MEDICAL_TAG, PREFIX_AVAILABILITY);
+                ArgumentTokenizer.tokenize(args, availablePrefixes);
 
         Index index;
 
@@ -111,10 +112,14 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
-        if (StringUtil.isNonZeroUnsignedInteger(map.getPreamble())) {
-            return true;
+        String[] keyWords = map.getPreamble().split(" ");
+        if (keyWords.length > 2 || keyWords.length == 2 && Arrays.stream(availablePrefixes)
+                .noneMatch(prefix -> prefix.getPrefix().startsWith(keyWords[1]))) {
+            throw new RecommendationException("Too many arguments.");
+        } else if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+            throw new RecommendationException("Invalid prefix.");
         }
-        throw new RecommendationException("Invalid index");
+        return true;
     }
 }
 

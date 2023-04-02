@@ -4,21 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_BOTH_INVALID_NRIC;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_NRIC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
-
-import java.util.Arrays;
 
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.AddPairCommand;
@@ -83,11 +71,10 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
-        if (map.getPreamble().isEmpty()) {
-            return true;
-        }
-        if (Arrays.stream(availablePrefixes).noneMatch(prefix -> prefix.getPrefix().startsWith(map.getPreamble()))) {
-            throw new RecommendationException("There should not be a preamble");
+        if (PrefixUtil.hasNonEmptyPreamble(map, availablePrefixes)) {
+            throw new RecommendationException("Too many arguments.");
+        } else if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+            throw new RecommendationException("Invalid prefix.");
         }
         return true;
     }

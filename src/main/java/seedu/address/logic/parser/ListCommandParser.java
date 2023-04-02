@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -23,15 +24,11 @@ public class ListCommandParser implements Parser<ListCommand> {
     public ListCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String trimmedArgs = args.trim().toLowerCase();
-        switch (trimmedArgs) {
-        case "":
-        case "unpaired":
-        case "paired":
-            return new ListCommand(trimmedArgs);
-        default:
-            throw new ParseException(
+        return switch (trimmedArgs) {
+            case "", "unpaired", "paired" -> new ListCommand(trimmedArgs);
+            default -> throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
-        }
+        };
     }
 
     @Override
@@ -48,8 +45,10 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        String preamble = map.getPreamble().toLowerCase();
-        return preamble.equals("paired") || preamble.equals("unpaired");
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (map.getPreamble().contains(" ")) {
+            throw new RecommendationException("Too many arguments.");
+        }
+        return true;
     }
 }

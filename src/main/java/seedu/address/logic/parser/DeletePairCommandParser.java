@@ -8,8 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_ELDERLY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC_VOLUNTEER;
 import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
-import java.util.Arrays;
-
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.DeletePairCommand;
@@ -71,9 +69,11 @@ public class DeletePairCommandParser implements Parser<DeletePairCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
-        if (map.getPreamble().isEmpty()) {
-            return true;
+        if (PrefixUtil.hasNonEmptyPreamble(map, availablePrefixes)) {
+            throw new RecommendationException("Too many arguments.");
+        } else if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+            throw new RecommendationException("Invalid prefix.");
         }
-        return Arrays.stream(availablePrefixes).anyMatch(prefix -> prefix.getPrefix().startsWith(map.getPreamble()));
+        return true;
     }
 }

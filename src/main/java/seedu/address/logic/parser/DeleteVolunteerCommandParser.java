@@ -46,8 +46,8 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
-        if (!Nric.isValidNric(map.getPreamble())) {
-            throw new RecommendationException("A valid nric should be specified");
+        if (map.getPreamble().contains(" ")) {
+            throw new RecommendationException("Too many arguments.");
         }
         return true;
     }

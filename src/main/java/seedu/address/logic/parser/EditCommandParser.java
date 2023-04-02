@@ -18,11 +18,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RISK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.RecommendationException;
@@ -34,6 +36,9 @@ import seedu.address.model.person.information.Nric;
  * Parses input arguments for editing.
  */
 public class EditCommandParser implements Parser <EditCommand> {
+    private static final Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+            PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_AVAILABILITY,
+            PREFIX_RISK, PREFIX_TAG, PREFIX_MEDICAL_TAG};
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -45,9 +50,7 @@ public class EditCommandParser implements Parser <EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_AVAILABILITY,
-                        PREFIX_RISK, PREFIX_TAG, PREFIX_MEDICAL_TAG);
+                ArgumentTokenizer.tokenize(args, availablePrefixes);
 
         Nric nric = checkPreamble(argMultimap.getPreamble());
 
@@ -145,8 +148,12 @@ public class EditCommandParser implements Parser <EditCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
-        if (!Nric.isValidNric(map.getPreamble())) {
-            throw new RecommendationException("A valid nric should be specified");
+        String[] keyWords = map.getPreamble().split(" ");
+        if (keyWords.length > 2 || keyWords.length == 2 && Arrays.stream(availablePrefixes)
+                .noneMatch(prefix -> prefix.getPrefix().startsWith(keyWords[1]))) {
+            throw new RecommendationException("Too many arguments.");
+        } else if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+            throw new RecommendationException("Invalid prefix.");
         }
         return true;
     }
