@@ -2,6 +2,7 @@ package wingman.logic.flight.linklocation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -169,16 +170,39 @@ public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFl
         return flightOptional.get();
     }
 
+    private boolean isIndexOutOfBound(int index) {
+        return index >= locationManagerLazy.get().size();
+    }
+
+    private void checkValidLocationIds(int departureId, int arrivalId) throws CommandException {
+        if (isIndexOutOfBound(departureId)) {
+            throw new CommandException(
+                    String.format("Departure location is out of bound.")
+            );
+        }
+
+        if (isIndexOutOfBound(arrivalId)) {
+            throw new CommandException(
+                    String.format("Arrival location is out of bound.")
+            );
+        }
+
+        if (departureId == arrivalId) {
+            throw new CommandException(
+                    "Departure location and arrival location cannot be the same."
+            );
+        }
+    }
+
     @Override
-    public LinkFlightToLocationCommand createCommand(CommandParam param)
-            throws ParseException, CommandException {
+    public LinkFlightToLocationCommand createCommand(CommandParam param) throws ParseException, CommandException {
         Optional<String> locationDepartureIdOptional =
                 param.getNamedValues(LOCATION_DEPARTURE_PREFIX);
+
         Optional<String> locationArrivalIdOptional =
                 param.getNamedValues(LOCATION_ARRIVAL_PREFIX);
 
         Flight flight;
-
         try {
             flight = getFlightOrThrow(param.getNamedValues(FLIGHT_PREFIX));
         } catch (CommandException e) {
@@ -187,24 +211,27 @@ public class LinkFlightToLocationCommandFactory implements CommandFactory<LinkFl
 
         Map<FlightLocationType, Location> locations = new HashMap<>();
 
-        boolean hasFoundLocation;
+        int departureId;
+        int arrivalId;
         try {
-            hasFoundLocation = addLocation(
-                    locationDepartureIdOptional,
-                    FlightLocationType.LOCATION_DEPARTURE,
-                    locations
-            ) || addLocation(
-                    locationArrivalIdOptional,
-                    FlightLocationType.LOCATION_ARRIVAL,
-                    locations
-            );
-        } catch (CommandException e) {
-            throw new ParseException(e.getMessage());
-        }
-
-        if (!hasFoundLocation) {
+            departureId = Command.parseIntegerToZeroBasedIndex(locationDepartureIdOptional.get());
+            arrivalId = Command.parseIntegerToZeroBasedIndex(locationArrivalIdOptional.get());
+            checkValidLocationIds(departureId, arrivalId);
+        } catch (NoSuchElementException e) {
             throw new ParseException(NO_LOCATION_MESSAGE);
         }
+
+        addLocation(
+                locationDepartureIdOptional,
+                FlightLocationType.LOCATION_DEPARTURE,
+                locations
+        );
+
+        addLocation(
+                locationArrivalIdOptional,
+                FlightLocationType.LOCATION_ARRIVAL,
+                locations
+        );
 
         return new LinkFlightToLocationCommand(flight, locations);
     }

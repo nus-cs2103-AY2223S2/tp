@@ -216,10 +216,13 @@ public class CommandParam {
 
     /**
      * Gets the value of the named token with the given prefix or throws an exception.
+     *
+     * @throws ParseException if there is no value following a prefix,
+     *                          the input is an empty string.
      */
     public String getNamedValuesOrThrow(String prefix, String message) throws ParseException {
         final Optional<String> value = getNamedValues(prefix);
-        if (value.isEmpty()) {
+        if (value.isEmpty() || value.get().isEmpty()) {
             throw new ParseException(message);
         }
         return value.get();
@@ -231,9 +234,10 @@ public class CommandParam {
      * @see #getNamedValuesOrThrow(String, String)
      */
     public String getNamedValuesOrThrow(String prefix) throws ParseException {
-        return getNamedValuesOrThrow(prefix, String.format(
-                "Missing value for prefix %s.\n"
-                        + "Please try entering a value following %s.",
+        return getNamedValuesOrThrow(prefix,
+                String.format(
+                    "Missing value for prefix %s.\n"
+                            + "Please try entering a value following %s.",
                 prefix,
                 prefix
         ));

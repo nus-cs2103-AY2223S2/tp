@@ -7,14 +7,16 @@ import wingman.logic.core.CommandParam;
 import wingman.logic.core.exceptions.ParseException;
 import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
+import wingman.model.item.exceptions.DuplicateItemException;
 import wingman.model.pilot.Gender;
 import wingman.model.pilot.Pilot;
 import wingman.model.pilot.PilotRank;
+import wingman.model.pilot.exceptions.InvalidGenderException;
 
 /**
  * The syntax related to a pilot.
  */
-public abstract class PilotSyntax {
+public abstract class PilotSyntax extends ModelSyntax {
     /**
      * The type name.
      */
@@ -54,6 +56,10 @@ public abstract class PilotSyntax {
                     + "4 for a Second Officer, "
                     + "or 5 for a Cadet.";
 
+    private static final String INVALID_GENDER_MESSAGE =
+            "Input gender %s is invalid. \n"
+                    + "Please try 0 for male, 1 for female, or 2 for others.";
+
     /**
      * The set of all prefixes of a pilot.
      */
@@ -66,29 +72,65 @@ public abstract class PilotSyntax {
     );
 
     /**
+     * Parses the gender from a number.
+     *
+     * @param genderIdx User-input number indicating gender
+     * @return the Gender value
+     * @throws ParseException when the input number is not a valid gender type
+     */
+    private static Gender parseGenderFromNumber(int genderIdx) throws ParseException {
+        final Gender gender;
+        try {
+            gender = Gender.fromIndex(genderIdx);
+        } catch (InvalidGenderException e) {
+            throw new ParseException(
+                    String.format(
+                            INVALID_GENDER_MESSAGE,
+                            genderIdx
+                    )
+            );
+        }
+        return gender;
+    }
+
+    /**
+     * Parses the rank from a number.
+     *
+     * @param rankIdx User-input number indicating gender
+     * @return the rank value
+     * @throws ParseException when the input number is not a valid gender type
+     */
+    private static PilotRank parseRankFromNumber(int rankIdx) throws ParseException {
+        if (!(Stream.of(0, 1, 2, 3, 4, 5)
+                .anyMatch(validRank -> validRank.equals(rankIdx)))) {
+            throw new ParseException(String.format(
+                    INVALID_PILOT_RANK_MESSAGE,
+                    rankIdx
+            ));
+        }
+
+        return PilotRank.fromIndex(rankIdx);
+    }
+
+    /**
      * Creates a pilot.
      *
      * @param param the command parameter after parsing.
      * @return a new pilot
-     * @throws ParseException if the parameter does not fit the requirements.
+     * @throws ParseException if the parameter does not fit the requirements, or
+     *                          the gender is invalid
      */
     public static Pilot factory(CommandParam param) throws ParseException {
         final String name = param.getNamedValuesOrThrow(PREFIX_NAME);
         final int rankId = param.getNamedIntOrThrow(PREFIX_RANK);
-
-        if (!(Stream.of(0, 1, 2, 3, 4, 5)
-                .anyMatch(validRank -> validRank.equals(rankId)))) {
-            throw new ParseException(String.format(
-                    INVALID_PILOT_RANK_MESSAGE,
-                    rankId
-            ));
-        }
-
-        final PilotRank rank = PilotRank.fromIndex(rankId);
+        final PilotRank rank = parseRankFromNumber(rankId);
         final int age = param.getNamedIntOrThrow(PREFIX_AGE);
         final int genderId = param.getNamedIntOrThrow(PREFIX_GENDER);
-        final Gender gender = Gender.fromIndex(genderId);
+        final Gender gender = parseGenderFromNumber(genderId);
         final int flightHour = param.getNamedIntOrThrow(PREFIX_FLIGHT_HOUR);
+
+        requireAllNonNegative(age, flightHour);
+        requireAllAlphanumericOrSpace(name);
 
         return new Pilot(name, age, gender, rank, flightHour);
     }
@@ -99,7 +141,7 @@ public abstract class PilotSyntax {
      * @param model the model to which the pilot is added.
      * @param pilot the pilot that which is added to the model.
      */
-    public static void add(Model model, Pilot pilot) {
+    public static void add(Model model, Pilot pilot) throws DuplicateItemException {
         model.addPilot(pilot);
     }
 

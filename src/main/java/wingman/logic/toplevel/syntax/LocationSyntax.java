@@ -6,12 +6,13 @@ import wingman.logic.core.CommandParam;
 import wingman.logic.core.exceptions.ParseException;
 import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
+import wingman.model.item.exceptions.DuplicateItemException;
 import wingman.model.location.Location;
 
 /**
  * The syntax for location.
  */
-public abstract class LocationSyntax {
+public abstract class LocationSyntax extends ModelSyntax {
     /**
      * The prefix for name.
      */
@@ -32,6 +33,7 @@ public abstract class LocationSyntax {
      */
     public static Location factory(CommandParam param) throws ParseException {
         final String name = param.getNamedValuesOrThrow(PREFIX_NAME);
+        requireAllAlphanumericOrSpace(name);
         return new Location(name);
     }
 
@@ -41,7 +43,7 @@ public abstract class LocationSyntax {
      * @param model    the model.
      * @param location the location.
      */
-    public static void add(Model model, Location location) {
+    public static void add(Model model, Location location) throws DuplicateItemException {
         model.addLocation(location);
     }
 

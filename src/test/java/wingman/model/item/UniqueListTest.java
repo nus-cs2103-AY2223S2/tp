@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import wingman.model.item.exceptions.ItemDuplicateException;
+import wingman.model.item.exceptions.DuplicateItemException;
 import wingman.model.item.exceptions.ItemNotFoundException;
 import wingman.testutil.Assert;
 
@@ -45,11 +45,11 @@ public class UniqueListTest {
                 new ItemStub("a"),
                 new ItemStub("a")
         );
-        Assert.assertThrows(ItemDuplicateException.class, () ->
+        Assert.assertThrows(DuplicateItemException.class, () ->
                 UniqueList.fromObservableList(observableList));
         try {
             UniqueList.fromObservableList(observableList);
-        } catch (ItemDuplicateException e) {
+        } catch (DuplicateItemException e) {
             assertEquals(ItemStub.class, e.getDuplicatedClass());
         }
     }
@@ -78,11 +78,11 @@ public class UniqueListTest {
     @Test
     void add_duplicatedItem_shouldThrowItemDuplicateException() {
         this.list.add(new ItemStub("a"));
-        Assert.assertThrows(ItemDuplicateException.class, () ->
+        Assert.assertThrows(DuplicateItemException.class, () ->
                 this.list.add(new ItemStub("a")));
         try {
             this.list.add(new ItemStub("a"));
-        } catch (ItemDuplicateException e) {
+        } catch (DuplicateItemException e) {
             assertEquals(ItemStub.class, e.getDuplicatedClass());
         }
     }
@@ -147,11 +147,11 @@ public class UniqueListTest {
         ItemStub item2 = new ItemStub("b");
         this.list.add(item);
         this.list.add(item2);
-        Assert.assertThrows(ItemDuplicateException.class, () -> this.list.setItem(item,
+        Assert.assertThrows(DuplicateItemException.class, () -> this.list.setItem(item,
                 item2));
         try {
             this.list.setItem(item, item2);
-        } catch (ItemDuplicateException e) {
+        } catch (DuplicateItemException e) {
             assertEquals(ItemStub.class, e.getDuplicatedClass());
         }
     }

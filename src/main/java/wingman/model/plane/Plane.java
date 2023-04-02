@@ -124,13 +124,27 @@ public class Plane implements Item {
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s", model),
-                String.format("%s: %s", AGE_STRING, age),
-                String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
+                String.format("%s: %s", AGE_STRING, age)
         );
     }
 
     @Override
     public String toString() {
         return getModel();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Plane)) {
+            return false;
+        }
+
+        Plane other = (Plane) obj;
+
+        return other.getModel().equals(getModel());
     }
 }

@@ -9,11 +9,12 @@ import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
 import wingman.model.crew.Crew;
 import wingman.model.crew.CrewRank;
+import wingman.model.item.exceptions.DuplicateItemException;
 
 /**
  * The class that stores the syntax for a crew.
  */
-public abstract class CrewSyntax {
+public abstract class CrewSyntax extends ModelSyntax {
     /**
      * The prefix for name.
      */
@@ -48,6 +49,8 @@ public abstract class CrewSyntax {
      */
     public static Crew factory(CommandParam param) throws ParseException {
         final String name = param.getNamedValuesOrThrow(PREFIX_NAME);
+        requireAllAlphanumericOrSpace(name);
+
         final int rankId = param.getNamedIntOrThrow(PREFIX_RANK);
 
         if (!(Stream.of(0, 1, 2, 3)
@@ -68,7 +71,7 @@ public abstract class CrewSyntax {
      * @param model the model to which the crew shall be added.
      * @param crew  the crew that which will be added to the model.
      */
-    public static void add(Model model, Crew crew) {
+    public static void add(Model model, Crew crew) throws DuplicateItemException {
         model.addCrew(crew);
     }
 

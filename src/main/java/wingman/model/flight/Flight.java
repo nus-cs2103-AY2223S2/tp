@@ -141,4 +141,19 @@ public class Flight implements Item {
     public String getId() {
         return this.id;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Flight)) {
+            return false;
+        }
+
+        Flight other = (Flight) obj;
+
+        return other.getCode().equals(getCode());
+    }
 }

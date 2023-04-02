@@ -191,8 +191,7 @@ public class Pilot implements Item {
                 String.format("%s: %s", RANK_STRING, rank),
                 String.format("%s: %s", AGE_STRING, age),
                 String.format("%s: %s", GENDER_STRING, gender),
-                String.format("%s: %s", FLIGHT_HR_STRING, flightHour),
-                String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
+                String.format("%s: %s", FLIGHT_HR_STRING, flightHour)
         );
     }
 
@@ -207,5 +206,20 @@ public class Pilot implements Item {
                 "%s %s",
                 rank,
                 name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Pilot)) {
+            return false;
+        }
+
+        Pilot other = (Pilot) obj;
+
+        return other.getName().equals(getName());
     }
 }
