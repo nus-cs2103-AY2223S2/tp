@@ -87,6 +87,8 @@ public class EditPersonCommand extends Command {
                 if (!lastShownBookList.contains(book)) {
                     throw new CommandException(Messages.MESSAGE_BOOK_BORROWED_NOT_FOUND);
                 }
+            }
+            for (Book book : books) {
                 Book origBook = model.getBook(book);
                 book.loanBookTo(editedPerson, book.getBorrowDate(), book.getDueDate());
                 model.setBook(origBook, book);
