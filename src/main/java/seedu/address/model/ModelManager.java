@@ -147,6 +147,9 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    /**
+     * Returns true if the model has a student whose name is part of the input name.
+     */
     @Override
     public boolean hasDuplicateName(String name) {
         int count = 0;
@@ -156,6 +159,20 @@ public class ModelManager implements Model {
             }
         }
         return count >= 2;
+    }
+
+    /**
+     * Returns true if the model has a student whose name is part of the input name.
+     */
+    @Override
+    public boolean hasExtendedName(String name) {
+        int count = 0;
+        for (Student s : filteredPersons) {
+            if (name.contains(s.getName().toString())) {
+                count++;
+            }
+        }
+        return count >= 1;
     }
 
     @Override

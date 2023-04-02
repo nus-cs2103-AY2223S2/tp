@@ -87,5 +87,7 @@ public interface Model {
 
     boolean hasDuplicateName(String name);
 
+    boolean hasExtendedName(String name);
+
     boolean noSuchStudent(String name);
 }
