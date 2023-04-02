@@ -6,6 +6,7 @@ import static seedu.careflow.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.stream.Stream;
 
 /**
@@ -13,13 +14,15 @@ import java.util.stream.Stream;
  */
 public class DateOfBirth {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date of birth should only contain numeric characters and spaces, the format of date should be dd/mm/yyyy"
+            "Date of birth should only contain numeric characters."
+                    + " The format of date should be dd/mm/yyyy"
                     + " or dd.mm.yyyy or dd-mm-yyyy"
                     + " and the date should fall between 01/01/1900 and current date";
     private static final DateTimeFormatter[] FORMATS =
-            Stream.of("dd.MM.yyyy", "dd/MM/yyyy", "dd-MM-yyyy",
-                            "dd.MM.yy", "dd/MM/yy", "dd-MM-yy")
+            Stream.of("dd.MM.uuuu", "dd/MM/uuuu", "dd-MM-uuuu",
+                            "dd.MM.uu", "dd/MM/uu", "dd-MM-uu")
                     .map(DateTimeFormatter::ofPattern)
+                    .map(x -> x.withResolverStyle( ResolverStyle.STRICT ))
                     .toArray(DateTimeFormatter[]::new);
     private static final LocalDate minRangeOfBirth = LocalDate.of(1900, 1, 1);
     private static final LocalDate maxRangeOfBirth = LocalDate.now();
@@ -45,11 +48,11 @@ public class DateOfBirth {
      *       dd/mm/yy -> 01/01/23
      *       dd-mm-yy -> 01-01-23
      */
-    private static LocalDate formatDateIfValid(String test) {
+    private static LocalDate isFormatValid(String test) {
         for (DateTimeFormatter format: FORMATS) {
             try {
                 return LocalDate.parse(test, format);
-            } catch (DateTimeParseException e) {
+            } catch (DateTimeParseException e ) {
                 // do nothing, continue check whether given string input match any other date time format
             }
         }
@@ -62,7 +65,7 @@ public class DateOfBirth {
      */
     public static boolean isValidBirthDate(String test) {
         // check whether one's date of birth is fall between 1900 and current year.
-        LocalDate formattedDate = formatDateIfValid(test);
+        LocalDate formattedDate = isFormatValid(test);
         if (formattedDate == null) {
             return false;
         }
