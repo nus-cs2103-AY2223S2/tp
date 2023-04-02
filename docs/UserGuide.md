@@ -202,7 +202,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | Index                 | An index represents the position of the referred item in a displayed list of entities. It must be a positive integer.                                       |
 | Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
 | NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
-| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
+| Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            |
 | Phone number          | The phone number of a person. Must be numeric and has more than 3 digits                                                                                    |
 | Prefixes              | Prefixes are the characters appearing before a slash in a command. Prefixes describe the field that they represent.                                         |
 | Region                | The general portion of area in Singapore. Must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` or `EAST`                            |
@@ -607,8 +607,6 @@ Example:
 
 **:information_source: Notes on Command Recommendation**<br>
 
-* If the user specifies a field that is not included in the list of accepted fields, a warning will given. The user is free to continue typing, but an
-  error will be thrown when the user confirms the command.
 * There is a known UI bug when the text in `command box` overflows. To improve user experience, command recommendation is disabled once overflow is detected.
 
 </div>
