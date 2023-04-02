@@ -329,9 +329,9 @@ Given below is an example usage scenario and how the edit mechanism behaves at e
 
 
 ### Design considerations
-We want to make it easy for the User to edit `Parent / NOK` particulars without manually deleting the `Parent / NOK` and creating a new `Parent / NOK` and reassigning each `Student` attached to original `Parent / NOK` with the new `Parent / NOK`.
+We want to make it easy for users to edit `Parent / NOK` particulars without manually deleting the `Parent / NOK` and creating a new `Parent / NOK` and reassigning each `Student` attached to original `Parent / NOK` with the new `Parent / NOK`.
 <br><br>
-We also do not want to trouble the User with inputting multiple **PREFIXES** to edit `Parent / NOK`. Hence, User only needs to input ***PREFIXES*** belonging to the edited information and the following:
+We also do not want to trouble user with inputting multiple **PREFIXES** to edit `Parent / NOK`. Hence, users only need to input ***PREFIXES*** belonging to the edited information and the following:
 1. Parent's / NOK's `Name`
 2. Parent's / NOK's `Phone Number`
 3. Particulars that are being amended<br><br>
