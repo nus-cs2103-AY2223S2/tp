@@ -26,11 +26,11 @@ public class ModelManager implements Model {
 
     private final Scheduler scheduler;
     private final UserPrefs userPrefs;
-    private ArrayList<Command> recentCommand;
-    private ArrayList<Event> recentEvent;
     private final FilteredList<Event> filteredEvents;
     private final FilteredList<Event> upcomingEvents;
     private final FilteredList<Event> findEvents;
+    private ArrayList<Command> recentCommand;
+    private ArrayList<Event> recentEvent;
 
     /**
      * Initializes a ModelManager with the given scheduler and userPrefs.
@@ -40,19 +40,21 @@ public class ModelManager implements Model {
         logger.fine("Initializing with scheduler: " + scheduler + " and user prefs " + userPrefs);
         this.scheduler = new Scheduler(scheduler);
         this.userPrefs = new UserPrefs(userPrefs);
-        recentCommand = new ArrayList<Command>();
-        recentEvent = new ArrayList<Event>();
         filteredEvents = new FilteredList<>(this.scheduler.getEventList());
         upcomingEvents = new FilteredList<>(this.scheduler.getEventList());
         findEvents = new FilteredList<>(this.scheduler.getEventList());
+        recentCommand = new ArrayList<>();
+        recentEvent = new ArrayList<>();
         updateUpcomingEventList(new UpcomingEventPredicate(SHOW_UPCOMING_COUNT_ONE));
         updateFindEventList(PREDICATE_SHOW_NO_EVENTS);
     }
+
     public ModelManager() {
         this(new Scheduler(), new UserPrefs());
     }
+
     /**
-     * Constructs a ModelManager
+     * Constructs a ModelManager.
      */
     public ModelManager(ArrayList<Command> command, ArrayList<Event> event) {
         this(new Scheduler(), new UserPrefs());
@@ -141,18 +143,22 @@ public class ModelManager implements Model {
         updateUpcomingEventList(new UpcomingEventPredicate());
         updateFindEventList(PREDICATE_SHOW_NO_EVENTS);
     }
+
     @Override
     public ArrayList<Command> recentCommand() {
         return this.recentCommand;
     }
+
     @Override
     public ArrayList<Event> recentEvent() {
         return this.recentEvent;
     }
+
     @Override
     public void addRecentEvent(Event event) {
         this.recentEvent.add(event);
     }
+
     @Override
     public void clearRecent() {
         this.recentCommand.clear();
@@ -162,8 +168,7 @@ public class ModelManager implements Model {
     //=========== Event List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
-     * {@code scheduler}
+     * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of {@code scheduler}.
      */
     @Override
     public ObservableList<Event> getEventList() {
