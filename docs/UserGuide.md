@@ -242,7 +242,7 @@ When viewing your contacts in EduMate, you will notice an index assigned to each
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Appearance of Module Tags**<br>
-Not all modules that are tagged to the contact is shown on the Person List. Only modules that you are tagged with will appear if the contact is also tagged with the same module as you.
+Not all modules that are tagged to the contact are shown on the Person List. If a contact shares the same module as you, the module tag corresponding to that module will appear for that containt on the Person List.
 <br>
 
 <img src="images/UG_ui_pictures/PersonListCommonMods.svg" style="width:80%;margin:0 10%">
@@ -262,7 +262,7 @@ where you can meet your friends.
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Components of Meet Up Recommendation Panel**<br>
-The panel contains all the recommended timings and locations to meet up and is displayed as shown below.
+The panel, as shown below, contains all the recommended timings and locations for your meetups.
 <br>
 
 <img src="images/UG_ui_pictures/MeetUpRecommendationPanel.svg" style="width:80%;margin:0 10%">
@@ -274,13 +274,14 @@ The panel contains all the recommended timings and locations to meet up and is d
 
 The Profile Panel allows you to display your own or your contact's information.
 
-The Profile Panel will display basic information like your / contact's 
+The Profile Panel will display basic information such as:
 1. Name
 2. Phone number
 3. Email address
-4. Nearest home MRT station
-5. Current modules enrolled in NUS.
-6. Group association.
+4. Telegram Handle
+5. Nearest home MRT station
+6. Modules taken in current NUS Semester
+7. Groups
 
 <img src="images/UG_ui_pictures/Profile.svg" style="width:40%;margin:1% 1% 1% 30%">
 
@@ -297,7 +298,7 @@ The Scheduled Meet Up Panel (located directly to the right of [Profile Panel](#p
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Components of Scheduled Meet Up Panel**<br>
-The panel contains all the information of every scheduled meet up with your contacts. You may expect to see each scheduled meet up as shown below.
+The panel contains all the information of every scheduled meet up with your contacts as shown below.
 <br>
 
 <img src="images/UG_ui_pictures/ScheduledMeetUpPanelLabelled.png" style="width:40%;margin:1% 1% 1% 30%">
@@ -307,7 +308,7 @@ The panel contains all the information of every scheduled meet up with your cont
 
 ### Command Response Box
 
-The Command Response box is where you will receive feedback for any command you execute. It could give you some information if the command execution was successful or if you had executed a command of an invalid format.
+The Command Response box is where you will receive feedback for any command you execute. It will provide feedback on command execution status (e.g success, invalid format).
 
 The Command Response box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box).
 
@@ -1277,9 +1278,8 @@ suggest new features, and it is easily extensible!
 
 **Q**: What is the difference between `tag` and `edit` feature when it comes to tagging groups and modules?
 
-**A**: When you edit a profile, you might have to type in a lot of information and the command can get very long. This may
-potentially lead to careless edits. We want to have a dedicated command to do specific tagging (or untagging) so you have
-the option to do editing of tags separately.
+**A**: When you `edit` a profile with the `m/` prefix, the existing modules of the person gets entirely deleted and the new module is added. `tag` however, just adds the module for you without modifying other existing tags. The same explanation could be applied to `untag` as well.
+
 
 
 ## Summary
@@ -1323,16 +1323,16 @@ the option to do editing of tags separately.
 ### How to check your Java version
 
 #### For **Windows** Users
-**Step 1** Open up Command Prompt
+**Step 1.** Open up Command Prompt
 
-**Step 2** Run the command `java -version`
+**Step 2.** Run the command `java -version`
 
-**Step 3** Check the version number from the output.
+**Step 3.** Check the version number from the output.
 
 #### For **Mac** and **Linux** Users
-**Step 1** Open up Terminal.
+**Step 1.** Open up Terminal.
 
-**Step 2** Run the command `java -version`
+**Step 2.** Run the command `java -version`
 
-**Step 3** Check the version number from the output.
+**Step 3.** Check the version number from the output.
 
