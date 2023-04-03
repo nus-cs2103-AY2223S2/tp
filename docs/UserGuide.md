@@ -48,32 +48,32 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `myLib.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-4/tp/releases).
+2. Download the latest `myLib.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Library.
+3. Copy the file to the folder you want to use as the _home folder_ for your Library.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
-   
-1. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
+
+5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
     <img width="560" height="400"  src="images/Ui.png">
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all Bookmarks.
 
-   * `add n/The Odyssey a/Homer p/1 1 1 g/Fantasy r/4 u/http://classics.mit.edu/Homer/odyssey.html t/Literature class readings` : Adds a bookmark for the book `The Odessey` to the Library.
+   * `add n/The Odyssey a/Homer p/1 1 1 g/Fantasy r/4 u/http://classics.mit.edu/Homer/odyssey.html t/Literature` : Adds a bookmark for the book `The Odessey` to the Library.
 
    * `delete 3` : Deletes the 3rd Bookmark shown in the current list.
 
    * `clear` : Deletes all Bookmarks.
 
    * `goto 1` : Opens the url of 1st Bookmark shown in current list.
-   
+
    * `exit` : Exits the app.
-   
-1. Refer to the [Features](#features) below for details of each command.
+
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -116,7 +116,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `a/John Butcher a/Jim Butcher`, only `a/Jim Butcher` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extra parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `genre`, `tags` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * List of prefixes used in commands :
@@ -136,7 +136,7 @@ Adds a tag to the list of tags.
 
 Format: `addtag [t/TAG]…`
 
-Examples: 
+Examples:
 * `addtag t/Novel t/MaleProtagonist`
 * `addtag t/FemaleProtagonist`
 
@@ -159,28 +159,32 @@ Format: `tags`
 
 Adds a bookmark to the library.
 
-Format: `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE r/RATING [u/URL] [t/TAG]…​`
+Format: `add n/TITLE g/GENRE [a/AUTHOR] [p/PROGRESS] [r/RATING] [u/URL] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A bookmark can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/Hobbit a/J. R. R. Tolkien p/1 1 1 r/4 g/Fantasy`
-* `add n/The Odyssey a/Homer p/3 5 44 g/Action r/5 t/Literature class readings`
+* `add n/Hobbit a/J. R. R. Tolkien p/1 ~ 256 r/4 g/Fantasy`
+* `add n/The Odyssey a/Homer p/1 1 23 g/Action r/5 t/Literature`
 
-### Listing all bookmarks : `list`
+### Listing all bookmarks/ Resetting filters : `list`
 
 Shows a list of all bookmarks in the library.
+
+
+:bulb: **Tip** - Use this command to get back the original list of bookmarks after using `find` command to filter out bookmarks.
 
 Format: `list`
 
 ### Sorting bookmarks : `sort`
 
-Sorts the list of bookmarks in the library by ascending order or descending order.
+Sorts the list of bookmarks by ratings in either ascending or descending order.
 
 Format : sort [ORDER]
 * ORDER can only be either `asc` or `desc`
+* ORDER is case-sensitive. e.g. `sort ASC` does not work.
 
 Examples:
 * sort asc
@@ -209,8 +213,10 @@ Examples:
 Find bookmarks whose specified fields contain the given keywords.
 
 `find` helps you to find bookmarks whose specified fields contain the given keywords. You can use this when you
-want to filter out certain bookmarks from your large list of bookmarks. `find` allows you to search for bookmarks 
+want to filter out certain bookmarks from your large list of bookmarks. `find` allows you to search for bookmarks
 using the title, author, genre and/or tags of a bookmark.
+
+:bulb: **Tip** - You can use the `list` command to get back the bookmarks that you have filtered out after `find`.
 
 Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 
@@ -220,7 +226,8 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * The genre and tags provided must be in the list of existing genre and tags respectively.
 * The order of the keywords matter. e.g. `Guide Rankers` will not match `Rankers Guide`
 * Only the fields of the specified prefixes are searched.
-* Only full words will be matched e.g. `Ranker` will not match `Ranker's`
+* Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
+* The search for tags will return any bookmark that has a tag that matches the given tag.
 <div style="page-break-after: always;"></div>
 
 Examples:
@@ -229,7 +236,7 @@ Examples:
 * `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
 ![find_reply](images/find-chainsaw%20man.png)
 
-### Deleting a person : `delete`
+### Deleting a bookmark : `delete`
 
 Deletes the specified bookmark from the library.
 
@@ -282,7 +289,7 @@ Our Application also supports this feature in gui format, clicking on the url in
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the MyLib.
+Clears all bookmark entries from the MyLib. You will still keep your list of genres and tags after using the `clear` command.
 
 Format: `clear`
 
@@ -343,17 +350,17 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE [u/URL] [t/TAG]…​` <br> e.g., `add n/The Odyssey a/Homer p/Reading g/Epic poetry t/Literature class readings`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/URL] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
-**Find** | `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`<br> e.g., `find n/ Chainsaw Man`
-**GoTo** | `goto INDEX`<br> e.g., `goto 3`
-**List** | `list`
-**Sort** | `sort [ORDER]` <br> e.g., `sort asc`, `sort desc`
+**Add a bookmark** | `add n/TITLE g/GENRE [a/AUTHOR] [p/PROGRESS] [r/RATING] [u/URL] [t/TAG]…​` <br> e.g., `add n/The Odyssey 2 a/Homer p/1 ~ 32 g/Others t/Literature`
+**Clear bookmarks** | `clear`
+**Delete a bookmark** | `delete INDEX`<br> e.g., `delete 3`
+**Edit a bookmark** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/URL] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
+**Find bookmarks** | `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`<br> e.g., `find n/ Chainsaw Man`
+**GoTo url of bookmark** | `goto INDEX`<br> e.g., `goto 3`
+**List all bookmarks** | `list`
+**Sort bookmark by ratings** | `sort [ORDER]` <br> e.g., `sort asc`, `sort desc`
 **Help** | `help`
-**List Tags** | `tags`
-**Adding a tag** | `addtag [t/TAG]…` <br> e.g., `addtag t/Novel`
-**Deleting a tag** | `dtag TAGNAME` <br> e.g., `dtag MaleProtagonist`
-**List Genres** | `genre`
+**List all tags** | `tags`
+**Add a tag** | `addtag [t/TAG]…` <br> e.g., `addtag t/Novel`
+**Delete a tag** | `dtag TAGNAME` <br> e.g., `dtag MaleProtagonist`
+**List all genres** | `genre`
 
