@@ -54,7 +54,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
 
-5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+5. A GUI similar to the below should appear in a few seconds with first bookmark selected. Note how the app contains some sample data.
 
     <img width="560" height="400"  src="images/Ui.png">
 
