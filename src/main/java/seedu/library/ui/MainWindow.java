@@ -191,11 +191,12 @@ public class MainWindow extends UiPart<Stage> {
         Bookmark selectedItem = bookmarkListPanel.getSelectedItem();
         if (selectedItem == null || !bookmarkListPanel.isChangedSelect()) {
             handleUpdate();
-
         } else {
             ZoomView newView = new ZoomView(selectedItem);
             zoomViewPlaceholder.getChildren().add(newView.getRoot());
-
+            if(zoomView.getIsGuiAction() || bookmarkListPanel.isChangedSelect()) {
+                resultDisplay.clearDisplay();
+            }
         }
     }
 

@@ -23,6 +23,7 @@ import seedu.library.model.bookmark.Bookmark;
 public class ZoomView extends UiPart<Region> {
     private static final String FXML = "ZoomView.fxml";
     private Bookmark bookmark;
+    private boolean isGuiAction;
 
     @FXML
     private Label viewTitle;
@@ -58,6 +59,7 @@ public class ZoomView extends UiPart<Region> {
         InputStream image = this.getClass().getResourceAsStream("/images/default-avatar.png");
         avatar.setImage(new Image(image));
         hideFields();
+        this.isGuiAction = false;
 
     }
 
@@ -69,6 +71,7 @@ public class ZoomView extends UiPart<Region> {
     public ZoomView(Bookmark bookmark) {
         super(FXML);
         this.bookmark = bookmark;
+        this.isGuiAction = false;
         viewTitle.setText("Title: " + bookmark.getTitle().value);
         String authorString = (bookmark.getAuthor() == null) ? "-" : bookmark.getAuthor().value;
         authorView.setText("Author: " + authorString);
@@ -82,6 +85,7 @@ public class ZoomView extends UiPart<Region> {
         InputStream image = this.getClass().getResourceAsStream("/images/default-avatar.png");
         avatar.setImage(new Image(image));
         urlLink.setOnAction(e -> {
+            this.isGuiAction = true;
             openLink(urlLink.getText());
         });
         rate(bookmark);
@@ -141,7 +145,12 @@ public class ZoomView extends UiPart<Region> {
         }
 
     }
-
+    /**
+     * Method to get flag whether action is a gui interaction
+     */
+    public boolean getIsGuiAction() {
+        return this.isGuiAction;
+    }
 
     /**
      * Method to hide the contents of ZoomView
