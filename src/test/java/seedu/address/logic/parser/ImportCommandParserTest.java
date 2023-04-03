@@ -2,10 +2,10 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ARCHIVE_FILE_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ARCHIVE_FILE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
 
 import java.util.HashSet;
@@ -18,7 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
 
 public class ImportCommandParserTest {
-    private ImportCommandParser parser = new ImportCommandParser();
+    private final ImportCommandParser parser = new ImportCommandParser();
 
     @Test
     public void parseCommand_doNotOverwriteModule_successful() throws ParseException {

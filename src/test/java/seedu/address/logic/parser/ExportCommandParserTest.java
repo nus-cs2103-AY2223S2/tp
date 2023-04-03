@@ -11,7 +11,7 @@ import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class ExportCommandParserTest {
-    private ExportCommandParser parser = new ExportCommandParser();
+    private final ExportCommandParser parser = new ExportCommandParser();
 
     @Test
     public void parseCommand_doNotOverwriteFile_successful() throws ParseException {

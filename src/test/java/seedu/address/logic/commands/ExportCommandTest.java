@@ -22,7 +22,7 @@ import seedu.address.testutil.TypicalModules;
 public class ExportCommandTest {
     @TempDir
     public Path testFolder;
-    private Model model = new ModelStubWithTracker();
+    private final Model model = new ModelStubWithTracker();
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
@@ -45,12 +45,12 @@ public class ExportCommandTest {
 
     @Test
     public void execute_correctCommand_returnCommandResult() throws CommandException {
-        Path savePath = testFolder.resolve(VALID_ARCHIVE_FILE_NAME);
+        Path archivePath = testFolder.resolve(VALID_ARCHIVE_FILE_NAME);
         ExportCommand exportCommand = new ExportCommand(VALID_ARCHIVE_FILE_NAME, false);
         CommandResult expectedCommandResult = new CommandResult(String.format(MESSAGE_SUCCESS,
-                VALID_ARCHIVE_FILE_NAME), savePath, true, false);
+                VALID_ARCHIVE_FILE_NAME), archivePath, true, false);
         assertEquals(expectedCommandResult, exportCommand.execute(model));
-        assertEquals(expectedCommandResult.getPath().get(), savePath);
+        assertEquals(expectedCommandResult.getPath().get(), archivePath);
     }
 
 
@@ -60,7 +60,7 @@ public class ExportCommandTest {
      */
 
     private class ModelStubWithTracker extends ModelStub {
-        private Tracker tracker;
+        private final Tracker tracker;
 
         public ModelStubWithTracker() {
             this.tracker = TypicalModules.getTypicalTracker();
@@ -71,29 +71,5 @@ public class ExportCommandTest {
             return tracker;
         }
     }
-
-    /*
-
-    private class StorageStubForExport extends StorageStub {
-        private final Path archivePath;
-        public StorageStubForExport(Path archivePath) {
-            this.archivePath = archivePath;
-        }
-
-        public void saveTracker(ReadOnlyTracker tracker, Path filePath) {
-
-            try {
-                new JsonTrackerStorage(archivePath)
-                        .saveTracker(tracker, archivePath);
-            } catch (IOException ioe) {
-                throw new AssertionError("There should not be an error writing to the file.", ioe);
-            }
-        }
-
-        public Optional<ReadOnlyTracker> readTracker() {
-            return Optional.of(TypicalModules.getTypicalTracker());
-        }
-    }
-    */
 }
 
