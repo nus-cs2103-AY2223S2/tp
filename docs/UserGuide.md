@@ -161,7 +161,7 @@ The supported date formats are:
 
 #### `<phone-number>`
 
-Only 8 digit Singapore numbers are allowed.
+Any number that is at least three digits long is allowed. Only digits are allowed.
 
 #### `<vax-retriever>`
 
