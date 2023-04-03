@@ -76,14 +76,11 @@ Parameters:
 `e/`: End time of the event in `HH:mm` format
 
 <div markdown="span" class="alert alert-info">
-:information_source: 
-**Note:** 
+:information_source: **Note:**  
 Name/Description is alphanumeric only.  
 Start time should come before end time.  
 Adding of events that overlaps in time is not allowed.
 </div>
-
-
 
 Example: `add n/booked tennis court /2023-02-01 /2023-02-02`
 
@@ -100,10 +97,12 @@ Parameters:
 `d/`: Date of the event in `YYYY-MM-DD` format  
 `every/`: Recur factor to recur the event, given by `DAY/WEEK/MONTH/YEAR`
 
-> Note:  
-> Event must first exist in the scheduler.
-> Recurring of events not existing in scheduler is not allowed.
-> End date should come after current event date.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+Event must first exist in the scheduler.  
+Recurring of events not existing in scheduler is not allowed.  
+End date should come after current event date.  
+</div>
 
 Example: `recur 1 d/2024-01-01 every/MONTH`
 
@@ -122,8 +121,10 @@ Parameters:
 `s/`: Start time of the event in `HH:mm` format  
 `e/`: End time of the event in `HH:mm` format
 
-> Note:  
-> At least one field must be provided
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+At least one field must be provided
+</div>
 
 Example: `edit 1 n/tennis` or `edit 3 d/2023-06-01 s/10:00`
 
@@ -161,7 +162,11 @@ Format: `next <count>`
 Parameter:  
 `<count>`: Number of upcoming events to show.
            Optional - if not indicated, only the next one event is shown.
-           If count is larger than the number of existing events, then all events are shown.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+If count is larger than the number of existing events, then all events are shown.
+</div>
 
 Example: `next` or `next 2`
 
@@ -180,8 +185,10 @@ Parameters:
 
 Example: `find n/tennis` or `find d/2023-03-01` or `find n/tennis d/2023-03-01`
 
-> Note:  
-> At least one field must be provided.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+At least one field must be provided.
+</div>
 
 [[Back to top](#index)]
 
@@ -218,6 +225,7 @@ Example: `exit`<br><br>
 
 [[Back to top](#index)]
 
+
 <h2 id="gui">GUI</h2>
 
 <h3 id="command-box">Command Box</h3>
@@ -240,9 +248,11 @@ Displays to you the feedback of the command you typed into the command box.
 Displays to you all the events that you have.
 Use commands such as `list` and `find` to show you the events you have in your list.
 
-> Note:  
-> Events that have past is marked with a completed label and check mark.  
-> Events are orders in chronological order.
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:**  
+Events that have past is marked with a completed label and check mark.   
+Events are orders in chronological order.  
+</div>
 
 [[Back to top](#index)]
 
@@ -279,8 +289,11 @@ Functionality:
 
 <h1 id="faq">FAQ</h1>
 ---------------------
-**Q:** On a scale of 1 to 10, how awesome is this product?
-
+**Q:** On a scale of 1 to 10, how awesome is this product?  
 **A:** 10
+
+**Q:** What is one example of someone who would use this?  
+**A:** A secretary who needs to keep track the boss's meetings,
+and inform the boss of what the next meeting is for.
 
 [[Back to top](#index)]
