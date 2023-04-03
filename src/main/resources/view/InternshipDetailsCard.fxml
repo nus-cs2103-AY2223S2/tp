@@ -107,7 +107,7 @@
             </HBox>
             <Text fx:id="tips" strokeType="OUTSIDE" strokeWidth="0.0" text="\$tips" wrappingWidth="267.13671875">
                <VBox.margin>
-                  <Insets bottom="30.0" top="10.0" />
+                  <Insets bottom="10.0" top="10.0" />
                </VBox.margin>
             </Text>
          </children>
@@ -121,5 +121,7 @@
             <Insets />
          </opaqueInsets>
       </VBox>
+      <VBox minHeight="-Infinity" prefHeight="30.0" prefWidth="100.0" />
    </children>
 </VBox>
+
