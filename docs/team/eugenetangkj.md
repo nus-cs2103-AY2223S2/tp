@@ -16,17 +16,16 @@ My code contributions can be found on
 
 ### Features and Enhancement
 - **Refactored code to adapt the content of AB3 to the context of InternBuddy**
-  [\#13](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/13)
-  * Renamed classes and packages, such as from `Person` to `Internship`
+  [\#37](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/37)
+  * Renamed classes and packages, such as from `Person` to `Internship`.
   * Renamed variables.
   * Redefined test cases to suit the context of internships instead of persons.
 
 - **Redesigned the GUI of InternBuddy**
-  [\#37](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/37)
-  * Created a new look for the List Panel
-  * Implemented a new View Panel for the viewing of internship information
-
-![Changes in GUI](../images/ui-changes.png)
+  [\#52](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/52),
+  [\#78](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/78)
+  * Created a new look for the List Panel.
+  * Implemented a new View Panel for the viewing of internship information.
 
 - **Implemented feature to add optional field,** `COMMENT`
   [\#79](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/79)
@@ -48,8 +47,6 @@ My code contributions can be found on
   [\#81](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/81)
   * Inserted the command summary and hyperlink to InternBuddy's user guide in the Help Window.
   * Created a new look for the Help Window.
-  
-![Changes in Help Window](../images/help-window-changes.png)
 
 - **Co-implemented GUI testing for InternBuddy**
   [\#52](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/52)
@@ -57,23 +54,8 @@ My code contributions can be found on
     and [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp), I managed to implement
     test cases for UI components such as in the class `InternshipCardTest`.
   * Worked with my teammate, Christopher, to implement this.
-  * GUI testing allows for better code coverage for InternBuddy.
+  * GUI testing improved code coverage for InternBuddy.
 
-### Others
-- Provided non-trivial PR reviews for
-  [\#47](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/47),
-  [\#80](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/80),
-  [\#100](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/100)
-- Designed the logo for InternBuddy
-- Contributed to CS2103T forum discussions for
-  [\#45](https://github.com/nus-cs2103-AY2223S2/forum/issues/45),
-  [\#99](https://github.com/nus-cs2103-AY2223S2/forum/issues/99),
-  [\#177](https://github.com/nus-cs2103-AY2223S2/forum/issues/177),
-  [\#252](https://github.com/nus-cs2103-AY2223S2/forum/issues/252),
-  [\#254](https://github.com/nus-cs2103-AY2223S2/forum/issues/254),
-  [\#266](https://github.com/nus-cs2103-AY2223S2/forum/issues/266).
-
-  
 ### Documentation
 - **Updated README**
   [\#13](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/13),
@@ -102,9 +84,22 @@ My code contributions can be found on
   [\#84](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/84),
   [\#86](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/86),
   [\#119](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/119)
-  * Explained implementation and design considerations for `add` and `view` commands, supplementing the explanations with sequence diagrams
+  * Explained implementation and design considerations for `add` and `view` commands, supplementing the explanations with sequence diagrams.
   * Defined product scope by identifying InternBuddy's target audience and value proposition.
   * Drafted user stories on how Computing undergraduates would use InternBuddy.
   * Added test cases for instructions on manual testing, such as for the `add` and `view` commands.
 
+### Others
+- Provided non-trivial PR reviews for
+  [\#47](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/47),
+  [\#80](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/80),
+  [\#100](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/100).
+- Designed the logo for InternBuddy.
+- Contributed to CS2103T forum discussions for
+  [\#45](https://github.com/nus-cs2103-AY2223S2/forum/issues/45),
+  [\#99](https://github.com/nus-cs2103-AY2223S2/forum/issues/99),
+  [\#177](https://github.com/nus-cs2103-AY2223S2/forum/issues/177),
+  [\#252](https://github.com/nus-cs2103-AY2223S2/forum/issues/252),
+  [\#254](https://github.com/nus-cs2103-AY2223S2/forum/issues/254),
+  [\#266](https://github.com/nus-cs2103-AY2223S2/forum/issues/266).
 
