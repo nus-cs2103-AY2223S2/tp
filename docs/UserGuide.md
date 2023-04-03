@@ -342,7 +342,7 @@ have a default value based on the commands. These are documented in the [Command
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 The <a href="#524-placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
-the date format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
+the format of PHONE, you must have at least three integers and cannot use characters. 
 </div>
 
 **Let's try an example!**
