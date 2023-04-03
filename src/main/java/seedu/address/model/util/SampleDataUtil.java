@@ -21,22 +21,22 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), new Phone("93377418"),
-                getTagSet("friends")),
+                getTagSet("primary", "primary2")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Phone("94597742"),
-                getTagSet("colleagues", "friends")),
+                getTagSet("secondary", "secondary4", "female")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Phone("81547632"),
-                getTagSet("neighbours")),
+                getTagSet("university", "female")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Phone("94256541"),
-                getTagSet("family")),
+                getTagSet("jc", "male")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"), new Phone("88814569"),
-                getTagSet("classmates")),
+                getTagSet("primary", "male")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"), new Phone("88187718"),
-                getTagSet("colleagues"))
+                getTagSet("secondary"))
         };
     }
 

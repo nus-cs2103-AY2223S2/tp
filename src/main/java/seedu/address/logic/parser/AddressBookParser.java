@@ -17,10 +17,12 @@ import seedu.address.logic.commands.DeleteScoreCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportDataCommand;
 import seedu.address.logic.commands.ExportProgressCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ImportDataCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkTaskCompleteCommand;
 import seedu.address.logic.commands.MarkTaskInProgressCommand;
@@ -52,7 +54,7 @@ public class AddressBookParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
@@ -109,6 +111,12 @@ public class AddressBookParser {
 
         case DeleteScoreCommand.COMMAND_WORD:
             return new DeleteScoreCommandParser().parse(arguments);
+
+        case ImportDataCommand.COMMAND_WORD:
+            return new ImportDataCommandParser().parse(arguments);
+
+        case ExportDataCommand.COMMAND_WORD:
+            return new ExportDataCommandParser().parse(arguments);
 
         case ExportProgressCommand.COMMAND_WORD:
             return new ExportProgressCommandParser().parse(arguments);
