@@ -1,0 +1,1780 @@
+{
+  "persons" : [ {
+    "name" : "Chu Nam Gyeong",
+    "phone" : "97955753",
+    "email" : "chunamgyeong@gmail.com",
+    "station" : "South View",
+    "telegramHandle" : "@chunamgyeong",
+    "index" : 1,
+    "groups" : [ "JC" ],
+    "modules" : [ {
+      "moduleCode" : "BT2103",
+      "lessons" : [ {
+        "startHour" : 19,
+        "endHour" : 21,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2106",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 19,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CE2155",
+      "lessons" : [ {
+        "startHour" : 14,
+        "endHour" : 15,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2103",
+      "lessons" : [ {
+        "startHour" : 15,
+        "endHour" : 16,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 15,
+        "endHour" : 17,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 14,
+        "endHour" : 15,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2113",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 17,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 15,
+        "endHour" : 16,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2100",
+      "lessons" : [ {
+        "startHour" : 13,
+        "endHour" : 14,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 13,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "WEDNESDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Khadijah Al Junied",
+    "phone" : "96689465",
+    "email" : "khadijahaljunied@gmail.com",
+    "station" : "Aljunied",
+    "telegramHandle" : "@khadijahaljunied",
+    "index" : 2,
+    "groups" : [ "Groupmate" ],
+    "modules" : [ {
+      "moduleCode" : "IND5003",
+      "lessons" : [ {
+        "startHour" : 19,
+        "endHour" : 21,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2107",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 18,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 10,
+        "endHour" : 11,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2100",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 18,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS3264",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 19,
+        "day" : "MONDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Samantha Kee",
+    "phone" : "99476081",
+    "email" : "samanthakee@gmail.com",
+    "station" : "Sam Kee",
+    "telegramHandle" : "@samanthakee",
+    "index" : 3,
+    "groups" : [ ],
+    "modules" : [ {
+      "moduleCode" : "CS2113",
+      "lessons" : [ {
+        "startHour" : 13,
+        "endHour" : 15,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "MKT4419",
+      "lessons" : [ {
+        "startHour" : 15,
+        "endHour" : 16,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 12,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2102",
+      "lessons" : [ {
+        "startHour" : 14,
+        "endHour" : 15,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 17,
+        "endHour" : 19,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "GEN2002",
+      "lessons" : [ {
+        "startHour" : 13,
+        "endHour" : 14,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 9,
+        "endHour" : 11,
+        "day" : "THURSDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 12,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2107",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "THURSDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 12,
+        "day" : "MONDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Nicholas Tan Bin",
+    "phone" : "86643547",
+    "email" : "nicholastanbin@gmail.com",
+    "station" : "Tampines",
+    "telegramHandle" : "@nicholastanbin",
+    "index" : 4,
+    "groups" : [ "Groupmate", "TA" ],
+    "modules" : [ {
+      "moduleCode" : "CS2108",
+      "lessons" : [ {
+        "startHour" : 11,
+        "endHour" : 13,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2101",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 17,
+        "day" : "THURSDAY"
+      }, {
+        "startHour" : 10,
+        "endHour" : 11,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "CE5611QA",
+      "lessons" : [ {
+        "startHour" : 14,
+        "endHour" : 16,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 13,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "BL5214",
+      "lessons" : [ {
+        "startHour" : 15,
+        "endHour" : 17,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 16,
+        "endHour" : 17,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 16,
+        "endHour" : 17,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS4239",
+      "lessons" : [ {
+        "startHour" : 19,
+        "endHour" : 20,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 19,
+        "endHour" : 20,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "LL4094AV",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 19,
+        "day" : "TUESDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Tomo Yuike",
+    "phone" : "82782389",
+    "email" : "tomoyuike@gmail.com",
+    "station" : "Yew Tee",
+    "telegramHandle" : "@tomoyuike",
+    "index" : 5,
+    "groups" : [ "NS" ],
+    "modules" : [ {
+      "moduleCode" : "IS3251",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 19,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2102",
+      "lessons" : [ {
+        "startHour" : 8,
+        "endHour" : 9,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 12,
+        "endHour" : 13,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2113",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 18,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2107",
+      "lessons" : [ {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 14,
+        "endHour" : 15,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2101",
+      "lessons" : [ {
+        "startHour" : 19,
+        "endHour" : 20,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 13,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2100",
+      "lessons" : [ {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 13,
+        "endHour" : 15,
+        "day" : "WEDNESDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Benjamin Khoo",
+    "phone" : "84567168",
+    "email" : "benjaminkhoo@gmail.com",
+    "station" : "Bencoolen",
+    "telegramHandle" : "@benjaminkhoo",
+    "index" : 6,
+    "groups" : [ "TA" ],
+    "modules" : [ {
+      "moduleCode" : "CS2030",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 19,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 12,
+        "endHour" : 13,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 14,
+        "endHour" : 15,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "YSS2252",
+      "lessons" : [ {
+        "startHour" : 15,
+        "endHour" : 17,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 18,
+        "endHour" : 19,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CE2134",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "BT2101",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 17,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 12,
+        "endHour" : 13,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2113",
+      "lessons" : [ {
+        "startHour" : 9,
+        "endHour" : 11,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 12,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 10,
+        "endHour" : 11,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2100",
+      "lessons" : [ {
+        "startHour" : 9,
+        "endHour" : 11,
+        "day" : "THURSDAY"
+      }, {
+        "startHour" : 18,
+        "endHour" : 19,
+        "day" : "WEDNESDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Komyo Yamaji",
+    "phone" : "82009432",
+    "email" : "komyoyamaji@gmail.com",
+    "station" : "Bright Hill",
+    "telegramHandle" : "@komyoyamaji",
+    "index" : 7,
+    "groups" : [ "Study" ],
+    "modules" : [ {
+      "moduleCode" : "CS2102",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 8,
+        "endHour" : 10,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2100",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS4220",
+      "lessons" : [ {
+        "startHour" : 8,
+        "endHour" : 9,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 14,
+        "endHour" : 16,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "MUA3266",
+      "lessons" : [ {
+        "startHour" : 15,
+        "endHour" : 17,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 12,
+        "endHour" : 13,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "DMY1401LED",
+      "lessons" : [ {
+        "startHour" : 14,
+        "endHour" : 15,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS4212",
+      "lessons" : [ {
+        "startHour" : 19,
+        "endHour" : 20,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 13,
+        "endHour" : 15,
+        "day" : "THURSDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Lao Ming Da",
+    "phone" : "87736255",
+    "email" : "laomingda@gmail.com",
+    "station" : "Lavender",
+    "telegramHandle" : "@laomingda",
+    "index" : 8,
+    "groups" : [ "Groupmate" ],
+    "modules" : [ {
+      "moduleCode" : "CS2102",
+      "lessons" : [ {
+        "startHour" : 13,
+        "endHour" : 14,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 19,
+        "endHour" : 20,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "IE4240",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 8,
+        "endHour" : 9,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "MUA2193",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 19,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2105",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2108",
+      "lessons" : [ {
+        "startHour" : 15,
+        "endHour" : 16,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 8,
+        "endHour" : 10,
+        "day" : "WEDNESDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Mihoko Minami",
+    "phone" : "82052093",
+    "email" : "mihokominami@gmail.com",
+    "station" : "South View",
+    "telegramHandle" : "@mihokominami",
+    "index" : 9,
+    "groups" : [ "JC" ],
+    "modules" : [ {
+      "moduleCode" : "CS2113",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 10,
+        "endHour" : 12,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2100",
+      "lessons" : [ {
+        "startHour" : 13,
+        "endHour" : 15,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 13,
+        "endHour" : 15,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2101",
+      "lessons" : [ {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2106",
+      "lessons" : [ {
+        "startHour" : 8,
+        "endHour" : 10,
+        "day" : "THURSDAY"
+      }, {
+        "startHour" : 19,
+        "endHour" : 21,
+        "day" : "THURSDAY"
+      }, {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2107",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 13,
+        "day" : "WEDNESDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Alex Quinn",
+    "phone" : "86993895",
+    "email" : "alexquinn@gmail.com",
+    "station" : "Queenstown",
+    "telegramHandle" : "@alexquinn",
+    "index" : 10,
+    "groups" : [ "Groupmate" ],
+    "modules" : [ {
+      "moduleCode" : "CS2106",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2104",
+      "lessons" : [ {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 12,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "TCN3132",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 16,
+        "endHour" : 18,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2102",
+      "lessons" : [ {
+        "startHour" : 10,
+        "endHour" : 11,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 8,
+        "endHour" : 9,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2220",
+      "lessons" : [ {
+        "startHour" : 13,
+        "endHour" : 15,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 8,
+        "endHour" : 10,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 9,
+        "endHour" : 11,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2101",
+      "lessons" : [ {
+        "startHour" : 10,
+        "endHour" : 11,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 14,
+        "endHour" : 16,
+        "day" : "FRIDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Keith Hong",
+    "phone" : "88085567",
+    "email" : "keithhong@gmail.com",
+    "station" : "Keat Hong",
+    "telegramHandle" : "@keithhong",
+    "index" : 11,
+    "groups" : [ "JC" ],
+    "modules" : [ {
+      "moduleCode" : "CS2107",
+      "lessons" : [ {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 19,
+        "endHour" : 21,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 13,
+        "endHour" : 15,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2103",
+      "lessons" : [ {
+        "startHour" : 19,
+        "endHour" : 20,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "LSM3242",
+      "lessons" : [ {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2105",
+      "lessons" : [ {
+        "startHour" : 10,
+        "endHour" : 12,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2104",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 13,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 10,
+        "endHour" : 12,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CE2134",
+      "lessons" : [ {
+        "startHour" : 11,
+        "endHour" : 13,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 18,
+        "endHour" : 19,
+        "day" : "THURSDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Isaac Newton",
+    "phone" : "93175044",
+    "email" : "isaacnewton@gmail.com",
+    "station" : "Newton",
+    "telegramHandle" : "@isaacnewton",
+    "index" : 12,
+    "groups" : [ "NS", "TA" ],
+    "modules" : [ {
+      "moduleCode" : "CS2108",
+      "lessons" : [ {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "ID3110",
+      "lessons" : [ {
+        "startHour" : 15,
+        "endHour" : 17,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2220",
+      "lessons" : [ {
+        "startHour" : 14,
+        "endHour" : 16,
+        "day" : "THURSDAY"
+      }, {
+        "startHour" : 10,
+        "endHour" : 12,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "BT2103",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 18,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 17,
+        "endHour" : 19,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2105",
+      "lessons" : [ {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2113",
+      "lessons" : [ {
+        "startHour" : 10,
+        "endHour" : 12,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 15,
+        "endHour" : 17,
+        "day" : "MONDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Ford Canning",
+    "phone" : "88032666",
+    "email" : "fordcanning@gmail.com",
+    "station" : "Fort Canning",
+    "telegramHandle" : "@fordcanning",
+    "index" : 13,
+    "groups" : [ "TA" ],
+    "modules" : [ {
+      "moduleCode" : "CE2183",
+      "lessons" : [ {
+        "startHour" : 14,
+        "endHour" : 16,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2106",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 13,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 12,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 14,
+        "endHour" : 15,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2100",
+      "lessons" : [ {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "MA2104",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 12,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "SPH6002",
+      "lessons" : [ {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 10,
+        "endHour" : 11,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2103",
+      "lessons" : [ {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "WEDNESDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Edward Richards",
+    "phone" : "92463693",
+    "email" : "edwardrichards@gmail.com",
+    "station" : "Kent Ridge",
+    "telegramHandle" : "@edwardrichards",
+    "index" : 14,
+    "groups" : [ "CCA" ],
+    "modules" : [ {
+      "moduleCode" : "GEN2002",
+      "lessons" : [ {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 19,
+        "endHour" : 20,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS3281",
+      "lessons" : [ {
+        "startHour" : 10,
+        "endHour" : 12,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2030S",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 13,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 11,
+        "endHour" : 13,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CE2155",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 18,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "TR5049",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "THURSDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Nee Soon",
+    "phone" : "91317108",
+    "email" : "neesoon@gmail.com",
+    "station" : "Yishun",
+    "telegramHandle" : "@neesoon",
+    "index" : 15,
+    "groups" : [ "NS" ],
+    "modules" : [ {
+      "moduleCode" : "CS2106",
+      "lessons" : [ {
+        "startHour" : 15,
+        "endHour" : 16,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 12,
+        "endHour" : 13,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2109S",
+      "lessons" : [ {
+        "startHour" : 9,
+        "endHour" : 11,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 17,
+        "endHour" : 19,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2105",
+      "lessons" : [ {
+        "startHour" : 15,
+        "endHour" : 17,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "IS2101",
+      "lessons" : [ {
+        "startHour" : 11,
+        "endHour" : 13,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "BMA5506",
+      "lessons" : [ {
+        "startHour" : 17,
+        "endHour" : 18,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 16,
+        "endHour" : 17,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2100",
+      "lessons" : [ {
+        "startHour" : 17,
+        "endHour" : 19,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 17,
+        "endHour" : 19,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 19,
+        "endHour" : 20,
+        "day" : "FRIDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Enova Woodland",
+    "phone" : "82757694",
+    "email" : "enovawoodland@gmail.com",
+    "station" : "Woodlands",
+    "telegramHandle" : "@enovawoodland",
+    "index" : 16,
+    "groups" : [ "Study", "NS" ],
+    "modules" : [ {
+      "moduleCode" : "CS2113",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "LC1001E",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 17,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 16,
+        "endHour" : 18,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 13,
+        "endHour" : 15,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "MA6251",
+      "lessons" : [ {
+        "startHour" : 19,
+        "endHour" : 21,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 8,
+        "endHour" : 9,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2220",
+      "lessons" : [ {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "MONDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Astrid Holland",
+    "phone" : "81812224",
+    "email" : "astridholland@gmail.com",
+    "station" : "Holland Village",
+    "telegramHandle" : "@astridholland",
+    "index" : 17,
+    "groups" : [ "CCA" ],
+    "modules" : [ {
+      "moduleCode" : "CS2040C",
+      "lessons" : [ {
+        "startHour" : 12,
+        "endHour" : 14,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 9,
+        "endHour" : 11,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2104",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 9,
+        "endHour" : 11,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2103",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 18,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 17,
+        "endHour" : 19,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2100",
+      "lessons" : [ {
+        "startHour" : 11,
+        "endHour" : 12,
+        "day" : "TUESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2103T",
+      "lessons" : [ {
+        "startHour" : 18,
+        "endHour" : 20,
+        "day" : "FRIDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2106",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 18,
+        "day" : "MONDAY"
+      }, {
+        "startHour" : 9,
+        "endHour" : 10,
+        "day" : "THURSDAY"
+      } ]
+    } ]
+  }, {
+    "name" : "Siti Halimah",
+    "phone" : "95911947",
+    "email" : "sitihalimah@gmail.com",
+    "station" : "City Hall",
+    "telegramHandle" : "@sitihalimah",
+    "index" : 18,
+    "groups" : [ "NS", "Groupmate" ],
+    "modules" : [ {
+      "moduleCode" : "CS2106",
+      "lessons" : [ {
+        "startHour" : 8,
+        "endHour" : 10,
+        "day" : "THURSDAY"
+      }, {
+        "startHour" : 10,
+        "endHour" : 12,
+        "day" : "FRIDAY"
+      }, {
+        "startHour" : 8,
+        "endHour" : 10,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "PP5231",
+      "lessons" : [ {
+        "startHour" : 13,
+        "endHour" : 14,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 16,
+        "endHour" : 17,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 14,
+        "endHour" : 15,
+        "day" : "WEDNESDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS3235",
+      "lessons" : [ {
+        "startHour" : 8,
+        "endHour" : 10,
+        "day" : "TUESDAY"
+      }, {
+        "startHour" : 18,
+        "endHour" : 19,
+        "day" : "WEDNESDAY"
+      }, {
+        "startHour" : 10,
+        "endHour" : 11,
+        "day" : "THURSDAY"
+      } ]
+    }, {
+      "moduleCode" : "BT2103",
+      "lessons" : [ {
+        "startHour" : 14,
+        "endHour" : 16,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "LAD4012",
+      "lessons" : [ {
+        "startHour" : 16,
+        "endHour" : 17,
+        "day" : "MONDAY"
+      } ]
+    }, {
+      "moduleCode" : "CS2105",
+      "lessons" : [ {
+        "startHour" : 15,
+        "endHour" : 17,
+        "day" : "THURSDAY"
+      } ]
+    } ]
+  } ],
+  "user" : {
+    "name" : "Linus Richards",
+    "phone" : "90102030",
+    "email" : "linusrichards@gmail.com",
+    "station" : "Kent Ridge",
+    "telegramHandle" : "@linusrichards",
+    "index" : 0,
+    "groups" : [ ],
+    "modules" : [ {
+      "moduleCode" : "CS2100",
+      "lessons" : [ ]
+    }, {
+      "moduleCode" : "CS2105",
+      "lessons" : [ ]
+    }, {
+      "moduleCode" : "CS2101",
+      "lessons" : [ ]
+    }, {
+      "moduleCode" : "CS2106",
+      "lessons" : [ ]
+    }, {
+      "moduleCode" : "CS2102",
+      "lessons" : [ ]
+    }, {
+      "moduleCode" : "CS2103",
+      "lessons" : [ ]
+    }, {
+      "moduleCode" : "CS2104",
+      "lessons" : [ ]
+    } ]
+  },
+  "participantList" : {
+    "participants" : [ {
+      "name" : "Tomo Yuike",
+      "phone" : "82782389",
+      "email" : "tomoyuike@gmail.com",
+      "station" : "Yew Tee",
+      "telegramHandle" : "@tomoyuike",
+      "index" : 5,
+      "groups" : [ "NS" ],
+      "modules" : [ {
+        "moduleCode" : "IS3251",
+        "lessons" : [ {
+          "startHour" : 18,
+          "endHour" : 19,
+          "day" : "WEDNESDAY"
+        } ]
+      }, {
+        "moduleCode" : "CS2102",
+        "lessons" : [ {
+          "startHour" : 8,
+          "endHour" : 9,
+          "day" : "TUESDAY"
+        }, {
+          "startHour" : 12,
+          "endHour" : 13,
+          "day" : "WEDNESDAY"
+        }, {
+          "startHour" : 17,
+          "endHour" : 18,
+          "day" : "MONDAY"
+        } ]
+      }, {
+        "moduleCode" : "CS2113",
+        "lessons" : [ {
+          "startHour" : 16,
+          "endHour" : 18,
+          "day" : "THURSDAY"
+        } ]
+      }, {
+        "moduleCode" : "CS2107",
+        "lessons" : [ {
+          "startHour" : 9,
+          "endHour" : 10,
+          "day" : "MONDAY"
+        }, {
+          "startHour" : 14,
+          "endHour" : 15,
+          "day" : "FRIDAY"
+        } ]
+      }, {
+        "moduleCode" : "CS2101",
+        "lessons" : [ {
+          "startHour" : 19,
+          "endHour" : 20,
+          "day" : "MONDAY"
+        }, {
+          "startHour" : 11,
+          "endHour" : 13,
+          "day" : "MONDAY"
+        } ]
+      }, {
+        "moduleCode" : "CS2100",
+        "lessons" : [ {
+          "startHour" : 9,
+          "endHour" : 10,
+          "day" : "FRIDAY"
+        }, {
+          "startHour" : 13,
+          "endHour" : 15,
+          "day" : "WEDNESDAY"
+        } ]
+      } ]
+    }, {
+      "name" : "Benjamin Khoo",
+      "phone" : "84567168",
+      "email" : "benjaminkhoo@gmail.com",
+      "station" : "Bencoolen",
+      "telegramHandle" : "@benjaminkhoo",
+      "index" : 6,
+      "groups" : [ "TA" ],
+      "modules" : [ {
+        "moduleCode" : "CS2030",
+        "lessons" : [ {
+          "startHour" : 18,
+          "endHour" : 19,
+          "day" : "MONDAY"
+        }, {
+          "startHour" : 12,
+          "endHour" : 13,
+          "day" : "MONDAY"
+        }, {
+          "startHour" : 14,
+          "endHour" : 15,
+          "day" : "THURSDAY"
+        } ]
+      }, {
+        "moduleCode" : "YSS2252",
+        "lessons" : [ {
+          "startHour" : 15,
+          "endHour" : 17,
+          "day" : "WEDNESDAY"
+        }, {
+          "startHour" : 18,
+          "endHour" : 19,
+          "day" : "TUESDAY"
+        } ]
+      }, {
+        "moduleCode" : "CE2134",
+        "lessons" : [ {
+          "startHour" : 18,
+          "endHour" : 20,
+          "day" : "THURSDAY"
+        } ]
+      }, {
+        "moduleCode" : "BT2101",
+        "lessons" : [ {
+          "startHour" : 16,
+          "endHour" : 17,
+          "day" : "TUESDAY"
+        }, {
+          "startHour" : 12,
+          "endHour" : 13,
+          "day" : "TUESDAY"
+        } ]
+      }, {
+        "moduleCode" : "CS2113",
+        "lessons" : [ {
+          "startHour" : 9,
+          "endHour" : 11,
+          "day" : "TUESDAY"
+        }, {
+          "startHour" : 11,
+          "endHour" : 12,
+          "day" : "TUESDAY"
+        }, {
+          "startHour" : 10,
+          "endHour" : 11,
+          "day" : "FRIDAY"
+        } ]
+      }, {
+        "moduleCode" : "CS2100",
+        "lessons" : [ {
+          "startHour" : 9,
+          "endHour" : 11,
+          "day" : "THURSDAY"
+        }, {
+          "startHour" : 18,
+          "endHour" : 19,
+          "day" : "WEDNESDAY"
+        } ]
+      } ]
+    } ]
+  },
+  "meetUps" : [ {
+    "location" : {
+      "name" : "Bukit Timah Plaza",
+      "latitude" : 1.3386,
+      "longitude" : 103.7786
+    },
+    "timePeriod" : {
+      "startHour" : 19,
+      "endHour" : 23,
+      "day" : "TUESDAY"
+    },
+    "participants" : {
+      "participants" : [ {
+        "name" : "Tomo Yuike",
+        "phone" : "82782389",
+        "email" : "tomoyuike@gmail.com",
+        "station" : "Yew Tee",
+        "telegramHandle" : "@tomoyuike",
+        "index" : 5,
+        "groups" : [ "NS" ],
+        "modules" : [ {
+          "moduleCode" : "IS3251",
+          "lessons" : [ {
+            "startHour" : 18,
+            "endHour" : 19,
+            "day" : "WEDNESDAY"
+          } ]
+        }, {
+          "moduleCode" : "CS2102",
+          "lessons" : [ {
+            "startHour" : 8,
+            "endHour" : 9,
+            "day" : "TUESDAY"
+          }, {
+            "startHour" : 12,
+            "endHour" : 13,
+            "day" : "WEDNESDAY"
+          }, {
+            "startHour" : 17,
+            "endHour" : 18,
+            "day" : "MONDAY"
+          } ]
+        }, {
+          "moduleCode" : "CS2113",
+          "lessons" : [ {
+            "startHour" : 16,
+            "endHour" : 18,
+            "day" : "THURSDAY"
+          } ]
+        }, {
+          "moduleCode" : "CS2107",
+          "lessons" : [ {
+            "startHour" : 9,
+            "endHour" : 10,
+            "day" : "MONDAY"
+          }, {
+            "startHour" : 14,
+            "endHour" : 15,
+            "day" : "FRIDAY"
+          } ]
+        }, {
+          "moduleCode" : "CS2101",
+          "lessons" : [ {
+            "startHour" : 19,
+            "endHour" : 20,
+            "day" : "MONDAY"
+          }, {
+            "startHour" : 11,
+            "endHour" : 13,
+            "day" : "MONDAY"
+          } ]
+        }, {
+          "moduleCode" : "CS2100",
+          "lessons" : [ {
+            "startHour" : 9,
+            "endHour" : 10,
+            "day" : "FRIDAY"
+          }, {
+            "startHour" : 13,
+            "endHour" : 15,
+            "day" : "WEDNESDAY"
+          } ]
+        } ]
+      }, {
+        "name" : "Benjamin Khoo",
+        "phone" : "84567168",
+        "email" : "benjaminkhoo@gmail.com",
+        "station" : "Bencoolen",
+        "telegramHandle" : "@benjaminkhoo",
+        "index" : 6,
+        "groups" : [ "TA" ],
+        "modules" : [ {
+          "moduleCode" : "CS2030",
+          "lessons" : [ {
+            "startHour" : 18,
+            "endHour" : 19,
+            "day" : "MONDAY"
+          }, {
+            "startHour" : 12,
+            "endHour" : 13,
+            "day" : "MONDAY"
+          }, {
+            "startHour" : 14,
+            "endHour" : 15,
+            "day" : "THURSDAY"
+          } ]
+        }, {
+          "moduleCode" : "YSS2252",
+          "lessons" : [ {
+            "startHour" : 15,
+            "endHour" : 17,
+            "day" : "WEDNESDAY"
+          }, {
+            "startHour" : 18,
+            "endHour" : 19,
+            "day" : "TUESDAY"
+          } ]
+        }, {
+          "moduleCode" : "CE2134",
+          "lessons" : [ {
+            "startHour" : 18,
+            "endHour" : 20,
+            "day" : "THURSDAY"
+          } ]
+        }, {
+          "moduleCode" : "BT2101",
+          "lessons" : [ {
+            "startHour" : 16,
+            "endHour" : 17,
+            "day" : "TUESDAY"
+          }, {
+            "startHour" : 12,
+            "endHour" : 13,
+            "day" : "TUESDAY"
+          } ]
+        }, {
+          "moduleCode" : "CS2113",
+          "lessons" : [ {
+            "startHour" : 9,
+            "endHour" : 11,
+            "day" : "TUESDAY"
+          }, {
+            "startHour" : 11,
+            "endHour" : 12,
+            "day" : "TUESDAY"
+          }, {
+            "startHour" : 10,
+            "endHour" : 11,
+            "day" : "FRIDAY"
+          } ]
+        }, {
+          "moduleCode" : "CS2100",
+          "lessons" : [ {
+            "startHour" : 9,
+            "endHour" : 11,
+            "day" : "THURSDAY"
+          }, {
+            "startHour" : 18,
+            "endHour" : 19,
+            "day" : "WEDNESDAY"
+          } ]
+        } ]
+      } ]
+    },
+    "meetUpIndex" : 1
+  } ],
+  "recommendations" : [ {
+    "location" : {
+      "name" : "The Star Vista",
+      "latitude" : 1.3068,
+      "longitude" : 103.7884
+    },
+    "timePeriod" : {
+      "startHour" : 15,
+      "endHour" : 23,
+      "day" : "FRIDAY"
+    },
+    "isSaved" : false,
+    "index" : 1
+  }, {
+    "location" : {
+      "name" : "NUS Science Library",
+      "latitude" : 1.29522,
+      "longitude" : 103.78009
+    },
+    "timePeriod" : {
+      "startHour" : 13,
+      "endHour" : 17,
+      "day" : "MONDAY"
+    },
+    "isSaved" : false,
+    "index" : 2
+  }, {
+    "location" : {
+      "name" : "Bukit Timah Plaza",
+      "latitude" : 1.3386,
+      "longitude" : 103.7786
+    },
+    "timePeriod" : {
+      "startHour" : 19,
+      "endHour" : 23,
+      "day" : "TUESDAY"
+    },
+    "isSaved" : false,
+    "index" : 3
+  }, {
+    "location" : {
+      "name" : "UTown",
+      "latitude" : 1.30416,
+      "longitude" : 103.77399
+    },
+    "timePeriod" : {
+      "startHour" : 8,
+      "endHour" : 12,
+      "day" : "WEDNESDAY"
+    },
+    "isSaved" : false,
+    "index" : 4
+  }, {
+    "location" : {
+      "name" : "NUS Faculty of Science",
+      "latitude" : 1.29653,
+      "longitude" : 103.7801
+    },
+    "timePeriod" : {
+      "startHour" : 19,
+      "endHour" : 23,
+      "day" : "WEDNESDAY"
+    },
+    "isSaved" : false,
+    "index" : 5
+  }, {
+    "location" : {
+      "name" : "Frontier",
+      "latitude" : 1.29637,
+      "longitude" : 103.78022
+    },
+    "timePeriod" : {
+      "startHour" : 20,
+      "endHour" : 23,
+      "day" : "MONDAY"
+    },
+    "isSaved" : false,
+    "index" : 6
+  }, {
+    "location" : {
+      "name" : "NUS College of Design and Engineering",
+      "latitude" : 1.29838,
+      "longitude" : 103.77221
+    },
+    "timePeriod" : {
+      "startHour" : 13,
+      "endHour" : 16,
+      "day" : "TUESDAY"
+    },
+    "isSaved" : false,
+    "index" : 7
+  }, {
+    "location" : {
+      "name" : "321 Clementi",
+      "latitude" : 1.312,
+      "longitude" : 103.765
+    },
+    "timePeriod" : {
+      "startHour" : 11,
+      "endHour" : 14,
+      "day" : "THURSDAY"
+    },
+    "isSaved" : false,
+    "index" : 8
+  }, {
+    "location" : {
+      "name" : "Clementi Mall",
+      "latitude" : 1.3147,
+      "longitude" : 103.7643
+    },
+    "timePeriod" : {
+      "startHour" : 20,
+      "endHour" : 23,
+      "day" : "THURSDAY"
+    },
+    "isSaved" : false,
+    "index" : 9
+  }, {
+    "location" : {
+      "name" : "NUS Medical Library",
+      "latitude" : 1.29524,
+      "longitude" : 103.78187
+    },
+    "timePeriod" : {
+      "startHour" : 11,
+      "endHour" : 14,
+      "day" : "FRIDAY"
+    },
+    "isSaved" : false,
+    "index" : 10
+  }, {
+    "location" : {
+      "name" : "Queenstown Public Library",
+      "latitude" : 1.29864,
+      "longitude" : 103.80541
+    },
+    "timePeriod" : {
+      "startHour" : 8,
+      "endHour" : 9,
+      "day" : "MONDAY"
+    },
+    "isSaved" : false,
+    "index" : 11
+  }, {
+    "location" : {
+      "name" : "Prince Georges Park",
+      "latitude" : 1.29136,
+      "longitude" : 103.78021
+    },
+    "timePeriod" : {
+      "startHour" : 10,
+      "endHour" : 11,
+      "day" : "MONDAY"
+    },
+    "isSaved" : false,
+    "index" : 12
+  }, {
+    "location" : {
+      "name" : "Clementi Public Library",
+      "latitude" : 1.31466,
+      "longitude" : 103.76402
+    },
+    "timePeriod" : {
+      "startHour" : 17,
+      "endHour" : 18,
+      "day" : "TUESDAY"
+    },
+    "isSaved" : false,
+    "index" : 13
+  }, {
+    "location" : {
+      "name" : "The Terrace",
+      "latitude" : 1.29492,
+      "longitude" : 103.77466
+    },
+    "timePeriod" : {
+      "startHour" : 17,
+      "endHour" : 18,
+      "day" : "WEDNESDAY"
+    },
+    "isSaved" : false,
+    "index" : 14
+  }, {
+    "location" : {
+      "name" : "West Coast Plaza",
+      "latitude" : 1.3037,
+      "longitude" : 103.7659
+    },
+    "timePeriod" : {
+      "startHour" : 8,
+      "endHour" : 9,
+      "day" : "THURSDAY"
+    },
+    "isSaved" : false,
+    "index" : 15
+  }, {
+    "location" : {
+      "name" : "NUS Central Library",
+      "latitude" : 1.2965,
+      "longitude" : 103.77294
+    },
+    "timePeriod" : {
+      "startHour" : 15,
+      "endHour" : 16,
+      "day" : "THURSDAY"
+    },
+    "isSaved" : false,
+    "index" : 16
+  } ]
+}

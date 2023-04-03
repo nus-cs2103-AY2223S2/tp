@@ -59,7 +59,11 @@ title: Developer Guide
          * [Sort Command](#sort-command)
          * [List Command](#list-command)
          * [Exit Command](#exit-command)
+         * [Save Command](#save-command)
+         * [Load Command](#load-command)
          * [Meet Command](#meet-command)
+         * [Organise Command](#organise-command)
+         * [Sample Command](#sample-command)
      * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
@@ -716,7 +720,17 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 **Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
 
-{to be filled by Kenny}
+<img src="images/TagActivityDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.x</b> Sequence Diagram for a typical <code>TagCommand</code> execution 
+</div>
+<br>
+
+<img src="images/UntagActivityDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.x</b> Sequence Diagram for a typical <code>UntagCommand</code> execution 
+</div>
+<br>
 
 #### **View Command**
 
@@ -875,9 +889,41 @@ Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed
 
 </div>
 
+#### **Save Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SaveCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SaveCommandParser.java)
 
+The `save` command allows users to save a copy of EduMate. This information is stored within the `data` folder, the same place as where `edumate.json` is kept.
 
-### **Meet Command**
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Saving the Json file**<br>
+We cannot save the json file directly from the command, because the command only has access to the model. Instead, we pass the file path through a `SaveCommandResult`, which will inform the `LogicManager` to save the information in a particular file. 
+
+</div>
+
+<img src="images/SaveSequenceDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.x</b> Sequence Diagram for a typical <code>save</code> command.
+</div>
+
+#### **Load Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/LoadCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/LoadCommandParser.java)
+
+The `save` command allows users to load a previously saved copy of EduMate. This information is retrieved from the `data` folder, the same place as where `edumate.json` is kept.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Loading the Json file**<br>
+Similar to the Save Command, we pass the file path through a `LoadCommandResult`, which will inform the `LogicManager` to load the information from a particular file.
+
+</div>
+
+<img src="images/LoadSequenceDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.x</b> Sequence Diagram for a typical <code>load</code> command.
+</div>
+
+#### **Meet Command**
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/MeetCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/MeetCommandParser.java)
 
@@ -910,15 +956,44 @@ This feature is utilises the [`Recommender`](#recommenders)
 </div>
 
 
-### **Organise Command**
+#### **Organise Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/OrganiseCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/OrganiseCommandParser.java)
 
-<div markdown="span" class="alert alert-dark">
-    :construction: Slated for release in v1.3b.
+The `organise` command will set a meet up with the time and place for all participants and the user himself/herself. Note that the user's information is automatically added to the list of participants as it is assumed that they will be taking part in the meet up.
+
+<div markdown="block" class="alert alert-info">
+
+:information_soruce: **Command Formats:** <br>
+
+* `organise INDEX` : Takes the recommendation at the specified `INDEX` and saves it.
+* `organise INDEX_1 INDEX_2 ... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up with the specified participants and information.
+
 </div>
 
-The `organise` command will set a meetup with the time and place for all participants and the user himself/herself.
+On the other hand, the `unorganise` command will remove the meet up at the specified index.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Command Format**<br>
+
+* `unorganise INDEX`: Removes the scheduled meet up with the specified index.
+
+</div>
 
 The [`TimingRecommender`](#timing-recommender) will check if the timing is a suitable for every participant to meet.
+
+#### **Sample Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SampleCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SampleCommandParser.java)
+
+The `sample` command repopulates the EduMate with a fresh set of contacts. Note that this calls the same function as that called in [Sample Data Util](#sample-data-util). 
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Command Format**<br>
+
+* `sample NUMBER` : Replaces the EduMate with the specified `NUMBER` of sample persons.
+
+</div>
 
 ## **Parsers**
 

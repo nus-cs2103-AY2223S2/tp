@@ -5,9 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.logic.parser.IndexHandler;
 import seedu.address.logic.recommender.Recommender;
 import seedu.address.model.Model;
 import seedu.address.model.location.Location;
@@ -59,6 +61,23 @@ public class MeetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert indices.contains(new ContactIndex(0));
+        if (indices.size() == 1) {
+            throw new CommandException("Contact index expected");
+        }
+
+        IndexHandler indexHandler = new IndexHandler(model);
+        Set<ContactIndex> invalidContactIndices = indices.stream()
+                .filter(i -> indexHandler.getPersonByIndex(i).isEmpty())
+                .collect(Collectors.toSet());
+
+        if (!invalidContactIndices.isEmpty()) {
+            String message = invalidContactIndices.stream()
+                    .map(ContactIndex::toString)
+                    .collect(Collectors.joining(", "));
+            throw new CommandException("Invalid contact indices given: " + message);
+        }
+
         List<Recommendation> recommendations = new Recommender(model).recommend(indices, locations);
 
         model.setRecommendations(recommendations);

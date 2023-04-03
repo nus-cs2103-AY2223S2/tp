@@ -160,6 +160,12 @@ public class RecommendationTest {
     }
 
     @Test
+    public void equals_differentTypes_false() {
+        assertNotEquals(RECOMMENDATION, 2);
+        assertNotEquals(RECOMMENDATION, null);
+    }
+
+    @Test
     public void toString_validLocation_containsLocationName() {
         assertTrue(RECOMMENDATION.toString().contains(STEVENS.getName()));
     }
@@ -243,5 +249,16 @@ public class RecommendationTest {
         Recommendation savedRecommendation = recommendation.unsaveRecommendation();
         assertFalse(savedRecommendation.getIsSaved());
         assertTrue(savedRecommendation.isSameRecommendation(recommendation));
+    }
+
+    @Test
+    public void setContactIndex_validIndex_success() {
+        Recommendation recommendation =
+                new Recommendation(STEVENS, TIME_PERIOD, CONTACT_INDEX, true);
+        Recommendation indexedRecommendation =
+                recommendation.setContactIndex(new ContactIndex(3));
+        Recommendation otherIndexedRecommendation =
+                new Recommendation(STEVENS, TIME_PERIOD, new ContactIndex(3), true);
+        assertEquals(indexedRecommendation, otherIndexedRecommendation);
     }
 }

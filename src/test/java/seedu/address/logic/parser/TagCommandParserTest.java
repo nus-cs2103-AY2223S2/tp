@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +10,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.tag.GroupTag;
 import seedu.address.model.tag.ModuleTag;
@@ -39,6 +41,16 @@ public class TagCommandParserTest {
                 "2 g/Enemy");
     }
 
+    @Test
+    public void parse_invalidContactIndex_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parse("a m/CS2100"));
+    }
+
+    @Test
+    public void parse_bothTagsInputted_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parse("m/CS2100 g/TA"));
+    }
+
     private void createModuleValidArgsReturnsTagCommand(ContactIndex index, Set<ModuleTag> modules, String userInput) {
         TagCommand expectedTagCommand = new TagCommand(index, modules, TagType.MODULE);
 
@@ -50,7 +62,5 @@ public class TagCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedTagCommand);
     }
-
-
 
 }
