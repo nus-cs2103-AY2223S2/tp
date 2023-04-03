@@ -7,7 +7,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.session.Session;
 import seedu.address.ui.UiPart;
 
 
@@ -39,14 +39,15 @@ public class CalendarPopupContent extends UiPart<Region> {
 
     /**
      * Creates a {@code CalendarPopupContent} with the given CalendarEvent details.
+     * @param session
      */
 
-    public CalendarPopupContent(CalendarEvent calendarEvent) {
+    public CalendarPopupContent(Session session) {
         super(FXML);
-        studentLabel.setText(calendarEvent.getName().toString());
-        dateLabel.setText(calendarEvent.getDate());
-        durationLabel.setText(calendarEvent.getDuration());
-        locationLabel.setText(calendarEvent.getAddress().toString());
+        studentLabel.setText(session.getSessionName().toString());
+        dateLabel.setText(session.getStartDateTime());
+        durationLabel.setText(session.getSessionDuration().toString());
+        locationLabel.setText(session.getLocation().toString());
     }
 }
 

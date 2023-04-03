@@ -13,7 +13,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionName;
@@ -29,7 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Session> filteredSessions;
-    private final ObservableList<CalendarEvent> calendarEventList;
+    private final ObservableList<Session> calendarEventList;
 
 
     /**
@@ -176,24 +175,6 @@ public class ModelManager implements Model {
     public void updateFilteredSessionList(Predicate<Session> predicate) {
         requireNonNull(predicate);
         filteredSessions.setPredicate(predicate);
-    }
-
-    @Override
-    public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
-        ObservableList<Session> lastShownList = this.filteredSessions;
-        ObservableList<CalendarEvent> calendarEventList = getCalendarEventList(lastShownList);
-        return calendarEventList;
-    }
-
-    private ObservableList<CalendarEvent> getCalendarEventList(ObservableList<Session> lastShownList) {
-        calendarEventList.clear();
-        lastShownList.stream().map(x -> x.getCalendarEvents()).forEach(e -> calendarEventList.addAll(e));
-        return calendarEventList;
-    }
-
-    @Override
-    public void updateCalendarEventList() {
-        getCalendarEventList(filteredSessions);
     }
 
     @Override

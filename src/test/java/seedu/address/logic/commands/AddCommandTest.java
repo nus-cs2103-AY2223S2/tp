@@ -183,21 +183,10 @@ public class AddCommandTest {
         @Override
         public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
             return null;
-        }
 
         @Override
         public void updateFilteredSessionList(Predicate<Session> predicate) {
             throw new AssertionError("This method should not be called.");
-        }
-
-        /*@Override
-        public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
-            return null;
-        }*/
-
-        @Override
-        public void updateCalendarEventList() {
-
         }
 
         @Override

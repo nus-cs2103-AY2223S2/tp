@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.session.Session;
 import seedu.address.ui.UiPart;
 
 
@@ -22,7 +22,7 @@ import seedu.address.ui.UiPart;
 
 public class CalendarEventListPanel extends UiPart<Region> {
     private static final String FXML = "CalendarEventListPanel.fxml";
-    private ObservableList<CalendarEvent> calendarDayEvents;
+    private ObservableList<Session> calendarDayEvents;
     private Stage primaryStage;
 
     @FXML
@@ -36,12 +36,13 @@ public class CalendarEventListPanel extends UiPart<Region> {
      * @param primaryStage The primary stage of the application.
      */
 
-    public CalendarEventListPanel(ObservableList<CalendarEvent> calendarDayEvents,
+    public CalendarEventListPanel(ObservableList<Session> calendarDayEvents,
                                   Stage primaryStage) {
         super(FXML);
         this.calendarDayEvents = calendarDayEvents;
         this.calendarEventList = new VBox();
         this.primaryStage = primaryStage;
+
     }
 
 
