@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import taa.commons.core.GuiSettings;
 import taa.model.student.NameContainsKeywordsPredicate;
-import taa.testutil.ClassListBuilder;
 import taa.testutil.Assert;
+import taa.testutil.ClassListBuilder;
 import taa.testutil.TypicalPersons;
 
 public class ModelManagerTest {
