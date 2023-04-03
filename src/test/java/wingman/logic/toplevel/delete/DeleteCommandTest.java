@@ -2,20 +2,14 @@ package wingman.logic.toplevel.delete;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.mockito.Mock;
-import org.mockito.Mockito;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import wingman.logic.core.CommandResult;
@@ -32,19 +26,19 @@ import wingman.model.item.Item;
 public class DeleteCommandTest {
 
     @Mock
-    DeleteFunction<Item> deleteFunction;
+    private DeleteFunction<Item> deleteFunction;
 
     @Mock
-    GetManagerFunction<Item> getManagerFunction;
+    private GetManagerFunction<Item> getManagerFunction;
 
     @Mock
-    ReadOnlyItemManager<Item> itemManager;
+    private ReadOnlyItemManager<Item> itemManager;
 
     @Mock
-    Item item;
+    private Item item;
 
     @Mock
-    Model model;
+    private Model model;
 
     @Test
     public void testExecute_doesNotThrow() throws CommandException {
@@ -74,8 +68,8 @@ public class DeleteCommandTest {
         );
 
         assertThrows(
-                CommandException.class,
-                () -> deleteCommand.execute(model)
+                CommandException.class, (
+                    ) -> deleteCommand.execute(model)
         );
 
         verify(getManagerFunction, times(1)).get(model);
