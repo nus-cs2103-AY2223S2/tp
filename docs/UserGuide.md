@@ -91,11 +91,11 @@ Example: `add n/booked tennis court d/2023-02-01 s/15:00 e/17:00`
 
 Recurs an event from the Scheduler until an end date.
 
-Format: `recur <index> d/<end date> every/<RECUR FACTOR>`
+Format: `recur <index> d/<end date> every/<recur factor>`
 
 Parameters:  
 `d/`: Ending date of recurrence for the event in `YYYY-MM-DD` format  
-`every/`: Recur factor to recur the event, given by `DAY/WEEK/MONTH/YEAR`
+`every/`: Recur factor to recur the event, given by `day/week/month`
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
@@ -104,7 +104,7 @@ Recurring of events not existing in scheduler is not allowed.
 End date should come after current event date.  
 </div>
 
-Example: `recur 1 d/2024-01-01 every/MONTH`
+Example: `recur 1 d/2024-01-01 every/month`
 
 [[Back to top](#index)]
 
