@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -104,7 +103,7 @@ public class UniquePersonList implements Iterable<Person> {
 
         List<Person> tempList = new ArrayList<>(List.copyOf(internalList));
         if (!tempList.remove(exceptFor)) {
-            throw new NoSuchElementException();
+            throw new PersonNotFoundException();
         }
 
         for (int i = 0; i < tempList.size(); i++) {
