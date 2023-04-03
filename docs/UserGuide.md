@@ -287,7 +287,7 @@ Add a module to Le Tracker.
 
 Examples:
 
-- `add CS2040 /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
+- `add CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
 :warning: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
 
@@ -338,7 +338,7 @@ Add a video to a lecture.
 
 Examples:
 
-- `add Video 1 /mod CS2040S /lec Week 1 /watch /tags Intro, Short`
+- `add Video 1 /mod CS2040S /lec Week 1 /timestamp 01:04:20 /watch /tags Intro, Short`
 
 ### Edit a Module
 
@@ -359,7 +359,7 @@ Edit the details of a module.
 
 Examples:
 
-- `edit CS2040 /code CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
+- `edit CS2040S /code CS2040 /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
 
 :warning: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Edit a Lecture](#edit-a-lecture) or [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation) for more information)
 
@@ -416,7 +416,7 @@ Edit the details of a video.
 
 Examples:
 
-- `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /watch /tags Intro, Short`
+- `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /watch /tags Intro, Short`
 
 ### Mark or Unmark Video
 
