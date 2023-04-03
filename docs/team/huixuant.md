@@ -3,30 +3,62 @@ layout: page
 title: Hui Xuan's Project Portfolio Page
 ---
 
-### Project: sprINT
+## Project: sprINT
 
-sprINT is a desktop application that helps tech-savvy polytechnic and university students manage details of their
-internship applications. It is optimised for Command Line Interface (CLI) users, while still providing the benefits
-of a Graphical User Interface (GUI).
+sprINT is an internship-tracking application that was created to assist students in their internship hunt. Students 
+often face a great administrative burden in keeping track of the high volume of job or internship applications, which 
+include details like interview dates and Online Assessment links. Therefore, sprINT aims to help these students by 
+tracking and recording their application details, such as the company, contacts, status and deadlines.
+
+sprINT is written in Java, with the GUI built using JavaFX. 
 
 Given below are my contributions to the project.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huixuant&breakdown=true)
+### **Code contributed** 
+* See [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huixuant&breakdown=true)
 
-* **Project management**:
-  * to be added soon
+### **New feature** 
+#### **Added the ability to add, edit and delete tasks** 
+  * See PR [#115](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/115)
+  * **What it does**: allows the user to add a task to an existing application, as well as edit or delete an existing task.
+  * **Justification**: This feature improves the product significantly because the user can now keep track of other 
+    requirements or milestones that are related to the application, like interviews and online assessments, but could
+    not be captured previously. 
+  * **Highlights**: This enhancement involved adding new classes to represent `Task` objects and its fields, as well as for
+    task-related commands. It required changes in existing classes and test cases related to `Applications`, since 
+    `Task` was implemented as an additional field within `Application`.
 
-* **Enhancements to existing features**:
-  * to be added soon
+### **Project management**
+  * Authored **31** issues on the Github repo
 
-* **Documentation**:
-  * User Guide:
-    * to be added soon
-  * Developer Guide:
-    * to be added soon
+### **Enhancements to existing features**
 
-* **Team-based tasks**:
-  * to be added soon
+#### **Updated GUI** 
+* See PR [#166](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/166) and
+  [#68](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/68)
+* Enhanced the previous design of AB3 to match our product mock-up
 
-* **Community**:
-  * to be added soon
+#### **Updated delete feature**
+* See PR [#72](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/72)
+* Updated the original `DeleteCommand` in AB3 (now `DeleteApplicationCommand`) to match sprINT's user 
+  story and requirements 
+
+#### **Refactored Model component**
+* See PR [#46](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/46)
+* Added new classes to represent `Application` objects in a new package and updated existing classes in Model to 
+  match sprINT's requirements  
+
+### **Documentation**
+#### **User Guide**
+* See PR [#47](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/47)
+* Updated documentation for the delete feature to match sprINT's requirements 
+
+#### **Developer Guide**
+* See PR [#119](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/119)
+* Added implementation details of the `AddTaskCommand`
+* Updated Glossary section with definitions for sprINT-related terminology like 'application' and 'status' 
+* Changed all references to AB3 and its classes (including links and UML diagrams) to sprINT 
+
+### **Contributions to team-based tasks**
+* Set up and configured Github organisation and team repository
+
