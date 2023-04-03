@@ -13,7 +13,6 @@ title: User Guide
       The Intern's Ship - User Guide</h1>
 </div>
 
-<div style="page-break-after:always; break-after: page;">
 Whether it is to fulfil a graduation requirement or simply to gain real world working experience, taking up an 
 internship during one's course of study has become a popular option amongst many university students. Studies have
 found that the completion of an internship increases one's chance of employment after graduation by a whopping 85%.<br>
@@ -32,10 +31,6 @@ neatly.<br>
 <h3>Notable Features (v1.3)</h3>
   * Finding a particular internship application in TinS using keywords: `find`
   * Finding all clashing events: `clash`
-
-</div>
-
-<div style="page-break-after:always; break-after: page;">
 
 <h2>Table of Contents</h2>
 
@@ -63,9 +58,6 @@ neatly.<br>
 
 4. [Command Summary](#command_summary)
 
-</div>
-
-<div style="page-break-after:always; break-after: page;">
 <h2 id="about_gui">About TinS Application's Interface</h2>
 
 ![gui](images/gui.png)
@@ -80,9 +72,7 @@ neatly.<br>
    Company, Status and Tags).
 4. **Internship Display Panel**: This panel displays relevant details pertaining to specific internship.
 
-</div>
 
-<div style="page-break-after:always; break-after: page;">
 <h2 id="quick_start">Quick Start</h2>
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -104,8 +94,6 @@ neatly.<br>
 TinS command can be found [here](#features).
 
 7. Type your command in the [command line](#about_gui) and press the `Enter` key for TinS to execute it.
-
-</div>
 
 <div markdown="block" class="alert alert-info" style="page-break-after:always; break-after: page;">
 
