@@ -161,7 +161,7 @@ The supported date formats are:
 
 #### `<phone-number>`
 
-Any number that is at least three digits long is allowed. Only digits are allowed.
+Any number that is at least three digits long is allowed. So that anyone, regardless of nationality, are allowed to be vaccinated. Only digits are allowed.
 
 #### `<vax-retriever>`
 
