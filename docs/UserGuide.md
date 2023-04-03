@@ -51,13 +51,13 @@ Where Got Time (WGT) **a perfect desktop app** dedicate to managing your events 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used multiple times (Even not at all).<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is specified multiple times when it is only expected once, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -155,7 +155,8 @@ Create a group in the address book.
 Format: `group_create g/GROUP_NAME`
 
 * Creates a group with the specified group name `GROUP_NAME`.
-* The group name cannot be empty
+* The group name cannot be empty and must be alphanumeric!
+* **NOTE: The group name cannot contain spaces**
 
 Examples:
 * `group_create g/CS2103T`
@@ -219,7 +220,7 @@ Format: `event_create_recur INDEX re/EVENT_NAME d/DAY_OF_WEEK f/START_TIME t/END
 
 * `INDEX` refers to the index of the person whose recurring event list will be added with the given recurring event
 * Creates a recurring event with the specified name `EVENT_NAME` using the flag `re` which stands for Recurring event
-* The flag `d` represents the day of the week
+* The flag `d/` represents the day of the week
 * The remaining flags `f/` represent the word __from__ and `t/` represents the word __to__
 * The format `DAY_OF_WEEK` accepts the input `Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday`
 * The format of `START_TIME` and `END_TIME` would be in `HH:mm`
@@ -288,7 +289,7 @@ Examples:
 * `re_edit 1 1 d/Tuesday`
 * `re_edit 1 1 t/14:00`
 
-#### 2) Export a person: `export`
+### Export a person: `export`
 Export a person's details from the address book. 
 
 Format: `export [INDEX_OF_PERSON]`
@@ -306,9 +307,9 @@ Examples:
 
 Displays the time slots in a week when all members of the specified group are free (no events).
 
-Format: free GROUP_INDEX [START_DATE]
+Format: `free GROUP_INDEX [START_DATE]`
 
-* Finds unoccupied time slots within members of the group at the specified `INDEX`. The index refers to the index number
+* Finds unoccupied time slots within members of the group at the specified `GROUP_INDEX`. The index refers to the index number
   shown in the displayed group list. The index *must be a positive* 1, 2, 3 ...
 * The `START_DATE` field is optional. The time slots will be shown for the week ahead, starting from that date. If it is
   not provided, then the current date will be used.
