@@ -112,10 +112,11 @@ public class ParserUtil {
     public static Dob parseDob(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDob = dob.trim();
-        if (!Dob.isValidDob(trimmedDob)) {
+        LocalDateTime date = parseDate(trimmedDob);
+        if (!Dob.isValidDob(date)) {
             throw new ParseException(Dob.MESSAGE_CONSTRAINTS);
         }
-        return new Dob(trimmedDob);
+        return new Dob(date);
     }
 
     /**
