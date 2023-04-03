@@ -230,7 +230,9 @@ Example: `deletepart Cylinder Head` deletes the part 'Cylinder Head' and all the
 
 ### Undo a previously executed command: `undo`
 
-Undoes the previously typed command
+Undoes certain previously typed command
+
+_See below for a list of commands that `undo` applies to_
 
 Format: `undo`
 
@@ -239,8 +241,6 @@ Example flow:
 2. `undo`
 
 `undo` will reverse the add command, causing the system to delete previously added customer.
-
-_See below for a list of commands that `undo` applies to_
 
 ### Redo a previously executed command: `redo`
 
