@@ -1,6 +1,7 @@
 ---
 layout: page
 title: User Guide
+---
 
 ## What is MediMeet?
 
@@ -42,7 +43,7 @@ We also use symbols to indicate useful information. The following table shows wh
 | :exclamation:        | Warning that you should take note of.                       |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use the glossary to quickly look up the meaning of any unfamiliar technical term. Just click on the term you want to look up!
+You can use the glossary to quickly look up the meaning of any unfamiliar technical term. Just search for the term you want to look up!
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -56,7 +57,7 @@ You can use the glossary to quickly look up the meaning of any unfamiliar techni
 
 4. Open the `medimeet.jar` file by double clicking on it. If a dialog box opens asking 'How do you want to open this file?', choose 'Java(TM) Platform SE binary'. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
     * If you are familiar with terminals and command lines, you can choose to open the file from a command line instead. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar medimeet.jar` command to run the application.<br>
-   ![Ui](images/Ui_placeholder.png)
+   ![Ui](images/updated_UI.jpg)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -134,10 +135,11 @@ Format: `list_patient`
 
 Edits an existing patient in MediMeet.
 
-Format: `edit_patient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit_patient INDEX [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
+* Editing of names are not allowed.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without
@@ -145,7 +147,6 @@ Format: `edit_patient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 
 Examples:
 *  `edit_patient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit_patient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
 ### Locating patients by name: `find_patient`
 
@@ -193,7 +194,7 @@ Format: `delete_patient INDEX`
 
 Examples:
 * `list_patient` followed by `delete_patient 2` deletes the 2nd patient in the MediMeet.
-* `find_patient Betsy` followed by `delete_patient 1` deletes the 1st patient in the results of the `find_patient` command.
+* `find_patient Alex` followed by `delete_patient 1` deletes the 1st patient in the results of the `find_patient` command.
 
 ### Adding patient notes: `remark_patient`
 
@@ -221,10 +222,10 @@ Example:
 
 Adds an appointment for an existing patient in MediMeet.
 
-Format: `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION [t/TAG]…​`
+Format: `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION doc/DOCTOR…​`
 
 Example:
-* `add_appt n/John Doe ts/01012023 00:00,01012023 01:00 d/Regular checkup`
+* `add_appt n/Alex Yeoh ts/01012023 00:00,01012023 01:00 d/Regular checkup doc/Xiao Lu`
 
 ### Listing all appointments : `list_appt`
 
@@ -236,7 +237,7 @@ Format: `list_appt`
 
 Edits an existing appointment in MediMeet.
 
-Format: `edit_appt INDEX [ts/TIMESLOT] [d/DESCRIPTION] [t/TAG]…​`
+Format: `edit_appt INDEX [ts/TIMESLOT] [d/DESCRIPTION] [doc/DOCTOR]…​`
 
 * Edits the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -303,22 +304,22 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                      | Format, Examples                                                                                                                                                      |
-|-----------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                     | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add appointment**         | `add n/NAME ts/TIMESLOT d/DESCRIPTION [t/TAG]…​` <br> e.g., `add_appt n/John Doe ts/01012023 00:00,01012023 01:00 d/Regular checkup`                                  |                                                                                                       |
-| **Clear**                   | `clear`                                                                                                                                                               |
-| **Delete**                  | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Delete appointment**      | `delete_appt INDEX`<br> e.g., `delete_appt 3`                                                                                                                         |
-| **Edit**                    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Edit appointment**        | `edit_appt INDEX [ts/TIMESLOT] [d/DESCRIPTION] [t/TAG]…​` <br> e.g.,`edit_appt 1 ts/01012023 00:00,01012023 01:00 d/Regular checkup`                                  |
-| **Find**                    | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **Find in patient details** | `find_details KEYWORD [MORE_KEYWORDS]`<br> e.g., `find 22224444`                                                                                                      |
-| **Find appointment**        | `find_appt TIMESLOT [TIMESLOT]`<br> e.g., `find_appt 01012023 00:00 01012023 01:00`                                                                                   |
-| **List**                    | `list`                                                                                                                                                                |
-| **List appointments**       | `list_appt`                                                                                                                                                           |
-| **Help**                    | `help`                                                                                                                                                                |
-| **Add patient notes**       | `remark INDEX [r/REMARK]` <br> e.g., `remark 3 r/Immunocompromised`                                                                                                   |
+| Action                      | Format, Examples                                                                                                                                                                      |
+|-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add patient**             | `add_patient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_patient n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add appointment**         | `add_appt n/NAME ts/TIMESLOT d/DESCRIPTION [t/TAG]…​` <br> e.g., `add_appt n/John Doe ts/01012023 00:00,01012023 01:00 d/Regular checkup`                                             |                                                                                                       |
+| **Clear**                   | `clear`                                                                                                                                                                               |
+| **Delete patient**          | `delete_patient INDEX`<br> e.g., `delete 3`                                                                                                                                           |
+| **Delete appointment**      | `delete_appt INDEX`<br> e.g., `delete_appt 3`                                                                                                                                         |
+| **Edit patient**            | `edit_patient INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit_patient 2 n/James Lee e/jameslee@example.com`                                           |
+| **Edit appointment**        | `edit_appt INDEX [ts/TIMESLOT] [d/DESCRIPTION] [t/TAG]…​` <br> e.g.,`edit_appt 1 ts/01012023 00:00,01012023 01:00 d/Regular checkup`                                                  |
+| **Find patient**            | `find_patient KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_patient James Jake`                                                                                                            |
+| **Find in patient details** | `find_patient_details KEYWORD [MORE_KEYWORDS]`<br> e.g., `find_patient_details 22224444`                                                                                              |
+| **Find appointment**        | `find_appt TIMESLOT [TIMESLOT]`<br> e.g., `find_appt 01012023 00:00 01012023 01:00`                                                                                                   |
+| **List patient**            | `list_patient`                                                                                                                                                                        |
+| **List appointments**       | `list_appt`                                                                                                                                                                           |
+| **Help**                    | `help`                                                                                                                                                                                |
+| **Add patient notes**       | `remark_patient INDEX [r/REMARK]` <br> e.g., `remark_patient 3 r/Immunocompromised`                                                                                                   |
 
 --------------------------------------------------------------------------------------------------------------------
 
