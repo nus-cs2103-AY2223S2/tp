@@ -15,10 +15,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
@@ -118,6 +120,10 @@ public class PdfReader implements FileReader<PDDocument> {
 
         } catch (IOException e) {
             e.printStackTrace();
+            SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(null,
+                    "Error displaying PDF: " + e.getMessage(),
+                    "PDF Viewer Error", JOptionPane.ERROR_MESSAGE));
+
         }
     }
 
