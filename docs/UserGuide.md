@@ -205,7 +205,7 @@ You can try the following commands to add a task:
 
 :bulb: **Tip**
 
-You can find out all the usable commands [here](#features) or return to the [Table of Contents](#table-of-contents) to find your desired command.
+You can find out all the usable commands [here](#2-commands) or return to the [Table of Contents](#table-of-contents) to find your desired command.
 
 </div>
 
@@ -283,60 +283,93 @@ Data list contains all of your respective data labelled out in full. The layout 
 
 **:information_source: Notes about the command format:**<br>
 
-* Command keywords are case-sensitive, all command keywords must be in lower-case.
-  e.g. For add supplier command, `add_supplier` is valid but `ADD_SUPPLIER` and `Add_Supplier` are not.
-
-* All commands have a shortcut alternative, which is the first letter of the specific type you are managing.
-  e.g. `add_s` is the same as `add_supplier`; `edit_o` is the same as `edit_order`
+* All command keywords must be in lower-case and are case-sensitive.<br>
+  e.g. For add supplier command:<br>
+  :check_mark_button: `add_supplier` is valid.<br>
+  :cross_mark: `ADD_SUPPLIER` and `Add_Supplier` are invalid.<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `add_supplier n/NAME`, `NAME` is a parameter which can be used as `add_supplier n/John Doe`.
+  e.g. in `add_supplier n/NAME`, you fill in the `NAME` parameter with the supplier name (i.e. `add_supplier n/John Doe`).
 
-* Prefixes of the parameters are case-sensitive.<br>
+* Prefixes of the parameters must be in lower-case and are case-sensitive.<br>
   e.g. `n/` in `add_s n/NAME` is case-sensitive (i.e. `N/` is an invalid prefix).
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items in curly brackets need to have at least 1 item supplied.
-  e.g. `{p/PHONE_NUMBER e/EMAIL}` can be used as `p/91234567` or `e/john@example.com` but cannot be left blank.
-
-* Items with `…​` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (omitted), `t/friend`, `t/friend t/family` etc.
+* Items with `…​` after them can be used any number of times within the command.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (omitted), `t/flour`, `t/flour t/sugar` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the **last** occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Viewing help: `help`
+<div markdown="block" class="alert alert-tip">
 
-Shows a message explaining how to access the help page.
+:bulb: **Tip**
 
-![help message](images/helpMessage.png)
+* General format of commands:<br>
+  <div style="background-color:silver">
+  <span style="color:darkblue">&lt command &gt</span>
+  <span> </span>
+  <span style="color:indigo">&lt index &gt</span>
+  <span> </span>
+  <span style="color:brown">&lt prefix/paramater &gt &lt prefix/paramater &gt ...</span>
+  </div>
+  
+  * Index depends on the command.
+  * Number of parameters depend on the command.
 
-Syntax: `help`
+* All command keywords have shortcut alternatives. They are the command type and the first letter of the information type.<br>
+  For example:<br>
+  * `add_s` is the same as `add_supplier`
+  * `edit_o` is the same as `edit_order`
+  * `list_t` is the same as `list_task`
 
-## Add
+* You can find out the constraints for the parameters with their corresponding prefix [here](#51-prefix-summary).
 
-### Adding a supplier: `add_supplier`
+</div>
+
+## 2.1 Add
+
+Adding of an information to the specific list.
+
+### 2.1.1 Adding a supplier: `add_supplier`
 
 Adds a supplier to the list of suppliers.
 
-Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
+Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
-* A supplier can have any number of tags (including 0).
+<div markdown="block" class="alert alert-example">
 
-Examples:
+:clipboard: **Example 1: Standard command without tags**
 
-* `add_supplier n/John Doe p/98765432 e/johnd@example.com a/John Street`
-* `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/1234567 t/meat`
+* `add_supplier n/John Doe p/98765432 e/johnd@example.com a/John Street`<br>
+  Adds a supplier with the following details:
+  * Name: `John Doe`
+  * Phone Number: `98765432`
+  * Email: `johnd@example.com`
+  * Address: `John Street`
+  * Tags: Empty
+
+:clipboard: **Example 2: Shortcut command with tags**
+
+* `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/12345678 t/meat`<br>
+  Adds a supplier with the following details:
+  * Name: `Betsy Cow`
+  * Phone Number: `12345678`
+  * Email: `betsycow@example.com`
+  * Address: `Betsy Street`
+  * Tags: `Diary`, `Meat`
+
+</div>
 
 ### Adding an order: `add_order`
 
@@ -721,6 +754,14 @@ Examples:
 
 ## Others
 
+### Viewing help: `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Syntax: `help`
+
 ### Uploading a csv file
 
 Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Order` and `Suppliers`, and adds them to their respective lists. It is important that a strict format is used in order for the commands to be parsed correctly.
@@ -770,7 +811,18 @@ If your changes to the data file makes its format invalid, Trackr will discard a
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Command summary
+# 5 Summary
+
+# 5.1 Prefix Summary
+
+| Parameter | Prefix | Rules |
+|-----------|--------|-------|
+|           |        |       |
+|           |        |       |
+|           |        |       |
+
+
+## 5.2 Command Summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                               |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
