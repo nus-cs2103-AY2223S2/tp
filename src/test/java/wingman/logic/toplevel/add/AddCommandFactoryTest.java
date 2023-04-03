@@ -57,15 +57,15 @@ public class AddCommandFactoryTest {
             ) -> pilotAddCommandFactory.createCommand(commandParam1));
 
         Map<String, Optional<String>> namedValues = new HashMap<>();
-        namedValues.put("/sd", Optional.of(" "));
+        namedValues.put("/n", Optional.empty());
 
         CommandParam commandParam3 = new CommandParam(Optional.empty(),
                 Optional.of(namedValues));
 
         assertThrows(ParseException.class, (
-                ) -> crewAddCommandFactory.createCommand(commandParam3));
+        ) -> crewAddCommandFactory.createCommand(commandParam3));
         assertThrows(ParseException.class, (
-                ) -> pilotAddCommandFactory.createCommand(commandParam3));
+        ) -> pilotAddCommandFactory.createCommand(commandParam3));
     }
 
     @Test
