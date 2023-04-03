@@ -247,8 +247,13 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
 *  `find a/Yoo Heonhwa` returns every bookmark whose author of the book is Yoo Heonhwa<br>
-* `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
+* `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man` as shown in figure 1 below.
   ![find_reply](images/find-chainsaw%20man.png)
+<figcaption style="text-align:center"><em><strong>
+   Figure 1
+   </strong>
+   : Executing find after start up
+   </em></figcaption>
 
 ### Listing all bookmarks/ Resetting filters : `list`
 
@@ -271,12 +276,20 @@ Format: `view INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `view 2` displays the 2nd bookmark in the library.
+* `list` followed by `view 2` displays the 2nd bookmark in the library as shown in figure 2 below.
 * `find n/Chainsaw Man` followed by `goto 1` displays 1st bookmark in the results of the `find` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Our Application also supports this feature in gui format, simply click onto the bookmark you want and watch the magic happen.
 </div>
+
+<img src="images/View-command.png">
+<figcaption style="text-align:center"><em><strong>
+   Figure 2
+   </strong>
+   : Executing view after list
+   </em></figcaption>
+
 
 ### Going to a url : `goto`
 
