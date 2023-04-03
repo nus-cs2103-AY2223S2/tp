@@ -142,13 +142,15 @@ public class Recipe {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, desc, ingredients, steps, tags);
+        return Objects.hash(title, desc, ingredients, steps, tags, isStar);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
+                .append("; isStarred: ")
+                .append(isStar)
                 .append("; Description: ")
                 .append(getDesc());
 

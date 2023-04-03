@@ -52,9 +52,11 @@ public class RecipeCard extends UiPart<Region> {
         }
         title.setWrapText(true);
         desc.setText(recipe.getDesc().description);
+
         recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
     }
 
     @Override

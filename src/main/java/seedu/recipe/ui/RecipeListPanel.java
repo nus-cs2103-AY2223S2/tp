@@ -29,6 +29,7 @@ public class RecipeListPanel extends UiPart<Region> {
     private AnchorPane recipeDetailsPanelPlaceholder;
 
 
+
     /**
      * Creates a {@code RecipeListPanel} with the given {@code ObservableList}.
      */

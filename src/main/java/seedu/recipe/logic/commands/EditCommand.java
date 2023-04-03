@@ -100,7 +100,8 @@ public class EditCommand extends Command {
                 .orElse(recipeToEdit.getSteps());
         Set<Tag> updatedTags = editRecipeDescriptor.getTags()
                 .orElse(recipeToEdit.getTags());
-        return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps, updatedTags);
+        return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps, updatedTags,
+                recipeToEdit.isStarred());
     }
 
     @Override

@@ -1,14 +1,21 @@
 package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
+import seedu.recipe.model.recipe.Description;
+import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.Title;
+import seedu.recipe.model.tag.Tag;
 
 /**
  * Marks a recipe as in favorites identified using it's displayed index from the recipe book.
@@ -40,14 +47,30 @@ public class StarCommand extends Command {
         }
 
         Recipe recipeToStar = lastShownList.get(targetIndex.getZeroBased());
+        Recipe editedRecipe = createEditedRecipe(recipeToStar);
         if (recipeToStar.isStarred()) {
             throw new CommandException(Messages.MESSAGE_RECIPE_ALREADY_STARRED);
         }
-        model.starRecipe(recipeToStar);
-
+        model.setRecipe(recipeToStar, editedRecipe);
+        model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
         return new CommandResult(String.format(MESSAGE_STAR_RECIPE_SUCCESS, recipeToStar.getTitle()));
+
     }
 
+    /**
+     * Creates and returns a {@code Recipe} with the details of {@code recipeToEdit}
+     * edited with {@code editRecipeDescriptor}.
+     */
+    public Recipe createEditedRecipe(Recipe recipeToStar) {
+        assert recipeToStar != null;
+        Title updatedTitle = recipeToStar.getTitle();
+        Description updatedDesc = recipeToStar.getDesc();
+        Set<Ingredient> updatedIngredients = recipeToStar.getIngredients();
+        List<Step> updatedSteps = recipeToStar.getSteps();
+        Set<Tag> updatedTags = recipeToStar.getTags();
+        return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps, updatedTags,
+                true);
+    }
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
