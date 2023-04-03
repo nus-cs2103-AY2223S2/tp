@@ -102,10 +102,12 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
         if (!change.getOldValue().equals(change.getNewValue())
                 && change.getOldValue().isPresent()
                 && change.getNewValue().isEmpty()) {
+            List<IdData<Appointment>> invalidAppointments = new ArrayList<>();
             Index patientToDelete = Index.fromZeroBased(change.getOldValue().get().getId());
             getMapView().entrySet().stream()
                     .filter(x->x.getValue().getValue().getPatient().equals(patientToDelete))
-                    .forEach(x->remove(x.getKey()));
+                    .forEach(x->invalidAppointments.add(x.getValue()));
+            invalidAppointments.forEach(x->remove(x.getId()));
         }
     }
 
