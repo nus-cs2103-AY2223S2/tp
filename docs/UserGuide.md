@@ -16,27 +16,27 @@ MODCheck is a **desktop app for managing contacts, optimized for use via a Comma
 2. The first GUI you will encounter is the `ModCheck Login`.
 3. If it is the first time that you are using MODCheck, you will be greeted with the GUI below.<br>
    ![FirstTimeLogin](images/login/FirstTimeLoginUser.png)
-    <p align="center">
-    <em>First Time User Welcome GUI</em>
-    </p>
-    <br/>
+   <p align="center">
+       <em>First Time User Welcome GUI</em>
+   </p>
+   <br/>
    
 4. Enter `yes` if you want to create a password or `no` if you want to continue to MODCheck main application. Further explanation on the `Login` feature will be described further down under `Features`.
 5. You will be greeted with one of GUI shown below that represents the `loading` screen before entering MODCheck's main application depending on the choice you have made earlier.
    ![DefaultLoadingSection](images/login/DefaultLoadingSection.png)
-    <p align="center">
-    <em>Default Loading GUI</em>
-    </p>
-    <br/>
-   
+   <p align="center">
+   <em>Default Loading GUI</em>
+   </p>
+   <br/>
+
    ![PasswordCreatedLoadingSection](images/login/PasswordCreatedLoadingSection.png)
-    <p align="center">
-    <em>Password Created Successfully Loading GUI</em>
-    </p>
-    <br/>
+   <p align="center">
+   <em>Password Created Successfully Loading GUI</em>
+   </p>
+   <br/>
+   
 6. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-
     <p align="center">
     <em>MODCheck Main GUI</em>
     </p>
