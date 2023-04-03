@@ -1,10 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VIDEO;
 
 import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -21,8 +18,7 @@ public class ExportCommandParser {
      */
 
     public ExportCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OVERWRITE, PREFIX_MODULE, PREFIX_VIDEO
-                , PREFIX_LECTURE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OVERWRITE);
         boolean isOverwritingExistingFile = argMultimap.getValue(PREFIX_OVERWRITE).isPresent();
 
         String fileName = argMultimap.getPreamble().trim();
