@@ -81,7 +81,7 @@ and ensures freelancers can get the most out of every moment.
 ![Ui_Callout](images/Ui_Callout.png)
 The UI is split into 4 main parts
 - Eventbook
-  - This is where the events that you specified are displayed. 
+  - This is where the events that you specified are displayed.
 - Contactlist
   - This is where the contacts you have stored are displayed.
 - Message Box
@@ -382,7 +382,7 @@ Paidlancers data are saved in the hard disk automatically on command issue. Ther
 1. Follow the quickstart guide until step 3.
 2. In the same _home folder_ as your Paidlancers, copy the old data folder from your old computer to the new computer.
    - Your _home folder_ should contain the following files and folders:
-    ```    
+    ```
        Paidlancers.jar
        data/
            contactlist.json
