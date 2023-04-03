@@ -466,7 +466,9 @@ EduMate is a command-driven application, which means that its various functional
 **:warning: Invalid Command Formats**<br>
 
 * Indices must be positive numbers.<br>
-  e.g. `delete one` is not an accepted command.
+  e.g. `delete one` is not an accepted command. (Not a number)<br>
+  e.g. `delete -1` is also not accepted. (Not positive)
+
 
 * [Prefixes](#prefixes) must be preceded by a space.<br>
   e.g. `sort m/an/Tan` is not an accepted command for prefixes `m/` and `n/`.
