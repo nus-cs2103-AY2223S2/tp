@@ -887,7 +887,7 @@ Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed
 
 </div>
 
-### **Save Command**
+#### **Save Command**
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SaveCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SaveCommandParser.java)
 
 The `save` command allows users to save a copy of EduMate. This information is stored within the `data` folder, the same place as where `edumate.json` is kept.
@@ -904,7 +904,7 @@ We cannot save the json file directly from the command, because the command only
     <b>Figure 4.4.x</b> Sequence Diagram for a typical <code>save</code> command.
 </div>
 
-### **Load Command**
+#### **Load Command**
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/LoadCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/LoadCommandParser.java)
 
 The `save` command allows users to load a previously saved copy of EduMate. This information is retrieved from the `data` folder, the same place as where `edumate.json` is kept.
@@ -921,7 +921,7 @@ Similar to the Save Command, we pass the file path through a `LoadCommandResult`
     <b>Figure 4.4.x</b> Sequence Diagram for a typical <code>load</code> command.
 </div>
 
-### **Meet Command**
+#### **Meet Command**
 
 Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/MeetCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/MeetCommandParser.java)
 
@@ -954,13 +954,28 @@ This feature is utilises the [`Recommender`](#recommenders)
 </div>
 
 
-### **Organise Command**
+#### **Organise Command**
 
-<div markdown="span" class="alert alert-dark">
-    :construction: Slated for release in v1.3b.
+The `organise` command will set a meet up with the time and place for all participants and the user himself/herself. Note that the user's information is automatically added to the list of participants as it is assumed that they will be taking part in the meet up.
+
+<div markdown="block" class="alert alert-info">
+
+:information_soruce: **Command Formats:** <br>
+
+* `organise INDEX` : Takes the recommendation at the specified `INDEX` and saves it.
+* `organise INDEX_1 INDEX_2 ... d/DAY T/START_TIME END_TIME l/LOCATION` : Creates a new meet up with the specified participants and information.
+
 </div>
 
-The `organise` command will set a meetup with the time and place for all participants and the user himself/herself.
+On the other hand, the `unorganise` command will remove the meet up at the specified index.
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Example : Removing a meet up from the scheduled meet up list**<br>
+
+* `unorganise 1`: Removes the scheduled meet up with index 1.
+
+</div>
 
 The [`TimingRecommender`](#timing-recommender) will check if the timing is a suitable for every participant to meet.
 
