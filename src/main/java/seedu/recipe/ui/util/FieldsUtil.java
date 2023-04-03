@@ -38,7 +38,7 @@ public class FieldsUtil {
             handleNavigation(event, textArea, currentIndex);
         });
 
-        // If 'CTRL' is pressed down, trigger paste for 'V' and copy for 'C' key. 
+        // If 'CTRL' is pressed down, trigger paste for 'V' and copy for 'C' key.
         textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.isControlDown() || event.isMetaDown()) {
                 if (event.getCode() == KeyCode.V) {
