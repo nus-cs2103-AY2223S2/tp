@@ -389,27 +389,6 @@ Simply use this command to clear all contacts from your NeoBook.
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
-### Switching between UI tabs: `tab`
-
-Looking for a faster way to switch between NeoBook and the Events?
-
-Use this command to navigate to the specified tab.
-
-**Syntax:**
-
-`tab INDEX`
-
-_Here are some important requirements for you to take note:_
-* `INDEX` refers to the index of the tab to navigate to, shown before the name in the tab.
-  * `INDEX` must be a positive integer.
-
-_Examples:_
-* `tab 1` switches to the NeoBook tab.
-* `tab 2` switches to the Events tab.
-
-[Back To Contents](#table-of-contents)
-<hr style="border:2px solid gray">
-
 ### Exiting NeoBook : `exit`
 
 Finished what you needed to do?
@@ -437,7 +416,6 @@ Use this command to exit the application!
 | **Select**  | `select INDEX` <br> e.g., `select 2`                                                                                                             |
 | **List**    | `list`                                                                                                                                           |
 | **Help**    | `help`                                                                                                                                           |
-| **Tab**     | `tab INDEX`<br> e.g., `tab 2`                                                                                                                    |
 | **Exit**    | `exit`                                                                                                                                           |                                                                                                                                |
 
 [Back To Contents](#table-of-contents)
@@ -620,6 +598,29 @@ _For more advanced users_
 ## UI Features
 <hr style="border:2px solid gray">
 
+### Switching between tabs: `tab`
+
+![UI tabs](images/userguide/tab_command.png)
+
+Looking for a faster way to switch between NeoBook and the Events?
+
+Use this command to navigate to the specified tab.
+
+**Syntax:**
+
+`tab INDEX`
+
+_Here are some important requirements for you to take note:_
+* `INDEX` refers to the index of the tab to navigate to, shown before the name in the tab.
+    * `INDEX` must be 1, 2, or 3.
+* `tab` refers to the literal word to be typed into the command line, not the key on your keyboard.
+
+_Examples:_
+* `tab 1` switches to the Address Book tab.
+* `tab 2` switches to the Events tab.
+
+<hr style="border:2px solid gray">
+
 ### Light Mode: `light`
 
 Want to use a brighter version of our UI?
@@ -629,7 +630,6 @@ Use Light mode!
 **Syntax:**
 
 `light`
-
 
 <hr style="border:2px solid gray">
 
@@ -643,6 +643,7 @@ Use Dark mode!
 
 `dark`
 
+[Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Data
