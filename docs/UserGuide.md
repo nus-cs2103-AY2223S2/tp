@@ -861,9 +861,10 @@ Adds a new appointment to the appointment manager
 
 ##### Syntax
 
-```text
-appointment add --p PATIENT_ID --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
-```
+<pre>
+appointment add --p <var>PATIENT_ID</var> --s <var>STARTING_TIME</var> --e <var>ENDING_TIME</var> --v <var>VAX_GROUP</var>
+</pre>
+
 
 * <code><var>PATIENT_ID</var></code> : `<PATIENT_ID>`
 * <code><var>STARTING_TIME</var></code> : `<localDateTime>`
@@ -890,9 +891,9 @@ Resets the view of the appointment pane to display all the appointments. Useful 
 
 ##### Syntax
 
-```text
+<pre>
 appointment list
-```
+</pre>
 
 <br>
 
@@ -908,12 +909,13 @@ List all the appointments that matches the predicates provided.
 
 ##### Syntax
 
-```text
-appointment find [--p INDEX] [--s STARTING_TIME] [--e ENDING_TIME] \
-    [--v ...VAX_GROUP...]`
+<pre>
+appointment find [--p <var>PATIENT_ID</var>] [--s <var>STARTING_TIME</var>] [--e <var>ENDING_TIME</var>] \
+    [--v ...<var>VAX_GROUP</var>...]`
 
-appointment find [...KEYWORDS...]
-```
+appointment find [...<var>KEYWORDS</var>...]
+</pre>
+
 
 * <code><var>PATIENT_ID</var></code> : `<PATIENT_ID>`
 * <code><var>STARTING_TIME</var></code> : `<localDateTime>`
@@ -934,10 +936,10 @@ Edits the details of an existing appointment.
 
 ##### Syntax
 
-```text
-appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
-    [--v VAX_GROUP]
-```
+<pre>
+appointment edit INDEX [--p <var>PATIENT_ID</var>] [--s <var>STARTING_TIME</var>] [--e <var>ENDING_TIME</var>] \
+    [--v <var>VAX_GROUP</var>]
+</pre>
 
 * <code><var>INDEX</var></code> : `<Index>`
 * <code><var>PATIENT_ID</var></code> : `<PATIENT_ID>`
@@ -966,9 +968,9 @@ Marks an existing appointment as completed.
 
 ##### Syntax
 
-```text
-appointment mark INDEX
-```
+<pre>
+appointment mark <var>INDEX</var>
+</pre>
 
 * <code><var>INDEX</var></code> : `<Index>`
 
@@ -989,9 +991,9 @@ Changes the completion status to not done.
 
 ##### Syntax
 
-```text
-appointment unmark INDEX
-```
+<pre>
+appointment unmark <var>INDEX</var>
+</pre>
 
 * <code><var>INDEX</var></code> : `<Index>`
 
@@ -1012,9 +1014,9 @@ Removes the specified appointment from the appointment manager.
 
 ##### Syntax
 
-```text
-appointment delete INDEX
-```
+<pre>
+appointment delete <var>INDEX</var>
+</pre>
 
 * <code><var>INDEX</var></code> : `<Index>`
 
