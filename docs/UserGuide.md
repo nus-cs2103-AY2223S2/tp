@@ -94,7 +94,7 @@ Recurs an event from the Scheduler until an end date.
 Format: `recur <index> d/<end date> every/<RECUR FACTOR>`
 
 Parameters:  
-`d/`: Date of the event in `YYYY-MM-DD` format  
+`d/`: Ending date of recurrence for the event in `YYYY-MM-DD` format  
 `every/`: Recur factor to recur the event, given by `DAY/WEEK/MONTH/YEAR`
 
 <div markdown="span" class="alert alert-info">
