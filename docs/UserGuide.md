@@ -23,49 +23,52 @@ You can click on any of the links below to navigate to the respective sections f
 # Table of Contents
 
 <!-- TOC -->
-* [Overview](#overview)
-* [About This Guide](#about-this-guide)
-* [Table of Contents](#table-of-contents)
-* [Quick start](#quick-start)
-  * [Prerequisites](#prerequisites)
-    * [Java](#java)
-    * [Glossary](#glossary)
-  * [Installation](#installation)
+* [1. Quick start](#1-quick-start)
+  * [1.1 Prerequisites](#11-prerequisites)
+    * [1.1.1 Java](#111-java)
+    * [1.1.2 Glossary](#112-glossary)
+  * [1.2 Installation](#12-installation)
+  * [1.3 Utilisation](#13-utilisation)
 * [Features](#features)
+* [Navigating the Application](#navigating-the-application)
+    * [Orders](#orders)
+    * [Tasks](#tasks)
+    * [Menu](#menu)
+    * [Revenue and Profit](#revenue-and-profit)
     * [Viewing help: `help`](#viewing-help-help)
   * [Add](#add)
-    * [Adding a supplier: `add_supplier`](#adding-a-supplier-add_supplier)
-    * [Adding an order: `add_order`](#adding-an-order-add_order)
-    * [Adding a task: `add_task`](#adding-a-task-add_task)
-    * [Adding a menu item: `add_item`](#adding-a-menu-item-add_item)
+    * [Adding a supplier: `add_supplier`](#adding-a-supplier-addsupplier)
+    * [Adding an order: `add_order`](#adding-an-order-addorder)
+    * [Adding a task: `add_task`](#adding-a-task-addtask)
+    * [Adding a menu item: `add_item`](#adding-a-menu-item-additem)
   * [Edit](#edit)
-    * [Editing a supplier: `edit_supplier`](#editing-a-supplier-edit_supplier)
-    * [Editing an order: `edit_order`](#editing-an-order-edit_order)
-    * [Editing a task: `edit_task`](#editing-a-task-edit_task)
-    * [Editing a menu item: `edit_item`](#editing-a-menu-item-edit_item)
+    * [Editing a supplier: `edit_supplier`](#editing-a-supplier-editsupplier)
+    * [Editing an order: `edit_order`](#editing-an-order-editorder)
+    * [Editing a task: `edit_task`](#editing-a-task-edittask)
+    * [Editing a menu item: `edit_item`](#editing-a-menu-item-edititem)
   * [Find](#find)
-    * [Finding a supplier: `find_supplier`](#finding-a-supplier-find_supplier)
-    * [Finding an order: `find_order`](#finding-an-order-find_order)
-    * [Finding a task: `find_task`](#finding-a-task-find_task)
-    * [Finding a menu item: `find_item`](#finding-a-menu-item-find_item)
+    * [Finding a supplier: `find_supplier`](#finding-a-supplier-findsupplier)
+    * [Finding an order: `find_order`](#finding-an-order-findorder)
+    * [Finding a task: `find_task`](#finding-a-task-findtask)
+    * [Finding a menu item: `find_item`](#finding-a-menu-item-finditem)
   * [Delete](#delete)
-    * [Deleting a supplier: `delete_supplier`](#deleting-a-supplier-delete_supplier)
-    * [Deleting an order: `delete_order`](#deleting-an-order-delete_order)
-    * [Deleting a task: `delete_task`](#deleting-a-task-delete_task)
-    * [Deleting a menu item: `delete_item`](#deleting-a-menu-item-delete_item)
+    * [Deleting a supplier: `delete_supplier`](#deleting-a-supplier-deletesupplier)
+    * [Deleting an order: `delete_order`](#deleting-an-order-deleteorder)
+    * [Deleting a task: `delete_task`](#deleting-a-task-deletetask)
+    * [Deleting a menu item: `delete_item`](#deleting-a-menu-item-deleteitem)
   * [Sort](#sort)
-    * [Sorting a task: `sort_task`](#sorting-a-task-sort_task)
-    * [Sorting a order: `sort_order`](#sorting-a-order-sort_order)
+    * [Sorting a task: `sort_task`](#sorting-a-task-sorttask)
+    * [Sorting a order: `sort_order`](#sorting-a-order-sortorder)
   * [List](#list)
-    * [Listing all suppliers: `list_supplier`](#listing-all-suppliers-list_supplier)
-    * [Listing all orders: `list_order`](#listing-all-orders-list_order)
-    * [Listing all tasks: `list_task`](#listing-all-tasks-list_task)
-    * [Listing all menu items: `list_menu`](#listing-all-menu-items-list_menu)
+    * [Listing all suppliers: `list_supplier`](#listing-all-suppliers-listsupplier)
+    * [Listing all orders: `list_order`](#listing-all-orders-listorder)
+    * [Listing all tasks: `list_task`](#listing-all-tasks-listtask)
+    * [Listing all menu items: `list_menu`](#listing-all-menu-items-listmenu)
   * [Clear](#clear)
-    * [Clear all supplier entries: `clear_supplier`](#clear-all-supplier-entries-clear_supplier)
-    * [Clear all order entries: `clear_order`](#clear-all-order-entries-clear_order)
-    * [Clear all task entries: `clear_task`](#clear-all-task-entries-clear_task)
-    * [Clear all menu item entries: `clear_menu`](#clear-all-menu-item-entries-clear_menu)
+    * [Clear all supplier entries: `clear_supplier`](#clear-all-supplier-entries-clearsupplier)
+    * [Clear all order entries: `clear_order`](#clear-all-order-entries-clearorder)
+    * [Clear all task entries: `clear_task`](#clear-all-task-entries-cleartask)
+    * [Clear all menu item entries: `clear_menu`](#clear-all-menu-item-entries-clearmenu)
   * [Switch](#switch)
     * [Switching tabs: `tab`](#switching-tabs-tab)
   * [Others](#others)
@@ -92,7 +95,9 @@ Ensure you have <ins>[Java `11`](https://www.oracle.com/sg/java/technologies/jav
 
 <div markdown="block" class="alert alert-tip">
 
-:bulb: **How to check your current Java version:**<br>
+:bulb: **Tip**
+
+**How to check your current Java version:**
 
 **Step 1.** Open up **Command Prompt** (Windows) or **Terminal** (Mac and Linux).
 
@@ -132,7 +137,9 @@ An example is shown below.
 
 <div markdown="block" class="alert alert-tip">
 
-:bulb: **Trackr does not open?**<br>
+:bulb: **Tip**
+
+**Trackr does not open?**
 
 **Step 1.** Open a command terminal.
 
@@ -165,12 +172,12 @@ A GUI similar to the below should appear in a few seconds, with the following ar
 
 <p align="center">
   <img src="images/ug/HomePageUILabeled.png" />
-  <br>Figure 1: Trackr Home Tab UI
+  <br>Figure 1.2.1: Trackr Home Tab UI
 </p>
 
 <p align="center">
   <img src="images/ug/DataTabUILabeled.png" />
-  <br>Figure 2: Trackr Data Tab UI
+  <br>Figure 1.2.2: Trackr Data Tab UI
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -187,7 +194,22 @@ Otherwise, you can check out how to edit it [here](#editing-the-data-file)
 
 ## 1.3 Utilisation
 
+**Step 1:** Enter your command into the <span style="background-color:rgba(255.0, 0.0, 0.0, 0.5)">Command Input Box</span>.
 
+You can try the following commands to add a task:
+
+* `tab TASKS`
+* `add_task n/Buy eggs d/12/12/2040`
+
+**Step 2:** Observe the changes, with the output of the command inside the <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span>.
+
+<div markdown="block" class="alert alert-tip">
+
+:bulb: **Tip**
+
+You can find out all the usable commands [here](#features) or return to the [Table of Contents](#table-of-contents) to find your desired command.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
