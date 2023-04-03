@@ -76,11 +76,11 @@ For **experienced users**, refer to our [command summary](#command-summary) or [
 
 These are the symbols employed in this user guide:
 
-| Symbol               | Meaning                |
-|----------------------|------------------------|
-| :information_source: | Additional information |
-| :bulb:               | Helpful tip            |
-| :exclamation:        | Warning                |
+| Symbol               | Meaning                                                                           |
+|----------------------|-----------------------------------------------------------------------------------|
+| :information_source: | Additional information. More relevant to **amateur** and **experienced** users.   |
+| :bulb:               | Helpful tip from the developers.                                                  |
+| :exclamation:        | Warning. Attempting to perform an action with a warning will lead to an **error** |
 
 > :information_source: Additional information: These symbols will be housed in blockquotes like this
 
@@ -155,10 +155,8 @@ Refer to the [Features](#features) below for details of each command!
 
 The **Alerts** will display the results of each command, and display additional help specific to the command.
 
-<div markdown="block" class="alert alert-info">
-**:information_source: If you are unsure of the command format, simply enter the category you want to use, e.g. `fish`, followed by the command
-you would like to use `add`. Information on prefixes will be displayed in the Alerts!:**<br>
-</div>
+> :bulb: Tip: If you are unsure of the command format, simply enter the command type you want to use, e.g. `fish`, followed by the command action
+you would like to use, e.g. `add`. Information on prefixes will be displayed in the Alerts!<br>
 
 The **Panels** will display all the information on your Tanks, Fishes and Tasks. These panels will automatically update 
 whenever you enter a command. Try it out!
@@ -190,7 +188,7 @@ In general, the command format is as follows:<br>
   * For example, in the `tank add` command, a description parameter `d/<DESCRIPTION>` is needed 
 
 ### Index parameters
-* Used as parameters for commands with `delete` and `view` actions
+* Used as parameters for commands with `delete`, `edit` and `view` actions
 * Index parameters are **positive integers** (1, 2, 3...)
 * Index parameters do not require a prefix. For example, the command is as follows: `tank delete 1`
 * In the features section, index parameters will be as such: `<XXX_INDEX>`, and `XXX` can be `TANK`, `FISH` or `TASK`
@@ -204,6 +202,9 @@ In general, the command format is as follows:<br>
 * You can only have multiple values for tag prefixes `tg/<TAG>`. All other prefixes can only have 1 value. 
 > :information_source: Additional information: You can have multiple prefix parameters for the same prefix, but only the last one will be used.
 > <br>For example: `tank add d/Tank 1 d/Tank 2` will create a tank called 'Tank 2'.
+
+> :information_source: Additional information: For alphanumeric parameters, they are case-sensitive!
+> <br>For Example: `d/Freshwater tank` is different from `d/freshwater tank`
 
 > :bulb: Tip: Redundant spaces will be removed automatically for prefix parameters
 > <br> For example: `d/ Tank 1` does not make the description ' Tank 1', but is the same as `d/Tank 1`.
@@ -281,12 +282,6 @@ In general, the command format is as follows:<br>
 
 # Features
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Notes about the command format:**<br>
-
-
-</div>
-
 ## Tanks
 
 Tanks form the basis of *Fish Ahoy!*, as most, if not all our activities revolve around them. Aquarium tanks are the 
@@ -312,22 +307,22 @@ your aquarium.
 
 Format: `tank add d/<TANK_NAME>`
 
-Prefixes:
-* `d/` - Specifies the name of the tank
+Parameters:
+* Prefix parameters:
+  * `d/` - [Description prefix.](#description-ddescription) Specifies the name of the tank
 
 > :information_source: Additional information: You cannot add tanks with the same description to *Fish Ahoy!*
+> <br> Descriptions are case-sensitive also!
 
 Examples:
-* `tank add d/tank 1` adds a new tank with the following details:
-  * Description: tank 1
-
-
+* `tank add d/Freshwater tank` adds a new tank with the following details:
+  * Description: Freshwater tank
 
 ### Deleting a tank: `tank delete`
 
-Delete a tank entry from *Fish Ahoy!*
+You can delete a tank entry from *Fish Ahoy!* with the `tank delete` command.
 
-Use this command to remove tanks from the system, if you happen to change your existing tanks.
+Use this command to remove tanks from the system, when you are retiring a tank.
 
 Format: `tank delete <TANK_INDEX>`
 
