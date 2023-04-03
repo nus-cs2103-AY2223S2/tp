@@ -1274,34 +1274,36 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 ### **User Stories**
 
-| As a …​   | I want to …​                                                                                  | So that I can…​                                                                  |
-|-----------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| student   | add my friends' contact information to EduMate                                                | easily keep track of their availability for study sessions.                      |
-| student   | add my tutors' contact information to EduMate                                                 | easily ask them for consultation sessions when they are available.               |
-| student   | edit my profile in EduMate                                                                    | keep my information up to date.                                                  |
-| student   | edit the profile of a contact in EduMate                                                      | keep their information up to date.                                               |
-| student   | tag my contacts in EduMate based on the modules we share                                      | quickly find study partners.                                                     |
-| student   | tag my contacts in EduMate by group                                                           | quickly find contacts within the same friend group.                              |
-| student   | assign lessons to my contacts in EduMate                                                      | see when they are available for study sessions.                                  |
-| student   | see the availability of my contacts                                                           | plan my study sessions accordingly.                                              |
-| student   | view the profiles of my contacts in EduMate                                                   | see their availability and contact information.                                  |
-| student   | remove a contact from EduMate                                                                 | free up space for adding other contacts.                                         |
-| student   | use the sort command in EduMate to find contacts who share the most number of modules with me | easily form study groups.                                                        |
-| student   | use the find command in EduMate to search for contacts based on specific criteria             | find contacts with shared modules or tags.                                       |
-| student   | get suggestions for where to meet my friends                                                  | narrow down the search window for meet up locations.                             |
-| student   | get suggestions for when to meet my friends                                                   | narrow down the search window for meet up timings.                               |
-| student   | get suggestions for where to eat with my friends                                              | easily find a place to grab a meal.                                              |
-| student   | get suggestions for when to eat with my friends                                               | easily find a time to grab a meal.                                               |
-| student   | get suggestions for where to study with my friends                                            | work on assignments with my friends.                                             |
-| student   | get suggestions for when to study with my friends                                             | work on assignments with my friends.                                             |
-| student   | see a list view of suggested meet up locations and timings in EduMate                         | compare them easily.                                                             | 
-| student   | use EduMate to easily schedule meetings with my contacts                                      | meet up with my contacts without having to manually coordinate with each person. |
-| student   | use the backup and restore features in EduMate                                                | save my contact information.                                                     |
-| student   | keep track of my meet ups                                                                     | remember who I am supposed to meet.                                              |
-| student   | view the contact details of my tutors and lecturers                                           | get in touch with them when needed.                                              |
-| student   | run EduMate on my own operating system                                                        | safely transfer my data over when using a new device.                            |
-| student   | use a simple interface                                                                        | use the application without much hassle.                                         |
-| student   | find the contacts who share the most modules with me this semester                            | know who are likely to be my close friends this semester                         |
+| As a …​   | I want to …​                                                          | So that I can…​                                                                  |
+|-----------|-----------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| student   | add my friends' contact information to EduMate                        | easily keep track of their availability for study sessions.                      |
+| student   | add my tutors' contact information to EduMate                         | easily ask them for consultation sessions when they are available.               |
+| student   | edit my profile in EduMate                                            | keep my information up to date.                                                  |
+| student   | edit the profile of a contact in EduMate                              | keep their information up to date.                                               |
+| student   | tag my contacts in EduMate based on the modules we share              | quickly find study partners.                                                     |
+| student   | tag my contacts in EduMate by group                                   | quickly find contacts within the same friend group.                              |
+| student   | assign lessons to my contacts in EduMate                              | see when they are available for study sessions.                                  |
+| student   | see the availability of my contacts                                   | plan my study sessions accordingly.                                              |
+| student   | view the profiles of my contacts in EduMate                           | see their availability and contact information.                                  |
+| student   | remove a contact from EduMate                                         | free up space for adding other contacts.                                         |
+| student   | find contacts who share the most number of modules with me            | easily form study groups.                                                        |
+| student   | search for contacts based on specific criteria                        | find contacts with shared modules or tags.                                       |
+| student   | search for contacts who live near me                                  | meet up with them at a place closer to home.                                     |
+| student   | find the contacts who share the most modules with me this semester    | know who are likely to be my close friends this semester.                        |
+| student   | sort my contacts by name                                              | quickly find a specific person in my contact list.                               |
+| student   | get suggestions for where to meet my friends                          | narrow down the search window for meet up locations.                             |
+| student   | get suggestions for when to meet my friends                           | narrow down the search window for meet up timings.                               |
+| student   | get suggestions for where to eat with my friends                      | easily find a place to grab a meal.                                              |
+| student   | get suggestions for when to eat with my friends                       | easily find a time to grab a meal.                                               |
+| student   | get suggestions for where to study with my friends                    | work on assignments with my friends.                                             |
+| student   | get suggestions for when to study with my friends                     | work on assignments with my friends.                                             |
+| student   | see a list view of suggested meet up locations and timings in EduMate | compare them easily.                                                             | 
+| student   | use EduMate to easily schedule meetings with my contacts              | meet up with my contacts without having to manually coordinate with each person. |
+| student   | use the backup and restore features in EduMate                        | save my contact information.                                                     |
+| student   | keep track of my meet ups                                             | remember who I am supposed to meet.                                              |
+| student   | view the contact details of my tutors and lecturers                   | get in touch with them when needed.                                              |
+| student   | run EduMate on my own operating system                                | safely transfer my data over when using a new device.                            |
+| student   | use a simple interface                                                | use the application without much hassle.                                         |
 
 
 ### **Use Cases**
