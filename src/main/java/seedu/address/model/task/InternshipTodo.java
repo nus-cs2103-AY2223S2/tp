@@ -185,7 +185,7 @@ public class InternshipTodo {
     }
 
     /**
-     * Returns true if both interested internship have the same title, job and deadline.
+     * Returns true if both interested internship have the same company name and job title.
      * This defines a weaker notion of equality between two todo applications.
      */
     public boolean isSameTodo(InternshipTodo otherInternship) {
