@@ -52,7 +52,7 @@ class MeetCommandTest {
         model.addPerson(serangoonPerson);
 
         MeetCommand meetCommand = new MeetCommand(
-                Set.of(new ContactIndex(1)),
+                Set.of(new ContactIndex(0), new ContactIndex(1)),
                 LocationDataUtil.MEET_LOCATIONS, 10);
 
         meetCommand.execute(model);
