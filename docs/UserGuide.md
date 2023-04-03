@@ -6,8 +6,13 @@ title: User Guide
 <img src="images/logo_UG.png" width="300">
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
+
+
 # Table of Contents
   * [Introduction](#introduction)
+  * [Using this guide](#using-this-guide)
+  * [Glossary](#glossary)
   * [Quickstart](#quick-start)
   * [Features](#features)
     * [Tanks](#tanks)
@@ -51,13 +56,53 @@ Line Interface** (CLI) while still having the benefits of a Graphical User Inter
 *Fish Ahoy!* **simplifies** commands to revolve around **fish**, **tank** and **task**. When you want to, for example,
 perform an action on **tanks**, the commands all begin with `tank`.
 
-Choose a feature from our table of contents above to find answers and get step-by-step instructions on how to make 
-*Fish Ahoy!* work for you! Else, follow our [Quick Start Guide](#quick-start) below to get started.
+--------------------------------------------------------------------------------------------------------------------
 
-This guide will explain how you can use *Fish Ahoy!* for your own fish keeping activities. It is designed to 
-cater to all levels of fish keeping expertise, from novice to expert fish keepers. It does not assume any prior 
-knowledge of fish keeping, only the simplest components of an aquarium such as a tank, fish, and basic fish keeping 
+# Using this guide
+
+This guide will explain how you can use *Fish Ahoy!* for your own fish keeping activities. It is designed to
+cater to all levels of fish keeping expertise, from novice to expert fish keepers. It does not assume any prior
+knowledge of fish keeping, only the simplest components of an aquarium such as a tank, fish, and basic fish keeping
 equipment.
+
+For **new users**, follow our [Quick Start Guide](#quick-start) below to get started with your fish-keeping journey with *Fish Ahoy!*.
+
+For **amateur users**, choose a feature from our [table of contents](#table-of-contents) above to find answers and get step-by-step instructions on how to make
+*Fish Ahoy!* work for you!
+
+For **experienced users**, refer to our [command summary](#command-summary) or [prefix summary](#command-prefix-summary) to obtain information you might need at a glance.
+
+These are the symbols employed in this user guide:
+
+| Symbol               | Meaning                |
+|----------------------|------------------------|
+| :information_source: | Additional information |
+| :bulb:               | Helpful tip            |
+| :exclamation:        | Warning                |
+
+These are the special text formatting employed in this user guide: 
+
+| Font      | Meaning                                                                                                                                                            |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Bold**  | You should pay closer attention to bolded words as they are more important                                                                                         |
+| `Code`    | Used for coding syntax. Parts of a *Fish Ahoy!* command will be in this format. Command Prompt commands in the [Quick start](#quick-start) are also in this format |
+| [Links]() | A link to a section in this user guide that will provide more in-depth information                                                                                 |
+| *Italics* | The application name, *Fish Ahoy!* is in this format.                                                                                                              |
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Glossary
+
+These are the definitions to some technical terms: 
+
+| Word           | Meaning                                                                                                                                                                                                 |
+|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command        | A series of words you type in the [Command Line](#about-the-interface) to perform an action                                                                                                             |
+| Command type   | Identifies the type of information the command modifies. <br> Command types: `tank`, `fish`, `task`                                                                                                     |
+| Parameter      | Part of a command. Provides the command the information it requires. Parameters are preceded with a prefix.                                                                                             |
+| Prefix         | Part of a parameter. Specifies what type of information the parameter is providing. <br> [Prefixes:](#command-prefix-summary) `n/`, `lfd/`, `s/`, `fi/`, `tg/`, `by/`, `d/`, `al/`, `ph/`, `tp/`, `tk/` |
+| GUI/ Interface | The visual and graphical components of *Fish Ahoy!* It is what you see when you open *Fish Ahoy!*                                                                                                       |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -65,7 +110,7 @@ equipment.
 
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest FishAhoy.jar from [here](https://github.com/AY2223S2-CS2103T-T17-4/tp/releases).
-3. Copy the file to the folder you want to use as the home folder for Fish Ahoy!.
+3. Copy the file to the folder you want to use as the home folder for *Fish Ahoy!*.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FishAhoy.jar` command to run the application.
 
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
@@ -432,18 +477,16 @@ Format: `help`
 
 ## Command prefix summary
 
-| Type     | Attribute                 | Prefix   |
-|----------|---------------------------|----------|
-| Fish     | **Name**                  | **n/**   |
-| Fish     | **Last fed date**         | **lfd/** |
-| **Fish** | **Species**               | **s/**   |
-| **Fish** | **Feeding Interval**      | **fi/**  |
-| **Fish** | **Tag**                   | **tg/**  |
-| **Fish** | **Sorting**               | **by/**  |
-| **Tank** | **Description**           | **d/**   |
-| **Tank** | **Ammonia level reading** | **al/**  |
-| **Tank** | **PH reading**            | **ph/**  |
-| **Tank** | **Temperature reading**   | **tp/**  |
-| **All**  | **Tank**                  | **tk/**  |
-
-[]: #listing-tanks-list-tank
+| Type              | Attribute                 | Prefix   |
+|-------------------|---------------------------|----------|
+| **Fish**          | **Name**                  | **n/**   |
+| **Fish**          | **Last fed date**         | **lfd/** |
+| **Fish**          | **Species**               | **s/**   |
+| **Fish**          | **Feeding Interval**      | **fi/**  |
+| **Fish**          | **Tag**                   | **tg/**  |
+| **Fish**          | **Sorting**               | **by/**  |
+| **Tank**/**Task** | **Description**           | **d/**   |
+| **Tank**          | **Ammonia level reading** | **al/**  |
+| **Tank**          | **PH reading**            | **ph/**  |
+| **Tank**          | **Temperature reading**   | **tp/**  |
+| **All**           | **Tank**                  | **tk/**  |
