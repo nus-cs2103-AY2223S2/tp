@@ -20,28 +20,26 @@ import seedu.address.model.tag.PolicyTag;
  */
 public class SampleDataUtil {
 
-    public static final ArrayList<Meeting> EMPTYMEETINGLIST = new ArrayList<>();
-
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("Insurance"), EMPTYMEETINGLIST),
+                getTagSet("Insurance"), new ArrayList<>()),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("Investment", "Insurance"), EMPTYMEETINGLIST),
+                getTagSet("Investment", "Insurance"), new ArrayList<>()),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("Retirement"), EMPTYMEETINGLIST),
+                getTagSet("Retirement"), new ArrayList<>()),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("Investment"), EMPTYMEETINGLIST),
+                getTagSet("Investment"), new ArrayList<>()),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("DebtManagement"), EMPTYMEETINGLIST),
+                getTagSet("DebtManagement"), new ArrayList<>()),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("AssetManagement", "Investment"), EMPTYMEETINGLIST)
+                getTagSet("AssetManagement", "Investment"), new ArrayList<>())
         };
     }
 
