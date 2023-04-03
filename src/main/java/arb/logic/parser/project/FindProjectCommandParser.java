@@ -1,6 +1,8 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.commons.util.StringUtil.splitKeywords;
+import static arb.logic.parser.ArgumentMultimap.areAnyPrefixesPresent;
 import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static arb.logic.parser.CliSyntax.PREFIX_END;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
@@ -9,7 +11,6 @@ import static arb.logic.parser.CliSyntax.PREFIX_STATUS;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -22,7 +23,6 @@ import arb.logic.parser.ArgumentMultimap;
 import arb.logic.parser.ArgumentTokenizer;
 import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
-import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Name;
 import arb.model.project.Deadline;
@@ -119,19 +119,4 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
         return new FindProjectCommand(new CombinedPredicate<>(predicates));
     }
 
-    /**
-     * Returns true if any of the prefixes contains non-empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean areAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    /**
-     * Splits a {@code String} consisting of keywords into its individual keywords and returns them
-     * as a {@code Stream}.
-     */
-    private static Stream<String> splitKeywords(String keywords) {
-        return Arrays.asList(keywords.split(" ")).stream();
-    }
 }

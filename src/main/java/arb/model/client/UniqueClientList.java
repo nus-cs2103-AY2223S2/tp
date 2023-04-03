@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import arb.model.client.exceptions.ClientNotFoundException;
 import arb.model.client.exceptions.DuplicateClientException;
@@ -171,6 +173,13 @@ public class UniqueClientList implements Iterable<Client> {
             target.linkToClient(c);
             setClient(c, c);
         });
+    }
+
+    /**
+     * Returns the number of clients in the list that fulfill {@code predicate}.
+     */
+    public int numberOfClientsMatchingPredicate(Predicate<Client> predicate) {
+        return internalList.stream().filter(predicate).collect(Collectors.toList()).size();
     }
 
     /**

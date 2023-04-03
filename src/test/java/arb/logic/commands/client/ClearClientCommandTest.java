@@ -39,4 +39,10 @@ public class ClearClientCommandTest {
                 Messages.MESSAGE_INVALID_LIST_CLIENT);
     }
 
+    @Test
+    public void execute_withCurrentListTypeTag_failure() {
+        assertCommandFailure(new ClearClientCommand(), ListType.TAG, new ModelManager(),
+                Messages.MESSAGE_INVALID_LIST_CLIENT);
+    }
+
 }

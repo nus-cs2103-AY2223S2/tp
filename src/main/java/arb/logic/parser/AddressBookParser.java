@@ -3,6 +3,7 @@ package arb.logic.parser;
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -65,47 +66,50 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
 
-        if (AddClientCommand.isCommandWord(commandWord)) {
+        if (isCommandWord(AddClientCommand.getCommandWords(), commandWord)) {
             return new AddClientCommandParser().parse(arguments);
-        } else if (AddProjectCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(AddProjectCommand.getCommandWords(), commandWord)) {
             return new AddProjectCommandParser().parse(arguments);
-        } else if (MarkProjectCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(MarkProjectCommand.getCommandWords(), commandWord)) {
             return new MarkProjectCommandParser().parse(arguments);
-        } else if (UnmarkProjectCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(UnmarkProjectCommand.getCommandWords(), commandWord)) {
             return new UnmarkProjectCommandParser().parse(arguments);
-        } else if (EditClientCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(EditClientCommand.getCommandWords(), commandWord)) {
             return new EditClientCommandParser().parse(arguments);
-        } else if (EditProjectCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(EditProjectCommand.getCommandWords(), commandWord)) {
             return new EditProjectCommandParser().parse(arguments);
-        } else if (DeleteClientCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(DeleteClientCommand.getCommandWords(), commandWord)) {
             return new DeleteClientCommandParser().parse(arguments);
-        } else if (DeleteProjectCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(DeleteProjectCommand.getCommandWords(), commandWord)) {
             return new DeleteProjectCommandParser().parse(arguments);
-        } else if (ClearClientCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(ClearClientCommand.getCommandWords(), commandWord)) {
             return new ClearClientCommand();
-        } else if (ClearProjectCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(ClearProjectCommand.getCommandWords(), commandWord)) {
             return new ClearProjectCommand();
-        } else if (FindClientCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(FindClientCommand.getCommandWords(), commandWord)) {
             return new FindClientCommandParser().parse(arguments);
-        } else if (FindProjectCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(FindProjectCommand.getCommandWords(), commandWord)) {
             return new FindProjectCommandParser().parse(arguments);
-        } else if (ListClientCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(ListClientCommand.getCommandWords(), commandWord)) {
             return new ListClientCommand();
-        } else if (ListProjectCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(ListProjectCommand.getCommandWords(), commandWord)) {
             return new ListProjectCommand();
-        } else if (ListTagCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(ListTagCommand.getCommandWords(), commandWord)) {
             return new ListTagCommand();
-        } else if (SortClientCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(SortClientCommand.getCommandWords(), commandWord)) {
             return new SortClientCommand();
-        } else if (SortProjectCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(SortProjectCommand.getCommandWords(), commandWord)) {
             return new SortProjectCommandParser().parse(arguments);
-        } else if (ExitCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(ExitCommand.getCommandWords(), commandWord)) {
             return new ExitCommand();
-        } else if (HelpCommand.isCommandWord(commandWord)) {
+        } else if (isCommandWord(HelpCommand.getCommandWords(), commandWord)) {
             return new HelpCommand();
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
+    public static boolean isCommandWord(Set<String> commandWords, String commandWord) {
+        return commandWords.contains(commandWord);
+    }
 }

@@ -1,6 +1,6 @@
 package arb.logic;
 
-import static arb.commons.core.Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX;
+import static arb.commons.core.Messages.MESSAGE_INVALID_LIST_CLIENT;
 import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static arb.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.NAME_DESC_AMY;
@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,12 +59,13 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteClientCommand = "delete-client 9";
-        assertCommandException(deleteClientCommand, MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        assertCommandException(deleteClientCommand, MESSAGE_INVALID_LIST_CLIENT);
     }
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listClientCommand = ListClientCommand.getCommandWords().get(0);
+        Iterator<String> iterator = ListClientCommand.getCommandWords().iterator();
+        String listClientCommand = iterator.next();
         assertCommandSuccess(listClientCommand, ListClientCommand.MESSAGE_SUCCESS, model);
     }
 
@@ -78,7 +80,8 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add client command
-        String addClientCommand = AddClientCommand.getCommandWords().get(0) + NAME_DESC_AMY
+        Iterator<String> iterator = AddClientCommand.getCommandWords().iterator();
+        String addClientCommand = iterator.next() + NAME_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY;
         Client expectedClient = new ClientBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();

@@ -5,10 +5,14 @@ import static arb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static arb.testutil.Assert.assertThrows;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +41,7 @@ import arb.logic.commands.project.UnmarkProjectCommand;
 import arb.logic.commands.tag.ListTagCommand;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Client;
-import arb.model.client.predicates.ClientContainsTagPredicate;
+import arb.model.client.predicates.ClientContainsTagsPredicate;
 import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
 import arb.model.project.predicates.ProjectContainsTagsPredicate;
@@ -71,7 +75,7 @@ public class AddressBookParserTest {
         for (String commandWord : AddProjectCommand.getCommandWords()) {
             AddProjectCommand command = (AddProjectCommand) parser
                 .parseCommand(ProjectUtil.getAddProjectCommand(project, commandWord));
-            assertEquals(new AddProjectCommand(project, Arrays.asList()), command);
+            assertEquals(new AddProjectCommand(project, Optional.empty()), command);
         }
     }
 
@@ -146,8 +150,10 @@ public class AddressBookParserTest {
     public void parseCommand_findClient() throws Exception {
         List<String> tags = Arrays.asList("friend", "husband");
         List<String> names = Arrays.asList("foo", "baz");
-        ClientContainsTagPredicate expectedTagsPredicate = new ClientContainsTagPredicate(tags);
-        NameContainsKeywordsPredicate expectedKeywordsPredicate = new NameContainsKeywordsPredicate(names);
+        ClientContainsTagsPredicate expectedTagsPredicate =
+                PredicateUtil.getClientContainsTagPredicate("friend", "husband");
+        NameContainsKeywordsPredicate expectedKeywordsPredicate =
+                PredicateUtil.getNameContainsKeywordsPredicate("foo", "baz");
         CombinedPredicate<Client> expectedCombinedPredicate = PredicateUtil
                 .getCombinedPredicate(expectedKeywordsPredicate, expectedTagsPredicate);
         for (String commandWord : FindClientCommand.getCommandWords()) {
@@ -162,8 +168,10 @@ public class AddressBookParserTest {
     public void parseCommand_findProject() throws Exception {
         List<String> tags = Arrays.asList("painting", "pottery");
         List<String> names = Arrays.asList("foo", "bar", "baz");
-        ProjectContainsTagsPredicate expectedTagsPredicate = new ProjectContainsTagsPredicate(tags);
-        TitleContainsKeywordsPredicate expectedKeywordsPredicate = new TitleContainsKeywordsPredicate(names);
+        ProjectContainsTagsPredicate expectedTagsPredicate =
+                PredicateUtil.getProjectContainsTagsPredicate("painting", "pottery");
+        TitleContainsKeywordsPredicate expectedKeywordsPredicate =
+                PredicateUtil.getTitleContainsKeywordsPredicate("foo", "bar", "baz");
         CombinedPredicate<Project> expectedCombinedPredicate = PredicateUtil
                 .getCombinedPredicate(expectedKeywordsPredicate, expectedTagsPredicate);
         for (String commandWord : FindProjectCommand.getCommandWords()) {
@@ -249,5 +257,14 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void isCommandWord() {
+        Set<String> commandWords = new HashSet<>(Arrays.asList("a", "b", "c"));
+        assertTrue(AddressBookParser.isCommandWord(commandWords, "a"));
+        assertTrue(AddressBookParser.isCommandWord(commandWords, "b"));
+        assertTrue(AddressBookParser.isCommandWord(commandWords, "c"));
+        assertFalse(AddressBookParser.isCommandWord(commandWords, "d"));
     }
 }

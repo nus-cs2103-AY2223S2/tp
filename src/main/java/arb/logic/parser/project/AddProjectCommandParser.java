@@ -1,13 +1,14 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.commons.util.StringUtil.splitKeywords;
+import static arb.logic.parser.ArgumentMultimap.areAllPrefixesPresent;
 import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -19,9 +20,9 @@ import arb.logic.parser.ArgumentMultimap;
 import arb.logic.parser.ArgumentTokenizer;
 import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
-import arb.logic.parser.Prefix;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Name;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;
@@ -44,7 +45,7 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_PRICE, PREFIX_TAG,
                 PREFIX_CLIENT);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+        if (!areAllPrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddProjectCommand.MESSAGE_USAGE));
         }
@@ -70,26 +71,13 @@ public class AddProjectCommandParser implements Parser<AddProjectCommand> {
         Stream<String> clientNameKeywords = argMultimap.getAllValues(PREFIX_CLIENT).stream()
                 .flatMap(s -> splitKeywords(s)).filter(s -> Name.isValidName(s));
         List<String> listOfClientNameKeywords = clientNameKeywords.collect(Collectors.toList());
+        Optional<NameContainsKeywordsPredicate> clientNamePredicate = listOfClientNameKeywords.isEmpty()
+                ? Optional.empty()
+                : Optional.of(new NameContainsKeywordsPredicate(listOfClientNameKeywords));
 
         Project project = new Project(title, deadline, price, tagList);
 
-        return new AddProjectCommand(project, listOfClientNameKeywords);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    /**
-     * Splits a {@code String} consisting of keywords into its individual keywords and returns them
-     * as a {@code Stream}.
-     */
-    private static Stream<String> splitKeywords(String keywords) {
-        return Arrays.asList(keywords.split(" ")).stream();
+        return new AddProjectCommand(project, clientNamePredicate);
     }
 
 }

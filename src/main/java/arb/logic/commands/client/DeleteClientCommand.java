@@ -2,8 +2,8 @@ package arb.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -48,12 +48,12 @@ public class DeleteClientCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getSortedClientList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
-        }
-
         if (currentListBeingShown != ListType.CLIENT) {
             throw new CommandException(Messages.MESSAGE_INVALID_LIST_CLIENT);
+        }
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
         Client clientToDelete = lastShownList.get(targetIndex.getZeroBased());
@@ -68,12 +68,9 @@ public class DeleteClientCommand extends Command {
                 && targetIndex.equals(((DeleteClientCommand) other).targetIndex)); // state check
     }
 
-    public static boolean isCommandWord(String commandWord) {
-        return COMMAND_WORDS.contains(commandWord);
-    }
-
-    public static List<String> getCommandWords() {
-        return new ArrayList<>(COMMAND_WORDS);
+    /** Get all valid command words as an unmodifiable set. */
+    public static Set<String> getCommandWords() {
+        return Collections.unmodifiableSet(COMMAND_WORDS);
     }
 
 }

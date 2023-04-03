@@ -26,6 +26,11 @@ public class UnmarkProjectCommandParserTest {
     }
 
     @Test
+    public void parse_validFirstArg_returnsLinkClientToProjectCommand() {
+        assertParseSuccess(parser, "1 a", new UnmarkProjectCommand(INDEX_FIRST));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnmarkProjectCommand.MESSAGE_USAGE));

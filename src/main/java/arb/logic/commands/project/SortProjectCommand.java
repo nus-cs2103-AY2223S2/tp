@@ -3,10 +3,9 @@ package arb.logic.commands.project;
 import static arb.logic.parser.CliSyntax.PREFIX_OPTION;
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import arb.commons.core.sorting.ProjectSortingOption;
@@ -55,11 +54,8 @@ public class SortProjectCommand extends Command {
                 && sorter.equals(((SortProjectCommand) other).sorter)); // state check
     }
 
-    public static boolean isCommandWord(String commandWord) {
-        return COMMAND_WORDS.contains(commandWord);
-    }
-
-    public static List<String> getCommandWords() {
-        return new ArrayList<>(COMMAND_WORDS);
+    /** Get all valid command words as an unmodifiable set. */
+    public static Set<String> getCommandWords() {
+        return Collections.unmodifiableSet(COMMAND_WORDS);
     }
 }

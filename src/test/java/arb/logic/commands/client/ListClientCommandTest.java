@@ -51,4 +51,5 @@ public class ListClientCommandTest {
         assertCommandSuccess(new ListClientCommand(), ListType.CLIENT, ListType.CLIENT, model,
                 ListClientCommand.MESSAGE_SUCCESS, expectedModel);
     }
+
 }

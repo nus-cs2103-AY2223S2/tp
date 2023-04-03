@@ -2,10 +2,9 @@ package arb.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import arb.commons.core.Messages;
@@ -39,11 +38,8 @@ public class ClearClientCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS, ListType.CLIENT);
     }
 
-    public static boolean isCommandWord(String commandWord) {
-        return COMMAND_WORDS.contains(commandWord);
-    }
-
-    public static List<String> getCommandWords() {
-        return new ArrayList<>(COMMAND_WORDS);
+    /** Get all valid command words as an unmodifiable set. */
+    public static Set<String> getCommandWords() {
+        return Collections.unmodifiableSet(COMMAND_WORDS);
     }
 }

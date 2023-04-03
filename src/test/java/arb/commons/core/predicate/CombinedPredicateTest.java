@@ -3,26 +3,28 @@ package arb.commons.core.predicate;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import arb.model.client.Client;
 import arb.model.client.predicates.NameContainsKeywordsPredicate;
+import arb.testutil.PredicateUtil;
 
 public class CombinedPredicateTest {
+
     @Test
+    @SuppressWarnings("unchecked")
     public void equals() {
         Predicate<String> firstPredicate = s -> true;
         Predicate<String> secondPredicate = s -> false;
 
-        CombinedPredicate<String> firstCombinedPredicate = new CombinedPredicate<>(Arrays.asList(firstPredicate));
-        CombinedPredicate<String> secondCombinedPredicate = new CombinedPredicate<>(Arrays.asList(secondPredicate));
+        CombinedPredicate<String> firstCombinedPredicate = PredicateUtil.getCombinedPredicate(firstPredicate);
+        CombinedPredicate<String> secondCombinedPredicate = PredicateUtil.getCombinedPredicate(secondPredicate);
         CombinedPredicate<String> thirdCombinedPredicate =
-                new CombinedPredicate<>(Arrays.asList(firstPredicate, secondPredicate));
+                PredicateUtil.getCombinedPredicate(firstPredicate, secondPredicate);
         CombinedPredicate<String> fourthCombinedPredicate =
-                new CombinedPredicate<>(Arrays.asList(secondPredicate, firstPredicate));
+                PredicateUtil.getCombinedPredicate(secondPredicate, firstPredicate);
 
         assertTrue(firstCombinedPredicate.equals(firstCombinedPredicate)); // same object
         assertFalse(firstCombinedPredicate.equals(secondCombinedPredicate)); // different predicates
@@ -31,12 +33,13 @@ public class CombinedPredicateTest {
 
         assertTrue(thirdCombinedPredicate.equals(fourthCombinedPredicate)); // same predicates, different order
 
-        NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Ben"));
+        // two name predicates with the same keywords but in different order
+        NameContainsKeywordsPredicate namePredicate = PredicateUtil.getNameContainsKeywordsPredicate("Alice", "Ben");
         NameContainsKeywordsPredicate secondNamePredicate =
-                new NameContainsKeywordsPredicate(Arrays.asList("Ben", "Alice"));
-        CombinedPredicate<Client> firstClientCombinedPredicate = new CombinedPredicate<>(Arrays.asList(namePredicate));
+                PredicateUtil.getNameContainsKeywordsPredicate("Ben", "Alice");
+        CombinedPredicate<Client> firstClientCombinedPredicate = PredicateUtil.getCombinedPredicate(namePredicate);
         CombinedPredicate<Client> secondClientCombinedPredicate =
-                new CombinedPredicate<>(Arrays.asList(secondNamePredicate));
+                PredicateUtil.getCombinedPredicate(secondNamePredicate);
         assertTrue(firstClientCombinedPredicate.equals(secondClientCombinedPredicate));
     }
 }

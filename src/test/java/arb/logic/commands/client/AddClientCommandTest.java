@@ -176,6 +176,11 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public int numberOfClientsMatchingPredicate(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setProjectToLink(Project project) {
             throw new AssertionError("This method should not be called.");
         }
@@ -202,6 +207,16 @@ public class AddClientCommandTest {
 
         @Override
         public void markProjectAsNotDone(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetFilteredAndSortedClientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetFilteredAndSortedProjectList() {
             throw new AssertionError("This method should not be called.");
         }
 

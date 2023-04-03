@@ -2,10 +2,9 @@ package arb.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -27,15 +26,14 @@ public class FindProjectCommand extends Command {
     private static final Set<String> COMMAND_WORDS =
             new HashSet<>(Arrays.asList(MAIN_COMMAND_WORD, ALIAS_COMMAND_WORD));
 
-    public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Finds all projects whose titles contain any of "
-            + "the specified keywords (case-insensitive). contains any of the tags given (case-insensitive), "
-            + "falls within the given timeframe and is linked to the client with the provided client name and displays "
-            + "them as a list with index numbers.\n"
-            + "Parameters: name/TITLE status/STATUS tag/TAG client/CLIENT "
-            + "start/START OF TIMEFRAME end/END OF TIMEFRAME...\n"
+    public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Finds all projects whose names contain any of "
+            + "the specified keywords (case-insensitive), contains any of the tags given (case-insensitive), "
+            + "falls within the given timeframe, is linked to the client with the provided client name keywords "
+            + "and has the given status and displays them as a list with index numbers.\n"
+            + "Parameters: name/NAME status/STATUS tag/TAG client/CLIENT "
+            + "start/START OF TIMEFRAME end/END OF TIMEFRAME [MORE KEYWORDS]...\n"
             + "Example: " + MAIN_COMMAND_WORD + " name/sculpture name/digital status/not done client/alice "
-            + "tag/personal start/last "
-            + "week end/next year";
+            + "tag/personal start/last week end/next year";
 
     private final Predicate<Project> predicate;
 
@@ -60,11 +58,8 @@ public class FindProjectCommand extends Command {
                 && predicate.equals(((FindProjectCommand) other).predicate)); // state check
     }
 
-    public static boolean isCommandWord(String commandWord) {
-        return COMMAND_WORDS.contains(commandWord);
-    }
-
-    public static List<String> getCommandWords() {
-        return new ArrayList<>(COMMAND_WORDS);
+    /** Get all valid command words as an unmodifiable set. */
+    public static Set<String> getCommandWords() {
+        return Collections.unmodifiableSet(COMMAND_WORDS);
     }
 }

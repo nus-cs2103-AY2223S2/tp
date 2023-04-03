@@ -42,8 +42,16 @@ public class EditClientDescriptorTest {
         editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
+        // null phone -> returns false
+        editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withPhone(null).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
         // different email -> returns false
         editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // null email -> returns false
+        editedAmy = new EditClientDescriptorBuilder(DESC_AMY).withEmail(null).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false

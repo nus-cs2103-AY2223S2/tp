@@ -56,7 +56,7 @@ public class LinkProjectToClientCommand extends Command {
         List<Client> lastShownList = model.getSortedClientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
         Client clientToLinkTo = lastShownList.get(targetIndex.getZeroBased());
