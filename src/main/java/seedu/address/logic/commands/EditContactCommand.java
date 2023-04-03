@@ -1,6 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FACULTY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -26,9 +37,20 @@ public class EditContactCommand extends EditPersonCommand {
                     "Existing values will be overwritten by the given parameters",
                     "for all fields except Modules and Tags.")
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_PARAMETERS,
-                    "INDEX", "[PREFIX/PARAMETER]...")
+                    "INDEX",
+                    PREFIX_NAME.toString("NAME", true),
+                    PREFIX_PHONE.toString("PHONE", true),
+                    PREFIX_EMAIL.toString("EMAIL", true),
+                    PREFIX_ADDRESS.toString("ADDRESS", true),
+                    PREFIX_GENDER.toString("GENDER", true),
+                    PREFIX_RACE.toString("RACE", true),
+                    PREFIX_COMMS.toString("COMMUNICATION_CHANNEL", true),
+                    PREFIX_MAJOR.toString("MAJOR", true),
+                    PREFIX_FACULTY.toString("FACULTY", true),
+                    PREFIX_MODULES.toString("MODULE", true, true),
+                    PREFIX_TAG.toString("TAG", true, true))
             + ResultDisplay.formatMessage(ResultDisplay.KEYWORD_MORE_INFO,
-                    "Note that INDEX must be a positive integer.",
+                    "INDEX must be a positive integer, and at least one field should be specified.",
                     "For more information on prefixes, refer to the user guide using the help command.",
                     "Editing Modules and Tags have a different behaviour from editing the other fields.",
                     "If a module or tag already exists in the contact, it will be removed.",

@@ -15,6 +15,30 @@ public class Prefix {
         return prefix;
     }
 
+    /**
+     * @param param Parameter name.
+     * @param isOptional Whether the prefix is optional.
+     * @param hasMany Whether the prefix can be used multiple times.
+     */
+    public String toString(String param, boolean isOptional, boolean hasMany) {
+        return toString(param, isOptional) + (hasMany ? "..." : "");
+    }
+
+    /**
+     * @param param Parameter name.
+     * @param isOptional Whether the prefix is optional.
+     */
+    public String toString(String param, boolean isOptional) {
+        return isOptional
+                ? String.format("[%s]", toString(param))
+                : toString(param);
+    }
+
+    public String toString(String param) {
+        return prefix + param;
+    }
+
+    @Override
     public String toString() {
         return getPrefix();
     }
