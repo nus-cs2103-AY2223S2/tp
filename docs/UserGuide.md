@@ -517,7 +517,7 @@ Editing of an information to the specific list. Below are the specific edit comm
 
 :exclamation: **Danger**<br>
 
-Editing information is one-way (i.e. You cannot revert your command).<br>
+Editing of information is one-way (i.e. You cannot revert your command).<br>
 
 We are working to have an undo feature in the future. Sorry for the inconvenience caused.
 
