@@ -23,7 +23,7 @@ You can click on any of the links below to navigate to the respective sections f
 # Table of Contents
 
 <!-- TOC -->
-* [1. Quick start](#1-quick-start)
+* [1 Quick start](#1-quick-start)
   * [1.1 Prerequisites](#11-prerequisites)
     * [1.1.1 Java](#111-java)
     * [1.1.2 Glossary](#112-glossary)
@@ -32,8 +32,7 @@ You can click on any of the links below to navigate to the respective sections f
   * [1.4 Navigating the User Interface](#14-navigating-the-user-interface)
     * [1.4.1 Home Page](#141-home-page)
     * [1.4.2 Data Tab](#142-data-tab)
-* [Features](#features)
-* [Navigating the Application](#navigating-the-application)
+* [2 Commands](#2-commands)
     * [Viewing help: `help`](#viewing-help-help)
   * [Add](#add)
     * [Adding a supplier: `add_supplier`](#adding-a-supplier-addsupplier)
@@ -84,7 +83,7 @@ You can click on any of the links below to navigate to the respective sections f
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-# 1. Quick start
+# 1 Quick start
 
 ## 1.1 Prerequisites
 
@@ -278,7 +277,7 @@ Data list contains all of your respective data labelled out in full. The layout 
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Features
+# 2 Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -315,20 +314,6 @@ Data list contains all of your respective data labelled out in full. The layout 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
----
-
-# Navigating the Application
-<p align="center">
-  <img src="images/Ui.png" />
-  <br>Figure 1: Homepage of Trackr
-</p>
-
-
-
-Tabbed view is also available to view more details about your tasks, items, orders and contacts.
-
----
 
 ### Viewing help: `help`
 
