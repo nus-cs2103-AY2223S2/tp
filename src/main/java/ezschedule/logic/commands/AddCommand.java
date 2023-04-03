@@ -1,9 +1,12 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_END;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_START;
 import static java.util.Objects.requireNonNull;
 
 import ezschedule.logic.commands.exceptions.CommandException;
-import ezschedule.logic.parser.CliSyntax;
 import ezschedule.model.Model;
 import ezschedule.model.event.Event;
 
@@ -16,15 +19,15 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the scheduler."
             + "\nParameters: "
-            + CliSyntax.PREFIX_NAME + "NAME "
-            + CliSyntax.PREFIX_DATE + "DATE "
-            + CliSyntax.PREFIX_START + "START TIME "
-            + CliSyntax.PREFIX_END + "END TIME "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_DATE + "DATE "
+            + PREFIX_START + "START TIME "
+            + PREFIX_END + "END TIME "
             + "\nExample: " + COMMAND_WORD + " "
-            + CliSyntax.PREFIX_NAME + "Tennis "
-            + CliSyntax.PREFIX_DATE + "2023-12-20 "
-            + CliSyntax.PREFIX_START + "18:00 "
-            + CliSyntax.PREFIX_END + "20:00";
+            + PREFIX_NAME + "Tennis "
+            + PREFIX_DATE + "2023-12-20 "
+            + PREFIX_START + "18:00 "
+            + PREFIX_END + "20:00";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the scheduler";
