@@ -278,6 +278,8 @@ Format: `fish sort by/<ATTRIBUTE> [tk/<TANK_INDEX>]`
 <div markdown="span" class="alert alert-warning">:exclamation: **Note:**
 After sorting, a new set of indexes will appear for each fish. The fish operations will take place on the
 **new fish list**!
+Also, note that fish sort only sorts the fishes that are present! `fish view` would result in only 1 fish being present, 
+and `fish sort` after will not show more fish. Use `list fishes` instead.
 </div>
 
 Prefixes:
