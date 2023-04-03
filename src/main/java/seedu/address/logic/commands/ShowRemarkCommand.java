@@ -56,7 +56,7 @@ public class ShowRemarkCommand extends Command {
         }
 
         personToShow = lastShownList.get(index.getZeroBased());
-        assert (personToShow != null);
+        assert personToShow != null;
         model.updateShowPerson(new FullNamePredicate(personToShow.getName().toString()));
         Remark toBeShown = personToShow.getOptionalRemark().orElse(new Remark(""));
         String message = !toBeShown.value.isEmpty() ? MESSAGE_SHOWN_REMARK_SUCCESS : MESSAGE_SHOWN_REMARK_EMPTY;

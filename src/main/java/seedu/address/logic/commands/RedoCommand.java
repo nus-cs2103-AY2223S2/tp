@@ -10,6 +10,9 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 
 //author
+/**
+ * Redo the last changed undid by the last undo command.
+ */
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final ArrayList<Prefix> ARGUMENT_PREFIXES = new ArrayList<>();

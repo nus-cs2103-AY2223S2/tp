@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Telegram {
 
-    public static final String MESSAGE_CONSTRAINTS = "Telegram handle can take any valid Telegram handle, " +
-            "and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Telegram handle can take any valid Telegram handle, and it should not be blank";
 
     /*
      * Matches a valid telegram handle. Currently, asserts (or tries to) the following constraints:
