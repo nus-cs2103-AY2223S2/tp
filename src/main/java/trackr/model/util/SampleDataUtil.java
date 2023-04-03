@@ -19,7 +19,6 @@ import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
-import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.Customer;
@@ -126,7 +125,7 @@ public class SampleDataUtil {
         MenuItem cookie = new MenuItem(new ItemName("Chocolate Cookies"),
                                         new ItemSellingPrice("5.00"),
                                         new ItemCost("1.20"));
-        MenuItem cupcake = new MenuItem(new ItemName("Cupcake"), 
+        MenuItem cupcake = new MenuItem(new ItemName("Cupcake"),
                                         new ItemSellingPrice("6.20"),
                                         new ItemCost("1.10"));
         MenuItem bracelet = new MenuItem(new ItemName("Bracelet"),

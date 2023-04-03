@@ -3,7 +3,6 @@ package trackr.ui;
 import static trackr.commons.core.index.Index.fromZeroBased;
 import static trackr.logic.parser.TrackrParser.getModel;
 import static trackr.model.TabEnum.getTabIndex;
-import static trackr.ui.dashboard.TabPanel.clearSelection;
 import static trackr.ui.dashboard.TabPanel.switchToTab;
 
 import java.io.BufferedReader;
