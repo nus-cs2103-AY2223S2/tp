@@ -2,6 +2,11 @@
 layout: page
 title: User Guide
 ---
+## **Table of Contents**
+* Table of Contents
+{:toc}
+
+<div style="page-break-after: always;"></div>
 
 <div class="header" align="center">
   <h1 id="intro"><img src="images/ship.png" alt="logo" width="90"><br>
