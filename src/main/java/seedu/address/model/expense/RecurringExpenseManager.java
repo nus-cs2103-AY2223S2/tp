@@ -100,7 +100,11 @@ public class RecurringExpenseManager {
 
     public ArrayList<Expense> getExpenses() {
         ArrayList<Expense> expenses = new ArrayList<>();
-        while (nextExpenseDate.isBefore(LocalDate.now())) {
+        LocalDate newEndDate = LocalDate.now();
+        if (endDate != null) {
+            newEndDate = !endDate.isAfter(LocalDate.now()) ? endDate : LocalDate.now();
+        }
+        while (!nextExpenseDate.isAfter(newEndDate)) {
             expenses.add(new Expense(expenseName, amount, nextExpenseDate, expenseCategory));
             nextExpenseDate = recurringExpenseType.getNextExpenseDate(nextExpenseDate);
         }

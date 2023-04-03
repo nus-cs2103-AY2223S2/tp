@@ -14,6 +14,9 @@
   }, {
     "categoryName" : "housing",
     "summary" : ""
+  }, {
+    "categoryName" : "groceries",
+    "summary" : ""
   } ],
   "expenses" : [ {
     "name" : "Meal at JE",
@@ -55,9 +58,92 @@
       "categoryName" : "transportation",
       "summary" : "For bus, car, train"
     }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-05-15",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-05-08",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-05-01",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-04-24",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-04-17",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-04-10",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-04-03",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-03-27",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
+  }, {
+    "name" : "milk",
+    "amount" : "4.5",
+    "date" : "2000-03-20",
+    "category" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    }
   } ],
   "budget" : {
     "amount" : "0.0"
   },
-  "recurringGenerators" : [ ]
+  "recurringGenerators" : [ {
+    "expenseName" : "milk",
+    "expenseAmount" : "4.5",
+    "expenseCategory" : {
+      "categoryName" : "groceries",
+      "summary" : ""
+    },
+    "nextExpenseDate" : "2000-05-22",
+    "startDate" : "2000-03-20",
+    "endDate" : "2000-05-15",
+    "recurringExpenseType" : "WEEKLY"
+  } ]
 }
