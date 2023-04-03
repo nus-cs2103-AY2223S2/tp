@@ -3,7 +3,6 @@ package seedu.modtrek.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import static seedu.modtrek.testutil.Assert.assertThrows;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 import static seedu.modtrek.testutil.TypicalModules.MA2002;
