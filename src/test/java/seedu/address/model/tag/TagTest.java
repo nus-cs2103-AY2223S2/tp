@@ -27,6 +27,15 @@ public class TagTest {
     }
 
     @Test
+    public void isValidLengthTagName() {
+        // null tag name
+        String tooLongTagName = "oooooooooooooooooooooooooooooooooooooooo";
+        String acceptableTagName = "hello";
+        assertEquals(false, Tag.isValidLengthTagName(tooLongTagName));
+        assertEquals(true, Tag.isValidLengthTagName(acceptableTagName));
+    }
+
+    @Test
     public void getTagTest() {
         String tagName = "Hi";
         Tag tag = new Tag(tagName);
