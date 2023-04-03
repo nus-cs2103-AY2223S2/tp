@@ -285,11 +285,11 @@ Add a module to Le Tracker.
   - Refer to [Argument Formats](#argument-formats) for the "Tag" format
   - Repeated tags (if any) will be ignored
 
-:warning: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
-
 Examples:
 
 - `add CS2040 /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
+
+:warning: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Add a Lecture](#add-a-lecture) or [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
 
 ### Add a Lecture
 
@@ -307,11 +307,11 @@ Add a lecture to a module.
   - Repeated tags (if any) will be ignored
   - Refer to [Argument Formats](#argument-formats) for the "Tag" format
 
-:warning: The navigation system might specify the `/lec` argument which will transform the user's command into the command specified in [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
-
 Examples:
 
 - `add Week 1 /mod CS2040S /tags Intro, Important`
+
+:warning: The navigation system might specify the `/lec` argument which will transform the user's command into the command specified in [Add a Video](#add-a-video) (refer to [Navigation](#navigation) for more information)
 
 ### Add a Video
 
@@ -357,11 +357,11 @@ Edit the details of a module.
   - Repeated tags (if any) will be ignored
   - Refer to [Argument Formats](#argument-formats) for the "Tag" format
 
-:warning: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Edit a Lecture](#edit-a-lecture) or [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation) for more information)
-
 Examples:
 
 - `edit CS2040 /code CS2040S /name Data Structures and Algorithms /tags Heavy, Math, Analysis`
+
+:warning: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Edit a Lecture](#edit-a-lecture) or [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation) for more information)
 
 ### Edit a Lecture
 
@@ -381,11 +381,11 @@ Edit the details of a lecture.
   - Repeated tags (if any) will be ignored
   - Refer to [Argument Formats](#argument-formats) for the "Tag" format
 
-:warning: The navigation system might specify the `/lec` argument which will transform the user's command into the command specified in [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation) for more information)
-
 Examples:
 
 - `edit Week 1 /mod CS2040S /name Week 01 Introduction /tags Intro, Important`
+
+:warning: The navigation system might specify the `/lec` argument which will transform the user's command into the command specified in [Edit a Video](#edit-a-video) (refer to [Navigation](#navigation) for more information)
 
 ### Edit a Video
 
