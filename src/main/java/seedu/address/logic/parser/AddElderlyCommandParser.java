@@ -95,6 +95,8 @@ public class AddElderlyCommandParser implements Parser<AddElderlyCommand> {
             throw new RecommendationException("Invalid prefix.");
         } else if (map.getValue(PREFIX_TAG).orElse("").length() > 20) {
             throw new RecommendationException("Length of tag is too long.");
+        } else if (map.getValue(PREFIX_NAME).orElse("").length() > 100) {
+            throw new RecommendationException("Length of name is too long.");
         } else {
             return true;
         }

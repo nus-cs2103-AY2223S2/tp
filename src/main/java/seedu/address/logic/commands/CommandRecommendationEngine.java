@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -206,8 +207,7 @@ public class CommandRecommendationEngine {
         return cmdPrompt.keySet()
                 .stream()
                 .filter(command -> command.getPrefix().startsWith(prefix))
-                .findFirst()
-                .orElse(null);
+                .min(Comparator.comparing(Prefix::getPrefix)).orElse(null);
     }
 
     private String generateArgumentRecommendation(CommandInfo commandInfo, String userArgs)
@@ -251,12 +251,14 @@ public class CommandRecommendationEngine {
             cmdPrompt.remove(matchingPrefix);
         }
 
-        // current set of arguments is complete -> return remaining recommendation
-        getRemainingArguments(cmdPrompt,
-                key -> argumentRecommendation.append(" ").append(key).append(cmdPrompt.get(key)),
-                key -> argumentMultimap.getValue(key).isEmpty());
+        if (userArgs.stripTrailing().length() != userArgs.length()) {
+            // current set of arguments is complete -> return remaining recommendation
+            getRemainingArguments(cmdPrompt,
+                    key -> argumentRecommendation.append(" ").append(key).append(cmdPrompt.get(key)),
+                    key -> argumentMultimap.getValue(key).isEmpty());
+        }
 
-        return argumentRecommendation.toString();
+        return argumentRecommendation.toString().trim();
     }
 
     /**

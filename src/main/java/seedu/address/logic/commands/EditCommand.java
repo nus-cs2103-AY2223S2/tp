@@ -66,7 +66,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_AVAILABILITY + "AVAILABLE_DATE_START,AVAILABLE_DATE_END]...\n"
             + "Example: " + COMMAND_WORD + " S4263131J "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com"
+            + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_BIRTH_DATE + "1945-05-03 ";
 
     private final Nric nric;

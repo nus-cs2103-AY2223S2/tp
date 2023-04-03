@@ -14,8 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.CommandInfo;
@@ -112,14 +110,12 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
-        String[] keyWords = map.getPreamble().split(" ");
-        if (keyWords.length > 2 || keyWords.length == 2 && Arrays.stream(availablePrefixes)
-                .noneMatch(prefix -> prefix.getPrefix().startsWith(keyWords[1]))) {
-            throw new RecommendationException("Too many arguments.");
-        } else if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+        if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
             throw new RecommendationException("Invalid prefix.");
         } else if (map.getValue(PREFIX_TAG).orElse("").length() > 20) {
             throw new RecommendationException("Length of tag is too long.");
+        } else if (map.getValue(PREFIX_NAME).orElse("").length() > 100) {
+            throw new RecommendationException("Length of name is too long.");
         } else {
             return true;
         }
