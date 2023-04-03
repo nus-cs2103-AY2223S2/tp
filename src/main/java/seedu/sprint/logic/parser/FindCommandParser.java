@@ -41,6 +41,21 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         Prefix[] prefixArray = {PREFIX_ROLE, PREFIX_COMPANY_NAME, PREFIX_STATUS};
+
+        boolean definedFormat = false;
+
+        for (Prefix prefix : prefixArray) {
+            if (trimmedArgs.substring(0, 2).equals(prefix.toString())) {
+                definedFormat = true;
+                break;
+            }
+        }
+
+        if (!definedFormat) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindCommand.MESSAGE_USAGE));
+        }
+
         HashMap<Prefix, List<String>> map = new HashMap<>();
 
         for (Prefix prefix : prefixArray) {
