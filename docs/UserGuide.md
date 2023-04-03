@@ -90,12 +90,12 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the contact list.
 
 Format: `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A contact must include all fields except tag.
+A contact must include all fields except tag and have a unique name that is not already in the contact list.
 </div>
 
 Examples:
