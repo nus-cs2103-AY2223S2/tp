@@ -134,20 +134,16 @@ public class AppointmentManager extends StorageModel<Appointment> implements Rea
         if (!change.getOldValue().equals(change.getNewValue())
                 && change.getOldValue().isPresent()) {
             List<IdData<Appointment>> invalidAppointments = new ArrayList<>();
+            GroupName vaxToChange = change.getOldValue().get().getGroupName();
+            getMapView().entrySet().stream()
+                    .filter(x->x.getValue().getValue().getVaccination().equals(vaxToChange))
+                    .forEach(x->invalidAppointments.add(x.getValue()));
             if (change.getNewValue().isPresent()) {
                 // update
-                GroupName vaxToEdit = change.getOldValue().get().getGroupName();
-                GroupName editedVax = change.getNewValue().get().getGroupName();
-                getMapView().entrySet().stream()
-                        .filter(x->x.getValue().getValue().getVaccination().equals(vaxToEdit))
-                        .forEach(x->invalidAppointments.add(x.getValue()));
-                invalidAppointments.forEach(x->set(x.getId(), x.getValue().setVaccination(editedVax)));
+                GroupName vaxToEdit = change.getNewValue().get().getGroupName();
+                invalidAppointments.forEach(x->set(x.getId(), x.getValue().setVaccination(vaxToEdit)));
             } else {
                 // delete
-                GroupName vaxToDelete = change.getOldValue().get().getGroupName();
-                getMapView().entrySet().stream()
-                        .filter(x->x.getValue().getValue().getVaccination().equals(vaxToDelete))
-                        .forEach(x->invalidAppointments.add(x.getValue()));
                 invalidAppointments.forEach(x->remove(x.getId()));
             }
         }
