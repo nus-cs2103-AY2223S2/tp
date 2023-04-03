@@ -951,7 +951,7 @@ Provides teachers with the ability to manage students administration and academi
 **MSS:**
 1. User keys in parent’s / NOK's name and phone number along with the details that are being amended.
 2. System retrieves the original parent/NOK, creates a **NEW** parent/NOK with the amended details and original particulars. At the same time, system will automatically unbind and bind all students bound to **ORIGINAL** parent/NOK and bind them accordingly to the **NEW** parent/NOK.
-3. System replaces the ***original*** parent/NOK with the ***new*** parent/NOK. 
+3. System replaces the ***original*** parent/NOK with the ***new*** parent/NOK.
 4. System proceeds to indicate success to user. <br>
    Use case ends.
 
@@ -1112,7 +1112,7 @@ Testers usually get corrupted files when they perform one of the **FOLLOWING** s
    2. Stop the application abruptly without entering the `Exit` command. <br>
 
 **Possible Fix**: <br>
-Unfortunately there is no **FIX** for this issue at the moment. Tester will need to manually key in or input the data file again as PowerConnect will erase the data files (`parents.json` & `pcclass.json`) upon **NEXT** valid command execution. 
+Unfortunately there is no **FIX** for this issue at the moment. Tester will need to manually key in or input the data file again as PowerConnect will erase the data files (`parents.json` & `pcclass.json`) upon **NEXT** valid command execution.
 
 <div markdown="span" class="alert alert-primary">
 
