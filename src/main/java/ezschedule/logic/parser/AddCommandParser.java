@@ -49,8 +49,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END).orElse(null));
 
         if (endTime.isBefore(startTime)) {
-            throw new ParseException(String.format(
-                    Messages.MESSAGE_INVALID_COMMAND_FIELDS, Time.MESSAGE_END_TIME_EARLIER_THAN_START_TIME));
+            throw new ParseException(AddCommand.MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME);
         }
 
         Event event = new Event(name, date, startTime, endTime);
