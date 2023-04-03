@@ -62,6 +62,8 @@ title: Developer Guide
          * [Save Command](#save-command)
          * [Load Command](#load-command)
          * [Meet Command](#meet-command)
+         * [Organise Command](#organise-command)
+         * [Sample Command](#sample-command)
      * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
        * [Prefix](#prefix)
@@ -955,6 +957,7 @@ This feature is utilises the [`Recommender`](#recommenders)
 
 
 #### **Organise Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/OrganiseCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/OrganiseCommandParser.java)
 
 The `organise` command will set a meet up with the time and place for all participants and the user himself/herself. Note that the user's information is automatically added to the list of participants as it is assumed that they will be taking part in the meet up.
 
@@ -969,15 +972,28 @@ The `organise` command will set a meet up with the time and place for all partic
 
 On the other hand, the `unorganise` command will remove the meet up at the specified index.
 
-<div markdown="block" class="alert alert-success">
+<div markdown="block" class="alert alert-info">
 
-:bulb: **Example : Removing a meet up from the scheduled meet up list**<br>
+:information_source: **Command Format**<br>
 
-* `unorganise 1`: Removes the scheduled meet up with index 1.
+* `unorganise INDEX`: Removes the scheduled meet up with the specified index.
 
 </div>
 
 The [`TimingRecommender`](#timing-recommender) will check if the timing is a suitable for every participant to meet.
+
+#### **Sample Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SampleCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SampleCommandParser.java)
+
+The `sample` command repopulates the EduMate with a fresh set of contacts. Note that this calls the same function as that called in [Sample Data Util](#sample-data-util). 
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Command Format**<br>
+
+* `sample NUMBER` : Replaces the EduMate with the specified `NUMBER` of sample persons.
+
+</div>
 
 ## **Parsers**
 
