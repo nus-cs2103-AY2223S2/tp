@@ -71,7 +71,7 @@ class MeetCommandTest {
         Model model = new ModelManager(new EduMate(), new UserPrefs(), new EduMateHistory());
 
         MeetCommand meetCommand = new MeetCommand(
-                Set.of(new ContactIndex(1)),
+                Set.of(new ContactIndex(0), new ContactIndex(1)),
                 LocationDataUtil.MEET_LOCATIONS, 10);
 
         assertThrows(CommandException.class, () -> meetCommand.execute(model));

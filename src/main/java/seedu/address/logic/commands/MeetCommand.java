@@ -62,6 +62,7 @@ public class MeetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (indices.size() == 1) {
+            assert indices.contains(new ContactIndex(0));
             throw new CommandException("Contact index expected");
         }
 
