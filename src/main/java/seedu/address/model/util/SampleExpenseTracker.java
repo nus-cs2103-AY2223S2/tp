@@ -13,14 +13,19 @@ import seedu.address.model.expense.Expense;
  * Class containing sample data for ExpenseTracker to initialize if needed.
  */
 public class SampleExpenseTracker {
+
+    private static final Category food = new UserDefinedCategory("Food", "For food");
+    private static final Category entertainment = new UserDefinedCategory("Entertainment", "For entertainment");
+    private static final Category transportation = new UserDefinedCategory("Transportation", "For bus, car, train");
+    private static final Category shopping = new UserDefinedCategory("Shopping", "");
+    private static final Category housing = new UserDefinedCategory("Housing", "");
     /**
      * Sample data for categories
      * @return an array of sample categories.
      */
     public static Category[] getSampleCategories() {
         return new Category[] {
-            new UserDefinedCategory("Food", "For food"),
-            new UserDefinedCategory("Entertainment", "For entertainment")
+            food, entertainment, transportation, shopping, housing
         };
     }
 
@@ -30,7 +35,11 @@ public class SampleExpenseTracker {
      */
     public static Expense[] getSampleExpenses() {
         return new Expense[] {
-            new Expense("Meal at JE", 4.50, LocalDate.now(), new UserDefinedCategory("Food", "For food"))
+            new Expense("Meal at JE", 4.50, LocalDate.now(), food),
+            new Expense("Movie ticket", 12.99, LocalDate.of(2023, 3, 15), entertainment),
+            new Expense("MRT fare", 45.80, LocalDate.of(2023, 3, 10), transportation),
+            new Expense("Shoes", 75.00, LocalDate.of(2023, 3, 20), shopping),
+            new Expense("Groceries", 56.30, LocalDate.of(2023, 3, 25), food)
         };
     }
 

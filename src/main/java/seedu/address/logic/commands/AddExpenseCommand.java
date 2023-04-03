@@ -24,11 +24,11 @@ public class AddExpenseCommand extends Command {
             + PREFIX_NAME + "EXPENSE NAME "
             + PREFIX_CATEGORY + "CATEGORY "
             + PREFIX_PRICE + "AMOUNT "
-            + "[" + PREFIX_DATE + "DATE]"
+            + "[" + PREFIX_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Milk"
-            + PREFIX_CATEGORY + "groceries"
-            + PREFIX_PRICE + "4.50"
+            + PREFIX_NAME + "Milk "
+            + PREFIX_CATEGORY + "groceries "
+            + PREFIX_PRICE + "4.50 "
             + PREFIX_DATE + "2/10/23";
 
     public static final String MESSAGE_SUCCESS = "New expense added: %1$s";

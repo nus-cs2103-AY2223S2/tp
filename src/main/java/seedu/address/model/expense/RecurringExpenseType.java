@@ -24,7 +24,7 @@ public enum RecurringExpenseType {
             currentDate = currentDate.plusWeeks(1);
             break;
         case DAILY:
-            currentDate = LocalDate.now().plusDays(1);
+            currentDate = currentDate.plusDays(1);
             break;
         case YEARLY:
             currentDate = currentDate.plusYears(1);

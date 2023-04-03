@@ -56,6 +56,9 @@ public class StatisticsPanel extends UiPart<Region> {
         analyticModel.getMonthlySpent().addListener((observable, oldValue, newValue) -> {
             updateBudgetAdvice(newValue);
         });
+        analyticModel.getMonthlyBudgetProperty().addListener((observable, oldValue, newValue) -> {
+            updateBudgetAdvice(analyticModel.getMonthlySpent().get());
+        });
     }
 
     /**
@@ -146,10 +149,8 @@ public class StatisticsPanel extends UiPart<Region> {
      * @param newValue the new value of the monthly spent
      */
     private void updateBudgetAdvice(Number newValue) {
-        String adviceText;
-        if (newValue.doubleValue() <= analyticModel.getBudget()) {
-            adviceText = "Great job! You are within your budget!";
-        } else {
+        String adviceText = "Great job! You are within your budget!";
+        if (analyticModel.getBudget() != 0 && newValue.doubleValue() > analyticModel.getBudget()) {
             adviceText = "You have exceeded your monthly budget!";
         }
         budgetAdvice.setText(adviceText);

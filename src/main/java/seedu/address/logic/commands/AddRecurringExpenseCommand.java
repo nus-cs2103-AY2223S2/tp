@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -30,12 +29,12 @@ public class AddRecurringExpenseCommand extends Command {
             + PREFIX_START_DATE + "START_DATE "
             + "[" + PREFIX_END_DATE + "END_DATE]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Netflix"
+            + PREFIX_NAME + "Netflix "
             + PREFIX_CATEGORY + "Subscription "
             + PREFIX_PRICE + "10 "
-            + PREFIX_TIMESPAN + "week"
-            + PREFIX_DATE + "01/03/23 "
-            + PREFIX_DATE + "01/03/24\n";
+            + PREFIX_TIMESPAN + "week "
+            + PREFIX_START_DATE + "01/03/23 "
+            + PREFIX_END_DATE + "01/03/24\n";
     public static final String MESSAGE_SUCCESS = "New recurring expense added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECURRING_EXPENSE =
             "This recurring expense already exists in FastTrack";
