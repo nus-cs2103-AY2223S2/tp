@@ -133,12 +133,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getSelectedBookmark_default_null_success() {
-        assertEquals(modelManager.getSelectedBookmark(),null );
+    public void getSelectedBookmark_default_success() {
+        assertEquals(modelManager.getSelectedBookmark(), null);
     }
     @Test
     public void getSelectedIndex_default_success() {
-        assertEquals(modelManager.getSelectedIndex(),-1);
+        assertEquals(modelManager.getSelectedIndex(), -1);
     }
     @Test
     public void getUpdatedBookmark_success() {

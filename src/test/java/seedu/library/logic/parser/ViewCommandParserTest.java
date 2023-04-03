@@ -1,13 +1,15 @@
 package seedu.library.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.library.logic.commands.GoToCommand;
-import seedu.library.logic.commands.ViewCommand;
-
 import static seedu.library.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.library.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.library.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.library.testutil.TypicalIndexes.INDEX_FIRST_BOOKMARK;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.library.logic.commands.ViewCommand;
+
+
 
 public class ViewCommandParserTest {
     private ViewCommandParser parser = new ViewCommandParser();

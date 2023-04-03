@@ -1,6 +1,16 @@
 package seedu.library.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.library.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.library.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.library.logic.commands.CommandTestUtil.showBookmarkAtIndex;
+import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
+import static seedu.library.testutil.TypicalIndexes.INDEX_FIRST_BOOKMARK;
+import static seedu.library.testutil.TypicalIndexes.INDEX_SECOND_BOOKMARK;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.library.commons.core.Messages;
 import seedu.library.commons.core.index.Index;
 import seedu.library.model.Model;
@@ -9,12 +19,7 @@ import seedu.library.model.Tags;
 import seedu.library.model.UserPrefs;
 import seedu.library.model.bookmark.Bookmark;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.library.logic.commands.CommandTestUtil.*;
-import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
-import static seedu.library.testutil.TypicalIndexes.INDEX_FIRST_BOOKMARK;
-import static seedu.library.testutil.TypicalIndexes.INDEX_SECOND_BOOKMARK;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -48,7 +53,7 @@ public class GoToCommandTest {
         showBookmarkAtIndex(model, INDEX_FIRST_BOOKMARK);
 
         Bookmark bookmarkToView = model.getFilteredBookmarkList().get(INDEX_FIRST_BOOKMARK.getZeroBased());
-        GoToCommand goToCommand= new GoToCommand(INDEX_FIRST_BOOKMARK);
+        GoToCommand goToCommand = new GoToCommand(INDEX_FIRST_BOOKMARK);
 
         String expectedMessage = String.format(GoToCommand.MESSAGE_GOTO_BOOKMARK_SUCCESS, bookmarkToView);
 
