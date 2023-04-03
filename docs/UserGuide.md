@@ -6,6 +6,8 @@ title: User Guide
 _Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a Command Line
 Interface** (CLI) while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
 
+_Ez-Schedule_ will benefit a fast typist who need to keep plan and track upcoming events.
+
 <h1 id="index">Index</h1>
 -------------------------
 * [Quick Start](#quick-start)
