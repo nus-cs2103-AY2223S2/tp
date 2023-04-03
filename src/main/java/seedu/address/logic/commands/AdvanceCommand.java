@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -42,6 +43,11 @@ public class AdvanceCommand extends Command {
 
     public static final String MESSAGE_PERSON_CANNOT_BE_ADVANCED = "%s's status cannot be advanced!";
 
+    public static final String MESSAGE_INTERVIEW_AFTER_CURRENT_TIME = "Interview date must be later than "
+            + "current time!\n\n"
+            + "Current date and time:\n"
+            + "%s";
+
     private final NamePhoneNumberPredicate predicate;
     private final Optional<InterviewDateTime> interviewDateTime;
 
@@ -72,11 +78,33 @@ public class AdvanceCommand extends Command {
 
         checkAdvanceApplicant(personToAdvance);
         checkValidInterviewDateInput(model, personToAdvance, this.interviewDateTime);
+
+        // Add one more additional check to ensure Interview date must be later than current time
+        checkInterviewDateAfterCurrentTime(this.interviewDateTime);
+
         Person advancedPerson = createAdvancedPerson(personToAdvance, this.interviewDateTime);
         model.setPerson(personToAdvance, advancedPerson);
         model.refreshListWithPredicate(predicate);
         return new CommandResult(String.format(MESSAGE_ADVANCE_PERSON_SUCCESS,
                 personToAdvance.getName(), personToAdvance.getStatus(), advancedPerson.getStatus()));
+    }
+
+    /**
+     * Ensure the Interview date can only be after current time
+     * @param interviewDateTime the interview date-time input
+     * @throws CommandException If the interview date is before or same as current time, it will cause command error
+     */
+    private void checkInterviewDateAfterCurrentTime (Optional<InterviewDateTime> interviewDateTime) throws CommandException {
+        LocalDateTime currentTime = LocalDateTime.now();
+        LocalDateTime interviewDate = interviewDateTime.get().getDateTime();
+        int result = interviewDate.compareTo(currentTime);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        String formattedCurrentTime = currentTime.format(formatter);
+        if (result <= 0) {
+            // When interview date time is before or equal to current time
+            throw new CommandException(String.format(MESSAGE_INTERVIEW_AFTER_CURRENT_TIME, formattedCurrentTime));
+        }
     }
 
     /**

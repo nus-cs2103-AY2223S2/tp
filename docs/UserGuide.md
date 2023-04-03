@@ -602,7 +602,7 @@ After:
     <li>The <code>advance</code> command only advances <code>Applicant</code> which has a name and phone that
 fully matches the specified search.</li> 
     <li> The <code>INTERVIEW DATETIME</code> is required to advance <code>Applicant</code> from <code>status</code>
-<code>APPLIED</code> to <code>status</code> <code>SHORTLISTED</code>.
+<code>APPLIED</code> to <code>status</code> <code>SHORTLISTED</code>. 
 </li> 
     <li> However, <code>INTERVIEW DATETIME</code> is not required to advance <code>Applicant</code> from <code>status
 </code> <code>SHORTLISTED</code> to <code>status</code> <code>ACCEPTED</code>. </li>
@@ -620,6 +620,10 @@ hour.</li>
     </li> 
 </ul> </div>
 
+<div markdown="span" class="alert alert-danger" role="alert">:exclamation: <strong>Caution:</strong>
+<code>INTERVIEW DATETIME</code> cannot be earlier than current time when you advance an applicant! </div>
+
+
 
 **Example:**
 
@@ -628,7 +632,7 @@ Advancing an applicant with the status `APPLIED` requires an interview date and 
 ![advance_command_applied.png](images%2Fadvance_command_applied.png)
 
 
-Advancing an applicant with the status `SHORLISTED` does not require an interview date and time.
+Advancing an applicant with the status `SHORTLISTED` does not require an interview date and time.
 
 ![advance_command_shortlisted.png](images%2Fadvance_command_shortlisted.png)
 
@@ -715,7 +719,9 @@ For example, "15" would represent 15th hour of the day. </li>
             <li> "MM": Minute of the day, ranging from 0-59. For example, 
 "50" would represent the 50th minute of the hour. </li> 
         </ul>
-    </li> 
+    </li>
+    <li> You are allow to change <code>INTERVIEW DATETIME</code> to a time before the current time using edit command. 
+</li>
 </ul> </div>
 
 
