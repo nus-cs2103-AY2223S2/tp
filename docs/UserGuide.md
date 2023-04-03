@@ -166,13 +166,8 @@ A bookmark can have any number of tags (including 0)
 </div>
 
 Examples:
-<<<<<<< HEAD
 * `add n/Hobbit a/J. R. R. Tolkien p/1 ~ 256 r/4 g/Fantasy`
 * `add n/The Odyssey a/Homer p/1 1 23 g/Action r/5 t/Literature`
-=======
-* `add n/Hobbit a/J. R. R. Tolkien p/1 1 1 r/4 g/Fantasy`
-* `add n/The Odyssey a/Homer p/3 5 44 g/Action r/5 t/Literature class readings`
->>>>>>> master
 
 ### Listing all bookmarks/ Resetting filters : `list`
 
@@ -231,13 +226,9 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * The genre and tags provided must be in the list of existing genre and tags respectively.
 * The order of the keywords matter. e.g. `Guide Rankers` will not match `Rankers Guide`
 * Only the fields of the specified prefixes are searched.
-<<<<<<< HEAD
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
 * The search for tags will return any bookmark that has a tag that matches the given tag.
-=======
-* Only full words will be matched e.g. `Ranker` will not match `Ranker's`
 <div style="page-break-after: always;"></div>
->>>>>>> master
 
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
