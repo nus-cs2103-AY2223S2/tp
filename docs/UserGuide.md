@@ -205,7 +205,7 @@ Use this command to favourite it so that you have easy access to it!
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-  * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer** and must be greater than 0.
 
 Here's how NeoBook would look like after you favourite a contact!
 ![Fav](images/userguide/fav.png)
@@ -227,7 +227,7 @@ Use this command to unfavourite it!
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-  * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer** and must be greater than 0.
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -245,7 +245,7 @@ Use this command to edit his/her details easily!
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-  * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer** and must be greater than 0.
 * At least one field must be provided.
 
 For the following fields, they are considered a `SuperField`.
@@ -294,7 +294,7 @@ Use this command to find contacts using keywords and fields you specify!
 
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
-| n      | Name                            | No        |
+| n      | Name                            | Yes       |
 | e      | Email address                   | Yes       |
 | p      | Phone Number                    | Yes       |
 | a      | Address                         | Yes       |
@@ -329,6 +329,7 @@ has a phone number of '91234567',
 a phone number of '98765432'
       * A person whose name is 'Joshua' even though
 his phone number is '91234567'
+* At least one field must be provided.
 
 
 [Back To Contents](#table-of-contents)
@@ -346,7 +347,7 @@ Use this command to expand and view more information about the selected contact.
 
 _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to view more information on.
-    * `INDEX` must be a positive integer.
+    * `INDEX` must be a positive integer and must be greater than 0.
 
 _Examples:_
 * `select 1` expands the details of the first contact in your list.
@@ -367,7 +368,7 @@ Use this command to delete the specified contact from your NeoBook.
 
 _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to delete in the current displayed list.
-  * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer** and must be greater than 0.
 
 _Examples:_
 * `list` followed by `delete 2` deletes the 2nd person in the displayed list.
@@ -497,7 +498,7 @@ Use this command to delete the specified event from your NeoBook.
 
 _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the Event you wish to delete in the current displayed Events List.
-    * `INDEX` must be a **positive integer**.
+    * `INDEX` must be a **positive integer** and must be greater than 0.
 
 _Examples:_
 * `delevent 2` deletes the event tagged to Index 2 in your NeoBook's Event List.
@@ -518,7 +519,7 @@ Use this command to edit the specified event in your NeoBook.
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the event you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer**.
+    * `INDEX` must be a **positive integer** and must be greater than 0.
 * At least one field must be provided.
 
 | Prefix | Name of Field                 | Optional? |
