@@ -287,8 +287,8 @@ Data list contains all of your respective data labelled out in full. The layout 
 
 * All command keywords must be in lower-case and are case-sensitive.<br>
   e.g. For add supplier command:<br>
-  :check_mark_button: `add_supplier` is valid.<br>
-  :cross_mark: `ADD_SUPPLIER` and `Add_Supplier` are invalid.<br>
+  :white_check_mark: `add_supplier` is valid.<br>
+  :x: `ADD_SUPPLIER` and `Add_Supplier` are invalid.<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add_supplier n/NAME`, you fill in the `NAME` parameter with the supplier name (i.e. `add_supplier n/John Doe`).
@@ -383,7 +383,7 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
 
 :information_source: **Information**
 
-* Status available for setting are
+* Statuses available for setting are
   * `N` or `n` for `Not Delivered`
   * `I` or `i` for `In Progress`
   * `D` or `d` for `Delivered`
@@ -419,38 +419,84 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
 
 </div>
 
-### Adding a task: `add_task`
+### 2.1.3 Adding a task: `add_task`
 
 Adds a task to the list of tasks.
 
-Syntax: `add_task n/TASK_DESCRIPTION d/DEADLINE [s/STATUS]`
+Syntax: `add_task n/TASK_NAME d/DEADLINE [s/STATUS]`
 
-* Status available for setting are: `N` / `n` (Not done), `D` / `d` (Done).
-* If no status is provided, it is defaulted to `N` (Not done).
+<div markdown="block" class="alert alert-tip">
 
-Examples:
+:information_source: **Information**
 
-* `add_task n/Buy cookie cutter d/2022-12-22`
-* `add_t n/Buy a card d/2023-12-23 s/D`
+* Statuses available for setting are
+  * `N` or `n` for `Not Done`
+  * `D` or `d` for `Done`
+* If no status is provided, it is **defaulted** to `Not Done`.
 
-### Adding a menu item: `add_item`
+</div>
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command without status**
+
+* `add_task n/Buy cookie cutter d/22/12/2024`<br>
+  Adds a task with the following details:
+  * Task Name: `Buy cookie cutter`
+  * Deadline: `22/12/2024`
+  * Status: `Not Done` (Default)
+
+:clipboard: **Example 2: Shortcut command with status**
+
+* `add_t n/Buy a card d/23/12/2024 s/D`<br>
+  Adds a task with the following details:
+  * Task Name: `Buy a card`
+  * Deadline: `23/12/2024`
+  * Status: `Done`
+
+</div>
+
+### 2.1.4 Adding a menu item: `add_item`
 
 Adds a menu item to the menu.
 
 Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
 
-* When entering price and cost data, you may only
-  * input positive numbers.
-    * For example, you can input the number 5, not -5.
-  * choose to include number with a decimal point. A decimal point looks like this: `.` However, you can only key in up to 2 numbers after the decimal point.
-    * For example, the number 5.75 but not 5.752.
-* After you have add an item, note that the profit margin displayed can be positive or negative number.
-  * For example, if you see `Profit Margin: $-0.50` and  `Profit Margin: $2.00`, both are correct. However, this means that you are making a lost on your menu item.
+<div markdown="block" class="alert alert-tip">
 
-Examples:
+:information_source: **Information**
 
-* `add_item n/Chocolate cookie pr/5 c/2.50`
-* `add_i n/Harley Davidson Shirt pr/40 c/8.50`
+* When entering price and cost values, you may choose to
+  1. input **positive** integer numbers
+  2. input **positive** decimal numbers (up to 2 decimal point). For example:<br>
+     :white_check_mark: `5.1` or `5.03`<br>
+     :x: `5.034`
+  
+* The item can have a positive or negative profit margin. Specifically:
+  * Negative profit margin means you are making a `loss`
+  * Positive profit margin means you are making a `profit`
+
+</div>
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command with integer values**
+
+* `add_item n/Chocolate cake pr/5 c/2`<br>
+  Adds am order item with the following details:
+  * Item Name: `Chocolate cake`
+  * Price: `5`
+  * Cost: `2`
+
+:clipboard: **Example 2: Shortcut command with decimal values**
+
+* `add_i n/Limited Time Strawberry Cake pr/20.55 c/25.2`<br>
+  Adds an order item with the following details:
+  * Item Name: `Limited Time Strawberry Cake`
+  * Price: `20.55`
+  * Cost: `25.2`
+
+</div>
 
 ## Edit
 
