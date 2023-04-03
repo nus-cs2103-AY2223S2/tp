@@ -87,7 +87,6 @@ public class EditContactCommand extends Command {
                 createInternshipWithUpdatedContact(internshipToUpdateContact, editContactDescriptor);
 
         model.setApplication(internshipToUpdateContact, internshipWithUpdatedContact);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_CONTACT_SUCCESS, internshipWithUpdatedContact));
     }
 

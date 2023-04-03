@@ -76,7 +76,6 @@ public class AddContactCommand extends Command {
         InternshipApplication internshipWithContact = createInternshipWithContact(internshipToAddContact, toAdd);
 
         model.setApplication(internshipToAddContact, internshipWithContact);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_ADD_CONTACT_SUCCESS, internshipToAddContact + "\n" + toAdd));
     }
 

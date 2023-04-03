@@ -72,7 +72,6 @@ public class AddInterviewDateCommand extends Command {
                 internshipToAddInterviewDate, toAdd);
 
         model.setApplication(internshipToAddInterviewDate, internshipWithInterviewDate);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_ADD_INTERVIEW_DATE_SUCCESS, internshipToAddInterviewDate
                 + "\n" + toAdd));
     }

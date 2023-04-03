@@ -79,7 +79,6 @@ public class AddDocumentsCommand extends Command {
         InternshipApplication internshipWithDocuments = createInternshipWithDocuments(internshipToAddDocuments, toAdd);
 
         model.setApplication(internshipToAddDocuments, internshipWithDocuments);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_ADD_DOCUMENTS_SUCCESS, internshipToAddDocuments + "\n" + toAdd));
     }
 

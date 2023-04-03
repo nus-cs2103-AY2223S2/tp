@@ -75,7 +75,6 @@ public class DeleteContactCommand extends Command {
                 createInternshipWithContactDeleted(internshipToDeleteContact);
 
         model.setApplication(internshipToDeleteContact, internshipWithContactDeleted);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_DELETE_CONTACT_SUCCESS, internshipToDeleteContact));
     }
 

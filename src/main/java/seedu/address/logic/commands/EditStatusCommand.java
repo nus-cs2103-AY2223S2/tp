@@ -71,7 +71,6 @@ public class EditStatusCommand extends Command {
         InternshipApplication updatedApplication = createdUpdatedApplication(internshipToUpdateStatus, toUpdate);
 
         model.setApplication(internshipToUpdateStatus, updatedApplication);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_UPDATE_STATUS_SUCCESS, updatedApplication));
     }
 

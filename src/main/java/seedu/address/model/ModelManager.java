@@ -193,9 +193,7 @@ public class ModelManager implements Model {
     @Override
     public void addApplication(InternshipApplication application) {
         addressBook.addApplication(application);
-        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
-
 
     @Override
     public void addTodo(InternshipTodo todo) {
@@ -214,7 +212,6 @@ public class ModelManager implements Model {
      */
     public void addApplications(List<InternshipApplication> applications) {
         addressBook.addApplications(applications);
-        updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
     }
 
     @Override

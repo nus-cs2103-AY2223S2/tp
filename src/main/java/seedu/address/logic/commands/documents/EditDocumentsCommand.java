@@ -91,7 +91,6 @@ public class EditDocumentsCommand extends Command {
                 createInternshipWithUpdatedDocuments(internshipToEditDocuments, editDocumentsDescriptor);
 
         model.setApplication(internshipToEditDocuments, internshipWithUpdatedDocuments);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_DOCUMENTS_SUCCESS, internshipToEditDocuments));
     }
 

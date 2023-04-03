@@ -99,7 +99,6 @@ public class EditCommand extends Command {
         }
 
         model.setApplication(internshipToEdit, editedInternship);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_APPLICATIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }
 
@@ -129,10 +128,11 @@ public class EditCommand extends Command {
         InternshipStatus status = internshipToEdit.getStatus();
         InterviewDate interviewDate = internshipToEdit.getInterviewDate();
         Documents documents = internshipToEdit.getDocuments();
+        boolean isArchived = internshipToEdit.isArchived();
 
         return new InternshipApplication(updatedCompanyName, updatedJobTitle, updatedReviews,
                         updatedProgrammingLanguages, updatedQualifications, updatedLocation, updatedSalary,
-                        updatedNotes, updatedRating, updatedReflections, contact, status, false, interviewDate,
+                        updatedNotes, updatedRating, updatedReflections, contact, status, isArchived, interviewDate,
                                                                                                             documents);
     }
 

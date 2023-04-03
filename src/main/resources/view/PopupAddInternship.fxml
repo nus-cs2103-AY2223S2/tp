@@ -13,12 +13,12 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Add Internship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-    <icons>
-        <Image url="@/images/add_internship.png" />
-    </icons>
-    <scene>
-        <Scene>
+<fx:root resizable="false" title="Add Internship" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <icons>
+      <Image url="@/images/add_internship.png" />
+   </icons>
+   <scene>
+      <Scene>
          <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="555.0" prefWidth="598.0">
             <content>
                <VBox prefHeight="341.0" prefWidth="701.0" style="-fx-background-color: #FAE6FA;">
@@ -283,6 +283,6 @@
                </VBox>
             </content>
          </ScrollPane>
-        </Scene>
-    </scene>
+      </Scene>
+   </scene>
 </fx:root>
