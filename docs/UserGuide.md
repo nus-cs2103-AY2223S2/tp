@@ -4,7 +4,8 @@ title: User Guide
 ---
 <img src="./images/sprINT.png" />
 
-* Table of Contents 
+## Table of Contents
+ 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -13,80 +14,46 @@ title: User Guide
 
 ## **1. Introduction**
 
-### 1.1 What is sprINT
 Are you a student who wants to avoid the hassle of managing internship applications? Look no further than sprINT, 
 the ideal tool for streamlining this daunting process!
 
 sprINT is a **desktop application** that can help YOU track your internship applications.
-Optimized for use by typing while offering a beautiful user interface, it will be a great asset in your internship application journey.
-
-### 1.2 Purpose of this document
-This document serves as a User Guide for anyone who wants to use sprINT! If you are a new user, 
-read through the section on **[Quick start](#2-quick-start)** to learn how to set up the app quickly and the
-section on **[Basics](#3-basics)** to pick up a few simple commands. If you have already used sprINT before, use the table
-of contents to skip to the specific feature or command in **[Features](#4-features)** you want to know more about!
+Optimised for use by typing while offering a beautiful user interface, it will be a **_great_** asset in your internship 
+application journey.
 
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
-## **2. Quick start**
+## **2. About the User Guide** 
 
-Step 1: Ensure you have Java `11` or above installed in your computer.
+In this section, you will find information pertaining to the user guide (the document you are reading now!). It includes 
+details about who this guide is meant for and how to navigate this guide effectively.  
 
-Step 2: Download the latest jar file`sprINT.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.3.1).
+### **2.1 Target Audience**
+This user guide is meant for anyone who wants to use sprINT. It is designed to provide clear and concise instructions
+for beginners to kickstart their sprINT journey, as well as for existing or more advanced users who wish to explore 
+the full range of features that sprINT has to offer. Whether you are a new or seasoned sprINT user, this guide will be 
+your best companion to help you get the most out of sprINT. 
 
-Step 3: Copy the file to the folder you want to use as the _home folder_ for your sprINT application.
+### **2.2 Using the Guide**  
+If you are a new user, we recommend you to check out the **[Quick start](#2-quick-start)** section to learn how to set up 
+sprINT quickly, before reading through the section on **[Basics](#3-basics)** to pick up a few simple commands. 
 
-Step 4: Double-click on the jar file to run the application.
-If it doesn't work, open a command terminal, enter `cd` with the path to the folder you put the jar file in, 
-and type: `java -jar sprINT.jar` to run the application.<br>
+If you have already used sprINT before, feel free to use the **[Table of Contents](#table-of-contents)** to navigate to 
+the section you are interested in, or skip to a specific command in **[Features](#4-features)** you wish to learn more 
+about.
 
-An interface similar to the one shown below should appear in a few seconds. Note how the app contains some sample data already.<br>
-![Ui](images/Ui.png)
-
-<div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** The app should work for any laptop or computer regardless of their operating system (e.g., Windows, Linux, etc.)!
-</div>
-
-## **3. Basics**
-![LabelledUi](images/LabelledUi.png)
-1. Notice the **Command Box** at the bottom. This will be where you will type all your commands. Press Enter to execute them.
-2. The **Command Result Box** is right above the Command Box. It gives you feedback immediately after you press Enter to execute
-a command, informing you if you have executed it successfully, and if not, what to watch out for in the formatting.
-Suppose you have executed a command to add a new application entry with the role `ML Engineer Intern` at `Datature`.
-Then you will be able to see the box informing you that it has been successfully added, just like in the image above.
-3. Each application entry shows up in the list above in its own box. In the image above, you can see the **Application Details**
-of the application entry to `Datature` that you have just added.
-4. A pie chart at the right shows your **Application Statistics**. It will update immediately after every command you execute,
-so there's no need to worry about updating it manually. Pretty neat, right?
-5. Here are some simple commands to get you started with:
-
-* `list` : Lists all applications.
-* `add-app r/SWE Intern c/Google e/google_careers@gmail.com s/interested` : Adds an
-  application for Software Engineer Intern position @ Google that I'm interested in. Deadline of application is 1st of
-  January.
-* `delete-app 3` : Deletes the 3rd application shown in the current list.
-* `clear` : Deletes all application entries. Do this if you want to get rid of the current sample data.
-* `exit` : Exits the app.
-
-You can refer to the **[Command summary](#7-command-summary)** section for the complete list of commands.
-
-You can refer to the **[Features](#4-features)** section below for more details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
-
-## **4. Features**
-
-Before you begin reading, here are some useful notations that would help you tremendously:
+### **2.3 Understanding Notations**
+Throughout the rest of this user guide, you may encounter certain notations like the ones below. Here's how you should
+interpret them: 
 
 **Tips**
 
 Tips are useful suggestions that will help you become a seasoned sprINT user more quickly.
 
 <div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** Tips are useful information. They can give you a better experience with sprINT.
+**Tip:** Tips are can give you a better experience with sprINT.
 </div>
 
 **Notes**
@@ -108,43 +75,124 @@ Cautions are in place to warn you of potential pitfalls new users may encounter.
 <div style="page-break-after: always;"></div>
 <div markdown="block" class="alert alert-info">
 
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
+## **3. About sprINT**
+
+In this section, you will find _everything_ you need to know about the sprINT app. It's been further organised into 
+sub-sections for greater readability and navigability. 
+
+### **3.1 Quick start**
+
+Step 1: Ensure you have Java `11` or above installed in your computer.
+
+Step 2: Download the latest `sprINT.jar` file [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.3.1).
+
+Step 3: Copy the file to the folder you want to use as the [home folder](#home-folder) for your sprINT application.
+
+Step 4: Double-click on the jar file to run the application.
+If it doesn't work, open a [command terminal](#command-terminal), enter `cd` with the path to the folder you put the jar file in,
+and type: `java -jar sprINT.jar` to run the application.<br>
+
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** `cd` stands for "change directory". It is a command that allows you to navigate to another folder on your computer.
+</div>
+
+An interface similar to the one shown below should appear in a few seconds. Note how the app contains some sample data already.<br>
+![Ui](images/Ui.png)
+
+<div markdown="span" class="alert alert-primary">:bulb:
+**Tip:** The app should work for any laptop or computer regardless of the operating system (e.g., Windows, Linux, etc.)!
+</div>
+
+<div style="page-break-after: always;"></div>
+
+### **3.2 The User Interface**
+
+We understand that using an app for the first time can be a daunting experience. This is why we have an entire 
+section for you to get acquainted with sprINT's user interface.
+
+The following diagram illustrates the general layout of sprINT's app window. 
+
+![LabelledUi](images/LabelledUi.png)
+
+The table below describes the function(s) of each component. Don't worry if you can't understand or remember everything;
+sprINT is designed to have an intuitive interface that you should be able to familiarise yourself with in no time. 
+You are also welcome to revisit this section again anytime. 
+
+| No. | Component                | Description                                                                                                                                                                                                                |
+|-----| :------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Toolbar                  | Contains buttons to exit sprINT (through the File button) and view help information quickly.                                                                                                                               |
+| 2   | Application List Panel   | Displays the list of all/filtered/sorted applications, depending on the command issued.                                                                                                                                    |
+| 3   | Application Card         | Displays information about each application, including the role, company, company email, status and tags or outstanding task (if any).                                                                                     |
+| 4   | Statistics Display Panel | Displays statistics about your internship applications, including a pie chart that will update immediately after every command you execute (so there's no need to worry about updating it manually). _Pretty neat, right?_ |
+| 5   | Command Result Box       | Displays feedback immediately after executing a command, indicating if you have executed it successfully, and if not, what went wrong (e.g. incorrect formatting).                                                         |
+| 6   | Command Box              | This is where you type all your commands; press Enter to execute them.                                                                                                                                                     |
+| 7   | Storage File Path        | Displays the path of your sprINT storage file.                                                                                                                                                                             |
+
+<div style="page-break-after: always;"></div>
+
+### **3.3 About sprINT's Commands** 
+
+Before we delve into the individual features, here are some useful notes about the general format of all commands in 
+sprINT:
+
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters you need to supply.<br>
-  e.g. in `add c/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add c/John Doe's Company`.
+* **Commands in sprINT are composed minimally of a [command word](#command-word). Most, but not all, commands also 
+    consist of [prefixes](#prefix) and [parameters](#parameter).**<br>
 
-* Items in square brackets are optional.<br>
-  e.g. `c/COMPANY_NAME [t/TAG]` can be used as `c/John Doe's Company t/highsalary` or as `c/John Doe's Company` only.
+* **Words in `UPPER_CASE` are the parameters you need to supply.**<br>
+  e.g. in `add c/COMPANY_NAME`, `COMPANY_NAME` is a parameter which can be used as `add c/Google`.
 
-* Items that come with `(s)` means multiple parameters for the same prefix can be added, as long as they are separated by a space.<br>
+* **Items encapsulated within square brackets are optional.**<br>
+  e.g. `c/COMPANY_NAME [t/TAG]` can be used as `c/Google t/highsalary` or as `c/Google` only.
+
+* **Items that come with `(s)` means multiple parameters for the same prefix can be added, as long as they are separated by a space.**<br>
   e.g. `[t/TAG(s)]` can be used as `t/creditBearing t/highSalary` or as `t/creditBearing` only.
-
-* Items encapsulated within square brackets (`[]`) are optional.<br>
-  e.g. `[t/TAG]​` means that you can choose to type ` ` (i.e., nothing, no tags at all), 
-  or `t/highSalary` for example (i.e., 1 tag).
 
 <div markdown="span" class="alert alert-warning">:exclamation:
 **Caution:** Be aware of the difference between `(s)` and `[]`. The former allows for multiple arguments, the latter represents
 an optional argument.
 </div>
 
-* Command words and prefixes are case-sensitive.<br>
-  e.g. `UNDO` will not be recognised as a valid command for the undo operation. Similarly, `bY/` (instead of `by/`) 
-  will not be recognised as a valid prefix for the `add-task` command. 
+* **Command words and prefixes are case-sensitive.**<br>
+  e.g. `UNDO` will not be recognised as a valid command for the undo operation. Similarly, `bY/` (instead of `by/`)
+  will not be recognised as a valid prefix for the `add-task` command.
 
-* Parameters can be in any order.<br>
+* **Parameters can be entered in any order.**<br>
   e.g. if the command specifies `r/ROLE c/COMPANY_NAME`, `c/COMPANY_NAME r/ROLE` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* **If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.**<br>
   e.g. if you specify `r/SWE Intern r/Software Intern`, only `r/Software Intern` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* **Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.**<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-</div>
+<div style="page-break-after: always;"></div>
+
+### **3.4 Short Tutorial**
+Can't wait to try sprINT out? Here is a sample sequence of commands to get you started:
+
+1. `add-app r/Software Engineering Intern c/Google e/google_careers@gmail.com s/interested`: Adds a new
+  application for a **Software Engineering Intern** position at **Google** to the internship book, with the status set
+  to **Interested**. A new Application Card should appear at the top of the Application List Panel. 
+2. `delete-app 3`: Removes the 3rd application shown on the Application List Panel.
+3. `undo`: Reverts the previous delete operation. 
+4. `add-task 2 d/Interview by/30-05-2023`: Adds a new **Interview** task with deadline **30 May 2023** to the 2nd 
+    application shown on the Application List Panel. 
+5. `exit`: Exits sprINT. Notice that there is no need to save your data manually, as sprINT does it for you automatically. 
+
+Congratulations on completing the tutorial! For the complete list of commands, you can refer to the 
+**[Command Summary](#7-command-summary)** section. For more details about each command, you can read on for the next
+section on **[Features](#4-features)**.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
+## **4. Features**
 
 ### 4.1 Managing applications
 
@@ -420,9 +468,24 @@ If your changes to the data file makes its format invalid, the internship book w
 
 ## **6. Glossary**
 
+### **6.1 sprINT-related Terminology**
+
 #### Application
-Represents an internship application entry in the internship book. Each application contains a role,
-company name, company email and one of four possible statuses.
+Represents an internship application entry in the internship book. Each application contains minimally a role,
+company name, company email and one of four possible statuses. An application can also have 1 or more tags and 1 task
+associated with it. 
+
+#### Command word
+Refers to the first word in a valid user command. Examples include `add-app`, `undo` and `sort`. Non-examples include `edit`, `hello` and `12345`.  
+
+#### Prefix
+Refers to a short sequence of characters ending in a slash ('/') that precedes a [parameter](#parameter) value. It indicates 
+the type of information that follows. For example, `r/` is the prefix for the `role` parameter and `s/` is the prefix 
+for the `status` parameter.  
+
+#### Parameter
+Refers to a specific input value from the user that provides details to execute a command. Most parameters, other than 
+the index parameter, are identified by its [prefix](#prefix). Examples include `d/DESCRIPTION` and `by/DEADLINE`.
 
 #### Status
 Represents the current stage of the internship application. Can be one of 4 values:
@@ -435,28 +498,45 @@ Represents the current stage of the internship application. Can be one of 4 valu
 Represents additional milestones that are part of the internship application process. Examples include online
 assessment, technical interview, etc.
 
+### **6.2 Others**
+
+#### Command terminal
+A program on your computer that enables you to interact with your computer with text commands, instead of through a 
+graphical interface. On Windows, this is either the Command Prompt or Powershell. On Mac, this is the Terminal. 
+
+#### Home folder
+The folder that will contain all sprINT-related data (including the application itself). 
+
+#### Integer
+A whole number like 1, 3, 5, 8 etc. Numbers with decimals like 2.1, 4.002 are not considered integers. 
+
+#### JSON (Javascript Object Notation)
+JSON is a way of storing and sharing data in a simple and standardised format that can be easily read by computers and
+understood by humans. sprINT uses JSON to store your internship book because it is _lightweight_, which means that
+sprINT can process your data more quickly! 
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
 
 ## **7. Command Summary**
 
-| Action                      | Format, Examples                                                                                                                                                         |
-|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add** <br/> Application   | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
-| **Edit**<br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@example.com`                       |
-| **Delete**<br/> Application | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                             |
-| **Add** <br/> Task          | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task d/Technical Interview by/01-05-2023`                                                                            |
-| **Edit** <br/> Task         | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                                    |
-| **Delete** <br/> Task       | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                           |
-| **List**                    | `list`                                                                                                                                                                   |
-| **Find**                    | `find [keyword(s)]` <br/> e.g. `find Meta` <br/> `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`                     |
-| **Sort**                    | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                              |
-| **Help**                    | `help`                                                                                                                                                                   |
-| **Undo**                    | `undo`                                                                                                                                                                   |
-| **Redo**                    | `redo`                                                                                                                                                                   |
-| **Clear**                   | `clear`                                                                                                                                                                  |
-| **Exit**                    | `exit`                                                                                                                                                                   |
+| Action                      | Format, Examples                                                                                                                                                               |
+|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add** <br/> Application   | `add-app INDEX r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
+| **Edit**<br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@example.com`                             |
+| **Delete**<br/> Application | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                                   |
+| **Add** <br/> Task          | `add-task d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task d/Technical Interview by/01-05-2023`                                                                                  |
+| **Edit** <br/> Task         | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                                          |
+| **Delete** <br/> Task       | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                                 |
+| **List**                    | `list`                                                                                                                                                                         |
+| **Find**                    | `find [keyword(s)]` <br/> e.g. `find Meta` <br/> `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`                           |
+| **Sort**                    | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                                    |
+| **Help**                    | `help`                                                                                                                                                                         |
+| **Undo**                    | `undo`                                                                                                                                                                         |
+| **Redo**                    | `redo`                                                                                                                                                                         |
+| **Clear**                   | `clear`                                                                                                                                                                        |
+| **Exit**                    | `exit`                                                                                                                                                                         |
 
 <div style="page-break-after: always;"></div>
 
