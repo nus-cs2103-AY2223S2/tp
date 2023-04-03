@@ -99,11 +99,21 @@ User can leave the textbox empty and press `Enter` to enter inside MODCheck's ma
 
 ![DefaultLoginSection](images/login/DefaultLoginSection.png)
 
+<p align="center">
+<em>Default Login GUI</em>
+</p>
+<br/>
+
 ### Creating Password
 
 Creates a password to secure MODCheck from other unwanted users
 
 ![CreatePasswordSection](images/login/CreatePasswordSection.png)
+
+<p align="center">
+<em>Create Password GUI</em>
+</p>
+<br/>
 
 Format: `[Password]`
 
