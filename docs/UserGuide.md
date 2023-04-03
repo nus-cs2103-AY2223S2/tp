@@ -630,13 +630,13 @@ You can use the `view` command to retrieve and view either your own information 
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: You can use this command if:
+:information_source: **You can use this command if**:
 * you want to view a contact's full details on the [Profile Panel](#profile-panel).
 * you are unsure what index to use for a particular contact
 
 </div>
 
-The `view` command retrieves either the user's information or the contact's information and display them on the [Profile Panel](#profile-panel).
+The `view` command retrieves and display the either your profile or the contact's profile on the [Profile Panel](#profile-panel).
 
 <div markdown="block" class="alert alert-info">
 
