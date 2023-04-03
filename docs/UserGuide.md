@@ -70,7 +70,7 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
     * [**Unorganise a meet up with your contacts `unorganise`**](#unorganise-a-meet-up-unorganise)
 * [**Other Commands**](#other-commands)
   * [**Sample some contacts `sample`**](#sample-some-contacts-sample)
-  * [**Clear EduMate `clear`**]()
+  * [**Clear EduMate `clear`**](#clear-the-application-clear)
   * [**Exit the application `exit`**](#exit-the-application-exit)
 * [**FAQ**](#faq)
 * [**Summary**](#summary)
