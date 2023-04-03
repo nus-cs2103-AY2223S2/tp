@@ -98,13 +98,13 @@ public class Event implements Comparable<Event> {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("\n")
+        sb.append("\nName: ")
                 .append(getName())
-                .append("Date: ")
+                .append("\nDate: ")
                 .append(getDate())
-                .append("Start time: ")
+                .append("\nStart time: ")
                 .append(getStartTime())
-                .append("End time: ")
+                .append("\nEnd time: ")
                 .append(getEndTime());
         return sb.toString();
     }
