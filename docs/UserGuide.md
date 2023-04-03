@@ -93,9 +93,7 @@ Format: `[Password]`
 
 `[Password]`: Password of user.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
-
-User can leave the textbox empty and press `Enter` to enter inside MODCheck's main application if user did not create a password to secure MODCheck.
+> :bulb:  **Tip:** User can leave the textbox empty and press `Enter` to enter inside MODCheck's main application if user did not create a password to secure MODCheck.
 
 ![DefaultLoginSection](images/login/DefaultLoginSection.png)
 
@@ -145,9 +143,7 @@ Additional Fields:
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tips:**
 
-A person can have any number of tags or modules (including 0)
-
-The order of the fields is not important.
+> :bulb:  **Tip:** A person can have any number of tags or modules (including 0). The order of the fields is not important.
 </div>
 
 Examples:
