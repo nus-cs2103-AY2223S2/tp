@@ -74,11 +74,6 @@ public interface Model {
     boolean hasEventAtTime(Event event);
 
     /**
-     * Returns true if event's end time is earlier than start time.
-     */
-    boolean hasEndTimeEarlierThanStartTime(Event event);
-
-    /**
      * Adds the given event.
      * {@code event} must not already exist in the scheduler.
      */

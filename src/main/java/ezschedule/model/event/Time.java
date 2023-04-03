@@ -16,6 +16,9 @@ public class Time implements Comparable<Time> {
     public static final String MESSAGE_CONSTRAINTS =
             "Time should only contain numeric characters, follows the format HH:mm, and it should not be blank";
 
+    public static final String MESSAGE_END_TIME_EARLIER_THAN_START_TIME =
+            "Event's end time is earlier than start time";
+
     public static final String VALIDATION_REGEX = "^\\d{2}:\\d{2}$";
 
     public final LocalTime time;
