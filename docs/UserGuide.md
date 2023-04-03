@@ -438,26 +438,32 @@ There are **compulsory** parameters that must be specified to create the new con
 Once the person has been created, the result display will show a confirmation message and the person can be seen at the bottom of the person list panel.
 
 `add n/NAME e/EMAIL y/YEAR c/COURSE_INDEX [OPTIONAL/PARAMETER]...`<br>
->
-> **Compulsory parameters:**
-> - n/NAME (eg. n/John Doe)
-> - e/EMAIL (eg. e/johndoe123@email.com)
-> - y/YEAR (eg. y/3)
-> - c/COURSE_INDEX (eg. c/1)
->
-> **Optional parameters:**
-> - g/GITHUB (eg.g/johnny)
-> - l/LINKED (eg. l/linkedin.com/in/john-doe)
-> - m/MODULE YEAR (eg. m/AY2223S1 CS2103T, m/AY2122S2 CS2101)
-> - s/SKILL (eg. s/C++, s/Rust)
->
-> 💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
->
-> **Examples:**
-> - `add` n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123
->   ![Add Example](images/UiAddBetsy.png)
-> - `add` n/John Doe e/johnd@example.com y/2 c/3
-    ![Add Example](images/UiAddContact.jpg)
+
+**Compulsory parameters:**
+- n/NAME (eg. n/John Doe)
+  - names are case sensitive and allows duplicates
+- e/EMAIL (eg. e/johndoe123@email.com)
+  - emails are case insensitive and does not allow duplicates
+- y/YEAR (eg. y/3)
+- c/COURSE_INDEX (eg. c/1)
+
+**Optional parameters:**
+- g/GITHUB (eg.g/johnny)
+  - github profiles are case sensitive and allows duplicates
+- l/LINKEDIN (eg. l/linkedin.com/in/john-doe)
+  - linkedin profiles are case sensitive and allows duplicates
+- m/MODULE YEAR (eg. m/AY2223S1 CS2103T, m/AY2122S2 CS2101)
+  - modules are case insensitive and allows duplicate module codes but does not allow duplicate module year
+- s/SKILL (eg. s/C++, s/Rust)
+  - skills are case sensitive and does not allow duplicates
+
+💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
+
+**Examples:**
+- `add` n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123
+  ![Add Example](images/UiAddBetsy.png)
+- `add` n/John Doe e/johnd@example.com y/2 c/3
+   ![Add Example](images/UiAddContact.jpg)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
