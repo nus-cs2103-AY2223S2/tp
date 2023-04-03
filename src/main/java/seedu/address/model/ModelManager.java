@@ -36,7 +36,7 @@ public class ModelManager implements Model {
                 ? t2.hasPriority()
                     ? t1.getPriority().compare(t2.getPriority())
                     : -1 /* if t2 has no priority, order behind t1*/
-                : -1; /* if t1 has no priority, order behind t2 regardless*/
+                : 1; /* if t1 has no priority, order behind t2 regardless*/
 
     };
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -63,8 +63,8 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredFish = new FilteredList<>(this.addressBook.getFishList());
-        sortedFish = new SortedList<>(filteredFish);
+        sortedFish = new SortedList<>(this.addressBook.getFishList());
+        filteredFish = new FilteredList<>(sortedFish);
         this.taskList = new TaskList(taskList);
         SortedList<Task> sortedTasks = new SortedList<>(this.taskList.getTaskList());
         sortedTasks.setComparator(PRIORITY_COMPARATOR);
