@@ -45,4 +45,14 @@ public class AppUtil {
             throw new IllegalArgumentException(errorMessage);
         }
     }
+
+    /**
+     * Checks that the argument is not empty.
+     *
+     * @param arg Argument to check.
+     * @return True if the argument is not empty and false otherwise.
+     */
+    public static boolean argNotEmpty(String arg) {
+        return arg.length() > 0;
+    }
 }
