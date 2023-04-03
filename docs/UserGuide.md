@@ -60,6 +60,16 @@ _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming ev
 | Help   | `help`                                                            |
 | Exit   | `exit`                                                            |
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Date Format:** Dates should follow a `YYYY-MM-DD` format
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Time Format:**  
+All time-based parameter in the commands should be in 24-hour `HH:mm` format,
+ranging from `00:00` to `23:59`. Leading zero are required. 
+</div>
+
 [[Back to top](#index)]
 
 
@@ -71,9 +81,9 @@ Format: `add n/<event> d/<date> s/<start time> e/<end time>`
 
 Parameters:  
 `n/`: Name or description of event  
-`d/`: Date of the event in `YYYY-MM-DD` format  
-`s/`: Start time of the event in 24-hour `HH:mm` format  
-`e/`: End time of the event in 24-hour `HH:mm` format
+`d/`: Date of the event  
+`s/`: Start time of the event  
+`e/`: End time of the event
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
@@ -94,7 +104,7 @@ Recurs an event from the Scheduler until an end date.
 Format: `recur <index> d/<end date> every/<RECUR FACTOR>`
 
 Parameters:  
-`d/`: Date of the event in `YYYY-MM-DD` format  
+`d/`: Date of the event
 `every/`: Recur factor to recur the event, given by `DAY/WEEK/MONTH/YEAR`
 
 <div markdown="span" class="alert alert-info">
@@ -117,9 +127,9 @@ Format: `edit <index> n/<event> d/<date> s/<start time> e/<end time>`
 
 Parameters:  
 `n/`: Name or description of event  
-`d/`: Date of the event in `YYYY-MM-DD` format  
-`s/`: Start time of the event in 24-hour `HH:mm` format  
-`e/`: End time of the event in 24-hour `HH:mm` format
+`d/`: Date of the event  
+`s/`: Start time of the event  
+`e/`: End time of the event
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** At least one field must be provided.
@@ -179,7 +189,7 @@ Format:`find n/<name> d/<date>`
 
 Parameters:  
 `n/`: Name or description of event  
-`d/`: Date of the event in `YYYY-MM-DD` format
+`d/`: Date of the event
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** At least one field must be provided.
