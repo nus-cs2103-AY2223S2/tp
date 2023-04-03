@@ -54,6 +54,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Tutee: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This tutee already exists in the address book.";
+    public static final String MESSAGE_END_TIME_CONSTRAINT = "Please also include start time when editing end time with prefix st/ ." +
+            "The start time can remain unchanged.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
