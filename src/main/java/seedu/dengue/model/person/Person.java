@@ -89,7 +89,8 @@ public class Person {
         } else if (otherPerson == null) {
             return false;
         } else {
-            boolean hasSameName = otherPerson.getName().equals(getName());
+            boolean hasSameName = otherPerson.getName().fullName.toLowerCase().
+                    equals(getName().fullName.toLowerCase());
             boolean hasSameAge = otherPerson.getAge().equals(getAge());
             boolean hasSamePostal = otherPerson.getPostal().equals(getPostal());
             isSame = hasSameAge && hasSameName && hasSamePostal;
