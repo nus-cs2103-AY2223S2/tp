@@ -34,7 +34,7 @@ import seedu.recipe.storage.UserPrefsStorage;
  * Acts as the entry point to all UI tests
  * This unit tests the GUI for GUI interactions.
  */
-public abstract class UiTest extends ApplicationTest {
+public class UiTest extends ApplicationTest {
     private static final Logic logic;
 
     static {
