@@ -13,7 +13,7 @@ title: User Guide
       2. [Edit Role: `edit`](#editing-a-role-edit)
       3. [Delete Role: `delete`](#deleting-a-role-delete)
    3. [Viewing Role Info](#viewing-role-info)
-      1. [Filtering roles](#filtering-roles)
+      1. [Finding roles](#finding-roles)
          1. [Find roles by name `name`](#find-roles-by-name-name)
          2. [Find roles by company `company`](#find-roles-by-company-company)
          3. [Find roles by tag `tag`](#find-roles-by-tag-tag)
@@ -39,7 +39,7 @@ title: User Guide
 
 ![QuickStart](images/UICommandImages/QuickStart.png)
 
-## What is a Role?
+# What is a Role?
 
 In TechTrack, users can manage their favourite roles through various commands. 
 Here is what TechTrack can store per role:
@@ -137,7 +137,7 @@ Example: `delete 1`
 The commands in this segment are focused on viewing formats and details of the preexisting roles.
 These commands are:
 
-* [Filtering roles](#filtering-roles)
+* [Finding roles](#finding-roles)
   * [Find roles by name](#find-roles-by-name-name)
   * [Find roles by company](#find-roles-by-company-company)
   * [Find roles by tag](#find-roles-by-tag-tag)
@@ -146,7 +146,7 @@ These commands are:
   * [Sorting a role by salary](#sorting-by-salary-salary)
   * [Viewing a role](#viewing-a-role-view)
 
-## Filtering roles
+## Finding roles
 
 ### Find roles by Name: `name`
 Searches for roles with the provided names. If multiple keywords inputted, there may be multiple results that contains these key words.
@@ -234,7 +234,7 @@ Exits and closes TechTrack.
 ## Editing raw data
 You can directly edit TechTrack's data file after running and exiting the app. 
 
-**Important Note:** if the data file is in an invalid format, TechTrack will discard that data file and start with an empty list of roles.
+❗ **Caution:** If your changes to the data file makes its format invalid, TechTrack will discard that data file and start with an empty list of roles.
 
 ## FAQ
 Q: How do I transfer my data to another Computer?
@@ -242,7 +242,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Action   | Format                                                             | Example                                                                                                                                                                                                   |
+| Command  | Format                                                             | Example                                                                                                                                                                                                   |
 |----------|--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | add      | add {Prefix}/{Parameter}…​ (all parameters are required)           | `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year` |
 | edit     | edit {index} {Prefix}/{Parameter}…​ (only 1 parameter is required) | `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed $/4000 d/2023-10-20 x/Javascript - 1 Year`                                                     |
