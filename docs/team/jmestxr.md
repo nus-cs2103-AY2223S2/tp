@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 * **Enhancements implemented**:
   * **New feature**: GUI Implementation
     * What it does: MODTrek GUI provides a user-centric interface for users to add and track their modules using keyboard commands. The GUI consists of the CLI Section (right panel of app) that accepts user input and displays the visual output of the execution of commands in the Results Section (left panel of app).
-    * Highlights: Implemented the GUI by creating controllers (Java classes) for important UI components (e.g. CliSection, ResultsSection, ModuleCard etc) for MODTrek and methods for dynamic rendering of data on the GUI. Constructed the MODTrek UI components from primary components provided by JavaFX library using FXML and styled them with CSS. Footer buttons implemented in the Results Section to toggle between the different subsections (Degree Progress, Module List, Module Search) and show the current active subsection.
+    * Highlights: Implemented the GUI by creating controllers (Java classes) for MODTrek UI components (e.g. CliSection, ResultsSection, ModuleCard etc) for MODTrek and methods for dynamic rendering of data. Constructed MODTrek UI components from primary components provided by JavaFX library using FXML and styled them with CSS. Footer buttons implemented in the Results Section to toggle between the different subsections (Degree Progress, Module List, Module Search) and show the current active subsection.
 
   * **New feature:** Degree Progress Section
     * What it does: Displays a summary of the degree progression which includes the total MCs completed, current CAP and a detailed breakdown of the completion status of each requirement.
@@ -27,12 +27,13 @@ Given below are my contributions to the project.
     * Justification: A must-have in a module tracker. The app generates statistics concerning the user's current degree progress based on the modules added in the module list.
     * Highlights: Modules are displayed in groups based on the current active sorting criteria (year, code, credits, grade or tag). Each module is displayed as a card showing all the attributes of the module (code, year-semester, credits, grade, tags). Dynamic display of completed/incomplete modules. Implemented dropdown menu to toggle between the different sorting criteria and show the current active sorting criteria.
 
-  * **New feature:** Module Search Section What it does: Displays modules satisfying a certain set of filters provided by the user in the `find` command.
+  * **New feature:** Module Search Section 
+    * What it does: Displays modules satisfying a certain set of filters provided by the user in the `find` command.
     * Justification: This feature enables users to locate specific modules without having to go through the entire module list.
     * Highlights: Displays a set of filters that is currently applied to the list of modules for ease of reference, following by the set of filtered modules displayed as cards.
     
   * **Additional work (out of scope of CS2103T):** GUI Mockups, Logo Design
-    * Highlights: Enhances the UI/UX experience, aesthetics and credibility of the app. Mockups provide a blueprint for JavaFX implementation of the GUI.
+    * Highlights: Enhances the UI/UX experience, aesthetics and credibility of the app. Mockups provide a blueprint for FXML/CSS implementation of the GUI.
     
 * **Documentation**:
   * User Guide:
