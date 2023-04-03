@@ -53,6 +53,7 @@ public class AddMcInfo extends UiPart<Stage> {
      */
     @FXML
     public void closeAddAppointmentWindow() {
+        counter = 0;
         medicalCondition.clear();
         doctorName.clear();
         days.clear();

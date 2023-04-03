@@ -13,7 +13,7 @@ import seedu.address.model.person.Appointment;
  */
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
 
-    public static final String ENDTIME_BEFORE_STATRTIME = "endTime can not be before startTime";
+    public static final String ENDTIME_BEFORE_STATRTIME = "endTime should be after startTime";
     public static final String DIFFERENT_START_AND_END_DATE = "startTime and endTime should be at the same date";
 
     public static final String STARTTIME_BEFORE_NOW = "startTime should not be before current time";
@@ -44,7 +44,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         if (!startTime.format(formatter).equals(endTime.format(formatter))) {
             throw new ParseException(DIFFERENT_START_AND_END_DATE);
         }
-        if (endTime.isBefore(startTime)) {
+        if (!endTime.isAfter(startTime)) {
             throw new ParseException(ENDTIME_BEFORE_STATRTIME);
         }
         Appointment newAppointment = new Appointment(startTime, endTime);
