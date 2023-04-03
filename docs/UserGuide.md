@@ -318,12 +318,12 @@ Data list contains all of your respective data labelled out in full. The layout 
 :bulb: **Tip**
 
 * General format of commands:<br>
-  <div style="background-color:silver">
-  <span style="color:darkblue">&lt; command &gt;</span>
+  <div style="background-color:silver; font-weight:bold">
+  <span style="color:darkblue">&lt;command&gt;</span>
   <span> </span>
-  <span style="color:indigo">&lt; index &gt;</span>
+  <span style="color:indigo">&lt;index&gt;</span>
   <span> </span>
-  <span style="color:brown">&lt; prefix/paramater &gt; &lt; prefix/paramater &gt; ...</span>
+  <span style="color:brown">&lt;prefix/paramater&gt; &lt;prefix/paramater&gt; ...</span>
   </div>
   
   * Index depends on the command.
