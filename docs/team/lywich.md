@@ -15,21 +15,21 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Refactored original AB3 to fit our project needs.
-      * Removed `address`, `email`, `phone`.
-      * Removed images from AB3 that is not reused.
-      * Refactored testcases to be valid according to our project needs.
-      * Created `Date` class.
-        * `Date` is a field for `Deadline` and `Event` objects.
-        * `Date` abstracts the "date" function away from `Task` to encourage decoupling for maintainability.
-      * Created `Description` class.
+      * Removed `address`, `email`, `phone`. [#38](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/38)
+      * Refactored testcases to be valid according to our project needs. [#38](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/38)
+      * Created `Description` class. [#38](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/38)
         * `Description` is a field for `Task` objects.
         * `Description` abstracts the "description" of a task away from `Task` to encourage decoupling for maintainability.
+      * Created `Date` class. [#50](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/50)
+          * `Date` is a field for `Deadline` and `Event` objects.
+          * `Date` abstracts the "date" function away from `Task` to encourage decoupling for maintainability.
+      * Removed images from AB3 that is not reused. [#149](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/149)
 
 * **Enhancements to existing features**:
-    * `sort` command enhancement.
+    * `sort` command enhancement. [#61](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/61)
       * `sort` is meant to organise the task list for the users to have a clearer image of the tasks at hand. 
       * This is such that a user can see all `Event`, `Deadline`, `SimpleTask` objects adjacent to each other rather than scattered according to input sequence.
-    * Color code UI enhancement
+    * Color code UI enhancement. [#74](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/74)
       * AB3 has all its tags of the same color background, which impacts the users ability to sieve out `Task` with the same tags.
       * From a 20 predefined colors, a color is assigned to a tag based on the tag's name.
         * This ensures tags with the same name will have the same color.
@@ -41,26 +41,25 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added table of contents and indexing.
-        * Write-up for `sort` command.
-        * Write-up for color codes.
-        * Add new image for `help` window.
-        * Fixed redirection links for sections.
+        * Added table of contents and indexing. [#116](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/116)
+        * Write-up for `sort` command. [#64](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/64)
+        * Write-up for color codes. [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
+        * Add new image for `help` window. [#149](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/149)
       
     * Developer Guide:
-        * Added table of contents and indexing.
-        * Write-up for `sort` command.
-        * Write-up for color codes.
-        * Write-up for `clear` command (including sequence and activity diagram). 
-        * Write-up for `list` command (including sequence and activity diagram).
-        * Write-up for `help` command (including sequence and activity diagram).
-        * Fixed redirection links for sections.
-        * Edited existing diagrams to refer to our project(`Task`) rather than AB3(`Address`).
+        * Added table of contents and indexing. [#94](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/94)
+        * Write-up for `sort` command. [#94](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/94)
+        * Write-up for color codes. [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
+        * Write-up for `clear` command (including sequence and activity diagram). [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
+        * Write-up for `list` command (including sequence and activity diagram). [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
+        * Write-up for `help` command (including sequence and activity diagram). [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
+        * Edited existing diagrams to refer to our project(`Task`) rather than AB3(`Address`). [#149](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/149)
+        * MSS for `edit` command. [#140](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/140/files)
 
 * **Community**:
     * Released v1.3.trial jar.
     * Released v1.3 jar.
-    * Enabled assertions in team repo.
+    * Enabled assertions in team repo. [#114](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/114/files)
     * Reviewed 20/71 Pull Requests.
     * Gave suggestion comments on reviews as needed. 
 
