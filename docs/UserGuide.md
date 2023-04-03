@@ -592,22 +592,22 @@ What you should see:
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Example 1 : All fields are present**<br>
-* `add n/Wen Li p/89229358 s/Boon Lay e/wenli@gmail.com t/@wenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
-    * Name: `Wen Li`
+* `add n/Zen Li p/89229358 s/Boon Lay e/zenli@gmail.com t/@zenli g/Groupmate m/CS2101 m/CS2107`: Adds a contact with the following details:
+    * Name: `Zen Li`
     * Phone number: `89229358`
     * Station: `Boon Lay`
-    * Email: `wenli@gmail.com`
-    * Telegram handle: `@wenli`
+    * Email: `zenli@gmail.com`
+    * Telegram handle: `@zenli`
     * Groups: `Groupmate`
     * Modules: `CS2101`, `CS2107`
   
 :bulb: **Example 2 : Some fields are present**<br>
-* `add n/Wen Qing`: Adds a contact with the following details. Note the default values for each attribute:
-    * Name: `Wen Qing`
+* `add n/Zen Qing`: Adds a contact with the following details. Note the default values for each attribute:
+    * Name: `Zen Qing`
     * Phone number: `00000000`
     * Station: `Kent Ridge`
-    * Email: `wenqing@gmail.com`
-    * Telegram handle: `@wenqing00000`
+    * Email: `zenqing@gmail.com`
+    * Telegram handle: `@zenqing00000`
     * Groups: Empty
     * Modules: Empty
 
@@ -620,7 +620,7 @@ As you may have already see above, when adding a contact with some fields presen
 missing information. <br>
 
 <br>
-Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g Wen Qing results in `@wenqing0000`).
+Notice that for `Telegram handle`, there are 5 '0's appended at the back of the name (E.g Zen Qing results in `@zenqing0000`).
 This is done to conform to Telegram's username restrictions of being at least 5 characters long for short names like Bob, Sam etc.
 
 </div>
@@ -708,8 +708,8 @@ What you should see:<br>
 
 :bulb: **Examples**<br>
 
-* `edit 3 n/Wen Qing`: Changes the name of the third contact to `Wen Qing`.
-* `edit 6 p/89229358 t/@wenqing`: Changes the phone number and telegram handle of the sixth contact.
+* `edit 3 n/Zen Qing`: Changes the name of the third contact to `Zen Qing`.
+* `edit 6 p/89229358 t/@zenqing`: Changes the phone number and telegram handle of the sixth contact.
 * `edit s/Bedok`: Updates your address to `Bedok`.
 </div>
 
