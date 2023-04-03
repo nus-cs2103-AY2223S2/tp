@@ -686,7 +686,7 @@ With EduMate's `edit` command, you can easily update the profile of a contact. Y
 
 </div>
 
-##### Scenario:
+##### Scenario (Continuation from previous scenario):
 
 Suppose now after talking to Weixiang, you realised that he has just moved to Little India. You then decide to edit the `Station` attribute of his contact from 
 `Boon Lay` to `Little India`. You also remembered that from the `view` command, Weixiang's index in `EduMate` is 101.
@@ -723,7 +723,7 @@ If you no longer need a contact in EduMate, you can remove them using the `delet
 
 </div>
 
-##### Scenario:
+##### Scenario :
 
 Suppose you do not need Astrid's contact anymore and you want to delete her contact from `EduMate`.
 From the `view n/Astrid Holland` command, her `EduMate` index is 8.
@@ -818,7 +818,7 @@ With EduMate's `untag` command, you can remove groups or modules from your exist
 
 </div>
 
-##### Scenario:
+##### Scenario (Continuation from previous scenario):
 
 You are now informed by Amirul that MA2101 is too hard and he has dropped the module. You then proceed to 
 `untag` that module from Amirul's contact.
@@ -980,7 +980,7 @@ We will now teach you how to effectively use the `sort` command.
 
 `sort` is one of the most complicated commands to get your head around. Perhaps a scenario can help you understand better!
 
-##### Scenario:
+##### Scenario (Continuation from previous scenario):
 
 Suppose you want to arrange contacts such from those that take the most number of common modules as you to the least. 
 
@@ -1079,7 +1079,7 @@ The `meet` command in EduMate is used to suggest suitable meet-up locations and 
 
 </div>
 
-##### Scenario:
+##### Scenario (Continuation from previous scenario):
 
 After sorting your contacts, you decided to ask Tae Seong, Alex, Amirul and Kevin from your CCA to study for CS2100. 
 
@@ -1138,7 +1138,7 @@ The American spellings, `organize` and `unorganize` are not accepted by `EduMate
 
 </div>
 
-##### Scenario:
+##### Scenario (Continuation from previous scenario):
 
 You have decided that Queenstown Public Library is the most conducive library and have confirmed with your friends 
 the meeting time recommended by `EduMate`. 
@@ -1181,7 +1181,7 @@ If you wish to remove a scheduled meetup from your [Scheduled Meet Up Panel](#sc
 </div>
 
 
-##### Scenario:
+##### Scenario (Continuation from previous scenario):
 
 Suppose Tae Seong cannot attend the meet up due to contracting Covid-19, and you have to cancel the scheduled meet up.
 
