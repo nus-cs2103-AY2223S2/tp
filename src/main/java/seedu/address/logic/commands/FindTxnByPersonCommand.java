@@ -15,7 +15,10 @@ public class FindTxnByPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "findtxn";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ":FindTxn";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Returns the contact that matches and all txns related to this contact "
+            + "the specified keywords (case-insensitive) and displays the txn list with index numbers.\n"
+            + "Parameters: Exact match [n/NAME]\n"
+            + "Example: " + COMMAND_WORD + " Bernice Yu";
 
     private final TxnContainsPersonPredicate txnPredicate;
     private final OnlyOnePersonPredicate personPredicate;

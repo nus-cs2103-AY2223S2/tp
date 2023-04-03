@@ -14,7 +14,10 @@ public class FindAllCommand extends Command {
 
     public static final String COMMAND_WORD = "findall";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons based on lead status ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Returns all contacts that matches any attribute from the "
+            + "the specified keywords (case-insensitive) and displays as a list of contacts.\n"
+            + "Parameters: Any attribute like [n/NAME] except [s/STATUS] & [t/TAG] \n"
+            + "Example: " + COMMAND_WORD + " Blk 90, Company A, Bernice";
 
     private final FindContainsAnythingPredicate predicate;
 

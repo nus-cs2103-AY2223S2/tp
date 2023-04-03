@@ -214,10 +214,10 @@ Examples:
 
 ### Finding a contact tag: `findall`
 
-Search for a contact based on all attributes of a Person recorded in the addressbook.
+Search for a contact based on all attributes of a Person recorded in the database.
 
 Format: `findall <any keyword that matches any attribute>`
-*findall does not for parse through tags and leadstatus attributes as they have their own seperate commands for searching
+>findall does not for parse through tags and lead status attributes as they have their own seperate commands for searching
 
 The user can search for any attribute and if it matches with any Person, that person will be listed.
 
