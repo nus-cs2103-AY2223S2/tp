@@ -1,6 +1,7 @@
 package seedu.sprint.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_EMAIL;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DEADLINE;

@@ -1,30 +1,29 @@
 package seedu.sprint.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
-import static seedu.sprint.testutil.TypicalApplications.APPLE;
-import static seedu.sprint.testutil.TypicalApplications.AMAZON;
-import static seedu.sprint.testutil.TypicalApplications.GOOGLE;
-import static seedu.sprint.testutil.TypicalApplications.GOVTECH;
-import static seedu.sprint.testutil.TypicalApplications.META;
-import static seedu.sprint.testutil.TypicalApplications.MICROSOFT;
+//import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
+//import static seedu.sprint.testutil.TypicalApplications.APPLE;
+//import static seedu.sprint.testutil.TypicalApplications.AMAZON;
+//import static seedu.sprint.testutil.TypicalApplications.GOOGLE;
+//import static seedu.sprint.testutil.TypicalApplications.GOVTECH;
+//import static seedu.sprint.testutil.TypicalApplications.META;
+//import static seedu.sprint.testutil.TypicalApplications.MICROSOFT;
 import static seedu.sprint.testutil.TypicalApplications.getTypicalInternshipBook;
-
-import java.util.Arrays;
+//import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.sprint.logic.CommandHistory;
+import seedu.sprint.logic.parser.SortCommandParser.SortingOrder;
+import seedu.sprint.logic.parser.SortCommandParser.SortingSequence;
 import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
-import seedu.sprint.model.application.AlphabeticalComparator;
+//import seedu.sprint.model.application.AlphabeticalComparator;
 //import seedu.sprint.model.application.ApplicationHasTaskPredicate;
 //import seedu.sprint.model.application.DeadlineComparator;
-import seedu.sprint.logic.parser.SortCommandParser.SortingOrder;
-import seedu.sprint.logic.parser.SortCommandParser.SortingSequence;
 
 public class SortCommandTest {
     private Model model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
