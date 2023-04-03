@@ -6,7 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PowerConnectParser" as PowerConnectParser LOGIC_COLOR
 participant ":ParentCommandParser" as ParentCommandParser LOGIC_COLOR
 participant "<<class>>\n ParserUtil" as ParserUtil LOGIC_COLOR
-participant ":ParentEditCommand" as ParentEditCommand LOGIC_COLOR
+participant ":ParentAddCommand" as ParentAddCommand LOGIC_COLOR
 participant "newParent:Parent" as Parent LOGIC_COLOR
 end box
 
@@ -15,10 +15,10 @@ participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
 
-[-> LogicManager : execute("parent edit n/Tan Ah Niu pnP/91234567 npnP/65656565")
+[-> LogicManager : execute("parent add n/Tan Ah Niu pnP/91234567")
 activate LogicManager
 
-LogicManager -> PowerConnectParser : parseCommand("parent edit n/Tan Ah Niu pnP/91234567 npnP/65656565")
+LogicManager -> PowerConnectParser : parseCommand("parent add n/Tan Ah Niu pnP/91234567")
 activate PowerConnectParser
 create ParentCommandParser
 
@@ -28,23 +28,23 @@ activate ParentCommandParser
 ParentCommandParser --> PowerConnectParser:
 deactivate ParentCommandParser
 
-PowerConnectParser -> ParentCommandParser: parse("edit n/Tan Ah Niu pnP/91234567 npnP/65656565")
+PowerConnectParser -> ParentCommandParser: parse("add n/Tan Ah Niu pnP/91234567")
 activate ParentCommandParser
 
-ParentCommandParser -> ParentCommandParser: editCommand(ArgumentMultimap)
+ParentCommandParser -> ParentCommandParser: addCommand(ArgumentMultimap)
 activate ParentCommandParser
-create ParentEditCommand
+create ParentAddCommand
 
 ref over ParentCommandParser, ParserUtil
     get parent particulars
 
 end ref
 
-ParentCommandParser -> ParentEditCommand: ParentEditCommand(...)
-activate ParentEditCommand
+ParentCommandParser -> ParentAddCommand: ParentAddCommand(...)
+activate ParentAddCommand
 
-ParentEditCommand --> ParentCommandParser:
-deactivate ParentEditCommand
+ParentAddCommand --> ParentCommandParser:
+deactivate ParentAddCommand
 
 ParentCommandParser -> ParentCommandParser
 deactivate ParentCommandParser
@@ -55,32 +55,23 @@ deactivate ParentCommandParser
 PowerConnectParser --> LogicManager
 deactivate PowerConnectParser
 
-LogicManager -> ParentEditCommand: execute(Model)
-activate ParentEditCommand
+LogicManager -> ParentAddCommand: execute(Model)
+activate ParentAddCommand
 
-ParentEditCommand -> ModelManager: getFilteredParentList()
+ParentAddCommand -> ModelManager: hasParent(Parent)
 activate ModelManager
 
-ModelManager --> ParentEditCommand
+ModelManager --> ParentAddCommand
 deactivate ModelManager
-create Parent
 
-ParentEditCommand -> Parent
-activate Parent
-
-Parent --> ParentEditCommand
-deactivate Parent
-
-ParentEditCommand -> ParentEditCommand: editParent(Parent, newParent)
-
-ParentEditCommand -> ModelManager: setParent(Parent, newParent)
+ParentAddCommand -> ModelManager: addParent(Parent)
 activate ModelManager
 
-ModelManager --> ParentEditCommand
+ModelManager --> ParentAddCommand
 deactivate ModelManager
 
-ParentEditCommand --> LogicManager:
-deactivate ParentEditCommand
+ParentAddCommand --> LogicManager
+deactivate ParentAddCommand
 
 [<--LogicManager
 deactivate LogicManager

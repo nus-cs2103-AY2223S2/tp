@@ -1,42 +1,78 @@
 ## PowerConnect Developer Guide
 
-PowerConnect is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PowerConnect can get your contact management tasks done faster than traditional GUI apps.
+PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. While it has limited features at this stage, plans for future PowerConnect releases to update features and usage capabilites have been made with detailed timeline.
+The aim of this product is to eventually be a useful tool that is used in conjunction with Learning Managment System (LMS) tools currently in the market to aid teachers in managing students. <br>
+
+PowerConnect is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). PowerConnect helps teachers in tracking and updating students' particulars.
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "table-of-contents"/>
 
 ## **Table of Contents**
 1. [Acknowledgements](#acknowledgements)
 2. [Setting Up, Getting Started](#setting-up-getting-started)
 3. [Design](#design)
-4. [Implementation](#implementation)<br>
+   1. [Architecture](#architecture)
+   2. [Ui Component](#ui-component)
+   3. [Logic Component](#logic-component)
+   4. [Model Component](#model-component)
+   5. [Storage Component](#storage-component)
+   6. [Common Classes](#common-classes)
+4. [Implementation](#implementation)
    1. [Student Delete Feature](#delete-student-feature)
-   2. [Attendance Feature](#attendance-feature)<br>
-   3. [Grade Feature](#grade-feature)<br>
-   4. [Parent/NOK Edit Feature](#parentnok-edit-feature)<br>
+   2. [Attendance Feature](#attendance-feature)
+   3. [Grade Feature](#grade-feature)
+   4. [Parent/NOK Add Feature](#parentnok-add-feature)
+   4. [Parent/NOK Edit Feature](#parentnok-edit-feature)
+   5. [Binding Parent/NOK and Student](#binding-student-and-parentnok-feature)
 5. [Proposed Features](#proposed-features)
+   1. [Undo/redo feature](#proposed-undoredo-feature)
+   2. [Data archiving](#proposed-data-archiving)
 6. [Documentation, Logging, Testing, Configuration, Dev-ops](#documentation-logging-testing-configuration-dev-ops)
-7. [Appendix](#appendix-requirements)<br>
-   1. [Appendix-Requirements](#appendix-requirements)<br>
-      1. [Product Scope](#product-scope)<br>
-      2. [User Stories](#user-stories)<br>
-      3. [Use Cases](#use-cases)<br>
-      4. [Non-Functional Requirements](#non-functional-requirements)<br>
-      5. [Glossary](#glossary)<br>
+7. [Appendix](#appendix-requirements)
+   1. [Appendix-Requirements](#appendix-requirements)
+      1. [Product Scope](#product-scope)
+      2. [User Stories](#user-stories)
+      3. [Use Cases](#use-cases)
+         1. [UC01 - Adding a new student](#use-case-uc01---adding-a-new-student-to-an-existing-class)
+         2. [UC02 - Adding a grade for a student](#use-case-uc02---adding-grade-for-a-student)
+         3. [UC03 - Adding a comment for a student](#use-case-uc03---adding-comment-for-a-student)
+         4. [UC04 - Listing all students in a class](#use-case-uc04---listing-all-students-in-the-selected-class)
+         5. [UC05 - Finding a student in a class](#use-case-uc05---finding-a-student-in-a-class)
+         6. [UC06 - Deleting a student from a class](#use-case-uc06---deleting-student-from-class)
+         7. [UC07 - Adding a new parent/NOK](#use-case-uc07---adding-a-new-parentnok-to-the-system)
+         8. [UC08 - Editing a parent/NOK](#use-case-uc08---editing-an-existing-parentnok-in-the-system)
+         9. [UC09 - Deleting a parent/NOK](#use-case-uc09---deleting-a-parentnok-from-the-system)
+      4. [Non-Functional Requirements](#non-functional-requirements)
+      5. [Glossary](#glossary)
    2. [Appendix-Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
+      1. [Launch and Shutdown](#launch-and-shutdown)
+      2. [Saving data](#saving-data)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "acknowledgements"/>
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "setting-up-getting-started"/>
 
 ## **Setting Up, Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<a name = "design"/>
 
 ## **Design**
 
@@ -44,6 +80,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "architecture"/>
 
 ### Architecture
 
@@ -68,7 +107,6 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -86,6 +124,13 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "ui-component"/>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -102,6 +147,13 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "logic-component"/>
 
 ### Logic component
 
@@ -132,6 +184,13 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "model-component"/>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -151,6 +210,12 @@ The `Model` component,
 
 </div>
 
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "storage-component"/>
 
 ### Storage component
 
@@ -163,17 +228,28 @@ The `Storage` component,
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "common-classes"/>
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<a name = "implementation"/>
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "delete-student-feature"/>
 
 ## Delete student feature
 
@@ -201,6 +277,8 @@ Full implementation sequence diagram
 
 ![Sequence Diagram](images/DeleteSequentialDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Design considerations
 We want to keep it simple for the user to delete students, using students' class and index number is sufficient to
 identify the student that needs to be deleted.
@@ -223,9 +301,12 @@ identify the student that needs to be deleted.
     * Pros: More flexibility for users
     * Cons: Hard to implement, need to check the different prefixes to determine which field to delete
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "attendance-feature"/>
 
 ## Attendance feature
 
@@ -249,6 +330,8 @@ Full implementation sequence diagram
 
 ![Sequence Diagram](images/AttendanceSequenceDiagram.jpg)
 
+<div style="page-break-after: always;"></div>
+
 ### Design considerations
 We want to make it easy for the user to set current date as present. Thus we allowed the user to set attendance as T which will automatically register as present today
 
@@ -268,9 +351,12 @@ We want to make it easy for the user to set current date as present. Thus we all
     * Cons: Hard to add more features if more features are added eg. mark as MC, Late..
 <br><br>
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "grade-feature"/>
 
 ## Grade feature
 
@@ -294,6 +380,8 @@ Full implementation sequence diagram
 
 ![Sequence Diagram](images/GradeSequentialDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Design considerations
 We want to make it easy for the user to set tests without inputting all the details at one go, with the test/homework name being the only field compulsory.
 
@@ -313,9 +401,12 @@ We want to make it easy for the user to set tests without inputting all the deta
     * Cons: Hard to add more features if more features are added
 <br><br>
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "parentnok-add-feature"/>
 
 ## Parent/NOK Add Feature
 
@@ -335,11 +426,16 @@ Scenario 2:
 3. PowerConnect retrieves the information required for `Parent Add` command from `Student Add` command.
 4. PowerConnect automatically saves all changes into its storage files (parents.json & pcclass.json). <br><br>
 
-
 **Activity Diagram**
 ![Activity Diagram](images/ParentAddActivityDiagram.png)
 
 **Full implementation sequence diagram**
+![Sequential Diagram](images/ParentAddSequentialDiagram.png)
+
+**Reference to get parent particulars sequence diagram**
+![Sequence Diagram](images/ParentAddParserUtilSequentialDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Design considerations
 We want to make it simple for users to add a new `Parent / NOK` to PowerConnect without having the need to include students attached to him/her. <br><br>
@@ -363,10 +459,12 @@ Furthermore, we do not want to trouble users by forcing them to have **ALL** par
     * Con: Users are **FORCED** to come up with arbitrary values to fill up any missing values for **OPTIONAL** section.
     * Con: Need to test the feature exhaustively / create sufficient automated tests to ensure `Students` and `Parents / NOKs` are properly bound together.
 
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "parentnok-edit-feature"/>
 
 ## Parent/NOK Edit Feature
 
@@ -393,6 +491,7 @@ Given below is an example usage scenario and how the edit mechanism behaves at e
 **Reference to get parent particulars sequence diagram**
 ![Sequence Diagram](images/ParentEditParserUtilSequentialDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Design considerations
 We want to make it easy for users to edit `Parent / NOK` particulars without manually deleting the `Parent / NOK` and creating a new `Parent / NOK` and reassigning each `Student` attached to original `Parent / NOK` with the new `Parent / NOK`.
@@ -415,11 +514,55 @@ We also do not want to trouble user with inputting multiple **PREFIXES** to edit
     * Con: It may cause regressions, user may key in wrong details for some of the `Parent / NOK` particulars as he/she is keying in the command. This will cause much inconvenience for Users especially when the `Parent / NOK` they are amending has **TONS** of information.
     * Con: It is no longer **FAST** and **EASY** for the user to use.
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "binding-student-and-parentnok-feature"/>
+
+## Binding Student and Parent/NOK Feature
+
+### Current Implementation
+The binding feature is created with the consideration of defensive coding in mind. It is executed by PowerConnect when the following commands are executed: `Student Add`, `Student Edit`, `Student Delete`, `Parent Edit` commands.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+<br>
+1. User executes `Student Edit` command and decides to change the parent's/NOK's `Name`.
+2. As PowerConnect executes the `Student Edit` command, PowerConnect will also retrieve the corresponding `parent/NOK` and perform similar behaviors to `Parent Edit` command to update the `parent/NOK` info in PowerConnect's database.
+3. PowerConnect will also perform similar behaviors of `Student Edit` command to edit the `parent/NOK` information for all `Students` that are bound to the `Parent/NOK`.
+
+### Design considerations
+We wanted to adopt defensive coding for this feature to reduce any unwanted bugs. It is also complex when determining which party (students or parents/NOKs) should be the one performing the binding and unbinding and whether to allow both parties to perform.
+
+#### Aspect: How Parent Edit executes
+* **Alternative 1 (current choice):** Perform the binding and unbinding **MAINLY** on the `Student` end as the main concern of this binding is to allow users to know the parent/NOK of a particular student.
+    * Pro: Logical and solves the issue of pairing `students` and `parents/NOKs`.
+    * Pro: Defensive coding used.
+    * Pro: Less likely to cause bugs as compared to other Alternatives.
+    * Con: Difficult to implement.
+* **Alternative 2:** Perform the binding and unbinding on the `Parent/NOK` end when commands pertaining to `Parents/NOKs` are executed.
+    * Pro: Less information required for `Student Add` command.
+    * Con: More information required for `Parent Add` command, resulting in requiring a long input from users.
+    * Con: Troublesome for users.
+    * Con: More likely to cause bugs as compared to Alternative 1.
+    * Con: Difficult to implement.
+* **Alternative 3:** Perform the binding and unbinding at **BOTH** `Student` and `Parent/NOK` commands.
+    * Pro: Easy to implement.
+    * Con: Most likely to cause bugs among the Alternatives.
+    * Con: Did not adopt Defensive Coding.
+    * Con: Requires exhaustive testing and automated tests to reduce bugs.
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "proposed-features"/>
 
 ## Proposed Features
+
+<a name = "proposed-undoredo-feature"/>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -486,6 +629,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -501,13 +646,23 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "proposed-data-archiving"/>
+
+### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "documentation-logging-testing-configuration-dev-ops"/>
 
 ## **Documentation, Logging, Testing, Configuration, Dev-ops**
 
@@ -517,29 +672,38 @@ _{Explain here how the data archiving feature will be implemented}_
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "appendix-requirements"/>
 
 ## **Appendix: Requirements**
+
+<a name = "product-scope"/>
 
 ### Product Scope
 
 **Target user profile**:
 
-* This product mainly targets secondary school teachers that prefer CLI over GUI,  manage large groups of students and require ease of access to students' information.
+* This product mainly targets tuition teachers and in the future, secondary school teachers that prefer CLI over GUI,  manage large groups of students and require ease of access to students' information.
 
-**Value proposition**:
-
-* Have many students in different classes / co-curricular activities (CCAs) that have different phone number that needs to be kept track of
-* Need to keep track of students’ parents / next-of-kins’ contact details for consent forms
+**Value proposition**: <br>
+Provides teachers with the ability to manage students administration and academics efficiently by operating on CLI, to complement existing LMS.
+* Our product uses CLI instead of GUI
+* Simple application for teachers to keep track of many students in different classes / co-curricular activities (CCAs) that have different phone numbers
+* Our application can be used individually without internet connection (currently supports single user usage ONLY)
+* Helps to keep track of students’ parents / next-of-kins’ contact information for emergency purposes
 * Teachers may not be able to match students names and faces well and so this app serves as an easy way to identify students (since there are too many students)
-* Keep track of homework given and deadline
-* Streamline administration processes because they have a lot of stuff to keep track of (eg. Attendance, assignments, grades, contact details)
+* Streamline administration processes because there’s plenty of students’ information to keep track of (eg. attendance, assignments, grades, contact details)
+
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "user-stories"/>
 
 ### User Stories
 
@@ -580,207 +744,268 @@ _{Explain here how the data archiving feature will be implemented}_
 | 33  | Teacher                     | Track the date and time of the classes that I have                          | I am able to reach on time and teach the correct module for the particular lesson slot.                                                    | Out of scope                                                                                                                              | NA       |
 | 34  | Teacher                     | Amend date and time of certain lesson timings                               | I am able to change lesson dates and timings easily when lessons shift                                                                     |                                                                                                                                           | NA       |
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "use-cases"/>
 
 ### Use Cases
 
-***For all use cases below, the System is PowerConnect and the Actor is the teacher, unless specified otherwise***
+***For all use cases below, the System is PowerConnect and the Actor is the teacher, unless specified otherwise.***
 
-**Preconditions:** `class` and `index number` of the `student`
+<a name = "use-case-uc01---adding-a-new-student-to-an-existing-class"/>
 
-**Use Case: UC01 - Adding `grade` for a `student`**
+#### Use Case: UC01 - Adding a new `student` to an existing `class`.
+
+**Preconditions:** User knows the `index number` for the `student` and the `class` the student belongs to has already been created.
 
 **MSS:**
-1. User keys in the `test` name, `index number` of student and corresponding `grade`
-2. System displays feedback to the user that grade has been successfully added for the student
+1. User keys in **ALL COMPULSORY** details and any other **OPTIONAL** details for student’s particulars.
+2. System creates and adds student to respective `class` and indicates success.
+   System creates and binds `parent` to the student if parent does not exist. <br>
 
+**Extensions:**
+
++ 1a. User did not enter **ALL COMPULSORY** details.
+    + 1a1. System displays an error message to the user indicating that there is insufficient information given to create the new `student` and provides an example of what to include. <br>
+      Use case ends. <br><br>
++ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information.
+    + 1b1. User keys in invalid `SEX` type not supported by system. (m/f/M/F)
+    + 1b2. User keys in `age` or `phone number` that are not of an integer.
+    + 1b3. User keys in invalid path to `image`.
+    + 1b4. System displays an error message to the user indicating that he/she has keyed in wrong information for the `student` along with a sample of the correct way to key in information for a new `student`. <br>
+      Use case ends. <br><br>
++ 2a. User is trying to create a new `student` whose index number belongs to an existing `student` in the class.
+    + 2a1. System displays an error message to the user indicating that a student with the same index number already exists in the class. <br>
+      Use case ends.<br><br>
++ 2b. Parent already exists.
+    + 2b1. System locates and binds the parent to the student. <br>
+      Use case ends.<br><br>
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "use-case-uc02---adding-grade-for-a-student"/>
+
+#### Use Case: UC02 - Adding `grade` for a `student`.
+
+**Preconditions:** User knows `index number` and `class` of the `student` he/she wishes add `grade` for.
+
+**MSS:**
+1. User keys in the `test` name, `class`, `index number` of student and corresponding `grade`.
+2. System displays feedback to the user that grade has been successfully added for the student. <br>
    Use case ends.
 
 **Extensions:**
 
-+ 1a. User keyed in invalid `index number` / does not **SATISFY** Precondition.
-    + 1a1. System displays an error message indicating `index number` is invalid.
-    + 1a2. System output of all `students` particulars in his/her class.
-    + 1a3. User checks for the `index number` of the `student` and keys into the system.
-
-      Use case resumes at step 2.
-+ 1b. Test name is invalid.
-    + 1b1. System displays an error message indicating wrong test name.
++ 1a. User keyed in an invalid `index number` or `class`.
+    + 1a1. System displays an error message indicating the student does not exist.
+    + 1a2. User checks for the index number and class of the student via the student list displayed on the application and keys in the correct value.<br>
+      Use case ends.<br><br>
++ 1b. Test name is duplicate.
+    + 1b1. System displays an error message indicating duplicated test name.
     + 1b2. User adds a new test name.
-
-      Use case resumes at step 2.
+    + Use case resumes at step 2.<br><br>
 + 1c. User gave a `Grade` value that is not of an integer.
     + 1c1. System displays an error message indicating the wrong grade given.
-    + 1c2. User checks and adds the `grade` input again.
+    + 1c2. User checks and adds the grade input again. <br>
+      Use case resumes at step 2.<br><br>
 
-      Use case resumes at step 2. <br><br>
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "use-case-uc03---adding-comment-for-a-student"/>
 
-**Use Case: UC02 - Adding `comment` for a `student`**
+#### Use Case: UC03 - Adding `comment` for a `student`.
 
-**MSS:**
-1. User keys in the `index number` of student and the corresponding `comment` for the student
-2. If the student has an existing `comment`, the system will request the user to confirm the change of comments. Otherwise, skip to step 3.
-3. System displays feedback to the user that the comment has been successfully added for the `student`.
+**Preconditions:** User knows `index number` and `class` of the `student` he/she wishes to add `comment`.
 
+**MSS:** Similar to UC02
+1. User keys in the `index number` and `class` of student and the corresponding `comment` for the student.
+2. System adds the comment for the student and indicates success. <br>
    Use case ends.
 
-**Extensions:**
+**Extensions:** Similar to UC02
 
-+ 1a. User keyed in invalid `index number` / does not **SATISFY** Precondition.
-    + 1a1. System displays an error message indicating the `index number` is invalid.
-    + 1a2. System output of all `students` particulars in his/her class.
-    + 1a3. User checks for the index number of the `student` and keys into the system.
-
-      Use case resumes at step 2.
-
-+ 2a. User informs the system to **NOT** change the existing comment for the `student`.
-    + 2a1. System displays an error message indicating the current process of adding a new comment for the `student` has
-      ended.
-
++ 1a. User keyed in invalid `index number` or `class`.
+    + 1a1. System displays an error message indicating the student does not exist.
+    + 1a2. User checks for the index number and class of the student via the student list displayed on the application and keys in the correct value.<br>
       Use case ends. <br><br>
 
-<div style="page-break-after: always;"></div>
-
---------------------------------------------------------------------------------------------------------------------
-
-**Use Case: UC03 - Adding a new `student` to an existing `class`**
-
-**MSS:**
-1. User keys in **ALL COMPULSORY** details and any other **OPTIONAL** details as part of student’s particulars
-2. System displays feedback to the user that the `student` has been successfully been created and added to the respective `class`
-
-   Use case ends.
-
-**Extensions:**
-
-+ 1a. User did not enter **ALL COMPULSORY** details.
-    + 1a1. System displays an error message to the user indicating that there is insufficient information given to create the new `student`.
-
-      Use case ends.
-
-+ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
-    + 1b1. User keys in invalid `SEX` type not supported by system or `SEX` type contain numbers.
-    + 1b2. User keys the same information for the student's `name` and NOK’s `name`.
-    + 1b3. User keys in `age` or `phone number` that are not of an integer.
-    + 1b4. User keys in invalid path to `image`.
-    + 1b5. System displays an error message to the user indicating that he/she has keyed in wrong information for the `student` along with a sample of the correct way to key in information for a new `student`.
-
-      Use case ends.
-
-+ 2a. User is trying to create a new `student` whose index number belongs to an existing `student` in the class.
-    + 2a1. System displays an error message to the user indicating that a `student` with the same `index number` already exists in the `class`.
-
++ 2a. There is an existing comment for the student.
+    + 2a1. System overrides the existing comment with the new comment. <br>
       Use case ends. <br><br>
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "use-case-uc04---listing-all-students-in-the-selected-class"/>
 
-**Use Case: UC04 - Listing all `students` in the selected `class`**
+#### Use Case: UC04 - Listing all `students` in the selected `class`.
 
 **MSS:**
-1. User keys in the command to view the list of all `students` in the selected `class`
-2. System displays all `students` particulars in the `class`
-
+1. User keys in the command to view the list of all `students` in the selected `class`.
+2. System displays all `students` particulars in the `class`.<br>
    Use case ends.
 
-**Extensions:**
-
+**Extensions:**<br>
 + 1a. User keys in an invalid `class`.
-    + 1a1. System displays an error message to the user informing him/her the `class` is invalid.
+    + 1a1. System displays an error message to the user informing him/her the `class` is invalid.<br>
+      Use case ends.<br><br>
++ 2a. Selected `class` does not have any `students`.
+    + 2a1. System displays an empty list.<br>
+      Use case ends.<br><br>
 
-      Use case ends.
-
-+ 2a. Selected `class` does not have any `students`
-    + 2a1. System displays an empty list.
-
-      Use case ends.
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "use-case-uc05---finding-a-student-in-a-class"/>
 
-**Use Case: UC05 - Editing `personal details` of `students`**
+#### Use Case: UC05 - Finding a `student` in a class.
+
+**Preconditions:** User knows the `class` of the `student` he/she wishes to locate.
 
 **MSS:**
-1. User enters the `type` of personal detail and corresponding `detail` to edit
-2. System displays that the personal detail of the student has been changed successfully
+1. User keys in a section of student’s name (eg Mary Goh - `Mary`) along with the `class` where the user wishes to find from.
+2. System finds matching students and displays it to user.<br>
+   Use case ends.
 
+**Extensions:**
++ 1a. User did not enter **ALL COMPULSORY** details.
+    + 1a1. System displays an error message to the user indicating that there is insufficient information given to create the new `student` and provides an example of what to include. <br>
+      Use case ends. <br><br>
++ 2a. Student does not exist in the specified `class`.
+    + 2a1. System displays an empty list.<br>
+      Use case ends. <br><br>
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "use-case-uc06---deleting-student-from-class"/>
+
+#### Use Case: UC06 - Deleting `student` from class.
+
+**Preconditions**: User knows the `index number` for the `student` and the `class` the student belongs to has already been created.
+
+**MSS:**
+1. User keys in the student `index number` and `class`.
+2. System deletes the student from that class and indicates success.<br>
+   Use case ends.
+
+**Extensions:**
++ 1a. User keyed in invalid `index number` or `class`.
+    + 1a1. System displays an error message indicating the student does not exist.
+    + 1a2. User checks for the index number and class of the student via the student list displayed on the application and keys in the correct value.<br>
+      Use case ends.
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "use-case-uc07---adding-a-new-parentnok-to-the-system"/>
+
+#### Use Case: UC07 - Adding a new `parent/NOK` to the system.
+
+**MSS:** Similar to UC01
+1. User keys in **ALL COMPULSORY** details and any other **OPTIONAL** details for parent’s / NOK's particulars
+2. System creates parent/NOK and adds its data into system's storage and indicates success to user. <br>
    Use case ends.
 
 **Extensions:**
 
 + 1a. User did not enter **ALL COMPULSORY** details.
-    + 1a1. System displays an error message
+    + 1a1. System displays an error message to the user indicating that there is insufficient information given to create the new `parent/NOK` and provides an example of what to include. <br>
+      Use case ends. <br><br>
++ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information.
+    + 1b1. User keys in invalid `SEX` type not supported by system. (m/f/M/F)
+    + 1b2. User keys in `age` or `phone number` that are not of an integer.
+    + 1b3. User keys in invalid path to `image`.
+    + 1b4. System displays an error message to the user indicating that he/she has keyed in wrong information for the `parent/NOK` along with a sample of the correct way to key in information for a new `parent/NOK`. <br>
+      Use case ends. <br><br>
++ 2a. User is trying to create a new `parent/NOK` whose `phone number` belongs to an existing `parent/NOK` in the system.
+    + 2a1. System displays an error message to the user indicating that a `parent/NOK` with the same `phone number` already exists in the system. <br>
+      Use case ends.<br><br>
 
-      Use case ends.
-
-+ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
-    + 1b1. System displays an error message with an example on how to use the command.
-
-      Use case ends.
-
-<div style="page-break-after: always;"></div>
-
---------------------------------------------------------------------------------------------------------------------
-
-**Use Case: UC06 - Finding `student` by `student id`**
-
-**MSS:**
-1. User keys in the `class` and `index number` of the student he/she is finding
-2. System displays the student with all his/her corresponding personal details
-
-   Use case ends.
-
-**Extensions:**
-
-+ 1a. User did not enter **ALL COMPULSORY** details.
-    + 1a1. System displays an error message.
-
-      Use case ends.
-
-+ 1b. User keys in invalid **COMPULSORY** information
-    + 1b1. System displays an error message with an example on how to use the command.
-
-      Use case ends.
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "use-case-uc08---editing-an-existing-parentnok-in-the-system"/>
 
-**Use Case: UC07 - Deleting `student` or `student information` from the `database`**
+#### Use Case: UC08 - Editing an existing `parent/NOK` in the system.
 
 **MSS:**
-1. User keys in the command to delete a student or student information
-2. System displays that the student or student information has been deleted successfully
-
+1. User keys in parent’s / NOK's name and phone number along with the details that are being amended.
+2. System retrieves the original parent/NOK, creates a **NEW** parent/NOK with the amended details and original particulars. At the same time, system will automatically unbind and bind all students bound to **ORIGINAL** parent/NOK and bind them accordingly to the **NEW** parent/NOK.
+3. System replaces the ***original*** parent/NOK with the ***new*** parent/NOK. 
+4. System proceeds to indicate success to user. <br>
    Use case ends.
 
 **Extensions:**
-
-+ 1a. User did not enter **ALL COMPULSORY** details.
-    + 1a1. System displays an error message.
-
++ 1a. User keyed in invalid `phone number` or `name` of the parent/NOK to be edited.
+    + 1a1. System displays an error message indicating the parent does not exist.
+    + 1a2. User checks for the `phone number` and `name` of the parent/NOK via the parent/NOK list displayed on the application and keys in the correct value.<br>
       Use case ends.
 
-+ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information
-    + 1b1. System displays an error message with an example on how to use the command.
++ 1b. User keys in invalid **COMPULSORY** or **OPTIONAL** information.
+    + 1b1. User keys in invalid `SEX` type not supported by system. (m/f/M/F)
+    + 1b2. User keys in `age` or `phone number` that are not of an integer.
+    + 1b3. User keys in invalid path to `image`.
+    + 1b4. System displays an error message to the user indicating that he/she has keyed in wrong information for the `parent/NOK` along with a sample of the correct way to key in information for a new `parent/NOK`. <br>
+      Use case ends. <br><br>
++ 2a. User is trying to edit the `parent's/NOK's` `phone number` to an existing `parent/NOK` in the system.
+    + 2a1. System displays an error message to the user indicating that a `parent/NOK` with the same `phone number` already exists in the system. <br>
+      Use case ends.<br><br>
 
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "use-case-uc09---deleting-a-parentnok-from-the-system"/>
+
+#### Use Case: UC09 - Deleting a `parent/NOK` from the system.
+
+**MSS:**
+1. User keys in parent’s / NOK's `name` and `phone number`.
+2. System locates the parent / NOK with matching `name` and `phone number` and removes him/her from the system.
+3. System proceeds to indicate success to user along with deleted `parent/NOK` details. <br>
+   Use case ends.
+
+**Extensions:**
++ 1a. User keyed in invalid `phone number` or `name` of the parent/NOK to be delete.
+    + 1a1. System displays an error message indicating the parent does not exist.
+    + 1a2. User checks for the `phone number` and `name` of the parent/NOK via the parent/NOK list displayed on the application and keys in the correct value.<br>
       Use case ends.
+
++ 2a. User is trying to delete a `parent/NOK` that currently has students attached.
+    + 2a1. System displays an error message to the user indicating that the `parent/NOK` currently has students attached to him/her and hence **CANNOT** be removed from the system. <br>
+      Use case ends.<br><br>
 
 *{More to be added}* <br></br>
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "non-functional-requirements"/>
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 
 1. Should work on any mainstream OS as long as it has Java `11` or above installed.
 2. Should be able to handle up to 400 students without a noticeable sluggishness in performance for typical usage.
@@ -797,11 +1022,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 *{More to be added}* <br></br>
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "glossary"/>
 
-### Glossary
+## Glossary
 
 **Attributes**: Information of a student / parent. <br>
 For example, name, phone number, email address etc <br><br>
@@ -818,9 +1046,12 @@ For example, Tan Ah Kow, 91234567 etc.
 
 *{More to be added}*
 
+[Back to Table of Contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "appendix-instructions-for-manual-testing"/>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -831,25 +1062,95 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
+<a name = "launch-and-shutdown"/>
+
 ### Launch and shutdown
 
 1. Initial launch
+   1. Ensure you have Java `11` or above installed in your Computer.
+   2. Download the latest `PowerConnect.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-1/tp/releases).
+   3. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
+   4. In the same folder, create a new folder named “image” and store all images to be used for the program in this folder. eg student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`.
+   5. Double click the jar file.
+      <br> **OR** <br>
+      Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PowerConnect.jar` command to run the application.
+   6. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. The window size may not be optimum.<br>
+      ![Ui](images/Ui.png)
+   <br><br>
 
-    1. Download the jar file and copy into an empty folder
+2. Saving window preferences
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+   2. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The most recent window size and location is retained. <br><br>
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+3. Shutdown of Application
+   1. Run the `exit` command: `exit` or press the `X` button located at the top right corner of the application.
+   2. The application should close within 3 seconds.
 
-1. Saving window preferences
+<div markdown="span" class="alert alert-primary">
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+:bulb: **Tip:** In the case, PowerConnect does not boot up with a similar UI display as the image above or PowerConnect is **NOT RESPONDING**, please kindly remove all files related and download the `jar` file again.
+</div>
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+<div markdown="span" class="alert alert-info">:information_source: **CAUTION:** <br>
+Testers **AVOID** terminating the application abruptly via **Task Manager**, closing the application process or any other methods that is **NOT** mentioned in the section above on Shutdown!
 
-1. _{ more test cases …​ }_
+</div>
+
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
+--------------------------------------------------------------------------------------------------------------------
+<a name = "saving-data"/>
+
+### Saving data
+
+**1. Dealing with corrupted files** <br><br>
+Testers usually get corrupted files when they perform one of the **FOLLOWING** scenarios:
+   1. Manually editing the storage files - `parents.json` and `pcclass.json`
+   2. Stop the application abruptly without entering the `Exit` command. <br>
+
+**Possible Fix**: <br>
+Unfortunately there is no **FIX** for this issue at the moment. Tester will need to manually key in or input the data file again as PowerConnect will erase the data files (`parents.json` & `pcclass.json`) upon **NEXT** valid command execution. 
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Always duplicate the data files being input into PowerConnect for testing for backup copies in case of file corruption.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **CAUTION:** <br>
+Testers should **AVOID** manually amending the storage files **UNLESS** there is an error in the `edit` commands **AND** they are sure of how to amend the storage files!
+
+</div>
+
+<br>
+
+**2. Dealing with missing files** <br><br>
+Testers usually get missing files when they perform one of the **FOLLOWING** scenarios:
+1. Changing the file / folder names (eg changing `parents.json`, `pcclass.json`, `/images/`, images names)
+
+**Possible Fix:** <br>
+Testers can attempt to manually locate the files and folders and ensure they are named correctly as per PowerConnect's requirements.
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** <br>
+Follow PowerConnect Requirements:
+1. Images should be stored as `.png` format and inside `/data/images/`.
+2. Storages files should be named as `parents.json` & `pcclass.json`.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **CAUTION:** <br>
+Testers **SHOULD NOT** change directory name for `/data/images/`, **ANY CHANGE** to image renaming should also be updated via the `edit` commands and storage files (`parents.json & `pcclass.json`) **SHOULD NOT** be renamed.
+
+</div>
+
+<br>
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ### Deleting a person
@@ -869,18 +1170,6 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-<div style="page-break-after: always;"></div>
-
---------------------------------------------------------------------------------------------------------------------
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+[Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
-
---------------------------------------------------------------------------------------------------------------------
