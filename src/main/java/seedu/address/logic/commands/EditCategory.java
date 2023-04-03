@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.AddCategoryCommand.MESSAGE_DUPLICATE_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUMMARY;
 
@@ -59,31 +60,27 @@ public class EditCategory extends Command {
         }
 
         UserDefinedCategory categoryToEdit = (UserDefinedCategory) lastShownList.get(targetIndex.getZeroBased());
+        if (newCategoryName != null) {
+            categoryToEdit.setCategoryName(newCategoryName.replaceAll("\\s+", " "));
+            if (newCategoryName.strip().isEmpty()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_CATEGORY_NAME);
+            }
+            if (model.hasCategory(categoryToEdit)) {
+                throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
+            }
+        }
+        if (newSummaryName != null) {
+            categoryToEdit.setDescription(newSummaryName.replaceAll("\\s+", " "));
+        }
 
         if (newCategoryName == null && newSummaryName == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_EDIT_FOR_CATEGORIES);
         }
 
-        if (newCategoryName != null && newSummaryName != null) {
-            categoryToEdit.setCategoryName(newCategoryName.replaceAll("\\s+", " "));
-            categoryToEdit.setDescription(newSummaryName);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
-                            categoryToEdit), ScreenType.CATEGORY_SCREEN);
-        }
-
-        if (newCategoryName != null) {
-            categoryToEdit.setCategoryName(newCategoryName);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
-                            categoryToEdit), ScreenType.CATEGORY_SCREEN);
-        }
-
-        //Only other possible outcome is that summary is the only field being changed.
-        categoryToEdit.setDescription(newSummaryName);
         return new CommandResult(
-                String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
-                        categoryToEdit), ScreenType.CATEGORY_SCREEN);
+                    String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_CATEGORY,
+                            categoryToEdit), ScreenType.CATEGORY_SCREEN);
+
     }
 
     @Override

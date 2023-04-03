@@ -12,27 +12,13 @@
     "categoryName" : "housing",
     "summary" : ""
   }, {
-    "categoryName" : "food",
-    "summary" : ""
-  }, {
-    "categoryName" : "food",
-    "summary" : ""
-  }, {
     "categoryName" : "misc",
     "summary" : "Placeholder Description"
   }, {
-    "categoryName" : "groceries",
+    "categoryName" : "food",
     "summary" : ""
   } ],
   "expenses" : [ {
-    "name" : "carro",
-    "amount" : "3.0",
-    "date" : "2023-10-02",
-    "category" : {
-      "categoryName" : "groceries",
-      "summary" : ""
-    }
-  }, {
     "name" : "Meal at JE",
     "amount" : "4.5",
     "date" : "2023-04-01",
@@ -64,15 +50,8 @@
       "categoryName" : "entertainment",
       "summary" : "For entertainment"
     }
-  }, {
-    "name" : "MRT fare",
-    "amount" : "45.8",
-    "date" : "2023-03-10",
-    "category" : {
-      "categoryName" : "transportation",
-      "summary" : "For bus, car, train"
-    }
-  } ],
+  }
+  ],
   "budget" : {
     "amount" : "0.0"
   },
