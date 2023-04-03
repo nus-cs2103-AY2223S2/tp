@@ -39,6 +39,7 @@ title: Developer Guide
        * [Day](#day)
        * [HourBlock](#hourblock)
        * [TimeBlock](#timeblock)
+       * [TimePeriod](#timeperiod)
      * [Location](#location)
        * [DistanceUtil](#distance-util)
        * [LocationDataUtil](#location-data-util)
@@ -456,6 +457,23 @@ objects which is then used elsewhere in the codebase.
 
 #### **TimeBlock**
 `TimeBlock` is an object which can represent any (non-negative) hour of time.
+
+#### **TimePeriod**
+`TimePeriod` is the parent class of both `HourBlock` and `TimeBlock`. Hence, we often use `TimePeriod` when passing arguments around.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **How to use Time Period**
+Note that `TimePeriod` is an abstract class and hence cannot be instantiated. Instead, we create a new `TimeBlock`, since it achieves the same functionality as the `TimePeriod`.
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **How the user uses Time Period**
+The time period is prefixed using `T/` (rather than `t/` which is used by the telegram handle). It follows the format `T/START_TIME END_TIME`, and along with the day, it creates a new time period.
+
+</div>
 
 ### **Location**
 
@@ -1015,7 +1033,7 @@ The `ArgumentMultimap` utilises a `HashMap` to store an `ArrayList<String>` of a
 
 #### **Prefix**
 
-The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Station](#station), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag) and [Module Tags](#module-tag)).
+The `Prefix` is an `enum` consisting of `n/` ,`s/`, `p/`, `t/`, `e/`, `g/`, `m/`, `d/`, `T/`, `l/` and a blank `Prefix` which is an empty String. The Prefixes listed previously correspond to [Name](#name), [Station](#station), [Phone](#phone), [Telegram Handle](#telegram-handle), [Email](#email), [Group Tags](#group-tag), [Module Tags](#module-tag), [Day](#day), [Time Period](#timeperiod) and [Location](#location).
 
 ## **Recommenders**
 
