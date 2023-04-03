@@ -162,10 +162,10 @@ public class ModelManager implements Model {
                 meetUp.setParticipants(new Participants(personList));
             }
         }
+        removeEmptyMeetUps();
     }
 
-    @Override
-    public void tester() {
+    public void removeEmptyMeetUps() {
         this.eduMate.removeEmptyMeetUps();
     }
 

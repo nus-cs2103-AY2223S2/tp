@@ -125,7 +125,7 @@ public class OrganiseCommand extends Command {
      */
     private CommandResult organiseRecommendation(Model model) throws CommandException {
         if (model.getRecommendationByIndex(this.index).isEmpty()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_NO_SUCH_RECOMMENDATION));
+            throw new CommandException(MESSAGE_NO_SUCH_RECOMMENDATION);
         }
         Recommendation recommendation = model.getRecommendationByIndex(this.index).get();
         Participants participants = model.getParticipants();

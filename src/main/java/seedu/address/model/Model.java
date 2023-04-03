@@ -229,5 +229,4 @@ public interface Model {
 
     Participants getParticipants();
 
-    void tester();//todo remove
 }

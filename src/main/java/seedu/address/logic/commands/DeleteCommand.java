@@ -54,12 +54,6 @@ public class DeleteCommand extends Command {
         Person personToDelete = targetPerson.get();
         model.deletePerson(personToDelete);
         model.updateObservableMeetUpList(Model.COMPARATOR_CONTACT_INDEX_MEETUP);
-        try {
-            model.tester();//todo remove
-        } catch (ConcurrentModificationException e) {
-            System.out.println("BRO");
-        }
-
         return new ViewCommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete), model.getUser());
     }
 
