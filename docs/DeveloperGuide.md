@@ -461,7 +461,7 @@ The following activity illustrates the workflow of the `view` command:
 ![ViewActivityDiagram](images/ViewActivityDiagram.png)
 
 #### Design considerations
-**Aspect: How to signal the Ui component to display the relevant screen (either `ProgressSection` or `ModuleListSection`), while ensuring that the `Single Responsibility Principle` is not violated.**
+**Aspect: How to signal the Ui component to display the relevant screen (either `ProgressSection` or `ModuleListSection`), while ensuring that the _Single Responsibility Principle_ is not violated?**
 
 The `view <VIEW_TARGET>` command involves dynamic changes to the GUI, in terms of the correct screen to display upon execution of the command. Bearing in mind the `Single Responsibility Principle`, we have a find an appropriate way to signal to `MainWindow` which screen is to be displayed, while ensuring that `MainWindow` does not handle any checking or parsing of the user input to obtain this information.
 - **Solution:** Pass the information to the `CommandResult` returned by executing `ViewProgressCommand` or `VieWModulesCommand`. Since `MainWindow` already has access to `CommandResult` and through it, can easily obtain the correct information regarding which screen to display.
@@ -524,7 +524,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `ModTrek` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `MODTrek` and the **Actor** is the `user`, unless specified otherwise)
 
 <br>
 
@@ -532,69 +532,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a module
-2.  ModTrek adds the module
+1.  User requests to add a module.
+2.  MODTrek adds the module to the module list.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given module code or semester is missing or invalid.
+* 1a. The given module code, credits and/or year-semester is missing or invalid.
 
-    * 1a1. ModTrek shows an error message.
+    * 1a1. MODTrek shows an error message.
 
-      Use case resumes at step 1.
-
+      Use case ends.
+  
 <br>
 
 #### Use case: Edit a module
 
 **MSS**
 
-1.  User requests to edit a module’s details
-2.  ModTrek edits the module’s details
+1.  User requests to edit a module’s details.
+2.  MODTrek edits the module’s details.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given module code or semester is missing or invalid
+* 1a. No fields to edit (e.g. module code, year-semester) are provided.
 
-    * 1a1. ModTrek shows an error message.
+    * 1a1. MODTrek shows an error message.
 
-      Use case resumes at step 1.
-
+      Use case ends.
+  
 <br>
 
 #### Use case: Delete a module
 
 **MSS**
 
-1.  User requests to list modules
-2.  ModTrek shows a list of modules
-3.  User requests to delete a specific module in the list
-4.  ModTrek deletes the module
+1. User requests to delete a specific module(s) in the module list.
+2. MODTrek deletes the module(s).
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
+
+    * 1a1. No modules are deleted.
 
   Use case ends.
 
-* 3a. The given module code is invalid.
+* 1b. The module requested to be deleted is not present in the module list.
 
-    * 3a1. ModTrek shows an error message.
+    * 1b1. No modules are deleted.
 
-      Use case resumes at step 2.
+  Use case ends.
 
-* 3b. User wants to delete all modules.
+* 1c. The given module code is invalid.
 
-    * 3b1. User requests to delete all modules.
-    * 3b2. ModTrek clears the list of modules.
+    * 1c1. MODTrek shows an error message.
 
-      Use case ends.
+  Use case ends.
 
 <br>
 
@@ -602,24 +601,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to find modules
-2.  ModTrek finds the modules and displays them
+1.  User requests to find modules according to a certain set of filters (e.g. module code, year-semester etc).
+2.  ModTrek finds the modules satisfying the set of filters and displays them.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given module code or semester is missing.
+* 1a. The set of filters provided by the user is empty.
 
-    * 1a1. ModTrek shows an error message.
+    * 1a1. MODTrek shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 * 2a. No matching modules were found.
 
-    * 2a1. ModTrek shows an error message.
+    * 2a1. MODTrek shows a message indicating that no matching modules were found.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 <br>
 
@@ -627,60 +626,105 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to tag a module with mapping requirements.
+1.  User requests to tag a module with one or more degree requirement(s).
 2.  ModTrek tags the module and displays it.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given module code is missing.
+* 1a. The module requested to be tagged is not present in the module list.
 
-    * 1a1. ModTrek shows an error message.
+    * 1a1. MODTrek shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
-* 2a. The module already has the tag.
+* 1b. A tag provided by the user is not one of the six valid degree requirements.
 
-    * 2a1. ModTrek shows an error message.
+    * 1b1. MODTrek shows an error message.
 
-      Use case resumes at step 1.
+      Use case ends.
 
 <br>
 
-#### Use case: List modules
+#### Use case: View all modules
 
 **MSS**
 
-1. User requests to list modules
-2. ModTrek shows the list of modules
+1. User requests to view all modules in the module list.
+2. MODTrek shows the list of modules.
 
 Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The module list is empty.
+    * 2a1. MODTrek shows a message indicating that there are no modules found in the module list.
 
-  Use case ends.
+      Use case ends.
 
-**Use case: View a graph of degree progress**
+<br>
 
+#### Use case: View degree progress
 
 **MSS**
 
-1. User requests to view a graph showing degree progress
-2. ModTrek shows the graph
+1. User requests to view the degree progress.
+2. MODTrek shows the user's degree progression data.
 
 Use case ends.
 
 **Extensions**
 
-* 2a. The list of modules is empty.
+* 2a. The module list is empty.
+    * 2a1. MODTrek shows an empty degree progression data.
 
-  Use case ends.
+      Use case ends.
 
-*{More to be added}*
+<br>
 
+#### Use case: Sort modules
+
+**MSS**
+
+1.  User requests to sort the modules in the module list by a certain category (year, code, credits, grade or tag).
+2.  MODTrek sorts the module by the category.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. No category is provided.
+    * 1a1. MODTrek shows an error message.
+
+      Use case ends.
+
+* 1b. The category provided is invalid.
+    * 1b1. MODTrek shows an error message.
+
+      Use case ends.
+
+* 1c. The module list is empty.
+    * 1c1. MODTrek shows a message indicating that there are no modules found in the module list.
+
+      Use case ends.
+
+
+#### Use case: Requesting for help
+
+**MSS**
+
+1. User requests for help to check out the list of commands available and their syntax.
+2. MODTrek shows the list of commands available on MODTrek.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User requests for help on a particular command available on MODTrek.
+    * 1a1. MODTrek shows the use case of each command and its syntax.
+
+      Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
