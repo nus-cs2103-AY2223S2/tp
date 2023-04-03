@@ -40,7 +40,7 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonExpenseTrackerStorage addressBookStorage = new JsonExpenseTrackerStorage(
-                temporaryFolder.resolve("addressBook.json"));
+                temporaryFolder.resolve("fastTrack.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(dataModel, storage);
@@ -70,7 +70,7 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonExpenseTrackerStorage addressBookStorage = new JsonAddressBookIoExceptionThrowingStub(
-                temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                temporaryFolder.resolve("ioExceptionFastTrack.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
                 temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
