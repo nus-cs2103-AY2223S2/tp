@@ -58,12 +58,12 @@ public class FindCommandParser implements CommandParser {
         }
         if (argsMap.getValue(PREFIX_ALLERGY).isPresent()) {
             flagsPresent = true;
-            parseGroupNamesForEdit(argsMap.getAllValues(PREFIX_ALLERGY))
+            parseGroupNamesForFind(argsMap.getAllValues(PREFIX_ALLERGY))
                     .ifPresent(findPatientDescriptor::setAllergies);
         }
         if (argsMap.getValue(PREFIX_VACCINATION).isPresent()) {
             flagsPresent = true;
-            parseGroupNamesForEdit(argsMap.getAllValues(PREFIX_VACCINATION))
+            parseGroupNamesForFind(argsMap.getAllValues(PREFIX_VACCINATION))
                     .ifPresent(findPatientDescriptor::setVaccines);
         }
 
@@ -84,7 +84,7 @@ public class FindCommandParser implements CommandParser {
      * If {@code groupNames} contain only one element which is an empty string, it
      * will be parsed into a {@code Set<GroupName>} containing zero allergies.
      */
-    private Optional<Set<GroupName>> parseGroupNamesForEdit(Collection<String> groupNames) throws ParseException {
+    private Optional<Set<GroupName>> parseGroupNamesForFind(Collection<String> groupNames) throws ParseException {
         assert groupNames != null;
 
         if (groupNames.isEmpty()) {
