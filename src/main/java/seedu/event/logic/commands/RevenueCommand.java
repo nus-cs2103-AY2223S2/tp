@@ -8,7 +8,7 @@ import seedu.event.model.Model;
 import seedu.event.model.event.Event;
 
 /**
- * Calculates and returns the total revenue of events that are completed in the event book
+ * Calculates and returns the total revenue of events that are marked as done in the event book
  */
 public class RevenueCommand extends Command {
 
