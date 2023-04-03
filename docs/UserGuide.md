@@ -150,7 +150,17 @@ An example of the final command is displayed below.
 
 </div>
 
-A GUI similar to the below should appear in a few seconds. (Note how the app contains some sample data.) <br>
+A GUI similar to the below should appear in a few seconds, with the following areas:
+
+* <span style="background-color:rgba(252.4, 248.4, 124.1, 0.5)">Tabs</span>
+* <span style="background-color:rgba(0.0, 255.0, 0.0, 0.5)">Sales (Total Revenue and Profit)</span>
+* <span style="background-color:rgba(246.2, 149.6, 28.3, 0.5)">Simplified Orders</span>
+* <span style="background-color:rgba(8.7, 68.0, 237.2, 0.5)">Simplified Tasks</span>
+* <span style="background-color:rgba(237.2, 8.7, 176.5, 0.5)">Simplified Menu</span>
+* <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span>
+* <span style="background-color:rgba(255.0, 0.0, 0.0, 0.5)">Command Input Box</span>
+
+(Note how the app contains some sample data.)
 
 <p align="center">
   <img src="images/ug/HomePageUILabeled.png" />
