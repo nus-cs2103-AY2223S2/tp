@@ -59,7 +59,7 @@ public class CommandResultTest {
         assertEquals(commandResult.isShowHelp(), true);
 
         // Case 2: showHelp is false
-         commandResult = new CommandResult("feedback", false, true);
+        commandResult = new CommandResult("feedback", false, true);
         assertEquals(commandResult.isShowHelp(), false);
     }
 
@@ -72,8 +72,5 @@ public class CommandResultTest {
         // Case 2: showHelp is false
         commandResult = new CommandResult("feedback", true, false);
         assertEquals(commandResult.isExit(), false);
-
     }
-
-
 }
