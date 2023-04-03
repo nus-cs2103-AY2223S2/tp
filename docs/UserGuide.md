@@ -183,7 +183,7 @@ Format: `delete_tag INDEX [t/TAG]`
 * Deletes `TAG` on the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* The tag must be existed.
+* The tag must exist.
 
 Examples:
 * `list` followed by `delete_tag 3 teacher` deletes the tag “teacher” from the 2nd person.
