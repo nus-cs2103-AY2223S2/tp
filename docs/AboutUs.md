@@ -17,11 +17,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/sembcorpp)]
 [[portfolio](team/sembcorpp.md)]
 
-* Role: Developer
+* Role: Developer + Testing
 
 ### Bokun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bokung.png" width="200px">
 
 [[github](http://github.com/bokung)]
 [[portfolio](team/bokung.md)]

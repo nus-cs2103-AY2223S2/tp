@@ -7,14 +7,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindMeetingCommand;
+import seedu.address.logic.commands.FindPolicyCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListMeetingCommand;
+import seedu.address.logic.commands.ListRegionCommand;
+import seedu.address.logic.commands.RemoveMeetingCommand;
+import seedu.address.logic.commands.UpdateMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,11 +69,32 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
+        case ListMeetingCommand.COMMAND_WORD:
+            return new ListMeetingCommand();
+
+        case ListRegionCommand.COMMAND_WORD:
+            return new ListRegionCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case AddMeetingCommand.COMMAND_WORD:
+            return new AddMeetingCommandParser().parse(arguments);
+
+        case FindMeetingCommand.COMMAND_WORD:
+            return new FindMeetingCommandParser().parse(arguments);
+
+        case RemoveMeetingCommand.COMMAND_WORD:
+            return new RemoveMeetingCommandParser().parse(arguments);
+
+        case FindPolicyCommand.COMMAND_WORD:
+            return new FindPolicyCommandParser().parse(arguments);
+
+        case UpdateMeetingCommand.COMMAND_WORD:
+            return new UpdateMeetingCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

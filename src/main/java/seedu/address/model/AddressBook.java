@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Meeting;
+import seedu.address.model.person.MeetingWithPerson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -93,6 +96,62 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// meeting operations
+
+    /**
+     * Adds a meeting to the Person
+     * @param personToEdit person we want to add meeting to
+     * @param meeting meeting that is to be added
+     * @return Person object with a new meeting added
+     */
+    public Person addMeeting(Person personToEdit, Meeting meeting) {
+        personToEdit.getMeetings().add(meeting);
+        Person editedPerson = new Person(
+            personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        this.setPerson(personToEdit, editedPerson);
+        persons.refreshInternalMeetingList();
+        return editedPerson;
+    }
+
+    /**
+     * Removes a meeting from the {@code Person} list of meetings
+     * @param personToEdit person we want to remove the meeting from
+     * @param indexMeeting index in meeting list at which the meeting is to be removed
+     * @return Person with specified meeting removed
+     */
+    public Person removeMeeting(Person personToEdit, Index indexMeeting) {
+        personToEdit.getMeetings().remove(indexMeeting.getZeroBased());
+        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        this.setPerson(personToEdit, editedPerson);
+        persons.refreshInternalMeetingList();
+        return editedPerson;
+    }
+
+    /**
+     * Update {@code Person} list of meetings with updated meeting information
+     * @param personToEdit person we want to update meeting to
+     * @param meetingIndex index in meeting list in which we want to update the meeting
+     * @param editedMeeting the updated meeting
+     * @return Person with specified meeting updated
+     */
+    public Person updateMeeting(Person personToEdit, Index meetingIndex, Meeting editedMeeting) {
+        personToEdit.setMeeting(meetingIndex.getZeroBased(), editedMeeting);
+        Person editPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        this.setPerson(personToEdit, editPerson);
+        persons.refreshInternalMeetingList();
+        return editPerson;
+    }
+
+    /**
+     * Updates the internal meeting list
+     */
+    public void refreshInternalMeetingList() {
+        persons.refreshInternalMeetingList();
+    }
+
     //// util methods
 
     @Override
@@ -116,5 +175,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    @Override
+    public ObservableList<MeetingWithPerson> getMeetingList() {
+        return persons.getAllMeetingAsUnmodifiableObservableList();
     }
 }

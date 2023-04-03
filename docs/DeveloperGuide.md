@@ -154,6 +154,117 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### 1. Add Meeting Feature
+
+#### 1.1 Implementation
+
+The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
+`AddMeetingCommandParser#parse()` is called, which returns an `AddMeetingCommand` object.
+
+- Checks that the command contains `AddMeetingCommand.COMMAND_WORD`
+- `AddMeetingCommand` - Represents add meeting command executed by FAid
+
+  - Takes in an `Index` object to assign a meeting to a person at the specified index.
+  - Takes in a `Meeting` object to assign to the specified person.
+  - `AddMeetingCommand#execute()` ensures that the index specified is valid and does not add meeting if it clashes with existing meetings scheduled
+  for the day specified
+
+After being parsed, the `AddMeetingCommand#execute()` method is called, scheduling a meeting for the specified person.
+The following sequence diagram illustrates the description for adding meeting:
+
+![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.PNG)
+
+### 2. Remove Meeting Feature
+
+#### 2.1 Implementation
+
+The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
+`RemoveMeetingCommandParser#parse()` is called, which returns an `RemoveMeetingCommand` object.
+
+- Checks that the command contains `RemoveMeetingCommand.COMMAND_WORD`
+- `RemoveMeetingCommand` - Represents remove meeting command executed by FAid
+
+    - Takes in 2 `Index` objects:
+      - Index of person to find
+      - Index of meeting to find
+
+After being parsed, the `RemoveMeetingCommand#execute()` method is called, remove a meeting at the specified index
+for the specified person. The following sequence diagram illustrates the description for removing meeting:
+
+![RemoveMeetingSequenceDiagram](images/RemoveMeetingSequenceDiagram.PNG)
+
+### 3. Region
+
+Every `Address` is composed with an additional `Regions` Enumeration, which represents all the 5 regions in Singapore.
+When an `Address` object is created, the `Region` class processes the address and allocates a `Regions` Enum to the `Address` object.
+Internally, the `Region` class has a list of all major town names in Singapore, and attempts to match one of them to the actual address string.
+
+![RegionSequenceDiagram](images/RegionSequenceDiagram.png)
+
+### 4. Update Meeting Feature
+
+The find meeting feature is handled by the following classes:
+* `FindMeetingCommandParser` - Checks that the command is in the right format, then
+  parses the input to extract PersonID, MeetingID and updated Meeting details.
+    * `FindMeetingCommandParser#parse()` is called and returns an
+      `FindMeetingCommand` object with the extracted PersonID, MeetingID
+* `FindMeetingCommand` - The update Meeting command that will be executed by FAid
+    * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()` method.
+
+Just like other commands, the `Command#execute()` method of `FindMeetingCommand` is handled by
+`Logic` component. Please refer to the 'Logic component' under 'Design' for more
+information on how the `Logic` component handles a command.
+
+The parsing and execution of FindMeeting command can be shown with the following
+sequence diagram:
+
+### 5. Find Meeting Feature
+### 5.1 Update Meeting Feature
+
+The find meeting feature is handled by the following classes:
+* `FindMeetingCommandParser` - Checks that the command is in the right format, then
+  parses the input to extract PersonID, MeetingID and updated Meeting details.
+    * `FindMeetingCommandParser#parse()` is called and returns an
+      `FindMeetingCommand` object with the extracted PersonID, MeetingID
+* `FindMeetingCommand` - The update Meeting command that will be executed by FAid
+    * The `FindMeetingCommand` extends the `Command` interface and implements the `Command#execute()` method.
+
+Just like other commands, the `Command#execute()` method of `FindMeetingCommand` is handled by
+`Logic` component. Please refer to the 'Logic component' under 'Design' for more
+information on how the `Logic` component handles a command.
+
+The parsing and execution of FindMeeting command can be shown with the following
+sequence diagram:
+
+![FindMeetingSequenceDiagram](images/FindMeetingSequenceDiagram.png)
+
+### 6. Policy Tag Feature
+
+#### 6.1 Implementation
+
+Every `Person` contains a `PolicyTag`, which represents financial policies adopted by the user's clients and prosepctive clients.
+Every time a new `Person` is created, it contains a list of `PolicyTag` objects, which can be empty or non-empty. A new `PolicyTag` object
+is created with the use of `add` command when a new `Person` is added or `edit` command when a new policy needs to be added
+under an existing `Person`.
+
+### 7. Find Policy Feature
+
+#### 7.1 Implementation
+
+The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()`.
+`FindPolicyCommandParser#parse()` is called, which returns an `FindPolicyCommand` object.
+
+* `FindPolicyCommandParser`:
+  * checks that the command contains `FindPolicyCommand.COMMAND_WORD`.
+  * checks that the arguments given are Strings.
+* `FindPolicyCommand`:
+  * updates list of `Person` objects with a filtered list of `Person` objects with matching policy names
+
+After being parsed, the `FindPolicyCommand#execute()` method is called, a filtered list of `Person` objects with matching
+policy names are displayed. The following sequence diagram illustrates the description for finding policy:
+
+![FindPolicySequenceDiagram](images/FindPolicySequenceDiagram.PNG)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -256,43 +367,49 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
-
-* has a need to manage a significant number of contacts
+* Financial advisors who has to manage a significant number of contacts and meetings
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* has a large number of meetings to keep track of
+* wants to minimise time spent commuting
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**: manage clients and meetings faster than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                             | I want to …​                                       | So that I can…​                                                           |
+|----------|---------------------------------------------------------------------|----------------------------------------------------|---------------------------------------------------------------------------|
+| `* * *`  | financial advisor                                                   | see all my meetings for today                      | plan and prepare for my meetings today effectively                        |
+| `* * *`  | financial advisor                                                   | add a new meeting                                  | keep track of a meeting with a client using this app                      |
+| `* * *`  | financial advisor                                                   | filter my meetings                                 | find clients based on some condition                                      |
+| `* * *`  | financial advisor                                                   | remove a meeting from my schedule                  | remove meetings that are no longer relevant                               |
+| `* * *`  | financial advisor who has to travel to meet their client physically | set which region of singapore my client is in      | keep track of the general location of my client                           |
+| `* * *`  | financial advisor who prefers physical meetings with clients        | see all meetings in a specific region of singapore | minimize travel time by meeting all clients that live close to each other |
+| `* *`    | financial advisor                                                   | know when the last meeting with a client was       | avoid losing a client if they find me too annoying                        |
+| `* *`    | financial advisor                                                   | classify my meetings into different types          | organise my meetings better                                               |
+| `* `     | financial advisor                                                   | record my meetings                                 | look back to reflect and improve on my skills                             |
+| `* *`    | financial advisor                                                   | add notes about a client                           | keep track of things that are important to a client                       |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FAid` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: *UC01 Delete a person***
+
+**Actor: User**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  FAid shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  FAid deletes the person
 
     Use case ends.
 
@@ -308,13 +425,101 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: *UC02 Schedule a meeting with new client***
+
+**Actor: User**
+
+**MSS:**
+
+1. User request to add a new client with relevant information
+2. FAid adds new client’s information to the list
+3. User request to add meeting date and time for the same client
+4. FAid adds meeting date and time for that client
+
+   Use Case Ends
+
+**Extensions:**
+
+* 2a. FAid detects clash in meeting date and time
+   * 2a1. FAid prompts User again to add a different meeting date and time
+   * 2a2. User enters a new meeting date and time
+
+     Use Case resumes at step 4.
+
+**Use Case: *UC03 View meetings for current day***
+
+**Actor: User**
+
+**MSS:**
+
+1. User opens FAid
+2. FAid notifies user of all upcoming meetings for the day
+3. User chooses to view all meetings for the current day
+4. FAid shows all meetings that start on the current day
+
+   Use case ends
+
+**Extensions:**
+* 2a. There are no meetings for the day
+  * 2a1. FAid notifies that there are no upcoming meetings for the day
+
+     Use case ends
+
+**Use Case: *UC04 Find clients residing in a certain region of Singapore***
+
+**Actor: User**
+
+**MSS:**
+
+1. User opens the app
+2. User requests to find clients in a specific region
+3. FAid shows all clients residing in a specific region
+
+   Use case ends
+
+**Extensions:**
+
+* 3a.  FAid cannot find the specified region entered
+  * 3a1. User enters new region name
+  * 3a2. Steps 3a1 and 3a are repeated until a valid region name is provided
+
+    Use case resumes from step 3
+
+**Use Case: *UC05 Get list of clients based on a tag***
+
+**Actor: User**
+
+**MSS:**
+
+1. User opens the app
+2. User wants to see all persons with a certain tag
+3. System requests for the tag
+4. User enters the tag
+5. System displays all persons with the given tag
+
+   Use Case Ends
+
+**Extensions:**
+* 4a. System cannot find the tag supplied by the user
+  * 4a1. System requests for the correct tag
+  * 4a2. User enters a new tag
+
+    Steps 4a1-4a2 are repeated until the user provides a correct tag
+    Use Case resumes from step 5
+
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. A new version of FAid is released every month.
+5. Data stored is not wiped out outside the program's runtime or in the event of an interrupt.
+6. All non-helper functions implemented in FAid have JavaDoc documentation.
+7. All commands and features implemented in FAid should have a visual example in the User Guide.
+8. No command should require more than 5 arguments/options.
+9. Every function is deterministic and has a test case with an expected output.
 
 *{More to be added}*
 
@@ -322,6 +527,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Region** - General Areas in Singapore separated into North, South, East, West, Central
+* **Town** - An area defined by the National Environment Agency
+* **Meeting** - An appointment with the user’s client starting and ending at stipulated times
+* **Day** - Spans from 00:00 to 23:59. Not by conventional office hours.
+* **Client** - Potential or actual buyers of insurance sold by the use
+
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":UpdateMeetingCommandParser" as UpdateMeetingCommandParser LOGIC_COLOR
+participant "d:EditMeetingDescriptor" as EditMeetingDescriptor LOGIC_COLOR
+participant "e:EditMeetingCommand" as EditMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("meetingUpdate 1 2 md/ Policy discussion \n ms/ 30-03-2020 20:10 me/ 22:10")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("meetingUpdate 1 2 md/ Policy discussion \n ms/ 30-03-2020 20:10 me/ 22:10")
+activate AddressBookParser
+
+create UpdateMeetingCommandParser
+AddressBookParser -> UpdateMeetingCommandParser
+activate UpdateMeetingCommandParser
+
+UpdateMeetingCommandParser --> AddressBookParser
+deactivate UpdateMeetingCommandParser
+
+AddressBookParser -> UpdateMeetingCommandParser : parse(1 2 md/ Policy discussion \n ms/ 30-03-2020 20:10 me/ 22:10)
+activate UpdateMeetingCommandParser
+
+create EditMeetingDescriptor
+UpdateMeetingCommandParser -> EditMeetingDescriptor
+activate EditMeetingDescriptor
+
+EditMeetingDescriptor --> UpdateMeetingCommandParser : d
+deactivate EditMeetingDescriptor
+
+create EditMeetingCommand
+UpdateMeetingCommandParser -> EditMeetingCommand
+activate EditMeetingCommand
+
+EditMeetingCommand --> UpdateMeetingCommandParser : e
+deactivate EditMeetingCommand
+
+UpdateMeetingCommandParser --> AddressBookParser : e
+deactivate UpdateMeetingCommandParser
+UpdateMeetingCommandParser -[hidden]-> AddressBookParser
+destroy UpdateMeetingCommandParser
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+LogicManager -> EditMeetingCommand : execute()
+activate EditMeetingCommand
+
+EditMeetingCommand -> Model : setMeeting(2, d)
+activate Model
+
+EditMeetingCommand -> Model : updateFilteredPositionList()
+deactivate Model
+
+create CommandResult
+EditMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditMeetingCommand
+deactivate CommandResult
+
+EditMeetingCommand --> LogicManager : result
+deactivate EditMeetingCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
+

@@ -2,30 +2,42 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Region;
+import seedu.address.model.person.Region.Regions;
+import seedu.address.model.tag.PolicyTag;
 
 /**
- * Contains utility methods used for parsing strings in the various *Parser classes.
+ * Contains utility methods used for parsing strings in the various *Parser
+ * classes.
  */
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
+     * and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero
+     *                        unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -96,29 +108,110 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String tag} into a {@code PolicyTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
+    public static PolicyTag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!PolicyTag.isValidTagName(trimmedTag)) {
+            throw new ParseException(PolicyTag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new PolicyTag(trimmedTag);
     }
 
+
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code Set<PolicyTag>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static Set<PolicyTag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final Set<PolicyTag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses {@code String meeting} into a {@code Meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Meeting parseMeeting(String desc, String start, String end) throws ParseException {
+        requireNonNull(desc);
+        requireNonNull(start);
+        requireNonNull(end);
+        String trimmedDesc = desc.trim();
+
+        Pattern dateTimeFormat = Pattern.compile("\\d{2}-\\d{2}-\\d{4}.\\d{2}:\\d{2}");
+        Matcher dateTimeStartMatcher = dateTimeFormat.matcher(start.trim());
+        Matcher dateTimeEndMatcher = dateTimeFormat.matcher(end.trim());
+
+        if (!dateTimeStartMatcher.find() || !dateTimeEndMatcher.find()) {
+            String incorrect_dateTimeFormat =
+                "Incorrect DateTime format!\n"
+                    + "Correct format is: dd-mm-yyyy hh:mm";
+            throw new ParseException(incorrect_dateTimeFormat);
+        }
+
+        try {
+            LocalDateTime parsedStart = parseDateTime(start.trim());
+            LocalDateTime parsedEnd = parseDateTime(end.trim());
+
+            return new Meeting(trimmedDesc, parsedStart, parsedEnd);
+        } catch (DateTimeException dateTimeErr) {
+            throw new ParseException(dateTimeErr.getMessage());
+        }
+    }
+
+    /**
+     * Parses a {@code String region} into the correct {@code Regions} enum
+     */
+    public static Regions parseRegion(String region) throws ParseException {
+        requireNonNull(region); // Do we need to throw a ParserException here?
+        String processedInputRegion = region.trim().toUpperCase();
+        Regions[] allRegions = Regions.values();
+        for (Regions r : allRegions) {
+            if (r.toString().equals(processedInputRegion)) {
+                return r;
+            }
+        }
+        throw new ParseException(Region.MESSAGE_CONSTRAINTS);
+    }
+
+    public static String parseMeetingDescription(String desc) {
+        return desc.trim();
+    }
+
+    /**
+     * Parses a {@code String} into a {@code LocalDateTime}
+     *
+     * @param dateTime String of meeting start or end
+     * @return meeting dateTime parsed to LocalDateTime
+     */
+    public static LocalDateTime parseDateTime(String dateTime) {
+        String[] dateTimes = dateTime.split(" ");
+        String[] date = dateTimes[0].split("-");
+        String[] time = dateTimes[1].split(":");
+        int day = Integer.parseInt(date[0]);
+        int month = Integer.parseInt(date[1]);
+        int year = Integer.parseInt(date[2]);
+        int startHour = Integer.parseInt(time[0]);
+        int startMinute = Integer.parseInt(time[1]);
+        return LocalDateTime.of(year, month, day, startHour, startMinute);
+    }
+
+    /**
+     * converts date in String form to LocalDate object
+     */
+    public static LocalDate parseDate(String date) {
+        String[] input = date.split(" ");
+        String[] dates = input[1].split("/");
+        int day = Integer.parseInt(dates[0]);
+        int month = Integer.parseInt(dates[1]);
+        int year = Integer.parseInt(dates[2]);
+        return LocalDate.of(year, month, day);
     }
 }

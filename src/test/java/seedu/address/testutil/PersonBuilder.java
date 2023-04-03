@@ -1,14 +1,18 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.PolicyTag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -20,12 +24,16 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final LocalDateTime DEFAULT_START = LocalDateTime.of(2023, 3, 25, 12, 0);
+    public static final LocalDateTime DEFAULT_END = LocalDateTime.of(2023, 3, 25, 15, 0);
+    public static final Meeting DEFAULT_MEETING = new Meeting("DEFAULT", DEFAULT_START, DEFAULT_END);
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private ArrayList<Meeting> meetings;
+    private Set<PolicyTag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -35,6 +43,8 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        meetings = new ArrayList<>();
+        meetings.add(DEFAULT_MEETING);
         tags = new HashSet<>();
     }
 
@@ -46,6 +56,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        meetings = personToCopy.getMeetings();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -58,9 +69,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<PolicyTag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -89,8 +100,34 @@ public class PersonBuilder {
         return this;
     }
 
-    public Person build() {
-        return new Person(name, phone, email, address, tags);
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeeting(ArrayList<Meeting> meetings) {
+        this.meetings = meetings;
+        return this;
     }
 
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building
+     * using String inputs
+     */
+    public PersonBuilder withMeetings(String dateTime) {
+        if (dateTime.isEmpty()) {
+            this.meetings.add(new Meeting());
+        } else {
+            String[] args = dateTime.trim().split(" ", 1);
+            String desc = args[0];
+            LocalDateTime start = ParserUtil.parseDateTime(args[1]);
+            LocalDateTime end = ParserUtil.parseDateTime(args[2]);
+            Meeting meetingToAdd = new Meeting(desc, start, end);
+            this.meetings.add(meetingToAdd);
+        }
+
+        return this;
+    }
+
+    public Person build() {
+        return new Person(name, phone, email, address, tags, meetings);
+    }
 }
