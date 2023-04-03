@@ -1131,7 +1131,7 @@ The American spellings, `organize` and `unorganize` are not accepted by `EduMate
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+:information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 * `organise INDEX`
 * `organise INDEX_1 INDEX_2 ... d/DAY T/START_TIME END_TIME l/LOCATION`
 
@@ -1196,6 +1196,47 @@ What you should see: <br>
 
 
 ### Other Commands
+
+#### Sample some contacts `sample`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
+* `sample NUMBER_OF_CONTACTS`
+
+</div>
+
+This command was built to help you and other new users get acquainted with `EduMate` functions. 
+
+`sample` helps to populate `EduMate` with fake profiles, so you can experiment with the commands without any implication to your real contacts.
+
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Limit of <code>sample</code>**<br>
+
+You can only sample at most 100 contacts into `EduMate`.
+
+</div>
+
+
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning**<br>
+
+Do not execute <code>sample</code> after you have started using <code>EduMate</code> properly yourself. Doing so will clear all your contacts!
+
+</div>
+
+##### Examples of Usage:
+
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Examples**<br>
+* `sample 25`: Randomly sample 25 contacts from within `EduMate` and populate them into the application.
+
+</div>
+
 
 #### Exit the application `exit`
 
