@@ -31,13 +31,13 @@ public class JsonAdaptedRecipePortionTest {
         assertEquals(JSON_ADAPTED_PORTION_UNIT, adaptedRecipePortion.getPortionUnit());
     }
     //Fixed after Filbert Logic merge
-//    @Test
-//    public void toModelType_validRecipePortion_returnsRecipePortion() throws Exception {
-//        RecipePortion recipePortion = new RecipePortion(2, 4, new PortionUnit("people"));
-//        JsonAdaptedRecipePortion adapted = new JsonAdaptedRecipePortion(recipePortion);
-//
-//        assertEquals(recipePortion, adapted.toModelType());
-//    }
+    //    @Test
+    //    public void toModelType_validRecipePortion_returnsRecipePortion() throws Exception {
+    //        RecipePortion recipePortion = new RecipePortion(2, 4, new PortionUnit("people"));
+    //        JsonAdaptedRecipePortion adapted = new JsonAdaptedRecipePortion(recipePortion);
+    //
+    //        assertEquals(recipePortion, adapted.toModelType());
+    //    }
 
     @Test
     public void toModelType_invalidLowerRange_throwsIllegalValueException() {

@@ -33,9 +33,9 @@ public class JsonAdaptedTimeUnitTest {
     }
 
     //Should be fixed once Filber code is merged
-//    @Test
-//    public void toModelType_invalidUnit_throwsIllegalValueException() {
-//        JsonAdaptedTimeUnit adaptedUnit = new JsonAdaptedTimeUnit(INVALID_UNIT);
-//        assertThrows(IllegalValueException.class, adaptedUnit::toModelType);
-//    }
+    //    @Test
+    //    public void toModelType_invalidUnit_throwsIllegalValueException() {
+    //        JsonAdaptedTimeUnit adaptedUnit = new JsonAdaptedTimeUnit(INVALID_UNIT);
+    //        assertThrows(IllegalValueException.class, adaptedUnit::toModelType);
+    //    }
 }
