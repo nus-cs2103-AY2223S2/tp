@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import seedu.address.model.commitment.Lesson;
+import seedu.address.model.time.TimePeriod;
 
 /**
  * Represents a ModuleTag in the address book.
@@ -21,7 +22,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "NUS Modules should have 2 - 3 letter prefix, followed by 4 digits and optional 1 - 3 alphabets";
-    public static final String VALIDATION_REGEX = "[A-Z]{2,4}[0-9]{4}[A-Z]{0,3}";
+    public static final String VALIDATION_REGEX = "[a-zA-Z]{2,4}[0-9]{4}[a-zA-Z]{0,3}";
 
     private final Set<Lesson> lessons;
 
@@ -31,7 +32,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * @param tagName A valid tag name.
      */
     public ModuleTag(String tagName) {
-        super(tagName);
+        super(tagName.toUpperCase());
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.lessons = new HashSet<>();
@@ -41,7 +42,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * Overloaded constructor for a {@code ModuleTag}
      */
     public ModuleTag(String moduleCode, Lesson... lessons) {
-        super(moduleCode);
+        super(moduleCode.toUpperCase());
         requireAllNonNull(moduleCode, lessons);
         this.lessons = Set.of(lessons);
     }
@@ -50,7 +51,7 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * Overloaded constructor for a {@code ModuleTag}
      */
     public ModuleTag(String moduleCode, Collection<Lesson> lessons) {
-        super(moduleCode);
+        super(moduleCode.toUpperCase());
         requireAllNonNull(moduleCode, lessons);
         this.lessons = new HashSet<>(lessons);
     }
@@ -84,7 +85,8 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      */
     public String getLessonsAsStr() {
         return lessons.stream()
-                .map(Lesson::toString)
+                .map(Lesson::getTimePeriod)
+                .map(TimePeriod::toString)
                 .collect(Collectors.joining(", "));
     }
 
@@ -163,7 +165,11 @@ public class ModuleTag extends Tag implements Comparable<ModuleTag> {
      * Format state as text for viewing.
      */
     public String toString() {
-        return String.format("%s: Lessons: %s", tagName, getLessonsAsStr());
+        String lessonsStr = getLessonsAsStr();
+        if (lessonsStr.isEmpty()) {
+            lessonsStr = "None";
+        }
+        return String.format("%s: Lessons: %s", tagName, lessonsStr);
     }
 
     @Override
