@@ -54,10 +54,10 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
   - [Find Lectures in a Module By Tag](#find-lectures-in-a-module-by-tag)
   - [Find Videos in a Lecture](#find-videos-in-a-lecture)
   - [Find Videos in a Lecture By Tag](#find-videos-in-a-lecture-by-tag)
-  - [Clear](#clear-1)
+  - [Clear Data](#clear-data)
   - [Note](#note)
-  - [Warning](#warning)
-  - [FAQ](#faq)
+- [Warning](#warning)
+- [FAQ](#faq)
 
 ---
 
@@ -697,7 +697,7 @@ Examples:
 
 _\* Both commands will show video `Vid 1` from the video list of lecture `Week 2` of module `CS2040S`_
 
-### Clear
+### Clear Data
 
 > Clears all information (modules, lectures, videos, tags) from Le Tracker
 
@@ -742,4 +742,4 @@ Format:
 | **Add a Lecture** | `add-lecture /module {module_code}` / e.g., `add-lecture /module CS2040`                                                                              |
 | **Add a Video**   | `add-video /module {module_name} /lecture {lecture_index} /video {video_name}` / e.g., `add-video /module CS2040 /lecture 1 /video lecture-01-part-1` |
 | **Tag a Lecture** | `tag /module {module_code} /lecture {lecture_id} /description {tag_description}` / e.g, `tag /module CS2040 /lecture 1 /description Boohoo`           |
-| **Delete a Tag**  | `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}` / e.g,  `untag /module CS2040 /lecture 1 /tag 1`                                    | --> |
+| **Delete a Tag**  | `untag /module {module_code} /lecture {lecture_id} /tag {tag_id}` / e.g,  `untag /module CS2040 /lecture 1 /tag 1`                                    | -->
