@@ -15,21 +15,15 @@ to learn more about what TeachMeSenpai can do for you!
 
 ### Navigating the User Guide
 **Note Box**
-<div markdown="block" class="alert alert-success">
-
-**:bulb: Note:** Provides information that is useful to know.
+<div markdown="span" class="alert alert-success">**:bulb: Note:** Provides information that is useful to know.
 </div>
 
 **Tip Box**
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Tip:** Provides information that can help enhance the user experience but is not necessary to know.
+<div markdown="span" class="alert alert-info">**:information_source: Tip:** Provides information that can help enhance the user experience but is not necessary to know.
 </div>
 
 **Warning Box**
-<div markdown="block" class="alert alert-danger">
-
-**:exclamation: Warning:** Important information to take note of to avoid any unintended effects!
+<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** Important information to take note of to avoid any unintended effects!
 </div>
 
 [Links](#navigating-the-user-guide): Words highlighted in blue are clickable and will direct you to a relevant section within
@@ -115,6 +109,8 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 * For example, one might think that "@hello__world" is allowed but it isn't due to having consecutive underscores.
 * TeachMeSenpai does validate handles according to Telegram specifications, but do check on the Telegram application for whether a handle is valid!
 
+</div>
+
 [↑ Back to top](#table-of-contents)
 
 ---
@@ -125,8 +121,7 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 Start typing the first letters of a command to get shadow-like autocomplete suggestions. The format of the suggested arguments are as described in the [**Guide on using Features**](#guide-on-using-features).
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Tip:** You can press the `TAB` to fill in the next suggested word!
+<div markdown="span" class="alert alert-info">**:information_source: Tip:** You can press the `TAB` to fill in the next suggested word!
 </div>
 
 ![help popup gui](images/user-guide/autocomplete.jpg)
@@ -153,10 +148,7 @@ Exits the program.
 
 > Format: `exit`
 
-<div markdown="block" class="alert alert-info">
-
-:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
-
+<div markdown="span" class="alert alert-info">:bulb: **Note:** This is the same as closing the app via the top-right `x` button.
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -215,10 +207,7 @@ Edits a student's info _(all info except remark)_. To remove a student's field, 
 
 > Format: `edit INDEX [n/STUDENT_NAME] [a/ADDRESS] [p/PHONE_NUM] [e/EMAIL] [edu/EDUCATION_LEVEL] [tele/TELEGRAM] [t/TAG]... [m/MODULE]...`
 
-<div markdown="block" class="alert alert-info">
-
-:bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
-
+<div markdown="span" class="alert alert-info">:bulb: **Note:** `edit` command cannot edit the remark field of students. Use the [`remark`](#editing-remark-of-student-remark) command for editing remarks.
 </div>
 
 Examples:
@@ -399,10 +388,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>delete</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Tip:** 
-You can combine `find` and `delete` when you have a very long list of students. <br>
-For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
+<div markdown="span" class="alert alert-info">:information_source: **Tip:** You can combine `find` and `delete` when you have a very long list of students. <br>For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
 </div>
 
 ---
@@ -448,10 +434,7 @@ Need to clear all your entries? Simply use `clear` to help you delete all your e
 
 >Format: `clear`
 
-<div markdown="block" class="alert alert-info">
-
-:bulb: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that 
-if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
+<div markdown="span" class="alert alert-info">:bulb: **Note:** Don't worry if you cleared all your entries by accident, simply use `undo` to reverse the change! Do note that if you exit the app immediately after `clear`, using `undo` upon relaunching the app can't retrieve your data anymore :(
 </div>
 
 ### Saving the data
