@@ -123,11 +123,13 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 ![Ui](images/Ui.png)
 
-
+:bulb: Tip: There is sample data present when you first open *Fish Ahoy!*. Use `edit` or `delete` commands to show your own tanks! 
 
 5. Type a command in the command box and press Enter to execute it.
    Some examples:
-  * `fish add n/Bobby lfd/01/01/2023 15:00 s/Guppy fi/0d5h tk/1`: Add a fish to your fish book.
+  * `fish add n/Bobby lfd/01/01/2023 15:00 s/Guppy fi/0d5h tk/1`: Add a fish named Bobby to your fish book. Its last fed date, species, feeding interval and tank are specified with the `lfd/`, `s/`, `fi/` and `tk/` prefixes respectively.
+  * `fish delete 1`: Deletes the first fish shown in the [centre panel of the interface](#about-the-interface).
+  * `tank view 1`: View all fishes and tasks regarding the first tank in the [left panel of the interface](#about-the-interface).
 
 
 6. Refer to [About the Interface](#about-the-interface) below for details on the interface.
