@@ -7,13 +7,17 @@ import static seedu.address.commons.core.Messages.MESSAGE_KNOWN_COMMANDS;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.LECTURE_NAME_DESC_L1;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_CODE_DESC_2040;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ARCHIVE_FILE_NAME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LECTURE_NAME_L2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2040;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_NAME_2040;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EASY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_VIDEO_NAME_V2;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
@@ -24,8 +28,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.UntagCommand;
 import seedu.address.logic.commands.add.AddCommand;
 import seedu.address.logic.commands.add.AddLectureCommand;
 import seedu.address.logic.commands.add.AddModuleCommand;
@@ -218,6 +225,28 @@ public class TrackerParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_tag() throws ParseException {
+        assertTrue(parser.parseCommand(TagCommand.COMMAND_WORD + " " + VALID_MODULE_CODE_2040 + " "
+                + PREFIX_TAG + " "
+                + VALID_TAG_EASY) instanceof TagCommand);
+    }
+
+    @Test
+    public void parseCommand_untag() throws ParseException {
+        assertTrue(parser.parseCommand(UntagCommand.COMMAND_WORD + " " + VALID_MODULE_CODE_2040 + " "
+                + PREFIX_TAG + " "
+                + VALID_TAG_EASY) instanceof UntagCommand);
+    }
+
+    @Test
+    public void parseCommand_export() throws ParseException {
+        assertTrue(parser.parseCommand(ExportCommand.COMMAND_WORD + " " + VALID_ARCHIVE_FILE_NAME)
+                instanceof ExportCommand);
+        assertTrue(parser.parseCommand(ExportCommand.COMMAND_WORD + " " + VALID_ARCHIVE_FILE_NAME + " "
+                + PREFIX_OVERWRITE) instanceof ExportCommand);
     }
 
     @Test

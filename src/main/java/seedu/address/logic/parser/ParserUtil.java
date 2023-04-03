@@ -111,7 +111,7 @@ public class ParserUtil {
         requireNonNull(moduleCodes);
 
         if (moduleCodes.trim().equals("")) {
-            return new HashSet<>();
+            throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
 
         String[] arrayOfModuleCode = moduleCodes.split(",");

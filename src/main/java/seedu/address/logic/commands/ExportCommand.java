@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
 
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -40,10 +42,15 @@ public class ExportCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, InvalidPathException {
         requireNonNull(model);
+        Path archivePath;
 
-        Path archivePath = Paths.get("data", fileName);
+        try {
+            archivePath = Paths.get("data", fileName);
+        } catch (InvalidPathException pathException) {
+            throw new CommandException(MESSAGE_INVALID_FILE_NAME);
+        }
 
         boolean isExporting = true;
 

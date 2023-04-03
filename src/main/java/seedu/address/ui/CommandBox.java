@@ -59,8 +59,8 @@ public class CommandBox extends UiPart<Region> {
             commandExecutor.execute(commandText);
             // Push the previous popped command (caused by 'UP' arrow key event)
             // back into the previous command stack
-            // if it is not empty and not the same as the previous command in stack
-            if (!prevCommand.isBlank() && !prevCommand.equals(commandHistory.peekPrevious())) {
+            // if it is not the same as the previous command in stack to prevent duplicates
+            if (!prevCommand.equals(commandHistory.peekPrevious())) {
                 commandHistory.pushToPrevious(prevCommand);
             }
             prevCommand = commandText;
@@ -96,10 +96,7 @@ public class CommandBox extends UiPart<Region> {
                 return;
             }
             // add current command to nextCommandStack
-            // if current is not empty and not the same as the next command
-            if (!curCommand.isBlank() && !curCommand.equals(commandHistory.peekNext())) {
-                commandHistory.pushToNext(curCommand);
-            }
+            commandHistory.pushToNext(curCommand);
             // pop the previous command and set it as the current command
             String previousCommand = commandHistory.popFromPrevious();
             commandTextField.setText(previousCommand);
@@ -111,9 +108,11 @@ public class CommandBox extends UiPart<Region> {
             if (commandHistory.isNextEmpty()) {
                 return;
             }
-            // add current command to previousCommandStack
-            commandHistory.pushToPrevious(curCommand);
-            // and pop the next command and set it as the current command
+            // add current command to previousCommandStack if it is not empty
+            if (!curCommand.equals("")) {
+                commandHistory.pushToPrevious(curCommand);
+            }
+            // pop the next command and set it as the current command
             String nextCommand = commandHistory.popFromNext();
             commandTextField.setText(nextCommand);
             this.prevCommand = nextCommand;

@@ -119,7 +119,7 @@ public class FindCommandTest {
         boolean hasByTag = false;
         LectureNameContainsKeywordsPredicate predicate =
                 (LectureNameContainsKeywordsPredicate) preparePredicate(" ", DisplayListLevel.LECTURE, hasByTag);
-        ReadOnlyModule module = new ModuleBuilder().build();
+        ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(Collections.emptyList(), module.getCode(), hasByTag);
 
@@ -133,7 +133,7 @@ public class FindCommandTest {
         boolean hasByTag = true;
         LectureTagContainsKeywordsPredicate predicate =
                 (LectureTagContainsKeywordsPredicate) preparePredicate(" ", DisplayListLevel.LECTURE, hasByTag);
-        ReadOnlyModule module = new ModuleBuilder().build();
+        ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(Collections.emptyList(), module.getCode(), hasByTag);
 
@@ -217,7 +217,7 @@ public class FindCommandTest {
         boolean hasByTag = false;
         LectureNameContainsKeywordsPredicate predicate =
                 (LectureNameContainsKeywordsPredicate) preparePredicate(input, DisplayListLevel.LECTURE, hasByTag);
-        ReadOnlyModule module = new ModuleBuilder().build();
+        ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         ModuleCode moduleCode = module.getCode();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), moduleCode, hasByTag);
@@ -250,7 +250,7 @@ public class FindCommandTest {
         boolean hasByTag = true;
         LectureTagContainsKeywordsPredicate predicate =
                 (LectureTagContainsKeywordsPredicate) preparePredicate(input, DisplayListLevel.LECTURE, hasByTag);
-        ReadOnlyModule module = new ModuleBuilder().build();
+        ReadOnlyModule module = new ModuleBuilder(CS2040S).build();
         ModuleCode moduleCode = module.getCode();
         expectedModel.updateFilteredLectureList(predicate, module);
         FindCommand command = new FindCommand(StringUtil.commaDelimitedStringsToList(input), moduleCode, hasByTag);
