@@ -69,7 +69,9 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
     * [**Organise a meet up with your contacts `organise`**](#organise-a-meet-up-organise)
     * [**Unorganise a meet up with your contacts `unorganise`**](#unorganise-a-meet-up-unorganise)
 * [**Other Commands**](#other-commands)
-    * [**Exit the application `exit`**](#exit-the-application-exit)
+  * [**Sample some contacts `sample`**](#sample-some-contacts-sample)
+  * [**Clear EduMate `clear`**]()
+  * [**Exit the application `exit`**](#exit-the-application-exit)
 * [**FAQ**](#faq)
 * [**Summary**](#summary)
   * [**Prefixes**](#prefixes)
@@ -1234,6 +1236,18 @@ Do not execute <code>sample</code> after you have started using <code>EduMate</c
 
 :bulb: **Examples**<br>
 * `sample 25`: Randomly sample 25 contacts from within `EduMate` and populate them into the application.
+
+</div>
+
+#### Clear the application `clear`
+
+If you want to delete all your contacts from `EduMate`, simply type `clear`.
+
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning**<br>
+
+After <code>clear</code> command is executed, the data that has been deleted will not be recoverable.
 
 </div>
 
