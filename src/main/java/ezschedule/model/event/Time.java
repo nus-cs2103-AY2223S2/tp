@@ -13,10 +13,10 @@ import ezschedule.commons.util.AppUtil;
  */
 public class Time implements Comparable<Time> {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Time should only contain numeric characters, follows the format HH:mm, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Time should only contain numeric characters, "
+            + "follows the format HH:mm (starting from 00:00 to 23:59), and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "^\\d{2}:\\d{2}$";
+    public static final String VALIDATION_REGEX = "^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$";
 
     public final LocalTime time;
 
@@ -50,14 +50,14 @@ public class Time implements Comparable<Time> {
      * Returns true if time is before given time.
      */
     public boolean isBefore(Time other) {
-        return this.time.isBefore(other.time);
+        return time.isBefore(other.time);
     }
 
     /**
      * Returns true if time is after given time.
      */
     public boolean isAfter(Time other) {
-        return this.time.isAfter(other.time);
+        return time.isAfter(other.time);
     }
 
     @Override
