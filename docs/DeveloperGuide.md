@@ -719,6 +719,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: List modules**
+
+**MSS**
+
+1. User wants to see all modules.
+2. User types in command `list`.
+3. A list of module is populated.
+
+   Use case ends.
+
+**Use case: List module's lectures**
+
+**MSS**
+
+1. User wants to see all lectures of a module.
+2. User types in command `list /mod CS2040S`.
+3. A list of lectures of module `CS2040S` is populated.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The module does not exists.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: List lecture's videos**
+
+**MSS**
+
+1. User wants to see all videos of a lecture in a module.
+2. User types in command `list /mod CS2040S /lec Week 1`.
+3. A list of videos of lecture `Week 1` in module `CS2040S` is populated.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The module does not exists.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The lecture does not exists.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+**Use case: Find module**
+
+**MSS**
+
+1. User wants to find modules that starts with `Data`.
+2. User types in command `find Data`.
+3. A list of modules whose name starts with `Data` is populated.
+
+   Use case ends.
+
+**Use case: Find lecture**
+
+**MSS**
+
+1. User wants to find lectures belonging to module `CS2040S` that starts with `Week`.
+2. User types in command `find Week /mod CS2040S`.
+3. A list of lectures whose name starts with `Week` is populated.
+
+   Use case ends.
+
+**Use case: Find video**
+
+**MSS**
+
+1. User wants to find videos belonging to lecture `Week 1` of module `CS2040S` that starts with `Vid`.
+2. User types in command `find Vid /mod CS2040S /lec Week 1`.
+3. A list of lectures whose name starts with `Vid` is populated.
+
+   Use case ends.
+
 **Use case: Add a module**
 
 **MSS**
