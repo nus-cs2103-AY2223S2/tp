@@ -10,13 +10,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0" GridPane.columnSpan="2">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
@@ -33,7 +34,7 @@
       <Label fx:id="role" styleClass="cell_small_label" text="\$role" wrapText="true" />
       <Label fx:id="date" styleClass="cell_small_label" text="\$date" wrapText="true" />
     </VBox>
-      <VBox alignment="TOP_RIGHT" prefHeight="102.0" prefWidth="130.0" GridPane.columnIndex="1">
+      <VBox alignment="TOP_RIGHT" prefHeight="102.0" prefWidth="130.0" GridPane.columnIndex="2">
          <children>
             <Label fx:id="statusLabel" alignment="TOP_RIGHT" text="\$status">
                <VBox.margin>
