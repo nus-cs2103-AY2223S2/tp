@@ -38,7 +38,7 @@ public class CommandRecommendationEngineTest {
             assertEquals(expected, actual);
 
             // Test with leading spaces
-            expected = "add_elderly n/Zong Xun ic/NRIC bd/BIRTH_DATE re/[REGION] r/[RISK] a/[ADDRESS]"
+            expected = "     add_elderly n/Zong Xun ic/NRIC bd/BIRTH_DATE re/[REGION] r/[RISK] a/[ADDRESS]"
                     + " p/[PHONE] e/[EMAIL] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END] t/[TAG]";
             actual = commandRecommendationEngine.recommendCommand("     add_elderly n/Zong Xun");
             assertEquals(expected, actual);
@@ -47,8 +47,9 @@ public class CommandRecommendationEngineTest {
             actual = commandRecommendationEngine.recommendCommand("ex");
             assertEquals(expected, actual);
 
-            expected = "auto_pair";
-            actual = commandRecommendationEngine.recommendCommand("auto_p");
+            // Test with leading spaces
+            expected = "    auto_pair";
+            actual = commandRecommendationEngine.recommendCommand("    auto_p");
             assertEquals(expected, actual);
         } catch (CommandException e) {
             fail();
@@ -150,7 +151,8 @@ public class CommandRecommendationEngineTest {
             String autocomplete = commandRecommendationEngine.autocompleteCommand(userInput, recommended);
             assertEquals("add_volunteer", autocomplete);
 
-            userInput = "auto_p";
+            // Test with leading spaces
+            userInput = "    auto_p";
             recommended = commandRecommendationEngine.recommendCommand(userInput);
             autocomplete = commandRecommendationEngine.autocompleteCommand(userInput, recommended);
             assertEquals("auto_pair", autocomplete);

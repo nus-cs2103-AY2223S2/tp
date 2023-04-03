@@ -120,8 +120,13 @@ public class CommandRecommendationEngine {
      * @throws CommandException If the user input is invalid
      */
     public String recommendCommand(String userInput) throws CommandException {
+        String leadingSpaces = getLeadingSpaces(userInput);
+        String frontTrimmedInput = trimLeadingSpaces(userInput);
+        if (frontTrimmedInput.equals("")) {
+            return "";
+        }
         // find entered command
-        int commandIndex = userInput.indexOf(" ");
+        int commandIndex = frontTrimmedInput.indexOf(" ");
         String commandWord;
         String commandArgs;
         CommandInfo commandInfo;
@@ -129,16 +134,16 @@ public class CommandRecommendationEngine {
         // not a complete command
         if (commandIndex == -1) {
             //  Checking only for prefix matching since the command is incomplete
-            commandInfo = findMatchingCommandInfo(userInput, false);
+            commandInfo = findMatchingCommandInfo(frontTrimmedInput, false);
             if (commandInfo == null) {
                 throw new CommandException(INVALID_COMMAND_MESSAGE);
             }
-            return commandInfo.getCmdWord() + generateArgumentRecommendation(commandInfo, null);
+            return leadingSpaces + commandInfo.getCmdWord() + generateArgumentRecommendation(commandInfo, null);
         }
 
         // complete command
-        commandWord = userInput.substring(0, commandIndex);
-        String parsedArgs = userInput.substring(commandIndex);
+        commandWord = frontTrimmedInput.substring(0, commandIndex);
+        String parsedArgs = frontTrimmedInput.substring(commandIndex);
         // Forcing exact matching since the command must be complete
         commandInfo = findMatchingCommandInfo(commandWord, true);
 
@@ -154,23 +159,45 @@ public class CommandRecommendationEngine {
     /**
      * Returns the autocompleted command.
      *
-     * @param userInput          Input by user
-     * @param recommendedCommand Recommendation string given
-     * @return String to be autocompleted
+     * @param userInput          Input by user.
+     * @param recommendedCommand Recommendation string given.
+     * @return String to be autocompleted.
      */
     public String autocompleteCommand(String userInput, String recommendedCommand) {
-        String suggestedCommand = recommendedCommand.substring(userInput.length());
-        boolean isCompleteCommand = isCommandPrefixComplete(userInput, " ");
-        int commandIdx = recommendedCommand.indexOf(" ");
-        String command = recommendedCommand.substring(0, commandIdx == -1
-                ? recommendedCommand.length()
+        String frontTrimmedInput = trimLeadingSpaces(userInput);
+        String frontTrimmedRecommendedCommand = trimLeadingSpaces(recommendedCommand);
+        String suggestedCommand = frontTrimmedRecommendedCommand.substring(frontTrimmedInput.length());
+        boolean isCompleteCommand = isCommandPrefixComplete(frontTrimmedInput, " ");
+        int commandIdx = frontTrimmedRecommendedCommand.indexOf(" ");
+        String command = frontTrimmedRecommendedCommand.substring(0, commandIdx == -1
+                ? frontTrimmedRecommendedCommand.length()
                 : commandIdx);
-        if (!isCompleteCommand && !userInput.equals(command)) {
+        if (!isCompleteCommand && !frontTrimmedInput.equals(command)) {
             return command;
         } else {
             int nextIdx = suggestedCommand.indexOf("/") + 1;
             return userInput.trim() + suggestedCommand.substring(0, nextIdx);
         }
+    }
+
+    /**
+     * Returns the leading spaces of a given string.
+     *
+     * @param input Given string.
+     * @return String representing the leading spaces.
+     */
+    private String getLeadingSpaces(String input) {
+        return input.replaceAll("^(\\s*).*", "$1");
+    }
+
+    /**
+     * Trims the leading whitespaces of a given string.
+     *
+     * @param input Given string.
+     * @return String with the leading whitespaces trimmed.
+     */
+    private String trimLeadingSpaces(String input) {
+        return input.replaceAll("^\\s++", "");
     }
 
     private static boolean isCommandPrefixComplete(String userInput, String delimiter) {
@@ -198,9 +225,9 @@ public class CommandRecommendationEngine {
     /**
      * Generates recommendations for parsed arguments. This function is invoked on each keystroke.
      *
-     * @param commandInfo   The information for a particular command
-     * @param userArgs      The current user input in the command textbox
-     * @return The recommended arguments
+     * @param commandInfo   The information for a particular command.
+     * @param userArgs      The current user input in the command textbox.
+     * @return The recommended arguments.
      * @throws CommandException User typed an invalid prefix.
      */
     private String generateArgumentRecommendation(CommandInfo commandInfo, String userArgs)
