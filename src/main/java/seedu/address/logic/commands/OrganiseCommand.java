@@ -33,7 +33,8 @@ public class OrganiseCommand extends Command {
     public static final String MESSAGE_DUPLICATE_MEETING = "Duplicate meetings are not allowed";
     public static final String MESSAGE_NO_SUCH_PERSON = "%s no longer exists in your contacts.";
     public static final String MESSAGE_NO_SUCH_PERSON_ID = "Person with index %s does not exist";
-    public static final String MESSAGE_MEET_UP_CLASH = "Meet up clashes with scheduled meet ups or participant timetables";
+    public static final String MESSAGE_MEET_UP_CLASH = "Meet up clashes with scheduled meet ups or "
+            + "participant timetables";
 
     private final ContactIndex index;
     private final TimePeriod timePeriod;
