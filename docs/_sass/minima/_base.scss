@@ -283,6 +283,7 @@ var {
   */
   body {
     display: block;
+    -webkit-print-color-adjust: exact;
   }
   /**
   * Replaces the top navigation menu with the project name when printing

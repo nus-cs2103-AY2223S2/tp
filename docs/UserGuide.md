@@ -44,7 +44,7 @@ An increasing number of vaccination are now having more complicated prerequisite
 * **Pink italicized bolded capitalized words** represents _placeholders_ that the reader will have to replace with a
   variable. For example, <code><var>PATIENT_ID</var></code> will represent a patient ID in commands or example outputs.
 * **Backslash** (`\`) before line breaks represents a _command continuation_ where the following line break and
-  backslash are to be replaced with aN EMPTY character. For example,<br>
+  backslash are to be replaced with an EMPTY character. For example,<br>
   <pre>
   appointment add --p <var>PATIENT_ID</var> \
       --s <var>START_TIME</var> --e <var>END_TIME</var> \
@@ -90,12 +90,25 @@ The general command line syntax is as follows:<br>
 * `--` is used to delimit flags and cannot be present in any of the argument placeholders.
 * Some arguments may require parts which are delimited by `::`.
 * Leading and trailing white spaces in <code><var>ARGUMENTS</var></code> and elements in lists will be ignored.
+* For flag arguments, if the command only requires one occurrence of it but multiple are given, only the last argument will be taken.
+  * Example: If a command only requires one <code>--force <var>IS_FORCE</var></code>, but `--force false --force true` is present in the command input, only the last argument, `--force true`, will be taken.
 
 ### Types
 
 #### `<component>`
 
 The list of available components are given in the [components section](#components).
+
+#### `<boolean>`
+
+Represents logical `true` or `false`. Only an input "true" (case insensitive) will result in logical `true`. All other values will result in `false`.
+
+Therefore, the following values are allowed an will evaluate to `false`:
+
+* `false`
+* `true with additional characters`
+* `123`
+* A blank argument.
 
 #### `<string>`
 
@@ -176,13 +189,10 @@ These values are not case sensitive.
 
 #### `<req>`
 
-`<req>` represents a requirement. It is used to evaluate if a patient's vaccination records meets a vaccination history
-requirement. For every vaccination that a patient has taken, that vaccination's groups are tested on all requirements
-that the vaccination has. A check is done to check if that vaccination's groups contains any or all of the groups
-within the requirement set and its truth value depends on the [type](#req-type) of the requirement. If all requirements
-are satisfied, the check passes and the patient satisfies the history requirement of the vaccination and vice versa.
+Represents a requirement that is used to evaluate if a patient's vaccination records meets a vaccination history
+requirement. It contains a [`<req-type>`](#req-type) and a set of [`<group-name>`](#group-name), which represents its requirement set.
 
-`<req>` arguments require 2 and only 2 parts. The general syntax is as follows:
+The general syntax is as follows:
 
 <pre>
 <var>REQ_TYPE</var> :: ...<var>REQUIREMENT</var>...
@@ -250,7 +260,7 @@ keyword add --k <var>MAIN_KEYWORD</var> --n <var>KEYWORD</var>
 Example assumes that the keyword does not exist yet.
 
 ```text
-keyword add --k patient --n pa 
+keyword add --k patient --n pa
 ```
 
 <br><br>
@@ -503,7 +513,7 @@ Output:
 
 ### `vaccination` - Vaccination functionalities
 
-Vaccinations are uniquely identified by their names. The following is a list of the attributes that a vaccination has and their description.
+Vaccinations are uniquely identified by their names. The following is a list of the attributes that a vaccination has and their description:
 
 * **Name** : `<group-name>` - the name of the vaccination.
 * **Groups** : list of `<group-name>` - The groups the vaccination classifies under.
@@ -514,9 +524,35 @@ Vaccinations are uniquely identified by their names. The following is a list of 
   * Default value = `200`.
 * **Ingredients** : list of `<group-name>` - ingredients of the vaccination. Similar to patient's allergies.
   * Default value = `empty list`.
-* **History requirements** - the list requirements of vaccination groups to take the vaccination.
+* **History requirements** : list of `<req>` - the list requirements of vaccination groups to take the vaccination.
   * Default value = `empty list`.
   * Requirements need not be unique, ie. a requirement of 2 `ANY :: grp1, grp2` is allowed. This would mean that to take this vaccination, the patient will have to have taken at least 2 vaccinations that satisfies that requirement.
+
+<div markdown="block" class="alert alert-info" id="vaccination-case-sensitive-name-info">
+:information_source: **Case sensitivity of names in vaccinations**
+
+Vaccination **name** and the names of their **ingredients** are <u>case sensitive</u> to differentiate between simple chemical formulas, company names containing the same characters but in different case or certain serial numbers that are case sensitive.
+
+Therefore these vaccination names are different:
+
+* `VAX ABC (No CO)` - "CO" for carbon monoxide.
+* `VAX ABC (No Co)` - "Co" for cobalt.
+
+</div>
+
+In order for a patient to take a specific vaccination, the patient will have to satisfy <u>ALL</u> of the following:
+
+* Patient's age should be between the vaccination's **minimum age** and **maximum age** range inclusive.
+* The patient should not be allergic to any of the **ingredients** of the vaccination.
+* The patient should have a vaccination history record that satisfies <u>ALL</u> requirements of the vaccination's **history requirements**.
+
+<div markdown="block" class="alert alert-info" id="vaccination-history-requirement-check-info">
+:information_source: **History requirement checks**
+
+When checking if a patient satisfies the history requirements of a vaccination, the group classifications of the vaccination that the patient has taken will be extracted and tested against the requirement's group set. The requirement [type](#req-type) of the requirement will decide if the requirement is satisfied.
+
+In other words, a patient can satisfy a requirement by taking vaccinations with certain group types for `ALL` and `ANY` requirement types or not taking any vaccinations with certain group types for `NONE` requirement types.
+</div>
 
 #### `add` - Add a vaccination type
 
@@ -526,8 +562,10 @@ they will be set to their default values.
 ##### Syntax
 
 <pre>
-vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
-    [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]...
+vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...]... \
+    [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
+    [--a ...<var>INGREDIENT</var>...]... \
+    [--h <var>HISTORY_REQ</var>]...
 </pre>
 
 * <code><var>VAX_NAME</var></code> : `<group-name>`
@@ -537,19 +575,40 @@ vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...] [--lal <var>MIN
 * <code><var>INGREDIENT</var></code> : `<group-name>`
 * <code><var>HISTORY_REQ</var></code> : `<req>`
 
-##### Example
+<div markdown="block" class="alert alert-success" id="vaccination-add-command-tip">
+:bulb: **Breaking up vaccination `add` syntax**
+
+Attempting to add the entire data of a vaccination may result in very long input which is error prone. Users may and are advised to break the arguments up into smaller and more manageable pieces with the aid of the [`edit`](#edit---edit-a-vaccination-type) command.
+
+This can be done by:
+
+1. Adding a vaccination with only its name and without the rest of its attributes.
+2. Editing the added vaccination in step 1 to add an attribute.
+3. Repeating step 2 until all desired attributes are added to the vaccination.
+
+For example, to add the same vaccination as in the <a href="#vaccination-add-example">example</a>, one can execute commands in the following order:
+
+1. `vaccination add ABC VAX`
+2. `vaccination edit ABC VAX --g ABC, VACCINATION`
+3. `vaccination edit ABC VAX --lal 5 --ual 50`
+4. `vaccination edit ABC VAX --i ALC-0315, ALC-0159`
+5. `vaccination edit ABC VAX --h NONE::ABC`
+
+</div>
+
+<h5 id="vaccination-add-example">Example</h5>
 
 Example assumes that the vaccination `ABC VAX` does not exist yet.
 
 ```text
-vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION \
-    --lal 5 \
-    --a allergy1, allergy2, allergy3 \
-    --h NONE::DOES 1 \
+vaccination add ABC VAX --g ABC, VACCINATION \
+    --lal 5 --ual 50 \
+    --i ALC-0315, ALC-0159 \
+    --h NONE::ABC
 ```
 
 Copy and paste:<br>
-`vaccination add Pfizer (Dose 1) --groups DOSE 1, PFIZER, VACCINATION --lal 5 --i allergy1, allergy2, allergy3 --h NONE::DOES 1`
+`vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --i ALC-0315, ALC-0159 --h NONE::ABC`
 <br><br>
 Output:<br>
 
@@ -571,7 +630,7 @@ are omitted, they will be set to what they were before.
 ##### Syntax
 
 <pre>
-vaccination add <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
+vaccination edit <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GROUP</var>...] \
     [--lal <var>MIN_AGE</var>] [--ual <var>MAX_AGE</var>] \
     [--a ...<var>INGREDIENT</var>...]... [--h <var>HISTORY_REQ</var>]... \
     [--set <var>IS_SET</var>]
@@ -590,7 +649,7 @@ vaccination add <var>VACCINATION</var> [--n <var>NEW_NAME</var>] [--g ...<var>GR
 
 ##### Example
 
-Following examples are independent of each other and follow after vaccination add example.
+Following examples are independent of each other and follow after vaccination <a href="#vaccination-add-example">add</a> example.
 
 ###### Set example
 
