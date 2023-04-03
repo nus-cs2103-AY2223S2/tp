@@ -147,19 +147,19 @@ Refer to the [Features](#features) below for details of each command.
 **:information_source: The following are rules applicable to all commands:**
 
 1. Words encapsulated in `{}` are the parameters to be supplied by the user.\
-  e.g. in `add {module_code}`, `{module_code}` is a parameter which can be used as `add CS2040`.
+   e.g. in `add {module_code}`, `{module_code}` is a parameter which can be used as `add CS2040`.
 
 2. Items in square brackets are optional.\
-  e.g. `add {module_code} [/name {module_name}]` can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
+   e.g. `add {module_code} [/name {module_name}]` can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
 
 3. Named parameters can be specified in any order as long as it is after all unnamed parameters (if any).\
-  e.g. `edit {module_code} /code {updated_code} /name {updated_name}` can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
+   e.g. `edit {module_code} /code {updated_code} /name {updated_name}` can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
 
 4. If a named parameter is expected only once in the command but the user specified it multiple times, only the last occurrence of the parameter will be taken.\
-  e.g. `add {module_code} [/name {module_name}]` if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be used as the value of the `/name` parameter.
+   e.g. `add {module_code} [/name {module_name}]` if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be used as the value of the `/name` parameter.
 
 5. Extraneous parameters will be ignored.\
-  e.g. `add {module_code} /name {module_name}` if used as `add CS2040 /name DSAG /foo bar`, the `/foo` parameter is ignored.
+   e.g. `add {module_code} /name {module_name}` if used as `add CS2040 /name DSAG /foo bar`, the `/foo` parameter is ignored.
 
 6. Arguments must be specified in the format `/{argument_name} {value}`, if the argument takes a value, or `/{argument_name}`, if the argument takes no value, and there must be a whitespace before `/{argument_name}`.
 
@@ -227,24 +227,27 @@ Format: `navb`
 
 ### List Modules or Lectures or Videos
 
-> Root context: modules, Module context: lectures, Lecture context: videos
+> `list`
 
-Format: `list`
+Root context: modules, Module context: lectures, Lecture context: videos
+
+:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [List Lectures of Modules](#list-lectures-of-modules) or [List Videos of Lectures](#list-videos-of-lectures) (refer to [Navigation](#navigation) for more information)
 
 ### List Modules
 
-> Lists all modules
+> `list /r`
 
-Format: `list /r`
+Lists all modules
 
 ### List Lectures of Modules
 
-> Lists all lectures belonging to a specified module code
+> `list [/mod {module_code}]`
 
-Format: `list [/mod {module_code}]`
+Lists all lectures belonging to a specified module code
 
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the current context (if any)
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
 Examples:
 
@@ -252,16 +255,17 @@ Examples:
 
 ### List Videos of Lectures
 
-> Lists all videos belonging to a specified lecture code of a navigated/specified module code
+> In module context: `list [/lec {lecture_name}]`\
+> In any context: `list [/mod {module_code} /lec {lecture_name}]`
 
-Format:\
-In module context: `list [/lec {lecture_name}]`\
-In any context: `list [/mod {module_code} /lec {lecture_name}]`
+Lists all videos belonging to a specified lecture code of a navigated/specified module code
 
-- `module_code` must belong to an existing module
-- `module_code` if not specified, defaults to the module code of the module in the module context (if any)
-- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
-- `lecture_name` if not specified, defaults to the name of the lecture in the current context (if any)
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
 
 Examples:
 
@@ -588,9 +592,9 @@ Examples:
 
 ### Find Modules or Lectures or Videos
 
-> Find all modules/lectures/videos based on context whose code/name (whichever applicable) starts with any of the keyword(s)
+> `find {keywords}`
 
-Format: `find {keywords}`
+Find all modules/lectures/videos based on context whose code/name (whichever applicable) starts with any of the keyword(s) and case is insensitive.
 
 Examples:
 
@@ -598,13 +602,15 @@ Examples:
 - In module level within `CS2040S`, `find week 1, week 2` searches for lectures `week 1` or `week 2` from the lecture list of module `CS2040S`.
 - In lecture level within `week2` of `CS2040S`, `find vid1, vid2` searches for videos `vid1` or `vid2` from the video list of lecture `week2` of module `CS2040S`.
 
+:information_source: The navigation system might specify the `/mod` and `/lec` arguments which will transform the user's command into the command specified in [Find Lectures in a Module](#find-lectures-in-a-module) or [Find Videos in a Lecture](#find-videos-in-a-lecture) (refer to [Navigation](#navigation) for more information)
+
 ### Find Modules or Lectures or Videos By Tag
 
-> Find all modules/lectures/videos based on context whose tag list contains any tag that starts with any of the keyword(s)
+> `find {keywords} [/byTag]`
 
-Format: `find {keywords} [/byTag]`
+Find all modules/lectures/videos based on context whose tag list contains any tag that starts with any of the keyword(s)
 
-Assumption:\
+**Assumption:**\
 Module `CS2040S` has tags `["heavy", 'math']`\
 Lecture `Week 1` of `CS2040S` has tags `["Arrays", "Sorting"]`\
 Video `Vid 1` of `Week 1` of `CS2040S` has tags `["content"]`
@@ -617,11 +623,13 @@ Examples:
 
 ### Find Lectures in a Module
 
-> Find all lectures in a specified module whose name starts with any of the keyword(s)
+> `find {keywords} [/mod {module_code}]`
 
-Format: `find {keywords} [/mod {module_code}]`
+Find all lectures in a specified module whose name starts with any of the keyword(s)
 
-- `module_code` must belong to an existing module
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
 Examples:
 
@@ -629,13 +637,15 @@ Examples:
 
 ### Find Lectures in a Module By Tag
 
-> Find all lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
+> `find {keywords} [/byTag /mod {module_code}]`
 
-Format: `find {keywords} [/byTag /mod {module_code}]`
+Find all lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
 
-- `module_code` must belong to an existing module
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 
-Assumption:\
+**Assumption:**\
 Module `CS2040S` has lecture `Week 1` which has tags `["array", 'sorting']`
 
 Examples:
@@ -644,14 +654,17 @@ Examples:
 
 ### Find Videos in a Lecture
 
-> Find all videos in a specified lecture in a navigated/specified module whose name starts with any of the keyword(s)
+> In module context: `find {keywords} [/lec {lecture_name}]`\
+> In any context: `find {keywords} [/mod {module_code} /lec {lecture_name}]`
 
-Format:\
-In module context: `find {keywords} [/lec {lecture_name}]`\
-In any context: `find {keywords} [/mod {module_code} /lec {lecture_name}]`
+Find all videos in a specified lecture in a navigated/specified module whose name starts with any of the keyword(s)
 
-- `module_code` must belong to an existing module
-- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
 
 Examples:
 
@@ -662,16 +675,19 @@ _\* Both commands searches for videos `vid1` or `vid2` from the video list of le
 
 ### Find Videos in a Lecture By Tag
 
-> Find all videos in a specified lecture in a navigated/specified module whose tag list contains any tag that starts with any of the keyword(s)
+> In module context: `find {keywords} [/byTag /lec {lecture_name}]`\
+> In any context: `find {keywords} [/byTag /mod {module_code} /lec {lecture_name}]`
 
-Format:\
-In module context: `find {keywords} [/byTag /lec {lecture_name}]`\
-In any context: `find {keywords} [/byTag /mod {module_code} /lec {lecture_name}]`
+Find all videos in a specified lecture in a navigated/specified module whose tag list contains any tag that starts with any of the keyword(s)
 
-- `module_code` must belong to an existing module
-- `lecture_name` must belong to a lecture that exist within the module specified in `module_code`
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
+  - Must belong to an existing module in Le Tracker (:exclamation:Module code matching is case sensitive)
+  - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture
+  - Must be unique among the names of the lectures belonging to the module specified in `module_code` (:exclamation:Uniqueness is case sensitive)
+  - Refer to [Argument Formats](#argument-formats) for the "Lecture Name" format
 
-Assumption:\
+**Assumption:**\
 Module `CS2040S` has lecture `Week 2` which has video `Vid 1` which has tags `["content"]`
 
 Examples:
