@@ -445,7 +445,7 @@ EduMate is a command-driven application, which means that its various functional
   e.g. `z/FIELD` could mean `n/FIELD` or `s/FIELD`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [g/GROUP]` can be used as `n/Amriul Thani g/Friend` or as `n/Amirul Thani`.
+  e.g. `n/NAME [g/GROUP]` can be used as `n/Amirul Thani g/Friend` or as `n/Amirul Thani`.
 
 * Items with `...`​ after them can be used multiple times including zero times.<br>
   e.g. `[m/MODULE]...​` can be used as ` ` (i.e. 0 times), `m/`, `m/CS2108 m/CS2101` etc.
@@ -481,7 +481,7 @@ EduMate is a command-driven application, which means that its various functional
 
 <img src="images/general_command_format.png" style="width:80%;margin:0 10%">
 
-* **Bolded** portions of the command format implies that inputs could be optional.
+* **Bolded** portions of the command format implies that inputs are optional.
 
 </div>
 
@@ -522,16 +522,6 @@ Below are some special attributes that complement the [Basic Attributes](#basic-
 **Rules:** `GROUP` should only contain alphanumeric characters.<br>
 
 **Example:** `g/Groupmate`
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: Important!<br>
-* EduMate's [Person List](#person-list) will only show labels of common groups that you are in with that contact. Do not be alarmed that some groups you tagged did not
-appear in the Person List.
-* You may still view the label when you [view the contact's profile](#view-a-contacts-profile-view).
-* When you tag (untag) a group common to you to (from) a contact, it will appear (disappear) on the person's contact card in the Person List automatically.
-
-</div>
 
 #### **Module**
 
@@ -590,7 +580,7 @@ Command entered: `add n/Weixiang p/89229358 s/Boon Lay e/heavenlywang@gmail.com 
 What you should see:
 1. Weixiang's contact is added towards the end of the Person List.
 2. Weixiang's profile appears on the Profile Panel as such (below).
-3. Command Response Box shows that Weixiang is successfully added into `EduMate`.
+3. The Command Response Box shows that Weixiang is successfully added into `EduMate`.
 
 <img src="images/ug_cmds_pics/addcommand.svg" style="width:80%;margin:0 10%">
 
@@ -1030,7 +1020,7 @@ The storage commands allow you to save and load your EduMate data into a file. T
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: You can use these commands if:
+:information_source: **You can use these commands if**:
 * You want to create backups of your EduMate
 * You want to explore the functions of EduMate without fear of losing your data
 * You want to maintain multiple versions of EduMate
@@ -1098,7 +1088,7 @@ Problem is, you do not know when all of them are free! Luckily, you have `EduMat
 You can execute the `study` variant of the `meet` command
 whilst referring to their index on the Person List.
 
-From here, `EduMate` will recommend the most optimal places and the best possible time to meet and study for the final.
+From here, `EduMate` will recommend the most optimal places and the best possible time to meet and study for the final exam.
 
 Command entered: `study 35 29 10 23`
 
