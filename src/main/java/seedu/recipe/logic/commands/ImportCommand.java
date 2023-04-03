@@ -20,11 +20,13 @@ public class ImportCommand extends Command {
     public static final String EMPTY_COMMAND = "No file was selected.";
     public static final String NOT_JSON_FILE = "Selected file '%s' is not a JSON file.";
     public static final String INVALID_VALUES = "Selected JSON file '%s' contains invalid values";
-    public static final String DUPLICATE_VALUES = "Selected JSON file '%s' contains some duplicate recipes";
+    public static final String DUPLICATE_VALUES =
+            "Selected JSON file '%s' contains some duplicate recipes which have been ignored and imported successfully";
     public static final String SUCCESS_MESSAGE = "Selected JSON file imported successfully";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final ImportManager importManager;
+    private boolean hasDuplicate;
 
     /**
      * Constructs an instance of this Command around the given Import Manager.
@@ -33,6 +35,11 @@ public class ImportCommand extends Command {
     public ImportCommand(Stage stage) {
         assert stage != null;
         this.importManager = new ImportManager(stage);
+        this.hasDuplicate = false;
+    }
+
+    public boolean isDuplicate() {
+        return hasDuplicate;
     }
 
     /**
@@ -51,12 +58,18 @@ public class ImportCommand extends Command {
             }
             // Validate uniqueness, add to model
             ObservableList<Recipe> currentRecipes = model.getFilteredRecipeList();
-            if (importedRecipeList.stream().anyMatch(currentRecipes::contains)) {
-                throw new CommandException(DUPLICATE_VALUES);
+            for (Recipe recipe : importedRecipeList) {
+                if (!currentRecipes.stream().anyMatch(recipe::isSameRecipe)) {
+                    model.addRecipe(recipe);
+                } else {
+                    hasDuplicate = true;
+                }
             }
-            importedRecipeList.forEach(model::addRecipe);
         } catch (IllegalValueException e) {
             throw new CommandException(e.getMessage());
+        }
+        if (isDuplicate()) {
+            return new CommandResult(DUPLICATE_VALUES);
         }
         return new CommandResult(SUCCESS_MESSAGE);
     }
