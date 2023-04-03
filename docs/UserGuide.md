@@ -53,7 +53,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 3. Copy the file to the folder you want to use as the _home folder_ for your Library.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
-   
+
 5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
     <img width="560" height="400"  src="images/Ui.png">
@@ -70,9 +70,9 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
    * `clear` : Deletes all Bookmarks.
 
    * `goto 1` : Opens the url of 1st Bookmark shown in current list.
-   
+
    * `exit` : Exits the app.
-   
+
 7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -136,7 +136,7 @@ Adds a tag to the list of tags.
 
 Format: `addtag [t/TAG]…`
 
-Examples: 
+Examples:
 * `addtag t/Novel t/MaleProtagonist`
 * `addtag t/FemaleProtagonist`
 
@@ -213,7 +213,7 @@ Examples:
 Find bookmarks whose specified fields contain the given keywords.
 
 `find` helps you to find bookmarks whose specified fields contain the given keywords. You can use this when you
-want to filter out certain bookmarks from your large list of bookmarks. `find` allows you to search for bookmarks 
+want to filter out certain bookmarks from your large list of bookmarks. `find` allows you to search for bookmarks
 using the title, author, genre and/or tags of a bookmark.
 
 :bulb: **Tip** - You can use the `list` command to get back the bookmarks that you have filtered out after `find`.
