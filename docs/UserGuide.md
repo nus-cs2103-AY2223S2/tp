@@ -307,6 +307,8 @@ The Command Response box is where you will receive feedback for any command you 
 
 The Command Response box is located directly below the [Profile Panel](#profile-panel) and above the [Command Box](#command-box).
 
+<br>
+
 <img src="images/UG_ui_pictures/command_feedback.png" style="width:80%;margin:0 10%">
 
 <center>Diagram 11: Successful command execution feedback shown in red</center>
