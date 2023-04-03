@@ -59,7 +59,12 @@ public class SampleDataUtil {
             new Tag("Manhwa"),
             new Tag("Manhua"),
             new Tag("Manga"),
-            new Tag("Novel")
+            new Tag("Novel"),
+            new Tag("Hunters"),
+            new Tag("Gore"),
+            new Tag("Cheats"),
+            new Tag("System"),
+            new Tag("Antihero")
         };
     }
 
