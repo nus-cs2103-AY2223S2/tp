@@ -60,4 +60,3 @@ Given below are my contributions to the project.
 * [#45](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/45)
 * [#128](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/128)
 * [more](https://github.com/AY2223S2-CS2103T-T11-2/tp/issues?q=reviewed-by%3Achuakid)
-* 
