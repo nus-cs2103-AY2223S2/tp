@@ -24,7 +24,7 @@ public class ShortcutCommand extends Command {
     public static final String MESSAGE_USAGE = commandWords
             + ": Adds a shortcut to a command.\n"
             + "Parameters: COMMAND SHORT_FORM \n"
-            + "Example: " + "shortcut edit e";
+            + "Example: " + commandWords.get(0) + " edit e";
 
     public static final String MESSAGE_SUCCESS = "New shortcut added: Command: %1$s, Shortcut: %2$s";
     public static final String MESSAGE_INVALID_SHORTCUT = "Shortcut does not exist.";

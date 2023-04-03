@@ -1,11 +1,13 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -38,6 +40,40 @@ public class AddressBookParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    /**
+     * Parses {@code input} into a command targeted at {@code index}.
+     *
+     * @param input full input string with Index omitted
+     * @param index target index
+     * @return the command based on {@code input} and {@code index}
+     * @throws ParseException if the input does not conform to an expected format
+     */
+    public static Command parseCommandWithIndex(String input, Index index) throws ParseException {
+        requireNonNull(index);
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(input.trim());
+        if (!matcher.matches()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        // inject index
+        final String arguments = index.getOneBased() + " " + matcher.group("arguments");
+
+        ShortcutCommandUtil.loadShortcuts();
+
+        if (EditCommand.commandWords.contains(commandWord)) {
+            return new EditCommandParser().parse(arguments);
+        } else if (DeleteCommand.commandWords.contains(commandWord)) {
+            return new DeleteCommandParser().parse(arguments);
+        } else if (DeleteTagCommand.commandWords.contains(commandWord)) {
+            return new DeleteTagCommandParser().parse(arguments);
+        } else if (TagCommand.commandWords.contains(commandWord)) {
+            return new TagCommandParser().parse(arguments);
+        } else {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
 
     /**
      * Parses user input into command for execution.
@@ -89,11 +125,11 @@ public class AddressBookParser {
         } else if (TagCommand.commandWords.contains(commandWord)) {
             return new TagCommandParser().parse(arguments);
         } else if (ExportCommand.commandWords.contains(commandWord)) {
-            return new ExportCommand();
+            return new ExportCommandParser().parse(arguments);
         } else if (ShortcutCommand.commandWords.contains(commandWord)) {
             return new ShortcutCommandParser().parse(arguments);
         } else if (ImportCommand.commandWords.contains(commandWord)) {
-            return new ImportCommand();
+            return new ImportCommandParser().parse(arguments);
         } else if (MassOpCommand.commandWords.contains(commandWord)) {
             return new MassOpCommandParser().parse(arguments);
         } else {

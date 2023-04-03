@@ -11,7 +11,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import seedu.address.commons.util.FileUtil;
 import seedu.address.model.Model;
-import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.CsvAddressBookStorage;
 
 /**
@@ -23,11 +22,21 @@ public class ExportCommand extends Command {
     //CHECKSTYLE.ON: VisibilityModifier
 
     public static final String MESSAGE_USAGE = commandWords + ": Exports data into a csv file at "
-            + "a location of your choice.";
+            + "a location of your choice.\n"
+            + "Type \"export\" or \"export shown\" to export only the filtered contacts shown.\n"
+            + "Type \"export all\" to export all contacts, even if they are not shown in the filtered list.";
+
+    public static final String MESSAGE_SUCCESS = "Exported to file";
 
     public static final String FILE_DESCRIPTION = "CSV Files";
 
     public static final String[] FILE_EXTENSIONS = new String[]{"csv"};
+
+    private boolean isAllEnabled;
+
+    public ExportCommand(boolean isAllEnabled) {
+        this.isAllEnabled = isAllEnabled;
+    }
 
     @Override
     public CommandResult execute(Model model) {
@@ -43,14 +52,18 @@ public class ExportCommand extends Command {
 
         File fileToSave = FileUtil.getSelectedFileWithExtension(fileChooser);
         try {
-            AddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToSave.toPath());
-            addressBookStorage.saveAddressBook(model.getAddressBook());
+            CsvAddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToSave.toPath());
+            if (isAllEnabled) {
+                addressBookStorage.saveAddressBook(model.getAddressBook());
+            } else {
+                addressBookStorage.saveAddressBook(model.getFilteredPersonList());
+            }
             JOptionPane.showMessageDialog(null, "Exported to " + fileToSave);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        return new CommandResult("Exported to file", false, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
     @Override

@@ -5,9 +5,12 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Model;
 import seedu.address.model.StateHistory;
+import seedu.address.model.exceptions.InputHistoryTimelineException;
 
 /**
  * Undoes a number of the most recent prior {@code Command}s.
@@ -20,9 +23,11 @@ public class UndoCommand extends Command {
     public static final String MESSAGE_USAGE = commandWords + ": Undoes the previous command, or a number of most "
             + "recent commands. Ignores Undo, Redo, and Export commands; affects all other valid commands.\n"
             + "Parameters: [NUMBER_OF_COMMANDS]...\n"
-            + "Example: " + commandWords + " 5";
+            + "Example: " + commandWords.get(0) + " 5";
 
     public static final String MESSAGE_SUCCESS = "Undone %1$d / %2$d commands";
+
+    private static final Logger logger = LogsCenter.getLogger(UndoCommand.class);
 
     private final int numCommands;
     private StateHistory history = null;
@@ -37,7 +42,7 @@ public class UndoCommand extends Command {
     }
 
     @Override
-    public void setHistory(StateHistory history) {
+    public void setStateHistory(StateHistory history) {
         this.history = history;
     }
 
@@ -47,10 +52,11 @@ public class UndoCommand extends Command {
         requireNonNull(history);
         int undoneCommands = history.undo(numCommands);
         Model undoneModel = history.presentModel();
-        model.setAddressBook(undoneModel.getAddressBook());
-        model.updateFilteredPersonList(undoneModel.getPredicate());
-        if (undoneModel.isFrozen()) {
-            model.freezeWith(undoneModel.getFilteredPersonList());
+        model.replicateStateOf(undoneModel);
+        try {
+            model.getInputHistory().undo(undoneCommands);
+        } catch (InputHistoryTimelineException ex) {
+            logger.warning("Input history could not be undone: " + ex.getMessage());
         }
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, undoneCommands, numCommands), false, false);

@@ -25,7 +25,7 @@ public class FilterCommand extends Command {
     public static final String MESSAGE_USAGE = commandWords + ": Filters all persons whose every field matches "
             + "at least one respective regex filter, and displays them as a list with index numbers.\n"
             + "Parameters: [" + PREFIX_NAME + "NAME] [" + PREFIX_NAME + "MORE_NAMES] [" + PREFIX_PHONE + "PHONE]...\n"
-            + "Example: " + commandWords + " "
+            + "Example: " + commandWords.get(0) + " "
             + PREFIX_NAME + "Al "
             + PREFIX_ADDRESS + "[0-9] "
             + PREFIX_TAG + "friends "
@@ -45,7 +45,7 @@ public class FilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredPersonList(predicate, predicate.getFilterList());
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
                 true, true);

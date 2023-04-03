@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.CsvUtil;
 import seedu.address.model.person.Address;
@@ -21,6 +22,7 @@ import seedu.address.model.tag.Tag;
  */
 class CsvAdaptedPerson {
 
+    public static final int MINIMUM_NUM_TOKENS = 5;
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
     private final String name;
     private final String phone;
@@ -32,13 +34,20 @@ class CsvAdaptedPerson {
     /**
      * Constructs a {@code CsvAdaptedPerson} with the given person details.
      */
-    public CsvAdaptedPerson(List<String> tokens) {
+    public CsvAdaptedPerson(List<String> tokens) throws DataConversionException {
+        if (tokens.size() < MINIMUM_NUM_TOKENS) {
+            throw new DataConversionException("Some data is missing from your CSV file!");
+        }
         this.name = tokens.get(0);
         this.phone = tokens.get(1);
         this.email = tokens.get(2);
         this.address = tokens.get(3);
         this.income = tokens.get(4);
         for (int i = 5; i < tokens.size(); ++i) {
+            String tag = tokens.get(i);
+            if (tag.isEmpty()) {
+                continue;
+            }
             this.tagged.add(new CsvAdaptedTag(tokens.get(i)));
         }
     }

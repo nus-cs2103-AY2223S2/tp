@@ -30,7 +30,7 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
         }
 
         try {
-            String[] nameKeywords = trimmedArgs.split(" ");
+            String[] nameKeywords = trimmedArgs.split("[\\n\\r\\s]+");
             Index index = ParserUtil.parseIndex(nameKeywords[INPUT_INDEX]);
             Tag tag = ParserUtil.parseTag(nameKeywords[TAG_INDEX]);
 

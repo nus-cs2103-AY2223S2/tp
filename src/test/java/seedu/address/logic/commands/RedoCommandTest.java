@@ -32,7 +32,7 @@ public class RedoCommandTest {
         StateHistory history = new StateHistory(model);
         Model expectedModel = new ModelManager();
         RedoCommand redoCommand = new RedoCommand(1);
-        redoCommand.setHistory(history);
+        redoCommand.setStateHistory(history);
         assertCommandSuccess(redoCommand, model, new CommandResult(expectedMessage, false, false), expectedModel);
     }
 
@@ -55,11 +55,11 @@ public class RedoCommandTest {
             StateHistory history = new StateHistory(model);
             for (Command command : commands) {
                 CommandResult rs = command.execute(model);
-                history.addCommand(command, model, rs);
+                history.offerCommand(command, model, rs);
             }
             history.undo(commands.length);
             RedoCommand redoCommand = new RedoCommand(i);
-            redoCommand.setHistory(history);
+            redoCommand.setStateHistory(history);
             assertCommandSuccess(redoCommand, model, new CommandResult(expectedMessage, false, false), expectedModel);
 
             if (i < commands.length) {
@@ -120,11 +120,11 @@ public class RedoCommandTest {
             StateHistory history = new StateHistory(model);
             for (Command command : commands) {
                 CommandResult rs = command.execute(model);
-                history.addCommand(command, model, rs);
+                history.offerCommand(command, model, rs);
             }
             history.undo(commands.length);
             RedoCommand redoCommand = new RedoCommand(i);
-            redoCommand.setHistory(history);
+            redoCommand.setStateHistory(history);
             assertCommandSuccess(redoCommand, model, new CommandResult(expectedMessage, false, false), expectedModel);
 
             if (i < referenceCommands.length) {

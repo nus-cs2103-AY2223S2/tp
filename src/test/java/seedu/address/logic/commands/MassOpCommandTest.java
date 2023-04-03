@@ -16,7 +16,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -32,18 +31,17 @@ public class MassOpCommandTest {
 
     @Test
     public void equals() {
-        Tag firstTag = new Tag("Test1");
-        Tag secondTag = new Tag("Test2");
-        boolean isDelete1 = true;
-        boolean isDelete2 = false;
-        MassOpCommand firstCommand = new MassOpCommand(firstTag, isDelete1);
-        MassOpCommand secondCommand = new MassOpCommand(secondTag, isDelete2);
+        MassOpCommand firstCommand = new MassOpCommand("delete_tag Test1");
+        MassOpCommand secondCommand = new MassOpCommand("tag Test1");
+        MassOpCommand thirdCommand = new MassOpCommand("tag Test2");
 
         // same object -> returns true
         assertEquals(firstCommand, firstCommand);
+        assertEquals(secondCommand, secondCommand);
+        assertEquals(thirdCommand, thirdCommand);
 
         // same values -> returns true
-        MassOpCommand firstCommandCopy = new MassOpCommand(firstTag, isDelete1);
+        MassOpCommand firstCommandCopy = new MassOpCommand("delete_tag Test1");
         assertEquals(firstCommand, firstCommandCopy);
 
         // different types -> returns false
@@ -52,19 +50,22 @@ public class MassOpCommandTest {
         // null -> returns false
         assertNotEquals(null, firstCommand);
 
-        // different person -> returns false
+        // different subcommand type -> returns false
         assertNotEquals(firstCommand, secondCommand);
+
+        // different subcommand arguments -> returns false
+        assertNotEquals(secondCommand, thirdCommand);
     }
 
     @Test
     public void execute_zeroRegexes_allFiltered() {
         Model modelCopy = model.stateDetachedCopy();
-        String expectedMessage = String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        String expectedMessage = String.format(MassOpCommand.MESSAGE_SUCCESS, 7, 7);
         Tag testTag = new Tag("Test");
         for (Person p: expectedModel.getFilteredPersonList()) {
             p.addTag(testTag);
         }
-        MassOpCommand command = new MassOpCommand(testTag, false);
+        MassOpCommand command = new MassOpCommand("tag Test");
         assertCommandSuccess(command, modelCopy, expectedMessage, expectedModel);
         Person aliceWithTag = ALICE.deepCopy();
         aliceWithTag.addTag(testTag);

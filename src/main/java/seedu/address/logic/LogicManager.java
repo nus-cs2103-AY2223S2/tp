@@ -12,10 +12,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Filter;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.StateHistory;
-import seedu.address.model.history.History;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -28,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final StateHistory history;
+    private final StateHistory stateHistory;
     private final AddressBookParser addressBookParser;
 
     /**
@@ -37,7 +37,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        history = new StateHistory(model);
+        stateHistory = new StateHistory(model);
         addressBookParser = new AddressBookParser();
     }
 
@@ -47,17 +47,15 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        command.setHistory(history);
+        command.setStateHistory(stateHistory);
         commandResult = command.execute(model);
-        history.addCommand(command, model, commandResult);
+        stateHistory.offerCommand(command, model, commandResult);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
 
-            String previousHistoryString = model.getHistory().getHistoryString();
-            String historyStringAfterExecution = previousHistoryString + commandText + "\n";
-            model.setHistory(new History(historyStringAfterExecution));
-            storage.saveHistoryString(historyStringAfterExecution);
+            model.getInputHistory().offerCommand(commandText, commandResult);
+            storage.saveInputHistory(model.getInputHistory());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -73,6 +71,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Filter> getApplyingFilterList() {
+        return model.getApplyingFilterList();
     }
 
     @Override

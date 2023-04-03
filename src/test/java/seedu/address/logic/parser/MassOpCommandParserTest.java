@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.MassOpCommand;
-import seedu.address.model.tag.Tag;
 
 public class MassOpCommandParserTest {
 
@@ -23,10 +22,10 @@ public class MassOpCommandParserTest {
     public void parse_someArgs_returnsCommand() {
         // no leading and trailing whitespaces
         MassOpCommand expectedMassOpCommand =
-                new MassOpCommand(new Tag("friends"), false);
+                new MassOpCommand("tag friends");
         assertParseSuccess(parser, "tag friends", expectedMassOpCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "tag friends \n \t\t", expectedMassOpCommand);
+        assertParseSuccess(parser, "tag \t friends \n \t\t", expectedMassOpCommand);
     }
 }

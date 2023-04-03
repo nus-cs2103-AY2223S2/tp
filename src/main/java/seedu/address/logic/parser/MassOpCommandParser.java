@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MassOpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new MassOpCommand object
@@ -23,23 +23,13 @@ public class MassOpCommandParser implements Parser<MassOpCommand> {
     public MassOpCommand parse(String args) throws ParseException {
         //trim the white spaces
         args = args.trim();
-        boolean isDelete = true;
-        int tagNameIndex = 1;
-        int commandNameIndex = 0;
-        String[] preamble = args.split(" ");
-        int noOfIndexes = 2;
-        if (preamble.length != noOfIndexes) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MassOpCommand.MESSAGE_USAGE));
+        try {
+            AddressBookParser.parseCommandWithIndex(args, Index.fromZeroBased(0));
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MassOpCommand.MESSAGE_USAGE), pe);
         }
 
-        if (preamble[commandNameIndex].equals("tag")) {
-            isDelete = false;
-        }
-
-        String tagName = preamble[tagNameIndex];
-        Tag tagToAddOrDelete = new Tag(tagName);
-
-        return new MassOpCommand(tagToAddOrDelete, isDelete);
+        return new MassOpCommand(args);
     }
 
 }

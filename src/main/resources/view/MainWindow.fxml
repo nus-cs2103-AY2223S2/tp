@@ -11,9 +11,10 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.FlowPane?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="700" minHeight="600" onCloseRequest="#handleExit">
+         title="E-Lister" minWidth="700" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -58,11 +59,18 @@
           <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
         </VBox>
 
-        <StackPane fx:id="historyDisplayPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" maxWidth="500" styleClass="pane-with-border">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-        </StackPane>
+        <VBox>
+          <StackPane fx:id="filtersDisplayPlaceholder" VBox.vgrow="ALWAYS" maxWidth="350" maxHeight="200" styleClass="pane-with-border">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+          </StackPane>
+          <StackPane fx:id="historyDisplayPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" maxWidth="350" styleClass="pane-with-border">
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+          </StackPane>
+        </VBox>
       </HBox>
     </Scene>
   </scene>

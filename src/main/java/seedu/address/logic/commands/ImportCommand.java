@@ -24,11 +24,21 @@ public class ImportCommand extends Command {
     public static List<String> commandWords = new ArrayList<String>(Arrays.asList("import", "i"));
     //CHECKSTYLE.ON: VisibilityModifier
 
-    public static final String MESSAGE_USAGE = commandWords + ": Imports customer data from an existing dataset.";
+    public static final String MESSAGE_USAGE = commandWords + ": Imports customer data from an existing dataset.\n"
+            + "Type \"import\" or \"import combine\" to combine the existing data with the imported dataset.\n"
+            + "Type \"import reset\" to reset the existing data to the imported dataset.";
+
+    public static final String MESSAGE_SUCCESS = "Imported data from file";
 
     public static final String FILE_DESCRIPTION = "CSV Files";
 
     public static final String[] FILE_EXTENSIONS = new String[]{"csv"};
+
+    private boolean isResetEnabled;
+
+    public ImportCommand(boolean isResetEnabled) {
+        this.isResetEnabled = isResetEnabled;
+    }
 
     @Override
     public CommandResult execute(Model model) {
@@ -55,23 +65,33 @@ public class ImportCommand extends Command {
             }
 
             isValidFile = true;
+            String successMsg = "Importing from:  " + fileToImport;
+            String errorMsg = "Error while importing from: " + fileToImport;
 
             try {
                 AddressBookStorage addressBookStorage = new CsvAddressBookStorage(fileToImport.toPath());
                 Optional<ReadOnlyAddressBook> newAddressBook = addressBookStorage.readAddressBook();
                 if (newAddressBook.isEmpty()) {
-                    String errorMsg = "Error while importing from: " + fileToImport;
                     JOptionPane.showMessageDialog(null, errorMsg);
                     return new CommandResult(errorMsg, false, false);
                 }
-                model.setAddressBook(newAddressBook.get());
-                JOptionPane.showMessageDialog(null, "You have imported from:  " + fileToImport);
+
+                String feedback;
+
+                if (isResetEnabled) {
+                    model.setAddressBook(newAddressBook.get());
+                    feedback = "Data has been reset to imported data.";
+                } else {
+                    feedback = model.addPersonsFromAddressBook(newAddressBook.get());
+                }
+                JOptionPane.showMessageDialog(null, successMsg + "\n" + feedback);
+
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, e);
+                JOptionPane.showMessageDialog(null, errorMsg + "\n" + e);
             }
         }
 
-        return new CommandResult("Imported data from file", false, false);
+        return new CommandResult(MESSAGE_SUCCESS, true, false);
     }
 
     @Override
