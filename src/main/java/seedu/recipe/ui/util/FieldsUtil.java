@@ -38,6 +38,20 @@ public class FieldsUtil {
             handleNavigation(event, textArea, currentIndex);
         });
 
+        // If 'CTRL' is pressed down, trigger paste for 'V' and copy for 'C' key. 
+        textArea.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.isControlDown() || event.isMetaDown()) {
+                if (event.getCode() == KeyCode.V) {
+                    textArea.paste();
+                    event.consume();
+                }
+                if (event.getCode() == KeyCode.C) {
+                    textArea.copy();
+                    event.consume();
+                }
+            }
+        });
+
         //Text field listener for automatically adding/removing new input rows
         textArea.focusedProperty().addListener((observable, oldValue, newValue) -> {
             VBox parentBox = (VBox) textArea.getParent();
