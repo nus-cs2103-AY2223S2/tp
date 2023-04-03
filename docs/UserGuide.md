@@ -33,8 +33,9 @@ title: HMHero User Guide
      * [Reject an applicant `reject`](#616-reject-an-applicant-reject)
      * [List all interview dates of applicants `interview`](#617-list-all-interview-dates-of-applicants-interview)
      * [Edit an existing applicant `edit`](#618-edit-an-existing-applicant-edit)
-     * [Remind upcoming interviews `remind`](#619-remind-upcoming-interviews-remind)
+     * [Get reminders for upcoming interviews `remind`](#619-remind-upcoming-interviews-remind)
    * [Statistic Commands](#62-statistics-commands)
+     * [Display summary statistics `summary`](#641-summary-statistics-summary)
    * [General Commands](#63-general-commands)
      * [Receive help during usage `help`](#631-receive-help-during-usage-help)
      * [Exit HMHero `exit`](#632-exit-hmhero-exit)
@@ -324,7 +325,7 @@ To start off, let's try out the `add` command! This command lets you add an [app
 
 One of the available commands in HMHero is the command to create a new applicant.
 
-**Format:** `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
+**Format:** `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE] [applied/APPLICATION DATE TIME]`
 <br>
 <br>
 
@@ -335,14 +336,14 @@ parameters supplied by you without ambiguity
 * [Placeholders](#524-placeholders) such as `NAME` and `PHONE` shows you what you should place in each portion of the 
 command
 
-Notice that there is a pair of square brackets `[]` surrounding some parameters like `note/NOTE`
+Notice that there is a pair of square brackets `[]` surrounding some parameters like `note/NOTE` and `applied/APPLICATION DATE TIME`
 in the format. This indicates that the parameter is **optional**. Each of these placeholders in the parameters 
 have a default value based on the commands. These are documented in the [Commands](#6-commands) section for each command.
 
 
 <div markdown="span" class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 The <a href="#524-placeholders">Placeholder</a> section covers the restrictions for respective placeholders. For example, 
-the date format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
+the format of PHONE, certain characters you cannot use and the limit and precision of numbers. 
 </div>
 
 **Let's try an example!**
@@ -698,7 +699,9 @@ Applicants with the status <code>REJECTED</code> cannot be rejected!
 
 **Info**
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-* However, if two or more values of `NOTE` are provided, both parameter will be taken in.
+* For note:
+  * If no notes are specified, the current notes for the applicant will be deleted.
+  * If two or more values of `NOTE` are provided, both parameter will be taken in.
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
@@ -831,7 +834,6 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 | View the interview dates of applicants | `interview`                                                                                                                                                          | `interview`                                                                 |
 | Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                            | `edit 1 n/Marry p/98763245`                                                 |
 | Remind an applicant's interview date   | `remind`                                                                                                                                                             | `remind`                                                                    |
-| View summary statistics                | `summary`                                                                                                                                                            | `remind`                                                                    |
 
 [Back to Table of Contents](#table-of-contents)
 
