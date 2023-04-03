@@ -37,7 +37,6 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-
     public ModelManager(ReadOnlyPcClass readOnlyPcClass, ReadOnlyParents readOnlyParents, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(readOnlyParents, readOnlyPcClass, userPrefs);
 
@@ -50,6 +49,21 @@ public class ModelManager implements Model {
         this.parents = new Parents(readOnlyParents);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
+        filteredParents = new FilteredList<>(this.parents.getParentList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyParents readOnlyParents, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(readOnlyParents, userPrefs);
+
+        logger.fine("parents: " + readOnlyParents
+                + " and user prefs " + userPrefs);
+
+        this.pcClass = null;
+        this.parents = new Parents(readOnlyParents);
+        this.userPrefs = new UserPrefs(userPrefs);
         filteredParents = new FilteredList<>(this.parents.getParentList());
     }
 

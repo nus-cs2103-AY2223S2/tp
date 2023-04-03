@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.parent.ParentFindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.parent.NameContainsKeywordsPredicate;
+import seedu.address.model.person.parent.ParentNameContainsKeywordsPredicate;
 
 /**
  * a ParentFindCommandParser to parse the parent find command
@@ -26,6 +26,6 @@ public class ParentFindCommandParser implements Parser<ParentFindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new ParentFindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new ParentFindCommand(new ParentNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 }
