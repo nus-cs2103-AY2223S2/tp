@@ -653,7 +653,7 @@ The `view` command retrieves either the user's information or the contact's info
 :information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 * `view`: Views your profile.
 * `view INDEX`: Views the contact at index `INDEX`.
-* `view n/NAME`: Views the contact with name `NAME`.
+* `view n/FULL_NAME`: Views the contact with contact's full name `FULL_NAME`.
 
 </div>
 
