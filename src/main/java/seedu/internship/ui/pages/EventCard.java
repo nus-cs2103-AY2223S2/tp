@@ -92,7 +92,7 @@ public class EventCard extends UiPart<Region> {
 
     public void setEventCardContent() {
         title.setText(event.getName().toString());
-        description.setText(event.getDescription().descriptionMessage);
+        description.setText(event.getDescription().toString());
         if (event.isDeadline()) {
             endLabel.setText("Deadline: ");
             end.setText(event.getEnd().toString());
