@@ -263,7 +263,8 @@ public class EditCommand extends Command {
         }
 
         public Optional<GroupName> getVaccine(Model model) throws IllegalValueException {
-            return Optional.ofNullable(model.getVaccination(vaxRetriever).getGroupName());
+            return (vaxRetriever != null) ? Optional.ofNullable(model.getVaccination(vaxRetriever).getGroupName())
+                    : Optional.empty();
         }
 
         public void setStatus(boolean isCompleted) {
