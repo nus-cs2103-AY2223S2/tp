@@ -92,6 +92,8 @@ The general command line syntax is as follows:<br>
 * Leading and trailing white spaces in <code><var>ARGUMENTS</var></code> and elements in lists will be ignored.
 * For flag arguments, if the command only requires one occurrence of it but multiple are given, only the last argument will be taken.
   * Example: If a command only requires one <code>--force <var>IS_FORCE</var></code>, but `--force false --force true` is present in the command input, only the last argument, `--force true`, will be taken.
+* The UI allows the user to click on the boxes and fields for aesthetic and organisational purposes only.
+* All of the user functions can be accessed via the CLI manner, the use of mouse is not required.
 
 ### Types
 
