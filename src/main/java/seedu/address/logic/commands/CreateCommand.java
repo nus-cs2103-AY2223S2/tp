@@ -62,8 +62,6 @@ public class CreateCommand extends Command {
         Person persontoGenerate = lastShownList.get(targetIndex.getZeroBased());
         FilesManager filesManager = new FilesManager(persontoGenerate);
         filesManager.generateMc(doctorName, description, days);
-        //default values for days and doctor parser will separate out information
-        //changes still needed for FileManager to fully Integrate with UI
         return new CommandResult(String.format(MESSAGE_CREATE_MC_SUCCESS, persontoGenerate));
     }
 
