@@ -415,8 +415,8 @@ Updates the Patient using it's PATIENT_ID. It will update the attributes of the 
 ##### Syntax
 
 <pre>
-patient edit <var>PATIENT_ID</var> --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var> [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
+patient edit <var>PATIENT_ID</var> [--n <var>PATIENT_NAME</var>] [--p <var>PHONE</var>] [--d <var>DATE_OF_BIRTH</var>] \
+    [--b <var>BLOODTYPE</var>] [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
 </pre>
 
 * <code><var>PATIENT_NAME</var></code> : `<name>`
