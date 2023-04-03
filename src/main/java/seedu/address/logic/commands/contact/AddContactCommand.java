@@ -40,8 +40,8 @@ public class AddContactCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds contact details to the specified application from the list of internships applied.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + PREFIX_PHONE + "PHONE "
+            + PREFIX_EMAIL + "EMAIL "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com ";

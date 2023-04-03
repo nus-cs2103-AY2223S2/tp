@@ -37,7 +37,7 @@ public class EditStatusCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the status the specified application from the list of internships applied.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_STATUS + "STATUS] (must be one of NA, PENDING, RECEIVED, REJECTED or NO)\n"
+            + PREFIX_STATUS + "STATUS (must be one of NA, PENDING, RECEIVED, REJECTED or NO)\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_STATUS + "NA";
 

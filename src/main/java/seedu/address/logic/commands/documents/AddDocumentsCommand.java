@@ -42,8 +42,8 @@ public class AddDocumentsCommand extends Command {
             + ": Adds link to a resume and/or cover letter to the specified application from the "
             + "list of internships applied.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_RESUME + "RESUME] "
-            + "[" + PREFIX_COVER_LETTER + "COVER_LETTER]\n"
+            + PREFIX_RESUME + "RESUME "
+            + PREFIX_COVER_LETTER + "COVER_LETTER\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_RESUME + "https://docs.google.com/document/d/EXAMPLE_RESUME/edit "
             + PREFIX_COVER_LETTER + "https://docs.google.com/document/d/EXAMPLE_COVER_LETTER/edit";
