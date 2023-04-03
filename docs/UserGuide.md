@@ -79,6 +79,9 @@ Examples:
 
 Adds a parcel to an existing delivery at the specified `INDEX`. The index refers to the index number shown in the displayed delivery list. The index **must be a positive integer** 1, 2, 3, …​
 
+Constraints:
+* Deliveries with **done** or **return** status _**cannot add parcels**_.
+
 Format: `add_pc INDEX pc/PARCEL`
 
 Examples:
@@ -97,7 +100,7 @@ Format: `mark INDEX s/STATUS`
 * Edits the delivery at the specified `INDEX`. The index refers to the index number shown in the displayed delivery list. The index **must be a positive integer** 1, 2, 3, …​
 * `STATUS` must be of the following
   * `pending` for pending delivery
-  * `otw` for in progress delivery
+  * `otw` for in progress delivery _(p.s. otw is an abbreviation of 'on the way', synonymously with 'in progress')_
   * `failed` for failed delivery
   * `done` for done delivery
   * `return` for return delivery (i.e used when recipient rejects delivery)
@@ -121,6 +124,9 @@ Marks a parcel from a delivery with a status.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 Once a parcel is marked with a status, you cannot unmark it, you will have to delete delivery and start again.
 </div>
+
+Constraints:
+* Deliveries with **done** or **return** status _**cannot have its parcels marked**_.
 
 Format: `mark_pc INDEX_OF_DELIVERY pc/INDEX_OF_PARCEL s/STATUS`
 
@@ -181,6 +187,9 @@ Format: `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [pc/PARCEL]…​`
 * Existing values will be updated to the input values.
 * When editing parcels, the existing parcels of the person will be removed i.e adding of parcels is not cumulative.
 * You can remove all the person’s parcels by typing `pc/` without specifying any parcels after it.
+
+Constraints:
+* Deliveries with **done** or **return** status _**cannot be edited**_.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
