@@ -1,5 +1,7 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_EVERY;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -7,7 +9,6 @@ import java.util.List;
 import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.exceptions.CommandException;
-import ezschedule.logic.parser.CliSyntax;
 import ezschedule.model.Model;
 import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
@@ -23,13 +24,15 @@ public class RecurCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Recurs event in the scheduler by "
             + "the index number used in the displayed event list. "
             + "\nParameters: INDEX (must exist)\n "
-            + CliSyntax.PREFIX_DATE + "ENDING DATE\n "
-            + CliSyntax.PREFIX_EVERY + "{DAY, WEEK, MONTH, YEAR} "
+            + PREFIX_DATE + "ending date\n "
+            + PREFIX_EVERY + "{day, week, month} "
             + "\nExample: \n" + COMMAND_WORD + " 1 "
-            + CliSyntax.PREFIX_DATE + "2024-02-20 "
-            + CliSyntax.PREFIX_EVERY + "MONTH ";
+            + PREFIX_DATE + "2024-02-20 "
+            + PREFIX_EVERY + "month ";
 
     public static final String MESSAGE_SUCCESS = "Recurring event added: %1$s";
+    public static final String MESSAGE_RECUR_FACTOR_CAP = "Recur factor is not appropriate for "
+            + "number of recurring events.";
 
     private final Index index;
     private final Date endDate;
@@ -66,20 +69,16 @@ public class RecurCommand extends Command {
 
         switch (factor.toString()) {
 
-        case "DAY":
+        case "day":
             addEventPerDay(model, eventToRecur);
             break;
 
-        case "WEEK":
+        case "week":
             addEventPerWeek(model, eventToRecur);
             break;
 
-        case "MONTH":
+        case "month":
             addEventPerMonth(model, eventToRecur);
-            break;
-
-        case "YEAR":
-            addEventPerYear(model, eventToRecur);
             break;
 
         default:
@@ -96,9 +95,17 @@ public class RecurCommand extends Command {
      * @param model model to add
      * @param eventToRecur event to recur in the model
      */
-    public void addEventPerDay(Model model, Event eventToRecur) {
+    public void addEventPerDay(Model model, Event eventToRecur) throws CommandException {
+
+        int maxDaysInMonth = 30;
+
         Date baseDate = eventToRecur.getDate();
         int daysDiff = (int) baseDate.getDaysBetween(endDate.date);
+
+        if (daysDiff > maxDaysInMonth) {
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP));
+        }
+
         Date newDate = new Date(eventToRecur.getDate().date.plusDays(1).toString());
         Event nextEventToRecur =
                 new Event(eventToRecur.getName(), newDate,
@@ -119,9 +126,10 @@ public class RecurCommand extends Command {
      * @param model model to add
      * @param eventToRecur event to recur in the model
      */
-    public void addEventPerWeek(Model model, Event eventToRecur) {
+    public void addEventPerWeek(Model model, Event eventToRecur) throws CommandException {
 
         int daysPerWeek = 7;
+        int maxWeeksInYear = 52;
 
         Date baseDate = eventToRecur.getDate();
         int weeksDiff = (int) baseDate.getDaysBetween(endDate.date) / daysPerWeek;
@@ -129,6 +137,10 @@ public class RecurCommand extends Command {
         Event nextEventToRecur =
                 new Event(eventToRecur.getName(), newDate,
                         eventToRecur.getStartTime(), eventToRecur.getEndTime());
+
+        if (weeksDiff > maxWeeksInYear) {
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP));
+        }
 
         for (int i = 0; i < weeksDiff; i++) {
             model.addEvent(nextEventToRecur);
@@ -145,7 +157,10 @@ public class RecurCommand extends Command {
      * @param model model to add
      * @param eventToRecur event to recur in the model
      */
-    public void addEventPerMonth(Model model, Event eventToRecur) {
+    public void addEventPerMonth(Model model, Event eventToRecur) throws CommandException {
+
+        int maxMonthInYear = 12;
+
         Date baseDate = eventToRecur.getDate();
         int monthsDiff = (int) baseDate.getMonthsBetween(endDate.date);
         Date newDate = new Date(eventToRecur.getDate().date.plusMonths(1).toString());
@@ -153,33 +168,14 @@ public class RecurCommand extends Command {
                 new Event(eventToRecur.getName(), newDate,
                         eventToRecur.getStartTime(), eventToRecur.getEndTime());
 
+        if (monthsDiff > maxMonthInYear) {
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP));
+        }
+
         for (int i = 0; i < monthsDiff; i++) {
             model.addEvent(nextEventToRecur);
             model.addRecentEvent(nextEventToRecur);
             newDate = new Date(nextEventToRecur.getDate().date.plusMonths(1).toString());
-            nextEventToRecur =
-                    new Event(eventToRecur.getName(), newDate,
-                            eventToRecur.getStartTime(), eventToRecur.getEndTime());
-        }
-    }
-
-    /**
-     * Adds new events to every year until endDate.
-     * @param model model to add
-     * @param eventToRecur event to recur in the model
-     */
-    public void addEventPerYear(Model model, Event eventToRecur) {
-        Date baseDate = eventToRecur.getDate();
-        int yearsDiff = (int) baseDate.getYearsBetween(endDate.date);
-        Date newDate = new Date(eventToRecur.getDate().date.plusYears(1).toString());
-        Event nextEventToRecur =
-                new Event(eventToRecur.getName(), newDate,
-                        eventToRecur.getStartTime(), eventToRecur.getEndTime());
-
-        for (int i = 0; i < yearsDiff; i++) {
-            model.addEvent(nextEventToRecur);
-            model.addRecentEvent(nextEventToRecur);
-            newDate = new Date(nextEventToRecur.getDate().date.plusYears(1).toString());
             nextEventToRecur =
                     new Event(eventToRecur.getName(), newDate,
                             eventToRecur.getStartTime(), eventToRecur.getEndTime());
