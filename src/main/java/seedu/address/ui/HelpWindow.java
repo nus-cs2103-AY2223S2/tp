@@ -39,6 +39,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "  shortcut COMMAND ABBREVIATION                                   add shortcut for command\n"
             + "  clear                                                           clear address book\n"
             + "  exit                                                            exit the program\n"
+            + "  freeze                                                          freezes E-Lister\n"
+            + "  unfreeze                                                        unfreezes E-Lister\n"
             + "\n";
 
     public static final String EXAMPLE = "Example:   "
