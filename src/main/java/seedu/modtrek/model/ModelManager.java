@@ -125,6 +125,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Predicate<Module> getPredicate() {
+        return (Predicate<Module>) filteredModules.getPredicate();
+    }
+
+    @Override
     public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);

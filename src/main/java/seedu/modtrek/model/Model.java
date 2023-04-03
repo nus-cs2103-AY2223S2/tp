@@ -120,6 +120,11 @@ public interface Model {
      */
     ObservableList<Module> getFilteredModuleList();
 
+    /**
+     * Returns the predicate
+     */
+    Predicate<Module> getPredicate();
+
     TreeMap<?, ObservableList<Module>> getModuleGroups();
 
     void sortModuleGroups(SortCommand.Sort sort);
