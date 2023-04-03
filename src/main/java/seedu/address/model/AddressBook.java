@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
@@ -14,8 +13,6 @@ import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionName;
 import seedu.address.model.session.UniqueSessionList;
 import seedu.address.model.session.exceptions.SessionNotFoundException;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.tag.UniqueTagList;
 
 /**
  * Wraps all data at the address-book level
@@ -24,7 +21,6 @@ import seedu.address.model.tag.UniqueTagList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueTagList tags;
     private final UniqueSessionList sessions;
 
     /*
@@ -36,7 +32,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        tags = new UniqueTagList();
         sessions = new UniqueSessionList();
     }
 
@@ -56,7 +51,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(AddressBook toBeCloned) {
         this();
         setPersons(toBeCloned.getPersonList());
-        setTags(toBeCloned.getTagList());
         setSessions(toBeCloned.getSessionList());
     }
 
@@ -70,10 +64,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.persons.setPersons(persons);
     }
 
-    public void setTags(List<Tag> tags) {
-        this.tags.setTags(tags);
-    }
-
     public void setSessions(List<Session> sessions) {
         this.sessions.setSessions(sessions);
     }
@@ -85,7 +75,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setTags(newData.getTagList());
         setSessions(newData.getSessionList());
     }
 
@@ -96,7 +85,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setTags(newData.getTagList());
         setSessions(newData.getSessionList());
     }
 
@@ -108,14 +96,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
-    }
-
-    /**
-     * Returns true if a tag with the same identity as {@code tag} exists in the address book.
-     */
-    public boolean hasTag(Tag tag) {
-        requireNonNull(tag);
-        return tags.contains(tag);
     }
 
     /**
@@ -135,29 +115,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a tag to the address book.
-     * The tag must not already exist in the address book.
-     */
-    public void addTag(Tag t) {
-        tags.add(t);
-    }
-
-    /**
      * Adds a session to the address book.
      * The session must not already exist in the address book.
      */
     public void addSession(Session s) {
         sessions.add(s);
-    }
-
-    /**
-     * Adds all tags to the address book.
-     * The tag must not already exist in the address book.
-     */
-    public void addAllTags(Set<Tag> tags) {
-        for (Tag tag: tags) {
-            addTag(tag);
-        }
     }
 
     /**
@@ -247,11 +209,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public ObservableList<Tag> getTagList() {
-        return tags.asUnmodifiableObservableList();
-    }
-
-    @Override
     public ObservableList<Session> getSessionList() {
         return sessions.asUnmodifiableObservableList();
     }
@@ -261,8 +218,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons)
-                && tags.equals(((AddressBook) other).tags))
-                && sessions.equals(((AddressBook) other).sessions);
+                && sessions.equals(((AddressBook) other).sessions));
     }
 
     @Override

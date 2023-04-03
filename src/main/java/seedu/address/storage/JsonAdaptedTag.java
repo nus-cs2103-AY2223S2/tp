@@ -40,7 +40,10 @@ public class JsonAdaptedTag {
      */
     public Tag toModelType() throws IllegalValueException {
         if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Tag.MESSAGE_ALPHANUMERIC_CONSTRAINTS);
+        }
+        if (!Tag.isValidLengthTagName(tagName)) {
+            throw new IllegalValueException(Tag.MESSAGE_MAXIMUM_CHARACTER_CONSTRAINTS);
         }
         return new Tag(tagName);
     }

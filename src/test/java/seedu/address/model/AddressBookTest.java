@@ -50,20 +50,6 @@ public class AddressBookTest {
     }
 
     @Test
-    public void addTagTest() {
-        AddressBook addressBookTest = new AddressBook();
-        addressBookTest.addTag(test);
-        assertFalse(addressBook.equals(addressBookTest));
-    }
-
-    @Test
-    public void addAllTagTest() {
-        AddressBook addressBookTest = new AddressBook();
-        addressBookTest.addAllTags(testList);
-        assertFalse(addressBook.equals(addressBookTest));
-    }
-
-    @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
@@ -72,22 +58,6 @@ public class AddressBookTest {
         AddressBookStub newData = new AddressBookStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
-    }
-
-    @Test
-    public void hasTag_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasTag(null));
-    }
-
-    @Test
-    public void hasTag_tagNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasTag(new Tag("bob")));
-    }
-
-    @Test
-    public void hasTag_tagInAddressBook_returnsTrue() {
-        addressBook.addTag(test);
-        assertTrue(addressBook.hasTag(test));
     }
 
     @Test
@@ -133,11 +103,6 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
-        }
-
-        @Override
-        public ObservableList<Tag> getTagList() {
-            return tags;
         }
 
         @Override

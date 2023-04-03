@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Name;
 import seedu.address.model.session.NameBooleanPair;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.session.NameBooleanPair}.
@@ -42,7 +41,7 @@ public class JsonAdaptedNameBooleanPair {
      */
     public NameBooleanPair toModelType() throws IllegalValueException {
         if (!Name.isValidName(studentName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
 
         return new NameBooleanPair(studentName, Boolean.parseBoolean(isPresent));
