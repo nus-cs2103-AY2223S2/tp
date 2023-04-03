@@ -2,8 +2,10 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_MODULE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VIDEO;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,10 +26,12 @@ public class ImportCommandParser {
      */
 
     public ImportCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OVERWRITE, PREFIX_MODULE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OVERWRITE, PREFIX_MODULE, PREFIX_VIDEO
+                , PREFIX_LECTURE);
         boolean isOverwritingExistingModule = argMultimap.getValue(PREFIX_OVERWRITE).isPresent();
         boolean isImportingAllModules = false;
         Set<ModuleCode> moduleCodeSet = new HashSet<>();
+        System.out.println(argMultimap.getAllValues(PREFIX_MODULE));
 
         if (!argMultimap.getValue(PREFIX_MODULE).isPresent()) {
             isImportingAllModules = true;
