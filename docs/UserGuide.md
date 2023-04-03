@@ -841,8 +841,8 @@ What you should see:<br>
 
 * `untag 1 m/CS1234`: Removes CS1234 tag from the first contact from EduMate.
 * `untag m/CS1234` : Removes CS1234 tag from your own profile.
-* `untag 2 m/CS2103T MONDAY 8 10` : Removes CS2103T tag (if not present yet) from your second contact with a Monday lesson from 8am - 10am.
-* `untag m/CS2103T MONDAY 8 10` : Removes CS2103T tag (if not present yet) from your profile with a Monday lesson from 8am - 10am.
+* `untag 2 m/CS2103T MONDAY 8 10` : Removes CS2103T tag (if it exists) from your second contact with a Monday lesson from 8am - 10am.
+* `untag m/CS2103T MONDAY 8 10` : Removes CS2103T tag (if it exists) from your profile with a Monday lesson from 8am - 10am.
 
 :bulb: **Group Tag Examples**<br>
 
