@@ -92,15 +92,7 @@ Here are the list of all applicants:
 3. Joe Doe (Rejected) 91234321
 ```
 
-(**This part can change according to your contributions**)
-
-Example
-
-- to be added soon
-
 (**Code contributions**)
-
-Example
 
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=bofeng1999&breakdown=true)
 
