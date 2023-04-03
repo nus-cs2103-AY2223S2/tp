@@ -10,7 +10,6 @@ import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionName;
-import seedu.address.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -19,7 +18,6 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
-    Predicate<Tag> PREDICATE_SHOW_ALL_TAGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -119,16 +117,6 @@ public interface Model {
      * @throws CommandException If there are no more commands left to redo.
      */
     void redoAddressBook() throws CommandException;
-
-    boolean hasTag(Tag toAdd);
-
-    void addTag(Tag toAdd);
-
-    /**
-     * Updates the filter of the filtered tag list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredTagList(Predicate<Tag> predicate);
 
     ObservableList<CalendarEvent> getFilteredCalendarEventList();
 

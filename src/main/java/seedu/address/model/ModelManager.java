@@ -17,7 +17,6 @@ import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionName;
-import seedu.address.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -29,7 +28,6 @@ public class ModelManager implements Model {
     private final VersionedAddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Tag> filteredTags;
     private final FilteredList<Session> filteredSessions;
     private final ObservableList<CalendarEvent> calendarEventList;
 
@@ -46,7 +44,6 @@ public class ModelManager implements Model {
         this.addressBook = new VersionedAddressBook(readAddressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredTags = new FilteredList<>(this.addressBook.getTagList());
         filteredSessions = new FilteredList<>(this.addressBook.getSessionList());
         this.calendarEventList = FXCollections.observableArrayList();
     }
@@ -115,12 +112,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasTag(Tag tag) {
-        requireNonNull(tag);
-        return addressBook.hasTag(tag);
-    }
-
-    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -129,12 +120,6 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public void addTag(Tag tag) {
-        addressBook.addTag(tag);
-        updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
     }
 
     @Override
@@ -185,12 +170,6 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
-    }
-
-    @Override
-    public void updateFilteredTagList(Predicate<Tag> predicate) {
-        requireNonNull(predicate);
-        filteredTags.setPredicate(predicate);
     }
 
     @Override

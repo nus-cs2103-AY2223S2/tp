@@ -13,7 +13,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CreateSessionCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteSessionCommand;
-import seedu.address.logic.commands.DisplayGroupCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditSessionCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -96,9 +95,6 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-
-        case DisplayGroupCommand.COMMAND_WORD:
-            return new DisplayGroupCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

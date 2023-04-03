@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.logic.commands.GroupCommand.MESSAGE_DUPLICATE_TAG;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,8 +13,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
-import seedu.address.model.tag.Tag;
-
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -30,8 +26,6 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
-
     private final List<JsonAdaptedSession> sessions = new ArrayList<>();
 
     /**
@@ -39,10 +33,8 @@ class JsonSerializableAddressBook {
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("persons")List<JsonAdaptedPerson> persons,
-                                       @JsonProperty("sessions") List<JsonAdaptedSession> sessions,
-                                       @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+                                       @JsonProperty("sessions") List<JsonAdaptedSession> sessions) {
         this.persons.addAll(persons);
-        this.tags.addAll(tags);
         this.sessions.addAll(sessions);
     }
 
@@ -53,7 +45,6 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        tags.addAll(source.getTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
         sessions.addAll(source.getSessionList().stream().map(JsonAdaptedSession::new).collect(Collectors.toList()));
     }
 
@@ -70,14 +61,6 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
-        }
-
-        for (JsonAdaptedTag jsonAdaptedTag : tags) {
-            Tag tag = jsonAdaptedTag.toModelType();
-            if (addressBook.hasTag(tag)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_TAG);
-            }
-            addressBook.addTag(tag);
         }
 
         for (JsonAdaptedSession jsonAdaptedSession : sessions) {
