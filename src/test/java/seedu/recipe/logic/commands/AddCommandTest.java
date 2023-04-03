@@ -147,15 +147,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public Predicate<Recipe> getCurrentPredicate() {
-            throw new AssertionError("This method should not be called.");
-        }
-        @Override
-        public void setCurrentPredicate(Predicate<Recipe> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Recipe> getFilteredRecipeList() {
             throw new AssertionError("This method should not be called.");
         }

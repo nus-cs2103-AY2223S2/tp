@@ -79,12 +79,6 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered recipe list */
     ObservableList<Recipe> getFilteredRecipeList();
 
-    /** Returns the current predicate applied on filtered recipe list */
-    Predicate<Recipe> getCurrentPredicate();
-
-    /** Set the current predicate applied on filtered recipe list */
-    void setCurrentPredicate(Predicate<Recipe> predicate);
-
     /**
      * Updates the filter of the filtered recipe list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
