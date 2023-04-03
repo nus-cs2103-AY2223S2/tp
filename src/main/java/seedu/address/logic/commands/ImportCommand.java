@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OVERWRITE;
 
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -46,7 +47,7 @@ public class ImportCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Modules %1$s imported to Le Tracker";
 
     private final String fileName;
-    private Set<ModuleCode> moduleCodeSet;
+    private final Set<ModuleCode> moduleCodeSet;
     private final boolean isOverwritingExistingModule;
     private final boolean isImportingAllModules;
 
@@ -63,7 +64,7 @@ public class ImportCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model) throws CommandException, InvalidPathException {
         requireNonNull(model);
 
         Path archivePath = Paths.get("data", fileName);
