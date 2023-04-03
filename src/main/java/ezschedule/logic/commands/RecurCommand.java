@@ -1,5 +1,7 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_EVERY;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -7,7 +9,6 @@ import java.util.List;
 import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.exceptions.CommandException;
-import ezschedule.logic.parser.CliSyntax;
 import ezschedule.model.Model;
 import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
@@ -23,11 +24,11 @@ public class RecurCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Recurs event in the scheduler by "
             + "the index number used in the displayed event list. "
             + "\nParameters: INDEX (must exist)\n "
-            + CliSyntax.PREFIX_DATE + "ending date\n "
-            + CliSyntax.PREFIX_EVERY + "{day, week, month} "
+            + PREFIX_DATE + "ending date\n "
+            + PREFIX_EVERY + "{day, week, month} "
             + "\nExample: \n" + COMMAND_WORD + " 1 "
-            + CliSyntax.PREFIX_DATE + "2024-02-20 "
-            + CliSyntax.PREFIX_EVERY + "month ";
+            + PREFIX_DATE + "2024-02-20 "
+            + PREFIX_EVERY + "month ";
 
     public static final String MESSAGE_SUCCESS = "Recurring event added: %1$s";
     public static final String MESSAGE_RECUR_FACTOR_CAP = "Recur factor is not appropriate for "
