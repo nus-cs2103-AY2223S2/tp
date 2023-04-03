@@ -178,7 +178,7 @@ Before we dive into exploring the various features of EduMate, please choose whe
 
 <div markdown="span" class="alert alert-danger">
 
-:warning: **Before you clear or sample** <br>
+:warning: **Important `clear` or `sample` warnings** <br>
 
 Performing either action will remove any contacts you currently have on your EduMate. 
 
