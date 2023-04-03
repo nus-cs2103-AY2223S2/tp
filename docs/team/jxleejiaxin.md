@@ -38,11 +38,14 @@ title: <Lee Jia Xin> Project Portfolio Page
 - **Enhancements to existing features**:
 
   - Added Status field to Person class and updating JsonAdaptedPerson.
-  - Improve find command to find based on note prefix
+  - Update JsonAdaptedPerson for all subsequent fields added.
+  - Improve find command to find based on note prefix (adapted to skill command)
 
 - **Documentation**:
 
   - Wrote the `About HMHero` and `Features` section in the User Guide.
+  - Wrote and ensured correctness of Feature implementation section in Developer Guide.
+  - Drew add, find, advance command activity diagrams and find command sequence diagram.
 
 - **Community**:
 
