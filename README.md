@@ -1,7 +1,7 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103-W16-2/tp/actions)
 [![codecov](https://codecov.io/gh/nus-cs2103-AY2223S2/tp/branch/master/graph/badge.svg?token=SNV76O467D)](https://codecov.io/gh/AY2223S2-CS2103-W16-2/tp)
 # TechTrack
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/UI.png)
 
 TechTrack is a powerful internship/job tracking application that combines the flexibility of a Command Line Interface (CLI) with the benefits of a Graphical User Interface (GUI).
 
