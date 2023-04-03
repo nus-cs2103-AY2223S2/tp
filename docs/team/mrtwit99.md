@@ -8,6 +8,8 @@ title: Yeo Wen Jue's Project Portfolio Page
 PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. While it has limited features at this stage, plans for future PowerConnect releases to update features and usage capabilites have been made with detailed timeline.
 The aim of this product is to eventually be a useful tool that is used in conjunction with Learning Managment System (LMS) tools currently in the market to aid teachers in managing students. <br>
 
+PowerConnect is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). PowerConnect helps teachers in tracking and updating students' particulars.
+
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add new parents/NOKs (Next-of-Kins) to PowerConnect.
@@ -15,13 +17,13 @@ Given below are my contributions to the project.
   * Justification: This feature contributes significantly to the product as one of the intended features is allowing teachers to have the ability to access information on students' parent/NOK so that they are able to contact them in case of emergencies.
   * Highlights: The implementation was slightly challenging as it required changes to the Student Add command to allow parsing in of Parent/NOK information and perform its tasks based on the Binding of Student and Parent/NOK internal feature. This command is also implemented at the same time with the Binding of Student and Parent/NOK internal feature.
   * Credits: *AB3's Add Command, Student Add Command*
-
+  <br><br>
 * **New Feature**: Added the ability to edit new parents/NOKs information
   * What it does: Allows user to amend existing personal particulars of parents/NOKs in PowerConnect via the Parent Edit Command. It removes the need for users to remove a parent/NOK and re-adding the parent/NOK themselves whenever they want to amend a parent/NOK info.
   * Justification: This features contributes slightly to the product as providing users with the ability to edit parents/NOKs information is something that is essential and not a requirement.
   * Highlights: This enhancement removes the need for users to manually deleting and re-adding the parent/NOK whenever an amendment must be made.
   * Credits: *nil*
-
+  <br><br>
 * **New Feature**: Binding of Student and Parent/NOK (internal feature)
   * What it does: Binds/Unbinds a student to/from an existing parent/NOK in PowerConnect during Student Add, Edit and Delete Commands. If parent/NOK does not exist when needed for binding, it will get automatically created!
   * Justification: This feature contributes significantly to the product as it is crucial for users to be able to see the relationship of parents/NOKs to students and students to parents/NOKs and have the binding of parent/NOK and student be done automatically by the product and not done manually by the user.
@@ -50,7 +52,12 @@ Given below are my contributions to the project.
     * Amended formatting of User Guide for PDF versions [\#141]() [\#142]() [\#153]() [\#154]()
     * Amended errors in User Guide [\#129]() [\#155]() [\#158]() <br><br>
   * Developer Guide:
-    * Added implementation details for `parent add` and `parent edit` features. <br><br>
+    * Added implementation details for `parent add`,`parent edit` and `binding of student and parent/NOK` features.
+    * Added UML diagrams for `parent add` and `parent edit` features.
+    * Added Use Cases: UC07, UC08, UC09.
+    * Added Table of Content section with working jump links.
+    * Amended formatting of Developer Guide for PDF versions
+    * Transferred Glossary, Use Case and User Stories from Google Docs to Developer Guide. <br><br>
 
 * **Review Contributions during team project**:
   * PRs reviewed and merged: 34<br><br>
