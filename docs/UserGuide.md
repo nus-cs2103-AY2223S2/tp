@@ -172,12 +172,15 @@ before continuing.
 Before we dive into exploring the various features of EduMate, please choose whether you prefer a guided or unguided experience.
 
 1. For a guided experience, please enter `sample 100` in the command box located at the top left of the application. This will generate 100 sample contacts in your EduMate, which you can use to familiarize yourself with the application's functionalities.
-2. If you would like to start with a fresh EduMate, simply type `clear` in the same command box.
+2. If you would like to start with a fresh EduMate, simply type `clear` in the same [Command Box](#command-box) located at the bottom of the application.
 
 <div markdown="span" class="alert alert-danger">
 
-:warning: **Before you clear or sample**
-Performing either action will remove any contacts you currently have on your EduMate. To save your progress, have a look at our [Save Command](#save-a-copy-of-edumate-save).
+:warning: **Before you clear or sample** <br>
+
+Performing either action will remove any contacts you currently have on your EduMate. 
+
+To save your progress, have a look at our [Save Command](#save-a-copy-of-edumate-save).
 
 </div>
 
@@ -197,9 +200,9 @@ A member of our core team will attend to you as soon as possible.
 
 ## User Interface
 
-`EduMate`'s UI components are built to fulfil a specific functionality. We designed `EduMate` to be aesthetically pleasing and easy for users to navigate.
+Our UI components have been carefully crafted to fulfil specific functions, ensuring that your experience using our platform is as seamless and user-friendly as possible.
 
-We also used light purple and white as our main colour scheme as they are cool colours.
+We have chosen a light purple and white color scheme for the application, as these cool colors promote a sense of calm and clarity, making it easier for you to focus on your work.
 
 ![Ui](images/UG_ui_pictures/user_interface.png)
 <center>Diagram 2: <code>EduMate</code>'s UI</center>
@@ -226,7 +229,7 @@ The following diagram shows the layout of components numbered exactly as above.
 
 You may locate the Person List at the center-left of `EduMate`. This is where you will see all your saved contacts (or sample data if you are trying out for the first time).
 
-For each contact, you may see the index that `EduMate` has assigned to the contact directly to the left of the contact's display name.
+When viewing your contacts in EduMate, you will notice an index assigned to each contact. This index is located directly to the _left_ of the contact's display name, and serves as a unique identifier for each contact in your list.
 
 <img src="images/UG_ui_pictures/PersonList.svg" style="width:40%;margin:1% 1% 1% 30%">
 
@@ -1078,7 +1081,9 @@ After sorting your contacts, you decided to ask Tae Seong, Alex, Amirul and Kevi
 Problem is, you do not know when all of them are free! Luckily, you have `EduMate` to find out for you!
 
 You can execute the `study` variant of the `meet` command
-whilst referring to their index on the Person List and find out what are the most optimal places and the best possible time to meet and study for the final.
+whilst referring to their index on the Person List.
+
+From here, `EduMate` will recommend the most optimal places and the best possible time to meet and study for the final.
 
 Command entered: `study 35 29 10 23`
 
@@ -1103,9 +1108,9 @@ What you should see:<br>
 
 ### Schedule Commands
 
-The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. It is useful for keeping track of your upcoming meetups in an organised and efficient way. 
+The `organise` command in EduMate is used to add meet ups with selected contacts, whether they are customised or recommended by the meet commands. The feature is useful for keeping track of your upcoming meetups in an organised and efficient way. 
 
-In addition, EduMate also offers the `unorganise` command, which helps you manage and clean up scheduled meetups by removing them - making it easy to stay on top of your schedule.
+In addition, EduMate offers the `unorganise` command, which helps you manage and clean up scheduled meetups by removing them - making it easy to stay on top of your schedule.
 
 Any organised meet ups will be displayed at `EduMate`'s [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
 
@@ -1173,7 +1178,7 @@ If you wish to remove a scheduled meetup from your [Scheduled Meet Up Panel](#sc
 
 ##### Scenario:
 
-Suppose Tae Seong has got Covid-19 and cannot make it to the meet up. Unfortunately, you have to cancel the meet up.
+Suppose Tae Seong cannot attend the meet up due to contracting Covid-19, and you have to cancel the scheduled meet up.
 
 The scheduled meet up has the index 1 on the [Scheduled Meet Up Panel](#scheduled-meet-up-panel).
 
