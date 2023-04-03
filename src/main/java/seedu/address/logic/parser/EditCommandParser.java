@@ -106,7 +106,7 @@ public class EditCommandParser implements Parser <EditCommand> {
         return new CommandInfo(
                 EditCommand.COMMAND_WORD,
                 EditCommand.COMMAND_PROMPTS,
-                EditCommandParser::validate);
+                EditCommandParser::validate, "<NRIC>");
     }
 
     private Nric checkPreamble(String preamble) throws ParseException {

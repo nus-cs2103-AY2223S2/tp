@@ -102,7 +102,7 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
         return new CommandInfo(
                 EditVolunteerCommand.COMMAND_WORD,
                 EditVolunteerCommand.COMMAND_PROMPTS,
-                EditVolunteerCommandParser::validate);
+                EditVolunteerCommandParser::validate, "<INDEX>");
     }
 
     /**

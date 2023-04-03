@@ -44,7 +44,7 @@ public class DeleteElderlyCommandParser implements Parser<DeleteElderlyCommand> 
         return new CommandInfo(
                 DeleteElderlyCommand.COMMAND_WORD,
                 DeleteElderlyCommand.COMMAND_PROMPTS,
-                DeleteElderlyCommandParser::validate);
+                DeleteElderlyCommandParser::validate, "<NRIC>");
     }
 
     /**
@@ -56,6 +56,8 @@ public class DeleteElderlyCommandParser implements Parser<DeleteElderlyCommand> 
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
         if (map.getPreamble().contains(" ")) {
             throw new RecommendationException("Too many arguments.");
+        } else if (map.getPreamble().isEmpty()) {
+            throw new RecommendationException("Requires NRIC to be specified.");
         }
         return true;
     }

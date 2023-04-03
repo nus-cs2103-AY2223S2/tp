@@ -96,9 +96,7 @@ public class AddVolunteerCommandParser implements Parser<AddVolunteerCommand> {
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
-        if (PrefixUtil.hasNonEmptyPreamble(map, availablePrefixes)) {
-            throw new RecommendationException("Too many arguments.");
-        } else if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+        if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
             throw new RecommendationException("Invalid prefix.");
         } else if (map.getValue(PREFIX_TAG).orElse("").length() > 20) {
             throw new RecommendationException("Length of tag is too long.");

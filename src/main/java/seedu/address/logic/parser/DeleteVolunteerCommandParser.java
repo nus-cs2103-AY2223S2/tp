@@ -48,6 +48,8 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
     public static boolean validate(ArgumentMultimap map) throws RecommendationException {
         if (map.getPreamble().contains(" ")) {
             throw new RecommendationException("Too many arguments.");
+        } else if (map.getPreamble().isEmpty()) {
+            throw new RecommendationException("Requires NRIC to be specified.");
         }
         return true;
     }
@@ -56,6 +58,6 @@ public class DeleteVolunteerCommandParser implements Parser<DeleteVolunteerComma
         return new CommandInfo(
                 DeleteVolunteerCommand.COMMAND_WORD,
                 DeleteVolunteerCommand.COMMAND_PROMPTS,
-                DeleteVolunteerCommandParser::validate);
+                DeleteVolunteerCommandParser::validate, "<NRIC>");
     }
 }
