@@ -220,7 +220,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void separateUpdate() {
         Bookmark selectedBookmark = logic.getSelectedBookmark();
-        if (selectedBookmark != null) {
+        int selectedIndex = logic.getSelectedIndex();
+        if (selectedBookmark != null && selectedIndex != -1) {
             //Update with bookmark information
             zoomView = new ZoomView(selectedBookmark);
             zoomViewPlaceholder.getChildren().add(zoomView.getRoot());
@@ -260,7 +261,6 @@ public class MainWindow extends UiPart<Stage> {
         try {
 
             CommandResult commandResult = logic.execute(commandText);
-
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
