@@ -31,6 +31,8 @@ public class RecurCommand extends Command {
             + PREFIX_EVERY + "month ";
 
     public static final String MESSAGE_SUCCESS = "Recurring event added: %1$s";
+    public static final String MESSAGE_FAILURE_PAST_DATE = "End date indicated is in the past\n"
+            + "Ensure end date of recurrence has not past.";
     public static final String MESSAGE_RECUR_FACTOR_CAP = "Recur factor is not appropriate for "
             + "number of recurring events.";
     public static final String MESSAGE_FAILURE_DAY_NOT_EXIST_MONTH = "Unable to recur by month.\n"
@@ -64,6 +66,10 @@ public class RecurCommand extends Command {
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX,
                     index.getZeroBased() + 1));
+        }
+
+        if (endDate.isPastDate()) {
+            throw new CommandException(String.format(MESSAGE_FAILURE_PAST_DATE, endDate));
         }
 
         Event eventToRecur = lastShownList.get(index.getZeroBased());
