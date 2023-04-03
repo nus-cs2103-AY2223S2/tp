@@ -690,7 +690,7 @@ With EduMate's `edit` command, you can easily update the profile of a contact. Y
 ##### Scenario:
 
 Suppose now after talking to Weixiang, you realised that he has just moved to Little India. You then decide to edit the `Station` attribute of his contact from 
-'Boon Lay' to `Little India`. You also remembered that from the `view` command, Weixiang's index in `EduMate` is 101.
+`Boon Lay` to `Little India`. You also remembered that from the `view` command, Weixiang's index in `EduMate` is 101.
 
 Command entered: `edit 101 s/Little India`
 
