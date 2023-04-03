@@ -552,6 +552,16 @@ _Here are some important requirements for you to take note:_
 * NAME is the name of the person you want to tag to the event.
   * NAME is **case_sensitive**.
   * NAME must be the name of a contact already registered in NeoBook
+Examples:
+* Suppose you have an Event at `INDEX 3` with `DESCRIPTION: Hackathon Meeting`, `START DATE & TIME: 2023-05-04 1400`,
+`START DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` 
+
+![img.png](img.png)
+
+`tagpersonevent et/4 pt/Baljeet FF` Tags Baljeet FF to this Weekly Hackathon Meeting.
+
+![img_1.png](img_1.png)
+
 
 _For more advanced users_
 * Be careful when directly editing the tagged contacts in `userdata.json`.
@@ -578,6 +588,16 @@ _Here are some important requirements for you to take note:_
     * NAME is **case_sensitive**.
     * NAME must be the name of a contact already registered in NeoBook and
 tagged to that event.
+
+Examples:
+* Suppose you have an Event at `INDEX 3` with `DESCRIPTION: Hackathon Meeting`, `START DATE & TIME: 2023-05-04 1400`,
+  `START DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` and `Baljeet FF` tagged to this Event.
+
+![img_1.png](img_1.png)
+
+`untagpersonevent et/4 pt/Baljeet FF` untags Baljeet FF from this Weekly Hackathon Meeting.
+
+![img.png](img.png)
 
 _For more advanced users_
 * Be careful when directly editing the tagged contacts in `userdata.json`.
