@@ -7,8 +7,6 @@ public class UndoCommandParser implements CommandParser<UndoCommand> {
     private static final ApplicativeParser<ApplicativeParser<UndoCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .string("undo")
-                    .takeNext(ApplicativeParser.skipWhitespaces())
-                    .takeNext(ApplicativeParser.eof())
                     .constMap(ApplicativeParser.of(new UndoCommand()));
 
     private static final UndoCommandParser INSTANCE = new UndoCommandParser();

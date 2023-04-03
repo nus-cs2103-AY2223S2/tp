@@ -7,8 +7,6 @@ public class RefreshCommandParser implements CommandParser<RefreshCommand> {
     private static final ApplicativeParser<ApplicativeParser<RefreshCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .string("refresh")
-                    .takeNext(ApplicativeParser.skipWhitespaces())
-                    .takeNext(ApplicativeParser.eof())
                     .constMap(ApplicativeParser.of(new RefreshCommand()));
 
     private static final RefreshCommandParser INSTANCE = new RefreshCommandParser();

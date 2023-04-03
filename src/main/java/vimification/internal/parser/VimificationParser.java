@@ -17,6 +17,11 @@ public class VimificationParser {
             .string(":")
             .optional();
 
+    private static final ApplicativeParser<Void> POSTPROCESSOR = ApplicativeParser
+            .skipWhitespaces()
+            .takeNext(ApplicativeParser.eof())
+            .throwIfFail("Too many arguments");
+
     private static final CommandParser<LogicCommand> LOGIC_COMMAND_PARSER =
             AddCommandParser.getInstance()
                     .<LogicCommand>cast()
@@ -42,17 +47,16 @@ public class VimificationParser {
                     .<Command>cast()
                     .or(UI_COMMAND_PARSER)
                     .or(MACRO_COMMAND_PARSER)
-                    .updateInternalParser(parser -> parser.throwIfFail("Unknown command"));
+                    .updateInternalParser(parser -> parser
+                            .throwIfFail("Unknown command")
+                            .map(commandParser -> commandParser.dropNext(POSTPROCESSOR)));
 
     private MacroMap macroMap;
 
     private final ApplicativeParser<String> macroPreprocessor =
             PREPROCESSOR
                     .takeNext(CommandParserUtil.STRING_PARSER)
-                    .map(input -> {
-                        String result = macroMap.get(input).orElse(input);
-                        return result;
-                    })
+                    .map(input -> macroMap.get(input).orElse(input))
                     .combine(ApplicativeParser.untilEof(), String::concat);
 
     private VimificationParser(MacroMap macroMap) {

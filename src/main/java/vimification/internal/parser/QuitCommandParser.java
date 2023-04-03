@@ -7,10 +7,8 @@ public class QuitCommandParser implements CommandParser<QuitCommand> {
     private static final ApplicativeParser<ApplicativeParser<QuitCommand>> INTERNAL_PARSER =
             ApplicativeParser.choice(
                     ApplicativeParser.string("quit"),
-                    ApplicativeParser.string("q"),
+                    // ApplicativeParser.string("q"),
                     ApplicativeParser.string("q!"))
-                    .takeNext(ApplicativeParser.skipWhitespaces())
-                    .takeNext(ApplicativeParser.eof())
                     .constMap(ApplicativeParser.of(new QuitCommand()));
 
     private static final QuitCommandParser INSTANCE = new QuitCommandParser();

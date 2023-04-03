@@ -7,8 +7,6 @@ public class HelpCommandParser implements CommandParser<HelpCommand> {
     private static final ApplicativeParser<ApplicativeParser<HelpCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .string("help")
-                    .takeNext(ApplicativeParser.skipWhitespaces())
-                    .takeNext(ApplicativeParser.eof())
                     .constMap(ApplicativeParser.of(new HelpCommand()));
 
     private static final HelpCommandParser INSTANCE = new HelpCommandParser();
