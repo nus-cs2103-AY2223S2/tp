@@ -177,7 +177,7 @@ public class StudentCard extends UiPart<Region> {
                     Image defaultImage = new Image("images/defaultStudent.png");
                     circle.setFill(new ImagePattern(defaultImage));
                 } else {
-                    Image newImage = new Image(files.toURI().toString());
+                    Image newImage = new Image(file.toURI().toString());
                     if (newImage.isError()) {
                         Image defaultImage = new Image("images/defaultStudent.png");
                         circle.setFill(new ImagePattern(defaultImage));
@@ -187,21 +187,8 @@ public class StudentCard extends UiPart<Region> {
                 }
             }
         } else {
-            String path = "images/student/" + student.getName()
-                    + student.getStudentClass().getClassName() + student.getIndexNumber().toString() + ".png";
-            File files = new File(path);
-            if (!files.exists()) {
-                Image defaultImage = new Image("images/defaultStudent.png");
-                circle.setFill(new ImagePattern(defaultImage));
-            } else {
-                Image newImage = new Image(files.toURI().toString());
-                if (newImage.isError()) {
-                    Image defaultImage = new Image("images/defaultStudent.png");
-                    circle.setFill(new ImagePattern(defaultImage));
-                    return;
-                }
-                circle.setFill(new ImagePattern(newImage));
-            }
+            Image defaultImage = new Image("images/defaultStudent.png");
+            circle.setFill(new ImagePattern(defaultImage));
         }
 
     }
