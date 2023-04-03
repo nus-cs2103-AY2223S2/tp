@@ -510,19 +510,20 @@ Use case ends.
 
 1. User opens the application.
 2. TechTrack shows the list of jobs.
-3. User enters the “view” command.
-4. UI displays more specific details on the jobs saved.
+3. User enters the “view {index}” command.
+4. UI displays more specific details on the jobs saved based on the index.
 
 Use case ends.
 
 **Extensions:**
 
-* 3a. Job does not exist.
+* 2a. List is empty.
+  Use case ends.
+
+* 3a. Index entered is invalid.
     * 2a1. TechTrack outputs error.
   
       Use case ends.
-* 3b. List is empty.
-  Use Case ends.
 
 **Use case: Delete a job**
 
@@ -558,7 +559,7 @@ Use case ends.
 
 1. User opens the application
 2. TechTrack shows the list of jobs.
-3. User enters the “salary” command followed by either "asc" or "desc"
+3. User enters the “salary {asc/desc}"
 4. UI display the list of jobs sorted by salaries in either ascending or descending orderParser with indexes.
 
 Use case ends.
@@ -583,7 +584,7 @@ Use case ends.
 
 1. User opens the application
 2. TechTrack shows the list of jobs.
-3. User enters the "company" command followed by the keyword.
+3. User enters the "company {keyword}" command
 4. UI display the list of jobs with companies that contains the keyword.
 
 Use case ends.
