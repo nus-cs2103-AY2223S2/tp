@@ -135,7 +135,7 @@ Here is everything you need to install and set up EduMate. For the best possible
 * macOS (Both Intel and M1/M2 Chips)
 * Linux
 
-Do also ensure that you have Java `11` or above installed in your Computer. If you don’t already have Java `11` or above on your system, head over to [Oracle’s Java download page](https://www.oracle.com/java/technologies/downloads/). To check whether your Java version is compatible with EduMate, please refer to [this section]().
+Do also ensure that you have Java `11` or above installed in your Computer. If you don’t already have Java `11` or above on your system, head over to [Oracle’s Java download page](https://www.oracle.com/java/technologies/downloads/). To check whether your Java version is compatible with EduMate, please refer to [this section](#how-to-check-your-java-version).
 
 ### Installation Instructions
 
