@@ -174,8 +174,6 @@ will be ignored.<br>
 
 ## Features
 
-## Modules
-
 The following commands deal with handling the details of a module in Contact nUS. You can use them to:
 * [Add a module](#adding-a-module--add)
 * [Edit a module](#editing-a-module--edit)

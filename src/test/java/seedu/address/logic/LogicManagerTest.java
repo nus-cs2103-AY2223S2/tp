@@ -3,10 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_CS3230;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_CS3230;
-import static seedu.address.logic.commands.CommandTestUtil.TIMESLOT_DESC_CS3230;
-import static seedu.address.logic.commands.CommandTestUtil.TYPE_DESC_CS3230;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS3230;
 

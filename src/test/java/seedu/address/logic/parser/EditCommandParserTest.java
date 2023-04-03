@@ -82,7 +82,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS); // invalid type
+//        assertParseFailure(parser, "1" + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS); // invalid type
         assertParseFailure(parser, "1"
                 + INVALID_TIMESLOT_DESC, TimeSlot.MESSAGE_CONSTRAINTS); // invalid timeSlot
         assertParseFailure(parser, "1"
@@ -90,12 +90,13 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid type followed by valid timeSlot
-        assertParseFailure(parser, "1" + INVALID_TYPE_DESC
-                + TIMESLOT_DESC_CS3230, Resource.MESSAGE_CONSTRAINTS);
+//        Commented out because resource can be anything
+//        assertParseFailure(parser, "1" + INVALID_TYPE_DESC
+//                + TIMESLOT_DESC_CS3230, Resource.MESSAGE_CONSTRAINTS);
 
         // valid type followed by invalid type. The test case for invalid type followed by valid type
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + TYPE_DESC_CS3219 + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS);
+//        assertParseFailure(parser, "1" + TYPE_DESC_CS3219 + INVALID_TYPE_DESC, Resource.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Module} being edited,
         // parsing it together with a valid tag results in error

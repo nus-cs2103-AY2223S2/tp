@@ -25,6 +25,7 @@
             <VBox fx:id="helpMessageContainer">
       
               <children>
+                <Label fx:id="guide" alignment="TOP_LEFT" />
                 <Label fx:id="urlLink" alignment="TOP_LEFT" />
                 <Button fx:id="copyButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" />
                 <Label fx:id="featuresHeader" alignment="TOP_LEFT" minHeight="-Infinity">
