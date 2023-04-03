@@ -429,13 +429,13 @@ EduMate is a command-driven application, which means that its various functional
   e.g. `edit 2 n/Steven Tan` runs the `edit` command with an index of 2 and an `n/` argument of Steven Tan.
 
 * Words in `UPPER_CASE` are arguments you are meant to fill in.<br>
-  e.g. in `view n/NAME`, you can fill in the `NAME` argument like `view n/Tan Kah Kee`.
+  e.g. in `view n/NAME`, you can fill in the `NAME` argument like `view n/Amirul Thani`.
 
 * We use `z/` to denote any prefix.<br>
   e.g. `z/FIELD` could mean `n/FIELD` or `s/FIELD`.
 
 * Items in square brackets are optional.<br>
-  e.g. `n/NAME [g/GROUP]` can be used as `n/Tan Kah Kee g/Friend` or as `n/Tan Kah Kee`.
+  e.g. `n/NAME [g/GROUP]` can be used as `n/Amriul Thani g/Friend` or as `n/Amirul Thani`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[m/MODULE]…​` can be used as ` ` (i.e. 0 times), `m/`, `m/CS2108 m/CS2101` etc.
