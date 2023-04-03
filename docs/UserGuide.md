@@ -246,7 +246,7 @@ When viewing your contacts in EduMate, you will notice an index assigned to each
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Appearance of Module Tags**<br>
-Not all modules that are tagged to the contact are shown on the Person List. If a contact shares the same module as you, the module tag corresponding to that module will appear for that containt on the Person List.
+Not all modules that are tagged to the contact are shown on the Person List. If a contact shares the same module as you, the module tag corresponding to that module will appear for that contact on the Person List.
 <br>
 
 <img src="images/UG_ui_pictures/PersonListCommonMods.svg" style="width:80%;margin:0 10%">
