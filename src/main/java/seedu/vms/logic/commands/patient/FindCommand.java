@@ -1,6 +1,13 @@
 package seedu.vms.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.vms.logic.parser.CliSyntax.DELIMITER;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_ALLERGY;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_DOB;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -39,10 +46,20 @@ public class FindCommand extends Command {
     public static final String COMMAND_GROUP = "patient";
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
-            + ": Finds all patients whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + ": Finds all patients whose names contain "
+            + "the specified keywords (case-insensitive) and displays them as a list with PATIENT_ID.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " alex\n"
+            + "Alternate Parameters:"
+            + "[" + DELIMITER + PREFIX_NAME + " NAME] "
+            + "[" + DELIMITER + PREFIX_PHONE + " PHONE] "
+            + "[" + DELIMITER + PREFIX_DOB + " Date of Birth] "
+            + "[" + DELIMITER + PREFIX_BLOODTYPE + " BLOODTYPE] "
+            + "[" + DELIMITER + PREFIX_ALLERGY + " ALLERGY]... "
+            + "[" + DELIMITER + PREFIX_VACCINATION + " VACCINE]...\n"
+            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD
+            + DELIMITER + PREFIX_NAME + " john "
+            + DELIMITER + PREFIX_BLOODTYPE + " B+";
 
     private final Optional<NameContainsKeywordsPredicate> namePredicate;
     private final Optional<PhoneNumberPredicate> phonePredicate;

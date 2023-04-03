@@ -41,14 +41,14 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
             + ": Edits the details of the patient identified "
-            + "by the index number used in the displayed patient list. "
+            + "by the PATIENT_ID used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: PATIENT_ID (must be a positive integer) "
             + "[" + DELIMITER + PREFIX_NAME + " NAME] "
             + "[" + DELIMITER + PREFIX_PHONE + " PHONE] "
             + "[" + DELIMITER + PREFIX_DOB + " Date of Birth] "
             + "[" + DELIMITER + PREFIX_BLOODTYPE + " BLOODTYPE] "
-            + "[" + DELIMITER + PREFIX_ALLERGY + " ALLERGY]...\n"
+            + "[" + DELIMITER + PREFIX_ALLERGY + " ALLERGY]... "
             + "[" + DELIMITER + PREFIX_VACCINATION + " VACCINE]...\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1 "
             + DELIMITER + PREFIX_PHONE + " 91234567 "
