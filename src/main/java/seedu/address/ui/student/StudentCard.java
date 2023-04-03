@@ -158,40 +158,36 @@ public class StudentCard extends UiPart<Region> {
      */
     public void updateImage() {
         String strImage = student.getImage().value;
-        if (!strImage.equals("Insert student image here!")) {
-            File file = new File(strImage);
-            if (file.exists()) {
-                Image image = new Image(file.toURI().toString());
-                if (image.isError()) {
+        File file = new File(strImage);
+        if (file.exists()) {
+            Image image = new Image(file.toURI().toString());
+            if (image.isError()) {
+                Image defaultImage = new Image("images/defaultStudent.png");
+                circle.setFill(new ImagePattern(defaultImage));
+                return;
+            }
+            circle.setFill(new ImagePattern(image));
+            ;
+
+        } else {
+            String path = "images/student/" + student.getName()
+                    + student.getStudentClass().getClassName() + student.getIndexNumber().toString() + ".png";
+            File files = new File(path);
+            if (!files.exists()) {
+                Image defaultImage = new Image("images/defaultStudent.png");
+                circle.setFill(new ImagePattern(defaultImage));
+            } else {
+                Image newImage = new Image(file.toURI().toString());
+                if (newImage.isError()) {
                     Image defaultImage = new Image("images/defaultStudent.png");
                     circle.setFill(new ImagePattern(defaultImage));
                     return;
                 }
-                circle.setFill(new ImagePattern(image));;
-
-            } else {
-                String path = "images/student/" + student.getName()
-                        + student.getStudentClass().getClassName() + student.getIndexNumber().toString() + ".png";
-                File files = new File(path);
-                if (!files.exists()) {
-                    Image defaultImage = new Image("images/defaultStudent.png");
-                    circle.setFill(new ImagePattern(defaultImage));
-                } else {
-                    Image newImage = new Image(file.toURI().toString());
-                    if (newImage.isError()) {
-                        Image defaultImage = new Image("images/defaultStudent.png");
-                        circle.setFill(new ImagePattern(defaultImage));
-                        return;
-                    }
-                    circle.setFill(new ImagePattern(newImage));
-                }
+                circle.setFill(new ImagePattern(newImage));
             }
-        } else {
-            Image defaultImage = new Image("images/defaultStudent.png");
-            circle.setFill(new ImagePattern(defaultImage));
         }
-
     }
+
 
     @Override
     public boolean equals(Object other) {
