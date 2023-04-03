@@ -14,26 +14,51 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to mark delivery with status
   * What it does: Mark a delivery with a status.
   * Justification: This feature assists the delivery rider in keeping track deliveries' statuses 
-  * Highlights: _to be added soon_
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+  * Highlights: 
+    * Able to set deliveries with the following statuses:
+      * `pending` for pending delivery
+      * `otw` for in progress delivery _(p.s. otw is an abbreviation of 'on the way', synonymously with 'in progress')_
+      * `failed` for failed delivery
+      * `done` for done delivery
+      * `return` for return delivery (i.e used when recipient rejects delivery)
+    * UI will reflect the status with its respective colors
 
-* **Enhancements to existing features**:
-  * _to be added soon_
+* **New Feature**: Added the ability to view number of delivery attempts
+  * What it does: Show the number of delivery attempts for each delivery.
+  * Justification: This feature assists the delivery rider in keeping track of attempts for a delivery
+  * Highlights:
+    * UI will reflect the number of attempts
+
+* **New Feature**: Added the ability to automatically mark delivery as 'return' (return to sender)
+  * What it does: Deliveries with 3 failed attempts are marked as return automatically.
+  * Justification: This feature assists the delivery rider without having to manually set a parcel is returned by keeping track on the number of attempts.
+  * Highlights:
+    * Setting `failed` to a delivery 3 times will automatically mark the delivery as `return`
+
+* **Enhancements implemented**:
+  * Renamed the project to `Bookopedia`
+  * Refactor the codebase to `Bookopedia`
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `mark` [#15](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/15)
-    * _to be added soon_
   * Developer Guide:
-    * _to be added soon_
+    * Added user stories [#23](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/23)
 
 * **Contributions to team-based tasks**:
-  * _to be added soon_
+  * Bug fix to existing edit command implementation, conflicting with our requirements
+  * Bug fixes on other team commands ensuring that their commands do not mutate deliveries that are done or returned
 
 * **Review/mentoring contributions**:
-  * _to be added soon_
+  * Reviewed [#28](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/28)
+  * Reviewed [#41](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/41)
+  * Reviewed [#57](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/57)
+  * Reviewed [#78](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/78)
+  * Reviewed [#83](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/83)
+  * Reviewed [#84](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/84)
+  * Reviewed [#143](https://github.com/AY2223S2-CS2103-W16-1/tp/issues/143)
 
 * **Contributions beyond the project team**:
-  * _to be added soon_
+  * Helped with CATcher load test
 
 
