@@ -174,16 +174,9 @@ Otherwise, you can check out how to edit it [here](#editing-the-data-file)
 
 </div>
 
+## 1.3 Utilisation
 
 
-**Step 4.** Type your command in the command box and press Enter to execute it. (e.g. typing **`help`** and pressing Enter will open the help window.) <br>
-
-Some example commands you can try:
-
-* `add_order n/John Doe l/John Street d/2023-12-12 q/10 f/Cupcakes p/91234567` : Adds an order for John Doe to the order list.
-* `exit` : Exits the app.
-
-**Step 5.** Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
