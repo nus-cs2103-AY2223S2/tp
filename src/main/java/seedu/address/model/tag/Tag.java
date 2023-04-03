@@ -12,7 +12,7 @@ import java.util.Locale;
 public class Tag {
 
     public static final String MESSAGE_ALPHANUMERIC_CONSTRAINTS = "Tags names should be alphanumeric.";
-    public static final String MESSAGE_MAXIMUM_CHARACTER_CONSTRAINTS = "Tag name:1%s exceeded 20 character limit.";
+    public static final String MESSAGE_MAXIMUM_CHARACTER_CONSTRAINTS = "Tag name exceeded 20 character limit.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -25,6 +25,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_ALPHANUMERIC_CONSTRAINTS);
+        checkArgument(isValidTagName(tagName), MESSAGE_MAXIMUM_CHARACTER_CONSTRAINTS);
         this.tagName = tagName.toLowerCase(Locale.ROOT);
     }
 
