@@ -153,7 +153,8 @@ Format: `next <count>`
 
 Parameter:  
 `<count>`: Number of upcoming events to show.
-           Optional. If not indicated, only the next one event is shown
+           Optional - if not indicated, only the next one event is shown.
+           If count is larger than the number of existing events, then all events are shown.
 
 Example: `next` or `next 2`
 
