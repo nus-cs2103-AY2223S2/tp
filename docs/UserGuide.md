@@ -585,7 +585,7 @@ What you should see:
 
 <img src="images/ug_cmds_pics/addcommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 13: A new contact: Weixiang is added to <code>EduMate</code>.</center>
+<center>Diagram 14: A new contact: Weixiang is added to <code>EduMate</code>.</center>
 
 ##### More Examples of Usage:
 
