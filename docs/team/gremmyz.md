@@ -1,41 +1,71 @@
 ---
 layout: page
-title: Jia Yi's Portfolio Page
+title: Ng Jia Yi's Portfolio Page
 ---
 
 ### Project: ConnectUS
 
-ConnectUS is a desktop app for managing contacts, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ConnectUS can get your contact management tasks done faster than traditional GUI apps. It is written in Java, and has about 10 kLoC.
+ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing (SoC) student, this app is for you. With ConnectUS, you can **easily connect with people** without the anxiety of _remembering who you met where_ holding you back from socialising.
+
+We're focused on:
+- **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
+- **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **easily navigate through your contact information** to find exactly what you need to **connect** with others.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-    * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-    * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **Major Refactoring**: Refactored AB3 into ConnectUS.
+  * What it does: Removes all occurrences of AB3.
+  * Justification: Essential in creating a product that serves as the foundation for future enhancements.   
+  * Highlights:
+    * All commands and tests of AB3 were modified to create ConnectUS.
+  * Pull requests: [\#92]()
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=gremmyz&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
-
-* **Project management**:
-    * Manage release of v1.1
+* **New Feature**: Added the user interface for new tag types.
+  * What it does: Creates tags in the UI in different colors based on the tag type (i.e. module, CCA, major, remark).
+  * Justification: This feature allows the user to differentiate between different tag types more easily.
+  * Pull requests: [\#119]()
 
 * **Enhancements to existing features**:
-    * _To be updated_
+  * Enhanced the `help` command to provide help for individual commands specified by the user, rather than a generic message.
+    * Justification: A CLI-based optimization for users so they will not have visit a separate window to search for command usage formats.
+    * Pull requests: [\#112]()
+  * Enhanced the information fields to be optional rather than compulsory.
+    * Justification: Some users may not know all information about a contact. This enhancement makes the creation of a contact more customizable.
+    * Pull requests:
+  * Enhanced the user interface to look more beautiful and colorful.
+    * Justification: Users will be more inclined to use an application with a nicer looking UI.
+  * Added JUnit tests for new and existing features.
+
+* **Project Management**:
+  * Overall team lead in charge of deciding on direction of product.
+  * Created the following milestones: `V1.1, V1.2, V1.2b, V1.3, V1.3b, V1.4`
+    * These milestones were essential in ensuring the group kept on track throughout our assigned tasks.
 
 * **Documentation**:
   * User Guide:
-    * _To be updated_
+    * Added target audience, value proposition of ConnectUS in the User Guide.
+    * Added documentation for all commands.
+    * Added Quick Start Guide into User Guide.
+    * Added FAQ into User Guide.
+    * Added Command Summary Table into User Guide.
+    * Added Prefix Summary Table into User Guide.
+    * Added Glossary into User Guide.
+    * Updated table of contents, sections and fixed bugs in User Guide.
+    * Pull requests: [\#137]()
+    
   * Developer Guide:
-    * _To be updated_
+    * Refactored AB3's Developer Guide into ConnectUS Developer Guide.
+    * Added implementation details of the `add` command and the `edit` command into Developer Guide.
+    * Added User Stories into Developer Guide.
+    * Added Use Cases into Developer Guide.
+    * Added Glossary into Developer Guide.
+    * Added Non-Functional Requirements into Developer Guide.
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=gremmyz&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other classmates ([1](), [2]())
+  * PRs reviewed: 24 PRs [reviewed](https://github.com/AY2223S2-CS2103T-W15-1/tp/pulls?q=is%3Apr+reviewed-by%3A%40me).
+  * Reported bugs and suggestions for other teams during PE dry run: 15 reports posted as [issues](https://github.com/gremmyz/ped/issues).
 
-* **Tools**:
-    * _To be updated_
+* **Other PRs**:
+    * [Link](https://github.com/AY2223S2-CS2103T-W15-1/tp/pulls?q=is%3Apr+assignee%3Agremmyz+) to my PRs.
