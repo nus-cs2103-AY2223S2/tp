@@ -177,8 +177,10 @@ public class EditCommand extends Command {
         } catch (IllegalValueException ive) {
             throw new CommandException(ive.getMessage());
         }
+        boolean isCompleted = editAppointmentDescriptor.getStatus()
+                .orElse(appointmentToEdit.getStatus());
 
-        return new Appointment(patientId, startTime, endTime, vaccine);
+        return new Appointment(patientId, startTime, endTime, vaccine, isCompleted);
     }
 
     @Override
@@ -208,6 +210,7 @@ public class EditCommand extends Command {
         private LocalDateTime startTime;
         private LocalDateTime endTime;
         private Retriever<String, VaxType> vaxRetriever;
+        private boolean isCompleted;
 
         public EditAppointmentDescriptor() {
         }
@@ -221,13 +224,14 @@ public class EditCommand extends Command {
             setStartTime(toCopy.startTime);
             setEndTime(toCopy.endTime);
             setVaccine(toCopy.vaxRetriever);
+            setStatus(toCopy.isCompleted);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(patientId, startTime, endTime, vaxRetriever);
+            return CollectionUtil.isAnyNonNull(patientId, startTime, endTime, vaxRetriever, isCompleted);
         }
 
         public void setPatient(Index patientId) {
@@ -260,6 +264,14 @@ public class EditCommand extends Command {
 
         public Optional<GroupName> getVaccine(Model model) throws IllegalValueException {
             return Optional.ofNullable(model.getVaccination(vaxRetriever).getGroupName());
+        }
+
+        public void setStatus(boolean isCompleted) {
+            this.isCompleted = isCompleted;
+        }
+
+        public Optional<Boolean> getStatus() {
+            return Optional.of(isCompleted);
         }
     }
 }
