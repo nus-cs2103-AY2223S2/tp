@@ -457,7 +457,9 @@ Once the person has been created, the result display will show a confirmation me
 - s/SKILL (eg. s/C++, s/Rust)
   - skills are case sensitive and does not allow duplicates
 
+<div markdown="span" class="alert alert-success">
 💡 **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
+</div>
 
 **Examples:**
 - `add` n/Betsy Crowe e/betsycrowe@example.com y/4 c/1 g/betsy123 l/linkedin.com/in/betsy-123
