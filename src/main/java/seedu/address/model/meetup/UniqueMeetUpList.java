@@ -76,15 +76,13 @@ public class UniqueMeetUpList implements Iterable<MeetUp> {
 
     //todo double check if this works
     public void removeEmptyMeetUps() {
-
-//        System.out.println("SIZE: " + internalList.size());
-//        for (MeetUp meetUp : internalList) {
-//            if (meetUp.getParticipants().getParticipants().isEmpty()) {
-//                this.remove(meetUp);
-//                System.out.println("got here 1");
-//            }
-//            System.out.println("got here 2");
-//        }
+        Iterator<MeetUp> iterator = internalList.iterator();
+        while (iterator.hasNext()) {
+            MeetUp meetUp = iterator.next();
+            if (meetUp.getParticipants().getParticipants().isEmpty()) {
+                iterator.remove();
+            }
+        }
     }
 
 
