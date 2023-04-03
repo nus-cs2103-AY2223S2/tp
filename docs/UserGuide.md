@@ -115,6 +115,8 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 * For example, one might think that "@hello__world" is allowed but it isn't due to having consecutive underscores.
 * TeachMeSenpai does validate handles according to Telegram specifications, but do check on the Telegram application for whether a handle is valid!
 
+</div>
+
 [↑ Back to top](#table-of-contents)
 
 ---
