@@ -321,8 +321,9 @@ The Command Box is located at the bottom of the application. You may refer to th
 
 <img src="images/UG_ui_pictures/command_input_box.png" style="width:80%;margin:0 10%">
 
-<center>Diagram 11: Command input box in <code>EduMate</code> boxed in red</center>
+<center>Diagram 12: Command input box in <code>EduMate</code> boxed in red</center>
 
+<br>
 
 <div markdown="span" class="alert alert-success">
 
@@ -347,7 +348,7 @@ Both commands will result in a Help Window appearing which shows the various com
 
 <img src="images/UG_ui_pictures/HelpWindow.svg" style="width:40%;margin:1% 1% 1% 30%">
 
-<center>Diagram 12: Help Window of <code>EduMate</code></center>
+<center>Diagram 13: Help Window of <code>EduMate</code></center>
 
 ### Exit Button
 
@@ -656,7 +657,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/View Command.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 14: Weixiang's profile displayed after execution of the <code>view</code> command</center>
+<center>Diagram 15: Weixiang's profile displayed after execution of the <code>view</code> command</center>
 
 <br>
 
@@ -695,7 +696,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/EditCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 15: MRT station nearest to Weixiang's home updated to Little India after execution of the <code>edit</code>command.</center>
+<center>Diagram 16: MRT station nearest to Weixiang's home updated to Little India after execution of the <code>edit</code>command.</center>
 
 <br>
 
@@ -732,7 +733,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/DeleteCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 16: Astrid's contact deleted after execution of the <code>delete</code>command.</center>
+<center>Diagram 17: Astrid's contact deleted after execution of the <code>delete</code>command.</center>
 
 ##### More Examples of Usage:
 
@@ -780,7 +781,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/TagCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 17: Amirul successfully tagged with MA2101 with a lesson from 4pm - 6pm on a Monday</center>
+<center>Diagram 18: Amirul successfully tagged with MA2101 with a lesson from 4pm - 6pm on a Monday</center>
 
 ##### More Examples of Usage:
 
@@ -827,7 +828,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/UntagCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 18: Amirul after removing the MA2101 Module Tag.</center>
+<center>Diagram 19: Amirul after removing the MA2101 Module Tag.</center>
 
 <br>
 
@@ -903,7 +904,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/FindCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 19: Only contacts tagged with CCA and CS2100 are shown.</center>
+<center>Diagram 20: Only contacts tagged with CCA and CS2100 are shown.</center>
 
 <br>
 
@@ -990,7 +991,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/SortCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 20: Contacts ranked according to sorting criteria specified in the Command Box</center>
+<center>Diagram 21: Contacts ranked according to sorting criteria specified in the Command Box</center>
 
 <br>
 
@@ -1092,7 +1093,7 @@ What you should see:<br>
 
 <img src="images/ug_cmds_pics/MeetCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 21: Recommended study spots and the common available days and timings displayed</center>
+<center>Diagram 22: Recommended study spots and the common available days and timings displayed</center>
 
 <br>
 
@@ -1146,7 +1147,7 @@ Command entered: `organise 2`
 What you should see:<br>
 
 <img src="images/ug_cmds_pics/OrganiseCommand.svg" style="width:80%;margin:0 10%">
-<center>Diagram 22: A new meet up: Thursday at Queenstown Public Library from 8pm - 11pm is added to <code>EduMate</code>'s Scheduled Meet Up Panel.</center>
+<center>Diagram 23: A new meet up: Thursday at Queenstown Public Library from 8pm - 11pm is added to <code>EduMate</code>'s Scheduled Meet Up Panel.</center>
 
 ##### More Examples of Usage:
 
@@ -1189,7 +1190,7 @@ What you should see: <br>
 
 <img src="images/ug_cmds_pics/UnorganiseCommand.svg" style="width:80%;margin:0 10%">
 
-<center>Diagram 23: The Thursday study session at Queenstown Public Library from 8pm - 11pm is deleted from <code>EduMate</code>'s Scheduled Meet Up Panel.</center>
+<center>Diagram 24: The Thursday study session at Queenstown Public Library from 8pm - 11pm is deleted from <code>EduMate</code>'s Scheduled Meet Up Panel.</center>
 
 
 ### Other Commands
