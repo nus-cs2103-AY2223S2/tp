@@ -168,7 +168,7 @@ A GUI similar to the below should appear in a few seconds, with the following ar
 * <span style="background-color:rgba(255.0, 0.0, 0.0, 0.5)">Command Input Box</span>
 * <span style="background-color:rgba(128.9, 0.0, 255.0, 0.5)">Data List</span>
 
-(Note how the app contains some sample data.)
+For more information on how to navigate the User Interface (UI), you can go [here](#14-navigating-the-user-interface)
 
 <p align="center">
   <img src="images/ug/HomePageUILabeled.png" />
@@ -210,6 +210,72 @@ You can try the following commands to add a task:
 You can find out all the usable commands [here](#features) or return to the [Table of Contents](#table-of-contents) to find your desired command.
 
 </div>
+
+## 1.4 Navigating the User Interface
+
+Here, we will explain how you can navigate around our application.
+
+**<span style="color:rgba(255.0, 0.0, 0.0, 0.5)">Command Input Box</span>**
+
+You can input your commands into the command input box, press **Enter** for your command to execute. A result message would be shown at the <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span>.
+
+If there is an error with the command, the input would turn <span style="color:red">red</span> and you can refer to the <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span> for help.
+
+**<span style="color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span>**
+
+Command result screen shows the success message for your command that executed successfully.
+
+Otherwise, it would show an error message with hints on what issues the command you entered has.
+
+**<span style="color:rgba(252.4, 248.4, 124.1, 0.5)">Tabs</span>**
+
+We provide multiple tabs for you to use. This includes the home page, with the data tabs that display your data for the respective information (i.e. Order, Tasks, Contacts, Menu).
+
+You can navigate between them by clicking on the tab itself, or input the command `tab` with the respective tab.
+
+For more information, you can go [here](#switching-tabs-tab).
+
+### 1.4.1 Home Page
+
+Upon starting the application, you will see a convenient dashboard with summarised information that you need for your business.
+
+**<span style="color:rgba(0.0, 255.0, 0.0, 0.5)">Sales (Total Revenue and Profit)</span>**
+
+Trackr keeps track of all orders submitted and automatically updates the total revenue and profit that your business has generated with us.
+
+**<span style="color:rgba(246.2, 149.6, 28.3, 0.5)">Simplified Orders</span>**
+
+Order list shows a condensed preview of your outstanding orders, with their relevant details (i.e. customer name, promised delivery date and your progress).
+
+**<span style="color:rgba(8.7, 68.0, 237.2, 0.5)">Simplified Tasks</span>**
+
+Task list shows all outstanding miscellaneous tasks that you may have for your current operations.
+
+**<span style="color:rgba(237.2, 8.7, 176.5, 0.5)">Simplified Menu</span>**
+
+Menu list shows all the items that you have up for sale currently, with their details (cost price, selling price and profit margin) at a glance.
+
+### 1.4.2 Data Tab
+
+**<span style="color:rgba(128.9, 0.0, 255.0, 0.5)">Data List</span>**
+
+Data list contains all of your respective data labelled out in full. The layout of the respective data information can be seen below:
+
+* Orders
+
+< Labelled Order Card Figure Here >
+
+* Tasks
+
+< Labelled Task Card Figure Here >
+
+* Contacts
+
+< Labelled Contact Card Figure Here >
+
+* Menu
+
+< Labelled Menu Card Figure Here >
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -259,21 +325,7 @@ You can find out all the usable commands [here](#features) or return to the [Tab
   <br>Figure 1: Homepage of Trackr
 </p>
 
-Upon start, you will see a convenient dashboard with everything you need for your business.
 
-### Orders
-Orders card show a condensed preview of your outstanding orders and their relevant details, such as your customer, promised delivery date and your progress on the purchase.
-
-### Tasks
-Tasks card show outstanding miscellaneous tasks that you may have in your daily operations.
-
-### Menu
-The Menu card shows all the items that you have up for sale, including their cost price, selling price and profit margin.
-
-### Revenue and Profit
-Trackr keeps track of all orders submitted and automatically updates the revenue and profit that your business has generated.
-- Price: revenue of all orders so far
-- Profit: profit of all orders so far
 
 Tabbed view is also available to view more details about your tasks, items, orders and contacts.
 
