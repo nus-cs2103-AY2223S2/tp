@@ -131,7 +131,7 @@ public class EditOrderCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_ITEM, ModelEnum.ORDER.toString().toLowerCase()));
         }
 
-        model.setItem(orderToEdit, editedOrder, ModelEnum.ORDER);
+        model.setItem(orderToEdit, validOrder, ModelEnum.ORDER);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS, ModelEnum.ORDER);
         return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, ModelEnum.ORDER.toString().toLowerCase(),
                 validOrder.toString()));

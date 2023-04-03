@@ -76,7 +76,7 @@ public class HomeView extends UiPart<Region> {
         // event change listener to update revenue and profit
         logic.getFilteredOrderList().addListener(new ListChangeListener<Order>() {
             @Override
-            public void onChanged(ListChangeListener.Change change) {
+            public void onChanged(ListChangeListener.Change<? extends Order> change) {
                 profitPlaceholder.setText(logic.getTotalProfits().toString());
                 revenuePlaceholder.setText(logic.getTotalSales().toString());
             }
