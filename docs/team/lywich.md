@@ -14,16 +14,16 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=lywich)
 
 * **Project management**:
-    * Refactored original AB3 to fit our project needs.
-      * Removed `address`, `email`, `phone`. [#38](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/38)
-      * Refactored testcases to be valid according to our project needs. [#38](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/38)
-      * Created `Description` class. [#38](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/38)
+    * Refactor original AB3 to fit our project needs.
+      * Remove `address`, `email`, `phone`. [#38](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/38)
+      * Refactor testcases to be valid according to our project needs. [#38](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/38)
+      * Create `Description` class. [#38](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/38)
         * `Description` is a field for `Task` objects.
         * `Description` abstracts the "description" of a task away from `Task` to encourage decoupling for maintainability.
-      * Created `Date` class. [#50](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/50)
+      * Create `Date` class. [#50](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/50)
           * `Date` is a field for `Deadline` and `Event` objects.
           * `Date` abstracts the "date" function away from `Task` to encourage decoupling for maintainability.
-      * Removed images from AB3 that is not reused. [#149](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/149)
+      * Remove images from AB3 that are not reused. [#149](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/149)
 
 * **Enhancements to existing features**:
     * `sort` command enhancement. [#61](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/61)
@@ -41,19 +41,19 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added table of contents and indexing. [#116](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/116)
+        * Add table of contents and indexing. [#116](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/116)
         * Write-up for `sort` command. [#64](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/64)
         * Write-up for color codes. [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
         * Add new image for `help` window. [#149](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/149)
       
     * Developer Guide:
-        * Added table of contents and indexing. [#94](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/94)
+        * Add table of contents and indexing. [#94](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/94)
         * Write-up for `sort` command. [#94](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/94)
         * Write-up for color codes. [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
         * Write-up for `clear` command (including sequence and activity diagram). [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
         * Write-up for `list` command (including sequence and activity diagram). [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
         * Write-up for `help` command (including sequence and activity diagram). [#144](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/144)
-        * Edited existing diagrams to refer to our project(`Task`) rather than AB3(`Address`). [#149](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/149)
+        * Edit existing diagrams to refer to our project(`Task`) rather than AB3(`Address`). [#149](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/149)
         * MSS for `edit` command. [#140](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/140/files)
 
 * **Community**:
