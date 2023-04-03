@@ -755,7 +755,7 @@ You cannot delete your own profile.
 
 ### Add a label to a contact `tag`
 
-With EduMate's `tag` command, you can tag your existing contacts with groups and modules using this command. You can also assign lessons to the contacts to indicate their availability during specific time periods. This will enable EduMate to suggest more suitable meet up times when using the `meet` command.
+You can tag your existing contacts with groups and modules using this command. You can also assign lessons to the contacts to indicate their availability during specific time periods. This will enable EduMate to suggest more suitable meet up times when using the `meet` command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -925,7 +925,7 @@ What you should see:<br>
 
 <div markdown="block" class="alert alert-success">
 
-:bulb: Tips on usage<br>
+:bulb: **Tips on usage**<br>
 * The search is case-insensitive. e.g hans will match Hans
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only the field specified by the prefix is searched. e.g. n/ means only the name field is searched
