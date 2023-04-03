@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.person.ContactIndex.USER_CONTACT_INDEX;
 
+import java.util.ConcurrentModificationException;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
@@ -52,6 +53,13 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = targetPerson.get();
         model.deletePerson(personToDelete);
+        model.updateObservableMeetUpList(Model.COMPARATOR_CONTACT_INDEX_MEETUP);
+        try {
+            model.tester();//todo remove
+        } catch (ConcurrentModificationException e) {
+            System.out.println("BRO");
+        }
+
         return new ViewCommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete), model.getUser());
     }
 

@@ -3,6 +3,7 @@ package seedu.address.model.meetup;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -72,6 +73,20 @@ public class UniqueMeetUpList implements Iterable<MeetUp> {
             throw new MeetUpNotFoundException();
         }
     }
+
+    //todo double check if this works
+    public void removeEmptyMeetUps() {
+
+//        System.out.println("SIZE: " + internalList.size());
+//        for (MeetUp meetUp : internalList) {
+//            if (meetUp.getParticipants().getParticipants().isEmpty()) {
+//                this.remove(meetUp);
+//                System.out.println("got here 1");
+//            }
+//            System.out.println("got here 2");
+//        }
+    }
+
 
     /**
      * Replaces the MeetUp with a new one.

@@ -291,4 +291,8 @@ public class EduMate implements ReadOnlyEduMate {
     public void removeMeetUp(MeetUp meetUp) {
         meets.remove(meetUp);
     }
+
+    public void removeEmptyMeetUps() {
+        meets.removeEmptyMeetUps();
+    }
 }

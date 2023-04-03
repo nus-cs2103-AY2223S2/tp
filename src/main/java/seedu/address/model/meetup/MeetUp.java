@@ -4,13 +4,15 @@ import seedu.address.model.location.Location;
 import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.TimePeriod;
 
+import java.util.List;
+
 /**
  * A scheduled meet up consisting of location, time period and participants' indexes.
  */
 public class MeetUp implements Comparable<MeetUp> {
     private final TimePeriod timePeriod;
     private final Location location;
-    private final Participants participants;
+    private Participants participants;
     private final MeetUpIndex meetUpIndex;
 
     /**
@@ -61,11 +63,14 @@ public class MeetUp implements Comparable<MeetUp> {
         return participants;
     }
 
+    public void setParticipants(Participants newParticipants) {
+        this.participants = newParticipants;
+    }
+
     @Override
     public int compareTo(MeetUp other) {
         return meetUpIndex.compareTo(other.meetUpIndex);
     }
-
 
     /**
      * Compares two meet ups to check whether the time and location and participants are the same.

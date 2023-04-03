@@ -221,9 +221,13 @@ public interface Model {
 
     MeetUpIndex getMeetUpIndex();
 
+    void updateObservableMeetUpList(Comparator<MeetUp> comparator);
+
     ObservableList<MeetUp> getObservableMeetUpList();
 
     void setParticipants(Set<ContactIndex> indices);
 
     Participants getParticipants();
+
+    void tester();//todo remove
 }

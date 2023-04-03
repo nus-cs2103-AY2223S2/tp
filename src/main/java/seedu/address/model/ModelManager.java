@@ -48,7 +48,7 @@ public class ModelManager implements Model {
     private final IndexHandler indexHandler;
     private final MeetUpIndexHandler meetUpIndexHandler;
     private final FilteredList<MeetUp> filteredMeetUps;
-    private final SortedList<MeetUp> observableMeetUps;
+    private SortedList<MeetUp> observableMeetUps;
 
 
     /**
@@ -148,6 +148,25 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         eduMate.removePerson(target);
+        //check if person is in meetup list, if yes remove
+        updateMeetUpForDeletePerson(target);
+    }
+
+    public void updateMeetUpForDeletePerson(Person target) {
+        for (MeetUp meetUp : observableMeetUps) {
+            Participants participants = meetUp.getParticipants();
+            List<Person> personList = participants.getParticipants();
+
+            if (personList.contains(target)) {
+                personList.remove(target);
+                meetUp.setParticipants(new Participants(personList));
+            }
+        }
+    }
+
+    @Override
+    public void tester() {
+        this.eduMate.removeEmptyMeetUps();
     }
 
     @Override
@@ -336,6 +355,13 @@ public class ModelManager implements Model {
     public void updateObservableMeetUpList() {
         filteredMeetUps.setPredicate(PREDICATE_SHOW_ALL_MEETUPS);
         observableMeetUps.setComparator(COMPARATOR_CONTACT_INDEX_MEETUP);
+    }
+
+    @Override
+    public void updateObservableMeetUpList(Comparator<MeetUp> comparator) {
+        requireNonNull(comparator);
+        observableMeetUps.setComparator(comparator.reversed());
+        observableMeetUps.setComparator(comparator);
     }
 
     @Override
