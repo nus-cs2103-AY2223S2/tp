@@ -82,12 +82,12 @@ These are the symbols employed in this user guide:
 
 These are the special text formatting employed in this user guide: 
 
-| Font      | Meaning                                                                                                                                                            |
-|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Bold**  | You should pay closer attention to bolded words as they are more important                                                                                         |
-| `Code`    | Used for coding syntax. Parts of a *Fish Ahoy!* command will be in this format. Command Prompt commands in the [Quick start](#quick-start) are also in this format |
-| [Links]() | A link to a section in this user guide that will provide more in-depth information                                                                                 |
-| *Italics* | The application name, *Fish Ahoy!* is in this format.                                                                                                              |
+| Font      | Meaning                                                                                                                                                                           |
+|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Bold**  | You should pay closer attention to bolded words as they are more important                                                                                                        |
+| `Code`    | Used for coding syntax. Parts of a *Fish Ahoy!* command will be in this format. Command Prompt commands and file names in the [Quick start](#quick-start) are also in this format |
+| [Links]() | A link to a section in this user guide that will provide more in-depth information                                                                                                |
+| *Italics* | The application name, *Fish Ahoy!* is in this format.                                                                                                                             |
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -108,14 +108,22 @@ These are the definitions to some technical terms:
 
 # Quick start
 
-1. Ensure you have Java 11 or above installed in your Computer.
-2. Download the latest FishAhoy.jar from [here](https://github.com/AY2223S2-CS2103T-T17-4/tp/releases).
-3. Copy the file to the folder you want to use as the home folder for *Fish Ahoy!*.
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FishAhoy.jar` command to run the application.
+1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above installed in your Computer.
+
+:bulb: Tip: You can check by typing `java --version` in your Command Prompt for Windows or Terminal App for macOS
+
+2. Download the latest `FishAhoy.jar` from [here](https://github.com/AY2223S2-CS2103T-T17-4/tp/releases).
+3. Copy the file `FishAhoy.jar` to the folder you want to use as the home folder for *Fish Ahoy!*.
+
+:information_source: Additional information: Data files of *Fish Ahoy!* will be also stored in the folder you keep it in.
+
+4. Double-click the file to open *Fish Ahoy!* 
 
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 ![Ui](images/Ui.png)
+
+
 
 5. Type a command in the command box and press Enter to execute it.
    Some examples:
