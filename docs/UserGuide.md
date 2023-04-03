@@ -148,7 +148,7 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
 
 After a few seconds, a GUI resembling the one shown below will appear. Please take note that the application already includes some sample data.<br>
    ![Ui](images/Ui.png)
-<center>Figure 1: The GUI upon start up.</center>
+<center>Diagram 1: The GUI upon start up.</center>
 
 <div markdown="span" class="alert alert-danger">
 
