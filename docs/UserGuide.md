@@ -337,7 +337,7 @@ Unmarks a specified event in Paidlancers.
 
 ### View Total Revenue: `revenue` <a id = "view-total-revenue"></a>
 
-Displays the total revenue based on all the completed events.
+Displays the total revenue based on all the events marked as done.
 
 **Format**: `revenue`
 - Example expected output:
