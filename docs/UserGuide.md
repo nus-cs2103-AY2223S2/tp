@@ -317,7 +317,7 @@ Add a video to a lecture.
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video
   - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name` (:information_source: Uniqueness is case sensitive)
   - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module containing the lecture specified in `lecture_name`
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:information_source: Module code matching is case sensitive)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to add the video to
@@ -365,7 +365,7 @@ Edit the details of a lecture.
 
 - <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture to be edited
   - Must belong to an existing lecture in the module specified in `module_code` (:information_source: Lecture name matching is case sensitive)
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture to be edited
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:information_source: Module code matching is case sensitive)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 - <span style="color:#e46c0a">`updated_name`</span> : The updated lecture name
@@ -393,10 +393,10 @@ Edit the details of a video.
   - If this argument is specified, then `/watch` should not be specified
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video to be edited
   - Must belong to an existing video in the lecture specified in `lecture_name` (:information_source: Video name matching is case sensitive)
-- <span style="color:#e46c0a">`module_code`</span> : The code of the module containing the lecture specified in `lecture_name`
+- <span style="color:#e46c0a">`module_code`</span> : The code of the module that contains the lecture specified in `lecture_name`
   - Must belong to an existing module in Le Tracker (:information_source: Module code matching is case sensitive)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
-- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video to be edited
+- <span style="color:#e46c0a">`lecture_name`</span> : The name of the lecture that contains the video specified in `video_name`
   - Must belong to an existing lecture in the module specified in `module_code` (:information_source: Lecture name matching is case sensitive)
   - Might be automatically specified by the navigation system (refer to [Navigation](#navigation) for more information)
 - <span style="color:#e46c0a">`updated_name`</span> : The updated video name
