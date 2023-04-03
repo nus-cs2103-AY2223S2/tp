@@ -62,11 +62,13 @@ public class CalendarBox extends UiPart<Region> {
      */
     @FXML
     public void handleListEvents() {
-        if (events != null) {
-            int firstEventIndex = 0;
-            Date date = events.get(firstEventIndex).getDate();
-            filterExecutor.updateFilteredEventList(new EventMatchesDatePredicate(date));
+        if (events == null) {
+            return;
         }
+
+        int firstEventIndex = 0;
+        Date date = events.get(firstEventIndex).getDate();
+        filterExecutor.updateFilteredEventList(new EventMatchesDatePredicate(date));
     }
 
     private void setHighlight(boolean isFind) {
@@ -89,22 +91,24 @@ public class CalendarBox extends UiPart<Region> {
     }
 
     private void setEvents() {
-        if (events != null) {
-            int firstEventIndex = 0;
-            Event firstEvent = events.get(firstEventIndex);
-            String firstEventName = getEventName(firstEvent);
-            setEventLabel(firstEventName);
+        if (events == null) {
+            return;
+        }
 
-            if (events.size() == 2) {
-                int secondEventIndex = 1;
-                Event secondEvent = events.get(secondEventIndex);
-                String secondEventName = getEventName(secondEvent);
-                setEventLabel(secondEventName);
+        int firstEventIndex = 0;
+        Event firstEvent = events.get(firstEventIndex);
+        String firstEventName = getEventName(firstEvent);
+        setEventLabel(firstEventName);
 
-            } else if (events.size() > 2) {
-                String moreEvents = "...";
-                setEventLabel(moreEvents);
-            }
+        if (events.size() == 2) {
+            int secondEventIndex = 1;
+            Event secondEvent = events.get(secondEventIndex);
+            String secondEventName = getEventName(secondEvent);
+            setEventLabel(secondEventName);
+
+        } else if (events.size() > 2) {
+            String moreEvents = "...";
+            setEventLabel(moreEvents);
         }
     }
 
