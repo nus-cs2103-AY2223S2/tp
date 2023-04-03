@@ -19,6 +19,7 @@ import seedu.library.model.bookmark.Bookmark;
  * open up a browser and goes to specified index bookmark's url if present.
  */
 public class GoToCommand extends Command {
+
     public static final String COMMAND_WORD = "goto";
     public static final String URI_OPS_ERROR = "could not go to url";
     public static final String EMPTY_URL_ERROR = "url field is not present cannot goto site";

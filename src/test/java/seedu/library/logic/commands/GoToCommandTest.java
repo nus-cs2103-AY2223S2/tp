@@ -9,7 +9,6 @@ import static seedu.library.testutil.TypicalBookmarks.getTypicalLibrary;
 import static seedu.library.testutil.TypicalIndexes.INDEX_FIRST_BOOKMARK;
 import static seedu.library.testutil.TypicalIndexes.INDEX_SECOND_BOOKMARK;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.library.commons.core.Messages;
@@ -27,12 +26,13 @@ import seedu.library.model.bookmark.Bookmark;
  * {@code GoToCommand}.
  */
 public class GoToCommandTest {
+    static {
+        System.setProperty("java.awt.headless", "false");
+        System.out.println(java.awt.GraphicsEnvironment.isHeadless());
+    }
 
     private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
-    @BeforeEach
-    public void setUpHeadlessMode() {
-        System.setProperty("java.awt.headless", "true");
-    }
+
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Bookmark bookmarkToView = model.getFilteredBookmarkList().get(INDEX_FIRST_BOOKMARK.getZeroBased());
