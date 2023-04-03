@@ -26,7 +26,7 @@ public class FindStatusCommand extends FindCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateSortedFilteredInternshipList(predicate);
+        model.updateFilteredInternshipList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_APPLICATION_LISTED_OVERVIEW, model.getSortedFilteredInternshipList().size()));
     }
