@@ -3,12 +3,12 @@ package seedu.address.model.tag;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.
  */
-public class TagContainsKeywordsPredicate implements Predicate<Person> {
+public class TagContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
     public TagContainsKeywordsPredicate(List<String> keywords) {
@@ -16,9 +16,10 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Student student) {
         return keywords.stream().anyMatch(keyword -> {
-            for (Tag tag : person.getTags()) {
+
+            for (Tag tag : student.getTags()) {
                 if (tag.tagName.toLowerCase().equals(keyword.toLowerCase())) {
                     return true;
                 }

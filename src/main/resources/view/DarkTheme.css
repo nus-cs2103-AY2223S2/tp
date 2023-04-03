@@ -240,7 +240,7 @@
 
 /*Score Chart Ends*/
 
-/*table view ends*/
+/*table view starts*/
 
 .table-view {
      -fx-base: #EFEEFC;
@@ -287,6 +287,10 @@
     -fx-padding: 0 0 4 0;
     -fx-alignment: center;
     -fx-pref-height: 30px;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: #EFEEFC;
 }
 
 .table-row-cell:odd{

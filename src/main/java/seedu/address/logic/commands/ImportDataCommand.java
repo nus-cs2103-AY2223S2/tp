@@ -15,9 +15,9 @@ import java.util.NoSuchElementException;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.model.ReadOnlyMathutoring;
+import seedu.address.storage.JsonMathutoringStorage;
+import seedu.address.storage.MathutoringStorage;
 
 /**
  * Imports data from a JSON file.
@@ -46,9 +46,9 @@ public class ImportDataCommand extends Command {
 
         try {
             Path dataFilePath = Paths.get(filePath);
-            AddressBookStorage addressBookStorage = new JsonAddressBookStorage(dataFilePath);
-            ReadOnlyAddressBook data = addressBookStorage.readAddressBook().get();
-            model.setAddressBook(data);
+            MathutoringStorage addressBookStorage = new JsonMathutoringStorage(dataFilePath);
+            ReadOnlyMathutoring data = addressBookStorage.readMathutoring().get();
+            model.setMathutoring(data);
         } catch (DataConversionException d) {
             throw new CommandException(MESSAGE_BAD_FILE_INPUT + "\n" + MESSAGE_USAGE);
         } catch (IOException e) {

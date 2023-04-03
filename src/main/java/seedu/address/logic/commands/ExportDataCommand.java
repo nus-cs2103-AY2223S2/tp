@@ -11,8 +11,10 @@ import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.storage.JsonSerializableAddressBook;
+import seedu.address.model.ReadOnlyMathutoring;
+import seedu.address.storage.JsonSerializableMathutoring;
+
+
 
 /**
  * Imports data from a JSON file.
@@ -42,12 +44,12 @@ public class ExportDataCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        requireNonNull(model.getAddressBook());
+        requireNonNull(model.getMathutoring());
 
         try {
-            ReadOnlyAddressBook data = model.getAddressBook();
+            ReadOnlyMathutoring data = model.getMathutoring();
             FileUtil.createIfMissing(filePath);
-            JsonUtil.saveJsonFile(new JsonSerializableAddressBook(data), filePath);
+            JsonUtil.saveJsonFile(new JsonSerializableMathutoring(data), filePath);
         } catch (IOException e) {
             throw new CommandException("Error!\n" + e.getMessage());
         }

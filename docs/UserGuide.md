@@ -84,6 +84,9 @@ If you need to switch to a new device, you can also export and import your previ
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear`, and `switch`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Command words are case-insensitive.<br>
+  e.g. if the command specifies such as `help`, `HELP`, `Help`..., it will be interpreted as `help`.
+
 </div>
 
 ### 1. Viewing help: `help`
@@ -93,6 +96,10 @@ Prompts the help page link.
 <img width="796" alt="Screenshot 2023-03-30 at 3 37 34 PM" src="https://user-images.githubusercontent.com/97392685/228764298-dccce25c-662f-41c6-9c91-6db2a8b44df7.png">
 
 Format: `help`
+
+Note:
+
+* Any information behind `help` will be ignored.
 
 ### 2. Adding a student's contact: `add`
 
@@ -115,6 +122,9 @@ Lists all the students in the student list.
 
 Format: `list`
 
+Note:
+
+* Any information behind `list` will be ignored.
 
 ### 4. Editing a student: `edit`
 
@@ -181,7 +191,6 @@ Format: `check INDEX`
 Examples:
 * `check 2` checks the 2nd student in the student list.
 
-
 ### 8. Adding a task for a student: `addtask`
 
 Adds a task to a specific student.
@@ -215,10 +224,8 @@ Format: `deletetask INDEX_OF_STUDENT INDEX_OF_TASK`
 
 Examples:
 
-* `list` followed by `deletetask 2 3` deletes the third task of the 2nd student in the student list.
-* `find Betsy` followed by `deletetask 1 6` deletes the sixth task of the 1st student in the results of the 
-`find` command.
-
+* `list` followed by `deleteTask 2 3` deletes the third task of the 2nd student in the student list.
+* `find Betsy` followed by `deleteTasks 1 6` deletes the sixth task of the 1st student in the results of the `find` command.
 
 ### 10. Marking a task of a student: `markcomplete`, `markinprogress`, `marklate`
 
@@ -257,12 +264,13 @@ Format: `addscore INDEX l/LABEL v/VALUE_OF_SCORE d/DATE`
 
 **:information_source: Note about format of `DATE`:**<br>
 * The format of `DATE` must be `yyyy-MM-DD`. For example, `2022-02-20` represents 20 February 2022.
+* If the `DATE` entered by user is in the future will be not allowed.
 
 </div>
 
 Examples:
 
-* `list` followed by `addscore 2 l/Midterm Math Paper v/99.5 d/2023-03-02` adds a `Midterm Math Paper` score with a 
+* `list` followed by `addscore 2 l/Midterm Math Paper v/99.5 d/2023-03-02` adds a `Midterm Math Paper` score with a
   value of `99.5` and dated `2022-03-02` to the 2nd student in the student list.
 * `check 5` followed by `addscore 1 l/CA2 A Math v/50 d/2021-09-09` adds a `CA2 A Math` score with a
   value of `50` and dated `2021-09-09` to the student being checked.
@@ -290,6 +298,10 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+Note:
+
+* Any information behind `clear` will be ignored.
+
 
 ### 14. Exiting the program: `exit`
 
@@ -297,6 +309,9 @@ Exits the program.
 
 Format: `exit`
 
+Note:
+
+* Any information behind `exit` will be ignored.
 
 ### 15. Filtering students by tag: `filter`
 
@@ -323,7 +338,6 @@ Switches between the score list and score chart tabs.
 Format: There we support using CLI or mouse.
 CLI - `switch`
 Mouse - click the tab.
-
 
 ### 17. Export the student data out: `export`
 

@@ -14,36 +14,37 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the mathutoring data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Mathutoring mathutoring;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Student> filteredStudents;
 
     private final PdfConverter pdfConverter;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given mathutoring and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyMathutoring mathutoring, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(mathutoring, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with mathutoring: " + mathutoring + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.mathutoring = new Mathutoring(mathutoring);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        filteredStudents = new FilteredList<>(this.mathutoring.getStudentList());
         this.pdfConverter = new PdfConverter();
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Mathutoring(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -71,86 +72,86 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getMathutoringFilePath() {
+        return userPrefs.getMathutoringFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setMathutoringFilePath(Path mathutoringFilePath) {
+        requireNonNull(mathutoringFilePath);
+        userPrefs.setMathutoringFilePath(mathutoringFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Mathutoring ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setMathutoring(ReadOnlyMathutoring mathutoring) {
+        this.mathutoring.resetData(mathutoring);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyMathutoring getMathutoring() {
+        return mathutoring;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return mathutoring.hasStudent(student);
     }
 
     @Override
-    public void checkPerson(Person target) {
-        addressBook.checkPerson(target);
+    public void deleteStudent(Student target) {
+        mathutoring.removeStudent(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void checkStudent(Student target) {
+        mathutoring.checkStudent(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addStudent(Student student) {
+        mathutoring.addStudent(student);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override
-    public void exportProgress(Person target, String completePath) throws IOException {
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+
+        mathutoring.setStudent(target, editedStudent);
+    }
+
+    //=========== Filtered Student List Accessors =============================================================
+
+    @Override
+    public void exportProgress(Student target, String completePath) throws IOException {
         requireAllNonNull(target, completePath);
         PDDocument document = pdfConverter.exportProgress(target);
         document.save(completePath);
         document.close();
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
+     * {@code versionedMathutoring}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Student> getFilteredStudentList() {
+        return filteredStudents;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredStudents.setPredicate(predicate);
     }
 
     @Override
-    public Person findSelectedPerson() {
-        return addressBook.findCheckedPerson();
+    public Student findSelectedStudent() {
+        return mathutoring.findCheckedStudent();
     }
 
     @Override
@@ -167,8 +168,8 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return mathutoring.equals(other.mathutoring)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredStudents.equals(other.filteredStudents);
     }
 }

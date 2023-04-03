@@ -6,7 +6,7 @@ skinparam classBackgroundColor TASK_MODEL_COLOR
 
 Class LocalDateTime
 Class Name
-Class Person
+Class Student
 Class TaskList
 Class Task
 
@@ -16,7 +16,7 @@ LATE
 COMPLETE
 }
 
-Person *--> TaskList
+Student *--> TaskList
 
 TaskList --> "~* " Task
 

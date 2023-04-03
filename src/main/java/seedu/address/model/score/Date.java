@@ -12,10 +12,11 @@ import java.time.format.DateTimeParseException;
  */
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
-        "Dates should only be in yyyy-MM-dd format, and it should not be blank";
+            "Dates should only be in yyyy-MM-dd format, and it should not be blank";
 
     public static final String MESSAGE_INVALID_DATE =
-        "The date entered is in the future. Please recheck the date entered.";
+            "The date entered is in the future. Please recheck the date entered.";
+
 
     // Identity field(s)
     public final LocalDate date;

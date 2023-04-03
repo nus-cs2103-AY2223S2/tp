@@ -14,7 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.student.Student;
 
 /**
  * Exports a student's progress.
@@ -36,7 +36,7 @@ public class ExportProgressCommand extends Command {
     private String filePath;
 
     /**
-     * Creates an ExportProgressCommand to export the specified Person {@code Person}'s progress to a PDF file.
+     * Creates an ExportProgressCommand to export the specified Student {@code Student}'s progress to a PDF file.
      */
     public ExportProgressCommand(Index targetIndex, String filePath) {
         requireNonNull(targetIndex);
@@ -47,29 +47,29 @@ public class ExportProgressCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> personList = model.getFilteredPersonList();
+        List<Student> studentList = model.getFilteredStudentList();
 
-        if (targetIndex.getZeroBased() >= personList.size()) {
+        if (targetIndex.getZeroBased() >= studentList.size()) {
             logger.info("The student index is exceeding the total number of students. Index is invalid.");
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person personToExport = personList.get(targetIndex.getZeroBased());
-        String studentName = personToExport.getName().fullName;
+        Student studentToExport = studentList.get(targetIndex.getZeroBased());
+        String studentName = studentToExport.getName().fullName;
         String fileName = studentName + "'s Progress Report.pdf";
 
         if (this.filePath.equals("")) {
             this.filePath = "";
         }
         try {
-            model.exportProgress(personToExport, String.valueOf(Paths.get(this.filePath, fileName)));
+            model.exportProgress(studentToExport, String.valueOf(Paths.get(this.filePath, fileName)));
         } catch (IOException e) {
             throw new CommandException("Error!\n" + e.getMessage());
         }
         if (this.filePath.equals("")) {
             this.filePath = Paths.get("").toAbsolutePath().toString();
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToExport.getName().fullName,
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToExport.getName().fullName,
                 this.filePath, fileName));
     }
 

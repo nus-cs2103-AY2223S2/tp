@@ -2,8 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+* Table of Contents {:toc}
 * [Acknowledgements](#Acknowledgements)
 * [Design](#Design)
 * [Implementation](#Implementation)
@@ -23,15 +22,54 @@ title: Developer Guide
 ## **Design**
 
 ### Architecture
+<img src="images/ArchitectureDiagram.png" width="280" />
+
+The ***Architecture Diagram*** given above explains the high-level design of the App.
+
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main components of the architecture**
+
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components.
+
+* [**`UI`**](#ui-component): The UI of the App.
+* [**`Logic`**](#logic-component): The command executor.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+
+
+**How the architecture components interact with each other**
+
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+
+<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+
+Each of the four main components (also shown in the diagram above),
+
+* defines its *API* in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+
+<img src="images/ComponentManagers.png" width="300" />
+
+The sections below give more details of each component.
 
 ### UI component
-The UI consists of a MainWindow that is made up of different parts. 
-For instance, `CommandBox`, `ResultDisplay`, `PersonListPanel`, `ScoreListPanel`,
-`TaskListPanel`, `StatusBarFooter` etc. All theses, including the MainWindow, 
-inherit from the abstract UiPart class which captures the commonalities between 
+
+The UI consists of a MainWindow that is made up of different parts.
+For instance, `CommandBox`, `ResultDisplay`, `StudentListPanel`, `ScoreListPanel`,
+`TaskListPanel`, `StatusBarFooter` etc. All theses, including the MainWindow,
+inherit from the abstract UiPart class which captures the commonalities between
 classes that represent parts of visible GUI.
 
-The UI component uses the JavaFx UI framework. The layout of these UI 
+The UI component uses the JavaFx UI framework. The layout of these UI
 parts are defined in matching `.fxml` files that are in the `src/main/resources/view`
 folder. For example, the layout of the `MainWindow` is specified in `MainWindow.fxml`.
 
@@ -40,13 +78,43 @@ The UI component,
 * listens for changes to `Model` data so that the UI can be
 updated with the modified data.
 * keeps a reference to the `Logic` component, because the UI relies on the `Logic`
-to execute the commands. 
-* depends on some classes in the `Model` component, as it displays `Person` object
-residing in the `Model`. 
+to execute the commands.
+* depends on some classes in the `Model` component, as it displays `Student` object
+residing in the `Model`.
 
 ### Logic component
 
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+
+Here's a (partial) class diagram of the `Logic` component:
+
+<img src="images/LogicClassDiagram.png" width="550"/>
+
+How the `Logic` component works:
+1. When `Logic` is called upon to execute a command, it uses the `MathutoringParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+
+<img src="images/ParserClasses.png" width="600"/>
+
+How the parsing works:
+* When called upon to parse a user command, the `MathutoringParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `MathutoringParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
 ### Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -54,12 +122,14 @@ residing in the `Model`.
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the mathutoring data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">
+
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Mathutoring`, which `Student` references. This allows `Mathutoring` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -70,11 +140,20 @@ The `Model` component,
 
 <img src="images/TaskClassDiagram.png" width="280" />
 
-* A `Person` has a `TaskList` object which holds all their `Task` objects.
+* A `Student` has a `TaskList` object which holds all their `Task` objects.
 * Each `Task` object has a `TaskStatus` assigned to it and can be any of `INPROGRESS`, `LATE` or `COMPLETE`.
 * The `creationDate` will be hidden from the user and only be used for sorting the `TaskList`.
 
 ### Storage component
+
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103-W17-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+<img src="images/StorageClassDiagram.png" width="550" />
+
+The `Storage` component,
+* can save both mathutoring data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `MathutoringStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
@@ -187,7 +266,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. MATHUTORING shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. The given command argument(s) are invalid.
     * 3b1. MATHUTORING shows an error message.
 
@@ -256,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Tutor requests to add a score.
 2. MATHUTORING creates the score with score label, score value and score date.
-3. MATHUTORING stores the score to the score list storage. 
+3. MATHUTORING stores the score to the score list storage.
 
     Use case ends.
 
@@ -267,7 +346,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. MATHUTORING informs the tutor that there is missing element.
 
       Use case resumes at step 2.
-  
+
 * 1b. MATHUTORING detects that score label, score value or score date has an invalid format.
 
   * 1b1. MATHUTORING informs the tutor that the form of new score is invalid.
@@ -294,7 +373,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-  
+
 * 2a. The list is empty.
 
   Use case ends.
@@ -306,7 +385,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 * 4a. The score list is empty.
- 
+
   Use case ends.
 
 * 5a. The given student's index is invalid.
@@ -318,9 +397,37 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 5b. The given score's index is invalid.
 
     * 5b1.  MATHUTORING informs the tutor that the index is invalid.
-      
+
       Use case resumes at step 3.
-    
+
+**Use case: Export a student's progress**
+
+**MSS**
+
+1. Tutor requests to export a student's progress.
+2. MATHUTORING shows an export progress window.
+3. Tutor requests to save the student's progress.
+4. MATHUTORING shows a browse files window.
+5. Tutor requests the directory and file name of the student's progress file.
+6. MATHUTORING saves the file.
+
+    Use case ends.
+
+**Extensions**
+
+* 5a. The given file name is invalid.
+
+  * 5a1. File manager informs the tutor that the file name is invalid.
+
+    Use case resumes at step 5.
+
+* 5b. A file with the exact same name and type exists and is currently being opened.
+
+  * 5b1. MATHUTORING informs the tutor that the file cannot be saved because the file with the same name exists and is
+  currently being opened.
+
+    Use case resumes at step 5.
+
 **Use case: Import application data via CLI**
 
 **MSS**
@@ -331,8 +438,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. MATHUTORING detects a command format error. 
-  
+* 1a. MATHUTORING detects a command format error.
+
   Use case resumes at step 1.
 
 * 1b. MATHUTORING detects the file does not follow the parsing format.
@@ -355,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 6a. MATHUTORING detects the file does not follow the parsing format.
- 
+
   Use case resumes at step 3.
 
 **Use case: Export application data via CLI**
@@ -368,8 +475,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. MATHUTORING detects a command format error. 
-  
+* 1a. MATHUTORING detects a command format error.
+
   Use case resumes at step 1.
 
 **Use case: Export application data via GUI**
@@ -384,8 +491,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 2a. File explorer closed by Tutor by mistake. 
-  
+* 2a. File explorer closed by Tutor by mistake.
+
   Use case resumes at step 1.
 
 * 2b. File explorer closed by Tutor.
@@ -470,8 +577,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Tutors**: Private math tuition teachers that will be using the application
-* **Students' progress**: For our current version, the progress of a student is tracked through 
-the number of tasks the student has completed 
+* **Students' progress**: For our current version, the progress of a student is tracked through
+the number of tasks the student has completed
 * **Students' performance**: For our current version, the performance of a student is tracked through a view
 of the student's scores. In future implementation, a student's performance will be shown in a line chart
 
@@ -483,6 +590,6 @@ of the student's scores. In future implementation, a student's performance will 
 
 ### Launch and shutdown
 
-### Deleting a person
+### Deleting a student
 
 ### Saving data

@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
+import seedu.address.model.student.Name;
 import seedu.address.model.task.Task;
 
 /**
@@ -26,10 +26,10 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TASK_TITLE);
 
-        Index personIndex;
+        Index studentIndex;
 
         try {
-            personIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+            studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTaskCommand.MESSAGE_USAGE), pe);
@@ -42,7 +42,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Name taskName = ParserUtil.parseName(argMultimap.getValue(PREFIX_TASK_TITLE).get());
         Task task = new Task(taskName);
 
-        return new AddTaskCommand(personIndex, task);
+        return new AddTaskCommand(studentIndex, task);
     }
 
     /**

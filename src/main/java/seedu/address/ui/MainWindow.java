@@ -33,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     private int tabNumber = 0;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ImportWindow importWindow;
@@ -54,7 +54,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem exportMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane studentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -150,10 +150,10 @@ public class MainWindow extends UiPart<Stage> {
             }
         };
 
-        taskListPanel = new TaskListPanel(logic.findCheckedPerson());
+        taskListPanel = new TaskListPanel(logic.findCheckedStudent());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        scoreListPanel = new ScoreListPanel(logic.findCheckedPerson(), tabNumber, callBack);
+        scoreListPanel = new ScoreListPanel(logic.findCheckedStudent(), tabNumber, callBack);
         scoreListPanelPlaceholder.getChildren().add(scoreListPanel.getRoot());
     }
 
@@ -161,13 +161,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic);
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic);
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getMathutoringFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -240,7 +240,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow.hide();
         importWindow.hide();
         exportWindow.hide();
-        personListPanel.hideExportProgressWindow();
+        studentListPanel.hideExportProgressWindow();
         primaryStage.hide();
     }
 

@@ -11,18 +11,19 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.score.Score;
+import seedu.address.model.student.Student;
 
 /**
- * Deletes a score identified using it's displayed index a specified person's score list.
+ * Deletes a score identified using it's displayed index a specified student's score list.
  */
 public class DeleteScoreCommand extends Command {
 
     public static final String COMMAND_WORD = "deletescore";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the score identified by the index number used in the score list of the person specified.\n"
+            + ": Deletes the score identified by the index number used in the score list of "
+            + "the student specified.\n"
             + "Parameters: INDEX_OF_STUDENT INDEX_OF_SCORE (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
@@ -32,7 +33,7 @@ public class DeleteScoreCommand extends Command {
     private final Index scoreIndex;
 
     /**
-     * Creates a DeleteScoreCommand to delete the specified score from a specified person
+     * Creates a DeleteScoreCommand to delete the specified score from a specified student
      */
     public DeleteScoreCommand(Index studentIndex, Index scoreIndex) {
         this.studentIndex = studentIndex;
@@ -42,26 +43,26 @@ public class DeleteScoreCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
-            logger.info(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            logger.info(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
-        Person personToDeleteScore = lastShownList.get(studentIndex.getZeroBased());
+        Student studentToDeleteScore = lastShownList.get(studentIndex.getZeroBased());
 
-        List<Score> lastShownScoreList = personToDeleteScore.getFilteredScoreList();
+        List<Score> lastShownScoreList = studentToDeleteScore.getFilteredScoreList();
         if (scoreIndex.getZeroBased() >= lastShownScoreList.size()) {
             logger.info(Messages.MESSAGE_INVALID_SCORE_DISPLAYED_INDEX);
             throw new CommandException(Messages.MESSAGE_INVALID_SCORE_DISPLAYED_INDEX);
         }
 
         Score scoreToDelete = lastShownScoreList.get(scoreIndex.getZeroBased());
-        personToDeleteScore.removeScore(scoreToDelete);
+        studentToDeleteScore.removeScore(scoreToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_SCORE_SUCCESS,
-                personToDeleteScore.getName(), scoreToDelete));
+                studentToDeleteScore.getName(), scoreToDelete));
     }
 
     @Override

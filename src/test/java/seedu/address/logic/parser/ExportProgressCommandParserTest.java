@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DIRECTORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILEPATH;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
 import java.nio.file.Paths;
 
@@ -22,10 +22,10 @@ class ExportProgressCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " " + System.getProperty("user.home"),
-                new ExportProgressCommand(INDEX_FIRST_PERSON, System.getProperty("user.home")));
+                new ExportProgressCommand(INDEX_FIRST_STUDENT, System.getProperty("user.home")));
 
         assertParseSuccess(parser, "1 " + PREFIX_FILEPATH + " " + Paths.get("").toAbsolutePath(),
-                new ExportProgressCommand(INDEX_FIRST_PERSON, Paths.get("").toAbsolutePath().toString()));
+                new ExportProgressCommand(INDEX_FIRST_STUDENT, Paths.get("").toAbsolutePath().toString()));
     }
 
     @Test
@@ -41,7 +41,7 @@ class ExportProgressCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         assertParseSuccess(parser, "1",
-                new ExportProgressCommand(INDEX_FIRST_PERSON, ""));
+                new ExportProgressCommand(INDEX_FIRST_STUDENT, ""));
     }
 
     @Test
