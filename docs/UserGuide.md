@@ -938,8 +938,8 @@ What you should see:<br>
 
 **:warning: Filtered list**<br>
 
-* The `find` command returns a filtered list, so command operations only work on persons present in the filtered list.<br>
-  e.g. If the filtered list does not contain any person with contact index 2, any operation relating to contact index 2 will throw error.
+* The `find` command returns a filtered list, so any contacts present in the filtered list will be unaffected by commands that have the capability to modify a contact's information.<br>
+  e.g. If the filtered list does not contain any person with contact index 2, any operation relating to contact index 2 will throw an error.
 * If you want to run commands related to persons not in the filtered list, just run the `list` command to obtain the full list of your contacts.
 
 </div>
