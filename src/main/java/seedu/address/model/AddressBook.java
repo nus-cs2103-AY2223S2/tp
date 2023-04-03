@@ -134,10 +134,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param personToEdit person we want to update meeting to
      * @param meetingIndex index in meeting list in which we want to update the meeting
      * @param editedMeeting the updated meeting
+     * @return Person with specified meeting updated
      */
-    public void updateMeeting(Person personToEdit, Index meetingIndex, Meeting editedMeeting) {
+    public Person updateMeeting(Person personToEdit, Index meetingIndex, Meeting editedMeeting) {
         personToEdit.setMeeting(meetingIndex.getZeroBased(), editedMeeting);
+        Person editPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
+            personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
+        this.setPerson(personToEdit, editPerson);
         persons.refreshInternalMeetingList();
+        return editPerson;
     }
 
     //// util methods

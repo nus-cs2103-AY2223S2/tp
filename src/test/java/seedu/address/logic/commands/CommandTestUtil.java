@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,11 +45,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_MEETING_DESC_AMY = "Amy's Meeting";
     public static final LocalDateTime VALID_MEETING_START_AMY = LocalDateTime.of(2023, 3, 25, 19, 25);
+    public static final LocalDate VALID_MEETING_START_DATE_AMY =LocalDate.of(2023,3, 25);
     public static final LocalDateTime VALID_MEETING_END_AMY = LocalDateTime.of(2023, 3, 25, 20, 25);
     public static final String VALID_MEETING_START_STRING_AMY = "25-03-2023 19:25";
     public static final String VALID_MEETING_END_STRING_AMY = "25-03-2023 20:25";
     public static final String VALID_MEETING_DESC_BOB = "Bob's Meeting";
     public static final LocalDateTime VALID_MEETING_START_BOB = LocalDateTime.of(2023, 3, 25, 12, 0);
+    public static final LocalDate VALID_MEETING_START_DATE_BOB =LocalDate.of(2023,3, 25);
     public static final LocalDateTime VALID_MEETING_END_BOB = LocalDateTime.of(2023, 3, 25, 15, 0);
     public static final String VALID_MEETING_START_STRING_BOB = "25-03-2023 12:00";
     public static final String VALID_MEETING_END_STRING_BOB = "25-03-2023 15:00";
