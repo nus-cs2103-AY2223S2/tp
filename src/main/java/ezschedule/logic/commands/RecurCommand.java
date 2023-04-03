@@ -30,6 +30,8 @@ public class RecurCommand extends Command {
             + CliSyntax.PREFIX_EVERY + "month ";
 
     public static final String MESSAGE_SUCCESS = "Recurring event added: %1$s";
+    public static final String MESSAGE_RECUR_FACTOR_CAP = "Recur factor is not appropriate for "
+            + "number of recurring events.";
 
     private final Index index;
     private final Date endDate;
@@ -92,9 +94,17 @@ public class RecurCommand extends Command {
      * @param model model to add
      * @param eventToRecur event to recur in the model
      */
-    public void addEventPerDay(Model model, Event eventToRecur) {
+    public void addEventPerDay(Model model, Event eventToRecur) throws CommandException {
+
+        int maxDaysInMonth = 30;
+
         Date baseDate = eventToRecur.getDate();
         int daysDiff = (int) baseDate.getDaysBetween(endDate.date);
+
+        if (daysDiff > maxDaysInMonth) {
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP));
+        }
+
         Date newDate = new Date(eventToRecur.getDate().date.plusDays(1).toString());
         Event nextEventToRecur =
                 new Event(eventToRecur.getName(), newDate,
@@ -115,9 +125,10 @@ public class RecurCommand extends Command {
      * @param model model to add
      * @param eventToRecur event to recur in the model
      */
-    public void addEventPerWeek(Model model, Event eventToRecur) {
+    public void addEventPerWeek(Model model, Event eventToRecur) throws CommandException {
 
         int daysPerWeek = 7;
+        int maxWeeksInYear = 52;
 
         Date baseDate = eventToRecur.getDate();
         int weeksDiff = (int) baseDate.getDaysBetween(endDate.date) / daysPerWeek;
@@ -125,6 +136,10 @@ public class RecurCommand extends Command {
         Event nextEventToRecur =
                 new Event(eventToRecur.getName(), newDate,
                         eventToRecur.getStartTime(), eventToRecur.getEndTime());
+
+        if (weeksDiff > maxWeeksInYear) {
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP));
+        }
 
         for (int i = 0; i < weeksDiff; i++) {
             model.addEvent(nextEventToRecur);
@@ -141,13 +156,20 @@ public class RecurCommand extends Command {
      * @param model model to add
      * @param eventToRecur event to recur in the model
      */
-    public void addEventPerMonth(Model model, Event eventToRecur) {
+    public void addEventPerMonth(Model model, Event eventToRecur) throws CommandException {
+
+        int maxMonthInYear = 12;
+
         Date baseDate = eventToRecur.getDate();
         int monthsDiff = (int) baseDate.getMonthsBetween(endDate.date);
         Date newDate = new Date(eventToRecur.getDate().date.plusMonths(1).toString());
         Event nextEventToRecur =
                 new Event(eventToRecur.getName(), newDate,
                         eventToRecur.getStartTime(), eventToRecur.getEndTime());
+
+        if (monthsDiff > maxMonthInYear) {
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP));
+        }
 
         for (int i = 0; i < monthsDiff; i++) {
             model.addEvent(nextEventToRecur);
