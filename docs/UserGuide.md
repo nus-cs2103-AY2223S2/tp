@@ -214,19 +214,19 @@ You can find out all the usable commands [here](#features) or return to the [Tab
 
 Here, we will explain how you can navigate around our application.
 
-**<span style="color:rgba(255.0, 0.0, 0.0, 0.5); background-color:silver">Command Input Box</span>**
+**<span style="background-color:rgba(255.0, 0.0, 0.0, 0.5)">Command Input Box</span>**
 
 You can input your commands into the command input box, press **Enter** for your command to execute. A result message would be shown at the <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span>.
 
 If there is an error with the command, the input would turn **<span style="color:red">red</span>** and you can refer to the <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span> for help.
 
-**<span style="color:rgba(0.0, 255.0, 197.0, 1); background-color:silver">Command Result Screen</span>**
+**<span style="background-color:rgba(0.0, 255.0, 197.0, 1)">Command Result Screen</span>**
 
 Command result screen shows the success message for your command that executed successfully.
 
 Otherwise, it would show an error message with hints on what issues the command you entered has.
 
-**<span style="color:rgba(252.4, 248.4, 124.1, 1); background-color:silver">Tabs</span>**
+**<span style="background-color:rgba(252.4, 248.4, 124.1, 1)">Tabs</span>**
 
 We provide multiple tabs for you to use. This includes the home page, with the data tabs that display your data for the respective information (i.e. Order, Tasks, Contacts, Menu).
 
