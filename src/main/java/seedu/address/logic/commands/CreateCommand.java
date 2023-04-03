@@ -23,8 +23,8 @@ public class CreateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Generate Number x days of MC for the person identified "
             + "by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer) and number\n"
-            + "Example: " + COMMAND_WORD + " 1 " + "1";
+            + "Parameters: INDEX (must be a positive integer) doc/Name m/Medical Condition d/days\n"
+            + "Example: " + COMMAND_WORD + " 1 " + "doc/Dr Wang m/Fever d/2";
 
     public static final String MESSAGE_CREATE_MC_SUCCESS = "Generated Person: %1$s";
 
@@ -54,6 +54,7 @@ public class CreateCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+
         if (this.days < 0 || this.days > 60) {
             throw new CommandException(Messages.MESSAGE_INVALID_DAY_INDEX);
         }

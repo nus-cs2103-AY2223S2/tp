@@ -22,9 +22,14 @@ public class CreateCommandParser implements Parser<CreateCommand> {
 
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
             // Extract doctor name, description and number of days from userInput
-            String doctorName = argMultimap.getValue(PREFIX_DOC).orElse("Dr Van");
-            String description = argMultimap.getValue(PREFIX_DES).orElse("");
-            int days = ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAYS).orElse("-1"));
+            String doctorName = argMultimap.getValue(PREFIX_DOC).orElse(null);
+            String description = argMultimap.getValue(PREFIX_DES).orElse(null);
+            String dayStr = argMultimap.getValue(PREFIX_DAYS).orElse(null);
+            if (doctorName == null || description == null || dayStr == null) {
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        CreateCommand.MESSAGE_USAGE));
+            }
+            int days = ParserUtil.parseDay(dayStr);
             return new CreateCommand(index, doctorName, description, days);
         } catch (ParseException pe) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
