@@ -171,14 +171,14 @@ left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
   value `Apple` to the field `COMPANY_NAME`.
 
 * Items in square brackets are optional.<br>
-  e.g. If the command format is `edit INDEX [n/NAME] [c/COMMENT]`, you may input the command as `edit 2 n/Apple` where
+  e.g. If the command format is `edit INDEX [n/COMPANY_NAME] [c/COMMENT]`, you may input the command as `edit 2 n/Apple` where
   you omit the value for the field `COMMENT`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/java`, `t/java t/python` etc.
 
 * Fields can be in any order.<br>
-  e.g. If the command format is `n/NAME r/ROLE`, both `n/Apple r/Software Engineer` and `r/Software Engineer n/Apple`
+  e.g. If the command format is `n/COMPANY_NAME r/ROLE`, both `n/Apple r/Software Engineer` and `r/Software Engineer n/Apple`
   are acceptable.
 
 * If a field is expected only once in the command, but you specified it multiple times, only the last occurrence of
@@ -213,8 +213,8 @@ Table 2 provides a summary of the fields with their descriptions, prefixes and r
 | `ROLE`         | The role that you applied for                                                  | `r/`   | Cannot be blank and must be at most 50 characters.                                                                                                      |
 | `STATUS`       | The status of the internship application                                       | `s/`   | Must be one of the following: `New`, `Applied`, `Assessment`, `Interview`, `Offered`, `Accepted`, `Rejected`. Note that this is **not** case-sensitive. |
 | `DATE`         | The date associated with the internship application                            | `d/`   | Must be a valid date in the format `YYYY-MM-DD`.                                                                                                        |
-| `COMMENT`      | A comment that you can make on an internship application                       | `c/`   | Cannot be blank.                                                                                                                                        |
-| `TAG`          | A label that you can give to an internship application                         | `t/`   | Cannot be blank and must be at most 30 characters.                                                                                                      |
+| `COMMENT`      | A comment that you can make on an internship application                       | `c/`   | Cannot be blank (except when used in the `edit` command)                                                                                                |
+| `TAG`          | A label that you can give to an internship application                         | `t/`   | Cannot be blank (except when used in the `edit` command) and must be at most 30 characters.                                                             |
 | `INDEX`        | The index number of the internship entry as displayed in the List Panel        | -      | A positive integer that is smaller than or equal to the largest index number shown in the List Panel. Note that 0 is not a positive integer.            |
 
 <p style="text-align: center;">Table 2: Fields with their descriptions, prefixes and constraints</p>
@@ -295,6 +295,8 @@ internships, because they have different values for `COMPANY_NAME`.
 
 <div style="page-break-after: always;"></div>
 
+### Duplicate Tags
+If you attempt to store duplicate tags within the same internship entry, InternBuddy would only store one of them. A duplicate tag refers to a tag that is identical to another tag in every way, including the spelling and capitalization (tags are case-sensitive). In other words, a duplicate tag is a tag that is an exact copy of another tag.
 
 ## **Features**
 
@@ -322,6 +324,12 @@ Format: `add n/COMPANY_NAME r/ROLE s/STATUS d/DATE [c/COMMENT] [t/TAG]...`
 * The optional `TAG` field will be empty by default. This means that if you do not specify any value for it, there
   will be no tags associated with the newly added internship.
 
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** You would not be able to add [duplicate internships](#duplicate-internships) into InternBuddy (an error message would be shown). If you attempt to add [duplicate tags](#duplicate-tags) into the same internship entry, InternBuddy would only store one of the tags.
+
+</div>
+
 Examples:
 * `add n/Food Panda r/Web Developer s/New d/2023-02-01 c/I love Food Panda! t/React t/Front-end` Adds a new internship entry
   with company name `Food Panda`, role `Web Developer`, status `New`, deadline of application `2023-02-01`,
@@ -330,6 +338,9 @@ Examples:
   company name `Deliveroo`, role `Software Engineer`, status `Assessment` and date of technical assessment
   `2023-02-01`.
 * `add n/Food Panda s/new d/2023-02-01` Displays an error because the `ROLE` field is missing.
+* `add n/Apple r/SWE s/new d/2023-02-01 t/java t/java` Adds a new internship entry 
+  with company name `Apple`, role `SWE`, status `New`, deadline of application `2023-02-01`,
+  and tag `java` (only one `tag` would be stored since they are duplicate tags).
 
 
 ![Add Command](images/ug-add-example.png)
@@ -631,7 +642,7 @@ manually.
 :warning: **Warning:**  Starting with an empty data file means that all internship entries previously stored in
 InternBuddy will no longer be present. This is equivalent to a data wipeout. Therefore, we advise against tampering
 with the content in `internbuddy.json` unless you are confident in doing so. If you are interested, you can refer to
-<a href="#appendix-b--customising-the-data-file">Appendix B</a> for instructions on how to do so.
+[Appendix B](#appendix-b-customising-the-data-file) for instructions on how to do so.
 
 </div>
 
