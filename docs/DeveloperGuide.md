@@ -16,6 +16,11 @@ Todo: Add links
    3. [Model Component]()
    4. [Storage Component]()
 4. [Implementation]()
+   1. [Salary Command]()
+   2. [Deadline Command]()
+   3. [Company Command]()
+   4. [Tag Command]()
+   5. [View Command]()
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -113,7 +118,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Role` object residing in the `Model`.
 
 ### Logic component
 
@@ -296,15 +301,15 @@ _{more aspects and alternatives to be added}_
 
 ### Company Command Feature
 
-The proposed CompanyCommand feature allows the user to filter companies based on a given keyword. The idea is that the
-user can filter the job list by company which shows all roles pertaining to a certain company.
+The proposed Company Command feature allows the user to filter companies based on a given keyword. This enables the
+user to filter the job list by company which shows all roles pertaining to a certain company.
 
 The feature uses operations in the `Model` interface as `Model#updateFilteredRoleList()`.
 
 Given below is an example usage of how CompanyCommand is being used in the following steps.
 
-1. The user launches the application for the first time. The `AddressBook` will be initialized with the
-   current address book. <img src="images/startUp.png" width="800" />
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the
+   current Role book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Company Command` to filter companies.
     - The user executes `company <keyword>` command to filter roles by their company.
@@ -325,8 +330,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 1 (current choice):** Filter roles that contain the keyword in the company field.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
-
-_{more aspects and alternatives to be added}_
+* **Alternative 2 (alternative choice):** Filter roles by using and extending a generic find command.
+    * Pros: Less confusing for the user, as all filtering will be done using a single command. e.g. find c/Google
+    * Cons: Harder to implement, and the addition of multiple parameters may be confusing too.
 
 ### Tag Command Feature
 
