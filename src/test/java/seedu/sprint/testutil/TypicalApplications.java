@@ -48,7 +48,7 @@ public class TypicalApplications {
             .withStatus("applied").withTask("31-10-2023", "Interview")
             .build();
 
-    // Manually added
+    // Manually added - without tags
     public static final Application HUDSON_RIVER = new ApplicationBuilder().withRole("Junior Trader Analyst")
             .withCompanyName("Hudson River Trading").withCompanyEmail("hrthires@hrt.com")
             .withStatus("offered").build();

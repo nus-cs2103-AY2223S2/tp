@@ -1,7 +1,6 @@
 package seedu.sprint.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_EMAIL;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
 import static seedu.sprint.logic.parser.CliSyntax.PREFIX_DEADLINE;
@@ -154,6 +153,7 @@ public class ApplicationCommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredApplicationList());
         assertEquals(expectedCommandHistory, actualCommandHistory);
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the application at the given {@code targetIndex} in the
      * {@code model}'s internship book.
