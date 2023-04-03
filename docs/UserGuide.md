@@ -630,6 +630,90 @@ Output:<br>
 
 * The name of the vaccination being added must not exist in the system.
 
+#### `detail` - Displays the detail of a vaccination
+
+##### Syntax
+
+<pre>
+vaccination detail <var>VACCINATION</var>
+</pre>
+
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
+
+##### Example
+
+Example assumes none of the default start-up vaccinations are deleted yet.
+
+```text
+vaccination detail Dose 1 (Moderna)
+```
+
+Output:<br>
+
+```text
+[INFO] Detailing vaccination: Dose 1 (Moderna)
+```
+
+![Vaccination Detail Example](images/vaccination/ug/VaccinationDetailExample.png)
+
+##### Restrictions
+
+* <code><var>VACCINATION</var></code> must exist in the system.
+
+<br>
+
+#### `list` - Lists all vaccination
+
+Clears previously set filters and list all vaccinations in the list view.
+
+##### Syntax
+
+<pre>
+vaccination list
+</pre>
+
+#### `find` - Finds a vaccination
+
+Given a `<string>`, search and filter out only vaccination whose names contains the character sequence of the given `<string>` in the given order. Whitespace characters within the given `<string>` are ignored and taken to be that any number of characters may between the two character sequences that the whitespace separates. The search is case-insensitive.
+
+For example, if given `Dose Dose 1`, the following will match:
+
+* `Dose Dose 1`
+* `Dose abc dose abc 1`
+
+However, the following will not:
+
+* `Dose 1` - Missing a `dose`.
+* `1 Dose Dose` - Wrong order.
+* `Dose dose` - Missing `1`.
+
+##### Syntax
+
+<pre>
+vaccination find <var>VAX_NAME</var>
+</pre>
+
+* <code><var>VAX_NAME</var></code> : `<string>`
+  * The character sequence in the vaccination's name to search for.
+
+##### Example
+
+```text
+vaccination find dose 1
+```
+
+Output:<br>
+
+```text
+[INFO] 3 vaccinations listed!
+```
+
+![Vaccination Find Example](images/vaccination/ug/VaccinationFindExample.png)
+
+##### Restrictions
+
+* <code><var>VAX_NAME</var></code> cannot be blank.
+
 #### `edit` - Edit a vaccination type
 
 Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
@@ -759,90 +843,6 @@ Output:<br>
 [INFO] Vaccinations successfully cleared
 ```
 
-#### `find` - Finds a vaccination
-
-Given a `<string>`, search and filter out only vaccination whose names contains the character sequence of the given `<string>` in the given order. Whitespace characters within the given `<string>` are ignored and taken to be that any number of characters may between the two character sequences that the whitespace separates. The search is case-insensitive.
-
-For example, if given `Dose Dose 1`, the following will match:
-
-* `Dose Dose 1`
-* `Dose abc dose abc 1`
-
-However, the following will not:
-
-* `Dose 1` - Missing a `dose`.
-* `1 Dose Dose` - Wrong order.
-* `Dose dose` - Missing `1`.
-
-##### Syntax
-
-<pre>
-vaccination find <var>VAX_NAME</var>
-</pre>
-
-* <code><var>VAX_NAME</var></code> : `<string>`
-  * The character sequence in the vaccination's name to search for.
-
-##### Example
-
-```text
-vaccination find dose 1
-```
-
-Output:<br>
-
-```text
-[INFO] 3 vaccinations listed!
-```
-
-![Vaccination Find Example](images/vaccination/ug/VaccinationFindExample.png)
-
-##### Restrictions
-
-* <code><var>VAX_NAME</var></code> cannot be blank.
-
-#### `list` - Lists all vaccination
-
-Clears previously set filters and list all vaccinations in the list view.
-
-##### Syntax
-
-<pre>
-vaccination list
-</pre>
-
-#### `detail` - Displays the detail of a vaccination
-
-##### Syntax
-
-<pre>
-vaccination detail <var>VACCINATION</var>
-</pre>
-
-* <code><var>VACCINATION</var></code> : `<vax-retriever>`
-
-##### Example
-
-Example assumes none of the default start-up vaccinations are deleted yet.
-
-```text
-vaccination detail Dose 1 (Moderna)
-```
-
-Output:<br>
-
-```text
-[INFO] Detailing vaccination: Dose 1 (Moderna)
-```
-
-![Vaccination Detail Example](images/vaccination/ug/VaccinationDetailExample.png)
-
-##### Restrictions
-
-* <code><var>VACCINATION</var></code> must exist in the system.
-
-<br></br>
-
 ### `appointment` - Appointment functionalities
 
 | Attribute     | Type              | Description                                |
@@ -853,7 +853,7 @@ Output:<br>
 | Vaccination   | `<GroupName>`     | The vaccine type used for the appointment. |
 | Status        | `<Boolean>`       | The completion status of the appointment.  |
 
-<br></br>
+<br>
 
 #### `add` - Add an appointment
 
@@ -882,39 +882,7 @@ appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 * The ending time must be after the given starting time.
 * The vaccination must be an existing vaccination type in the vaxtype manager.
 
-<br></br>
-
-#### `edit` - Edit an appointment
-
-Edits the details of an existing appointment.
-
-##### Syntax
-
-```text
-appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
-    [--v VAX_GROUP]
-```
-
-* <code><var>INDEX</var></code> : `<Index>`
-* <code><var>PATIENT_ID</var></code> : `<Index>`
-* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
-* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
-* <code><var>VAX_GROUP</var></code> : `<GroupName>`
-
-##### Example
-
-* `appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfizer)`
-
-##### Restrictions
-
-* The index must be an existing index in the appointment manager.
-* The index must be of an appointment that has not yet passed.
-* The patient id must be an existing index in the patient manager.
-* The starting time must be after the current locale time.
-* The ending time must be after the given starting time.
-* The vaccination must be an existing vaccination type in the vaxtype manager.
-
-<br></br>
+<br>
 
 #### `list` - List all appointments
 
@@ -926,7 +894,7 @@ Resets the view of the appointment pane to display all the appointments. Useful 
 appointment list
 ```
 
-<br></br>
+<br>
 
 #### `find` - Find all matching appointments
 
@@ -958,7 +926,41 @@ appointment find [...KEYWORDS...]
 * `appointment find --p 1`
 * `appointment find Dose 1`
 
-<br></br>
+<br>
+
+#### `edit` - Edit an appointment
+
+Edits the details of an existing appointment.
+
+##### Syntax
+
+```text
+appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
+    [--v VAX_GROUP]
+```
+
+* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>PATIENT_ID</var></code> : `<Index>`
+* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
+* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
+* <code><var>VAX_GROUP</var></code> : `<GroupName>`
+
+##### Example
+
+* `appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfizer)`
+
+##### Restrictions
+
+* The index must be an existing index in the appointment manager.
+* The index must be of an appointment that has not yet passed.
+* The patient id must be an existing index in the patient manager.
+* The starting time must be after the current locale time.
+* The ending time must be after the given starting time.
+* The vaccination must be an existing vaccination type in the vaxtype manager.
+
+<br>
+
+
 
 #### `mark` - Marks an appointment as completed
 
@@ -981,7 +983,7 @@ appointment mark INDEX
 * The index must be an existing index in the appointment manager.
 * The specified appointment should not already be done.
 
-<br></br>
+<br>
 
 #### `unmark` - Changes an appointment's status to not done
 
@@ -1004,7 +1006,7 @@ appointment unmark INDEX
 * The index must be an existing index in the appointment manager.
 * The specified appointment should already be done.
 
-<br></br>
+<br>
 
 #### `delete` - Delete an appointment
 
@@ -1026,7 +1028,7 @@ appointment delete INDEX
 
 * The index must be an existing index in the appointment manager.
 
-<br></br>
+<br>
 
 ## Advance
 
