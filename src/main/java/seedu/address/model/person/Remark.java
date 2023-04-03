@@ -42,12 +42,12 @@ public class Remark {
     }
 
     public boolean canTruncate(String str) {
-        assert(str != null);
+        assert str != null;
         return str.length() > 30;
     }
 
     public boolean containsNewLine() {
-        assert(value != null);
+        assert value != null;
         return value.contains("\n");
     }
 

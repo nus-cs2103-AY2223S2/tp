@@ -37,14 +37,14 @@ public class CommandHistory {
     }
 
     public String getLastExecutedCommand() {
-        assert(currentVersionPointer <= 0);
+        assert currentVersionPointer <= 0;
         currentVersionPointer--;
         int index = modifyHistoryCommandList.get(currentVersionPointer + 1);
         return commandList.get(index);
     }
 
     public String getLatestModifyingCommand() {
-        assert(currentVersionPointer < modifyHistoryCommandList.size());
+        assert currentVersionPointer < modifyHistoryCommandList.size();
         currentVersionPointer++;
         int index = modifyHistoryCommandList.get(currentVersionPointer);
         return commandList.get(index);
