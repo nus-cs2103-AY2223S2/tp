@@ -159,6 +159,7 @@ A GUI similar to the below should appear in a few seconds, with the following ar
 * <span style="background-color:rgba(237.2, 8.7, 176.5, 0.5)">Simplified Menu</span>
 * <span style="background-color:rgba(0.0, 255.0, 197.0, 0.5)">Command Result Screen</span>
 * <span style="background-color:rgba(255.0, 0.0, 0.0, 0.5)">Command Input Box</span>
+* <span style="background-color:rgba(128.9, 0.0, 255.0, 0.5)">Data List</span>
 
 (Note how the app contains some sample data.)
 
