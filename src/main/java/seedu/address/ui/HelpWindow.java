@@ -14,8 +14,8 @@ import seedu.address.commons.core.LogsCenter;
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-    public static final String USERGUIDE_URL = "Refer to the user guide: "
-            + "https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html";
+    public static final String GUIDE = "Refer to the user guide: ";
+    public static final String USERGUIDE_URL = "https://ay2223s2-cs2103t-w10-1.github.io/tp/UserGuide.html";
     public static final String FEATURE_HEADER = "\n\nFeatures:\n";
     public static final String PARAMETERS_COMPULSORY_ADD_MODULE = "n/MODULE_NAME t/DESCRIPTION";
     public static final String PARAMETERS_OPTIONAL_ADD_MODULE = "[e/TIMESLOT] [a/VENUE] [c/RESOURCE] "
@@ -57,6 +57,8 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Button copyButton;
     @FXML
+    private Label guide;
+    @FXML
     private Label urlLink;
     @FXML
     private Label featuresHeader;
@@ -70,6 +72,7 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+        guide.setText(GUIDE);
         urlLink.setText(USERGUIDE_URL);
         featuresHeader.setText(FEATURE_HEADER);
         helpMessage.setText(HELP_MESSAGE);
