@@ -313,11 +313,8 @@ the `find` command allows you to hone in on an entry that matches **all** your `
   * Tags: `t/`
   * Modules: `m/`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Tip:** Using `find` without any `FIELDS` has the same outcome as `list`! TeachMeSenpai will 
+<div markdown="span" class="alert alert-info">**:information_source: Tip:** Using `find` without any `FIELDS` has the same outcome as `list`! TeachMeSenpai will 
 simply display the list of all your students.
-
 </div>
 
 Examples:
@@ -338,9 +335,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>find</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-info">
-
-:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
+<div markdown="span" class="alert alert-info">:bulb: **Note:** Here find shows only `Alex Yeoh` as his entry matches all criteria.
 </div>
 
 <p align=center>
@@ -353,9 +348,7 @@ Examples:
     <br><i><b>Above:</b> After entering <code>filter</code> command</i>
 </p>
 
-<div markdown="block" class="alert alert-info">
-
-:bulb: **Note:** Here, other entries that match some criteria like `Roy Balakrishnan`
+<div markdown="span" class="alert alert-info">:bulb: **Note:** Here, other entries that match some criteria like `Roy Balakrishnan`
 are shown too.
 </div>
 
@@ -399,11 +392,7 @@ Did you make a mistake with a command? Don't worry, simply `undo` it!
 
 You can `undo` as many times as required, as long as the previous commmand is **undoable**.
 
-<div markdown="block" class="alert alert-info">
-
-:bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands 
-that change the data of your TeachMeSenpai app!
-Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message.
+<div markdown="span" class="alert alert-info":bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message.
 </div>
 
 > Format: `undo` 
@@ -414,10 +403,7 @@ Example: `delete 1 4` followed by `undo`. <br>
 
 Did you `undo` a command on accident? Fret not, you may use `redo` to reverse the changes done by `undo`!
 
-<div markdown="block" class="alert alert-info">
-
-:bulb: **Note:** You can only redo an `undo` command.
-Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
+<div markdown="span" class="alert alert-info">:bulb: **Note:** You can only redo an `undo` command. Trying to `redo` without ANY prior `undo` command will simply cause TeachMeSenpai to give you an error message.
 </div>
 
 >Format: `redo`
@@ -447,10 +433,7 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 
 ### Editing the data file
 
-<div markdown="block" class="alert alert-danger">
-
-**:exclamation: Warning:** If your changes to the data file makes its format invalid, 
-TeachMeSenpai will discard all data and start with an empty data file the next time you launch it.
+<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** If your changes to the data file makes its format invalid, TeachMeSenpai will discard all data and start with an empty data file the next time you launch it.
 </div>
 
 [↑ Back to top](#table-of-contents)
