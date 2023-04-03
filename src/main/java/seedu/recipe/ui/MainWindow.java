@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -34,6 +35,7 @@ import seedu.recipe.ui.events.EditRecipeEvent;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private boolean usingKeyboardNavigation = false;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -89,7 +91,11 @@ public class MainWindow extends UiPart<Stage> {
 
         getRoot().addEventFilter(DELETE_RECIPE_EVENT_TYPE, this::handleDeleteRecipeEvent);
         getRoot().addEventFilter(EDIT_RECIPE_EVENT_TYPE, this::handleEditRecipeEvent);
-
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.DOWN) {
+                usingKeyboardNavigation = true;
+            }
+        });
         helpWindow = new HelpWindow();
     }
 
@@ -201,7 +207,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-        
+
         // Request focus for the CommandBox
         Platform.runLater(() -> commandBox.getRoot().requestFocus());
     }
