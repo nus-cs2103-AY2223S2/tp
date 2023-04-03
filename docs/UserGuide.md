@@ -69,7 +69,8 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
 
    Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year n/Frontend Developer`
    
-   In this case, the name 'Software Engineering' will be replaced by 'Frontend Developer'.
+   In this case, the name 'Software Engineering' will be replaced by 'Frontend Developer'. As such, users will only be able
+   to add one role at a time.
 
 **The prefixes and their respective parameters are as follows:**
 
