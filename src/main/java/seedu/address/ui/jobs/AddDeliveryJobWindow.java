@@ -43,7 +43,7 @@ import seedu.address.ui.person.AddressBookWindow;
  */
 public class AddDeliveryJobWindow extends UiPart<Stage> {
 
-    private static final String FXML = "AddDeliveryJobWindow.fxml";
+    private static final String FXML = "ModifyDeliveryJobWindow.fxml";
 
     private static final String EDIT_TITLE = "Edit Delivery Job";
 
@@ -322,7 +322,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
             });
         }
 
-        if (!inputDeliverySlot.getValue().isEmpty()) {
+        if (inputDeliverySlot.getValue() != null) {
             // slot field has value
             job.getDeliverySlot().ifPresentOrElse(val -> {
                 // slot is different from existing value, overwrite.

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
+import seedu.address.model.jobs.DeliveryDate;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.ui.UiPart;
 
@@ -63,15 +64,19 @@ public class DeliveryJobCard extends UiPart<Region> {
         address.setText("Refine later");
 
         job.getDeliveryDate().ifPresentOrElse(val -> {
-            deliveryTimeDate.setText(val.date);
+            if (val.date.equals(DeliveryDate.placeholder().date)) {
+                deliveryTimeDate.setText("Not scheduled");
+            } else {
+                deliveryTimeDate.setText(val.date);
+            }
         }, () -> {
-            deliveryTimeDate.setText("N.A");
+            deliveryTimeDate.setText("Not scheduled");
         });
 
         job.getDeliverySlot().ifPresentOrElse(val -> {
             deliveryTimeSlot.setText(val.getDescription());
         }, () -> {
-            deliveryTimeSlot.setText("N.A");
+            deliveryTimeSlot.setText("");
         });
 
         job.getEarning().ifPresentOrElse(val -> {
