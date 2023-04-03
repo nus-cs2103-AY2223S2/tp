@@ -14,13 +14,17 @@ title: User Guide
 ## **1. Introduction**
 
 ### 1.1 What is sprINT
+Are you a student who wants to avoid the hassle of managing internship applications? Look no further than sprINT, 
+the ideal tool for streamlining this daunting process!
 
-Welcome to **sprINT's User Guide**. sprINT is a **desktop application** for managing internship applications,
-optimized for use via a Command Line Interface (CLI) while incorporating the benefits of a Graphical User
-Interface (GUI).
+sprINT is a **desktop application** that can help YOU track your internship applications.
+Optimized for use by typing while offering a beautiful user interface, it will be a great asset in your internship application journey.
 
-If you're a *fast typer*, sprINT is the perfect tool. The app is designed to maximise speed and efficiency,
-making it a great asset in your internship application journey.
+### 1.2 Purpose of this document
+This document serves as a User Guide for anyone who wants to use sprINT! If you are a new user, 
+read through the section on **[Quick start](#2-quick-start)** to learn how to set up the app quickly and the
+section on **[Basics](#3-basics)** to pick up a few simple commands. If you have already used sprINT before, use the table
+of contents to skip to the specific feature or command in **[Features](#4-features)** you want to know more about!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -30,7 +34,7 @@ making it a great asset in your internship application journey.
 
 Step 1: Ensure you have Java `11` or above installed in your computer.
 
-Step 2: Download the latest jar file`sprINT.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.3).
+Step 2: Download the latest jar file`sprINT.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-3/tp/releases/tag/v1.3.1).
 
 Step 3: Copy the file to the folder you want to use as the _home folder_ for your sprINT application.
 
@@ -38,7 +42,7 @@ Step 4: Double-click on the jar file to run the application.
 If it doesn't work, open a command terminal, enter `cd` with the path to the folder you put the jar file in, 
 and type: `java -jar sprINT.jar` to run the application.<br>
 
-A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data already.<br>
+An interface similar to the one shown below should appear in a few seconds. Note how the app contains some sample data already.<br>
 ![Ui](images/Ui.png)
 
 <div markdown="span" class="alert alert-primary">:bulb:
@@ -49,11 +53,11 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 ![LabelledUi](images/LabelledUi.png)
 1. Notice the **Command Box** at the bottom. This will be where you will type all your commands. Press Enter to execute them.
 2. The **Command Result Box** is right above the Command Box. It gives you feedback immediately after you press Enter to execute
-a command, informing you if you have executed it successfully, and if not, what to watch out in the formatting.
-In the above image, you can see the box telling me that I have successfully added an application with the role `ML Engineer Intern`
-at `Datature`.
+a command, informing you if you have executed it successfully, and if not, what to watch out for in the formatting.
+Suppose you have executed a command to add a new application entry with the role `ML Engineer Intern` at `Datature`.
+Then you will be able to see the box informing you that it has been successfully added, just like in the image above.
 3. Each application entry shows up in the list above in its own box. In the image above, you can see the **Application Details**
-of the application entry I have just added.
+of the application entry to `Datature` that you have just added.
 4. A pie chart at the right shows your **Application Statistics**. It will update immediately after every command you execute,
 so there's no need to worry about updating it manually. Pretty neat, right?
 5. Here are some simple commands to get you started with:
@@ -66,9 +70,9 @@ so there's no need to worry about updating it manually. Pretty neat, right?
 * `clear` : Deletes all application entries. Do this if you want to get rid of the current sample data.
 * `exit` : Exits the app.
 
-You can refer to the [Command summary](#6-command-summary) section for the complete list of commands.
+You can refer to the **[Command summary](#7-command-summary)** section for the complete list of commands.
 
-You can refer to the [Features](#4-features) section below for more details of each command.
+You can refer to the **[Features](#4-features)** section below for more details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -150,6 +154,9 @@ Adds an internship application to be tracked.
 
 Format: `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​`
 
+You can refer to our **[Glossary](#6-glossary)** for more information about each field (ROLE, COMPANY_NAME, etc.) and
+other sprINT-specific terminology.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Tag is an optional field when adding an application.
 An application can have multiple tags or none at all.
@@ -160,7 +167,7 @@ to learn more about adding tags to your application entries.
 
 Examples:
 * `add-app r/SWE Intern c/Google e/google_careers@gmail.com s/interested t/creditBearing`
-* `add-app r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com`
+* `add-app r/Data Analyst Intern c/Bloomberg e/bloomberg_hires@bloomberg.com s/applied`
 
 
 #### 4.1.2 Editing an application : `edit-app`
@@ -244,10 +251,10 @@ Format: `add-task INDEX d/DESCRIPTION by/DEADLINE`
 Example:
 I have recently applied to `Google` for their `Software Engineer` role, and made an entry for it in the internship book.
 Then, `Google` reaches out to me for a technical interview on the 24th July 2023. I can add this
-as a task to the application entry I have created before (suppose it is showing up as the second one in the list) by typing:
-`add-task 2 d/Technical Interview by/24-07-2023`
+as a task to the application entry I have created before (suppose it is showing up as the first one in the list) by typing:
+`add-task 1 d/Technical Interview by/24-07-2023`
 
-You can see how the new task will then appear for the 2nd application entry in the list:
+You can see how the new task will then appear for the 1st application entry in the list:
 ![UiAfterAddTask](images/UiAfterAddTask.png)
 
 #### 4.2.2 Editing an application task : `edit-task`
@@ -342,10 +349,7 @@ Displays a pop-up window with a simple summary of all the commands and their for
 
 Format: `help`
 
-You should see the following help window pop up:
-![HelpWindow](images/HelpWindow.png)
-
-At the bottom is a button you can click to access the URL to this guide.
+The help window that pops up will also have a button you can click to access the URL to this guide.
 
 #### 4.4.2 Undoing a command : `undo`
 
@@ -364,7 +368,7 @@ Format: `undo`
 
 Redo the previous command that you have undo-ed.
 
-<div markdown="span" class="alert alert-warning">exclamation: **Caution:** 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** 
 If you executed another command immediately after undo, you will no longer be able to redo the undo-ed command.
 </div>
 
@@ -393,9 +397,9 @@ Format: `exit`
 
 Data in the internship book are automatically saved in your local storage after any command that modifies the data. There is no need to save manually.
 
-#### 4.4.7 Editing the data file
+#### 4.4.7 Editing the data file **(for Advanced users)**
 
-Data in the internship book are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update their data directly by editing that data file.
+Data in the internship book are actually saved as a JSON file `[JAR file location]/data/sprint.json`. Advanced users are welcome to update their data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
@@ -414,7 +418,28 @@ If your changes to the data file makes its format invalid, the internship book w
 
 <div style="page-break-after: always;"></div>
 
-## **6. Command Summary**
+## **6. Glossary**
+
+#### Application
+Represents an internship application entry in the internship book. Each application contains a role,
+company name, company email and one of four possible statuses.
+
+#### Status
+Represents the current stage of the internship application. Can be one of 4 values:
+* **Interested**: An internship that the user is interested in, but has yet to apply to.
+* **Applied**: An internship that the user has applied to, but has yet to receive an offer or rejection for.
+* **Offered**: An internship that the user has received an offer for.
+* **Rejected**: An internship that the user has been rejected for.
+
+#### Task
+Represents additional milestones that are part of the internship application process. Examples include online
+assessment, technical interview, etc.
+
+--------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
+## **7. Command Summary**
 
 | Action                      | Format, Examples                                                                                                                                                         |
 |-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
