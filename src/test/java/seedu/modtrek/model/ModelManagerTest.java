@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentDegreeProgression, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        modelManager.updateFilteredModuleList(modelManager.getPredicate());
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
