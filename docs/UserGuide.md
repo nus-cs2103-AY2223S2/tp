@@ -84,12 +84,13 @@ These are the symbols employed in this user guide:
 
 These are the special text formatting employed in this user guide: 
 
-| Font         | Meaning                                                                                                                                                                           |
-|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Bold**     | You should pay closer attention to bolded words as they are more important                                                                                                        |
-| `Code`       | Used for coding syntax. Parts of a *Fish Ahoy!* command will be in this format. Command Prompt commands and file names in the [Quick start](#quick-start) are also in this format |
-| [Links]()    | A link to a section in this user guide that will provide more in-depth information                                                                                                |
-| *Italics*    | The application name, *Fish Ahoy!* is in this format.                                                                                                                             |
+| Font                 | Meaning                                                                                                                                                                                                                                                   |
+|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Bold**             | You should pay closer attention to bolded words as they are more important                                                                                                                                                                                |
+| `Code`               | Used for coding syntax. Parts of a *Fish Ahoy!* command will be in this format. Command Prompt commands and file names in the [Quick start](#quick-start) are also in this format                                                                         |
+| [Links]()            | A link to a section in this user guide that will provide more in-depth information                                                                                                                                                                        |
+| *Italics*            | The application name, *Fish Ahoy!* is in this format.                                                                                                                                                                                                     |
+| `<COMMAND CONTENTS>` | Generalises a part of a [command](#glossary). You can choose the exact value of the content in these brackets <br> example: `<PARAMETERS>` mean that you need to specify the exact values of the parameters in *Fish Ahoy!*, subject to their constraints |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -101,9 +102,11 @@ These are the definitions to some technical terms:
 |----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command        | A series of words you type in the [Command Line](#about-the-interface) to perform an action                                                                                                             |
 | Command type   | Identifies the type of information the command modifies. <br> Command types: `tank`, `fish`, `task`                                                                                                     |
+| Command action | Specifies exactly what action the command performs. <br> Some command actions: `add`, `delete`, `edit`                                                                                                  |
 | Parameter      | Part of a command. Provides the command the information it requires. Parameters are preceded with a prefix.                                                                                             |
 | Prefix         | Part of a parameter. Specifies what type of information the parameter is providing. <br> [Prefixes:](#command-prefix-summary) `n/`, `lfd/`, `s/`, `fi/`, `tg/`, `by/`, `d/`, `al/`, `ph/`, `tp/`, `tk/` |
 | GUI/ Interface | The visual and graphical components of *Fish Ahoy!* It is what you see when you open *Fish Ahoy!*                                                                                                       |
+| Object         | An object is either a tank, fish or task. This term is used when all 3 types, tank, task and fish, are applicable.                                                                                      |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -163,6 +166,114 @@ Windows/Mac OS native close buttons are also fine.
 
 The **Help** button will present a menu where you can display the *Fish Ahoy! User Guide*. If you require extra information,
 do use this to redirect you to our user guide!
+
+--------------------------------------------------------------------------------------------------------------------
+
+# *Fish Ahoy!* Commands
+
+In general, the command format is as follows:<br>
+`<COMMAND TYPE> <COMMAND ACTION> <PARAMETERS>`
+> :information_source: Additional information: `list` commands do not follow this format, but are of format `list <COMMAND TYPE>`
+
+## Command types and actions
+* Command types
+  * There are 3 command types. They are the `tank`, `fish` and `task` command types
+  * They specify what they modify. `tank` commands modify tanks, `fish` commands modify fish and `task` commands modify tasks
+* Command actions
+  * These specify what the command does. For example, `tank add` adds a tank to *Fish Ahoy!*.
+
+## Parameters <br>
+
+* Parameters are additional pieces of information a command needs to perform its action. 
+  * For example, in the `tank add` command, a description parameter `d/<DESCRIPTION>` is needed 
+
+### Index parameters
+* Used as parameters for commands with `delete` and `view` actions
+* Index parameters are **positive integers** (1, 2, 3...)
+* Index parameters do not require a prefix. For example, the command is as follows: `tank delete 1`
+* In the features section, index parameters will be as such: `<XXX_INDEX>`, and `XXX` can be `TANK`, `FISH` or `TASK`
+> :exclamation: Warning: Ensure that the index you input corresponds to an existing item. 
+> <br> Look at the [respective panels](#about-the-interface) for the index of the type of object you want to refer to.
+
+### Prefix parameters
+* Used as parameters for commands with `add`, `edit` and `addReadings` actions
+* Prefix parameters require a prefix. For example, the command is as follows: `tank add d/<TANK_NAME>`
+* In the features section, prefix parameters will be as such: `X/<CONTENT>` where `X` is a valid prefix and `<CONTENT>` is the content of this parameter, subject to its constraints
+* You can only have multiple values for tag prefixes `tg/<TAG>`. All other prefixes can only have 1 value. 
+> :information_source: Additional information: You can have multiple prefix parameters for the same prefix, but only the last one will be used.
+> <br>For example: `tank add d/Tank 1 d/Tank 2` will create a tank called 'Tank 2'.
+
+> :bulb: Tip: Redundant spaces will be removed automatically for prefix parameters
+> <br> For example: `d/ Tank 1` does not make the description ' Tank 1', but is the same as `d/Tank 1`.
+#### Description `d/<DESCRIPTION>`
+  * Type: `Tank`
+  * `<DESCRIPTION>` should only contain alphanumeric characters and spaces
+  * Prefix: `d/`
+  * Example: `d/Tank 1`
+
+#### Name `n/<NAME>`
+* Type: `Fish`
+* `<NAME>` should only contain alphanumeric characters and spaces
+* Prefix: `n/`
+* Example: `n/Nemo`
+
+#### Last Fed Date `lfd/<LAST_FED_DATE>`
+* Type: `Fish`
+* `<LAST_FED_DATE>` should be in the format `DD/MM/YYYY HH:MM` where `DD` is the day of the month, `MM` is the month of the year and `YYYY` is the year. `HH` is the hour of the day and `MM` is the minute of the hour.
+* Prefix: `lfd/`
+* Example: `lfd/01/04/2023 12:00`
+> :exclamation: Warning: Remember to input 2 digits for `DD` and `MM`. 
+> <br> For example, `DD` and `MM` for the 9th of April should be `09` and `04` respectively.
+
+#### Species `s/<SPECIES>`
+* Type: `Fish`
+* `<SPECIES>` should only contain alphanumeric characters and spaces
+* Prefix: `s/`
+* Example: `s/guppy`
+> :bulb: Tip: Look out for the unique fish icons for different species of fishes!
+
+#### Feeding interval `fi/<FEEDING_INTERVAL>`
+* Type: `Fish`
+* `<FEEDING_INTERVAL>` should be in the format `<DAYS>d<HOURS>h` where `<DAYS>` and `<HOURS>` specifies the days and hours of the feeding interval respectively
+* Prefix: `fi/`
+* Example: `fi/1d12h`
+
+#### Tags `[tg/<TAG>]`
+* Multiple tags allowed for one fish
+* Type: `Fish`
+* `<TAG>` should only contain alphanumeric characters, with **no** spaces
+* Prefix: `tg/`
+* Example: `tg/sick tg/fat`
+
+#### Sorting `by/<PREFIX_PARAMETER>`
+* Type: `Fish`
+* `<PREFIX_PARAMETER>` `n`, `lfd`, `s`, `fi`, or `tk`. These correspond to the parameters in this section with the same prefix.
+* Prefix: `by/`
+* Example: `by/lfd`
+
+#### Tank ammonia level reading `al/<AMMONIA_LEVEL>`
+* Type: `Tank`
+* `<AMMONIA_LEVEL>` A number, with or without decimal points.
+* Prefix: `al/`
+* Example: `al/2`
+
+#### Tank pH reading `ph/<PH>`
+* Type: `Tank`
+* `<PH>` A number, with or without decimal points.
+* Prefix: `ph/`
+* Example: `al/7.1`
+
+#### Tank temperature reading `tp/<TEMPERATURE>`
+* Type: `Tank`
+* `<TEMPERATURE>` A number, with or without decimal points.
+* Prefix: `tp/`
+* Example: `tp/28`
+
+#### Tank `tk/<TANK_INDEX>`
+* Type: `Task`, `Fish`
+* `<TANK_INDEX>` Positive integer (1, 2, 3...) and is one of the tank indexes of the listed tanks in the [left tank panel](#about-the-interface)
+* Prefix: `tk/`
+* Example: `tk/1`
 
 --------------------------------------------------------------------------------------------------------------------
 
