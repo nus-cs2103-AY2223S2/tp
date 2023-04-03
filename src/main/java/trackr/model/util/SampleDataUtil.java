@@ -123,14 +123,14 @@ public class SampleDataUtil {
                 new PersonPhone("71396482"),
                 new PersonAddress("789 Bonder Street"));
 
-        MenuItem cookie = new MenuItem(new ItemName("Chocolate Cookies"), 
-                                        new ItemSellingPrice("5.00"), 
+        MenuItem cookie = new MenuItem(new ItemName("Chocolate Cookies"),
+                                        new ItemSellingPrice("5.00"),
                                         new ItemCost("1.20"));
         MenuItem cupcake = new MenuItem(new ItemName("Cupcake"), 
-                                        new ItemSellingPrice("6.20"), 
+                                        new ItemSellingPrice("6.20"),
                                         new ItemCost("1.10"));
-        MenuItem bracelet = new MenuItem(new ItemName("Bracelet"), 
-                                        new ItemSellingPrice("10"), 
+        MenuItem bracelet = new MenuItem(new ItemName("Bracelet"),
+                                        new ItemSellingPrice("10"),
                                         new ItemCost("0.5"));
 
         return new Order[] {

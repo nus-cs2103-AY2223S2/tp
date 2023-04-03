@@ -113,7 +113,7 @@ public class TabPanel extends UiPart<Region> {
     }
 
     public static void switchToTab(Index index) {
-        tabPanel.getSelectionModel().select(index.getZeroBased());
+        tabPanel.getSelectionModel().clearAndSelect(index.getZeroBased());
     }
 
     public static void clearSelection() {
