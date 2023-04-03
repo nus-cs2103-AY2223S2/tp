@@ -279,7 +279,7 @@ The Profile Panel will display basic information such as:
 2. Phone number
 3. Email address
 4. Telegram Handle
-5. Nearest home MRT station
+5. Nearest MRT station to home
 6. Modules taken in current NUS Semester
 7. Groups
 
@@ -375,7 +375,7 @@ s/[NEAREST MRT STATION TO YOUR HOUSE] e/[YOUR EMAIL]`
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: To know more about what `n/`, `/e` etc. symbolises, you may want to check out [Prefixes](#prefixes).
+:information_source: To know more about what `n/`, `e/` etc. symbolises, you may want to check out [Prefixes](#prefixes).
 
 </div>
 <div markdown="span" class="alert alert-success">
