@@ -1,10 +1,6 @@
 ---
 layout: page
 title: User Guide
----
-
-# TrAcker User Guide
-
 --------------------------------------------------------------------------------------------------------------------
 
 # Table of Contents
@@ -17,7 +13,6 @@ title: User Guide
     - [Adding Recurring Event](#add-recur)
     - [Edit An Event](#edit-event)
     - [Delete Events](#delete-events--delete-events)
-    - [Open File in Event](#open-file)
 - [Student Features](#student-features)
     - [Adding Student](#adding-student--add-student)
     - [Deleting Student](#deleting-student--delete-student)
@@ -95,68 +90,64 @@ Let's clear a little confusion that might arise:
 
 <div id='add-tutorial'></div>
 
-### Adding tutorial: `add tutorial`
+### Adding tutorial: `touch`
 
 Adds a tutorial to the TA’s schedule. Tutorial is assumed to be 1 hour long (adhering to CS2040 Tutorial timing) and no modification of duration is allowed
 
 - Name need not be unique
 - Cannot be clashes in the time with any other events
-- Only .pdf file attachments allowed
-- FULL file path to a VALID pdf can be given
 - dd/MM/yyyy all in numbers
 - Tutorial name cannot have consultation or lab in it
 - Tutorial name cannot be just Tutorial alone
-- date and attachment is optional. Date will assume the current time if not specified
+- date is optional. Date will assume the current time if not specified
 
-Format: `touch Tutorial/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
+Format: `touch Tutorial/[NAME] -date [dd/MM/yyyy HH:mm]`
 
-:information_source:
-
-TrAcker only accepts the following date format
+:information_source: TrAcker only accepts the following date format
 ```
 date format: dd/MM/yyyy HH:mm
 ```
+:information_source: Maximum date is 2099
+
+:information_source: TrAcker does not allow you to create events with historical dates
+
 
 Examples:
 
 * `touch Tutorial/makeUpTutorial`
-* `touch Tutorial/examReview -date 01/01/2023 16:00`
-* `touch Tutorial/examReview -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/Introduction.pdf`
+* `touch Tutorial/examReview -date 01/01/2030 16:00`
 
 <div id='add-lab'></div>
 
-### Adding lab: `add lab`
+### Adding lab: `vim`
 
 Adds a lab to the TA’s schedule. Lab is assumed to be 1 hour long (adhering to CS2040 Lab timing) and no modification of duration is allowed
 
 - Name need not be unique
 - Cannot be clashes in the time with any other events
-- Only .pdf file attachments allowed
-- FULL file path to a VALID pdf can be given
 - dd/MM/yyyy all in numbers
 - Lab name cannot have tutorial or consultation in it
 - Lab name cannot be just Lab alone
-- date and attachment is optional. Date will assume the current time if not specified
+- date is optional. Date will assume the current time if not specified
 
-Format: `vim Lab/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]`
+Format: `vim Lab/[NAME] -date [dd/MM/yyyy HH:mm]`
 
-:information_source:
-
-TrAcker only accepts the following date format
-
+:information_source: TrAcker only accepts the following date format
 ```
 date format: dd/MM/yyyy HH:mm
 ```
+:information_source: Maximum date is 2099
+
+:information_source: TrAcker does not allow you to create events with historical dates
 
 Examples:
 
 * `vim Lab/pancakeSort`
-* `vim Lab/KosarajuAlgorithm -date 01/01/2023 16:00`
-* `vim Lab/StronglyConnected -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/StronglyConnectedComponents.pdf`
+* `vim Lab/KosarajuAlgorithm -date 01/01/2030 16:00`
 
 <div id='add-consultation'></div>
 
-### Adding consultation: `add consultation`
+### Adding consultation: `mkdir`
 
 Adds a consultation to the TA’s schedule. Consultation is assumed to be 1 hour long (adhering to CS2040 Consultation timing) and no modification of duration is allowed
 
@@ -166,45 +157,34 @@ Adds a consultation to the TA’s schedule. Consultation is assumed to be 1 hour
 - Consultation name cannot have tutorial or lab in it
 - Consultation name cannot be just Consultation alone
 - date is optional. Date will assume the current time if not specified
-- No attachments allowed
 
 Format: `mkdir Consultation/[NAME] -date [dd/MM/yyyy HH:mm]`
 
-:information_source:
-
 TrAcker only accepts the following date format
-
-```
-date format: dd/MM/yyyy HH:mm
-```
 
 Examples:
 
 * `mkdir Consultation/reviewConnectedComponents`
-* `mkdir Consultation/reviewDijsktra -date 01/01/2023 16:00`
+* `mkdir Consultation/reviewDijsktra -date 01/01/2030 16:00`
 
 <div id='add-recur'></div>
 
-### Edit an event: `editEvent event`
+### Edit an event: `editEvent`
 
 Edits an event current in the TA’s schedule.
 
 - Name need not be unique
 - Cannot be clashes in the time with any other events
-- Only .pdf valid files can be added
-- FULL file path to the pdf file MUST be given
 - index starts from 1
-- Consultation does not allow attachments as mentioned in add consultation section
+- Event index must exist
 
-:bulb: You can use the pwd in unix terminal to get the full path of the folder which the pdf file is in
-
-Format: `editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]`
+Format: `editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE]`
 
 Examples:
 
-* `editEvent 1 Tutorial/BellmanFord -date 10/10/2023 10:00 -file /Users/JohnDoe/Desktop/CS2040/BellmanFord.pdf`
+* `editEvent 1 Tutorial/BellmanFord -date 10/10/2040 10:00`
 * `editEvent 2 Lab/VisuAlgo`
-* `editEvent 1 Consultation/ConsultWithEmily -date 10/10/2023 16:00`
+* `editEvent 1 Consultation/ConsultWithEmily -date 10/10/2040 16:00`
 
 ### Delete events: `delete events`
 
@@ -214,34 +194,12 @@ Deletes valid indexed events from TA's schedule.
 
 - Index starts from 1
 - Valid index must be provided
-- If range is provided, it is inclusive
-- If range is provided, all values in the inclusive range must be valid
-- If range is provided, start index cannot be longer greater end index
 
 Format: `delete [EVENT_TYPE]/[INDEX]`
 
 Examples:
 
 * `delete Tutorial/1`
-* `delete Lab/1-5`
-
-<div id='open-file'></div>
-
-### Open file in event: `open file`
-
-Opens a file in either Tutorial or Lab if the TA has added one.
-
-- Index starts from 1
-- Valid index for event must be provided
-- Consultation events have no attachments
-- Only .pdf files will be parsed and opened
-
-Format: `openFile [EVENT_TYPE]/[INDEX]`
-
-Examples:
-
-* `openFile Tutorial/1`
-* `openFile Lab/5`
 
 --------------------------------------------------------------------
 ## Student Features
@@ -501,26 +459,24 @@ Examples:
    <tr>
       <td><strong>Add Tutorial</strong>
       </td>
-      <td><code>touch Tutorial/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
+      <td><code>touch Tutorial/[NAME] -date [dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
          <ul>
             <li><code>touch Tutorial/makeUpTutorial</code>
-            <li><code>touch Tutorial/examReview -date 01/01/2023 16:00</code>
-            <li><code>touch Tutorial/examReview -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/Introduction.pdf</code></li>
+            <li><code>touch Tutorial/examReview -date 01/01/2040 16:00</code>
          </ul>
       </td>
    </tr>
    <tr>
       <td><strong>Add Lab</strong>
       </td>
-      <td><code>vim Lab/[NAME] -date [dd/MM/yyyy HH:mm] -file [FULL_FILE_PATH_TO_PDF]</code>
+      <td><code>vim Lab/[NAME] -date [dd/MM/yyyy HH:mm]</code>
       </td>
       <td>
          <ul>
             <li><code>vim Lab/pancakeSort</code>
-            <li><code>vim Lab/KosarajuAlgorithm -date 01/01/2023 16:00</code>
-            <li><code>vim Lab/StronglyConnected -date 01/01/2023 16:00 -file /Users/JohnDoe/Desktop/StronglyConnectedComponents.pdf</code>
+            <li><code>vim Lab/KosarajuAlgorithm -date 01/01/2030 16:00</code>
             </li>
          </ul>
       </td>
@@ -533,7 +489,7 @@ Examples:
       <td>
          <ul>
             <li><code>mkdir Consultation/reviewConnectedComponents</code>
-            <li><code>mkdir Consultation/reviewDijsktra -date 01/01/2023 16:00</code>
+            <li><code>mkdir Consultation/reviewDijsktra -date 01/01/2030 16:00</code>
             </li>
          </ul>
       </td>
@@ -541,13 +497,12 @@ Examples:
    <tr>
       <td><strong>Edit event</strong>
       </td>
-      <td><code>editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE] -file [NEW_VALID_PDF_FILE_PATH]</code>
+      <td><code>editEvent [INDEX] [EVENT_TYPE]/[NEW_EVENT_NAME] -date [NEW_DATE]</code>
       </td>
       <td>
          <ul>
             <li><code>editEvent 2 Lab/VisuAlgo</code>
-            <li><code>editEvent 1 Consultation/ConsultWithEmily -date 10/10/2023 16:00</code>
-            <li><code>editEvent 1 Tutorial/BellmanFord -date 10/10/2023 10:00 -file /Users/JohnDoe/Desktop/CS2040/BellmanFord.pdf</code>
+            <li><code>editEvent 1 Consultation/ConsultWithEmily -date 10/10/2040 16:00</code>
             </li>
          </ul>
       </td>
@@ -560,20 +515,6 @@ Examples:
       <td>
          <ul>
             <li><code>delete Tutorial/1</code>
-            <li><code>delete Lab/1-5</code>
-            </li>
-         </ul>
-      </td>
-   </tr>
-   <tr>
-      <td><strong>Open File in Events</strong>
-      </td>
-      <td><code>openFile [EVENT_TYPE]/[INDEX]</code>
-      </td>
-      <td>
-         <ul>
-            <li><code>openFile Tutorial/1</code>
-            <li><code>openFile Lab/5</code>
             </li>
          </ul>
       </td>
