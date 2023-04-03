@@ -15,13 +15,26 @@ public enum HelpMenu {
     ADD("add") {
         @Override
         public String getCommandUsage() {
-            return "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]";
+            return "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE";
         }
     },
-    UPDATE("update") {
+    EDIT("edit") {
         @Override
         public String getCommandUsage() {
-            return "Update food item - update OLD ITEM to/NEW ITEM";
+            return "Edit a food item - edit INDEX [n/NAME] [u/UNIT] [q/QUANTITY] [e/EXPIRY DATE]"
+                    + OPTIONAL_MESSAGE;
+        }
+    },
+    DECREMENT("dec") {
+        @Override
+        public String getCommandUsage() {
+            return "Decrease qty of item - dec INDEX [q/QUANTITY TO DECREASE BY]" + OPTIONAL_MESSAGE;
+        }
+    },
+    INCREMENT("inc") {
+        @Override
+        public String getCommandUsage() {
+            return "Increase qty of item - inc INDEX [q/QUANTITY TO INCREASE BY]" + OPTIONAL_MESSAGE;
         }
     },
     DELETE("delete") {
@@ -30,29 +43,96 @@ public enum HelpMenu {
             return "Delete food item - delete INDEX";
         }
     },
-    TAG("tag") {
+    FIND("find") {
         @Override
         public String getCommandUsage() {
-            return "Tag food item - tag INDEX t/TAG NAME";
+            return "Find a food item - find NAME [ANOTHER NAME]" + OPTIONAL_MESSAGE;
         }
     },
     LIST("list") {
         @Override
         public String getCommandUsage() {
-            return "List food items - list";
+            return "Lists all food items - list";
+        }
+    },
+    VIEW("view") {
+        @Override
+        public String getCommandUsage() {
+            return "View a food item - view INDEX";
+        }
+    },
+    SORTBYEXPIRY("expiry") {
+        @Override
+        public String getCommandUsage() {
+            return "Sort food items by expiry date - expiry";
+        }
+    },
+    TAG("tag") {
+        @Override
+        public String getCommandUsage() {
+            return "Tag a food item - tag INDEX n/TAG NAME";
+        }
+    },
+    UNTAGTAG("untag") {
+        @Override
+        public String getCommandUsage() {
+            return "Remove a tag from a food item - untag INDEX n/TAG NAME";
+        }
+    },
+    DELETEBYTAG("delbytag") {
+        @Override
+        public String getCommandUsage() {
+            return "Deletes food items containing the specified tag(s) - delbytag n/TAG NAME [n/ANOTHER TAG NAME]"
+                    + OPTIONAL_MESSAGE;
+        }
+    },
+    LISTBYTAG("listbytag") {
+        @Override
+        public String getCommandUsage() {
+            return "Lists food items containing the specified tag(s) - listbytag n/TAG NAME [n/ANOTHER TAG NAME]"
+                    + OPTIONAL_MESSAGE;
+        }
+    },
+    CREATETAG("createtag") {
+        @Override
+        public String getCommandUsage() {
+            return "Create a new tag - createtag n/TAG NAME [n/ANOTHER TAG NAME]" + OPTIONAL_MESSAGE;
+        }
+    },
+    DELETETAG("deltag") {
+        @Override
+        public String getCommandUsage() {
+            return "Delete a tag - del tag n/TAG NAME [n/ANOTHER TAG NAME]" + OPTIONAL_MESSAGE;
+        }
+    },
+    LISTTAG("listtag") {
+        @Override
+        public String getCommandUsage() {
+            return "List all tags - listtag";
+        }
+    },
+    CLEAR("clear") {
+        @Override
+        public String getCommandUsage() {
+            return "Clears all food item AND tags - clear";
+        }
+    },
+    HELP("help") {
+        @Override
+        public String getCommandUsage() {
+            return getGeneralHelp();
         }
     },
     EXIT("exit") {
         @Override
         public String getCommandUsage() {
-            return "Exit WIFE - exit";
+            return "Exits WIFE - exit";
         }
     };
 
     private static final String COMMANDS_AVAILABLE = "Commands Available: ";
-
     private static final String INVALID_MESSAGE = "Command does not exist!";
-
+    private static final String OPTIONAL_MESSAGE = "\nParameters in brackets are optional.";
     private static final String MORE_INFO_MESSAGE =
             "Type 'help COMMAND' to see specific help for a command.";
 

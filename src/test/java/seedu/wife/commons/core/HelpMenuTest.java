@@ -27,7 +27,7 @@ public class HelpMenuTest {
     }
     @Test
     void getCommandUsage_checkCorrectResult_success() {
-        String expected = "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE [t/TAG]";
+        String expected = "Add food item - add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE";
         assertEquals(expected, HelpMenu.ADD.getCommandUsage());
     }
 
@@ -35,7 +35,8 @@ public class HelpMenuTest {
     void displayHelpMenu_checkCorrectOutput_success() {
         String expected = "Type 'help COMMAND' to see specific help for a command."
                 + System.lineSeparator()
-                + "Commands Available: add, update, delete, tag, list, exit";
+                + "Commands Available: add, edit, dec, inc, delete, find, list, view, expiry, "
+                + "tag, untag, delbytag, listbytag, createtag, deltag, listtag, clear, help, exit";
         String actual = HelpMenu.displayHelpMenu();
         assertEquals(expected, actual);
     }

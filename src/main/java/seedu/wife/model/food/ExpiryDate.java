@@ -26,6 +26,28 @@ public class ExpiryDate implements Comparable<ExpiryDate> {
         this.expiryDate = LocalDate.parse(date, VALID_DATE_FORMAT);
     }
 
+    /**
+     * Construct an {@code ExpiryDate} from formatted date.
+     * Only used for loading food item upon startup.
+     *
+     * @param date Expiry date of the food item wish to add in the fridge.
+     */
+    private ExpiryDate(LocalDate date) {
+        this.expiryDate = date;
+    }
+
+    /**
+     * Produces an expiry date object for loading food item upon start up.
+     *
+     * @param date Expiry date of the food item wish to add in the fridge.
+     * @return ExpiryDate object.
+     */
+    public static ExpiryDate of(String date) {
+        requireNonNull(date);
+        ExpiryDateValidator.validateOnLoad(date);
+        return new ExpiryDate(LocalDate.parse(date, VALID_DATE_FORMAT));
+    }
+
     @Override
     public boolean equals(Object otherDate) {
         return otherDate == this

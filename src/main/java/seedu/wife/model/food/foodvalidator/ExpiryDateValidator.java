@@ -49,10 +49,9 @@ public class ExpiryDateValidator implements FoodValidator {
      * @return True if the date is after the date of insertion, else false.
      */
     public static boolean isDateAfter(String date) {
-        // LocalDate expiryDate = LocalDate.parse(date, VALID_DATE_FORMAT);
-        // LocalDate dateNow = LocalDate.now();
-        // return expiryDate.isAfter(dateNow);
-        return true;
+        LocalDate expiryDate = LocalDate.parse(date, VALID_DATE_FORMAT);
+        LocalDate dateNow = LocalDate.now();
+        return expiryDate.isAfter(dateNow);
     }
 
     /**
@@ -64,5 +63,15 @@ public class ExpiryDateValidator implements FoodValidator {
         checkArgument(isValidDateFormat(date), MESSAGE_FORMAT_CONSTRAINTS);
         checkArgument(isDateExist(date), MESSAGE_DATE_NOT_EXIST);
         checkArgument(isDateAfter(date), MESSAGE_DATE_NOT_AFTER);
+    }
+
+    /**
+     * Validates the expiry date before adding it into wife.
+     *
+     * @param date Expiry date obtained from storage.
+     */
+    public static void validateOnLoad(String date) {
+        checkArgument(isValidDateFormat(date), MESSAGE_FORMAT_CONSTRAINTS);
+        checkArgument(isDateExist(date), MESSAGE_DATE_NOT_EXIST);
     }
 }
