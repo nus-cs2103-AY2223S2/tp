@@ -145,6 +145,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         return editPerson;
     }
 
+    /**
+     * Updates the internal meeting list
+     */
+    public void refreshInternalMeetingList() {
+        persons.refreshInternalMeetingList();
+    }
+
     //// util methods
 
     @Override

@@ -184,4 +184,9 @@ public class ModelManager implements Model {
         updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return editedPerson;
     }
+
+    @Override
+    public void refreshFilteredMeetingList() {
+        addressBook.refreshInternalMeetingList();
+    }
 }
