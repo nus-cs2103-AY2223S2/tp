@@ -150,6 +150,8 @@ After a few seconds, a GUI resembling the one shown below will appear. Please ta
    ![Ui](images/Ui.png)
 <center>Diagram 1: The GUI upon start up.</center>
 
+<br>
+
 <div markdown="span" class="alert alert-danger">
 
 :warning: **Warning!**
@@ -1001,9 +1003,9 @@ The command `sort m/d n/a` would mean that `EduMate` would first sort contacts b
 
 Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same common modules as you.
 
-<div markdown="block" class="alert alert-success">
-
 ##### More Examples of Usage:
+
+<div markdown="block" class="alert alert-success">
 
 :bulb: **Examples**<br>
 * `sort n/d`: Sorts by name in descending order
@@ -1118,7 +1120,7 @@ Any organised meet ups will be displayed at `EduMate`'s [Scheduled Meet Up Panel
 
 <div markdown="span" class="alert alert-danger">
 
-:warning:**Common Mistake**
+:warning:**Common Mistake**<br>
 
 The American spellings, `organize` and `unorganize` are not accepted by `EduMate`.
 
