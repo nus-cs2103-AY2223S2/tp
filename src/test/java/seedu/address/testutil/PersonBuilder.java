@@ -174,8 +174,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code Task} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTask(String task) {
-        this.tasks = this.tasks.add(new Task(task));
+    public PersonBuilder withTask(String ... task) {
+        this.tasks = new TaskList(SampleDataUtil.getTaskList(task));
         return this;
     }
 
