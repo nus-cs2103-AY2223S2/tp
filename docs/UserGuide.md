@@ -4,7 +4,7 @@ title: User Guide
 ---
 SportSync is a **desktop app for managing training sessions and athletes, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SportSync can get your training management tasks done faster than traditional GUI apps.
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -66,6 +66,7 @@ Refer to the [Features](#features) below for details of each command.
 
 </div>
 
+## General
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
@@ -100,6 +101,26 @@ Format: `redo`
 If the athlete list is changed after an undo command, a redo cannot be done.
 </div>
 
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+SportSync data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+SportSync data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced coaches are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, SportSync will discard all data and start with an empty data file at the next run.
+</div>
+
+## Athelete Management
+
 ### Adding an athlete: `add`
 
 Adds an athlete to SportSync.
@@ -111,8 +132,10 @@ An athlete can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 r/44 a/UTown Residences, #01-01`
-* `add n/Betsy Crowe t/friend a/Sheares Hall p/1234567 t/basketball r/5`
+<br>`add n/John Doe p/98765432 r/44 a/UTown Residences, #01-01`
+<br> Adds an athlete with name "John Doe", phone number "98765432", Payrate "44" and address "UTown Residences, #01-01".
+<br>`add n/Betsy Crowe t/friend a/Sheares Hall p/1234567 t/basketball r/5`
+<br> Adds an athlete with name "Betsy Crowe", phone number "1234567", Payrate "5", address "Sheares Hall" and tags "friend", "basketball".
 
 ### Listing all athletes : `list`
 
@@ -126,7 +149,8 @@ Edits an existing athlete in the athlete list.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the athlete at the specified `INDEX`. The index refers to the index number shown in the displayed athlete list. The index **must be a positive integer** 1, 2, 3, …​
+* The index refers to the index number shown in the displayed athlete list.
+* The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the athlete will be removed. <br>(i.e. adding of tags is not cumulative)
@@ -134,8 +158,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 r/3` Edits the phone number and pay rate of the 1st athlete to be `91234567` and `3` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd athlete to be `Betsy Crower` and clears all existing tags.
+<br>`edit 1 p/91234567 r/3` <br>Edits the phone number and pay rate of the 1st athlete to be `91234567` and `3` respectively.
+<br>`edit 2 n/Betsy Crower t/` <br> Edits the name of the 2nd athlete to be `Betsy Crower` and clears all existing tags.
 
 ### Locating athletes by name: `find`
 
@@ -151,9 +175,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find carl alice` returns `Alice Pauline`, `Carl Kurz`<br><br>
-  ![result for 'find alex david'](images/findCarlAliceResult.png)
+<br>`find John` <br> Returns "john" and "John Doe"
+<br>`find carl alice` <br>Returns "Alice Pauline", "Carl Kurz"<br>
+![result for 'find alex david'](images/findCarlAliceResult.png)
 
 ### Deleting an athlete : `delete`
 
@@ -161,13 +185,12 @@ Deletes the specified athlete from the athlete list.
 
 Format: `delete INDEX`
 
-* Deletes the athlete at the specified `INDEX`.
 * The index refers to the index number shown in the displayed athlete list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd athlete in the athlete list.
-* `find Betsy` followed by `delete 1` deletes the 1st athlete in the results of the `find` command.
+<br>`list` followed by `delete 2` <br>Deletes the 2nd athlete in the athlete list.
+<br>`find Betsy` followed by `delete 1` <br> Deletes the 1st athlete in the results of the `find` command.
 
 ### Clearing all athletes : `clear`
 
@@ -175,11 +198,6 @@ Clears all athletes from the athlete list.
 
 Format: `clear`
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
 
 ### Sorting the athlete list : `sort`
 
@@ -189,37 +207,37 @@ Format: `sort ATTRIBUTE ORDER`
 
 * Sorts the athlete according to specified attribute `ATTRIBUTE` and in specified `ORDER`.
 * Attributes:
-  * 1 - Name
-  * 2 - Pay rate
+    * 1 - Name
+    * 2 - Pay rate
 * Order:
-  * 1 - Ascending
-  * 2 - Descending
+    * 1 - Ascending
+    * 2 - Descending
 
 Examples:
-* `sort 1 1` sorts the athlete list by name in alphabetical order.
-* `sort 2 1` sorts the athlete list according to pay rate, from cheapest to most expensive.
+<br>`sort 1 1` <br>Sorts the athlete list by name in alphabetical order.
+<br>`sort 2 1` <br> Sorts the athlete list according to pay rate, from cheapest to most expensive.
 
+## Tag Management
 ### Adding a tag : `add-tag`
 
 Adds a specified tag to a specified athlete.
 
 Format: `add-tag INDEX t/TAGNAME`
-* Adds a tag of `TAGNAME` to the athelete at `INDEX`
 
 Examples:
-* add-tag 1 t/Hall adds a tag of name `Hall` to the person at Index 1.
+`add-tag 1 t/Hall`
+<br> Adds a tag of name "Hall" to the person at Index 1.
 
 ### Removing a tag : `remove-tag`
 
-Adds a specified tag to a specified athlete.
+Removes a specified tag to a specified athlete.
 
 Format: `remove-tag INDEX t/TAGNAME`
 
-* Removes a tag of `TAGNAME` to the athelete at `INDEX`
-
 
 Examples:
-* remove-tag 1 t/Hall remove a tag of name `Hall` to the person at Index 1.
+`remove-tag 1 t/Hall`
+<br>Remove a tag of name "Hall" from the person at Index 1.
 
 
 ### Showing athletes with the specified tag : `show`
@@ -232,41 +250,19 @@ Format: `show [GROUP1]…​`
 * At least one tag name **must be provided.**
 
 Examples:
-* `show varsity` shows people belonging to group `varsity`.
-* `show hockey tennis` shows people belonging to either group `hockey`, `tennis` or both.
+<br>`show varsity` <br>shows people belonging to group `varsity`.
+<br>`show hockey tennis`<br>Shows people belonging to either group `hockey`, `tennis` or both.
 
-### Listing all groups in SportSync : `display`
-
-Lists all groups created by the coach.
-
-Format: `display`
-
-* Displays all existing coach-created groups.
-* Only the group names themselves are displayed, not the athletes belonging to those groups.
-
-### Saving the data
-
-SportSync data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-SportSync data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced coaches are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, SportSync will discard all data and start with an empty data file at the next run.
-</div>
-
+## Session Management
 ### Create a session : `create-session`
 
 Adds a new session to the session list.
 
 Format: `create-session n/NAME s/SESSION l/LOCATION `
 
-* Creates a session with the specified name, session date-time, and location.
 * Duplicate sessions cannot be created.
 
-Examples:
-* `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2` creates a session with name Hall from 10 March 2022, 10-11 a.m. at MPSH2.
+Examples:`create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2` <br> Creates a session with name Hall from 10 March 2022, 10-11 a.m. at MPSH2.
 
 ### Delete an existing session : `delete-session`
 
@@ -274,11 +270,10 @@ Removes an existing session from the address book.
 
 Format: `delete-session INDEX `
 
-* Deletes the session existing at the index specified.
 * Sessions that do not exist cannot be deleted.
 
 Examples:
-* `delete-session 3` deletes the 3rd session in the session list.
+`delete-session 3` <br> Deletes the 3rd session in the session list.
 
 ### Edit an existing session : `session-edit`
 
@@ -290,7 +285,7 @@ Format: `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`
 * Session must already exist.
 
 Examples:
-* `session-edit 2 n/Hall` changes the location of the 2nd session in the session list to Hall.
+`session-edit 2 n/Hall` <br>Changes the location of the 2nd session in the session list to Hall.
 
 ### Mark an athlete's attendance : `mark`
 
@@ -301,7 +296,7 @@ Format: `mark INDEX n/NAME`
 * Session and athlete must already exist.
 
 Examples:
-* `mark 1 n/John Doe` marks John Doe's attendance as present in the 1st session in the session list.
+`mark 1 n/John Doe` <br> Marks John Doe's attendance as present in the 1st session in the session list.
 
 ### Unmark an athlete's attendance : `unmark`
 
@@ -312,7 +307,7 @@ Format: `unmark INDEX n/NAME`
 * Session and athlete must already exist.
 
 Examples:
-* `unmark 1 n/John Doe` marks John Doe's attendance as absent in the 1st session in the session list.
+`unmark 1 n/John Doe` <br> Marks John Doe's attendance as absent in the 1st session in the session list.
 
 ### Adding an athlete to a session: `student-add`
 
@@ -321,7 +316,7 @@ Adds an athlete of a specified index to the specified session.
 Format: `student-add INDEX n/HALL`
 
 Examples:
-- `student-add 1 n/hall` Adds an athlete at index 1 of the contact list to the session “Hall”.
+`student-add 1 n/hall` <br>Adds an athlete at index 1 of the contact list to the session “Hall”.
 
 ### Removing an athlete from a session: `student-remove`
 
@@ -330,7 +325,20 @@ Removes an athlete of a specified index from the specified session.
 Format: `student-remove INDEX n/HALL`
 
 Examples:
-* `student-remove 1 n/hall` Removes an athlete at index 1 of the contact list from the session “Hall”.
+`student-remove 1 n/hall`
+<br> Removes an athlete at index 1 of the contact list from the session “Hall”.
+
+## Income Analytics
+
+The **Income Analytics** Panel is an automated feature that tracks and displays your coaching income based on athlete attendance and pay rates.
+
+### How to view
+The panel is automatically updated based on athlete attendance and pay rates. It displays today's income, weekly income, monthly income, and lifetime income.
+
+### Features
+The displayed income is based on the athlete's pay rate per hour and the session duration. It is only reflected if the athlete is marked as present.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **FAQ**
@@ -345,25 +353,33 @@ Examples:
 * **Attendance**: A record of the presence or absence of an athlete at a training session.
 * **Coach**: A person who trains and directs athletes or a team.
 * **Session**: A training period for athletes conducted by a coach.
+* **Tag**: A label attached to an athlete in SportSync, used to group athletes together for easier management.
 
-Tag: A label attached to an athlete in SportSync, used to group athletes together for easier management.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Command summary**
 
-| Action        | Format, Examples                                                                                                                                       |
-|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME p/PHONE_NUMBER r/PAY_RATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 r/7 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**     | `clear`                                                                                                                                                |
-| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                    |
-| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee r/3`                                           |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                             |
-| **List**      | `list`                                                                                                                                                 |
-| **Help**      | `help`                                                                                                                                                 |
-| **Sort**      | `sort ATTRIBUTE ORDER`<br> e.g., `sort 1 2`                                                                                                            |
-| **Group**     | `group m/MODIFICATION g/GROUPNAME`<br> e.g., `group m/add g/Team Dynamite`                                                                             |
-| **Group Mod** | `groupmod INDEX m/MODIFICATION g/GROUPNAME`<br> e.g., `groupmod 2 m/add g/Team Dynamite`                                                               |
-| **Show**      | `show [TAG1]…​`<br> e.g., `show Hall…​`                                                                                                                |
-| **Display**   | `display`                                                                                                                                              |
-| **Undo**      | `undo`                                                                                                                                                 |
-| **Redo**      | `redo`                                                                                                                                                 |
+| Action                | Format, Examples                                                                                                                                      |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**              | `help`                                                                                                                                                |
+| **Undo**              | `undo`                                                                                                                                                |
+| **Redo**              | `redo`                                                                                                                                                |
+| **Exit**              | `exit`                                                                                                                                                |
+| **Add**               | `add n/NAME p/PHONE_NUMBER r/PAY_RATE a/ADDRESS [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 r/7 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **List**              | `list`                                                                                                                                                |
+| **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g. `edit 2 n/James Lee r/3`                                           |
+| **Find**              | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                                                             |
+| **Delete**            | `delete INDEX`<br> e.g. `delete 3`                                                                                                                    |
+| **Clear**             | `clear`                                                                                                                                               |
+| **Sort**              | `sort ATTRIBUTE ORDER`<br> e.g. `sort 1 2`                                                                                                            |
+| **Add Tag**           | `add-tag INDEX t/TAGNAME​` <br> e.g. `add-tag 2 t/Private`                                                                                            |
+| **Remove Tag**        | `remove-tag INDEX t/TAGNAME​` <br> e.g. `remove-tag 2 t/Private`                                                                                      |
+| **Show**              | `show [TAG1]`<br> e.g. `show Hall`                                                                                                                    |
+| **Create Session**    | `create-session n/NAME s/SESSION l/LOCATION`<br> e.g., `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2`                         |
+| **Delete Session**    | `delete-session INDEX`<br> e.g. `delete-session 3`                                                                                                    |
+| **Edit Session**      | `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`<br> e.g. `session-edit 2 n/Hall`                                                               |
+| **Mark Attendance**   | `mark INDEX n/NAME` <br> e.g. `mark 1 n/John Doe`                                                                                                     |
+| **UnMark Attendance** | `unmark INDEX n/NAME` <br> e.g. `unmark 1 n/John Doe`                                                                                                 |
+| **Add Student**       | `student-add INDEX n/HALL` <br> e.g. `student-add 1 n/hall`                                                                                           |
+| **Remove Student**    | `student-remove INDEX n/HALL` <br> e.g. `student-remove 1 n/hall`                                                                                     |
