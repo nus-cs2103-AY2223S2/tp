@@ -178,27 +178,27 @@ public class StringUtilTest {
     *
     * The test method below tries to verify all above with a reasonably low number of test cases.
     */
-    
+
     @Test
     public void containsPhraseIgnoreCase_validInputs_correctResult() {
-        
+
         // Empty sentence
         assertFalse(StringUtil.containsKeywordIgnoreCase("", "abc")); // Boundary case
         assertFalse(StringUtil.containsKeywordIgnoreCase("    ", "123"));
-        
+
         // Matches a query phrase
         assertTrue(StringUtil.containsKeywordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
 
         // Does not match a query phrase
         assertFalse(StringUtil.containsKeywordIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
-        
+
         // Matches word in the sentence, different upper/lower case letters
         assertTrue(StringUtil.containsKeywordIgnoreCase("aaa bBb ccc", "Bbb")); // Middle word (boundary case)
         assertTrue(StringUtil.containsKeywordIgnoreCase("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
         assertTrue(StringUtil.containsKeywordIgnoreCase("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
         assertTrue(StringUtil.containsKeywordIgnoreCase("Aaa", "aaa")); // Only one word in sentence (boundary case)
         assertTrue(StringUtil.containsKeywordIgnoreCase("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
-        
+
         // Matches multiple words in sentence
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
