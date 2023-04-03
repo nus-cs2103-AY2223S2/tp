@@ -1219,7 +1219,7 @@ What you should see: <br>
 
 This command was built to help you and other new users get acquainted with `EduMate` functions. 
 
-`sample` helps to populate `EduMate` with fake profiles, so you can experiment with the commands without any implication to your real contacts.
+`sample` helps to populate `EduMate` with fake profiles, so you can experiment with the commands without affecting your real contacts.
 
 
 <div markdown="span" class="alert alert-info">
