@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.documents;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 import java.util.Set;
