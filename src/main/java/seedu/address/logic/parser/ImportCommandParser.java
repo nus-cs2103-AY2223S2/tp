@@ -36,7 +36,6 @@ public class ImportCommandParser {
         } else {
             String stringOfModuleCodes = argMultimap.getValue(PREFIX_MODULE).get();
             moduleCodeSet = ParserUtil.parseMultiModuleCode(stringOfModuleCodes);
-
         }
 
         String fileName = argMultimap.getPreamble().trim();

@@ -58,6 +58,10 @@ public class ListObserver implements
         }
 
         if (isVideosAffectedByLectureEdit(curDisplayListLevel, curModule, curLecture, originalLecture, moduleCode)) {
+            if (editedLecture == null) { // Lecture is deleted
+                model.updateAllFilteredListAsHidden();
+                return;
+            }
             model.updateFilteredVideoList(new VideoPredicate(curLecture), curModule.getCode(), curLecture);
         }
     }

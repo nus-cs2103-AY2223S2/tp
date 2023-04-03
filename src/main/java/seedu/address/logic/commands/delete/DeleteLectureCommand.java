@@ -21,7 +21,7 @@ public class DeleteLectureCommand extends DeleteCommand {
     public static final String MESSAGE_USAGE =
             "(2) Deletes one or more lectures from a module.\n"
             + "Parameters: {lecture_name_1}[, {lecture_name_2}[, ...]] " + PREFIX_MODULE + " {module_code}\n"
-            + "Example: " + COMMAND_WORD + " Lecture 01 " + PREFIX_MODULE + " CS2103/T";
+            + "Example: " + COMMAND_WORD + " Lecture 01 " + PREFIX_MODULE + " CS2103T";
 
     public static final String MESSAGE_DELETE_LECTURE_SUCCESS = "Deleted Lecture: %1$s from Module %2$s";
 

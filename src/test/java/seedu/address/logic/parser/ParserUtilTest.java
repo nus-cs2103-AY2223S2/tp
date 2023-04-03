@@ -13,6 +13,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -20,6 +21,10 @@ public class ParserUtilTest {
 
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_MODULE_CODE_1 = "CS2040S";
+    private static final String VALID_MODULE_CODE_2 = "EG2310";
+    private static final String INVALID_MODULE_CODE = "#CS2030";
+
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -194,4 +199,51 @@ public class ParserUtilTest {
         assertEquals(expectedTagSet, actualTagSet);
     }
 
+    @Test
+    public void parseModuleCode_null_throwNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseModuleCode(null));
+    }
+
+    @Test
+    public void parseModuleCode_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseModuleCode(INVALID_MODULE_CODE));
+    }
+
+    @Test
+    public void parseModuleCode_emptyValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseModuleCode(" "));
+    }
+
+    @Test
+    public void parseModuleCode_validValue_returnModuleCode() throws ParseException {
+        assertEquals(new ModuleCode(VALID_MODULE_CODE_1), ParserUtil.parseModuleCode(VALID_MODULE_CODE_1));
+    }
+
+
+    @Test
+    public void parseMultiModuleCode_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMultiModuleCode(null));
+    }
+
+    @Test
+    public void parseMultiModuleCode_emptyValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultiModuleCode(" "));
+    }
+
+    @Test
+    public void parseMultiModuleCode_invalidModuleCode_throwParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultiModuleCode(INVALID_MODULE_CODE));
+    }
+
+    @Test
+    public void parseMultiModuleCode_stringOfInvalidModuleCodes_throwParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMultiModuleCode(
+                VALID_MODULE_CODE_1 + ", " + INVALID_MODULE_CODE));
+    }
+
+    @Test
+    public void parseMultiModuleCode_stringOfValidModuleCodes_returnSetOfModuleCodes() throws ParseException {
+        assertEquals(new HashSet<>(List.of(new ModuleCode(VALID_MODULE_CODE_1), new ModuleCode(VALID_MODULE_CODE_2))),
+                ParserUtil.parseMultiModuleCode(VALID_MODULE_CODE_1 + ", " + VALID_MODULE_CODE_2));
+    }
 }

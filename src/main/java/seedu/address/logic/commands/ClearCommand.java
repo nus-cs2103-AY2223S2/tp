@@ -20,7 +20,6 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.clearTracker();
         List<ReadOnlyModule> modules = model.getTracker()
                 .getModuleList()
                 .stream()
@@ -31,6 +30,9 @@ public class ClearCommand extends Command {
         for (int i = 0; i < modules.size(); i++) {
             clearedModuleInfos[i] = new ModuleEditInfo(modules.get(i), null);
         }
+
+        model.clearTracker();
+
         return new CommandResult(MESSAGE_SUCCESS, clearedModuleInfos);
     }
 }
