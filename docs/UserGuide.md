@@ -309,12 +309,12 @@ Format: `tank add d/<TANK_NAME>`
 
 Parameters:
 * Prefix parameters:
-  * `d/` - [Description prefix.](#description-ddescription) Specifies the name of the tank
+  * `d/<TANK_NAME>` - [Description prefix.](#description-ddescription) Specifies the name of the tank
+    * `<TANK_NAME>` is alphanumeric and can contain spaces. It is case-sensitive
 
-> :information_source: Additional information: You cannot add tanks with the same description to *Fish Ahoy!*
-> <br> Descriptions are case-sensitive also!
+> :exclamation: Warning: You cannot add tanks with the same description to *Fish Ahoy!*
 
-Examples:
+Example:
 * `tank add d/Freshwater tank` adds a new tank with the following details:
   * Description: Freshwater tank
 
@@ -326,17 +326,36 @@ Use this command to remove tanks from the system, when you are retiring a tank.
 
 Format: `tank delete <TANK_INDEX>`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
-You can't delete a tank that has fishes and tasks attached to it. Remove those first before deleting the tank.
-</div>
+Parameters:
+* Index parameters:
+  * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
+    * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
+  
+> :exclamation: Warning: You can't delete a tank that has fishes and tasks attached to it. Remove those first before deleting the tank.
+
+Example:
+* `tank delete 2` deletes the second tank in the [tanks panel](#about-the-interface)
 
 ### Feeding a tank: `tank feed`
 
-Feed a tank for the present day (i.e. today), which updates `lastFedDate` of all fishes in that tank to the present day.
+You can feed all the fish in a tank, updating all the fishes' last fed date to the current date and time with the `tank feed` command.
 
-Use this command when you feed your fishes, so you can easily update their last fed date!
+Use this command when you feed your fishes in real life, so you can keep track of when you last fed your fishes in *Fish Ahoy!*
 
 Format: `tank feed <TANK_INDEX>`
+
+Parameters:
+* Index parameters:
+  * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
+    * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
+
+> :bulb: Tip: If you do not want to set the fishes' last fed date to the current date and time, you can manually update it with the
+> `fish edit <FISH_INDEX> lfd/<LAST_FED_DATE>` command!
+
+Examples:
+* It is currently the 2nd of April, 12 pm. If you have a tank which index is 1, with 2 fishes, named 'Fish A' and 'Fish B', `tank feed 1` sets the following details of 'Fish A' and 
+'Fish B':
+  * Last fed date: 02/04/2023 12:00
 
 ### Viewing a tank: `tank view`
 
