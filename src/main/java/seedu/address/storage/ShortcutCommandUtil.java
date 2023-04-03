@@ -79,23 +79,31 @@ public class ShortcutCommandUtil {
         UnfreezeCommand.commandWords = loadWords(UNFREEZE_PATH, UnfreezeCommand.commandWords);
     }
 
-//    /**
-//     * Check if a shortcut to be used already exists.
-//     * @return whether the shortcut exists
-//     */
-//    public static boolean checkIfShortcutExists(String shortForm) {
-//        return AddCommand.commandWords.contains(shortForm)
-//                || AddCommand.commandWords.contains(shortForm)
-//                || AddCommand.commandWords.contains(shortForm)
-//                || AddCommand.commandWords.contains(shortForm)
-//                || AddCommand.commandWords.contains(shortForm)
-//                || AddCommand.commandWords.contains(shortForm)
-//                || AddCommand.commandWords.contains(shortForm)
-//                || AddCommand.commandWords.contains(shortForm)
-//                || AddCommand.commandWords.contains(shortForm)
-//                || AddCommand.commandWords.contains(shortForm)
-//                || AddCommand.commandWords.contains(shortForm);
-//    }
+    /**
+     * Check if a shortcut to be used already exists.
+     * @return whether the shortcut exists
+     */
+    public static boolean checkIfShortcutExists(String shortForm) {
+        return AddCommand.commandWords.contains(shortForm)
+                || ClearCommand.commandWords.contains(shortForm)
+                || DeleteCommand.commandWords.contains(shortForm)
+                || DeleteTagCommand.commandWords.contains(shortForm)
+                || EditCommand.commandWords.contains(shortForm)
+                || ExitCommand.commandWords.contains(shortForm)
+                || ExportCommand.commandWords.contains(shortForm)
+                || FilterCommand.commandWords.contains(shortForm)
+                || FreezeCommand.commandWords.contains(shortForm)
+                || FindCommand.commandWords.contains(shortForm)
+                || HelpCommand.commandWords.contains(shortForm)
+                || ImportCommand.commandWords.contains(shortForm)
+                || ListCommand.commandWords.contains(shortForm)
+                || MassOpCommand.commandWords.contains(shortForm)
+                || RedoCommand.commandWords.contains(shortForm)
+                || ShortcutCommand.commandWords.contains(shortForm)
+                || TagCommand.commandWords.contains(shortForm)
+                || UndoCommand.commandWords.contains(shortForm)
+                || UnfreezeCommand.commandWords.contains(shortForm);
+    }
 
     /**
      * Saves user-defined shortcuts to a file.
