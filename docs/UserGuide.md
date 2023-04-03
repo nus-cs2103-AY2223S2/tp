@@ -3,7 +3,14 @@ layout: page
 title: User Guide
 ---
 
-LE TRACKER is a gamified tracking application that allows fast typist to easily log their lecture progress, search for lecture by mod code/ keywords/ topics for a stress-free learning environment. Unlike todo list applications, LE TRACKER is tailored to the needs of students; it provides additional information specific to lecture media such as watch progress and topics.
+Le Tracker is a desktop application that focuses on tracking lecture watch progress. Designed for NUS students who are
+fast typists, it seeks to address the problem of students losing track of their watch progress, especially for students
+falling behind on multiple lectures.
+
+Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs by providing features such as the
+ability view the overall lecture progress of a module and the ability to tag each lecture with keywords (such as the
+topic or difficulty of the lecture) that allow for easy filtering when prioritising. These features help students stay
+organized and keep track of their progress more effectively.
 
 ## Table of Contents
 
@@ -60,6 +67,8 @@ LE TRACKER is a gamified tracking application that allows fast typist to easily 
 ---
 
 ## Quick Start
+
+<!-- TODO: Simplify this -->
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -184,6 +193,8 @@ Refer to the [Features](#features) below for details of each command.
 ---
 
 ## Navigation
+
+<!-- TODO: Fill this in -->
 
 ---
 
