@@ -180,7 +180,9 @@ public class ArchiveTest {
         assertTrue(model.hasModule(TypicalModules.getSt2334().getCode()));
     }
 
-
+    /**
+     * A storage stub that facilitates the saving and reading tracker of export and import test.
+     */
 
     private class StorageStubForArchiveTest extends StorageStub {
         private final Path archivePath;
@@ -208,6 +210,10 @@ public class ArchiveTest {
             return Optional.of(this.tracker);
         }
     }
+
+    /**
+     * A storage stub that contains a tracker with the module CS2040S.
+     */
 
     private class StorageStubWithTrackerWithCS2040S extends StorageStub {
         private final Path archivePath;
@@ -295,7 +301,7 @@ public class ArchiveTest {
     }
 
     /**
-     * A {@code Model} stub that contains a tracker filled with Typical Modules.
+     * A {@code Model} stub that contains a tracker filled with CS2040S and ST2334.
      */
 
     private class ModelStubWithFilledTracker extends ModelStub {
