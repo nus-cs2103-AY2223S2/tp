@@ -216,8 +216,8 @@ We have chosen a light purple and white color scheme for the application, as the
 4. [Scheduled Meet Up Panel](#scheduled-meet-up-panel)
 5. [Command Response Box](#command-response-box)
 6. [Command Box](#command-box)
-7. Help Button
-8. Exit Button
+7. [Help Button](#help-button)
+8. [Exit Button](#exit-button)
 
 The following diagram shows the layout of components numbered exactly as above.
 
