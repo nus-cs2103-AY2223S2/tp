@@ -76,6 +76,7 @@ public class PostalLocationMapping {
         POSTAL_LOCATION_MAPPING.put(PostalSector.SECTOR49, Location.DIST17);
         POSTAL_LOCATION_MAPPING.put(PostalSector.SECTOR50, Location.DIST17);
         POSTAL_LOCATION_MAPPING.put(PostalSector.SECTOR81, Location.DIST17);
+        POSTAL_LOCATION_MAPPING.put(PostalSector.SECTOR91, Location.DIST17);
 
         POSTAL_LOCATION_MAPPING.put(PostalSector.SECTOR51, Location.DIST18);
         POSTAL_LOCATION_MAPPING.put(PostalSector.SECTOR52, Location.DIST18);
