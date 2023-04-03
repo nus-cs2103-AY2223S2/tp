@@ -1330,20 +1330,74 @@ Help NUS students maintain both their social and academic life by lowering the b
 **MSS**
 
 1. User requests to add a person to the contact list with their details.
-2. EduMate shows the list of contacts with the newly added person.
+2. EduMate creates a new person and assigns an index to them.
+3. EduMate shows the list of contacts with the newly added person.
+4. EduMate shows the added person's information in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given details are invalid.
+* 1a. The given name is invalid.
     * 1a1. EduMate shows an error message.
 
-  Use case resumes at step 1
-* 1b. The person already exists in the contact list.
+* 1b. The person with the given name already exists in the contact list.
     * 1b1. EduMate shows an error message.
 
+* 1c. The given station name does not match our data.
+    * 1c1. EduMate shows an error message.
+
+* 1d. The given phone number does not match our specifications.
+    * 1d1. EduMate shows an error message.
+
+* 1e. The given telegram handle does not match our specifications.
+    * 1e1. EduMate shows an error message.
+
+* 1f. The given email address does not match our specification.
+    * 1f1. EduMate shows an error message.
+
+* 1g. No group tags are given.
+
   Use case resumes at step 1
+* 1h. No module tags are given.
+
+  Use case resumes at step 1
+
+**Use case: UC03 - Add a contact with missing fields**
+
+**MSS**
+
+1. User requests to add a person to the contact list with missing fields.
+2. EduMate creates a new person with default values and assigns an index to them.
+3. EduMate shows the list of contacts with the newly added person.
+4. EduMate shows the added person's information in the profile panel. 
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The name is invalid or missing.
+    * 1a1. EduMate shows an error message.
+
+* 1f. The person with the given name already exists in the contact list.
+    * 1f1. EduMate shows an error message.
+
+* 2a. The email field is missing.
+    * 2a1. EduMate assigns an email based on the name.
+  
+  Use case resumes at step 2
+* 2b. The telegram handle field is missing.
+    * 2b1. EduMate assigns a telegram handle based on the name.
+  
+  Use case resumes at step 2
+* 2c. The station field is missing.
+    * 2c1. EduMate assigns a default station "Kent Ridge" to the person.
+  
+  Use case resumes at step 2
+* 2d. The phone field is missing.
+    * 2d1. EduMate assigns a default phone number "00000000" to the person.
+
+  Use case resumes at step 2
 
 **Use case: UC03 - Edit a contact**
 
@@ -1351,6 +1405,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 1. User requests to edit a person's details with new information.
 2. EduMate edits the person's information.
+3. EduMate shows the edited person's information in the profile panel.
 
    Use case ends.
 
@@ -1359,16 +1414,17 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
 * 1b. The given details are invalid.
     * 1b1. EduMate shows an error message.
 
-  Use case resumes at step 1.
+* 1c. The edited name is already found in the EduMate.
+    * 1c1. EduMate shows an error message.
 
 **Use case: UC04 - Delete a contact**
 
 1. User requests to delete a person from the contact list.
 2. EduMate deletes the person from the contact list.
+3. EduMate shows the user's information in the profile panel.
 
    Use case ends.
 
@@ -1377,12 +1433,12 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
+**Use case: UC05 - Tag a basic module to a contact**
 
-**Use case: UC05 - Tag a module to a contact**
-
-1. User requests to add a module tag to a contact.
+1. User requests to add a basic module tag to a contact.
 2. EduMate tags the module to the contact.
+3. EduMate displays the tagged person's information in the profile panel.
+4. EduMate gives feedback for what modules have been added.
 
    Use case ends.
 
@@ -1391,17 +1447,51 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
-
-* 1b. The given details is invalid.
+* 1b. The given module code is invalid.
     * 1b1. EduMate shows an error message.
 
-  Use case resumes at step 1.
+* 2a. The module code exists in the person's contact.
+    * 2a1. EduMate does not add any tags.
+
+  Use case resumes at step 2.
+
+**Use case: UCXX - Tag a non-basic module to a contact**
+
+1. User requests to add a non-basic module tag to a contact.
+2. EduMate assigns lessons to the contact.
+3. EduMate tags the module to the contact.
+4. EduMate displays the tagged person's information in the profile panel.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. EduMate shows an error message.
+
+* 1b. The given module information is invalid.
+    * 1b1. EduMate shows an error message.
+
+* 2a. The lesson clashes with the contact's timetable.
+    * 2a1. EduMate shows an error message.
+
+* 2b. The added lessons clash with each other.
+    * 2b1. EduMate shows an error message.
+
+* 3a. The module does not exist in the contact's module set.
+    * 3a1. EduMate adds the module and lesson to the contact's module set.
+    
+  Use case resumes at step 3.
+* 3b. The module exists in the contact's module set but the lesson does not.
+    * 3b1. EduMate adds the module and lesson to the contact's module set.
+  
+  Use case resumes at step 3.
+* 3c. The module and lesson exist in the contact's module set.
+    * 3c1. EduMate throws an error message.
 
 **Use case: UC06 - Untag a module from a contact**
 
 1. User requests to remove a module tag from a contact.
 2. EduMate untags the module from the contact.
+3. EduMate removes the associated lessons from the contact.
 
    Use case ends.
 
