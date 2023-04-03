@@ -44,7 +44,13 @@ public class RecurCommandParser implements Parser<RecurCommand> {
                     RecurCommand.MESSAGE_USAGE));
         }
 
-        index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RecurCommand.MESSAGE_USAGE), pe);
+        }
+
         endDate = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get());
         recurFactor = ParserUtil.parseRecurFactor(argMultimap.getValue(CliSyntax.PREFIX_EVERY).get());
 

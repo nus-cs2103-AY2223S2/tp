@@ -105,7 +105,7 @@ public class RecurCommand extends Command {
         int daysDiff = (int) baseDate.getDaysBetween(endDate.date);
 
         if (daysDiff > maxDaysInMonth) {
-            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP));
+            throw new CommandException(MESSAGE_RECUR_FACTOR_CAP);
         }
 
         Date newDate = new Date(eventToRecur.getDate().date.plusDays(1).toString());
