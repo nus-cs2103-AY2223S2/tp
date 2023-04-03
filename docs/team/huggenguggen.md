@@ -26,7 +26,7 @@ Given below are my contributions to the project.
       * Setting an alert for `Deadlines` and `Events` felt like a natural function.
       * With alert, we thought a pop-up UI similar to `help` made sense.
       * We realized this gets in the way of users who want to continue typing and was counter to CLI restraint.
-      * I then remade the UI so that `alerts` wouuld appear on the right instead.
+      * I then remade the UI so that `alerts` would appear on the right instead.
       * This made it unobtrusive but still useful.
       * A challenge faced was for alerts to be persistent over app usage.
         * I decided on making alert a attribute of tasks that users cannot directly access.
