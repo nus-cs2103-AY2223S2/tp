@@ -316,6 +316,8 @@ Output:<br>
 
 Adds a new Patient type as defined in the command into the system. If any of the optional arguments are omitted, the list will be empty.
 
+`vaccines` and `vaccinations` are different. The Patient allows any vaccines to be added as they may want to include other vaccinations that they have taken to check for conflicts during the new vaccination. Patients are **allowed** to have vaccines that are not offered in this vaccination center.
+
 ##### Syntax
 
 <pre>
