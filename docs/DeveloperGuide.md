@@ -95,10 +95,10 @@ title: Developer Guide
    * [Non-Functional Requirements](#non-functional-requirements)
    * [Instructions for Manual Testing](#instructions-for-manual-testing)
      * [Launch and shutdown](#launch-and-shutdown)
-     * [Add a new person to EduMate](#add-a-new-person-to-edumate)
-     * [View a person in EduMate](#view-a-person-in-edumate)
-     * [Edit a person in EduMate](#edit-a-person-in-edumate)
-     * [Delete a person in EduMate](#delete-a-person-in-edumate)
+     * [Add a new person](#add-a-new-person)
+     * [View a person](#view-a-person)
+     * [Edit a person](#edit-a-person)
+     * [Delete a person](#delete-a-person)
      * [Add a tag to a person](#add-a-tag-to-a-person)
      * [Remove a tag from a person](#remove-a-tag-from-a-person)
      * [Filter persons by keywords](#filter-persons-by-keywords)
@@ -859,11 +859,11 @@ For example, if the user wants to sort by groups, and break ties with name, they
 
 * `sort`: Sorts the contacts by their index.
 
-* `sort [z/a]…ZWSP`: Sorts the contacts by the `z` field in **ascending** order.
+* `sort [z/a]...`: Sorts the contacts by the `z` field in **ascending** order.
 
-* `sort [z/d]…ZWSP`: Sorts the contacts by the `z` field in **descending** order.
+* `sort [z/d]...`: Sorts the contacts by the `z` field in **descending** order.
 
-* `sort [z/]…ZWSP`: Sorts the contacts by the `z` field in their **default** order.
+* `sort [z/]...`: Sorts the contacts by the `z` field in their **default** order.
 
 </div>
 
@@ -1273,19 +1273,32 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 ### **User Stories**
 
-Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
+| As a …​   | I want to …​                                                                             | So that I can…​                                                                  |
+|-----------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| student   | add my friends' contact information to EduMate                                           | easily keep track of their availability for study sessions.                      |
+| student   | add my tutors' contact information to EduMate                                            | easily ask them for consultation sessions when they are available.               |
+| student   | edit my profile in EduMate                                                               | keep my information up to date.                                                  |
+| student   | edit the profile of a contact in EduMate                                                 | keep their information up to date.                                               |
+| student   | tag my contacts in EduMate based on the modules we share                                 | quickly find study partners.                                                     |
+| student   | tag my contacts in EduMate based on                                     | quickly find study partners.                                                     |
+| student   | assign lessons to my contacts in EduMate                                                 | see when they are available for study sessions.                                  |
+| student   | see the availability of my contacts                                                      | plan my study sessions accordingly.                                              |
+| student   | view the profiles of my contacts in EduMate                                              | see their availability and contact information.                                  |
+| student   | remove a contact from EduMate                                                            | free up space for adding other contacts.                                         |
+| student   | use the sort command in EduMate to find contacts who share the most number of modules with me | easily form study groups.                                                        |
+| student   | use the find command in EduMate to search for contacts based on specific criteria        | find contacts with shared modules or tags.                                       |
+| student   | get suggestions for where to meet my friends                                             | narrow down the search window for meet up locations.                             |
+| student   | get suggestions for when to meet my friends                                              | narrow down the search window for meet up timings.                               |
+| student   | get suggestions for where to eat with my friends                                         | easily find a place to grab a meal.                                              |
+| student   | get suggestions for when to eat with my friends                                          | easily find a time to grab a meal.                                               |
+| student   | get suggestions for where to study with my friends                                       | work on assignments with my friends.                                             |
+| student   | get suggestions for when to study with my friends                                        | work on assignments with my friends.                                             |
+| student   | see a list view of suggested meet up locations and timings in EduMate                    | compare them easily.                                                             | 
+| student   | use EduMate to easily schedule meetings with my contacts                                 | meet up with my contacts without having to manually coordinate with each person. |
+| student   | use the backup and restore features in EduMate                                           | save my contact information.                                                     |
+| student   | keep track of my meet ups                                                                | remember who I am supposed to meet.                                              |
+| student   | view the contact details of my tutors and lecturers                                      | get in touch with them when needed.                                              |
 
-| Priority | As a …​   | I want to …​                                           | So that I can…​                                             |
-|----------|-----------|--------------------------------------------------------|-------------------------------------------------------------|
-| `***`    | student   | view all my modules in one place                       | be more organised in my work                                |
-| `***`    | student   | decide a meeting place and time with my friends conveniently | plan meetups for social and academic purposes efficiently|
-| `***`    | user      | use this app quickly with the command line             | quickly plan my modules                                     |
-| `***`    | user      | view my personal information                           | share it to whoever needs it                                |
-| `***`    | user      | update my profile                                      | personalise my experience                                   |
-| `***`    | user      | add module tags to new contacts                        | track what modules my friends are taking                    |
-| `***`    | user      | tag and untag modules from existing contacts           | be flexible in recording my friends' modules                |
-| `***`    | user      | filter my contacts based on module tag                 | find friends taking the same module as me                   |
-| `**`     | user      | sort my contacts based on the number of shared modules | find out who are likely my close friends                    |
 
 ### **Use Cases**
 
