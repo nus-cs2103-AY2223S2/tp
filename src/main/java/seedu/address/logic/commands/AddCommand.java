@@ -50,6 +50,7 @@ public class AddCommand extends Command {
     public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateObservablePersonList();
+
         if (model.hasPerson(this.candidatePerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
