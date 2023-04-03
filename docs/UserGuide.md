@@ -847,7 +847,7 @@ Output:<br>
 
 | Attribute     | Type              | Description                                |
 |---------------|-------------------|--------------------------------------------|
-| Patient id    | `<Index>`         | The patient id of the appointment.         |
+| Patient id    | `<PATIENT_ID>`    | The patient id of the appointment.         |
 | Starting time | `<localDateTime>` | The starting time of the appointment.      |
 | Ending time   | `<localDateTime>` | The ending time of the appointment.        |
 | Vaccination   | `<GroupName>`     | The vaccine type used for the appointment. |
@@ -862,10 +862,10 @@ Adds a new appointment to the appointment manager
 ##### Syntax
 
 ```text
-appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
+appointment add --p PATIENT_ID --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 ```
 
-* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>PATIENT_ID</var></code> : `<PATIENT_ID>`
 * <code><var>STARTING_TIME</var></code> : `<localDateTime>`
 * <code><var>ENDING_TIME</var></code> : `<localDateTime>`
 * <code><var>VAX_GROUP</var></code> : `<GroupName>`
@@ -876,7 +876,7 @@ appointment add --p INDEX --s STARTING_TIME --e ENDING_TIME --v VAX_GROUP
 
 ##### Restrictions
 
-* The patient id must be an existing index in the patient manager.
+* The patient id must be an existing PATIENT_ID in the patient manager.
 * The patient id must for a patient that does not already have an upcoming appointment.
 * The starting time must be after the current locale time.
 * The ending time must be after the given starting time.
@@ -900,7 +900,7 @@ appointment list
 
 List all the appointments that matches the predicates provided.
 
-* <code><var>INDEX</var></code> : List appointments of a specific patient
+* <code><var>PATIENT_ID</var></code> : List appointments of a specific patient
 * <code><var>STARTING_TIME</var></code> : List appointments after the starting time
 * <code><var>ENDING_TIME</var></code> : List appointments before the ending time
 * <code><var>VAX_GROUP</var></code> : List appointments that uses the specific vaccination
@@ -915,7 +915,7 @@ appointment find [--p INDEX] [--s STARTING_TIME] [--e ENDING_TIME] \
 appointment find [...KEYWORDS...]
 ```
 
-* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>PATIENT_ID</var></code> : `<PATIENT_ID>`
 * <code><var>STARTING_TIME</var></code> : `<localDateTime>`
 * <code><var>ENDING_TIME</var></code> : `<localDateTime>`
 * <code><var>VAX_GROUP</var></code> : `<GroupName>`
@@ -940,7 +940,7 @@ appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
 ```
 
 * <code><var>INDEX</var></code> : `<Index>`
-* <code><var>PATIENT_ID</var></code> : `<Index>`
+* <code><var>PATIENT_ID</var></code> : `<PATIENT_ID>`
 * <code><var>STARTING_TIME</var></code> : `<localDateTime>`
 * <code><var>ENDING_TIME</var></code> : `<localDateTime>`
 * <code><var>VAX_GROUP</var></code> : `<GroupName>`
@@ -953,14 +953,12 @@ appointment edit INDEX [--p PATIENT_ID] [--s STARTING_TIME] [--e ENDING_TIME] \
 
 * The index must be an existing index in the appointment manager.
 * The index must be of an appointment that has not yet passed.
-* The patient id must be an existing index in the patient manager.
+* The patient id must be an existing PATIENT_ID in the patient manager.
 * The starting time must be after the current locale time.
 * The ending time must be after the given starting time.
 * The vaccination must be an existing vaccination type in the vaxtype manager.
 
 <br>
-
-
 
 #### `mark` - Marks an appointment as completed
 
