@@ -6,8 +6,10 @@ import static seedu.dengue.logic.parser.CliSyntax.PREFIX_ENDDATE;
 import static seedu.dengue.logic.parser.CliSyntax.PREFIX_STARTDATE;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -110,24 +112,23 @@ public class DeleteCommand extends Command {
 
     private CommandResult executeIndexes(Model model, List<Person> lastShownList) throws CommandException {
         assert targetIndexes.isPresent();
-        List<Index> indexes = targetIndexes.get();
+        Set<Index> indexesSet = new HashSet<>(targetIndexes.get());
 
-        for (Index idx : indexes) {
+        for (Index idx : indexesSet) {
             if (idx.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
         }
-
         List<Person> referenceCopy = new ArrayList<>(lastShownList);
         List<Person> toDelete = new ArrayList<>();
 
-        for (Index idx : indexes) {
+        for (Index idx : indexesSet) {
             Person personToDelete = referenceCopy.get(idx.getZeroBased());
             toDelete.add(personToDelete);
         }
 
         deleteAll(model, toDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_INDEX_SUCCESS, indexes.size()));
+        return new CommandResult(String.format(MESSAGE_DELETE_INDEX_SUCCESS, indexesSet.size()));
     }
 
 
