@@ -2,7 +2,6 @@ package seedu.event.logic.parser;
 
 import static seedu.event.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.event.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_TAG;
@@ -33,7 +32,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATE, PREFIX_EMAIL,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RATE,
                         PREFIX_ADDRESS, PREFIX_TIME_START, PREFIX_TIME_END, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS,
