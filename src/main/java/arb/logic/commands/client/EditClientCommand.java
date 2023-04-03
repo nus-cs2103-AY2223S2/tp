@@ -4,11 +4,8 @@ import static arb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
-import static arb.model.Model.CLIENT_NO_COMPARATOR;
-import static arb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -37,7 +34,6 @@ public class EditClientCommand extends Command {
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
 
     private static final String MAIN_COMMAND_WORD = "edit-client";
     private static final String ALIAS_COMMAND_WORD = "ec";
@@ -47,6 +43,8 @@ public class EditClientCommand extends Command {
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Edits the details of the client identified "
             + "by the index number used in the displayed client list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "Blank prefixes for all fields except name "
+            + "will clear the existing value.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
@@ -76,12 +74,12 @@ public class EditClientCommand extends Command {
         requireNonNull(model);
         List<Client> lastShownList = model.getSortedClientList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
-        }
-
         if (currentListBeingShown != ListType.CLIENT) {
             throw new CommandException(Messages.MESSAGE_INVALID_LIST_CLIENT);
+        }
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());
@@ -92,8 +90,7 @@ public class EditClientCommand extends Command {
         }
 
         model.setClient(clientToEdit, editedClient);
-        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-        model.updateSortedClientList(CLIENT_NO_COMPARATOR);
+        model.resetFilteredAndSortedClientList();
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient), ListType.CLIENT);
     }
 
@@ -109,12 +106,14 @@ public class EditClientCommand extends Command {
         Optional<Optional<Phone>> optionalUpdatedPhone = editClientDescriptor.getPhone();
         Phone updatedPhone = clientToEdit.getPhone();
         if (optionalUpdatedPhone.isPresent()) {
+            // phone was edited in the command
             updatedPhone = optionalUpdatedPhone.get().orElse(null);
         }
 
         Optional<Optional<Email>> optionalUpdatedEmail = editClientDescriptor.getEmail();
         Email updatedEmail = clientToEdit.getEmail();
         if (optionalUpdatedEmail.isPresent()) {
+            // email was edited in the command
             updatedEmail = optionalUpdatedEmail.get().orElse(null);
         }
 
@@ -140,12 +139,9 @@ public class EditClientCommand extends Command {
                 && editClientDescriptor.equals(e.editClientDescriptor);
     }
 
-    public static boolean isCommandWord(String commandWord) {
-        return COMMAND_WORDS.contains(commandWord);
-    }
-
-    public static List<String> getCommandWords() {
-        return new ArrayList<>(COMMAND_WORDS);
+    /** Get all valid command words as an unmodifiable set. */
+    public static Set<String> getCommandWords() {
+        return Collections.unmodifiableSet(COMMAND_WORDS);
     }
 
     /**
@@ -154,8 +150,12 @@ public class EditClientCommand extends Command {
      */
     public static class EditClientDescriptor {
         private Name name;
+
+        // Optional data fields in Client. An empty Optional is used to
+        // indicate that the data field in the client should be set to null.
         private Optional<Phone> phone;
         private Optional<Email> email;
+
         private Set<Tag> tags;
 
         public EditClientDescriptor() {}
@@ -190,6 +190,7 @@ public class EditClientCommand extends Command {
             this.phone = Optional.ofNullable(phone);
         }
 
+        /** Returns an {@code empty Optional} if the phone value was not edited. */
         public Optional<Optional<Phone>> getPhone() {
             return Optional.ofNullable(this.phone);
         }
@@ -198,6 +199,7 @@ public class EditClientCommand extends Command {
             this.email = Optional.ofNullable(email);
         }
 
+        /** Returns an {@code empty Optional} if the email value was not edited. */
         public Optional<Optional<Email>> getEmail() {
             return Optional.ofNullable(this.email);
         }

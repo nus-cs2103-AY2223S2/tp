@@ -3,7 +3,6 @@ package arb.logic.commands.client;
 import static arb.logic.commands.CommandTestUtil.DESC_AMY;
 import static arb.logic.commands.CommandTestUtil.DESC_BOB;
 import static arb.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static arb.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static arb.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static arb.logic.commands.CommandTestUtil.assertCommandFailure;
 import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -56,11 +55,11 @@ public class EditClientCommandTest {
         Client lastClient = model.getFilteredClientList().get(indexLastClient.getZeroBased());
 
         ClientBuilder clientInList = new ClientBuilder(lastClient);
-        Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(null)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(null).withTags(VALID_TAG_HUSBAND).build();
         EditClientCommand editClientCommand = new EditClientCommand(indexLastClient, descriptor);
 
         String expectedMessage = String.format(EditClientCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
@@ -159,6 +158,13 @@ public class EditClientCommandTest {
         Index validIndex = INDEX_FIRST;
         assertCommandFailure(new EditClientCommand(validIndex, DESC_BOB),
                         ListType.PROJECT, model, Messages.MESSAGE_INVALID_LIST_CLIENT);
+    }
+
+    @Test
+    public void execute_currentListShownTag_failure() {
+        Index validIndex = INDEX_FIRST;
+        assertCommandFailure(new EditClientCommand(validIndex, DESC_BOB),
+                        ListType.TAG, model, Messages.MESSAGE_INVALID_LIST_CLIENT);
     }
 
     @Test

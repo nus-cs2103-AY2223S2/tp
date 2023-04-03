@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -31,5 +32,15 @@ public class CollectionUtil {
      */
     public static boolean isAnyNonNull(Object... items) {
         return items != null && Arrays.stream(items).anyMatch(Objects::nonNull);
+    }
+
+    /**
+     * Formats {@code keywords} into a String.
+     */
+    public static String keywordsToString(Collection<String> keywords) {
+        StringBuilder sb = new StringBuilder();
+        Iterator<String> keywordsIterator = keywords.iterator();
+        keywordsIterator.forEachRemaining(s -> sb.append(s + ", "));
+        return sb.delete(sb.length() - 2, sb.length()).toString();
     }
 }

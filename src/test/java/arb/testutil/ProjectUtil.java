@@ -7,11 +7,13 @@ import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import arb.logic.commands.project.AddProjectCommand;
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
 import arb.logic.commands.project.FindProjectCommand;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
 import arb.model.tag.Tag;
 
@@ -24,7 +26,7 @@ public class ProjectUtil {
      * Returns an add project command string for adding the {@code project}.
      */
     public static String getAddProjectCommand(Project project, String commandWord) {
-        assert AddProjectCommand.isCommandWord(commandWord);
+        assert AddProjectCommand.getCommandWords().contains(commandWord);
         return commandWord + " " + getProjectDetails(project);
     }
 
@@ -32,7 +34,7 @@ public class ProjectUtil {
      * Returns a find project command string to find a project.
      */
     public static String getFindProjectCommand(List<String> tags, List<String> names, String commandWord) {
-        assert FindProjectCommand.isCommandWord(commandWord);
+        assert FindProjectCommand.getCommandWords().contains(commandWord);
         StringBuilder sb = new StringBuilder();
         sb.append(commandWord + " ");
         tags.stream().forEach(
@@ -76,12 +78,15 @@ public class ProjectUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        if (descriptor.getClientNameKeywords().isPresent()) {
-            List<String> clientNameKeywords = descriptor.getClientNameKeywords().get();
-            if (clientNameKeywords.isEmpty()) {
+        if (descriptor.getClientNamePredicate().isPresent()) {
+            Optional<NameContainsKeywordsPredicate> optionalPredicate = descriptor.getClientNamePredicate().get();
+            if (!optionalPredicate.isPresent()) {
                 sb.append(PREFIX_CLIENT + " ");
             } else {
-                clientNameKeywords.forEach(s -> sb.append(PREFIX_TAG).append(s).append(" "));
+                String[] keywords = optionalPredicate.get().keywordsToString().split(", ");
+                for (String k : keywords) {
+                    sb.append(PREFIX_CLIENT + k + " ");
+                }
             }
         }
         return sb.toString();

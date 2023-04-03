@@ -1,6 +1,7 @@
 package arb.logic.parser.project;
 
 import static arb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static arb.commons.util.StringUtil.splitKeywords;
 import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
@@ -8,14 +9,9 @@ import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import arb.commons.core.index.Index;
 import arb.logic.commands.project.EditProjectCommand;
@@ -26,8 +22,7 @@ import arb.logic.parser.Parser;
 import arb.logic.parser.ParserUtil;
 import arb.logic.parser.exceptions.ParseException;
 import arb.model.client.Name;
-import arb.model.tag.Tag;
-
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new EditProjectCommand object
@@ -60,7 +55,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
 
         if (argumentMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editProjectDescriptor.setDeadline(ParserUtil.parseDeadline(argumentMultimap.getValue(PREFIX_DEADLINE)
-                                                                                        .get()));
+                    .get()));
         }
 
         if (argumentMultimap.getValue(PREFIX_PRICE).isPresent()) {
@@ -68,12 +63,12 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
                     .get()));
         }
 
-
-        parseTagsForEdit(argumentMultimap.getAllValues(PREFIX_TAG)).ifPresent(editProjectDescriptor::setTags);
+        ParserUtil.parseTagsForEdit(argumentMultimap.getAllValues(PREFIX_TAG))
+                .ifPresent(editProjectDescriptor::setTags);
 
         // filter out all invalid client names
         parseClientNameKeywordsForEdit(argumentMultimap.getAllValues(PREFIX_CLIENT))
-                .ifPresent(editProjectDescriptor::setClientNameKeywords);
+                .ifPresent(o -> editProjectDescriptor.setClientNamePredicate(o.orElse(null)));
 
         if (!editProjectDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditProjectCommand.MESSAGE_NOT_EDITED);
@@ -83,35 +78,21 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code List<String> clientNameKeywords} into an
+     * {@code Optional<Optional<NameContainsKeywordsPredicate>>}. If {@code clientNameKeywords} is empty,
+     * an empty Optional is returned. If {@code clientNameKeywords} contain only one element which is an
+     * empty string, it will be parsed into an Optional containing an empty Optional.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
-
-        if (tags.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<List<String>> parseClientNameKeywordsForEdit(List<String> clientNameKeywords)
-            throws ParseException {
+    private Optional<Optional<NameContainsKeywordsPredicate>> parseClientNameKeywordsForEdit(
+            List<String> clientNameKeywords) throws ParseException {
         assert clientNameKeywords != null;
 
         if (clientNameKeywords.isEmpty()) {
             return Optional.empty();
+        } else if (clientNameKeywords.size() == 1 && clientNameKeywords.contains("")) {
+            return Optional.of(Optional.empty());
         }
-        if (clientNameKeywords.size() == 1 && clientNameKeywords.contains("")) {
-            return Optional.of(Collections.emptyList());
-        }
+
         List<String> clientNameKeywordsList = clientNameKeywords.stream().flatMap(s -> splitKeywords(s))
                 .collect(Collectors.toList());
         if (clientNameKeywordsList.stream().anyMatch(s -> s.equals(""))) {
@@ -123,14 +104,7 @@ public class EditProjectCommandParser implements Parser<EditProjectCommand> {
         if (filteredKeywordsList.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(filteredKeywordsList);
+        return Optional.of(Optional.of(new NameContainsKeywordsPredicate(filteredKeywordsList)));
     }
 
-    /**
-     * Splits a {@code String} consisting of keywords into its individual keywords and returns them
-     * as a {@code Stream}.
-     */
-    private static Stream<String> splitKeywords(String keywords) {
-        return Arrays.asList(keywords.split(" ")).stream();
-    }
 }

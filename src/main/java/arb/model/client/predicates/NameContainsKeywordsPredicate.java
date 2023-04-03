@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import arb.commons.util.CollectionUtil;
 import arb.commons.util.StringUtil;
 import arb.model.client.Client;
 
@@ -43,5 +44,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Client> {
         Iterator<String> iterator = keywords.iterator();
         iterator.forEachRemaining(k -> sb.append(k + ", "));
         return sb.delete(sb.length() - 2, sb.length() + 1).toString();
+    }
+
+    public String keywordsToString() {
+        return CollectionUtil.keywordsToString(keywords);
     }
 }

@@ -1,19 +1,15 @@
 package arb.logic.commands.project;
 
+import static arb.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static arb.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static arb.logic.parser.CliSyntax.PREFIX_NAME;
 import static arb.logic.parser.CliSyntax.PREFIX_PRICE;
 import static arb.logic.parser.CliSyntax.PREFIX_TAG;
-import static arb.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
-import static arb.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
-import static arb.model.Model.PROJECT_NO_COMPARATOR;
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -41,9 +37,6 @@ public class EditProjectCommand extends Command {
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
-    public static final String MESSAGE_CANNOT_FIND_CLIENT_WITH_KEYWORDS =
-            "Cannot find any client with given keywords: %1$s";
 
     private static final String MAIN_COMMAND_WORD = "edit-project";
     private static final String ALIAS_COMMAND_WORD = "ep";
@@ -53,15 +46,17 @@ public class EditProjectCommand extends Command {
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Edits the details of the project identified "
             + "by the index number used in the displayed project list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "Blank prefixes for all fields except name "
+            + "will clear the existing value.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "TITLE] "
+            + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_PRICE + "PRICE] "
+            + "[" + PREFIX_CLIENT + "CLIENT] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + MAIN_COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Sunset painting "
-            + PREFIX_DEADLINE + "2023-07-05 "
-            + PREFIX_PRICE + "2.07";
+            + PREFIX_DEADLINE + "2023-07-05";
 
     public final Index index;
     public final EditProjectDescriptor editProjectDescriptor;
@@ -83,12 +78,12 @@ public class EditProjectCommand extends Command {
         requireNonNull(model);
         List<Project> lastShownList = model.getSortedProjectList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
-        }
-
         if (currentListBeingShown != ListType.PROJECT) {
             throw new CommandException(Messages.MESSAGE_INVALID_LIST_PROJECT);
+        }
+
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
         }
 
         Project projectToEdit = lastShownList.get(index.getZeroBased());
@@ -98,35 +93,30 @@ public class EditProjectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_PROJECT);
         }
 
-        Optional<List<String>> optionalClientNameKeywords = editProjectDescriptor.getClientNameKeywords();
+        String message = String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
+        ListType toBeShown = ListType.PROJECT;
 
-        if (optionalClientNameKeywords.isPresent() && optionalClientNameKeywords.get().isEmpty()) {
+        Optional<Optional<NameContainsKeywordsPredicate>> optionalClientNamePredicate =
+                editProjectDescriptor.getClientNamePredicate();
+        boolean shouldResetLinkedClient = optionalClientNamePredicate.map(o -> !o.isPresent()).orElse(false);
+        boolean shouldChangeLinkedClient = optionalClientNamePredicate.map(o -> o.isPresent()).orElse(false);
+        if (shouldResetLinkedClient) {
             model.unlinkClientFromProject(projectToEdit);
-        } else if (optionalClientNameKeywords.isPresent()) {
-            model.updateFilteredClientList(new NameContainsKeywordsPredicate(optionalClientNameKeywords.get()));
-            if (model.getFilteredClientList().size() == 0) {
-                model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-                throw new CommandException(String.format(MESSAGE_CANNOT_FIND_CLIENT_WITH_KEYWORDS,
-                        keywordsToString(optionalClientNameKeywords.get())));
+        } else if (shouldChangeLinkedClient) {
+            if (model.numberOfClientsMatchingPredicate(optionalClientNamePredicate.get().get()) == 0) {
+                throw new CommandException(String.format(Messages.MESSAGE_CANNOT_FIND_CLIENT_WITH_KEYWORDS,
+                        optionalClientNamePredicate.get().get().keywordsToString()));
             }
             model.setProjectToLink(editedProject);
+            model.updateFilteredClientList(optionalClientNamePredicate.get().get());
+            message += "\n" + LinkProjectToClientCommand.MESSAGE_USAGE;
+            toBeShown = ListType.CLIENT;
         }
 
         model.setProject(projectToEdit, editedProject);
+        model.resetFilteredAndSortedProjectList();
 
-        String message = String.format(MESSAGE_EDIT_PROJECT_SUCCESS, editedProject);
-        ListType toBeShown = ListType.PROJECT;
-        if (optionalClientNameKeywords.isPresent() && !optionalClientNameKeywords.get().isEmpty()) {
-            model.updateFilteredClientList(new NameContainsKeywordsPredicate(optionalClientNameKeywords.get()));
-            message += "\n" + LinkProjectToClientCommand.MESSAGE_USAGE;
-            toBeShown = ListType.CLIENT;
-        } else {
-            model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
-            model.updateSortedProjectList(PROJECT_NO_COMPARATOR);
-        }
-
-        return new CommandResult(message, optionalClientNameKeywords.isPresent()
-                && !optionalClientNameKeywords.get().isEmpty(), toBeShown);
+        return new CommandResult(message, shouldChangeLinkedClient, toBeShown);
     }
 
     /**
@@ -174,19 +164,9 @@ public class EditProjectCommand extends Command {
                 && editProjectDescriptor.equals(e.editProjectDescriptor);
     }
 
-    public static boolean isCommandWord(String commandWord) {
-        return COMMAND_WORDS.contains(commandWord);
-    }
-
-    public static List<String> getCommandWords() {
-        return new ArrayList<>(COMMAND_WORDS);
-    }
-
-    private String keywordsToString(List<String> keywords) {
-        StringBuilder sb = new StringBuilder();
-        Iterator<String> keywordsIterator = keywords.iterator();
-        keywordsIterator.forEachRemaining(s -> sb.append(s + ", "));
-        return sb.delete(sb.length() - 2, sb.length()).toString();
+    /** Get all valid command words as an unmodifiable set. */
+    public static Set<String> getCommandWords() {
+        return Collections.unmodifiableSet(COMMAND_WORDS);
     }
 
     /**
@@ -197,8 +177,7 @@ public class EditProjectCommand extends Command {
         private Title title;
         private Optional<Deadline> deadline;
         private Optional<Price> price;
-        private List<String> clientNameKeywords;
-
+        private Optional<NameContainsKeywordsPredicate> clientNamePredicate;
         private Set<Tag> tags;
 
         public EditProjectDescriptor() {}
@@ -210,7 +189,7 @@ public class EditProjectCommand extends Command {
             setTitle(toCopy.title);
             this.deadline = toCopy.deadline;
             this.price = toCopy.price;
-            this.clientNameKeywords = toCopy.clientNameKeywords;
+            this.clientNamePredicate = toCopy.clientNamePredicate;
             setTags(toCopy.tags);
         }
 
@@ -218,7 +197,7 @@ public class EditProjectCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, deadline, price, tags, clientNameKeywords);
+            return CollectionUtil.isAnyNonNull(title, deadline, price, tags, clientNamePredicate);
         }
 
         public void setTitle(Title title) {
@@ -233,8 +212,8 @@ public class EditProjectCommand extends Command {
             this.price = Optional.ofNullable(price);
         }
 
-        public void setClientNameKeywords(List<String> clientNameKeywords) {
-            this.clientNameKeywords = clientNameKeywords;
+        public void setClientNamePredicate(NameContainsKeywordsPredicate clientNamePredicate) {
+            this.clientNamePredicate = Optional.ofNullable(clientNamePredicate);
         }
 
         public Optional<Title> getTitle() {
@@ -250,8 +229,8 @@ public class EditProjectCommand extends Command {
             return Optional.ofNullable(price);
         }
 
-        public Optional<List<String>> getClientNameKeywords() {
-            return Optional.ofNullable(clientNameKeywords);
+        public Optional<Optional<NameContainsKeywordsPredicate>> getClientNamePredicate() {
+            return Optional.ofNullable(clientNamePredicate);
         }
 
         /**
@@ -290,7 +269,7 @@ public class EditProjectCommand extends Command {
                     && getDeadline().equals(e.getDeadline())
                     && getPrice().equals(e.getPrice())
                     && getTags().equals(e.getTags())
-                    && getClientNameKeywords().equals(e.getClientNameKeywords());
+                    && getClientNamePredicate().equals(e.getClientNamePredicate());
         }
     }
 

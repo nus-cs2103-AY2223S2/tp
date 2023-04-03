@@ -3,7 +3,9 @@ package arb.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import arb.commons.core.index.Index;
@@ -45,9 +47,9 @@ public class ParserUtil {
      * trimmed.
      * @throws ParseException if the specified index is invalid (not unsigned integer).
      */
-    public static Index parseIndexWithZero(String oneBasedIndex) throws ParseException {
+    public static Index parseIndexWithZeroAllowed(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonUnsignedInteger(trimmedIndex)) {
+        if (!StringUtil.isUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_UNSIGNED_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex), true);
@@ -147,6 +149,21 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(lowercaseTrimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    public static Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
     /**

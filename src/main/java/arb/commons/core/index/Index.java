@@ -14,6 +14,7 @@ public class Index {
     /**
      * Index can only be created by calling {@link Index#fromZeroBased(int)} or
      * {@link Index#fromOneBased(int)}.
+     * Convenience wrapper to {@link #Index(int, boolean)} that sets {@code allowNegative} to false.
      */
     private Index(int zeroBasedIndex) {
         this(zeroBasedIndex, false);
@@ -47,6 +48,7 @@ public class Index {
 
     /**
      * Creates a new {@code Index} using a one-based index.
+     * Convenience wrapper to {@link #fromOneBased(int, boolean)} that sets {@code allowNegative} to false.
      */
     public static Index fromOneBased(int oneBasedIndex) {
         return fromOneBased(oneBasedIndex, false);
@@ -54,6 +56,7 @@ public class Index {
 
     /**
      * Creates a new {@code Index} using a one-based index.
+     * @param allowNegative Whether a negative index is allowed.
      */
     public static Index fromOneBased(int oneBasedIndex, boolean allowNegative) {
         return new Index(oneBasedIndex - 1, allowNegative);

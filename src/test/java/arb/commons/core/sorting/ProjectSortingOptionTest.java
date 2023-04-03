@@ -35,7 +35,8 @@ public class ProjectSortingOptionTest {
         assertEquals(PROJECT_DEADLINE_COMPARATOR, ProjectSortingOption
                 .getSortingOption(VALID_SORTING_OPTION_DEADLINE_ALIAS)
                 .getComparator());
-        assertEquals(PROJECT_TITLE_COMPARATOR, ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_TITLE_ALIAS)
+        assertEquals(PROJECT_TITLE_COMPARATOR, ProjectSortingOption
+                .getSortingOption(VALID_SORTING_OPTION_TITLE_ALIAS)
                 .getComparator());
         assertEquals(PROJECT_PRICE_COMPARATOR, ProjectSortingOption
                 .getSortingOption(VALID_SORTING_OPTION_PRICE_ALIAS)
@@ -46,7 +47,6 @@ public class ProjectSortingOptionTest {
     public void equals() {
         final ProjectSortingOption byDeadline = ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_DEADLINE);
         final ProjectSortingOption byPrice = ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_PRICE);
-
 
         // same sorting option -> returns true
         assertTrue(byDeadline.equals(ProjectSortingOption.getSortingOption(VALID_SORTING_OPTION_DEADLINE)));
