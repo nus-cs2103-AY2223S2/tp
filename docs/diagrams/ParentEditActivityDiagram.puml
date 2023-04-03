@@ -15,10 +15,10 @@ if () then ([found parent/NOK name with matching phone number])
             :Binds all students of original parent/NOK to new parent/NOK;
         else ([else)
         endif
-    :Automatically saves all changes into parents.json and pcclass.json (Storage files);
-    :Output message = Parent/NOK has been successfully;
+    :Automatically saves all changes into storage file\n(parents.json and pcclass.json);
+    :Output message = \nParent/NOK has been successfully;
 else ([else])
-    :Output message = No parent/NOK was found with matching name and phone number;
+    :Output message = \nNo parent/NOK was found with matching \nname and phone number;
 endif
     :PowerConnect displays output message to User;
 stop

@@ -5,7 +5,7 @@ title: Yeo Wen Jue's Project Portfolio Page
 
 ### Project: PowerConnect
 
-PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. While it has limited features at this stage, plans for future PowerConnect releases to update features and usage capabilites have been made with detailed timeline. 
+PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. While it has limited features at this stage, plans for future PowerConnect releases to update features and usage capabilites have been made with detailed timeline.
 The aim of this product is to eventually be a useful tool that is used in conjunction with Learning Managment System (LMS) tools currently in the market to aid teachers in managing students. <br>
 
 Given below are my contributions to the project.
@@ -23,10 +23,10 @@ Given below are my contributions to the project.
   * Credits: *nil*
 
 * **New Feature**: Binding of Student and Parent/NOK (internal feature)
-  * What it does: Binds/Unbinds a student to/from an existing parent/NOK in PowerConnect during Student Add, Edit and Delete Commands. If parent/NOK does not exist when needed for binding, it will get automatically created! 
+  * What it does: Binds/Unbinds a student to/from an existing parent/NOK in PowerConnect during Student Add, Edit and Delete Commands. If parent/NOK does not exist when needed for binding, it will get automatically created!
   * Justification: This feature contributes significantly to the product as it is crucial for users to be able to see the relationship of parents/NOKs to students and students to parents/NOKs and have the binding of parent/NOK and student be done automatically by the product and not done manually by the user.
   * Highlights: The implementation was challenging as it required changes to Student Add/Edit/Delete commands as well as Parent Add/Edit commands during its implementation to ensure the binding of relationship of students and parents/NOKs are performed properly. There were multiple cases to consider during its implementation. This implementation also made use of defensive coding for its implementation.
-  * Credits: *nil* 
+  * Credits: *nil*
   <br><br>
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17) <br><br>
@@ -56,7 +56,7 @@ Given below are my contributions to the project.
   * PRs reviewed and merged: 34<br><br>
 
 * **Contributions beyond the project team**:
-  * iP PRs reviewed (with non-trivial review comments): 
+  * iP PRs reviewed (with non-trivial review comments):
     * [[Cyrus-Krispin] iP #217](https://github.com/nus-cs2103-AY2223S2/ip/pull/217)
     * [[gohyongjing] iP #69](https://github.com/nus-cs2103-AY2223S2/ip/pull/69)
     * [[Anunaya Joshi] iP #79](https://github.com/nus-cs2103-AY2223S2/ip/pull/79)
