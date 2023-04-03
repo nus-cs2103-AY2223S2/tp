@@ -29,7 +29,7 @@ public class ListCommand extends Command {
             + "specified after the command, else list all paired or unpaired volunteers and elderly if the \"paired\""
             + " or \"unpaired\" (case-insensitive) word is given respectively after the the list command word, "
             + "with all pairs being listed all the time\n"
-            + "Parameters: [paired/unpaired]\n"
+            + "Parameters: <PAIRED | UNPAIRED>\n"
             + "Example: " + COMMAND_WORD + " paired";
     public static final String MESSAGE_SUCCESS_LIST_PAIRED =
             "Listed %1$s paired volunteer, %2$s paired elderly and %3$s pairs.";

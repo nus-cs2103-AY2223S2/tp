@@ -24,7 +24,7 @@ public class DeleteElderlyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the elderly identified by their NRIC.\n"
-            + "Parameters: NRIC \n"
+            + "Parameters: <NRIC> \n"
             + "Example: " + COMMAND_WORD + " S1234567C";
 
     public static final String MESSAGE_DELETE_ELDERLY_SUCCESS = "Deleted Elderly: %1$s";

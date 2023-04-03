@@ -39,7 +39,20 @@ public class CommandRecommendationEngineTest {
 
             expected = "add_elderly n/Zong Xun ic/NRIC bd/BIRTH_DATE re/[REGION] r/[RISK] a/[ADDRESS]"
                     + " p/[PHONE] e/[EMAIL] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END] t/[TAG]";
-            actual = commandRecommendationEngine.generateCommandRecommendations("add_elderly n/Zong Xun");
+            actual = commandRecommendationEngine.generateCommandRecommendations("add_elderly n/Zong Xun ");
+            assertEquals(expected, actual);
+
+            expected = "edit <NRIC> n/[NAME] ic/[NRIC] bd/[BIRTH_DATE] re/[REGION] r/[RISK] a/[ADDRESS] p/[PHONE]"
+                    + " e/[EMAIL] mt/[MEDICAL_QUALIFICATION] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END] t/[TAG]";
+            actual = commandRecommendationEngine.generateCommandRecommendations("edit");
+            assertEquals(expected, actual);
+
+            expected = "edit NRIC n/[NAME]";
+            actual = commandRecommendationEngine.generateCommandRecommendations("edit NRIC n");
+            assertEquals(expected, actual);
+
+            expected = "edit NRIC gib";
+            actual = commandRecommendationEngine.generateCommandRecommendations("edit NRIC gib");
             assertEquals(expected, actual);
 
             expected = "exit";
@@ -57,16 +70,16 @@ public class CommandRecommendationEngineTest {
     @Test
     public void recommendCommand_invalidCommand_fail() {
         assertThrows(RecommendationException.class, () ->
-                commandRecommendationEngine.generateCommandRecommendations("god_tier_anime"));
+                commandRecommendationEngine.generateCommandRecommendations("gibbeish"));
 
         assertThrows(RecommendationException.class, () ->
-                commandRecommendationEngine.generateCommandRecommendations("god_tier_anime n/boku no pico"));
+                commandRecommendationEngine.generateCommandRecommendations("gibbeish n/pico-san"));
     }
 
 
     @Test
     public void parseArguments_invalidArgs_fail() throws RecommendationException {
-        String userArgs = "notValidInput n/Zong Xun";
+        String userArgs = "notValidInput n/Zong Xun dil/";
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs,
                 commandRecommendationEngine.getCommandInfoMap()
                 .get(AddVolunteerCommand.COMMAND_WORD).getCmdPrompts().keySet()
@@ -113,14 +126,16 @@ public class CommandRecommendationEngineTest {
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
                 .get(FindCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
-        assertTrue(FindCommandParser.validate(argumentMultimap));
+        ArgumentMultimap finalArgumentMultimap10 = argumentMultimap;
+        assertThrows(RecommendationException.class, () -> FindCommandParser.validate(finalArgumentMultimap10));
 
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
                 .get(EditCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));
-        assertTrue(EditCommandParser.validate(argumentMultimap));
+        ArgumentMultimap finalArgumentMultimap11 = argumentMultimap;
+        assertThrows(RecommendationException.class, () -> EditCommandParser.validate(finalArgumentMultimap11));
 
-        userArgs = "dadiaodhawoid hoidahwodiwaod";
+        userArgs = "";
         argumentMultimap = ArgumentTokenizer.tokenize(userArgs, commandRecommendationEngine.getCommandInfoMap()
                 .get(DeleteElderlyCommand.COMMAND_WORD).getCmdPrompts().keySet()
                 .toArray(new Prefix[]{}));

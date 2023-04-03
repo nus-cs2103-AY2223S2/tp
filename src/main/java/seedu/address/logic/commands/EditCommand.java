@@ -54,7 +54,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the NRIC of the person. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: NRIC "
+            + "Parameters: <NRIC> "
             + "" + PREFIX_NAME + "NAME "
             + "" + PREFIX_NRIC + "NRIC "
             + "[" + PREFIX_PHONE + "PHONE] "
