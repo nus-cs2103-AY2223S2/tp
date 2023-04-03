@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+start
+:User enters an untag command;
+
+if () then ([None untagged])
+    :Error: No Tags;
+
+elseif () then ([Both untagged])
+    :Error: Both Tags;
+
+else ()
+:Removes tags if exist;
+endif
+stop
+@enduml
