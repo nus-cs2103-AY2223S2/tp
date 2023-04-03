@@ -64,7 +64,7 @@ cater to all levels of fish keeping expertise, from novice to expert fish keeper
 knowledge of fish keeping, only the simplest components of an aquarium such as a tank, fish, and basic fish keeping
 equipment.
 
-For **new users**, follow our [Quick Start Guide](#quick-start) below to get started with your fish-keeping journey with Fish Ahoy!.
+For **new users**, follow our [Quick Start Guide](#quick-start) below to get started with your fish-keeping journey with *Fish Ahoy!*.
 
 For **amateur users**, choose a feature from our [table of contents](#table-of-contents) above to find answers and get step-by-step instructions on how to make
 *Fish Ahoy!* work for you!
@@ -79,22 +79,37 @@ These are the symbols employed in this user guide:
 | :bulb:               | Helpful tip            |
 | :exclamation:        | Warning                |
 
-These are the special text formatting employed in this user guide:
+These are the special text formatting employed in this user guide: 
 
-| Font     | Meaning                                                               |
-|----------|-----------------------------------------------------------------------|
-| **Bold** | You should pay closer attention to bolded words as they are important |
-| `Code`   | Used for coding syntax, mostly used in commands                       |
+| Font      | Meaning                                                                                                                                                            |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Bold**  | You should pay closer attention to bolded words as they are more important                                                                                         |
+| `Code`    | Used for coding syntax. Parts of a *Fish Ahoy!* command will be in this format. Command Prompt commands in the [Quick start](#quick-start) are also in this format |
+| [Links]() | A link to a section in this user guide that will provide more in-depth information                                                                                 |
+| *Italics* | The application name, *Fish Ahoy!* is in this format.                                                                                                              |
 
 
 --------------------------------------------------------------------------------------------------------------------
 
+# Glossary
+
+These are the definitions to some technical terms: 
+
+| Word           | Meaning                                                                                                                                                                                                 |
+|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command        | A series of words you type in the [Command Line](#about-the-interface) to perform an action                                                                                                             |
+| Command type   | Identifies the type of information the command modifies. <br> Command types: `tank`, `fish`, `task`                                                                                                     |
+| Parameter      | Part of a command. Provides the command the information it requires. Parameters are preceded with a prefix.                                                                                             |
+| Prefix         | Part of a parameter. Specifies what type of information the parameter is providing. <br> [Prefixes:](#command-prefix-summary) `n/`, `lfd/`, `s/`, `fi/`, `tg/`, `by/`, `d/`, `al/`, `ph/`, `tp/`, `tk/` |
+| GUI/ Interface | The visual and graphical components of *Fish Ahoy!* It is what you see when you open *Fish Ahoy!*                                                                                                       |
+
+--------------------------------------------------------------------------------------------------------------------
 
 # Quick start
 
 1. Ensure you have Java 11 or above installed in your Computer.
 2. Download the latest FishAhoy.jar from [here](https://github.com/AY2223S2-CS2103T-T17-4/tp/releases).
-3. Copy the file to the folder you want to use as the home folder for Fish Ahoy!.
+3. Copy the file to the folder you want to use as the home folder for *Fish Ahoy!*.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar FishAhoy.jar` command to run the application.
 
 A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
@@ -461,16 +476,16 @@ Format: `help`
 
 ## Command prefix summary
 
-| Type     | Attribute                 | Prefix   |
-|----------|---------------------------|----------|
-| **Fish** | **Name**                  | **n/**   |
-| **Fish** | **Last fed date**         | **lfd/** |
-| **Fish** | **Species**               | **s/**   |
-| **Fish** | **Feeding Interval**      | **fi/**  |
-| **Fish** | **Tag**                   | **tg/**  |
-| **Fish** | **Sorting**               | **by/**  |
-| **Tank** | **Description**           | **d/**   |
-| **Tank** | **Ammonia level reading** | **al/**  |
-| **Tank** | **PH reading**            | **ph/**  |
-| **Tank** | **Temperature reading**   | **tp/**  |
-| **All**  | **Tank**                  | **tk/**  |
+| Type              | Attribute                 | Prefix   |
+|-------------------|---------------------------|----------|
+| **Fish**          | **Name**                  | **n/**   |
+| **Fish**          | **Last fed date**         | **lfd/** |
+| **Fish**          | **Species**               | **s/**   |
+| **Fish**          | **Feeding Interval**      | **fi/**  |
+| **Fish**          | **Tag**                   | **tg/**  |
+| **Fish**          | **Sorting**               | **by/**  |
+| **Tank**/**Task** | **Description**           | **d/**   |
+| **Tank**          | **Ammonia level reading** | **al/**  |
+| **Tank**          | **PH reading**            | **ph/**  |
+| **Tank**          | **Temperature reading**   | **tp/**  |
+| **All**           | **Tank**                  | **tk/**  |
