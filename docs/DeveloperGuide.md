@@ -59,6 +59,8 @@ title: Developer Guide
          * [Sort Command](#sort-command)
          * [List Command](#list-command)
          * [Exit Command](#exit-command)
+         * [Save Command](#save-command)
+         * [Load Command](#load-command)
          * [Meet Command](#meet-command)
      * [Parsers](#parsers)
        * [Argument Multimap](#argument-multimap)
@@ -716,7 +718,17 @@ The `tag` command allows user to tag a ModuleTag and Lessons to an existing cont
 
 **Distinguishing between contact and user** - As specified in the command formats, if the user wants to edit their own details, they can just leave out the index. On our end, the `ArgumentMultimap` has been modified to accept null as a valid index, which will handle such a use case.
 
-{to be filled by Kenny}
+<img src="images/TagActivityDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.x</b> Sequence Diagram for a typical <code>TagCommand</code> execution 
+</div>
+<br>
+
+<img src="images/UntagActivityDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.x</b> Sequence Diagram for a typical <code>UntagCommand</code> execution 
+</div>
+<br>
 
 #### **View Command**
 
@@ -875,7 +887,39 @@ Sets the `isExit` boolean in the `CommandResult` class to `true` which is passed
 
 </div>
 
+### **Save Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/SaveCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/SaveCommandParser.java)
 
+The `save` command allows users to save a copy of EduMate. This information is stored within the `data` folder, the same place as where `edumate.json` is kept.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Saving the Json file**<br>
+We cannot save the json file directly from the command, because the command only has access to the model. Instead, we pass the file path through a `SaveCommandResult`, which will inform the `LogicManager` to save the information in a particular file. 
+
+</div>
+
+<img src="images/SaveSequenceDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.x</b> Sequence Diagram for a typical <code>save</code> command.
+</div>
+
+### **Load Command**
+Links: [Command](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/LoadCommand.java), [Parser](https://github.com/AY2223S2-CS2103T-W14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/LoadCommandParser.java)
+
+The `save` command allows users to load a previously saved copy of EduMate. This information is retrieved from the `data` folder, the same place as where `edumate.json` is kept.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Loading the Json file**<br>
+Similar to the Save Command, we pass the file path through a `LoadCommandResult`, which will inform the `LogicManager` to load the information from a particular file.
+
+</div>
+
+<img src="images/LoadSequenceDiagram.svg" style="width:60%;margin:0 20%">
+<div style="width:60%;margin:0 20%;text-align:center">
+    <b>Figure 4.4.x</b> Sequence Diagram for a typical <code>load</code> command.
+</div>
 
 ### **Meet Command**
 
