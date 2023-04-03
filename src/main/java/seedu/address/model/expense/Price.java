@@ -31,7 +31,7 @@ public class Price {
      */
     public Price(double price) {
         requireNonNull(price);
-        if (!(price >=-0.0)) {
+        if (!(price >= -0.0)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         value = String.valueOf(price);
