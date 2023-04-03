@@ -1256,7 +1256,7 @@ If you want to delete all your contacts from `EduMate`, simply type `clear`.
 
 :warning: **Warning**<br>
 
-After <code>clear</code> command is executed, the data that has been deleted will not be recoverable.
+After the <code>clear</code> command is executed, the data that has been deleted will not be recoverable.
 
 </div>
 
