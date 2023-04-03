@@ -29,6 +29,11 @@ public class MarkAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "markApp";
     public static final String MESSAGE_SUCCESS = "Appointment successfully marked";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Marks a patient's appointment identified by the index number used in the displayed person list.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
     public static final String NO_APPOINTMENT = "This patient does not have appointment yet";
 
     private final Index index;

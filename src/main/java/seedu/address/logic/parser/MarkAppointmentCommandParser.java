@@ -25,7 +25,7 @@ public class MarkAppointmentCommandParser implements Parser<MarkAppointmentComma
             return new MarkAppointmentCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAppointmentCommand.MESSAGE_USAGE), pe);
         }
     }
 }
