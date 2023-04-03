@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 import taa.commons.core.LogsCenter;
 import taa.commons.exceptions.DataConversionException;
-import taa.model.ReadOnlyTaaData;
+import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.UserPrefs;
 
@@ -54,23 +54,23 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyTaaData> readTaaData() throws DataConversionException, IOException {
+    public Optional<ReadOnlyStudentList> readTaaData() throws DataConversionException, IOException {
         return readTaaData(taaStorage.getTaaDataFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyTaaData> readTaaData(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyStudentList> readTaaData(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return taaStorage.readTaaData(filePath);
     }
 
     @Override
-    public void saveTaaData(ReadOnlyTaaData addressBook) throws IOException {
+    public void saveTaaData(ReadOnlyStudentList addressBook) throws IOException {
         saveTaaData(addressBook, taaStorage.getTaaDataFilePath());
     }
 
     @Override
-    public void saveTaaData(ReadOnlyTaaData addressBook, Path filePath) throws IOException {
+    public void saveTaaData(ReadOnlyStudentList addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         taaStorage.saveTaaData(addressBook, filePath);
     }

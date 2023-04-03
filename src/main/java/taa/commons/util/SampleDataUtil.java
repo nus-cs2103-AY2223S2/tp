@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import taa.model.ClassList;
-import taa.model.ReadOnlyTaaData;
+import taa.model.ReadOnlyStudentList;
 import taa.model.Tutor;
 import taa.model.UniqueClassLists;
 import taa.model.student.Attendance;
@@ -36,7 +36,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyTaaData getSampleTaaData() {
+    public static ReadOnlyStudentList getSampleTaaData() {
         ClassList sampleAb = new ClassList("T01");
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);

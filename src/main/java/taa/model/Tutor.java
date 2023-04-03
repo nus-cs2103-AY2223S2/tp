@@ -15,7 +15,7 @@ import taa.model.tag.Tag;
 /**
  * Represents a tutor in the TAA application
  */
-public class Tutor implements ReadOnlyTaaData {
+public class Tutor implements ReadOnlyStudentList {
     private static int lastId;
     // Identity fields
     private final Name name;

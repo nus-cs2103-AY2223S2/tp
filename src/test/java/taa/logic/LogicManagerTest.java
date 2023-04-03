@@ -18,7 +18,7 @@ import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
 import taa.model.ModelManager;
-import taa.model.ReadOnlyTaaData;
+import taa.model.ReadOnlyStudentList;
 import taa.model.UserPrefs;
 import taa.model.student.Student;
 import taa.storage.JsonTaaStorage;
@@ -150,7 +150,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveTaaData(ReadOnlyTaaData addressBook, Path filePath) throws IOException {
+        public void saveTaaData(ReadOnlyStudentList studentList, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

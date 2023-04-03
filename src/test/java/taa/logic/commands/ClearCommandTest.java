@@ -11,7 +11,7 @@ import taa.testutil.TypicalPersons;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyTaaData_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -19,9 +19,9 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
-        Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    public void execute_nonEmptyTaaData_success() {
+        Model model = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
+        Model expectedModel = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
         expectedModel.setTaaData(new ClassList());
 
         CommandTestUtil.assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

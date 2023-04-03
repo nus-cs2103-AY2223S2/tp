@@ -19,7 +19,7 @@ public class AddStudentCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
     }
 
     @Test

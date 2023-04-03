@@ -12,7 +12,7 @@ import taa.commons.exceptions.DataConversionException;
 import taa.commons.exceptions.IllegalValueException;
 import taa.commons.util.FileUtil;
 import taa.commons.util.JsonUtil;
-import taa.model.ReadOnlyTaaData;
+import taa.model.ReadOnlyStudentList;
 
 /**
  * A class to access ClassList data stored as a json file on the hard disk.
@@ -32,7 +32,7 @@ public class JsonTaaStorage implements TaaStorage {
     }
 
     @Override
-    public Optional<ReadOnlyTaaData> readTaaData() throws DataConversionException {
+    public Optional<ReadOnlyStudentList> readTaaData() throws DataConversionException {
         return readTaaData(filePath);
     }
 
@@ -42,7 +42,7 @@ public class JsonTaaStorage implements TaaStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyTaaData> readTaaData(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyStudentList> readTaaData(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableTaaData> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,21 +60,21 @@ public class JsonTaaStorage implements TaaStorage {
     }
 
     @Override
-    public void saveTaaData(ReadOnlyTaaData addressBook) throws IOException {
-        saveTaaData(addressBook, filePath);
+    public void saveTaaData(ReadOnlyStudentList studentList) throws IOException {
+        saveTaaData(studentList, filePath);
     }
 
     /**
-     * Similar to {@link #saveTaaData(ReadOnlyTaaData)}.
+     * Similar to {@link #saveTaaData(ReadOnlyStudentList)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveTaaData(ReadOnlyTaaData addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveTaaData(ReadOnlyStudentList studentList, Path filePath) throws IOException {
+        requireNonNull(studentList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableTaaData(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaaData(studentList), filePath);
     }
 
 }

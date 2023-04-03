@@ -19,7 +19,7 @@ import taa.logic.LogicManager;
 import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.ModelManager;
-import taa.model.ReadOnlyTaaData;
+import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.UserPrefs;
 import taa.storage.TaaStorage;
@@ -70,13 +70,13 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s student list and {@code userPrefs}. <br>
+     * The data from the sample student list will be used instead if {@code storage}'s student list is not found,
+     * or an empty student list will be used instead if errors occur when reading {@code storage}'s student list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyTaaData> addressBookOptional;
-        ReadOnlyTaaData initialData;
+        Optional<ReadOnlyStudentList> addressBookOptional;
+        ReadOnlyStudentList initialData;
         try {
             addressBookOptional = storage.readTaaData();
             if (!addressBookOptional.isPresent()) {

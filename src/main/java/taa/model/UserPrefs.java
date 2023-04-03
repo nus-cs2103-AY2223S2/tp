@@ -51,9 +51,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return taaDataFilePath;
     }
 
-    public void setTaaDataFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.taaDataFilePath = addressBookFilePath;
+    public void setTaaDataFilePath(Path taaDataFilePath) {
+        requireNonNull(taaDataFilePath);
+        this.taaDataFilePath = taaDataFilePath;
     }
 
     @Override

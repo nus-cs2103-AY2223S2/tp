@@ -18,7 +18,7 @@ import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.ClassList;
 import taa.model.Model;
-import taa.model.ReadOnlyTaaData;
+import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.alarm.Alarm;
 import taa.model.student.Student;
@@ -118,12 +118,12 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void setTaaData(ReadOnlyTaaData newData) {
+        public void setTaaData(ReadOnlyStudentList newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyTaaData getTaaData() {
+        public ReadOnlyStudentList getTaaData() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -289,7 +289,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public ReadOnlyTaaData getTaaData() {
+        public ReadOnlyStudentList getTaaData() {
             return new ClassList();
         }
 

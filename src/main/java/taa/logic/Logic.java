@@ -8,7 +8,7 @@ import taa.logic.commands.CommandResult;
 import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
-import taa.model.ReadOnlyTaaData;
+import taa.model.ReadOnlyStudentList;
 import taa.model.student.Student;
 
 /**
@@ -29,13 +29,13 @@ public interface Logic {
      *
      * @see Model#getTaaData()
      */
-    ReadOnlyTaaData getTaaData();
+    ReadOnlyStudentList getTaaData();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Student> getFilteredStudentList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' TAA data file path.
      */
     Path getTaaDataFilePath();
 

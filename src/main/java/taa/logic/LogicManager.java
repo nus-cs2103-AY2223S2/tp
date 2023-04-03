@@ -14,7 +14,7 @@ import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.TaaParser;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
-import taa.model.ReadOnlyTaaData;
+import taa.model.ReadOnlyStudentList;
 import taa.model.student.Student;
 import taa.storage.Storage;
 
@@ -63,7 +63,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyTaaData getTaaData() {
+    public ReadOnlyStudentList getTaaData() {
         return model.getTaaData();
     }
 

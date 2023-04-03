@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import taa.commons.exceptions.IllegalValueException;
 import taa.model.ClassList;
-import taa.model.ReadOnlyTaaData;
+import taa.model.ReadOnlyStudentList;
 import taa.model.student.Student;
 
 /**
@@ -32,16 +32,16 @@ class JsonSerializableTaaData {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyStudentList} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableTaaData(ReadOnlyTaaData source) {
+    public JsonSerializableTaaData(ReadOnlyStudentList source) {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code ClassList} object.
+     * Converts this TAA data into the model's {@code ClassList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

@@ -44,25 +44,25 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' TAA data file path.
      */
     Path getTaaDataFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' TAA data file path.
      */
-    void setTaaDataFilePath(Path addressBookFilePath);
+    void setTaaDataFilePath(Path taaDataFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces TAA data with the data in {@code taaData}.
      */
-    void setTaaData(ReadOnlyTaaData addressBook);
+    void setTaaData(ReadOnlyStudentList taaData);
 
-    /** Returns the ClassList */
-    ReadOnlyTaaData getTaaData();
+    /** Returns the TAA data*/
+    ReadOnlyStudentList getTaaData();
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the student list.
      */
     boolean hasStudent(Student student);
 
@@ -76,13 +76,13 @@ public interface Model {
 
     /**
      * Deletes the given student.
-     * The student must exist in the address book.
+     * The student must exist in the student list.
      */
     void deleteStudent(Student target);
 
     /**
      * Adds the given student.
-     * {@code student} must not already exist in the address book.
+     * {@code student} must not already exist in the student list.
      */
     void addStudent(Student student);
 
@@ -96,9 +96,9 @@ public interface Model {
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the student list.
      * The student identity of {@code editedStudent} must not be the same as
-     * another existing student in the address book.
+     * another existing student in the student list.
      */
     void setStudent(Student target, Student editedStudent);
 

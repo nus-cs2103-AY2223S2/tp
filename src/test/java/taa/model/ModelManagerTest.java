@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import taa.commons.core.GuiSettings;
 import taa.model.student.NameContainsKeywordsPredicate;
-import taa.testutil.AddressBookBuilder;
+import taa.testutil.ClassListBuilder;
 import taa.testutil.Assert;
 import taa.testutil.TypicalPersons;
 
@@ -60,13 +60,13 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setTaaDataFilePath_nullPath_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, () -> modelManager.setTaaDataFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
+    public void setTaaDataFilePath_validPath_setsTaaDataFilePath() {
+        Path path = Paths.get("taa/data/file/path");
         modelManager.setTaaDataFilePath(path);
         assertEquals(path, modelManager.getTaaDataFilePath());
     }
@@ -77,12 +77,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInStudentList_returnsFalse() {
         assertFalse(modelManager.hasStudent(TypicalPersons.ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInStudentList_returnsTrue() {
         modelManager.addStudent(TypicalPersons.ALICE);
         assertTrue(modelManager.hasStudent(TypicalPersons.ALICE));
     }
@@ -94,7 +94,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ClassList classList = new AddressBookBuilder()
+        ClassList classList = new ClassListBuilder()
                 .withPerson(TypicalPersons.ALICE)
                 .withPerson(TypicalPersons.BENSON).build();
         ClassList differentClassList = new ClassList();

@@ -5,13 +5,13 @@ import static java.util.Objects.requireNonNull;
 import taa.commons.util.AppUtil;
 
 /**
- * Represents a Student's name in the address book.
+ * Represents a Student's name in the class list.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should only contain letters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

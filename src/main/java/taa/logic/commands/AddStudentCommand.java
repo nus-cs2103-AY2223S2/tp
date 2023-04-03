@@ -9,13 +9,13 @@ import taa.model.Model;
 import taa.model.student.Student;
 
 /**
- * Adds a student to the address book.
+ * Adds a student to the student list.
  */
 public class AddStudentCommand extends Command {
 
     public static final String COMMAND_WORD = "add_student";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the class list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + "[" + PREFIX_CLASS_TAG + "CLASS_NAME]...\n"

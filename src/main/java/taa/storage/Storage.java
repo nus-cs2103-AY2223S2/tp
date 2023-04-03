@@ -5,7 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import taa.commons.exceptions.DataConversionException;
-import taa.model.ReadOnlyTaaData;
+import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.UserPrefs;
 
@@ -24,9 +24,9 @@ public interface Storage extends TaaStorage, UserPrefsStorage {
     Path getTaaDataFilePath();
 
     @Override
-    Optional<ReadOnlyTaaData> readTaaData() throws DataConversionException, IOException;
+    Optional<ReadOnlyStudentList> readTaaData() throws DataConversionException, IOException;
 
     @Override
-    void saveTaaData(ReadOnlyTaaData addressBook) throws IOException;
+    void saveTaaData(ReadOnlyStudentList studentList) throws IOException;
 
 }
