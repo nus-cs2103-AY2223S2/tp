@@ -29,7 +29,7 @@ public class Nric {
     public static boolean isValidNumber(String number) {
         if (number.equals("")) {
             return true;
-        } else if (!(number.indexOf(0) == 'S' || number.indexOf(0) == 'T' || number.indexOf(0) == 'G')) {
+        } else if (number.indexOf(0) == 'S' || number.indexOf(0) == 'T' || number.indexOf(0) == 'G') {
             if (number.length() == 9) {
                 return true;
             } else {
