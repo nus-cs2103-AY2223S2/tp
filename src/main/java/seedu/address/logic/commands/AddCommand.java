@@ -50,9 +50,12 @@ public class AddCommand extends Command {
     public ViewCommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+
         if (model.hasPerson(this.candidatePerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+
+        model.updateObservablePersonList();
 
         Person indexedPerson = model.addPerson(candidatePerson);
         model.updateObservablePersonList();
