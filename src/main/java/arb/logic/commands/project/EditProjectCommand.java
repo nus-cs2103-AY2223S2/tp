@@ -46,8 +46,6 @@ public class EditProjectCommand extends Command {
     public static final String MESSAGE_USAGE = MAIN_COMMAND_WORD + ": Edits the details of the project identified "
             + "by the index number used in the displayed project list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Blank prefixes for all fields except name "
-            + "will clear the existing value.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
