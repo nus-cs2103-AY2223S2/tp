@@ -19,7 +19,13 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
 
 3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sportsync.jar` command to run the application.<br>
    e.g. `cd Desktop\New_Folder` and then `java -jar sportsync.jar`<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
+
+   A GUI similar to the below should appear in a few seconds. This shows the session list, which is currently empty.<br>
+   Below that is the income analytics, which tabulates how much you've earned through your sessions.<br><br>
+   ![EmptySessionUi](images/EmptySessionUi.png)<br><br>
+   Click the `Contacts` tab, or press the shortcut `CTRL + 2`. You have just navigated to the contact list.<br>
+   Note how the app contains some sample data.<br><br>
    ![Ui](images/Ui.png)
 
 4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -36,6 +42,18 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
     * `exit` : Exits the app.
 
 Refer to the [Features](#features) below for details of each command.
+
+5. Click the `Calendar` tab, or press the shortcut `CTRL + 3`. You have just navigated to the calendar, which is currently empty.<br>
+   All future scheduled sessions will automatically show up on the calendar.<br><br>
+   ![Ui](images/EmptyCalendarUi.png)<br>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Here are some useful shortcuts that can help you save time:<br>
+**F1**: Opens the help menu.
+**CTRL + 1**: Switches to the `Sessions` tab.
+**CTRL + 2**: Switches to the `Contacts` tab.
+**CTRL + 3**: Switches to the `Calendar` tab.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -185,26 +203,23 @@ Format: `exit`
 
 Sorts all athletes in the athlete list according to provided attribute.
 
-Format: `sort ATTRIBUTE ORDER`
+Format: `sort ATTRIBUTE`
 
-* Sorts the athlete according to specified attribute `ATTRIBUTE` and in specified `ORDER`.
+* Sorts the athlete according to specified attribute `ATTRIBUTE`.
 * Attributes:
   * 1 - Name
   * 2 - Pay rate
-* Order:
-  * 1 - Ascending
-  * 2 - Descending
 
 Examples:
-* `sort 1 1` sorts the athlete list by name in alphabetical order.
-* `sort 2 1` sorts the athlete list according to pay rate, from cheapest to most expensive.
+* `sort 1` sorts the athlete list by name in alphabetical order.
+* `sort 2` sorts the athlete list according to pay rate, from cheapest to most expensive.
 
 ### Adding a tag : `add-tag`
 
 Adds a specified tag to a specified athlete.
 
 Format: `add-tag INDEX t/TAGNAME`
-* Adds a tag of `TAGNAME` to the athelete at `INDEX`
+* Adds a tag of `TAGNAME` to the athlete at `INDEX`
 
 Examples:
 * add-tag 1 t/Hall adds a tag of name `Hall` to the person at Index 1.
@@ -215,46 +230,24 @@ Adds a specified tag to a specified athlete.
 
 Format: `remove-tag INDEX t/TAGNAME`
 
-* Removes a tag of `TAGNAME` to the athelete at `INDEX`
+* Removes a tag of `TAGNAME` to the athlete at `INDEX`
 
 
 Examples:
 * remove-tag 1 t/Hall remove a tag of name `Hall` to the person at Index 1.
 
-
 ### Showing athletes with the specified tag : `show`
 
 Shows all athletes belonging to at least one of the tags specified.
 
-Format: `show [GROUP1]…​`
+Format: `show [TAG1]…​`
 
-* Filters list of athletes to only contain athletes belonging to one or more of the specific group(s).
+* Filters list of athletes to only contain athletes belonging to one or more of the specific tag(s).
 * At least one tag name **must be provided.**
 
 Examples:
-* `show varsity` shows people belonging to group `varsity`.
-* `show hockey tennis` shows people belonging to either group `hockey`, `tennis` or both.
-
-### Listing all groups in SportSync : `display`
-
-Lists all groups created by the coach.
-
-Format: `display`
-
-* Displays all existing coach-created groups.
-* Only the group names themselves are displayed, not the athletes belonging to those groups.
-
-### Saving the data
-
-SportSync data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-SportSync data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced coaches are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, SportSync will discard all data and start with an empty data file at the next run.
-</div>
+* `show varsity` shows people belonging to tag `varsity`.
+* `show hockey tennis` shows people belonging to either tag `hockey`, `tennis` or both.
 
 ### Create a session : `create-session`
 
@@ -270,7 +263,7 @@ Examples:
 
 ### Delete an existing session : `delete-session`
 
-Removes an existing session from the address book.
+Removes an existing session from the session list.
 
 Format: `delete-session INDEX `
 
@@ -282,7 +275,7 @@ Examples:
 
 ### Edit an existing session : `session-edit`
 
-Edits the details of an existing session in the address book.
+Edits the details of an existing session in the session list.
 
 Format: `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`
 
@@ -331,6 +324,19 @@ Format: `student-remove INDEX n/HALL`
 
 Examples:
 * `student-remove 1 n/hall` Removes an athlete at index 1 of the contact list from the session “Hall”.
+
+### Saving the data
+
+SportSync data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+SportSync data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced coaches are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, SportSync will discard all data and start with an empty data file at the next run.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **FAQ**
@@ -345,25 +351,22 @@ Examples:
 * **Attendance**: A record of the presence or absence of an athlete at a training session.
 * **Coach**: A person who trains and directs athletes or a team.
 * **Session**: A training period for athletes conducted by a coach.
+* **Tag**: A label attached to an athlete in SportSync, used to group athletes together for easier management.
 
-Tag: A label attached to an athlete in SportSync, used to group athletes together for easier management.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Command summary**
 
-| Action        | Format, Examples                                                                                                                                       |
-|---------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**       | `add n/NAME p/PHONE_NUMBER r/PAY_RATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 r/7 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**     | `clear`                                                                                                                                                |
-| **Delete**    | `delete INDEX`<br> e.g., `delete 3`                                                                                                                    |
-| **Edit**      | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee r/3`                                           |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                             |
-| **List**      | `list`                                                                                                                                                 |
-| **Help**      | `help`                                                                                                                                                 |
-| **Sort**      | `sort ATTRIBUTE ORDER`<br> e.g., `sort 1 2`                                                                                                            |
-| **Group**     | `group m/MODIFICATION g/GROUPNAME`<br> e.g., `group m/add g/Team Dynamite`                                                                             |
-| **Group Mod** | `groupmod INDEX m/MODIFICATION g/GROUPNAME`<br> e.g., `groupmod 2 m/add g/Team Dynamite`                                                               |
-| **Show**      | `show [TAG1]…​`<br> e.g., `show Hall…​`                                                                                                                |
-| **Display**   | `display`                                                                                                                                              |
-| **Undo**      | `undo`                                                                                                                                                 |
-| **Redo**      | `redo`                                                                                                                                                 |
+| Action     | Format, Examples                                                                                                                                       |
+|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER r/PAY_RATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 r/7 a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**  | `clear`                                                                                                                                                |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                    |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [r/PAY_RATE] [a/ADDRESS] [t/TAG]…​`<br> e.g., `edit 2 n/James Lee r/3`                                           |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                             |
+| **List**   | `list`                                                                                                                                                 |
+| **Help**   | `help`                                                                                                                                                 |
+| **Sort**   | `sort ATTRIBUTE`<br> e.g., `sort 1`                                                                                                                    |                                                              |
+| **Show**   | `show [TAG1]…​`<br> e.g., `show Hall…​`                                                                                                                |
+| **Undo**   | `undo`                                                                                                                                                 |
+| **Redo**   | `redo`                                                                                                                                                 |

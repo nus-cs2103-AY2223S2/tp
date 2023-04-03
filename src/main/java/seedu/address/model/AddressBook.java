@@ -188,11 +188,10 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addPersonToSession(Person person, Session session) {
         requireAllNonNull(person, session);
-        Session newSession = session;
         if (!sessions.contains(session)) {
             throw new SessionNotFoundException();
         }
-
+        Session newSession = session.copy();
         newSession.addPersonToSession(person);
         sessions.setSession(session, newSession);
     }
@@ -217,8 +216,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         if (!session.contains(name)) {
             throw new PersonNotFoundException();
         }
-
-        Session newSession = session;
+        Session newSession = session.copy();
         newSession.removePersonFromSession(name);
         sessions.setSession(session, newSession);
     }
@@ -302,7 +300,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Returns pay rate per hour of specified person {@code name} in the address book.
-     * @param name
+     * @param name Name of person.
      * @return Non-negative integer if a person with the same name as {@code name}
      *      exists in the address book, -1 otherwise.
      */
