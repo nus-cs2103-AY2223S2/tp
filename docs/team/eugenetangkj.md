@@ -15,15 +15,6 @@ then InternBuddy is the perfect buddy to accompany you during your internship hu
 ## Project Contributions
 Given below are my contributions to InternBuddy:
 
-### Role
-**1. UI Lead**
-* Responsible for the aesthetics of InternBuddy
-* Led UI development with the usage of JavaFX
-
-**2. Documentation Lead**
-* Oversaw the quality and adherence to standards for User and Developer Guides
-* Conducted final checks on the documentation
-
 ### Code Contribution
 [View it on RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=eugenetangkj&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -79,6 +70,7 @@ Given below are my contributions to InternBuddy:
   * Removed AB3-related content and added InternBuddy-related content.
 
 - **Updated Landing Page**
+  [\#127](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/127)
   * Removed AB3-related content and added InternBuddy-related content.
 
 - **Contributed to User Guide**
@@ -91,7 +83,8 @@ Given below are my contributions to InternBuddy:
     parameters in InternBuddy.
   * Responsible for the write-up of the `list`, `add`, `view`, `help` and `exit` commands,
     as well as on the sections on `Saving Internship Data` and `Loading the Data`.
-  * Created the appendices to explain to users how to install Java 11 and manually edit the `internbuddy.json` file.
+  * Created the appendices to explain to users how to install Java 11, manually edit the `internbuddy.json` file
+    and populate InternBuddy with sample data.
 - **Contributed to Developer Guide**
   [\#23](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/23),
   [\#82](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/82),
@@ -106,15 +99,18 @@ Given below are my contributions to InternBuddy:
 
 
 ### Code Review
-- **Provided non-trivial comments for**
+- Provided non-trivial comments for
   [\#47](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/47),
   [\#80](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/80),
   [\#100](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/100)
 
 ### Others
-- **Designed the logo for InternBuddy**
+- Designed the logo for InternBuddy
+- Contributed to CS2103T forum discussions for
+  [\#45](https://github.com/nus-cs2103-AY2223S2/forum/issues/45),
+  [\#99](https://github.com/nus-cs2103-AY2223S2/forum/issues/99),
+  [\#177](https://github.com/nus-cs2103-AY2223S2/forum/issues/177),
+  [\#252](https://github.com/nus-cs2103-AY2223S2/forum/issues/252),
+  [\#254](https://github.com/nus-cs2103-AY2223S2/forum/issues/254),
+  [\#266](https://github.com/nus-cs2103-AY2223S2/forum/issues/266).
 
-<br/>
-<p align="center">
-  <img width="300" height="200" src="../images/team-mascots/InternBuddyArtist.png">
-</p>
