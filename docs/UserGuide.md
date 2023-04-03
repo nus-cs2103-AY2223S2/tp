@@ -193,7 +193,7 @@ Examples:
 
 Search for a contact based on their leads.
 
-Format: `findlead <valid lead status>`
+Format: `findlead [s/STATUS]`
 
 The user can use either the long form or short form method to search
 
@@ -210,13 +210,14 @@ UNQUALIFIED: `Unqualified` or `X`
 
 Examples:
 
-- `findlead <leadstatus>` - returns all contacts with the associated lead status, `Dewy Thompson` or `Majorie Dewy`
+- `findlead [s/STATUS]` - returns all contacts with the associated lead status, `Dewy Thompson` or `Majorie Dewy`
 
 ### Finding a contact tag: `findall`
 
 Search for a contact based on all attributes of a Person recorded in the addressbook.
 
 Format: `findall <any keyword that matches any attribute>`
+*findall does not for parse through tags and leadstatus attributes as they have their own seperate commands for searching
 
 The user can search for any attribute and if it matches with any Person, that person will be listed.
 
@@ -233,7 +234,7 @@ Examples:
 
 Search for a single contact and all txns related to this contact. The user must enter an existing user that is in the database and must match exactly the name in the database.
 
-Format: `findtxn <exact match with person name>`
+Format: `findtxn [n/NAME]`
 
 - The search is case-insensitive. e.g `[John Doe]` will match `[john doe]`
 - The spaces before and after keywords does not matter. e.g. `[ Hans Bo  ]` will match `[Bo Hans]`
@@ -381,4 +382,9 @@ _italic_ - optional
 | **Status**     | `status INDEX_NUMBER` _`[STATUS …]`_<br> `status NAME` _`[STATUS …]`_<br> e.g., `status 1, status David closed-won`                                                                                                                                                                        |
 | **List**       | `list`                                                                                                                                                                                                                                                                                     |
 | **List Txn**   | `listtxn`                                                                                                                                                                                                                                                                                  |
+| **Find** | `find [n/NAME]`<br> e.g., `find Alex`                                                                                                                                                                                                                                                  |
+| **FindTag** | `findtag [t/TAG]`<br> e.g., `findtag [friends]`                                                                                                                                                                                                                                                  |
+| **FindLead** | `findlead [s/STATUS]`<br> e.g., `findlead Qualified` , `findlead Q`      
+| **FindAll** | `findall [Anything except for [s/STATUS] & [t/TAG]]`<br> e.g., `findall Alex` , `findall 93282505` , `findall Dover Crescent Road`
+| **FindTxn** | `findtxn [n/NAME]`<br> e.g., `findtxn Bernice Yu`                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                 |
 | **Help**       | `help`                                                                                                                                                                                                                                                                                     |
