@@ -925,7 +925,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2a1. LeTracker shows an error message.
 
       Use case resumes at step 1.
-  
+
 - 2b. Reference to module is empty.
 
     - 2b1. LeTracker shows an error message.
@@ -957,7 +957,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to tag a video of a lecture.
-2. User specified the tags, as well as the video, the lecture the video belongs to, and the module 
+2. User specified the tags, as well as the video, the lecture the video belongs to, and the module
    the lecture belongs to.
 3. The video is tagged.
 
@@ -1038,7 +1038,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2c1. LeTracker shows an error message.
 
       Use case resumes at step 1.
-  
+
 - 2d. Module tags do not exist.
 
     - 2d1. LeTracker shows an error message.
@@ -1088,7 +1088,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 2e1. LeTracker shows an error message.
 
       Use case resumes at step 1.
-  
+
 - 2f. Lecture tags do not exist.
 
     - 2f1. LeTracker shows an error message.
