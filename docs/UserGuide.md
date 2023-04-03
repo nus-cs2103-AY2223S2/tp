@@ -14,6 +14,8 @@ title: User Guide
   * [Using this guide](#using-this-guide)
   * [Glossary](#glossary)
   * [Quickstart](#quick-start)
+  * [About the interface](#about-the-interface)
+  * [*Fish Ahoy!* commands](#fish-ahoy-commands)
   * [Features](#features)
     * [Tanks](#tanks)
       * [Adding a tank `tank add`](#adding-a-tank-tank-add)
@@ -303,7 +305,7 @@ Currently, there are five operations around tanks:
 
 ### Adding a tank: `tank add`
 
-Adds a tank to *Fish Ahoy!* <br>
+You can add a tank to *Fish Ahoy!* with the `tank add` command.
 
 Use this command to add your own tank with a customized name to *Fish Ahoy!* This will start your journey into managing 
 your aquarium.
@@ -312,6 +314,14 @@ Format: `tank add d/<TANK_NAME>`
 
 Prefixes:
 * `d/` - Specifies the name of the tank
+
+> :information_source: Additional information: You cannot add tanks with the same description to *Fish Ahoy!*
+
+Examples:
+* `tank add d/tank 1` adds a new tank with the following details:
+  * Description: tank 1
+
+
 
 ### Deleting a tank: `tank delete`
 
