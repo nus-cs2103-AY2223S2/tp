@@ -61,12 +61,11 @@ _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming ev
 | Exit   | `exit`                                                            |
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Date Format:** Dates should follow a `YYYY-MM-DD` format
+:exclamation: **Date Format:** Dates should follow a `YYYY-MM-DD` format
 </div>
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Time Format:**  
-All time-based parameter in the commands should be in 24-hour `HH:mm` format,
+:exclamation: **Time Format:** Time should be in 24-hour `HH:mm` format,
 ranging from `00:00` to `23:59`. Leading zero are required. 
 </div>
 
@@ -296,10 +295,10 @@ Functionality:
 [[Back to top](#index)]
 
 
-<h1 id="faq">FAQ</h1>
+<h1 id="faq">FAQ :question:</h1>
 ---------------------
 **Q:** On a scale of 1 to 10, how awesome is this product?  
-**A:** 10
+**A:** 10 :v:
 
 **Q:** What is one example of someone who would use this?  
 **A:** A secretary who needs to keep track the boss's meetings,
