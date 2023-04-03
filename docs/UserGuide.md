@@ -325,7 +325,7 @@ To start off, let's try out the `add` command! This command lets you add an [app
 
 One of the available commands in HMHero is the command to create a new applicant.
 
-**Format:** `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE] [applied/APPLICATION DATE TIME]`
+**Format:** `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
 <br>
 <br>
 
@@ -699,9 +699,7 @@ Applicants with the status <code>REJECTED</code> cannot be rejected!
 
 **Info**
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-* For note:
-  * If no notes are specified, the current notes for the applicant will be deleted.
-  * If two or more values of `NOTE` are provided, both parameter will be taken in.
+* However, if two or more values of `NOTE` are provided, both parameter will be taken in.
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
