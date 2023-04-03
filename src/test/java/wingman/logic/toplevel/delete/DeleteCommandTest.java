@@ -10,7 +10,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import org.mockito.Mockito;
+import org.mockito.Mokito;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,7 +45,7 @@ public class DeleteCommandTest {
                 getManagerFunction,
                 deleteFunction
         );
-        Mockito.lenient().when(deleteFunction).delete(eq(model), eq(item));
+        Mokito.lenient().when(deleteFunction).delete(eq(model), eq(item));
 
         CommandResult result = deleteCommand.execute(model);
         verify(deleteFunction).delete(eq(model), eq(item));
