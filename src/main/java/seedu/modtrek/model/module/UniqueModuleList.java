@@ -3,6 +3,7 @@ package seedu.modtrek.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.modtrek.logic.commands.SortCommand.DEFAULT_SORT;
+import static seedu.modtrek.logic.parser.ParserUtil.parseTagsForSort;
 
 import java.util.Iterator;
 import java.util.List;
@@ -143,7 +144,7 @@ public class UniqueModuleList implements Iterable<Module> {
                 obj = m.getCredit().toString();
                 break;
             case TAG:
-                obj = m.getTags().toString();
+                obj = parseTagsForSort(m.getTags());
                 break;
             case CODE:
                 obj = m.getCodePrefix().toString();
