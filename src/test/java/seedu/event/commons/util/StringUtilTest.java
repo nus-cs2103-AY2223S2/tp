@@ -123,7 +123,7 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
-    //---------------- Tests for containsPhraseIgnoreCase --------------------------------------
+    //---------------- Tests for containsKeywordIgnoreCase --------------------------------------
 
     /*
     * Invalid equivalence partitions for word: null, empty, multiple words
@@ -132,65 +132,67 @@ public class StringUtilTest {
     */
 
     @Test
-    public void containsPhraseIgnoreCase_nullWord_throwsNullPointerException() {
+    public void containsKeywordIgnoreCase_nullWord_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.containsKeywordIgnoreCase("typical sentence", null));
     }
 
     @Test
-    public void containsPhraseIgnoreCase_emptyWord_throwsIllegalArgumentException() {
+    public void containsKeywordIgnoreCase_emptyWord_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, "Keyword parameter cannot be empty", ()
             -> StringUtil.containsKeywordIgnoreCase("typical sentence", "  "));
     }
 
     @Test
-    public void containsPhraseIgnoreCase_multipleWords_throwsIllegalArgumentException() {
+    public void containsKeywordIgnoreCase_multipleWords_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, "Keyword parameter should be a single keyword", ()
             -> StringUtil.containsKeywordIgnoreCase("typical sentence", "aaa BBB"));
     }
 
     @Test
-    public void containsPhraseIgnoreCase_nullSentence_throwsNullPointerException() {
+    public void containsKeywordIgnoreCase_nullSentence_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.containsKeywordIgnoreCase(null, "abc"));
     }
 
     /*
-    * Valid equivalence partitions for phrase:
-    *   - any phrase
-    *   - phrase containing symbols/numbers
-    *   - phrase with leading/trailing spaces
+    * Valid equivalence partitions for keyword:
+    *   - any keyword
+    *   - keyword containing symbols/numbers
+    *   - keyword with leading/trailing spaces
     *
     * Valid equivalence partitions for sentence:
     *   - empty string
-    *   - one phrase
-    *   - multiple phrases
+    *   - one keyowrd
+    *   - multiple keywords
     *   - sentence with extra spaces
     *
     * Possible scenarios returning true:
-    *   - query phrase matches part of a sentence word
-    *   - matches first phrase in sentence
-    *   - last phrase in sentence
-    *   - middle phrase in sentence
-    *   - matches multiple phrase
+    *   - query keyword matches part of a sentence word
+    *   - matches first keyword in sentence
+    *   - last keyword in sentence
+    *   - middle keyword in sentence
+    *   - matches multiple keyword
     *
     * Possible scenarios returning false:
-    *   - sentence word does not contain the query phrase
-    *   - sentence word contains part of the query phrase
+    *   - sentence word does not contain the query keyowrd
+    *   - sentence word contains part of the query keyowrd
     *
     * The test method below tries to verify all above with a reasonably low number of test cases.
     */
 
     @Test
-    public void containsPhraseIgnoreCase_validInputs_correctResult() {
+    public void containsKeywordIgnoreCase_validInputs_correctResult() {
 
         // Empty sentence
         assertFalse(StringUtil.containsKeywordIgnoreCase("", "abc")); // Boundary case
         assertFalse(StringUtil.containsKeywordIgnoreCase("    ", "123"));
 
-        // Matches a query phrase
-        assertTrue(StringUtil.containsKeywordIgnoreCase("aaa bbb ccc", "bb")); // Sentence word bigger than query word
+        // Matches a query keyword
+        // Sentence word bigger than query keyword
+        assertTrue(StringUtil.containsKeywordIgnoreCase("aaa bbb ccc", "bb"));
 
-        // Does not match a query phrase
-        assertFalse(StringUtil.containsKeywordIgnoreCase("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
+        // Does not match a query keyword
+         // Query word bigger than sentence word
+        assertFalse(StringUtil.containsKeywordIgnoreCase("aaa bbb ccc", "bbbb"));
 
         // Matches word in the sentence, different upper/lower case letters
         assertTrue(StringUtil.containsKeywordIgnoreCase("aaa bBb ccc", "Bbb")); // Middle word (boundary case)
