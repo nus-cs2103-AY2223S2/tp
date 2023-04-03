@@ -27,6 +27,10 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (model.recentCommands().isEmpty()) {
+            return new CommandResult("Undo cannot be done at this moment.");
+        }
+
         Command prevCommand = model.recentCommands().get(0);
         String actionToBeUndone = prevCommand.commandWord();
 
