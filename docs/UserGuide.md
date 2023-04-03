@@ -238,25 +238,25 @@ For more information, you can go [here](#switching-tabs-tab).
 
 Upon starting the application, you will see a convenient dashboard with summarised information that you need for your business.
 
-**<span style="color:rgba(0.0, 255.0, 0.0, 0.5); background-color:silver">Sales (Total Revenue and Profit)</span>**
+**<span style="background-color:rgba(0.0, 255.0, 0.0, 0.5)">Sales (Total Revenue and Profit)</span>**
 
 Trackr keeps track of all orders submitted and automatically updates the total revenue and profit that your business has generated with us.
 
-**<span style="color:rgba(246.2, 149.6, 28.3, 0.5); background-color:silver">Simplified Orders</span>**
+**<span style="background-color:rgba(246.2, 149.6, 28.3, 0.5)">Simplified Orders</span>**
 
 Order list shows a condensed preview of your outstanding orders, with their relevant details (i.e. customer name, promised delivery date and your progress).
 
-**<span style="color:rgba(8.7, 68.0, 237.2, 0.5); background-color:silver">Simplified Tasks</span>**
+**<span style="background-color:rgba(8.7, 68.0, 237.2, 0.5)">Simplified Tasks</span>**
 
 Task list shows all outstanding miscellaneous tasks that you may have for your current operations.
 
-**<span style="color:rgba(237.2, 8.7, 176.5, 0.5); background-color:silver">Simplified Menu</span>**
+**<span style="background-color:rgba(237.2, 8.7, 176.5, 0.5)">Simplified Menu</span>**
 
 Menu list shows all the items that you have up for sale currently, with their details (cost price, selling price and profit margin) at a glance.
 
 ### 1.4.2 Data Tab
 
-**<span style="color:rgba(128.9, 0.0, 255.0, 0.5); background-color:silver">Data List</span>**
+**<span style="background-color:rgba(128.9, 0.0, 255.0, 0.5)">Data List</span>**
 
 Data list contains all of your respective data labelled out in full. The layout of the respective data information can be seen below:
 
