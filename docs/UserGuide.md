@@ -19,7 +19,13 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
 
 3. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar sportsync.jar` command to run the application.<br>
    e.g. `cd Desktop\New_Folder` and then `java -jar sportsync.jar`<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+
+
+   A GUI similar to the below should appear in a few seconds. This shows the session list, which is currently empty.<br>
+   Below that is the income analytics, which tabulates how much you've earned through your sessions.<br><br>
+   ![EmptySessionUi](images/EmptySessionUi.png)<br><br>
+   Click the `Contacts` tab, or press the shortcut `CTRL + 2`. You have just navigated to the contact list.<br>
+   Note how the app contains some sample data.<br><br>
    ![Ui](images/Ui.png)
 
 4. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -36,6 +42,18 @@ Ensure that you have Java 11 or above installed on your computer. If you don't h
     * `exit` : Exits the app.
 
 Refer to the [Features](#features) below for details of each command.
+
+5. Click the `Calendar` tab, or press the shortcut `CTRL + 3`. You have just navigated to the calendar, which is currently empty.<br>
+   All future scheduled sessions will automatically show up on the calendar.<br><br>
+   ![Ui](images/EmptyCalendarUi.png)<br>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Here are some useful shortcuts that can help you save time:<br>
+**F1**: Opens the help menu.
+**CTRL + 1**: Switches to the `Sessions` tab.
+**CTRL + 2**: Switches to the `Contacts` tab.
+**CTRL + 3**: Switches to the `Calendar` tab.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -203,19 +221,17 @@ Format: `clear`
 
 Sorts all athletes in the athlete list according to provided attribute.
 
-Format: `sort ATTRIBUTE ORDER`
+Format: `sort ATTRIBUTE`
 
-* Sorts the athlete according to specified attribute `ATTRIBUTE` and in specified `ORDER`.
+* Sorts the athlete according to specified attribute `ATTRIBUTE`.
 * Attributes:
-    * 1 - Name
-    * 2 - Pay rate
-* Order:
-    * 1 - Ascending
-    * 2 - Descending
+
+  * 1 - Name
+  * 2 - Pay rate
 
 Examples:
-<br>`sort 1 1` <br>Sorts the athlete list by name in alphabetical order.
-<br>`sort 2 1` <br> Sorts the athlete list according to pay rate, from cheapest to most expensive.
+* `sort 1` sorts the athlete list by name in alphabetical order.
+* `sort 2` sorts the athlete list according to pay rate, from cheapest to most expensive.
 
 ## Tag Management
 ### Adding a tag : `add-tag`
@@ -239,19 +255,19 @@ Examples:
 `remove-tag 1 t/Hall`
 <br>Remove a tag of name "Hall" from the person at Index 1.
 
-
 ### Showing athletes with the specified tag : `show`
 
 Shows all athletes belonging to at least one of the tags specified.
 
-Format: `show [GROUP1]…​`
+Format: `show [TAG1]…​`
 
-* Filters list of athletes to only contain athletes belonging to one or more of the specific group(s).
+* Filters list of athletes to only contain athletes belonging to one or more of the specific tag(s).
 * At least one tag name **must be provided.**
 
 Examples:
 <br>`show varsity` <br>shows people belonging to group `varsity`.
 <br>`show hockey tennis`<br>Shows people belonging to either group `hockey`, `tennis` or both.
+
 
 ## Session Management
 ### Create a session : `create-session`
@@ -266,7 +282,7 @@ Examples:`create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2` 
 
 ### Delete an existing session : `delete-session`
 
-Removes an existing session from the address book.
+Removes an existing session from the session list.
 
 Format: `delete-session INDEX `
 
@@ -277,7 +293,7 @@ Examples:
 
 ### Edit an existing session : `session-edit`
 
-Edits the details of an existing session in the address book.
+Edits the details of an existing session in the session list.
 
 Format: `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`
 
@@ -338,7 +354,6 @@ The panel is automatically updated based on athlete attendance and pay rates. It
 ### Features
 The displayed income is based on the athlete's pay rate per hour and the session duration. It is only reflected if the athlete is marked as present.
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **FAQ**
@@ -383,3 +398,4 @@ The displayed income is based on the athlete's pay rate per hour and the session
 | **UnMark Attendance** | `unmark INDEX n/NAME` <br> e.g. `unmark 1 n/John Doe`                                                                                                 |
 | **Add Student**       | `student-add INDEX n/HALL` <br> e.g. `student-add 1 n/hall`                                                                                           |
 | **Remove Student**    | `student-remove INDEX n/HALL` <br> e.g. `student-remove 1 n/hall`                                                                                     |
+

@@ -129,7 +129,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/ModelClassDiagram3.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
 
@@ -167,19 +167,15 @@ Step 2. The Coach keys in some athletes and their details with the `add` method.
 
 Step 3. After adding his athletes, the Coach wants to view his athletes in alphabetical order, so he wants to sort them by name in ascending order.
 
-Step 4. The Coach then decides to execute the command `sort 1 1`.
+Step 4. The Coach then decides to execute the command `sort 1`.
 
 #### Design considerations:
 
 Restricting attribute and order to an integer value allows for the input to be easily anticipated and controlled.
 
-* **Alternative 1 (current choice):** Allow coaches to specify what and how to sort their list.
+* **Alternative 1 (current choice):** Allow coaches to specify how to sort their list.
     * Pros: More flexible and customisable to the needs of the coach.
     * Cons: More troublesome as coach needs to check the User Guide to learn what integers to use.
-
-* **Alternative 2:** Coach types `sort` and it sorts based on a pre-determined attribute and order.
-    * Pros: Easy for coach to use.
-    * Cons: Not flexible nor customisable.
 
 ### Undo/redo feature
 
@@ -259,81 +255,6 @@ The following activity diagram summarizes what happens when a Coach executes a n
   * Pros: Will use less memory (e.g. for `delete`, just save the `Person` being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-### Grouping feature
-
-#### Introduction:
-The grouping feature enables the addition and deletion of groups in the AddressBook. It provides two commands — `group` and `groupmod` that can be used to add, delete or modify the contents of groups in the `AddressBook`.
-
-#### Architecture:
-The grouping feature is supported by two classes — the `Group` class and the `UniqueGroupList` class. The `Group` class consists of two attributes a `UniquePersonList` (similar to that present in the `Addressbook`) and a `Tag`,
-While  the `UniqueGroupList` is essentially a list of unique groups. The class diagram below  illustrates the relationship between the two classes.
-
-![GroupListClassDiagram](images/GroupListclassdiagram.png)
-
-To allow coaches to take full advantage of the grouping functionality, two commands are required.
-#### GroupCommand
-This command is used to add or delete groups from the AddressBook.<br>`group m/MODIFICATION g/GROUPNAME` where:<br>
-1. `m/`: flag to indicate the type of modification.
-    1. `add`: adds an athlete to an existing group.
-    2. `remove`: deletes an athlete from an existing group.
-2. `g/`: flag to indicate the group name.<br>
-
-##### Adding a group
-To add a new `Group` with the `Tag` “Hall”, the coach can execute the following command:
-
-`group m/add g/Hall`
-
-When the coach gives the above input, a `Tag` object of name Hall is created,
-this tag is tied to a `Group` class which will be added to `UniqueGroupList` in the existing `AddressBook`.
-The object diagram shown depicts such an instance.
-
-![GroupObject](images/GroupObject.png)
-
-##### Deleting a group
-To delete an existing group with the name “Hall”, the coach can execute the following command:
-`group m/delete g/Hall`
-
-This will trigger method `deleteGroup()` in `ModelManager` that will call the method `deleteGroup()` in the `AddressBook`.
-During this method, the group cannot merely be deleted. It must first iterate through every athlete on the list and remove the "Hall"
-`Tag` for every athlete. Only after removing all "Hall" tags in the AddressBook can we delete the specified group.
-
-#### GroupModifyCommand
-After enabling the creation and deletion of groups, the next step is to allow the addition and removal of
-athletes to / from groups. The `groupmod` command allows for such a function.
-
-`groupmod INDEX m/MODIFICATION g/GROUPNAME`
-
-1. `index`: index of the athlete.
-2. `m/`: flag to indicate the type of modification.
-   1. `add`: adds an athlete to an existing group.
-   2. `remove`: deletes an athlete from an existing group.
-3. `g/`: flag to indicate the group name.
-
-##### Adding an athlete to a group:
-1. To add an athlete named “John” (at index 1) to an existing group named “Hall”, the coach can execute:
-`groupmod 1 m/add g/Hall`.
-
-In such a scenario, two key things occur.
-1. The athlete "John" will be added to the `Group` with a `Tag` "Hall".
-2. The `Tag` "Hall" will be added to the list of tags in John's attribute.
-
-##### Removing an athlete from a group
-To remove an athlete named “John” from an existing group named “Hall”, the coach can execute the following command:
-`groupmod 1 m/delete g/Hall`
-
-#### Sequence Of Events:
-1. When the command is called, the parser finds the athlete at index 1 and creates a` Group` of name "Hall"
-2. A `GroupModifyCommand` is created.
-3. Once the `execute()` method is called on the `GroupModifyCommand` object, `removePersonFromGroup(John)` is called in the `Model`.
-4. This calls the similarly named method in the `AddressBook` which will check whether the "Hall" group exists.
-5. If it does, "John" will be removed from the "Hall" group.
-6. John's "Hall" group tag will also be removed.
-
-#### Conclusion:
-The grouping feature provides a way to add, delete and modify the contents of groups in the AddressBook. It is built on top of the `UniqueGroupList` data structure and provides two commands - `group` and `groupmod` - to perform the desired operations.
-Although the overall design of the `GroupList` may seem like an inefficient use of space, since we store duplicate copies of an athlete, an athlete belongs to every existing `Group`. It makes implementation simpler, allowing more operations to be implemented in the future.
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -367,7 +288,7 @@ Although the overall design of the `GroupList` may seem like an inefficient use 
 
 ### Coach stories
 
-Priorities:<br>**High (must have)** - `* * *`<br>Medium (nice to have) - `* *`<br>Low (unlikely to have) - `*`
+Priorities:<br>High (must have) - `* * *`<br>Medium (nice to have) - `* *`<br>Low (unlikely to have) - `*`
 
 | Priority | As a …​                           | I want to …​                              | So that I can…​                                                           |
 |----------|-----------------------------------|-------------------------------------------|---------------------------------------------------------------------------|
@@ -468,6 +389,15 @@ Priorities:<br>**High (must have)** - `* * *`<br>Medium (nice to have) - `* *`<b
 
       Use case resumes at step 1.
 
+#### Use case: List all athletes
+
+**MSS**
+
+1. Coach requests to list out all athletes.
+2. SportSync displays all athletes.
+
+    Use case ends.
+
 #### Use case: Clear the list
 
 **MSS**
@@ -486,81 +416,21 @@ Priorities:<br>**High (must have)** - `* * *`<br>Medium (nice to have) - `* *`<b
 
     Use case ends.
 
-#### Use case: Sort the list by pay rate in increasing / decreasing order
+#### Use case: Sort the list by pay rate in increasing order
 
 **MSS**
 
-1.  Coach requests to sort all athletes in the list by pay rate in increasing / decreasing order.
-2.  SportSync sorts all athletes in the list by pay rate in increasing / decreasing order.
+1.  Coach requests to sort all athletes in the list by pay rate in increasing order.
+2.  SportSync sorts all athletes in the list by pay rate in increasing order.
 
     Use case ends.
 
-#### Use case: Create new group
+#### Use case: Display all athletes belonging to tag(s)
 
 **MSS**
 
-1. Coach requests to create a new group with specified group name.
-2. SportSync creates a new group with the specified group name.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The group already exists.
-
-    * 1a1. SportSync shows an error message.
-
-      Use case resumes at step 1.
-
-#### Use case: Add athlete to group
-
-**MSS**
-
-1. Coach requests to add an athlete to a specified group.
-2. SportSync adds the athlete to the specified group.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The athlete already belongs to the group, the athlete does not exist, or the group does not exist.
-
-    * 1a1. SportSync shows an error message.
-
-      Use case resumes at step 1.
-
-#### Use case: Delete athlete from group
-
-**MSS**
-
-1. Coach requests to delete an athlete from a specified group.
-2. SportSync deletes the athlete from the specified group.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The athlete does not exist, or the group does not exist.
-
-    * 1a1. SportSync shows an error message.
-
-      Use case resumes at step 1.
-
-#### Use case: Display all groups
-
-**MSS**
-
-1. Coach requests to display all group names.
-2. SportSync displays all group names.
-
-   Use case ends.
-
-#### Use case: Display all athletes belonging to group(s)
-
-**MSS**
-
-1. Coach requests to display all athletes belonging to specified group(s) by name.
-2. SportSync displays all athletes by name, belonging to one or more of the specified group(s).
+1. Coach requests to display all athletes belonging to specified tag(s) by name.
+2. SportSync displays all athletes by name, belonging to one or more of the specified tag(s).
 
    Use case ends.
 
