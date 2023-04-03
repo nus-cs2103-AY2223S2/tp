@@ -51,7 +51,7 @@ public class ModelManager implements Model {
         this.tracker = new Tracker(tracker);
         this.userPrefs = new UserPrefs(userPrefs);
         this.navigation = new Navigation();
-        filteredModules = new FilteredList<>(tracker.getModuleList());
+        filteredModules = new FilteredList<>(this.tracker.getModuleList());
         lastListLevel = DisplayListLevel.MODULE;
     }
 
@@ -134,7 +134,6 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         tracker.addModule(module);
-        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
@@ -381,27 +380,27 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
 
-        boolean equalTracker = tracker.equals(other.tracker);
-        boolean equalUserPrefs = userPrefs.equals(other.userPrefs);
-        boolean equalNavigation = navigation.equals(other.navigation);
-        boolean equalLastListLevel = lastListLevel.equals(other.lastListLevel);
-        boolean equalFilteredModules = filteredModules.equals(other.filteredModules);
-        boolean equalFilteredLectures = filteredLectures == null
+        boolean isTrackerEqual = tracker.equals(other.tracker);
+        boolean isUserPrefsEqual = userPrefs.equals(other.userPrefs);
+        boolean isNavigationEqual = navigation.equals(other.navigation);
+        boolean isLastListEqual = lastListLevel.equals(other.lastListLevel);
+        boolean isFilteredModulesEqual = filteredModules.equals(other.filteredModules);
+        boolean isFilteredLecturesEqual = filteredLectures == null
                 ? other.filteredLectures == null
                 : filteredLectures.equals(other.filteredLectures);
-        boolean equalFilteredVideos = filteredVideos == null
+        boolean isFilteredVideosEqual = filteredVideos == null
                 ? other.filteredVideos == null
                 : filteredVideos.equals(other.filteredVideos);
-        boolean equalListedLecturesByModule = listedLecturesByModule == null
+        boolean isListedLecturesByModuleEqual = listedLecturesByModule == null
                 ? other.listedLecturesByModule == null
                 : listedLecturesByModule.equals(other.listedLecturesByModule);
-        boolean equalListedVideosByLecture = listedVideosByLecture == null
+        boolean isListedVideosByLectureEqual = listedVideosByLecture == null
                 ? other.listedVideosByLecture == null
                 : listedVideosByLecture.equals(other.listedVideosByLecture);
 
-        return equalTracker && equalUserPrefs && equalNavigation && equalLastListLevel
-                && equalFilteredModules && equalFilteredLectures && equalFilteredVideos
-                && equalListedLecturesByModule && equalListedVideosByLecture;
+        return isTrackerEqual && isUserPrefsEqual && isNavigationEqual && isLastListEqual
+                && isFilteredModulesEqual && isFilteredLecturesEqual && isFilteredVideosEqual
+                && isListedLecturesByModuleEqual && isListedVideosByLectureEqual;
 
     }
 
