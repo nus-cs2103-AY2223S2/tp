@@ -47,7 +47,7 @@ public class DeleteFileCommand extends Command {
 
         Person personToDeleteFile = lastShownList.get(targetIndex.getZeroBased());
         FilesManager filesManager = new FilesManager(personToDeleteFile);
-        if (number >= filesManager.getFileNames().size() || number <= 0) {
+        if (number > filesManager.getFileNames().size() || number <= 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_FILE_INDEX);
         }
         filesManager.deleteNthFile(number);

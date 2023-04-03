@@ -293,20 +293,20 @@ public class MainWindow extends UiPart<Stage> {
         });
         if (command.equalsIgnoreCase("clear")) {
             alert.setTitle("Warning");
-            alert.setHeaderText("Clear Address Book");
-            alert.setContentText("This operation will clear the address book. Are you sure you want to proceed?");
+            alert.setHeaderText("Clear Patient List");
+            alert.setContentText("This operation will clear the Patient List. Are you sure you want to proceed?");
         } else if (command.equalsIgnoreCase("delete")) {
             alert.setTitle("Warning");
             alert.setHeaderText("Delete Entry");
-            alert.setContentText("This operation will delete the selected entry. Are you sure you want to proceed?");
+            alert.setContentText("This operation will delete a patient. Are you sure you want to proceed?");
         } else if (command.equalsIgnoreCase("deletes")) {
             alert.setTitle("Warning");
             alert.setHeaderText("Delete Multiple Entries");
-            alert.setContentText("This operation will delete multiple entries. Are you sure you want to proceed?");
+            alert.setContentText("This operation will delete multiple patients. Are you sure you want to proceed?");
         } else if (command.equalsIgnoreCase("deletefile")) {
             alert.setTitle("Warning");
             alert.setHeaderText("Delete File");
-            alert.setContentText("This operation will delete selected file. Are you sure you want to proceed?");
+            alert.setContentText("This operation will delete a file. Are you sure you want to proceed?");
         } else {
             return true;
         }

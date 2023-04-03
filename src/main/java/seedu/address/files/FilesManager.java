@@ -123,6 +123,7 @@ public class FilesManager implements seedu.address.files.Files {
      * @param days the number of days for which the medical certificate is valid
      */
     public void generateMc(String doctorName, String description, int days) {
+        updateList();
         Path path2 = Paths.get(path);
         FileStorage.createDrc(path);
         create = new PdfGenerator(person,
@@ -142,6 +143,7 @@ public class FilesManager implements seedu.address.files.Files {
      */
     public void readNthFile(int number) {
         //Check if the files list is empty or the input number is invalid
+        updateList();
         if (!isValidFileNumber(number)) {
             logger.log(Level.WARNING, "Invalid file number or no files exist.");
             return;
@@ -158,6 +160,7 @@ public class FilesManager implements seedu.address.files.Files {
      */
     public void deleteNthFile(int number) {
         //Check if the files list is empty or the input number is invalid
+        updateList();
         if (!isValidFileNumber(number)) {
             logger.log(Level.WARNING, "Invalid file number or no files exist.");
             return;
