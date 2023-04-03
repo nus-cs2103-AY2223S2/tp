@@ -192,7 +192,8 @@ public class InternshipTodo {
         if (otherInternship == this) {
             return true;
         }
-        return otherInternship.getInternshipTitle().equals(getInternshipTitle())
+        return otherInternship != null
+                && otherInternship.getInternshipTitle().equals(getInternshipTitle())
                 && otherInternship.getJobTitle().equals(getJobTitle());
     }
 
