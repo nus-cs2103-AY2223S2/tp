@@ -6,6 +6,7 @@ package seedu.address.model.person.exceptions;
  */
 public class DuplicateStudentException extends RuntimeException {
     public DuplicateStudentException() {
-        super("ERROR, operation would result in duplicate students!");
+        super("ERROR, operation would result in duplicate students!" +
+                " Please enter a student with a different Index Number!");
     }
 }
