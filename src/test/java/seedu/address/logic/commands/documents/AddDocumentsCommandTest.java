@@ -61,7 +61,7 @@ public class AddDocumentsCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 getTypicalTodoList(), getTypicalNoteList());
-        expectedModel.setApplication(model.getFilteredInternshipList().get(3), documentsAddedApplication);
+        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(3), documentsAddedApplication);
 
         assertCommandSuccess(addDocumentsCommand, model, expectedMessage, expectedModel);
     }
@@ -69,7 +69,7 @@ public class AddDocumentsCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Documents documents = new DocumentsBuilder().build();
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredInternshipList().size() + 1);
         AddDocumentsCommand addDocumentsCommand = new AddDocumentsCommand(outOfBoundIndex, documents);
 
         assertCommandFailure(addDocumentsCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
@@ -80,7 +80,7 @@ public class AddDocumentsCommandTest {
         showInternshipAtIndex(model, INDEX_FOURTH_APPLICATION);
 
         InternshipApplication applicationInFilteredList =
-                model.getFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
+                model.getSortedFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
         InternshipApplication initialApplication =
                 new InternshipBuilder(applicationInFilteredList).build();
         Documents documents = new DocumentsBuilder().build();
@@ -93,7 +93,7 @@ public class AddDocumentsCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 getTypicalTodoList(), getTypicalNoteList());
-        expectedModel.setApplication(model.getFilteredInternshipList().get(0), documentsAddedApplication);
+        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(0), documentsAddedApplication);
 
         assertCommandSuccess(addDocumentsCommand, model, expectedMessage, expectedModel);
     }

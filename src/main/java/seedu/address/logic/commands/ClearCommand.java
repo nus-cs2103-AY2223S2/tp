@@ -21,7 +21,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        List<InternshipApplication> lastShownList = model.getFilteredInternshipList();
+        List<InternshipApplication> lastShownList = model.getSortedFilteredInternshipList();
 
         if (lastShownList.size() == 0) {
             return new CommandResult(MESSAGE_NULL);

@@ -38,7 +38,7 @@ public class DeleteDocumentsCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         InternshipApplication applicationToDeleteDocuments =
-                model.getFilteredInternshipList().get(INDEX_FIFTH_APPLICATION.getZeroBased());
+                model.getSortedFilteredInternshipList().get(INDEX_FIFTH_APPLICATION.getZeroBased());
         DeleteDocumentsCommand deleteDocumentsCommand = new DeleteDocumentsCommand(INDEX_FIFTH_APPLICATION);
 
         InternshipApplication documentsDeletedApplication = new InternshipBuilder()
@@ -56,7 +56,7 @@ public class DeleteDocumentsCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredInternshipList().size() + 1);
         DeleteDocumentsCommand deleteDocumentsCommand = new DeleteDocumentsCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteDocumentsCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
@@ -67,7 +67,7 @@ public class DeleteDocumentsCommandTest {
         showInternshipAtIndex(model, INDEX_FIFTH_APPLICATION);
 
         InternshipApplication applicationToDeleteDocuments =
-                model.getFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
+                model.getSortedFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
         DeleteDocumentsCommand deleteDocumentsCommand = new DeleteDocumentsCommand(INDEX_FIRST_APPLICATION);
 
         InternshipApplication contactDeletedApplication = new InternshipBuilder()

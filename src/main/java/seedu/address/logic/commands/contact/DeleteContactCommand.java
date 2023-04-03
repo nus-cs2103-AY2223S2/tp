@@ -61,7 +61,7 @@ public class DeleteContactCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<InternshipApplication> lastShownList = model.getFilteredInternshipList();
+        List<InternshipApplication> lastShownList = model.getSortedFilteredInternshipList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);

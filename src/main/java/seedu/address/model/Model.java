@@ -217,11 +217,6 @@ public interface Model {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns an unmodifiable view of the filtered internship list
-     */
-    ObservableList<InternshipApplication> getFilteredInternshipList();
-
-    /**
      * Returns an unmodifiable view of the sorted filtered internship list
      */
     ObservableList<InternshipApplication> getSortedFilteredInternshipList();

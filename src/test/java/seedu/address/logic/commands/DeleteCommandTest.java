@@ -36,7 +36,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        InternshipApplication internshipToDelete = model.getFilteredInternshipList()
+        InternshipApplication internshipToDelete = model.getSortedFilteredInternshipList()
                 .get(Index.fromOneBased(3).getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(Index.fromOneBased(3));
 
@@ -57,7 +57,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredInternshipList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
@@ -67,7 +67,7 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showInternshipAtIndex(model, Index.fromOneBased(1));
 
-        InternshipApplication internshipToDelete = model.getFilteredInternshipList()
+        InternshipApplication internshipToDelete = model.getSortedFilteredInternshipList()
                 .get(Index.fromOneBased(1).getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(Index.fromOneBased(1));
 

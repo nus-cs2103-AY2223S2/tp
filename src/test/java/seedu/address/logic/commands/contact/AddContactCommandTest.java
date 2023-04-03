@@ -58,7 +58,7 @@ public class AddContactCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 getTypicalTodoList(), getTypicalNoteList());
-        expectedModel.setApplication(model.getFilteredInternshipList().get(1), contactAddedApplication);
+        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(1), contactAddedApplication);
 
         assertCommandSuccess(addContactCommand, model, expectedMessage, expectedModel);
     }
@@ -66,7 +66,7 @@ public class AddContactCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Contact contact = new ContactBuilder().build();
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredInternshipList().size() + 1);
         AddContactCommand addContactCommand = new AddContactCommand(outOfBoundIndex, contact);
 
         assertCommandFailure(addContactCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
@@ -77,7 +77,7 @@ public class AddContactCommandTest {
         showInternshipAtIndex(model, INDEX_SECOND_APPLICATION);
 
         InternshipApplication applicationInFilteredList =
-                model.getFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
+                model.getSortedFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
         InternshipApplication initialApplication =
                 new InternshipBuilder(applicationInFilteredList).build();
         Contact contact = new ContactBuilder().build();
@@ -90,7 +90,7 @@ public class AddContactCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 getTypicalTodoList(), getTypicalNoteList());
-        expectedModel.setApplication(model.getFilteredInternshipList().get(0), contactAddedApplication);
+        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(0), contactAddedApplication);
 
         assertCommandSuccess(addContactCommand, model, expectedMessage, expectedModel);
     }

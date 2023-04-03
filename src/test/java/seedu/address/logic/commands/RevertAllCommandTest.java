@@ -31,8 +31,8 @@ public class RevertAllCommandTest {
 
     @Test
     public void execute_validCacheList_success() {
-        InternshipApplication ia1 = model.getFilteredInternshipList().get(Index.fromOneBased(3).getZeroBased());
-        InternshipApplication ia2 = model.getFilteredInternshipList().get(Index.fromOneBased(1).getZeroBased());
+        InternshipApplication ia1 = model.getSortedFilteredInternshipList().get(Index.fromOneBased(3).getZeroBased());
+        InternshipApplication ia2 = model.getSortedFilteredInternshipList().get(Index.fromOneBased(1).getZeroBased());
         model.deleteInternship(ia1);
         model.addInternshipToCache(ia1);
         model.deleteInternship(ia2);

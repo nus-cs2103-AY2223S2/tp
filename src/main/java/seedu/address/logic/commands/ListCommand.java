@@ -23,7 +23,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ONGOING_APPLICATIONS);
-        List<InternshipApplication> lastShownList = model.getFilteredInternshipList();
+        List<InternshipApplication> lastShownList = model.getSortedFilteredInternshipList();
         if (lastShownList.size() > 0) {
             return new CommandResult(MESSAGE_SUCCESS);
         } else {

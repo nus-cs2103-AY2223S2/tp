@@ -58,15 +58,15 @@ public class EditContactCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 getTypicalTodoList(), getTypicalNoteList());
-        expectedModel.setApplication(model.getFilteredInternshipList().get(0), applicationWithEditedContact);
+        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(0), applicationWithEditedContact);
 
         assertCommandSuccess(editContactCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastApplication = Index.fromOneBased(model.getFilteredInternshipList().size());
-        InternshipApplication lastApplication = model.getFilteredInternshipList()
+        Index indexLastApplication = Index.fromOneBased(model.getSortedFilteredInternshipList().size());
+        InternshipApplication lastApplication = model.getSortedFilteredInternshipList()
                 .get(indexLastApplication.getZeroBased());
 
         InternshipBuilder internshipInList = new InternshipBuilder(lastApplication);
@@ -93,7 +93,7 @@ public class EditContactCommandTest {
         EditContactCommand editContactCommand = new EditContactCommand(INDEX_FIRST_APPLICATION,
                 new EditContactCommand.EditContactDescriptor());
         InternshipApplication editedApplication =
-                model.getFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
+                model.getSortedFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
 
         String expectedMessage = String.format(EditContactCommand.MESSAGE_EDIT_CONTACT_SUCCESS, editedApplication);
 
@@ -108,7 +108,7 @@ public class EditContactCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_APPLICATION);
 
         InternshipApplication applicationInFilteredList =
-                model.getFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
+                model.getSortedFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
         Contact editedContact = new ContactBuilder().build();
         InternshipApplication editedApplication = new InternshipBuilder(applicationInFilteredList)
                 .withContact(editedContact).build();
@@ -119,14 +119,14 @@ public class EditContactCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 getTypicalTodoList(), getTypicalNoteList());
-        expectedModel.setApplication(model.getFilteredInternshipList().get(0), editedApplication);
+        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(0), editedApplication);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidApplicationIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredInternshipList().size() + 1);
         EditContactCommand.EditContactDescriptor descriptor =
                 new EditContactDescriptorBuilder().withPhone(VALID_PHONE_BANK_OF_AMERICA).build();
         EditContactCommand editContactCommand = new EditContactCommand(outOfBoundIndex, descriptor);
