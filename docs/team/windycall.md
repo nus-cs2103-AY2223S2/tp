@@ -11,16 +11,20 @@ assistants in the modules they are taking.
 Given below are my contributions to the project.
 
 * **Code contributed**:
-    * To be added soon
+  * Add Age attribute
+  * Support make/mark appointment
+  * Support SearchDate feature
+  * Add test cases for newly-added classes
 
 * **Enhancements to existing features**:
     * To be added soon
 
 * **Documentation**:
     * User Guide:
-        * To be added soon
+        * All Appointment related features
+        * Modify Add Command to support new attributes
     * Developer Guide:
-        * To be added soon
+        * Add detailed Appointment implementation to `Implementation` part of DG
 
 * **Project management**:
     * To be added soon
@@ -29,5 +33,6 @@ Given below are my contributions to the project.
     * To be added soon
 
 * **Tools**:
-    * To be added soon
+    * Intellij
+    * Sourcetree
 
