@@ -146,7 +146,7 @@ The list of blood types are:
 
 All other values will be rejected
 
-#### `<date>`
+#### `<Dob>`
 
 The supported date formats are:
 
@@ -158,6 +158,8 @@ The supported date formats are:
   * `yyyy-mm-d hhmm`
   * `yyyy-mm-dd hhmm`
   * `yyyy-m-dd hhmm`
+
+It accepts any date that is before current system time.
 
 #### `<phone-number>`
 
@@ -307,7 +309,7 @@ Output:<br>
 | ------------- | --------- | ---------------------- | --------------- |
 | `name`        | YES       | `<name>`               | NO              |
 | `phone`       | YES       | `<phone-number>`       | NO              |
-| `dateOfBirth` | YES       | `<date>`               | NO              |
+| `dateOfBirth` | YES       | `<Dob>`                | NO              |
 | `bloodType`   | YES       | `<bloodType>`          | NO              |
 | `allergies`   | NO        | list of `<group-name>` | YES             |
 | `vaccines`    | NO        | list of `<group-name>` | YES             |
