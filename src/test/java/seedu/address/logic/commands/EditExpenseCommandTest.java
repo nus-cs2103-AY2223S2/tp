@@ -19,10 +19,10 @@ public class EditExpenseCommandTest {
     private ModelStub model = new ModelStub();
     private Category standardCategory = new UserDefinedCategory("test", "test");
 
-    private Expense standardExpense = new Expense("NewExpenseName", 4.00, LocalDate.now(),
+    private Expense standardExpense = new Expense("NewExpenseName", "4.00", LocalDate.now(),
             standardCategory);
 
-    private Expense toEdit = new Expense("testExpense", 4.00, LocalDate.now(),
+    private Expense toEdit = new Expense("testExpense", "4.00", LocalDate.now(),
             new UserDefinedCategory("toBeReplaced", "randomSummary"));
 
 

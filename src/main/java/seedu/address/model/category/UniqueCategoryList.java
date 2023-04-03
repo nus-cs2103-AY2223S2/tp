@@ -24,7 +24,7 @@ public class UniqueCategoryList implements Iterable<Category> {
      */
     public boolean contains(Category toCheck) {
         requireNonNull(toCheck);
-        return internalListOfCategories.stream().anyMatch(toCheck::isSameCategory);
+        return internalListOfCategories.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -96,7 +96,7 @@ public class UniqueCategoryList implements Iterable<Category> {
     public boolean categoriesAreUnique(List<Category> listOfCategories) {
         for (int i = 0; i < listOfCategories.size(); i++) {
             for (int j = i + 1; j < listOfCategories.size(); j++) {
-                if (listOfCategories.get(i).isSameCategory(listOfCategories.get(j))) {
+                if (listOfCategories.get(i).equals(listOfCategories.get(j))) {
                     return false;
                 }
             }

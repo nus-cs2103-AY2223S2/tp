@@ -18,9 +18,9 @@ public class AddExpenseCommandTest {
     private ModelStub model = new ModelStub();
     private Category category = new UserDefinedCategory("test", "test");
     private LocalDate date = LocalDate.now();
-    private Expense expense = new Expense("test", 1.0, date, category);
-    private Expense expense2 = new Expense("test2", 2.0, date, category);
-    private Expense expense3 = new Expense("test3", 3.0, date, category);
+    private Expense expense = new Expense("test", "1.0", date, category);
+    private Expense expense2 = new Expense("test2", "2.0", date, category);
+    private Expense expense3 = new Expense("test3", "3.0", date, category);
 
     @Test
     public void addExpenseCommandTest() throws CommandException {

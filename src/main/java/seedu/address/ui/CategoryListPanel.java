@@ -34,7 +34,7 @@ public class CategoryListPanel extends UiPart<Region> {
 
     private int getAssociatedExpenseCount(Category category) {
         return (int) expenseObservableList.stream()
-                .filter(e -> e.getCategory().isSameCategory(category))
+                .filter(e -> e.getCategory().equals(category))
                 .count();
     }
 

@@ -8,7 +8,8 @@ import seedu.address.model.expense.RecurringExpenseManager;
 import seedu.address.model.util.UserInterfaceUtil;
 
 /**
- * A UI component that displays information of a {@code RecurringExpenseManager}.
+ * A UI component that displays information of a
+ * {@code RecurringExpenseManager}.
  */
 public class RecurringExpenseCard extends UiPart<Region> {
 
@@ -30,7 +31,8 @@ public class RecurringExpenseCard extends UiPart<Region> {
     private Label frequency;
 
     /**
-     * Creates a {@code RecurringExpenseCard} with the given {@code RecurringExpenseManager} and index to display.
+     * Creates a {@code RecurringExpenseCard} with the given
+     * {@code RecurringExpenseManager} and index to display.
      */
     public RecurringExpenseCard(RecurringExpenseManager recurringExpenseManager, int displayedIndex) {
         super(FXML);
@@ -39,7 +41,7 @@ public class RecurringExpenseCard extends UiPart<Region> {
         expenseName.setText(UserInterfaceUtil.capitalizeFirstLetter(recurringExpenseManager.getExpenseName()));
         String categoryName = recurringExpenseManager.getExpenseCategory().getCategoryName();
         category.setText(UserInterfaceUtil.capitalizeFirstLetter(categoryName));
-        price.setText(UserInterfaceUtil.parsePrice(recurringExpenseManager.getExpenseAmount()));
+        price.setText(UserInterfaceUtil.parsePrice(recurringExpenseManager.getAmount()));
         String recurringExpenseFrequency = recurringExpenseManager.getRecurringExpenseType().name();
         frequency.setText(UserInterfaceUtil.capitalizeFirstLetter(recurringExpenseFrequency.toLowerCase()));
     }

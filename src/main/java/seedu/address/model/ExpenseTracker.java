@@ -161,7 +161,7 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
 
     public Category getCategoryInstance(Category category) {
         for (Category c : categories.asUnmodifiableList()) {
-            if (category.isSameCategory(c)) {
+            if (category.equals(c)) {
                 return c;
             }
         }
