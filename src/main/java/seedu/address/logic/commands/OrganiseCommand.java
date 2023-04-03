@@ -15,6 +15,7 @@ import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.meetup.MeetUpIndex;
 import seedu.address.model.meetup.Participants;
 import seedu.address.model.meetup.exceptions.DuplicateMeetUpException;
+import seedu.address.model.meetup.exceptions.MeetUpClashException;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.recommendation.Recommendation;
@@ -32,6 +33,7 @@ public class OrganiseCommand extends Command {
     public static final String MESSAGE_DUPLICATE_MEETING = "Duplicate meetings are not allowed";
     public static final String MESSAGE_NO_SUCH_PERSON = "%s no longer exists in your contacts.";
     public static final String MESSAGE_NO_SUCH_PERSON_ID = "Person with index %s does not exist";
+    public static final String MESSAGE_MEET_UP_CLASH = "Meet up clashes with scheduled meet ups or participant timetables";
 
     private final ContactIndex index;
     private final TimePeriod timePeriod;
@@ -104,9 +106,12 @@ public class OrganiseCommand extends Command {
      */
     private void addMeetUp(MeetUp meetUp, Model model) throws CommandException {
         try {
+            //check if current meetup up has class with other meetups
             model.addMeetUp(meetUp);
         } catch (DuplicateMeetUpException dme) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
+        } catch (MeetUpClashException muc) {
+            throw new CommandException(MESSAGE_MEET_UP_CLASH);
         }
         model.updateObservableMeetUpList();
     }
@@ -135,6 +140,7 @@ public class OrganiseCommand extends Command {
         addMeetUp(meetUp, model);
         return new CommandResult(MESSAGE_SCHEDULE_RECOMMENDATION_SUCCESS);
     }
+
 
     @Override
     public boolean equals(Object other) {

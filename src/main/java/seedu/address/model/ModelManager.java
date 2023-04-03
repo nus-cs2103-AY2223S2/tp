@@ -19,13 +19,18 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.IndexHandler;
 import seedu.address.logic.parser.MeetUpIndexHandler;
+import seedu.address.model.commitment.Commitment;
 import seedu.address.model.meetup.MeetUp;
 import seedu.address.model.meetup.MeetUpIndex;
 import seedu.address.model.meetup.Participants;
+import seedu.address.model.meetup.exceptions.MeetUpClashException;
 import seedu.address.model.person.ContactIndex;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.User;
 import seedu.address.model.recommendation.Recommendation;
+import seedu.address.model.time.TimePeriod;
+import seedu.address.model.time.util.TimeUtil;
+import seedu.address.model.timetable.Timetable;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -334,7 +339,54 @@ public class ModelManager implements Model {
 
     @Override
     public void addMeetUp(MeetUp meetUp) {
+        //checks if meet up clashes with any scheduled meet ups
+        if (hasClashScheduled(meetUp)) {
+            throw new MeetUpClashException();
+        }
+
+        if (hasClashTimeTable(meetUp)) {
+            throw new MeetUpClashException();
+        }
+
         eduMate.addMeetUp(meetUp);
+    }
+
+    /**
+     * Checks if meet up clashes with already scheduled meet up.
+     * @return true if a clash exists, else false.
+     */
+    public boolean hasClashScheduled(MeetUp meetUp) {
+        List<TimePeriod> timePeriods = new ArrayList<>();
+        for (MeetUp meet : observableMeetUps) {
+            timePeriods.add(meet.getTimePeriod());
+        }
+        timePeriods.add(meetUp.getTimePeriod());
+        return TimeUtil.hasAnyClash(timePeriods);
+    }
+
+    /**
+     * Checks if meet up clashes with lessons
+     * @return true if a clash exists, else false.
+     */
+    public boolean hasClashTimeTable(MeetUp meetUp) {
+        //check if user timetable has clash
+        Timetable userTimeTable = getUser().getTimetable();
+        Commitment commitment = new Commitment(meetUp.getLocation(), meetUp.getTimePeriod());
+        if (!userTimeTable.canFitCommitment(commitment)) {
+            return true;
+        }
+
+        //check if participants timetable have clash
+        Participants participants = meetUp.getParticipants();
+        List<Person> personList = participants.getParticipants();
+
+        for (Person person : personList) {
+            Timetable participantTimetable = person.getTimetable();
+            if (!participantTimetable.canFitCommitment(commitment)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
