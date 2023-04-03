@@ -324,7 +324,7 @@ Examples:
 
 Add a video to a lecture.
 
-- <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as "watched", else, it will be marked at "not watched"
+- <span style="color:#e46c0a">`/watch`</span> : If specified, the video will be marked as "watched", else, it will be marked as "not watched"
 - <span style="color:#e46c0a">`video_name`</span> : The name of the video
   - Must be unique among the names of the videos belonging to the lecture specified in `lecture_name` (:exclamation: Uniqueness is case sensitive)
   - Refer to [Argument Formats](#argument-formats) for the "Video Name" format
