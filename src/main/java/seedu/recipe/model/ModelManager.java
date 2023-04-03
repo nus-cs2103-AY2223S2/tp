@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final RecipeBook recipeBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Recipe> filteredRecipes;
+    private Predicate<Recipe> predicate;
     private Recipe currentViewingRecipe;
 
     /**
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.recipeBook = new RecipeBook(recipeBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.currentViewingRecipe = null;
+        this.predicate = null;
         filteredRecipes = new FilteredList<>(this.recipeBook.getRecipeList());
     }
 
@@ -140,6 +142,20 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Recipe> getFilteredRecipeList() {
         return filteredRecipes;
+    }
+
+    /**
+     * Set the current predicate on the filtered list
+     */
+    public void setCurrentPredicate(Predicate<Recipe> predicate) {
+        this.predicate = predicate;
+    }
+
+    /**
+     * Get the current predicate on the filtered list
+     */
+    public Predicate<Recipe> getCurrentPredicate() {
+        return predicate;
     }
 
     @Override
