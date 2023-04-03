@@ -11,11 +11,19 @@ Given below are my contributions to the project.
 
 [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=chuakid&tabRepo=AY2223S2-CS2103T-T11-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* Export and Import of contacts
-* Export and Import of meetings
-* Modified DateTime to use an Optional for time and added the comparison logic
+* Commands: `export` and `import`
+  * Export and Import of contacts
+* Commands: `exportm` and `importm`
+  * Export and Import of meetings
+* Commands: `mark` and `unmark`
+  * Mark meetings as done and not done and update the view with different colors for the title based on the state of
+  the meeting.  
+* Command: `pending`
+  * Command for showing all meetings that are not marked as done or are in the past
+* Modified DateTime to use an Optional for time and added the comparison logic for DateTime
+* Added comparison logic for whether a meeting is between two dates, used for exporting meetings between two timings
 * Added UI for meetings
-* Improved UI with different color scheme and scaling panels
+* Improved UI with different color schemes (light and dark mode) and scaling panels
 
 ## Project management
 
@@ -31,6 +39,9 @@ Given below are my contributions to the project.
 * `export`
 * `importm`
 * `exportm`
+* `mark`
+* `unmark`
+* `undone`
 
 ### Developer Guide:
 
@@ -42,6 +53,7 @@ Given below are my contributions to the project.
 ## Community
 
 ### Reviewed PRs
+
 * [#84](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/84)
 * [#47](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/67)
 * [#45](https://github.com/AY2223S2-CS2103T-T11-2/tp/pull/45)

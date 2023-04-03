@@ -3,12 +3,14 @@
     -gutter: #8A919966;
     -text-color: #8A9199;
     -cell-bg: #F3F4F5;
+    -done-color: #6CBF43;
 }
 
 .background {
     -fx-background-color: -bg;
     background-color: -bg; /* Used in the default.html file */
 }
+
 
 .label {
     -fx-font-size: 11pt;
@@ -121,6 +123,10 @@
 
 .list-cell .label {
     -fx-text-fill: black;
+}
+
+.list-cell .label.done {
+    -fx-text-fill: -done-color;
 }
 
 .cell_big_label {

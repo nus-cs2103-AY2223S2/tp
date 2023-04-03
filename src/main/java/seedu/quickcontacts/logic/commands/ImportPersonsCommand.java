@@ -14,6 +14,7 @@ import seedu.quickcontacts.model.person.exceptions.DuplicatePersonException;
  */
 public class ImportPersonsCommand extends Command {
     public static final String COMMAND_WORD = "import";
+    public static final String COMMAND_DESCRIPTION = "Imports persons in JSON format.";
     static final String DUPLICATE_PERSON = "Duplicate person found";
     static final String SUCCESS = "Persons imported";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports persons in JSON format\n" + "Parameters: "

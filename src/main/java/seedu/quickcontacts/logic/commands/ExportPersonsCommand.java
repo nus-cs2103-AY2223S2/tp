@@ -21,6 +21,7 @@ public class ExportPersonsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports persons in JSON format\n" + "Parameters: p/ "
             + "index of person";
     public static final String INDEX_NOT_FOUND = "One of the provided indices is not found";
+    public static final String COMMAND_DESCRIPTION = "Exports persons in JSON format.";
 
     private final List<Index> indexList;
 

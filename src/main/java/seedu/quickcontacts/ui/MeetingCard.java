@@ -10,6 +10,7 @@ import seedu.quickcontacts.model.meeting.Meeting;
  */
 public class MeetingCard extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
+    public static final String DONE_STYLE_CLASS = "done";
     private static final String FXML = "MeetingListCard.fxml";
 
     /**
@@ -58,6 +59,15 @@ public class MeetingCard extends UiPart<Region> {
             description.setText("Description: " + meeting.getDescription().toString());
         }
         formatDateTimePast();
+        formatIsDone();
+    }
+
+    private void formatIsDone() {
+        if (meeting.getIsCompleted()) {
+            title.getStyleClass().add(DONE_STYLE_CLASS);
+        } else {
+            title.getStyleClass().remove(DONE_STYLE_CLASS);
+        }
     }
 
     /**

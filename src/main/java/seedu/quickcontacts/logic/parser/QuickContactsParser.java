@@ -24,8 +24,10 @@ import seedu.quickcontacts.logic.commands.HelpCommand;
 import seedu.quickcontacts.logic.commands.ImportMeetingsCommand;
 import seedu.quickcontacts.logic.commands.ImportPersonsCommand;
 import seedu.quickcontacts.logic.commands.ListCommand;
+import seedu.quickcontacts.logic.commands.MarkAsDoneCommand;
+import seedu.quickcontacts.logic.commands.MarkAsNotDoneCommand;
+import seedu.quickcontacts.logic.commands.ShowNotDoneCommand;
 import seedu.quickcontacts.logic.commands.SortMeetingCommand;
-import seedu.quickcontacts.logic.commands.ViewMeetingsCommand;
 import seedu.quickcontacts.logic.parser.exceptions.ParseException;
 import seedu.quickcontacts.model.command.CommandHistory;
 
@@ -37,6 +39,15 @@ public class QuickContactsParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+
+    private static final String[] AVAILABLE_COMMAND_WORDS = {
+        AddCommand.COMMAND_WORD, EditCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
+        ExportPersonsCommand.COMMAND_WORD, ImportPersonsCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
+        AddMeetingCommand.COMMAND_WORD, EditMeetingsCommand.COMMAND_WORD, DeleteMeetingCommand.COMMAND_WORD,
+        ExportMeetingsCommand.COMMAND_WORD, ImportMeetingsCommand.COMMAND_WORD, MarkAsDoneCommand.COMMAND_WORD,
+        MarkAsNotDoneCommand.COMMAND_WORD, ShowNotDoneCommand.COMMAND_WORD,
+        ClearCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, SortMeetingCommand.COMMAND_WORD,
+    };
 
     /**
      * Parses user input into command for execution.
@@ -78,17 +89,13 @@ public class QuickContactsParser {
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            return new HelpCommandParser().parse(arguments);
 
         case AddMeetingCommand.COMMAND_WORD:
             return new AddMeetingCommandParser().parse(arguments);
 
         case FindMeetingCommand.COMMAND_WORD:
             return new FindMeetingCommandParser().parse(arguments);
-
-        case ViewMeetingsCommand.COMMAND_WORD:
-            return new ViewMeetingsCommand();
-
         case EditMeetingsCommand.COMMAND_WORD:
             return new EditMeetingParser().parse(arguments);
 
@@ -106,10 +113,14 @@ public class QuickContactsParser {
 
         case ExportMeetingsCommand.COMMAND_WORD:
             return new ExportMeetingsParser().parse(arguments);
-
         case ImportMeetingsCommand.COMMAND_WORD:
             return new ImportMeetingsParser().parse(arguments);
-
+        case MarkAsDoneCommand.COMMAND_WORD:
+            return new MarkAsDoneParser().parse(arguments);
+        case MarkAsNotDoneCommand.COMMAND_WORD:
+            return new MarkAsNotDoneParser().parse(arguments);
+        case ShowNotDoneCommand.COMMAND_WORD:
+            return new ShowNotDoneCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -122,9 +133,10 @@ public class QuickContactsParser {
      * @return the {@code AutocompleteResult} based on the user input
      */
     public AutocompleteResult getAutocompleteSuggestion(String userInput) {
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        String trimmedUserInput = userInput.trim();
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(trimmedUserInput);
         if (!matcher.matches()) {
-            return new AutocompleteResult(null, false);
+            return new AutocompleteResult();
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -143,12 +155,24 @@ public class QuickContactsParser {
 
         case EditMeetingsCommand.COMMAND_WORD:
             return new EditMeetingParser().getAutocompleteSuggestion(arguments);
+
         case ExportPersonsCommand.COMMAND_WORD:
             return new ExportPersonsParser().getAutocompleteSuggestion(arguments);
+
         case ExportMeetingsCommand.COMMAND_WORD:
             return new ExportMeetingsParser().getAutocompleteSuggestion(arguments);
+        case MarkAsDoneCommand.COMMAND_WORD:
+            return new MarkAsDoneParser().getAutocompleteSuggestion(arguments);
+        case MarkAsNotDoneCommand.COMMAND_WORD:
+            return new MarkAsNotDoneParser().getAutocompleteSuggestion(arguments);
         default:
-            return new AutocompleteResult(null, false);
+            for (String word : AVAILABLE_COMMAND_WORDS) {
+                if (word.startsWith(commandWord) && !word.equals(commandWord)) {
+                    return new AutocompleteResult(word, true);
+                }
+            }
+
+            return new AutocompleteResult();
         }
     }
 

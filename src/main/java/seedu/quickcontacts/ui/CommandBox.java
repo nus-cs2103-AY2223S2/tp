@@ -142,24 +142,30 @@ public class CommandBox extends UiPart<Region> {
                     AutocompleteResult suggestion = commandInputSuggester.suggest(commandTextField.getText());
                     String currInput = commandTextField.getText().trim();
 
-                    if (suggestion.getPrefix().isEmpty()) {
+                    if (suggestion.getResult().isEmpty()) {
                         break;
                     }
 
-                    String prefix = suggestion.getPrefix().get().getPrefix();
+                    String result = suggestion.getResult().get();
 
                     if (!suggestion.isReplaceCurrent()) {
-                        commandTextField.setText(currInput + " " + prefix);
+                        commandTextField.setText(currInput + " " + result);
                         break;
                     }
 
                     // Replaces current prefix
                     String[] currInputSplit = currInput.split(" ");
-                    if (currInputSplit[currInputSplit.length - 1].endsWith("/")) {
-                        currInputSplit[currInputSplit.length - 1] = prefix;
+                    boolean isEmptyParameter = currInputSplit[currInputSplit.length - 1].endsWith("/");
+                    if (isEmptyParameter) {
+                        // Replace last prefix with the new suggestion result
+                        currInputSplit[currInputSplit.length - 1] = result;
                         commandTextField.setText(String.join(" ", currInputSplit));
+                    } else if (currInputSplit.length == 1) {
+                        // Replace command word
+                        commandTextField.setText(result);
                     } else {
-                        commandTextField.setText(currInput + " " + prefix);
+                        // Append suggestion
+                        commandTextField.setText(currInput + " " + result);
                     }
                 } finally {
                     event.consume();

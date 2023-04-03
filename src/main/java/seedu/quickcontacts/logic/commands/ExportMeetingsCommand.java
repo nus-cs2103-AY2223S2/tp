@@ -22,6 +22,7 @@ public class ExportMeetingsCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exports meetings in JSON format\n" + "Parameters: m/ "
             + "index of meeting start/: optional starting point of range end/: optional ending point of range";
     public static final String INDEX_NOT_FOUND = "One of the provided indices is not found";
+    public static final String COMMAND_DESCRIPTION = "Exports meetings in JSON format.";
 
     private final List<Index> indexList;
 

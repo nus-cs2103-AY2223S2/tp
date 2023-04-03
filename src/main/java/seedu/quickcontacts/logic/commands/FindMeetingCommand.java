@@ -19,6 +19,8 @@ public class FindMeetingCommand extends Command {
         + "Example: " + COMMAND_WORD + " alice bob charlie\n"
         + "or"
         + "Example: " + COMMAND_WORD;
+    public static final String COMMAND_DESCRIPTION = "Finds all meetings whose attendees contain any of "
+        + "the specified person names (case-insensitive).";
     private final MeetingContainsNamesPredicate predicate;
 
     public FindMeetingCommand(MeetingContainsNamesPredicate predicate) {

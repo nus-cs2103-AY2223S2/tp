@@ -32,6 +32,6 @@ public class DeleteMeetingCommandParser implements Parser<DeleteMeetingCommand> 
 
     @Override
     public AutocompleteResult getAutocompleteSuggestion(String args) {
-        return new AutocompleteResult(null, false);
+        return new AutocompleteResult();
     }
 }

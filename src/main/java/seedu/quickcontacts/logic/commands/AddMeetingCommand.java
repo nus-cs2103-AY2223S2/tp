@@ -31,10 +31,11 @@ import seedu.quickcontacts.model.person.Person;
 public class AddMeetingCommand extends Command {
     public static final String COMMAND_WORD = "addm";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a meeting to the address book. "
-        + "Parameters: "
-        + PREFIX_MEETING_TITLE + "MEETING "
+        + "Required Parameters: "
+        + PREFIX_MEETING_TITLE + "MEETING_TITLE "
+        + PREFIX_DATETIME + DATE_FORMAT + " " + TIME_FORMAT + "\n"
+        + "Optional Parameters: "
         + PREFIX_PERSON + "NAME "
-        + PREFIX_DATETIME + DATE_FORMAT + " " + TIME_FORMAT + " "
         + PREFIX_LOCATION + "LOCATION "
         + PREFIX_DESCRIPTION + "DESCRIPTION\n"
         + "Example: " + COMMAND_WORD + " "
@@ -47,6 +48,7 @@ public class AddMeetingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
 
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book";
+    public static final String COMMAND_DESCRIPTION = "Adds a meeting to the address book.";
 
     private final Title meetingTitle;
     private final DateTime dateTime;
