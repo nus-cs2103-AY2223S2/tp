@@ -154,7 +154,7 @@ After a few seconds, a GUI resembling the one shown below will appear. Please ta
 
 <div markdown="span" class="alert alert-danger">
 
-:warning: **Warning!**
+:warning: **Warning!**<br>
 `EduMate` will create a `data` folder which contains the data saved by `EduMate`. It is essential that you do not modify the contents
 of the `data` folder so as not to corrupt your data and result in an empty application by default.
 
