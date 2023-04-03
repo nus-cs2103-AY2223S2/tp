@@ -6,13 +6,13 @@ title: User Guide
 _Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a Command Line
 Interface** (CLI) while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
 
-_Ez-Schedule_ will benefit a fast typist who need to keep plan and track upcoming events.
+_Ez-Schedule_ will benefit a fast typist who need to plan and track upcoming events.
 
 <h1 id="index">Index</h1>
 -------------------------
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Command summary](#command-summary)
+  * [Command Summary](#command-summary)
     * [Add new event](#add) : `add` command
     * [Repeat existing event](#recur) : `recur` command
     * [Edit event](#edit) : `edit` command
@@ -82,7 +82,7 @@ Start time should come before end time.
 Adding of events that overlaps in time is not allowed.
 </div>
 
-Example: `add n/booked tennis court /2023-02-01 /2023-02-02`
+Example: `add n/booked tennis court d/2023-02-01 s/15:00 e/17:00`
 
 [[Back to top](#index)]
 
@@ -122,8 +122,7 @@ Parameters:
 `e/`: End time of the event in `HH:mm` format
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:**  
-At least one field must be provided
+:information_source: **Note:** At least one field must be provided.
 </div>
 
 Example: `edit 1 n/tennis` or `edit 3 d/2023-06-01 s/10:00`
@@ -164,8 +163,7 @@ Parameter:
            Optional - if not indicated, only the next one event is shown.
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:**  
-If count is larger than the number of existing events, then all events are shown.
+:information_source: **Note:** If count is larger than the number of existing events, then all events are shown.
 </div>
 
 Example: `next` or `next 2`
@@ -183,19 +181,19 @@ Parameters:
 `n/`: Name or description of event  
 `d/`: Date of the event in `YYYY-MM-DD` format
 
-Example: `find n/tennis` or `find d/2023-03-01` or `find n/tennis d/2023-03-01`
-
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:**  
-At least one field must be provided.
+:information_source: **Note:** At least one field must be provided.
 </div>
+
+Example: `find n/tennis` or `find d/2023-03-01` or `find n/tennis d/2023-03-01`
 
 [[Back to top](#index)]
 
 
 <h3 id="undo">Undo Previous Command</h3>
 
-Undo previous command (Only applicable for `add`, `delete`, `edit` & `recur` commands).
+Undo previous valid command.
+(Only applicable for `add`, `delete`, `edit` and `recur` commands).
 
 Format: `undo`
 
@@ -283,6 +281,7 @@ Functionality:
 -------------------------------------
 * Currently, we only support same-day events.
   Events which are stretched across multiple days are not supported.
+* `undo` can only undo the most recent valid command.
 
 [[Back to top](#index)]
 
