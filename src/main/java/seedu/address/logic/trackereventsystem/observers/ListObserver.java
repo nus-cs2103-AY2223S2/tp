@@ -74,6 +74,7 @@ public class ListObserver implements
             ReadOnlyLecture originalLecture, ModuleCode editedInModuleCode) {
         return curDisplayListLevel == DisplayListLevel.VIDEO
                 && editedInModuleCode.equals(curModule.getCode())
+                && originalLecture != null
                 && originalLecture.equals(curLecture);
     }
 
