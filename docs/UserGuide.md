@@ -389,27 +389,6 @@ Simply use this command to clear all contacts from your NeoBook.
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
 
-### Switching between UI tabs: `tab`
-
-Looking for a faster way to switch between NeoBook and the Events?
-
-Use this command to navigate to the specified tab.
-
-**Syntax:**
-
-`tab INDEX`
-
-_Here are some important requirements for you to take note:_
-* `INDEX` refers to the index of the tab to navigate to, shown before the name in the tab.
-  * `INDEX` must be a positive integer.
-
-_Examples:_
-* `tab 1` switches to the NeoBook tab.
-* `tab 2` switches to the Events tab.
-
-[Back To Contents](#table-of-contents)
-<hr style="border:2px solid gray">
-
 ### Exiting NeoBook : `exit`
 
 Finished what you needed to do?
@@ -437,7 +416,6 @@ Use this command to exit the application!
 | **Select**  | `select INDEX` <br> e.g., `select 2`                                                                                                             |
 | **List**    | `list`                                                                                                                                           |
 | **Help**    | `help`                                                                                                                                           |
-| **Tab**     | `tab INDEX`<br> e.g., `tab 2`                                                                                                                    |
 | **Exit**    | `exit`                                                                                                                                           |                                                                                                                                |
 
 [Back To Contents](#table-of-contents)
@@ -620,6 +598,29 @@ _For more advanced users_
 ## UI Features
 <hr style="border:2px solid gray">
 
+### Switching between tabs: `tab`
+
+![UI tabs](images/userguide/tab_command.png)
+
+Looking for a faster way to switch between NeoBook and the Events?
+
+Use this command to navigate to the specified tab.
+
+**Syntax:**
+
+`tab INDEX`
+
+_Here are some important requirements for you to take note:_
+* `INDEX` refers to the index of the tab to navigate to, shown before the name in the tab.
+    * `INDEX` must be 1, 2, or 3.
+* `tab` refers to the literal word to be typed into the command line, not the key on your keyboard.
+
+_Examples:_
+* `tab 1` switches to the Address Book tab.
+* `tab 2` switches to the Events tab.
+
+<hr style="border:2px solid gray">
+
 ### Light Mode: `light`
 
 Want to use a brighter version of our UI?
@@ -629,7 +630,6 @@ Use Light mode!
 **Syntax:**
 
 `light`
-
 
 <hr style="border:2px solid gray">
 
@@ -643,6 +643,7 @@ Use Dark mode!
 
 `dark`
 
+[Back To Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Data
@@ -689,7 +690,16 @@ If your changes to the data file makes its format invalid, NeoBook will discard 
       - Communication Channels
       - Major
       - Faculty
-2. Making the user's events be able to import other contact's events.
+2. Adding better input validation to Phone, Email and Address fields, such as minimum lengths or certain formats.
+3. Adding duplicate names support, which is available in most contact lists.
+4. Making the user's events be able to import other contact's events.
    1. Since the User is a form of Contact, it is once again trivial to extend the same functionality to other contacts
-3. Making NeoBook accept more symbols and emojis
+5. Making NeoBook accept more symbols and emojis.
    1. Currently, the validation regex for all the fields for contacts do not accept special symbols (and also do not render them properly). In the future, we will attempt to add-in support for this.
+6. Switching to the relevant tab when a command is executed.
+   1. Using commands for contacts in the events tab and vice versa may not show any visible changes, causing confusion in whether the user did anything.
+   2. Certain commands should bring the user to the relevant tab, if they are not currently in said tab (e.g. `list` should navigate to the contacts tab).
+7. Enhancing the `select` command to accept parameters beyond just the index of the contact.
+   1. User cannot see the indices of contacts further down the list, and needs to scroll.
+   2. The `select` command can integrate `find` functionality.
+8. Splitting the description field of events into title and description fields, so as not to clutter the UI with long descriptions.
