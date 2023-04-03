@@ -1,10 +1,14 @@
 package bookopedia.logic.commands;
 
+import static bookopedia.logic.commands.AddParcelCommand.MESSAGE_DONE_STATUS_ADD_PC;
+import static bookopedia.logic.commands.AddParcelCommand.MESSAGE_RETURN_STATUS_ADD_PC;
 import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_LAZADA;
 import static bookopedia.logic.commands.CommandTestUtil.VALID_PARCEL_SHOPEE;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static bookopedia.testutil.TypicalPersons.ALICE;
+import static bookopedia.testutil.TypicalPersons.AMY;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.HashSet;
@@ -15,11 +19,13 @@ import org.junit.jupiter.api.Test;
 import bookopedia.commons.core.Messages;
 import bookopedia.commons.core.index.Index;
 import bookopedia.model.AddressBook;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.Model;
 import bookopedia.model.ModelManager;
 import bookopedia.model.UserPrefs;
 import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Person;
+import bookopedia.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddParcelCommand.
@@ -72,4 +78,29 @@ public class AddParcelCommandTest {
         assertCommandFailure(addParcelCommand, model, String.format(Messages.MESSAGE_EXISTING_PARCEL, existingParcel));
     }
 
+    @Test
+    public void execute_addParcelOnDoneDelivery_failure() {
+        Person personDone = new PersonBuilder(AMY).withDeliveryStatus(DeliveryStatus.DONE)
+                .withParcels("Parcel1").build();
+        model.addPerson(personDone);
+        Index personToMarkIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+
+        AddParcelCommand addParcelCommand = new AddParcelCommand(personToMarkIndex, new Parcel("Parcel2"));
+
+        assertCommandFailure(addParcelCommand, model,
+                String.format(MESSAGE_DONE_STATUS_ADD_PC, ALICE.getName()));
+    }
+
+    @Test
+    public void execute_addParcelOnReturnDelivery_failure() {
+        Person personDone = new PersonBuilder(AMY).withDeliveryStatus(DeliveryStatus.RETURN)
+                .withParcels("Parcel1").build();
+        model.addPerson(personDone);
+        Index personToMarkIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+
+        AddParcelCommand addParcelCommand = new AddParcelCommand(personToMarkIndex, new Parcel("Parcel2"));
+
+        assertCommandFailure(addParcelCommand, model,
+                String.format(MESSAGE_RETURN_STATUS_ADD_PC, ALICE.getName()));
+    }
 }
