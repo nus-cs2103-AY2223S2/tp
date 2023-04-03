@@ -76,6 +76,7 @@ public class ZoomView extends UiPart<Region> {
         String progressString = (bookmark.getProgress() == null) ? "-" : bookmark.getProgress().toString();
         progressView.setText("Progress: " + progressString);
         urlLink.setText(bookmark.getUrl().value);
+        urlLink.setMaxWidth(450);
         bookmark.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tagsView.getChildren().add(new Label(tag.tagName)));
         InputStream image = this.getClass().getResourceAsStream("/images/default-avatar.png");

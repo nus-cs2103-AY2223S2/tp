@@ -100,7 +100,7 @@ public class ViewCommandTest {
         // null -> returns false
         assertFalse(viewFirstCommand.equals(null));
 
-        // different internship -> returns false
+        // different view -> returns false
         assertFalse(viewFirstCommand.equals(viewSecondCommand));
     }
 

@@ -131,4 +131,23 @@ public class ModelManagerTest {
         differentUserPrefs.setLibraryFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(library, differentUserPrefs, tags)));
     }
+
+    @Test
+    public void getSelectedBookmark_default_success() {
+        assertEquals(modelManager.getSelectedBookmark(), null);
+    }
+    @Test
+    public void getSelectedIndex_default_success() {
+        assertEquals(modelManager.getSelectedIndex(), -1);
+    }
+    @Test
+    public void getUpdatedBookmark_success() {
+        modelManager.updateSelectedBookmark(ALICE);
+        assertEquals(modelManager.getSelectedBookmark(), ALICE);
+    }
+    @Test
+    public void getUpdatedIndex_success() {
+        modelManager.updateSelectedIndex(1);
+        assertEquals(modelManager.getSelectedIndex(), 1);
+    }
 }
