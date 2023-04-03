@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -126,7 +127,6 @@ public class CommandRecommendationEngine {
         }
 
         boolean invalid = userInput.stripLeading().length() != userInput.length();
-
         userInput = userInput.stripLeading();
 
         // Find entered command
@@ -166,11 +166,16 @@ public class CommandRecommendationEngine {
      * @throws RecommendationException if there is an error generating recommendations
      */
     public String autocompleteCommand(String userInput) throws RecommendationException {
-        userInput = userInput.trim();
         String recommendation = generateCommandRecommendations(userInput);
         String cmdWord = recommendation.split(" ")[0];
         CommandInfo cmdInfo = findMatchingCommandInfo(cmdWord, true);
+        if (Objects.equals(cmdInfo, null)) {
+            return userInput;
+        }
+        userInput = userInput.trim();
+        String preamble = cmdInfo.getPreamble();
         String suggestedCommand = recommendation.substring(userInput.length());
+
         boolean isCompleteCommand = isCommandPrefixComplete(userInput, " ");
         int commandIdx = recommendation.indexOf(" ");
         String command = recommendation.substring(0, commandIdx == -1
@@ -178,6 +183,8 @@ public class CommandRecommendationEngine {
                 : commandIdx);
         if (!isCompleteCommand && !userInput.equals(command)) {
             return command;
+        } else if (!preamble.isEmpty() && suggestedCommand.contains(preamble)) {
+            return userInput; // do not autocomplete
         } else {
             int nextIdx = suggestedCommand.indexOf("/") + 1;
             return recommendation.substring(0, userInput.length() + nextIdx);
@@ -203,8 +210,6 @@ public class CommandRecommendationEngine {
                 .orElse(null);
     }
 
-
-
     private String generateArgumentRecommendation(CommandInfo commandInfo, String userArgs)
             throws RecommendationException {
 
@@ -212,13 +217,16 @@ public class CommandRecommendationEngine {
         HashMap<Prefix, String> cmdPrompt = (HashMap<Prefix, String>) commandInfo.getCmdPrompts().clone();
         String command = commandInfo.getCmdWord();
         StringBuilder argumentRecommendation = new StringBuilder();
+        String preamble = commandInfo.getPreamble();
         if (userArgs == null) {
+            if (!preamble.isEmpty()) {
+                argumentRecommendation.append(" ").append(preamble);
+            }
             getRemainingArguments(cmdPrompt,
                     key -> argumentRecommendation.append(" ").append(key).append(cmdPrompt.get(key)),
                     unused -> true);
             return argumentRecommendation.toString();
         }
-
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userArgs, cmdPrompt.keySet()
                 .toArray(Prefix[]::new));
 
@@ -229,17 +237,15 @@ public class CommandRecommendationEngine {
         String[] userInputArray = userArgs.split(" ");
         String currPrefixString = userInputArray[userInputArray.length - 1];
         boolean isCompletePrefix = isCommandPrefixComplete(userInputArray[userInputArray.length - 1], "/");
-        Prefix matchingPrefix = findMatchingPrefix(cmdPrompt, currPrefixString.split("/")[0]);
+        Prefix matchingPrefix = findMatchingPrefix(cmdPrompt, isCompletePrefix
+                ? currPrefixString.split("/")[0]
+                : currPrefixString);
 
         if (isCompletePrefix && matchingPrefix == null) {
             throw new RecommendationException("Invalid prefix.");
         }
 
-        if (isCompletePrefix) {
-            argumentMultimap.put(matchingPrefix, "");
-        }
-
-        if (!isCompletePrefix && matchingPrefix != null) {
+        if (!isCompletePrefix && matchingPrefix != null && userArgs.stripTrailing().length() == userArgs.length()) {
             argumentRecommendation.append(matchingPrefix.getPrefix().substring(currPrefixString.length()));
             argumentRecommendation.append(cmdPrompt.get(matchingPrefix));
             cmdPrompt.remove(matchingPrefix);

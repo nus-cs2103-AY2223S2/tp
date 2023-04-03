@@ -164,7 +164,11 @@ public class CommandBox extends UiPart<Region> {
     private void setRecommendationsWithUserInput(String userInput) {
         try {
             String recommendedText = commandRecommendationEngine.generateCommandRecommendations(userInput);
-            commandRecommendationTextField.setText(recommendedText);
+            if (isOverflow()) {
+                commandRecommendationTextField.setText("");
+            } else {
+                commandRecommendationTextField.setText(recommendedText);
+            }
         } catch (RecommendationException e) {
             setStyleToIndicateCommandFailure(true);
             logger.log(Level.WARNING, e.getMessage());
@@ -176,7 +180,7 @@ public class CommandBox extends UiPart<Region> {
     private boolean isOverflow() {
         Text text = new Text();
         text.setFont(commandTextField.getFont());
-        text.setText(commandTextField.getText() + "           ");
+        text.setText(commandTextField.getText() + "                   ");
         return commandTextField.getWidth() < text.getLayoutBounds().getWidth();
     }
 }
