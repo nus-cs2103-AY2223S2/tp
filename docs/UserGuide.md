@@ -289,6 +289,11 @@ Format: `help`
 
 
 ### Adding a person: `add`
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Tags**<br>
+Tags of length more than 10 are unsupported! UI artifacts may occur.
+</div>
 
 Adds a person to the address book.
 
