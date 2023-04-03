@@ -216,7 +216,7 @@ example [`addm`](#adding-a-meeting--addm). Below, we can find the valid date and
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tip**<br>
-Date and time formats can be mixed and matched. For example, `ddMMyyyy HH`
+Date and time formats can be mixed and matched. For example, `ddMMyyyy HHmm`.
 
 </div>
 
