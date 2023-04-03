@@ -23,11 +23,11 @@ public class RecurCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Recurs event in the scheduler by "
             + "the index number used in the displayed event list. "
             + "\nParameters: INDEX (must exist)\n "
-            + CliSyntax.PREFIX_DATE + "ENDING DATE\n "
-            + CliSyntax.PREFIX_EVERY + "{DAY, WEEK, MONTH, YEAR} "
+            + CliSyntax.PREFIX_DATE + "ending date\n "
+            + CliSyntax.PREFIX_EVERY + "{day, week, month} "
             + "\nExample: \n" + COMMAND_WORD + " 1 "
             + CliSyntax.PREFIX_DATE + "2024-02-20 "
-            + CliSyntax.PREFIX_EVERY + "MONTH ";
+            + CliSyntax.PREFIX_EVERY + "month ";
 
     public static final String MESSAGE_SUCCESS = "Recurring event added: %1$s";
 
@@ -66,20 +66,16 @@ public class RecurCommand extends Command {
 
         switch (factor.toString()) {
 
-        case "DAY":
+        case "day":
             addEventPerDay(model, eventToRecur);
             break;
 
-        case "WEEK":
+        case "week":
             addEventPerWeek(model, eventToRecur);
             break;
 
-        case "MONTH":
+        case "month":
             addEventPerMonth(model, eventToRecur);
-            break;
-
-        case "YEAR":
-            addEventPerYear(model, eventToRecur);
             break;
 
         default:
@@ -157,29 +153,6 @@ public class RecurCommand extends Command {
             model.addEvent(nextEventToRecur);
             model.addRecentEvent(nextEventToRecur);
             newDate = new Date(nextEventToRecur.getDate().date.plusMonths(1).toString());
-            nextEventToRecur =
-                    new Event(eventToRecur.getName(), newDate,
-                            eventToRecur.getStartTime(), eventToRecur.getEndTime());
-        }
-    }
-
-    /**
-     * Adds new events to every year until endDate.
-     * @param model model to add
-     * @param eventToRecur event to recur in the model
-     */
-    public void addEventPerYear(Model model, Event eventToRecur) {
-        Date baseDate = eventToRecur.getDate();
-        int yearsDiff = (int) baseDate.getYearsBetween(endDate.date);
-        Date newDate = new Date(eventToRecur.getDate().date.plusYears(1).toString());
-        Event nextEventToRecur =
-                new Event(eventToRecur.getName(), newDate,
-                        eventToRecur.getStartTime(), eventToRecur.getEndTime());
-
-        for (int i = 0; i < yearsDiff; i++) {
-            model.addEvent(nextEventToRecur);
-            model.addRecentEvent(nextEventToRecur);
-            newDate = new Date(nextEventToRecur.getDate().date.plusYears(1).toString());
             nextEventToRecur =
                     new Event(eventToRecur.getName(), newDate,
                             eventToRecur.getStartTime(), eventToRecur.getEndTime());
