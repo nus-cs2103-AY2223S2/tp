@@ -14,7 +14,7 @@ import ezschedule.commons.util.AppUtil;
 public class Time implements Comparable<Time> {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Time should only contain numeric characters, follows the format HH:mm, and it should not be blank";
+            "Time should only contain numeric characters, follows the format HH:mm, and it should not be blank";
 
     public static final String VALIDATION_REGEX = "^\\d{2}:\\d{2}$";
 
@@ -46,28 +46,6 @@ public class Time implements Comparable<Time> {
         return time.isBefore(LocalTime.now());
     }
 
-    @Override
-    public int compareTo(Time otherTime) {
-        return time.compareTo(otherTime.time);
-    }
-
-    @Override
-    public String toString() {
-        return time.toString();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-            || (other instanceof Time // instanceof handles nulls
-            && time.equals(((Time) other).time)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return time.hashCode();
-    }
-
     /**
      * Returns true if time is before given time.
      */
@@ -80,5 +58,27 @@ public class Time implements Comparable<Time> {
      */
     public boolean isAfter(Time other) {
         return this.time.isAfter(other.time);
+    }
+
+    @Override
+    public int compareTo(Time otherTime) {
+        return time.compareTo(otherTime.time);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Time // instanceof handles nulls
+                && time.equals(((Time) other).time)); // state check
+    }
+
+    @Override
+    public String toString() {
+        return time.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return time.hashCode();
     }
 }
