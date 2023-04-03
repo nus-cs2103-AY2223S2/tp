@@ -26,6 +26,7 @@ title: User Guide
   - [Editing task](#editing-task)
   - [Filtering task](#filtering-task)
   - [Sorting task](#sorting-task)
+  - [Undo the previous command](#undo-the-previous-command)
   - [General information on MACRO commands](#general-information-on-macro-commands)
   - [Exiting the application](#exiting-the-application)
   - [Saving the task list data](#saving-the-task-list-data)
@@ -334,6 +335,10 @@ Sometimes we might be adding the exact same task every week, say `:a "Do CS2103 
 MACRO is like a customisable template like command, to streamline the process of running repeated commands. For example, to save `:a "Do CS2103 weekly quiz" -d Friday 14:00` as a MACRO, user can simply input the command, `:macro -a CS2103WeeklyQuiz ":a 'Do CS2103 weekly quiz' -d Friday 14:00"`.
 
 The same method works for deletion of tasks & listing of tasks, which is respectively represented by the command headings, `:macro -d` and `:macro -l` respectively. You can also use more verbose flags like `--add`, `--delete` and `--list` instead of `-a`, `-d` and `-l` while typing MACRO commands.
+
+### Undoing the previous command
+
+You can undo the previous command by simply keying in `:undo`.
 
 ### Exiting the application
 
