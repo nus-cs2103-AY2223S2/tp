@@ -447,8 +447,8 @@ EduMate is a command-driven application, which means that its various functional
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [g/GROUP]` can be used as `n/Amriul Thani g/Friend` or as `n/Amirul Thani`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[m/MODULE]…​` can be used as ` ` (i.e. 0 times), `m/`, `m/CS2108 m/CS2101` etc.
+* Items with `...`​ after them can be used multiple times including zero times.<br>
+  e.g. `[m/MODULE]...​` can be used as ` ` (i.e. 0 times), `m/`, `m/CS2108 m/CS2101` etc.
 
 * Unless otherwise specified, arguments can be in any order.<br>
   e.g. if the command specifies `n/NAME s/STATION`, `s/STATION n/NAME` is also acceptable.
@@ -576,7 +576,7 @@ Once all the basic information has been added, you can then assign them to group
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Format** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
-* `add n/NAME [z/FIELD]…​`: Adds a contact with the given details. Notice that `NAME` is a compulsory field.
+* `add n/NAME [z/FIELD]...​`: Adds a contact with the given details. Notice that `NAME` is a compulsory field.
 
 </div>
 
@@ -691,8 +691,8 @@ With EduMate's `edit` command, you can easily update the profile of a contact. Y
 
 :information_source: **Formats** (See [Interpreting Command Formats](#how-to-interpret-the-command-format)):<br>
 
-* `edit INDEX [z/FIELD]…​`: Edits the fields for the contact at index `INDEX`.
-* `edit [z/FIELD]…​`: Edits your user profile.
+* `edit INDEX [z/FIELD]...​`: Edits the fields for the contact at index `INDEX`.
+* `edit [z/FIELD]...​`: Edits your user profile.
 
 </div>
 
@@ -1309,21 +1309,21 @@ suggest new features, and it is easily extensible!
 
 ### Command Summary
 
-| Action                   | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))    | Examples                                                       |
-|--------------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| **Add a contact**        | `add n/NAME p/PHONE...`                                                              | `add n/Wen Li...`                                              |
-| **View a profile**       | `view`, `view INDEX`, `view n/NAME`                                                  | `view 5`, `view n/Wen Li`                                      |
-| **Edit a contact**       | `edit INDEX [z/FIELD]…​`, `edit [z/FIELD]…​`                                         | `edit 4 n/Wen Qing`, `edit s/NUS t/@wenqing`                   |
-| **Delete a contact**     | `delete INDEX`                                                                       | `delete 3`                                                     |
-| **Tag a contact**        | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`       | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`      |
+| Action                   | Format (See [Interpreting Command Formats](#how-to-interpret-the-command-format))      | Examples                                                       |
+|--------------------------|----------------------------------------------------------------------------------------|----------------------------------------------------------------|
+| **Add a contact**        | `add n/NAME p/PHONE...`                                                                | `add n/Wen Li...`                                              |
+| **View a profile**       | `view`, `view INDEX`, `view n/NAME`                                                    | `view 5`, `view n/Wen Li`                                      |
+| **Edit a contact**       | `edit INDEX [z/FIELD]...​`, `edit [z/FIELD]...​`                                       | `edit 4 n/Wen Qing`, `edit s/NUS t/@wenqing`                   |
+| **Delete a contact**     | `delete INDEX`                                                                         | `delete 3`                                                     |
+| **Tag a contact**        | `tag INDEX m/MODULE...`, `tag m/MODULE...`, `tag INDEX g/GROUP`, `tag g/GROUP`         | `tag m/CS1234`, `tag m/CS2345 mon 12 1`, `tag 1 g/Friend`      |
 | **Untag a contact**      | `untag INDEX m/MODULE...`, `untag m/MODULE...`, `untag INDEX g/GROUP`, `untag g/GROUP` | `untag m/CS1234`, `untag m/CS2345 mon 12 1`, `untag 1 g/Friend` |
 | **Filter contacts**      | `find z/FIELD... z/FIELD...`                                                           | `find n/Tan`, `find m/CS1231`, `find n/Tan m/CS1231`           |
-| **Sort contacts**        | `sort [z/a]…​`, `sort [z/d]…​`, `sort [z/]…​`                                        | `sort`, `sort n/a`, `sort m/ p/d`                              |
-| **Save a copy**          | `save FILE_NAME`                                                                     | `save backup`                                                  |
-| **Load a copy**          | `load FILE_NAME`                                                                     | `load backup`                                                  |
-| **Suggest meet ups**     | `meet [INDEX]…​`, `eat [INDEX]…​`, `study [INDEX]…​`                                 | `meet 1 6 4`, `eat 10 4 7`                                     |
-| **Organise a meet up**   | `organise INDEX`, `organise [INDEX]... d/DAY T/START_TIME END_TIME l/LOCATION`       | `organise 1`, `organise 1 2 3 d/MONDAY T/10 12 l/NUS`          |
-| **Unorganise a meet up** | `unorganise INDEX` | `unorganise 1`                                                 |
+| **Sort contacts**        | `sort [z/a]...​`, `sort [z/d]...​`, `sort [z/]...​`                                    | `sort`, `sort n/a`, `sort m/ p/d`                              |
+| **Save a copy**          | `save FILE_NAME`                                                                       | `save backup`                                                  |
+| **Load a copy**          | `load FILE_NAME`                                                                       | `load backup`                                                  |
+| **Suggest meet ups**     | `meet [INDEX]...​`, `eat [INDEX]...​`, `study [INDEX]...​`                             | `meet 1 6 4`, `eat 10 4 7`                                     |
+| **Organise a meet up**   | `organise INDEX`, `organise [INDEX]... d/DAY T/START_TIME END_TIME l/LOCATION`         | `organise 1`, `organise 1 2 3 d/MONDAY T/10 12 l/NUS`          |
+| **Unorganise a meet up** | `unorganise INDEX`                                                                     | `unorganise 1`                                                 |
 
 
 ## Troubleshooting
