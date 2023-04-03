@@ -33,10 +33,9 @@ You can click on any of the links below to navigate to the respective sections f
     * [1.4.1 Home Page](#141-home-page)
     * [1.4.2 Data Tab](#142-data-tab)
 * [2 Commands](#2-commands)
-    * [Viewing help: `help`](#viewing-help-help)
-  * [Add](#add)
-    * [Adding a supplier: `add_supplier`](#adding-a-supplier-addsupplier)
-    * [Adding an order: `add_order`](#adding-an-order-addorder)
+  * [2.1 Add](#21-add)
+    * [2.1.1 Adding a supplier: `add_supplier`](#211-adding-a-supplier-addsupplier)
+    * [2.1.2 Adding an order: `add_order`](#212-adding-an-order-addorder)
     * [Adding a task: `add_task`](#adding-a-task-addtask)
     * [Adding a menu item: `add_item`](#adding-a-menu-item-additem)
   * [Edit](#edit)
@@ -70,6 +69,7 @@ You can click on any of the links below to navigate to the respective sections f
   * [Switch](#switch)
     * [Switching tabs: `tab`](#switching-tabs-tab)
   * [Others](#others)
+    * [Viewing help: `help`](#viewing-help-help)
     * [Uploading a csv file](#uploading-a-csv-file)
     * [Exiting the program: `exit`](#exiting-the-program-exit)
 * [Data](#data)
@@ -77,7 +77,9 @@ You can click on any of the links below to navigate to the respective sections f
     * [Editing the data file](#editing-the-data-file)
     * [Upcoming features `[coming soon]`](#upcoming-features-coming-soon)
 * [FAQ](#faq)
-* [Command summary](#command-summary)
+* [5 Summary](#5-summary)
+* [5.1 Prefix Summary](#51-prefix-summary)
+  * [5.2 Command Summary](#52-command-summary)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -317,11 +319,11 @@ Data list contains all of your respective data labelled out in full. The layout 
 
 * General format of commands:<br>
   <div style="background-color:silver">
-  <span style="color:darkblue">&lt command &gt</span>
+  <span style="color:darkblue">&lt; command &gt;</span>
   <span> </span>
-  <span style="color:indigo">&lt index &gt</span>
+  <span style="color:indigo">&lt; index &gt;</span>
   <span> </span>
-  <span style="color:brown">&lt prefix/paramater &gt &lt prefix/paramater &gt ...</span>
+  <span style="color:brown">&lt; prefix/paramater &gt; &lt; prefix/paramater &gt; ...</span>
   </div>
   
   * Index depends on the command.
@@ -371,11 +373,11 @@ Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 </div>
 
-### Adding an order: `add_order`
+### 2.1.2 Adding an order: `add_order`
 
 Adds an order into the list of orders.
 
-Syntax: `add_order n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER d/DEADLINE q/QUANTITY on/ORDER_NAME [s/STATUS]…​`
+Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
 
 * An order can have any number of remarks.
 * Either customer phone number or email address must be provided.
