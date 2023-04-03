@@ -36,13 +36,6 @@ public class QuickAccessToolbar extends UiPart<Region> {
     }
 
     /**
-     * Set focus back to home button.
-     */
-    public void focusHomeButton() {
-        setFocusButton(homeButton);
-    }
-
-    /**
      * Handles the home button pressed event.
      */
     @FXML
