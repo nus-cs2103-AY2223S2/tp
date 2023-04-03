@@ -90,6 +90,7 @@ public class CreateLessonCommand extends Command {
             dupNames = new StringBuilder(dupNames.substring(0, dupNames.length() - 2));
             throw new CommandException(String.format(Messages.MESSAGE_HAS_DUPLICATE_NAMES, dupNames));
         }
+
         model.updateFilteredStudentList(predicate);
 
         List<Student> studentList = model.getFilteredStudentList();

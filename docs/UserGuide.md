@@ -308,10 +308,10 @@ Creates a new lesson for a given student, with a lesson title and time.
 
 Format: `new-lesson [name/STUDENT_NAME] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
 
-* All fields are mandatory.
+* All fields, except for additional student names, are mandatory.
 
 Examples:
-`new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500`
+* `new-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `25 Mar 2023 13:00` and ending at `25 Mar 2023 15:00`.
 
 
 #### View Lessons History
@@ -327,6 +327,34 @@ Format: `view-lesson [name/STUDENT_NAME]`
 Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
 * `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then ask which one to show.
+
+Examples:
+* `view-lesson` Displays the lesson history for all the tutor’s students.
+* `view-lesson name/John subject/Math date/2023-05-03` Displays the lessons for student John, which are of subject Math, on the day 2023-05-03.
+* `view-lesson done/done` Displays all lessons that have been completed
+
+### Remove a Lesson
+Deletes a lesson for a given student.
+
+Format: `delete-lesson [name/STUDENT_NAME] [index/LESSON_INDEX]`
+
+* The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
+* Deletes the lesson at the specified `LESSON_INDEX`.
+
+Example:
+* `delete-lesson name/John Doe index/1` deletes the first lesson for the student named John Doe.
+
+### Update a Lesson
+Updates a lesson for a given student. This includes the lesson title, start time, and end time.
+
+Format: `update-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON_TITLE] (optional)[start/START_TIME] (optional)[end/END_TIME]`
+
+* The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
+* Updates the specified Lesson with the new information (lesson name and/or start time and/or end time).
+* At least one of the fields must be specified.
+
+Example:
+* `update-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` updates the lesson for John Doe with the new information.
 
 ### Exams Commands
 
