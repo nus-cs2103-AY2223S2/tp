@@ -215,6 +215,7 @@ public class ParserUtil {
         Day day = parseDay(args.get(1));
         LocalTime startTime = parseLocalTime(args.get(2), true);
         LocalTime endTime = parseLocalTime(args.get(3), false);
+
         TimeBlock timeBlock = parseTimeBlock(startTime, endTime, day);
 
         Lesson lesson = new Lesson(moduleCode, Location.NUS, timeBlock);
@@ -236,13 +237,22 @@ public class ParserUtil {
      * MON will output MONDAY.
      */
     public static Day parseDay(String dayAsStr) throws ParseException {
+        if (dayAsStr.isEmpty()) {
+            throw new ParseException("Day is missing!");
+        }
+
         String upperDayAsStr = dayAsStr.toUpperCase();
+
+        if (upperDayAsStr.equals("T")) {
+            throw new ParseException("Did you mean Tuesday or Thursday?");
+        }
+
         for (Day day : Day.values()) {
             if (day.toString().startsWith(upperDayAsStr)) {
                 return day;
             }
         }
-        throw new ParseException("Day is invalid");
+        throw new ParseException("Day is invalid!");
     }
 
     /**

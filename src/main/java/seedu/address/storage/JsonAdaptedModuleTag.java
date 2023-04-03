@@ -44,6 +44,14 @@ public class JsonAdaptedModuleTag extends JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public ModuleTag toModelType() throws IllegalValueException {
+        if (moduleCode == null) {
+            throw new IllegalValueException("Module code is missing!");
+        }
+
+        if (lessons == null) {
+            throw new IllegalValueException("Lessons are missing!");
+        }
+
         if (!ModuleTag.isValidTagName(moduleCode)) {
             throw new IllegalValueException(ModuleTag.MESSAGE_CONSTRAINTS);
         }
