@@ -175,6 +175,11 @@ public class AddCommandTest {
         public Person updateMeeting(Person personToEdit, Index indexMeeting, Meeting editedMeeting) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void refreshFilteredMeetingList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
