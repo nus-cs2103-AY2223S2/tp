@@ -141,10 +141,7 @@ Additional Fields:
 * `t/` : tags 
 * `m/` : module codes
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
-
 > :bulb:  **Tip:** A person can have any number of tags or modules (including 0). The order of the fields is not important.
-</div>
 
 Examples:
 * `add n/John d/Important friend e/leomessi@psg.com p/98101010`
