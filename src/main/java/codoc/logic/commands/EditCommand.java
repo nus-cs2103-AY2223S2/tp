@@ -60,6 +60,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
 
+    public static final String MESSAGE_INPUT_NO_CHANGE = "The person already has these attributes";
+
     public static final String MESSAGE_NOT_EDITED = "The person was not edited.";
     public static final String MESSAGE_DUPLICATE_PERSON =
             "This person already exists in the address book.";
@@ -101,8 +103,9 @@ public class EditCommand extends Command {
 
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (personToEdit.equals(editedPerson)
-                || (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson))) {
+        if (personToEdit.equals(editedPerson)) {
+            throw new CommandException(MESSAGE_INPUT_NO_CHANGE);
+        } else if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
