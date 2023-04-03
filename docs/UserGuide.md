@@ -64,7 +64,7 @@ For **experienced users**, you may refer to the [Command Summary](#command-summa
     * [**Save a copy of EduMate `save`**](#save-a-copy-of-edumate-save)
     * [**Load a copy of EduMate `load`**](#load-a-copy-of-edumate-load)
   * [**Meet Commands**](#meet-commands)
-    * [**Suggest places to meet with your contacts `meet`**](#meet-commands)
+    * [**Suggest places to meet with your contacts `meet`, `study`, `eat`**](#suggest-places-to-meet-with-your-contacts-meet-study-eat)
   * [**Schedule Commands**](#schedule-commands)
     * [**Organise a meet up with your contacts `organise`**](#organise-a-meet-up-organise)
     * [**Unorganise a meet up with your contacts `unorganise`**](#unorganise-a-meet-up-unorganise)
@@ -1069,6 +1069,8 @@ Using the `load` command in EduMate, you can easily load a previously saved data
 </div>
 
 ### Meet Commands
+
+#### Suggest places to meet with your contacts `meet`, `study`, `eat`
 
 The `meet` command in EduMate is used to suggest suitable meet-up locations and times for users and their contacts, based on various criteria such as availability and proximity. It is useful for finding a mutually convenient time and place to meet up with friends or study partners. EduMate also offers more specialized commands such as `eat` for suggesting places to eat and `study` for suggesting places to study.
 
