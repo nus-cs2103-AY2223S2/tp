@@ -480,7 +480,7 @@ What you should expect to find:
 <ul>
     <li> If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
 </li>
-    <li> However, if two or more values are added to <code>NOTE</code>, both value will be taken.
+    <li> However, if two or more `NOTE` are added, all the notes will be added to the applicant.
 </li>
 </ul> </div>
 
