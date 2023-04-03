@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.pet.Pet;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the PetPal data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);

@@ -20,33 +20,33 @@ import seedu.address.model.pet.Pet;
 
 
 /**
- * A utility class containing a list of {@code Person} objects to be used in tests.
+ * A utility class containing a list of {@code Pet} objects to be used in tests.
  */
 public class TypicalPets {
 
-    public static final Pet ALICE = new PetBuilder().withName("Alice Pauline")
+    public static final Pet ALICE = new PetBuilder().withOwnerName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
-    public static final Pet BENSON = new PetBuilder().withName("Benson Meier")
+    public static final Pet BENSON = new PetBuilder().withOwnerName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withTags("owesMoney", "friends").build();
-    public static final Pet CARL = new PetBuilder().withName("Carl Kurz").withPhone("95352563")
+    public static final Pet CARL = new PetBuilder().withOwnerName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Pet DANIEL = new PetBuilder().withName("Daniel Meier").withPhone("87652533")
+    public static final Pet DANIEL = new PetBuilder().withOwnerName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
-    public static final Pet ELLE = new PetBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Pet ELLE = new PetBuilder().withOwnerName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Pet FIONA = new PetBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Pet FIONA = new PetBuilder().withOwnerName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Pet GEORGE = new PetBuilder().withName("George Best").withPhone("9482442")
+    public static final Pet GEORGE = new PetBuilder().withOwnerName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build();
 
     // Manually added
-    public static final Pet HOON = new PetBuilder().withName("Hoon Meier").withPhone("8482424")
+    public static final Pet HOON = new PetBuilder().withOwnerName("Hoon Meier").withName("Doggo").withPhone("8482424")
             .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Pet IDA = new PetBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Pet IDA = new PetBuilder().withOwnerName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
     // Manually added - Pet's details found in {@code CommandTestUtil}

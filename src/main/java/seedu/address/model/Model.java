@@ -35,12 +35,12 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' PetPal file path.
      */
     Path getPetPalFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' PetPal file path.
      */
     void setPetPalFilePath(Path petPalFilePath);
 
