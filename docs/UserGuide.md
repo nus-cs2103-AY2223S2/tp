@@ -34,7 +34,7 @@ This guide quickly gets you started to use FriendlyLink, describing our features
 
 We suggest reading this guide in sequential order (or at least the whole of this section) to familiarise yourself with the keywords used in this guide in the glossary and differently styled text which have special meanings.
 
-### How to Use FriendlyLink
+### Terminology
 
 #### Information Boxes
 
@@ -85,6 +85,31 @@ Fields are the information following the slash in a command, to provide appropri
     * E.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
     * E.g. If you specify `help 123`, it will be interpreted as `help`.
+
+#### Duplicate Entries
+* Person (Elderly and Volunteers)
+  * Two persons having the same `NRIC` are considered the same person and therefore a duplicate entry in FriendlyLink, and is not allowed.
+  * The same person in FriendlyLink cannot be both an elderly and a volunteer at the same time.
+* Pair
+  * Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink, and is not allowed.
+
+#### Code highlights
+
+`Highlights` are used to denote specific terms, commands or output from the application. These are case-sensitive and may not give the correct results if you use different capitalisation or if you include additional space in them.
+
+* Highlighted commands consists special characters or capitalisation, which have special meaning.
+    * Words that are `CAPITALISED` are placeholders that should be replaced by you.<br>
+      e.g. in `add n/NAME`, `NAME` should be replaced with actual information `add n/John Doe`.
+
+    * Items in `[square brackets]` are optional.<br>
+      e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.
+
+    * Items with `[ellipsis]…` after them can be used 0 or more times.<br>
+      e.g. `add_elderly n/NAME [t/TAG]…` can be used as `add_elderly n/John Doe` (no tags included), `add_elderly n/John Doe t/friend` (1 tag), `add_elderly n/John Doe t/friend t/family` (2 tags) and more.
+
+-------------------------------------------
+
+### Attributes
 
 #### Name
 The name of the person. 
@@ -172,28 +197,7 @@ please ensure your input available date ranges are non-overlapping.
 A tag is a generic description for a group of people.
 * Only alphanumeric, non-space characters are allowed.
 
-#### Duplicate Entries
-* Person (Elderly and Volunteers)
-  * Two persons having the same `NRIC` are considered the same person and therefore a duplicate entry in FriendlyLink, and is not allowed.
-  * The same person in FriendlyLink cannot be both an elderly and a volunteer at the same time.
-* Pair
-  * Two pairs having the same elderly and volunteer are considered a duplicate entry in FriendlyLink, and is not allowed.
-
-#### Code highlights
-
-`Highlights` are used to denote specific terms, commands or output from the application. These are case-sensitive and may not give the correct results if you use different capitalisation or if you include additional space in them.
-
-* Highlighted commands consists special characters or capitalisation, which have special meaning.
-    * Words that are `CAPITALISED` are placeholders that should be replaced by you.<br>
-      e.g. in `add n/NAME`, `NAME` should be replaced with actual information `add n/John Doe`.
-
-    * Items in `[square brackets]` are optional.<br>
-      e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or just `n/John Doe`.
-
-    * Items with `[ellipsis]…` after them can be used 0 or more times.<br>
-      e.g. `add_elderly n/NAME [t/TAG]…` can be used as `add_elderly n/John Doe` (no tags included), `add_elderly n/John Doe t/friend` (1 tag), `add_elderly n/John Doe t/friend t/family` (2 tags) and more.
-
----
+-------------------------------
 
 ## Glossary
 
