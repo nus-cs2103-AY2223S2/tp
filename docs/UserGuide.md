@@ -119,7 +119,7 @@ A GUI similar to the below should appear in a few seconds. Note how the app cont
 
 5. Type a command in the command box and press Enter to execute it.
    Some examples:
-  * `fish add n/bobby lfd/01/01/2023 s/guppy fi/0d5h tk/1`: Add a fish to your fish book.
+  * `fish add n/Bobby lfd/01/01/2023 15:00 s/Guppy fi/0d5h tk/1`: Add a fish to your fish book.
 
 
 6. Refer to [About the Interface](#about-the-interface) below for details on the interface.
@@ -286,7 +286,7 @@ Adds a fish to *Fish Ahoy!* .
 Use this command to add fishes to tanks. By adding fish in tanks that you own, you can easily categorise them and store
 important information about them.
 
-Format: `add fish n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTERVAL> tk/<TANK_INDEX> [tg/<TAG>]`
+Format: `fish add n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTERVAL> tk/<TANK_INDEX> [tg/<TAG>]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A fish must belong to a tank.
@@ -306,7 +306,7 @@ Optional Prefixes:
 
 Deletes a fish entry from *Fish Ahoy!* .
 
-Use this command when you want to move a fish from one tank to another, or remove it entirely. 
+Use this command when you want to remove a fish from a tank. 
 
 Format: `fish delete <FISH_INDEX>`
 
@@ -319,6 +319,13 @@ has not been fed in a long time, or see which fish you need to attend to first. 
 results to your liking.  
 
 Format: `fish sort by/<ATTRIBUTE> [tk/<TANK_INDEX>]`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+After sorting, a new set of indexes will appear for each fish. The fish operations will take place on the
+**new fish list**!
+Also, note that fish sort only sorts the fishes that are present! `fish view` would result in only 1 fish being present, 
+and `fish sort` after will not show more fish. Use `list fishes` instead.
+</div>
 
 Prefixes:
 * `by/` - Specifies attribute by which to sort fish. Possible attributes:
@@ -390,7 +397,7 @@ Lists all tasks created.
 
 Use this command to list all tasks.
 
-Format: `list task`
+Format: `list tasks`
 
 ### Feeding reminders
 
