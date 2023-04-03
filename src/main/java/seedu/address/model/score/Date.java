@@ -17,6 +17,7 @@ public class Date {
     public static final String MESSAGE_INVALID_DATE =
             "The date entered is in the future. Please recheck the date entered.";
 
+
     // Identity field(s)
     public final LocalDate date;
 

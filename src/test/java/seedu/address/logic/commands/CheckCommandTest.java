@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.address.testutil.TypicalStudents.getTypicalMathutoring;
@@ -28,7 +28,7 @@ class CheckCommandTest {
 
     @Test
     public void execute_validCheckIndexList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_STUDENT);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Student studentToCheck = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         CheckCommand checkCommand = new CheckCommand(INDEX_FIRST_STUDENT);
@@ -38,7 +38,20 @@ class CheckCommandTest {
         Model expectedModel = new ModelManager(model.getMathutoring(), new UserPrefs());
         expectedModel.checkStudent(studentToCheck);
 
-        showPersonAtIndex(expectedModel, INDEX_FIRST_STUDENT);
+        showStudentAtIndex(expectedModel, INDEX_FIRST_STUDENT);
+
+        assertCommandSuccess(checkCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validIndexUnfilteredList_success() {
+        Student studentToCheck = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
+        CheckCommand checkCommand = new CheckCommand(INDEX_FIRST_STUDENT);
+
+        String expectedMessage = String.format(CheckCommand.MESSAGE_CHECK_STUDENT_SUCCESS, studentToCheck);
+
+        ModelManager expectedModel = new ModelManager(model.getMathutoring(), new UserPrefs());
+        expectedModel.checkStudent(studentToCheck);
 
         assertCommandSuccess(checkCommand, model, expectedMessage, expectedModel);
     }
@@ -53,7 +66,7 @@ class CheckCommandTest {
 
     @Test
     public void execute_invalidCheckIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_STUDENT);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
 
         Index outOfBoundIndex = INDEX_SECOND_STUDENT;
         // ensures that outOfBoundIndex is still in bounds of address book list

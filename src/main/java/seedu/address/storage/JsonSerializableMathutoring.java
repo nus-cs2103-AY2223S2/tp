@@ -18,7 +18,7 @@ import seedu.address.model.student.Student;
  * An Immutable Mathutoring that is serializable to JSON format.
  */
 @JsonRootName(value = "mathutoring")
-class JsonSerializableMathutoring {
+public class JsonSerializableMathutoring {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
 

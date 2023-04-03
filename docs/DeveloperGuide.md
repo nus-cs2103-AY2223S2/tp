@@ -2,8 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+* Table of Contents {:toc}
 * [Acknowledgements](#Acknowledgements)
 * [Design](#Design)
 * [Implementation](#Implementation)
@@ -80,7 +79,7 @@ The UI component,
 updated with the modified data.
 * keeps a reference to the `Logic` component, because the UI relies on the `Logic`
 to execute the commands.
-* depends on some classes in the `Model` component, as it displays `Person` object
+* depends on some classes in the `Model` component, as it displays `Student` object
 residing in the `Model`.
 
 ### Logic component
@@ -101,7 +100,9 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+**Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -126,7 +127,9 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Mathutoring`, which `Student` references. This allows `Mathutoring` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">
+
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Mathutoring`, which `Student` references. This allows `Mathutoring` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -492,9 +495,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-* 2b. File explorer closed by Tutor
+* 2b. File explorer closed by Tutor.
 
   Use case ends.
+
+**Use case: Export student's progress via CLI**
+
+**MSS**
+
+1. Tutor requests to export student's progress.
+2. MATHUTORING saves the file.
+
+   Use case ends.
+
+**Extensions**
+* 1a. MATHUTORING detects a command format error.
+
+  Use case resumes at step 1.
+
+* 1b. MATHUTORING detects that a file with the exact same name and type exists in the selected directory and is currently being opened.
+
+    Use case ends.
+
+**Use case: Export student's progress via GUI**
+
+**MSS**
+
+1. Tutor requests to export student's progress.
+2. MATHUTORING shows an export progress window.
+3. MATHUTORING opens the OS file explorer.
+4. Tutor selects a directory and specifies the file name to save the PDF file.
+5. MATHUTORING saves the file.
+
+   Use case ends.
+
+**Extensions**
+* 2a. Export progress window closed by Tutor by mistake.
+    
+  Use case ends.
+
+* 2b. Export progress window closed by Tutor by mistake.
+
+  Use case ends.
+
+* 3a. File explorer closed by Tutor by mistake.
+
+  Use case resumes at step 2.
+
+* 3b. File explorer closed by Tutor.
+
+  Use case resumes at step 2.
+
+* 4a. File name specified is invalid.
+
+  * 4a1. File explorer informs the tutor that the file name is invalid.
+      
+    Use case resumes at step 2.
+
+* 4b. A file with the exact same name and type exists in the selected directory and is currently being opened.
+  
+  * 4b1. MATHUTORING informs the tutor that the file cannot be saved due to a file with the same name and type in the same directory is being opened. 
+  
+    Use case ends.
+
 
 *{More to be added}*
 

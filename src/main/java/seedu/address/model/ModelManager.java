@@ -87,6 +87,7 @@ public class ModelManager implements Model {
     @Override
     public void setMathutoring(ReadOnlyMathutoring mathutoring) {
         this.mathutoring.resetData(mathutoring);
+        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
     @Override

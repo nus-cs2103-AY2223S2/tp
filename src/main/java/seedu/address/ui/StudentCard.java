@@ -96,15 +96,28 @@ public class StudentCard extends UiPart<Region> {
      *
      * @param student a given student
      */
-    private void personCardImage(seedu.address.model.student.Student student) {
-        if (student.getTags().contains(new Tag("male")) && student.getTags().contains(new Tag("female"))) {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
-        } else if (student.getTags().contains(new Tag("male"))) {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/male.png")));
-        } else if (student.getTags().contains(new Tag("female"))) {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/female.png")));
-        } else {
-            avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
+    private void personCardImage(Student student) {
+        if (student.getTags() != null) {
+            boolean isMale = false;
+            boolean isFemale = false;
+
+            for (Tag tag : student.getTags()) {
+                if (tag.tagName.toLowerCase().equals("male")) {
+                    isMale = true;
+                } else if (tag.tagName.toLowerCase().equals("female")) {
+                    isFemale = true;
+                }
+            }
+
+            if (isMale && isFemale) {
+                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
+            } else if (isMale) {
+                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/male.png")));
+            } else if (isFemale) {
+                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/female.png")));
+            } else {
+                avatar.setImage(new Image(this.getClass().getResourceAsStream("/images/unisex.png")));
+            }
         }
     }
 
