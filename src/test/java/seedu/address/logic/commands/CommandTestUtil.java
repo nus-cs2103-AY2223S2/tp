@@ -188,11 +188,11 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<InternshipApplication> expectedFilteredList = new ArrayList<>(actualModel.getFilteredInternshipList());
+        List<InternshipApplication> expectedFilteredList = new ArrayList<>(actualModel.getSortedFilteredInternshipList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredInternshipList());
+        assertEquals(expectedFilteredList, actualModel.getSortedFilteredInternshipList());
     }
 
     /**
@@ -200,13 +200,13 @@ public class CommandTestUtil {
      * {@code model}'s address book.
      */
     public static void showInternshipAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredInternshipList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getSortedFilteredInternshipList().size());
 
-        InternshipApplication internship = model.getFilteredInternshipList().get(targetIndex.getZeroBased());
+        InternshipApplication internship = model.getSortedFilteredInternshipList().get(targetIndex.getZeroBased());
         final String[] splitName = internship.getCompanyName().fullName.split("\\s+");
         model.updateFilteredInternshipList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredInternshipList().size());
+        assertEquals(1, model.getSortedFilteredInternshipList().size());
     }
 }
 

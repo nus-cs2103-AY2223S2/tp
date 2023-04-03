@@ -64,15 +64,15 @@ public class EditDocumentsCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 getTypicalTodoList(), getTypicalNoteList());
-        expectedModel.setApplication(model.getFilteredInternshipList().get(4), applicationWithEditedDocuments);
+        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(4), applicationWithEditedDocuments);
 
         assertCommandSuccess(editDocumentsCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexSecondLastApplication = Index.fromOneBased(model.getFilteredInternshipList().size() - 1);
-        InternshipApplication lastApplication = model.getFilteredInternshipList()
+        Index indexSecondLastApplication = Index.fromOneBased(model.getSortedFilteredInternshipList().size() - 1);
+        InternshipApplication lastApplication = model.getSortedFilteredInternshipList()
                 .get(indexSecondLastApplication.getZeroBased());
 
         InternshipBuilder internshipInList = new InternshipBuilder(lastApplication);
@@ -101,7 +101,7 @@ public class EditDocumentsCommandTest {
         EditDocumentsCommand editDocumentsCommand = new EditDocumentsCommand(INDEX_FIFTH_APPLICATION,
                 new EditDocumentsCommand.EditDocumentsDescriptor());
         InternshipApplication editedApplication =
-                model.getFilteredInternshipList().get(INDEX_FIFTH_APPLICATION.getZeroBased());
+                model.getSortedFilteredInternshipList().get(INDEX_FIFTH_APPLICATION.getZeroBased());
 
         String expectedMessage = String.format(EditDocumentsCommand.MESSAGE_EDIT_DOCUMENTS_SUCCESS, editedApplication);
 
@@ -116,7 +116,7 @@ public class EditDocumentsCommandTest {
         showInternshipAtIndex(model, INDEX_FIFTH_APPLICATION);
 
         InternshipApplication applicationInFilteredList =
-                model.getFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
+                model.getSortedFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
         Documents editedDocuments = new DocumentsBuilder().build();
         InternshipApplication editedApplication = new InternshipBuilder(applicationInFilteredList)
                 .withDocuments(editedDocuments).build();
@@ -130,14 +130,14 @@ public class EditDocumentsCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 getTypicalTodoList(), getTypicalNoteList());
-        expectedModel.setApplication(model.getFilteredInternshipList().get(0), editedApplication);
+        expectedModel.setApplication(model.getSortedFilteredInternshipList().get(0), editedApplication);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidApplicationIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredInternshipList().size() + 1);
         EditDocumentsCommand.EditDocumentsDescriptor descriptor =
                 new EditDocumentsDescriptorBuilder().withResumeLink(VALID_RESUME_LINK_GOOGLE).build();
         EditDocumentsCommand editDocumentsCommand = new EditDocumentsCommand(outOfBoundIndex, descriptor);

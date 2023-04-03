@@ -259,11 +259,6 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<InternshipApplication> getFilteredInternshipList() {
-        return filteredInternships;
-    }
-
-    @Override
     public ObservableList<InternshipApplication> getSortedFilteredInternshipList() {
         return sortedFilteredInternships;
     }

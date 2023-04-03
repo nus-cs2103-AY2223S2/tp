@@ -102,7 +102,7 @@ public class ClearByCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<InternshipApplication> lastShownList = model.getFilteredInternshipList();
+        List<InternshipApplication> lastShownList = model.getSortedFilteredInternshipList();
 
         if (lastShownList.size() == 0) {
             return new CommandResult(MESSAGE_NULL);

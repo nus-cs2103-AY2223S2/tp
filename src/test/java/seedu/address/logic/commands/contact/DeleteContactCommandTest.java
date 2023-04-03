@@ -35,7 +35,7 @@ public class DeleteContactCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         InternshipApplication applicationToDeleteContact =
-                model.getFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
+                model.getSortedFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
         DeleteContactCommand deleteContactCommand = new DeleteContactCommand(INDEX_FIRST_APPLICATION);
 
         InternshipApplication contactDeletedApplication = new InternshipBuilder()
@@ -53,7 +53,7 @@ public class DeleteContactCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredInternshipList().size() + 1);
         DeleteContactCommand deleteContactCommand = new DeleteContactCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteContactCommand, model, Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
@@ -64,7 +64,7 @@ public class DeleteContactCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_APPLICATION);
 
         InternshipApplication applicationToDeleteContact =
-                model.getFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
+                model.getSortedFilteredInternshipList().get(INDEX_FIRST_APPLICATION.getZeroBased());
         DeleteContactCommand deleteContactCommand = new DeleteContactCommand(INDEX_FIRST_APPLICATION);
 
         InternshipApplication contactDeletedApplication = new InternshipBuilder()
