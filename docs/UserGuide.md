@@ -107,10 +107,10 @@ Examples:
 
 Sorts all persons in the address book based on an attribute.
 
-Format: `sort [name] [gender] [phone number] [email] [company] [location] [occupation] [job title] [address] [remark] [status]`
+Format: `sort [name] [gender] [phone number] [email] [company] [location] [occupation] [job title] [address] [status]`
 
-- At least one of the optional fields must be provided.
-- The address book will be sorted based on the specified attribute by their value.
+- Only one of the optional fields is to be included.
+- The contact list will be sorted based on the specified attribute by their value.
 
 Examples:
 
