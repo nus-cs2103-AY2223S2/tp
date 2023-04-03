@@ -64,6 +64,9 @@ public class UndoCommand extends Command {
             return new CommandResult("The previous command cannot be undone.");
         }
 
+        // Clear the recentCommands to prevent repeat of delete command
+        model.recentCommands().clear();
+
 
         return new CommandResult(String.format(MESSAGE_UNDONE_SUCCESS, actionToBeUndone));
     }
