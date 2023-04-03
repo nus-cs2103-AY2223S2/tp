@@ -5,9 +5,11 @@ import java.util.logging.Logger;
 import codoc.commons.core.LogsCenter;
 import codoc.model.person.Person;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 
 /**
@@ -29,6 +31,7 @@ public class PersonListPanel extends UiPart<Region> {
         ObservableList<Person> personList = mainWindow.getLogic().getFilteredPersonList();
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        personListView.addEventFilter(KeyEvent.ANY, Event::consume);
     }
 
     /**
