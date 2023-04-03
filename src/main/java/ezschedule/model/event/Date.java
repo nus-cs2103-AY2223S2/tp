@@ -16,10 +16,11 @@ import ezschedule.commons.util.AppUtil;
  */
 public class Date implements Comparable<Date> {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Date should only contain numeric characters, follows the format yyyy-MM-dd, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Date should only contain numeric characters, "
+            + "follows the format yyyy-MM-dd (with year from 1000, month from 01 to 12, and day from 01 to 31), "
+            + "and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
+    public static final String VALIDATION_REGEX = "([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))";
 
     public final LocalDate date;
 
