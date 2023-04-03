@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import expresslibrary.model.Model;
 import expresslibrary.model.ModelManager;
 import expresslibrary.model.UserPrefs;
-import expresslibrary.model.book.BookNameContainsKeywordsPredicate;
+import expresslibrary.model.book.TitleContainsKeywordsPredicate;
 
 class FindBookCommandTest {
     private Model model = new ModelManager(getTypicalExpressLibrary(), new UserPrefs());
@@ -26,9 +26,9 @@ class FindBookCommandTest {
 
     @Test
     public void equals() {
-        BookNameContainsKeywordsPredicate firstPredicate = new BookNameContainsKeywordsPredicate(
+        TitleContainsKeywordsPredicate firstPredicate = new TitleContainsKeywordsPredicate(
                 Collections.singletonList("first"));
-        BookNameContainsKeywordsPredicate secondPredicate = new BookNameContainsKeywordsPredicate(
+        TitleContainsKeywordsPredicate secondPredicate = new TitleContainsKeywordsPredicate(
                 Collections.singletonList("second"));
 
         FindBookCommand findFirstCommand = new FindBookCommand(firstPredicate);
@@ -54,7 +54,7 @@ class FindBookCommandTest {
     @Test
     public void execute_zeroKeywords_noBookFound() {
         String expectedMessage = String.format(MESSAGE_BOOK_FOUND_OVERVIEW, 0);
-        BookNameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        TitleContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindBookCommand command = new FindBookCommand(predicate);
         expectedModel.updateFilteredBookList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -64,7 +64,7 @@ class FindBookCommandTest {
     @Test
     public void execute_multipleKeywords_multipleBooksFound() {
         String expectedMessage = String.format(MESSAGE_BOOK_FOUND_OVERVIEW, 3);
-        BookNameContainsKeywordsPredicate predicate = preparePredicate("Dune Emma Great");
+        TitleContainsKeywordsPredicate predicate = preparePredicate("Dune Emma Great");
         FindBookCommand command = new FindBookCommand(predicate);
         expectedModel.updateFilteredBookList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -74,7 +74,7 @@ class FindBookCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private BookNameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new BookNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private TitleContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new TitleContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

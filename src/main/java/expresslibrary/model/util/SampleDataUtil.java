@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import expresslibrary.commons.util.DateUtil;
 import expresslibrary.model.ExpressLibrary;
 import expresslibrary.model.ReadOnlyExpressLibrary;
 import expresslibrary.model.book.Author;
@@ -97,8 +96,8 @@ public class SampleDataUtil {
      * Helper method to borrow books for sample purposes.
      */
     public static void borrowBooks(Integer personIndex, Integer... bookIndexes) {
-        LocalDate sampleBorrowDate = DateUtil.parseDate("01/04/2023");
-        LocalDate sampleReturnDate = DateUtil.parseDate("15/04/2023");
+        LocalDate sampleBorrowDate = LocalDate.now();
+        LocalDate sampleReturnDate = sampleBorrowDate.plusDays(14);
         for (Integer bookIndex : bookIndexes) {
             sampleBooks[bookIndex].loanBookTo(samplePersons[personIndex], sampleBorrowDate, sampleReturnDate);
             samplePersons[personIndex].borrowBook(sampleBooks[bookIndex]);

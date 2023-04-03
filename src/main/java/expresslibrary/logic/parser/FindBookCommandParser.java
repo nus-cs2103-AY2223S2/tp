@@ -6,15 +6,16 @@ import java.util.Arrays;
 
 import expresslibrary.logic.commands.FindBookCommand;
 import expresslibrary.logic.parser.exceptions.ParseException;
-import expresslibrary.model.book.BookNameContainsKeywordsPredicate;
+import expresslibrary.model.book.TitleContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindBookCommand object
  */
 public class FindBookCommandParser {
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the
+     * FindCommand and returns a FindCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindBookCommand parse(String args) throws ParseException {
@@ -26,6 +27,6 @@ public class FindBookCommandParser {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindBookCommand(new BookNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindBookCommand(new TitleContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 }
