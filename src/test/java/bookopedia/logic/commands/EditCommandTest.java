@@ -9,8 +9,12 @@ import static bookopedia.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static bookopedia.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static bookopedia.logic.commands.EditCommand.MESSAGE_DONE_STATUS_EDIT;
+import static bookopedia.logic.commands.EditCommand.MESSAGE_RETURN_STATUS_EDIT;
 import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static bookopedia.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static bookopedia.testutil.TypicalPersons.ALICE;
+import static bookopedia.testutil.TypicalPersons.AMY;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -144,6 +148,32 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_editDoneDelivery_failure() {
+        Person personDone = new PersonBuilder(AMY).withDeliveryStatus(DeliveryStatus.DONE)
+                .withParcels("Parcel1").build();
+        model.addPerson(personDone);
+        Index personToMarkIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+
+        EditCommand editCommand = new EditCommand(personToMarkIndex, new EditPersonDescriptor());
+
+        assertCommandFailure(editCommand, model,
+                String.format(MESSAGE_DONE_STATUS_EDIT, ALICE.getName()));
+    }
+
+    @Test
+    public void execute_editReturnDelivery_failure() {
+        Person personDone = new PersonBuilder(AMY).withDeliveryStatus(DeliveryStatus.RETURN)
+                .withParcels("Parcel1").build();
+        model.addPerson(personDone);
+        Index personToMarkIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+
+        EditCommand editCommand = new EditCommand(personToMarkIndex, new EditPersonDescriptor());
+
+        assertCommandFailure(editCommand, model,
+                String.format(MESSAGE_RETURN_STATUS_EDIT, ALICE.getName()));
     }
 
     @Test

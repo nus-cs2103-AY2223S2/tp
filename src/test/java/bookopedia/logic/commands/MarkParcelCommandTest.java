@@ -5,9 +5,12 @@ import static bookopedia.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_
 import static bookopedia.commons.core.Messages.MESSAGE_NO_PARCELS;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandFailure;
 import static bookopedia.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static bookopedia.logic.commands.MarkParcelCommand.MESSAGE_DONE_STATUS_MARK_PC;
+import static bookopedia.logic.commands.MarkParcelCommand.MESSAGE_RETURN_STATUS_MARK_PC;
 import static bookopedia.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static bookopedia.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static bookopedia.testutil.TypicalPersons.ALICE;
+import static bookopedia.testutil.TypicalPersons.AMY;
 import static bookopedia.testutil.TypicalPersons.getTypicalAddressBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import bookopedia.commons.core.index.Index;
 import bookopedia.model.AddressBook;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.Model;
 import bookopedia.model.ModelManager;
 import bookopedia.model.ParcelStatus;
@@ -95,6 +99,34 @@ public class MarkParcelCommandTest {
                 ParcelStatus.FRAGILE);
 
         assertCommandFailure(markParcelCommand, expectedModel, String.format(MESSAGE_NO_PARCELS, ALICE.getName()));
+    }
+
+    @Test
+    public void execute_markParcelOnDoneDelivery_failure() {
+        Person personDone = new PersonBuilder(AMY).withDeliveryStatus(DeliveryStatus.DONE)
+                .withParcels("Parcel1").build();
+        model.addPerson(personDone);
+        Index personToMarkIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+
+        MarkParcelCommand markParcelCommand = new MarkParcelCommand(personToMarkIndex, Index.fromOneBased(1),
+                ParcelStatus.FRAGILE);
+
+        assertCommandFailure(markParcelCommand, model,
+                String.format(MESSAGE_DONE_STATUS_MARK_PC, ALICE.getName()));
+    }
+
+    @Test
+    public void execute_markParcelOnReturnDelivery_failure() {
+        Person personDone = new PersonBuilder(AMY).withDeliveryStatus(DeliveryStatus.RETURN)
+                .withParcels("Parcel1").build();
+        model.addPerson(personDone);
+        Index personToMarkIndex = Index.fromOneBased(model.getFilteredPersonList().size());
+
+        MarkParcelCommand markParcelCommand = new MarkParcelCommand(personToMarkIndex, Index.fromOneBased(1),
+                ParcelStatus.FRAGILE);
+
+        assertCommandFailure(markParcelCommand, model,
+                String.format(MESSAGE_RETURN_STATUS_MARK_PC, ALICE.getName()));
     }
 
     @Test

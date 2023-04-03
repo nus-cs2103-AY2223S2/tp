@@ -14,6 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import bookopedia.commons.core.index.Index;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.logic.parser.CliSyntax;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.Model;
 import bookopedia.model.ParcelStatus;
 import bookopedia.model.parcel.Parcel;
@@ -30,7 +31,8 @@ public class MarkParcelCommand extends Command {
             + "\nParameters: INDEX of Delivery (a positive integer) "
             + CliSyntax.PREFIX_PARCEL + "INDEX of Parcel (a positive integer within list) "
             + CliSyntax.PREFIX_STATUS + "STATUS (fragile/bulky)";
-
+    public static final String MESSAGE_RETURN_STATUS_MARK_PC = "Cannot mark parcel in a return delivery!";
+    public static final String MESSAGE_DONE_STATUS_MARK_PC = "Cannot mark parcel in a done delivery!";
     public static final String MESSAGE_SUCCESS = "Marked %1$s's parcel %2$s as %3$s";
 
     private final Index targetIndex;
@@ -60,6 +62,12 @@ public class MarkParcelCommand extends Command {
             throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Person targetPerson = lastShownList.get(targetIndex.getZeroBased());
+
+        if (targetPerson.getDeliveryStatus() == DeliveryStatus.RETURN) {
+            throw new CommandException(MESSAGE_RETURN_STATUS_MARK_PC);
+        } else if (targetPerson.getDeliveryStatus() == DeliveryStatus.DONE) {
+            throw new CommandException(MESSAGE_DONE_STATUS_MARK_PC);
+        }
 
         // No parcels
         if (targetPerson.getParcels().size() == 0) {
