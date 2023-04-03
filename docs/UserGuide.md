@@ -311,7 +311,7 @@ A volunteer can have any number of tags, medical qualifications and available da
 
 Examples:
 
-* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/1234561 ic/T1254567D dr/2023-04-01,2023-04-15`
+* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/1234561 ic/T1254567D dr/2023-04-01,2023-04-15 mt/CPR, BASIC`
 * `add_volunteer n/Sally White bd/1990-11-05 ic/S8457677H re/EAST`
 
 #### Pair volunteer and elderly: `pair`
