@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 /**
- * Utility methods related to Collections
+ * Utility methods related to Collections.
  */
 public class CollectionUtil {
 
@@ -20,7 +20,7 @@ public class CollectionUtil {
     }
 
     /**
-     * Throws NullPointerException if {@code items} or any element of {@code items} is null.
+     * Throws {@code NullPointerException} if {@code items} or any element of {@code items} is null.
      */
     public static void requireAllNonNull(Collection<?> items) {
         requireNonNull(items);

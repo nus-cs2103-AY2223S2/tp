@@ -1,13 +1,28 @@
 package vimification.model.task;
 
-import static java.util.Objects.requireNonNull;
 import static vimification.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
+/**
+ * This class is the model of a task in the application.
+ * <p>
+ *
+ * A task contains:
+ *
+ * <ul>
+ * <li>A title (stored as a {@code String}, cannot be empty)</li>
+ * <li>A deadline (stored as a {@code LocalDateTime}, can be null to represent the lack of
+ * deadline)</li>
+ * <li>A status (stored as an enum, cannot be null)</li>
+ * <li>A priority (stored as an enum, cannot be null)</li>
+ * <li>Multiple labels (stored as a {@code Set<String>})</li>
+ * </ul>
+ */
 public class Task {
 
     private String title;
@@ -16,11 +31,16 @@ public class Task {
     private Priority priority;
     private Set<String> labels;
 
-    private static final DateTimeFormatter dateTimeFormatter =
+    private static final DateTimeFormatter DEADLINE_FORMATTER =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
-     * Every field must be present and not null.
+     * Creates a new instance of {@code Task}.
+     *
+     * @param title the title of the task, cannot be null
+     * @param deadline the deadline of the task, can be null
+     * @param status the status of the task
+     * @param priority the priority of the task
      */
     public Task(String title, LocalDateTime deadline, Status status, Priority priority) {
         requireAllNonNull(title, status, priority);
@@ -31,30 +51,38 @@ public class Task {
         this.labels = new HashSet<>();
     }
 
+    /**
+     * Creates a new instance of {@code Task}, where some fields are set with default values.
+     *
+     * @param title the title of the task, cannot be null
+     */
     public Task(String title) {
-        // used when creating new tasks
         this(title, null, Status.NOT_DONE, Priority.UNKNOWN);
     }
+
+    ///////////
+    // TITLE //
+    ///////////
 
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
-        requireNonNull(title);
+        Objects.requireNonNull(title);
         this.title = title;
     }
+
+    //////////////
+    // DEADLINE //
+    //////////////
 
     public LocalDateTime getDeadline() {
         return deadline;
     }
 
-    public String getDeadlineToString() {
-        return dateTimeFormatter.format(deadline);
-    }
-
     public void setDeadline(LocalDateTime deadline) {
-        requireNonNull(deadline);
+        Objects.requireNonNull(deadline);
         this.deadline = deadline;
     }
 
@@ -62,12 +90,20 @@ public class Task {
         this.deadline = null;
     }
 
+    public String getDeadlineAsString() {
+        return DEADLINE_FORMATTER.format(deadline);
+    }
+
+    ////////////
+    // STATUS //
+    ////////////
+
     public Status getStatus() {
         return status;
     }
 
     public void setStatus(Status status) {
-        requireNonNull(status);
+        Objects.requireNonNull(status);
         this.status = status;
     }
 
@@ -75,12 +111,16 @@ public class Task {
         return this.status.equals(status);
     }
 
+    //////////////
+    // PRIORITY //
+    //////////////
+
     public Priority getPriority() {
         return priority;
     }
 
     public void setPriority(Priority priority) {
-        requireNonNull(priority);
+        Objects.requireNonNull(priority);
         this.priority = priority;
     }
 
@@ -88,16 +128,16 @@ public class Task {
         return this.priority.equals(priority);
     }
 
-    public boolean containsKeyword(String keyword) {
-        return title.contains(keyword);
-    }
+    ////////////
+    // LABELS //
+    ////////////
 
     public Set<String> getLabels() {
         return labels;
     }
 
     public void addLabel(String label) {
-        requireNonNull(label);
+        Objects.requireNonNull(label);
         label = label.toLowerCase();
         if (!labels.add(label)) {
             throw new IllegalArgumentException("Tag already exists");
@@ -105,7 +145,7 @@ public class Task {
     }
 
     public void removeLabel(String label) {
-        requireNonNull(label);
+        Objects.requireNonNull(label);
         label = label.toLowerCase();
         if (!labels.remove(label)) {
             throw new IllegalArgumentException("Tag does not exist");
@@ -116,12 +156,20 @@ public class Task {
         return labels.contains(label.toLowerCase());
     }
 
-    public boolean isDateBefore(LocalDateTime date) {
-        return deadline != null && (deadline.isBefore(date) || deadline.isEqual(date));
+    ///////////////
+    // UTILITIES //
+    ///////////////
+
+    public boolean containsKeyword(String keyword) {
+        return title.contains(keyword);
     }
 
-    public boolean isDateAfter(LocalDateTime date) {
-        return deadline != null && (deadline.isAfter(date) || deadline.isEqual(date));
+    public boolean deadlineIsBefore(LocalDateTime date) {
+        return deadline != null && !deadline.isAfter(date);
+    }
+
+    public boolean deadlineIsAfter(LocalDateTime date) {
+        return deadline != null && !deadline.isBefore(date);
     }
 
     public Task clone() {
@@ -134,11 +182,22 @@ public class Task {
         if (otherTask == this) {
             return true;
         }
-        return otherTask.title.equals(title)
-                && otherTask.deadline.equals(deadline)
-                && otherTask.status.equals(status)
-                && otherTask.priority.equals(priority)
-                && otherTask.labels.equals(labels);
+        return Objects.equals(title, otherTask.title)
+                && Objects.equals(deadline, otherTask.deadline)
+                && Objects.equals(status, otherTask.status)
+                && Objects.equals(priority, otherTask.priority)
+                && Objects.equals(labels, otherTask.labels);
+    }
+
+    public String display() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(title);
+        if (deadline != null) {
+            sb.append("; by: ");
+            sb.append(getDeadlineAsString());
+        }
+        // sb.append(priority.asEnding());
+        return sb.toString();
     }
 
     @Override
@@ -150,24 +209,21 @@ public class Task {
             return false;
         }
         Task otherTask = (Task) other;
-        return otherTask.title.equals(title) && otherTask.status.equals(status);
+        return Objects.equals(title, otherTask.title)
+                && Objects.equals(deadline, otherTask.deadline)
+                && Objects.equals(status, otherTask.status)
+                && Objects.equals(priority, otherTask.priority)
+                && Objects.equals(labels, otherTask.labels);
     }
 
-    public String forDisplay() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(title);
-        if (deadline != null) {
-            sb.append(" by").append(getDeadlineToString());
-        }
-        sb.append(priority.asEnding());
-        return sb.toString();
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, deadline, status, priority, labels);
     }
 
     @Override
     public String toString() {
-        return String.format("Task [title: %s;"
-                + " deadline: %s; status: %s;"
-                + " priority: %s; labels: %s]",
-                title, deadline, status, priority, labels);
+        return "Task [title=" + title + ", deadline=" + deadline + ", status=" + status
+                + ", priority=" + priority + ", labels=" + labels + "]";
     }
 }

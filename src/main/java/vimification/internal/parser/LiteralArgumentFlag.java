@@ -1,5 +1,7 @@
 package vimification.internal.parser;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class LiteralArgumentFlag implements ArgumentFlag {
@@ -18,6 +20,17 @@ public class LiteralArgumentFlag implements ArgumentFlag {
 
     public String getLongForm() {
         return longForm;
+    }
+
+    public List<String> getForms() {
+        List<String> forms = new ArrayList<>(2);
+        if (shortForm != null) {
+            forms.add(shortForm);
+        }
+        if (longForm != null) {
+            forms.add(longForm);
+        }
+        return forms;
     }
 
     @Override

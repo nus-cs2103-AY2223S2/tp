@@ -33,7 +33,24 @@ public class MacroMap {
         return definedMacros.entrySet();
     }
 
+    public boolean isEmpty() {
+        return definedMacros.isEmpty();
+    }
+
+    @Override
     public String toString() {
-        return "MacroMap [" + definedMacros + "]";
+        return "MacroMap [definedMacros=" + definedMacros + "]";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof MacroMap)) {
+            return false;
+        }
+        MacroMap otherMap = (MacroMap) other;
+        return definedMacros.equals(otherMap.definedMacros);
     }
 }

@@ -1,5 +1,7 @@
 package vimification.internal.parser;
 
+import java.util.function.Consumer;
+
 import vimification.internal.command.ui.SortCommand;
 import vimification.internal.command.ui.SortRequest;
 
@@ -19,29 +21,27 @@ public class SortCommandParser implements CommandParser<SortCommand> {
         ArgumentCounter counter = new ArgumentCounter(
                 Pair.of(CommandParserUtil.SORT_FLAG, 1));
 
-        ApplicativeParser<Void> flagParser = CommandParserUtil.SORT_FLAG_PARSER
-                .consume(flag -> {
-                    counter.add(flag);
-                    LiteralArgumentFlag literalFlag = flag.getActualFlag();
-                    if (literalFlag.equals(CommandParserUtil.DEADLINE_FLAG)) {
-                        request.setMode(SortRequest.Mode.DEADLINE);
-                        return;
-                    }
-                    if (literalFlag.equals(CommandParserUtil.PRIORITY_FLAG)) {
-                        request.setMode(SortRequest.Mode.PRIORITY);
-                        return;
-                    }
-                    if (literalFlag.equals(CommandParserUtil.STATUS_FLAG)) {
-                        request.setMode(SortRequest.Mode.STATUS);
-                        return;
-                    }
-                    throw new ParserException("Should not reach here!");
-                });
-
+        Consumer<ComposedArgumentFlag> sortFlagConsumer = flag -> {
+            counter.add(flag);
+            LiteralArgumentFlag actualFlag = flag.getActualFlag();
+            if (actualFlag.equals(CommandParserUtil.DEADLINE_FLAG)) {
+                request.setMode(SortRequest.Mode.DEADLINE);
+                return;
+            }
+            if (actualFlag.equals(CommandParserUtil.PRIORITY_FLAG)) {
+                request.setMode(SortRequest.Mode.PRIORITY);
+                return;
+            }
+            if (actualFlag.equals(CommandParserUtil.STATUS_FLAG)) {
+                request.setMode(SortRequest.Mode.STATUS);
+                return;
+            }
+            throw new ParserException("Should not reach here!");
+        };
 
         return ApplicativeParser
                 .skipWhitespaces1()
-                .takeNext(flagParser)
+                .takeNext(CommandParserUtil.SORT_FLAG_PARSER.consume(sortFlagConsumer))
                 .constMap(new SortCommand(request))
                 .dropNext(ApplicativeParser.skipWhitespaces())
                 .dropNext(ApplicativeParser.eof());

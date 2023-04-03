@@ -20,8 +20,10 @@ public class ComposedArgumentFlag implements ArgumentFlag {
         return flags;
     }
 
-    public ComposedArgumentFlag clone() {
-        return new ComposedArgumentFlag(flags);
+    public ComposedArgumentFlag cloneWith(LiteralArgumentFlag actualFlag) {
+        ComposedArgumentFlag clonedFlag = new ComposedArgumentFlag(flags);
+        clonedFlag.actualFlag = actualFlag;
+        return clonedFlag;
     }
 
     public LiteralArgumentFlag getActualFlag() {

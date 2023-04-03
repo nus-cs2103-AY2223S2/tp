@@ -20,9 +20,9 @@ public class UiTaskList {
             FilteredList<Task> filterTasks,
             SortedList<Task> sortedTasks,
             TaskListRef ref) {
-        if (filterTasks.isInTransformationChain(sortedTasks)) {
-            throw new IllegalArgumentException("Lists should be in the same chain");
-        }
+        // if (filterTasks.isInTransformationChain(sortedTasks)) {
+        // throw new IllegalArgumentException("Lists should be in the same chain");
+        // }
         this.allTasks = allTasks;
         this.filteredTasks = filterTasks;
         this.sortedTasks = sortedTasks;
@@ -39,7 +39,7 @@ public class UiTaskList {
 
     public void setPredicate(Predicate<? super Task> predicate) {
         filteredTasks.setPredicate(predicate);
-        changeToViewOnly();
+        changeToReadOnly();
     }
 
     public Comparator<? super Task> getComparator() {
@@ -48,7 +48,7 @@ public class UiTaskList {
 
     public void setComparator(Comparator<? super Task> comparator) {
         sortedTasks.setComparator(comparator);
-        changeToViewOnly();
+        changeToReadOnly();
     }
 
     public void refresh() {
@@ -57,11 +57,13 @@ public class UiTaskList {
         changeToWritable();
     }
 
-    private void changeToViewOnly() {
+    private void changeToReadOnly() {
         ref.setTaskList(sortedTasks);
+        ref.setReadOnly(true);
     }
 
     private void changeToWritable() {
         ref.setTaskList(allTasks);
+        ref.setReadOnly(false);
     }
 }

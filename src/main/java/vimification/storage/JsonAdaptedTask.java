@@ -1,5 +1,9 @@
 package vimification.storage;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,30 +12,16 @@ import vimification.model.task.Priority;
 import vimification.model.task.Status;
 import vimification.model.task.Task;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Jackson-friendly version of {@link Task}.
  */
-
-/**
- * @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
- * @JsonSubTypes({ @JsonSubTypes.Type(value = JsonAdaptedTodo.class, name = "todo"),
- * @JsonSubTypes.Type(value = JsonAdaptedDeadline.class, name = "deadline"),
- * @JsonSubTypes.Type(value = JsonAdaptedEvent.class, name = "event") })
- */
 public class JsonAdaptedTask {
-
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String title;
     private final LocalDateTime deadline;
     private final Status status;
     private final Priority priority;
     private final List<String> labels;
-
 
     @JsonCreator
     public JsonAdaptedTask(

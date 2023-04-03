@@ -10,7 +10,6 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import vimification.commons.core.LogsCenter;
 import vimification.internal.command.Command;
-import vimification.internal.command.CommandException;
 import vimification.internal.command.CommandResult;
 import vimification.internal.command.logic.LogicCommand;
 import vimification.internal.command.macro.MacroCommand;
@@ -33,7 +32,6 @@ public class LogicManager implements Logic {
 
     private static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file";
     private static final String LIST_OPS_ERROR_MESSAGE = "Invalid operation";
-
     private static final Logger LOGGER = LogsCenter.getLogger(LogicManager.class);
 
     private LogicTaskList logicTaskList;
@@ -47,13 +45,14 @@ public class LogicManager implements Logic {
     private final VimificationParser vimificationParser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     * Constructs a {@code LogicManager}.
      */
     public LogicManager(
             TaskListRef ref,
             MacroMap macroMap,
             CommandStack commandStack,
             Storage storage) {
+
         List<Task> taskList = ref.getTaskList();
         ObservableList<Task> observableTaskList = FXCollections.observableList(taskList);
         FilteredList<Task> filteredTaskList = new FilteredList<>(observableTaskList);
@@ -98,16 +97,8 @@ public class LogicManager implements Logic {
         } catch (IOException ex) {
             result = new CommandResult(FILE_OPS_ERROR_MESSAGE);
         }
-        // CommandResult result = command.execute(logicTaskList);
-        // updateViewTaskList(command);
-        // Only save when the result indicates that the task list should be saved
         return result;
     }
-
-    // @Override
-    // public ReadOnlyTaskPlanner getTaskList() {
-    // return model.getTaskList();
-    // }
 
     @Override
     public UiTaskList getUiTaskList() {
@@ -117,11 +108,6 @@ public class LogicManager implements Logic {
     public void setMainScreen(MainScreen mainScreen) {
         this.mainScreen = mainScreen;
     }
-
-    // @Override
-    // public Path getTaskListFilePath() {
-    // return model.getTaskListFilePath();
-    // }
 
     // @Override
     // public GuiSettings getGuiSettings() {

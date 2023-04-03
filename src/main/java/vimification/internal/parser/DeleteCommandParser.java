@@ -41,6 +41,7 @@ public class DeleteCommandParser implements CommandParser<DeleteCommand> {
                             counter.add(flag);
                             request.setDeleteDeadline(true);
                         }));
+
         return ApplicativeParser
                 .skipWhitespaces1()
                 .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))

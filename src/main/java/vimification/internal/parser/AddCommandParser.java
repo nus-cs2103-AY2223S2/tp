@@ -6,7 +6,7 @@ import vimification.model.task.Task;
 public class AddCommandParser implements CommandParser<AddCommand> {
 
     private static final ApplicativeParser<AddCommand> COMMAND_PARSER =
-            CommandParserUtil.STRING_PARSER
+            CommandParserUtil.TITLE_PARSER
                     .map(Task::new)
                     .flatMap(AddCommandParser::parseArguments)
                     .dropNext(ApplicativeParser.skipWhitespaces())

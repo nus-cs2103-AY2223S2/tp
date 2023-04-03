@@ -14,7 +14,7 @@ import vimification.model.task.Task;
 public class DeleteTaskCommand extends DeleteCommand {
 
     public static final String COMMAND_WORD = "d";
-    public static final String SUCCESS_MESSAGE_FORMAT = "Task %s has been deleted.";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Task [%s] has been deleted.";
     public static final String UNDO_MESSAGE =
             "The command has been undone. The deleted task has been added back.";
 
@@ -29,7 +29,7 @@ public class DeleteTaskCommand extends DeleteCommand {
     public CommandResult execute(LogicTaskList taskList, CommandStack commandStack) {
         deletedTask = taskList.remove(targetIndex.getZeroBased());
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTask.forDisplay()));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, deletedTask.display()));
     }
 
     @Override

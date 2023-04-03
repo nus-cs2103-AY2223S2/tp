@@ -30,10 +30,10 @@ public class FilterCommand extends UiCommand {
             predicates.add(task -> task.hasStatus(request.getSearchedStatus()));
         }
         if (request.getSearchedDeadlineBefore() != null) {
-            predicates.add(task -> task.isDateBefore(request.getSearchedDeadlineBefore()));
+            predicates.add(task -> task.deadlineIsBefore(request.getSearchedDeadlineBefore()));
         }
         if (request.getSearchedDeadlineAfter() != null) {
-            predicates.add(task -> task.isDateAfter(request.getSearchedDeadlineAfter()));
+            predicates.add(task -> task.deadlineIsAfter(request.getSearchedDeadlineAfter()));
         }
         request.getSearchedLabels()
                 .forEach(label -> predicates.add(task -> task.containsLabel(label)));

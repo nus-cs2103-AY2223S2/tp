@@ -5,8 +5,10 @@ import java.util.stream.Stream;
 import vimification.model.task.Task;
 
 /**
- * Responsible for storing, retrieving and updating all the ref.getTaskList() that are currently on
- * the list.
+ * Responsible for storing, retrieving and updating {@link Task} instances that are stored in the
+ * list pointed to by the {@link TaskListRef}.
+ * <p>
+ * Trying to modify a reference that is currently in read-only mode will throw an exception.
  */
 public class LogicTaskList {
 
@@ -20,7 +22,9 @@ public class LogicTaskList {
         return ref.getTaskList().size();
     }
 
-    //// Task-level operations
+    public boolean isEmpty() {
+        return ref.getTaskList().isEmpty();
+    }
 
     /**
      * Returns the task with the specified index.
@@ -60,8 +64,8 @@ public class LogicTaskList {
     /**
      * Returns the index of the task with the specified index.
      */
-    public int indexOf(Task t) {
-        return ref.getTaskList().indexOf(t);
+    public int indexOf(Task task) {
+        return ref.getTaskList().indexOf(task);
     }
 
     /**

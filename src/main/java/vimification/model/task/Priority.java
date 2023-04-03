@@ -30,7 +30,7 @@ public enum Priority {
         case VERY_URGENT:
             return " !!!";
         default:
-            return ".";
+            return " .";
         }
     }
 

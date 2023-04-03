@@ -1,5 +1,7 @@
 package vimification.internal.parser;
 
+import java.util.function.Consumer;
+
 import vimification.internal.command.ui.FilterCommand;
 import vimification.internal.command.ui.FilterRequest;
 
@@ -20,6 +22,20 @@ public class FilterCommandParser implements CommandParser<FilterCommand> {
                 Pair.of(CommandParserUtil.BEFORE_FLAG, 1),
                 Pair.of(CommandParserUtil.AFTER_FLAG, 1),
                 Pair.of(CommandParserUtil.FILTER_FLAG, 1));
+
+        Consumer<ComposedArgumentFlag> filterFlagConsumer = flag -> {
+            counter.add(flag);
+            LiteralArgumentFlag literalFlag = flag.getActualFlag();
+            if (literalFlag.equals(CommandParserUtil.AND_FLAG)) {
+                request.setMode(FilterRequest.Mode.AND);
+                return;
+            }
+            if (literalFlag.equals(CommandParserUtil.OR_FLAG)) {
+                request.setMode(FilterRequest.Mode.OR);
+                return;
+            }
+            throw new ParserException("Should not reach here!");
+        };
 
         ApplicativeParser<Void> flagParser = ApplicativeParser.choice(
                 CommandParserUtil.KEYWORD_FLAG_PARSER
@@ -53,19 +69,7 @@ public class FilterCommandParser implements CommandParser<FilterCommand> {
                         .takeNext(CommandParserUtil.DATE_TIME_PARSER)
                         .consume(request::setSearchedDeadlineAfter),
                 CommandParserUtil.FILTER_FLAG_PARSER
-                        .consume(flag -> {
-                            counter.add(flag);
-                            LiteralArgumentFlag literalFlag = flag.getActualFlag();
-                            if (literalFlag.equals(CommandParserUtil.AND_FLAG)) {
-                                request.setMode(FilterRequest.Mode.AND);
-                                return;
-                            }
-                            if (literalFlag.equals(CommandParserUtil.OR_FLAG)) {
-                                request.setMode(FilterRequest.Mode.OR);
-                                return;
-                            }
-                            throw new ParserException("Should not reach here!");
-                        }));
+                        .consume(filterFlagConsumer));
 
         return ApplicativeParser
                 .skipWhitespaces1()
@@ -75,7 +79,6 @@ public class FilterCommandParser implements CommandParser<FilterCommand> {
                 .constMap(new FilterCommand(request))
                 .dropNext(ApplicativeParser.skipWhitespaces())
                 .dropNext(ApplicativeParser.eof());
-
     }
 
     private static final FilterCommandParser INSTANCE = new FilterCommandParser();

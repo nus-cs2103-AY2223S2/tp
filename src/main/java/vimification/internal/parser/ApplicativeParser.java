@@ -8,6 +8,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 /**
  * Basic implementation of a generic {@code ApplicativeParser}, based on functional applicative
@@ -43,9 +44,6 @@ public final class ApplicativeParser<T> {
 
     private static final ApplicativeParser<String> NON_WHITESPACES_1_PARSER =
             munch1(c -> !Character.isWhitespace(c));
-
-    private static final ApplicativeParser<String> LETTERS_1_PARSER =
-            munch1(Character::isLetter);
 
     private static final ApplicativeParser<String> UNTIL_EOF_PARSER = fromRunner(input -> {
         int length = input.length();
@@ -160,10 +158,6 @@ public final class ApplicativeParser<T> {
         return NON_WHITESPACES_1_PARSER;
     }
 
-    public static ApplicativeParser<String> letters1() {
-        return LETTERS_1_PARSER;
-    }
-
     /**
      * Returns a parser that consumes all remaining input.
      *
@@ -232,7 +226,7 @@ public final class ApplicativeParser<T> {
     }
 
     public static ApplicativeParser<String> munch1(CharPredicate predicate) {
-        return lift(c -> s -> c + s, satisfy(predicate), munch(predicate));
+        return munch(predicate).filter(s -> !s.isEmpty());
     }
 
     /**
@@ -244,10 +238,14 @@ public final class ApplicativeParser<T> {
      */
     @SafeVarargs
     public static <T> ApplicativeParser<T> choice(ApplicativeParser<? extends T>... parsers) {
-        return Arrays.stream(parsers)
-                .map(ApplicativeParser::<T>cast)
+        return choiceFrom(Arrays.stream(parsers));
+    }
+
+    public static <T> ApplicativeParser<T> choiceFrom(
+            Stream<ApplicativeParser<? extends T>> parsers) {
+        return parsers.map(ApplicativeParser::<T>cast)
                 .reduce(ApplicativeParser::or)
-                .orElseGet(ApplicativeParser::fail);
+                .orElse(ApplicativeParser.fail());
     }
 
     //////////////////////

@@ -10,7 +10,6 @@ public class MacroCommandParser implements CommandParser<MacroCommand> {
     private static final ApplicativeParser<MacroCommand> COMMAND_PARSER =
             CommandParserUtil.MACRO_FLAG_PARSER
                     .dropNext(ApplicativeParser.skipWhitespaces1())
-                    .map(ComposedArgumentFlag::getActualFlag)
                     .flatMap(MacroCommandParser::parseFlag)
                     .dropNext(ApplicativeParser.skipWhitespaces())
                     .dropNext(ApplicativeParser.eof());
@@ -25,16 +24,17 @@ public class MacroCommandParser implements CommandParser<MacroCommand> {
 
     private MacroCommandParser() {}
 
-    private static final ApplicativeParser<MacroCommand> parseFlag(LiteralArgumentFlag flag) {
-        if (flag.equals(CommandParserUtil.ADD_MACRO_FLAG)) {
+    private static final ApplicativeParser<MacroCommand> parseFlag(ComposedArgumentFlag flag) {
+        LiteralArgumentFlag actualFlag = flag.getActualFlag();
+        if (actualFlag.equals(CommandParserUtil.ADD_MACRO_FLAG)) {
             return CommandParserUtil.STRING_PARSER
                     .dropNext(ApplicativeParser.skipWhitespaces1())
                     .combine(CommandParserUtil.STRING_PARSER, AddMacroCommand::new);
         }
-        if (flag.equals(CommandParserUtil.DELETE_MACRO_FLAG)) {
+        if (actualFlag.equals(CommandParserUtil.DELETE_MACRO_FLAG)) {
             return CommandParserUtil.STRING_PARSER.map(DeleteMacroCommand::new);
         }
-        if (flag.equals(CommandParserUtil.LIST_MACRO_FLAG)) {
+        if (actualFlag.equals(CommandParserUtil.LIST_MACRO_FLAG)) {
             return CommandParserUtil.STRING_PARSER.map(ignore -> new ListMacroCommand());
         }
         throw new ParserException("Should not reach here!");

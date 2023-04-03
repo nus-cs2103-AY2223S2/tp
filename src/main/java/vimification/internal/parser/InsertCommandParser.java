@@ -37,6 +37,7 @@ public class InsertCommandParser implements CommandParser<InsertCommand> {
                         .takeNext(ApplicativeParser.skipWhitespaces1())
                         .takeNext(CommandParserUtil.DEADLINE_PARSER)
                         .consume(request::setInsertedDeadline));
+
         return ApplicativeParser
                 .skipWhitespaces1()
                 .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
