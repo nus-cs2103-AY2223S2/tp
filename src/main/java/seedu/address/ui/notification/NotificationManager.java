@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import org.controlsfx.control.Notifications;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.util.Duration;
 import seedu.address.logic.Logic;
@@ -24,25 +24,21 @@ import seedu.address.model.reminder.Reminder;
  */
 public class NotificationManager {
     //initialisation
-    private Logic logic;
-    private Model model;
-    private Runnable reminderWindow;
-    private Runnable timetableWindow;
+    private final Logic logic;
+    private final Model model;
+    private final Runnable reminderWindow;
+    private final Runnable timetableWindow;
 
     //notification settings
-    private Duration duration = Duration.INDEFINITE;
-    private Pos position = Pos.TOP_RIGHT;
+    private final Duration duration = Duration.INDEFINITE;
 
+    //reminders
+    private boolean isDismissed = false;
 
     /**
      * Constructor to create a Notification.
-     */
-    public NotificationManager() {
-    }
-
-    /**
-     * Constructor to create a Notification from data stored in Logic. Used for notifying reminders
-     * @param logic
+     * @param logic Stores information from the app
+     * @param runnableList Required for respective notifications to open their corresponding windows.
      */
     public NotificationManager(Logic logic, List<Runnable> runnableList) {
         this.logic = logic;
@@ -52,40 +48,33 @@ public class NotificationManager {
     }
 
     /**
-     * Method to show Notification built from the default constructor
-     */
-    public void testNotification() {
-        //show notifications
-        Notifications notificationBuilder = Notifications.create()
-                .title("Test title")
-                .text("Test text")
-                .graphic(null)
-                .hideAfter(Duration.seconds(5))
-                .position(position);
-        notificationBuilder.showConfirm();
-    }
-
-    /**
      * Method to display Reminders at the start of the app.
      */
     public void checkReminderList() {
         List<Reminder> reminderList = this.logic.getReminderList();
         LocalDateTime now = LocalDateTime.now();
-        int activeReminderCount = 0;
+        int shownReminderCount = 0;
+        int newReminderCount = 0;
         for (int i = 0; i < reminderList.size(); i++) {
             Reminder r = reminderList.get(i);
             if (now.isAfter(r.getReminderDateTime())) {
-                activeReminderCount++;
+                if (r.getHasShown()) {
+                    shownReminderCount++;
+                } else {
+                    r.setHasShown(true);
+                    newReminderCount++;
+                }
             }
         }
-        if (activeReminderCount > 0) {
-            int finalActiveReminderCount = activeReminderCount;
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    showReminderNotification(finalActiveReminderCount);
-                }
-            });
+        if (!isDismissed) {
+            final int i = shownReminderCount + newReminderCount;
+            Platform.runLater(() -> showReminderNotification(i));
+        } else {
+            if (newReminderCount > 0) {
+                isDismissed = false;
+                final int i = newReminderCount + shownReminderCount;
+                Platform.runLater(() -> showReminderNotification(i));
+            }
         }
     }
 
@@ -179,13 +168,15 @@ public class NotificationManager {
      */
     public void showReminderNotification(int i) {
         Notifications notif = Notifications.create()
-                .title("You have " + i + " reminder(s)!")
-                .text("Click here to view them")
+                .title("You have " + i + " active reminder(s)!")
+                .text("Click here to snooze and view your list of Reminder(s)")
                 .hideAfter(duration)
                 .position(Pos.TOP_RIGHT)
+                .hideCloseButton()
                 .onAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
+                        isDismissed = true;
                         reminderWindow.run();
                     }
                 });
@@ -225,12 +216,7 @@ public class NotificationManager {
         notif.text("Click here to view more")
             .hideAfter(duration)
             .position(Pos.TOP_LEFT);
-        notif.onAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                timetableWindow.run();
-            }
-        });
+        notif.onAction(event -> timetableWindow.run());
         notif.showInformation();
     }
     private String nextSlotTime() {
