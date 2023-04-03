@@ -17,7 +17,8 @@ public class RemoveMeetingCommand extends Command {
         + ": Removes a meeting by specified index number from the person identified"
         + "by the index number used in the last person listing.\n"
         + "If there no meeting to be removed, nothing will be removed.\n"
-        + "Parameters: [Index] [Meeting Index]"
+        + "Parameters: [CLIENT_INDEX] [MEETING_INDEX]\n"
+        + "CLIENT_INDEX AND MEETING_INDEX are both positive numbers\n"
         + "Example: " + COMMAND_WORD + " 1 2";
     public static final String MESSAGE_REMOVE_SUCCESS = "Removed meeting from person: %1$s";
 
