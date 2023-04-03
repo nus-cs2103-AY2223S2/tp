@@ -26,7 +26,7 @@ public class JsonSerializableMathutoring {
 
 
     /**
-     * Constructs a {@code JsonSerializableMathutoring} with the given persons.
+     * Constructs a {@code JsonSerializableMathutoring} with the given students.
      */
     @JsonCreator
     public JsonSerializableMathutoring(@JsonProperty("students") List<JsonAdaptedStudent> students) {

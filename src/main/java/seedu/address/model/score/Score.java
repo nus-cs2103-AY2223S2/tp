@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 /**
- * Represents a Score in the math tutoring.
+ * Represents a Score in the mathutoring.
  * Guarantees: immutable; fields are validated; details are present and not null;
  */
 public class Score {

@@ -14,7 +14,7 @@ import seedu.address.model.tag.TagContainsKeywordsPredicate;
 public class FilterCommand extends Command {
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose has any tag "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose has any tag "
             + "that matches with the filter condition (case-insensitive) and displays the "
             + "filtered result as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"

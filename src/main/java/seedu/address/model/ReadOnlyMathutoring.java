@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.student.Student;
 
 /**
- * Unmodifiable view of an mathutoring
+ * Unmodifiable view of a mathutoring
  */
 public interface ReadOnlyMathutoring {
 

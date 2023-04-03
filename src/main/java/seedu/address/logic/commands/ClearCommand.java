@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 
 
 /**
- * Clears the math tutoring.
+ * Clears the mathutoring.
  */
 public class ClearCommand extends Command {
 
