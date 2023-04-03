@@ -6,8 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
-import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -94,7 +94,8 @@ public class AdvanceCommand extends Command {
      * @param interviewDateTime the interview date-time input
      * @throws CommandException If the interview date is before or same as current time, it will cause command error
      */
-    private void checkInterviewDateAfterCurrentTime (Optional<InterviewDateTime> interviewDateTime) throws CommandException {
+    private void checkInterviewDateAfterCurrentTime (Optional<InterviewDateTime> interviewDateTime)
+            throws CommandException {
         LocalDateTime currentTime = LocalDateTime.now();
         LocalDateTime interviewDate = interviewDateTime.get().getDateTime();
         int result = interviewDate.compareTo(currentTime);
