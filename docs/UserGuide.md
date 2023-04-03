@@ -141,7 +141,7 @@ Do also ensure that you have Java `11` or above installed in your Computer. If y
 
 For users who are using MacBooks with M1 or M2 chips, you might want to head over to [Azul Open JDK download page](https://www.azul.com/downloads/?version=java-11-lts&os=macos&package=jdk#zulu) to download Java `11`.
 
-To check whether your Java version is compatible with EduMate, please refer to [this section](#how-to-check-your-java-version).
+To check whether your Java version is compatible with EduMate, please refer to [How To Check Your Java Version](#how-to-check-your-java-version).
 
 ### Installation Instructions
 
