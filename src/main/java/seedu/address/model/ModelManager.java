@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.parser.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.FullNamePredicate;
 import seedu.address.model.person.Person;
 
@@ -21,13 +20,13 @@ import seedu.address.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final FullNamePredicate DEFAULT_EMPTY_NAME_PREDICATE = new FullNamePredicate("");
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> targetPerson;
     private final VersionedAddressBook versionedAddressBook;
-    private final FullNamePredicate DEFAULT_EMPTY_NAME_PREDICATE = new FullNamePredicate("");
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.

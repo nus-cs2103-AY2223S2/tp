@@ -1,18 +1,25 @@
 package seedu.address.logic.parser.predicates;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.model.person.Person;
-import seedu.address.model.tag.Module;
-import seedu.address.model.tag.Tag;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static seedu.address.logic.parser.CliSyntax.*;
-
+import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.model.person.Person;
+import seedu.address.model.tag.Module;
+import seedu.address.model.tag.Tag;
 
 /**
  * Predicate that returns true if all keywords are contained in the Person's fields (Name, Address, Phone).
