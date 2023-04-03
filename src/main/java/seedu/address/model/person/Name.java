@@ -40,6 +40,9 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
+        if (test.length() > 25) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

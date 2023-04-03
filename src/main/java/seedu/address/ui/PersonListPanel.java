@@ -57,6 +57,31 @@ public class PersonListPanel extends UiPart<Region> {
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
 
+        initCellValue();
+
+        setIndexColumn();
+
+        wrapAddress();
+
+        wrapTelegram();
+
+        SortedList<Person> sorted = new SortedList<>(personList);
+        table.setItems(sorted);
+        sorted.comparatorProperty().bind(table.comparatorProperty());
+        int i = 0;
+        table.setRowFactory(tableView -> {
+            TableRow<Person> row = new TableRow<>();
+            return row;
+        });
+
+        setPerformanceColor();
+
+        disableClickSort();
+
+        setPhoto();
+    }
+
+    public void initCellValue() {
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName().toString()));
         email.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail().toString()));
         telegram.setCellValueFactory(cellData ->
@@ -67,7 +92,9 @@ public class PersonListPanel extends UiPart<Region> {
                 new SimpleStringProperty(cellData.getValue().getPerformance().toString()));
         remark.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRemark().toString()));
         photo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoto().getUrlPath()));
+    }
 
+    public void setIndexColumn() {
         index.setCellFactory(col -> {
             TableCell<Person, Void> cell = new TableCell<>();
             cell.textProperty().bind(Bindings.createStringBinding(() -> {
@@ -79,8 +106,9 @@ public class PersonListPanel extends UiPart<Region> {
             }, cell.emptyProperty(), cell.indexProperty()));
             return cell;
         });
+    }
 
-
+    public void wrapAddress() {
         address.setCellFactory(param -> {
             return new TableCell<Person, String>() {
                 @Override
@@ -99,19 +127,30 @@ public class PersonListPanel extends UiPart<Region> {
                 }
             };
         });
+    }
 
-
-        //Sort
-        SortedList<Person> sorted = new SortedList<>(personList);
-        table.setItems(sorted);
-        sorted.comparatorProperty().bind(table.comparatorProperty());
-        int i = 0;
-        table.setRowFactory(tableView -> {
-            TableRow<Person> row = new TableRow<>();
-            return row;
+    public void wrapTelegram() {
+        telegram.setCellFactory(param -> {
+            return new TableCell<Person, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    if (item == null || empty) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        //Credit to P113305A009D8M
+                        //https://stackoverflow.com/questions/22732013/javafx-tablecolumn-text-wrapping
+                        Text text = new Text(item);
+                        text.setStyle("-fx-text-alignment:justify; -fx-fill:derive(#828282, -50%)");
+                        text.wrappingWidthProperty().bind(getTableColumn().widthProperty().subtract(35));
+                        setGraphic(text);
+                    }
+                }
+            };
         });
+    }
 
-        //Custom callbacks to modify basic data for performance
+    public void setPerformanceColor() {
         performance.setCellFactory(new Callback<TableColumn<Person, String>, TableCell<Person, String>>() {
             @Override
             public TableCell<Person, String> call(TableColumn<Person, String> param) {
@@ -135,8 +174,9 @@ public class PersonListPanel extends UiPart<Region> {
                 };
             }
         });
+    }
 
-        //Disable sort by photo
+    public void disableClickSort() {
         photo.setSortable(false);
         name.setSortable(false);
         email.setSortable(false);
@@ -144,8 +184,9 @@ public class PersonListPanel extends UiPart<Region> {
         remark.setSortable(false);
         telegram.setSortable(false);
         index.setSortable(false);
+    }
 
-        //Custom callbacks to modify basic data for photo
+    public void setPhoto() {
         photo.setCellFactory(new Callback<TableColumn<Person, String>, TableCell<Person, String>>() {
             @Override
             public TableCell<Person, String> call(TableColumn<Person, String> param) {

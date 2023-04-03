@@ -205,17 +205,20 @@ public class ParserUtil {
     public static String parseTutorialName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (name.toLowerCase().contains("lab")) {
+        if (trimmedName.toLowerCase().contains("lab")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().contains("consultation")) {
+        if (trimmedName.toLowerCase().contains("consultation")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().equals("tutorial")) {
+        if (trimmedName.toLowerCase().equals("tutorial")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedName.length() > 20) {
+            throw new ParseException("Name is too long");
         }
         return trimmedName;
     }
@@ -229,17 +232,20 @@ public class ParserUtil {
     public static String parseLabName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (name.toLowerCase().contains("tutorial")) {
+        if (trimmedName.toLowerCase().contains("tutorial")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().contains("consultation")) {
+        if (trimmedName.toLowerCase().contains("consultation")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().equals("lab")) {
+        if (trimmedName.toLowerCase().equals("lab")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedName.length() > 20) {
+            throw new ParseException("Name is too long");
         }
         return trimmedName;
     }
@@ -253,17 +259,20 @@ public class ParserUtil {
     public static String parseConsultationName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (name.toLowerCase().contains("lab")) {
+        if (trimmedName.toLowerCase().contains("lab")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().contains("tutorial")) {
+        if (trimmedName.toLowerCase().contains("tutorial")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().equals("consultation")) {
+        if (trimmedName.toLowerCase().equals("consultation")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedName.length() > 20) {
+            throw new ParseException("Name is too long");
         }
         return trimmedName;
     }
@@ -280,6 +289,9 @@ public class ParserUtil {
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        if (trimmedName.length() > 20) {
+            throw new ParseException("Name is too long");
         }
         return trimmedName;
     }
