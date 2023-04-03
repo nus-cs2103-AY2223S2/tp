@@ -473,8 +473,8 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
      :x: `5.034`
   
 * The item can have a positive or negative profit margin. Specifically:
-  * Negative profit margin means you are making a `loss`
-  * Positive profit margin means you are making a `profit`
+  * Negative profit margin means you are making a **loss**
+  * Positive profit margin means you are making a **profit**
 
 </div>
 
