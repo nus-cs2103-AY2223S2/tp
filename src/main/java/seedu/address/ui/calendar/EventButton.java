@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.session.Session;
 
 
 /**
@@ -22,7 +22,7 @@ public class EventButton extends CalendarButton {
     private static final double ORIGIN = 0.0;
     private static final int HALF_CONTENT_WIDTH = 150;
     private Stage primaryStage;
-    private CalendarEvent calendarEvent;
+    private Session session;
     @FXML
     private CalendarPopup calendarPopup;
     @FXML
@@ -31,15 +31,15 @@ public class EventButton extends CalendarButton {
 
     /**
      * Constructs an {@code EventButton} with the given {@code CalendarEvent} and {@code Stage}.
-     * @param calendarEvent The {@code CalendarEvent} to be displayed on the button.
+     * @param session The {@code CalendarEvent} to be displayed on the button.
      * @param primaryStage The primary {@code Stage} of the application.
      */
 
-    public EventButton(CalendarEvent calendarEvent, Stage primaryStage) {
+    public EventButton(Session session, Stage primaryStage) {
         super(FXML);
-        this.calendarEvent = calendarEvent;
+        this.session = session;
         this.primaryStage = primaryStage;
-        this.calendarPopup = new CalendarPopup(calendarEvent, eventButton);
+        this.calendarPopup = new CalendarPopup(session, eventButton);
         initialiseEventButton();
     }
 
@@ -49,7 +49,7 @@ public class EventButton extends CalendarButton {
      */
 
     private void initialiseEventButton() {
-        eventButton.setText(calendarEvent.getTimeFormat() + " " + calendarEvent.getName());
+        eventButton.setText(session.getTimeFormat() + " " + session.getSessionName().toString());
         eventButton.focusedProperty().addListener(this::handleFocusedEvent);
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             if (calendarPopup.getRoot().isShowing()) {

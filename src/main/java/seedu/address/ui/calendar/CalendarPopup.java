@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.stage.Popup;
 import javafx.stage.PopupWindow;
-import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.session.Session;
 import seedu.address.ui.UiPart;
 
 
@@ -22,25 +22,25 @@ public class CalendarPopup extends UiPart<Popup> {
 
     /**
      * Creates a {@code CalendarPopup} with the given {@code CalendarEvent} details.
-     * @param calendarEvent The {@code CalendarEvent} to display in the popup.
+     * @param session The {@code CalendarEvent} to display in the popup.
      * @param owner The owner of the popup.
      */
 
-    public CalendarPopup(CalendarEvent calendarEvent, Node owner) {
+    public CalendarPopup(Session session, Node owner) {
         super(FXML);
         this.owner = owner;
-        initialiseCalendarPopup(calendarEvent);
+        initialiseCalendarPopup(session);
         popup.sizeToScene();
     }
 
 
     /**
      * Initializes the content of the {@code CalendarPopup} with the given {@code CalendarEvent}.
-     * @param calendarEvent The {@code CalendarEvent} to display in the popup.
+     * @param session The {@code CalendarEvent} to display in the popup.
      */
 
-    private void initialiseCalendarPopup(CalendarEvent calendarEvent) {
-        popup.getContent().add(new CalendarPopupContent(calendarEvent).getRoot());
+    private void initialiseCalendarPopup(Session session) {
+        popup.getContent().add(new CalendarPopupContent(session).getRoot());
         popup.setAnchorLocation(PopupWindow.AnchorLocation.WINDOW_BOTTOM_LEFT);
     }
 }

@@ -7,7 +7,6 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,6 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PayRate;
 import seedu.address.model.person.Person;
@@ -223,6 +221,7 @@ public class Session implements Comparable<Session> {
     public SessionName getSessionName() {
         return name;
     }
+
     public String getName() {
         return name.toString();
     }
@@ -487,7 +486,14 @@ public class Session implements Comparable<Session> {
         return attendanceMap;
     }
 
-    public List<CalendarEvent> getCalendarEvents() {
-        return Collections.singletonList(new CalendarEvent(this));
+
+    public boolean overlaps(Session otherSession) {
+        return LocalDateTime.parse(endDateTime, DateTimeFormatter
+                .ofPattern("dd-MM-yyyy HH:mm")).isAfter(LocalDateTime.parse(otherSession.getStartDateTime(), DateTimeFormatter
+                .ofPattern("dd-MM-yyyy HH:mm")))
+                && LocalDateTime.parse(otherSession.getEndDateTime(), DateTimeFormatter
+                .ofPattern("dd-MM-yyyy HH:mm")).isAfter(LocalDateTime.parse(this.getStartDateTime(), DateTimeFormatter
+                        .ofPattern("dd-MM-yyyy HH:mm")));
     }
+
 }

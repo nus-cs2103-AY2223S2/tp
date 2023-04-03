@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import seedu.address.model.session.Session;
 
 
 /**
@@ -20,33 +20,33 @@ import javafx.collections.ObservableList;
 
 public class CalendarMonth {
     // Data fields
-    private ObservableList<CalendarEvent> calendarEvents;
+    private ObservableList<Session> sessions;
 
 
     /**
      * Every field must be present and not null.
      */
 
-    public CalendarMonth(ObservableList<CalendarEvent> calendarEvents) {
-        requireAllNonNull(calendarEvents);
-        this.calendarEvents = calendarEvents;
+    public CalendarMonth(ObservableList<Session> sessions) {
+        requireAllNonNull(sessions);
+        this.sessions = sessions;
     }
 
 
     /**
      * Returns a mutable list of CalendarEvents.
      */
-    public ObservableList<CalendarEvent> getCalendarEvents() {
-        return calendarEvents;
+    public ObservableList<Session> getSessions() {
+        return sessions;
     }
 
 
-    public ObservableList<CalendarEvent> getCalendarEventInDayOfMonth(Integer day, Integer month, Integer year) {
+    public ObservableList<Session> getSessionsInDayOfMonth(Integer day, Integer month, Integer year) {
         requireAllNonNull(day, month, year);
-        List<CalendarEvent> calendarEventInDayOfMonth = new ArrayList<>();
-        Predicate<CalendarEvent> filter = (e) -> e.getDay() == day && e.getMonth() == month && e.getYear() == year;
-        calendarEvents.stream().filter(filter).forEach(calendarEventInDayOfMonth::add);
-        return FXCollections.observableList(calendarEventInDayOfMonth);
+        List<Session> sessionsInDayOfMonth = new ArrayList<>();
+        Predicate<Session> filter = (e) -> e.getDay() == day && e.getMonth() == month && e.getYear() == year;
+        sessions.stream().filter(filter).forEach(sessionsInDayOfMonth::add);
+        return FXCollections.observableList(sessionsInDayOfMonth);
     }
 
 
@@ -66,13 +66,13 @@ public class CalendarMonth {
         }
 
         CalendarMonth otherCalendar = (CalendarMonth) other;
-        return otherCalendar.getCalendarEvents().equals(getCalendarEvents());
+        return otherCalendar.getSessions().equals(getSessions());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(calendarEvents);
+        return Objects.hash(sessions);
     }
 
 }

@@ -5,10 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.session.Session;
-
 
 /**
  * Creates session and adds it to the session list
@@ -28,6 +30,7 @@ public class CreateSessionCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New session added: %1$s";
     public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the address book";
+    public static final String MESSAGE_SESSION_OVERLAP = "This session overlaps with an existing session";
 
     private final Session toAdd;
 
@@ -46,6 +49,15 @@ public class CreateSessionCommand extends Command {
         if (model.hasSession(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SESSION);
         }
+
+        List<Session> overlappingSessions = model.getFilteredSessionList().stream()
+                .filter(session -> session.overlaps(toAdd))
+                .collect(Collectors.toList());
+
+        if (!overlappingSessions.isEmpty()) {
+            throw new CommandException(MESSAGE_SESSION_OVERLAP);
+        }
+
         model.addSession(toAdd);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
