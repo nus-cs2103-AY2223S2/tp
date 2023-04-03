@@ -564,6 +564,17 @@ Edit an existing order’s information.
 
 Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] [a/CUSTOMER_ADDRESS] [p/CUSTOMER_PHONE_NUMBER] [s/STATUS]…​`
 
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
+* Statuses available for setting are
+  * `N` or `n` for `Not Delivered`
+  * `I` or `i` for `In Progress`
+  * `D` or `d` for `Delivered`
+
+</div>
+
 <div markdown="block" class="alert alert-example">
 
 :clipboard: **Example 1: Standard command**
@@ -588,6 +599,16 @@ Edit an existing task’s information.
 
 Syntax: `edit_task INDEX [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
+* Statuses available for setting are
+  * `N` or `n` for `Not Done`
+  * `D` or `d` for `Done`
+
+</div>
+
 <div markdown="block" class="alert alert-example">
 
 :clipboard: **Example 1: Standard command**
@@ -610,6 +631,22 @@ Syntax: `edit_task INDEX [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 Edit an existing menu item’s information.
 
 Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
+
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
+* When entering price and cost values, you may choose to
+  1. input **positive** integer numbers
+  2. input **positive** decimal numbers (up to 2 decimal point). For example:<br>
+     :white_check_mark: `5.1` or `5.03`<br>
+     :x: `5.034`
+
+* The item can have a positive or negative profit margin. Specifically:
+  * Negative profit margin means you are making a **loss**
+  * Positive profit margin means you are making a **profit**
+
+</div>
 
 <div markdown="block" class="alert alert-example">
 
