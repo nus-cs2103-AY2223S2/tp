@@ -13,7 +13,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `planease.jar`(Coming soon!).
+2. Download the latest [planease.jar](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.3).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your PlanEase application.
 
@@ -38,7 +38,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
    
    * `delevent 1` : Deletes the 1st event shown in the current event list.
 
-   * `clear` : Deletes all contacts.
+   * `clear` : Deletes all contacts and events.
 
    * `exit` : Exits the app.
 
@@ -86,7 +86,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`
 * The event index refers to the index number shown in the displayed event list.
 * The event index **must be a positive integer** 1, 2, 3, …​
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
 A person can have any number of events (including 0)
 </div>
 
@@ -199,8 +199,8 @@ Format: `sortevent SORT_TYPE`
 
 * Sorts all the events in the current event list based on the specified `SORT_TYPE`.
 * `SORT_TYPE` must be one of these values:
-  * `a`: Sorts based on event names in ascending order.
-  * `b`: Sorts based on event names in descending order.
+  * `a`: Sorts based on event names in ascending ASCII order.
+  * `b`: Sorts based on event names in descending ASCII order.
   * `c`: Sorts based on start date times in ascending order.
   * `d`: Sorts based on end date times in ascending order.
 * There must be at least 2 events in the current event list to sort the event list.
@@ -223,6 +223,23 @@ Format: `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`
 Examples:
 *  `editevent 1 ev/Birthday Party from/17-07-2023 12:00` Edits the event name and start datetime of the 1st event to be `Birthday Party` and `17-07-2023 12:00` respectively.
 
+#### Finding events by name: `findevent`
+
+Finds events whose names contain any of the given keywords.
+
+Format: `findevent KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `party` will match `Party`
+* The order of the keywords does not matter. e.g. `Birthday Party` will match `Party Birthday`
+* Only the event name is searched.
+* Only full words will be matched e.g. `Concert` will not match `Concerts`
+* Events matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Wedding Dinner` will return `Wedding Ceremony`, `Birthday Dinner`
+
+Examples:
+* `findevent Dinner` returns `Wedding Dinner` and `Dinner and Dance`
+* `findevent birthday party` returns `Birthday Lunch`, `Graduation Party`
+
 #### Deleting an event : `delevent`
 
 Deletes the specified event from the event list and deletes all occurrences of the event tied to persons in the address book, if any.
@@ -241,6 +258,8 @@ Examples:
 #### Listing all persons and events : `listall`
 
 Prints all the existing persons and events in the address book.
+
+Format: `listall`
 
 #### Viewing help : `help`
 
@@ -296,6 +315,9 @@ Action | Format, Examples
 **Delete Event** | `delevent EVENT_INDEX` <br> e.g., `delevent 2`
 **Edit Contact** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Edit Event** | `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]​`<br> e.g.,`editevent 1 ev/Birthday Party from/17-07-2023 12:00`
+**Find Contact** |  `find KEYWORD [MORE_KEYWORDS]`
+**Find Event** | `findevent KEYWORD [MORE_KEYWORDS]`
+**List All Contacts and Events** | `listall`
 **List Contact** | `list`
 **List Event** | `listevent`
 **List Contact From event** | `listevcontact`
