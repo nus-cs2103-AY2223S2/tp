@@ -6,8 +6,12 @@ title: User Guide
 <img src="images/logo_UG.png" width="300">
 </p>
 
+--------------------------------------------------------------------------------------------------------------------
+
+
 # Table of Contents
   * [Introduction](#introduction)
+  * [Using this guide](#using-this-guide)
   * [Quickstart](#quick-start)
   * [Features](#features)
     * [Tanks](#tanks)
@@ -51,15 +55,40 @@ Line Interface** (CLI) while still having the benefits of a Graphical User Inter
 *Fish Ahoy!* **simplifies** commands to revolve around **fish**, **tank** and **task**. When you want to, for example,
 perform an action on **tanks**, the commands all begin with `tank`.
 
-Choose a feature from our table of contents above to find answers and get step-by-step instructions on how to make 
-*Fish Ahoy!* work for you! Else, follow our [Quick Start Guide](#quick-start) below to get started.
+--------------------------------------------------------------------------------------------------------------------
 
-This guide will explain how you can use *Fish Ahoy!* for your own fish keeping activities. It is designed to 
-cater to all levels of fish keeping expertise, from novice to expert fish keepers. It does not assume any prior 
-knowledge of fish keeping, only the simplest components of an aquarium such as a tank, fish, and basic fish keeping 
+# Using this guide
+
+This guide will explain how you can use *Fish Ahoy!* for your own fish keeping activities. It is designed to
+cater to all levels of fish keeping expertise, from novice to expert fish keepers. It does not assume any prior
+knowledge of fish keeping, only the simplest components of an aquarium such as a tank, fish, and basic fish keeping
 equipment.
 
+For **new users**, follow our [Quick Start Guide](#quick-start) below to get started with your fish-keeping journey with Fish Ahoy!.
+
+For **amateur users**, choose a feature from our [table of contents](#table-of-contents) above to find answers and get step-by-step instructions on how to make
+*Fish Ahoy!* work for you!
+
+For **experienced users**, refer to our [command summary](#command-summary) or [prefix summary](#command-prefix-summary) to obtain information you might need at a glance.
+
+These are the symbols employed in this user guide:
+
+| Symbol               | Meaning                |
+|----------------------|------------------------|
+| :information_source: | Additional information |
+| :bulb:               | Helpful tip            |
+| :exclamation:        | Warning                |
+
+These are the special text formatting employed in this user guide:
+
+| Font     | Meaning                                                               |
+|----------|-----------------------------------------------------------------------|
+| **Bold** | You should pay closer attention to bolded words as they are important |
+| `Code`   | Used for coding syntax, mostly used in commands                       |
+
+
 --------------------------------------------------------------------------------------------------------------------
+
 
 # Quick start
 
