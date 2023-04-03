@@ -1,10 +1,10 @@
 package arb.logic.commands.project;
 
+import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static arb.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static arb.testutil.TypicalIndexes.INDEX_ZERO;
 import static arb.testutil.TypicalIndexes.INDEX_FIRST;
 import static arb.testutil.TypicalIndexes.INDEX_SECOND;
-import static arb.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static arb.testutil.TypicalIndexes.INDEX_ZERO;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
