@@ -206,6 +206,11 @@ public class RecurCommand extends Command {
         }
     }
 
+    /**
+     * Returns a String of month with the given month int.
+     * @param month int of month to convert
+     * @return String name of month
+     */
     public String intToStringMonth(int month) {
         switch (month) {
 
