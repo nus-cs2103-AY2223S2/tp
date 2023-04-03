@@ -64,7 +64,9 @@ public class SampleDataUtil {
             new Tag("Gore"),
             new Tag("Cheats"),
             new Tag("System"),
-            new Tag("Antihero")
+            new Tag("Antihero"),
+            new Tag("Literature"),
+            new Tag("School")
         };
     }
 
