@@ -77,6 +77,7 @@ public class AddEmployeeToLeaveCommand extends Command {
         model.updateFilteredEmployeeList(predicate);
         final Leave leaveToFilter = leaveToAdd;
         model.updateFilteredLeaveList(l -> l.equals(leaveToFilter));
+        model.refresh(); // defensive coding
 
         return new CommandResult(String.format(MESSAGE_ADD_LEAVE_SUCCESS, employeeToAdd, leaveToAdd));
     }

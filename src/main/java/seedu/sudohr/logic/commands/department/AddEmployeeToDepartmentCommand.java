@@ -72,6 +72,7 @@ public class AddEmployeeToDepartmentCommand extends Command {
         // show the employees within this department
         model.updateFilteredEmployeeList(e -> department.hasEmployee(e));
 
+        model.refresh(); // defensive coding
 
         return new CommandResult(String.format(MESSAGE_ADD_EMPLOYEE_TO_DEPARTMENT_SUCCESS, employee, department));
     }
