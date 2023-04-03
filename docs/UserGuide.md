@@ -15,9 +15,7 @@ Salespeople managing client contacts who prefer a CLI
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: Users that want to log their sales funnel cycle and keep track of their leads. You can do it
-faster on a CLI with better NLP. Helps salesperson keep track of all the necessary details and set reminders/alerts,
-prioritise sales tasks
+**Value proposition**: Users that want a faster way to log their sales funnel cycle and keep track of their leads through our CLI app. SalesPunch helps salespersons keep track of all the necessary details and set reminders/alerts, keep track of their leads and prioritise sales tasks
 
 - Table of Contents
   {:toc}
