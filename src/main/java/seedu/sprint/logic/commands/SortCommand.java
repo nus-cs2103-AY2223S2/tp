@@ -36,8 +36,8 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SORT_DEADLINE_SUCCESS = "Listed all applications with task deadlines"
             + " and sorted them in order!";
 
-    public static final String MESSAGE_SORT_NO_APPLICATIONS_WITH_DEADLINE
-            = "You don't have any application with a deadline!";
+    public static final String MESSAGE_SORT_NO_APPLICATIONS_WITH_DEADLINE =
+            "You don't have any application with a deadline!";
 
     private final SortingOrder sortingOrder;
 
