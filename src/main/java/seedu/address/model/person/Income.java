@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Income {
     public static final String MESSAGE_CONSTRAINTS = "Incomes can take any integer values, and it should not be blank";
 
-    public final Integer income;
+    public final Double income;
 
     /**
      * Constructs an {@code Address}.
@@ -20,7 +20,7 @@ public class Income {
     public Income(String income) {
         requireNonNull(income);
         checkArgument(isValidIncome(income), MESSAGE_CONSTRAINTS);
-        this.income = Integer.parseInt(income);
+        this.income = Double.parseDouble(income);
     }
 
     /**
@@ -28,7 +28,7 @@ public class Income {
      */
     public static boolean isValidIncome(String test) {
         try {
-            Integer income = Integer.parseInt(test);
+            Double income = Double.parseDouble(test);
             return income >= 0;
         } catch (Exception e) {
             return false;

@@ -94,7 +94,9 @@ public class Person implements DeepCopyable<Person> {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && (otherPerson.getName().equals(getName())
+                || otherPerson.getEmail().equals(getEmail())
+                || otherPerson.getPhone().equals(getPhone()));
     }
 
     /**
