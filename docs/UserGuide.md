@@ -292,7 +292,7 @@ Format: `help`
 <div markdown="block" class="alert alert-warning">
 
 **:warning: Caution**<br>
-Tags of length more than 10 are unsupported! UI artifacts may occur.
+Tags of more than 10 characters are unsupported! UI artifacts may occur.
 </div>
 
 Adds a person to the address book.
