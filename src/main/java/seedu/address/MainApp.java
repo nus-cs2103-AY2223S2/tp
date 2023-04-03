@@ -15,6 +15,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AnalyticModel;
 import seedu.address.model.ExpenseTracker;
 import seedu.address.model.Model;
@@ -187,8 +188,9 @@ public class MainApp extends Application {
         logger.info("============================ [ Stopping Expense Tracker ] =============================");
         try {
             storage.saveUserPrefs(dataModel.getUserPrefs());
+            storage.saveExpenseTracker(dataModel.getExpenseTracker());
         } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+            logger.severe("Failed to save data " + StringUtil.getDetails(e));
         }
     }
 }

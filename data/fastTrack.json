@@ -1,101 +1,26 @@
 {
   "categories" : [ {
-    "categoryName" : "Food",
+    "categoryName" : "food",
     "summary" : "For food"
   }, {
-    "categoryName" : "Entertainment",
+    "categoryName" : "entertainment",
     "summary" : "For entertainment"
   }, {
-    "categoryName" : "Transportation",
+    "categoryName" : "transportation",
     "summary" : "For bus, car, train"
   }, {
-    "categoryName" : "Shopping",
+    "categoryName" : "shopping",
     "summary" : ""
   }, {
-    "categoryName" : "Housing",
-    "summary" : ""
-  }, {
-    "categoryName" : "groceries",
+    "categoryName" : "housing",
     "summary" : ""
   } ],
   "expenses" : [ {
-    "name" : "kopi",
-    "amount" : "4.0",
-    "date" : "2023-04-03",
-    "category" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    }
-  }, {
     "name" : "Meal at JE",
     "amount" : "4.5",
-    "date" : "2023-04-02",
+    "date" : "2023-04-03",
     "category" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    }
-  }, {
-    "name" : "kopi",
-    "amount" : "4.0",
-    "date" : "2023-04-02",
-    "category" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    }
-  }, {
-    "name" : "kopi",
-    "amount" : "4.0",
-    "date" : "2023-04-01",
-    "category" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    }
-  }, {
-    "name" : "kopi",
-    "amount" : "4.0",
-    "date" : "2023-03-31",
-    "category" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    }
-  }, {
-    "name" : "kopi",
-    "amount" : "4.0",
-    "date" : "2023-03-30",
-    "category" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    }
-  }, {
-    "name" : "kopi",
-    "amount" : "4.0",
-    "date" : "2023-03-29",
-    "category" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    }
-  }, {
-    "name" : "kopi",
-    "amount" : "4.0",
-    "date" : "2023-03-28",
-    "category" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    }
-  }, {
-    "name" : "kopi",
-    "amount" : "4.0",
-    "date" : "2023-03-27",
-    "category" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    }
-  }, {
-    "name" : "kopi",
-    "amount" : "4.0",
-    "date" : "2023-03-26",
-    "category" : {
-      "categoryName" : "Food",
+      "categoryName" : "food",
       "summary" : "For food"
     }
   }, {
@@ -103,15 +28,7 @@
     "amount" : "56.3",
     "date" : "2023-03-25",
     "category" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    }
-  }, {
-    "name" : "kopi",
-    "amount" : "4.0",
-    "date" : "2023-03-25",
-    "category" : {
-      "categoryName" : "Food",
+      "categoryName" : "food",
       "summary" : "For food"
     }
   }, {
@@ -119,7 +36,7 @@
     "amount" : "75.0",
     "date" : "2023-03-20",
     "category" : {
-      "categoryName" : "Shopping",
+      "categoryName" : "shopping",
       "summary" : ""
     }
   }, {
@@ -127,7 +44,7 @@
     "amount" : "12.99",
     "date" : "2023-03-15",
     "category" : {
-      "categoryName" : "Entertainment",
+      "categoryName" : "entertainment",
       "summary" : "For entertainment"
     }
   }, {
@@ -135,95 +52,12 @@
     "amount" : "45.8",
     "date" : "2023-03-10",
     "category" : {
-      "categoryName" : "Transportation",
+      "categoryName" : "transportation",
       "summary" : "For bus, car, train"
-    }
-  }, {
-    "name" : "milk",
-    "amount" : "4.5",
-    "date" : "2000-05-15",
-    "category" : {
-      "categoryName" : "groceries",
-      "summary" : ""
-    }
-  }, {
-    "name" : "milk",
-    "amount" : "4.5",
-    "date" : "2000-05-08",
-    "category" : {
-      "categoryName" : "groceries",
-      "summary" : ""
-    }
-  }, {
-    "name" : "milk",
-    "amount" : "4.5",
-    "date" : "2000-05-01",
-    "category" : {
-      "categoryName" : "groceries",
-      "summary" : ""
-    }
-  }, {
-    "name" : "milk",
-    "amount" : "4.5",
-    "date" : "2000-04-24",
-    "category" : {
-      "categoryName" : "groceries",
-      "summary" : ""
-    }
-  }, {
-    "name" : "milk",
-    "amount" : "4.5",
-    "date" : "2000-04-17",
-    "category" : {
-      "categoryName" : "groceries",
-      "summary" : ""
-    }
-  }, {
-    "name" : "milk",
-    "amount" : "4.5",
-    "date" : "2000-04-10",
-    "category" : {
-      "categoryName" : "groceries",
-      "summary" : ""
-    }
-  }, {
-    "name" : "milk",
-    "amount" : "4.5",
-    "date" : "2000-04-03",
-    "category" : {
-      "categoryName" : "groceries",
-      "summary" : ""
-    }
-  }, {
-    "name" : "milk",
-    "amount" : "4.5",
-    "date" : "2000-03-27",
-    "category" : {
-      "categoryName" : "groceries",
-      "summary" : ""
-    }
-  }, {
-    "name" : "milk",
-    "amount" : "4.5",
-    "date" : "2000-03-20",
-    "category" : {
-      "categoryName" : "groceries",
-      "summary" : ""
     }
   } ],
   "budget" : {
-    "amount" : "800.0"
+    "amount" : "0.0"
   },
-  "recurringGenerators" : [ {
-    "expenseName" : "kopi",
-    "expenseAmount" : "4.0",
-    "expenseCategory" : {
-      "categoryName" : "Food",
-      "summary" : "For food"
-    },
-    "nextExpenseDate" : "2023-04-04",
-    "startDate" : "2023-03-25",
-    "endDate" : "2023-04-10",
-    "recurringExpenseType" : "DAILY"
-  } ]
+  "recurringGenerators" : [ ]
 }
