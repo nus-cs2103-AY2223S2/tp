@@ -117,8 +117,6 @@ public interface Model {
      */
     void redoAddressBook() throws CommandException;
 
-    ObservableList<CalendarEvent> getFilteredCalendarEventList();
-
     void updateFilteredSessionList(Predicate<Session> predicate);
 
     boolean hasSession(Session toAdd);

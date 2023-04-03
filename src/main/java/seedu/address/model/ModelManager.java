@@ -149,6 +149,7 @@ public class ModelManager implements Model {
     public void redoAddressBook() throws CommandException {
         addressBook.redo();
     }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
