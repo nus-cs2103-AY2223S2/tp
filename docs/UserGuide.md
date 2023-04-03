@@ -221,6 +221,10 @@ Let's add his contacts to Team Builder as a new potential teammate for future ev
 
 **Result**: **Image**
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:**
+The order of persons added in the list may not be in chronological order.
+</div>
 
 ### Listing all contacts : `list`
 
@@ -445,10 +449,9 @@ This includes:
 1. Clearing all entries
 2. Undoing a command
 3. Redoing an undo command
-4. Listing all Tags
-5. Exiting the program
-6. Saving data
-7. Editing the data file
+4. Exiting the program
+5. Saving data
+6. Editing the data file
 
 ### Clearing all entries : `clear`
 
