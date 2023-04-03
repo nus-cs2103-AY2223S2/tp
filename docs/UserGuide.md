@@ -647,7 +647,7 @@ The `view` command retrieves and display the either your profile or the contact'
 
 </div>
 
-##### Scenario:
+##### Scenario (Continuation from previous scenario):
 
 As Weixiang is a new friend, and you are not familiar with him yet. You want to chat with him on Telegram but
 cannot remember his Telegram handle. You decided to use the `view` command to view his profile.
