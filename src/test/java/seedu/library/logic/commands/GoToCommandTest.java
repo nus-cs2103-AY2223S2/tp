@@ -23,11 +23,6 @@ import seedu.library.model.UserPrefs;
  * {@code GoToCommand}.
  */
 public class GoToCommandTest {
-    static {
-        System.setProperty("java.awt.headless", "false");
-        System.out.println(java.awt.GraphicsEnvironment.isHeadless());
-    }
-
     private Model model = new ModelManager(getTypicalLibrary(), new UserPrefs(), new Tags());
 
     //@Test
