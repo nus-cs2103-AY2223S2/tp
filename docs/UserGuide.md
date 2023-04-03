@@ -917,7 +917,7 @@ What you should see:<br>
 
 * `find m/CS2103T CS2109S`: Returns all persons with modules CS2103T or CS2109S
 * `find n/Edward Richards`: Returns all persons with names Edward or Richards
-* `find p/9093`: Returns all persons with phone numbers starting with 9093
+* `find p/9093`: Returns all persons with phone numbers that contain 9093
 * `find n/Edward m/CS2103T` : Returns all persons with name Edward and module CS2103T
 * `find n/Edward Richards m/CS2103T CS2109S` : Returns all persons named Edward or Richards with module CS2103T or CS2109S.
 
@@ -968,7 +968,7 @@ We will now teach you how to effectively use the `sort` command.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: How we sort the attributes:
+:information_source: **How the attributes are sorted**:
 
 * The `NAME`, `EMAIL`, `STATION`, `PHONE` and `TELEGRAM` attributes are sorted by alphabetical order, and is default in **ascending** order.
 * For `GROUP`, we sort the contacts based on the number of groups the contact belongs to. By default, we sort in **descending order**.<br>
@@ -984,7 +984,7 @@ We will now teach you how to effectively use the `sort` command.
 
 Suppose you want to arrange contacts such from those that take the most number of common modules as you to the least. 
 
-If there is a tie in the number of common modules shared with you, you decide to just rank the name which is lexicographically smaller first.
+If there is a tie in the number of common modules shared with you, you decide to just rank the name lexicographically.
 
 Command entered: `sort m/d n/a`
 
@@ -998,7 +998,7 @@ What you should see:<br>
 
 ##### Extra Explanation:
 
-The command `sort m/d n/a` would mean that `EduMate` would first sort contacts by decreasing number of common modules with you, and tie-break by increasing alphabetical order.
+The command `sort m/d n/a` would mean that `EduMate` would first sort contacts by decreasing number of common modules with you, and tie-break by its lexicographical ordering.
 
 Hence, Alex Quinn is ranked higher than Amirul as Alex's name is lexicographically smaller than Amirul even though they share the same common modules as you.
 
