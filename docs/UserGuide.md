@@ -439,8 +439,8 @@ Format: `help`
 
 | Type     | Attribute                 | Prefix   |
 |----------|---------------------------|----------|
-| Fish     | **Name**                  | **n/**   |
-| Fish     | **Last fed date**         | **lfd/** |
+| **Fish** | **Name**                  | **n/**   |
+| **Fish** | **Last fed date**         | **lfd/** |
 | **Fish** | **Species**               | **s/**   |
 | **Fish** | **Feeding Interval**      | **fi/**  |
 | **Fish** | **Tag**                   | **tg/**  |
