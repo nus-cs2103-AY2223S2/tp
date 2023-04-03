@@ -55,24 +55,50 @@ public class SchedulerParser {
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new ClearCommand();
+            }
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new ListCommand();
+            }
 
         case ShowNextCommand.COMMAND_WORD:
             return new ShowNextCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new ExitCommand();
+            }
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new HelpCommand();
+            }
+
         case UndoCommand.COMMAND_WORD:
-            return new UndoCommand();
+
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new UndoCommand();
+            }
 
         case RecurCommand.COMMAND_WORD:
             return new RecurCommandParser().parse(arguments);
