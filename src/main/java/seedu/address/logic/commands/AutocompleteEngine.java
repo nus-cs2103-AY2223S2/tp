@@ -72,36 +72,38 @@ public class AutocompleteEngine {
     public AutocompleteEngine(Model model) {
         this.model = model;
 
-        // Assert 'commandArgPrefixes' keys contains all the elements of 'commandList'
-        assert COMMAND_LIST.stream().allMatch(ARGUMENT_PREFIX_MAP::containsKey);
-        // and vice versa.
-        assert ARGUMENT_PREFIX_MAP.keySet().stream().allMatch(COMMAND_LIST::contains);
-        // Assert that they both contains only the same values and nothing else, with no duplicates.
-        assert ARGUMENT_PREFIX_MAP.keySet().size() == COMMAND_LIST.size();
+        // Assert that 'commandArgPrefixes' keys and 'commandList' both contains only the same
+        // values and nothing else, with no duplicates.
+        assert COMMAND_LIST.stream().allMatch(ARGUMENT_PREFIX_MAP::containsKey)
+                : "'commandArgPrefixes' keys should contains all the elements in 'commandList'";
+        assert ARGUMENT_PREFIX_MAP.keySet().stream().allMatch(COMMAND_LIST::contains)
+                : "'commandList' should contains all the elements in 'commandArgPrefixes' keys";
+        assert ARGUMENT_PREFIX_MAP.keySet().size() == COMMAND_LIST.size()
+                : "The number of 'commandArgPrefixes' keys should equal the size of 'commandList'";
 
-        // All prefix-less arguments (eg. index/keywords) must come before prefixed args.
         assert ARGUMENT_PREFIX_MAP.values().stream()
                 .allMatch(argPrefix -> argPrefix.stream()
                         .dropWhile(Prefix::isPlaceholder)
-                        .noneMatch(Prefix::isPlaceholder));
+                        .noneMatch(Prefix::isPlaceholder))
+                : "All prefix-less arguments (eg. index/keywords) should come before prefixed args";
 
-        // All index arguments must come before any other type of args.
         assert ARGUMENT_PREFIX_MAP.values().stream()
                 .allMatch(argPrefix -> argPrefix.stream()
                         .dropWhile(INDEX_PLACEHOLDER::equals)
-                        .noneMatch(INDEX_PLACEHOLDER::equals));
+                        .noneMatch(INDEX_PLACEHOLDER::equals))
+                : "All index arguments should come before any other type of args";
 
-        // All optional arguments must come after any compulsory args.
         assert ARGUMENT_PREFIX_MAP.values().stream()
                 .allMatch(argPrefix -> argPrefix.stream()
                         .dropWhile(prefix -> !prefix.isOptional())
-                        .allMatch(Prefix::isOptional));
+                        .allMatch(Prefix::isOptional))
+                : "All optional arguments should come after any compulsory args";
 
-        // All repeatable arguments must come after any non-repeatable args.
         assert ARGUMENT_PREFIX_MAP.values().stream()
                 .allMatch(argPrefix -> argPrefix.stream()
                         .dropWhile(prefix -> !prefix.isRepeatable())
-                        .allMatch(Prefix::isRepeatable));
+                        .allMatch(Prefix::isRepeatable))
+                : "All repeatable arguments should come after any non-repeatable args";
     }
 
     /**
@@ -112,7 +114,7 @@ public class AutocompleteEngine {
      * @throws CommandException If the user input is invalid.
      */
     public String suggestCommand(String userInput) throws CommandException {
-        assert userInput != null;
+        assert userInput != null : "'userInput' should not be 'null'";
 
         if (userInput.isBlank()) {
             return userInput;
@@ -202,13 +204,13 @@ public class AutocompleteEngine {
         String[] splitArr = commmandBody.trim().split(" +");
         ArrayList<String> words = new ArrayList<>(Arrays.asList(splitArr));
         int numOfWords = splitArr.length;
-        assert numOfWords > 0;
+        assert numOfWords > 0 : "'numOfWords' should be > 0";
         String firstWord = splitArr[0];
         String lastWord = splitArr[splitArr.length - 1];
-        assert !firstWord.isBlank();
-        assert !firstWord.contains(" ");
-        assert !lastWord.isBlank();
-        assert !lastWord.contains(" ");
+        assert !firstWord.isBlank() : "'firstWord' should not be blank";
+        assert !firstWord.contains(" ") : "'firstWord' should not contain any spaces";
+        assert !lastWord.isBlank() : "'lastWord' should not be blank";
+        assert !lastWord.contains(" ") : "'lastWord' should not contain any spaces";
 
         boolean isIndexRequired = argPrefixes.contains(INDEX_PLACEHOLDER);
         if (isIndexRequired) {
