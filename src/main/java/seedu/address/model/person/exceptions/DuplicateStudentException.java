@@ -5,8 +5,11 @@ package seedu.address.model.person.exceptions;
  * same name & class & index number).
  */
 public class DuplicateStudentException extends RuntimeException {
+    /**
+     * Constructs a new DuplicateStudentException with the default message.
+     */
     public DuplicateStudentException() {
-        super("ERROR, operation would result in duplicate students!" +
-                " Please enter a student with a different Index Number!");
+        super("ERROR, operation would result in duplicate students!"
+                + " Please enter a student with a different Index Number!");
     }
 }
