@@ -51,7 +51,7 @@ public class ModelManager implements Model {
         this.tracker = new Tracker(tracker);
         this.userPrefs = new UserPrefs(userPrefs);
         this.navigation = new Navigation();
-        filteredModules = new FilteredList<>(tracker.getModuleList());
+        filteredModules = new FilteredList<>(this.tracker.getModuleList());
         lastListLevel = DisplayListLevel.MODULE;
     }
 
