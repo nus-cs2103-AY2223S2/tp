@@ -351,8 +351,7 @@ Both commands will result in a Help Window appearing which shows the various com
 
 ### Exit Button
 
-It is a faster alternative than typing the `exit` command into the Command Box. Clicking the Exit Button will cause `EduMate`
-to quit the application.
+Clicking the Exit Button will allow users to quit `EduMate`.
 
 [Return to the top](#table-of-contents)
 
