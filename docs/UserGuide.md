@@ -141,7 +141,7 @@ Employees are identified by their IDs. An employee's ID is a unique identificati
 So, no two employees should share the same ID.
 
 Similarly, email address and phone number are fields that are not intended for sharing. 
-SudoHR enforces uniqueness for these two fields as well. 
+SudoHR enforces uniqueness for these two fields as well. However, do note that emails are case-sensitive.
 
 You cannot add an employee that share any of the following fields with a different employee in SudoHR:
 1. ID
@@ -241,8 +241,8 @@ An employee can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add id/132 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add id/133 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
 ### 7.1.2. Listing all employees : `list`
 
