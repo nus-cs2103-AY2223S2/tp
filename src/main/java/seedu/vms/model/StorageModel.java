@@ -134,7 +134,7 @@ public abstract class StorageModel<T> implements ReadOnlyStorageModel<T> {
      *
      * @param id - the ID of the data to remove.
      */
-    public IdData<T> remove(int id) {
+    public ValueChange<IdData<T>> remove(int id) {
         return dataMap.remove(id);
     }
 

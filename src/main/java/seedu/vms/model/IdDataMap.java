@@ -103,10 +103,13 @@ public class IdDataMap<T> {
      * Removes the data associated to the specified ID.
      *
      * @param id - the ID of the data to remove.
-     * @throws NoSuchElementException if the ID is not present.
      */
-    public IdData<T> remove(int id) {
-        return internalMap.remove(id);
+    public ValueChange<IdData<T>> remove(int id) {
+        IdData<T> removedData = internalMap.remove(id);
+        if (internalMap.isEmpty()) {
+            nextId = 0;
+        }
+        return new ValueChange<>(removedData, null);
     }
 
 
