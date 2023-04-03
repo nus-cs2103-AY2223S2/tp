@@ -379,10 +379,29 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return tracker.equals(other.tracker)
-                && userPrefs.equals(other.userPrefs)
-                && filteredModules.equals(other.filteredModules)
-                && navigation.equals(other.navigation);
+
+        boolean equalTracker = tracker.equals(other.tracker);
+        boolean equalUserPrefs = userPrefs.equals(other.userPrefs);
+        boolean equalNavigation = navigation.equals(other.navigation);
+        boolean equalLastListLevel = lastListLevel.equals(other.lastListLevel);
+        boolean equalFilteredModules = filteredModules.equals(other.filteredModules);
+        boolean equalFilteredLectures = filteredLectures == null
+                ? other.filteredLectures == null
+                : filteredLectures.equals(other.filteredLectures);
+        boolean equalFilteredVideos = filteredVideos == null
+                ? other.filteredVideos == null
+                : filteredVideos.equals(other.filteredVideos);
+        boolean equalListedLecturesByModule = listedLecturesByModule == null
+                ? other.listedLecturesByModule == null
+                : listedLecturesByModule.equals(other.listedLecturesByModule);
+        boolean equalListedVideosByLecture = listedVideosByLecture == null
+                ? other.listedVideosByLecture == null
+                : listedVideosByLecture.equals(other.listedVideosByLecture);
+
+        return equalTracker && equalUserPrefs && equalNavigation && equalLastListLevel
+                && equalFilteredModules && equalFilteredLectures && equalFilteredVideos
+                && equalListedLecturesByModule && equalListedVideosByLecture;
+
     }
 
 }
