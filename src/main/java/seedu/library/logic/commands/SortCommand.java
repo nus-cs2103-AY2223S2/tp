@@ -17,7 +17,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SUCCESS_ASC = "Listed all bookmarks in ascending order of rating";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts booksmarks by ratings in either ascending or descending order.\n"
+            + ": Sorts bookmarks by ratings in either ascending or descending order.\n"
             + "Parameters: ORDER (either 'asc' or 'desc')\n"
             + "Example: " + COMMAND_WORD + " asc";
 

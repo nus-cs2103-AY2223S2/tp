@@ -59,7 +59,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
    * `list` : Lists all Bookmarks.
 
-   * `add n/The Odyssey a/Homer p/1 1 1 g/Fantasy r/4 u/http://classics.mit.edu/Homer/odyssey.html t/Literature class readings` : Adds a bookmark for the book `The Odessey` to the Library.
+   * `add n/The Odyssey a/Homer p/1 1 1 g/Fantasy r/4 u/http://classics.mit.edu/Homer/odyssey.html t/Literature` : Adds a bookmark for the book `The Odessey` to the Library.
 
    * `delete 3` : Deletes the 3rd Bookmark shown in the current list.
 
@@ -95,7 +95,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `a/John Butcher a/Jim Butcher`, only `a/Jim Butcher` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extra parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `genre`, `tags` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * List of prefixes used in commands :
@@ -144,34 +144,38 @@ Format: `tags`
 
 Adds a bookmark to the library.
 
-Format: `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE r/RATING [u/URL] [t/TAG]…​`
+Format: `add n/TITLE g/GENRE [a/AUTHOR] [p/PROGRESS] [r/RATING] [u/URL] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A bookmark can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/Hobbit a/J. R. R. Tolkien p/Finished r/4 g/Fantasy`
-* `add n/The Odyssey a/Homer p/Reading g/Action r/5 t/Literature class readings`
+* `add n/Hobbit a/J. R. R. Tolkien p/1 ~ 256 r/4 g/Fantasy`
+* `add n/The Odyssey a/Homer p/1 1 23 g/Action r/5 t/Literature`
 
-### Listing all bookmarks : `list`
+### Listing all bookmarks/ Resetting filters : `list`
 
 Shows a list of all bookmarks in the library.
+
+
+:bulb: **Tip** - Use this command to get back the original list of bookmarks after using `find` command to filter out bookmarks.
 
 Format: `list`
 
 ### Sorting bookmarks : `sort`
 
-Sorts the list of bookmarks in the library by ascending order or descending order.
+Sorts the list of bookmarks by ratings in either ascending or descending order.
 
 Format : sort [ORDER]
 * ORDER can only be either `asc` or `desc`
+* ORDER is case-sensitive. e.g. `sort ASC` does not work.
 
 Examples:
 * sort asc
 * sort desc
 
-### Editing a person : `edit`
+### Editing a bookmark : `edit`
 
 Edits an existing bookmark in the library.
 
@@ -181,12 +185,12 @@ Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/UR
 * At least one of the optional fields must be provided.
 * The genre and tags provided must be in the list of existing genre and tags respectively.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without specifying any tags after it.
+* When editing tags, the existing tags of the bookmark will be removed i.e adding of tags is not cumulative.
+* You can remove all the bookmark’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
 *  `edit 1 n/Hobbit a/J. R. R. Tolkien` Edits the title and author of the 1st bookmark to be `Hobbit` and `J. R. R. Tolkien` respectively.
-*  `edit 2 n/The Odyssey t/` Edits the name of the 2nd person to be `The Odyssey` and clears all existing tags.
+*  `edit 2 n/The Odyssey t/` Edits the name of the 2nd bookmark to be `The Odyssey` and clears all existing tags.
 
 ### Locating bookmarks by specific fields: `find`
 
@@ -196,6 +200,8 @@ Find bookmarks whose specified fields contain the given keywords.
 want to filter out certain bookmarks from your large list of bookmarks. `find` allows you to search for bookmarks 
 using the title, author, genre and/or tags of a bookmark.
 
+:bulb: **Tip** - You can use the `list` command to get back the bookmarks that you have filtered out after `find`.
+
 Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 
 * At least one of the optional fields must be provided.
@@ -204,7 +210,8 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * The genre and tags provided must be in the list of existing genre and tags respectively.
 * The order of the keywords matter. e.g. `Guide Rankers` will not match `Rankers Guide`
 * Only the fields of the specified prefixes are searched.
-* Only full words will be matched e.g. `Ranker` will not match `Ranker's`
+* Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
+* The search for tags will return any bookmark that has a tag that matches the given tag.
 
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
@@ -212,7 +219,7 @@ Examples:
 * `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
 ![find_reply](images/find-chainsaw%20man.png)
 
-### Deleting a person : `delete`
+### Deleting a bookmark : `delete`
 
 Deletes the specified bookmark from the library.
 
@@ -311,7 +318,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/TITLE a/AUTHOR p/PROGRESS g/GENRE [u/URL] [t/TAG]…​` <br> e.g., `add n/The Odyssey a/Homer p/Reading g/Epic poetry t/Literature class readings`
+**Add** | `add n/TITLE g/GENRE [a/AUTHOR] [p/PROGRESS] [r/RATING] [u/URL] [t/TAG]…​` <br> e.g., `add n/The Odyssey 2 a/Homer p/1 ~ 32 g/Others t/Literature`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/URL] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
