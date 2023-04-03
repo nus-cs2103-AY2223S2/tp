@@ -345,6 +345,8 @@ Example:
 
 ### Exercise Routine Commands
 
+* All routines and exercises must be in AlphaNumeric characters and spaces between characters are allowed.
+
 #### Adding a routine: `addRoutine`
 
 {% include information.html content="
