@@ -37,9 +37,10 @@ public class CommandRecommendationEngineTest {
             String actual = commandRecommendationEngine.recommendCommand("add_volunteer");
             assertEquals(expected, actual);
 
+            // Test with leading spaces
             expected = "add_elderly n/Zong Xun ic/NRIC bd/BIRTH_DATE re/[REGION] r/[RISK] a/[ADDRESS]"
                     + " p/[PHONE] e/[EMAIL] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END] t/[TAG]";
-            actual = commandRecommendationEngine.recommendCommand("add_elderly n/Zong Xun");
+            actual = commandRecommendationEngine.recommendCommand("     add_elderly n/Zong Xun");
             assertEquals(expected, actual);
 
             expected = "exit";

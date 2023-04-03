@@ -86,6 +86,11 @@ Fields are the information following the slash in a command, to provide appropri
 * Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
     * E.g. If you specify `help 123`, it will be interpreted as `help`.
 
+<div class="alert alert-info">
+:information_source: **Note on character limits** <br>
+There is **no** max character limit enforced on most fields. The reasoning behind this is that we do not want to unnecessarily hinder the possibility that the field might be long (For example, a long name). 
+</div>
+
 #### Name
 The name of the person. 
 * Names should only contain alphanumeric characters and spaces, and it should not be blank.
