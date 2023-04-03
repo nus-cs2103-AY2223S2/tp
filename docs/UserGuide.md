@@ -3,14 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Le Tracker is a desktop application that focuses on tracking lecture watch progress. Designed for NUS students who are
-fast typists, it seeks to address the problem of students losing track of their watch progress, especially for students
-falling behind on multiple lectures.
+Le Tracker is a desktop application that focuses on tracking lecture watch progress. Designed for NUS students who are fast typists, it seeks to address the problem of students losing track of their watch progress, especially for students falling behind on multiple lectures.
 
-Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs by providing features such as the
-ability view the overall lecture progress of a module and the ability to tag each lecture with keywords (such as the
-topic or difficulty of the lecture) that allow for easy filtering when prioritising. These features help students stay
-organized and keep track of their progress more effectively.
+Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs by providing features such as the ability view the overall lecture progress of a module and the ability to tag each lecture with keywords (such as the topic or difficulty of the lecture) that allow for easy filtering when prioritising. These features help students stay organized and keep track of their progress more effectively.
 
 ## Table of Contents
 
