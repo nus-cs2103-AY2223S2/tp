@@ -94,7 +94,7 @@ There is **no** max character limit enforced on most fields. The reasoning behin
 #### Name
 The name of the person. 
 * Names should only contain alphanumeric characters and spaces, and it should not be blank.
-* Non-alphanumeric characters like "/", "@" and "?" are disallowed. 
+* Particularly, non-alphanumeric characters or special characters like `/`, `@` and `?` are disallowed. 
 
 #### NRIC
 NRIC is a unique identifier given to all Singaporeans.
@@ -107,7 +107,8 @@ NRIC is a unique identifier given to all Singaporeans.
 
 #### Phone number
 The phone number of a person.
-* Phone number is strictly numeric (digits from 0 to 9) and have more than or equal to 3 digits
+* Phone number is strictly numeric (digits from 0 to 9) and have more than or equal to 3 digits.
+* Country code like `+65` or `0065` are disallowed. Currently, all phone numbers are assumed to be Singapore phone numbers.
 
 #### Email
 The email of a person.
@@ -123,7 +124,7 @@ The domain name must:
 * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 #### Date
-A date represents a point in time, such as aa birthdate or starting or ending days where someone is available for meet ups.
+A date represents a point in time, such as birthdate or starting or ending days where someone is available for meet ups.
 * Date must be in the format `YYYY-MM-DD`
 * Entering dates that have already passed is allowed.
 * When a person's available dates have passed, it will not be removed.
@@ -133,8 +134,18 @@ A date represents a point in time, such as aa birthdate or starting or ending da
 You can enter a person's available date for record keeping purposes, even if the date has already passed
 </div>
 
+#### BirthDate
+The birthdate of a person.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+Although a birthdate is required for personal information input, it is not displayed on personal information cards; only the age is displayed.
+
+If a user wishes to view the specific birthdate of a particular person, he / she can refer to the JSON file where the corresponding data is stored.
+</div>
+
+
 #### Region
-The general area in **Singapore**.
+The regional area in **Singapore**.
 * Region must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` and `EAST`.
 
 #### Risk Level
@@ -525,7 +536,7 @@ Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRT
 * The search is case-insensitive for all fields. e.g. `jANe` will match `Jane`.
 * Elderly specific fields will not be searched for in the volunteer list and vice versa.
     * `find r/HIGH` will show all volunteers since volunteers do not contain risk level field.
-    * `find mt/cpr basic` will show all elderly since elderly do not contain medical qualifications field.
+    * `find mt/cpr, basic` will show all elderly since elderly do not contain medical qualifications field.
 * `[n/NAME]` `[ic/NRIC]` `[p/PHONE_NUMBER]` `[e/EMAIL]` `[a/ADDRESS]` `[t/TAG]` need not be specified in full e.g. `Joh` for the `n/NAME` field will match `John` and `John Doe`.
     * Such fields can contain any value but cannot be empty.
 * `[r/RISK_LEVEL]`, `[bd/BIRTH_DATE]`, `[re/REGION]` and `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` are required to be fully specified.
@@ -572,23 +583,6 @@ Format: `exit`
 
 ---------------------------------------------
 
-### Saving the data
-
-FriendlyLink data are saved in the hard disk automatically after any command that changes the data. There is no need to
-save manually.
-
---------------------------------------------
-
-### Editing the data file
-
-FriendlyLink data are saved in the JSON files `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
-If your changes to the data file makes its format invalid, FriendlyLink will discard all data and start with an empty data file at the next run.
-</div>
-
--------------------------------------------------
-
 ### Auto-complete
 
 FriendlyLink provides auto-complete suggestions for the available commands, or a field prefixes when adding new records of elderly or volunteers into the database.
@@ -621,21 +615,24 @@ Example:
 
 </div>
 
+--------------------------------------------
+
+### Saving the data
+
+FriendlyLink data are saved in the hard disk automatically after any command that changes the data. There is no need to
+save manually.
+
+--------------------------------------------
+
+### Editing the data file
+
+FriendlyLink data are saved in the JSON files `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+If your changes to the data file makes its format invalid, FriendlyLink will discard all data and start with an empty data file at the next run.
+</div>
+
 --------------------------------------------------
-
-## Shortcuts
-
-* `CTRL+A`: Select all the text
-* `CTRL+C`: Copy the text
-* `CTRL+V`: Paste the text into command box
-* `CTRL+Z`: Undo the previous command
-* `CTRL+X`: Cut the text
-* `ARROW_UP`: Navigate to the previous item on the list
-* `ARROW_DOWN`: Navigate to the next item on the list
-
-For more shortcuts, please refer [here](https://wiki.openjdk.org/display/OpenJFX/Keyboard+Navigation).
-
----------------------------------------------------
 
 ## FAQ
 
