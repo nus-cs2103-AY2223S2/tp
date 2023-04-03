@@ -1,14 +1,21 @@
 package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.recipe.model.Model.PREDICATE_SHOW_ALL_RECIPES;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.recipe.commons.core.Messages;
 import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
+import seedu.recipe.model.recipe.Description;
+import seedu.recipe.model.recipe.Ingredient;
 import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.Title;
+import seedu.recipe.model.tag.Tag;
 
 /**
  * Marks a recipe as in favorites identified using it's displayed index from the recipe book.
@@ -23,7 +30,7 @@ public class UnstarCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_STAR_RECIPE_SUCCESS = "Unstarred Recipe: %1$s";
+    public static final String MESSAGE_UNSTAR_RECIPE_SUCCESS = "Unstarred Recipe: %1$s";
 
     private final Index targetIndex;
 
@@ -40,13 +47,29 @@ public class UnstarCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
         }
 
-        Recipe recipeToUnstar = lastShownList.get(targetIndex.getZeroBased());
-        if (!recipeToUnstar.isStarred()) {
+        Recipe recipeToStar = lastShownList.get(targetIndex.getZeroBased());
+        Recipe editedRecipe = createEditedRecipe(recipeToStar);
+        if (!recipeToStar.isStarred()) {
             throw new CommandException(Messages.MESSAGE_RECIPE_NOT_STARRED);
         }
-        model.unstarRecipe(recipeToUnstar);
+        model.setRecipe(recipeToStar, editedRecipe);
+        model.updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
+        return new CommandResult(String.format(MESSAGE_UNSTAR_RECIPE_SUCCESS, recipeToStar.getTitle()));
+    }
 
-        return new CommandResult(String.format(MESSAGE_STAR_RECIPE_SUCCESS, recipeToUnstar.getTitle()));
+    /**
+     * Creates and returns a {@code Recipe} with the details of {@code recipeToEdit}
+     * edited with {@code editRecipeDescriptor}.
+     */
+    public Recipe createEditedRecipe(Recipe recipeToStar) {
+        assert recipeToStar != null;
+        Title updatedTitle = recipeToStar.getTitle();
+        Description updatedDesc = recipeToStar.getDesc();
+        Set<Ingredient> updatedIngredients = recipeToStar.getIngredients();
+        List<Step> updatedSteps = recipeToStar.getSteps();
+        Set<Tag> updatedTags = recipeToStar.getTags();
+        return new Recipe(updatedTitle, updatedDesc, updatedIngredients, updatedSteps, updatedTags,
+                false);
     }
 
     @Override

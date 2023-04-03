@@ -28,12 +28,15 @@ public class RecipeListPanel extends UiPart<Region> {
     @FXML
     private AnchorPane recipeDetailsPanelPlaceholder;
 
+    private ObservableList<Recipe> observableRecipeList;
+
 
     /**
      * Creates a {@code RecipeListPanel} with the given {@code ObservableList}.
      */
     public RecipeListPanel(ObservableList<Recipe> recipeList) {
         super(FXML);
+        this.observableRecipeList = recipeList;
         if (!recipeList.isEmpty()) {
             recipeDetailsPanel.setRecipeDetails(recipeList.get(0));
         } else {
