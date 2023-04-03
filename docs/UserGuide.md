@@ -373,6 +373,12 @@ Output:
 
 ![Patient Detail Example](images/patient/ug/PatientDetailExample.png)
 
+##### Restrictions
+
+* <code><var>PATIENT</var></code> must exist in the system.
+
+<br>
+
 #### `list` - List all patients
 
 Resets the view of the patient pane to display all the Patients. Useful command after using the find command.
@@ -479,6 +485,12 @@ Output:
 
 ![Patient Edit Detail Card Set](images/patient/ug/PatientEditDetailCardSet.png)
 
+##### Restrictions
+
+* <code><var>PATIENT</var></code> must exist in the system.
+
+<br>
+
 #### `delete` - Delete a patient
 
 Deletes the patient using the PATIENT_ID
@@ -498,6 +510,12 @@ Output:
 ```text
 [INFO] Deleted Patient: John Der
 ```
+
+##### Restrictions
+
+* <code><var>PATIENT</var></code> must exist in the system.
+
+<br>
 
 #### `clear` - Clear Patients
 
@@ -714,6 +732,8 @@ Output:<br>
 
 * <code><var>VAX_NAME</var></code> cannot be blank.
 
+<br>
+
 #### `edit` - Edit a vaccination type
 
 Updates the attributes of the specified vaccination to the attributes specified. If any of the optional arguments
@@ -776,6 +796,8 @@ Output:<br>
 * <code><var>VACCINATION</var></code> must exist in the system.
 * <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as the vaccination being updated.
 
+<br>
+
 #### `delete` - Deletes a vaccination
 
 Deletion of a vaccination may cause appointments to be come invalid as the vaccination will no longer exist in the system. `VMS` will check for this and prevent such deletions from happening. However, an additional `--force true` argument will force the change to happen which will delete all invalid appointments after the change.
@@ -819,7 +841,9 @@ vaccination: ABC VAX deleted
 
 ##### Restrictions
 
-* Vaccination must exist in the system.
+* <code><var>VACCINATION</var></code> must exist in the system.
+
+<br>
 
 #### `clear` - Clears all vaccination data
 
