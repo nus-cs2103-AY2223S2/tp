@@ -103,4 +103,6 @@ public interface Model {
     Person removeMeeting(Person personToEdit, Index indexMeeting);
 
     Person updateMeeting(Person personToEdit, Index indexMeeting, Meeting editedMeeting);
+
+    void refreshFilteredMeetingList();
 }
