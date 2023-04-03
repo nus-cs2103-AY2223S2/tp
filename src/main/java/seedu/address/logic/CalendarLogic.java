@@ -12,8 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
+import seedu.address.model.session.Session;
 import seedu.address.ui.calendar.CalendarDisplay;
 import seedu.address.ui.calendar.CalendarEventListPanel;
 
@@ -39,7 +39,7 @@ public class CalendarLogic {
     private Logic logic;
     private Calendar currentMonth;
     private CalendarMonth calendarMonth;
-    private ObservableList<CalendarEvent> filteredCalendarEventList;
+    private ObservableList<Session> filteredSessionsList;
     private CalendarDisplay calendarDisplay;
 
     /**
@@ -51,12 +51,12 @@ public class CalendarLogic {
         this.logic = logic;
         this.primaryStage = primaryStage;
         this.calendarDisplay = calendarDisplay;
-        ListChangeListener<CalendarEvent> temp = (x) -> {
+        ListChangeListener<Session> temp = (x) -> {
             x.next();
             refresh();
         };
-        this.filteredCalendarEventList = logic.getFilteredCalendarEventList();
-        filteredCalendarEventList.addListener(temp);
+        this.filteredSessionsList = logic.getFilteredSessionList();
+        filteredSessionsList.addListener(temp);
     }
 
 
@@ -64,7 +64,7 @@ public class CalendarLogic {
      * Initialises the logic components for the Calendar.
      */
     public void initialiseLogic() {
-        calendarMonth = new CalendarMonth(filteredCalendarEventList);
+        calendarMonth = new CalendarMonth(filteredSessionsList);
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
     }
@@ -91,10 +91,10 @@ public class CalendarLogic {
                 dayOfWeek = 1;
                 row++;
             }
-            ObservableList<CalendarEvent> calendarEventsInDayOfMonth = calendarMonth
-                    .getCalendarEventInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH) + 1,
+            ObservableList<Session> sessionsInDayOfMonth = calendarMonth
+                    .getSessionsInDayOfMonth(currentDay, currentMonth.get(Calendar.MONTH) + 1,
                             currentMonth.get(Calendar.YEAR));
-            CalendarEventListPanel calendarEventListPanel = new CalendarEventListPanel(calendarEventsInDayOfMonth,
+            CalendarEventListPanel calendarEventListPanel = new CalendarEventListPanel(sessionsInDayOfMonth,
                     primaryStage);
             VBox calendarEventList = calendarEventListPanel.getCalendarEventList(currentDay);
             calendarDisplay.addToCalendarGrid(calendarEventList, dayOfWeek - 1, row);
@@ -130,7 +130,7 @@ public class CalendarLogic {
      */
     public void refresh() {
         calendarDisplay.resetGridPane();
-        this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
+        this.calendarMonth = new CalendarMonth(filteredSessionsList);
         calendarDisplay.drawCalendar();
     }
 
@@ -139,9 +139,8 @@ public class CalendarLogic {
      * Displays the CalendarEvents in the previous month.
      */
     public void previous() {
-        this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
+        this.calendarMonth = new CalendarMonth(filteredSessionsList);
         currentMonth = getPreviousMonth(currentMonth);
-        //calendarDisplay.setTextValidation(EMPTY_MESSAGE);
         updateCalendarMonth();
     }
 
@@ -150,7 +149,7 @@ public class CalendarLogic {
      * Displays the CalendarEvents in the next month.
      */
     public void next() {
-        this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
+        this.calendarMonth = new CalendarMonth(filteredSessionsList);
         currentMonth = getNextMonth(currentMonth);
         updateCalendarMonth();
     }

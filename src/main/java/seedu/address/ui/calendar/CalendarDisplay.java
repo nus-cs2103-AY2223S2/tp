@@ -6,8 +6,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -64,25 +62,6 @@ public class CalendarDisplay extends UiPart<Region> {
         drawCalendar();
 
     }
-
-
-    /**
-     * Handles the {@code KeyEvent} and toggles either the next or previous Calendar month.
-     * @param event the KeyEvent to be handled.
-     */
-
-    @FXML
-    public void handleKeyPressed(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.B)) {
-            calendarLogic.previous();
-            calendarGrid.requestFocus();
-        } else if (event.getCode().equals(KeyCode.N)) {
-            calendarLogic.next();
-            calendarGrid.requestFocus();
-        }
-    }
-
-
 
     /**
      * Draws the Ui for the Calendar.

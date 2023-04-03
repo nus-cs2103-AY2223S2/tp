@@ -122,14 +122,6 @@ public class MainWindow extends UiPart<Stage> {
                 KeyCombination.CONTROL_DOWN));
     }
 
-    private void registerCalendarNavigationForCalendarTab() {
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (calendarTab.isSelected()) {
-                calendarDisplay.handleKeyPressed(event);
-            }
-        });
-    }
-
     private void registerShortcut(TabPane tabPane, Tab tab, KeyCombination combination) {
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (combination.match(event)) {
@@ -180,7 +172,6 @@ public class MainWindow extends UiPart<Stage> {
 
         calendarDisplay = new CalendarDisplay(logic, primaryStage);
         calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
-        registerCalendarNavigationForCalendarTab();
 
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList(), logic);
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
