@@ -54,7 +54,7 @@ public interface Model {
     void setSchedulerFilePath(Path schedulerFilePath);
 
     /**
-     * Returns the Scheduler
+     * Returns the Scheduler.
      */
     ReadOnlyScheduler getScheduler();
 
@@ -64,20 +64,14 @@ public interface Model {
     void setScheduler(ReadOnlyScheduler scheduler);
 
     /**
-     * Returns true if an event with the same identity as {@code event} exists in the Scheduler.
+     * Returns true if an event with the same identity as {@code event} exists in the scheduler.
      */
     boolean hasEvent(Event event);
 
     /**
-     * Returns true if another event exists at the given time in the Scheduler.
+     * Returns true if another event exists at the same time as {@code event} in the scheduler.
      */
     boolean hasEventAtTime(Event event);
-
-    /**
-     * Deletes the given event.
-     * The event must exist in the scheduler.
-     */
-    void deleteEvent(Event event);
 
     /**
      * Adds the given event.
@@ -86,20 +80,36 @@ public interface Model {
     void addEvent(Event event);
 
     /**
+     * Deletes the given event.
+     * {@code event} must exist in the scheduler.
+     */
+    void deleteEvent(Event event);
+
+    /**
      * Replaces the given event {@code target} with {@code editedEvent}.
      * {@code target} must exist in the scheduler.
      * The event identity of {@code editedEvent} must not be the same as another existing Event in the scheduler.
      */
     void setEvent(Event target, Event editedEvent);
-    ArrayList<Command> recentCommand();
-    ArrayList<Event> recentEvent();
+
+    /**
+     * Adds the given event as recent event.
+     */
     void addRecentEvent(Event event);
+
+    /**
+     * Clears the recent event.
+     */
     void clearRecent();
+
+    ArrayList<Command> recentCommand();
+
+    ArrayList<Event> recentEvent();
+
     /**
      * Returns an unmodifiable view of the event list
      */
     ObservableList<Event> getEventList();
-
 
     /**
      * Returns an unmodifiable view of the filtered event list

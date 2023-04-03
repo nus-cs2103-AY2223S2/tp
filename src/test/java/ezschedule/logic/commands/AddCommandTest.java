@@ -212,7 +212,7 @@ public class AddCommandTest {
         @Override
         public boolean hasEvent(Event event) {
             requireNonNull(event);
-            return this.event.isSameEvent(event);
+            return this.event.equals(event);
         }
     }
 
@@ -227,7 +227,7 @@ public class AddCommandTest {
         @Override
         public boolean hasEvent(Event event) {
             requireNonNull(event);
-            return eventsAdded.stream().anyMatch(event::isSameEvent);
+            return eventsAdded.stream().anyMatch(event::equals);
         }
 
         @Override

@@ -2,8 +2,10 @@ package ezschedule.ui;
 
 import java.util.List;
 
+import ezschedule.model.event.Date;
 import ezschedule.model.event.Event;
 import ezschedule.model.event.EventMatchesDatePredicate;
+import ezschedule.ui.Calendar.FilterExecutor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -14,14 +16,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
- * A UI component that displays information of {@code Event} in the calendar.
+ * A UI component for the {@code Calendar}.
  */
 public class CalendarBox extends UiPart<Region> {
 
     private static final String FXML = "CalendarBox.fxml";
 
     private List<Event> events;
-    private Calendar.FilterExecutor filterExecutor;
+    private FilterExecutor filterExecutor;
 
     @FXML
     private StackPane calendarBoxPane;
@@ -35,23 +37,23 @@ public class CalendarBox extends UiPart<Region> {
     private Label now;
 
     /**
-     * Creates an empty {@code CalenderBox}.
+     * Creates an empty {@code CalendarBox}.
      */
     public CalendarBox() {
         super(FXML);
     }
 
     /**
-     * Creates a {@code CalenderBox} with the given {@code List<Event>} and date to display.
+     * Creates a filled {@code CalendarBox} with the given {@code List<Event>} and date to display.
      */
     public CalendarBox(boolean isFind, boolean isToday, String date,
-                       List<Event> events, Calendar.FilterExecutor filterExecutor) {
+                       List<Event> events, FilterExecutor filterExecutor) {
         super(FXML);
         this.events = events;
         this.filterExecutor = filterExecutor;
         setHighlight(isFind);
-        setDate(date);
         setToday(isToday);
+        setDate(date);
         setEvents();
     }
 
@@ -60,19 +62,19 @@ public class CalendarBox extends UiPart<Region> {
      */
     @FXML
     public void handleListEvents() {
-        if (events != null) {
-            filterExecutor.updateFilteredEventList(new EventMatchesDatePredicate(events.get(0).getDate()));
+        if (events == null) {
+            return;
         }
+
+        int firstEventIndex = 0;
+        Date date = events.get(firstEventIndex).getDate();
+        filterExecutor.updateFilteredEventList(new EventMatchesDatePredicate(date));
     }
 
     private void setHighlight(boolean isFind) {
         if (isFind) {
             calendarHighlight.setStroke(Color.DARKORANGE);
         }
-    }
-
-    private void setDate(String date) {
-        calendarDate.setText(date);
     }
 
     private void setToday(boolean isToday) {
@@ -84,25 +86,29 @@ public class CalendarBox extends UiPart<Region> {
         }
     }
 
-    private void setEvents() {
-        if (events != null) {
-            int firstEvent = 0;
-            String eventNameOne = getEventName(events.get(firstEvent));
-            Label eventOne = new Label(eventNameOne);
-            setEventLabelStyle(eventOne);
-            calendarEvents.getChildren().add(eventOne);
+    private void setDate(String date) {
+        calendarDate.setText(date);
+    }
 
-            if (events.size() == 2) {
-                int secondEvent = 0;
-                String eventNameTwo = getEventName(events.get(secondEvent));
-                Label eventTwo = new Label(eventNameTwo);
-                setEventLabelStyle(eventTwo);
-                calendarEvents.getChildren().add(eventTwo);
-            } else if (events.size() > 2) {
-                Label moreEvents = new Label("...");
-                setEventLabelStyle(moreEvents);
-                calendarEvents.getChildren().add(moreEvents);
-            }
+    private void setEvents() {
+        if (events == null) {
+            return;
+        }
+
+        int firstEventIndex = 0;
+        Event firstEvent = events.get(firstEventIndex);
+        String firstEventName = getEventName(firstEvent);
+        setEventLabel(firstEventName);
+
+        if (events.size() == 2) {
+            int secondEventIndex = 1;
+            Event secondEvent = events.get(secondEventIndex);
+            String secondEventName = getEventName(secondEvent);
+            setEventLabel(secondEventName);
+
+        } else if (events.size() > 2) {
+            String moreEvents = "...";
+            setEventLabel(moreEvents);
         }
     }
 
@@ -122,11 +128,13 @@ public class CalendarBox extends UiPart<Region> {
         return name.substring(0, 5) + "...";
     }
 
-    private void setEventLabelStyle(Label label) {
+    private void setEventLabel(String name) {
+        Label label = new Label(name);
         label.setStyle("-fx-text-fill: white; "
                 + "-fx-background-color: #4c837a; "
                 + "-fx-background-radius: 5; "
                 + "-fx-font-size: 11; "
                 + "-fx-padding: 0 10 0 10;");
+        calendarEvents.getChildren().add(label);
     }
 }
