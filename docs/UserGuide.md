@@ -236,6 +236,9 @@ Other examples:
 * `find Max` returns `max` and `Max Leo`
 * `find Super Wolf` returns `Super Wolf`, `Super Dog`, `Wolf Hunter`<br>
 
+:bulb: **Note:**<br>
+`find` command returns a new list. Any commands performed after `find` is based on the new list. You can use the `list` command to return to the original list. 
+
 <div markdown="block" class="alert alert-block alert-info">
 
 :white_check_mark: **Input Shortcut:**
@@ -289,8 +292,9 @@ the edit will override the existing tag
 #### Changing the cost : `changecost`
 
 Changes the parameters for cost calculation for each dog
-Cost is incremented in 10 seconds intervals and is calculated based on `FLAT_RATE + (TIMESTAMP * RATE)`.
-Note that the cost will only update in your PetPal list when you click on the PetPal entry or execute a command
+Cost is incremented in real time and is calculated based on `FLAT_RATE + (TIMESTAMP - CURR_TIME * RATE)`.
+:bulb: **Note:** 
+The cost will only update in your PetPal list when you click on the PetPal entry.
 
 Format: `changecost INDEX RATE FLAT_RATE`
 
