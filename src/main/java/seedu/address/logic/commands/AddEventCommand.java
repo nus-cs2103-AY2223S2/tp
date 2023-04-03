@@ -39,30 +39,30 @@ public class AddEventCommand extends Command {
             + PREFIX_END_DATE_TIME + ") should be after START DATE TIME ("
             + PREFIX_START_DATE_TIME + ")";
 
-    private final Event toDo;
+    private final Event event;
 
     /**
      * Creates an AddEventCommand to add the specified {@code Event}
      */
     public AddEventCommand(Event event) {
         requireNonNull(event);
-        toDo = event;
+        this.event = event;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasEvent(toDo)) {
+        if (model.hasEvent(event)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        if (!DateTime.isValidInterval(toDo.getStartDateTime(), toDo.getEndDateTime())) {
+        if (!DateTime.isValidInterval(event.getStartDateTime(), event.getEndDateTime())) {
             throw new CommandException(MESSAGE_INVALID_INTERVAL);
         }
 
-        model.addEvent(this.toDo);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toDo));
+        model.addEvent(this.event);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }
 
     /**
@@ -79,6 +79,6 @@ public class AddEventCommand extends Command {
         }
 
         AddEventCommand otherCommand = (AddEventCommand) other;
-        return toDo.equals(otherCommand.toDo);
+        return event.equals(otherCommand.event);
     }
 }

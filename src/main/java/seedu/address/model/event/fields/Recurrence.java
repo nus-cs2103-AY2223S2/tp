@@ -3,6 +3,7 @@ package seedu.address.model.event.fields;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import seedu.address.model.event.enums.Interval;
 
@@ -29,8 +30,7 @@ public class Recurrence {
      * @param interval A valid name.
      */
     public Recurrence(String interval) {
-        switch (interval.toLowerCase(Locale.ROOT)) {
-
+        switch (interval.trim().toLowerCase()) {
         case NONE_CASE:
             this.interval = Interval.NONE;
             break;
@@ -49,6 +49,14 @@ public class Recurrence {
         default:
             throw new IllegalArgumentException(Recurrence.MESSAGE_CONSTRAINTS + "; Received: " + interval);
         }
+    }
+
+    /**
+     * Constructs a {@code Recurrence} with the given {@code interval}.
+     */
+    public Recurrence(Interval interval) {
+        Objects.requireNonNull(interval);
+        this.interval = interval;
     }
 
     public ChronoUnit getIncrementUnit() {

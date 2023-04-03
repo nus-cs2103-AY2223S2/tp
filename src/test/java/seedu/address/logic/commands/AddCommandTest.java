@@ -220,7 +220,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setEvent(Event oldEvent, Event newEvent) {
+        public void setEvent(Index index, Event event) {
             throw new AssertionError("This method should not be called.");
         }
 

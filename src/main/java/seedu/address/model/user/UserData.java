@@ -76,8 +76,8 @@ public class UserData implements ReadOnlyUserData {
         return this.user.getValue().getEvent(index);
     }
 
-    public void setEvent(Event oldEvent, Event newEvent) {
-        this.user.getValue().setEvent(oldEvent, newEvent);
+    public void setEvent(Index index, Event event) {
+        user.getValue().setEvent(index, event);
     }
 
     public void deletePersonFromAllEvents(Person target) {

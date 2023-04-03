@@ -197,8 +197,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setEvent(Event oldEvent, Event newEvent) {
-        this.userData.setEvent(oldEvent, newEvent);
+    public void setEvent(Index index, Event event) {
+        this.userData.setEvent(index, event);
     }
 
     @Override
