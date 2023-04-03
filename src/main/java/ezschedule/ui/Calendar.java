@@ -16,7 +16,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 
 /**
- * A UI component for the calendar.
+ * A {@code Calendar} UI that displays information of {@code Event}.
  */
 public class Calendar extends UiPart<Region> {
 
@@ -26,6 +26,7 @@ public class Calendar extends UiPart<Region> {
     private final ObservableList<Event> findEventList;
     private final FilterExecutor filterExecutor;
     private final ZonedDateTime today;
+
     private ZonedDateTime date;
     private int monthMaxDate;
 
@@ -37,7 +38,7 @@ public class Calendar extends UiPart<Region> {
     private Text month;
 
     /**
-     * Creates a {@code Calender} with the given {@code ObservableList}{@code CommandExecutor}}.
+     * Creates a {@code Calendar} with the given {@code ObservableList} amd {@code FilterExecutor}.
      */
     public Calendar(ObservableList<Event> eventList, ObservableList<Event> findEventList,
                     FilterExecutor filterExecutor) {
@@ -87,68 +88,76 @@ public class Calendar extends UiPart<Region> {
         month.setText(String.valueOf(date.getMonth()));
 
         // List of activities for a given month
-        Map<Integer, List<Event>> eventsForMonthMap = getEventsForMonth();
+        Map<Integer, List<Event>> eventsForCurrentMonthMap = getEventsForCurrentMonth();
 
-        // Check for leap year
-        if (isNotLeapYear()) {
+        // Check for non leap year and if it's february
+        if (!isLeapYear() && monthMaxDate == 29) {
             monthMaxDate = 28;
         }
-        drawCalenderBoxes(eventsForMonthMap);
+        drawCalendarBoxes(eventsForCurrentMonthMap);
     }
 
-    private Map<Integer, List<Event>> getEventsForMonth() {
-        List<Event> events = new ArrayList<>();
+    private Map<Integer, List<Event>> getEventsForCurrentMonth() {
+        List<Event> eventsForCurrentMonth = new ArrayList<>();
         eventList.forEach(e -> {
-            if (isInMonth(e)) {
-                events.add(e);
+            if (isInCurrentMonth(e)) {
+                eventsForCurrentMonth.add(e);
             }
         });
-        return getCalenderMap(events);
+        return getDateToEventMap(eventsForCurrentMonth);
     }
 
-    private Map<Integer, List<Event>> getCalenderMap(List<Event> events) {
-        Map<Integer, List<Event>> calendarEventsMap = new HashMap<>();
-        for (Event e : events) {
+    private Map<Integer, List<Event>> getDateToEventMap(List<Event> eventsForCurrentMonth) {
+        Map<Integer, List<Event>> dateToEventMap = new HashMap<>();
+        for (Event e : eventsForCurrentMonth) {
             int date = e.getDate().getDay();
-            if (!calendarEventsMap.containsKey(date)) {
-                calendarEventsMap.put(date, List.of(e));
+            if (!dateToEventMap.containsKey(date)) {
+                dateToEventMap.put(date, List.of(e));
             } else {
-                List<Event> oldList = calendarEventsMap.get(date);
+                List<Event> oldList = dateToEventMap.get(date);
                 List<Event> newList = new ArrayList<>(oldList);
                 newList.add(e);
-                calendarEventsMap.put(date, newList);
+                dateToEventMap.put(date, newList);
             }
         }
-        return calendarEventsMap;
+        return dateToEventMap;
     }
 
-    private void drawCalenderBoxes(Map<Integer, List<Event>> eventsForMonthMap) {
+    private void drawCalendarBoxes(Map<Integer, List<Event>> eventsForMonthMap) {
         int dateOffset = ZonedDateTime.of(date.getYear(), date.getMonthValue(), 1, 0,
                 0, 0, 0, date.getZone()).getDayOfWeek().getValue() % 7;
         int rows = 6;
         int columns = 7;
 
+        // Draw 6 rows and 7 columns of boxes
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 int calculatedDate = (j + 1) + (7 * i);
                 if (calculatedDate > dateOffset) {
                     int currentDate = calculatedDate - dateOffset;
                     if (currentDate <= monthMaxDate) {
-                        String date = String.valueOf(currentDate);
                         List<Event> eventsForCurrentDate = eventsForMonthMap.get(currentDate);
-                        boolean isFindCommand = eventsForCurrentDate != null
-                                && eventsForCurrentDate.stream().anyMatch(findEventList::contains);
-                        calendar.getChildren().add(new CalendarBox(isFindCommand, isToday(currentDate),
-                                date, eventsForCurrentDate, filterExecutor).getRoot());
+                        drawOneFilledCalendarBox(currentDate, eventsForCurrentDate);
                     }
                 } else {
-                    calendar.getChildren().add(new CalendarBox().getRoot());
+                    drawOneEmptyCalendarBox();
                 }
             }
         }
     }
 
-    private boolean isInMonth(Event event) {
+    private void drawOneFilledCalendarBox(int currentDate, List<Event> eventsForCurrentDate) {
+        String date = String.valueOf(currentDate);
+        boolean isFindCommand = isFindCommand(eventsForCurrentDate);
+        calendar.getChildren().add(new CalendarBox(isFindCommand, isToday(currentDate),
+                date, eventsForCurrentDate, filterExecutor).getRoot());
+    }
+
+    private void drawOneEmptyCalendarBox() {
+        calendar.getChildren().add(new CalendarBox().getRoot());
+    }
+
+    private boolean isInCurrentMonth(Event event) {
         int year = date.getYear();
         int month = date.getMonth().getValue();
         return event.getDate().getYear() == year && event.getDate().getMonth() == month;
@@ -160,16 +169,23 @@ public class Calendar extends UiPart<Region> {
                 && today.getDayOfMonth() == currentDate;
     }
 
-    private boolean isNotLeapYear() {
+    private boolean isLeapYear() {
+        // Centuries year that are leap year are divisible by 400
         boolean isCenturyYear = date.getYear() % 100 == 0;
         if (isCenturyYear) {
-            return date.getYear() % 4 != 0 && monthMaxDate == 29 && date.getYear() % 400 != 0;
+            return date.getYear() % 400 == 0;
         }
-        return date.getYear() % 4 != 0 && monthMaxDate == 29;
+        // Leap years are years that are divisible by 4
+        return date.getYear() % 4 == 0;
+    }
+
+    private boolean isFindCommand(List<Event> eventsForCurrentDate) {
+        return eventsForCurrentDate != null
+                && eventsForCurrentDate.stream().anyMatch(findEventList::contains);
     }
 
     /**
-     * Represents a function that can update the filtered event list.
+     * Represents a function that updates the filtered event list.
      */
     @FunctionalInterface
     public interface FilterExecutor {

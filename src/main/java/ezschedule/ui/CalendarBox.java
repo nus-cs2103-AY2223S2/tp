@@ -14,7 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 /**
- * A UI component that displays information of {@code Event} in the calendar.
+ * A UI component for the calendar.
  */
 public class CalendarBox extends UiPart<Region> {
 
@@ -35,14 +35,14 @@ public class CalendarBox extends UiPart<Region> {
     private Label now;
 
     /**
-     * Creates an empty {@code CalenderBox}.
+     * Creates an empty {@code CalendarBox}.
      */
     public CalendarBox() {
         super(FXML);
     }
 
     /**
-     * Creates a {@code CalenderBox} with the given {@code List<Event>} and date to display.
+     * Creates a {@code CalendarBox} with the given {@code List<Event>} and date to display.
      */
     public CalendarBox(boolean isFind, boolean isToday, String date,
                        List<Event> events, Calendar.FilterExecutor filterExecutor) {

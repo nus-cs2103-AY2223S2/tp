@@ -289,35 +289,35 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Calender view feature
+### \[Proposed\] Calendar view feature
 
 #### Proposed Implementation
 
-The proposed calender view user interface implements the following operations:
+The proposed calendar view user interface implements the following operations:
 
 1. Provides an overview of all saved events in the scheduler to the user
-2. onClick() of calender date (boxes) - List all the saved events the user have for that day
+2. onClick() of calendar date (boxes) - List all the saved events the user have for that day
 
 The feature is going to be implemented by
-1. Creating the GUI of a calender via JavaFX (Calender.fxml and CalenderBox.fxml)
+1. Creating the GUI of a calendar via JavaFX (Calendar.fxml and CalendarBox.fxml)
 2. When the program starts, it first fetches the existing events
-3. The calender will next be "drawn" with the events for the current month
-4. The calender includes button that allow users to go to either the next or previous month, each time the button is called, the calender is "redrawn" with that particular month's events
-5. When a user were to click a date in the calender (CalenderBox.fxml), it will list all existing events of that day to the user
-6. When a user were to add, edit or update an event, the calender will be updated as well
+3. The calendar will next be "drawn" with the events for the current month
+4. The calendar includes button that allow users to go to either the next or previous month, each time the button is called, the calendar is "redrawn" with that particular month's events
+5. When a user were to click a date in the calendar (CalendarBox.fxml), it will list all existing events of that day to the user
+6. When a user were to add, edit or update an event, the calendar will be updated as well
 
 #### Design considerations:
-* **Alternative 1 (current choice):** Update the Calender GUI whenever add/edit/delete an event.
+* **Alternative 1 (current choice):** Update the Calendar GUI whenever add/edit/delete an event.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Update the Calender GUI on if the month of the event is what the Calender is current showing
+* **Alternative 2:** Update the Calendar GUI on if the month of the event is what the Calendar is current showing
   itself.
     * Pros: Will have better performance (e.g. for `add event`, no need to update the GUI if it is not what I am currently showing, if I were to click next).
     * Cons: Implementation will become much more complex.
 
 #### Additional Feature
-1. onDoubleClick() of a calender date (boxes) - Shows a popup GUI of user schedule, similar to that of a timetable for either that day or week
+1. onDoubleClick() of a calendar date (boxes) - Shows a popup GUI of user schedule, similar to that of a timetable for either that day or week
 
 
 --------------------------------------------------------------------------------------------------------------------
