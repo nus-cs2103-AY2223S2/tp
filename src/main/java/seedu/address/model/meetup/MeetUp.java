@@ -4,8 +4,6 @@ import seedu.address.model.location.Location;
 import seedu.address.model.recommendation.Recommendation;
 import seedu.address.model.time.TimePeriod;
 
-import java.util.List;
-
 /**
  * A scheduled meet up consisting of location, time period and participants' indexes.
  */

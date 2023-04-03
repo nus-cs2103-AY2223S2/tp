@@ -48,7 +48,7 @@ public class ModelManager implements Model {
     private final IndexHandler indexHandler;
     private final MeetUpIndexHandler meetUpIndexHandler;
     private final FilteredList<MeetUp> filteredMeetUps;
-    private SortedList<MeetUp> observableMeetUps;
+    private final SortedList<MeetUp> observableMeetUps;
 
 
     /**
@@ -152,6 +152,11 @@ public class ModelManager implements Model {
         updateMeetUpForDeletePerson(target);
     }
 
+    /**
+     * Updates the scheduled meet up list to remove deleted persons.
+     * @param target The deleted person.
+     */
+    @Override
     public void updateMeetUpForDeletePerson(Person target) {
         for (MeetUp meetUp : observableMeetUps) {
             Participants participants = meetUp.getParticipants();
@@ -165,6 +170,7 @@ public class ModelManager implements Model {
         removeEmptyMeetUps();
     }
 
+    @Override
     public void removeEmptyMeetUps() {
         this.eduMate.removeEmptyMeetUps();
     }
@@ -257,6 +263,7 @@ public class ModelManager implements Model {
     public Optional<Person> getPersonByIndex(ContactIndex index) {
         return indexHandler.getPersonByIndex(index);
     }
+
     @Override
     public ObservableList<Person> getObservablePersonList() {
         return observablePersons;
@@ -382,6 +389,7 @@ public class ModelManager implements Model {
      * Checks if meet up clashes with already scheduled meet up.
      * @return true if a clash exists, else false.
      */
+    @Override
     public boolean hasClashScheduled(MeetUp meetUp) {
         List<TimePeriod> timePeriods = new ArrayList<>();
         for (MeetUp meet : observableMeetUps) {
@@ -395,6 +403,7 @@ public class ModelManager implements Model {
      * Checks if meet up clashes with lessons
      * @return true if a clash exists, else false.
      */
+    @Override
     public boolean hasClashTimeTable(MeetUp meetUp) {
         //check if user timetable has clash
         Timetable userTimeTable = getUser().getTimetable();
@@ -434,12 +443,6 @@ public class ModelManager implements Model {
     @Override
     public Optional<MeetUp> getMeetUpByIndex(MeetUpIndex meetUpIndex) {
         return meetUpIndexHandler.getMeetUpByIndex(meetUpIndex);
-    }
-
-    @Override
-    public boolean hasMeetUp(MeetUp meetUp) {
-        requireNonNull(meetUp);
-        return eduMate.hasMeetUp(meetUp);
     }
 
 }

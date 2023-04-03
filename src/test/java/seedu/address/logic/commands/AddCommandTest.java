@@ -275,16 +275,10 @@ public class AddCommandTest {
         @Override
         public Optional<Recommendation> getRecommendationByIndex(ContactIndex contactIndex) {
             throw new AssertionError("This method should not be called.");
-
         }
 
         @Override
         public void addMeetUp(MeetUp meetUp) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasMeetUp(MeetUp meetUp) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -295,6 +289,26 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<MeetUp> getObservableMeetUpList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeEmptyMeetUps() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasClashScheduled(MeetUp meetUp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasClashTimeTable(MeetUp meetUp) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateMeetUpForDeletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -325,6 +339,11 @@ public class AddCommandTest {
 
         @Override
         public void updateObservableMeetUpList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateObservableMeetUpList(Comparator<MeetUp> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 

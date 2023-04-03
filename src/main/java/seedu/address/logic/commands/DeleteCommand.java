@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.person.ContactIndex.USER_CONTACT_INDEX;
 
-import java.util.ConcurrentModificationException;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
