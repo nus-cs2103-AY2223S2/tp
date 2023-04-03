@@ -61,6 +61,10 @@ public class MeetCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (indices.size() == 1) {
+            throw new CommandException("Contact index expected");
+        }
+
         IndexHandler indexHandler = new IndexHandler(model);
         Set<ContactIndex> invalidContactIndices = indices.stream()
                 .filter(i -> indexHandler.getPersonByIndex(i).isEmpty())
