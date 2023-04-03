@@ -57,7 +57,6 @@ public class AddCommand extends Command {
         }
 
         model.addModule(toAdd);
-        model.updateFilteredModuleList(model.getPredicate());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

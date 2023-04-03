@@ -103,6 +103,7 @@ public class ModelManager implements Model {
     @Override
     public void addModule(Module module) {
         degreeProgression.addModule(module);
+        updateFilteredModuleList(getPredicate());
     }
 
     @Override
@@ -125,7 +126,12 @@ public class ModelManager implements Model {
 
     @Override
     public Predicate<Module> getPredicate() {
-        return (Predicate<Module>) filteredModules.getPredicate();
+        if (filteredModules.equals(getDegreeProgression().getModuleList())) {
+            return PREDICATE_SHOW_ALL_MODULES;
+        }
+        @SuppressWarnings("unchecked")
+        Predicate<Module> predicate = (Predicate<Module>) filteredModules.getPredicate();
+        return predicate;
     }
 
     @Override
