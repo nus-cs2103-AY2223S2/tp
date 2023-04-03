@@ -106,9 +106,9 @@ public class AddressBookParser {
             return new ClearCommand();
         } else if (FilterCommand.commandWords.contains(commandWord)) {
             return new FilterCommandParser().parse(arguments);
-        } else if (FreezeCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (FreezeCommand.commandWords.contains(commandWord)) {
             return new FreezeCommand();
-        } else if (UnfreezeCommand.COMMAND_WORDS.contains(commandWord)) {
+        } else if (UnfreezeCommand.commandWords.contains(commandWord)) {
             return new UnfreezeCommand();
         } else if (UndoCommand.commandWords.contains(commandWord)) {
             return new UndoCommandParser().parse(arguments);

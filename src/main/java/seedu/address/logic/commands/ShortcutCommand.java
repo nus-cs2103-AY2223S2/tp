@@ -76,6 +76,9 @@ public class ShortcutCommand extends Command {
         } else if (command.equals(ShortcutCommandParser.CommandType.FIND)) {
             FindCommand.commandWords.add(this.shortForm);
             ShortcutCommandUtil.saveWords(ShortcutCommandUtil.FIND_PATH, FindCommand.commandWords);
+        } else if (command.equals(ShortcutCommandParser.CommandType.FREEZE)) {
+            FreezeCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.FREEZE_PATH, FreezeCommand.commandWords);
         } else if (command.equals(ShortcutCommandParser.CommandType.HELP)) {
             HelpCommand.commandWords.add(this.shortForm);
             ShortcutCommandUtil.saveWords(ShortcutCommandUtil.HELP_PATH, HelpCommand.commandWords);
@@ -100,6 +103,9 @@ public class ShortcutCommand extends Command {
         } else if (command.equals(ShortcutCommandParser.CommandType.MASS_OP)) {
             MassOpCommand.commandWords.add(this.shortForm);
             ShortcutCommandUtil.saveWords(ShortcutCommandUtil.MASS_OP_PATH, MassOpCommand.commandWords);
+        } else if (command.equals(ShortcutCommandParser.CommandType.UNFREEZE)) {
+            UnfreezeCommand.commandWords.add(this.shortForm);
+            ShortcutCommandUtil.saveWords(ShortcutCommandUtil.UNFREEZE_PATH, UnfreezeCommand.commandWords);
         } else {
             throw new CommandException(UNKNOWN_ERROR);
         }
