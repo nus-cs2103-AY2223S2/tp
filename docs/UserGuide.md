@@ -204,7 +204,7 @@ Examples:
 --------------------------------------------------------------------
 ## Student Features
 
-### Adding student: `add student`
+### Adding student: `add`
 
 Adds a student to the student list.
 
@@ -215,13 +215,13 @@ Adds a student to the student list.
 - Nus email must be e followed by 7 digits
 - Telegram handle must be minimum 5 characters and maximum 32 characters
 
-Format: `add student n/[NAME] telegram/[PHONE_NUMBER or TELEGRAM_HANDLE] e/[NUS_EMAIL] score/[SCORE]`
+Format: `add n/[NAME] telegram/[PHONE_NUMBER or TELEGRAM_HANDLE] e/[NUS_EMAIL] score/[SCORE]`
 
 Examples:
 
-* `add student n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100`
+* `add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100`
 
-### Deleting student: `delete student`
+### Deleting student: `delete`
 
 :exclamation: You will not be able to undo the deletion
 
@@ -239,7 +239,7 @@ Examples:
 
 <div id='edit-student'></div>
 
-### Edit student: `edit student`
+### Edit student: `edit`
 
 Edits a student from the student list.
 
@@ -256,7 +256,7 @@ Examples:
 
 <div id='add-student-to-event'></div>
 
-### Add student to event: `addStudent to Event`
+### Add student to event: `addStudent`
 
 Add a student to an event.
 
@@ -276,7 +276,7 @@ Examples:
 
 <div id='delete-student-from-event'></div>
 
-### Delete student from event: `deleteStudent from Event`
+### Delete student from event: `deleteStudent`
 
 Deletes a student from an event.
 
@@ -299,7 +299,7 @@ Examples:
 
 <div id='add-note-for-event'></div>
 
-### Add note for event: `Add Note`
+### Add note for event: `AddNote`
 
 Add notes for events that are both normal and recurring, or for students in the classes this TA is in charge of. Mainly serves to help TAs take down notes and todos from meeting and student queries from classes.
 
@@ -317,7 +317,7 @@ Examples:
 
 <div id='delete-note-from-event'></div>
 
-### Delete note from event: `delete note`
+### Delete note from event: `deleteNote`
 
 :exclamation: You will not be able to undo the deletion
 
@@ -333,7 +333,7 @@ Examples:
 
 <div id='edit-note-in-event'></div>
 
-### Edit note in event: `edit note`
+### Edit note in event: `editNote`
 
 Update notes with the new note for events that are both normal and recurring, or for students in the classes this TA is in charge of.
 
@@ -356,7 +356,7 @@ Examples:
 
 ## Sort / Filter features*
 
-### Sort students in recurring events: `Sort Students`
+### Sort students in recurring events: `sort-student`
 
 Sorts the students in recurring events available in the order specified by the TA. The sorting method can either be alphabetical, participation level or urgency level. With each sorting method, the TA can also choose top down or bottom up order as well. If the TA wishes to sort all students under his supervision (regardless of type), he can specify type to be “all”.
 
@@ -375,7 +375,7 @@ Examples:
 
 <div id='filter-students'></div>
 
-### Filter students in recurring events: `Filter Students`
+### Filter students in recurring events: `filter`
 
 Filters all students depending on the metric specified by the TA. The metric can either be by a cut-off participation level (out of 100%) or minimum urgency level (out of 100).
 
@@ -420,7 +420,7 @@ Examples:
 
 <div id='exit'></div>
 
-### Exit from application: `Exit application`
+### Exit from application: `:wq`
 
 Exits from TrAcker
 
@@ -432,7 +432,7 @@ Examples:
 
 <div id='switch-tabs'></div>
 
-### Navigate tabs: `Navigate Tabs`
+### Navigate tabs: `cd`
 
 Navigates to the event or student tab
 
@@ -523,12 +523,12 @@ Examples:
       <td><strong>Add Student</strong>
       </td>
       <td>
-         <code>add student n/[NAME] telegram/[PHONE_NUMBER_OR_TELEGRAM_HANDLE e/[NUS_EMAIL] score/[SCORE]</code>
+         <code>add n/[NAME] telegram/[PHONE_NUMBER_OR_TELEGRAM_HANDLE e/[NUS_EMAIL] score/[SCORE]</code>
          </li>
       </td>
       <td>
          <ul>
-            <li><code>add student n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100</code></li>
+            <li><code>add n/Bellman telegram/97482842 e/e1234567@u.nus.edu score/100</code></li>
          </ul>
       </td>
    </tr>
