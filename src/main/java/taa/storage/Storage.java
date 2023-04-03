@@ -5,14 +5,14 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import taa.commons.exceptions.DataConversionException;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyTaaData;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.UserPrefs;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends TaaStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getTaaDataFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaaData> readTaaData() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveTaaData(ReadOnlyTaaData addressBook) throws IOException;
 
 }

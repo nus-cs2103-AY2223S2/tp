@@ -19,11 +19,11 @@ import taa.logic.LogicManager;
 import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.ModelManager;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyTaaData;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.UserPrefs;
-import taa.storage.AddressBookStorage;
-import taa.storage.JsonAddressBookStorage;
+import taa.storage.TaaStorage;
+import taa.storage.JsonTaaStorage;
 import taa.storage.JsonUserPrefsStorage;
 import taa.storage.Storage;
 import taa.storage.StorageManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaaStorage taaStorage = new JsonTaaStorage(userPrefs.getTaaDataFilePath());
+        storage = new StorageManager(taaStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -75,14 +75,14 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyTaaData> addressBookOptional;
+        ReadOnlyTaaData initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readTaaData();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ClassList");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTaaData);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ClassList");
             initialData = new ClassList();

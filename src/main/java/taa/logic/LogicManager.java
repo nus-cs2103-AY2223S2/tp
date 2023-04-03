@@ -14,7 +14,7 @@ import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.TaaParser;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyTaaData;
 import taa.model.student.Student;
 import taa.storage.Storage;
 
@@ -54,7 +54,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaaData(model.getTaaData());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -63,8 +63,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTaaData getTaaData() {
+        return model.getTaaData();
     }
 
     @Override
@@ -73,8 +73,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getTaaDataFilePath() {
+        return model.getTaaDataFilePath();
     }
 
     @Override

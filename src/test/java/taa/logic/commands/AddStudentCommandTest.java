@@ -18,7 +18,7 @@ import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.ClassList;
 import taa.model.Model;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyTaaData;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.alarm.Alarm;
 import taa.model.student.Student;
@@ -103,12 +103,12 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTaaDataFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTaaDataFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -118,12 +118,12 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setTaaData(ReadOnlyTaaData newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTaaData getTaaData() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -289,7 +289,7 @@ public class AddStudentCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTaaData getTaaData() {
             return new ClassList();
         }
 

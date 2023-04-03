@@ -25,7 +25,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_CLASS_TAG + "Lab_L01";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class list";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the class list.";
 
     private final Student toAdd;
 

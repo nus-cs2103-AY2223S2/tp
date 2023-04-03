@@ -13,7 +13,7 @@ import taa.model.student.UniqueStudentList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class ClassList implements ReadOnlyAddressBook {
+public class ClassList implements ReadOnlyTaaData {
 
     private static int lastId;
 
@@ -46,7 +46,7 @@ public class ClassList implements ReadOnlyAddressBook {
     /**
      * Creates an ClassList using the Persons in the {@code toBeCopied}
      */
-    public ClassList(ReadOnlyAddressBook toBeCopied) {
+    public ClassList(ReadOnlyTaaData toBeCopied) {
         this("DEFAULT");
         resetData(toBeCopied);
     }
@@ -82,7 +82,7 @@ public class ClassList implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code ClassList} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyTaaData newData) {
         requireNonNull(newData);
         setStudents(newData.getStudentList());
     }

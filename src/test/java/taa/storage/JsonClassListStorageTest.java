@@ -12,7 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import taa.commons.exceptions.DataConversionException;
 import taa.model.ClassList;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyTaaData;
 import taa.testutil.Assert;
 import taa.testutil.TypicalPersons;
 
@@ -28,8 +28,8 @@ public class JsonClassListStorageTest {
         Assert.assertThrows(NullPointerException.class, () -> readAddressBook(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyTaaData> readAddressBook(String filePath) throws Exception {
+        return new JsonTaaStorage(Paths.get(filePath)).readTaaData(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -65,24 +65,24 @@ public class JsonClassListStorageTest {
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         ClassList original = TypicalPersons.getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+        JsonTaaStorage jsonAddressBookStorage = new JsonTaaStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveTaaData(original, filePath);
+        ReadOnlyTaaData readBack = jsonAddressBookStorage.readTaaData(filePath).get();
         assertEquals(original, new ClassList(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addStudent(TypicalPersons.HOON);
         original.removeStudent(TypicalPersons.ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonAddressBookStorage.saveTaaData(original, filePath);
+        readBack = jsonAddressBookStorage.readTaaData(filePath).get();
         assertEquals(original, new ClassList(readBack));
 
         // Save and read without specifying file path
         original.addStudent(TypicalPersons.IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonAddressBookStorage.saveTaaData(original); // file path not specified
+        readBack = jsonAddressBookStorage.readTaaData().get(); // file path not specified
         assertEquals(original, new ClassList(readBack));
 
     }
@@ -96,10 +96,10 @@ public class JsonClassListStorageTest {
     /**
      * Saves {@code addressBook} at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
+    private void saveAddressBook(ReadOnlyTaaData addressBook, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonTaaStorage(Paths.get(filePath))
+                    .saveTaaData(addressBook, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }

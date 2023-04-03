@@ -32,7 +32,7 @@ public class EditStudentCommandTest {
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new ClassList(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClassList(model.getTaaData()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         CommandTestUtil.assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
@@ -54,7 +54,7 @@ public class EditStudentCommandTest {
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new ClassList(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClassList(model.getTaaData()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudent);
 
         CommandTestUtil.assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
@@ -68,7 +68,7 @@ public class EditStudentCommandTest {
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new ClassList(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClassList(model.getTaaData()), new UserPrefs());
 
         CommandTestUtil.assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
     }
@@ -86,7 +86,7 @@ public class EditStudentCommandTest {
 
         String expectedMessage = String.format(EditStudentCommand.MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new ClassList(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ClassList(model.getTaaData()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         CommandTestUtil.assertCommandSuccess(editStudentCommand, model, expectedMessage, expectedModel);
@@ -106,7 +106,7 @@ public class EditStudentCommandTest {
         CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
 
         // edit student in filtered list into a duplicate in address book
-        Student studentInList = model.getAddressBook().getStudentList()
+        Student studentInList = model.getTaaData().getStudentList()
                 .get(TypicalIndexes.INDEX_SECOND_PERSON.getZeroBased());
         EditStudentCommand editStudentCommand = new EditStudentCommand(TypicalIndexes.INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(studentInList).build());
@@ -135,7 +135,7 @@ public class EditStudentCommandTest {
         CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
         Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTaaData().getStudentList().size());
 
         EditStudentCommand editStudentCommand = new EditStudentCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());

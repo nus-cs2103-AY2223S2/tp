@@ -76,7 +76,7 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given classList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTaaData addressBook, ReadOnlyUserPrefs userPrefs) {
         CollectionUtil.requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
@@ -123,23 +123,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTaaDataFilePath() {
+        return userPrefs.getTaaDataFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
+    public void setTaaDataFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setTaaDataFilePath(addressBookFilePath);
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
+    public void setTaaData(ReadOnlyTaaData addressBook) {
         this.classList.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyTaaData getTaaData() {
         return classList;
     }
 

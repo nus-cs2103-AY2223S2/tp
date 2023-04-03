@@ -6,41 +6,41 @@ import java.util.Optional;
 
 import taa.commons.exceptions.DataConversionException;
 import taa.model.ClassList;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyTaaData;
 
 /**
  * Represents a storage for {@link ClassList}.`
  */
-public interface AddressBookStorage {
+public interface TaaStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getTaaDataFilePath();
 
     /**
-     * Returns ClassList data as a {@link ReadOnlyAddressBook}.
+     * Returns ClassList data as a {@link ReadOnlyTaaData}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTaaData> readTaaData() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getTaaDataFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyTaaData> readTaaData(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyTaaData} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveTaaData(ReadOnlyTaaData addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveTaaData(ReadOnlyTaaData)
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+    void saveTaaData(ReadOnlyTaaData addressBook, Path filePath) throws IOException;
 
 }

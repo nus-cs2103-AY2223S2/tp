@@ -6,7 +6,7 @@ import taa.model.student.Student;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyTaaData {
 
     /**
      * Returns an unmodifiable view of the persons list.
