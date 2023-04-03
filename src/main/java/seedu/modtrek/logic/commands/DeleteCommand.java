@@ -2,7 +2,6 @@ package seedu.modtrek.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.modtrek.logic.parser.CliSyntax.PREFIX_CODE;
-import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -86,7 +85,7 @@ public class DeleteCommand extends Command {
         String deletedModules = String.format(MESSAGE_DELETE_MODULE_SUCCESS, codesFound);
         String notFoundModules = String.format(MESSAGE_DELETE_MODULE_NOT_FOUND, codesNotFound);
 
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        model.updateFilteredModuleList(model.getPredicate());
         String message;
         if (codesFound.isEmpty()) {
             throw new CommandException(notFoundModules);

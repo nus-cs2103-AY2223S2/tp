@@ -2,7 +2,6 @@ package seedu.modtrek.logic;
 
 import java.nio.file.Path;
 import java.util.List;
-import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.modtrek.commons.core.GuiSettings;
