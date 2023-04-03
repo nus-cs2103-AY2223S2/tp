@@ -26,7 +26,7 @@ Interface** (CLI) while still providing an easy way to visualize all events thro
     * [Response Box](#response-box)
     * [Event List](#event-list)
     * [Upcoming Events](#upcoming)
-    * [Calendar](#calender)
+    * [Calendar](#calendar)
 * [Limitations](#limitations)
 * [FAQ](#faq)
 
@@ -247,7 +247,7 @@ Use `next` command to change the number of upcoming events you want to show.
 [[Back to top](#index)]
 
 
-<h3 id="calender">Calender</h3>
+<h3 id="calendar">Calendar</h3>
 ![calendar.png](images/calendar.png)
 Provides an overview of all the event that you have.
 
