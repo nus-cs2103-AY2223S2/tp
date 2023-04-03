@@ -685,37 +685,35 @@ The following is a description of the code execution flow:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                              |
-| -------- | ---------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `* * *`  | new user         | access a starter guide on how to use the app                                       |                                                                                              |
-| `* * *`  | forgetful user   | access a help manual easily                                                        | recall on how to use the app                                                                 |
-| `* * *`  | user             | add a module, lecture or video                                                     |                                                                                              |
-| `* * *`  | user             | delete a module, lecture or video                                                  | remove entries that I no longer need                                                         |
-| `* * *`  | user             | search for lectures by relevant keywords (tags)                                    | find a specific lecture easily                                                               |
-| `* * *`  | user             | mark the lecture that I have watched                                               | track the ones that I have missed out                                                        |
-| `* * *`  | user             | unmark lecture that I have previously marked as watched                            | correct my mistakes when I mark a lecture wrongly                                            |
-| `* * *`  | user             | tag lectures                                                                       | find a specific lecture easily                                                               |
-| `* * *`  | user             | tag timestamps on lectures                                                         | find a specific lecture timestamp easily                                                     |
-| `* * *`  | user             | remove tags from lectures                                                          | correct my mistakes when I tag a lecture wrongly                                             |
-| `* * *`  | user             | set my current watch timestamp of a video on a per lecture basis                   | track my current progress for a specific lecture                                             |
-| `* * *`  | user             | see my current watch timestamp of a video on a per lecture basis                   | have an idea of my current progress for a specific lecture and also resume my watch progress |
-| `* * *`  | user             | see my lecture watch progress of a module (lectures watched / over total lectures) | have an idea of my current progress for the module                                           |
-| `* *`    | user             | bookmark the lectures                                                              | find them easily                                                                             |
-| `* *`    | user             | easily access my lecture slides                                                    | refer to them when watching a lecture                                                        |
-| `* *`    | user             | find lecture videos that cover a specific topic                                    | avoid wasting time on non-relevant videos                                                    |
-| `* *`    | seasoned user    | export and archive my progress from previous semesters                             | have a clean tracker but still reference lecture information from past modules if needed     |
-| `* *`    | user             | backup data that I have entered into the app and import previous backups           | restore my tracker should I change my device or wipe my device                               |
-| `* *`    | unmotivated user | feel rewarded for making progress in watching lectures                             | be motivated to keep up or catch up                                                          |
-| `* *`    | user             | group my lectures                                                                  | they appear more organise                                                                    |
-| `* *`    | forgetful user   | constantly be reminded of the "help" command                                       | continue using the app even when I forgot all the other commands                             |
-| `* *`    | seasoned user    | bypass the tutorial and disable any features for helping beginners                 | I am not held back and annoyed by those features                                             |
-| `* *`    | user             | write summaries/notes for lectures I have watched                                  | reference those notes when I'm revising the contents of the lecture                          |
-| `* *`    | user             | collate questions about a specific lecture                                         | pull it up when I have a chance to ask the professor                                         |
-| `* *`    | seasoned user    | look up notes from previous semester lecture content                               | supplement my current semester content                                                       |
-| `* *`    | seasoned user    | delete notes from previous semesters                                               | save my storage space                                                                        |
-| `* *`    | user             | see a quick overview of my current progress for all modules                        |                                                                                              |
-| `*`      | user             | view videos on any device (e.g. laptop, mobile)                                    | access them wherever I am                                                                    |
-| `*`      | user             | allow app notification to notify me when a new lecture is out                      | stay up to date with my lectures                                                             |
+| Priority | As a/an …​       | I can …​                                                                      | So that I can…​                                                                          |
+| -------- | ---------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `* * *`  | new user         | access a starter guide on how to use the app                                  |                                                                                          |
+| `* * *`  | forgetful user   | access a help manual easily                                                   | recall on how to use the app                                                             |
+| `* * *`  | user             | add a module, lecture or video                                                |                                                                                          |
+| `* * *`  | user             | delete a module, lecture or video                                             | remove entries that I no longer need                                                     |
+| `* * *`  | user             | find modules or lectures or videos by relevant keywords                       | can avoid wasting unnecessary time at looking through the list to find it one-by-one     |
+| `* * *`  | user             | mark the video that I have watched                                            | know the ones that I have not watched                                                    |
+| `* * *`  | user             | unmark the video that I have previously marked as watched                     | correct my mistakes when I mark a video wrongly                                          |
+| `* * *`  | user             | tag modules, lectures and videos                                              | find a specific modules/lectures/videos by relevant keywords                             |
+| `* * *`  | user             | set timestamps on videos                                                      | know where I pause on the video I was watching                                           |
+| `* * *`  | user             | remove tags from modules, lectures or videos                                  | revert when I tag a module, lecture or video wrongly                                     |
+| `* * *`  | user             | see my lecture watch progress of a module (lectures watched / total lectures) | have an idea of my current progress for the module                                       |
+| `* *`    | seasoned user    | export and archive my progress from previous semesters                        | have a clean tracker but still reference lecture information from past modules if needed |
+| `* *`    | user             | backup data that I have entered into the app and import previous backups      | restore my tracker should I change my device or wipe my device                           |
+| `* *`    | seasoned user    | look up notes from previous semester module content                           | supplement my current semester content                                                   |
+| `* *`    | user             | easily access my lecture slides                                               | refer to them when watching a lecture                                                    |
+| `* *`    | user             | find lecture videos that cover a specific topic                               | avoid wasting time on non-relevant videos                                                |
+| `* *`    | unmotivated user | feel rewarded for making progress in watching lectures                        | be motivated to keep up or catch up                                                      |
+| `* *`    | user             | bookmark the lectures                                                         | find them easily                                                                         |
+| `* *`    | user             | group my lectures                                                             | they appear more organise                                                                |
+| `* *`    | forgetful user   | constantly be reminded of the "help" command                                  | continue using the app even when I forgot all the other commands                         |
+| `* *`    | seasoned user    | bypass the tutorial and disable any features for helping beginners            | I am not held back and annoyed by those features                                         |
+| `* *`    | user             | write summaries/notes for lectures I have watched                             | reference those notes when I'm revising the contents of the lecture                      |
+| `* *`    | user             | collate questions about a specific lecture                                    | pull it up when I have a chance to ask the professor                                     |
+| `* *`    | seasoned user    | delete notes from previous semesters                                          | save my storage space                                                                    |
+| `* *`    | user             | see a quick overview of my current progress for all modules                   |                                                                                          |
+| `*`      | user             | view videos on any device (e.g. laptop, mobile)                               | access them wherever I am                                                                |
+| `*`      | user             | allow app notification to notify me when a new lecture is out                 | stay up to date with my lectures                                                         |
 
 ### Use cases
 
