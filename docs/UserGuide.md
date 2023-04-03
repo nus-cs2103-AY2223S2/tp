@@ -12,6 +12,7 @@ title: User Guide
 # Table of Contents
   * [Introduction](#introduction)
   * [Using this guide](#using-this-guide)
+  * [Glossary](#glossary)
   * [Quickstart](#quick-start)
   * [Features](#features)
     * [Tanks](#tanks)
