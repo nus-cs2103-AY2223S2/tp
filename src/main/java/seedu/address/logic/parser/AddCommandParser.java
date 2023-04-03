@@ -55,6 +55,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(INVALID_TIMESTAMP_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+
         OwnerName ownerName = ParserUtil.parseOwnerName(argMultimap.getValue(PREFIX_OWNER_NAME).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());

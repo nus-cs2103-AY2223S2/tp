@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline should be in the future";
+            "Deadline should be in the future and time should be in the format of yyyy-MM-dd HH:mm:ss";
 
     /*
      * The first character of the address must not be a whitespace,

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -149,12 +150,16 @@ public class ParserUtil {
      * @param deadline takes in a deadline date in the form of yyyy-MM-dd HH:mm:ss
      * @return new Deadline(String description, LocalDateTime time)
      */
-    public static Deadline parseDeadline(String deadline) {
+    public static Deadline parseDeadline(String deadline) throws ParseException {
         String[] split = deadline.split("-", 2);
         String description = split[0].trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        LocalDateTime time = LocalDateTime.parse(split[1].trim(), formatter);
-        return new Deadline(description, time);
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime time = LocalDateTime.parse(split[1].trim(), formatter);
+            return new Deadline(description, time);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
