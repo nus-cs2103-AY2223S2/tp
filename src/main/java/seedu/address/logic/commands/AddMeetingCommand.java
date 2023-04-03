@@ -24,8 +24,9 @@ public class AddMeetingCommand extends Command {
         + "by the index number used in the last person listing.\n"
         + "A new meeting will not be added if there are clashes with"
         + "other meetings on the day or period specified.\n"
-        + "Parameters: [INDEX] /md [DESC] /ms [DATE&TIME START] /me [DATE&TIME END]\n"
-        + "Example: " + COMMAND_WORD + " 1 /md Test /ms 30-03-2020 20:10 /me 30-03-2020 22:10";
+        + "Parameters: [INDEX] md/ [DESC] ms/ [DATE&TIME START] me/ [DATE&TIME END]\n"
+        + "INDEX is a positive number\n"
+        + "Example: " + COMMAND_WORD + " 1 md/ Test ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10";
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting to Person: %1$s";
 
     private final Index index;
@@ -63,6 +64,11 @@ public class AddMeetingCommand extends Command {
         if (meeting.isCorrectPeriod()) {
             String incorrectDateTimeMsg = "Start date and time should be before end date and time!";
             throw new CommandException(incorrectDateTimeMsg);
+        }
+
+        if (meeting.isPastDateTime()) {
+            String pastTodayMsg = "Date and time given is before today's date and time!";
+            throw new CommandException(pastTodayMsg);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
