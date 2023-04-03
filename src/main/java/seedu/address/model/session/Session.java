@@ -487,13 +487,19 @@ public class Session implements Comparable<Session> {
     }
 
 
+    /**
+     * Checks if this session overlaps with the given session.
+     * Two sessions overlap if their scheduled timings intersect.
+     * @param otherSession The other session to check for overlap.
+     * @return {@code true} if the sessions overlap, {@code false} otherwise.
+     */
     public boolean overlaps(Session otherSession) {
         return LocalDateTime.parse(endDateTime, DateTimeFormatter
-                .ofPattern("dd-MM-yyyy HH:mm")).isAfter(LocalDateTime.parse(otherSession.getStartDateTime(), DateTimeFormatter
-                .ofPattern("dd-MM-yyyy HH:mm")))
+                .ofPattern("dd-MM-yyyy HH:mm")).isAfter(LocalDateTime.parse(otherSession.getStartDateTime(),
+                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")))
                 && LocalDateTime.parse(otherSession.getEndDateTime(), DateTimeFormatter
-                .ofPattern("dd-MM-yyyy HH:mm")).isAfter(LocalDateTime.parse(this.getStartDateTime(), DateTimeFormatter
-                        .ofPattern("dd-MM-yyyy HH:mm")));
+                .ofPattern("dd-MM-yyyy HH:mm")).isAfter(LocalDateTime.parse(this.getStartDateTime(),
+                DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")));
     }
 
 }
