@@ -283,7 +283,7 @@ Data list contains all of your respective data labelled out in full. The layout 
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+:information_source: **Notes about the command format:**
 
 * All command keywords must be in lower-case and are case-sensitive.<br>
   e.g. For add supplier command:<br>
@@ -341,7 +341,7 @@ Data list contains all of your respective data labelled out in full. The layout 
 
 ## 2.1 Add
 
-Adding of an information to the specific list.
+Adding of an information to the specific list. Below are the specific add commands for supplier, order, task and menu item.
 
 ### 2.1.1 Adding a supplier: `add_supplier`
 
@@ -379,16 +379,45 @@ Adds an order into the list of orders.
 
 Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOMER_ADDRESS p/CUSTOMER_PHONE_NUMBER [s/STATUS]`
 
-* An order can have any number of remarks.
-* Either customer phone number or email address must be provided.
-* Status available for setting are: Not Delivered, In Progress and Delivered.
-* Key in `N` or `n` for Not Delivered, `I` or `i` for In Progress, and `D` or `d` for Delivered.
-* If no status is provided, it is defaulted to Not Delivered.
+<div markdown="block" class="alert alert-tip">
 
-Examples:
+:information_source: **Information**
 
-* `add_order n/John Doe a/John Street d/2023-12-12 q/10 on/Cupcakes p/91234567`
-* `add_o on/Birthday Cake q/1 n/Betsy Cow a/Betsy Street d/2023-03-03 s/N`
+* Status available for setting are
+  * `N` or `n` for `Not Delivered`
+  * `I` or `i` for `In Progress`
+  * `D` or `d` for `Delivered`
+* If no status is provided, it is **defaulted** to `Not Delivered`.
+
+</div>
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command without status**
+
+* `add_order on/Cupcake q/5 d/01/12/2024 n/John Cat p/91234567 a/John Street`<br>
+  Adds an order with the following details:
+  * Order Item: `Cupcake`
+  * Quantity: `5`
+  * Deadline: `01/12/2024`
+  * Name: `John Cat`
+  * Phone Number: `91234567`
+  * Address: `John Street`
+  * Status: `Not Delivered` (Default)
+
+:clipboard: **Example 2: Shortcut command with status**
+
+* `add_o on/Chocolate Cookies q/10 d/02/10/2024 n/Dolly Sheep p/91827364 a/Dolly Street s/I`<br>
+  Adds a supplier with the following details:
+  * Order Item: `Chocolate Cookies`
+  * Quantity: `10`
+  * Deadline: `02/10/2024`
+  * Name: `Dolly Sheep`
+  * Phone Number: `91827364`
+  * Address: `Dolly Street`
+  * Status: `In Progress`
+
+</div>
 
 ### Adding a task: `add_task`
 
