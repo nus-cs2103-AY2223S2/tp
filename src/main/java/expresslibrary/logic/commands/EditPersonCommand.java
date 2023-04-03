@@ -83,10 +83,8 @@ public class EditPersonCommand extends Command {
 
         if (editedPerson.borrowedAtLeastOneBook()) {
             Set<Book> books = editedPerson.getBooks();
-            for (Book book : books) {
-                if (!lastShownBookList.contains(book)) {
-                    throw new CommandException(Messages.MESSAGE_BOOK_BORROWED_NOT_FOUND);
-                }
+            if (!lastShownBookList.containsAll(books)) {
+                throw new CommandException(Messages.MESSAGE_BOOK_BORROWED_NOT_FOUND);
             }
             for (Book book : books) {
                 Book origBook = model.getBook(book);
