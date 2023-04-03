@@ -261,7 +261,7 @@ Optional Prefixes:
 
 Deletes a fish entry from *Fish Ahoy!* .
 
-Use this command when you want to move a fish from one tank to another, or remove it entirely. 
+Use this command when you want to remove a fish from a tank. 
 
 Format: `fish delete <FISH_INDEX>`
 
@@ -274,6 +274,11 @@ has not been fed in a long time, or see which fish you need to attend to first. 
 results to your liking.  
 
 Format: `fish sort by/<ATTRIBUTE> [tk/<TANK_INDEX>]`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Note:**
+After sorting, a new set of indexes will appear for each fish. The fish operations will take place on the
+**new fish list**!
+</div>
 
 Prefixes:
 * `by/` - Specifies attribute by which to sort fish. Possible attributes:
