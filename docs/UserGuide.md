@@ -5,8 +5,9 @@ title: User Guide
 
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Introduction**
 
 MyLib is a desktop application originally built to serve as a single platform for organising and tracking all the online webnovels and comics that you may be reading. However, it is more than capable of doing so for any other reading material you might be interested in, such as blogs, articles, research papers and basically anything you can read!
@@ -17,13 +18,12 @@ MyLib is **optimized for use via a Command Line Interface** (CLI) while still ha
 
 If you are a fast typer who is seeking a one-stop platform to organise and track your readings (online or physical), then MyLib is what you need! Even if you are not a fast typer, the commands are simple enough such that typing them out will not be much slower than using a GUI, if at all!
 
-
 --------------------------------------------------------------------------------------------------------------------
 ## **About User Guide**
-
 ### Objectives of the User Guide
 
 This User Guide provides an easy to understand and comprehensive documentation, so you can easily start using MyLib. It covers how to download the application, launch the application and the various features in MyLib that will make it easy for you to organise and track all your reading materials.
+<div style="page-break-after: always;"></div>
 
 ### How to use the User Guide
 
@@ -34,6 +34,8 @@ The user guide contains certain visuals to aid in conveying information more eff
 :bulb: **Tip** - Suggestions on how to enhance your experience
 
 :exclamation: **Warning**  - Warning  of a potentially dangerous action that you should be aware of
+
+
 
 ### Getting Started
 Head on over to the [Quick start](#quick-start) section to get started with MyLib!
@@ -46,15 +48,17 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `myLib.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-4/tp/releases).
+2. Download the latest `myLib.jar` from [here](https://github.com/AY2223S2-CS2103T-T13-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your Library.
+3. Copy the file to the folder you want to use as the _home folder_ for your Library.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
+   
+5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+    <img width="560" height="400"  src="images/Ui.png">
+
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all Bookmarks.
@@ -68,13 +72,30 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
    * `goto 1` : Opens the url of 1st Bookmark shown in current list.
    
    * `exit` : Exits the app.
+   
+7. Refer to the [Features](#features) below for details of each command.
 
-1. Refer to the [Features](#features) below for details of each command.
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## **Graphical User Interface**<br>
+
+   <img width="680" src="images/annotated-UI.png">
+
+### Purposes of each GUI component
+
+|     Component      |                          Purpose                          |
+|:------------------:|:---------------------------------------------------------:|
+|    Command Box     |                 To accept user commands.                  |
+|     Result Box     | To display the result of the commands that user executed. |
+| BookmarkList Panel |         To display the current list of bookmarks          |
+|     View Panel     |      To display the details of a specified bookmark       |
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+<div style="page-break-after: always;"></div>
 
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -107,14 +128,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
   * `t/` - TAGS
 
 </div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+<div style="page-break-after: always;"></div>
 
 ### Adding a tag: `addtag`
 
@@ -139,6 +153,7 @@ Example:
 Lists all tags in the tag list.
 
 Format: `tags`
+<div style="page-break-after: always;"></div>
 
 ### Adding a bookmark: `add`
 
@@ -151,8 +166,13 @@ A bookmark can have any number of tags (including 0)
 </div>
 
 Examples:
+<<<<<<< HEAD
 * `add n/Hobbit a/J. R. R. Tolkien p/1 ~ 256 r/4 g/Fantasy`
 * `add n/The Odyssey a/Homer p/1 1 23 g/Action r/5 t/Literature`
+=======
+* `add n/Hobbit a/J. R. R. Tolkien p/1 1 1 r/4 g/Fantasy`
+* `add n/The Odyssey a/Homer p/3 5 44 g/Action r/5 t/Literature class readings`
+>>>>>>> master
 
 ### Listing all bookmarks/ Resetting filters : `list`
 
@@ -174,6 +194,7 @@ Format : sort [ORDER]
 Examples:
 * sort asc
 * sort desc
+<div style="page-break-after: always;"></div>
 
 ### Editing a bookmark : `edit`
 
@@ -210,8 +231,13 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * The genre and tags provided must be in the list of existing genre and tags respectively.
 * The order of the keywords matter. e.g. `Guide Rankers` will not match `Rankers Guide`
 * Only the fields of the specified prefixes are searched.
+<<<<<<< HEAD
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
 * The search for tags will return any bookmark that has a tag that matches the given tag.
+=======
+* Only full words will be matched e.g. `Ranker` will not match `Ranker's`
+<div style="page-break-after: always;"></div>
+>>>>>>> master
 
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
@@ -265,6 +291,10 @@ Examples:
 * `list` followed by `goto 2` opens up the url of  2nd bookmark in the library.
 * `find n/Chainsaw Man` followed by `goto 1` opens url of the 1st bookmark in the results of the `find` command.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Our Application also supports this feature in gui format, clicking on the url in the right panel will open it on your default browser .
+</div>
+<div style="page-break-after: always;"></div>
 
 ### Clearing all entries : `clear`
 
@@ -277,6 +307,14 @@ Shows list of all valid Genres.
 
 Format: `genre`
 
+### Viewing help : `help`
+
+Shows a message explaning how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -286,6 +324,7 @@ Format: `exit`
 ### Saving the data
 
 MyLib data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+<div style="page-break-after: always;"></div>
 
 ### Editing the data file
 
@@ -301,18 +340,20 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous MyLib home folder.
 
-**Q**: Do I need an internet connection to run MyLib?
+**Q**: Do I need an internet connection to run MyLib?<br>
 **A**: No, MyLib can boot up and run all functionalities without an internet connection.
 
-**Q**: Can I use MyLib on my mobile device?
+**Q**: Can I use MyLib on my mobile device?<br>
 **A**: Unfortunately, MyLib is only designed to run on your desktop/laptop such that you can use the command line interface.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
