@@ -40,7 +40,9 @@ public class EditSessionCommand extends Command {
 
     public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited Session: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_SESSION_TIME = "This session overlaps with an existing session.";
     public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the address book.";
+
 
     private final Index index;
     private final EditSessionDescriptor editSessionDescriptor;
@@ -70,8 +72,12 @@ public class EditSessionCommand extends Command {
 
         Session editedSession = createEditedSession(sessionToEdit, editSessionDescriptor);
 
-        if (!sessionToEdit.isSameSession(editedSession) && model.hasSession(editedSession)) {
+        if (!sessionToEdit.isSameSession(editedSession)) {
             throw new CommandException(MESSAGE_DUPLICATE_SESSION);
+        }
+
+        if (sessionToEdit.overlaps(editedSession)) {
+            throw new CommandException(MESSAGE_DUPLICATE_SESSION_TIME);
         }
 
         model.setSession(sessionToEdit, editedSession);
