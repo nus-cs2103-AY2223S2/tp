@@ -67,7 +67,7 @@ Without further ado, let's get started!
 
 3. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
 
-4. In the same folder, create a new folder named “image” and store all images to be used for the program in this folder. eg student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`.
+4. In the same folder, create a new folder named “images” and another folder named "student" and "parent" in the "images folder". eg student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`. More details [here.](#images)
 
 5. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PowerConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -129,7 +129,7 @@ Without further ado, let's get started!
 This section aims to provide a brief overview of the features available in PowerConnect and the appropriate [CLI](#glossary) command to call them. <br>
 
 ### Legend
-* Command lines supplied by the teachers are NOT case-sensitive. You need to ensure that you have typed the command in the correct case.
+* Command lines supplied by the teachers are case-sensitive. You need to ensure that you have typed the command in the correct case.
   e.g. in the list feature, you can call it via this method:
   `student 5A list`.
 
@@ -354,6 +354,10 @@ Note:
 Deletes a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`.
 
 Duplicate test/homework is checked through having the same name.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Please specifiy only one test or homework name. Multiple names would result in PowerConnect taking the last name.
+</div>
 
 Format:
 
