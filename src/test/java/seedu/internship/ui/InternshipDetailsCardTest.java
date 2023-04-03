@@ -159,15 +159,15 @@ public class InternshipDetailsCardTest extends GuiUnitTest {
         //Reused from teammate potty10 where he modified the code from
         //https://github.com/AY2223S1-CS2103T-W17-4/tp/blob/master/src/test/java/seedu/phu/ui/InternshipCardTest.java
         Region internshipRegion = internshipDetailCard.getRoot();
-        Label companyName = (Label) internshipRegion.lookup("#companyName");
-        Label internshipRoleLabel = (Label) internshipRegion.lookup("#role");
+        Text companyName = (Text) internshipRegion.lookup("#companyName");
+        Text internshipRoleText = (Text) internshipRegion.lookup("#role");
         Label internshipDate = (Label) internshipRegion.lookup("#date");
         Label internshipStatus = (Label) internshipRegion.lookup("#statusLabel");
         String expectedDateLabel = InternshipCard.getDateLabel(internship.getStatus().toString());
         Text comment = (Text) internshipRegion.lookup("#comment");
         ObservableList<Node> internshipNodeTags = ((FlowPane) internshipRegion.lookup("#tags")).getChildren();
         assertEquals(companyName.getText(), internship.getCompanyName().toString());
-        assertEquals(internshipRoleLabel.getText(), ROLE_LABEL + internship.getRole().toString());
+        assertEquals(internshipRoleText.getText(), ROLE_LABEL + internship.getRole().toString());
 
         assertEquals(internshipDate.getText(), expectedDateLabel + internship.getDate().toString());
         assertEquals("[" + comment.getText() + "]", internship.getComment().toString());
