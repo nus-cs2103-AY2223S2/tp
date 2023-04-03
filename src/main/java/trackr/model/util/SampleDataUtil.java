@@ -123,20 +123,30 @@ public class SampleDataUtil {
                 new PersonPhone("71396482"),
                 new PersonAddress("789 Bonder Street"));
 
+        MenuItem cookie = new MenuItem(new ItemName("Chocolate Cookies"), 
+                                        new ItemSellingPrice("5.00"), 
+                                        new ItemCost("1.20"));
+        MenuItem cupcake = new MenuItem(new ItemName("Cupcake"), 
+                                        new ItemSellingPrice("6.20"), 
+                                        new ItemCost("1.10"));
+        MenuItem bracelet = new MenuItem(new ItemName("Bracelet"), 
+                                        new ItemSellingPrice("10"), 
+                                        new ItemCost("0.5"));
+
         return new Order[] {
-            new Order(new OrderName("Chocolate Cookies"),
+            new Order(cookie,
                     new OrderDeadline("01/01/2024"),
-                    new OrderStatus(), new OrderQuantity("2"),
+                    new OrderStatus(), new OrderQuantity("12"),
                     amy),
-            new Order(new OrderName("Cheese Cake"),
+            new Order(cupcake,
                     new OrderDeadline("03/03/2024"),
                     new OrderStatus("I"),
-                    new OrderQuantity("10"),
+                    new OrderQuantity("5"),
                     bob),
-            new Order(new OrderName("Vanilla Ice Cream"),
+            new Order(bracelet,
                     new OrderDeadline("02/01/2024"),
                     new OrderStatus("D"),
-                    new OrderQuantity("100"),
+                    new OrderQuantity("2"),
                     charlie)
         };
     }

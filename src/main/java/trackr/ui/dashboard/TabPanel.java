@@ -116,6 +116,10 @@ public class TabPanel extends UiPart<Region> {
         tabPanel.getSelectionModel().select(index.getZeroBased());
     }
 
+    public static void clearSelection() {
+        tabPanel.getSelectionModel().clearSelection();
+    }
+
     public SupplierListPanel getContactListPanel() {
         return contactListPanel;
     }

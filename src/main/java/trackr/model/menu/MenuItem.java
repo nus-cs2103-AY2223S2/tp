@@ -99,11 +99,11 @@ public class MenuItem extends Item {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getItemName())
-                .append("; Price: ")
+                .append("; ")
                 .append(getItemPrice())
-                .append("; Cost: ")
+                .append("; ")
                 .append(getItemCost())
-                .append("; Profit Margin: ")
+                .append("; ")
                 .append(getItemProfit());
         return builder.toString();
     }

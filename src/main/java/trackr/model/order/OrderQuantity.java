@@ -35,7 +35,7 @@ public class OrderQuantity {
 
     @Override
     public String toString() {
-        return value;
+        return "Quantity: " + value;
     }
 
     @Override

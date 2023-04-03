@@ -266,7 +266,7 @@ public class Order extends Item {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getOrderName())
-                .append("; Quantity: ")
+                .append("; ")
                 .append(getOrderQuantity())
                 .append("; Deadline: ")
                 .append(getOrderDeadline())

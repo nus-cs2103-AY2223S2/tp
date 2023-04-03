@@ -20,6 +20,7 @@ import trackr.model.ReadOnlySupplierList;
 import trackr.model.ReadOnlyTaskList;
 import trackr.model.menu.ItemPrice;
 import trackr.model.menu.ItemProfit;
+import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.person.Supplier;
@@ -107,17 +108,17 @@ public class LogicManager implements Logic {
         ObservableList<Order> allOrders = model.getFilteredOrderList();
         Double total = allOrders.stream()
                         .map(x -> x.getTotalProfit().getValue())
-                        .collect(Collectors.summingDouble(Double::doubleValue));
+                        .reduce(0.0, (subTotal, element) -> subTotal + element);
         return new ItemProfit(total);
     }
 
     @Override
-    public ItemPrice getTotalSales() {
+    public ItemSellingPrice getTotalSales() {
         ObservableList<Order> allOrders = model.getFilteredOrderList();
         Double total = allOrders.stream()
                         .map(x -> x.getTotalRevenue().getValue())
-                        .collect(Collectors.summingDouble(Double::doubleValue));
-        return new ItemPrice(total);
+                        .reduce(0.0, (subTotal, element) -> subTotal + element);
+        return new ItemSellingPrice(total);
     }
 
     @Override
