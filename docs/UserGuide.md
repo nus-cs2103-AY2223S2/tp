@@ -202,6 +202,7 @@ There is currently no prefix for **KEYWORD** and **OLD_DEPARTMENT_NAME**.
 ![table2](images/table2.png)
 ![table3](images/table3.png)
 
+Note For Andre: Any trailing or leading white spaces will be ignored.
 
 [//]: # (Talk about their constraints, type, format, etc)
 
