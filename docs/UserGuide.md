@@ -6,7 +6,7 @@ title: User Guide
 _Ez-Schedule_ is a **desktop application for managing and scheduling of events, optimized for use via a Command Line
 Interface** (CLI) while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
 
-_Ez-Schedule_ will benefit a fast typist who need to plan and track upcoming events.
+_Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming events.
 
 <h1 id="index">Index</h1>
 -------------------------
@@ -37,8 +37,8 @@ _Ez-Schedule_ will benefit a fast typist who need to plan and track upcoming eve
 -------------------------------------
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `Ez-Schedule.jar` from [here](https://github.com/AY2223S2-CS2103-W17-3/tp/releases).
-3. Copy the file to the folder you want to use as the *home folder* for your EzSchedule.
-4. Open a command terminal, `cd` into the folder you put the jar file in
+3. Copy the file to the folder you want to use as the *home folder* for your _Ez-Schedule_.
+4. Open a command line terminal, `cd` into the folder you put the jar file in
 5. Use the `java -jar Ez-Schedule.jar` command to run the application.
 
 
@@ -72,8 +72,8 @@ Format: `add n/<event> d/<date> s/<start time> e/<end time>`
 Parameters:  
 `n/`: Name or description of event  
 `d/`: Date of the event in `YYYY-MM-DD` format  
-`s/`: Start time of the event in `HH:mm` format  
-`e/`: End time of the event in `HH:mm` format
+`s/`: Start time of the event in 24-hour `HH:mm` format  
+`e/`: End time of the event in 24-hour `HH:mm` format
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
@@ -118,8 +118,8 @@ Format: `edit <index> n/<event> d/<date> s/<start time> e/<end time>`
 Parameters:  
 `n/`: Name or description of event  
 `d/`: Date of the event in `YYYY-MM-DD` format  
-`s/`: Start time of the event in `HH:mm` format  
-`e/`: End time of the event in `HH:mm` format
+`s/`: Start time of the event in 24-hour `HH:mm` format  
+`e/`: End time of the event in 24-hour `HH:mm` format
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** At least one field must be provided.
@@ -280,7 +280,7 @@ Functionality:
 <h1 id="limitations">Limitations</h1>
 -------------------------------------
 * Currently, we only support same-day events.
-  Events which are stretched across multiple days are not supported.
+  Events which stretches across multiple days are not supported.
 * `undo` can only undo the most recent valid command.
 
 [[Back to top](#index)]
