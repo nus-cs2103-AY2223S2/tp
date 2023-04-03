@@ -75,10 +75,15 @@ Parameters:
 `s/`: Start time of the event in `HH:mm` format  
 `e/`: End time of the event in `HH:mm` format
 
-> Note:  
-> Name/Description is alphanumeric only.  
-> Start time should come before end time.  
-> Adding of events that overlaps in time is not allowed.
+<div markdown="span" class="alert alert-info">
+:information_source: 
+**Note:** 
+Name/Description is alphanumeric only.  
+Start time should come before end time.  
+Adding of events that overlaps in time is not allowed.
+</div>
+
+
 
 Example: `add n/booked tennis court /2023-02-01 /2023-02-02`
 
