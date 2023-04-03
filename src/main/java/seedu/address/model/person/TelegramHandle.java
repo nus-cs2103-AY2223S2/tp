@@ -39,7 +39,7 @@ public class TelegramHandle implements Comparable<TelegramHandle> {
      * @return true if the telegram handle is valid.
      */
     public static boolean isValidTelegramHandle(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() >= 6;
     }
 
     /**
