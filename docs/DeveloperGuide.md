@@ -100,11 +100,31 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Most components contained in `MainWindow` (with the exception of `DoughnutChart`, `CliScreen` and `CliInput`) inherit from the abstract `UiPart` class (not shown in the above class diagram) which captures the commonalities between classes that represent parts of the visible GUI.
+</div>
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The UI consists of a `MainWindow` that is made up of two main sections: `ResultsSection` and `CliSection`, as depicted below:
+![MainWindow GUI](images/Ui-mainwindow.png)
 
-The `UI` component,
+`CliSection` consists of `CliScreen` and `CliInput` components, depicted below:
+
+<img src="images/Ui-clisection.png" height="300">
+
+`ResultsSection` consists of three subsections: `ProgressSection`, `ModuleListSection` and `ModuleSearchSection`, as depicted below. At any point in time, only one section is actively shown on the `ResultsSection`.
+![ResultsSection GUI](images/Ui-resultssection.png)
+
+Each of these subsections consists of smaller UI components, which are annotated below:
+![Subsections (detailed) GUI](images/Ui-subsections-detailed.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+There are no separate Java classes created for `CliScreen` and `CliInput` due their simplicity in functionality. It is sufficient to compose them within the `CliSection` class in the form of basic JavaFx components (`CliScreen` as a `VBox` and `CliInput` as a `TextField`). They are referenced in [`CliSection.fxml`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/resources/view/clisection/CliSection.fxml). 
+Likewise, many smaller, simple components composed within larger components like [`ModuleCard`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/modulesection/ModuleCard.java) do not have separate Java classes created for them.
+</div>
+
+The `Ui` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/modtrek/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T13-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+The `Ui` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
