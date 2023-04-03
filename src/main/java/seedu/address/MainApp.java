@@ -187,8 +187,9 @@ public class MainApp extends Application {
         logger.info("============================ [ Stopping Expense Tracker ] =============================");
         try {
             storage.saveUserPrefs(dataModel.getUserPrefs());
+            storage.saveExpenseTracker(dataModel.getExpenseTracker());
         } catch (IOException e) {
-            logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
+            logger.severe("Failed to save data " + StringUtil.getDetails(e));
         }
     }
 }
