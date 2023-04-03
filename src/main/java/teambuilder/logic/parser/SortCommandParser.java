@@ -23,10 +23,15 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
         String[] argsArr = trimmedArgs.split("\\s+");
-        String order = argsArr[0].toLowerCase();
-        String sortBy = argsArr[1].toLowerCase();
+        if (argsArr.length != 2) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+        } else {
+            String order = argsArr[0].toLowerCase();
+            String sortBy = argsArr[1].toLowerCase();
+            return new SortCommand(order, sortBy);
+        }
 
-        return new SortCommand(order, sortBy);
     }
 
 }
