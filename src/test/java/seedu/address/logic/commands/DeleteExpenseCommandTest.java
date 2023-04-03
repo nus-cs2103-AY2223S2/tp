@@ -15,9 +15,9 @@ import seedu.address.model.expense.Expense;
 
 public class DeleteExpenseCommandTest {
 
-    private Expense expenseToDelete = new Expense("test", 1.0,
+    private Expense expenseToDelete = new Expense("test", "1.0",
                                     LocalDate.now(), new MiscellaneousCategory());
-    private Expense expenseToDelete2 = new Expense("test2", 2.0,
+    private Expense expenseToDelete2 = new Expense("test2", "2.0",
                                     LocalDate.now(), new MiscellaneousCategory());
     private Index firstExpenseIdx = Index.fromOneBased(1);
 

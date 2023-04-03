@@ -8,8 +8,8 @@ import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UserDefinedCategory;
 
 public class ExpenseTest {
-
-    private final Expense expense = new Expense("test", 1.0, null, new MiscellaneousCategory());
+    private final Price price = new Price("1.0");
+    private final Expense expense = new Expense("test", price, null, new MiscellaneousCategory());
 
     @Test
     public void getName() {
@@ -44,7 +44,7 @@ public class ExpenseTest {
 
     @Test
     public void setAmount() {
-        expense.setAmount(2.0);
+        expense.setAmount("2.0");
         assertEquals(2.0, expense.getAmount());
     }
 

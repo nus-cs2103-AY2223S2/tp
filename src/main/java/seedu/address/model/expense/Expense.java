@@ -19,7 +19,7 @@ public class Expense {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private String name;
-    private double amount;
+    private Price amount;
     private LocalDate date;
     private Category category;
 
@@ -30,9 +30,37 @@ public class Expense {
      * @param date     Date of the expense
      * @param category Category of the expense
      */
-    public Expense(String name, double amount, LocalDate date, Category category) {
+    public Expense(String name, Price amount, LocalDate date, Category category) {
         this.name = name;
         this.amount = amount;
+        this.date = date;
+        this.category = category;
+    }
+
+    /**
+     * Constructor for Expense class.
+     * @param name     Name of the expense
+     * @param amount   Amount of the expense
+     * @param date     Date of the expense
+     * @param category Category of the expense
+     */
+    public Expense(String name, double amount, LocalDate date, Category category) {
+        this.name = name;
+        this.amount = new Price(amount);
+        this.date = date;
+        this.category = category;
+    }
+
+    /**
+     * Constructor for Expense class.
+     * @param name     Name of the expense
+     * @param amount   Amount of the expense
+     * @param date     Date of the expense
+     * @param category Category of the expense
+     */
+    public Expense(String name, String amount, LocalDate date, Category category) {
+        this.name = name;
+        this.amount = new Price(amount);
         this.date = date;
         this.category = category;
     }
@@ -42,7 +70,7 @@ public class Expense {
     }
 
     public double getAmount() {
-        return amount;
+        return amount.getPriceAsDouble();
     }
 
     public LocalDate getDate() {
@@ -86,10 +114,12 @@ public class Expense {
         }
 
         Expense expense = (Expense) o;
-        if (Double.compare(expense.amount, amount) != 0) {
+        if (!expense.amount.equals(o)) {
             return false;
         }
-        if (!Objects.equals(name, expense.name)) {
+        if (!Objects.equals(name.toLowerCase()
+                .replaceAll("\\s+", " ").trim(),
+                expense.name.toLowerCase().replaceAll("\\s+", " ").trim())) {
             return false;
         }
         if (!Objects.equals(date, expense.date)) {
@@ -98,23 +128,12 @@ public class Expense {
         return Objects.equals(category, expense.category);
     }
 
-    /**
-     * Returns true if a given expense matches the current expense
-     */
-    public boolean isSameExpense(Expense otherExpense) {
-        if (otherExpense == this) {
-            return true;
-        }
-        return otherExpense != null
-                && otherExpense.equals(this);
-    }
-
     @Override
     public int hashCode() {
         int result;
         long temp;
         result = name != null ? name.hashCode() : 0;
-        temp = Double.doubleToLongBits(amount);
+        temp = amount.hashCode();
         result = 31 * result
                 + (int) (temp ^ (temp >>> 32));
         result = 31 * result
@@ -128,8 +147,8 @@ public class Expense {
         this.name = name;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setAmount(String amount) {
+        this.amount = new Price(amount);
     }
 
     public void setDate(LocalDate date) {

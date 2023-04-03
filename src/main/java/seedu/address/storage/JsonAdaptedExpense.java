@@ -68,8 +68,6 @@ public class JsonAdaptedExpense {
 
         final String modelName = name;
 
-        final double modelAmount = Double.parseDouble(amount);
-
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Date"));
         }
@@ -78,6 +76,6 @@ public class JsonAdaptedExpense {
 
         Category modelCategory = category.toModelType();
 
-        return new Expense(modelName, modelAmount, modelDate, modelCategory);
+        return new Expense(modelName, amount, modelDate, modelCategory);
     }
 }

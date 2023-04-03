@@ -1,0 +1,59 @@
+{
+  "categories" : [ {
+    "categoryName" : "entertainment",
+    "summary" : "For entertainment"
+  }, {
+    "categoryName" : "transportation",
+    "summary" : "For bus, car, train"
+  }, {
+    "categoryName" : "shopping",
+    "summary" : ""
+  }, {
+    "categoryName" : "housing",
+    "summary" : ""
+  }, {
+    "categoryName" : "misc",
+    "summary" : "Placeholder Description"
+  }, {
+    "categoryName" : "food",
+    "summary" : ""
+  } ],
+  "expenses" : [ {
+    "name" : "Meal at JE",
+    "amount" : "4.5",
+    "date" : "2023-04-01",
+    "category" : {
+      "categoryName" : "misc",
+      "summary" : "Placeholder Description"
+    }
+  }, {
+    "name" : "Groceries",
+    "amount" : "56.3",
+    "date" : "2023-03-25",
+    "category" : {
+      "categoryName" : "misc",
+      "summary" : "Placeholder Description"
+    }
+  }, {
+    "name" : "Shoes",
+    "amount" : "75.0",
+    "date" : "2023-03-20",
+    "category" : {
+      "categoryName" : "shopping",
+      "summary" : ""
+    }
+  }, {
+    "name" : "Movie ticket",
+    "amount" : "12.99",
+    "date" : "2023-03-15",
+    "category" : {
+      "categoryName" : "entertainment",
+      "summary" : "For entertainment"
+    }
+  }
+  ],
+  "budget" : {
+    "amount" : "0.0"
+  },
+  "recurringGenerators" : [ ]
+}
