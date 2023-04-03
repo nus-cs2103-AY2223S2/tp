@@ -1,51 +1,41 @@
-/*
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ARCHIVE_FILE_NAME;
+import static seedu.address.logic.commands.ExportCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.Tracker;
-import seedu.address.storage.JsonTrackerStorage;
-import seedu.address.storage.Storage;
 import seedu.address.testutil.ModelStub;
-import seedu.address.testutil.StorageStub;
 import seedu.address.testutil.TypicalModules;
 
 
 public class ExportCommandTest {
-    private static final String TEST_FILE = "test.json";
     @TempDir
     public Path testFolder;
-    private Model model = new ModelStubWithTracker();
-
-    private Storage storage = new StorageStubForExport(Paths.get(TEST_FILE));
+    private final Model model = new ModelStubWithTracker();
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        ExportCommand command = new ExportCommand(TEST_FILE, storage, false);
+        ExportCommand command = new ExportCommand(VALID_ARCHIVE_FILE_NAME, false);
         assertThrows(NullPointerException.class, () -> command.execute(null));
     }
 
     @Test
     public void equals() {
-        ExportCommand exportCommand = new ExportCommand(TEST_FILE, storage, false);
+        ExportCommand exportCommand = new ExportCommand(VALID_ARCHIVE_FILE_NAME, false);
 
-        ExportCommand exportCommandCopy = new ExportCommand(TEST_FILE, storage, false);
-        ExportCommand exportCommandOverwrite = new ExportCommand(TEST_FILE, storage, true);
+        ExportCommand exportCommandCopy = new ExportCommand(VALID_ARCHIVE_FILE_NAME, false);
+        ExportCommand exportCommandOverwrite = new ExportCommand(VALID_ARCHIVE_FILE_NAME, true);
 
         assertTrue(exportCommand.equals(exportCommand));
         assertTrue(exportCommand.equals(exportCommandCopy));
@@ -53,32 +43,24 @@ public class ExportCommandTest {
         assertFalse(exportCommand.equals(exportCommandOverwrite));
     }
 
-    */
-/*
     @Test
-    public void execute_fileAlreadyExist_throwCommandException() {
-        ExportCommand exportCommand = new ExportCommand("letracker.json", storage, false);
-        assertThrows(CommandException.class, () -> exportCommand.execute(model));
-    }
-    *//*
-
-    @Test
-    public void execute_correctCommand_successful() throws CommandException, DataConversionException, IOException {
-        Path savePath = testFolder.resolve(TEST_FILE);
-        Storage storage = new StorageStubForExport(savePath);
-        ExportCommand exportCommand = new ExportCommand("Random.json", false);
-        exportCommand.execute(model);
-        assertEquals(storage.readTracker().get(), model.getTracker());
+    public void execute_correctCommand_returnCommandResult() throws CommandException {
+        Path archivePath = testFolder.resolve(VALID_ARCHIVE_FILE_NAME);
+        ExportCommand exportCommand = new ExportCommand(VALID_ARCHIVE_FILE_NAME, false);
+        CommandResult expectedCommandResult = new CommandResult(String.format(MESSAGE_SUCCESS,
+                VALID_ARCHIVE_FILE_NAME), archivePath, true, false);
+        assertEquals(expectedCommandResult, exportCommand.execute(model));
+        assertEquals(expectedCommandResult.getPath().get(), archivePath);
     }
 
 
-    */
-/**
+
+    /**
      * A {@code Model} stub that contains a tracker.
-     *//*
+     */
 
     private class ModelStubWithTracker extends ModelStub {
-        private Tracker tracker;
+        private final Tracker tracker;
 
         public ModelStubWithTracker() {
             this.tracker = TypicalModules.getTypicalTracker();
@@ -89,33 +71,5 @@ public class ExportCommandTest {
             return tracker;
         }
     }
-
-
-    */
-/**
-     * A {@code Storage} stub that is used to test export command.
-     *//*
-
-
-    private class StorageStubForExport extends StorageStub {
-        private final Path archivePath;
-        public StorageStubForExport(Path archivePath) {
-            this.archivePath = archivePath;
-        }
-
-        public void saveTracker(ReadOnlyTracker tracker, Path filePath) {
-
-            try {
-                new JsonTrackerStorage(archivePath)
-                        .saveTracker(tracker, archivePath);
-            } catch (IOException ioe) {
-                throw new AssertionError("There should not be an error writing to the file.", ioe);
-            }
-        }
-
-        public Optional<ReadOnlyTracker> readTracker() {
-            return Optional.of(TypicalModules.getTypicalTracker());
-        }
-    }
 }
-*/
+
