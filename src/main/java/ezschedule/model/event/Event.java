@@ -55,55 +55,13 @@ public class Event implements Comparable<Event> {
     }
 
     /**
-     * Returns true if both events have the same name.
-     * This defines a weaker notion of equality between two events.
-     */
-    public boolean isSameEvent(Event otherEvent) {
-        if (otherEvent == this) {
-            return true;
-        }
-
-        return otherEvent != null
-                && otherEvent.getName().equals(getName())
-                && otherEvent.getDate().equals(getDate())
-                && otherEvent.getStartTime().equals(getStartTime())
-                && otherEvent.getEndTime().equals(getEndTime());
-    }
-
-    /**
      * Returns true if otherEvent's date and time overlaps this event.
+     *
+     * @param otherEvent the other event to compare to.
+     * @return true if event is overlap; otherwise, false.
      */
     public boolean isEventOverlap(Event otherEvent) {
-        return isEqualDate(otherEvent) && isTimeOverlap(otherEvent);
-    }
-
-    private boolean isEqualDate(Event otherEvent) {
-        return this.getDate().equals(otherEvent.getDate());
-    }
-
-    private boolean isTimeOverlap(Event otherEvent) {
-        return isStartTimeOverlap(otherEvent) || isEndTimeOverlap(otherEvent)
-                || isTimeInBetween(otherEvent) || isTimeIsEqual(otherEvent);
-    }
-
-    private boolean isStartTimeOverlap(Event otherEvent) {
-        return otherEvent.getStartTime().isBefore(this.getStartTime())
-                && otherEvent.getEndTime().isAfter(this.getStartTime());
-    }
-
-    private boolean isEndTimeOverlap(Event otherEvent) {
-        return otherEvent.getStartTime().isBefore(this.getEndTime())
-                && otherEvent.getEndTime().isAfter(this.getEndTime());
-    }
-
-    private boolean isTimeInBetween(Event otherEvent) {
-        return otherEvent.getStartTime().isAfter(this.getStartTime())
-                && otherEvent.getEndTime().isBefore(this.getEndTime());
-    }
-
-    private boolean isTimeIsEqual(Event otherEvent) {
-        return otherEvent.getStartTime().equals(this.getStartTime())
-                && otherEvent.getEndTime().equals(this.getEndTime());
+        return isSameDate(otherEvent) && isTimeOverlap(otherEvent);
     }
 
     @Override
@@ -140,13 +98,47 @@ public class Event implements Comparable<Event> {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("\n" + getName())
+        sb.append("\nName: ")
+                .append(getName())
                 .append("\nDate: ")
                 .append(getDate())
-                .append("\nStart Time: ")
+                .append("\nStart time: ")
                 .append(getStartTime())
-                .append("\nEnd Time: ")
+                .append("\nEnd time: ")
                 .append(getEndTime());
         return sb.toString();
+    }
+
+    private boolean isSameDate(Event otherEvent) {
+        return this.getDate().equals(otherEvent.getDate());
+    }
+
+    private boolean isTimeOverlap(Event otherEvent) {
+        return isTimeIsEqual(otherEvent)
+                || isTimeInBetween(otherEvent)
+                || isStartTimeOverlap(otherEvent)
+                || isEndTimeOverlap(otherEvent);
+    }
+
+    private boolean isTimeIsEqual(Event otherEvent) {
+        return otherEvent.getStartTime().equals(getStartTime())
+                && otherEvent.getEndTime().equals(getEndTime());
+    }
+
+    private boolean isTimeInBetween(Event otherEvent) {
+        return otherEvent.getStartTime().isAfter(getStartTime())
+                && otherEvent.getEndTime().isBefore(getEndTime());
+    }
+
+    private boolean isStartTimeOverlap(Event otherEvent) {
+        return (otherEvent.getStartTime().isBefore(getStartTime())
+                || otherEvent.getStartTime().equals(getStartTime()))
+                && otherEvent.getEndTime().isAfter(getStartTime());
+    }
+
+    private boolean isEndTimeOverlap(Event otherEvent) {
+        return otherEvent.getStartTime().isBefore(getEndTime())
+                && (otherEvent.getEndTime().isAfter(getEndTime())
+                || otherEvent.getEndTime().equals(getEndTime()));
     }
 }

@@ -123,7 +123,8 @@ public class EditCommandTest {
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_B).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, String.format(
+                Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, model.getFilteredEventList().size() + 1));
     }
 
     /**
@@ -140,7 +141,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditEventDescriptorBuilder().withName(VALID_NAME_B).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, String.format(
+                Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, outOfBoundIndex.getZeroBased() + 1));
     }
 
     @Test

@@ -5,17 +5,16 @@ import static java.util.Objects.requireNonNull;
 import ezschedule.commons.util.AppUtil;
 
 /**
- * Represents the factor {DAY, MONTH, YEAR} to recur and event.
+ * Represents the factor {day, week, month} to recur and event.
  */
 public class RecurFactor {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "RecurFactor should only be {DAY, MONTH, YEAR}";
+            "RecurFactor should only be {day, week, month}";
 
-    public static final String VALIDATION_REGEX_DAY = "DAY";
-    public static final String VALIDATION_REGEX_WEEK = "WEEK";
-    public static final String VALIDATION_REGEX_MONTH = "MONTH";
-    public static final String VALIDATION_REGEX_YEAR = "YEAR";
+    public static final String VALIDATION_REGEX_DAY = "day";
+    public static final String VALIDATION_REGEX_WEEK = "week";
+    public static final String VALIDATION_REGEX_MONTH = "month";
 
     private final String factor;
 
@@ -31,15 +30,14 @@ public class RecurFactor {
     }
 
     /**
-     * Tests for valid recur factor strictly in {DAY, WEEK, MONTH, YEAR}.
+     * Tests for valid recur factor strictly in {day, week, month}.
      * @param test the string to test
      * @return boolean result of validity
      */
     public static boolean isValidRecurFactor(String test) {
         return (test.matches(VALIDATION_REGEX_DAY)
                 | test.matches(VALIDATION_REGEX_WEEK)
-                | test.matches(VALIDATION_REGEX_MONTH)
-                | test.matches(VALIDATION_REGEX_YEAR));
+                | test.matches(VALIDATION_REGEX_MONTH));
     }
 
     @Override

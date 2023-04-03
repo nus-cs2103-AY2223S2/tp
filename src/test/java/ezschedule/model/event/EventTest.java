@@ -9,6 +9,7 @@ import static ezschedule.testutil.TypicalEvents.EVENT_A;
 import static ezschedule.testutil.TypicalEvents.EVENT_B;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Assertions;
@@ -21,28 +22,28 @@ public class EventTest {
     @Test
     public void isSameEvent() {
         // same object -> returns true
-        assertTrue(EVENT_A.isSameEvent(EVENT_A));
+        assertEquals(EVENT_A, EVENT_A);
 
         // null -> returns false
-        assertFalse(EVENT_A.isSameEvent(null));
+        assertNotEquals(null, EVENT_A);
 
         // same name, all other attributes different -> returns false
         Event editedA = new EventBuilder(EVENT_A).withDate(VALID_DATE_B)
                 .withStartTime(VALID_START_TIME_B).withEndTime(VALID_END_TIME_B).build();
-        Assertions.assertFalse(EVENT_A.isSameEvent(editedA));
+        assertNotEquals(EVENT_A, editedA);
 
         // different name, all other attributes same -> returns false
         editedA = new EventBuilder(EVENT_A).withName(VALID_NAME_B).build();
-        Assertions.assertFalse(EVENT_A.isSameEvent(editedA));
+        assertNotEquals(EVENT_A, editedA);
 
         // name differs in case, all other attributes same -> returns false
         Event editedB = new EventBuilder(EVENT_A).withName(VALID_NAME_B.toLowerCase()).build();
-        Assertions.assertFalse(EVENT_B.isSameEvent(editedB));
+        assertNotEquals(EVENT_B, editedB);
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_B + " ";
         editedB = new EventBuilder(EVENT_B).withName(nameWithTrailingSpaces).build();
-        Assertions.assertFalse(EVENT_B.isSameEvent(editedB));
+        assertNotEquals(EVENT_B, editedB);
     }
 
     @Test
