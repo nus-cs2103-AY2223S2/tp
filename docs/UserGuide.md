@@ -303,6 +303,8 @@ Output:<br>
 
 ### `patient` - Patient functionalities
 
+A patient is uniquely identified by a generated `PATIENT_ID`. Duplicate patients are **allowed** in the system as there might be patients with the exact same attributes that want to be vaccinated.
+
 ##### Patient data
 
 | Variable      | Is needed | Type                   | Accept multiple |
