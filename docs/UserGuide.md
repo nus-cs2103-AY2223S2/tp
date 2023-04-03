@@ -34,15 +34,15 @@ You can click on any of the links below to navigate to the respective sections f
     * [1.4.2 Data Tab](#142-data-tab)
 * [2 Commands](#2-commands)
   * [2.1 Add](#21-add)
-    * [2.1.1 Adding a supplier: `add_supplier`](#211-adding-a-supplier-addsupplier)
-    * [2.1.2 Adding an order: `add_order`](#212-adding-an-order-addorder)
-    * [2.1.3 Adding a task: `add_task`](#213-adding-a-task-addtask)
-    * [2.1.4 Adding a menu item: `add_item`](#214-adding-a-menu-item-additem)
-  * [Edit](#edit)
-    * [Editing a supplier: `edit_supplier`](#editing-a-supplier-editsupplier)
-    * [Editing an order: `edit_order`](#editing-an-order-editorder)
-    * [Editing a task: `edit_task`](#editing-a-task-edittask)
-    * [Editing a menu item: `edit_item`](#editing-a-menu-item-edititem)
+    * [2.1.1 Adding a supplier: `add_supplier`](#211-adding-a-supplier-add_supplier)
+    * [2.1.2 Adding an order: `add_order`](#212-adding-an-order-add_order)
+    * [2.1.3 Adding a task: `add_task`](#213-adding-a-task-add_task)
+    * [2.1.4 Adding a menu item: `add_item`](#214-adding-a-menu-item-add_item)
+  * [2.2 Edit](#22-edit)
+    * [2.2.1 Editing a supplier: `edit_supplier`](#221-editing-a-supplier-edit_supplier)
+    * [2.2.2 Editing an order: `edit_order`](#222-editing-an-order-edit_order)
+    * [2.1.3 Editing a task: `edit_task`](#213-editing-a-task-edit_task)
+    * [2.1.4 Editing a menu item: `edit_item`](#214-editing-a-menu-item-edit_item)
   * [Find](#find)
     * [Finding a supplier: `find_supplier`](#finding-a-supplier-findsupplier)
     * [Finding an order: `find_order`](#finding-an-order-findorder)
@@ -355,7 +355,7 @@ Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * `add_supplier n/John Doe p/98765432 e/johnd@example.com a/John Street`<br>
   Adds a supplier with the following details:
-  * Name: `John Doe`
+  * Supplier Name: `John Doe`
   * Phone Number: `98765432`
   * Email: `johnd@example.com`
   * Address: `John Street`
@@ -365,7 +365,7 @@ Syntax: `add_supplier n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 * `add_s n/Betsy Cow t/diary e/betsycow@example.com a/Betsy Street p/12345678 t/meat`<br>
   Adds a supplier with the following details:
-  * Name: `Betsy Cow`
+  * Supplier Name: `Betsy Cow`
   * Phone Number: `12345678`
   * Email: `betsycow@example.com`
   * Address: `Betsy Street`
@@ -483,7 +483,7 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
 :clipboard: **Example 1: Standard command with integer values**
 
 * `add_item n/Chocolate cake pr/5 c/2`<br>
-  Adds am order item with the following details:
+  Adds an order item with the following details:
   * Item Name: `Chocolate cake`
   * Price: `5`
   * Cost: `2`
@@ -498,76 +498,138 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
 
 </div>
 
-## Edit
+## 2.2 Edit
 
-### Editing a supplier: `edit_supplier`
+Editing of an information to the specific list. Below are the specific edit commands for supplier, order, task and menu item.
+
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
+* Edits the order at the specified `INDEX`.
+* The index **must be a positive integer** 1, 2, 3, …​
+* You must key in at least one of the optional fields.
+* All existing values will be replaced with the new values given.
+
+</div>
+
+<div markdown="span" class="alert alert-danger">
+
+:exclamation: **Danger**
+
+Editing information is one-way (i.e. You cannot revert your command).
+
+We are working to have an undo feature in the future. Sorry for the inconvenience caused.
+
+</div>
+
+### 2.2.1 Editing a supplier: `edit_supplier`
 
 Edit an existing supplier’s information.
 
 Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the supplier at the specified `INDEX`.
-* The index refers to the number shown in the suppliers list displayed.
-* The index **must be a positive integer** 1, 2, 3, …​
-* You have to key in at least one of the optional fields.
-* Existing values will be replaced with the new values given.
-* When editing tags, the existing tags of the supplier will be removed and replaced with the given tag (editing of tags is not accumulative).
-* Typing `t/` without any input will remove all the existing tags.
-* To change status, use `N` or `n` for Not Delivered, `I` or `i` for In Progress, and `D` or `d` for Delivered.
+<div markdown="block" class="alert alert-tip">
 
-Examples:
+:information_source: **Information**
 
-* `edit_supplier 1 n/Johnny p/90138482 t/` edits the 1st supplier's name to `Johnny`, phone number to `90138482` and removed all of its tags
-* `edit_s 3 t/Supplies Flour e/mark@example.com` replaced the 3rd supplier's tags to `Supplies Flour` and edited its email to `mark@example.com`
+* When editing tags:
+  * All existing tags will be replaced with the given tag (editing of tags is not accumulative).
+  * Typing `t/` removes all the existing tags.
 
-### Editing an order: `edit_order`
+</div>
 
-Edits an order that is present in the order list.
+<div markdown="block" class="alert alert-example">
 
-Syntax: `edit_order INDEX [n/CUSTOMER_NAME] [l/CUSTOMER_LOCATION] [p/CUSTOMER_PHONE_NUMBER] [e/CUSTOMER_EMAIL] [d/DEADLINE] [q/QUANTITY] [on/ORDER_NAME] [s/STATUS]…​`
+:clipboard: **Example 1: Standard command removing tags**
 
-* Edits the order at the specific `INDEX`. The index refers to the number shown in the orders list displayed. The index must be a positive integer 1, 2, 3, …
-* You have to key in at least one of the optional fields.
-* Existing values will be replaced with the input values.
-* When editing remarks, the existing remarks of the order will be removed and replaced with the given remarks (editing of tags is not accumulative).
-* You can remove the remarks by typing r/ without specifying any remarks after it.
+* `edit_supplier 1 n/Johnny p/90138482 t/`<br>
+  Edits the **first** supplier information with the following details:
+  * Supplier Name: `Johnny`
+  * Phone Number: `90138482`
+  * Tags: Empty
 
-Examples:
+:clipboard: **Example 2: Shortcut command replacing tags**
 
-* `edit_order 1 p/91234567 d/2023-05-05` edits the phone number of the 1st order to 91234567 and changes the deadline to be 2023-05-05
-* `edit_o 3 q/20` edits the quantity of food for the 3rd order to 20 and clears all remarks
+* `edit_s 3 t/Supplies Flour e/mark@example.com`<br>
+  Edits the **third** supplier information with the following details:
+  * Email: `mark@example.com`
+  * Tags: `Supplies Flour`
 
-### Editing a task: `edit_task`
+</div>
 
-Edits a task present in the task list.
+### 2.2.2 Editing an order: `edit_order`
 
-Syntax: `edit_task INDEX [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
+Edit an existing order’s information.
 
-* Edits the task at the specific `INDEX`. The index refers to the number shown in the tasks list displayed. The index must be a positive integer 1, 2, 3, …
-* You have to key in at least one of the optional fields.
-* Existing values will be replaced with the input values.
-* When editing status, the existing status of the order will be removed and replaced with the given status.
+Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] [a/CUSTOMER_ADDRESS] [p/CUSTOMER_PHONE_NUMBER] [s/STATUS]…​`
 
-Examples:
+<div markdown="block" class="alert alert-example">
 
-* `edit_task 1 n/Get creamer` edits the 1st task description to be "Get creamer"
-* `edit_t 3 d/2023-12-31 s/N` edits the 3rd task deadline to 2023-12-31 and sets the status as not done
+:clipboard: **Example 1: Standard command**
 
-### Editing a menu item: `edit_item`
+* `edit_order 1 p/91234567 d/05/05/2024`<br>
+  Edits the **first** order information with the following details:
+  * Customer Phone Number: `91234567`
+  * Deadline: `05/05/2024`
 
-Edits an item present in the menu.
-Syntax: edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]
+:clipboard: **Example 2: Shortcut command updating status**
 
-* Edits the item at the specific INDEX. The index refers to the number shown in the menu list displayed. The index must be a positive integer 1, 2, 3, …
-* You have to key in at least one of the optional fields.
-* Existing values will be replaced with the input values.
-* Take note, when entering the price and cost, it cannot take negative numbers.
-  * For example, `pr/2.40` is allowed but not `pr/-2.40`.
+* `edit_o 3 q/20 s/I`<br>
+  Edits the **third** order information with the following details:
+  * Quantity: `3`
+  * Status: `In Progress`
 
-Examples:
+</div>
 
-* edit_item 1 n/Coffee pr/2.50 c/1.50 edits the name of the first menu item to "Coffee", sets the price to $2.50 and the cost to $1.50.
-* edit_i 3 d/Our signature burger p/8.99 c/2 edits the description of the third menu item to "Our signature burger", sets the price to $8.99 and the cost to $2.
+### 2.1.3 Editing a task: `edit_task`
+
+Edit an existing task’s information.
+
+Syntax: `edit_task INDEX [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command**
+
+* `edit_task 1 n/Get creamer`<br>
+  Edits the **first** task information with the following details:
+  * Task Name: `Get creamer`
+
+:clipboard: **Example 2: Shortcut command updating status**
+
+* `edit_t 3 d/31/12/2024 s/N`<br>
+  Edits the **third** task information with the following details:
+  * Deadline: `31/12/2024`
+  * Status: `Not Done`
+
+</div>
+
+### 2.1.4 Editing a menu item: `edit_item`
+
+Edit an existing menu item’s information.
+
+Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command with integer values**
+
+* `edit_item 1 n/Coffee pr/2 c/1`<br>
+  Edits the **first** menu item information with the following details:
+  * Item Name: `Coffee`
+  * Price: `2`
+  * Cost: `1`
+
+:clipboard: **Example 2: Shortcut command with decimal values**
+
+* `edit_i 3 d/Signature burger p/8.5 c/2.25`<br>
+  Edits the **third** menu item information with the following details:
+  * Item Name: `Signature burger`
+  * Price: `8.5`
+  * Cost: `2.25`
+
+</div>
 
 ## Find
 
