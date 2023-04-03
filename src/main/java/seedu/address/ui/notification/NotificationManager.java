@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.List;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import org.controlsfx.control.Notifications;
 
 import javafx.application.Platform;
@@ -55,8 +53,7 @@ public class NotificationManager {
         LocalDateTime now = LocalDateTime.now();
         int shownReminderCount = 0;
         int newReminderCount = 0;
-        for (int i = 0; i < reminderList.size(); i++) {
-            Reminder r = reminderList.get(i);
+        for (Reminder r : reminderList) {
             if (now.isAfter(r.getReminderDateTime())) {
                 if (r.getHasShown()) {
                     shownReminderCount++;
@@ -173,12 +170,9 @@ public class NotificationManager {
                 .hideAfter(duration)
                 .position(Pos.TOP_RIGHT)
                 .hideCloseButton()
-                .onAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        isDismissed = true;
-                        reminderWindow.run();
-                    }
+                .onAction(event -> {
+                    isDismissed = true;
+                    reminderWindow.run();
                 });
         Calendar now = Calendar.getInstance();
         int t = 60 - now.get(Calendar.SECOND);

@@ -19,8 +19,8 @@ import seedu.address.model.reminder.Reminder;
 public class ReminderListWindow extends UiPart<Stage> {
     private static final String FXML = "ReminderListWindow.fxml";
     private final Logger logger = LogsCenter.getLogger(getClass());
-    private Logic logic;
-    private Stage stage;
+    private final Logic logic;
+    private final Stage stage;
 
     @FXML
     private Button sortByOldestButton;
@@ -71,13 +71,6 @@ public class ReminderListWindow extends UiPart<Stage> {
      */
     public boolean isShowing() {
         return getRoot().isShowing();
-    }
-
-    /**
-     * Hides the reminder list window.
-     */
-    public void hide() {
-        getRoot().hide();
     }
 
     /**

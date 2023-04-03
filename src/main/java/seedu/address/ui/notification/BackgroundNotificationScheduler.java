@@ -7,11 +7,11 @@ import java.util.Timer;
  * Runs Java Timer to notify the user of upcoming jobs or reminders
  */
 public class BackgroundNotificationScheduler extends Timer {
-    private NotificationManager notificationManager;
+    private final NotificationManager notificationManager;
 
     /**
      * Creates a {@code BackgroundNotificationScheduler} with the given {@code NotificationManager}.
-     * @param notificationManager
+     * @param notificationManager Notification Manager responsible for this app
      */
     public BackgroundNotificationScheduler(NotificationManager notificationManager) {
         this.notificationManager = notificationManager;
