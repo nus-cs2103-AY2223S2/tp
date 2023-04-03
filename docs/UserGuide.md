@@ -144,7 +144,7 @@ The susceptibility level of an elderly to injury or sickness.
 
 #### Medical Qualification
 * Medical qualification must be in the format `SKILL_NAME, LEVEL`.
-  * The `LEVEL` must be one of the following value: `BASIC`, `INTERMEDIATE` or `HIGH`.
+  * The `LEVEL` must be one of the following value: `BASIC`, `INTERMEDIATE` or `ADVANCED`.
   * Example: `CPR, BASIC`, `AED, INTERMEDIATE`.
   * The `SKILL_NAME` should not include any spaces.
 * Specified for volunteers only.
@@ -205,7 +205,7 @@ These terms have specific meanings in the context of FriendlyLink. For a more de
 | FriendlyLink          | The name of our application                                                                                                                                 |
 | Field                 | A field is the information following the slash in a command.                                                                                                |
 | Index                 | An index represents the position of the referred item in a displayed list of entities. It must be a positive integer.                                       |
-| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `HIGH`) |
+| Medical Qualification | The level of care taking or first aid of a volunteer. It consists of the type of skill (E.g. CP, AED) and a skill level (`BASIC`, `INTERMEDIATE` or `ADVANCED`) |
 | NRIC                  | A unique identifier given to all Singaporeans. It is case-insensitive.                                                                                      |
 | Pair                  | A pair consists of an elderly and a volunteer assigned to accompany and take care of the elderly                                                            | 
 | Phone number          | The phone number of a person. Must be numeric and has more than 3 digits                                                                                    |
@@ -307,7 +307,7 @@ Format: `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [re/REGION] [p/PHONE] [e/EMA
 * Dates specified should follow the format `YYYY-MM-DD`. 
 * For available dates, the start date should be before the end date.
 * Phone number specified can only be numeric characters, and must be at least 3 digits long.
-* The `MEDICAL_QUALIFICATION` takes the form `SKILL_NAME, LEVEL`. The `LEVEL` can only take 3 values: `BASIC`, `INTERMEDIATE` or `HIGH`. Example: `CPR, BASIC`, `AED, INTERMEDIATE`.
+* The `MEDICAL_QUALIFICATION` takes the form `SKILL_NAME, LEVEL`. The `LEVEL` can only take 3 values: `BASIC`, `INTERMEDIATE` or `ADVANCED`. Example: `CPR, BASIC`, `AED, INTERMEDIATE`.
 * `AVAILABLE_DATE_START, AVAILABLE_DATE_END` represents the start and end of the dates that the volunteer is available.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -420,6 +420,8 @@ Examples:
 
 * `edit_volunteer 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st volunteer to be `91234567` and `johndoe@example.com` respectively.
 * `edit_volunteer 2 n/Betsy Crower mt/` Edits the name of the 2nd volunteer to be `Betsy Crower` and clears all existing medical qualifications.
+* `edit_volunteer 3 mt/CPR, BASIC mt/CARETAKING, ADVANCED` Replaces all existing medical qualifications of the 3rd volunteer with `CPR, BASIC` and `CARETAKING, ADVANCED`
+
 
 #### Editing a person by NRIC: `edit`
 
@@ -440,6 +442,7 @@ You can remove all the person's tags by typing `t/` without specifying any tags 
 Examples:
 
 * `edit S2233556T p/91642345 re/NORTH` Edits the phone number of the person identified by `S2233556T` to be `91642345` and region to be `NORTH`.
+* `edit S2568212B t/Overseas t/Undergrad` Replaces all existing tags of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad` 
 * `edit S8833657U re/CENTRAL r/HIGH` Edits the region of the person identified by `S8833657U` to be `CENTRAL` and risk level to be `HIGH`. However, if `S8833657U` identifies a volunteer, the risk level edit will be ignored.
 
 ------------------------------------------------
@@ -646,7 +649,7 @@ For more shortcuts, please refer [here](https://wiki.openjdk.org/display/OpenJFX
 | Action               | Format, Examples                                                                                                                                                                                                                                                                                                            |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Elderly**      | `add_elderly n/NAME ic/NRIC bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g.,`add_elderly n/John ic/S1234567C bd/1950-02-03 p/98765432 e/johnd@example.com a/John street re/NORTH r/HIGH t/lonely dr/2023-06-03,2023-06-17` |
-| **Add Volunteer**    | `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [t/TAG]… [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g.,`add_volunteer n/Doe bd/1998-02-01 ic/S8457677H p/98765432 e/johnd@example.com a/block 123 re/WEST t/graduate mt/CPR BASIC`    |
+| **Add Volunteer**    | `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [t/TAG]… [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g.,`add_volunteer n/Doe bd/1998-02-01 ic/S8457677H p/98765432 e/johnd@example.com a/block 123 re/WEST t/graduate mt/CPR, BASIC`   |
 | **Pair Up**          | `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> e.g., `pair eic/S2235243I vic/t0123423a`                                                                                                                                                                                                                                |
 | **Auto Pair**        | `auto_pair`                                                                                                                                                                                                                                                                                                                 |
 | **Edit Elderly**     | `edit_elderly INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit_elderly 1 p/91234567 e/johndoe@example.com`                                                                                |
