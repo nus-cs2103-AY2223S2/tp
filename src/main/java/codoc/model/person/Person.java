@@ -61,7 +61,7 @@ public class Person {
     }
 
     private static Person createDummy() {
-        ProfilePicture profilePicture = new ProfilePicture("src/main/resources/images/avataricons/001-bear.png");
+        ProfilePicture profilePicture = new ProfilePicture("/images/avataricons/001-bear.png");
         Name name = new Name("DEFAULT NAME");
         Course course = new Course("1");
         Year year = new Year("1");
