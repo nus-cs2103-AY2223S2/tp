@@ -289,7 +289,7 @@ Our Application also supports this feature in gui format, clicking on the url in
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the MyLib.
+Clears all bookmark entries from the MyLib. You will still keep your list of genres and tags after using the `clear` command.
 
 Format: `clear`
 
@@ -350,17 +350,17 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/TITLE g/GENRE [a/AUTHOR] [p/PROGRESS] [r/RATING] [u/URL] [t/TAG]…​` <br> e.g., `add n/The Odyssey 2 a/Homer p/1 ~ 32 g/Others t/Literature`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/URL] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
-**Find** | `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`<br> e.g., `find n/ Chainsaw Man`
-**GoTo** | `goto INDEX`<br> e.g., `goto 3`
-**List** | `list`
-**Sort** | `sort [ORDER]` <br> e.g., `sort asc`, `sort desc`
+**Add a bookmark** | `add n/TITLE g/GENRE [a/AUTHOR] [p/PROGRESS] [r/RATING] [u/URL] [t/TAG]…​` <br> e.g., `add n/The Odyssey 2 a/Homer p/1 ~ 32 g/Others t/Literature`
+**Clear bookmarks** | `clear`
+**Delete a bookmark** | `delete INDEX`<br> e.g., `delete 3`
+**Edit a bookmark** | `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/URL] [t/TAG]…​`<br> e.g.,`edit 1 n/Hobbit a/J. R. R. Tolkien`
+**Find bookmarks** | `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`<br> e.g., `find n/ Chainsaw Man`
+**GoTo url of bookmark** | `goto INDEX`<br> e.g., `goto 3`
+**List all bookmarks** | `list`
+**Sort bookmark by ratings** | `sort [ORDER]` <br> e.g., `sort asc`, `sort desc`
 **Help** | `help`
-**List Tags** | `tags`
-**Adding a tag** | `addtag [t/TAG]…` <br> e.g., `addtag t/Novel`
-**Deleting a tag** | `dtag TAGNAME` <br> e.g., `dtag MaleProtagonist`
-**List Genres** | `genre`
+**List all tags** | `tags`
+**Add a tag** | `addtag [t/TAG]…` <br> e.g., `addtag t/Novel`
+**Delete a tag** | `dtag TAGNAME` <br> e.g., `dtag MaleProtagonist`
+**List all genres** | `genre`
 
