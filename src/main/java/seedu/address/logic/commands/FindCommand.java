@@ -55,7 +55,8 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredInternshipList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_APPLICATION_LISTED_OVERVIEW, model.getSortedFilteredInternshipList().size()));
+                String.format(Messages.MESSAGE_APPLICATION_LISTED_OVERVIEW,
+                        model.getSortedFilteredInternshipList().size()));
     }
 
     @Override
