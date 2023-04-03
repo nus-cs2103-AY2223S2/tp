@@ -56,7 +56,7 @@ public class Archive {
      */
     public void importFromArchive(Path archivedPath, Model model, boolean isImportingWholeArchive,
                                   boolean isOverwriting,
-                                  Set<ModuleCode> moduleCodetoImport) throws CommandException {
+                                  Set<ModuleCode> moduleCodeToImport) throws CommandException {
 
         if (!Files.exists(archivedPath) || !Files.isRegularFile(archivedPath)) {
             throw new CommandException(String.format(Messages.MESSAGE_FILE_DOES_NOT_EXIST));
@@ -69,19 +69,18 @@ public class Archive {
             throw new CommandException(LogicManager.FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         } catch (DataConversionException dce) {
             throw new CommandException(LogicManager.FILE_OPS_ERROR_MESSAGE + dce, dce);
-
         }
 
         if (isImportingWholeArchive) {
             for (ReadOnlyModule module : archiveTracker.getModuleList()) {
-                moduleCodetoImport.add(module.getCode());
+                moduleCodeToImport.add(module.getCode());
             }
         }
 
-        checkIfModuleExistInArchive(moduleCodetoImport, archiveTracker);
-        checkIfModuleExistInCurrentTracker(moduleCodetoImport, model.getTracker(), isOverwriting);
+        checkIfModuleExistInArchive(moduleCodeToImport, archiveTracker);
+        checkIfModuleExistInCurrentTracker(moduleCodeToImport, model.getTracker(), isOverwriting);
 
-        for (ModuleCode moduleCode : moduleCodetoImport) {
+        for (ModuleCode moduleCode : moduleCodeToImport) {
             ReadOnlyModule module = archiveTracker.getModule(moduleCode);
             Module moduleToAdd = new Module(module.getCode(),
                     module.getName(), module.getTags(), module.getLectureList());
@@ -102,7 +101,7 @@ public class Archive {
                 currentTracker.getModuleList().stream().map(ReadOnlyModule::getCode).collect(Collectors.toList());
 
         List<String> moduleExistInCurrentTracker =
-                moduleCodeSet.stream().filter(moduleCode -> currentModuleList.contains(moduleCode))
+                moduleCodeSet.stream().filter(currentModuleList::contains)
                         .map(moduleCode -> moduleCode.code)
                         .collect(Collectors.toList());
 
@@ -119,15 +118,15 @@ public class Archive {
         List<ModuleCode> archivedModuleList =
                 tracker.getModuleList().stream().map(ReadOnlyModule::getCode).collect(Collectors.toList());
 
-        List<String> moduleDoesNotExistInTracker =
+        List<String> moduleDoesNotExistInArchive =
                 moduleCodeSet.stream().filter(moduleCode -> !archivedModuleList.contains(moduleCode))
                         .map(moduleCode -> moduleCode.code)
                         .collect(Collectors.toList());
 
-        if (!moduleDoesNotExistInTracker.isEmpty()) {
+        if (!moduleDoesNotExistInArchive.isEmpty()) {
             throw new CommandException(
                     String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST_IN_ARCHIVE, String.join(", ",
-                            moduleDoesNotExistInTracker)));
+                            moduleDoesNotExistInArchive)));
         }
     }
 }

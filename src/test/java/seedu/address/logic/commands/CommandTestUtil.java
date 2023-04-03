@@ -116,6 +116,7 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+    public static final String VALID_ARCHIVE_FILE_NAME = "TestFile.json";
 
     /**
      * Executes the given {@code command}, confirms that <br>
