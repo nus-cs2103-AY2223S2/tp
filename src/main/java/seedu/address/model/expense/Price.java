@@ -31,11 +31,10 @@ public class Price {
      */
     public Price(double price) {
         requireNonNull(price);
-        String priceString = String.format("%d", price);
-        if (!isValidPrice(priceString)) {
+        if (!(price >=-0.0)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
-        value = priceString;
+        value = String.valueOf(price);
     }
 
     /**

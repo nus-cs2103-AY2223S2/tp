@@ -89,7 +89,7 @@ public class EditExpenseCommand extends Command {
 
         if (toBeAllocated != null) {
             category = toBeAllocated;
-        } else if (this.newExpenseCategoryInString == null) {
+        } else if (this.newExpenseCategoryInString != null) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_CATEGORY);
         }
 
@@ -98,7 +98,7 @@ public class EditExpenseCommand extends Command {
         }
 
         if (newExpenseAmount != null) {
-            if (!Price.isValidPrice(String.format("%d", newExpenseAmount))) {
+            if (!Price.isValidPrice(String.valueOf(newExpenseAmount))) {
                 throw new CommandException(Price.MESSAGE_CONSTRAINTS);
             }
             amount = newExpenseAmount;

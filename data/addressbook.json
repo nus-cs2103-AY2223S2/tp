@@ -25,8 +25,8 @@
     "summary" : ""
   } ],
   "expenses" : [ {
-    "name" : "milk",
-    "amount" : "4.5",
+    "name" : "carro",
+    "amount" : "3.0",
     "date" : "2023-10-02",
     "category" : {
       "categoryName" : "groceries",
