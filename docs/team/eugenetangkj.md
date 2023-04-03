@@ -34,6 +34,8 @@ My code contributions can be found on
   * If the user did not include a value for the comment, the comment will have a default value of `NA`.
   * Added test cases accordingly, such as in the class `CommentTest`.
 
+<div style="page-break-after: always;"></div>
+
 - **Implemented the `view` command**
   [\#78](https://github.com/AY2223S2-CS2103T-T14-3/tp/pull/78)
   * Users can now view the detailed information of a selected internship entry.
@@ -88,6 +90,8 @@ My code contributions can be found on
   * Defined product scope by identifying InternBuddy's target audience and value proposition.
   * Drafted user stories on how Computing undergraduates would use InternBuddy.
   * Added test cases for instructions on manual testing, such as for the `add` and `view` commands.
+
+<div style="page-break-after: always;"></div>
 
 ### Others
 - Provided non-trivial PR reviews for
