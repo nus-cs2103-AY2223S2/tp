@@ -13,10 +13,9 @@ public class VimificationParser {
 
     private static final Logger LOGGER = LogsCenter.getLogger(VimificationParser.class);
 
-    private static final ApplicativeParser<String> PREPROCESSOR = ApplicativeParser
+    private static final ApplicativeParser<Void> PREPROCESSOR = ApplicativeParser
             .string(":")
-            .optional()
-            .takeNext(ApplicativeParser.untilEof().map(String::strip));
+            .optional();
 
     private static final CommandParser<LogicCommand> LOGIC_COMMAND_PARSER =
             AddCommandParser.getInstance()
@@ -48,7 +47,13 @@ public class VimificationParser {
     private MacroMap macroMap;
 
     private final ApplicativeParser<String> macroPreprocessor =
-            PREPROCESSOR.map(input -> macroMap.get(input).orElse(input));
+            PREPROCESSOR
+                    .takeNext(CommandParserUtil.STRING_PARSER)
+                    .map(input -> {
+                        String result = macroMap.get(input).orElse(input);
+                        return result;
+                    })
+                    .combine(ApplicativeParser.untilEof(), String::concat);
 
     private VimificationParser(MacroMap macroMap) {
         this.macroMap = macroMap;
@@ -70,6 +75,7 @@ public class VimificationParser {
     public Command parse(String input) {
         LOGGER.info(input);
         String preprocessedInput = macroPreprocessor.parse(input);
+        System.out.println("Input expanded to: " + preprocessedInput);
         return COMMAND_PARSER.parse(preprocessedInput);
     }
 }

@@ -77,6 +77,9 @@ public class TaskListPanel extends UiPart<VBox> {
     @FXML
     private void handleKeyPressed(KeyEvent event) {
         switch (event.getText()) {
+        case "h":
+            mainScreen.clearRightComponent();
+            break;
         case "l":
             Task selectedTask = taskListView.getSelectionModel().getSelectedItem();
             TaskDetailPanel detailTask = new TaskDetailPanel(selectedTask);

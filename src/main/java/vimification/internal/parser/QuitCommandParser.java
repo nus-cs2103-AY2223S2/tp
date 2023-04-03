@@ -5,8 +5,10 @@ import vimification.internal.command.ui.QuitCommand;
 public class QuitCommandParser implements CommandParser<QuitCommand> {
 
     private static final ApplicativeParser<ApplicativeParser<QuitCommand>> INTERNAL_PARSER =
-            ApplicativeParser
-                    .string("quit")
+            ApplicativeParser.choice(
+                    ApplicativeParser.string("quit"),
+                    ApplicativeParser.string("q"),
+                    ApplicativeParser.string("q!"))
                     .takeNext(ApplicativeParser.skipWhitespaces())
                     .takeNext(ApplicativeParser.eof())
                     .constMap(ApplicativeParser.of(new QuitCommand()));

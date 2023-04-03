@@ -32,4 +32,8 @@ public class MacroMap {
     public Set<Map.Entry<String, String>> entrySet() {
         return definedMacros.entrySet();
     }
+
+    public String toString() {
+        return "MacroMap [" + definedMacros + "]";
+    }
 }
