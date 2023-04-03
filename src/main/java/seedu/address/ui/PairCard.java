@@ -89,10 +89,11 @@ public class PairCard extends UiPart<Region> {
             Bounds bounds = cardPane.localToScreen(cardPane.getBoundsInLocal());
             double popupHeight = popover.getHeight();
             double x = event.getSceneX();
+            double y = event.getScreenY();
 
             double midScreenHeight = screenBounds.getMaxY() / 2;
 
-            if (popupHeight >= midScreenHeight) {
+            if (popupHeight >= midScreenHeight || popupHeight + screenBounds.getMinY() >= y) {
                 x = bounds.getMaxX();
             }
             popover.show(cardPane, x + 10, bounds.getMinY() - popupHeight);
