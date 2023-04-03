@@ -46,6 +46,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_RETURN_STATUS_EDIT = "Cannot edit a return delivery!";
+    public static final String MESSAGE_DONE_STATUS_EDIT = "Cannot edit a done delivery!";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -72,6 +74,13 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+
+        if (personToEdit.getDeliveryStatus() == DeliveryStatus.RETURN) {
+            throw new CommandException(MESSAGE_RETURN_STATUS_EDIT);
+        } else if (personToEdit.getDeliveryStatus() == DeliveryStatus.DONE) {
+            throw new CommandException(MESSAGE_DONE_STATUS_EDIT);
+        }
+
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {

@@ -11,6 +11,7 @@ import java.util.Set;
 import bookopedia.commons.core.index.Index;
 import bookopedia.logic.commands.exceptions.CommandException;
 import bookopedia.logic.parser.CliSyntax;
+import bookopedia.model.DeliveryStatus;
 import bookopedia.model.Model;
 import bookopedia.model.parcel.Parcel;
 import bookopedia.model.person.Person;
@@ -24,7 +25,8 @@ public class AddParcelCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds parcel to an existing person. "
             + "Parameters: INDEX (must be a positive integer) "
             + CliSyntax.PREFIX_PARCEL + "PARCEL (must be alphanumeric) ";
-
+    public static final String MESSAGE_RETURN_STATUS_ADD_PC = "Cannot add parcel to a return delivery!";
+    public static final String MESSAGE_DONE_STATUS_ADD_PC = "Cannot add parcel to a done delivery!";
     public static final String MESSAGE_SUCCESS = "Added %1$s to %2$s's delivery";
 
     private final Index targetIndex;
@@ -51,6 +53,12 @@ public class AddParcelCommand extends Command {
         }
 
         Person personToAddParcel = lastShownList.get(targetIndex.getZeroBased());
+
+        if (personToAddParcel.getDeliveryStatus() == DeliveryStatus.RETURN) {
+            throw new CommandException(MESSAGE_RETURN_STATUS_ADD_PC);
+        } else if (personToAddParcel.getDeliveryStatus() == DeliveryStatus.DONE) {
+            throw new CommandException(MESSAGE_DONE_STATUS_ADD_PC);
+        }
 
         final Set<Parcel> updatedParcels = new HashSet<>();
         updatedParcels.addAll(personToAddParcel.getParcels());
