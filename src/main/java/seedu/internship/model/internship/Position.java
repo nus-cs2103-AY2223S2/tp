@@ -44,11 +44,19 @@ public class Position {
         return positionName;
     }
 
+    /**
+     * Returns true if both positions have the same name, regardless of casing - Non-Case Sensitive.
+     * This defines a weaker notion of equality between two positions.
+     */
+    public boolean isSamePosition(Position otherPosition) {
+        return positionName.equalsIgnoreCase(otherPosition.positionName);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
-                && positionName.equalsIgnoreCase(((Position) other).positionName)); // state check
+                && positionName.equals(((Position) other).positionName)); // state check
     }
 
     @Override

@@ -44,11 +44,19 @@ public class Company {
         return companyName;
     }
 
+    /**
+     * Returns true if both companies have the same name, regardless of casing - Non-Case Sensitive.
+     * This defines a weaker notion of equality between two companies.
+     */
+    public boolean isSameCompany(Company otherCompany) {
+        return companyName.equalsIgnoreCase(otherCompany.companyName);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Company // instanceof handles nulls
-                && companyName.equalsIgnoreCase(((Company) other).companyName)); // state check
+                && companyName.equals(((Company) other).companyName)); // state check
     }
 
     @Override
