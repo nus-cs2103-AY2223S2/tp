@@ -49,4 +49,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/mrtwit99.md)]
 
 * Role: Developer
-* Responsibilities: Testing
+* Responsibilities: Documentation

@@ -7,7 +7,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Comment {
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "";
+    public static final String MESSAGE_CONSTRAINTS = "Comment is invalid. Please try again.";
     /** Represents the comment of a person */
     public final String value;
 
@@ -37,19 +38,6 @@ public class Comment {
         return other == this // short circuit if same object
                 || (other instanceof Comment // instanceof handles nulls
                 && value.equals(((Comment) other).value)); // state check
-    }
-
-    /**
-     * Returns true if a given string is a valid comment.
-     * @param test
-     * @return true if a given string is a valid comment.
-     */
-    public static boolean isValidComment(String test) {
-        if (isDefaultComment(test)) {
-            return true;
-        }
-
-        return test.matches(VALIDATION_REGEX);
     }
 
     /**

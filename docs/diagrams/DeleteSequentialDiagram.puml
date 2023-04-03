@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":StudentCommandParser" as StudentCommandParser LOGIC_COLOR
+participant ":StudentDeleteCommand" as StudentDeleteCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("student 1A delete in/25")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("student 1A delete in/25")
+activate AddressBookParser
+
+AddressBookParser -> StudentCommandParser : parse("student 1A delete in/25")
+activate StudentCommandParser
+
+create StudentDeleteCommand
+StudentCommandParser -> StudentDeleteCommand: new StudentDeleteCommand("25", "1A")
+activate StudentDeleteCommand
+StudentDeleteCommand --> StudentCommandParser: StudentDeleteCommand
+deactivate StudentDeleteCommand
+destroy StudentDeleteCommand
+
+StudentCommandParser --> AddressBookParser: StudentCommand
+deactivate StudentCommandParser
+
+AddressBookParser --> LogicManager: Command
+deactivate AddressBookParser
+
+LogicManager -> StudentDeleteCommand: execute(model)
+activate StudentDeleteCommand
+
+StudentDeleteCommand -> Model: deleteStudent(student)
+activate Model
+
+Model --> StudentDeleteCommand :
+deactivate Model
+
+StudentDeleteCommand -> Model: setParent(parents, student, model)
+activate Model
+
+Model --> StudentDeleteCommand :
+deactivate Model
+
+StudentDeleteCommand --> LogicManager:
+deactivate StudentDeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

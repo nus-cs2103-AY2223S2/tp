@@ -35,7 +35,7 @@ public class ParentAddCommand extends ParentCommand {
             + PREFIX_NAME + "Tan Ah Niu "
             + PREFIX_PHONEPARENT + "91234567 "
             + PREFIX_PARENTAGE + "30 "
-            + PREFIX_IMAGEPARENT + "C:// "
+            + PREFIX_IMAGEPARENT + "XX.png (where XX is your image name) "
             + PREFIX_EMAIL + "tanahcow@gmail.com "
             + PREFIX_ADDRESS + "Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)";
 

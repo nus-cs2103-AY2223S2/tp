@@ -64,9 +64,6 @@ public class Attendance {
      * @return boolean value to indicate if the attendance is present on the given date.
      */
     public boolean isPresent(LocalDate currDate) {
-        if (value.equals("T")) {
-            return true;
-        }
         if (value.equals("F")) {
             return false;
         }

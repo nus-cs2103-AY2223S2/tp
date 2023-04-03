@@ -21,7 +21,7 @@ import seedu.address.model.person.parent.ReadOnlyParents;
 import seedu.address.model.person.student.Student;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the PowerConnect data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -35,7 +35,7 @@ public class ModelManager implements Model {
     private final FilteredList<Parent> filteredParents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given PowerConnect and userPrefs.
      */
     public ModelManager(ReadOnlyPcClass readOnlyPcClass, ReadOnlyParents readOnlyParents, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(readOnlyParents, readOnlyPcClass, userPrefs);
@@ -152,6 +152,7 @@ public class ModelManager implements Model {
     public void setParents(ReadOnlyParents readOnlyParents) {
         this.parents.resetData(readOnlyParents);
     }
+
 
     /**
      * Returns the PCClass
@@ -285,7 +286,6 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
-        System.out.println(filteredStudents);
         filteredStudents.setPredicate(predicate);
     }
     @Override

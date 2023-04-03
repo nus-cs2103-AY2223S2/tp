@@ -53,7 +53,7 @@ public class ParentEditCommand extends ParentCommand {
             + PREFIX_NEWNAME + "Tan Ah Seng "
             + PREFIX_NEWPHONEPARENT + "91274444 "
             + PREFIX_PARENTAGE + "31 "
-            + PREFIX_IMAGEPARENT + "C:// "
+            + PREFIX_IMAGEPARENT + "XX.png (where XX is your image name) "
             + PREFIX_EMAIL + "tanahcow@gmail.com "
             + PREFIX_ADDRESS + "Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245)";
 
@@ -112,7 +112,7 @@ public class ParentEditCommand extends ParentCommand {
                 this.newTagList = parent.getTags();
                 Parent newParent = new Parent(this.newName, this.newAge, this.newImage, this.newEmail,
                         this.newPhoneNumber, this.newAddress, this.newTagList);
-                model.setParent(parent, editParent(parent, newParent));
+                model.setParent(parent, editParent(parent, newParent, model));
                 return new CommandResult(String.format(MESSAGE_EDIT_PARENT_SUCCESS, parent));
             }
         }
@@ -126,11 +126,13 @@ public class ParentEditCommand extends ParentCommand {
      * @param newParent Edited Parent object.
      * @return Edited Parent object with list of students in original Parent object and updates all the students.
      */
-    private Parent editParent(Parent parent, Parent newParent) {
+    private Parent editParent(Parent parent, Parent newParent, Model model) {
         if (parent.hasStudents()) {
             List<Student> students = parent.getStudents();
             for (Student student : students) {
+                Student originalStudent = student;
                 student.setParent(newParent);
+                model.setStudent(originalStudent, student);
                 newParent.addStudent(student);
             }
         }

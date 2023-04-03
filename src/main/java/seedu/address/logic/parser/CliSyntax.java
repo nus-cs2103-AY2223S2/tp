@@ -27,6 +27,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_NEWCLASS = new Prefix("nc/");
     public static final Prefix PREFIX_NEWINDEXNUMBER = new Prefix("nin/");
     public static final Prefix PREFIX_NEWNAME = new Prefix("nn/");
+    public static final Prefix PREFIX_NEWPARENTNAME = new Prefix("npn/");
     public static final Prefix PREFIX_NEWPHONEPARENT = new Prefix("npnP/");
     public static final Prefix PREFIX_PARENTNAME = new Prefix("pn/");
     public static final Prefix PREFIX_PHONEPARENT = new Prefix("pnP/");

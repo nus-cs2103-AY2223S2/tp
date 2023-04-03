@@ -16,8 +16,6 @@ public class ClassContainsKeywordsPredicate implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
-        System.out.println(student.getName().fullName);
-        System.out.println(sc.equals(student.getStudentClass()));
         return sc.equals(student.getStudentClass());
     }
 

@@ -25,6 +25,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWCLASS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWINDEXNUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWPARENTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWPHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONEPARENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONESTUDENT;
@@ -125,7 +127,7 @@ public class StudentCommandParser implements Parser<StudentCommand> {
 
         ArgumentMultimap argMultimapEdit =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_EDIT, PREFIX_NAME, PREFIX_INDEXNUMBER, PREFIX_SEX,
-                        PREFIX_PARENTNAME, PREFIX_PHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
+                        PREFIX_NEWPARENTNAME, PREFIX_NEWPHONEPARENT, PREFIX_RELATIONSHIP, PREFIX_STUDENTAGE,
                         PREFIX_IMAGESTUDENT, PREFIX_EMAILSTUDENT, PREFIX_PHONESTUDENT, PREFIX_CCA, PREFIX_TEST,
                         PREFIX_ATTENDANCE, PREFIX_HOMEWORK, PREFIX_SCORE, PREFIX_DEADLINE, PREFIX_WEIGHTAGE,
                         PREFIX_ADDRESS, PREFIX_NEWCLASS, PREFIX_NEWINDEXNUMBER, PREFIX_NEWNAME);
@@ -359,8 +361,8 @@ public class StudentCommandParser implements Parser<StudentCommand> {
         Class newStudentClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_NEWCLASS).get());
         //Attendance newAttendance = ParserUtil.parseAttendance(argMultimap.getValue(PREFIX_ATTENDANCE).get());
         Comment newComment = ParserUtil.parseComment(argMultimap.getValue(PREFIX_COMMENT).get());
-        Name newParentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_PARENTNAME).get());
-        Phone newParentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONEPARENT).get());
+        Name newParentName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NEWPARENTNAME).get());
+        Phone newParentPhoneNumber = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_NEWPHONEPARENT).get());
         Relationship newRelationship = ParserUtil.parseRelationship(argMultimap.getValue(PREFIX_RELATIONSHIP).get());
 
         return new StudentEditCommand(newName, indexNumber, newIndexNumber, studentClass, newStudentClass, newSex,

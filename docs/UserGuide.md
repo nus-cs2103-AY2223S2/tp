@@ -1,62 +1,82 @@
-# PowerConnect User Guide
+## PowerConnect User Guide
 
 Greetings! Welcome to PowerConnect! <br>
 
-Looking for a simple and all in one solution for your teaching needs? Look no futher. <br>
+Are you looking for a simple and all in one solution for your teaching needs? Look no further. <br>
 
-PowerConnect is a fully customized platform for tuition teachers and school teachers with the primary focus on 
-tuition teachers now as we are still working to scale our features. School teachers, do still give us a try. While our 
-features are limited at this stage, we are working hard to scale them to better compete with other Learning Managment
-System (LMS) tools currently in the market. <br>
+
+PowerConnect is a fully customized offline application for tuition and school teachers to manage students' and parents' administrative details. We are still working to scale our features so we mainly target tuition teachers currently. However, school teachers, do still give us a try. While our
+features are limited at this stage, we are working hard to scale them and be a useful tool in conjunction with [Learning Managment System (LMS)](#glossary) tools currently in the market. <br>
 
 We aim to make PowerConnect as simple as possible for you to use with a focus on command line interface where you don't
 have to navigate complex user menus to access the features you need, especially if you can type fast. <br>
 
 Without further ado, let's get started!
 
+<div style="page-break-after: always;"></div>
 
-##### Table of Contents
-1. [Quick Start](#quickstart)
-2. [Features](#features)
-    1. [Student Features](#student)
-        1. [Add student: `add`](#addstudent)
-        2. [Add students' grade: `grade`](#gradestudent)
-        3. [Deletes students' grade: `gradedelete`](#gradedelete)
-        4. [Add comments to students: `comment`](#commentstudent)
-        5. [Listing all students in a particular class: `list`](#liststudent)
-        6. [Editing a student's particulars: `edit`](#editstudent)
-        7. [Searching students: `find`](#findstudent)
-        8. [Deleting a student: `delete`](#deletestudent)
-    2. [Parent Features](#parent)
-       1. [Add Parent/Next-of-Kin: `add`](#addparent)
-       2. [Listing all Parents/Next-of-Kins: `list`](#listparent)
-       3. [Editing a Parent/Next-of-Kin particulars: `edit`](#editparent)
-       4. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
-3. [Viewing help: `help`](#help)
-4. [Exiting program: `exit`](#exit)
-5. [Additional Features](#addfeatures)
-6. [FAQ](#faq)
-7. [Command Summary](#summary)
+----------------------------------------------------------------------------------------------------------------
+
+<a name="table-of-contents"/>
+
+## Table of Contents
+1. [Quick Start](#quick-start)
+2. [Glossary](#glossary)
+3. [Features](#features)
+    1. [Legend](#legend)
+    2. [Student Features: `student`](#student)
+         1. [Add student: `add`](#addstudent)
+         2. [Add attendance to students: `attendance`](#attendance)
+         3. [Add students' grade: `grade`](#gradestudent)
+         4. [Deletes students' grade: `gradedelete`](#gradedelete)
+         5. [Add comments to students: `comment`](#commentstudent)
+         6. [Listing all students in a particular class: `list`](#liststudent)
+         7. [Editing a student's particulars: `edit`](#editstudent)
+         8. [Searching students: `find`](#findstudent)
+         9. [Deleting a student: `delete`](#deletestudent)
+    3. [Parent Features: `parent`](#parent)
+        1. [Add Parent/Next-of-Kin: `add`](#addparent)
+        2. [Listing all Parents/Next-of-Kins: `list`](#listparent)
+        3. [Editing a Parent/Next-of-Kin particulars: `edit`](#editparent)
+        4. [Deleting a Parent/Next-of-Kin: `delete`](#deleteparent)
+    4. [General Features](#general)
+       1. [List all students / parents](#listing)
+       2. [Viewing help: `help`](#help)
+       3. [Exiting program: `exit`](#exit)
+4. [Saving the data](#savingdata)
+5. [Editing the data file](#editdatafile)
+6. [Clearing the data](#clearing-the-data)
+7. [Images](#images)
+8. [FAQ](#faq)
+9. [Command Summary](#command-summary)
+   1. [Command Summary for Student](#command-summary-for-student-student-class)
+   2. [Command Summary for Parent](#command-summary-for-parent--nok-parent-)
+   3. [Prefix Summary](#prefix-summary)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 <a name="quickstart"/>
---------------------------------------------------------------------------------------------------------------------
 
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `powerconnect.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-1/tp/releases).
+2. Download the latest `PowerConnect.jar` from [here](https://github.com/AY2223S2-CS2103T-T09-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for PowerConnect.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. In the same folder, create a new folder named “images” and another folder named "student" and "parent" in the "images folder". eg student image and parent image. For the student image, it should be named `<STUDENT_NAME><CLASS><INDEX NUMBER>.png`. For the parent image, it should be named `<PARENT_NAME>.png`. More details [here.](#images)
+
+5. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar PowerConnect.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all contacts.
+    * `list student` : Lists all students.
 
     * `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father` : Adds a student in class 1A named `Tan Ah Cow` to PowerConnect.
 
@@ -64,236 +84,417 @@ Without further ado, let's get started!
 
     * `student 1A grade in/13 test/CA1 score/75 deadline/15/05/2023 weightage/20`: Adds a test named CA1, score of 75, deadline of 15/05/2023, weightage 20% to student index number 13 in class 1A
     * `student 1A gradedelete in/13 test/CA1`: Deletes a test named CA1 for student in class 1A with index 13
-    * `clear` : Deletes all contacts.
     * `exit` : Exits the app.
 
 
-6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
+8. To clear the student and parent list, make use of student [delete](#deletestudent) and parent [delete](#deleteparent) commands.
 
-   <a name="features"/>
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
+<a name="glossary"/>
+
+## Glossary
+
+1. Absolute Path to Image: Location where the image is stored. <br>
+   By default, it should be stored in the images folder as mentioned [here](#images). <br><br>
+2. Attributes: General particulars of a student/parent. <br>
+   For example, name, phone number, email address etc. <br><br>
+3. Parameters: The actual information of a student/parent <br>
+   For example, Tan Ah Kow, 91234567 etc. <br><br>
+4. CCA: Co-curricular activities <br><br>
+5. CLI: Command Line Interface <br><br>
+6. Hard disk: Non-volatile data storage device, your OS's storage in short. <br><br>
+7. JSON: JavaScript Object Notation, open standard file format for storing text. <br>
+   Examples of other commonly known file formats: `.TXT`, `.DOC`, `.PDF`, `.XLS`, `.HTML` etc <br><br>
+8. LMS: Learning Management System, application used by schools to provide students a platform to access their lessons materials online. <br>
+   Examples of LMS: Canvas, LumiNUS, Blackboard, Google Classroom, Quizlet <br><br>
+9. NOK: Next-of-kin, could be either blood related family members or guardian <br><br>
+10. OS: Operating System <br>
+   Examples of OS: Windows, Linux, Mac etc <br><br>
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+
+<a name="features"/>
+
 ## Features
 
-<div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+This section aims to provide a brief overview of the features available in PowerConnect and the appropriate [CLI](#glossary) command to call them. <br>
 
-* Command lines supplied by the user are case sensitive and should be supplied in lower case. <br>
+### Legend
+* Command lines supplied by the teachers are case-sensitive. You need to ensure that you have typed the command in the correct case.
+  e.g. in the list feature, you can call it via this method:
+  `student 5A list`.
 
-  E.g. in the list feature, user can call it via either methods:
-     1. student 5A list
-
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.
+* Words in `UPPER_CASE` are the parameters to be supplied by the teachers.
   e.g. in `…add <NAME>...`, `NAME` is a parameter which can be used as `…add John…`.
 
-
-* Items in `<>` brackets are the values that the user should fill in and is compulsory.
+* Items in `<>` brackets are the values that the teachers should fill in and is compulsory.
   e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`.
 
-
 * All items in the square brackets are OPTIONAL.
-
-  e.g. in `…add…[..c/<CCA>.. ]...` , `CCA` is an optional parameter that need not be given by the user and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…` .
-
-
-
-* General Particulars:
-      - Name <**NAME**>
-        - String value of student's name
-      - Phone <**PH**>
-          - Numbers (integer)
-      - Sex <**SEX**>
-          - M / m means male while F / f means female
-  * Optional:
-      - Age [**AGE**]
-          - Numbers (integer)
-      - Phone number [**PH**]
-          - String value of phone address
-      - Address <**ADDR**>
-          - String value of student's address
-      - Email <**EM**>
-          - String value of email address
-
+  e.g. in `…add…[..c/[CCA].. ]...` , `CCA` is an optional parameter that need not be given by the teachers and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…`.
 
 * Student Particulars:
+  * Compulsory:
+    - Name n/<**NAME**>
+      -  Student's name
     - Class <**CLASS**>
-        - String value of student's class
-    - Index Number <**INDEX_NUMBER**>
-        - Numbers (integer)
-    - Parents/ Next-of-kin <**NOK**>
-      - String value of parent's name
-    - Parents/ Next-of-kin phone number <**NOK_CONTACT_NUMBER**>
-        - Integer value of parent phone number
-    - Parents/ Next-of-kin relationhip to student <**NOK_RELATIONSHIP_TO_STUDENT**>
-        - String relationship of parent/ next-of-kin with student
+      - Student's class
+    - Index Number in/<**INDEX_NUMBER**>
+      - Number value of student's index number
+    - Parents/ Next-of-kin pn/<**PARENT/NOK**>
+      - Parent's name
+    - Parents/ Next-of-kin pnP/<**PARENT/NOK_PHONE_NUMBER**>
+      - Parent's phone number
+      - Should not include country code
+    - Parents/ Next-of-kin rls/<**RELATIONSHIP**>
+      - Relationship between student and parent
   * Optional:
-      - Academics
-          - Test <**TEST_NAME**>
-              - String value of test name
-          - Attendance <**ATTENDANCE**>
-              - Mark as present/ not present
-          - Homework <**HOMEWORK**>
-              - String value of homework name
-          - Grade <**GRADE**>
-              - String value of grade results
-      - Image [**img**]
-      - CCA [**CCA**]
-      - Comments [**com**]
+    - Age ageS/[**AGE**]
+        - Numerical value of student's age
+    - Sex s/[**SEX**]
+      - Student's gender
+      - Should be either M or F
+    - CCA c/[**CCA**]
+      - Student's CCA
+    - Comments com/[**COMMENTS**]
+      - Student's comments
+    - Image imgS/[**IMAGE**]
+      - Student's image
+      - Should be in .png format
+      - Should be named <STUDENT_NAME><CLASS><INDEX NUMBER>.png
+      - Should be stored in the image folder
+    - Residential address a/[**RESIDENTIAL_ADDRESS**]
+      - Student's residential address
+    - Email e/[**EMAIL**]
+      - Student's email address
+    - Phone number pnS/[**PHONE_NUMBER**]
+      - Student's phone number
+      - Should not include country code
 
+  *  Academics:
+      - Attendance att/<**ATTENDANCE**>
+          - Can be T/F/`Date`
+      - Test test/<**TEST_NAME**>
+        - String value of test name
+      - Homework hw/<**HOMEWORK**>
+          - String value of homework name
+      - Grade gde/<**GRADE**>
+          - String value of grade results
+      - Tags t/<**TAGS**>
+          - String value of tags
 
-* Parent/ Guardians Particulars:
-    - Relationship <**nok**>
+* Parent / Guardians Particular
+  * Compulsory:
+    - Name n/<**NAME**>
+      -  Parent's name
+    - Phone number pnP/<**PHONE_NUMBER**>
+      - Parent's phone number
+      - Should not include country code
+  * Optional:
+    - Age ageP/[**AGE**]
+      - Numerical value of parent's/NOK age
+    - Image imgP/[**IMAGE**]
+      - Parent's image
+      - Should be in .png format
+      - Should be named <PARENT_NAME>.png
+      - Should be stored in the image folder
+    - Email e/[**EMAIL**]
+      - Parent's email address
+    - Residential address a/[**RESIDENTIAL_ADDRESS**]
+      - Parent's residential address
 
+[Back to Table of Contents](#table-of-contents)
 
-</div>
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
 <a name="student"/>
 
 ## General Command for Student Related features
 
-* For all following features that are related to `students`, start first by typing `student <CLASS>` before adding the respective command for the feature.
-  <a name="addstudent"/>
+* For all following features that are related to `students`, start first by typing `student <CLASS>` before adding the respective command for the feature.<br>
+* Compulsory field are inside <> while optional fields are in []
 
-### Adding a Student: `add`
+----------------------------------------------------------------------------------------------------------------
 
-Adds a student to the database
+<a name="addstudent"/>
 
-Format: `add n/<NAME> in/<INDEX_NUMBER> s/<SEX> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls<NOK_RELATIONSHIP_TO_STUDENT> [a/<REISDENTIAL_ADDRESS> ageS/<AGE> imgS/<ABSOLUTE_PATH_TO_IMAGE> eS/<EMAIL_ADDRESS> pnS/<PHONE_NUMBER> cca/<CCA>]`
+### Adding a Student: `student <class> add`
+
+Adds a student to the database.
+
+Format: `student <class> add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls/<NOK_RELATIONSHIP_TO_STUDENT> [s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] ]`
+
+***Click [HERE](#images) to find out more on what to input for inserting image!!!***
+
+***Click [HERE](#glossary) to understand `ABSOLUTE PATH TO IMAGE`!!!***
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person with the same name and same class but different index number can exist.
 </div>
 
 Examples:
-* `student 1A add n/TanAhCow in/03 s/m pn/TanAhNiu pnP/91234567 rls/Father` <br>
+* `student 1A add n/TanAhCow in/03 pn/TanAhNiu pnP/91234567 rls/Father` <br>
 
-  *Above is a situation where the student’s PHOTO_PATH and CCA are not provided!
-* `student 1B add n/Mary Goh in/23 s/F pn/Goh Siew Mai pnP/91234567 rls/Mother a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/15 imgS/C:\Users\teacher\OneDrive\Desktop\Pictures\marygoh.jpg eS/marygoh@gmail.com pnS/65656565 cca/Chess Club`
+  *Above is a situation where some of the student's information is not given!
+* `student 1A add n/Tan Ah Cow in/13 s/M pn/Tan Ah Niu pnP/91234567 rls/Father a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456) ageS/14 eS/tanahcow@gmail.com pnS/91234567 cca/Captain Ball att/T `
 
-Note: <br>
-User is able to leave the following categories unfilled by simply not putting their respective "/"
-1. Address
-2. Age
-3. Absolute path to image
-4. Email Address
-5. Phone Number
-6. CCA <br><br>
+**Expected Outcome:**
+* `New student added:`
 
+**For student image:**
+* `Advanced` CLI users could specify the absolute file path.
+* `beginners` could add the image to the images folder and use images/<STUDENT_NAME><STUDENT_CLASS>.png as input.
 
+**If the source of the image is not specified:**
+* A Default Image of a question mark will be displayed. <br>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+1. You cannot create two students of the same index number and same class.
+2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get bound to the matching parent.
+3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update.
+Please delete the student and add without the image source path.
+4. If you have entered the `ABSOLUTE PATH TO IMAGE`, note that once the image changes location, the picture will not render properly.
+It is recommended to store the images using the folder [method](#images) instead.
+
+</div>
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
+<a name = "attendance"/>
+
+### Marking attendance for student: `student <class> attendance`
+
+Marks the student as being present or allow you to define that the student was present.
+Ensure that if you mark the same date for the same student as being present, it will prompt that you have indeed added the same date (for verification).
+
+Format : `student <class> attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`
+
+Examples:
+* `student 3A attendance in/25 att/T`
+* `student 3A attendance in/25 att/25/02/2023`
+
+**Expected Outcome:**
+* `Attendance marked as present`
+  ![attendance image](images/attendance.png)
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+Date is in DD/MM/YYYY format <br>
+This date can be set to: <br>
+* T (Indicates that the student was present today) <br>
+* F (Default when adding student) <br>
+* Specific date (Used when you want to update the attendance of the student in the past)<br><br>
+</div>
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
 
 <a name="gradestudent"/>
 
-### Adding a grade for student : `grade`
+### Adding a grade for student : `student <class> grade`
 
-Adds a test/homework assignment for the student corresponding to the INDEX_NUMBER in the CLASS
+Adds a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`.
 
-Format: `grade in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>] [score/<score> deadline/<DEADLINE(DD/MM/YYYY)> weightage/<WEIGHTAGE>] [hwdone/<HOMEWORK_DONE(true/false)>]`
+You cannot have different test/homework with the same name.
 
+Format:
+
+`student <class> grade in/<INDEX_NUMBER> test/<TEST_NAME> [score/[score] deadline/[DEADLINE(DD/MM/YYYY)] weightage/[WEIGHTAGE] ]`
+
+`student <class> grade in/<INDEX_NUMBER> hw/<HOMEWORK_NAME> [score/[score] deadline/[DEADLINE(DD/MM/YYYY)] weightage/[WEIGHTAGE] hwdone/[HOMEWORK_DONE(true/false)] ]`
 Examples:
-* `student 3A grade 25 test/Mid-Terms`
 * `student 1A grade in/13 test/CA1 score/75 weightage/10`
-* `student 1A grade in/13 hww/homework1 score/75 deadline/25/04/2023 weightage/10 hwdone/true`<br><br>
+* `student 1A grade in/13 hw/homework1 score/75 deadline/25/04/2023 weightage/10 hwdone/true`<br><br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-1. Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.
-2. hwdone is compulsory for homework.
-3. Score is out of 100
-4. Weightage is out of 100%
+**Expected Outcome:**
+* `New test added:`
+![add test image](images/addtest.png)
+* `New homework added:`
+![add homework image](images/addhomework.png)
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+* Test or Homework name is compulsory for the command to work and must not be duplicate of current tests/homework in student.<br>
+   * Duplicate test/homework is checked through having the same name. <br>
+* hwdone is compulsory for homework.<br>
+* Score is out of 100<br>
+* Weightage is out of 100%<br>
 </div>
 
-<a name = "gradedelete" />
+Note:
+* Score is out of 100.<br>
+* Weightage is out of 100%.
 
-### Deleting a grade for student : `gradedelete`
+[Back to Table of Contents](#table-of-contents)
 
-Deletes a test/homework assignment for the student corresponding to the INDEX_NUMBER in the CLASS
+<div style="page-break-after: always;"></div>
 
-Format: `gradedelete in/<INDEX_NUMBER> [test/<TEST_NAME> OR hw/<HOMEWORK_NAME>]`
+----------------------------------------------------------------------------------------------------------------
+
+<a name = "gradedelete"/>
+
+### Deleting a grade for student : `student <class> gradedelete`
+
+Deletes a test OR homework grade for the student corresponding to the `INDEX_NUMBER` in the `CLASS`.
+
+Duplicate test/homework is checked through having the same name.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Please specifiy only one test or homework name. Multiple names would result in PowerConnect taking the last name.
+</div>
+
+Format:
+
+`student <class> gradedelete in/<INDEX_NUMBER> test/<TEST_NAME>`
+
+`student <class> gradedelete in/<INDEX_NUMBER> hw/<HOMEWORK_NAME>`
 
 Examples:
-* `student 3A gradedelete 25 test/Mid-Terms`
-* `student 1A gradedelete in/13 test/CA1`
+* `student 1A gradedelete in/13 hw/Chapter 1`
 
-<a name = 'commentstudent'/>
+**Expected Outcome:**
+* `Homework deleted successfully`
+![delete homework image](images/deletehomework.png)
 
-### Adding comments for student : `comment`
+[Back to Table of Contents](#table-of-contents)
 
-Adds a comment for the student corresponding to the `INDEX_NUMBER` in the `CLASS`
+----------------------------------------------------------------------------------------------------------------
 
-Format: `comment in/<INDEX_NUMBER> com/<COMMENT>`
+<a name = "commentstudent"/>
+
+### Adding comments for student : `student <class> comment`
+
+Adds a comment for the student corresponding to the `INDEX_NUMBER` in the `CLASS`.
+
+Format: `student <class> comment in/<INDEX_NUMBER> com/<COMMENT>`
 
 Examples:
 
 * `student 3A comment in/25 com/Quiet person, needs to interact more with classmates`
 
-Note: <br>
-If an existing comment is already available for the selected student, the new comment will OVERRIDE the old comment! Hence, users should check on existing comments before adding a new comment!
-<a name = "liststudent"/> <br><br>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+If an existing comment is already available for the selected student, the new comment will **OVERWRITE** the old comment!<br>
+You should check on existing comments before adding a new comment! <br><br>
+</div>
 
-### Listing all students in the selected class: `list`
+[Back to Table of Contents](#table-of-contents)
 
-Shows a list of all students in the selected class in the database
+<div style="page-break-after: always;"></div>
 
-Format: `list`
+----------------------------------------------------------------------------------------------------------------
+
+<a name = "liststudent"/>
+
+### Listing all students in the selected class: `student <class> list`
+
+Shows a list of all students in the selected class in the database.
+
+Format: `student <class> list`
 
 Examples:
 * `student 1A list`
 * `student 1B list`
-  
-<a name = "editstudent" /> <br><br>
 
-### Edit Student:  `edit`
+**Expected Outcome:**
+![list message](images/list.png)
 
-Edits personal details of students
+[Back to Table of Contents](#table-of-contents)
 
-Format: `edit in/<INDEX_NUMBER (of student)> [nn/<NEWNAME> nin/<NEWINDEXNUMBER> nc/<NEWCLASS> s/<SEX> ageS/<STUDENT AGE>
-imgS/<IMAGE> cca/<CCA> att/<ATTENDANCE> com/<COMMENTS> pnS/<STUDENT PHONE NUMBER> eS/<STUDENT EMAIL> a/<ADDRESS>
-pn/<PARENT NAME> pnP/<PARENT PHONE NUMBER> rls/<RELATIONSHIP>]`
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
+<a name = "editstudent" />
+
+### Edit Student:  `student <class> edit`
+
+Edits personal details of students for the student corresponding to the `INDEX_NUMBER` in the `CLASS` based on the particulars given by the teacher.
+
+Format: `student <class> edit in/<INDEX_NUMBER (of student)> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE]
+imgS/[IMAGE] cca/[CCA] att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS]
+npn/[NEW PARENT NAME] npnP/[NEW PARENT PHONE NUMBER] rls/[RELATIONSHIP] ]`
+
+***Click [HERE](#glossary) to understand `ABSOLUTE PATH TO IMAGE`!!!***
 
 Examples:
 * `student 1A edit in/03 cca/basketball`
 * `student 1A edit in/03 cca/badminton ageS/23`
 
 **Expected Outcome:**
-* Edited student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M;
-* Student Age: Insert student age here!; Image Path: Insert student image here!;
-* Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
-* Edited student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 03; Sex: M;
-* Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!;
-* Student Phone: Insert student phone number here!; CCA: badminton
+* Edited student: TanAhCow; Student Class: 1A; Index Number: 03; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
+* Edited student: TanAhCow; Student Class: 1B; Index Number: 03; Sex: M; Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: badminton
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+If you want to change the parent for this student only, please kindly fill in the **NEW** parent/NOK **NAME**, **PHONE NUMBER** and **RELATIONSHIP**. <br><br>
+If you want to update all students under this student's parent, please kindly use the [PARENT EDIT COMMAND](#editparent) instead!!! <br><br>
+</div>
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
 
 <a name = "findstudent"/>
 
-### Locating persons by name:  `find`
+### Locating students by name:  `student <class> find`
 
-Finds student by student id
+Finds and generates all students with matching student name and class.
 
-Format: `find <INDEX_NUMBER>  `
+Format: `student <class> find <NAME>  `
 
 Examples:
-* `student 3B find 26`
-* `student 3B find 27`
+* `student 3B find Russel`
+* `student 3B find Joseph`
 
 **Expected Outcome:**
 * Student found: Russel Ong class:3B cca: swimming grade: [sci:A, maths:B] id:26 age:14 email:ro@outlook.com ph:85349633 attendance: 2023-01-01 [y] hw: ip [x] notes:extroverted nok: David Ong
 * Student found: Joseph Tan class:3B cca: basketball grade: [sci:A, maths:C] id:27 age:14 email:jo@outlook.com ph:92103134 attendance: 2023-01-01 [x] hw: ip [x] notes:shy  nok: David Tan <br><br>
 
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
 <a name = "deletestudent"/>
 
-### Deleting student: `delete`
+### Deleting student: `student <class> delete`
 
-Deletes student corresponding to the INDEX_NUMBER in the CLASS  from the database
+Deletes student corresponding to the `INDEX_NUMBER` in the `CLASS`  from the database.
 
-Format: `delete in/<INDEX_NUMBER>`
+Format: `student <class> delete in/<INDEX_NUMBER>`
 
 Examples:
 * `student 1A delete in/14`
 * `student 1B delete in/23`
 
-**Expected outcome:**
-Deleted Student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 14; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
-Deleted Student: TanAhCow; Student Class: class seedu.address.model.person.student.Student; Index Number: 23; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+**Expected Outcome:**
+
+* Deleted Student: TanAhCow; Student Class: 1A; Index Number: 14; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+* Deleted Student: TanAhCow; Student Class: 1B; Index Number: 23; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
 
 <a name = "parent" />
 
@@ -303,26 +504,38 @@ Deleted Student: TanAhCow; Student Class: class seedu.address.model.person.stude
 
 * Note that it is possible to have multiple students with the same parent and parents are identified via their phone number and *HENCE* `student class` is not used for identification.
 
+----------------------------------------------------------------------------------------------------------------
+
 <a name="addparent"/>
 
-### Adding a parent/NOK: `add`
+### Adding a Parent/NOK: `parent add`
 
-Adds a parent/NOK to the database
+Adds a Parent/[NOK](#glossary) to the database.
 
 Format: `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS] ]`
 
+***Click [HERE](#images) to find out more on what to input for inserting image!!!***
+
+***Click [HERE](#glossary) to understand `ABSOLUTE PATH TO IMAGE`!!!***
+
 Examples of Full Command:
 * `parent add n/TanAhNiu pnP/91234567`
-* `parent add n/Tan Ah Niu pnP/91234567 ageP/30 imgP/C:// e/tanahcow@gmail.com a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)` <br><br>
+* `parent add n/Tan Ah Niu pnP/91234567 ageP/30 e/tanahcow@gmail.com a/Blk 456 Ang Mo Kio Avenue 6 #11-800 S(560456)` <br><br>
 
 **Expected outcome:**
 * `New parent added:`
 
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
 <a name = "listparent" />
 
-### Listing all parents/NOKs : `list`
+### Listing all Parents/NOKs : `parent list`
 
-Shows a list of all parents/NOKs in the database with their corresponding particulars
+Shows a list of all Parents/[NOKs](#glossary) in the database with their corresponding particulars.
 
 Format: `list`
 
@@ -332,11 +545,17 @@ Examples of Full Command:
 **Expected Outcome:**
 ![list message](images/listParent.png)
 
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
 <a name = "editparent" />
 
-### Edit Parent: `edit`
+### Edit Parent: `parent edit`
 
-Edits personal details of parent/NOK with corresponding NAME and PARENT_PHONE_NUMBER
+Edits personal details of Parent/[NOK](#glossary) with corresponding NAME and PARENT_PHONE_NUMBER.
 
 Format: `Format: edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]`
 
@@ -348,37 +567,69 @@ Examples of Full Command:
 * `Edited Parent: Tan Ah Niu; Phone: 65656565…`
 * `Edited Parent: Tan Ah Niu; Parent Age: 31; Address: Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245); Image Path: C://; Parent Email: tanahcow@gmail.com; Parent Phone: 91234567…` <br><br>
 
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
 <a name = "deleteparent" />
 
-### Deleting parent particulars: `delete`
+### Deleting Parent: `parent delete`
 
-Deleting parent/ specified parent information from the database
+Deletes parent with corresponding `NAME` and `PARENT_PHONE_NUMBER` from the database.
 
-Format: `delete n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/<AGE> imgP/<ABSOLUTE_PATH_TO_IMAGE> e/<EMAIL_ADDRESS> a/<RESIDENTIAL_ADDRESS>] `
+Format: `delete n/NAME pnP/PHONE `
 
 Examples:
-* `parent delete n/TanAhNiu pnP/91234567` <br>
-  Deletes TanAhNiu from powerConnect
-* `parent 1A 03 delete TanAhCow Mother` <br>
-  Deletes TanAhCow’s relationship of Mother with <Index number of student>
+* `parent delete n/TanAhCow pnP/91234567` <br>
+* `parent delete n/TanAhNiu pnP/91234566` <br>
 
-Throws:
-* WrongParticularException
-  - The description field does not exist
-  - Description is invalid (eg. age is not a number..)
+Expected Outcome: <br>
+```
+Deleted Parent: TanAhCow; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: Insert parent email here!; Parent Phone: 91234567;
+```
+```
+Deleted Parent: TanAhNiu; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: bestniuinthetown@gmail.com; Parent Phone: 91234566;
+```
+**Note:**
+1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BINDED* to him/her. System will display an error message for this. <br><br>
 
-User should follow the same format <br>
-`Warning:` If no descriptions are given, the whole parent will be removed from the database <br><br>
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
+<a name = "general"/>
+
+## General Features <br>
+
+<a name = "listing"/>
+
+### Listing students / parents: `list`
+
+Lists all students / parents as specified in command. <br>
+
+Format: `list student` `list parent` <br><br>
+
+[Back to Table of Contents](#table-of-contents)
+
+----------------------------------------------------------------------------------------------------------------
 
 <a name = "help"/>
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Provides a link to our UserGuide.
 
 ![help message](images/helpMessage.png)
 
-Format: `help` <br><br>
+Format: `help` <br>
+
+[Back to Table of Contents](#table-of-contents)
+
+----------------------------------------------------------------------------------------------------------------
 
 <a name = "exit"/>
 
@@ -388,62 +639,215 @@ Exits the program.
 
 Format: `exit` <br><br>
 
-### Saving the data
+[Back to Table of Contents](#table-of-contents)
 
-PowerConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually. <br><br>
+<div style="page-break-after: always;"></div>
 
-### Editing the data file
+----------------------------------------------------------------------------------------------------------------
 
-PowerConnect data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+<a name = "saving-the-data"/>
+
+## Saving the data
+
+PowerConnect data are saved in the [hard disk](#glossary) automatically after any command that changes the data. There is no need to save manually. <br><br>
+
+[Back to Table of Contents](#table-of-contents)
+
+----------------------------------------------------------------------------------------------------------------
+
+<a name = "edit-the-data-file"/>
+
+## Editing the data file
+
+PowerConnect data are saved as a [JSON](#glossary) file `[JAR file location]/data/parents.json` and `[JAR file location]/data/pcclass.json` for respectively parents/NOKs and students. Advanced users are welcome to update data directly by editing that data file.addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. <br><br>
+If your changes to the data file makes its format invalid, PowerConnect will discard all data and start with an empty data file at the next run. <br><br>
 </div>
 
-### Archiving data files `[coming in v2.0]`
+[Back to Table of Contents](#table-of-contents)
 
-_Details coming soon ..._
+<div style="page-break-after: always;"></div>
 
-<a name = "addfeatures"/>
+----------------------------------------------------------------------------------------------------------------
 
-### Additional Features
+<a name = "clearing-the-data"/>
 
-### Images 
+## Clearing the data
 
-In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
+While PowerConnect do not currently support the `clear` function in this version, you may clear all saved `Students'` and `Parents'/NOKs'` information in the following 2 ways:
+1. Locate the folder `data`, double click into it and ***REMOVE*** these two files `parents.json` and `pcclass.json`.
+2. Locate the folder `data`, double click into it, ***OPEN*** both files `parents.json` and `pcclass.json` and ***MANUALLY*** clear all data inside and save both files as ***EMPTY*** files.
 
-Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS>.png` <br>
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+If you happen to mess up the file data while ***EDITING*** the files mentioned above (**NOT RECOMMENDED** to edit this way **EVEN IF** you are an **EXPERIENCED USER**), you should always follow the steps above to perform a **FULL CLEAR** of data using the steps above to avoid any unwanted errors! <br><br>
+</div>
 
-Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+You should also locate the folder `images`, and **REMOVE** all images within the folder to save storage space! <br><br>
+</div>
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+----------------------------------------------------------------------------------------------------------------
+
+<a name = "images"/>
+
+## Images
+
+1. In the same folder as your PowerConnect.jar file, create a new file called `images` if it does not exist. <br>
+
+2. Place all your student images in this format: `images/student/<STUDENT_NAME><STUDENT_CLASS>.png` <br>
+
+    Place all your parent images in this format: `images/parent/<PARENT_NAME>.png` <br><br>
+
+    Location of where images folder should be at. (Same directory of PowerConnect.jar)
+![image message](images/images1.png)
+
+3. Inside the images folder, create a folder called `student` and `parent` if it does not exist.
+![image2 message](images/images2.png)
+
+    Sample of student image naming format. `images/student/<STUDENT_NAME><STUDENT_CLASS>.png`
+![imagestudent message](images/imagestudent.png)
+
+    Sample of parent image naming format. `images/parent/<PARENT_NAME>.png`
+![imagesparent message](images/imagesparent.png)
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-<a name = "faq" /></a>
+<a name = "faq"/>
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+Feel free to ask any questions [here](https://docs.google.com/forms/d/e/1FAIpQLScpZ7Gg52KQ8LRsaq_6rXoPG4nYCClzmXKeRK6lyoYP1ZQV0w/viewform).
 
 --------------------------------------------------------------------------------------------------------------------
-<a name = "summary" /> </a>
+
+**Q**: Where is the information stored?<br>
+**A**: Data is stored locally in the ./data folder. The student and class information is stored in the file pcclass.json whereas the parents information is stored in parents.json.
+
+**Q**: What is CLI?<br>
+**A**: Command Line Interface (CLI) is a text based user interface used to run the
+program. Essentially you do not need a mouse to run this program at all!
+
+**Q**: Do I need to pay for this product?<br>
+**A**: No! We made a commitment to keep this program free for all teachers. Feel free to run and use our program, but remember to like, share and comment down below any feedback.
+
+**Q**: Why is my command not working?<br>
+**A**: PowerConnect is particular with the prefixes (/) and they need to be in the exact format as specified in the user guide. Don’t worry, with practice, it would be second nature to you.
+
+**Q**: There are some terms that I do not understand in the User Guide...<br>
+**A**: You may refer to our [Glossary section](#glossary) to better understand the terminologies used in this User Guide!
 
 
-## Command Summary Student `student <CLASS>`
+[Back to Table of Contents](#table-of-contents)
 
-| Action      | Format, Examples                                                                                                                                                                                                    |
-|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**     | `add <NAME> <INDEX_NUMBER> <SEX> <PARENT_NAME/NOK_NAME> [age/<AGE> img/<ABSOLUTE_PATH_TO_IMAGE> em/<EMAIL_ADDRESS> ph/<PHONE_NUMBER> cca/<CCA>]`                                                                    |
-| **Grade**   | `grade <INDEX_NUMBER> test/<TEST_NAME> gde/<GRADE>`                                                                                                                                                                 |
-| **Comment** | `comment <INDEX_NUMBER> note/<COMMENT>`                                                                                                                                                                             |
-| **List**    | `list`                                                                                                                                                                                                              |
-| **Edit**    | `edit <INDEX_NUMBER (of student)> [name/<NAME> class/<CLASS> cca/<CCA> id/<INDEX_NUMBER> img/<IMAGE> age/<AGE> em/<EMAIL> ph/<PHONE_NUM> test/<TEST> att/<ATTENDANCE> hw/<ASSIGNMENTS> note/<COMMENTS> nok/<NAME>]` |
-| **Find**    | `find <INDEX_NUMBER> `                                                                                                                                                                                              |
-| **Delete**  | `delete <INDEX_NUMBER> <GENDER> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> c/<CCA> nok/<PARENT_NAME/NOK_NAME>]`                                                                                                            |
+<div style="page-break-after: always;"></div>
 
-## Command Summary Parent `parent <CLASS>`
+--------------------------------------------------------------------------------------------------------------------
+<a name = "command-summary"/>
 
-| Action     | Format, Examples                                                                                                                                  |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>] `                |
-| **List**   | `list`                                                                                                                                            |
-| **Delete** | `delete <INDEX_NUMBER (of student)> <(parent) NAME> <RELATIONSHIP WITH STUDENT> [a/<AGE> p/<ABSOLUTE_PATH_TO_IMAGE> ph/<PHONE_NUMBER> e/<EMAIL>]` |
+## Command Summary
+
+<a name = "command-summary-for-student-student-class"/>
+
+### Command Summary for Student `student <CLASS>`
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Need to add **student** and **class** before each command!
+</div>
+
+| Action         | Format, Examples                                                                                                                                                                                                                                                                                                       |
+|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/<NAME> in/<INDEX_NUMBER> pn/<NOK_NAME> pnP/<NOK_CONTACT_NUMBER> rls/<RELATIONSHIP> [ s/[SEX] a/[RESIDENTIAL_ADDRESS] ageS/[AGE] imgS/[ABSOLUTE_PATH_TO_IMAGE] eS/[EMAIL_ADDRESS] pnS/[PHONE_NUMBER] cca/[CCA] att/[ATTENDANCE] ]`                                                                               |
+| **Attendance** | `attendance in/<INDEX_NUMBER> att/<DATE_PRESENT>`                                                                                                                                                                                                                                                                      |
+| **Grade**      | `grade in/<INDEX_NUMBER> test/<TEST_NAME> or hw/<HOMEWORK_NAME> [score/[SCORE] deadline/[DEADLINE] weightage/[WEIGHTAGE] hwdone/[HOMEWORK DONE OR NOT] ]`                                                                                                                                                              |
+| **Comment**    | `comment in/<INDEX_NUMBER> com/<COMMENT>`                                                                                                                                                                                                                                                                              |
+| **List**       | `list`                                                                                                                                                                                                                                                                                                                 |
+| **Edit**       | `edit in/<INDEX_NUMBER (of student)> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE] id/[INDEX_NUMBER] imgS/[IMAGE] cca/[CCA]  att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS] pn/[PARENT NAME] pnP/[PARENT PHONE NUMBER] rls/[RELATIONSHIP] ] ` |
+| **Find**       | `find <NAME> `                                                                                                                                                                                                                                                                                                         |
+| **Delete**     | `delete in/<INDEX_NUMBER>`                                                                                                                                                                                                                                                                                             |
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+<a name = "command-summary-for-parent--nok-parent-"/>
+
+### Command Summary for Parent / NOK `parent`
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
+Need to add parent before each command!!
+</div>
+
+| Action     | Format, Examples                                                                                                                                                              |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS]`                                         |
+| **List**   | `list`                                                                                                                                                                        |
+| **Edit**   | `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]` |
+| **Delete** | `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]`                                                                                               |
+
+### General Command Summary
+
+| Action     | Format, Examples             |
+|------------|------------------------------|
+| **List**   | `list student` `list parent` |
+| **Help**   | `help`                       |
+| **Exit**   | `exit`                       |
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+<a name = "prefix-summary"/>
+
+### Prefix Summary
+
+| Prefix        | Prefix Details                     | Notes                                                                                                                               |
+|---------------|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
+| `add`         | Add Command                        | Used to identify command as an Add Command;<br><br> Used in Student Add and Parent/NOK Add commands                                 |
+| `attendance`  | Attendance Command                 | Used in Student Attendance Command;<br><br> Used to input attendance for `Student`s                                                 |
+| `comment`     | Comment Command                    | Used in Student Comment Command;<br><br> Used to input comment for `Student`                                                        |
+| `delete`      | Delete Command                     | Used to identify command as a Delete Command;<br><br> Used in Student Delete and Parent/NOK Delete commands                         |
+| `edit`        | Edit Command                       | Used to identify command as an Edit Command;<br><br> Used in Student Edit and Parent Edit commands                                  |
+| `find`        | Find Command                       | Used to identify command as a Find Command;<br><br> Used in Student Find and Parent Find commands                                   |
+| `grade`       | Grade Command                      | Used in Student Grade Command;<br><br> Used to input `Student`'s assessments / assignment grades                                    |
+| `gradedelete` | Grade Delete Command               | Used in Student Grade Delete Command;<br><br> Used to remove `Student`'s grades for assessments / assignments                       |
+| `list`        | List Command                       | Used to identify command as a List Command;<br><br> Used in List Parent/NOK and List Student commands                               |
+| `n/`          | Name                               | Used to retrieve `Name` of individual (`Student` / `Parent / NOK`)                                                                  |
+| `nn/`         | New Name                           | Used to retrieve **NEW** `Name` of individual (`Student` / `Parent / NOK`)                                                          |
+| `pn/`         | Parent/NOK Name                    | Used to retrieve `Parent/NOK`'s `Name`                                                                                              |
+| `npn/`        | New Parent/NOK Name                | Used to retrieve **NEW** `Name` of `Parent/NOK`;<br><br>Used in the case where `Parent/NOK` and/or `Student` can have **NEW** names |
+| `ageS`        | Student's Age                      | Used to retrieve `Student`'s `Age`                                                                                                  |
+| `ageP/`       | Parent's/NOK's Age                 | Used to retrieve `Parent/NOK`'s `Age`                                                                                               |
+| `att/`        | Attendance                         | Used to retrieve `Student`'s Attendance for a particular date or current date (by default)                                          |
+| `cca/`        | CCA                                | Used to retrieve `Student`'s co-curricular activity                                                                                 |
+| `com/`        | Comment                            | Used to retrieve `Student`'s comment                                                                                                |
+| `e/`          | Parent's/NOK's Email Address       | Used to retrieve email `Address` of `Parent / NOK`                                                                                  |
+| `eS/`         | Student's Email Address            | Used to retrieve email `Address` of `Student`                                                                                       |
+| `a/`          | Residential Address                | Used to retrieve residential `Address` of individual (`Student` / `Parent / NOK`)                                                   |
+| `hw/`         | Homework                           | Used to retrieve `Student`'s homework                                                                                               |
+| `imgS/`       | Student's Image                    | Used to retrieve `Student`'s image                                                                                                  |
+| `imgP/`       | Parent's Image                     | Used to retrieve `Parent`'s image                                                                                                   |
+| `in/`         | Index Number                       | Used to retrieve `Student`'s `Index Number`                                                                                         |
+| `nin/`        | New Index Number                   | Used to retrieve `Student`'s **NEW** `Index Number`                                                                                 |
+| `nc/`         | New Class                          | Used to retrieve `Student`'s **NEW** `Class`                                                                                        |
+| `pnS/`        | Student phone number               | Used to retrieve `Student`'s phone number                                                                                           |
+| `pnP/`        | Parent/NOK phone number            | Used to retrieve `Parent/NOK`'s phone number                                                                                        |
+| `npnP/`       | New Parent/NOK phone number        | Used to retrieve `Parent/NOK`'s **NEW** phone number                                                                                |
+| `rls/`        | Parent/NOK relationship to Student | Used to retrieve the relationship between the `Student` and specified `Parent/NOK`                                                  |
+| `s/`          | Gender                             | Used to retrieve `Student`'s gender                                                                                                 |
+| `t/`          | Tag                                | Used to retrieve individual's tag (`Student` / `Parent / NOK`)                                                                      |
+| `test/`       | Assessment                         | Used to retrieve `Student`'s assessments (includes tests and exams)                                                                 |
+| `score/`      | Assessment Score                   | Used to retrieve `Student`'s score for assessment                                                                                   |
+| `deadline/`   | Deadline                           | Used to retrieve deadline for `Student`'s assignments                                                                               |
+| `weightage/`  | Weightage                          | Used to retrieve weightage for `Student`'s assignments/assessments                                                                  |
+| `hwdone/`     | Completion Status for Assignments  | Used to retrieve the completion status for `Student`'s assignments                                                                  |
+
+[Back to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------

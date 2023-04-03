@@ -9,13 +9,13 @@ import seedu.address.model.person.student.ParentName;
  * Represents the Image of a Student object.
  */
 public class Image {
-    public static final String MESSAGE_CONSTRAINTS = "Image must be file destination";
+    public static final String MESSAGE_CONSTRAINTS = "Image must be in png format (.png)";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\S+";
+    public static final String VALIDATION_REGEX = ".*\\.png$";
 
     public final String value;
 
