@@ -3,7 +3,7 @@ layout: page
 title: Francis' Project Portfolio Page
 ---
 
-### Project: VaccinationManagementSystem
+### Project: Vaccination Management System
 
 Just the headings are enough. You can write to be added soon as placeholders for content.
 
@@ -13,7 +13,7 @@ Just the headings are enough. You can write to be added soon as placeholders for
   * Highlights: magna netus fames id nisl tempor commodo conubia luctus vivamus convallis sit elit tortor porta quis dui ac est feugiat
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=francisyzy&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=francisyzy&tabRepo=AY2223S2-CS2103-F11-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
   * Managed releases `v1.1` - `v1.5rc` (3 releases) on GitHub
