@@ -1,6 +1,6 @@
 ---
 layout: page
-title: eduMate
+title: EduMate
 ---
 
 [![CI Status](https://github.com/AY2223S2-CS2103T-W14-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-W14-2/tp/actions)
