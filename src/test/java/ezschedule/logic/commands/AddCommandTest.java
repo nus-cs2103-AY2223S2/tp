@@ -143,7 +143,7 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
         @Override
-        public ArrayList<Command> recentCommand() {
+        public ArrayList<Command> recentCommands() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -246,7 +246,7 @@ public class AddCommandTest {
         public void clearRecent() {}
 
         @Override
-        public ArrayList<Command> recentCommand() {
+        public ArrayList<Command> recentCommands() {
             return recentCommand;
         }
 

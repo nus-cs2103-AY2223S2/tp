@@ -102,7 +102,7 @@ public class EditCommand extends Command {
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
         model.clearRecent();
-        model.recentCommand().add(this);
+        model.recentCommands().add(this);
         model.addRecentEvent(eventToEdit);
         model.addRecentEvent(editedEvent);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
