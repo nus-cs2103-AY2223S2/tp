@@ -52,12 +52,12 @@ public class AddRecurringExpenseParser implements Parser<AddRecurringExpenseComm
             if (endDate.isBefore(startDate)) {
                 throw new ParseException("End date provided is earlier than start date.");
             }
-            RecurringExpenseManager toAdd = new RecurringExpenseManager(name, price.getPriceAsDouble(),
+            RecurringExpenseManager toAdd = new RecurringExpenseManager(name, price,
                     category, startDate, endDate, timespan);
             return new AddRecurringExpenseCommand(toAdd);
         }
 
-        RecurringExpenseManager toAdd = new RecurringExpenseManager(name, price.getPriceAsDouble(),
+        RecurringExpenseManager toAdd = new RecurringExpenseManager(name, price,
                 category, startDate, timespan);
         return new AddRecurringExpenseCommand(toAdd);
     }

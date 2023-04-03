@@ -15,6 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;
+import seedu.address.model.expense.Price;
 import seedu.address.ui.ScreenType;
 
 /**
@@ -82,6 +83,7 @@ public class EditExpenseCommand extends Command {
         Expense expenseToEdit = lastShownListOfExpenses.get(targetIndex.getZeroBased());
         String name = expenseToEdit.getName();
         double amount = expenseToEdit.getAmount();
+
         Category category = expenseToEdit.getCategory();
         LocalDate date = expenseToEdit.getDate();
 
@@ -92,10 +94,16 @@ public class EditExpenseCommand extends Command {
         }
 
         if (newExpenseName != null) {
+            if (newExpenseName.stripTrailing().isEmpty()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_NAME);
+            }
             name = newExpenseName;
         }
 
         if (newExpenseAmount != null) {
+            if (!Price.isValidPrice(String.valueOf(newExpenseAmount))) {
+                throw new CommandException(Price.MESSAGE_CONSTRAINTS);
+            }
             amount = newExpenseAmount;
         }
 

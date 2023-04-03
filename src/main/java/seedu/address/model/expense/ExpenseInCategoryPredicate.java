@@ -24,14 +24,14 @@ public class ExpenseInCategoryPredicate implements Predicate<Expense> {
 
     @Override
     public boolean test(Expense expense) {
-        return expense.getCategory().isSameCategory(this.category);
+        return expense.getCategory().equals(this.category);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ExpenseInCategoryPredicate // instanceof handles nulls
-                && category.isSameCategory(((ExpenseInCategoryPredicate) other).category)); // state check
+                && category.equals(((ExpenseInCategoryPredicate) other).category)); // state check
     }
 
 }

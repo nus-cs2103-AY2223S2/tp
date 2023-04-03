@@ -46,7 +46,7 @@ public class AddExpenseCommandParser implements Parser<AddExpenseCommand> {
             date = ParserUtil.parseDate(dateStringArg.get());
         }
 
-        Expense expenseToAdd = new Expense(name, amount.getPriceAsDouble(), date, category);
+        Expense expenseToAdd = new Expense(name, amount, date, category);
         return new AddExpenseCommand(expenseToAdd);
     }
 

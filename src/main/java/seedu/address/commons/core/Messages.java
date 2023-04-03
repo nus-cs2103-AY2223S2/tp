@@ -24,6 +24,9 @@ public class Messages {
     public static final String MESSAGE_SUCCESSFULLY_EDITED_RECURRING = "Edited recurring expense generator: %1$s";
     public static final String MESSAGE_INVALID_ENUM_FOR_FREQUENCY = "The frequency provided is invalid!"
             + "Please choose from the following: daily, weekly, monthly or yearly.";
+    public static final String MESSAGE_INVALID_CATEGORY_NAME = "Please provide a category name!";
+    public static final String MESSAGE_INVALID_EXPENSE_NAME = "Please provide an expense name!";
+    public static final String MESSAGE_ALREADY_EXISTING_CATEGORY = "This category name is already used!";
 
 
 

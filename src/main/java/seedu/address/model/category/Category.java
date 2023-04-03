@@ -26,7 +26,7 @@ public abstract class Category {
      * Returns true if a given string is a valid category name.
      */
     public static boolean isValidCategoryName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && !test.isBlank();
     }
 
     public String getCategoryName() {
@@ -35,16 +35,6 @@ public abstract class Category {
     public String getSummary() {
         return this.summary;
     };
-
-    /**
-     * Returns true if a given category matches the current category
-     */
-    public boolean isSameCategory(Category toCheck) {
-        if (this == toCheck) {
-            return true;
-        }
-        return toCheck != null && toCheck.getCategoryName().equalsIgnoreCase(this.getCategoryName());
-    }
 
     @Override
     public boolean equals(Object other) {
@@ -57,9 +47,12 @@ public abstract class Category {
         }
 
         Category otherTypecasted = (Category) other;
-
-        return this.getCategoryName().equals(otherTypecasted.getCategoryName())
-                && this.getSummary().equals(otherTypecasted.getSummary());
+        // Remove extra whitespace between words and trim
+        otherTypecasted.categoryName = otherTypecasted.categoryName.toLowerCase()
+                .replaceAll("\\s+", " ").trim();
+        String thisCategoryName = this.categoryName.toLowerCase()
+                .replaceAll("\\s+", " ").trim();
+        return otherTypecasted.categoryName.equals(thisCategoryName);
     }
 
     @Override
