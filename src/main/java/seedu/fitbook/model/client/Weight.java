@@ -63,7 +63,7 @@ public class Weight {
 
     @Override
     public String toString() {
-        return date + ":" + value;
+        return value;
     }
 
     @Override
