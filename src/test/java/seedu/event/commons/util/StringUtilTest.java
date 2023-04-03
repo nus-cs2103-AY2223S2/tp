@@ -191,7 +191,7 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsKeywordIgnoreCase("aaa bbb ccc", "bb"));
 
         // Does not match a query keyword
-         // Query word bigger than sentence word
+        // Query word bigger than sentence word
         assertFalse(StringUtil.containsKeywordIgnoreCase("aaa bbb ccc", "bbbb"));
 
         // Matches word in the sentence, different upper/lower case letters
