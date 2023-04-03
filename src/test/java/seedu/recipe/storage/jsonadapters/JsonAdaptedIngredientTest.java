@@ -1,19 +1,20 @@
 package seedu.recipe.storage.jsonadapters;
 
-import org.junit.jupiter.api.Test;
-import seedu.recipe.commons.exceptions.IllegalValueException;
-import seedu.recipe.model.recipe.ingredient.Ingredient;
-import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
-import seedu.recipe.model.recipe.ingredient.IngredientInformation;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.recipe.testutil.Assert.assertThrows;
+import static seedu.recipe.testutil.TypicalRecipes.CACIO_E_PEPE;
+import static seedu.recipe.testutil.TypicalRecipes.CACIO_INGREDIENTS;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.recipe.testutil.Assert.assertThrows;
-import static seedu.recipe.testutil.TypicalRecipes.CACIO_E_PEPE;
-import static seedu.recipe.testutil.TypicalRecipes.CACIO_INGREDIENTS;
+import org.junit.jupiter.api.Test;
+
+import seedu.recipe.commons.exceptions.IllegalValueException;
+import seedu.recipe.model.recipe.ingredient.Ingredient;
+import seedu.recipe.model.recipe.ingredient.IngredientBuilder;
+import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 
 public class JsonAdaptedIngredientTest {
 
