@@ -75,14 +75,14 @@ You can click on any of the links below to navigate to the respective sections f
     * [2.9.1 Viewing help: `help`](#291-viewing-help-help)
     * [2.9.2 Uploading a csv file](#292-uploading-a-csv-file)
     * [2.9.3 Exiting the program: `exit`](#293-exiting-the-program-exit)
-* [Data](#data)
-    * [Saving the data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
-    * [Upcoming features `[coming soon]`](#upcoming-features-coming-soon)
-* [FAQ](#faq)
-* [5 Summary](#5-summary)
-* [5.1 Prefix Summary](#51-prefix-summary)
-  * [5.2 Command Summary](#52-command-summary)
+* [3 Data](#3-data)
+  * [3.1 Saving of data](#31-saving-of-data)
+  * [3.2 Editing the data file](#32-editing-the-data-file)
+* [4 Upcoming features `[coming soon]`](#4-upcoming-features-coming-soon)
+* [5 FAQ](#5-faq)
+* [6 Summary](#6-summary)
+* [6.1 Prefix Summary](#61-prefix-summary)
+  * [6.2 Command Summary](#62-command-summary)
 <!-- TOC -->
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1337,7 +1337,7 @@ Note: For any **optional** fields, you can indicate it with a `-` to have it be 
 </div>
 
 <p align="center">
-  <img src="images/ug/ValidCsvFile.png" width="600" />
+  <img src="images/ug/ValidCsvFile.png"/>
   <br>Figure 2.9.2.1: Example of a valid csv file
 </p>
 
@@ -1347,38 +1347,118 @@ Exits the program.
 
 Syntax: `exit`
 
-# Data
+# 3 Data
 
-### Saving the data
+This section will inform you how the data is saved.
 
-Save changes after any command executed successfully. There is no need to save manually.
+## 3.1 Saving of data
 
-### Editing the data file
+All data are saved after any command is executed successfully. There is no need for you to manually save.
 
-Trackr data are saved as a JSON file `[JAR file location]/data/trackr.json`. Advanced users are welcome to update data directly by editing that data file.
+## 3.2 Editing the data file
+
+Trackr data are saved as a JSON file at `[JAR file location]/data/trackr.json`.
+
+Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
+
 :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, Trackr will discard all data and start with an empty data file at the next run.
+
+It is advised to make your changes through our application and not through editing the data file directly.
+
+Trackr does not have backup data if your edit corrupts the data.
+
+Please proceed with caution.
+
 </div>
 
-### Upcoming features `[coming soon]`
+<div markdown="span" class="alert alert-danger">
+
+:exclamation: **Danger**<br>
+
+If your changes to the data file is invalid, Trackr will discard all data and start with an empty data file at the next run.
+
+</div>
+
+Here is the layout of the data file:
+
+```json
+{
+  "suppliers" : [ ],
+  "tasks" : [ ],
+  "menuItems": [ ],
+  "orders" : [ ]
+}
+```
+
+Here are the respective formats for each of the data types:
+
+* Supplier<br>
+  ```json
+  {
+    "name" : "Prima Flour",
+    "phone" : "87438807",
+    "email" : "sales.primaflour@prima.com.sg",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "tagged" : [ "flour" ]
+  }
+  ```
+* Task<br>
+  ```json
+  {
+    "taskName" : "Buy flour",
+    "taskDeadline" : "01/01/2024",
+    "taskStatus" : "N",
+    "timeAdded" : "2023-04-04T16:35:55.858687"
+  }
+  ```
+* Order<br>
+  ```json
+  {
+    "itemName" : "Chocolate Cookies",
+    "itemCost" : "1.20",
+    "itemPrice" : "5.00",
+    "itemProfit" : "3.80"
+  }
+  ```
+* Menu Item<br>
+  ```json
+  {
+    "customerName" : "Amy",
+    "customerPhone" : "12345678",
+    "customerAddress" : "123 Smith Street",
+    "menuItem" : {
+      "itemName" : "Chocolate Cookies",
+      "itemCost" : "1.20",
+      "itemPrice" : "5.00",
+      "itemProfit" : "3.80"
+    },
+    "orderDeadline" : "01/01/2024",
+    "orderQuantity" : "2",
+    "orderStatus" : "N",
+    "timeAdded" : "2023-04-04T16:35:55.864688500"
+  }
+  ```
+
+# 4 Upcoming features `[coming soon]`
 
 * Highlight overdue orders.
-* View sales (tabulated or GUI) to track your business’s growth.
+* Better representation of sales report to track your business’s growth.
+* Ability to export your data as csv.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# FAQ
+# 5 FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trackr home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 5 Summary
+# 6 Summary
 
-# 5.1 Prefix Summary
+# 6.1 Prefix Summary
 
 | Parameter | Prefix | Rules |
 |-----------|--------|-------|
@@ -1387,7 +1467,7 @@ If your changes to the data file makes its format invalid, Trackr will discard a
 |           |        |       |
 
 
-## 5.2 Command Summary
+## 6.2 Command Summary
 
 | Action     | Format, Examples                                                                                                                                                                                                                                                                                                                                                                               |
 |------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
