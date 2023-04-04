@@ -77,9 +77,21 @@ public class JobTitle {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof JobTitle // instanceof handles nulls
-                && fullTitle.equals(((JobTitle) other).fullTitle)); // state check
+        //short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        //handles null
+        if (!(other instanceof JobTitle)) {
+            return false;
+        }
+
+        // casing difference and extra spaces don't differentiate job titles
+        String modifiedOtherTitle = other.toString().replaceAll("\\s{2,}", " ").strip().toUpperCase();
+        String modifiedTitle = this.fullTitle.replaceAll("\\s{2,}", " ").strip().toUpperCase();
+
+        return modifiedTitle.equals(modifiedOtherTitle);
     }
 
     @Override

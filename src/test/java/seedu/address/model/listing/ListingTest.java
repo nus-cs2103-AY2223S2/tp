@@ -38,11 +38,11 @@ public class ListingTest {
         editedChickenRiceUncle = new ListingBuilder(CHICKEN_RICE_UNCLE).withTitle(VALID_TITLE).build();
         assertFalse(CHICKEN_RICE_UNCLE.isSameListing(editedChickenRiceUncle));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Listing editedToiletCleaner = new ListingBuilder(TOILET_CLEANER)
                 .withTitle(TOILET_CLEANER.getTitle().toString().toLowerCase())
                 .build();
-        assertFalse(TOILET_CLEANER.isSameListing(editedToiletCleaner));
+        assertTrue(TOILET_CLEANER.isSameListing(editedToiletCleaner));
 
     }
 
