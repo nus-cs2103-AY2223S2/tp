@@ -14,7 +14,7 @@ import vimification.model.task.Task;
 public class EditCommand extends UndoableLogicCommand {
 
     public static final String COMMAND_WORD = "e";
-    public static final String SUCCESS_MESSAGE_FORMAT = "Field(s) of task %s have been updated.";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Field(s) of task %d have been updated.";
     public static final String UNDO_MESSAGE =
             "The command has been undone. Edited field(s) have been restored.";
 
@@ -51,7 +51,7 @@ public class EditCommand extends UndoableLogicCommand {
         });
         taskList.set(index, newTask);
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, oldTask));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
     @Override

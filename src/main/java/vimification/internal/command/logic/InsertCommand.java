@@ -12,7 +12,7 @@ public class InsertCommand extends UndoableLogicCommand {
 
     public static final String COMMAND_WORD = "i";
     public static final String SUCCESS_MESSAGE_FORMAT =
-            "New field(s) have been inserted into task %s.";
+            "New field(s) have been inserted into task %d.";
     public static final String UNDO_MESSAGE =
             "The command has been undone. Inserted field(s) have been discarded.";
 
@@ -37,7 +37,7 @@ public class InsertCommand extends UndoableLogicCommand {
         request.getInsertedLabels().forEach(newTask::addLabel);
         taskList.set(index, newTask);
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, oldTask));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
     @Override

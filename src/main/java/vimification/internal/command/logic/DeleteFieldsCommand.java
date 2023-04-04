@@ -14,7 +14,7 @@ import vimification.model.task.Task;
 public class DeleteFieldsCommand extends DeleteCommand {
 
     public static final String COMMAND_KEYWORD = "d";
-    public static final String SUCCESS_MESSAGE_FORMAT = "Field(s) of task %s have been deleted.";
+    public static final String SUCCESS_MESSAGE_FORMAT = "Field(s) of task %d have been deleted.";
     public static final String UNDO_MESSAGE =
             "The command has been undone. Deleted field(s) have been restored.";
 
@@ -45,7 +45,7 @@ public class DeleteFieldsCommand extends DeleteCommand {
         request.getDeletedLabels().forEach(newTask::removeLabel);
         taskList.set(index, newTask);
         commandStack.push(this);
-        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, oldTask));
+        return new CommandResult(String.format(SUCCESS_MESSAGE_FORMAT, targetIndex.getOneBased()));
     }
 
     @Override
