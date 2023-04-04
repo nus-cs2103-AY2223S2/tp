@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.logic.commands.SkillCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.note.Note;
 import seedu.address.model.person.NoteContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
@@ -31,6 +32,9 @@ public class SkillCommandParser implements Parser<SkillCommand> {
         }
         String[] keywords = trimmedArgs.split("\\s+");
         for (String keyword : keywords) {
+            if (keyword.length() > Note.MAX_LENGTH) {
+                throw new ParseException("Length of skills cannot be more than 45 characters long!");
+            }
             findPredicate = findPredicate.and(new NoteContainsKeywordsPredicate(keyword));
         }
 

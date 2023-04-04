@@ -84,6 +84,12 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Set<Note> noteList = ParserUtil.parseTags(tagSet);
+        for (Note note: noteList) {
+            if (note.getNoteName().length() > Note.MAX_LENGTH) {
+                throw new ParseException("Length of each note cannot be more than 45 characters long!");
+            }
+        }
+        return Optional.of(noteList);
     }
 }

@@ -49,6 +49,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Note> noteList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_NOTE));
+        for (Note note: noteList) {
+            if (note.getNoteName().length() > Note.MAX_LENGTH) {
+                throw new ParseException("Length of each note cannot be more than 45 characters long!");
+            }
+        }
         Status status = Status.APPLIED;
         ApplicationDateTime applicationDateTime = ParserUtil.parseApplied(argMultimap
                 .getValue(PREFIX_APPLIEDTIME).orElse(""));

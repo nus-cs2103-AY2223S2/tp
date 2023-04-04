@@ -9,6 +9,7 @@ import static java.util.Objects.requireNonNull;
 public class Note {
 
     public final String noteName;
+    public static final int MAX_LENGTH = 45;
 
     /**
      * Constructs a {@code Note}.
@@ -18,6 +19,10 @@ public class Note {
     public Note(String noteName) {
         requireNonNull(noteName);
         this.noteName = noteName;
+    }
+
+    public String getNoteName() {
+        return this.noteName;
     }
 
     @Override
