@@ -291,11 +291,11 @@ Examples:
    </strong>
    : Executing view after list
    </em></figcaption>
-<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Our Application also supports this feature in gui format, simply click onto the bookmark you want and watch the magic happen.
 </div>
+<div style="page-break-after: always;"></div>
 
 ### Going to a url : `goto`
 
