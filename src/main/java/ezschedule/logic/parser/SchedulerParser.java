@@ -53,7 +53,7 @@ public class SchedulerParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
-            
+
         case RecurCommand.COMMAND_WORD:
             return new RecurCommandParser().parse(arguments);
 
@@ -62,23 +62,22 @@ public class SchedulerParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-            
+
         case UndoCommand.COMMAND_WORD:
             if (!arguments.equals("")) {
                 throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
             } else {
                 return new UndoCommand();
             }
-            
+
         case ListCommand.COMMAND_WORD:
             if (!arguments.equals("")) {
                 throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
             } else {
                 return new ListCommand();
             }
-            
-        case ClearCommand.COMMAND_WORD:
 
+        case ClearCommand.COMMAND_WORD:
             if (!arguments.equals("")) {
                 throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
             } else {
