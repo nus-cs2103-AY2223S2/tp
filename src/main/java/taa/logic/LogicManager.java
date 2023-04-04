@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         cmdHistory.add(commandText);
-        curCmdIdx = cmdHistory.size() - 1;
+        curCmdIdx = cmdHistory.size();
 
         CommandResult commandResult;
         Command command = taaParser.parseCommand(commandText);
