@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ToDoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
@@ -27,7 +26,7 @@ public class ToDoCommandParser implements Parser<ToDoCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TASK)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ToDoCommand.MESSAGE_USAGE));
         }
 
         TaskDescription description = ParserUtil.parseTaskDescription(argMultimap.getValue(PREFIX_TASK).get());
