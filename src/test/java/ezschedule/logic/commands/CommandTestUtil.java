@@ -4,6 +4,7 @@ import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_END;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_START;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_EVERY;
 import static ezschedule.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -35,6 +36,9 @@ public class CommandTestUtil {
     public static final String VALID_END_TIME_A = "15:00";
     public static final String VALID_END_TIME_B = "22:00";
     public static final String VALID_END_TIME_BEFORE_START_TIME_B = "00:00";
+    public static final String VALID_RECUR_FACTOR_DAY = "day";
+    public static final String VALID_RECUR_FACTOR_WEEK = "week";
+    public static final String VALID_RECUR_FACTOR_MONTH = "month";
 
     public static final String NAME_DESC_A = " " + PREFIX_NAME + VALID_NAME_A;
     public static final String NAME_DESC_B = " " + PREFIX_NAME + VALID_NAME_B;
@@ -44,6 +48,7 @@ public class CommandTestUtil {
     public static final String START_TIME_DESC_B = " " + PREFIX_START + VALID_START_TIME_B;
     public static final String END_TIME_DESC_A = " " + PREFIX_END + VALID_END_TIME_A;
     public static final String END_TIME_DESC_B = " " + PREFIX_END + VALID_END_TIME_B;
+    public static final String RECUR_FACTOR_DESC_DAY = " " + PREFIX_EVERY + VALID_RECUR_FACTOR_DAY;
     public static final String END_TIME_BEFORE_START_TIME_DESC_B =
             " " + PREFIX_END + VALID_END_TIME_BEFORE_START_TIME_B;
 
@@ -51,6 +56,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2023-01-05a"; // 'a' not allowed in phones
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_START + "1800"; // missing ':' symbol
     public static final String INVALID_END_TIME_DESC = " " + PREFIX_END + "22:00*"; // '*' not allowed in tags
+    public static final String INVALID_RECUR_FACTOR = " " + PREFIX_EVERY + "DAY"; // uppercase not allowed in recur factor
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
