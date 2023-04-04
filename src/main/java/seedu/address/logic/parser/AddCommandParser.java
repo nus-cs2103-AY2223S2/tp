@@ -35,13 +35,6 @@ public class AddCommandParser implements Parser<AddCommand> {
      * @param args            the string argument to be parsed.
      * @throws ParseException if the user input does not conform the expected format.
      */
-
-    /**
-     *
-     * @param args
-     * @return
-     * @throws ParseException
-     */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
