@@ -25,16 +25,18 @@ public class ShowNextCommandParserTest {
     public void parse_noArgs_returnsShowNextCommandOneUpcoming() {
         final ShowNextCommand expected = new ShowNextCommand(new UpcomingEventPredicate(SHOW_UPCOMING_COUNT_ONE));
 
-        assertParseSuccess(parser, "", expected);
-        assertParseSuccess(parser, "   ", expected);
+        assertParseSuccess(parser, "", expected); // empty string
+        assertParseSuccess(parser, " ", expected); // single space
+        assertParseSuccess(parser, "   ", expected); // multiple space
     }
 
     @Test
     public void parse_validArgs_returnsShowNextCommandArbitraryUpcoming() {
         assertParseSuccess(parser, "5", new ShowNextCommand(new UpcomingEventPredicate(5)));
-        assertParseSuccess(parser, " 7 ", new ShowNextCommand(new UpcomingEventPredicate(7)));
-        assertParseSuccess(parser, " 33", new ShowNextCommand(new UpcomingEventPredicate(33)));
-        assertParseSuccess(parser, "500", new ShowNextCommand(new UpcomingEventPredicate(500)));
+        assertParseSuccess(parser, " 7 ", new ShowNextCommand(new UpcomingEventPredicate(7))); // extra spaces
+        assertParseSuccess(parser, " 33", new ShowNextCommand(new UpcomingEventPredicate(33))); // leading space
+        assertParseSuccess(parser, "55 ", new ShowNextCommand(new UpcomingEventPredicate(55))); // trailing space
+        assertParseSuccess(parser, "404", new ShowNextCommand(new UpcomingEventPredicate(404))); // large number
     }
 
     @Test
