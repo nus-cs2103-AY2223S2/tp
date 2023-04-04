@@ -25,6 +25,17 @@ public class ArgumentTokenizer {
      */
     public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
         List<PrefixPosition> positions = findAllPrefixPositions(argsString, prefixes);
+
+        // Handle an edge case where a prefix defined with trailing whitespace is given as the very last token. This
+        // is more for user ergonomics than correctness.
+        int lastTokenStartIdx = argsString.lastIndexOf(" ") + 1;
+        String lastToken = argsString.substring(lastTokenStartIdx);
+        Arrays.stream(prefixes)
+            .filter(prefix -> !prefix.getPrefix().equals(lastToken)
+                && prefix.getPrefix().trim().equals(lastToken)) // note the call to trim()
+            .findFirst()
+            .ifPresent(prefix -> positions.add(new PrefixPosition(prefix, lastTokenStartIdx)));
+
         return extractArguments(argsString, positions);
     }
 
@@ -118,7 +129,9 @@ public class ArgumentTokenizer {
                                                PrefixPosition nextPrefixPosition) {
         Prefix prefix = currentPrefixPosition.getPrefix();
 
-        int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();
+        int
+            valueStartPos =
+            Math.min(argsString.length(), currentPrefixPosition.getStartPosition() + prefix.getPrefix().length());
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
 
         return value.trim();
