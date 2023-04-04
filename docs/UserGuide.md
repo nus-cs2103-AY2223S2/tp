@@ -51,13 +51,13 @@ TutorPro is a **desktop app designed to help private tutors manage their student
 
 3. Copy the file to the folder you want to use as the _home folder_ for your address book.
 
-4. Open a command terminal, `cd` into the folder in which you put the jar file, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder in which you put the jar file, and use the `java -jar TutorPro.jar` command to run the application.<br>
    A GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the Features below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ### Glossary
@@ -95,7 +95,7 @@ When you first run the app, you may see a display window pop up similar to the o
 
 You may enter the following commands in the Command Box to see how the Display List changes:
 * `list` lists all students.
-* `delete-b 1` deletes the student with index 1.
+* `delete 1` deletes the student with index 1.
 * `view-homework` displays all the homework from all students.
 
 You may also click the quick access buttons one each student card to see how the Detailed Information Section changes.
@@ -191,8 +191,9 @@ Format: `new-homework [name/STUDENT_NAME] [homework/HOMEWORK_NAME] [deadline/DEA
 * The `DEADLINE` must be in the future.
 
 Examples:
-* `assign-homework name/John homework/listening comprehension ex1 deadline/02-12-2023-2359` adds the assignment `listening comprehension ex1` to the student named `John. The deadline is 02 Dec 2023 at 23:25.
+* `new-homework name/John homework/listening comprehension ex1 deadline/2023-04-30 2359` adds the assignment `listening comprehension ex1` to the student named `John. The deadline is 02 Dec 2023 at 23:25.
 
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
 
@@ -215,6 +216,8 @@ Examples:
 * `view-homework status/completed` displays all completed homework from all students.
 * `view-homework name/John status/pending` displays pending homework for a student named `John`.
 
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+
 :exclamation: **Caution:** STATUS should only appear at most once and should not be empty. STUDENT_NAME can be zero or multiple but they all cannot be empty.
 
 #### Delete Homework from a Student
@@ -231,6 +234,8 @@ Examples:
 
 * `delete-homework name/John index/1` deletes the first homework assignment for the student named John.
 * `delete-homework name/Susan index/3` deletes the third homework assignment for the student named Susan.
+
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -249,8 +254,9 @@ Examples:
 * `mark-homework name/John index/1` marks the first homework assignment for the student named John.
 * `mark-homework name/Susan index/3` marks the third homework assignment for the student named Susan.
 
-:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
+:exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
 #### Unmark Homework of a Student as Undone
 
@@ -266,6 +272,8 @@ Examples:
 
 * `unmark-homework name/John index/1`unmarks the first homework assignment for the student named John.
 * `unmark-homework name/Susan index/3` unmarks the third homework assignment for the student named Susan.
+
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
 
 :exclamation: **Caution:** STUDENT_NAME, and HOMEWORK_INDEX should all only appear at most once and should not be empty.
 
@@ -288,6 +296,8 @@ Examples:
 * `updates-homework name/Susan index/3 deadline/2023-05-12 23:59` updates the deadline of homework 3 of Susan to be `2023-05-12 23:59`.
 * `updates-homework name/Donald index/2 homework/Math Assignment 1 deadline/2023-05-12 23:59` updates the name of homework 2 of Donald to be `Math Assignment 1` and updates the deadline of homework 2 of Donald to be `2023-05-12 23:59`.
 
+:exclamation: **Caution:** STUDENT_NAME is case-sensitive and supports partial matching. For example, `John` will match `John Doe` but not `john`.
+
 :exclamation:  **Caution:** STUDENT_NAME, HOMEWORK_INDEX , and DEADLINE should all only appear at most once and should not be empty.
 
 ### Lessons Commands
@@ -298,10 +308,10 @@ Creates a new lesson for a given student, with a lesson title and time.
 
 Format: `new-lesson [name/STUDENT_NAME] [lesson/LESSON_TITLE] [start/START_TIME] [end/END_TIME]`
 
-* All fields are mandatory.
+* All fields, except for additional student names, are mandatory.
 
 Examples:
-`new-lesson name/John Doe lesson/The Water Cycle start/25-03-23-1300 end/25-03-23-1500`
+* `new-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` creates a new lesson for the student named `John Doe` with the lesson title `The Water Cycle` starting at `25 Mar 2023 13:00` and ending at `25 Mar 2023 15:00`.
 
 
 #### View Lessons History
@@ -317,6 +327,34 @@ Format: `view-lesson [name/STUDENT_NAME]`
 Examples:
 * `view-lesson` Displays the lesson history for all the tutor’s students.
 * `view-lesson name/John` Displays the lesson history for the student named John. If two students have the same name, then ask which one to show.
+
+Examples:
+* `view-lesson` Displays the lesson history for all the tutor’s students.
+* `view-lesson name/John subject/Math date/2023-05-03` Displays the lessons for student John, which are of subject Math, on the day 2023-05-03.
+* `view-lesson done/done` Displays all lessons that have been completed
+
+### Remove a Lesson
+Deletes a lesson for a given student.
+
+Format: `delete-lesson [name/STUDENT_NAME] [index/LESSON_INDEX]`
+
+* The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
+* Deletes the lesson at the specified `LESSON_INDEX`.
+
+Example:
+* `delete-lesson name/John Doe index/1` deletes the first lesson for the student named John Doe.
+
+### Update a Lesson
+Updates a lesson for a given student. This includes the lesson title, start time, and end time.
+
+Format: `update-lesson (optional)[name/STUDENT_NAME] (optional)[lesson/LESSON_TITLE] (optional)[start/START_TIME] (optional)[end/END_TIME]`
+
+* The `STUDENT_NAME` must be an existing student of the tutor. Note that there can only be one student's name.
+* Updates the specified Lesson with the new information (lesson name and/or start time and/or end time).
+* At least one of the fields must be specified.
+
+Example:
+* `update-lesson name/John Doe lesson/The Water Cycle start/25-03-23 1300 end/25-03-23 1500` updates the lesson for John Doe with the new information.
 
 ### Exams Commands
 
@@ -449,4 +487,3 @@ Examples:
 * `dd MMM yyyy HH:mm `
 * `MMM dd, yyyy HHmm`
 * `MMM dd, yyyy HH:mm `
-* `dd-mm-yyyy HHmm`
