@@ -90,15 +90,22 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 |     Result Box     | To display the result of the commands that user executed. |
 | BookmarkList Panel |         To display the current list of bookmarks          |
 |     View Panel     |      To display the details of a specified bookmark       |
+
 <div style="page-break-after: always;"></div>
 
 ### Bookmark UI details
 
 <img width="680" src="images/bookmarkCardUI.png">
 
+The bookmark in the BookmarkList panel will only contain the:
+* Title
+* Author
+* Progress
+* Genre
+* Rating
+* Tag
 --------------------------------------------------------------------------------------------------------------------
-
-
+<div style="page-break-after: always;"></div>
 
 ## Features
 
