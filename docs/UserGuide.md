@@ -286,14 +286,14 @@ These placeholders follow immediately after a [Flag](#523-flags).
 Please refer to the subsequent [Command Format](#53-command-format) 
 section to see how Flags and Placeholders are used together.
 
-| Placeholder  | Corresponding Flag | Description                                                                                  |
-|--------------|--------------------|----------------------------------------------------------------------------------------------|
-| INDEX        | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box. |
-| NAME         | n/                 | The NAME is the name we use to identify an Applicant.                                        |
-| PHONE        | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                 |
-| EMAIL        | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                        |
-| NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant.                             |
-| DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.             |
+| Placeholder  | Corresponding Flag | Description                                                                                                      |
+|--------------|--------------------|------------------------------------------------------------------------------------------------------------------|
+| INDEX        | (Not Applicable)   | The INDEX of an item is the number to the left of the applicant's name in the Item List Box.                     |
+| NAME         | n/                 | The NAME is the name we use to identify an Applicant.                                                            |
+| PHONE        | p/                 | The PHONE is the text we use to represent the phone number of the Applicant.                                     |
+| EMAIL        | e/                 | The EMAIL is the text we use to represent the email of the Applicant.                                            |
+| NOTE         | note/              | The NOTE is the term we use to identify a skill of an Applicant. Notes cannot be longer than 45 characters long. |
+| DATETIME     | d/                 | The DATETIME is the datetime indicating the interview datetime of the Applicant.                                 |
 
 [Back to Table of Contents](#table-of-contents)
 
