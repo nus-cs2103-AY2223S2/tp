@@ -33,8 +33,7 @@ public class RecurCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Recurring event added: %1$s";
     public static final String MESSAGE_FAILURE_PAST_DATE = "End date indicated is in the past\n"
             + "Ensure end date of recurrence has not past.";
-    public static final String MESSAGE_RECUR_FACTOR_CAP = "Recur factor is not appropriate for "
-            + "number of recurring events.";
+    public static final String MESSAGE_RECUR_FACTOR_CAP = "Recur factor '%s' may only be used for the next %d %ss";
     public static final String MESSAGE_FAILURE_DAY_NOT_EXIST_MONTH = "Unable to recur by month.\n"
             + "%s does not have day %d";
     public static final String MESSAGE_FAILURE_EVENT_CLASH = "Unable to recur.\n"
@@ -117,7 +116,8 @@ public class RecurCommand extends Command {
         Event[] eventsToAdd = new Event[daysDiff];
 
         if (daysDiff > maxDaysInMonth) {
-            throw new CommandException(MESSAGE_RECUR_FACTOR_CAP);
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP,
+                    factor.toString(), maxDaysInMonth, factor));
         }
 
         Date newDate = new Date(eventToRecur.getDate().date.plusDays(1).toString());
@@ -172,7 +172,8 @@ public class RecurCommand extends Command {
                         eventToRecur.getStartTime(), eventToRecur.getEndTime());
 
         if (weeksDiff > maxWeeksInYear) {
-            throw new CommandException(MESSAGE_RECUR_FACTOR_CAP);
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP,
+                    factor.toString(), maxWeeksInYear, factor));
         }
 
         for (int i = 0; i < weeksDiff; i++) {
@@ -222,7 +223,8 @@ public class RecurCommand extends Command {
                         eventToRecur.getStartTime(), eventToRecur.getEndTime());
 
         if (monthsDiff > maxMonthInYear) {
-            throw new CommandException(MESSAGE_RECUR_FACTOR_CAP);
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP,
+                    factor.toString(), maxMonthInYear, factor));
         }
 
         for (int i = 0; i < monthsDiff; i++) {
