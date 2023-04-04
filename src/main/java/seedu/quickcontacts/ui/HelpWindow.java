@@ -30,7 +30,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "p/: phone number\n"
             + "e/: email\n"
             + "a/: address\n"
-            + "t/ tag\n"
+            + "t/ tag\n\n"
             + "More help can be found in the user guide\n"
             + USERGUIDE_URL;
 
