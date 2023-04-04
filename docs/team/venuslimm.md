@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added a `addevent` command that adds an event. ([#33](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/33))
   * What it does: 
     * Allows user to add an event with the given name, start date time, and end date time.
-  * Justification: 
+  * Justification:
     * With this feature, the user is able to manage their events on this application by simply adding the events they are involved in or the events they wish to keep track.
     * This allows the user to manage their contacts and events in 1 single application.
 
@@ -23,7 +23,8 @@ Given below are my contributions to the project.
   * Justification: 
     * With this feature, the user is able to handle their list of events efficiently in a logical, neater, and consistent order, by sorting the events by either their names or date times.
   * Highlights: 
-    * Users are given the flexibility to sort the events based on the events' names (in ascending/descending order), or events' start date times (in ascending order), or events' end date times (in ascending order).
+    * The user is given the flexibility to sort the events based on the events' names (in ascending/descending order), or events' start date times (in ascending order), or events' end date times (in ascending order).
+    * If the user forgets what command to enter to sort the events by a certain type, the user can enter `sortevent` to list all the possible valid inputs.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=venuslimm&breakdown=true)
 
@@ -33,7 +34,7 @@ Given below are my contributions to the project.
     * Increased the size of `Contacts` and `Events` labels.
 
 * **Project Management**:
-  * Released [v1.2.1](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.2.1) on GitHub
+  * Released [v1.2.1](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.2.1) on GitHub.
 
 * **Contributions to the Developer Guide**
   * Model section ([#64](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/64))
@@ -49,17 +50,18 @@ Given below are my contributions to the project.
     * Crafted user stories with the team.
   * Use cases
     * Crafted some use cases with the team.
-  * Appendix section
+  * Appendix section ([#85](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/85))
     * Updated `Launch and shutdown`.
 
 * **Contributions to the User Guide**
-  * Quick start section
+  * Quick start section ([#73](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/73), [#85](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/85))
     * Updated to match our current application.
   * Add event section ([#31](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/31))
   * Sort event section ([#73](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/73))
 
 * **Contributions to team-based tasks**
   * Updated [README.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/README.md) and [index.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/index.md) badges.
+  * Added some user stories onto GitHub.
 
 * **Review/mentoring contributions**
   * Reviewed and commented non-trivial comments on the following PRs: [#4](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/4), [#10](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/10), [#39](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/39), [#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48), [#55](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/55), [#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56), [#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63), [#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68), [#112](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/112).
