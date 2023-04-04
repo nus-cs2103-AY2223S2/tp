@@ -29,6 +29,8 @@
 
 {ToDo: Add architecture}
 
+[Back to top](#top)
+
 ---
 
 ## Implementation
@@ -92,6 +94,8 @@ add command:
         - Application will not detect the input content from the users which could contain
           non-related strings.
 
+[Back to top](#top)
+
 ### Delete Feature
 
 #### Delete Implementation
@@ -101,6 +105,8 @@ add command:
 #### Design Considerations
 
 {Todo: Add design considerations for delete}
+
+[Back to top](#top)
 
 ### Add Image Feature
 
@@ -158,6 +164,8 @@ The following activity diagram summarizes what happens when a user executes add-
         - Easy to save as only the Path as a string
     - Cons:
         - Path is easily invalidated (e.g. user moves/deletes/renames the image)
+
+[Back to top](#top)
 
 ### Delete Image Feature
 
@@ -221,6 +229,8 @@ delete-image command:
         - Application will take up increasingly more unnecessary storage during
           its lifetime of usage
 
+[Back to top](#top)
+
 ### Import Contacts Feature
 
 #### Import Contacts Implementation
@@ -275,7 +285,9 @@ import command:
     - Cons:
         - Input will take longer to parse as the string input has to be parsed into
           a faculty object to be used as input to ImportCommand#execute
-          
+
+[Back to top](#top)
+        
 ### Find Feature
 
 #### Find Implementation
@@ -332,6 +344,8 @@ given input requirements, instead of a list of contacts that contains one or mor
 of the keywords that was entered. Hence, the logical `AND` was decided to be more
 appropriate, and `Predicate#and` was used.
 
+[Back to top](#top)
+
 ---
 
 ## Appendix: Requirements
@@ -349,6 +363,8 @@ NUS Students often take many classes and meet different people. This application
 contacts list for an easier way to set up proper communication channels. This makes it easier for students to form
 connections with their peers during their time in University.
 
+[Back to top](#top)
+
 ### User stories
 
 1. As a student, I can find all relevant university contacts/POCs for various purposes
@@ -359,6 +375,8 @@ connections with their peers during their time in University.
 6. As a user, I can delete a contact so that I can remove unneeded and/or incorrect contacts.
 7. As a student, I can to find other students in my classes that have been added as a contact so that I can ask them for
    help
+
+[Back to top](#top)
 
 ### Use cases
 
@@ -513,11 +531,14 @@ BookFace displays an example of valid details.
 System repeats Step 1-2 until valid details are entered.
 ```
 
+[Back to top](#top)
+
 ### Glossary
 
 * NUS: The National University of Singapore
 * Student: A user who belongs to a faculty in NUS and attends one or more classes with other students
 * Tutor: A user who tutors students in one or more classes
-* Faculty: a group of university departments concerned with a major division of knowledge
-* Contact: A person of interest, either student or tutor, who's details have been recorded by the user
+* Faculty: A group of university departments concerned with a major division of knowledge
+* Contact: A person of interest whose details have been recorded by the user
 
+[Back to top](#top)
