@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.parser.MarkCommandParser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pet.Address;
 import seedu.address.model.pet.Deadline;
 import seedu.address.model.pet.Email;
@@ -23,8 +26,8 @@ public class PetBuilder {
     public static final String DEFAULT_NAME = "Amy Bee Woof";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final LocalDateTime DEFAULT_TIMESTAMP = LocalDateTime.now();
-    public static final Deadline DEFAULT_DEADLINE = new Deadline("Feed medicine", LocalDateTime.now());
+    public static final LocalDateTime DEFAULT_TIMESTAMP = LocalDateTime.now().minusDays(1);
+    public static final Deadline DEFAULT_DEADLINE = new Deadline("Feed medicine", LocalDateTime.now().plusDays(1));
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private OwnerName ownerName;
@@ -108,6 +111,23 @@ public class PetBuilder {
      */
     public PetBuilder withEmail(String email) {
         this.email = new Email(email);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Timestamp} of the {@code Pet} that we are building.
+     */
+    public PetBuilder withTimestamp (LocalDateTime t) {
+        this.timestamp = t;
+
+        return this;
+    }
+
+    /**
+     * Sets the {@code Deadline} of the {@code Pet} that we are building.
+     */
+    public PetBuilder withDeadline (String d, LocalDateTime t) {
+        this.deadline = new Deadline(d, t);
         return this;
     }
 

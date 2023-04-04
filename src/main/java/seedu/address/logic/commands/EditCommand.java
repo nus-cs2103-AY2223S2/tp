@@ -256,7 +256,8 @@ public class EditCommand extends Command {
             // state check
             EditPetDescriptor e = (EditPetDescriptor) other;
 
-            return getName().equals(e.getName())
+            return  getOwnerName().equals(e.getOwnerName())
+                    && getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
