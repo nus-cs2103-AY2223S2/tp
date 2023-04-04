@@ -48,16 +48,16 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
             + ": Finds all patients whose names contain "
             + "the specified keywords (case-insensitive) and displays them as a list with PATIENT_ID.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " alex\n"
-            + "Alternate Parameters:"
+            + "Parameters: PATIENT_NAME  |  --ATTRIBUTE_FLAG   FLAG_ARGUMENT\n"
+            + "ATTRIBUTE_FLAGs: "
             + "[" + DELIMITER + PREFIX_NAME + " NAME] "
             + "[" + DELIMITER + PREFIX_PHONE + " PHONE] "
             + "[" + DELIMITER + PREFIX_DOB + " Date of Birth] "
             + "[" + DELIMITER + PREFIX_BLOODTYPE + " BLOODTYPE] "
-            + "[" + DELIMITER + PREFIX_ALLERGY + " ALLERGY]... "
-            + "[" + DELIMITER + PREFIX_VACCINATION + " VACCINE]...\n"
-            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD
+            + "[" + DELIMITER + PREFIX_ALLERGY + " ALLERGY] "
+            + "[" + DELIMITER + PREFIX_VACCINATION + " VACCINE]\n"
+            + "Example 1: " + COMMAND_GROUP + " " + COMMAND_WORD + " alex\n"
+            + "Example 2: " + COMMAND_GROUP + " " + COMMAND_WORD + " "
             + DELIMITER + PREFIX_NAME + " john "
             + DELIMITER + PREFIX_BLOODTYPE + " B+";
 
