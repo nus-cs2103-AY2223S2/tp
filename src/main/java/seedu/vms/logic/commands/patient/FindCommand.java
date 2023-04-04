@@ -56,10 +56,7 @@ public class FindCommand extends Command {
             + "[" + DELIMITER + PREFIX_BLOODTYPE + " BLOODTYPE] "
             + "[" + DELIMITER + PREFIX_ALLERGY + " ALLERGY] "
             + "[" + DELIMITER + PREFIX_VACCINATION + " VACCINE]\n"
-            + "Example 1: " + COMMAND_GROUP + " " + COMMAND_WORD + " alex\n"
-            + "Example 2: " + COMMAND_GROUP + " " + COMMAND_WORD + " "
-            + DELIMITER + PREFIX_NAME + " john "
-            + DELIMITER + PREFIX_BLOODTYPE + " B+";
+            + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " alex\n";
 
     private final Optional<NameContainsKeywordsPredicate> namePredicate;
     private final Optional<PhoneNumberPredicate> phonePredicate;
