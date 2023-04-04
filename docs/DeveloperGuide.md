@@ -431,7 +431,7 @@ Represents a collection of **unique** groups that the user or contact belong to.
 
 #### **Module Tag Set**
 
-Represents a collection of **unique** modules that the user or contact is enrolled into. It contains the lessons that the person has, as well as the modules shared with the user.. This class was created to support easy sorting by the module field.
+Represents a collection of **unique** modules that the user or contact is enrolled into. It contains the lessons that the person has, as well as the modules shared with the user. This class was created to support easy sorting by the module field.
 
 ### **Tag**
 
