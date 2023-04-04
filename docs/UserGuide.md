@@ -244,24 +244,27 @@ Examples:
 
 ### Locating persons by any field : `find`
 
-You can look for all persons that have any fields that match any of the given keywords. This is useful for when you
-can't remember which field the information belongs to.
+Finds persons who have any fields that contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-- The search is case-insensitive. e.g., `alpha` will match `Alpha`
-- The order of the keywords does not matter. e.g. `Ris Pasir` will match `Pasir Ris`
-- All person fields are searched.
-- Partial matching is performed e.g., `@gmail.com` will match all persons with a Gmail account
+- The search is case-insensitive. e.g `hans` will match `Hans`
+- Keywords cannot contain spaces. Instead, spaces are used to separate keywords.
+- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+- All fields (rank, name, unit, company, platoon, phone, email, address, tags) are searched.
+- Only part of a field is needed for a successful match e.g. `tani` will match `Botanic Gardens`
 - Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Jacob Lim` will return `Jacob Tan` and `Nicholas Lim`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang` and `Bo Hans`
 
 Examples:
 
-- `find tan` returns `Frederick Tan`, `Tanny Lim`, anyone that that has `tan` in their email address and anyone that
-  lives in `Tanjong Pagar`
-- `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+- `find Jo` returns `john`, `John Doe`, `joseph moseph` and `anjolino`
+- `find live delta` returns 3 persons in this example:
+  - `Charlotte Oliveiro` (name matches `live`)
+  - `Irfan Ibrahim` (email matches `live`)
+  - `Roy Balakrishnan` (company matches `delta`)<br>
+
+![result for 'find charlotte irfan roy'](images/findCharlotteIrfanRoyResult.png)
 
 ### Locating persons using filters on fields : `filter`
 
