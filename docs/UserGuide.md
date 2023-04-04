@@ -181,8 +181,8 @@ For attendance, you can make the following calls:
 Marks the attendance of a student for that week<br>
 Format: `markAtd STUDENT_INDEX w/WEEK_NUMBER`
 
-STUDENT_INDEX: A positive integer that represents the index of student as shown in TAA<br>
-WEEK_NUMBER: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI<br>
+`WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
 Marking the attendance for a week that is already marked will result in
 a message `This student's attendance has already been marked.`
 
@@ -194,8 +194,8 @@ Examples
 Unmarks the attendance of a student for that week<br>
 Format: `unmarkAtd STUDENT_ID w/WEEK_NUMBER`
 
-STUDENT_INDEX: A positive integer that represents the index of student as shown in TAA <br>
-WEEK_NUMBER: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
+`WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
 Unmarking the attendance for a week that is already unmarked will just result in
 the successful unmarking message being displayed `Attendance unmarked successfully!`
 
@@ -207,7 +207,7 @@ Examples
 Lists the attendance of a student from week 1 to week 12<br>
 Format: `listAtd STUDENT_INDEX`
 
-STUDENT_INDEX: A positive integer that represents the index of student as shown in TAA <br>
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
 
 Examples
 * `listAtd 1` (list attendance of student with index 1)
@@ -240,9 +240,9 @@ For participation, you can make the following calls:
 #### Explanation on how Participation points is represented in TAA
 
 * Participation points in TAA is only limited to 0 to 700 (inclusive of both 0 and 700)
-* Participation points of weeks where attendance is not marked is represented as `-1`
+* Participation points of weeks when attendance is not marked is represented as `-1`
 * Display of participation points in TAA is the average points, which is calculated using `Total participation points` / `Number of weeks present`
-  `Total participation points` is the sum of all participation points for weeks where the student is present
+  `Total participation points` is the sum of all participation points for weeks when the student is present
   `Number of weeks present` refers to the number of week present from week 1 to week 12
 
 
@@ -250,9 +250,9 @@ For participation, you can make the following calls:
 Inserts participation points of a student for that week<br>
 Format: `insertPP STUDENT_INDEX w/WEEK_NUMBER pp/POINTS`
 
-STUDENT_INDEX: A positive integer that represents the index of student as shown in TAA <br>
-WEEK_NUMBER: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
-POINTS: A integer between 0 and 700 (inclusive of both 0 and 700)
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
+`WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
+`POINTS`: A integer between 0 and 700 (inclusive of both 0 and 700)
 
 Participation points can only be inserted for a week when the attendance is already marked. <br>
 Violation of this will result in a message `Mark the attendance of the student first before inserting points!`
@@ -262,10 +262,10 @@ Examples
 * `insertPP 2 w/1 pp/300` (inserts participation points of 200 for week 1 of student with index 2)
 
 #### List participation points: `listPP`
-Lists the attendance of a student from week 1 to week 12<br>
+Lists the participation points of a student from week 1 to week 12<br>
 Format: `listPP STUDENT_INDEX`
 
-STUDENT_INDEX: A positive integer that represents the index of student as shown in TAA <br>
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
 
 Examples
 * `listAtd 1` (list participation points of student with index 1)
