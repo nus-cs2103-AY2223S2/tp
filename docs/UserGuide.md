@@ -542,7 +542,7 @@ query into the command box.
 Please take note of these details for fuzzy search:
 
 * Closer matches will be placed at the top;
-* Projects or clients which do not match at all will not be shown;
+* Only projects or clients which *do not match at all* will not be shown;
 * Fuzzy search is *not* case-sensitive.
 
 The following two sections will walk through performing fuzzy search on
