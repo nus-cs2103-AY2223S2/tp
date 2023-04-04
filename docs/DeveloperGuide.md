@@ -575,3 +575,14 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Planned Enhancements
+
+1. The current error message for an invalid index is too general. We plan to make the error message also more accurate 
+   by filtering by why the index is invalid.
+   
+    1. [-MAX_INT....0]: Index must be a positive non-zero integer
+    2. [4..MAX_INT]: Index is out-of-bounds. Index must correspond to a valid tank.
+    
