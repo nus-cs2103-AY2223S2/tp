@@ -111,7 +111,7 @@ Add a new food into WIFE. (This is the command when you tried out your first com
 
 Format: `add n/NAME u/UNIT q/QUANTITY e/EXPIRY DATE`
 
-*All parameters must be present in the command, except the 'tag' parameter which is surrounded by square brackets.
+*All parameters must be present in the command. Date must be in the format of DD-MM-YYYY.
 
 Example:
 
