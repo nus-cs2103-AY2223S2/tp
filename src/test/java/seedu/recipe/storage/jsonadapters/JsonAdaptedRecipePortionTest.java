@@ -12,7 +12,6 @@ import seedu.recipe.model.recipe.unit.PortionUnit;
 
 //@@author alson001
 public class JsonAdaptedRecipePortionTest {
-
     private static final JsonAdaptedPortionUnit JSON_ADAPTED_PORTION_UNIT = new JsonAdaptedPortionUnit("people");
 
     @Test
@@ -26,7 +25,7 @@ public class JsonAdaptedRecipePortionTest {
     @Test
     public void constructor_validRangeAndJsonAdaptedPortionUnit_returnsJsonAdaptedRecipePortion() {
         JsonAdaptedRecipePortion adaptedRecipePortion =
-                new JsonAdaptedRecipePortion(1, 2, JSON_ADAPTED_PORTION_UNIT);
+            new JsonAdaptedRecipePortion(1, 2, JSON_ADAPTED_PORTION_UNIT);
         assertEquals(1, adaptedRecipePortion.getLowerRange());
         assertEquals(2, adaptedRecipePortion.getUpperRange());
         assertEquals(JSON_ADAPTED_PORTION_UNIT, adaptedRecipePortion.getPortionUnit());
@@ -42,14 +41,14 @@ public class JsonAdaptedRecipePortionTest {
     @Test
     public void toModelType_invalidLowerRange_throwsIllegalValueException() {
         JsonAdaptedRecipePortion adapted =
-                new JsonAdaptedRecipePortion(-1, 2, new JsonAdaptedPortionUnit("serving"));
+            new JsonAdaptedRecipePortion(-1, 2, new JsonAdaptedPortionUnit("serving"));
         assertThrows(IllegalValueException.class, adapted::toModelType);
     }
 
     @Test
     public void toModelType_invalidUpperRange_throwsIllegalValueException() {
         JsonAdaptedRecipePortion adapted =
-                new JsonAdaptedRecipePortion(4, 2, new JsonAdaptedPortionUnit("serving"));
+            new JsonAdaptedRecipePortion(4, 2, new JsonAdaptedPortionUnit("serving"));
         assertThrows(IllegalValueException.class, adapted::toModelType);
     }
 }

@@ -10,9 +10,9 @@ import seedu.recipe.model.recipe.Step;
 
 //@@author alson001
 public class JsonAdaptedStepTest {
-
     private static final String VALID_STEP = "Preheat oven to 200C";
     private static final String INVALID_STEP = "123456";
+
     @Test
     public void constructor_validStepName_returnsJsonAdaptedStep() {
         JsonAdaptedStep adaptedStep = new JsonAdaptedStep(VALID_STEP);

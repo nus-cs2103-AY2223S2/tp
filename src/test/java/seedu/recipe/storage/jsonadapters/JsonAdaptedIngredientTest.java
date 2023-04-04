@@ -6,9 +6,8 @@ import static seedu.recipe.testutil.Assert.assertThrows;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_E_PEPE;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_INGREDIENTS;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,16 +16,15 @@ import seedu.recipe.model.recipe.ingredient.Ingredient;
 import seedu.recipe.model.recipe.ingredient.IngredientInformation;
 
 public class JsonAdaptedIngredientTest {
-
     @Test
     public void toModelType_invalidIngredientName_throwsIllegalArgumentException() {
         JsonAdaptedIngredient jsonAdaptedIngredient = new JsonAdaptedIngredient(
-                "",
-                "poultry",
-                "500g",
-                "about half a pound",
-                Arrays.asList("skinless", "boneless"),
-                new ArrayList<JsonAdaptedSubstitutionIngredient>()
+            "", //name
+            "poultry", //commonName
+            "500g", //Amount
+            "about half a pound", //EstimatedAmount
+            List.of("skinless", "boneless"), //Remarks
+            List.of()
         );
         assertThrows(IllegalArgumentException.class, jsonAdaptedIngredient::toModelType);
     }
@@ -35,18 +33,18 @@ public class JsonAdaptedIngredientTest {
     public void toModelType_validIngredientDetails_returnsIngredientKeyValuePair() {
         HashMap<Ingredient, IngredientInformation> ingredientList = new HashMap<>();
         CACIO_INGREDIENTS.forEach(ingredientBuilder ->
-                ingredientBuilder.build() //Ingredient Map
-                        .forEach((mainIngredient, ingredientInformation) -> {
-                            try {
-                                new JsonAdaptedIngredient(mainIngredient, ingredientInformation)
-                                        .toModelType()
-                                        .forEach(ingredientList::put);
-                            } catch (IllegalValueException e) {
-                                fail(e.getMessage());
-                            }
-                        }
+            ingredientBuilder.build() //Ingredient Map
+                .forEach((mainIngredient, ingredientInformation) -> {
+                    try {
+                        ingredientList.putAll(
+                            new JsonAdaptedIngredient(mainIngredient, ingredientInformation)
+                                .toModelType()
+                        );
+                    } catch (IllegalValueException e) {
+                        fail(e.getMessage());
+                    }
+                }
         ));
         assertEquals(CACIO_E_PEPE.getIngredients(), ingredientList);
     }
-
 }

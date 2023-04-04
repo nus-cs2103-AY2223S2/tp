@@ -26,7 +26,7 @@ public class JsonAdaptedSubstitutionIngredientTest {
         Set<Ingredient> ingredientSet = CACIO_E_PEPE.getIngredientList();
         ingredientSet.stream().forEach(ingredient -> {
             JsonAdaptedSubstitutionIngredient adaptedSubstitutionIngredient =
-                    new JsonAdaptedSubstitutionIngredient(ingredient);
+                new JsonAdaptedSubstitutionIngredient(ingredient);
             assertEquals(ingredient.getName(), adaptedSubstitutionIngredient.getIngredientName());
         });
     }
