@@ -50,9 +50,9 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
 
-    private Consumer<List<CommandMessage>> onExecutionComplete = results -> {};
+    private Consumer<List<CommandMessage>> completionHandler = results -> {};
 
-    private final LinkedBlockingDeque<String> commandQueue = new LinkedBlockingDeque<>();
+    private final LinkedBlockingDeque<String> cmdQueue = new LinkedBlockingDeque<>();
     private volatile boolean isExecuting = true;
 
     private Runnable closeAction = () -> {};
@@ -69,18 +69,18 @@ public class LogicManager implements Logic {
 
     @Override
     public void queue(String commandText) {
-        commandQueue.add(commandText);
+        cmdQueue.add(commandText);
         startNext();
     }
 
     private synchronized void startNext() {
-        if (isExecuting || commandQueue.isEmpty()) {
+        if (isExecuting || cmdQueue.isEmpty()) {
             return;
         }
         isExecuting = true;
-        String commandText = commandQueue.poll();
+        String commandText = cmdQueue.poll();
         new Thread(() -> attemptProcess(
-                () -> parseCommand(commandText))).start();
+                () -> processCommand(commandText))).start();
     }
 
 
@@ -95,7 +95,7 @@ public class LogicManager implements Logic {
     }
 
 
-    private void parseCommand(String commandText) {
+    private void processCommand(String commandText) {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
         try {
             execute(model.parseCommand(commandText));
@@ -120,6 +120,14 @@ public class LogicManager implements Logic {
             return;
         }
 
+        results.addAll(saveModel());
+
+        completeExecution(results, command.getFollowUp());
+    }
+
+
+    private List<CommandMessage> saveModel() {
+        ArrayList<CommandMessage> results = new ArrayList<>();
         try {
             storage.savePatientManager(model.getPatientManager());
         } catch (IOException ioe) {
@@ -144,7 +152,7 @@ public class LogicManager implements Logic {
             results.add(new CommandMessage(FILE_OPS_ERROR_MESSAGE + ioe, CommandMessage.State.WARNING));
         }
 
-        completeExecution(results, command.getFollowUp());
+        return results;
     }
 
 
@@ -159,7 +167,7 @@ public class LogicManager implements Logic {
 
 
     private synchronized void completeExecution(List<CommandMessage> messages, Optional<Command> followUp) {
-        onExecutionComplete.accept(messages);
+        completionHandler.accept(messages);
         if (performActions(messages)) {
             return;
         }
@@ -290,27 +298,27 @@ public class LogicManager implements Logic {
 
     private void sendLoadInfo(String message) {
         logger.info(message);
-        onExecutionComplete.accept(List.of(new CommandMessage(message)));
+        completionHandler.accept(List.of(new CommandMessage(message)));
     }
 
 
     private void sendLoadWarning(String message) {
         logger.warning(message);
-        onExecutionComplete.accept(List.of(new CommandMessage(
+        completionHandler.accept(List.of(new CommandMessage(
                 message, CommandMessage.State.WARNING)));
     }
 
 
     private void sendLoadDeath(String message) {
         logger.severe(message);
-        onExecutionComplete.accept(List.of(new CommandMessage(
+        completionHandler.accept(List.of(new CommandMessage(
                 message, CommandMessage.State.DEATH)));
     }
 
 
     @Override
     public void setOnExecutionCompletion(Consumer<List<CommandMessage>> onExecutionComplete) {
-        this.onExecutionComplete = onExecutionComplete;
+        this.completionHandler = onExecutionComplete;
     }
 
 
