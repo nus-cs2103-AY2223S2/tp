@@ -928,7 +928,9 @@ appointment add --p <var>PATIENT_ID</var> --s <var>STARTING_TIME</var> --e <var>
 
 ##### Example
 
-* `appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Dose 1 (Moderna)`
+```text
+appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Dose 1 (Moderna)
+```
 
 ##### Restrictions
 
@@ -980,8 +982,10 @@ appointment find [...<var>KEYWORDS</var>...]
 
 ##### Example
 
-* `appointment find --p 1`
-* `appointment find Dose 1`
+```text
+appointment find --p 1
+appointment find Dose 1
+```
 
 <br>
 
@@ -1004,7 +1008,9 @@ appointment edit INDEX [--p <var>PATIENT_ID</var>] [--s <var>STARTING_TIME</var>
 
 ##### Example
 
-* `appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfizer)`
+```text
+appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfizer)
+```
 
 ##### Restrictions
 
@@ -1031,7 +1037,9 @@ appointment mark <var>INDEX</var>
 
 ##### Example
 
-* `appointment mark 1`
+```text
+appointment mark 1
+```
 
 ##### Restrictions
 
@@ -1054,7 +1062,9 @@ appointment unmark <var>INDEX</var>
 
 ##### Example
 
-* `appointment unmark 1`
+```text
+appointment unmark 1
+```
 
 ##### Restrictions
 
@@ -1077,7 +1087,9 @@ appointment delete <var>INDEX</var>
 
 ##### Example
 
-* `appointment delete 5`
+```text
+appointment delete 5
+```
 
 ##### Restrictions
 
