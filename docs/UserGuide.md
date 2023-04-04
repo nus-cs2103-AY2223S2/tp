@@ -221,6 +221,8 @@ Congratulations on completing the tutorial! For the complete list of commands, y
 **[Command Summary](#7-command-summary)** section. For more details about each command, you can read on for the next
 section on **[Features](#4-features)**.
 
+######*Return to the [Table of Contents](#table-of-contents).*
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -267,7 +269,7 @@ Examples:
 
 #### 4.1.2 Editing an application : `edit-app`
 
-Edits an existing application in the internship book. 
+Edits an existing application in your internship book. 
 
 Spotted a typo in an existing entry, or want to update the status of an application? No problem! Just specify the index 
 and parameter(s) of the application you wish to edit, and `edit-app` will fix it for you. 
@@ -291,7 +293,7 @@ Examples:
 
 #### 4.1.3 Deleting an application : `delete-app`
 
-Deletes the specified application from the internship book.
+Deletes the application you specify from your internship book.
 
 This feature will come in handy if you no longer wish to keep track of an application, maybe because it is no longer
 available or relevant to you. 
@@ -312,7 +314,7 @@ Examples:
 
 **Adding tags** 
 
-sprINT currently supports 2 ways of adding [tags](#tag) to an application:
+sprINT currently supports 2 ways of adding [tags](#tag) to an application entry:
 
 1. Tags can be added when you are creating a new application, as a parameter to the `add-app` command. For more 
 information, refer to [section 4.1.1](#411-adding-an-application--add-app).
@@ -380,6 +382,8 @@ Example:
 * `edit-app 2 t/creditBearing t/mentoringProvided`: removes all tags except `creditBearing` and `mentoringProvided`
   from the 2nd application on the Application List Panel, assuming the application had more than 2 tags initially.
 
+######*Return to the [Table of Contents](#table-of-contents).*
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -414,7 +418,7 @@ You can see how the new task will appear in the updated Application Card, follow
 
 #### 4.2.2 Editing a task : `edit-task`
 
-Edits an existing task for a specified application.
+Edits an existing task for the application that you specify.
 
 Format: `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]`
 
@@ -442,12 +446,15 @@ Format: `delete-task INDEX`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Deleting an application's task will not delete the underlying application entry itself.
-Refer to the command `[delete-app](#413-deleting-an-application--delete-app)` if you wish to delete an application entirely, including its task.
+Refer to the command <a href = "https://ay2223s2-cs2103t-t13-3.github.io/tp/UserGuide.html#413-deleting-an-application--delete-app">delete-app</a> 
+if you wish to delete an application entirely, including its task.
 </div>
 
 Examples:
 * `list` followed by `delete-task 2`: deletes the task for the 2nd application on the Application List Panel.
 * `find Google` followed by `delete-task 1`: deletes the task of the 1st application shown in the results of the `find` command.
+
+######*Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -456,7 +463,7 @@ Examples:
 
 #### 4.3.1 Listing all applications : `list`
 
-Shows a list of all internship applications, in the order of when they are added. Application
+Shows you a list of all your internship applications, in the order of when they are added. Application
 entries that are added more recently will be shown on top.
 
 Format: `list`
@@ -468,7 +475,7 @@ Finds internship applications with information containing any of the given keywo
 Format: `find keywords(s)` or `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`
 
 Additional things to note: 
-* The keywords are case-insensitive. e.g. You can type `GOoGlE` and it will match with `Google`.
+* The keywords are case-insensitive. e.g. You can type `GOoGlE` and it can still match with `Google`.
 * In `find keyword(s)`, when none of the prefixes is specified, the keyword(s) will be searched globally in the information for all prefixes.
 * In `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]`, `r/`, `c/` and `s/` are prefixes that stand for `ROLE`, `COMPANY NAME` and `STATUS` respectively.
 * When at least one prefix is provided, the keyword(s) is searched according to the information under that particular prefix.
@@ -487,22 +494,24 @@ Format: `sort SEQUENCE ORDER`
 
 The following table details the parameters to be used with the `sort` command:
 
-| Parameter | Compulsory | Constraints| 
-|-----------|------------|------------|
-| Sequence  | Yes        |            |
-| Order     | Yes        |            |
+| Parameter | Compulsory | Constraints                                 | 
+|-----------|------------|---------------------------------------------|
+| Sequence  | Yes        | Must be either `a` or `d`                   |
+| Order     | Yes        | Must be either `alphabetical` or `deadline` |
 
 Additional things to note: 
-* Type either `a` or `d` for `SEQEUENCE`. They refer to **ascending** and **descending** respectively. 
-Currently, there are two orders you can choose:
-* Type either `alphabetical` or `deadline` for `ORDER`.
+* `a` and `d` for `SEQEUENCE` refer to **ascending** and **descending** respectively.
+* Currently, there are two orders you can choose for `ORDER`: `alphabetical` and `deadline`
 1. Choosing `alphabetical` will sort applications by their roles in alphabetical order. Should
    there be multiple application entries with the same role, they will be ranked alphabetically by their company names.
-2. Choosing `deadline` will display applications with tasks (and therefore, deadlines) only. The applications will be sorted by their task's deadline. 
+2. Choosing `deadline` will display applications with tasks (and therefore, deadlines) only. (Therefore, if you have no applications with no deadlines,
+an empty list will be displayed.) The applications will be sorted by their task's deadline. 
 
 Examples:
 * `sort a deadline` will show applications with task deadlines. Those with earlier deadlines will be higher up in the list.
 * `sort d alphabetical` will show applications in descending alphabetical order. (Z to A)
+
+######*Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -571,6 +580,8 @@ Advanced users are welcome to update their data directly by editing that data fi
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
 </div>
+
+######*Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -641,22 +652,24 @@ sprINT can process your data more quickly!
 
 ## **7. Command Summary**
 
-| Action                      | Format, Examples                                                                                                                                                         |
-|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add** <br/> Application   | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
-| **Edit**<br/> Application   | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@example.com`                       |
-| **Delete**<br/> Application | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                             |
-| **Add** <br/> Task          | `add-task INDEX d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task 1 d/Technical Interview by/01-05-2023`                                                                    |
-| **Edit** <br/> Task         | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                                    |
-| **Delete** <br/> Task       | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                           |
-| **List**                    | `list`                                                                                                                                                                   |
-| **Find**                    | `find [keyword(s)]` <br/> e.g. `find Meta` <br/> `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`                     |
-| **Sort**                    | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                              |
-| **Help**                    | `help`                                                                                                                                                                   |
-| **Undo**                    | `undo`                                                                                                                                                                   |
-| **Redo**                    | `redo`                                                                                                                                                                   |
-| **Clear**                   | `clear`                                                                                                                                                                  |
-| **Exit**                    | `exit`                                                                                                                                                                   |
+| Action                      | Can undo?          | Format, Examples                                                                                                                                                         |
+|-----------------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add** <br/> Application   | :heavy_check_mark: | `add-app r/ROLE c/COMPANY_NAME e/COMPANY_EMAIL s/STATUS [t/TAG(s)]​` <br> e.g. `add-app r/Teaching Assistant c/NUS SOC e/ta_portal@nus.edu.sg s/Offered t/creditBearing` |
+| **Edit**<br/> Application   | :heavy_check_mark: | `edit-app INDEX [r/ROLE] [c/COMPANY_NAME] [e/COMPANY_EMAIL] [s/STATUS] [t/TAG(s)]` <br/> e.g. `edit-app 1 r/Cloud Engineer e/googleHR@example.com`                       |
+| **Delete**<br/> Application | :heavy_check_mark: | `delete-app INDEX` <br/> e.g. `delete-app 1`                                                                                                                             |
+| **Add** <br/> Task          | :heavy_check_mark: | `add-task INDEX d/DESCRIPTION by/DEADLINE` <br> e.g. `add-task 1 d/Technical Interview by/01-05-2023`                                                                    |
+| **Edit** <br/> Task         | :heavy_check_mark: | `edit-task INDEX [d/DESCRIPTION] [by/DEADLINE]` <br/> e.g. `edit-task 1 d/Accept offer by/09-07-2023`                                                                    |
+| **Delete** <br/> Task       | :heavy_check_mark: | `delete-task INDEX` <br/> e.g. `delete-task 1`                                                                                                                           |
+| **List**                    | :x:                | `list`                                                                                                                                                                   |
+| **Find**                    | :x:                | `find [keyword(s)]` <br/> e.g. `find Meta` <br/> `find [r/keyword(s)] [c/keyword(s)] [s/keyword(s)]` <br/> e.g. `find r/SWE Intern c/Meta s/Offered`                     |
+| **Sort**                    | :x:                | `sort SEQUENCE ORDER` <br/> e.g. `sort d alphabetical` or `sort a deadline`                                                                                              |
+| **Help**                    | :x:                | `help`                                                                                                                                                                   |
+| **Undo**                    | :x:                | `undo`                                                                                                                                                                   |
+| **Redo**                    | :heavy_check_mark: | `redo`                                                                                                                                                                   |
+| **Clear**                   | :heavy_check_mark: | `clear`                                                                                                                                                                  |
+| **Exit**                    | :x:                | `exit`                                                                                                                                                                   |
+
+######*Return to the [Table of Contents](#table-of-contents).*
 
 <div style="page-break-after: always;"></div>
 
