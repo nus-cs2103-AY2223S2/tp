@@ -614,16 +614,6 @@ A380 is available.
 
 <div style="page-break-after: always;"></div>
 
-### Application Commands
-
-#### 1. Exiting from Wingman
-```
-exit
-```
-This will close the application window and exit the program. 
-All your changes to your resources will be saved for you to get back to when you reopen the application.
-
-<div style="page-break-after: always;"></div>
 
 ## Prefix Summary
 
@@ -664,7 +654,6 @@ All your changes to your resources will be saved for you to get back to when you
 | Link flight      | `linkflight /fl flight_index /resource_prefix resource_index `       | `linkflight /fl 0 /pf 1 /pm 2` |
 | Unlink flight    | `unlinkflight /fl flight_index /resource_prefix resource_index `     | `unlinkflight /fl 0 /pu 1`     |
 | Check            | `check /id resource_index`                                           | `check /id 0`                  |
-| Exit             | `exit`                                                               | `exit`                         |
 
 
 <div style="page-break-after: always;"></div>
@@ -687,6 +676,7 @@ OpenJDK 64-Bit Server VM Zulu11.62+17-CA (build 11.0.18+10-LTS, mixed mode)
 ```
 
 ## Glossary
+
 | **Term**        | **Definition**                                                            |
 |-----------------|---------------------------------------------------------------------------|
 | Resource        | Crews, Pilots, Planes, Flights or Locations                               |
