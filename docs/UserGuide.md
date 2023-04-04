@@ -110,7 +110,10 @@ You can find more details about the Entity and Statistics panels in the followin
 
 ### Entity Panel
 
-The Entity panel is where you will be able to view your projects and clients. It is split into two tabs, one that lists all existing projects and the other that lists all existing clients.
+The Entity panel is where you will be able to view your projects and clients.
+It is split into two tabs, one that lists all existing projects and the other
+that lists all existing clients. By default, all projects and clients are
+listed in order of creation.
 
 #### Projects Tab
 
@@ -189,13 +192,8 @@ The range of valid years is from -9999 to 9999.
 <div markdown="span" class="alert alert-danger">
 :warning: Avoid having any argument flag appear literally in your argument's
 data. For example, any attempts to create a project named *Mycelium -pn
-Desktop* would fail.
-
-```bash
-p -pn Mycelium -pn Desktop -e spiderman@gmail.com
-```
-
-In the command above, *Desktop* is interpreted as another argument, actually
+Desktop* would fail. In the command `p -pn Mycelium -pn Desktop -e
+spiderman@gmail.com`, *Desktop* is interpreted as another argument and
 overrides *Mycelium*. So we end up with a project named *Desktop*.
 </div>
 
@@ -405,6 +403,13 @@ exist in Mycelium. You can add them later if you wish.
 <div markdown="span" class="alert alert-info">
 :information_source: If you attempt to create a project with a name which already exists
 in Mycelium, an error will be displayed to block the operation.
+</div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: Mycelium does not enforce that a project's deadline be
+after its accepted date. This allows for the possibility of accepting overdue
+projects. You can also key in an accepted date in the future if you can
+anticipate it.
 </div>
 
 ### Deleting a project: `dp`
