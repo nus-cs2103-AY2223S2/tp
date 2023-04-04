@@ -48,7 +48,8 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub, new CommandHistory()));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () ->
+                addCommand.execute(modelStub, new CommandHistory()));
     }
 
     @Test
@@ -198,6 +199,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Person> getShowPerson() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void setDefaultShowPerson() {
             throw new AssertionError("This method should not be called");
         }
     }
