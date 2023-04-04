@@ -6,7 +6,37 @@ title: User Guide
 
 ## Table of Contents
  
-{:toc}
+* [1. Introduction](#1-introduction)
+* [2. About the User Guide](#2-about-the-user-guide)
+  * [2.1 Target Audience](#21-target-audience)
+  * [2.2 Using the Guide](#22-using-the-guide)
+  * [2.3 Understanding Notations](#23-understanding-notations)
+* [3. About sprINT](#3-about-sprint)
+  * [3.1 Configuration and Setup Guide](#31-configuration-and-setup-guide)
+  * [3.2 The User Interface](#32-the-user-interface)
+  * [3.3 About sprINT's Commands](#33-about-sprints-commands)
+  * [3.4 Short Tutorial](#34-short-tutorial)
+* [4. Features](#4-features)
+  * [4.1 Managing Applications](#41-managing-applications)
+    * [4.1.1 Adding an application](#411-adding-an-application--add-app)
+    * [4.1.2 Editing an application](#412-editing-an-application--edit-app)
+    * [4.1.3 Deleting an application](#413-deleting-an-application--delete-app)
+    * [4.1.4 Managing application tags](#414-managing-application-tags-with-add-app-and-edit-app)
+  * [4.2 Managing Tasks](#42-managing-tasks)
+    * [4.2.1 Adding a task](#421-adding-a-task--add-task)
+    * [4.2.2 Editing a task](#422-editing-a-task--edit-task)
+    * [4.2.3. Deleting a task](#423-deleting-a-task--delete-task)
+  * [4.3 Managing Display of Applications](#43-managing-display-for-applications)
+    * [4.3.1 Listing all applications](#431-listing-all-applications--list)
+    * [4.3.2 Finding applications](#432-finding-applications--find)
+    * [4.3.3 Sorting applications](#433-sorting-applications--sort)
+  * [4.4 Miscellaneous Commands](#44-miscellaneous-commands)
+    * [4.4.1 Viewing help](#441-viewing-help--help)
+    * [4.4.2 Undoing a command](#442-undoing-a-command--undo)
+    * [4.4.3 Redoing a command](#443-redoing-a-command--redo)
+* [5. FAQ](#5-faq)
+* [6. Glossary](#6-glossary)
+* [7. Command Summary](#7-command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -74,7 +104,6 @@ Cautions are in place to warn you of potential pitfalls new users may encounter.
 </div>
 
 <div style="page-break-after: always;"></div>
-<div markdown="block" class="alert alert-info">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -200,7 +229,7 @@ section on **[Features](#4-features)**.
 In this section, you will find detailed information about every feature in sprINT, including its syntax and usage 
 instructions.
 
-### 4.1 Managing applications
+### 4.1 Managing Applications
 
 This sub-section consists of commands that are related to managing [applications](#application) in sprINT. 
 
@@ -354,11 +383,11 @@ Example:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-### 4.2 Managing application tasks
+### 4.2 Managing Tasks
 
 This sub-section consists of commands that are related to managing [tasks](#task) in sprINT.
 
-#### 4.2.1 Adding an application task : `add-task`
+#### 4.2.1 Adding a task : `add-task`
 
 Adds a new task to an existing application.
 
@@ -383,7 +412,7 @@ Additional things to note:
 You can see how the new task will appear in the updated Application Card, following the scenario given above:
 ![UiAfterAddTask](images/UiAfterAddTask.png)
 
-#### 4.2.2 Editing an application task : `edit-task`
+#### 4.2.2 Editing a task : `edit-task`
 
 Edits an existing task for a specified application.
 
@@ -402,7 +431,7 @@ Examples:
 * `edit-task 1 d/Accept offer by/09-07-2023`: edits the description and deadline of the task for the 
   1st application on the Application List Panel to be `Accept offer` and `09-07-2023` respectively.
 
-#### 4.2.3 Deleting an application task : `delete-task`
+#### 4.2.3 Deleting a task : `delete-task`
 
 Deletes an existing task from the specified application.
 
@@ -423,7 +452,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-### 4.3 Managing display for applications
+### 4.3 Managing Display of Applications
 
 #### 4.3.1 Listing all applications : `list`
 
@@ -478,7 +507,7 @@ Examples:
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-### 4.4 Miscellaneous
+### 4.4 Miscellaneous Commands
 
 #### 4.4.1 Viewing help : `help`
 
