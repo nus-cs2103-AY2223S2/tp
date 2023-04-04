@@ -19,10 +19,10 @@ import ezschedule.model.event.exceptions.InvalidDateException;
 public class Date implements Comparable<Date> {
 
     public static final String MESSAGE_CONSTRAINTS = "Date should only contain numeric characters, "
-            + "follows the format yyyy-MM-dd (with year from 2000 to 2999, month from 01 to 12, "
-            + "and day from 01 to 31), and it should not be blank";
+            + "follows the format yyyy-MM-dd (year from 0001, month from 01 to 12, and day from 01 to 31), "
+            + "and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "(2\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))";
+    public static final String VALIDATION_REGEX = "((000[1-9]|[1-9]\\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))";
 
     public final LocalDate date;
 
