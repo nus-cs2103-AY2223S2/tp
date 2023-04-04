@@ -3,20 +3,30 @@ layout: page
 title: User Guide
 ---
 
-Artistic addressbook (ArB) is a **desktop app for artists, meant to help with managing clients and project information**, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
+Artistic addressbook (ArB) is a **desktop app for artists, meant to help with managing clients and project information**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
 
 ## **Table of Contents**
 {:toc}
-
+* [Quick Start](#quick-start)
+* [Detailed Setup Guide](#detailed-setup)
+* [Command Summary](#command-summary)
+* [Command Syntax](#syntax)
+* [Prefixes](#prefixes)
+* [Features](#features)
+* [General Features](#general-features)
+* [Client Commands](#client-commands)
+* [Project Commands](#project-commands)
+* [Tag Commands](#tag-commands)
+* [FAQ](#faq)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Quick start**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above installed in your Computer.
 
 1. Download the latest `arb.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your ArB
+1. Copy the file to a new folder you want to use as the _home folder_ for your ArB
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar arb.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. The app may contain some sample data if being opened for the first time.<br>
@@ -27,6 +37,8 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 
    * `list-client` : Lists all clients.
 
+   * `list-project`: Lists all projects. 
+
    * `add-client name/John Doe phone/98765432 email/johnd@example.com` : Adds a client named `John Doe` to the ArB.
 
    * `delete-client 3` : Deletes the 3rd client shown in the current client list.
@@ -35,30 +47,66 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 
 1. Refer to the [Features](#features) below for details of each command.
 
+## **Detailed Setup**
+
+[To be added]
+
 --------------------------------------------------------------------------------------------------------------------
+[<small>Back to top</small>](#table-of-contents)
+
+## Command summary
+
+| Action                        | Alias | Format, Examples                                                                                                                                                      |
+|-------------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List Clients**              | `lc`  | `list-client`                                                                                                                                                         |
+| **Add a Client**              | `ac`  | `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend`                |
+| **Edit a Client**             | `ec`  | `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*​` <br> e.g.,`edit-client 3 name/Alice Risa phone/1234 tag/classmate`                          |
+| **Delete a Client**           | `dc`  | `delete-client <index>`<br> e.g., `delete-client 1`                                                                                                                   |
+| **Clearing the Client List**  | `cc`  | `clear-client`                                                                                                                                                        |
+| **Finding a Client**          | `fc`  | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend`                                                                         |
+| **Sorting all Clients**       | `sc`  | `sort-client`                                                                                                                                                         |
+| **List Projects**             | `lp`  | `list-project`                                                                                                                                                        |
+| **Add a Project**             | `ap`  | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 tag/painting` |
+| **Edit a Project**            | `ep`  | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night`                                     |
+| **Delete a Project**          | `dp`  | `delete-project <index>`<br> e.g., `delete-project 1`                                                                                                                 |
+| **Mark a Project**            | `mp`  | `mark <index>` <br> e.g., `mark 3`                                                                                                                                    |
+| **Unmark a Project**          | `up`  | `unmark <index>` <br> e.g., `unmark 3`                                                                                                                                |
+| **Clearing the Project List** | `cp`  | `clear-project`                                                                                                                                                       |
+| **Finding a Project**         | `fp`  | `find-project [name/NAME]* [start/START] [end/END] [tag/TAG]* [status/STATUS]` <br> e.g., `find-project name/sky start/yesterday tag/painting`                        |
+| **Sorting all Project**       | `sp`  | `sort-project option/Option` <br> e.g., `sort-project option/name`                                                                                                    |
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Syntax**
 
 `[ACTION VERB] [options]`
 
 `<Required argument> [optional argument]`
 
-An asterisk `*` after any argument indicates that it can be entered a variable number of times.
+An asterisk `*` after any argument indicates that it can be entered a variable number of times. E.g. `[tag/TAG]*`
 
-All commands are case insensitive.
+All commands are case-insensitive.
 
 ## **Prefixes**
 
-1. `name/n` -> name: name
-2. `email/e` -> email: valid email
-3. `phone/p` -> phone: valid phone
-4. `deadline/d` -> deadline: valid deadline
-5. `price/pr` -> price: valid price
-6. `tag/t` -> tag: valid tag
-7. `client/c` -> client: keywords to search for clients to link to a project
-8. `option/o` -> option: option to sort the project list with
-9. `start/s` -> start: valid start of a timeframe
-10. `end/e` -> end: valid end of a timeframe
-11. `status/st` -> status: valid status
+| Prefix      | Short form | Description                                        |
+|-------------|------------|----------------------------------------------------|
+| `name/`     | `n/`       | Name of client/project                             |
+| `email/`    | `e/`       | Valid email address                                |
+| `phone/`    | `p/`       | Valid phone number                                 |
+| `deadline/` | `d/`       | Valid deadline for project                         |
+| `price/`    | `pr/`      | Price of project (0 or 2 decimals)                 |
+| `tag/`      | `t/`       | Alphanumeric tag                                   |
+| `client/`   | `c/`       | Keywords to search for client to link to a project |
+| `option/`   | `o/`       | Valid option to sort projects with                 |
+| `start/`    | `s/`       | Valid start of timeframe for finding projects      |
+| `end/`      | `e/`       | Valid end of timeframe for finding projects        |
+| `status/`   | `st/`      | Valid status for finding projects                  |
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
+[<small>Back to top</small>](#table-of-contents)
 
 ## **Features**
 
@@ -92,21 +140,21 @@ All commands are case insensitive.
 
 </div>
 
-## General commands
+[<small>Back to top</small>](#table-of-contents)
 
-### Viewing help: `help`
+## General features
 
-Shows a message explaning how to access the help page.
+### Viewing help
+#### Format: `help`
+
+Shows a message explaining how to access the help page (this guide).
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
-
-### Exiting the program : `exit`
+### Exiting the program
+#### Format: `exit`
 
 Exits the program.
-
-Format: `exit`
 
 ### Saving the data
 
@@ -120,25 +168,37 @@ ArB's data is saved as a JSON file `[JAR file location]/data/arb.json`. Advanced
 If your changes to the data file makes its format invalid, ArB will discard all data and start with an empty data file at the next run.
 </div>
 
+[<small>Back to top</small>](#table-of-contents)
+
 ## Client commands
 
-### Listing all clients: `list-client`
-#### Alias: `lc`
+The available client-related commands are:
+* [List all clients](#listing-all-clients)
+* [Add a client](#adding-a-client)
+* [Edit a client](#editing-a-client)
+* [Delete a client](#deleting-a-client)
+* [Clear client list](#clearing-the-client-list)
+* [Find clients](#finding-clients)
+* [Sort clients](#sorting-all-clients)
+
+
+### Listing all clients
+#### Format: `list-client`
+
+Short form: `lc`
 
 Lists out all clients and shows the client list.
 
-Format: `list-client`
+### Adding a client
+#### Format: `add-client <name/NAME> [email/EMAIL] [phone/PHONE] [tag/TAG]*`
 
-### Adding a client: `add-client`
-#### Alias: `ac`
+Short form: `ac <n/NAME> [e/EMAIL] [p/PHONE] [t/TAG]*`
 
 Adds a client to the application with the supplied details. The details that can be supplied are the name, email address and phone number of the client, along with any number of tags to be added.
 
 Only the name of the client is compulsory. 
 
 The email address and phone number must be in a valid format. E.g. `XXX@gmail.com` or ```XXX@yahoo.com``` for emails and `12345678` for phone numbers.
-
-Format: `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*`
 
 Note:
 * each tag to be added needs a separate `tag/TAG` flag.
@@ -149,8 +209,10 @@ Examples:
 * `add-client name/Alice`
 * `add-client name/Clary phone/87654321 email/clary@gmail.com`
 
-### Editing a client : `edit-client`
-#### Alias: `ec`
+### Editing a client
+#### Format: `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*`
+
+Short form: `ec <index> [n/NAME] [e/EMAIL] [p/PHONE] [t/TAG]`
 
 Edits the client at the given index of the client list, changing only the given field(s). Any fields that are mentioned but left empty will be deleted (apart from the name).
 
@@ -164,14 +226,14 @@ Note:
 * Using an empty `tag/` flag removes all tags of the client. This cannot be used with any non-empty `tag/` flags e.g. `edit-client 1 tag/ tag/friend` is not valid.
 * At least one field to edit must be provided.
 
-Format: `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*`
-
 Examples:
 *  `edit-client 1 email/new@email.com` Edits the email address of the 1st client to be `new@email.com`.
 *  `edit-client 3 name/Alice Risa phone/1234 tag/` Edits the name of the 3rd client to `Alice Risa` and phone number to `1234`. Removes any tags.
 
-### Deleting a client : `delete-client`
-#### Alias: `dc`
+### Deleting a client
+#### Format: `delete-client <index>`
+
+Short form: `dc <index>`
 
 Deletes the client at the specified index of the client list.
 
@@ -183,13 +245,13 @@ Note:
 This command cannot be undone. A deleted client cannot be restored.
 </div>
 
-Format: `delete-client <index>`
-
 Example:
 *  `list-client` followed by `delete-client 1` deletes the first client in the list (if there is one).
 
-### Clearing the client list : `clear-client`
-#### Alias: `cc`
+### Clearing the client list
+#### Format: `clear-client`
+
+Short form: `cc`
 
 Deletes all clients in the client list.
 
@@ -197,10 +259,10 @@ Deletes all clients in the client list.
 This command cannot be undone. All deleted clients cannot be restored.
 </div>
 
-Format: `clear-client`
+### Finding clients
+#### Format: `find-client [name/NAME]* [tag/tag]*`
 
-### Finding a client : `find-client`
-#### Alias: `fc`
+Short form: `fc [n/NAME] [t/TAG]*`
 
 Finds a client based on the details provided. Details that can be supplied are the names and tags.
 
@@ -209,30 +271,44 @@ Note:
 * Names and tags can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
 * Invalid names and tags will be ignored
 
-Format: `find-client [name/NAME]* [tag/tag]*`
-
 Examples:
 * `find-client name/bob tag/friend` will find any client whose name contains the word `bob` and is tagged with `friend`.
 * `find-client name/bob name/alice tag/friend tag/husband` will find any client whose name contains either `bob` or `alice`, and is tagged with either `friend` or `husband`.
 
-### Sorting all clients : `sort-client`
-#### Alias: `sc`
+### Sorting all clients
+#### Format: `sort-client`
+
+Short form: `sc`
 
 Sorts all clients that exist in the ArB by name in ascending order.
 
-Format: `sort-client`
+[<small>Back to top</small>](#table-of-contents)
 
 ## Project commands
 
-### Listing all projects : `list-project`
-#### Alias: `lp`
+The available project-related commands are:
+* [List all projects](#listing-all-projects)
+* [Add a project](#adding-a-project)
+* [Edit a project](#editing-a-project)
+* [Delete a project](#deleting-a-project)
+* [Mark a project as done](#marking-a-project-as-done)
+* [Mark a project as not done](#marking-a-project-as-not-done)
+* [Clear project list](#clearing-the-project-list)
+* [Find projects](#finding-projects)
+* [Sort projects](#sorting-all-projects)
+* [Link a project to a client](#linking-a-project-to-a-client)
+
+### Listing all projects
+#### Format: `list-project`
+
+Short form: `lp`
 
 Lists out all projects and shows the project list.
 
-Format: `list-project`
+### Adding a project
+#### Format: `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]* [client/CLIENT]*`
 
-### Adding a project: `add-project`
-#### Alias: `ap`
+Short form: `ap <n/NAME> [d/DEADLINE] [p/PRICE] [t/TAG]* [c/CLIENT]*`
 
 Adds a project to the application with the supplied details. The details that can be supplied are the name, deadline, price, tags and linked client of the project.
 
@@ -250,15 +326,15 @@ Note:
 * Invalid client name keywords will be ignored.
 * Empty prefixes for optional fields will be ignored.
 
-Format: `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]* [client/CLIENT]*`
-
 Examples:
 * `add-project name/Background Commission deadline/2023-05-05 price/500 tag/painting client/alice client/wheeler` Adds a project with the name Background Commision, a deadline of 5th May 2023, a price of $500, is tagged painting; and links this project to a client whose name contains any of the keywords `alice` or `wheeler`.
 * `add-project name/Oil Painting`
 * `ap n/Background Commission d/2023-05-05 pr/500 t/painting c/alice c/wheeler`
 
-### Editing a project : `edit-project`
-#### Alias: `ep`
+### Editing a project
+#### Format: `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [client/CLIENT]`
+
+Short form: `ep <index> [n/NAME] [d/DEADLINE] [p/PRICE] [c/CLIENT]`
 
 Edits the project at the given index of the client list, changing only the given field(s). Any fields that are mentioned but left empty will be deleted (apart from the name).
 
@@ -278,18 +354,31 @@ Note:
 
 The steps to link to a client can be found [here](#linking-a-project-to-a-client).
 
-Format: `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [client/CLIENT]`
-
 Example:
 *  `edit-project 2 name/The Starry Night tag/` Edits the name of the 2nd project in the list to be `The Starry Night` and removes all tags.
 * `edit-project 2 client/alice` Links the 2nd project in the list to a client whose name contains the keyword `alice`.
 * `ep 2 n/The Starry Night pr/500`
 
-### Marking a project as done : `mark`
-#### Alias: `mp`
-Marks the project at the specified index as done.
+### Deleting a project
+#### Format: `delete-project <index>`
 
-Format: `mark <index>`
+Short form: `dp <index>`
+
+Deletes the project at the specified index of the project list.
+
+Notes:
+* The index refers to the index number shown in the displayed project list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+*  `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
+
+### Marking a project as done
+#### Format: `mark <index>`
+
+Short form: `mp <index>`
+
+Marks the project at the specified index as done.
 
 Notes:
 * The index refers to the index number shown in the displayed list of projects.
@@ -298,12 +387,12 @@ Notes:
 Examples:
 * `list-project` followed by `mark 2` marks the 2nd project in the list of projects as done.
 
-### Unmarking a project as done : `unmark`
-#### Alias: `up`
+### Marking a project as not done
+#### Format: `unmark <index>`
 
-Unmarks the project at the specified index, indicating that it is not done.
+Short form: `up <index>`
 
-Format: `unmark <index>`
+"Un-marks" the project at the specified index, indicating that it is not done.
 
 Notes:
 * The index refers to the index number shown in the displayed list of projects.
@@ -312,22 +401,10 @@ Notes:
 Examples:
 * `list-project` followed by `unmark 2` indcates that the 2nd project in the list of projects is not done.
 
-### Deleting a project : `delete-project`
-#### Alias: dp
+### Clearing the project list
+#### Format: `clear-project`
 
-Deletes the project at the specified index of the project list.
-
-Notes:
-* The index refers to the index number shown in the displayed project list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Format: `delete-project <index>`
-
-Example:
-*  `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
-
-### Clearing the project list : `clear-project`
-#### Alias: cp
+Short form: `cp`
 
 Deletes all projects in the project list.
 
@@ -335,10 +412,10 @@ Deletes all projects in the project list.
 This command cannot be undone. All deleted projects cannot be restored.
 </div>
 
-Format: `clear-project`
+### Finding projects
+#### Format: `find-project [name/NAME]* [start/START] [end/END] [price/PRICE] [status/STATUS] [tag/TAG]* [client/CLIENT]*`
 
-### Finding a project: `find-project`
-#### Alias: fp
+Short form: `fp [n/NAME]* [s/START] [e/END] [p/PRICE] [st/STATUS] [t/TAG]* [c/CLIENT]*`
 
 Finds a project based on details provided. Details that can be supplied are the name, the start and end of the timeframe the deadline of the project should fall into, price, tags, the client the project is linked to, and the status of the project.
 
@@ -346,15 +423,15 @@ Note:
 * The matching with supplied names and tags are case-insensitive.
 * Project names, tags and linked client names can either be separated by spaces or prefixes. E.g. `name/alice bob` is the same as `name/alice name/bob`
 * Invalid project names, tags and linked client names will be ignored
-* Status must be specified as either `not done` or `done`.
-
-Format: `find-project [name/NAME]* [start/START] [end/END] [price/PRICE] [status/STATUS] [tag/TAG]* [client/CLIENT]*`
+* Status must be specified as either `not done`/`nd` or `done`/`d`. Overdue projects are included in "not done".
 
 Examples:
 * `find-project name/sculpture client/alice tag/personal start/yesterday end/tomorrow price/500 status/done` will find any project whose name contains `sculpture`, is linked to a client whose name contains `alice`, is tagged `personal`, has a price of $500, is done and has a deadline that falls between yesterday and tomorrow.
 
-### Sorting all projects : `sort-project`
-#### Alias: `sp`
+### Sorting all projects
+#### Format: `sort-project <option/Option>`
+
+Short form: `sp <o/OPTION>`
 
 Sorts all projects that exist in the ArB. Projects can be sorted via the given options in ascending order:
 * Name
@@ -363,8 +440,6 @@ Sorts all projects that exist in the ArB. Projects can be sorted via the given o
 
 Note:
 * Option matching is case-insensitive
-
-Format: `sort-project <option/Option>`
 
 Examples: 
 * `sort-project option/name`
@@ -386,40 +461,17 @@ Examples:
 
 ## Tag commands
 
-### Listing all tags : `list-tag`
-#### Alias: `lt`
+### Listing all tags
+#### Format: `list-tag`
+
+Short form: `lt`
 
 Lists all tags that exist in the ArB. These include tags added to both clients and projects. The list shows how many clients and how many projects a particular tag is used with.
 
-Format: `list-tag`
-
 --------------------------------------------------------------------------------------------------------------------
+[<small>Back to top</small>](#table-of-contents)
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous artistic addressbook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-| Action             | Format, Examples                                                                                                              |
-|--------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **List Clients**    | `list-client` |
-| **Add a Client**     | `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend` |
-| **Edit a Client**    | `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*​` <br> e.g.,`edit-client 3 name/Alice Risa phone/1234 tag/classmate` |
-| **Delete a Client**  | `delete-client <index>`<br> e.g., `delete-client 1`|
-| **Clearing the Client List** | `clear-client` |
-| **Finding a Client** | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend` |
-| **Sorting all Clients** | `sort-client` |
-| **List Projects**   | `list-project` |
-| **Add a Project**    | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 tag/painting` |
-| **Edit a Project**   | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night` |
-| **Mark a Project**   | `mark <index>` <br> e.g., `mark 3` |
-| **Unmark a Project** | `unmark <index>` <br> e.g., `unmark 3` |
-| **Delete a Project** | `delete-project <index>`<br> e.g., `delete-project 1` |
-| **Clearing the Project List** | `clear-project` |
-| **Finding a Project** | `find-project [name/NAME]* [start/START] [end/END] [tag/TAG]* [status/STATUS]` <br> e.g., `find-project name/sky start/yesterday tag/painting` |
-| **Sorting all Project**   | `sort-project option/Option` <br> e.g., `sort-project option/name` |
-
