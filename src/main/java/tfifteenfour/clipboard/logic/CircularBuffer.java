@@ -51,8 +51,6 @@ public class CircularBuffer<T> {
      * @return the most recently added element, or null if the buffer is empty
      */
     public T removeLast() {
-        System.out.println("size: " + buffer.length);
-        System.out.println("tail: " + tail);
         if (this.size == 0) {
             return null;
         }
@@ -60,8 +58,6 @@ public class CircularBuffer<T> {
         T removed = buffer[tail];
         buffer[tail] = null;
         this.size -= 1;
-        System.out.println("size after: " + buffer.length);
-        System.out.println("tail after: " + tail);
         return removed;
     }
 
