@@ -36,30 +36,26 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_INGREDIENT, PREFIX_TITLE,
                         PREFIX_STEP, PREFIX_TAG);
 
-        if (args.length() == 0) {
+        if (args.length() == 0 || isNonePrefixPresent(argMultimap) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         if (!areAllPrefixesPresent(argMultimap, PREFIX_TITLE)) {
-            System.out.println("missing t/");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddCommand.NO_TITLE_FAILURE));
         }
 
         if (!areAllPrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
-            System.out.println("missing d/");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddCommand.NO_DESC_FAILURE));
         }
 
         if (!areAllPrefixesPresent(argMultimap, PREFIX_INGREDIENT)) {
-            System.out.println("missing i/");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddCommand.NO_INGREDIENT_FAILURE));
         }
 
         if (!areAllPrefixesPresent(argMultimap, PREFIX_STEP)) {
-            System.out.println("missing s/");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddCommand.NO_STEP_FAILURE));
         }
@@ -81,6 +77,17 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static boolean areAllPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    private static boolean isNonePrefixPresent(ArgumentMultimap argumentMultimap) {
+        Prefix[] prefixArray = {PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_INGREDIENT, PREFIX_STEP};
+        int numPresent = 0;
+        for (int i = 0; i < prefixArray.length; i++) {
+            if (argumentMultimap.getValue(prefixArray[i]).isPresent()) {
+                numPresent++;
+            }
+        }
+        return numPresent == 0;
     }
 
 }

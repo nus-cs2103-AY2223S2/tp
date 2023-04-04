@@ -76,9 +76,10 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
+
         // missing title prefix, add Soup d/Instant soup i/water, 3, cup, 0 s/step 2
         String expectedMissingTitleMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddCommand.NO_TITLE_FAILURE);
+                AddCommand.MESSAGE_USAGE);
         assertParseFailure(parser, VALID_TITLE_SOUP + DESC_DESC_SOUP
                         + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP,
                 expectedMissingTitleMessage);
@@ -96,24 +97,23 @@ public class AddCommandParserTest {
         assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP + VALID_INGREDIENTS_SOUP + STEP_DESC_SOUP,
                 expectedMissingIngredientMessage);
 
-        // missing step prefix
+        // missing step prefix, t/Soup d/Instant soup i/water, 3, cup, 0Instant soup
         String expectedMissingStepMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddCommand.NO_STEP_FAILURE);
         assertParseFailure(parser, TITLE_DESC_SOUP + DESC_DESC_SOUP
                         + INGREDIENT_DESC_SOUP + VALID_DESC_SOUP,
                 expectedMissingStepMessage);
 
-        // all prefixes missing
+        // all prefixes, missing SoupInstant soupwater, 3, cup, 0Instant soup
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
         assertParseFailure(parser, VALID_TITLE_SOUP + VALID_DESC_SOUP + VALID_INGREDIENTS_SOUP
-                        + VALID_DESC_SOUP, expectedMessage);
+                + VALID_DESC_SOUP, expectedMessage);
 
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid title
-
         assertParseFailure(parser, INVALID_TITLE_DESC + DESC_DESC_SOUP + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP
                 + TAG_DESC_SOUP,
                 Title.MESSAGE_CONSTRAINTS);
@@ -136,9 +136,10 @@ public class AddCommandParserTest {
                 + TAG_DESC_SOUP, Title.MESSAGE_CONSTRAINTS);
 
 
-        // non-empty preamble
+        // non-empty preamble, NonEmptyPreamble t/Soup d/Instant Soup i/water, 3, cup, 0 s/step 2
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + TITLE_DESC_SOUP + DESC_DESC_SOUP
-                        + INGREDIENT_DESC_SOUP + DESC_DESC_SOUP + TAG_DESC_SOUP,
+                        + INGREDIENT_DESC_SOUP + STEP_DESC_SOUP + TAG_DESC_SOUP,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+
     }
 }
