@@ -1167,7 +1167,7 @@ If your changes to the data file makes its format invalid, VMS will discard all 
 
 **:information_source: JSON syntax presentation**<br>
 
-* The following will have the same meaning as <a href="CLI-presentation-format">CLI presentation</a>.
+* The following will have the same meaning as <a href="#CLI-presentation-format">CLI presentation</a>.
   * **Pink italicized bolded capitalized words** (<code><var>PLACEHOLDER_EXAMPLE</var></code>)
   * **Three dots with no spaces** (<code><var>ARG</var>...</code> and <code>...<var>ARG</var>...</code>)
   * **Triangle brackets** (`<` and `>`)
