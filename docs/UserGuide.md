@@ -51,11 +51,11 @@ You can click on any of the links below to navigate to the respective sections f
     * [2.3.2 Finding an order: `find_order`](#232-finding-an-order-findorder)
     * [2.3.3 Finding a task: `find_task`](#233-finding-a-task-findtask)
     * [2.3.4 Finding a menu item: `find_item`](#234-finding-a-menu-item-finditem)
-  * [Delete](#delete)
-    * [Deleting a supplier: `delete_supplier`](#deleting-a-supplier-deletesupplier)
-    * [Deleting an order: `delete_order`](#deleting-an-order-deleteorder)
-    * [Deleting a task: `delete_task`](#deleting-a-task-deletetask)
-    * [Deleting a menu item: `delete_item`](#deleting-a-menu-item-deleteitem)
+  * [2.4 Delete](#24-delete)
+    * [2.3.1 Deleting a supplier: `delete_supplier`](#231-deleting-a-supplier-deletesupplier)
+    * [2.3.2 Deleting an order: `delete_order`](#232-deleting-an-order-deleteorder)
+    * [2.3.3 Deleting a task: `delete_task`](#233-deleting-a-task-deletetask)
+    * [2.3.4 Deleting a menu item: `delete_item`](#234-deleting-a-menu-item-deleteitem)
   * [Sort](#sort)
     * [Sorting a task: `sort_task`](#sorting-a-task-sorttask)
     * [Sorting a order: `sort_order`](#sorting-a-order-sortorder)
@@ -509,9 +509,8 @@ Editing of an information to the specific list. Below are the specific edit comm
 
 :information_source: **Information**
 
-* Edits the order at the specified `INDEX`.
-* The index **must be a positive integer** 1, 2, 3, …​
-* You must key in at least one of the optional fields.
+* Edits the information at the specified `INDEX`.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * All existing values will be replaced with the new values given.
 
 </div>
@@ -872,65 +871,116 @@ Syntax: `find_item ITEM_NAME`
 
 </div>
 
-## Delete
+## 2.4 Delete
 
-### Deleting a supplier: `delete_supplier`
+Deleting of an information to the specific list. Below are the specific delete commands for supplier, order, task and menu item.
+
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
+* Deletes the information at the specified `INDEX`.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
+* All values at the `INDEX` will be deleted.
+
+</div>
+
+<div markdown="span" class="alert alert-danger">
+
+:exclamation: **Danger**<br>
+
+Deleting of information is one-way (i.e. You cannot revert your command).<br>
+
+We are working to have an undo feature in the future. Sorry for the inconvenience caused.
+
+</div>
+
+### 2.3.1 Deleting a supplier: `delete_supplier`
 
 Deletes the specified supplier from the contact list.
 
 Syntax: `delete_supplier INDEX`
 
-* Deletes the task at the specified `INDEX`.
-* The index refers to the number shown in the task list displayed.
-* The index **must be a positive integer** 1, 2, 3, …
+<div markdown="block" class="alert alert-example">
 
-Examples:
+:clipboard: **Example 1: Standard command**
 
-* `delete_supplier 2` deletes the second supplier
-* `find_s n/John` followed by `delete_s 3` deletes the 1st supplier in the results of the `find_s` command with name `John`
+* `delete_supplier 2`<br>
+  Deletes the **second** supplier from the visible contact list
 
-### Deleting an order: `delete_order`
+:clipboard: **Example 2: Shortcut command after using `find_supplier`**
+
+* `find_supplier n/John` followed by `delete_s 1`<br>
+  * `find_supplier n/John` lists all suppliers with name `John` inside them
+  * `delete_s 1` deletes the **first** supplier with the name `John` from the visible contact list
+
+</div>
+
+### 2.3.2 Deleting an order: `delete_order`
+
+Deletes the specified order from the order list.
 
 Syntax: `delete_order INDEX`
 
-* Deletes the order at the specified `INDEX`.
-* The index refers to the index number shown in the displayed order list.
-* The index **must be a positive integer** 1, 2, 3, …
+<div markdown="block" class="alert alert-example">
 
-Examples:
+:clipboard: **Example 1: Standard command**
 
-* `list` followed by `delete_order 2` deletes the 2nd order in Trackr.
-* `find Cake` followed by `delete_order 1` deletes the 1st order in the results of the `find` command.
+* `delete_order 2`<br>
+  Deletes the **second** order from the visible order list
 
-### Deleting a task: `delete_task`
+:clipboard: **Example 2: Shortcut command after using `find_order`**
+
+* `find_order on/Cake` followed by `delete_o 1`<br>
+  * `find_order on/Cake` lists all orders with item name `Cake` inside them
+  * `delete_o 1` deletes the **first** order with the item name `Cake` from the visible order list
+
+</div>
+
+### 2.3.3 Deleting a task: `delete_task`
 
 Deletes the specified task from the task list.
 
 Syntax: `delete_task INDEX`
 
-* Deletes the task at the specified `INDEX`.
-* The index refers to the number shown in the task list displayed.
-* The index **must be a positive integer** 1, 2, 3, …
+<div markdown="block" class="alert alert-example">
 
-Examples:
+:clipboard: **Example 1: Standard command**
+
+* `delete_task 2`<br>
+  Deletes the **second** task from the visible task list
+
+:clipboard: **Example 2: Shortcut command after using `find_task`**
+
+* `find_task n/flour` followed by `delete_t 1`<br>
+  * `find_task n/flour` lists all tasks with task name `flour` inside them
+  * `delete_t 1` deletes the **first** task with the task name `flour` from the visible task list
+
+</div>
 
 * `delete_task 2` deletes the first task
 * `find_t flour` followed by `delete_t 3` deletes the 1st task in the result of the `find_t` command
 
-### Deleting a menu item: `delete_item`
+### 2.3.4 Deleting a menu item: `delete_item`
 
-Deletes the specified item from the menu.
+Deletes the specified menu item from the menu.
 
 Syntax: `delete_item INDEX`
 
-* Deletes the item at the specified `INDEX`.
-* The index refers to the number shown in the menu displayed.
-* The index **must be a positive integer** 1, 2, 3, …
+<div markdown="block" class="alert alert-example">
 
-Examples:
+:clipboard: **Example 1: Standard command**
 
-* `delete_menu 2` deletes the first task
-* `find_i cupcake` followed by `delete_m 3` deletes the 1st menu item in the result of the `find_i` command
+* `delete_menu 2`<br>
+  Deletes the **second** menu item from the visible menu
+
+:clipboard: **Example 2: Shortcut command after using `find_item`**
+
+* `find_item cupcake` followed by `delete_m 1`<br>
+  * `find_item cupcake` lists all menu items with item name `cupcake` inside them
+  * `delete_m 1` deletes the **first** menu item with the item name `cupcake` from the visible menu
+
+</div>
 
 ## Sort
 
