@@ -7,8 +7,8 @@ title: Hui Xuan's Project Portfolio Page
 
 sprINT is an internship-tracking application that was created to assist students in their internship hunt. Students 
 often face a great administrative burden in keeping track of the high volume of job or internship applications, which 
-include details like interview dates and Online Assessment links. Therefore, sprINT aims to help these students by 
-tracking and recording their application details, such as the company, contacts, status and deadlines.
+include details like interview dates. Therefore, sprINT aims to help these students by 
+tracking and recording their application details, such as the company, company contact information and status.
 
 sprINT is written in Java, with the GUI built using JavaFX. 
 
@@ -50,13 +50,16 @@ Given below are my contributions to the project.
 
 ### **Documentation**
 #### **User Guide**
-* See PR [#47](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/47)
+* See PR [#227](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/227), [#47](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/47)
+* Created the User Interface section to explain the functionality of each component in sprINT's UI 
+* Updated Glossary section with definitions for technical terms and sprINT-related terminology like 'application' 
+  and 'status'
 * Updated documentation for the delete feature to match sprINT's requirements 
 
 #### **Developer Guide**
 * See PR [#119](https://github.com/AY2223S2-CS2103T-T13-3/tp/pull/119)
 * Added implementation details of the `AddTaskCommand`
-* Updated Glossary section with definitions for sprINT-related terminology like 'application' and 'status' 
+* Updated Glossary section with definitions for sprINT-related terminology  
 * Changed all references to AB3 and its classes (including links and UML diagrams) to sprINT 
 
 ### **Contributions to team-based tasks**
