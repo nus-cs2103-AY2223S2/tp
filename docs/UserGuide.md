@@ -677,7 +677,7 @@ This shortcut allows you toggle the command box between **search mode** and **co
 
 In **command mode**, the input in the command box is used to execute the command.
 
-In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
+In **search mode**, the command box is highlighted teal and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
 
 If you have a project or client selected, pressing (ENTER) in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
 
