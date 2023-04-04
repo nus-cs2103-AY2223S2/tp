@@ -24,9 +24,9 @@ import seedu.address.ui.main.StatusBarFooter;
 /**
  * Displays contact list.
  */
-public class AddressBookWindow extends UiPart<Stage> {
+public class AddressBookDialog extends UiPart<Stage> {
 
-    private static final String FXML = "AddressBookWIndow.fxml";
+    private static final String FXML = "AddressBookDialog.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final Consumer<Person> selectHandler;
@@ -49,7 +49,7 @@ public class AddressBookWindow extends UiPart<Stage> {
     /**
      * Creates a {@code AddressBookWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public AddressBookWindow(Stage primaryStage, Logic logic) {
+    public AddressBookDialog(Stage primaryStage, Logic logic) {
         this(primaryStage, logic, (person) -> {});
     }
 
@@ -57,7 +57,7 @@ public class AddressBookWindow extends UiPart<Stage> {
      * Creates a {@code AddressBookWindow} with the given {@code Stage} and
      * {@code Logic} with a select handler.
      */
-    public AddressBookWindow(Stage primaryStage, Logic logic, Consumer<Person> selectHandler) {
+    public AddressBookDialog(Stage primaryStage, Logic logic, Consumer<Person> selectHandler) {
         super(FXML, primaryStage);
         this.helpWindow = new HelpWindow();
 
@@ -71,7 +71,7 @@ public class AddressBookWindow extends UiPart<Stage> {
      * Creates a {@code AddressBookWindow} with the given {@code Stage} and
      * {@code Logic} with a select handler and {@code HelpWindow}.
      */
-    public AddressBookWindow(Stage primaryStage, Logic logic,
+    public AddressBookDialog(Stage primaryStage, Logic logic,
                              Consumer<Person> selectHandler,
                              HelpWindow helpWindow) {
         super(FXML, primaryStage);

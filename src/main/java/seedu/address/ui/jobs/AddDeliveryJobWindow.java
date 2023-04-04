@@ -36,7 +36,7 @@ import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliverySlot;
 import seedu.address.model.jobs.Earning;
 import seedu.address.ui.UiPart;
-import seedu.address.ui.person.AddressBookWindow;
+import seedu.address.ui.person.AddressBookDialog;
 
 /**
  * AddDeliveryJobWindow
@@ -53,7 +53,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
     private Consumer<CommandResult> completeEditCallback;
-    private AddressBookWindow addressBookWindow;
+    private AddressBookDialog addressBookWindow;
 
     @FXML
     private TextField inputSender;
@@ -202,7 +202,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         if (addressBookWindow != null) {
             addressBookWindow.getRoot().close();
         }
-        addressBookWindow = new AddressBookWindow(new Stage(), logic, person -> {
+        addressBookWindow = new AddressBookDialog(new Stage(), logic, person -> {
             inputSender.setText(person.getPersonId());
             addressBookWindow.getRoot().close();
         });
@@ -217,7 +217,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
         if (addressBookWindow != null) {
             addressBookWindow.getRoot().close();
         }
-        addressBookWindow = new AddressBookWindow(new Stage(), logic, person -> {
+        addressBookWindow = new AddressBookDialog(new Stage(), logic, person -> {
             inputRecipient.setText(person.getPersonId());
             addressBookWindow.getRoot().close();
         });
