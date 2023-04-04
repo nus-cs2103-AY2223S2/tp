@@ -107,6 +107,12 @@ public class FindProjectCommandParser implements Parser<FindProjectCommand> {
             endOfTimeframe = ParserUtil.parseDeadline(endString.get());
         }
 
+        if (startOfTimeframe != null && endOfTimeframe != null) {
+            if (endOfTimeframe.compareTo(startOfTimeframe) < 0) {
+                throw new ParseException(FindProjectCommand.MESSAGE_END_BEFORE_START_ERROR);
+            }
+        }
+
         // if at least one of the timeframe specifiers are present
         if (startString.isPresent() || endString.isPresent()) {
             predicates.add(new ProjectWithinTimeframePredicate(startOfTimeframe, endOfTimeframe));
