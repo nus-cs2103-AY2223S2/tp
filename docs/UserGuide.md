@@ -1,8 +1,6 @@
 ---
-layout: page
-title: MediMate The Doctor’s Companion
---- 
-
+span
+---
 MediMate (MM) is a cross-platform desktop application for medical professionals, specifically for private doctors or
 their receptionists,
 who are experienced with computers and currently using paper records to store patient information.
@@ -14,34 +12,34 @@ than traditional GUI apps.
 
 ## Table of Contents
 
-- [Quick Start](#quick-start)
+- [Quick Start](#Quick-Start)
 - [Features](#features)
-  - [Help](#help)
-  - [Add](#add)
-  - [List](#list)
-    - [listTime](#listtime)
-    - [list_name](#list_name)
-  - [Edit](#edit)
+  - [Help](#Help)
+  - [Add a patient](#add-a-patient--add)
+  - [List all patients](#listing-all-patients--list)
+    - [List patients in alphabetical order](#listing-patients-in-alphabetical-order--list_name)
+  - [Show](#show-a-patients-information--show)
+  - [Edit a patient](#editing-a-patient--edit)
   - [Appointment](#appointment)
-    - [makeApp](#makeapp)
-    - [markApp](#markapp)
-  - [Create](#create)
-  - [View](#view)
-  - [Upload](#upload)
-  - [Find](#find)
-  - [SearchDate](#searchdate)
-  - [Delete](#delete)
-    - [deletes](#deletes)
-    - [deleteFile](#deletefile)
-  - [Clear](#clear)
-  - [Exit](#exit)
-- [Saving, Editing, and Archiving Data](#saving-editing-and-archiving-data)
+    - [Make or change an appointment](#making-appointment-to-a-patient--makeapp)
+    - [Mark an appointment](#marking-appointment-with-a-patient--markapp)
+  - [Create a medical certificate for patient](#create-a-medical-certificate-for-patient--create)
+  - [View a medical file](#view-the-medical-file-of-a-patient--view)
+  - [Upload a medical file](#upload-a-patients-medical-file--upload)
+  - [Find a patient](#locating-patients-by-name--find)
+  - [Search Appointment date](#searching-patients-with-appointment-on-specified-date--searchdate)
+  - [Delete](#deleting-a-patient--delete)
+    - [Deletes multiple patients](#deleting-multiple-patients--deletes)
+    - [Delete a medical file](#delete-a-medical-file-for-the-specified-patient-deletefile)
+  - [Clear](#clearing-all-entries--clear)
+  - [Exit](#exiting-the-program--exit)
+- [Saving, Editing, and Archiving Data](#saving-the-data)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
 ---
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `MediMate.jar`
@@ -49,7 +47,7 @@ than traditional GUI apps.
 3. Copy the file to the folder you want to use as the _home folder_ for your MediMate.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MediMate.jar` command
    to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. The application will starts will an empty MediMate.<br>
+   A GUI similar to the below should appear in a few seconds with sample data included.<br>
    ![Ui](images/userGuide/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -76,49 +74,65 @@ than traditional GUI apps.
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-* Parameters can be in any order.<br>
+  e.g. `[t/TAG]…` can be used as `t/friend`, `t/friend t/family` etc. It is optional field, hence it is not required to fill in.
+* Parameters can be in any order for **add**, **edit** and **deletes** function only.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* All commands and prefix are case-sensitive. Invalid cases for command or prefix will result in displaying `Unknown command` or `Invalid command format!` respectively.<br>
+  e.g. `EDIT 1 ag/50` and `edit 1 AG/50` will not be recognised as a valid command to change the age.
+  e.g. The correct format should be `edit 1 n/John Doe` and `edit 1 ag/50`.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Help : `help`
+### Help
 
 Shows a message explaning how to access the help page.
 
-![help message](images/userGuide/helpMessage.png)
+![help message](images/userGuide/help-message.png)
 
 Format: `help`
 
-### Adding a patient : `add`
+### Add a patient : `add`
 
 Adds a patient to Medimate through command method:
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITION] [nric/NRIC_NUMBER] [t/TAG]…`
 
-* MANDATORY: You must add the patient's name, phone number, email, and address to successfully add the patient into MediMate.
+* MANDATORY: You must add the patient's name, phone number, email, and address to successfully add the patient into MediMate.  
+* Name allows number as a valid input.
+* No special characters is allowed at the start or end of the email `username`. (username@domain.com) 
+* No multiple (More than 1) special characters is allowed at the middle of the email username. 
+* Allowed special characters are `+` , `_`, `-`, `.` 
+e.g. `abc@gmail.com` is allowed 
+e.g. `ab.c@gmail.com` is allowed 
+e.g. `ab..c@gmail.com` is not allowed
+e.g. `abc.@gmail.com` is not allowed 
+e.g. `.abc@gmail.com` is not allowed
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
 * OPTIONAL: You can also add patient's age, medical condition, nric.
 * NRIC need to be in the correct format. The first letter must be either 'S', 'T' or 'G' (E.g. S9935010Y)
+* NRIC is case-sensitive. Hence, 's' , 't' or 'g' is not allowed for the first letter.
+* NRIC is not unique. Hence, please be aware to check your NRIC input before adding to prevent duplicate.
 * Age need to be less than or equal to 120 and must be a positive integer.
 * To record a patient's other information, add them as additional tags to the patient's profile.
+* Invalid prefix (such as `A/` in upper case or `ABC` unknown prefix) will cause MediMate to assume it as the description of the previous prefix
 
 The first example contains strictly required information to identify a patient.
 
 The second example contains more information relevant to that patient.
 
-<div markdown="span" class="alert alert-primary">
-:bulb:**Tip:** A patient can have any number of tags (including 0)
-</div>
-
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 m/cough nric/S9935010Y t/criminal` 
+* `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01` will cause MediMate to assumes that `A/John street, block 123, #01-01` is a part of the email address, causing `add` to fail.
+
+<div markdown="span" class="alert alert-primary">
+:bulb:**Tip:** A patient can have any number of tags (including 0)
+</div>
 
 Adds a patient to MediMate through button method:
 
@@ -136,11 +150,23 @@ Shows a list of all patients in MediMate.
 
 Format: `list`
 
-### Listing patients by name : `list_name`
+### Listing patients in alphabetical order : `list_name`
 
 Shows a list of all patients in MediMate by their name in alphabetical order. The screenshot below shows the list of patient
 
 Format: `list_name`
+
+### Show a patient's information: `show`
+
+Format: `show INEX`
+Shows the patient's information at the right panel.
+
+<div style="display:flex;">
+    <img src="images/userGuide/show_before.png" style="width:50%; padding-right:10px;">
+    <img src="images/userGuide/show_after.png" style="width:50%; padding-left:10px;">
+</div>
+
+E.g. `show 1` will display the patient information at the right panel
 
 ### Editing a patient : `edit`
 
@@ -149,7 +175,9 @@ Edits an existing patient in the patient list:
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ag/AGE] [m/MEDICAL_CONDITION] [nric/NRIC_NUMBER] [t/TAG]…`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
-  The index **must be a positive integer** 1, 2, 3, …
+  The index **must be a positive integer** 1, 2, 3, … 
+* When index 0 is provided, it will display `Invalid Command Format` as 0 will never exist in the system. 
+* When index is more than the number of patients in MediMate, it will displays `The person Index provided is invalid`. 
 * Specify the field you want to edit (name, phone, email, address, age, medical condition, nric, or tag) followed by the
   new value. At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -175,6 +203,8 @@ Examples:
 * `edit 3 ag/1222` This command is not allowed as age should be less than or equal to 120 and must be a positive
   integer.
 
+### Appointment
+
 ### Making Appointment to a patient : `makeApp`
 
 Make an appointment to Medimate through command method:
@@ -186,7 +216,7 @@ Format: `makeApp INDEX /from {startTime} /to {endTime}`
 * startTime and endTime should be on the same date
 * startTime has to be earlier than the endTime else appointment will not be created.
 * If a patient already had an appointment, it will reschedule this appointment
-* Appointment will not be created if the timing clash with existing appointment timing
+* Appointment will not be created if the timing clash with the doctor's existing appointment timing
 
 Examples:
 
@@ -200,9 +230,10 @@ Make an appointement to MediMate through button method:
 1. Click on the **Appointment Button** as shown in the above screenshot.
 
 ![Appointment_Popup](images/userGuide/Appointment_2.png "Appointment Popup")
-2. A popup window will appear, as shown in the screenshot above. **Check Availability** with the given date will show a list of patients that have appointment on the given date
+2. A popup window will appear, as shown in the screenshot above. **Check Availability** with the given date will show a list of patients that have appointment on the given date.
 
 💡Date must be in **YYYY-MM-DD** format and Time must be in the format of 24hr clock.
+💡Once the appointment button is clicked, patient's card should not be clicked again, else the appointment made will be assigned to the latest patient's card clicked.
 
 ### Marking Appointment with a patient: `markApp`
 
@@ -220,8 +251,6 @@ Examples:
 
 * `markApp 5` Marks an appointment with 5th patient as done.
 
-Marks an appointment with a patient as done using button method:
-
 ### Create a Medical Certificate for patient: `create`
 
 Create a PDF Medical Certificate for a patient using command:
@@ -231,6 +260,7 @@ Format: `create INDEX doc/DOCTOR_NAME m/MEDICAL_CONDITION d/DAYS`
 * Create a PDF medical certificate for a patient at the specified `INDEX`. The index refers to the index number shown in
   the displayed patient list. The index **must be a positive integer** 1,2,3 …
 * Days representing the number of days of unfit, and it **must be positive integer** 1,2,3 …
+* The maximum allowed days is 60. Hence, any days more than 60 is regards as invalid.
 
 Examples:
 
@@ -244,7 +274,7 @@ Create a PDF Medical Certificate for a patient button method:
 1. Click on the **Create button** as shown in the screenshot above.
 
 ![Create_Popup](images/userGuide/Create_2.png "Create Popup")
-2. A popup window appear, as shown in the screenshot above. Fill in the Medical Condition, Doctor Name, and Duration (Number of days) and click **Generate MC**. Now, you have successfully generate a MC.
+2. A popup window appear, as shown in the screenshot above. Fill in the Medical Condition, Doctor Name, and Duration (Number of days) and click **Generate MC**. Now, you have successfully generated a MC.
 
 ### View the Medical File of a patient: `view`
 
@@ -267,7 +297,7 @@ View a PDF Medical Certificate for a patient using button:
 
 ![View_button](images/userGuide/view_1.png "Create Button")
 
-1. Click on the **Create button** as shown in the screenshot above.
+1. Click on the **View button** as shown in the screenshot above.
    ![View_Popup](images/userGuide/view_2.png "Create Popup")
 2. The selected medical will popup, a sample medical file is shown in the screenshot above.
 
@@ -277,7 +307,7 @@ Upload Medical File of a patient's through command:
 
 Format: `upload INDEX`
 
-Upload the medical file. File must be in either in pdf, bmp, jpg, png or gif format.
+Upload the medical file. File must be in either in pdf, jpg, png or format.
 This index file can contain additional information about the patient, such as medical history,
 test results, or treatment plans.
 
@@ -314,7 +344,7 @@ Examples:
 
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/userGuide/find.png)
 
 ### Searching patients with Appointment on specified date: `searchDate`
 
@@ -327,14 +357,14 @@ Format: `searchDate {date}`
 
 Examples:
 
-* `searchDate 2002-11-21` lists three patients with appointment on 2002-11-21 and the time is sorted<br>
-  ![result for 'find alex david'](images/screenshot_of_searchDate.png)
+* `searchDate 2023-05-20` lists three patients with appointment on 2002-11-21 and the time is sorted<br>
+  ![result for 'find alex david'](images/userGuide/searchDate.png)
 
 ### Deleting a patient : `delete`
 
 Deletes the specified patient from the MediMate.
 
-Format: `delete INDEX`
+Format: `deletes INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The INDEX refers to the index number shown in the displayed patient list.
@@ -349,7 +379,7 @@ Examples:
 
 Deletes the specified patient from the MediMate.
 
-Format: `delete INDEX1 INDEX2 …`
+Format: `deletes INDEX1 INDEX2 …`
 
 * Deletes multiple patients records at the specified INDEX.
 * The INDEX refers to the index number shown in the displayed patient list.
@@ -362,11 +392,11 @@ Examples:
 * `list` followed by `delete 3 1` deletes the 3rd and 1st person in MediMate.
 * `find Betsy` followed by `delete 1 2` deletes the 1st and 2nd person in the results of the `find` command.
 
-## Delete a medical file for the specified patient: `deleteFile`
+### Delete a medical file for the specified patient: `deletefile`
 
 Delete a medical file from the patient's record and remove it from the database.
 
-Format: `deleteFile index {file index}`
+Format: `deletefile index {file index}`
 
 * The index refers to the index number shown in the displayed patient list.
 * File index refers to the index number shown in the list at the patient panel, which contains all the relevant medical
@@ -375,7 +405,7 @@ Format: `deleteFile index {file index}`
 
 Examples:
 
-* `deleteFile 1 1` Deletes the first medical file of the 1st patient.
+* `deletefile 1 1` Deletes the first medical file of the 1st patient.
 
 ### Clearing all entries : `clear`
 
@@ -414,23 +444,24 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                               | Format, Examples                                                                                                                                                                                                                                  |
-| ------------------------------------ |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**                             | `help`                                                                                                                                                                                                                                            |
+
+| Action                               | Format, Examples                                                                                                                                                                                                                                   |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Help**                             | `help`                                                                                                                                                                                                                                             |
 | **Add**                              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITION] [nric/NRIC_NUMBER] [t/TAG]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 ag/20 n/Flu nric/S9524050Y t/friend t/colleague` |
-| **List**                             | `list`                                                                                                                                                                                                                                            |
-| **List by Time**                     | `listTime`                                                                                                                                                                                                                                        |
-| **List by Name**                     | `list_name`                                                                                                                                                                                                                                       |
+| **List**                             | `list`                                                                                                                                                                                                                                             |
+| **List by Time**                     | `listTime`                                                                                                                                                                                                                                         |
+| **List by Name**                     | `list_name`                                                                                                                                                                                                                                        |
 | **Edit**                             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                        |
-| **Make new Appointment**             | `makeApp INDEX from/START_TIME to/END_TIME <br> e.g.,` <br> e.g. `makeApp 5 /from 2023-08-15 1430 /to 2023-08-15 1630`                                                                                                                            |
-| **Mark Appointment**                 | `markApp INDEX` <br> e.g. `markApp 5`                                                                                                                                                                                                             |
-| **Create PDF Medical Certificate**   | `create INDEX doc/DOCTOR_NAME m/MEDICAL_CONDITION d/DAYS` <br> e.g. `create 1 doc/James Lee m/Asthma d/2`                                                                                                                                         |
-| **View Medical Files**               | `view INDEX {FILE INDEX}` <br> e.g. `view 1 1`                                                                                                                                                                                                    |
-| **Upload Medical Files**             | `upload INDEX` <br> e.g. `upload 1`                                                                                                                                                                                                               |
-| **Find**                             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                        |
-| **Search Appointment Date**          | `searchDate {DATE}` <br> e.g. `searchDate 2023-04-02`                                                                                                                                                                                             |
-| **Delete**                           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                               |
-| **Delete Multiple Patients Records** | `deletes INDEX1 INDEX2 ` <br> e.g. `deletes 1 2`                                                                                                                                                                                                  |
-| **Delete a patient's Medical File**  | `deleteFile INDEX {FILE INDEX}` <br> e.g. `deleteFile 1 2`                                                                                                                                                                                        |
-| **Clear**                            | `clear`                                                                                                                                                                                                                                           |
-| **Exit The Application**             | `exit`                                                                                                                                                                                                                                            |
+| **Make new Appointment**             | `makeApp INDEX from/START_TIME to/END_TIME <br> e.g.,` <br> e.g. `makeApp 5 /from 2023-08-15 1430 /to 2023-08-15 1630`                                                                                                                             |
+| **Mark Appointment**                 | `markApp INDEX` <br> e.g. `markApp 5`                                                                                                                                                                                                              |
+| **Create PDF Medical Certificate**   | `create INDEX doc/DOCTOR_NAME m/MEDICAL_CONDITION d/DAYS` <br> e.g. `create 1 doc/James Lee m/Asthma d/2`                                                                                                                                          |
+| **View Medical Files**               | `view INDEX {FILE INDEX}` <br> e.g. `view 1 1`                                                                                                                                                                                                     |
+| **Upload Medical Files**             | `upload INDEX` <br> e.g. `upload 1`                                                                                                                                                                                                                |
+| **Find**                             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                                         |
+| **Search Appointment Date**          | `searchDate {DATE}` <br> e.g. `searchDate 2023-04-02`                                                                                                                                                                                              |
+| **Delete**                           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                |
+| **Delete Multiple Patients Records** | `deletes INDEX1 INDEX2 ` <br> e.g. `deletes 1 2`                                                                                                                                                                                                   |
+| **Delete a patient's Medical File**  | `deleteFile INDEX {FILE INDEX}` <br> e.g. `deleteFile 1 2`                                                                                                                                                                                         |
+| **Clear**                            | `clear`                                                                                                                                                                                                                                            |
+| **Exit The Application**             | `exit`                                                                                                                                                                                                                                             |
