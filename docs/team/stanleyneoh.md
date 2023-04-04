@@ -10,7 +10,7 @@ manage clients and projects** from multiple online sources like [Upstack](https:
 [Fiverr](https://www.fiverr.com/), and [Toptal](https://www.toptal.com/). All interactions
 with **Mycelium** are done through text commands or HotKeys, enabling one to efficiently
 manipulate data while availing oneself to the convenience of viewing, offered by the
-Graphical User Interface (GUI) created with JavaFX. The application is written in Java. 
+Graphical User Interface (GUI) created with JavaFX. The application is written in Java.
 
 Below are my contributions to the project:
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=W14&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=StanleyNeoh&tabRepo=AY2223S2-CS2103T-W14-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
@@ -29,9 +29,9 @@ Below are my contributions to the project:
 * **Contributions to team-based tasks**: I assisted in reviewing and merging PRs, and assisted by making the necessary changes to PRs to ensure that they are up to standard.
 
 * **Review/mentoring contributions**:
-  * PRs reviewed: 
-    [#29](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/29), 
-    [#30](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/30), 
+  * PRs reviewed:
+    [#29](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/29),
+    [#30](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/30),
     [#34](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/34),
     [#38](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/38),
     [#75](https://github.com/AY2223S2-CS2103T-W14-1/tp/pull/75),
