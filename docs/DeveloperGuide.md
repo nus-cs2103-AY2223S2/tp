@@ -20,7 +20,7 @@ title: Developer Guide
 - [Implementation](#implementation)
   <details>
   <summary>Features</summary>
-      
+
    - [New Contact feature](#new-contact-feature)
    - [Mark feature](#mark-feature)
    - [Unmark feature](#unmark-feature)
@@ -218,6 +218,7 @@ The `Event` component,
 The `Contact` component,
 - it is made up of 2 objects the `ContactName` and `ContactPhone`
 - both objects are created using user input.
+- the contact will be added into the UniqueContactList.
 
 
 ### Storage component
@@ -261,7 +262,11 @@ The `newcontact` feature is facilitated by the `Contact` class. The feature is i
 * **Alternative 2:** Created a new contact through storing strings input by user.
     * Pros: Easy to code.
     * Cons: Might be hard to keep track or do comparisons with.
-  
+
+<img src="images/NewContactActivityDiagram.png" width="400" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.1</b> Activity diagram of 'New Contact'
+</div>
 
 ### Mark feature
 
@@ -274,7 +279,7 @@ The `mark` feature is implemented with the following considerations:
 - A valid `index` will be taken in as a parameter to facilitate marking of the correct event.
 - Marking of a done event would not result in error or exceptions as this action does not reduce correctness of presented information.
 
-#### Design considerations: 
+#### Design considerations:
 
 * **Alternative 1 (current choice):** Calls on `mark` method in 'Mark' class to set the tracked boolean variable 'isDone' to true
   * Pros: Easier to implement.
@@ -283,6 +288,13 @@ The `mark` feature is implemented with the following considerations:
 * **Alternative 2:** Replace current instance of specified event with a new unmarked event instance
   * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
   * Cons: May have performance issues in terms of memory usage and runtime.
+
+Below shows the activity diagram of the `mark` command:
+
+<img src="images/MarkActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.2</b> Activity diagram of 'Mark'
+</div>
 
 ### Unmark feature
 
@@ -297,7 +309,7 @@ The `unmark` feature is implemented with the following considerations:
 - Allows for undo of accidental marking by setting the 'isDone' boolean attribute of the 'Mark' class to false to signify an undone event.
 - Unmarking of an undone event would not result in error or exceptions as this action does not reduce correctness of presented information.
 
-#### Design considerations:  
+#### Design considerations:
 
 * **Alternative 1 (current choice):** Calls on `unmark` method in 'Mark' class to set the tracked boolean variable 'isDone' to false
   * Pros: Easier to implement.
@@ -306,6 +318,13 @@ The `unmark` feature is implemented with the following considerations:
 * **Alternative 2:** Replace current instance of specified event with a new unmarked event instance
   * Pros: Results in less coupling and in turn lower possibility of unintended change cascades.
   * Cons: May have performance issues in terms of memory usage and runtime.
+
+Below shows the activity diagram of the `unmark` command:
+
+<img src="images/UnmarkActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.3</b> Activity diagram of 'Unmark'
+</div>
 
 ### Reminder feature
 The `remind` feature allows for users to view upcoming events.
@@ -358,6 +377,11 @@ The linkcontact feature will take in a contact number as a parameter. This param
     * Pros: Even easier to implement.
     * Cons: Hard to implement filtering of events by contact in the future.
 
+<img src="images/LinkContactActivityDiagram.png" width="430" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.5</b> Activity diagram of 'linkcontact'
+</div>
+
 ### Revenue feature
 
 The `revenue` feature allows for calculating the total revenue earned so far.
@@ -368,9 +392,9 @@ The `revenue` feature is implemented with the following considerations:
 - The revenue takes into account whether the event is marked or not. It only sums up the rate if the event is marked as done.
 - The revenue will display `0.00` and not result in any errors even if there are no events that are done yet.
 
-#### Design considerations: 
+#### Design considerations:
 
-* **Alternative 1 (current choice):** Iterates through the event book when the revenue feature is called. 
+* **Alternative 1 (current choice):** Iterates through the event book when the revenue feature is called.
   * Pros: Easier to implement.
   * Cons: Runtime complexity scales as the event book increases in size.
 
@@ -378,7 +402,12 @@ The `revenue` feature is implemented with the following considerations:
   * Pros: Will maintain a low runtime complexity.
   * Cons: Hard to implement in the case that events are unmarked or deleted.
 
+Below shows the activity diagram of the `revenue` command:
 
+<img src="images/RevenueActivityDiagram.png" width="200" />
+<div style="width:80%;margin:0">
+    <b>Figure 3.6</b> Activity diagram of 'Revenue'
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Requirements
@@ -595,7 +624,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC7 - Display Rate**
+<!-- **Use case: UC7 - Display Rate**
 
 **MSS**
 
@@ -615,9 +644,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2b. User enters an invalid index.
    * 2b1. System displays that the index is invalid and to try again.
 
-      Use case resumes at step 2.
+      Use case resumes at step 2. -->
 
-**Use case: UC8 - Add Contact**
+**Use case: UC7 - Add Contact**
 
 **MSS**
 
@@ -638,7 +667,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 1.
 
-**Use case: UC9 - Add Date to Event**
+**Use case: UC8 - Add Date to Event**
 
 **MSS**
 
@@ -670,7 +699,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC10 - Edit Event**
+**Use case: UC9 - Edit Event**
 
 **MSS**
 
@@ -750,7 +779,7 @@ testers are expected to do more *exploratory* testing.
       Expected: First event is deleted from the list. Details of the deleted event shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No event is deleted. Error details shown in the status message. 
+      Expected: No event is deleted. Error details shown in the status message.
 
 
 
@@ -758,12 +787,12 @@ testers are expected to do more *exploratory* testing.
 
    1. Test case: `newevent n/DJ at wedding r/100 a/311, Clementi Ave 2, #02-25 ds/11-03-2023 11:00 de/11-03-2023 17:00 t/friends t/dj`<br>
       Expected: New event created. Details of event created shown in the status message.
-   
+
    1. Test case: `newevent n/ r/`<br>
       Expected: No event is created. Error details shown in the status message.
 
 
-### Adding a contact 
+### Adding a contact
 
    1. Test case: `newcontact n/Deborah Tan p/91234567`<br>
    Expected: New contact created. Details of contact created shown in status message.

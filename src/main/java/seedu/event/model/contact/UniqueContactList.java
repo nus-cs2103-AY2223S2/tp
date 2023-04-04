@@ -44,9 +44,6 @@ public class UniqueContactList implements Iterable<Contact> {
         return numberMap;
     }
 
-    public static int getCount() {
-        return count;
-    }
     /**
      * Adds a Contact to the list.
      * The Contact must not already exist in the list.
@@ -92,8 +89,9 @@ public class UniqueContactList implements Iterable<Contact> {
         }
     }
 
-    public void setContacts(seedu.event.model.contact.UniqueContactList replacement) {
+    public void setContacts(UniqueContactList replacement) {
         requireNonNull(replacement);
+        count = 0;
         internalList.setAll(replacement.internalList);
     }
 
@@ -106,7 +104,7 @@ public class UniqueContactList implements Iterable<Contact> {
         if (!contactsAreUnique(contacts)) {
             throw new DuplicateContactException();
         }
-
+        count = 0;
         internalList.setAll(contacts);
     }
 

@@ -41,7 +41,7 @@ public interface Logic {
     ObservableList<Contact> getFilteredContactList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' event book file path.
      */
     Path getEventBookFilePath();
 

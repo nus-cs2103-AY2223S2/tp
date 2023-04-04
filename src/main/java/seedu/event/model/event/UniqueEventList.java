@@ -17,7 +17,6 @@ import seedu.event.model.event.exceptions.EventNotFoundException;
  * events uses Event#isSameEvent(Event) for equality so as to ensure that the event being added or updated is
  * unique in terms of identity in the UniqueEventList. However, the removal of an event uses Event#equals(Object) so
  * as to ensure that the event with exactly the same fields will be removed.
- *
  * Supports a minimal set of list operations.
  *
  * @see Event#isSameEvent(Event)

@@ -1,0 +1,13 @@
+@startuml
+start
+:User executes command;
+
+if () then ([is duplicate contact])
+    :Throw exception;
+    :Display duplicate contact message;
+else ([else])
+    :Create contact;
+    :Display new contact created;
+endif
+stop
+@enduml

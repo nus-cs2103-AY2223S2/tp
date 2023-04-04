@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.event.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Event's address in the address book.
+ * Represents an Event's address in the event book.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
 public class Address {
@@ -31,7 +31,7 @@ public class Address {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid address.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);

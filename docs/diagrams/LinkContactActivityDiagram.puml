@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes command;
+:Get event from index;
+if() then ([invalid index])
+:Show error message;
+stop
+else([else])
+:Get contact using contact number;
+if() then ([contact not found])
+:Show error message;
+stop
+else([else])
+:Link contact;
+stop
+@enduml

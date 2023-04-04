@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.event.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Event's name in the address book.
+ * Represents an Event's name in the event book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

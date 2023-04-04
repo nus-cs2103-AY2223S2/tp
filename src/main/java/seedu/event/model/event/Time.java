@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 public class Time {
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should be of the format dd-MM-uuuu hh:mm";
+            "Time should be a valid time of the format dd-MM-yyyy hh:mm";
     public static final DateTimeFormatter LOCAL_DATE_TIME_FORMATTER = DateTimeFormatter
             .ofPattern("dd-MM-uuuu HH:mm");
     public final LocalDateTime time;

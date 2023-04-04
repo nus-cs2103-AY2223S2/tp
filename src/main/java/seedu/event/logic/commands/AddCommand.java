@@ -13,13 +13,13 @@ import seedu.event.model.Model;
 import seedu.event.model.event.Event;
 
 /**
- * Adds an event to the address book.
+ * Adds an event to the event book.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "newevent";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to the event book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_RATE + "RATE "
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "dj";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the event book";
 
     private final Event toAdd;
 

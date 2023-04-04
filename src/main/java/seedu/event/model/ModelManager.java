@@ -16,7 +16,7 @@ import seedu.event.model.event.Event;
 import seedu.event.model.event.Rate;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the event book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -33,7 +33,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyEventBook eventBook, ReadOnlyContactList contactList, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(eventBook, contactList, userPrefs);
 
-        logger.fine("Initializing with address book: " + eventBook
+        logger.fine("Initializing with event book: " + eventBook
                 + " with contact list: " + contactList
                 + " and user prefs " + userPrefs);
 
@@ -168,6 +168,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
+        requireNonNull(predicate);
+        filteredContacts.setPredicate(predicate);
+    }
+
+    @Override
     public ReadOnlyContactList getContactList() {
         return contactList;
     }
@@ -181,12 +187,17 @@ public class ModelManager implements Model {
     @Override
     public void addContact(Contact contact) {
         contactList.addContact(contact);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
     }
 
     @Override
     public void linkContact(Event event, Event linkedEvent) {
         eventBook.linkContact(event, linkedEvent);
         updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+
+    public void setContactList(ReadOnlyContactList contactList) {
+        this.contactList.resetData(contactList);
     }
 
     @Override

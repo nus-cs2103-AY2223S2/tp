@@ -78,7 +78,7 @@ public class UnmarkCommandTest {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
         Index outOfBoundIndex = INDEX_SECOND_EVENT;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of event book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getEventBook().getEventList().size());
 
         UnmarkCommand unmarkCommand = new UnmarkCommand(outOfBoundIndex);

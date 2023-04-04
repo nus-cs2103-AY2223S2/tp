@@ -2,9 +2,7 @@ package seedu.event.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.event.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.event.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.event.logic.parser.CliSyntax.PREFIX_TIME_END;
@@ -32,24 +30,11 @@ import seedu.event.model.event.Time;
 import seedu.event.model.tag.Tag;
 
 /**
- * Edits the details of an existing event in the address book.
+ * Edits the details of an existing event in the event book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-
-    public static final String MESSAGE_USAGE_CONTACT = COMMAND_WORD + ": Edits the details of the event identified "
-            + "by the index number used in the displayed event list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event identified "
             + "by the index number used in the displayed event list. "
@@ -62,11 +47,11 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TIME_END + "END_TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 ";
+            + PREFIX_RATE + "30";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the event book.";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
