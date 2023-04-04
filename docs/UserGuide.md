@@ -78,11 +78,11 @@ For **experienced users**, refer to our [command summary](#command-summary) or [
 
 These are the symbols employed in this user guide:
 
-| Symbol               | Meaning                                                                           |
-|----------------------|-----------------------------------------------------------------------------------|
-| :information_source: | Additional information. More relevant to **amateur** and **experienced** users.   |
-| :bulb:               | Helpful tip from the developers.                                                  |
-| :exclamation:        | Warning. Attempting to perform an action with a warning will lead to an **error** |
+| Symbol               | Meaning                                                                                                      |
+|----------------------|--------------------------------------------------------------------------------------------------------------|
+| :information_source: | Additional information. More relevant to **amateur** and **experienced** users.                              |
+| :bulb:               | Helpful tip from the developers.                                                                             |
+| :exclamation:        | Warning. Attempting to perform an action with a warning will lead to an **error** or unintended consequences |
 
 > :information_source: Additional information: These symbols will be housed in blockquotes like this
 
@@ -215,6 +215,10 @@ In general, the command format is as follows:<br>
 
 > :bulb: Tip: The order you type distinct prefix parameters do not matter!
 > <br> For example, `tank addReadings tk/1 al/1 ph/6 tp/23` is the same as `tank addReadings al/1 ph/6 tp/23 tk/1`
+
+> :exclamation: Warning: Alphanumeric parameters like descriptions and names may be truncated it they are too long!
+> Adjust the window size of *Fish Ahoy!* to better show such truncated fields. If it is still not fully showing,
+> the name you picked might be too long!
 
 #### Description `d/<DESCRIPTION>`
   * Type: `Tank`
