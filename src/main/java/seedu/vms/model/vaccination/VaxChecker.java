@@ -1,6 +1,5 @@
 package seedu.vms.model.vaccination;
 
-import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,7 +28,7 @@ public class VaxChecker {
         boolean isWithinAge = age.compareTo(vaxType.getMinAge()) * vaxType.getMaxAge().compareTo(age) >= 0;
 
         boolean isAllergiesSatisfied = checkAllergies(allergies, vaxType.getIngredients());
-        boolean isHistorySatisfied = checkHistReq(vaxType.getHistoryReqs(), takenTypes);
+        boolean isHistorySatisfied = checkHistReqs(vaxType.getHistoryReqs(), takenTypes);
 
         return isWithinAge && isAllergiesSatisfied && isHistorySatisfied;
     }
@@ -45,33 +44,73 @@ public class VaxChecker {
     }
 
 
-    private static boolean checkHistReq(List<Requirement> reqs, List<VaxType> records) {
-        List<HashSet<GroupName>> grpSets = getHistGrpSet(records);
-        ArrayDeque<Requirement> pendingReqs = new ArrayDeque<>(reqs);
-        for (HashSet<GroupName> grpSet : grpSets) {
-            ArrayDeque<Requirement> unsatisfiedReqs = new ArrayDeque<>();
-            while (!pendingReqs.isEmpty()) {
-                Requirement req = pendingReqs.pop();
-                if (!req.check(grpSet)) {
-                    unsatisfiedReqs.add(req);
-                }
-            }
-            pendingReqs = unsatisfiedReqs;
-            if (pendingReqs.isEmpty()) {
-                return true;
+    private static boolean checkHistReqs(List<Requirement> reqs, List<VaxType> records) {
+        List<HistReqChecker> checkers = records.stream()
+                .map(HistReqChecker::new)
+                .collect(Collectors.toList());
+        for (Requirement req : reqs) {
+            if (!checkHistReq(req, checkers)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 
-    private static List<HashSet<GroupName>> getHistGrpSet(List<VaxType> records) {
-        List<HashSet<GroupName>> grpSets = records.stream()
-                .map(record -> record.getGroups())
-                .collect(Collectors.toList());
-        if (records.isEmpty()) {
-            grpSets.add(new HashSet<>());
+    private static boolean checkHistReq(Requirement req, List<HistReqChecker> checkers) {
+        for (HistReqChecker checker : checkers) {
+            switch (checker.check(req)) {
+            case SATISFIED:
+                return true;
+            case PASS:
+                continue;
+            case VIOLATED:
+                return false;
+            default:
+                assert false : "Unexpected satisfaction state";
+            }
         }
-        return grpSets;
+        return req.getReqType().equals(Requirement.RequirementType.NONE);
+    }
+
+
+
+
+
+    private static class HistReqChecker {
+        private final VaxType vaxType;
+        private final HashSet<Requirement> satisfiedReqs = new HashSet<>();
+
+
+        HistReqChecker(VaxType vaxType) {
+            this.vaxType = vaxType;
+        }
+
+
+        SatisfactionState check(Requirement req) {
+            SatisfactionState state = SatisfactionState.PASS;
+            if (satisfiedReqs.contains(req)) {
+                return state;
+            }
+
+            if (req.check(vaxType.getGroups())) {
+                if (!req.getReqType().equals(Requirement.RequirementType.NONE)) {
+                    state = SatisfactionState.SATISFIED;
+                    satisfiedReqs.add(req);
+                }
+            } else if (req.getReqType().equals(Requirement.RequirementType.NONE)) {
+                state = SatisfactionState.VIOLATED;
+            }
+
+            return state;
+        }
+    }
+
+
+
+
+
+    private static enum SatisfactionState {
+        SATISFIED, PASS, VIOLATED;
     }
 }
