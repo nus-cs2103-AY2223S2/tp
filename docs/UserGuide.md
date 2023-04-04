@@ -1412,7 +1412,7 @@ Here are the respective formats for each of the data types:
     "timeAdded" : "2023-04-04T16:35:55.858687"
   }
   ```
-* Order<br>
+* Menu Item<br>
   ```json
   {
     "itemName" : "Chocolate Cookies",
@@ -1421,7 +1421,7 @@ Here are the respective formats for each of the data types:
     "itemProfit" : "3.80"
   }
   ```
-* Menu Item<br>
+* Order<br>
   ```json
   {
     "customerName" : "Amy",
