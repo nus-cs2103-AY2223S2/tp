@@ -88,12 +88,12 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the contact list.
 
 Format: `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A contact must include all fields except tag.
+A contact must include all fields except tag and have a unique name that is not already in the contact list.
 </div>
 
 Examples:
@@ -105,10 +105,10 @@ Examples:
 
 Sorts all persons in the address book based on an attribute.
 
-Format: `sort [name] [gender] [phone number] [email] [company] [location] [occupation] [job title] [address] [remark] [status]`
+Format: `sort [name] [gender] [phone number] [email] [company] [location] [occupation] [job title] [address] [status]`
 
-- At least one of the optional fields must be provided.
-- The address book will be sorted based on the specified attribute by their value.
+- Only one of the optional fields is to be included.
+- The contact list will be sorted based on the specified attribute by their value.
 
 Examples:
 
@@ -141,20 +141,30 @@ Examples:
 
 ### Assign lead status: `status`
 
-Adds one or more statuses to a contact. Statuses allow you to search by tags.
-Tags must be a single word with no whitespaces.
+Assigns the lead status of a contact. At the same time, saves the timestamp of when the lead status has changed. The 
+user can use this information as a gauge of how long a client has stayed in a certain status.
 
-If no status is specified, lists the status associated with the contact.
+If the lead status specified is the same as the previous, nothing is changed and the timestamp is not refreshed. This is
+to mitigate the chances of accidental reassignment of the same lead status by the user.
 
-The lead status follows a set of rules, to be implemented in v1.3
+The 4 types of lead statuses supported are:
+
+| Type        | Permissible Formats  | Meaning                                                                                                                                                      |
+|-------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| UNCONTACTED | `Uncontacted` or `U` | The user has not gotten in touch with (contacted) the saved person. By default, newly added contacts have this status                                        |
+| WORKING     | `Working` or `W`     | The person has been contacted. The user is currently nurturing a relationship with the contact with the hopes of making them a qualified lead.               |
+| QUALIFIED   | `Qualified` or `Q`   | The contact is a client that has been nurtured to a ready, buying customer. A contact that has a prospect to buy or is in the sales funnel should go here.   |
+| UNQUALIFIED | `Unqualified` or `X` | This status should only be used when it is certain that the customer's intents are not a match for the user's sales, and have no prospects of buying at all. |
+
+
 
 Format:
-`status INDEX_NUMBER|NAME`
-`status INDEX_NUMBER|NAME [STATUS …]`
+`status INDEX_NUMBER [STATUS …]`
 
-Examples:
-`status 1` or `status David` Returns the status of ID `1` or the status of `David`
-`status David s/Q` Assigns the status of `David` to be `Qualified`
+Examples:  
+`status 1 s/Q` Assigns the status of QUALIFIED to ID `1` in the current list of persons.  
+`status 2 s/Working` Assigns the status of WORKING to ID `1` in the current list of persons.
+
 
 ### Finding a contact name: `find`
 
@@ -198,10 +208,10 @@ Format: `findlead [s/STATUS]`
 The user can use either the long form or short form method to search
 
 The 4 stages of lead status
-UNCONTACTED: `Uncontacted` or `U`
-WORKING: `Working` or `W`
-QUALIFIED: `Qualified` or `Q`
-UNQUALIFIED: `Unqualified` or `X`
+- UNCONTACTED: `Uncontacted` or `U`
+- WORKING: `Working` or `W`
+- QUALIFIED: `Qualified` or `Q`
+- UNQUALIFIED: `Unqualified` or `X`
 
 - The search is case-insensitive. e.g `u` will match `U`
 - The search works for both short form and long form. e.g `U` will match `Uncontacted`
@@ -266,12 +276,12 @@ Adds a transaction record to the address book.
 Format: `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-All field must be provided, and transaction status should be either 'open' or 'closed'.
+All fields must be provided, and transaction status should be either 'Open' or 'Closed'.
 </div>
 
 Examples:
 
-- `addtxn td/Sample Transaction tv/100 ts/open to/John Doe`
+- `addtxn td/Sample Transaction tv/100 ts/Open to/John Doe`
 
 ### Listing all transaction records : `listtxn`
 
@@ -346,7 +356,7 @@ SalesPunch contact data is saved in the hard disk automatically after any comman
 
 <!-- need to update the json -->
 
-SalesPunch data are saved as a JSON file `[JAR file location]/data/updatethis____.json`. Advanced users are welcome to update data directly by editing that data file.
+SalesPunch data are saved as a JSON file `[JAR file location]/data/salespunch.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
@@ -369,8 +379,8 @@ _Details coming soon ..._
 
 _italic_ - optional
 
-| Action         | Format, Examples                                                                                                                                                                                                                                                                           |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
+| Action         | Format, Examples                                                                                                                                                                                                                                                                          |
+| -------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
 | **Add**        | `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] ...​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
 | **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [remark] [status]` <br> e.g., `sort name`                                                                                                                                             |
 | **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                                        |
@@ -386,5 +396,6 @@ _italic_ - optional
 | **FindTag** | `findtag [t/TAG]`<br> e.g., `findtag [friends]`                                                                                                                                                                                                                                                  |
 | **FindLead** | `findlead [s/STATUS]`<br> e.g., `findlead Qualified` , `findlead Q`      
 | **FindAll** | `findall [Anything except for [s/STATUS] & [t/TAG]]`<br> e.g., `findall Alex` , `findall 93282505` , `findall Dover Crescent Road`
-| **FindTxn** | `findtxn [n/NAME]`<br> e.g., `findtxn Bernice Yu`                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                 |
-| **Help**       | `help`                                                                                                                                                                                                                                                                                     |
+| **FindTxn** | `findtxn [n/NAME]`<br> e.g., `findtxn Bernice Yu`                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                |
+| **Help**       | `help`                                                                                                                                                                                                                                                                                    |
+

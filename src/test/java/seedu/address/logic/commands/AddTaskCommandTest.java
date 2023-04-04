@@ -35,7 +35,7 @@ public class AddTaskCommandTest {
     @Test
     public void execute_addTaskUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(firstPerson).withTask(TASK_STUB).build();
+        Person editedPerson = new PersonBuilder(firstPerson).withTask("Follow up", TASK_STUB).build();
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(TASK_STUB));
 
@@ -53,7 +53,7 @@ public class AddTaskCommandTest {
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
-                .withTask(TASK_STUB).build();
+                .withTask("Follow up", TASK_STUB).build();
 
         AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, new Task(TASK_STUB));
 

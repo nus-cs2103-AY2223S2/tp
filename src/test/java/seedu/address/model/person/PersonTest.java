@@ -73,7 +73,6 @@ public class PersonTest {
         assertEquals(person.getOccupation().toString(), person.getAttribute("occupation"));
         assertEquals(person.getJobTitle().toString(), person.getAttribute("job title"));
         assertEquals(person.getAddress().toString(), person.getAttribute("address"));
-        assertEquals(person.getRemark().toString(), person.getAttribute("remark"));
         assertEquals(person.getStatus().getStatusName().getLabel(), person.getAttribute("status"));
     }
 
