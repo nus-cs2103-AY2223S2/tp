@@ -141,7 +141,6 @@ All commands are case-insensitive.
 ## General features
 
 ### Viewing help
-
 #### Format: `help`
 
 Shows a message explaining how to access the help page (this guide).
@@ -149,7 +148,6 @@ Shows a message explaining how to access the help page (this guide).
 ![help message](images/helpMessage.png)
 
 ### Exiting the program
-
 #### Format: `exit`
 
 Exits the program.
@@ -168,16 +166,24 @@ If your changes to the data file makes its format invalid, ArB will discard all 
 
 ## Client commands
 
-### Listing all clients:
+The available client-related commands are:
+* [List all clients](#listing-all-clients)
+* [Add a client](#adding-a-client)
+* [Edit a client](#editing-a-client)
+* [Delete a client](#deleting-a-client)
+* [Clear client list](#clearing-the-client-list)
+* [Find clients](#finding-clients)
+* [Sort clients](#sorting-all-clients)
 
+
+### Listing all clients
 #### Format: `list-client`
 
 Short form: `lc`
 
 Lists out all clients and shows the client list.
 
-### Adding a client:
-
+### Adding a client
 #### Format: `add-client <name/NAME> [email/EMAIL] [phone/PHONE] [tag/TAG]*`
 
 Short form: `ac <n/NAME> [e/EMAIL] [p/PHONE] [t/TAG]*`
@@ -198,7 +204,6 @@ Examples:
 * `add-client name/Clary phone/87654321 email/clary@gmail.com`
 
 ### Editing a client
-
 #### Format: `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*`
 
 Short form: `ec <index> [n/NAME] [e/EMAIL] [p/PHONE] [t/TAG]`
@@ -220,7 +225,6 @@ Examples:
 *  `edit-client 3 name/Alice Risa phone/1234 tag/` Edits the name of the 3rd client to `Alice Risa` and phone number to `1234`. Removes any tags.
 
 ### Deleting a client
-
 #### Format: `delete-client <index>`
 
 Short form: `dc <index>`
@@ -239,7 +243,6 @@ Example:
 *  `list-client` followed by `delete-client 1` deletes the first client in the list (if there is one).
 
 ### Clearing the client list
-
 #### Format: `clear-client`
 
 Short form: `cc`
@@ -250,8 +253,7 @@ Deletes all clients in the client list.
 This command cannot be undone. All deleted clients cannot be restored.
 </div>
 
-### Finding a client
-
+### Finding clients
 #### Format: `find-client [name/NAME]* [tag/tag]*`
 
 Short form: `fc [n/NAME] [t/TAG]*`
@@ -268,7 +270,6 @@ Examples:
 * `find-client name/bob name/alice tag/friend tag/husband` will find any client whose name contains either `bob` or `alice`, and is tagged with either `friend` or `husband`.
 
 ### Sorting all clients
-
 #### Format: `sort-client`
 
 Short form: `sc`
@@ -277,8 +278,19 @@ Sorts all clients that exist in the ArB by name in ascending order.
 
 ## Project commands
 
-### Listing all projects
+The available project-related commands are:
+* [List all projects](#listing-all-projects)
+* [Add a project](#adding-a-project)
+* [Edit a project](#editing-a-project)
+* [Delete a project](#deleting-a-project)
+* [Mark a project as done](#marking-a-project-as-done)
+* [Mark a project as not done](#marking-a-project-as-not-done)
+* [Clear project list](#clearing-the-project-list)
+* [Find projects](#finding-projects)
+* [Sort projects](#sorting-all-projects)
+* [Link a project to a client](#linking-a-project-to-a-client)
 
+### Listing all projects
 #### Format: `list-project`
 
 Short form: `lp`
@@ -286,7 +298,6 @@ Short form: `lp`
 Lists out all projects and shows the project list.
 
 ### Adding a project
-
 #### Format: `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]* [client/CLIENT]*`
 
 Short form: `ap <n/NAME> [d/DEADLINE] [p/PRICE] [t/TAG]* [c/CLIENT]*`
@@ -313,7 +324,6 @@ Examples:
 * `ap n/Background Commission d/2023-05-05 pr/500 t/painting c/alice c/wheeler`
 
 ### Editing a project
-
 #### Format: `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [client/CLIENT]`
 
 Short form: `ep <index> [n/NAME] [d/DEADLINE] [p/PRICE] [c/CLIENT]`
@@ -341,8 +351,21 @@ Example:
 * `edit-project 2 client/alice` Links the 2nd project in the list to a client whose name contains the keyword `alice`.
 * `ep 2 n/The Starry Night pr/500`
 
-### Marking a project as done
+### Deleting a project
+#### Format: `delete-project <index>`
 
+Short form: `dp <index>`
+
+Deletes the project at the specified index of the project list.
+
+Notes:
+* The index refers to the index number shown in the displayed project list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+*  `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
+
+### Marking a project as done
 #### Format: `mark <index>`
 
 Short form: `mp <index>`
@@ -357,7 +380,6 @@ Examples:
 * `list-project` followed by `mark 2` marks the 2nd project in the list of projects as done.
 
 ### Marking a project as not done
-
 #### Format: `unmark <index>`
 
 Short form: `up <index>`
@@ -371,23 +393,7 @@ Notes:
 Examples:
 * `list-project` followed by `unmark 2` indcates that the 2nd project in the list of projects is not done.
 
-### Deleting a project
-
-#### Format: `delete-project <index>`
-
-Short form: `dp <index>`
-
-Deletes the project at the specified index of the project list.
-
-Notes:
-* The index refers to the index number shown in the displayed project list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Example:
-*  `list-project` followed by `delete-project 1` deletes the first project in the list (if there is one).
-
 ### Clearing the project list
-
 #### Format: `clear-project`
 
 Short form: `cp`
@@ -398,8 +404,7 @@ Deletes all projects in the project list.
 This command cannot be undone. All deleted projects cannot be restored.
 </div>
 
-### Finding a project: `find-project`
-
+### Finding projects
 #### Format: `find-project [name/NAME]* [start/START] [end/END] [price/PRICE] [status/STATUS] [tag/TAG]* [client/CLIENT]*`
 
 Short form: `fp [n/NAME]* [s/START] [e/END] [p/PRICE] [st/STATUS] [t/TAG]* [c/CLIENT]*`
@@ -415,8 +420,7 @@ Note:
 Examples:
 * `find-project name/sculpture client/alice tag/personal start/yesterday end/tomorrow price/500 status/done` will find any project whose name contains `sculpture`, is linked to a client whose name contains `alice`, is tagged `personal`, has a price of $500, is done and has a deadline that falls between yesterday and tomorrow.
 
-### Sorting all projects : `sort-project`
-
+### Sorting all projects
 #### Format: `sort-project <option/Option>`
 
 Short form: `sp <o/OPTION>`
@@ -450,7 +454,6 @@ Examples:
 ## Tag commands
 
 ### Listing all tags
-
 #### Format: `list-tag`
 
 Short form: `lt`
