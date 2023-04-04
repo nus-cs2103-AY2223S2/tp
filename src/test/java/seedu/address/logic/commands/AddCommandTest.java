@@ -218,6 +218,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasVehicle(Vehicle vehicle) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteVehicle(Vehicle target) {
             throw new AssertionError("This method should not be called.");
         }
