@@ -52,7 +52,7 @@ import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.util.tag.Tag;
 import seedu.techtrack.testutil.RoleBuilder;
@@ -166,7 +166,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + JOBDESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + WEBSITE + SALARY_DESC_BOB
                         + DEADLINE_DESC_BOB + EXPERIENCE_DESC_BOB,
-                Phone.MESSAGE_CONSTRAINTS);
+                Contact.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB

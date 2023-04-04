@@ -16,7 +16,7 @@ import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.role.Salary;
 import seedu.techtrack.model.role.Website;
@@ -104,12 +104,12 @@ class JsonAdaptedRole {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Contact.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Contact.isValidContact(phone)) {
+            throw new IllegalValueException(Contact.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Contact modelContact = new Contact(phone);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -173,7 +173,7 @@ class JsonAdaptedRole {
         }
         final Experience modelExperience = new Experience(experience);
 
-        return new Role(modelName, modelPhone, modelEmail, modelCompany, modelJobDescription, modelTags,
+        return new Role(modelName, modelContact, modelEmail, modelCompany, modelJobDescription, modelTags,
                 modelWebsite, modelSalary, modelDeadline, modelExperience);
     }
 

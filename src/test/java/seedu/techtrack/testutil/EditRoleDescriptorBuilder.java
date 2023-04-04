@@ -11,7 +11,7 @@ import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.role.Salary;
 import seedu.techtrack.model.role.Website;
@@ -58,10 +58,10 @@ public class EditRoleDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditRoleDescriptor} that we are building.
+     * Sets the {@code Contact} of the {@code EditRoleDescriptor} that we are building.
      */
     public EditRoleDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+        descriptor.setPhone(new Contact(phone));
         return this;
     }
 

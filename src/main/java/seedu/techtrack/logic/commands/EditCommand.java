@@ -25,12 +25,12 @@ import seedu.techtrack.commons.util.CollectionUtil;
 import seedu.techtrack.logic.commands.exceptions.CommandException;
 import seedu.techtrack.model.Model;
 import seedu.techtrack.model.role.Company;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Deadline;
 import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
 import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.role.Salary;
 import seedu.techtrack.model.role.Website;
@@ -117,7 +117,7 @@ public class EditCommand extends Command {
 
         Website updatedWebsite = editRoleDescriptor.getWebsite().orElse(roleToEdit.getWebsite());
         Name updatedName = editRoleDescriptor.getName().orElse(roleToEdit.getName());
-        Phone updatedPhone = editRoleDescriptor.getPhone().orElse(roleToEdit.getPhone());
+        Contact updatedContact = editRoleDescriptor.getPhone().orElse(roleToEdit.getPhone());
         Email updatedEmail = editRoleDescriptor.getEmail().orElse(roleToEdit.getEmail());
         Company updatedCompany = editRoleDescriptor.getCompany().orElse(roleToEdit.getCompany());
         JobDescription updatedJd = editRoleDescriptor.getJobDescription().orElse(roleToEdit.getJobDescription());
@@ -125,7 +125,7 @@ public class EditCommand extends Command {
         Salary updatedSalary = editRoleDescriptor.getSalary().orElse(roleToEdit.getSalary());
         Deadline updatedDeadline = editRoleDescriptor.getDeadline().orElse(roleToEdit.getDeadline());
         Experience updatedExperience = editRoleDescriptor.getExperience().orElse(roleToEdit.getExperience());
-        return new Role(updatedName, updatedPhone, updatedEmail, updatedCompany, updatedJd, updatedTags, updatedWebsite,
+        return new Role(updatedName, updatedContact, updatedEmail, updatedCompany, updatedJd, updatedTags, updatedWebsite,
                 updatedSalary, updatedDeadline, updatedExperience);
     }
 
@@ -153,7 +153,7 @@ public class EditCommand extends Command {
      */
     public static class EditRoleDescriptor {
         private Name name;
-        private Phone phone;
+        private Contact contact;
         private Email email;
         private Company company;
         private JobDescription jd;
@@ -173,7 +173,7 @@ public class EditCommand extends Command {
          */
         public EditRoleDescriptor(EditRoleDescriptor toCopy) {
             setName(toCopy.name);
-            setPhone(toCopy.phone);
+            setPhone(toCopy.contact);
             setEmail(toCopy.email);
             setCompany(toCopy.company);
             setJobDescription(toCopy.jd);
@@ -188,7 +188,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, company, tags, website, jd,
+            return CollectionUtil.isAnyNonNull(name, contact, email, company, tags, website, jd,
                     salary, deadline, experience);
         }
 
@@ -200,12 +200,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setPhone(Contact contact) {
+            this.contact = contact;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<Contact> getPhone() {
+            return Optional.ofNullable(contact);
         }
 
         public void setEmail(Email email) {

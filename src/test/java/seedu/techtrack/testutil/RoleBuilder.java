@@ -9,7 +9,7 @@ import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.role.Salary;
 import seedu.techtrack.model.role.Website;
@@ -32,7 +32,7 @@ public class RoleBuilder {
     public static final String DEFAULT_EXPERIENCE = "C - 1 Year";
 
     private Name name;
-    private Phone phone;
+    private Contact contact;
     private Email email;
     private Company company;
     private JobDescription jd;
@@ -47,7 +47,7 @@ public class RoleBuilder {
      */
     public RoleBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        contact = new Contact(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         company = new Company(DEFAULT_COMPANY);
         jd = new JobDescription(DEFAULT_JOBDESCRIPTION);
@@ -63,7 +63,7 @@ public class RoleBuilder {
      */
     public RoleBuilder(Role roleToCopy) {
         name = roleToCopy.getName();
-        phone = roleToCopy.getPhone();
+        contact = roleToCopy.getPhone();
         email = roleToCopy.getEmail();
         company = roleToCopy.getCompany();
         jd = roleToCopy.getJobDescription();
@@ -107,10 +107,10 @@ public class RoleBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Role} that we are building.
+     * Sets the {@code Contact} of the {@code Role} that we are building.
      */
     public RoleBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.contact = new Contact(phone);
         return this;
     }
 
@@ -156,7 +156,7 @@ public class RoleBuilder {
 
 
     public Role build() {
-        return new Role(name, phone, email, company, jd, tags, website, salary, deadline, experience);
+        return new Role(name, contact, email, company, jd, tags, website, salary, deadline, experience);
     }
 
 }

@@ -15,11 +15,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.techtrack.logic.commands.exceptions.exceptions.ParseException;
 import seedu.techtrack.model.role.Company;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Deadline;
 import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
 import seedu.techtrack.model.role.Website;
 import seedu.techtrack.model.util.tag.Tag;
 
@@ -99,15 +99,15 @@ public class ParserUtilTest {
 
     @Test
     public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+        Contact expectedContact = new Contact(VALID_PHONE);
+        assertEquals(expectedContact, ParserUtil.parsePhone(VALID_PHONE));
     }
 
     @Test
     public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
         String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+        Contact expectedContact = new Contact(VALID_PHONE);
+        assertEquals(expectedContact, ParserUtil.parsePhone(phoneWithWhitespace));
     }
 
     @Test

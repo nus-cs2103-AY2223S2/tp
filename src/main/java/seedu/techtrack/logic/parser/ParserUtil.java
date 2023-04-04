@@ -15,7 +15,7 @@ import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Salary;
 import seedu.techtrack.model.role.Website;
 import seedu.techtrack.model.util.tag.Tag;
@@ -56,18 +56,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String phone} into a {@code Contact}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
+    public static Contact parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Contact.isValidContact(trimmedPhone)) {
+            throw new ParseException(Contact.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Contact(trimmedPhone);
     }
 
     /**

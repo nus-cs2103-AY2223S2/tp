@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.techtrack.commons.exceptions.IllegalValueException;
 import seedu.techtrack.model.role.Company;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
 
 public class JsonAdaptedRoleTest {
     private static final String INVALID_NAME = "R@chel";
@@ -66,7 +66,7 @@ public class JsonAdaptedRoleTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedRole role = new JsonAdaptedRole(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_COMPANY,
                 VALID_JOBDESCRIPTION, VALID_TAGS, VALID_WEBSITE, VALID_SALARY, VALID_DEADLINE, VALID_EXPERIENCE);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Contact.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
 
@@ -74,7 +74,7 @@ public class JsonAdaptedRoleTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedRole role = new JsonAdaptedRole(VALID_NAME, null, VALID_EMAIL, VALID_COMPANY, VALID_JOBDESCRIPTION,
                 VALID_TAGS, VALID_WEBSITE, VALID_SALARY, VALID_DEADLINE, VALID_EXPERIENCE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Contact.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, role::toModelType);
     }
 

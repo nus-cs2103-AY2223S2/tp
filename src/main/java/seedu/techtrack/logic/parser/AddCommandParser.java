@@ -18,12 +18,12 @@ import java.util.stream.Stream;
 import seedu.techtrack.logic.commands.AddCommand;
 import seedu.techtrack.logic.commands.exceptions.exceptions.ParseException;
 import seedu.techtrack.model.role.Company;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Deadline;
 import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
 import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.role.Salary;
 import seedu.techtrack.model.role.Website;
@@ -56,7 +56,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CONTACT).get());
+        Contact contact = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CONTACT).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Company company = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_COMPANY).get());
         JobDescription jd = ParserUtil.parseJobDescription(argMultimap.getValue(PREFIX_JOBDESCRIPTION).get());
@@ -65,7 +65,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Salary salary = ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get());
         Deadline deadline = ParserUtil.parseDateline(argMultimap.getValue(PREFIX_DEADLINE).get());
         Experience experience = ParserUtil.parseExperience(argMultimap.getValue(PREFIX_EXPERIENCE).get());
-        Role role = new Role(name, phone, email, company, jd, tagList, website, salary, deadline, experience);
+        Role role = new Role(name, contact, email, company, jd, tagList, website, salary, deadline, experience);
 
         return new AddCommand(role);
     }

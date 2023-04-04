@@ -17,7 +17,7 @@ public class Role {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Contact contact;
     private final Email email;
     private final Website website;
 
@@ -32,12 +32,12 @@ public class Role {
     /**
      * Every field must be present and not null.
      */
-    public Role(Name name, Phone phone, Email email, Company company, JobDescription jd, Set<Tag> tags,
+    public Role(Name name, Contact contact, Email email, Company company, JobDescription jd, Set<Tag> tags,
                 Website website, Salary salary, Deadline deadline, Experience experience) {
-        requireAllNonNull(name, phone, email, company, jd, tags, website, salary, deadline, experience);
+        requireAllNonNull(name, contact, email, company, jd, tags, website, salary, deadline, experience);
 
         this.name = name;
-        this.phone = phone;
+        this.contact = contact;
         this.email = email;
         this.company = company;
         this.jobDescription = jd;
@@ -52,8 +52,8 @@ public class Role {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Contact getPhone() {
+        return contact;
     }
 
     public Email getEmail() {
@@ -140,7 +140,7 @@ public class Role {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, company, jobDescription, tags, website, salary, deadline, experience);
+        return Objects.hash(name, contact, email, company, jobDescription, tags, website, salary, deadline, experience);
 
     }
 
@@ -166,7 +166,7 @@ public class Role {
                 .append("\n")
                 .append("Experience: ").append(getExperience())
                 .append("\n")
-                .append("Phone: ").append(getPhone())
+                .append("Contact: ").append(getPhone())
                 .append("\n")
                 .append("Email: ").append(getEmail())
                 .append("\n")
