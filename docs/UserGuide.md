@@ -90,6 +90,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 |     Result Box     | To display the result of the commands that user executed. |
 | BookmarkList Panel |         To display the current list of bookmarks          |
 |     View Panel     |      To display the details of a specified bookmark       |
+<div style="page-break-after: always;"></div>
 
 ### Bookmark UI details
 
@@ -97,7 +98,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
+
 
 ## Features
 
@@ -242,18 +243,17 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * Only the fields of the specified prefixes are searched.
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
 * The search for tags will return any bookmark that has a tag that matches the given tag.
-<div style="page-break-after: always;"></div>
 
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
-*  `find a/Yoo Heonhwa` returns every bookmark whose author of the book is Yoo Heonhwa<br>
-* `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man` as shown in figure 1 below.
-  ![find_reply](images/find-chainsaw%20man.png)
+* `find n/Chainsaw Man` after `list` returns `chainsaw man` and `Chainsaw Man` as shown in figure 1 below.
+<img width="560" src="images/find-chainsaw%20man.png">
 <figcaption style="text-align:center"><em><strong>
    Figure 1
    </strong>
    : Executing find after start up
    </em></figcaption>
+<div style="page-break-after: always;"></div>
 
 ### Listing all bookmarks/ Resetting filters : `list`
 
@@ -289,7 +289,7 @@ Our Application also supports this feature in gui format, simply click onto the 
    </strong>
    : Executing view after list
    </em></figcaption>
-
+<div style="page-break-after: always;"></div>
 
 ### Going to a url : `goto`
 
@@ -308,7 +308,6 @@ Examples:
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Our Application also supports this feature in gui format, clicking on the url in the right panel will open it on your default browser .
 </div>
-<div style="page-break-after: always;"></div>
 
 ### Clearing all entries : `clear`
 
@@ -323,6 +322,7 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+<div style="page-break-after: always;"></div>
 
 ### Exiting the program : `exit`
 
@@ -333,7 +333,6 @@ Format: `exit`
 ### Saving the data
 
 MyLib data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-<div style="page-break-after: always;"></div>
 
 ### Editing the data file
 
@@ -348,7 +347,7 @@ If your changes to the data file makes its format invalid, MyLib will discard al
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
