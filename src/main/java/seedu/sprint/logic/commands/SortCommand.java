@@ -41,6 +41,8 @@ public class SortCommand extends Command {
 
     private final SortingOrder sortingOrder;
 
+    private final SortingSequence sortingSequence;
+
     private final Comparator<Application> comparator;
 
     /**
@@ -52,6 +54,7 @@ public class SortCommand extends Command {
      */
     public SortCommand(SortingOrder sortingOrder, SortingSequence sortingSequence) {
         this.sortingOrder = sortingOrder;
+        this.sortingSequence = sortingSequence;
 
         if (sortingOrder == SortingOrder.ALPHABETICAL) {
             comparator = new AlphabeticalComparator(sortingSequence);
@@ -78,5 +81,14 @@ public class SortCommand extends Command {
             return new CommandResult(MESSAGE_SORT_DEADLINE_SUCCESS);
         }
         return new CommandResult(MESSAGE_SORT_ALPHABETICAL_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && sortingOrder.equals(((SortCommand) other).sortingOrder)
+                && sortingSequence.equals(((SortCommand) other).sortingSequence)
+                && comparator.equals(((SortCommand) other).comparator));
     }
 }
