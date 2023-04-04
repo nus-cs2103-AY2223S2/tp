@@ -248,9 +248,12 @@ You should see the following output if the client is created successfully.
 New client added: Alice Baker (alice_baker@bakers.com)
 ```
 <div markdown="span" class="alert alert-info">
-:information_source: **A note on names:** Mycelium supports names with *s/o*
-and *d/o* in them. For example, *Alice Baker s/o Bob Baker* is a valid name.
-In fact, *X Æ A-12* is also a valid name in Mycelium.
+:information_source: **A note on names:** There may be times when you only have access to a client's username and not their real name.
+To accommodate this, Mycelium accepts all types of names.
+For instance, names like "Alice Baker s/o Bob Baker" are valid names. In fact, unique names like "X Æ A-12" are also recognized as valid names in Mycelium.
+
+:information_source: An error message will be shown with an attempt to create a
+client with an existing email in Mycelium.
 </div>
 
 ### Deleting a client contact: `dc`
@@ -272,11 +275,6 @@ Once the client is deleted, you should see the following output.
 ```
 Deleted Client: Alice Baker (alice_baker@bakers.com)
 ```
-
-<div markdown="span" class="alert alert-info">
-:information_source: An error message will be shown with an attempt to create a
-client with an existing email in Mycelium.
-</div>
 
 ### Updating a client: `uc`
 
@@ -551,7 +549,7 @@ have the following projects in Mycelium:
 <img src="images/Ui.png" />
 
 <div markdown="span" class="alert alert-info">
-:information_source: Recall that :mushroom:Mycelium supports fuzzy search for projects by
+:information_source: Recall that Mycelium supports fuzzy search for projects by
 their *names* only.
 </div>
 
