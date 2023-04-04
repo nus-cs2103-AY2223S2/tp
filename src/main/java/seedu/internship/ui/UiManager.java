@@ -21,9 +21,9 @@ public class UiManager implements Ui {
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     // Change this to change icon image
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/ship.png";
 
-    // CHanges to new logic
+    // Changes to new logic
     private Logic logic;
     private MainWindow mainWindow;
 

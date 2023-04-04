@@ -5,9 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.internship.model.event.Event;
-import seedu.internship.model.event.UniqueEventList;
 import seedu.internship.model.internship.Internship;
+import seedu.internship.model.internship.Statistics;
 import seedu.internship.model.internship.UniqueInternshipList;
 
 /**
@@ -92,10 +91,6 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
     }
 
     /**
-     *
-     */
-
-    /**
      * Removes {@code key} from this {@code internship Catalogue}.
      * {@code key} must exist in the internship Catalogue.
      */
@@ -116,11 +111,9 @@ public class InternshipCatalogue implements ReadOnlyInternshipCatalogue {
         return this.currentInternship != null;
     }
 
-    public Internship getCurrent(){
+    public Internship getCurrent() {
         return this.currentInternship;
     }
-
-    //// util methods
 
     @Override
     public String toString() {

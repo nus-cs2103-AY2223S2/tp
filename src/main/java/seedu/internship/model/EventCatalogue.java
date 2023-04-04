@@ -2,11 +2,18 @@ package seedu.internship.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.internship.model.event.Event;
 import seedu.internship.model.event.UniqueEventList;
 
+/**
+ * Wraps all data at the event-catalogue level
+ * Duplicates are not allowed (by .isSameEvent comparison)
+ */
 public class EventCatalogue implements ReadOnlyEventCatalogue {
     private final UniqueEventList events;
 
@@ -24,7 +31,7 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
     public EventCatalogue() {}
 
     /**
-     * Creates an EventCataloue using the events in the {@code toBeCopied}
+     * Creates an EventCatalogue using the events in the {@code toBeCopied}
      */
     public EventCatalogue(ReadOnlyEventCatalogue toBeCopied) {
         this();
@@ -47,7 +54,6 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
      */
     public void resetData(ReadOnlyEventCatalogue newData) {
         requireNonNull(newData);
-
         setEvents(newData.getEventList());
     }
 
@@ -78,13 +84,8 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
      */
     public void setEvent(Event target, Event editedEvent) {
         requireNonNull(editedEvent);
-
         events.setEvent(target, editedEvent);
     }
-
-    /**
-     *
-     */
 
     /**
      * Removes {@code key} from this {@code event Catalogue}.
@@ -95,6 +96,9 @@ public class EventCatalogue implements ReadOnlyEventCatalogue {
     }
 
 
+    public HashMap<LocalDate, List<Event>> findClashEvents() {
+        return this.events.getClashEventHash();
+    }
 
     //// util methods
 

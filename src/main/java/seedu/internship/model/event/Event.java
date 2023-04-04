@@ -1,53 +1,61 @@
 package seedu.internship.model.event;
 
+import static seedu.internship.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
 import seedu.internship.model.internship.Internship;
 
 /**
  * Represents a Event in the internship.
  */
-public class Event  {
+public class Event {
     private final Name name;
     private final Start start;
     private final End end;
-    private final Description description;
+    private final EventDescription eventDescription;
     private Internship internship;
 
     /**
      * Every Field must be present and not null.
      */
-    public Event (Name name, Start start,End end ,Description descirption, Internship internship) {
+    public Event(Name name, Start start, End end, EventDescription eventDescription, Internship internship) {
+        requireAllNonNull(name, start, end, eventDescription, internship);
         this.name = name;
         this.start = start;
         this.end = end;
-        this.description = descirption;
+        this.eventDescription = eventDescription;
         this.internship = internship;
     }
 
     /**
-     * Every Field must be present and not null., without Internship.
+     * Every Field must be present and not null, without Internship.
      */
-    public Event (Name name, Start start,End end ,Description descirption) {
+    public Event(Name name, Start start, End end, EventDescription eventDescription) {
         this.name = name;
         this.start = start;
         this.end = end;
-        this.description = descirption;
+        this.eventDescription = eventDescription;
     }
 
     /**
      * The class still is immutable , once internship is defined , it cannot be changed
-     * @param intern
+     * @param internship
      */
-    public void setInternship(Internship intern){
+    public void setInternship(Internship internship) {
         if (this.internship == null) {
-            this.internship = intern;
+            this.internship = internship;
         }
     }
 
     public Name getName() {
         return name;
     }
+
     public Start getStart() {
         return start;
     }
@@ -60,29 +68,66 @@ public class Event  {
         return internship;
     }
 
-    public Description getDescription() {
-        return description;
+    public EventDescription getDescription() {
+        return eventDescription;
     }
 
     /**
      * Returns True if both events have the same start, end and internship
      */
-    public boolean isSameInternship(Internship internship) {
+    public boolean isSameInternship(Internship intern) {
         return internship != null
-                && this.internship.equals(internship);
+                && this.internship.equals(intern);
     }
 
     /**
      * Returns True if both events have the same start, end and internship
      */
     public boolean isSameEvent(Event otherEvent) {
-        if (otherEvent == this){
+        if (otherEvent == this) {
             return true;
         }
+
         return otherEvent != null
                 && otherEvent.getStart().equals(getStart())
                 && otherEvent.getEnd().equals(getEnd())
+                && otherEvent.getName().equals(getName())
                 && otherEvent.getInternship().equals(getInternship());
+    }
+
+    public boolean isClash(Event otherEvent) {
+        return !this.equals(otherEvent) &&
+                (this.start.isEqualTime(otherEvent.start) || this.end.isEqualTime(otherEvent.end)
+                || this.start.isBetween(otherEvent.start, otherEvent.end)
+                || this.end.isBetween(otherEvent.start, otherEvent.end))
+                || otherEvent.start.isBetween(this.start, this.end)
+                || otherEvent.end.isBetween(this.start, this.end);
+    }
+
+    public List<LocalDateTime> clashingTimings(Event otherEvent) {
+        if (!this.isClash(otherEvent)) {
+            return null;
+        } else {
+            List<LocalDateTime> timings = new ArrayList<>();
+            if (this.start.compareTo(otherEvent.start) >= 0) {
+                timings.add(this.start.getLdt());
+            } else {
+                timings.add(otherEvent.start.getLdt());
+            }
+            if (this.end.compareTo(otherEvent.end) <= 0) {
+                timings.add(this.end.getLdt());
+            } else {
+                timings.add(otherEvent.end.getLdt());
+            }
+            return timings;
+        }
+    }
+
+    /**
+     * Returns true if start date of event lies between the specified date inclusive.
+     */
+    public boolean isBetweenDate(LocalDate start, LocalDate end) {
+        return !(getStart().getLd().isBefore(start) || getStart().getLd().isAfter(end));
     }
 
     /**
@@ -108,14 +153,23 @@ public class Event  {
                 && otherEvent.getName().equals(getName());
     }
 
+    public int compareTo(Event otherEvent) {
+        if (this.start.compareTo(otherEvent.start) == 0) {
+            // Start Timings are the same, if one event ends earlier than the other put it first
+            return this.end.compareTo(otherEvent.end);
+        } else {
+            return this.start.compareTo(otherEvent.start);
+        }
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(start, end, internship,description);
+        return Objects.hash(start, end, internship, eventDescription);
     }
 
-    public boolean isDeadline(){
-        return this.start.compareEnd(end) == 0;
+    public boolean isDeadline() {
+        return this.start.compareTo(end) == 0;
     }
 
     @Override
@@ -133,9 +187,4 @@ public class Event  {
                 .append(getInternship());
         return builder.toString();
     }
-
-
-
-
-
 }

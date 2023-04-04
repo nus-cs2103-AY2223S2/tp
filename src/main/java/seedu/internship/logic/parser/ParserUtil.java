@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.commons.util.StringUtil;

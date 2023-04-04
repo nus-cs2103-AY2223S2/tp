@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="infoPanelContainer" fitToWidth="true" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane fx:id="pageContainer" fitToWidth="true" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox id="infoPanel" spacing="10.0">
          <children>
@@ -26,11 +26,7 @@
             <!--         </minHeight>-->
                   </Label>
                   <Separator fx:id="separator" halignment="LEFT" prefWidth="200.0" />
-                  <Label fx:id="position" styleClass="info-panel-h2" text="Position">
-                     <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                     </minWidth>
+                  <Label fx:id="position" styleClass="info-panel-h2" text="Position" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
