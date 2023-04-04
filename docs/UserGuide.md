@@ -353,7 +353,8 @@ Format: `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 </div>
 
 Examples:
-* `pair eic/S2235243I vic/t0123423a` pairs up the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
+* `pair eic/s6414118Z vic/S1262951f` pairs up the elderly with NRIC S6414118Z with the volunteer with NRIC S1262951F.
+  <img src="images/userGuide/pair.png" width="800" />
 * `pair eic/s1135243A vic/S0773423a` pairs up the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
 
 #### Auto pairing of volunteers and elderly: `auto_pair`
@@ -495,7 +496,8 @@ Format `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
 * After deletion, the pair is removed from the list of pairs in the window.
 
 Examples
-* `unpair eic/S2235243I vic/t0123423a` unpairs the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
+* `unpair eic/s6414118Z vic/S1262951f` unpairs the elderly with NRIC S6414118Z with the volunteer with NRIC S1262951F (Refer to previously added [pair](#pair-volunteer-and-elderly--pair) example).
+  <img src="images/userGuide/unpair.png" width="800" />
 * `unpair eic/s1135243A vic/S0773423a` unpairs the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
 
 -----------------------------------------
@@ -558,7 +560,8 @@ This command can be entered after the `find` command to show statistics on a sub
 
 Format `stats`
 
-* The summary is shown in the feedback box below your input.
+* The summary is shown below.
+  <img src="images/userGuide/stats.png" width="800" />
 
 Examples
 * `stats` Display summary statistics on every person and pair.
@@ -568,7 +571,7 @@ Examples
   stats
   ```
   Display summary statistics for all persons (and associated pairs) living in the north.
-
+  <img src="images/userGuide/findStats.png" width="800" />
 -------------------------------------------
 
 ### Exiting the program : `exit`
