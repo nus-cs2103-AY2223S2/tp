@@ -7,6 +7,7 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable;
  */
 public class Note {
+    public static final int MAX_LENGTH = 45;
 
     public final String noteName;
 
@@ -18,6 +19,10 @@ public class Note {
     public Note(String noteName) {
         requireNonNull(noteName);
         this.noteName = noteName;
+    }
+
+    public String getNoteName() {
+        return this.noteName;
     }
 
     @Override
