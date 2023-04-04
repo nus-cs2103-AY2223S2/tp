@@ -19,11 +19,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.PcClass;
 import seedu.address.model.person.parent.Parent;
-import seedu.address.model.person.parent.Parents;
 import seedu.address.model.person.parent.ParentNameContainsKeywordsPredicate;
+import seedu.address.model.person.parent.Parents;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
-
 
 /**
  * Contains helper methods for testing commands.
