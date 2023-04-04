@@ -15,7 +15,6 @@ import seedu.loyaltylift.model.attribute.Address;
 import seedu.loyaltylift.model.attribute.Name;
 import seedu.loyaltylift.model.attribute.Note;
 import seedu.loyaltylift.model.customer.Customer;
-import seedu.loyaltylift.model.customer.exceptions.CustomerNotFoundException;
 import seedu.loyaltylift.model.order.CreatedDate;
 import seedu.loyaltylift.model.order.Order;
 import seedu.loyaltylift.model.order.Quantity;
@@ -29,7 +28,6 @@ public class JsonAdaptedOrder {
 
     public static final String CUSTOMER_ID_MESSAGE_FIELD = "Customer ID";
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Order's %s field is missing!";
-    public static final String NOT_FOUND_FIELD_MESSAGE_FORMAT = "Order's %s cannot be found!";
 
     private final String customerId;
     private final String name;
@@ -85,12 +83,7 @@ public class JsonAdaptedOrder {
         if (customerId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CUSTOMER_ID_MESSAGE_FIELD));
         }
-        Customer customer;
-        try {
-            customer = addressBook.getCustomer(customerId);
-        } catch (CustomerNotFoundException e) {
-            throw new IllegalValueException(String.format(NOT_FOUND_FIELD_MESSAGE_FORMAT, CUSTOMER_ID_MESSAGE_FIELD));
-        }
+        Customer customer = addressBook.getCustomer(customerId);
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
