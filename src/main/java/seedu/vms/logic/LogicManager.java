@@ -126,6 +126,11 @@ public class LogicManager implements Logic {
     }
 
 
+    private void execute(Command command) {
+        execute(new ParseResult(command));
+    }
+
+
     private List<CommandMessage> saveModel() {
         ArrayList<CommandMessage> results = new ArrayList<>();
         try {
@@ -153,11 +158,6 @@ public class LogicManager implements Logic {
         }
 
         return results;
-    }
-
-
-    private void execute(Command command) {
-        execute(new ParseResult(command));
     }
 
 
