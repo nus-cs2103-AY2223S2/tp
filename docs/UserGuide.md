@@ -104,6 +104,11 @@ Preamble are information specified with the `<PREAMBLE>` notation.
 ### Fields
 This section describes the format and specifications of each field.
 
+<div class="alert alert-info">
+:information_source: **Note on character limits** <br>
+There is **no** max character limit enforced on most fields. The reasoning behind this is that we do not want to unnecessarily hinder the possibility that the field might be long (For example, a long name). 
+</div>
+
 #### Name
 The name of a person. 
 * Names should only contain alphanumeric characters and spaces, and it should not be blank.
@@ -176,7 +181,7 @@ The susceptibility level of an elderly to injury or sickness.
 
 #### Medical Qualification
 * Medical qualification must be in the format `SKILL_NAME, LEVEL`.
-  * The `LEVEL` must be one of the following value: `BASIC`, `INTERMEDIATE` or `HIGH`.
+  * The `LEVEL` must be one of the following value: `BASIC`, `INTERMEDIATE` or `ADVANCED`.
   * Example: `CPR, BASIC`, `AED, INTERMEDIATE`.
   * The `SKILL_NAME` should not include any spaces.
 * Specified for volunteers only.
@@ -306,7 +311,7 @@ A volunteer can have any number of tags, medical qualifications and available da
 
 Examples:
 
-* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/1234561 ic/T1254567D dr/2023-04-01,2023-04-15`
+* `add_volunteer n/John Wick bd/1990-11-05 e/johnwick@example.com a/New yourk p/1234561 ic/T1254567D dr/2023-04-01,2023-04-15 mt/CPR, BASIC`
 * `add_volunteer n/Sally White bd/1990-11-05 ic/S8457677H re/EAST`
 
 #### Pair volunteer and elderly: `pair`
@@ -408,6 +413,7 @@ Examples:
 
 * `edit_volunteer 1 p/91234567 e/johndoe@example.com` Edits the [phone number](#phone-number) and [email address](#phone-number) of the 1st volunteer to be `91234567` and `johndoe@example.com` respectively.
 * `edit_volunteer 2 n/Betsy Crower mt/` Edits the name of the 2nd volunteer to be `Betsy Crower` and clears all existing [medical qualifications](#medical-qualification).
+* `edit_volunteer 3 mt/CPR, BASIC mt/CARETAKING, ADVANCED` Replaces all existing [medical qualifications](#medical-qualification) of the 3rd volunteer with `CPR, BASIC` and `CARETAKING, ADVANCED`.
 
 #### Editing a person by NRIC: `edit`
 
@@ -429,6 +435,7 @@ Examples:
 
 * `edit S2233556T p/91642345 re/NORTH` Edits the [phone number](#phone-number) and [region](#region) of the person identified by `S2233556T` to be `91642345` and `NORTH` respectively.
 * `edit S8833657U re/CENTRAL r/HIGH` Edits the [region](#region) and risk level of the person identified by `S8833657U` to be `CENTRAL` and `HIGH` respectively. However, if `S8833657U` identifies a volunteer, the [risk level](#risk-level) edit will be ignored.
+* `edit S2568212B t/Overseas t/Undergrad` Replaces all existing [tags](#tags) of the person identified by `S2568212B` with the tags `Overseas` and `Undergrad` 
 
 ------------------------------------------------
 
