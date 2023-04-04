@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -18,4 +19,6 @@ public interface Parser<T extends Command> {
      * @throws ParseException If {@code userInput} does not conform the expected format.
      */
     T parse(String userInput) throws ParseException;
+
+    CommandInfo getCommandInfo();
 }

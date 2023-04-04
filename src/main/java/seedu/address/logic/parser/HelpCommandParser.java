@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -14,8 +16,8 @@ public class HelpCommandParser implements Parser<HelpCommand> {
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        return false;
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        throw new RecommendationException("Too many arguments.");
     }
 
     /**
@@ -29,5 +31,13 @@ public class HelpCommandParser implements Parser<HelpCommand> {
     public HelpCommand parse(String userInput) throws ParseException {
         assert false : "This method should not be invoked";
         return null;
+    }
+
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                HelpCommand.COMMAND_WORD,
+                HelpCommand.COMMAND_PROMPTS,
+                HelpCommandParser::validate);
     }
 }

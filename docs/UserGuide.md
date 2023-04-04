@@ -58,11 +58,7 @@ A command is an instruction given by you to FriendlyLink to perform a specific t
 #### Prefix
 Prefixes are the characters appearing before a slash in a command. Prefixes label the information that they represent. For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
 * Prefixes should be entered in all lower case (E.g. n/Abdul instead of N/Abdul)
-* Fields after prefixes have leading and trailing whitespaces removed (E.g. `n/ Mary` is truncated to `n/Mary`)
-
-#### Index
-Indexes are natural numbers (numbers used for counting) that are used for numbering persons in a list.
-* An index must be a positive integer (E.g. 1, 2, 3, …​)
+* Fields after prefixes have leading and trailing whitespaces removed (E.g. `n/ Mary` is trimmed to `n/Mary`)
 
 #### Field
 Fields are the information following the slash in a command, to provide appropriate information to FriendlyLink, such as indicating a volunteer's name, phone number, email and other information.
@@ -74,6 +70,13 @@ Fields are the information following the slash in a command, to provide appropri
 * Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
     * E.g. If you specify `help 123`, it will be interpreted as `help`.
 * For more information on each specific field, refer to the [Fields](#fields) section
+
+#### Preamble
+Preamble are information specified with the `<PREAMBLE>` notation. 
+* They have to be specified before fields. 
+  * E.g. A command format like `edit_elderly <NRIC> n/NAME ...` indicates `edit_elderly S1234567A n/John Doe`. 
+  On the other hand, specifying `edit_elderly n/John Doe S1234567A` is invalid as `S1234567A` has to come first. 
+* In some cases, they are also specified as `<[PREAMBLE]>` which indicates that the preamble is optional.
 
 #### Duplicate Entry
 * Person (Elderly and Volunteers)
@@ -105,6 +108,7 @@ This section describes the format and specifications of each field.
 The name of the person. 
 * Names should only contain alphanumeric characters and spaces, and it should not be blank.
 * Particularly, non-alphanumeric characters or special characters like `/`, `@` and `?` are disallowed. 
+* Names of length no more than 100 is recommended.
 
 #### NRIC
 NRIC is a unique identifier given to all Singaporeans.
@@ -114,6 +118,10 @@ NRIC is a unique identifier given to all Singaporeans.
   * `XXXXXXX` is a 7-digit serial number
   * `#` is a letter from A to Z
 * There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC)
+
+#### Index
+Indexes are natural numbers (numbers used for counting) that are used for numbering persons in a list.
+* An index must be a positive integer (E.g. 1, 2, 3, …​)
 
 #### Phone number
 The phone number of a person.
@@ -341,7 +349,7 @@ Edit the information of an existing elderly or volunteer in FriendlyLink, based 
 
 Edits an existing elderly based on their [index](#index) in the elderly list.
 
-Format: `edit_elderly INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
+Format: `edit_elderly <INDEX> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
 * Edits the elderly at the specified `INDEX` in the displayed elderly list.
 * Any combination of the optional fields is possible but **at least one** optional field must be specified. 
@@ -361,7 +369,7 @@ Examples:
 
 Edits an existing volunteer based on their [index](#index) in the volunteers list.
 
-Format: `edit_volunteer INDEX [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
+Format: `edit_volunteer <INDEX> [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
 * Edits the volunteer at the specified `INDEX` in the displayed volunteer list. 
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
@@ -381,7 +389,7 @@ Examples:
 
 Edits an existing elderly or volunteer identified by their [NRIC](#nric).
 
-Format: `edit NRIC [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
+Format: `edit <NRIC> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
 * Edits the person identified by `NRIC`. As no people records of duplicate `NRIC` are allowed in FriendlyLink, one `NRIC` uniquely identifies one elderly or volunteer.
 * Any combination of the optional fields is possible but **at least one** optional field must be specified.
@@ -408,7 +416,7 @@ Delete the specific existing elderly or volunteer in FriendlyLink with the given
 
 Deletes the specified elderly from FriendlyLink.
 
-Format: `delete_elderly NRIC`
+Format: `delete_elderly <NRIC>`
 
 * Deletes the elderly with the specified [NRIC](#nric).
 * If no existing elderly matches the specified `NRIC`, FriendlyLink will inform the user that no such elderly exists.
@@ -421,7 +429,7 @@ Examples:
 
 Deletes the specified volunteer from FriendlyLink.
 
-Format: `delete_volunteer NRIC`
+Format: `delete_volunteer <NRIC>`
 
 * Deletes the volunteer with the specified [NRIC](#nric)..
 * If no existing volunteer matches the specified `NRIC`, FriendlyLink will inform the user that no such volunteer exists.
@@ -443,13 +451,13 @@ Examples
 * `unpair eic/S2235243I vic/t0123423a` unpairs the elderly with NRIC S2235243I with the volunteer with NRIC T0123423A.
 * `unpair eic/s1135243A vic/S0773423a` unpairs the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
 
---------------------------------------
+-----------------------------------------
 
 ### Finding people and their related pairs: `find`
 
 Finds any elderly or volunteers matching **all** the relevant specified fields, and pairings that they are involved in.
 
-Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG] [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]`
+Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…`
 
 * Fields can be in any order.
 * The fields are optional so any combination of them is possible but **at least one** field must be specified.
@@ -478,20 +486,21 @@ Examples:
 
 Shows a list of all persons in FriendlyLink or paired and unpaired persons if specified.
 
-Format: `list [paired/unpaired]`
+Format: `list <[PAIRED \ UNPAIRED]>`
 
-* All persons will be listed if "paired" or "unpaired" is not specified after the list word
-* `[paired/unpaired]` is case-insensitive E.g. `pAIReD` is equivalent to `paired`.
+* `<[PAIRED \ UNPAIRED]>` indicates that either "paired" or "unpaired" can be specified after the list command.
+    * If "paired" or "unpaired" is not specified, all persons will be listed.
+* The preamble is case-insensitive E.g. `pAIReD` will match `paired`.
 * Pair list will always list all pairs when the command executes.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-`list` is useful if you need to refresh all the lists after they have been filtered with the `find` command.
+`list` is useful if you need to refresh all the lists after they have been filtered.
 </div>
-Examples:
 
-* `list` lists all elderly, volunteers and pairs.
-* `list paired` lists all paired elderly, paired volunteers and all pairs.
-* `list unpaired` lists all unpaired elderly, unpaired volunteers
+Examples:
+* `list`
+* `list paired`
+* `list unpaired`
 
 ---------------------------------------
 
@@ -533,34 +542,49 @@ Format: `exit`
 
 ---------------------------------------------
 
-### Auto-complete
+### Saving the data
 
-FriendlyLink provides auto-complete suggestions for the available [commands](#command), or a [field's](#field) [prefixes](#prefix) when adding new records of elderly or volunteers into the database.
+FriendlyLink data are saved in the hard disk automatically after any command that changes the data. There is no need to
+save manually.
+
+--------------------------------------------
+
+### Editing the data file
+
+FriendlyLink data are saved in the JSON files `JAR_FILE_LOCATION/data/elderly.json`, `JAR_FILE_LOCATION/data/volunteer.json` and `JAR_FILE_LOCATION/data/pair.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="block" class="alert alert-danger">:exclamation: **Warning**
+If your changes to the data file makes its format invalid, FriendlyLink will discard all data and start with an empty data file at the next run.
+</div>
+
+-------------------------------------------------
+
+### Command Recommendation
+
+FriendlyLink provides command recommendations for registered [commands](#command) and [field's](#field) [prefixes](#prefix).
+
+![Command recommendation](./images/CommandRecommendations.png)
+
+For example, when adding an elderly, the recommendation engine will automatically recommend all available field prefixes.
+No new suggestions will be given once all possible prefixes has at least one value provided. If the user continues 
+to specify more attributes like `t/`, the recommendation will be done on a case-by-case basis.
 
 Example:
 
-* Typing `add_e` will suggest `add_elderly`.
-* Typing `fi` will suggest `find`.
+* Typing `add_volunteer n/Harry p/12345686 `, FriendlyLink will
+  suggest `bd/BIRTH_DATE ic/NRIC e/[EMAIL] a/[ADDRESS] re/[REGION] mt/[MEDICAL_QUALIFICATION] t/[TAG]… dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` as
+  these fields have not been filled. 
+* Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 ic/S8959886I re/NORTH t/experienced mt/CPR,ADVANCED dr/2023-06-03,2023-06-17` 
+  will not suggest anything by default as all possible fields have at least one value.
 
-For adding records, if the user has not input all the available fields for the new input elderly or volunteer, the
-auto-complete feature will automatically recommend all remaining prefixes. No new suggestions will be given once all
-possible prefixes has at least one value provided. If the user continues to specify more attributes like `t/`, the recommendation
-will be done on a case-by-case basis.
 
-Example:
-
-* Typing `add_volunteer n/Harry p/12345686`, FriendlyLink will
-  suggest `bd/BIRTH_DATE ic/NRIC e/[EMAIL] a/[ADDRESS] t/[TAG] re/[REGION] mt/[MEDICAL_QUALIFICATION] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END]` as
-  these fields have not been filled. Note that the order of fields specified here may not be what is reflected in the application.
-* Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 vnr/S8959886I re/NORTH t/experienced mt/CPR, ADVANCED dr/2023-06-03,2023-06-17`
-, FriendlyLink will not suggest anything by default as all possible fields have at least one value.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes on Command Recommendation**<br>
 
-* If the user specifies a field that is not included in the list of accepted fields, a warning will given. The user is free to continue typing, but an
-  error will be thrown when the user confirms the command.
+* The order of fields specified here may not be what is reflected in the application.
+* When invalid inputs are detected, the text field will turn red, indicating a warning. You are, however, free to continue typing.
 * There is a known UI bug when the text in `command box` overflows. To improve user experience, command recommendation is disabled once overflow is detected.
 
 </div>
@@ -586,9 +610,10 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 ## Coming Soon
 
 The following features are planned for the coming update
-* Edit pair by index
-* Add pair by index
+* Edit and add pair by index 
 * Delete elderly, volunteers and pairs by index
+* View in-depth pair details (without hovering)
+* Warning message when typing
 
 --------------------------------------------------
 
@@ -607,14 +632,14 @@ The following features are planned for the coming update
 | **Add Volunteer**    | `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [t/TAG]… [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> E.g.,`add_volunteer n/Doe bd/1998-02-01 ic/S8457677H p/98765432 e/johnd@example.com a/block 123 re/WEST t/graduate mt/CPR, BASIC`   |
 | **Pair Up**          | `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> E.g., `pair eic/S2235243I vic/t0123423a`                                                                                                                                                                                                                                |
 | **Auto Pair**        | `auto_pair`                                                                                                                                                                                                                                                                                                                 |
-| **Edit Elderly**     | `edit_elderly INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> E.g., `edit_elderly 1 p/91234567 e/johndoe@example.com`                                                                                |
-| **Edit Volunteer**   | `edit_volunteer INDEX [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> E.g., `edit_volunteer 2 n/Betsy Crower mt/`                                                                     |
-| **Edit Person**      | `edit NRIC [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> E.g., `edit S1234567A p/12334455`                                                                                  |
-| **Delete Elderly**   | `delete_elderly NRIC`<br> <br> E.g., `delete_elderly S8238655C`                                                                                                                                                                                                                                                             |
-| **Delete Volunteer** | `delete_volunteer NRIC`<br> <br> E.g., `delete_volunteer S8238658J`                                                                                                                                                                                                                                                         |
+| **Edit Elderly**     | `edit_elderly <INDEX> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> E.g., `edit_elderly 1 p/91234567 e/johndoe@example.com`                                                                              |
+| **Edit Volunteer**   | `edit_volunteer <INDEX> [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> E.g., `edit_volunteer 2 n/Betsy Crower mt/`                                                                   |
+| **Edit Person**      | `edit <NRIC> [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS]… [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> E.g., `edit S1234567A p/12334455`                                                                                |
+| **Delete Elderly**   | `delete_elderly <NRIC> `<br> <br> E.g., `delete_elderly S8238655C`                                                                                                                                                                                                                                                          |
+| **Delete Volunteer** | `delete_volunteer <NRIC> `<br> <br> E.g., `delete_volunteer S8238658J`                                                                                                                                                                                                                                                      |
 | **Unpair**           | `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> E.g., `unpair vic/t0123423a eic/S2235243I`                                                                                                                                                                                                                            |
-| **Listing people**   | `list [paired/unpaired]`                                                                                                                                                                                                                                                                                                    |
-| **Find People**      | `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG] [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` <br> <br> E.g., `find n/John Doe`                                                                                             |
+| **Listing people**   | `list <[PAIRED \ UNPAIRED]>`                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                          |
+| **Find People**      | `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> E.g., `find n/John Doe`                                                                                           |
 | **Summarise Data**   | `stats`                                                                                                                                                                                                                                                                                                                     |
 | **Help**             | `help`                                                                                                                                                                                                                                                                                                                      |
 | **Exit Program**     | `exit`                                                                                                                                                                                                                                                                                                                      |

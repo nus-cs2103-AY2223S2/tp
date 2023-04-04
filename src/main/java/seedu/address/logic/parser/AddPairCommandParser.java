@@ -10,6 +10,8 @@ import static seedu.address.model.person.information.Nric.MESSAGE_CONSTRAINTS;
 
 import seedu.address.commons.util.PrefixUtil;
 import seedu.address.logic.commands.AddPairCommand;
+import seedu.address.logic.commands.CommandInfo;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.information.Nric;
 
@@ -17,6 +19,8 @@ import seedu.address.model.person.information.Nric;
  * Parses input arguments and creates a new AddPairCommand object.
  */
 public class AddPairCommandParser implements Parser<AddPairCommand> {
+
+    private static final Prefix[] availablePrefixes = { PREFIX_NRIC_ELDERLY, PREFIX_NRIC_VOLUNTEER };
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddPairCommand
@@ -29,9 +33,9 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
     public AddPairCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NRIC_ELDERLY, PREFIX_NRIC_VOLUNTEER);
+                ArgumentTokenizer.tokenize(args, availablePrefixes);
 
-        if (!PrefixUtil.arePrefixesPresent(argMultimap, PREFIX_NRIC_ELDERLY, PREFIX_NRIC_VOLUNTEER)
+        if (!PrefixUtil.arePrefixesPresent(argMultimap, availablePrefixes)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPairCommand.MESSAGE_USAGE));
         }
@@ -52,14 +56,25 @@ public class AddPairCommandParser implements Parser<AddPairCommand> {
         return new AddPairCommand(new Nric(elderlyNric), new Nric(volunteerNric));
     }
 
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                AddPairCommand.COMMAND_WORD,
+                AddPairCommand.COMMAND_PROMPTS,
+                AddPairCommandParser::validate);
+    }
+
     /**
      * Validates the given ArgumentMultimap by checking that it fulfils certain criteria.
      *
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        return !(map.getPreamble().length() > 0);
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+            throw new RecommendationException("Invalid prefix.");
+        }
+        return true;
     }
 
 }
