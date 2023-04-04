@@ -26,7 +26,7 @@ import seedu.recipe.testutil.TypicalRecipes;
 
 public class ImportManagerTest {
     //As UI cannot be tested, set the stage as null.
-    private static ImportManager MANAGER = new ImportManager(null);
+    private static final ImportManager MANAGER = new ImportManager(null);
 
     //The UI methods cannot be tested with logic unit tests:
     //ImportManager::execute
