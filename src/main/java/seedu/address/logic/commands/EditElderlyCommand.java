@@ -64,7 +64,7 @@ public class EditElderlyCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NRIC + "NRIC] "
-            + "[" + PREFIX_BIRTH_DATE + "BIRTHDATE] "
+            + "[" + PREFIX_BIRTH_DATE + "BIRTH_DATE] "
             + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_RISK + "RISK] "
             + "[" + PREFIX_TAG + "TAG]... "
