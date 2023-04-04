@@ -97,9 +97,15 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 <img width="680" src="images/bookmarkCardUI.png">
 
+The bookmark in the BookmarkList panel will only contain the:
+* Title
+* Author
+* Progress
+* Genre
+* Rating
+* Tag
 --------------------------------------------------------------------------------------------------------------------
-
-
+<div style="page-break-after: always;"></div>
 
 ## Features
 
