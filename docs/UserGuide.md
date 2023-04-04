@@ -332,6 +332,11 @@ ModTrek data is saved as a JSON file [JAR file location]/data/modtrek.json. Adva
 
 <div markdown="span" class="alert alert-warning">
 
+:exclamation: **Note:** This can only be done when the application is not running. Otherwise, changes to JSON file will be overridden by the application! 
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
 :exclamation: **Caution:** If your changes to the data file makes its format invalid, **MODTrek** will discard all data and start with an empty data file at the next run.
 </div>
 
