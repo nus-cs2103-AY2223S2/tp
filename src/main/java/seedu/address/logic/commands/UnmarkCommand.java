@@ -4,7 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -20,15 +24,15 @@ public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
 
     private final Index index;
-    private final LocalDate date;
+    private final List<LocalDate> dates;
 
     /**
      * Create an unmark command for the tutee and the specified index and date
      */
-    public UnmarkCommand(Index index, LocalDate date) {
-        requireNonNull(date);
+    public UnmarkCommand(Index index, List<LocalDate> dates) {
+        requireNonNull(dates);
         this.index = index;
-        this.date = date;
+        this.dates = dates;
     }
 
     @Override
@@ -37,21 +41,45 @@ public class UnmarkCommand extends Command {
         Tutee toMarkAttendance = model.getFilteredTuteeList().get(index.getZeroBased());
         TuteeBuilder modified = new TuteeBuilder(toMarkAttendance);
         Attendance attendance = toMarkAttendance.getAttendance();
-        try {
-            modified.withAttendance(attendance.unmarkAttendance(date));
-            model.setTutee(toMarkAttendance, modified.build());
-            return new CommandResult(
-                String.format("Marked %s's attendance for %s as absent",
-                toMarkAttendance.getName(),
-                date.format(DateTimeFormatter.ofPattern(MarkCommand.EXPECTED_DATE_FORMAT))
-                )
-            );
-        } catch (NoSuchElementException e) {
-            return new CommandResult(String.format(
-                "%s was not present on %s!",
-                toMarkAttendance.getName(),
-                date.format(DateTimeFormatter.ofPattern(MarkCommand.EXPECTED_DATE_FORMAT))
-            ));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(MarkCommand.EXPECTED_DATE_FORMAT);
+
+        List<LocalDate> invalidDates = new ArrayList<>();
+        List<LocalDate> validDates = new ArrayList<>();
+
+        for (LocalDate date : dates) {
+            try {
+                attendance = attendance.unmarkAttendance(date);
+                validDates.add(date);
+            } catch (NoSuchElementException e) {
+                invalidDates.add(date);
+            }
         }
+
+        modified.withAttendance(attendance);
+        model.setTutee(toMarkAttendance, modified.build());
+
+        StringJoiner joiner = new StringJoiner("\n");
+
+        if (validDates.size() > 0) {
+            joiner.add(validDates.stream()
+                .map(formatter::format)
+                .collect(Collectors.joining(
+                    ", ",
+                    String.format("Marked %s as absent for the following dates: ", toMarkAttendance.getName()),
+                    ""
+                )));
+        }
+
+        if (invalidDates.size() > 0) {
+            joiner.add(invalidDates.stream()
+                .map(formatter::format)
+                .collect(Collectors.joining(
+                    ", ",
+                    String.format("%s was already marked absent for the following dates: ", toMarkAttendance.getName()),
+                    ""
+                )));
+        }
+
+        return new CommandResult(joiner.toString());
     }
 }
