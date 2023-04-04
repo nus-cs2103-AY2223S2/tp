@@ -33,6 +33,7 @@ import seedu.address.testutil.PersonBuilder;
  */
 public class EditCommandTest {
 
+    private static final String EMAIL_FIELD = "Email: ";
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test

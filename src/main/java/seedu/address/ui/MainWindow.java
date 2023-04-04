@@ -121,10 +121,6 @@ public class MainWindow extends UiPart<Stage> {
                 new FavoritesListPanel(logic.getFavoritedPersonList(), logic.getAddressBook().getPersonList());
         favoritesListPanelPlaceholder.getChildren().add(favoritesListPanel.getRoot());
 
-        // Set widths of favorites panel and main panel to have the ratio 2:8
-        // rightPanel.prefWidthProperty().bind(container.widthProperty().multiply(0.8)); // 30% width
-        // favoritesListPanelPlaceholder.prefWidthProperty().bind(container.widthProperty().multiply(0.2)); // 30% width
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 

@@ -60,7 +60,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Duplicate emails or phones are not allowed.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -94,8 +94,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedRank, updatedName, updatedUnit, updatedCompany, updatedPlatoon,
+        Person editedPerson = new Person(updatedRank, updatedName, updatedUnit, updatedCompany, updatedPlatoon,
                 updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        editedPerson.setIsFavorite(personToEdit.getIsFavorite());
+        return editedPerson;
     }
 
     @Override
@@ -110,7 +112,9 @@ public class EditCommand extends Command {
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!model.canEdit(personToEdit, editedPerson)) {
+            String duplicateString = model.getDuplicateStringForEdit(editedPerson, personToEdit);
+            assert !duplicateString.isBlank() : "Unable to edit the person, but no duplicate strings found";
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

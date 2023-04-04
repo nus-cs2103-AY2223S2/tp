@@ -141,17 +141,26 @@ public class AddCommandTest {
         }
 
         @Override
-        public int findDuplicateIndex(List<Person> persons) {
+        public int getDuplicateIndex(List<Person> persons) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public String findDuplicateString(Person duplicatePerson) {
+        public String getDuplicateString(Person duplicatePerson) {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public String getDuplicateStringForEdit(Person duplicatePerson, Person notCounted) {
+            throw new AssertionError("This method should not be called.");
+        }
         @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canEdit(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -210,7 +219,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public String findDuplicateString(Person person) {
+        public String getDuplicateString(Person person) {
             requireNonNull(person);
             return PersonUtil.findDuplicateFieldString(this.person, person);
         }
