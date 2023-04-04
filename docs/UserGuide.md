@@ -104,7 +104,6 @@ Format: `list`
 
 ![example usage for list command](images/list.png)
 
-
 #### Editing a person : `edit`
 
 Edits an existing person in the address book.
@@ -123,7 +122,6 @@ Examples:
 *  `edit 2 n/Betsy Crower evt/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing event tags.
 
 ![example usage for edit command](images/edit.png)
-
 
 #### Locating persons by name: `find`
 
