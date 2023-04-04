@@ -183,7 +183,7 @@ public class ParserUtil {
         requireNonNull(taskDeadline);
         String trimmedTaskDeadline = taskDeadline.trim();
         if (!TaskDeadline.isValidDeadline(trimmedTaskDeadline)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(Deadline.MESSAGE_CONSTRAINTS, "Task"));
         }
         return new TaskDeadline(trimmedTaskDeadline);
     }
@@ -280,7 +280,7 @@ public class ParserUtil {
         requireNonNull(orderDeadline);
         String trimmedOrderDeadline = orderDeadline.trim();
         if (!OrderDeadline.isValidDeadline(trimmedOrderDeadline)) {
-            throw new ParseException(OrderDeadline.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(Deadline.MESSAGE_CONSTRAINTS, "Order"));
         }
         return new OrderDeadline(trimmedOrderDeadline);
     }

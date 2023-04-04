@@ -84,7 +84,8 @@ public class OrderContainsKeywordsPredicate extends OrderDescriptor implements P
         }
 
         if (getCustomerName().isPresent()) {
-            isCustomerNameMatch = getCustomerName().get().equals(order.getCustomer().getCustomerName());
+            isCustomerNameMatch = getCustomerName().stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getCustomer().getCustomerName().getName(), keyword.getName()));
         } else {
             isCustomerNameMatch = true;
         }
