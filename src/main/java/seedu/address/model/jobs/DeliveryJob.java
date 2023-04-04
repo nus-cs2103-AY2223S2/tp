@@ -300,6 +300,22 @@ public class DeliveryJob {
         return builder.toString();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DeliveryJob)) {
+            return false;
+        }
+
+        DeliveryJob otherJob = (DeliveryJob) other;
+        return otherJob.getRecipientId().equals(getRecipientId())
+                && otherJob.getSenderId().equals(getSenderId())
+                && otherJob.getEarning().equals(getEarning());
+    }
+
     /**
      * Buider class for building DeliveryJob.
      */

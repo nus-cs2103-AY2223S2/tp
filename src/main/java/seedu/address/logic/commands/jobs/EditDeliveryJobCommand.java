@@ -216,8 +216,8 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
         private boolean isDelivered;
         private String description;
 
-        private boolean clearDate = false;
-        private boolean clearSlot = false;
+        private boolean isDateCleared = false;
+        private boolean isSlotCleared = false;
 
         public EditDeliveryJobDescriptor() {
         }
@@ -235,8 +235,8 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
             setEarning(toCopy.earning);
             setDelivered(toCopy.isDelivered);
             setDescription(toCopy.description);
-            clearDate = toCopy.clearDate;
-            clearSlot = toCopy.clearSlot;
+            isDateCleared = toCopy.isDateCleared;
+            isSlotCleared = toCopy.isSlotCleared;
         }
 
         /**
@@ -338,14 +338,14 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
          * Sets the clear slot state.
          */
         public void clearDeliverySlot() {
-            clearSlot = true;
+            isSlotCleared = true;
         }
 
         /**
          * Sets the clear date state.
          */
         public void clearDeliveryDate() {
-            clearDate = true;
+            isDateCleared = true;
         }
 
         /**
@@ -354,7 +354,7 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
          * @param f
          */
         public void ifClearDeliverySlot(Runnable s, Runnable f) {
-            if (clearSlot) {
+            if (isSlotCleared) {
                 s.run();
             } else {
                 f.run();
@@ -367,7 +367,7 @@ public class EditDeliveryJobCommand extends DeliveryJobCommand {
          * @param f
          */
         public void ifClearDeliveryDate(Runnable s, Runnable f) {
-            if (clearDate) {
+            if (isDateCleared) {
                 s.run();
             } else {
                 f.run();

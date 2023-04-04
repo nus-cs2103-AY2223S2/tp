@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 /**
  * Contains helper methods for testing commands.
@@ -63,6 +64,21 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+
+    public static final String VALID_SENDER = TypicalPersons.ALICE.getPersonId();
+    public static final String INVALID_SENDER = "ABC";
+
+    public static final String VALID_RECIPIENT = TypicalPersons.BOB.getPersonId();
+    public static final String INVALID_RECIPIENT = "ABC";
+
+    public static final String VALID_EARNING = "1";
+    public static final String INVALID_EARNING = "a";
+
+    public static final String VALID_DELIVERY_DATE = "2023-03-03";
+    public static final String INVALID_DELIVERY_DATE = "20231-03-03";
+
+    public static final String VALID_DELIVERY_SLOT = "1";
+    public static final String INVALID_DELIVERY_SLOT = "a";
 
     public static final String VALID_TIMETABLE_DATE = " date/2023-03-03";
     public static final String MISSING_PREFIX_TIMETABLE_DATE = "2023-03-03";
