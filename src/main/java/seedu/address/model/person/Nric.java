@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Person's Nric should be in this format SXXXXXXXA";
+            "Person's Nric should start with 'S/T/G' and must have the length of 9 (E.g. T0000000A)";
     public final String number;
 
     /**

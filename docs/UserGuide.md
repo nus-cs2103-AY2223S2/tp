@@ -1,6 +1,3 @@
----
-span
----
 MediMate (MM) is a cross-platform desktop application for medical professionals, specifically for private doctors or
 their receptionists,
 who are experienced with computers and currently using paper records to store patient information.
@@ -18,7 +15,7 @@ than traditional GUI apps.
   - [Add a patient](#add-a-patient--add)
   - [List all patients](#listing-all-patients--list)
     - [List patients in alphabetical order](#listing-patients-in-alphabetical-order--list_name)
-  - [Show](#show-a-patients-information--show)
+  - [Show](#UserGuide.md#show-a-patients-information-show)
   - [Edit a patient](#editing-a-patient--edit)
   - [Appointment](#appointment)
     - [Make or change an appointment](#making-appointment-to-a-patient--makeapp)
@@ -101,16 +98,16 @@ Adds a patient to Medimate through command method:
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITION] [nric/NRIC_NUMBER] [t/TAG]…`
 
-* MANDATORY: You must add the patient's name, phone number, email, and address to successfully add the patient into MediMate.  
+* MANDATORY: You must add the patient's name, phone number, email, and address to successfully add the patient into MediMate.
 * Name allows number as a valid input.
-* No special characters is allowed at the start or end of the email `username`. (username@domain.com) 
-* No multiple (More than 1) special characters is allowed at the middle of the email username. 
-* Allowed special characters are `+` , `_`, `-`, `.` 
-e.g. `abc@gmail.com` is allowed 
-e.g. `ab.c@gmail.com` is allowed 
-e.g. `ab..c@gmail.com` is not allowed
-e.g. `abc.@gmail.com` is not allowed 
-e.g. `.abc@gmail.com` is not allowed
+* No special characters is allowed at the start or end of the email `username`. (username@domain.com)
+* No multiple (More than 1) special characters is allowed at the middle of the email username.
+* Allowed special characters are `+` , `_`, `-`, `.`
+  e.g. `abc@gmail.com` is allowed
+  e.g. `ab.c@gmail.com` is allowed
+  e.g. `ab..c@gmail.com` is not allowed
+  e.g. `abc.@gmail.com` is not allowed
+  e.g. `.abc@gmail.com` is not allowed
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
 * OPTIONAL: You can also add patient's age, medical condition, nric.
 * NRIC need to be in the correct format. The first letter must be either 'S', 'T' or 'G' (E.g. S9935010Y)
@@ -127,7 +124,7 @@ The second example contains more information relevant to that patient.
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 m/cough nric/S9935010Y t/criminal` 
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
 * `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01` will cause MediMate to assumes that `A/John street, block 123, #01-01` is a part of the email address, causing `add` to fail.
 
 <div markdown="span" class="alert alert-primary">
@@ -175,9 +172,9 @@ Edits an existing patient in the patient list:
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ag/AGE] [m/MEDICAL_CONDITION] [nric/NRIC_NUMBER] [t/TAG]…`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
-  The index **must be a positive integer** 1, 2, 3, … 
-* When index 0 is provided, it will display `Invalid Command Format` as 0 will never exist in the system. 
-* When index is more than the number of patients in MediMate, it will displays `The person Index provided is invalid`. 
+  The index **must be a positive integer** 1, 2, 3, …
+* When index 0 is provided, it will display `Invalid Command Format` as 0 will never exist in the system.
+* When index is more than the number of patients in MediMate, it will displays `The person Index provided is invalid`.
 * Specify the field you want to edit (name, phone, email, address, age, medical condition, nric, or tag) followed by the
   new value. At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
