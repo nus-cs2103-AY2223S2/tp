@@ -7,8 +7,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import ezschedule.commons.util.AppUtil;
+import ezschedule.model.event.exceptions.InvalidDateException;
 
 /**
  * Represents an Event's date in the scheduler.
@@ -22,7 +25,7 @@ public class Date implements Comparable<Date> {
 
     public static final String VALIDATION_REGEX = "([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))";
 
-    public final LocalDate date;
+    public LocalDate date;
 
     /**
      * Constructs a {@code Date}.
@@ -32,8 +35,13 @@ public class Date implements Comparable<Date> {
     public Date(String date) {
         requireNonNull(date);
         AppUtil.checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.date = LocalDate.parse(date, formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+        try {
+            this.date = LocalDate.parse(date, formatter.withResolverStyle(ResolverStyle.STRICT));
+        } catch (DateTimeParseException e) {
+            String message = String.format("Date %1s is invalid", date);
+            throw new InvalidDateException(message);
+        }
     }
 
     /**
