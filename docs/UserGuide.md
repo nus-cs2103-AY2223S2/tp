@@ -233,14 +233,19 @@ Examples:
 
 Edits a student's remarks.
 
-> Format: `remark INDEX`
+> Format: `remark INDEX [REMARK]`
 
 There you can type your desired remarks into the popup text box. When you are done, you can simply press `Ctrl` + `S`
-and your remarks will be saved.
+and your remarks will be saved. If the optional parameter `REMARK` is specified, the dialog box will not appear, and
+the remarks for the specified student will be updated directly.
+
+<div markdown="span" class="alert alert-danger">**:exclamation: Warning:** 
+  If your remarks begin with whitespace (spaces, tabs, empty lines), the whitespace will be discarded!
+</div>
 
 Examples:
 
-- `remark 2'
+- `remark 2`
 
 <p align=center>
     <img alt="remark before" src="images/user-guide/remark_before.jpg" />

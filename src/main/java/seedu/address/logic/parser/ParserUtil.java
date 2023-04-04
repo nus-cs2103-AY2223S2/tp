@@ -257,8 +257,7 @@ public class ParserUtil {
                     .map(Index::fromOneBased)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new ParseException("One or more index values are not a positive integer.");
+            throw new ParseException("One or more index values are not positive integers.");
         }
-
     }
 }

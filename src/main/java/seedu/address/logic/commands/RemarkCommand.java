@@ -114,6 +114,7 @@ public class RemarkCommand extends Command {
         // state check
         RemarkCommand e = (RemarkCommand) other;
         return index.equals(e.index)
-                && remark.equals(e.remark);
+                && (remark == e.remark  // handles when remark is null
+                || remark.equals(e.remark));
     }
 }
