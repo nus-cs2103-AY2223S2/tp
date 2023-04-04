@@ -19,7 +19,7 @@ public class SummaryCommand extends Command {
     public CommandResult execute(Model model) {
         int size = model.getAddressBook().size();
         SummaryWindow.setSize(size);
-        int potentialEarnings = model.getAddressBook().getPotentialEarnings();
+        long potentialEarnings = model.getAddressBook().getPotentialEarnings();
         SummaryWindow.setPotentialEarnings(potentialEarnings);
         String tags = model.getAddressBook().getTags();
         SummaryWindow.setTags(tags);

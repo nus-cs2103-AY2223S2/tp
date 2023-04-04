@@ -195,18 +195,6 @@ Examples :
 - `mark 1 m/yes` marks a contact at index one as requiring a follow-up.
 - `mark 1 m/no` marks a contact at index one as not requiring a follow-up.
 
-### Marking as done : `markDone` [coming soon]
-
-Marks the contact with specified index as having completed the follow-up action.
-
-Format : `markDone` INDEX
-
-Examples:
-
-- `markDone 3` marks the contact at index 3 as having already been followed up with.
-
-
-
 ### Deleting a person : `delete`
 
 Deletes the specified person from the contact list.

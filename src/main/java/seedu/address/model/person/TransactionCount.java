@@ -20,11 +20,10 @@ public class TransactionCount implements Comparable<TransactionCount>{
      */
     public TransactionCount(String transactionCount) {
         if (transactionCount != null) {
-            this.value = String.valueOf(transactionCount);
+            this.value = transactionCount;
         } else {
             this.value = String.valueOf(0);
         }
-
     }
 
     public int getNumericValue() {

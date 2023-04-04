@@ -104,7 +104,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public int getPotentialEarnings() {
+        public long getPotentialEarnings() {
             Iterator<Person> iterator = persons.iterator();
             int totalValue = 0;
             while (iterator.hasNext()) {

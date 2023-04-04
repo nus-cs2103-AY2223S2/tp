@@ -70,10 +70,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         List<Person> sortedOldList;
         if (ascending) {
             sortedOldList = this.getPersonList()
-                    .sorted(Comparator.comparing(Person::getBusinessSizeInt));
+                    .sorted(Comparator.comparing(Person::getBusinessSizeLong));
         } else {
             sortedOldList = this.getPersonList()
-                    .sorted(Comparator.comparing(Person::getBusinessSizeInt).reversed());
+                    .sorted(Comparator.comparing(Person::getBusinessSizeLong).reversed());
         }
         this.setPersons(sortedOldList);
     }
@@ -190,9 +190,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @return The sum of the user's potential earnings.
      */
     @Override
-    public int getPotentialEarnings() {
+    public long getPotentialEarnings() {
         Iterator<Person> iterator = persons.iterator();
-        int totalValue = 0;
+        long totalValue = 0;
         while (iterator.hasNext()) {
             totalValue += iterator.next().getBusinessSize().getNumericValue();
         }
