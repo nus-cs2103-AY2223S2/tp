@@ -1,7 +1,6 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 import java.util.Set;
@@ -55,7 +54,6 @@ public class UnmarkCustomerCommand extends Command {
         Customer customerToUnmark = lastShownList.get(index.getZeroBased());
         Customer unmarkedCustomer = createUnmarkedCustomer(customerToUnmark);
         model.setCustomer(customerToUnmark, unmarkedCustomer);
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         return new CommandResult(String.format(MESSAGE_UNMARK_CUSTOMER_SUCCESS, unmarkedCustomer));
     }
 

@@ -47,7 +47,7 @@ public class JsonSerializableAddressBookTest {
     }
 
     @Test
-    public void toModelType_noSuchCustomer_throwsIllegalValueException() throws Exception {
+    public void toModelType_noSuchCustomer_throwsCustomerNotFoundException() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(CUSTOMER_NOT_FOUND_FILE,
                 JsonSerializableAddressBook.class).get();
         assertThrows(CustomerNotFoundException.class, dataFromFile::toModelType);
