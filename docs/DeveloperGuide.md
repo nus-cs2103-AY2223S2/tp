@@ -1329,7 +1329,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes from step 2.
 
-**Use case: UCXX - Get a help message using a command**
+**Use case: UC02 - Get a help message using a command**
 
 **MSS**
 
@@ -1338,7 +1338,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
    Use case ends.
 
-**Use case: UCXX - Get a help message using a button**
+**Use case: UC03 - Get a help message using a button**
 
 **MSS**
 
@@ -1347,7 +1347,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
    Use case ends.
 
-**Use case: UCXX - Clear the list of contacts**
+**Use case: UC04 - Clear the list of contacts**
 
 **MSS**
 
@@ -1356,7 +1356,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
    Use case ends.
 
-**Use case: UCXX - Create a sample EduMate**
+**Use case: UC05 - Create a sample EduMate**
 
 1. User requests to create a sample EduMate.
 2. EduMate resets the person list.
@@ -1369,7 +1369,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The given number of samples is invalid.
     * 1a1. EduMate shows an error message.
 
-**Use case: UCXX - Add a contact**
+**Use case: UC06 - Add a contact**
 
 **MSS**
 
@@ -1407,7 +1407,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes from step 1.
 
-**Use case: UCXX - Add a contact with missing fields**
+**Use case: UC07 - Add a contact with missing fields**
 
 **MSS**
 
@@ -1443,7 +1443,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes from step 2.
 
-**Use case: UCXX - View user information**
+**Use case: UC08 - View user information**
 
 **MSS**
 
@@ -1452,7 +1452,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
    Use case ends.
 
-**Use case: UCXX - View a contact's information by name**
+**Use case: UC09 - View a contact's information by name**
 
 **MSS**
 
@@ -1466,7 +1466,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The given name is not found.
     * 1a1. EduMate shows an error message.
 
-**Use case: UCXX - View a contact's information by index**
+**Use case: UC10 - View a contact's information by index**
 
 **MSS**
 
@@ -1480,11 +1480,11 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-**Use case: UCXX - Edit a contact**
+**Use case: UC11 - Edit a contact**
 
 **MSS**
 
-1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to edit a person's details with new information. 
 3. EduMate edits the person's information. 
 4. EduMate shows the edited person's information in the profile panel.
@@ -1502,9 +1502,9 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2c. The edited name is already found in the EduMate.
     * 2c1. EduMate shows an error message.
 
-**Use case: UCXX - Delete a contact**
+**Use case: UC12 - Delete a contact**
 
-1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to delete a person from the contact list. 
 3. EduMate deletes the person from the contact list. 
 4. EduMate shows the user's information in the profile panel.
@@ -1516,9 +1516,9 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2a. The given index is invalid.
     * 2a1. EduMate shows an error message.
 
-**Use case: UCXX - Tag a basic module to a contact**
+**Use case: UC13 - Tag a basic module to a contact**
 
-1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to add a basic module tag to a contact. 
 3. EduMate tags the module to the contact. 
 4. EduMate displays a list of successfully added modules. 
@@ -1540,9 +1540,9 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes at step 5.
 
-**Use case: UCXX - Tag a non-basic module to a contact**
+**Use case: UC14 - Tag a non-basic module to a contact**
 
-1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to add a non-basic module tag to a contact. 
 3. EduMate assigns lessons to the contact. 
 4. EduMate tags the module to the contact. 
@@ -1576,9 +1576,9 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 4c. The module and lesson exist in the contact's module set.
     * 4c1. EduMate throws an error message.
 
-**Use case: UCXX - Untag a module from a contact**
+**Use case: UC15 - Untag a module from a contact**
 
-1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to remove a module tag from a contact. 
 3. EduMate untags the module from the contact. 
 4. EduMate removes the associated lessons from the contact. 
@@ -1614,9 +1614,9 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes at step 6.
 
-**Use case: UCXX - Tag a group to a contact**
+**Use case: UC16 - Tag a group to a contact**
 
-1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to add a group tag to a contact. 
 3. EduMate tags the group to the contact. 
 4. EduMate displays a list of successfully added groups. 
@@ -1637,9 +1637,9 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes at step 5.
 
-**Use case: UC08 - Untag a group from a contact**
+**Use case: UC17 - Untag a group from a contact**
 
-1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+1. User requests to <u>view a contact's information by name (UC09)</u>. 
 2. User requests to remove a group tag from a contact. 
 3. EduMate untags the group from the contact. 
 4. EduMate displays a list of successfully removed groups. 
@@ -1660,7 +1660,7 @@ Help NUS students maintain both their social and academic life by lowering the b
   
   Use case resumes at step 5.
 
-**Use case: UC09 - Find contacts based on search criteria**
+**Use case: UC18 - Find contacts based on search criteria**
 
 1. User requests to <u>view the list of contacts (UC01)</u>.
 2. User requests to find contacts based on search criteria.
@@ -1677,7 +1677,7 @@ Help NUS students maintain both their social and academic life by lowering the b
     * 3a1. EduMate shows no contacts.
   Use case ends.
 
-**Use case: UCXX - Sort contacts based on index**
+**Use case: UC19 - Sort contacts based on index**
 
 1. User requests to <u>view the list of contacts (UC01)</u>.
 2. User requests to sort contacts without using any prefix.
@@ -1694,7 +1694,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case ends.
 
-**Use case: UCXX - Sort contacts based on matching modules**
+**Use case: UC20 - Sort contacts based on matching modules**
 
 1. User requests to <u>view the list of contacts (UC01)</u>.
 2. User requests to sort contacts based on number of common modules.
@@ -1711,7 +1711,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case ends.
 
-**Use case: UCXX - Sort contacts based on multiple search criteria**
+**Use case: UC21 - Sort contacts based on multiple search criteria**
 
 1. User requests to <u>view the list of contacts (UC01)</u>.
 2. User requests to sort contacts based on multiple search criteria.
@@ -1728,7 +1728,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case ends.
 
-**Use case: UCXX - Recommend meet up locations and timings**
+**Use case: UC22 - Recommend meet up locations and timings**
 
 **MSS**
 
@@ -1751,13 +1751,13 @@ Help NUS students maintain both their social and academic life by lowering the b
   
   Use case ends.
 
-**Use case: UCXX - Recommend places and times to eat**
+**Use case: UC23 - Recommend places and times to eat**
 
 **MSS**
 
 1. User requests to <u>view the list of contacts (UC01)</u>.
 2. User requests to eat with a set of contacts.
-3. EduMate shows a list of recommendations of where and when to eat with with contacts.
+3. EduMate shows a list of recommendations of where and when to eat with contacts.
 
    Use case ends.
 
@@ -1774,7 +1774,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case ends.
 
-**Use case: UCXX - Recommend study locations and timings**
+**Use case: UC24 - Recommend study locations and timings**
 
 **MSS**
 
@@ -1797,7 +1797,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case ends.
 
-**Use case: UCXX - Organise a meet up using recommendation**
+**Use case: UC25 - Organise a meet up using recommendation**
 
 **MSS**
 
@@ -1815,7 +1815,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2b. Some contact indices are invalid.
     * 2b1. EduMate shows an error message.
 
-**Use case: UCXX - Organise a meet up manually**
+**Use case: UC26 - Organise a meet up manually**
 
 **MSS**
 
@@ -1836,7 +1836,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2c. The details provided are invalid.
     * 2c1. EduMate shows an error message.
 
-**Use case: UCXX - Unorganise a meet up**
+**Use case: UC27 - Unorganise a meet up**
 
 **MSS**
 
@@ -1853,7 +1853,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2a. The given index does not exist.
     * 2a1. EduMate shows an error message.
 
-**Use case: UCXX - Save to a backup file**
+**Use case: UC28 - Save to a backup file**
 
 **MSS**
 
@@ -1872,7 +1872,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case ends.
 
-**Use case: UCXX - Load from a backup file**
+**Use case: UC29 - Load from a backup file**
 
 **MSS**
 
@@ -1889,7 +1889,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2a. The given file name does not exist.
     * 2a1. EduMate shows an error message.
 
-**Use case: UCXX - Exit the application using a command**
+**Use case: UC30 - Exit the application using a command**
 
 **MSS**
 
@@ -1899,7 +1899,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
    Use case ends.
 
-**Use case: UCXX - Exit the application using a button**
+**Use case: UC31 - Exit the application using a button**
 
 **MSS**
 
@@ -1909,7 +1909,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
    Use case ends.
 
-**Use case: UCXX - View a previous command**
+**Use case: UC32 - View a previous command**
 
 **MSS**
 
@@ -1929,7 +1929,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case ends.
 
-**Use case: UCXX - View the next command**
+**Use case: UC33 - View the next command**
 
 **MSS**
 
