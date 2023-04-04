@@ -786,7 +786,9 @@ extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-wind
     
     ![open_rename](images/user-guide/open_rename.png)
 
-    **Note**: You may see a warning message below. This is because you are converting a text file to a batch file.
+    <div class="span" class="alert alert-info">
+    :information_source: <b>Note:</b> You may see a warning message below. This is because you are converting a text file to a batch file.
+    </div>
 
     ![open_rename_warning](images/user-guide/open_rename_warning.PNG)
    
