@@ -44,7 +44,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the scheduler.";
     public static final String MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME =
-            "Event's end time needs to be later than start time";
+            "Event's start time should come before end time";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;

@@ -33,7 +33,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the scheduler";
     public static final String MESSAGE_EVENT_EXIST_AT_TIME = "Another event already exists at the chosen time";
     public static final String MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME =
-            "Event's end time needs to be later than start time";
+            "Event's start time should come before end time";
 
     private final Event toAdd;
 
