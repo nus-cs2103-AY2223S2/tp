@@ -40,7 +40,9 @@ public class FishSortCommandParser implements Parser<FishSortCommand> {
         int d2 = Integer.parseInt(f2.getFeedingInterval().days);
         int h2 = Integer.parseInt(f2.getFeedingInterval().hours);
         if (d1 == d2) {
-            if (h1 == h2) return 0;
+            if (h1 == h2) { 
+                return 0;
+            }
             return h1 > h2 ? 1 : -1;
         } else {
             return d1 > d2 ? 1 : -1;
