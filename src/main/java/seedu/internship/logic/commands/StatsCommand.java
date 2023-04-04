@@ -23,7 +23,6 @@ public class StatsCommand extends Command {
         requireNonNull(model);
         Statistics statistics = new Statistics(model.getInternshipCatalogue().getInternshipList(),
                 model.getEventCatalogue().getEventList());
-
         return new CommandResult(SHOWING_STATS_MESSAGE, ResultType.STATS, statistics);
     }
 }

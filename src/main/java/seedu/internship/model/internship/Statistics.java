@@ -94,10 +94,10 @@ public class Statistics {
 
         Statistics otherStatistics = (Statistics) other;
 
-        return totalInternships == otherStatistics.totalInternships
-                && numApplied == otherStatistics.numApplied
-                && numOffered == otherStatistics.numOffered
-                && numRejected == otherStatistics.numRejected;
+        return totalInternships.equals(otherStatistics.totalInternships)
+                && numApplied.equals(otherStatistics.numApplied)
+                && numOffered.equals(otherStatistics.numOffered)
+                && numRejected.equals(otherStatistics.numRejected);
     }
 
     @Override
