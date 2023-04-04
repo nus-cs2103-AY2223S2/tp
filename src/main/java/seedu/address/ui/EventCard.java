@@ -81,6 +81,7 @@ public class EventCard extends UiPart<Region> {
      */
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
+
         this.event = event;
         noteDetails.setVisible(false);
         line.setVisible(false);
@@ -90,60 +91,15 @@ public class EventCard extends UiPart<Region> {
         name.setText(event.getName());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         date.setText(event.getDate().format(formatter));
+
         GuiSettings guiSettings = new GuiSettings();
         int size = guiSettings.getEventIconSize();
 
-        //Set attachment icon
-        if (event.countAttachments() > 0) {
-            setImageIcon(attachmentLogo, guiSettings.getAttachmentIcon(), size);
-        } else {
-            setImageIcon(attachmentLogo, guiSettings.getNoAttachmentIcon(), size);
-        }
-
-        List<String> noteStrs;
-        if (event.countNotes() > 0) {
-            setImageIcon(noteLogo, guiSettings.getNoteIcon(), size);
-            noteStrs = event.getNotes().stream().map(Note::toString).collect(Collectors.toList());
-        } else {
-            setImageIcon(noteLogo, guiSettings.getNoNoteIcon(), size);
-            noteStrs = new ArrayList<>();
-            noteStrs.add(new Note().toString());
-        }
-        for (int i = 1; i <= noteStrs.size(); i++) {
-            String text = noteStrs.get(i - 1);
-            String stripContent = text;
-            if (text.split("\n").length > 1) {
-                stripContent = text.split("\n")[1];
-            }
-            Label label = new Label(i + ". " + stripContent);
-            noteBox.getChildren().add(label);
-        }
-
-        //set list of student profiles at top right
-        for (int i = 0; i < event.countStudents(); i++) {
-            //Ensures only 5 student profile icons are displayed
-            if (i == 4) {
-                break;
-            }
-            String studentProfile = event.getStudentProfiles().get(i);
-            ImageView newImageView = setImageIcon(studentProfile, size);
-            studentProfiles.getChildren().addAll(newImageView);
-        }
-
-        //Ensures plus icon is rendered if more than 5 students are present
-        if (event.countStudents() > 4) {
-            ImageView newImageView = setImageIcon(guiSettings.getMorePhoto(), size);
-            studentProfiles.getChildren().addAll(newImageView);
-        }
-
-        //Update progress bar with a maximum of 20 students
-        if (event.countStudents() > 0) {
-            progressBar.setProgress((double) event.countStudents() / 20);
-        }
-
+        displayNotes(event, guiSettings.getNoteIcon(), size);
+        setTopRightProfiles(event, guiSettings.getMorePhoto(), size);
+        handleProgressBar(event);
         displayStudentNames();
         handleNoteClick();
-
     }
 
     private void displayStudentNames() {
@@ -188,6 +144,54 @@ public class EventCard extends UiPart<Region> {
         imageView.setFitHeight(size);
         return imageView;
     }
+
+    private void setTopRightProfiles(Event event, String morePhoto, int size) {
+        //set list of student profiles at top right
+        for (int i = 0; i < event.countStudents(); i++) {
+            //Ensures only 5 student profile icons are displayed
+            if (i == 4) {
+                break;
+            }
+            String studentProfile = event.getStudentProfiles().get(i);
+            ImageView newImageView = setImageIcon(studentProfile, size);
+            studentProfiles.getChildren().addAll(newImageView);
+        }
+
+        //Ensures plus icon is rendered if more than 5 students are present
+        if (event.countStudents() > 4) {
+            ImageView newImageView = setImageIcon(morePhoto, size);
+            studentProfiles.getChildren().addAll(newImageView);
+        }
+    }
+
+    private void handleProgressBar(Event event) {
+        if (event.countStudents() > 0) {
+            progressBar.setProgress((double) event.countStudents() / 20);
+        }
+    }
+
+    private void displayNotes(Event event, String noteIcon, int size) {
+        List<String> noteStrs;
+        if (event.countNotes() > 0) {
+            setImageIcon(noteLogo, noteIcon, size);
+            noteStrs = event.getNotes().stream().map(Note::toString).collect(Collectors.toList());
+        } else {
+            setImageIcon(noteLogo, noteIcon, size);
+            noteStrs = new ArrayList<>();
+            noteStrs.add(new Note().toString());
+        }
+
+        for (int i = 1; i <= noteStrs.size(); i++) {
+            String text = noteStrs.get(i - 1);
+            String stripContent = text;
+            if (text.split("\n").length > 1) {
+                stripContent = text.split("\n")[1];
+            }
+            Label label = new Label(i + ". " + stripContent);
+            noteBox.getChildren().add(label);
+        }
+    }
+
 
     //Add more comparison in equals
     @Override
