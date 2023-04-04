@@ -52,13 +52,13 @@ public class EditCommandParser implements Parser<EditCommand> {
             editRoleDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_CONTACT).isPresent()) {
-            editRoleDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CONTACT).get()));
+            editRoleDescriptor.setPhone(ParserUtil.parseContact(argMultimap.getValue(PREFIX_CONTACT).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editRoleDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
-            editRoleDescriptor.setCompany(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_COMPANY).get()));
+            editRoleDescriptor.setCompany(ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get()));
         }
         if (argMultimap.getValue(PREFIX_WEBSITE).isPresent()) {
             editRoleDescriptor.setWebsite(ParserUtil.parseWebsite(argMultimap.getValue(PREFIX_WEBSITE).get()));
@@ -71,7 +71,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editRoleDescriptor.setSalary(ParserUtil.parseSalary(argMultimap.getValue(PREFIX_SALARY).get()));
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-            editRoleDescriptor.setDeadline(ParserUtil.parseDateline(argMultimap.getValue(PREFIX_DEADLINE).get()));
+            editRoleDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
         }
         if (argMultimap.getValue(PREFIX_EXPERIENCE).isPresent()) {
             editRoleDescriptor.setExperience(ParserUtil.parseExperience(argMultimap.getValue(PREFIX_EXPERIENCE).get()));

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.techtrack.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Company's phone number in the address book.
+ * Represents a Role's phone number in the role book.
  * Guarantees: immutable; is valid as declared in {@link #isValidContact(String)}
  */
 public class Contact {
@@ -18,16 +18,16 @@ public class Contact {
     /**
      * Constructs a {@code Contact}.
      *
-     * @param phone A valid phone number.
+     * @param contact A valid contact number.
      */
-    public Contact(String phone) {
-        requireNonNull(phone);
-        checkArgument(isValidContact(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+    public Contact(String contact) {
+        requireNonNull(contact);
+        checkArgument(isValidContact(contact), MESSAGE_CONSTRAINTS);
+        value = contact;
     }
 
     /**
-     * Returns true if a given string is a valid phone number.
+     * Returns true if a given string is a valid contact number.
      */
     public static boolean isValidContact(String test) {
         return test.matches(VALIDATION_REGEX);

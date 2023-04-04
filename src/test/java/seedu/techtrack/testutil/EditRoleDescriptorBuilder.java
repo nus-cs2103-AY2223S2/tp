@@ -6,12 +6,12 @@ import java.util.stream.Stream;
 
 import seedu.techtrack.logic.commands.EditCommand.EditRoleDescriptor;
 import seedu.techtrack.model.role.Company;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Deadline;
 import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.role.Salary;
 import seedu.techtrack.model.role.Website;
@@ -38,7 +38,7 @@ public class EditRoleDescriptorBuilder {
     public EditRoleDescriptorBuilder(Role role) {
         descriptor = new EditRoleDescriptor();
         descriptor.setName(role.getName());
-        descriptor.setPhone(role.getPhone());
+        descriptor.setPhone(role.getContact());
         descriptor.setEmail(role.getEmail());
         descriptor.setCompany(role.getCompany());
         descriptor.setJobDescription(role.getJobDescription());

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.techtrack.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a role's job description in the address book.
+ * Represents a role's job description in the role book.
  * Guarantees: immutable; is valid as declared in {@link #isValidJobDescription(String)}
  */
 public class JobDescription {

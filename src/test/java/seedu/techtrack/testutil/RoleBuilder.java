@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.techtrack.model.role.Company;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Deadline;
 import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.role.Salary;
 import seedu.techtrack.model.role.Website;
@@ -63,7 +63,7 @@ public class RoleBuilder {
      */
     public RoleBuilder(Role roleToCopy) {
         name = roleToCopy.getName();
-        contact = roleToCopy.getPhone();
+        contact = roleToCopy.getContact();
         email = roleToCopy.getEmail();
         company = roleToCopy.getCompany();
         jd = roleToCopy.getJobDescription();

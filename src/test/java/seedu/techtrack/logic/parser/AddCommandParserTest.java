@@ -48,11 +48,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.techtrack.logic.commands.AddCommand;
 import seedu.techtrack.model.role.Company;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.util.tag.Tag;
 import seedu.techtrack.testutil.RoleBuilder;

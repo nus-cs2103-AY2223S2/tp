@@ -117,7 +117,7 @@ public class EditCommand extends Command {
 
         Website updatedWebsite = editRoleDescriptor.getWebsite().orElse(roleToEdit.getWebsite());
         Name updatedName = editRoleDescriptor.getName().orElse(roleToEdit.getName());
-        Contact updatedContact = editRoleDescriptor.getPhone().orElse(roleToEdit.getPhone());
+        Contact updatedContact = editRoleDescriptor.getPhone().orElse(roleToEdit.getContact());
         Email updatedEmail = editRoleDescriptor.getEmail().orElse(roleToEdit.getEmail());
         Company updatedCompany = editRoleDescriptor.getCompany().orElse(roleToEdit.getCompany());
         JobDescription updatedJd = editRoleDescriptor.getJobDescription().orElse(roleToEdit.getJobDescription());
@@ -125,8 +125,8 @@ public class EditCommand extends Command {
         Salary updatedSalary = editRoleDescriptor.getSalary().orElse(roleToEdit.getSalary());
         Deadline updatedDeadline = editRoleDescriptor.getDeadline().orElse(roleToEdit.getDeadline());
         Experience updatedExperience = editRoleDescriptor.getExperience().orElse(roleToEdit.getExperience());
-        return new Role(updatedName, updatedContact, updatedEmail, updatedCompany, updatedJd, updatedTags, updatedWebsite,
-                updatedSalary, updatedDeadline, updatedExperience);
+        return new Role(updatedName, updatedContact, updatedEmail, updatedCompany, updatedJd, updatedTags,
+                updatedWebsite, updatedSalary, updatedDeadline, updatedExperience);
     }
 
     @Override

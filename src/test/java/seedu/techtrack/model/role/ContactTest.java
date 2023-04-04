@@ -6,7 +6,7 @@ import static seedu.techtrack.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-public class PhoneTest {
+public class ContactTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -14,13 +14,13 @@ public class PhoneTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+    public void constructor_invalidContact_throwsIllegalArgumentException() {
         String invalidPhone = "";
         assertThrows(IllegalArgumentException.class, () -> new Contact(invalidPhone));
     }
 
     @Test
-    public void isValidPhone() {
+    public void isValidContact() {
         // null phone number
         assertThrows(NullPointerException.class, () -> Contact.isValidContact(null));
 

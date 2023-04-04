@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.techtrack.model.util.tag.Tag;
 
 /**
- * Represents a Role in the company book.
+ * Represents a Role in the role book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Role {
@@ -52,7 +52,7 @@ public class Role {
         return name;
     }
 
-    public Contact getPhone() {
+    public Contact getContact() {
         return contact;
     }
 
@@ -126,7 +126,7 @@ public class Role {
 
         Role otherRole = (Role) other;
         return otherRole.getName().equals(getName())
-                && otherRole.getPhone().equals(getPhone())
+                && otherRole.getContact().equals(getContact())
                 && otherRole.getEmail().equals(getEmail())
                 && otherRole.getCompany().equals(getCompany())
                 && otherRole.getJobDescription().equals(getJobDescription())
@@ -166,7 +166,7 @@ public class Role {
                 .append("\n")
                 .append("Experience: ").append(getExperience())
                 .append("\n")
-                .append("Contact: ").append(getPhone())
+                .append("Contact: ").append(getContact())
                 .append("\n")
                 .append("Email: ").append(getEmail())
                 .append("\n")
