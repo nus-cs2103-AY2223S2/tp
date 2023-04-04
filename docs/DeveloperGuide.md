@@ -6,23 +6,8 @@ title: Developer Guide
 <img src="images/logo_DG.png" width="300">
 </p>
 
-# Table of Contents
-* [About](#about)
-* [Acknowledgements](#acknowledgements)
-* [Setting up, getting started](#Getting-started)
-* [Design](#Design)
-  * [Architecture](#Architecture)
-  * [UI component](#UI-component)
-  * [Model component](#Model-component)
-  * [Storage component](#Storage-component)
-  * [Common classes](#Common-classes)
-* [Feature Implementations](#Feature-Implementations)
-  * [Automatic Feeding Reminders](#Automatic-Feeding-Reminders)
-  * [FishSortCommand feature](#FishSortCommand-feature)
-  * [TankFeedCommand feature](#TankFeedCommand-feature)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-* [Appendix: Requirements](#appendix-requirements)
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+* Table of Contents
+  {:toc}
 
 ## About
 
@@ -41,7 +26,8 @@ new developers can use this guide as an entry point for navigating this extensiv
 ## Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* AY22/23 S1 CS2103T W15-1 [[Github repo]](https://github.com/AY2223S1-CS2103T-W15-1/tp) - Task implementation 
+* Task implementation was inspired by [SoConnect](https://github.com/AY2223S1-CS2103T-W15-1/tp) and fxml file was reused. However, our implementation is entirely new.
+* Help implementation (including the code) was reused with minimal changes from the [CLIMods](https://github.com/AY2223S1-CS2103-F14-1/tp) project. Html files were not reused.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -130,9 +116,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a fish).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("fish delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `fish delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FishDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -210,7 +196,7 @@ command, the reminders likely do not need to be updated.
 
 #### Implementation
 The fish sorting feature leverages `SortedList` functionality of Javafx. By creating custom comparators to compare fish
-attributes, we are able to make a `SortedList` sort its list by the specified order.
+attributes, we are able to use a `SortedList` to sort its list by the specified order.
 Specifically, it currently sorts by the five compulsory fields of a fish:
 
 * Name
@@ -219,15 +205,16 @@ Specifically, it currently sorts by the five compulsory fields of a fish:
 * Feeding Interval
 * Tank
 
-Currently, upon instantiation of `ModelManager`, it creates a `Filteredlist` from a `AddressBook`. Similarly,
-a `SortedList` is created based off the same `Filteredlist`. Hence, when we perform sorting operations, we are able to manipulate
-the filtered list. As a result, `SortedList` has a separate panel from `FilteredList` and `Tank`.
+Currently, upon instantiation of `ModelManager`, it creates a `SortedList` from a `AddressBook`. 
+A `Filteredlist` is created based off the same `SortedList`. Hence, when we perform sorting operations, we are able to 
+manipulate and display the filtered list. As a result, we are able to sort the fish list and filter at the same time.
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
-Step 1. The user is currently using the application, and there are three entries currently existing in the `AddressBook`, `Marlin, Nemo, Dory`, added in that order.
+Step 1. The user is currently using the application, and there are three entries currently existing in the 
+`AddressBook`, `Marlin, Nemo, Dory`, added in that order to a tank, named `Ocean tank`.
 
-Step 2. The user executes `fish sort n`. `FishParser` receives the `sort` keyword and calls `FishSortCommandParser#parse()`,
+Step 2. The user executes `fish sort by/n tk/1`. `FishParser` receives the `sort` keyword and calls `FishSortCommandParser#parse()`,
 in which the keyword `n` is used to select a Comparator. In this case, the `NameComparator`, which compares the names between fish,
 is passed to `FishSortCommand` and returned.
 
@@ -236,7 +223,12 @@ is passed to `FishSortCommand` and returned.
 Step 3. `FishSortCommand#execute()` first calls `Model#sortFilteredFishList()`, which in turn calls `SortedList#setComparator()`.
 This call triggers the SortedList to sort the current list using the given comparator. In this case, `Marlin, Nemo, Dory` sorts into `Dory, Marlin, Nemo`.
 
-Step 4. `FishSortCommand#execute()` then calls `Model#setGuiMode()`, which triggers a GUI change in `MainWindow` to display the `SortedList` of `Dory, Marlin, Nemo`.
+Step 4. `FishSortCommand#execute()` then retrieves the associated tank if `tk/` is present. In this case, a tank index of `1`
+is received. The `Ocean tank` is then retrieved through `Model#getFilteredTankList()` and `List<Tank>#get()`.
+
+Step 5. `FishSortCommand#execute()` then calls `Model#updateFilteredFishList()`, which sets a predicate to only display fish in `Ocean tank`.
+
+Step 6. `FishSortCommand#execute()` then finally returns and triggers a GUI change in `MainWindow` to display the sorted `FilteredFish` of `Dory, Marlin, Nemo`.
 
 #### Design considerations:
 
@@ -583,3 +575,14 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Appendix: Planned Enhancements
+
+1. The current error message for an invalid index is too general. We plan to make the error message also more accurate 
+   by filtering by why the index is invalid.
+   
+    1. [-MAX_INT....0]: Index must be a positive non-zero integer
+    2. [4..MAX_INT]: Index is out-of-bounds. Index must correspond to a valid tank.
+    
