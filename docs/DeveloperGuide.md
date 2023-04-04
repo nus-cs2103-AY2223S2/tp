@@ -40,6 +40,7 @@ title: Developer Guide
 
   </details>
 - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -853,6 +854,8 @@ testers are expected to do more *exploratory* testing.
 * **User Interface (UI)**: A form of user interface that allows users to interact with electronic devices through graphical icons
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Event**: A freelancing gig
+
+## Appendix: Planned Enhancements
 
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
   <a href="#top">Back to top</a>
