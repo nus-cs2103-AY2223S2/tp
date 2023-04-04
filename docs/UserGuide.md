@@ -253,7 +253,6 @@ Examples:
 
 ### Locating persons by any field : `find`
 
-<<<<<<< HEAD
 Finds persons who have any fields that contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
