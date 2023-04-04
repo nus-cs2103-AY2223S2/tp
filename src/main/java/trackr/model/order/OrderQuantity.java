@@ -33,6 +33,10 @@ public class OrderQuantity {
         return Integer.parseInt(value);
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return "Quantity: " + value;

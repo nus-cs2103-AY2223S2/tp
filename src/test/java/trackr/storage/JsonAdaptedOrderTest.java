@@ -1,10 +1,10 @@
 package trackr.storage;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static trackr.storage.JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT;
 import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TypicalCustomer.AMY;
-import static trackr.testutil.TypicalMenuItems.INVALID_M;
+import static trackr.testutil.InvalidMenuItem.createInvalidNameItem;
 import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES_O;
 
 import java.time.LocalDateTime;
@@ -27,7 +27,6 @@ public class JsonAdaptedOrderTest {
     private static final String INVALID_CUSTOMER_PHONE = "+651234";
     private static final String INVALID_CUSTOMER_ADDRESS = " ";
     private static final String INVALID_ORDER_DEADLINE = "00/99/9999";
-    private static final MenuItem INVALID_ORDER_ITEM = INVALID_M;
     private static final String INVALID_ORDER_QUANTITY = "9999";
     private static final String INVALID_ORDER_STATUS = "T";
     private static final String INVALID_TIME_ADDED = "99/99/9999";
@@ -36,16 +35,16 @@ public class JsonAdaptedOrderTest {
     private static final String VALID_CUSTOMER_PHONE = AMY.getCustomerPhone().toString();
     private static final String VALID_CUSTOMER_ADDRESS = AMY.getCustomerAddress().toString();
     private static final MenuItem VALID_ORDER_ITEM = CHOCOLATE_COOKIES_O.getOrderItem();
-    private static final String VALID_ORDER_DEADLINE = CHOCOLATE_COOKIES_O.getOrderDeadline().toString();
-    private static final String VALID_ORDER_QUANTITY = CHOCOLATE_COOKIES_O.getOrderQuantity().toString();
+    private static final String VALID_ORDER_DEADLINE = "01/01/2024";
+    private static final String VALID_ORDER_QUANTITY = CHOCOLATE_COOKIES_O.getOrderQuantity().getValue();
     private static final String VALID_ORDER_STATUS = CHOCOLATE_COOKIES_O.getOrderStatus().toJsonString();
     private static final String VALID_TIME_ADDED = LocalDateTime.now().toString();
 
-    //    @Test
-    //    public void toModelType_validOrderDetails_returnsOrder() throws Exception {
-    //        JsonAdaptedOrder order = new JsonAdaptedOrder(CHOCOLATE_COOKIES);
-    //        assertEquals(CHOCOLATE_COOKIES, order.toModelType());
-    //    }
+    @Test
+    public void toModelType_validOrderDetails_returnsOrder() throws Exception {
+        JsonAdaptedOrder order = new JsonAdaptedOrder(CHOCOLATE_COOKIES_O);
+        assertEquals(CHOCOLATE_COOKIES_O, order.toModelType());
+    }
 
     @Test
     public void toModelType_invalidCustomerName_throwsIllegalValueException() throws Exception {
@@ -108,15 +107,6 @@ public class JsonAdaptedOrderTest {
     }
 
     @Test
-    public void toModelType_invalidOrderItem_throwsIllegalValueException() throws Exception {
-        JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
-                VALID_CUSTOMER_ADDRESS, new JsonAdaptedMenuItem(INVALID_ORDER_ITEM),
-                VALID_ORDER_DEADLINE, VALID_ORDER_QUANTITY, VALID_ORDER_STATUS, VALID_TIME_ADDED);
-        String expectedMessage = OrderName.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
-    }
-
-    @Test
     public void toModelType_nullOrderItem_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
                 VALID_CUSTOMER_ADDRESS, null, VALID_ORDER_DEADLINE,
@@ -149,7 +139,7 @@ public class JsonAdaptedOrderTest {
     public void toModelType_invalidOrderQuantity_throwsIllegalValueException() {
         JsonAdaptedOrder order =
                 new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE, VALID_CUSTOMER_ADDRESS,
-                        new JsonAdaptedMenuItem(VALID_ORDER_ITEM), "01/01/2024",
+                        new JsonAdaptedMenuItem(VALID_ORDER_ITEM), VALID_ORDER_DEADLINE,
                         INVALID_ORDER_QUANTITY, VALID_ORDER_STATUS, VALID_TIME_ADDED);
         String expectedMessage = OrderQuantity.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, order::toModelType);
@@ -158,7 +148,7 @@ public class JsonAdaptedOrderTest {
     @Test
     public void toModelType_nullOrderQuantity_throwsIllegalValueException() {
         JsonAdaptedOrder order = new JsonAdaptedOrder(VALID_CUSTOMER_NAME, VALID_CUSTOMER_PHONE,
-                VALID_CUSTOMER_ADDRESS, new JsonAdaptedMenuItem(VALID_ORDER_ITEM), "01/01/2024", null,
+                VALID_CUSTOMER_ADDRESS, new JsonAdaptedMenuItem(VALID_ORDER_ITEM), VALID_ORDER_DEADLINE, null,
                 VALID_ORDER_STATUS, VALID_TIME_ADDED);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 OrderQuantity.class.getSimpleName());

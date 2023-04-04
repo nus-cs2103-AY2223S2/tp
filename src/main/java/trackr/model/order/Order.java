@@ -250,7 +250,6 @@ public class Order extends Item {
         return otherOrder != null
                 && otherOrder.getCustomer().equals(this.getCustomer())
                 && otherOrder.getOrderName().equals(this.getOrderName())
-                && otherOrder.getOrderItem().equals(this.getOrderItem())
                 && otherOrder.getOrderDeadline().equals(this.getOrderDeadline())
                 && otherOrder.getOrderStatus().equals(this.getOrderStatus())
                 && otherOrder.getOrderQuantity().equals(this.getOrderQuantity());
