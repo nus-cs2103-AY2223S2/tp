@@ -6,7 +6,6 @@ import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMA
 import java.util.Arrays;
 
 import tfifteenfour.clipboard.commons.core.index.Index;
-import tfifteenfour.clipboard.commons.exceptions.IllegalValueException;
 import tfifteenfour.clipboard.logic.CurrentSelection;
 import tfifteenfour.clipboard.logic.PageType;
 import tfifteenfour.clipboard.logic.commands.exceptions.CommandException;
@@ -39,13 +38,8 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
             throw new CommandException("Wrong page. Navigate to student page to add a remark");
         }
 
-        try {
-            index = ParserUtil.parseIndex(args);
-            remark = new Remark(parseRemarkInfo(args));
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    RemarkCommand.MESSAGE_USAGE), ive);
-        }
+        remark = new Remark(parseRemarkInfo(args));
+        index = ParserUtil.parseIndex(args);
 
         return new RemarkCommand(index, remark);
     }
@@ -53,7 +47,8 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
     private String parseRemarkInfo(String args) throws ParseException {
         String[] tokens = ArgumentTokenizer.tokenizeString(args);
         if (tokens.length < 2) {
-            throw new ParseException("Remark not entered!\n" + RemarkCommand.MESSAGE_USAGE);
+            throw new ParseException( String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    RemarkCommand.MESSAGE_USAGE));
         }
 
         return String.join(" ", Arrays.copyOfRange(tokens, 2, tokens.length));
