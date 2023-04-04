@@ -24,12 +24,7 @@ public class UnmarkAttendanceParser implements Parser<UnmarkAttendanceCommand> {
         Index index;
         int week = -1;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    UnmarkAttendanceCommand.MESSAGE_USAGE), pe);
-        }
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         if (argMultimap.getValue(PREFIX_WEEK).isPresent()) {
             week = ParserUtil.parseWeek(argMultimap.getValue(PREFIX_WEEK).get());

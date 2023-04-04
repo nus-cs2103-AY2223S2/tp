@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 
 ## **Introduction**
@@ -12,7 +12,7 @@ title: User Guide
 Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface (CLI) while still retaining the benefits of a Graphical User Interface (GUI).
 
 With TAA, you can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
-You can even view grade statistics without the use of a dedicated data analysis application! 
+You can even view grade statistics without the use of a dedicated data analysis application!
 
 <!-- maybe can add image here -->
 
@@ -35,8 +35,8 @@ Alternatively, you may wish to use the built-in search function in your browser 
 Aside from the usual text format, this guide includes certain special formats that are used for different purposes.
 
 ##### Callouts
- 
-Callouts are identified by a coloured box containing some text. 
+
+Callouts are identified by a coloured box containing some text.
 
 **Information**
 <div markdown="span" class="alert alert-primary">
@@ -60,7 +60,7 @@ Callouts are identified by a coloured box containing some text.
 
 ##### Syntax highlighting
 Text contained within a `grey background` are used to denote either of the following:
-- commands that can be entered into the command bar 
+- commands that can be entered into the command bar
 - file names
 - command line commands, to be run in the [terminal](#glossary) of the host machine
 
@@ -170,37 +170,123 @@ Purposes of each GUI component
 :information_source: **Info:** Extraneous parameters for commands that do not take in parameters will be ignored.
 </div>
 
+
 ### Attendance
 For attendance, you can make the following calls:
 * markAtd
 * unmarkAtd
+* listAtd
 
 #### Mark attendance: `markAtd`
 Marks the attendance of a student for that week<br>
-Format: `markAtd STUDENT_ID w/WEEK_NUMBER`<br>
+Format: `markAtd STUDENT_INDEX w/WEEK_NUMBER`
+
+STUDENT_INDEX: A positive integer that represents the index of student as shown in TAA<br>
+WEEK_NUMBER: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
+Marking the attendance for a week that is already marked will result in
+a message `This student's attendance has already been marked.`
 
 Examples
-* `markAtd 1 w/1`
-* `markAtd 2 w/1`
+* `markAtd 1 w/1` (marks attendance of student with index 1 for week 1)
+* `markAtd 2 w/1` (marks attendance of student with index 2 for week 1)
 
 #### Unmark attendance: `unmarkAtd`
 Unmarks the attendance of a student for that week<br>
-Format: `unmarkAtd STUDENT_ID w/WEEK_NUMBER`<br>
+Format: `unmarkAtd STUDENT_ID w/WEEK_NUMBER`
+
+STUDENT_INDEX: A positive integer that represents the index of student as shown in TAA <br>
+WEEK_NUMBER: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
+Unmarking the attendance for a week that is already unmarked will just result in
+the successful unmarking message being displayed `Attendance unmarked successfully!`
 
 Examples
-* `unmarkAtd 1 w/1`
-* `unmarkAtd 2 w/1`
+* `unmarkAtd 1 w/1` (unmarks attendance of student with index 1 for week 1)
+* `unmarkAtd 2 w/1` (unmarks attendance of student with index 2 for week 1)
+
+#### List Attendance: `listAtd`
+Lists the attendance of a student from week 1 to week 12<br>
+Format: `listAtd STUDENT_INDEX`
+
+STUDENT_INDEX: A positive integer that represents the index of student as shown in TAA <br>
+
+Examples
+* `listAtd 1` (list attendance of student with index 1)
+* `listAtd 2` (list attendance of student with index 2)
+
+The listed attendance will be such that where every line will be in the format `Week NUM: [PRESENT]` <br>
+where NUM represents the week number, and PRESENT is X is the student is present, and empty otherwise
+
+Example
+* `Week 1: [X]` <br>
+  `Week 2: [X]` <br>
+  `Week 3: [X]` <br>
+  `Week 4: []` <br>
+  `Week 5: []` <br>
+  `Week 6: []` <br>
+  `Week 7: []` <br>
+  `Week 8: []` <br>
+  `Week 9: []` <br>
+  `Week 10: []` <br>
+  `Week 11: []` <br>
+  `Week 12: []` <br>
+
+The above example shows that the student is present for week 1,2,3 and absent for the rest of the weeks
 
 ### Participation
 For participation, you can make the following calls:
-* insert
+* insertPP
+* listPP
+
+#### Explanation on how Participation points is represented in TAA
+
+* Participation points in TAA is only limited to 0 to 700 (inclusive of both 0 and 700)
+* Participation points of weeks where attendance is not marked is represented as `-1`
+* Display of participation points in TAA is the average points, which is calculated using `Total participation points` / `Number of weeks present`
+  `Total participation points` is the sum of all participation points for weeks where the student is present
+  `Number of weeks present` refers to the number of week present from week 1 to week 12
+
 
 #### Insert participation points: `insertPP`
-Insert attendance of a student for that week<br>
-Format: `insertPP STUDENT_ID w/WEEK_NUMBER pp/POINTS`
+Inserts participation points of a student for that week<br>
+Format: `insertPP STUDENT_INDEX w/WEEK_NUMBER pp/POINTS`
+
+STUDENT_INDEX: A positive integer that represents the index of student as shown in TAA <br>
+WEEK_NUMBER: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
+POINTS: A integer between 0 and 700 (inclusive of both 0 and 700)
+
+Participation points can only be inserted for a week when the attendance is already marked. <br>
+Violation of this will result in a message `Mark the attendance of the student first before inserting points!`
+
 Examples
-* `insertPP 1 w/1 pp/200`
-* `insertPP 2 w/1 pp/300`
+* `insertPP 1 w/1 pp/200` (inserts participation points of 200 for week 1 of student with index 1)
+* `insertPP 2 w/1 pp/300` (inserts participation points of 200 for week 1 of student with index 2)
+
+#### List participation points: `listPP`
+Lists the attendance of a student from week 1 to week 12<br>
+Format: `listPP STUDENT_INDEX`
+
+STUDENT_INDEX: A positive integer that represents the index of student as shown in TAA <br>
+
+Examples
+* `listAtd 1` (list participation points of student with index 1)
+* `listAtd 2` (list participation points of student with index 2)
+
+The listed participation points will be such that where every line will be in the format `Week NUM: [POINTS]` <br>
+where NUM represents the week number, and POINTS is the participation points for that week
+
+Example
+* `Week 1: [200]` <br>
+  `Week 2: [300]` <br>
+  `Week 3: [400]` <br>
+  `Week 4: [200]` <br>
+  `Week 5: [-1]` <br>
+  `Week 6: [-1]` <br>
+  `Week 7: [-1]` <br>
+  `Week 8: [-1]` <br>
+  `Week 9: [-1]` <br>
+  `Week 10: [-1]` <br>
+  `Week 11: [-1]` <br>
+  `Week 12: [-1]` <br>
 
 ### Assignments
 
@@ -212,7 +298,7 @@ For assignments, you can make the following calls:
 * list_asgn
 
 ### Add Assignment: `add_asgn`
-Adds an assignment with name, total marks. 
+Adds an assignment with name, total marks.
 If total marks for the assignment is unspecified, a default value of 100 will be given.
 All assignments will initially be ungraded.
 <br>
@@ -229,7 +315,7 @@ Example:
 * `delete_asgn n/Lab_1`
 
 ### Grade Assignment: `grade`
-Grades the submission of assignment_name and student_id with a score you provide. 
+Grades the submission of assignment_name and student_id with a score you provide.
 You can also indicate whether a submission is late by using the "late/" flag at the end.
 <br>
 Format: `grade n/ASSIGNMENT_NAME i/STUDENT_ID m/SCORE [late/]`<br>
@@ -332,7 +418,7 @@ Examples:
 - `edit_student 3 n/Barry Allen` changes the name of the 3rd student to "Barry Allen"
 - `edit_student 5 cl/Tutorial_T14` assigns the 5th student only to the class "Tutorial_14"
 - `edit_student 12 n/Tom Hanks cl/Lab_L11` changes the name of the 12th student to "Tom Hanks", and assigns
-him to the class "Lab_L11"
+  him to the class "Lab_L11"
 
 <div markdown="span" class="alert alert-danger">
 :warning: **Warning:**  The new fields will override the fields of the targeted student completely. i.e. to add an extra field, you will have to copy over the previous fields and add one additional parameter containing the new field to be added.
@@ -351,7 +437,7 @@ Examples:
 :page_with_curl: **Note:** This command will delete the student with the given ID on the active class list, not from the global class list with all students obtained from using the `list` command.
 </div>
 
-#### List all students : `list` 
+#### List all students : `list`
 Lists all students tracked by TAA globally.
 
 Format: `list`
