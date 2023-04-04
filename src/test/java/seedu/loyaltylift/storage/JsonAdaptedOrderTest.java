@@ -3,6 +3,7 @@ package seedu.loyaltylift.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.loyaltylift.storage.JsonAdaptedOrder.CUSTOMER_ID_MESSAGE_FIELD;
 import static seedu.loyaltylift.storage.JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.loyaltylift.storage.JsonAdaptedOrder.NOT_FOUND_FIELD_MESSAGE_FORMAT;
 import static seedu.loyaltylift.testutil.Assert.assertThrows;
 import static seedu.loyaltylift.testutil.TypicalOrders.ORDER_A;
 
@@ -36,6 +37,7 @@ public class JsonAdaptedOrderTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_CREATED_DATE = "2020-05-02";
 
+    private static final String ABSENT_CUSTOMER_UID = "Ashley Porter";
     private static final String VALID_CUSTOMER_UID = ORDER_A.getCustomer().getUid();
     private static final String VALID_NAME = ORDER_A.getName().fullName;
     private static final Integer VALID_QUANTITY = ORDER_A.getQuantity().value;
@@ -64,6 +66,15 @@ public class JsonAdaptedOrderTest {
                 null, VALID_NAME, VALID_QUANTITY, VALID_STATUS, VALID_ADDRESS,
                 VALID_CREATED_DATE, VALID_NOTE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, CUSTOMER_ID_MESSAGE_FIELD);
+        assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
+    }
+
+    @Test
+    public void toModelType_absentCustomerAssociation_throwsIllegalValueException() {
+        JsonAdaptedOrder order = new JsonAdaptedOrder(
+                ABSENT_CUSTOMER_UID, VALID_NAME, VALID_QUANTITY, VALID_STATUS, VALID_ADDRESS,
+                VALID_CREATED_DATE, VALID_NOTE);
+        String expectedMessage = String.format(NOT_FOUND_FIELD_MESSAGE_FORMAT, CUSTOMER_ID_MESSAGE_FIELD);
         assertThrows(IllegalValueException.class, expectedMessage, () -> order.toModelType(ADDRESS_BOOK));
     }
 

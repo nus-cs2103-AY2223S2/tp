@@ -1,7 +1,6 @@
 package seedu.loyaltylift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.loyaltylift.model.Model.PREDICATE_SHOW_ALL_CUSTOMERS;
 
 import java.util.List;
 import java.util.Set;
@@ -56,7 +55,6 @@ public class MarkCustomerCommand extends Command {
         Customer customerToMark = lastShownList.get(index.getZeroBased());
         Customer markedCustomer = createMarkedCustomer(customerToMark);
         model.setCustomer(customerToMark, markedCustomer);
-        model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         return new CommandResult(String.format(MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer));
     }
 

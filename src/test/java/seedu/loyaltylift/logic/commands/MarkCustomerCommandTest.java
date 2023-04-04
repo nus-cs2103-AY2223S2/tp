@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.loyaltylift.commons.core.Messages;
 import seedu.loyaltylift.commons.core.index.Index;
+import seedu.loyaltylift.model.AddressBook;
 import seedu.loyaltylift.model.Model;
 import seedu.loyaltylift.model.ModelManager;
 import seedu.loyaltylift.model.UserPrefs;
@@ -69,7 +70,7 @@ public class MarkCustomerCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showCustomerAtIndex(model, INDEX_FIRST);
+        model.sortFilteredCustomerList(Customer.SORT_POINTS);
 
         Customer customerToMark = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         CustomerType customerType = customerToMark.getCustomerType();
@@ -86,7 +87,7 @@ public class MarkCustomerCommandTest {
 
         String expectedMessage = String.format(MarkCustomerCommand.MESSAGE_MARK_CUSTOMER_SUCCESS, markedCustomer);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setCustomer(model.getFilteredCustomerList().get(0), markedCustomer);
 
         assertCommandSuccess(markCustomerCommand, model, expectedMessage, expectedModel);

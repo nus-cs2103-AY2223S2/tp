@@ -69,7 +69,7 @@ public class UnmarkCustomerCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showCustomerAtIndex(model, INDEX_FIRST);
+        model.sortFilteredCustomerList(Customer.SORT_POINTS);
 
         Customer customerToUnmark = model.getFilteredCustomerList().get(INDEX_FIRST.getZeroBased());
         CustomerType customerType = customerToUnmark.getCustomerType();
