@@ -185,16 +185,16 @@ public class InternshipTodo {
     }
 
     /**
-     * Returns true if both interested internship have the same title.
+     * Returns true if both interested internship have the same company name and job title.
      * This defines a weaker notion of equality between two todo applications.
      */
     public boolean isSameTodo(InternshipTodo otherInternship) {
         if (otherInternship == this) {
             return true;
         }
-
         return otherInternship != null
-                && otherInternship.getInternshipTitle().equals(getInternshipTitle());
+                && otherInternship.getInternshipTitle().equals(getInternshipTitle())
+                && otherInternship.getJobTitle().equals(getJobTitle());
     }
 
     /**
