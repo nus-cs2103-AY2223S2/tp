@@ -699,7 +699,13 @@ Applicants with the status <code>REJECTED</code> cannot be rejected!
 
 **Info**
 * If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-* However, if two or more values of `NOTE` are provided, both parameter will be taken in.
+<div markdown="span" class="alert alert-info" role="alert">:information_source:<strong>Info:</strong>
+<br>
+<ul> However for `NOTE`: </ul>
+    <li>If two or more values for `NOTE` are provided, both parameters will be taken in.</li>
+    <li>If an empty `NOTE` is provided, all notes will be removed.</li>
+</div>
+
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
@@ -734,7 +740,7 @@ After editing Bernice Yu's phone and notes:
 ---
 
 
-#### 6.1.9. Remind upcoming interviews `remind`
+#### 6.1.9. Get reminders for upcoming interviews `remind`
 
 **Format:** `remind`
 
