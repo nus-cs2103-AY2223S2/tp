@@ -563,6 +563,8 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 FriendlyLink provides command recommendations for registered [commands](#command) and [field's](#field) [prefixes](#prefix).
 
+![Command recommendation](./images/CommandRecommendations.png)
+
 For example, when adding an elderly, the recommendation engine will automatically recommend all available field prefixes.
 No new suggestions will be given once all possible prefixes has at least one value provided. If the user continues 
 to specify more attributes like `t/`, the recommendation will be done on a case-by-case basis.
@@ -582,6 +584,7 @@ Example:
 **:information_source: Notes on Command Recommendation**<br>
 
 * The order of fields specified here may not be what is reflected in the application.
+* When invalid inputs are detected, the text field will turn red, indicating a warning. You are, however, free to continue typing.
 * There is a known UI bug when the text in `command box` overflows. To improve user experience, command recommendation is disabled once overflow is detected.
 
 </div>
@@ -609,7 +612,8 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 The following features are planned for the coming update
 * Edit and add pair by index 
 * Delete elderly, volunteers and pairs by index
-* View pair details
+* View in-depth pair details (without hovering)
+* Warning message when typing
 
 --------------------------------------------------
 
