@@ -90,12 +90,12 @@ Format: `help`
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a person to the contact list.
 
 Format: `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A contact must include all fields except tag.
+A contact must include all fields except tag and have a unique name that is not already in the contact list.
 </div>
 
 Examples:
@@ -107,10 +107,10 @@ Examples:
 
 Sorts all persons in the address book based on an attribute.
 
-Format: `sort [name] [gender] [phone number] [email] [company] [location] [occupation] [job title] [address] [remark] [status]`
+Format: `sort [name] [gender] [phone number] [email] [company] [location] [occupation] [job title] [address] [status]`
 
-- At least one of the optional fields must be provided.
-- The address book will be sorted based on the specified attribute by their value.
+- Only one of the optional fields is to be included.
+- The contact list will be sorted based on the specified attribute by their value.
 
 Examples:
 
@@ -373,12 +373,12 @@ _italic_ - optional
 | Action         | Format, Examples                                                                                                                                                                                                                                                                           |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --- |
 | **Add**        | `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] ...​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
-| **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [remark] [status]` <br> e.g., `sort name`                                                                                                                                             |
+| **Sort**       | `sort [name] [gender] [phone number] [email] [company] [location] [occupation] [job title] [address] [status]` <br> e.g., `sort name`                                                                                                                                             |
 | **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                                        |
 | **Clear**      | `clear`                                                                                                                                                                                                                                                                                    |
 | **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                        |     |
 | **Delete Txn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                                                  |
-| **Edit**       | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                               |
+| **Edit**       | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                               |
 | **Edit Txn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed`                                                                                                                                                                                        |
 | **Status**     | `status INDEX_NUMBER` _`[STATUS …]`_<br> `status NAME` _`[STATUS …]`_<br> e.g., `status 1, status David closed-won`                                                                                                                                                                        |
 | **List**       | `list`                                                                                                                                                                                                                                                                                     |
