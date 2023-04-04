@@ -265,6 +265,9 @@ After executing the command, we see that Bob has been added below the list.
 > As you can see, we first specified the `add` command, followed by the _prefix_ `n/` and the _name_ that we want to add
 > i.e. `Bob`. The same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_
 > pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
+<div markdown="span" class="alert alert-warning">
+:bulb: <b>Tip:</b> As you can see, we first specified the `add` command, followed by the _prefix_ `n/` and the _name_ that we want to add i.e. `Bob`. The same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_ pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
+</div>
 
 Here, you may have noticed we entered `c/6` and wonder why the parameter for _course_ was `6` instead of `Computer Science`.
 
