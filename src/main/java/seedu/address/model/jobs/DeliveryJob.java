@@ -222,7 +222,7 @@ public class DeliveryJob {
      * @return boolean
      */
     public boolean hasInvalidSlot() {
-        return getDeliverySlot().isPresent() && (!getDeliverySlot().get().isValid());
+        return getDeliverySlot().isPresent() && (!getDeliverySlot().get().isValidRange());
     }
 
     /**
@@ -248,7 +248,7 @@ public class DeliveryJob {
      * @return
      */
     public boolean isValidScheduled() {
-        return isScheduled() && deliverySlot.get().isValid();
+        return isScheduled() && deliverySlot.get().isValidRange();
     }
 
     /**

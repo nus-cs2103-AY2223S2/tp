@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a job's job date in the address book.
@@ -23,6 +24,11 @@ public class DeliveryDate {
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public static final DateTimeFormatter VALID_FORMAT = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 
+    /**
+     * Represents invalid date in storage.
+     */
+    private static final String PLACEHOLDER = "0000-00-00";
+
     public final String date;
 
     /**
@@ -37,9 +43,23 @@ public class DeliveryDate {
     }
 
     /**
+     * Constructs a placeholder {@code JobDate}.
+     *
+     * @param date A valid date.
+     */
+    private DeliveryDate() {
+        this.date = PLACEHOLDER;
+    }
+
+    /**
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidDate(String test) {
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -68,7 +88,7 @@ public class DeliveryDate {
     }
 
     public static DeliveryDate placeholder() {
-        return new DeliveryDate("0000-00-00");
+        return new DeliveryDate();
     }
 
 }
