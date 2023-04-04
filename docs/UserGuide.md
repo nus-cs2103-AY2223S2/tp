@@ -295,8 +295,7 @@ His _contact_ details will then be shown in the **Info Panel**.
 
 You may try loading another person's details by using different _index_ (e.g. `view 2`). 
 
->💡 **Tip**: CoDoc also supports GUI, so you can just click the person in the list to view his details.
-
+CoDoc also supports GUI, so you can just click the person in the list to view his details.
 <br>
 
 Remember that we said CoDoc offers more than just a traditional contact management app? So far, you have only viewed
