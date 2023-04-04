@@ -310,7 +310,7 @@ For assignments, you can make the following calls:
 * ungrade
 * list_asgn
 
-### Add Assignment: `add_asgn`
+#### Add Assignment: `add_asgn`
 Adds an assignment with name, total marks.
 If total marks for the assignment is unspecified, a default value of 100 will be given.
 All assignments will initially be ungraded.
@@ -320,14 +320,14 @@ Example:
 * `add_asgn n/Lab_1`
 * `add_asgn n/Lab_2 m/50`
 
-### Delete Assignment: `delete_asgn`
+#### Delete Assignment: `delete_asgn`
 Deletes the assignment of assignment_name you provided. If the assignment is not found, returns an error.<br>
 Format: `delete n/ASSIGNMENT_ID`<br>
 
 Example:
 * `delete_asgn n/Lab_1`
 
-### Grade Assignment: `grade`
+#### Grade Assignment: `grade`
 Grades the submission of assignment_name and student_id with a score you provide.
 You can also indicate whether a submission is late by using the "late/" flag at the end.
 <br>
@@ -336,7 +336,7 @@ Example:
 * `grade n/Lab_1 i/2 m/20`
 * `grade n/Lab_1 i/3 m/30 late/`
 
-### Ungrade Assignment: `ungrade`
+#### Ungrade Assignment: `ungrade`
 Resets the grade of the submission of assignment_name and student_id. It will also reset
 the late submission status of the submission, if the submission was marked as late.
 <br>
@@ -344,11 +344,11 @@ Format: `ungrade n/ASSIGNMENT_ID i/STUDENT_ID`<br>
 Example:
 * `ungrade n/Lab_1 i/2`
 
-### List all assignments: `list_asgn`
+#### List all assignments: `list_asgn`
 Lists all assignments, submissions and their respective information.
 Format: `list_asgn`
 
-## Class List
+### Class List
 For class lists, you can call the following commands:
 - Create class list: `create`
 - View class statistics: `class_stats`
@@ -358,7 +358,7 @@ For class lists, you can call the following commands:
 - Listing all students: `list`
 - Find student: `find`
 
-#### Create a class list: `create`
+#### Create a class list: `create_class`
 Creates a class list to store the information about a group of students.
 
 Format: `create_class LIST_NAME [STUDENT_NAMES]`
@@ -384,40 +384,32 @@ Examples:
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Info:** The `FIELD` parameter is case-insensitive! 
-i.e. `atTenDanCE` is still a valid argument to `FIELD`.
+i.e. `atTenDanCE`, while unusual, is still a valid argument to `FIELD`.
 </div>
-
-#### Group students at random: `rand_grp` [coming soon]
-Forms random groups of a specified size within a given class list.
-
-Format: `rand_grp CLASS_LIST GROUP_SIZE`
-- The argument `CLASS_LIST` should be the name of a given class list
-- The search for `CLASS_LIST` is case-insensitive. e.g. cs2103T will match CS2103T
-- The argument `GROUP_SIZE` will determine the size of the groups to be formed.
-
-
-Examples:
-- `rand_grp cs2103t-t14 2` returns: Group 1: Alex, John; Group 2: Bonnie, Clyde
-- `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
 
 #### Add a student: `add_student`
 Adds a student to a given class list.
 
 Format: `add_student n/STUDENT_NAME cl/CLASS_NAME...`
 - The argument `STUDENT_NAME` should be the name of the student to be added
+- The argument `STUDENT_NAME` only accepts alphanumeric inputs.
 - The argument `CLASS_NAME` should be the name of a given class the student belongs to
 
 Examples:
-- `add n/Tom cl/cs2103t-t14` adds Tom to the class CS2103T-T14
-- `add n/Harry cl/cs6244` adds Harry to the class CS6244
+- `add_student n/Tom cl/cs2103t-t14` adds Tom to the class CS2103T-T14
+- `add_student n/Harry cl/cs6244` adds Harry to the class CS6244
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** If the class list `CLASS_NAME` does not exist, it will automatically be created with student
+`STUDENT_NAME` as its first student
+</div>
 
 <div markdown="span" class="alert alert-success">
 :bulb: **Tip:** You can add a student to multiple classes at once! Just specify multiple `cl/` prefixes in your command. e.g. `add n/Harry cl/cs6244 cl/cs1231s`
 </div>
 
-<div markdown="span" class="alert alert-primary">
-:information_source: **Info:** If the class list `CLASS_NAME` does not exist, it will automatically be created with student
-`STUDENT_NAME` as its first student
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** As `STUDENT_NAME` accepts alphanumeric inputs, student numbers such as `A1234567X` are perfectly valid student names!
 </div>
 
 #### Edit a student: `edit_student`
@@ -447,30 +439,44 @@ Examples:
 - `delete_student 3` removes the 3rd student in the currently active/displayed class list
 
 <div markdown="span" class="alert alert-warning">
-:page_with_curl: **Note:** This command will delete the student with the given ID on the active class list, not from the global class list with all students obtained from using the `list` command.
+:page_with_curl: **Note:** This command will delete the student with the given ID on the active class list, not from the list of all students obtained from using the `list` command.
 </div>
 
 #### List all students : `list`
-Lists all students tracked by TAA globally.
+Lists all students tracked by TAA, across all class lists.
 
 Format: `list`
 
 
-#### Find a particular student : `find` [coming soon]
-List the students in the class by their student number/name.
+#### Find a particular student : `find`
+Find students across all classes whose names contain any of the specified keywords.
 
-Format: `find FLAG STUDENT_NUMBER` or `find FLAG STUDENT_NAME`
-- Flag -id refers to find by student number
-- Flag -n refers to find by name
-- The format of the command follows find flag String
-- The name or student number of the student are not case-sensitive
+Format: `find KEYWORD [MORE_KEYWORDS]...`
+- The given `KEYWORD`/`MORE_KEYWORDS` are not case-sensitive.
+
+Examples:
+- `find Alice Bob Charlie`
+- `find bAlAKRiSHNan`
+
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** A given keyword must exist as a whole word in a name for it to be considered as a match.
+e.g. The keyword `bala` does not match the name `Roy Balakrishnan` as `Bala` is not the full word `Balakrishnan`.
+</div>
+
+#### Group students at random: `rand_grp` [coming soon]
+Forms random groups of a specified size within a given class list.
+
+Format: `rand_grp CLASS_LIST GROUP_SIZE`
+- The argument `CLASS_LIST` should be the name of a given class list
+- The search for `CLASS_LIST` is case-insensitive. e.g. cs2103T will match CS2103T
+- The argument `GROUP_SIZE` will determine the size of the groups to be formed.
 
 
 Examples:
-- find -name john lee
-- find -id a0123456b
+- `rand_grp cs2103t-t14 2` returns: Group 1: Alex, John; Group 2: Bonnie, Clyde
+- `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
 
-## Alarm
+### Alarm
 For Alarm, you can call the following commands:
 - Schedule an alarm: `add_alarm`
 - Remove a scheduled alarm: `delete_alarm`
