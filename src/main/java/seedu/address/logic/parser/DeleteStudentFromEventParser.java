@@ -10,7 +10,6 @@ import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteStudentFromEventCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -35,12 +34,19 @@ public class DeleteStudentFromEventParser implements Parser<DeleteStudentFromEve
         try {
             studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteStudentFromEventCommand.MESSAGE_USAGE), pe);
         }
 
         Optional<String> tutorialName = argMultimap.getValue(PREFIX_TUTORIAL);
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
+
+        if (tutorialName.isEmpty() && labName.isEmpty() && consultationName.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    DeleteStudentFromEventCommand.MESSAGE_USAGE));
+        }
+
         Index eventIndex = ParserUtil.parseIndex(
                 tutorialName.orElse(labName.orElse(consultationName.orElse(""))));
         String eventType = PREFIX_TUTORIAL.getPrefix();

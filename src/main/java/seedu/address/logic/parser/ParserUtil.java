@@ -105,7 +105,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Name.STUDENT_MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
@@ -205,13 +205,16 @@ public class ParserUtil {
     public static String parseTutorialName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (name.toLowerCase().contains("lab")) {
+        if (trimmedName.length() > 20) {
+            throw new ParseException("Tutorial name is too long. Maximum of 20 characters");
+        }
+        if (trimmedName.toLowerCase().contains("lab")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().contains("consultation")) {
+        if (trimmedName.toLowerCase().contains("consultation")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().equals("tutorial")) {
+        if (trimmedName.toLowerCase().equals("tutorial")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
         if (!Name.isValidName(trimmedName)) {
@@ -229,13 +232,16 @@ public class ParserUtil {
     public static String parseLabName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (name.toLowerCase().contains("tutorial")) {
+        if (trimmedName.length() > 20) {
+            throw new ParseException("Lab name is too long. Maximum of 20 characters");
+        }
+        if (trimmedName.toLowerCase().contains("tutorial")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().contains("consultation")) {
+        if (trimmedName.toLowerCase().contains("consultation")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().equals("lab")) {
+        if (trimmedName.toLowerCase().equals("lab")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
         if (!Name.isValidName(trimmedName)) {
@@ -253,13 +259,16 @@ public class ParserUtil {
     public static String parseConsultationName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (name.toLowerCase().contains("lab")) {
+        if (trimmedName.length() > 20) {
+            throw new ParseException("Consultation name is too long. Maximum of 20 characters");
+        }
+        if (trimmedName.toLowerCase().contains("lab")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().contains("tutorial")) {
+        if (trimmedName.toLowerCase().contains("tutorial")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
-        if (name.toLowerCase().equals("consultation")) {
+        if (trimmedName.toLowerCase().equals("consultation")) {
             throw new ParseException(Event.MESSAGE_CONSTRAINTS);
         }
         if (!Name.isValidName(trimmedName)) {
@@ -278,6 +287,9 @@ public class ParserUtil {
     public static String parseEventName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
+        if (trimmedName.length() > 70) {
+            throw new ParseException("Event Name is too long. Maximum of 70 characters");
+        }
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -590,6 +602,9 @@ public class ParserUtil {
     public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
+        if (remark.length() > 30) {
+            throw new ParseException("Remark is too long. Maximum of 30 characters!");
+        }
         return new Remark(trimmedRemark);
     }
 

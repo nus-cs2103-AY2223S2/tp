@@ -22,9 +22,11 @@ public class DeleteEventCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the event identified by the index number used in the displayed event list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+    public static final String MESSAGE_USAGE = "Delete Event Syntax: "
+            + COMMAND_WORD + " "
+            + "EVENT_TYPE/INDEX\n"
+            + "Parameters: INDEX (must be a positive integer), "
+            + "EVENT_TYPE (Only Tutorial or Consultation or Lab case-sensitive is allowed)\n"
             + "Example: " + COMMAND_WORD + " Tutorial/1";
 
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";

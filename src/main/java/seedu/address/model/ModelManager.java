@@ -162,7 +162,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType) {
+    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType) throws ParseException {
         addressBook.deleteStudentFromEvent(toDel, eventIndex, eventType);
     }
 

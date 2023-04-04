@@ -57,6 +57,36 @@ public class PersonListPanel extends UiPart<Region> {
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
 
+        initCellValue();
+
+        setIndexColumn();
+
+        wrapName();
+
+        wrapAddress();
+
+        wrapTelegram();
+
+        SortedList<Person> sorted = new SortedList<>(personList);
+        table.setItems(sorted);
+        sorted.comparatorProperty().bind(table.comparatorProperty());
+        table.setRowFactory(tableView -> {
+            TableRow<Person> row = new TableRow<>();
+            return row;
+        });
+
+        setPerformanceColor();
+
+        disableClickSort();
+
+        setPhoto();
+    }
+
+    /**
+     * Initializes the cell valye for name, email, telegram, address, performance, remark and photo.
+     * This ensures that each value in the table cell is unique to the person
+     */
+    public void initCellValue() {
         name.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName().toString()));
         email.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail().toString()));
         telegram.setCellValueFactory(cellData ->
@@ -67,7 +97,12 @@ public class PersonListPanel extends UiPart<Region> {
                 new SimpleStringProperty(cellData.getValue().getPerformance().toString()));
         remark.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRemark().toString()));
         photo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPhoto().getUrlPath()));
+    }
 
+    /**
+     * Creates an index column based on the number on non-empty rows. Index starts from 1
+     */
+    public void setIndexColumn() {
         index.setCellFactory(col -> {
             TableCell<Person, Void> cell = new TableCell<>();
             cell.textProperty().bind(Bindings.createStringBinding(() -> {
@@ -79,8 +114,37 @@ public class PersonListPanel extends UiPart<Region> {
             }, cell.emptyProperty(), cell.indexProperty()));
             return cell;
         });
+    }
 
+    /**
+     * Allows a long name to be wrapped around instead of truncating with ellipses. This will allow the user
+     * to see the full name of the student and create events related to the student full name
+     */
+    public void wrapName() {
+        name.setCellFactory(param -> {
+            return new TableCell<Person, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    if (item == null || empty) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        //Credit to P113305A009D8M
+                        //https://stackoverflow.com/questions/22732013/javafx-tablecolumn-text-wrapping
+                        Text text = new Text(item);
+                        text.setStyle("-fx-text-alignment:justify; -fx-fill:derive(#828282, -50%)");
+                        text.wrappingWidthProperty().bind(getTableColumn().widthProperty().subtract(35));
+                        setGraphic(text);
+                    }
+                }
+            };
+        });
+    }
 
+    /**
+     * Allows long address to be wrapped instead of truncating with ellipses
+     */
+    public void wrapAddress() {
         address.setCellFactory(param -> {
             return new TableCell<Person, String>() {
                 @Override
@@ -99,19 +163,37 @@ public class PersonListPanel extends UiPart<Region> {
                 }
             };
         });
+    }
 
-
-        //Sort
-        SortedList<Person> sorted = new SortedList<>(personList);
-        table.setItems(sorted);
-        sorted.comparatorProperty().bind(table.comparatorProperty());
-        int i = 0;
-        table.setRowFactory(tableView -> {
-            TableRow<Person> row = new TableRow<>();
-            return row;
+    /**
+     * Allows a long telegram phone number or handle to be wrapped around instead of truncating with ellipses.
+     * This allows thw TA to see the full telegram and add the student to any telegram channel
+     */
+    public void wrapTelegram() {
+        telegram.setCellFactory(param -> {
+            return new TableCell<Person, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    if (item == null || empty) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        //Credit to P113305A009D8M
+                        //https://stackoverflow.com/questions/22732013/javafx-tablecolumn-text-wrapping
+                        Text text = new Text(item);
+                        text.setStyle("-fx-text-alignment:justify; -fx-fill:derive(#828282, -50%)");
+                        text.wrappingWidthProperty().bind(getTableColumn().widthProperty().subtract(35));
+                        setGraphic(text);
+                    }
+                }
+            };
         });
+    }
 
-        //Custom callbacks to modify basic data for performance
+    /**
+     * Sets the performance indicator color of each student based on a specific set of metrics
+     */
+    public void setPerformanceColor() {
         performance.setCellFactory(new Callback<TableColumn<Person, String>, TableCell<Person, String>>() {
             @Override
             public TableCell<Person, String> call(TableColumn<Person, String> param) {
@@ -135,8 +217,12 @@ public class PersonListPanel extends UiPart<Region> {
                 };
             }
         });
+    }
 
-        //Disable sort by photo
+    /**
+     * Disables the default behaviour to sort tableview by clicking on the column for all columns
+     */
+    public void disableClickSort() {
         photo.setSortable(false);
         name.setSortable(false);
         email.setSortable(false);
@@ -144,8 +230,12 @@ public class PersonListPanel extends UiPart<Region> {
         remark.setSortable(false);
         telegram.setSortable(false);
         index.setSortable(false);
+    }
 
-        //Custom callbacks to modify basic data for photo
+    /**
+     * Maps a random photo stored in the images folder to a student to simulate retrieval of photo from NUS database
+     */
+    public void setPhoto() {
         photo.setCellFactory(new Callback<TableColumn<Person, String>, TableCell<Person, String>>() {
             @Override
             public TableCell<Person, String> call(TableColumn<Person, String> param) {

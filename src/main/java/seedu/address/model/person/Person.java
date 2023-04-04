@@ -163,20 +163,12 @@ public class Person implements Comparable<Person> {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Photo: ")
-                .append(getPhoto())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Performance: ")
                 .append(getPerformance())
                 .append(" Remark: ")
                 .append(getRemark());
-
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 

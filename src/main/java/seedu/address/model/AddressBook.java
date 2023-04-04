@@ -110,26 +110,34 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param eventIndex the index of the event from which the student will be deleted.
      * @param type the type of the event from which the student will be deleted.
      */
-    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String type) {
+
+    public void deleteStudentFromEvent(Index toDel, Index eventIndex, String type) throws ParseException {
         Optional<Event> target = Optional.empty();
-        if (type.equals(PREFIX_TUTORIAL.getPrefix())) {
-            target = Optional.of(tutorials.get(eventIndex.getZeroBased()));
-        }
+        try {
+            if (type.equals(PREFIX_TUTORIAL.getPrefix())) {
+                target = Optional.of(tutorials.get(eventIndex.getZeroBased()));
+            }
 
-        if (type.equals(PREFIX_LAB.getPrefix())) {
-            target = Optional.of(labs.get(eventIndex.getZeroBased()));
-        }
+            if (type.equals(PREFIX_LAB.getPrefix())) {
+                target = Optional.of(labs.get(eventIndex.getZeroBased()));
+            }
 
-        if (type.equals(PREFIX_CONSULTATION.getPrefix())) {
-            target = Optional.of(consultations.get(eventIndex.getZeroBased()));
+            if (type.equals(PREFIX_CONSULTATION.getPrefix())) {
+                target = Optional.of(consultations.get(eventIndex.getZeroBased()));
+            }
+        } catch (IndexOutOfBoundsException e) {
+            throw new ParseException("Event index is out of bounds!");
         }
 
         if (target.isEmpty()) {
             //todo: maybe add error message, but not really possible that the prefix is not present
             return;
         }
-
-        target.get().removeIndexStudent(toDel.getZeroBased());
+        try {
+            target.get().removeIndexStudent(toDel.getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new ParseException("Student index is out of bounds!");
+        }
     }
 
     /**
