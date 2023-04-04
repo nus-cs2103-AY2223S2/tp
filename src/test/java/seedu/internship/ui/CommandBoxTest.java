@@ -11,15 +11,14 @@ import seedu.internship.logic.commands.CommandResult;
 import seedu.internship.logic.commands.ListCommand;
 import seedu.internship.logic.commands.exceptions.CommandException;
 
+// @@author potty10-reused
+// Adapted and reused from
+// https://github.com/se-edu/addressbook-level4/blob/master/src/test/java/seedu/address/ui/CommandBoxTest.java
+// with modifications.
 /**
  * A test class for the command box of InternBuddy
  *
- * @@author potty10-reused
- * Adapted and reused from
- * https://github.com/se-edu/addressbook-level4/blob/master/src/test/java/seedu/address/ui/CommandBoxTest.java
- * with modifications.
  */
-//
 public class CommandBoxTest extends GuiUnitTest {
     private static final String COMMAND_THAT_SUCCEEDS = ListCommand.COMMAND_WORD;
     private static final String COMMAND_THAT_FAILS = "hello there";
