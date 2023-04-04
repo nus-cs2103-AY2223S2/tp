@@ -12,7 +12,7 @@ than traditional GUI apps.
 
 ## Table of Contents
 
-- [Quick Start](#quick-start)
+- [Quick Start](#Quick-Start)
 - [Features](#features)
   - [Help](#Help)
   - [Add](#add)
@@ -38,7 +38,7 @@ than traditional GUI apps.
 
 ---
 
-## Quick start {#quick-start}
+## Quick Start 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `MediMate.jar`
@@ -62,7 +62,7 @@ than traditional GUI apps.
 
 ---
 
-## Features {#features}
+## Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -86,7 +86,7 @@ than traditional GUI apps.
 
 </div>
 
-## Help : `help` {#help}
+### Help
 
 Shows a message explaning how to access the help page.
 
@@ -94,7 +94,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a patient : `add` {#add}
+### Add : `add`
 
 Adds a patient to Medimate through command method:
 
@@ -130,19 +130,19 @@ Adds a patient to MediMate through button method:
 
 2. A popup window will show and you can starting add the patient's details, once all the mandatory blanks as mentioned in the CLI method are filled in, click on the **+ ADD PATIENT** as shown in the screenshot above and the patient will be added successfully.
 
-### Listing all patients : `list` {#list}
+### Listing all patients : `list`
 
 Shows a list of all patients in MediMate.
 
 Format: `list`
 
-### Listing patients by name : `list_name` {#list_name}
+#### Listing patients by name : `list_name`
 
 Shows a list of all patients in MediMate by their name in alphabetical order. The screenshot below shows the list of patient
 
 Format: `list_name`
 
-### Editing a patient : `edit` {#edit}
+### Editing a patient : `edit`
 
 Edits an existing patient in the patient list:
 
@@ -173,9 +173,11 @@ Examples:
 * `edit 2 m/Flu` Edits the medication condition of the 2nd patient to be `Flu`.
 * `edit 3 ag/50` Edits the age of the 3rd patient to be `50`.
 * `edit 3 ag/1222` This command is not allowed as age should be less than or equal to 120 and must be a positive
-  integer.
+  integer. 
 
-### Making Appointment to a patient : `makeApp` {#appointment} {#makeapp}
+### Appointment
+
+#### Making Appointment to a patient : `makeApp`
 
 Make an appointment to Medimate through command method:
 
@@ -204,7 +206,7 @@ Make an appointement to MediMate through button method:
 
 💡Date must be in **YYYY-MM-DD** format and Time must be in the format of 24hr clock.
 
-### Marking Appointment with a patient: `markApp` {#markapp}
+#### Marking Appointment with a patient: `markApp`
 
 Marks an appointment with a patient as done using command method:
 
@@ -222,11 +224,11 @@ Examples:
 
 Marks an appointment with a patient as done using button method:
 
-### Create a Medical Certificate for patient: `create` {#create}
+### Create a Medical Certificate for patient: `create`
 
 Create a PDF Medical Certificate for a patient using command:
 
-Format: `create INDEX doc/DOCTOR_NAME m/MEDICAL_CONDITION d/DAYS` 
+Format: `create INDEX doc/DOCTOR_NAME m/MEDICAL_CONDITION d/DAYS`
 
 * Create a PDF medical certificate for a patient at the specified `INDEX`. The index refers to the index number shown in
   the displayed patient list. The index **must be a positive integer** 1,2,3 …
@@ -246,8 +248,8 @@ Create a PDF Medical Certificate for a patient button method:
 ![Create_Popup](images/userGuide/Create_2.png "Create Popup")
 2. A popup window appear, as shown in the screenshot above. Fill in the Medical Condition, Doctor Name, and Duration (Number of days) and click **Generate MC**. Now, you have successfully generated a MC.
 
-### View the Medical File of a patient: `view` {#view}
- 
+### View the Medical File of a patient: `view`
+
 View a PDF Medical Certificate for a patient using command:
 
 Format: `view INDEX {FILE INDEX}`
@@ -271,7 +273,7 @@ View a PDF Medical Certificate for a patient using button:
    ![View_Popup](images/userGuide/view_2.png "Create Popup")
 2. The selected medical will popup, a sample medical file is shown in the screenshot above.
 
-### Upload a patient's medical file: `upload` {#upload}
+### Upload a patient's medical file: `upload`
 
 Upload Medical File of a patient's through command:
 
@@ -297,7 +299,7 @@ Upload Medical File of a patient's through button:
 ![Upload_Popup](images/userGuide/Upload_2.png "Upload Popup")
 2. A popup window appear, as shown in the screenshot above. Select the file you want to upload into MediMate through clicking **Open**. Now, you have successfully upload the medical file.
 
-### Locating patients by name : `find` {#find}
+### Locating patients by name : `find`
 
 Finds patients whose names contain any of the given keywords.
 
@@ -316,7 +318,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Searching patients with Appointment on specified date: `searchDate` {#searchdate}
+### Searching patients with Appointment on specified date: `searchDate`
 
 Lists all patients with appointment on specified date
 
@@ -330,7 +332,7 @@ Examples:
 * `searchDate 2002-11-21` lists three patients with appointment on 2002-11-21 and the time is sorted<br>
   ![result for 'find alex david'](images/screenshot_of_searchDate.png)
 
-### Deleting a patient : `delete` {#delete}
+### Deleting a patient : `delete`
 
 Deletes the specified patient from the MediMate.
 
@@ -345,7 +347,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient list.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-### Deleting multiple patients : `deletes` {#deletes}
+#### Deleting multiple patients : `deletes`
 
 Deletes the specified patient from the MediMate.
 
@@ -362,7 +364,7 @@ Examples:
 * `list` followed by `delete 3 1` deletes the 3rd and 1st person in MediMate.
 * `find Betsy` followed by `delete 1 2` deletes the 1st and 2nd person in the results of the `find` command.
 
-## Delete a medical file for the specified patient: `deleteFile` {#deletefile}
+#### Delete a medical file for the specified patient: `deleteFile`
 
 Delete a medical file from the patient's record and remove it from the database.
 
@@ -377,19 +379,19 @@ Examples:
 
 * `deletefile 1 1` Deletes the first medical file of the 1st patient.
 
-### Clearing all entries : `clear` {#clear}
+### Clearing all entries : `clear`
 
 Clears all entries from the patient list.
 
 Format: `clear`
 
-### Exiting the program : `exit` {#exit}
+### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data {#saving-editing-and-archiving-data}
+### Saving the data
 
 MediMate data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
