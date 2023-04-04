@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.tag.Tag;
 
@@ -59,15 +60,15 @@ public class Person {
         this.tags.add(null);
     }
 
-
     private static String genPersonId(Name name, Phone phone) {
         requireAllNonNull(name, phone);
-        String prefix = name.fullName.toUpperCase();
+        String prefix = name.fullName.trim();
         if (name.fullName.length() < 3) {
             prefix = name.fullName + "0".repeat(3 - name.fullName.length());
         }
         prefix = prefix.substring(0, 3);
-        return prefix.concat(phone.value.substring(0, 3));
+        return prefix.concat(UUID.randomUUID().toString().substring(0, 3))
+                .toUpperCase();
     }
 
     public String getPersonId() {

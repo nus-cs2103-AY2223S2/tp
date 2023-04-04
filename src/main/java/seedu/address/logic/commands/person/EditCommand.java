@@ -73,13 +73,14 @@ public class EditCommand extends PersonCommand {
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
 
+        String personId = editPersonDescriptor.getPersonId().orElse(personToEdit.getPersonId());
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(personId, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -126,6 +127,7 @@ public class EditCommand extends PersonCommand {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
+        private String personId;
         private Name name;
         private Phone phone;
         private Email email;
@@ -152,6 +154,14 @@ public class EditCommand extends PersonCommand {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+        }
+
+        public void setPersonId(String personId) {
+            this.personId = personId;
+        }
+
+        public Optional<String> getPersonId() {
+            return Optional.ofNullable(personId);
         }
 
         public Optional<Name> getName() {
