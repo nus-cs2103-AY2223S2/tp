@@ -73,14 +73,22 @@ public interface Model {
      * Returns the index of the first duplicate found between the given {@code person}s and the address book.
      * Returns -1 if no duplicates are found.
      */
-    int findDuplicateIndex(List<Person> persons);
+    int getDuplicateIndex(List<Person> persons);
 
     /**
-     * Returns the {@code String} representation of the duplicate field found between the given {@code person} and the
-     * address book.
+     * Returns the {@code String} representation of the duplicate field found between the given {@code duplicatePerson}
+     * and the address book.
      * Returns empty {@code String} if no duplicates are found.
      */
-    String findDuplicateString(Person duplicatePerson);
+    String getDuplicateString(Person duplicatePerson);
+
+    /**
+     * Returns the {@code String} representation of the duplicate field found between the given
+     * {@code duplicateEditedPerson} and the entire address book, not considering any duplicates found between the
+     * {@code duplicateEditedPerson} and the {@code notCounted} entry.
+     * Returns empty {@code String} if no duplicates are found.
+     */
+    String getDuplicateStringForEdit(Person duplicateEditedPerson, Person notCounted);
 
     /**
      * Deletes the given person.
@@ -101,9 +109,16 @@ public interface Model {
     void addPersons(List<Person> persons);
 
     /**
+     * Checks if the given {@code editedPerson} is a valid Person to replace the {@code target}, and that it is not a
+     * duplicate of another existing person in the address book.
+     */
+    boolean canEdit(Person target, Person editedPerson);
+
+    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The person identity of {@code editedPerson} must not be a duplicate of another existing person in the address
+     * book.
      */
     void setPerson(Person target, Person editedPerson);
 
