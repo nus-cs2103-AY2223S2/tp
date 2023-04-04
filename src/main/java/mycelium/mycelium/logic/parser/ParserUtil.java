@@ -24,6 +24,9 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    /* Some project names are illegal as they interfere with parsing */
+    public static final String[] ILLEGAL_PROJECT_NAMES = {"-pn2"};
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -110,11 +113,20 @@ public class ParserUtil {
      * Parses a string into a {@code NonEmptyString} representing a project name.
      */
     public static NonEmptyString parseProjectName(String source) throws ParseException {
+        NonEmptyString name;
         try {
-            return parseNonEmptyString(source);
+            name = parseNonEmptyString(source);
         } catch (ParseException e) {
             throw new ParseException(Messages.MESSAGE_EMPTY_PROJECT_NAME);
         }
+
+        // some project names may cause problems down the line, so we check them here
+        for (String bannedName : ILLEGAL_PROJECT_NAMES) {
+            if (name.equals(bannedName)) {
+                throw new ParseException(String.format(Messages.MESSAGE_ILLEGAL_PROJECT_NAME_FMT, name));
+            }
+        }
+        return name;
     }
 
     /**
