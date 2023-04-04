@@ -1,9 +1,8 @@
-package seedu.address.model.module;
+package seedu.address.model.video;
 
 import java.util.function.Predicate;
 
 import seedu.address.model.lecture.ReadOnlyLecture;
-import seedu.address.model.video.Video;
 
 /**
  * Tests that a {@code ReadOnlyLecture} is in user's input {@code ReadOnlyModule}.
