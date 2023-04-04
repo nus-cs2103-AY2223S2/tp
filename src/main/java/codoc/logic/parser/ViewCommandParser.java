@@ -1,14 +1,13 @@
 package codoc.logic.parser;
 
 import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static codoc.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static java.util.Objects.requireNonNull;
+
+import java.math.BigInteger;
 
 import codoc.commons.core.index.Index;
 import codoc.logic.commands.ViewCommand;
 import codoc.logic.parser.exceptions.ParseException;
-
-import java.math.BigInteger;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
