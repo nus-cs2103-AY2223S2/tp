@@ -29,7 +29,7 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final TaaParser taaParser;
     private final ArrayList<String> cmdHistory;
-    private int cmdCnt;
+    private int curCmdIdx;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -39,7 +39,7 @@ public class LogicManager implements Logic {
         this.storage = storage;
         taaParser = new TaaParser();
         cmdHistory = new ArrayList<>();
-        cmdCnt = 0;
+        curCmdIdx = 0;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         cmdHistory.add(commandText);
-        cmdCnt = cmdHistory.size();
+        curCmdIdx = cmdHistory.size() - 1;
 
         CommandResult commandResult;
         Command command = taaParser.parseCommand(commandText);
@@ -89,11 +89,11 @@ public class LogicManager implements Logic {
 
     @Override
     public String getPrevCmd() {
-        return cmdCnt <= 0 ? null : cmdHistory.get(++cmdCnt);
+        return curCmdIdx <= 0 ? null : cmdHistory.get(--curCmdIdx);
     }
 
     @Override
     public String getNextCmd() {
-        return cmdCnt >= cmdHistory.size() - 1 ? null : cmdHistory.get(--cmdCnt);
+        return curCmdIdx >= cmdHistory.size() - 1 ? null : cmdHistory.get(++curCmdIdx);
     }
 }

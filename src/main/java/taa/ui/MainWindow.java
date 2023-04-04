@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -48,9 +47,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
-
-    @FXML
-    private Scene mainScene;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -122,25 +118,8 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, logic::getPrevCmd, logic::getNextCmd);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
-        mainScene.setOnKeyPressed(event -> {
-            String newCmd = null;
-            switch (event.getCode()) {
-            case UP:
-                newCmd = logic.getPrevCmd();
-                break;
-            case DOWN:
-                newCmd = logic.getNextCmd();
-                break;
-            default:
-            }
-            if (newCmd != null) {
-                commandBox.setCommand(newCmd);
-            }
-        });
-        primaryStage.setScene(mainScene);
     }
 
     /**
