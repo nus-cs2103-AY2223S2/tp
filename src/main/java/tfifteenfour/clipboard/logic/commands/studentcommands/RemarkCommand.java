@@ -29,13 +29,10 @@ public class RemarkCommand extends Command {
             + ": Edits the remark of the person identified "
             + "by the index number used in the last person listing. "
             + "Existing remark will be overwritten by the input.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "r/ [REMARK]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "r/ Likes to swim.";
+            + "Parameters: INDEX (must be a positive integer) [REMARK]\n"
+            + "Example: " + COMMAND_WORD + " 1 Likes to swim.";
 
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
     public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to student: %1$s, Remark: %2$s";
     public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from student: %1$s";
 
@@ -64,8 +61,7 @@ public class RemarkCommand extends Command {
         List<Task> tasks = selectedGroup.getModifiableTaskList();
 
 
-
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size() || index.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 

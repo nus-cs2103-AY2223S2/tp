@@ -36,14 +36,8 @@ public class SortCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        // requireNonNull(model);
-        // try {
-        //     model.getModifiableFilteredStudentList().sort(categoryComparator);
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-        // return new CommandResult(this, String.format(MESSAGE_SUCCESS, categoryName), willModifyState);
-        return new CommandResult(this, "PLACEHOLDER", willModifyState);
+        model.getCurrentSelection().getSelectedGroup().getModifiableStudentList().sort(categoryComparator);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, categoryName), willModifyState);
     }
 
     @Override

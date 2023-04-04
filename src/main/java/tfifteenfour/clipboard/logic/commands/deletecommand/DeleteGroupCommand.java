@@ -26,8 +26,7 @@ public class DeleteGroupCommand extends DeleteCommand {
             + "Example: " + COMMAND_WORD + " " + COMMAND_TYPE_WORD
             + " " + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Group deleted in %1$s: %2$s";
-    public static final String MESSAGE_DUPLICATE_GROUP = "This group already exists in the course";
+    public static final String MESSAGE_SUCCESS = "Deleted group in %1$s: %2$s";
 
     private final Index index;
 
@@ -59,7 +58,7 @@ public class DeleteGroupCommand extends DeleteCommand {
         Group groupToDelete = lastShownList.get(index.getZeroBased());
         selectedCourse.deleteGroup(groupToDelete);
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS, groupToDelete, selectedCourse), willModifyState);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, selectedCourse, groupToDelete), willModifyState);
     }
 
     @Override
