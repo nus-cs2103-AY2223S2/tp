@@ -29,16 +29,16 @@ import seedu.address.model.statstics.StatsManager;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
-import storage.AddressBookStorage;
-import storage.JsonAddressBookStorage;
-import storage.JsonUserPrefsStorage;
-import storage.Storage;
-import storage.StorageManager;
-import storage.UserPrefsStorage;
-import storage.task.note.JsonNoteListStorage;
-import storage.task.note.NoteStorage;
-import storage.task.todo.JsonTodoListStorage;
-import storage.task.todo.TodoListStorage;
+import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.task.note.JsonNoteListStorage;
+import seedu.address.storage.task.note.NoteStorage;
+import seedu.address.storage.task.todo.JsonTodoListStorage;
+import seedu.address.storage.task.todo.TodoListStorage;
 
 /**
  * Runs the application.

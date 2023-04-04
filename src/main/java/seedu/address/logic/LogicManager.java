@@ -20,7 +20,7 @@ import seedu.address.model.statstics.StatsManager;
 import seedu.address.model.tag.TaskType;
 import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.Note;
-import storage.Storage;
+import seedu.address.storage.Storage;
 
 /**
  * The main LogicManager of the app.

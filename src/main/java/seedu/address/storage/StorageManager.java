@@ -1,4 +1,4 @@
-package storage;
+package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -12,8 +12,8 @@ import seedu.address.model.ReadOnlyNote;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import storage.task.note.NoteStorage;
-import storage.task.todo.TodoListStorage;
+import seedu.address.storage.task.note.NoteStorage;
+import seedu.address.storage.task.todo.TodoListStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.

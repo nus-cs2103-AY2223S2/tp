@@ -1,4 +1,4 @@
-package storage.task.note;
+package seedu.address.storage.task.note;
 
 import java.time.LocalDate;
 
