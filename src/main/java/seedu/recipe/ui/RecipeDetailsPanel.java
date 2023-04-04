@@ -71,7 +71,7 @@ public class RecipeDetailsPanel extends UiPart<Region> {
                         steps.getChildren().add(stepLabel);
                     });
              */
-            for(int i = 1; i <= recipe.getSteps().size(); ++i) {
+            for (int i = 1; i <= recipe.getSteps().size(); ++i) {
                 String eachStep = i + ".  " + recipe.getSteps().get(i - 1).step;
                 Label stepLabel = new Label(eachStep);
                 stepLabel.setWrapText(true);
