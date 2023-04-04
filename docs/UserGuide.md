@@ -55,24 +55,24 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 
 ## Command summary
 
-| Action                        | Format, Examples                                                                                                                                                      |
-|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **List Clients**              | `list-client`                                                                                                                                                         |
-| **Add a Client**              | `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend`                |
-| **Edit a Client**             | `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*​` <br> e.g.,`edit-client 3 name/Alice Risa phone/1234 tag/classmate`                          |
-| **Delete a Client**           | `delete-client <index>`<br> e.g., `delete-client 1`                                                                                                                   |
-| **Clearing the Client List**  | `clear-client`                                                                                                                                                        |
-| **Finding a Client**          | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend`                                                                         |
-| **Sorting all Clients**       | `sort-client`                                                                                                                                                         |
-| **List Projects**             | `list-project`                                                                                                                                                        |
-| **Add a Project**             | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 tag/painting` |
-| **Edit a Project**            | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night`                                     |
-| **Mark a Project**            | `mark <index>` <br> e.g., `mark 3`                                                                                                                                    |
-| **Unmark a Project**          | `unmark <index>` <br> e.g., `unmark 3`                                                                                                                                |
-| **Delete a Project**          | `delete-project <index>`<br> e.g., `delete-project 1`                                                                                                                 |
-| **Clearing the Project List** | `clear-project`                                                                                                                                                       |
-| **Finding a Project**         | `find-project [name/NAME]* [start/START] [end/END] [tag/TAG]* [status/STATUS]` <br> e.g., `find-project name/sky start/yesterday tag/painting`                        |
-| **Sorting all Project**       | `sort-project option/Option` <br> e.g., `sort-project option/name`                                                                                                    |
+| Action                        | Alias | Format, Examples                                                                                                                                                      |
+|-------------------------------|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List Clients**              | `lc`  | `list-client`                                                                                                                                                         |
+| **Add a Client**              | `ac`  | `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend`                |
+| **Edit a Client**             | `ec`  | `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*​` <br> e.g.,`edit-client 3 name/Alice Risa phone/1234 tag/classmate`                          |
+| **Delete a Client**           | `dc`  | `delete-client <index>`<br> e.g., `delete-client 1`                                                                                                                   |
+| **Clearing the Client List**  | `cc`  | `clear-client`                                                                                                                                                        |
+| **Finding a Client**          | `fc`  | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend`                                                                         |
+| **Sorting all Clients**       | `sc`  | `sort-client`                                                                                                                                                         |
+| **List Projects**             | `lp`  | `list-project`                                                                                                                                                        |
+| **Add a Project**             | `ap`  | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 tag/painting` |
+| **Edit a Project**            | `ep`  | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night`                                     |
+| **Delete a Project**          | `dp`  | `delete-project <index>`<br> e.g., `delete-project 1`                                                                                                                 |
+| **Mark a Project**            | `mp`  | `mark <index>` <br> e.g., `mark 3`                                                                                                                                    |
+| **Unmark a Project**          | `up`  | `unmark <index>` <br> e.g., `unmark 3`                                                                                                                                |
+| **Clearing the Project List** | `cp`  | `clear-project`                                                                                                                                                       |
+| **Finding a Project**         | `fp`  | `find-project [name/NAME]* [start/START] [end/END] [tag/TAG]* [status/STATUS]` <br> e.g., `find-project name/sky start/yesterday tag/painting`                        |
+| **Sorting all Project**       | `sp`  | `sort-project option/Option` <br> e.g., `sort-project option/name`                                                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
 
