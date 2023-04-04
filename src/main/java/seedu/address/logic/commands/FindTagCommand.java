@@ -16,7 +16,7 @@ public class FindTagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts that matches the tag in "
             + "the specified keyword (case-insensitive) and displays as a list of contacts.\n"
-            + "Parameters: [t/TAG] \n"
+            + "Parameters: [TAG] \n"
             + "Example: " + COMMAND_WORD + " friends";
 
     private final TagContainsKeywordsPredicate predicate;
