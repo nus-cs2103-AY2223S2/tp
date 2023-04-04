@@ -175,6 +175,57 @@ Command syntax
 :information_source: **Info:** Extraneous parameters for commands that do not take in parameters will be ignored.
 </div>
 
+### General
+These commands are either used to interact with students across all class lists, or just general commands that are not related to any of the sections below:
+- `list`
+- `find`
+- `clear`
+- `help`
+
+#### List all students : `list`
+Lists all students tracked by TAA, across all class lists.
+
+Format: `list`
+
+
+#### Find a particular student : `find`
+Find students across all classes whose names contain any of the specified keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]...`
+- The given `KEYWORD`/`MORE_KEYWORDS` are not case-sensitive.
+
+Examples:
+- `find Alice Bob Charlie`
+- `find bAlAKRiSHNan`
+
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** A given keyword must exist as a whole word in a name for it to be considered as a match.
+e.g. The keyword `bala` does not match the name `Roy Balakrishnan` as `Bala` is not the full word `Balakrishnan`.
+</div>
+
+#### Clear all students: `clear`
+Removes all students currently being tracked by TAA.
+
+Format: `clear`
+
+<div markdown="span" class="alert alert-danger">
+:warning: **Warning:** This will delete all student records in TAA. Only use this command if you are sure you want to start off with a totally empty student list.
+</div>
+
+
+#### Display the help menu: `help`
+Displays the help menu.
+
+Format: `help`
+
+![Help menu](images/HelpMenu.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 3: 
+</strong>
+A preview of the help menu displayed.
+</em></figcaption>
+
+
 ### Attendance
 For attendance, you can make the following calls:
 * markAtd
@@ -198,7 +249,7 @@ Examples
 
 ### Participation
 For participation, you can make the following calls:
-* insert
+* `insertPP`
 
 #### Insert participation points: `insertPP`
 Insert attendance of a student for that week<br>
@@ -368,32 +419,6 @@ Examples:
 
 <div markdown="span" class="alert alert-warning">
 :page_with_curl: **Note:** This command will delete the student with the given ID on the active class list, not from the list of all students obtained from using the `list` command.
-</div>
-
-<<<<<<< HEAD
-#### List all students : `list`
-Lists all students tracked by TAA, across all class lists.
-=======
-#### List all students : `list` 
-Lists all students tracked by TAA globally.
->>>>>>> master
-
-Format: `list`
-
-
-#### Find a particular student : `find`
-Find students across all classes whose names contain any of the specified keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]...`
-- The given `KEYWORD`/`MORE_KEYWORDS` are not case-sensitive.
-
-Examples:
-- `find Alice Bob Charlie`
-- `find bAlAKRiSHNan`
-
-<div markdown="span" class="alert alert-warning">
-:page_with_curl: **Note:** A given keyword must exist as a whole word in a name for it to be considered as a match.
-e.g. The keyword `bala` does not match the name `Roy Balakrishnan` as `Bala` is not the full word `Balakrishnan`.
 </div>
 
 #### Group students at random: `rand_grp` [coming soon]
