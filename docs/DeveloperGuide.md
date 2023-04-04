@@ -437,6 +437,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Personal information**: Student particulars including `name`, `phone number`, `student id`, `email`, and can include `remark`.
+* **UCx**: Represents Use Case x, where x is a use case number
 
 --------------------------------------------------------------------------------------------------------------------
 
