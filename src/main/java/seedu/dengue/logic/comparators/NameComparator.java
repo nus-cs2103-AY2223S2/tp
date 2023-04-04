@@ -17,7 +17,7 @@ public class NameComparator implements Comparator<Name> {
 
     @Override
     public int compare(Name n1, Name n2) {
-        return n1.fullName.compareTo(n2.fullName);
+        return n1.fullName.toLowerCase().compareTo(n2.fullName.toLowerCase());
     }
 
 }
