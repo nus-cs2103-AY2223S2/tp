@@ -37,10 +37,24 @@ Pied Piper is a user-friendly task management application tailored for computing
 
 * Words within `Curly Bracket {}` are must have parameters.
 
+* Items in square brackets are optional.<br>
+  e.g `a/{ADDRESS} [r/{ROLE}]` can be used as `a/John street, block 123 r/Member` or as `a/John street, block 123`.
+
 * Extraneous parameters for commands that do not take in parameters (such as `view`) will be ignored.<br>
   e.g. if the command specifies `view 123`, it will be interpreted as `view`.
 
 </div>
+
+### Adding a person: `add`
+
+Adds a person
+
+Format: `add n/{NAME} p/{PHONE} e/{EMAIL} a/{ADDRESS} [r/{ROLE}]`
+
+Examples:
+* `add n/John Doe p/98765432 e/johnd@nus.com a/John street, block 123`
+* `add n/Jane Roe p/98123456 e/janer@nus.com a/Jane street, block 321 r/Member`
+
 
 ### Creating a task: `todo`
 
@@ -117,7 +131,7 @@ Examples:
 
 ### Marking a task: `mark`
 
-Marks a task as completed and give score to the marked task
+Marks a task as completed and give a score to the marked task
 
 Format: `mark t/{TASK_ID} s/{PERFORMANCE_SCORE}`
 
@@ -127,7 +141,7 @@ Examples:
 
 ### Unmarking a task: `unmark`
 
-Unmarks a task as not completed
+Sets a task's status as incomplete and remove any given score
 
 Format: `unmark t/{TASK_ID}`
 
@@ -155,9 +169,16 @@ Examples:
 * `deletetask 2`
 
 
-### Viewing tasks: `view`
+### Listing tasks: `list`
 
 Shows all tasks
+
+Format: `list`
+
+
+### Viewing persons: `view`
+
+Shows all persons
 
 Format: `view`
 
@@ -181,6 +202,7 @@ Format: `review`
 
 Action | Format, Examples
 --------|------------------
+**Add** | `add n/{NAME} p/{PHONE} e/{EMAIL} a/{ADDRESS} [r/{ROLE}]`<br> e.g., `add n/Jane Roe p/98123456 e/janer@nus.com a/Jane street, block 321 r/Member`
 **Assign** | `assign  t/{TASK_ID} n/{MEMBER_NAME}`<br> e.g., `assign t/1 n/John Doe`
 **Comment** | `comment t/{TASK_ID} c/{COMMENTS} ` <br> e.g., `comment t/1 c/task was done well and on time`
 **Deadline** | `deadline task/{TASK_NAME}  by/{DD/MM/YYYY}` <br> e.g., `deadline task/Complete Assignment by/12/09/2021`
