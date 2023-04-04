@@ -23,8 +23,8 @@ import org.junit.jupiter.api.Test;
 
 import trackr.logic.commands.task.AddTaskCommand;
 import trackr.logic.parser.task.AddTaskCommandParser;
+import trackr.model.commons.Deadline;
 import trackr.model.task.Task;
-import trackr.model.task.TaskDeadline;
 import trackr.model.task.TaskName;
 import trackr.model.task.TaskStatus;
 import trackr.testutil.TaskBuilder;
@@ -95,7 +95,7 @@ public class AddTaskCommandParserTest {
 
         // invalid deadline
         assertParseFailure(parser, TASK_NAME_DESC_BUY_FLOUR + INVALID_TASK_DEADLINE_DESC
-                + TASK_STATUS_DESC_DONE, TaskDeadline.MESSAGE_CONSTRAINTS);
+                + TASK_STATUS_DESC_DONE, String.format(Deadline.MESSAGE_CONSTRAINTS, "Task"));
 
         // invalid status
         assertParseFailure(parser, TASK_NAME_DESC_BUY_FLOUR + TASK_DEADLINE_DESC_2024

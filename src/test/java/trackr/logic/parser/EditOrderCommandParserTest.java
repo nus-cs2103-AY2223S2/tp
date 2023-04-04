@@ -48,7 +48,7 @@ import org.junit.jupiter.api.Test;
 import trackr.commons.core.index.Index;
 import trackr.logic.commands.order.EditOrderCommand;
 import trackr.logic.parser.order.EditOrderCommandParser;
-import trackr.model.order.OrderDeadline;
+import trackr.model.commons.Deadline;
 import trackr.model.order.OrderDescriptor;
 import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
@@ -100,7 +100,7 @@ public class EditOrderCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_ORDER_NAME_DESC,
                 OrderName.MESSAGE_CONSTRAINTS); // invalid Order name
         assertParseFailure(parser, "1" + INVALID_ORDER_DEADLINE_DESC,
-                OrderDeadline.MESSAGE_CONSTRAINTS); // invalid Order deadline
+                String.format(Deadline.MESSAGE_CONSTRAINTS, "Order")); // invalid Order deadline
         assertParseFailure(parser, "1" + INVALID_ORDER_STATUS_DESC,
                 OrderStatus.MESSAGE_CONSTRAINTS); // invalid Order status
         assertParseFailure(parser, "1" + INVALID_ORDER_QUANTITY_DESC,
@@ -123,7 +123,7 @@ public class EditOrderCommandParserTest {
                 OrderName.MESSAGE_CONSTRAINTS); //Order name
 
         assertParseFailure(parser, "1" + ORDER_DEADLINE_DESC_2024 + INVALID_ORDER_DEADLINE_DESC,
-                OrderDeadline.MESSAGE_CONSTRAINTS); //Order deadline
+                String.format(Deadline.MESSAGE_CONSTRAINTS, "Order")); //Order deadline
 
         assertParseFailure(parser, "1" + ORDER_STATUS_DESC_NOT_DONE + INVALID_ORDER_STATUS_DESC,
                 OrderStatus.MESSAGE_CONSTRAINTS); //Order status
