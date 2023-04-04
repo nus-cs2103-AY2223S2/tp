@@ -347,7 +347,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient list.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-#### Deleting multiple patients : `deletes`
+### Deleting multiple patients : `deletes`
 
 Deletes the specified patient from the MediMate.
 
@@ -364,7 +364,7 @@ Examples:
 * `list` followed by `delete 3 1` deletes the 3rd and 1st person in MediMate.
 * `find Betsy` followed by `delete 1 2` deletes the 1st and 2nd person in the results of the `find` command.
 
-#### Delete a medical file for the specified patient: `deleteFile`
+### Delete a medical file for the specified patient: `deleteFile`
 
 Delete a medical file from the patient's record and remove it from the database.
 
