@@ -100,6 +100,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean canReplacePerson(Person toBeReplaced, Person replacement) {
+        requireAllNonNull(toBeReplaced, replacement);
+        return versionedAddressBook.canReplacePerson(toBeReplaced, replacement);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         versionedAddressBook.removePerson(target);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

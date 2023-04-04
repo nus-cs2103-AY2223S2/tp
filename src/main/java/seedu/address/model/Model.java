@@ -59,6 +59,15 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person in the address book can be replaced by another
+     * without causing any duplicates of person in the address book.
+     *
+     * @param toBeReplaced The person to be replaced.
+     * @param replacement The replacement person.
+     */
+    boolean canReplacePerson(Person toBeReplaced, Person replacement);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
