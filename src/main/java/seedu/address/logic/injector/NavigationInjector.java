@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOT;
 
 import java.util.regex.Matcher;
 
+import seedu.address.logic.commands.ExportCommand;
+import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.navigation.NavCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -18,7 +20,8 @@ import seedu.address.model.navigation.NavigationContext;
  */
 public class NavigationInjector extends Injector {
 
-    private static final String[] WHITELIST = {NavCommand.COMMAND_WORD};
+    private static final String[] WHITELIST = {NavCommand.COMMAND_WORD,
+            ImportCommand.COMMAND_WORD, ExportCommand.COMMAND_WORD};
 
     @Override
     public String inject(String commandText, Model model) {

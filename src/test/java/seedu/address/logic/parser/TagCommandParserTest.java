@@ -29,9 +29,9 @@ public class TagCommandParserTest {
             VALID_MODULE + " " + PREFIX_TAG + " "
                     + VALID_TAG_1 + ", " + VALID_TAG_2;
     private static final String VALID_TAG_LECTURE_COMMAND =
-            VALID_LECTURE + " " + PREFIX_MODULE + VALID_TAG_MODULE_COMMAND;
+            VALID_LECTURE + " " + PREFIX_MODULE + " " + VALID_TAG_MODULE_COMMAND;
     private static final String VALID_TAG_VIDEO_COMMAND =
-            VALID_VIDEO + " " + PREFIX_LECTURE + VALID_TAG_LECTURE_COMMAND;
+            VALID_VIDEO + " " + PREFIX_LECTURE + " " + VALID_TAG_LECTURE_COMMAND;
     private static final String INVALID_TAG_MODULE_COMMAND =
             PREFIX_MODULE + " " + VALID_MODULE + " " + VALID_TAG_1 + ", " + VALID_TAG_2;
     private static final String INVALID_TAG_LECTURE_COMMAND = VALID_LECTURE + PREFIX_MODULE + " " + VALID_MODULE;
