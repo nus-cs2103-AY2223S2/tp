@@ -26,7 +26,7 @@ import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 
 /**
- * Parses input arguments and creates a new AddRecur object
+ * Parses input arguments and creates a new AddRecur object.
  */
 public class AddRecurParser implements Parser<AddRecurCommand> {
 
@@ -34,7 +34,8 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
      * Parses the given {@code String} of arguments in the context of the AddRecur
      * and returns an AddRecur object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @param args            the string argument to be parsed.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public AddRecurCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -56,10 +57,11 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
     }
 
     /**
-     * Ensures the recur details are correct
-     * @param recurDetails
-     * @return AddRecurCommand
-     * @throws ParseException
+     * Ensures the recur details which is the presence of the prefix tutorial or prefix lab or prefix consultation.
+     *
+     * @param recurDetails            the string of the recur details to be checked.
+     * @return AddRecurCommand        the valid recur command.
+     * @throws ParseException         if the recur details are incorrect.
      */
     public AddRecurCommand checkRecurDetails(String recurDetails) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeFirstPrefix(recurDetails,
@@ -86,10 +88,11 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
     /**
      * Checks to if the recurring event is a lab or tutorial or consultation.
      * Do a typecasting for the respective events.
-     * @param newArgs
-     * @param prefix
-     * @return AddRecurCommand
-     * @throws ParseException
+     *
+     * @param newArgs           the modified string containing the arguments.
+     * @param prefix            the prefix which is either Tutorial or Lab or Consultation.
+     * @return AddRecurCommand  the valid add recur command.
+     * @throws ParseException   if the parsed string is invalid.
      */
     public AddRecurCommand parseEvent(String newArgs, Prefix prefix) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -134,15 +137,22 @@ public class AddRecurParser implements Parser<AddRecurCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap     the argument mappings to be checked.
+     * @param prefixes             all the prefix to be checked.
+     * @return                     if the prefixes are present.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
-     * Returns true if none of the prefixes contains command to add students (cannot add student and lab
-     * using the same command.)
+     * Returns true if all the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap     the argument mappings to be checked.
+     * @param prefixes             all the prefix to be checked.
+     * @return                     if the prefixes are absent.
      */
     private static boolean arePrefixesAbsent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).noneMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());

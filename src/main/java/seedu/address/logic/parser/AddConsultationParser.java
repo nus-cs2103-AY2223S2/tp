@@ -24,14 +24,16 @@ import seedu.address.model.event.Consultation;
 import seedu.address.model.event.Note;
 
 /**
- * Parses input arguments and creates a new AddConsultation object
+ * Parses input arguments and creates a new AddConsultation object.
  */
 public class AddConsultationParser implements Parser<AddConsultationCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddConsultation
      * and returns an AddConsultation object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args            the string argument to be parsed.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public AddConsultationCommand parse(String args) throws ParseException {
         //newArgs to trim first word when more commands added to switch-case in AddressBookParser
@@ -85,15 +87,22 @@ public class AddConsultationParser implements Parser<AddConsultationCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap     the argument mappings to be checked.
+     * @param prefixes             all the prefix to be checked.
+     * @return                     if the prefixes are present.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
-     * Returns true if none of the prefixes contains command to add students (cannot add student and lab
-     * using the same command.)
+     * Returns true if all the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap     the argument mappings to be checked.
+     * @param prefixes             all the prefix to be checked.
+     * @return                     if the prefixes are absent.
      */
     private static boolean arePrefixesAbsent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).noneMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());

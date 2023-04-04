@@ -13,14 +13,15 @@ import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditEventCommand object
+ * Parses input arguments and creates a new EditEventCommand object.
  */
 public class EditEventCommandParser implements Parser<EditEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditEventCommand
      * and returns an EditEventCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public EditEventCommand parse(String args) throws ParseException {
         requireNonNull(args);

@@ -11,13 +11,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Photo;
 
 /**
- * Parses input arguments and creates a new {@code RemarkCommand} object
+ * Parses input arguments and creates a new {@code RemarkCommand} object.
  */
 public class PhotoCommandParser implements Parser<PhotoCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args            the string argument to be parsed.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public PhotoCommand parse(String args) throws ParseException {
         requireNonNull(args);

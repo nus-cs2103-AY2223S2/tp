@@ -21,14 +21,16 @@ import seedu.address.logic.commands.OpenFileCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new OpenFileCommand object
+ * Parses input arguments and creates a new OpenFileCommand object.
  */
 public class OpenFileCommandParser implements Parser<OpenFileCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the OpenFileCommand
      * and returns a OpenFileCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args            the string argument to be parsed.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public OpenFileCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -73,15 +75,22 @@ public class OpenFileCommandParser implements Parser<OpenFileCommand> {
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap     the argument mappings to be checked.
+     * @param prefixes             all the prefix to be checked.
+     * @return                     if the prefixes are present.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
-     * Returns true if none of the prefixes contains command to add students (cannot add student and tutorial
-     * using the same command.)
+     * Returns true if all the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
+     *
+     * @param argumentMultimap     the argument mappings to be checked.
+     * @param prefixes             all the prefix to be checked.
+     * @return                     if the prefixes are absent.
      */
     private static boolean arePrefixesAbsent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).noneMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
