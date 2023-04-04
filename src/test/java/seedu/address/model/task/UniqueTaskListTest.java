@@ -42,7 +42,7 @@ public class UniqueTaskListTest {
     @Test
     public void contains_deadlineTaskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(FIRST);
-        DeadlineTask editedFirst = new DeadlineTaskBuilder(FIRST).withDate("4/12/1089").build();
+        DeadlineTask editedFirst = new DeadlineTaskBuilder(FIRST).withDate("04/12/1089").build();
         assertTrue(uniqueTaskList.contains(editedFirst));
     }
 

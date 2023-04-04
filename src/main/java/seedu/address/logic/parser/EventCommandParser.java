@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DATES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
@@ -35,6 +36,10 @@ public class EventCommandParser implements Parser<EventCommand> {
         TaskDescription description = ParserUtil.parseTaskDescription(argMultimap.getValue(PREFIX_TASK).get());
         Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
         Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
+
+        if (endDate.isBefore(startDate)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_EVENT_DATES, EventCommand.MESSAGE_USAGE));
+        }
 
         EventTask eventTask = new EventTask(description, startDate, endDate);
 
