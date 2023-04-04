@@ -331,12 +331,12 @@ patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BI
     --b <var>BLOODTYPE</var> [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
 </pre>
 
-* <code><var>PATIENT_NAME</var></code> : `<name>`
-* <code><var>PHONE</var></code> : `<phone>`
-* <code><var>DATE_OF_BIRTH</var></code> : `<date>`
-* <code><var>BLOODTYPE</var></code> : `<bloodType>`
-* <code><var>ALLERGIES</var></code> : `<group-name>`
-* <code><var>VACCINES</var></code> : `<group-name>`
+* `--n` : <code><var>PATIENT_NAME</var></code> : `<name>`
+* `--p` : <code><var>PHONE</var></code> : `<phone>`
+* `--d` : <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* `--b` : <code><var>BLOODTYPE</var></code> : `<bloodType>`
+* `--a` : <code><var>ALLERGIES</var></code> : `<group-name>`
+* `--v` : <code><var>VACCINES</var></code> : `<group-name>`
 
 ##### Example
 
@@ -406,10 +406,25 @@ Finds patients whose names contain any of the given keywords. You can also inclu
 ##### Syntax
 
 <pre>
-patient find <var>PATIENT_NAME</var>
-patient find --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BIRTH</var> \
-    --b <var>BLOODTYPE</var> [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
+patient find {<var>PATIENT_NAME</var> | [--<var>ATTRIBUTE_FLAG</var> <var>FLAG_ARGUMENT</var>]+}
 </pre>
+
+*`|` represents a mutually exclusive argument.*
+
+##### ATTRIBUTE_FLAG
+
+Attribute flags are the same flags used when adding Patient. Below are the list of flags that are accepted for `patient find`
+
+Do note that only one `ALLERGIES` flag can be used at one find command.
+
+Do note that only one `VACCINES` flag can be used at one find command.
+
+* `--n` : <code><var>PATIENT_NAME</var></code> : `<name>`
+* `--p` : <code><var>PHONE</var></code> : `<phone>`
+* `--d` : <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* `--b` : <code><var>BLOODTYPE</var></code> : `<bloodType>`
+* `--a` : <code><var>ALLERGIES</var></code> : `<group-name>`
+* `--v` : <code><var>VACCINES</var></code> : `<group-name>`
 
 ##### Example
 
@@ -435,13 +450,13 @@ patient edit <var>PATIENT_ID</var> [--n <var>PATIENT_NAME</var>] [--p <var>PHONE
     [--b <var>BLOODTYPE</var>] [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
 </pre>
 
-* <code><var>PATIENT_NAME</var></code> : `<name>`
-* <code><var>PHONE</var></code> : `<phone>`
-* <code><var>DATE_OF_BIRTH</var></code> : `<date>`
-* <code><var>BLOODTYPE</var></code> : `<bloodType>`
-* <code><var>ALLERGIES</var></code> : `<group-name>`
-* <code><var>VACCINES</var></code> : `<group-name>`
-* <code><var>IS_SET</var></code> : `<boolean>`
+* `--n` : <code><var>PATIENT_NAME</var></code> : `<name>`
+* `--p` : <code><var>PHONE</var></code> : `<phone>`
+* `--d` : <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* `--b` : <code><var>BLOODTYPE</var></code> : `<bloodType>`
+* `--a` : <code><var>ALLERGIES</var></code> : `<group-name>`
+* `--v` : <code><var>VACCINES</var></code> : `<group-name>`
+* `--set` : <code><var>IS_SET</var></code> : `<boolean>`
   * `true` to replace all list-like patient attributes (**ALLERGIES**, and **VACCINES**) with the one specified in the command or `false` to append them.
   * It is `false` by default.
 
