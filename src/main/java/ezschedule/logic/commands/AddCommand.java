@@ -11,7 +11,7 @@ import ezschedule.model.Model;
 import ezschedule.model.event.Event;
 
 /**
- * Adds an event to the scheduler.
+ * Adds an {@code Event} to the {@code Scheduler}.
  */
 public class AddCommand extends Command {
 

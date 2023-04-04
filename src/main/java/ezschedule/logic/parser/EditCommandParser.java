@@ -7,7 +7,6 @@ import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_START;
 import static java.util.Objects.requireNonNull;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.EditCommand;
 import ezschedule.logic.commands.EditCommand.EditEventDescriptor;

@@ -9,9 +9,10 @@ import ezschedule.model.Model;
 import ezschedule.model.event.Event;
 
 /**
- * Deletes an event identified using it's displayed index from the scheduler.
+ * Deletes an {@code Event} identified using it's displayed index from the {@code Scheduler}.
  */
 public class UndoCommand extends Command {
+
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Undo the most recent valid action. \n"

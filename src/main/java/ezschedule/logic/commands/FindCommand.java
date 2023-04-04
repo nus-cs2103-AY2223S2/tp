@@ -1,29 +1,33 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.commons.core.Messages.MESSAGE_EVENTS_LISTED_OVERVIEW;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.function.Predicate;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.logic.parser.CliSyntax;
 import ezschedule.model.Model;
 import ezschedule.model.event.Date;
+import ezschedule.model.event.Event;
 import ezschedule.model.event.EventContainsKeywordsPredicate;
 import ezschedule.model.event.EventMatchesDatePredicate;
 import ezschedule.model.event.EventMatchesKeywordsAndDatePredicate;
 import ezschedule.model.event.Name;
 
 /**
- * Finds and lists all events in scheduler whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all {@code Event} in {@code Scheduler} whose {@code Name} is partially matched to the given name
+ * or {@code Date} is matched to the given date.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds events that contain keyword provided "
-            + "and displays them as a list with index number \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds events based on name and/or date "
+            + "and displays them as a list with index number. \n"
+            + "The name can be partially matched, while the date has to match \n"
             + "Parameters: "
             + CliSyntax.PREFIX_NAME + "NAME "
             + CliSyntax.PREFIX_DATE + "DATE "
@@ -41,39 +45,37 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        Predicate<Event> predicate;
         if (findEventDescriptor.getName().isPresent() && findEventDescriptor.getDate().isPresent()) {
-            String[] nameKeywords = findEventDescriptor.getName().get().toString().split("\\s+");
+            String[] names = findEventDescriptor.getName().get().toString().split("\\s+");
             Date date = findEventDescriptor.getDate().get();
-            EventMatchesKeywordsAndDatePredicate predicate =
-                    new EventMatchesKeywordsAndDatePredicate(Arrays.asList(nameKeywords), date);
-            model.updateFilteredEventList(predicate);
-            model.updateFindEventList(predicate);
+            predicate = new EventMatchesKeywordsAndDatePredicate(Arrays.asList(names), date);
 
         } else if (findEventDescriptor.getName().isPresent()) {
-            String[] nameKeywords = findEventDescriptor.getName().get().toString().split("\\s+");
-            EventContainsKeywordsPredicate predicate = new EventContainsKeywordsPredicate(Arrays.asList(nameKeywords));
-            model.updateFilteredEventList(predicate);
-            model.updateFindEventList(predicate);
+            String[] names = findEventDescriptor.getName().get().toString().split("\\s+");
+            predicate = new EventContainsKeywordsPredicate(Arrays.asList(names));
 
         } else {
             Date date = findEventDescriptor.getDate().get();
-            EventMatchesDatePredicate predicate = new EventMatchesDatePredicate(date);
-            model.updateFilteredEventList(predicate);
-            model.updateFindEventList(predicate);
+            predicate = new EventMatchesDatePredicate(date);
         }
+        model.updateFilteredEventList(predicate);
+        model.updateFindEventList(predicate);
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
+                String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
     }
+
     @Override
     public String commandWord() {
         return COMMAND_WORD;
     }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof FindCommand // instanceof handles nulls
-            && findEventDescriptor.equals(((FindCommand) other).findEventDescriptor)); // state check
+                || (other instanceof FindCommand // instanceof handles nulls
+                && findEventDescriptor.equals(((FindCommand) other).findEventDescriptor)); // state check
     }
 
     /**
