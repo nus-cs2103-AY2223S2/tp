@@ -20,4 +20,11 @@ public class StatusContainsKeywordPredicate implements Predicate<Person> {
         return StringUtil.containsWordIgnoreCase(person.getStatus().toString(), keyword);
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StatusContainsKeywordPredicate // instanceof handles nulls
+                && keyword.equals(((StatusContainsKeywordPredicate) other).keyword)); // state check
+    }
+
 }

@@ -64,4 +64,11 @@ public class DeleteImageCommand extends Command {
         }
         return new CommandResult(MESSAGE_DELETE_IMAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteImageCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteImageCommand) other).targetIndex));
+    }
 }
