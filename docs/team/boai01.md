@@ -5,7 +5,8 @@ title: Ai Bo's Project Portfolio Page
 
 ### Project: Wingman
 
-Wingman - Wingman is an application designed to help airline managers efficiently manage the allocation of their resources.
+Wingman - Wingman is an application designed to help airline managers efficiently manage the allocation of their
+resources.
 
 Given below are my contributions to the project.
 
