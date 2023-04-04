@@ -46,7 +46,9 @@ public class Listing {
         return applicants;
     }
 
-    public ArrayList<Platform> getPlatforms() { return platforms; }
+    public ArrayList<Platform> getPlatforms() {
+        return platforms;
+    }
 
     public int getPlatformCount() {
         return platforms.size();
