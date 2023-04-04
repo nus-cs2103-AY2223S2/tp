@@ -67,8 +67,10 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
     - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
 - [6. FAQ](#6-faq)
 - [7. Planned Enhancements](#7-planned-enhancements)
-  - [7.1 ](#71-edit-command)
-  - [7.2 ](#72-information-field-validation)
+  - [7.1 Improve Edit Command](#71-improve-edit-command)
+  - [7.2 Better Information Field Validation](#72-better-information-field-validation)
+  - [7.3 More Language Support](#73-more-language-support)
+  - [7.4 More Social Media Support](#74-more-social-media-support)
 - [8. Command Summary](#8-command-summary)
 - [9. Prefix Summary](#9-prefix-summary)
 - [10. Glossary](#10-glossary)
@@ -89,7 +91,7 @@ Some special notations are used throughout this guide:
 
 - [Links in blue](#11-notation) will help you navigate through this document, or take you to places on the Internet.
 - **Bolded words** are phrases that you should pay attention to.
-- <u>Underlined words</u> can be found in the [Glossary](#9-glossary).
+- <u>Underlined words</u> can be found in the [Glossary](#10-glossary).
 
 ## 1.2 Navigation
 
@@ -987,13 +989,13 @@ As of now, using non-English languages (e.g. Chinese, French) as information fie
 
 This section contains a list of known features that we plan to enhance in future iterations of the application.
 
-## 7.1 Edit Command
+## 7.1 Improve Edit Command
 
 Currently, the edit command will not return the "Invalid Command Format" error message in the Command Result Feedback box. Instead, it states "At least one field to edit must be provided", which indirectly indicates that the command is of the correct format, when it is actually missing at least one information field to be edited.
 
 The correct format should be: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`, where at least one of the optional fields is indicated.
 
-## 7.2 Information Field Validation
+## 7.2 Better Information Field Validation
 
 Currently, certain information fields can hold values that would be considered invalid in real life. Some other information fields cannot hold values that would be considered valid in real life.
 
