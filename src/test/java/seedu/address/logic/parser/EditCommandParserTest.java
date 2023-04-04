@@ -1,7 +1,26 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPLICANT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PLATFORM_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_BENEDICT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_BENEDICT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_CHRIS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_CHRIS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ALT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DESC_ALT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_GLINTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_GLINTS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_LINKEDIN;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_LINKEDIN_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_ALT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_DESC_ALT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
