@@ -614,13 +614,16 @@ Equivalent to clicking the close button via the GUI. <br>
 ---
 
 ## Data Management
-**Q: How do I save my person list?** <br>
+**Q: How do I save my person list?**
+
 **A:** CoDoc automatically saves your person list after every successful `add`, `edit` and `clear`.
 
-**Q: How do I transfer my data to another Computer?** <br>
+**Q: How do I transfer my data to another Computer?**
+
 **A:** Install CoDoc on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
 
-**Q: Where is the data file stored?** <br>
+**Q: Where is the data file stored?**
+
 **A:** CoDoc data are saved as a JSON file at ***[JAR file location]*****/data/codoc.json**. Advanced users are welcome to update data directly by editing that data file.
 
 :warning:
