@@ -104,6 +104,7 @@ The bookmark in the BookmarkList panel will only contain the:
 * Genre
 * Rating
 * Tag
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
