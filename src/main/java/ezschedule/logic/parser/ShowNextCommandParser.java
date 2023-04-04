@@ -34,6 +34,7 @@ public class ShowNextCommandParser implements Parser<ShowNextCommand> {
             // Empty here; another exception is throw outside.
         }
 
+        // Thrown when failed to Parse int, or when count <= 0
         throw new ParseException(
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ShowNextCommand.MESSAGE_USAGE));
     }
