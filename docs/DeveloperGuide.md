@@ -179,14 +179,13 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="750" />
 
 </div>
 
 ### Storage component
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -268,7 +267,7 @@ The feature uses operations in the `Model` interface as `Model#displaySortedDead
 Given below is an example usage of how Salary Command is being used in the following steps.
 
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the
-   current address book. <img src="images/DeadlineCommand0.png" width="800" />
+   current address book. <img src="images/UiCommandImages/DeadlineCommand0.png" width="800" />
 
 2. The user can choose to use the `DeadlineCommand` in asc or desc orderParser.
     - The user executes `deadline asc` command to sort the salary of the roles in the ascending
@@ -374,8 +373,8 @@ The proposed ViewCommand feature allows the user to view more details about a sp
 less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline,
 etc.
 
-The view command does not affect the address book in any way. In other words, it does not add/edit/delete
-any roles in the address book.
+The view command does not affect the role book in any way. In other words, it does not add/edit/delete
+any roles in the role book.
 
 An example usage of the `View` command is given below:
 
@@ -386,20 +385,18 @@ An example usage of the `View` command is given below:
      <img src="images/UICommandImages/ViewCommand1.png" width="800" />
 
 The following sequence diagram shows how the `view` Command is being done:
-[to be created]
+<img src="images/ViewCommandSequenceDiagram.png" width="800" />
 
-The following activity diagram summarizes what happens when a user executes a `view` command:
-[to be created]
 
 #### Design considerations:
 
 **Aspect: How view Command executes:**
 
-* **Alternative 1 (current choice):** Displays the remaining details of a `role` object in the `ResultDisplay` through
+* **Alternative 1 (alternative choice):** Displays the remaining details of a `role` object in the `ResultDisplay` through
 appending its information to the `feedbackToUser` string.
     * Pros: Easy to implement, hard to have bugs.
     * Cons: Limited customization of `feedbackToUser` in `ResultDisplay`
-* **Alternative 2 (alternative choice):** Create a view manager for `ResultDisplay`, changing the children
+* **Alternative 2 (current choice):** Create a view manager for `ResultDisplay`, changing the children
 node of `ResultDisplay` based on command given (in this case, `view`)
     * Pros: Provides an easy and extendable way to create custom views
     * Cons: Need to refactor most of the existing codebase.
