@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+skinparam DefaultFontSize 50
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindEventCommandParser" as FindEventCommandParser LOGIC_COLOR
+participant "d:FindEventCommand" as FindEventCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":EventNameContainsKeywordsPredicate" as EventNameContainsKeywordsPredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findevent concert")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("findevent concert")
+activate AddressBookParser
+
+create FindEventCommandParser
+AddressBookParser -> FindEventCommandParser
+activate FindEventCommandParser
+
+FindEventCommandParser --> AddressBookParser
+deactivate FindEventCommandParser
+
+AddressBookParser -> FindEventCommandParser : parse(["concert"])
+activate FindEventCommandParser
+
+create EventNameContainsKeywordsPredicate
+FindEventCommandParser -> EventNameContainsKeywordsPredicate : EventNameContainsKeywordsPredicate(["concert"])
+activate EventNameContainsKeywordsPredicate
+
+EventNameContainsKeywordsPredicate--> FindEventCommandParser
+deactivate EventNameContainsKeywordsPredicate
+
+create FindEventCommand
+FindEventCommandParser -> FindEventCommand
+activate FindEventCommand
+FindEventCommand --> FindEventCommandParser
+deactivate FindEventCommand
+
+FindEventCommandParser --> AddressBookParser : f
+deactivate FindEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindEventCommandParser -[hidden]-> AddressBookParser
+destroy FindEventCommandParser
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> FindEventCommand : execute(model)
+activate FindEventCommand
+
+create CommandResult
+FindEventCommand -> CommandResult
+activate CommandResult
+CommandResult --> FindEventCommand
+deactivate CommandResult
+
+FindEventCommand --> LogicManager : result
+deactivate FindEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -10,12 +10,19 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DelEventCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindEventCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListEvContactCommand;
+import seedu.address.logic.commands.ListEventCommand;
+import seedu.address.logic.commands.SortEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -51,6 +58,9 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
+        case EditEventCommand.COMMAND_WORD:
+            return new EditEventCommandParser().parse(arguments);
+
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
@@ -59,6 +69,9 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindEventCommand.COMMAND_WORD:
+            return new FindEventCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -71,6 +84,21 @@ public class AddressBookParser {
 
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);
+
+        case ListEventCommand.COMMAND_WORD:
+            return new ListEventCommand();
+
+        case DelEventCommand.COMMAND_WORD:
+            return new DelEventCommandParser().parse(arguments);
+
+        case ListEvContactCommand.COMMAND_WORD:
+            return new ListEvContactCommandParser().parse(arguments);
+
+        case ListAllCommand.COMMAND_WORD:
+            return new ListAllCommand();
+
+        case SortEventCommand.COMMAND_WORD:
+            return new SortEventCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

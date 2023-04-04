@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+skinparam DefaultFontSize 50
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SortEventCommandParser" as SortEventCommandParser LOGIC_COLOR
+participant "s:SortEventCommand" as SortEventCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("sortevent c")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("sortevent c")
+activate AddressBookParser
+
+create SortEventCommandParser
+AddressBookParser -> SortEventCommandParser
+activate SortEventCommandParser
+SortEventCommandParser --> AddressBookParser
+deactivate SortEventCommandParser
+AddressBookParser -> SortEventCommandParser : parse("c")
+activate SortEventCommandParser
+SortEventCommandParser -> SortEventCommandParser : getSortType(["c"])
+
+create SortEventCommand
+SortEventCommandParser -> SortEventCommand
+activate SortEventCommand
+SortEventCommand --> SortEventCommandParser
+deactivate SortEventCommand
+
+SortEventCommandParser --> AddressBookParser : s
+deactivate SortEventCommandParser
+SortEventCommandParser -[hidden]-> LogicManager
+destroy SortEventCommandParser
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> SortEventCommand : execute(model)
+activate SortEventCommand
+
+SortEventCommand -> Model : getFilteredEventList()
+activate Model
+Model --> SortEventCommand : sortedEvents
+deactivate Model
+
+SortEventCommand -> Model : sortEventList(SortEventType.SORT_BY_START_TIME)
+activate Model
+Model --> SortEventCommand
+deactivate Model
+create CommandResult
+SortEventCommand -> CommandResult
+activate CommandResult
+CommandResult --> SortEventCommand
+deactivate CommandResult
+SortEventCommand --> LogicManager : result
+deactivate SortEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

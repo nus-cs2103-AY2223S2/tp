@@ -38,7 +38,7 @@ Given below are my contributions to the project.
   * [Update team information and images](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/10)
 
 * **Review/mentoring contributions**
-  * 
+  * to be added soon
 
 * **Contributions beyond the project team**
   * to be added soon

@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+skinparam DefaultFontSize 50
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ListEvContactCommandParser" as ListEvContactCommandParser LOGIC_COLOR
+participant "ec:ListEvContactCommand" as ListEvContactCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "pr:EventSetContainsEventPredicate" as EventSetContainsEventPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("listevcontact 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("listevcontact 1")
+activate AddressBookParser
+
+create ListEvContactCommandParser
+AddressBookParser -> ListEvContactCommandParser
+activate ListEvContactCommandParser
+
+ListEvContactCommandParser --> AddressBookParser
+deactivate ListEvContactCommandParser
+
+AddressBookParser -> ListEvContactCommandParser : parse("1")
+activate ListEvContactCommandParser
+
+create ListEvContactCommand
+ListEvContactCommandParser -> ListEvContactCommand
+activate ListEvContactCommand
+
+ListEvContactCommand --> ListEvContactCommandParser
+deactivate ListEvContactCommand
+
+ListEvContactCommandParser --> AddressBookParser : ec
+deactivate ListEvContactCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListEvContactCommandParser -[hidden]-> AddressBookParser
+destroy ListEvContactCommandParser
+
+AddressBookParser --> LogicManager : ec
+deactivate AddressBookParser
+
+LogicManager -> ListEvContactCommand : execute(model)
+activate ListEvContactCommand
+
+create EventSetContainsEventPredicate
+ListEvContactCommand -> EventSetContainsEventPredicate : EventSetContainsEventPredicate(1)
+activate EventSetContainsEventPredicate
+
+EventSetContainsEventPredicate --> ListEvContactCommand :pr
+deactivate EventSetContainsEventPredicate
+
+ListEvContactCommand -> Model : updateFilteredPersonList(pr)
+activate Model
+
+Model --> ListEvContactCommand
+deactivate Model
+
+create CommandResult
+ListEvContactCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListEvContactCommand
+deactivate CommandResult
+
+ListEvContactCommand --> LogicManager : result
+deactivate ListEvContactCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

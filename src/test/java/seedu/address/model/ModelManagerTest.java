@@ -3,6 +3,7 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.CARNIVAL;
@@ -17,6 +18,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.parser.SortEventType;
+import seedu.address.model.event.EventNameContainsKeywordsPredicate;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
 
@@ -117,6 +121,43 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void deleteEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.deleteEvent(null));
+    }
+
+    @Test
+    public void deleteEvent_eventNotInAddressBook_throwsEventNotFoundException() {
+        assertThrows(EventNotFoundException.class, () -> modelManager.deleteEvent(WEDDING_DINNER));
+    }
+
+    @Test
+    public void deleteEvent_soleEventInAddressBook_deletesEvent() {
+        modelManager.addEvent(WEDDING_DINNER);
+        modelManager.deleteEvent(WEDDING_DINNER);
+        ModelManager expectedModelManager = new ModelManager();
+        assertEquals(expectedModelManager, modelManager);
+    }
+
+    @Test
+    public void deleteEvent_multipleEventsInAddressBook_deletesEvent() {
+        modelManager.addEvent(WEDDING_DINNER);
+        modelManager.addEvent(CARNIVAL);
+        modelManager.deleteEvent(WEDDING_DINNER);
+        ModelManager expectedModelManager = new ModelManager();
+        expectedModelManager.addEvent(CARNIVAL);
+        assertEquals(expectedModelManager, modelManager);
+    }
+
+    @Test
+    public void sortEventList_sortMultipleTimes_sortByFinalSort() {
+        modelManager.sortEventList(SortEventType.SORT_BY_NAME_ASC);
+        modelManager.sortEventList(SortEventType.SORT_BY_START_DATE_TIME);
+        ModelManager expectedModelManager = new ModelManager();
+        expectedModelManager.sortEventList(SortEventType.SORT_BY_START_DATE_TIME);
+        assertEquals(expectedModelManager, modelManager);
+    }
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON)
                 .withEvent(WEDDING_DINNER).withEvent(CARNIVAL).build();
@@ -147,6 +188,14 @@ public class ModelManagerTest {
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        // different filteredEventList -> returns false
+        keywords = WEDDING_DINNER.getName().toString().split("\\s+");
+        modelManager.updateFilteredEventList(new EventNameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

@@ -13,13 +13,18 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
-Class Person
+Class Person {
+    eventSet: Set<Event>
+}
 Class Address
 Class Email
 Class Name
 Class Phone
-Class Tag
 
+Class UniqueEventList
+Class Event
+Class EventName
+Class DateTime
 }
 
 Class HiddenOutside #FFFFFF
@@ -40,11 +45,18 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+
+AddressBook *--> "1" UniqueEventList
+UniqueEventList -----> "~* all" Event
+Event *--> EventName
+Event *--> "2" DateTime
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+EventName -[hidden]right-> DateTime
+
+ModelManager ---->"~* filtered" Person
+ModelManager ----->"~* filtered" Event
 @enduml

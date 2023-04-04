@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="650" minWidth="450" onCloseRequest="#handleExit" title="PlanEase" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/planease.png" />
   </icons>
   <scene>
     <Scene>
@@ -33,13 +33,7 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
-
-        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-            <HBox>
+            <HBox VBox.vgrow="NEVER">
                <children>
               <VBox fx:id="personList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
@@ -67,7 +61,13 @@
                </children>
             </HBox>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="150" minHeight="150" prefHeight="150" styleClass="pane-without-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="5" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
+
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-without-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>

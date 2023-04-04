@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+skinparam DefaultFontSize 40
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DelEventCommandParser" as DelEventCommandParser LOGIC_COLOR
+participant "d:DelEventCommand" as DelEventCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delevent 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("delevent 1")
+activate AddressBookParser
+
+create DelEventCommandParser
+AddressBookParser -> DelEventCommandParser
+activate DelEventCommandParser
+
+DelEventCommandParser --> AddressBookParser
+deactivate DelEventCommandParser
+
+AddressBookParser -> DelEventCommandParser : parse("1")
+activate DelEventCommandParser
+
+create DelEventCommand
+DelEventCommandParser -> DelEventCommand
+activate DelEventCommand
+
+DelEventCommand --> DelEventCommandParser
+deactivate DelEventCommand
+
+DelEventCommandParser --> AddressBookParser : d
+deactivate DelEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DelEventCommandParser -[hidden]-> AddressBookParser
+destroy DelEventCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DelEventCommand : execute()
+activate DelEventCommand
+
+DelEventCommand -> Model : deleteEvent(1)
+activate Model
+
+Model -> AddressBook : deleteEvent(1)
+activate AddressBook
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> DelEventCommand
+deactivate Model
+
+DelEventCommand -> Model : deleteEventFromPersonList(1)
+activate Model
+
+Model -> AddressBook : deleteEventFromPersonList(1)
+activate AddressBook
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> DelEventCommand
+deactivate Model
+
+create CommandResult
+DelEventCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DelEventCommand
+deactivate CommandResult
+
+DelEventCommand --> LogicManager : result
+deactivate DelEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

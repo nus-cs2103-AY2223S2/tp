@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.event.exceptions.EventNotFoundException;
 
 /**
  * A list of events that enforces uniqueness between its elements and does not allow nulls.
@@ -44,6 +45,26 @@ public class UniqueEventList implements Iterable<Event> {
         internalList.add(toAdd);
     }
 
+    /**
+     * Replaces the event {@code target} in the list with {@code editedEvent}.
+     * {@code target} must exist in the list.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the list.
+     */
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new EventNotFoundException();
+        }
+
+        if (!target.isSameEvent(editedEvent) && contains(editedEvent)) {
+            throw new DuplicateEventException();
+        }
+
+        internalList.set(index, editedEvent);
+    }
+
     public void setEvents(UniqueEventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -59,6 +80,17 @@ public class UniqueEventList implements Iterable<Event> {
             throw new DuplicateEventException();
         }
         internalList.setAll(events);
+    }
+
+    /**
+     * Removes the equivalent event from the list.
+     * The event must exist in the list.
+     */
+    public void remove(Event toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new EventNotFoundException();
+        }
     }
 
     /**
@@ -88,7 +120,7 @@ public class UniqueEventList implements Iterable<Event> {
     /**
      * Returns true if {@code events} contains only unique events.
      */
-    private boolean eventsAreUnique(List<Event> events) {
+    public boolean eventsAreUnique(List<Event> events) {
         for (int i = 0; i < events.size() - 1; i++) {
             for (int j = i + 1; j < events.size(); j++) {
                 if (events.get(i).isSameEvent(events.get(j))) {
