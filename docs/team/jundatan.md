@@ -50,7 +50,7 @@ Given below are my contributions to the project.
   * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-  * 
+  * Adding more error checks like addWeight Command where multiple weights can affect the graph.
 
 * **Documentation**:
   * User Guide:
@@ -61,7 +61,7 @@ Given below are my contributions to the project.
     * Added Use case for `add` [\#67](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/67)
     * Added Use case for `addRoutine` and `editRoutine` [\#117](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/117)
     * Added Implementation for `addRoutine` and `editRoutine` [\#134](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/134)
-    * Update diagrams for Storage and Model part of FitBook [\#145](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/145)
+    * Update UML diagrams and descriptions for Storage and Model part of FitBook [\#145](https://github.com/AY2223S2-CS2103T-T15-2/tp/pull/145)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments):
