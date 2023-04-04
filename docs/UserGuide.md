@@ -31,49 +31,52 @@ all in one place.
 <div style="page-break-after: always;"></div>
 
 ## About the User Guide
+
+### Objective of User Guide
 The Objective of this User Guide is to provide you with useful instructions on how to navigate the TinS application.
 To ensure a smooth on-boarding process for you to the TinS application, this User Guide will include detailed
 step-by-step instructions on how to install the TinS application into your device, as well as how to use the various 
 features of TinS. If you are a frequent user of TinS, this User Guide will also include useful tips on how you can use
 TinS in a more efficient way.
 
-## How the User Guide is Formatted
-**Information Box**
-<div markdown="span" class="alert alert-primary">
+### How the User Guide is Formatted
 
-:information_source: **Info:** Provides useful information that supplements the main text
-</div>
+#### Additional Tips and Comments
+    **Information Box**
+    <div markdown="span" class="alert alert-primary">
 
-**Tip Box**
-<div markdown="span" class="alert alert-success">
+    :information_source: **Info:** Provides useful information that supplements the main text
+    </div>
 
-:bulb: **Tip:**  Suggestions on how to enhance your experience
-</div>
+    **Tip Box**
+    <div markdown="span" class="alert alert-success">
 
-**Warning Box**
-<div markdown="span" class="alert alert-danger">
+    :bulb: **Tip:**  Suggestions on how to enhance your experience
+    </div>
 
-:warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
-carefully before committing
-</div>
+    **Warning Box**
+    <div markdown="span" class="alert alert-danger">
 
-<div style="page-break-after: always;"></div>
+    :warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
+    carefully before committing
+    </div>
 
-## About TinS Application's Interface
+#### Syntax Highlighting
+    Commands, fields, prefixes and file paths are highlighted in the User Guide.
+    
+    Example: `list`, `POSTIION`, `data/internshipcatalogue.json`
+    
+#### Buttons
+    Being optimized for use via typing, you can key in your desired commands to TinS using the keyboard.
+    Then, press the <button>Enter</button> to confirm your command and insturct TinS to execute them.
 
-![gui](images/gui.png)
-
-1. **Command Box**: This is where you would input your commands.
-2. **Program Response**: This box displays the program's feedback to your inputted commands.<br>
-   Types of Program Response Messages:
-   * Success Message: indicating that TinS has successfully executed your command
-   * Error Message: indicating the reason why TinS was not about to execute your command and tips on what you can do to
-   correct the error
-3. **Internship List Panel**: This panel displays your internships listings stored in TinS (including Position,
-   Company, Status and Tags).
-4. **Internship Display Panel**: This panel displays relevant details pertaining to specific internship.
-5. **Location Bar**: This location bar tells you where your TinS data file is currently stored on your computer.
-
+### How to use the User Guide
+* If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick_start) will guide you through the process of
+installing TinS and provide you with a brief introduction to TinS. 
+* If you are **a more advanced user of TinS**, the [Features](#features) section contains detailed information of what features
+TinS has to offer. Embedded in this section, there are also tips on how you can maximize your efficiency while using TinS. 
+* If you are **encountering an issue** with TinS, the [Frequently Asked Question](#frequently_asked_question) section might 
+be helpful for you.
 
 <div style="page-break-after: always;"></div>
 
@@ -103,6 +106,27 @@ carefully before committing
 
 6. Refer to the [Command Summary](#command_summary) below for your desired TinS Commands. More details on each specific
 TinS command can be found [here](#features).
+
+<div style="page-break-after: always;"></div>
+
+## About TinS
+
+### About TinS Application's Interface
+
+![gui](images/gui.png)
+
+1. **Command Box**: This is where you would input your commands.
+2. **Program Response**: This box displays the program's feedback to your inputted commands.<br>
+   Types of Program Response Messages:
+   * Success Message: indicating that TinS has successfully executed your command
+   * Error Message: indicating the reason why TinS was not about to execute your command and tips on what you can do to
+   correct the error
+3. **Internship List Panel**: This panel displays your internships listings stored in TinS (including Position,
+   Company, Status and Tags).
+4. **Internship Display Panel**: This panel displays relevant details pertaining to specific internship.
+5. **Location Bar**: This location bar tells you where your TinS data file is currently stored on your computer.
+
+### How your Internship Application Data is Organised in TinS
 
 
 
@@ -334,7 +358,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-<h3 id="eventdelete_function">Deleting an Event from an Internship Application : `event delete`</h3>
+### Deleting an Event from an Internship Application : `event delete`
 
 Deletes selected Event along with its details from the selected internship.
 
@@ -347,7 +371,7 @@ Examples: `event delete 1` entered after `select 1` deletes the first event in t
 
 <div style="page-break-after: always;"></div>
 
-<h3 id="eventfind_function">Finding a particular Event : `find event`</h3>
+### Finding a particular Event : `event find`
 
 Finds events based on certain filters.
 
@@ -358,7 +382,7 @@ Interview and starting time 20 March 2023, 2pm.
 
 <div style="page-break-after: always;"></div>
 
-<h3 id="clash_function">Finding all Clashing Events : `clash`</h3>
+### Finding all Clashing Events : `clash`
 
 Displays all events with clashing timings in the [Internship Display Panel](#about_gui).
 
@@ -370,28 +394,28 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
-<h3 id="clear_function">Clearing all Internship Applications in TinS : `clear`</h3>
+### Clearing all Internship Applications in TinS : `deleteall`
 
 Deletes all existing Internship Applications in TinS.
 
 > Caution: This command is irreversible. Only use it when you would like to clear <b>all</b> internship applications in
 > your Internship Catalogue.
 
-Format: `clear`
+Format: `deleteall`
 
-<h3 id="help_function">Getting Help : `help`</h3>
+### Getting Help : `help`
 
-Provides you with the link to [The Intern's Ship - User Guide](#intro).
+Provides you with the link to The Intern's Ship - User Guide.
 
 Format: `help`
 
-<h3 id="exit_function">Exiting the program : `exit`</h3>
+### Exiting the program : `exit`
 
 Exits and closes the TinS application.
 
 Format: `exit`
 
-<h3 id="save_function">Saving the data</h3>
+### Saving the data
 
 The Intern Ship’s data is saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
@@ -400,7 +424,7 @@ There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<h2 id="command_summary">Command summary</h2>
+## Command Summary
 
 <table>
 
