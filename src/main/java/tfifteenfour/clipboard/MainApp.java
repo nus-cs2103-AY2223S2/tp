@@ -2,6 +2,7 @@ package tfifteenfour.clipboard;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -20,7 +21,6 @@ import tfifteenfour.clipboard.model.Model;
 import tfifteenfour.clipboard.model.ModelManager;
 import tfifteenfour.clipboard.model.ReadOnlyRoster;
 import tfifteenfour.clipboard.model.ReadOnlyUserPrefs;
-import tfifteenfour.clipboard.model.Roster;
 import tfifteenfour.clipboard.model.UserPrefs;
 import tfifteenfour.clipboard.model.util.SampleDataUtil;
 import tfifteenfour.clipboard.storage.JsonRosterStorage;
@@ -38,6 +38,7 @@ import tfifteenfour.clipboard.ui.UiManager;
 public class MainApp extends Application {
 
     public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final String MESSAGE_SAMPLE = "Will be starting with a sample Roster";
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -59,8 +60,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        RosterStorage addressBookStorage = new JsonRosterStorage(userPrefs.getRosterFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        RosterStorage rosterStorage = new JsonRosterStorage(userPrefs.getRosterFilePath());
+
+        storage = new StorageManager(rosterStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -77,21 +79,32 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyRoster> addressBookOptional;
+        Path sampleFilePath = userPrefs.getSampleFilePath();
+        InputStream sampleResourceStream = this.getClass().getResourceAsStream("/assets/sampleRoster.json");
+
+
         ReadOnlyRoster initialData;
         try {
             addressBookOptional = storage.readRoster();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample Roster");
+            if (addressBookOptional.isEmpty()) {
+                logger.info("Data file not found. " + MESSAGE_SAMPLE);
                 new File("data").mkdir();
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleRoster);
+            initialData = addressBookOptional.orElseGet(() ->
+                    SampleDataUtil.getSampleRoster(sampleFilePath, sampleResourceStream));
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty Roster");
-            initialData = new Roster();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty Roster");
-            initialData = new Roster();
+            logger.warning("Data file not in the correct format. " + MESSAGE_SAMPLE);
+            initialData = SampleDataUtil.getSampleRoster(sampleFilePath, sampleResourceStream);
+        } catch (IllegalArgumentException e) {
+            logger.warning("Invalid data detected. " + MESSAGE_SAMPLE);
+            initialData = SampleDataUtil.getSampleRoster(sampleFilePath, sampleResourceStream);
         }
+        catch (IOException e) {
+            logger.warning("Problem while reading from the file. " + MESSAGE_SAMPLE);
+            initialData = SampleDataUtil.getSampleRoster(sampleFilePath, sampleResourceStream);
+
+        }
+
         this.roster = initialData;
         return new ModelManager(initialData, userPrefs);
     }

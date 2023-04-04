@@ -1,3 +1,14 @@
+@font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("fonts/OpenSans-Regular.ttf");
+}
+
+.label {
+    -fx-font-family: "Open Sans";
+}
+
 #copyButton, #helpMessage {
     -fx-text-fill: #57473c;
 }

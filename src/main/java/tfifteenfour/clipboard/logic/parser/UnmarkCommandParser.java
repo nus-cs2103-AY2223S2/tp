@@ -1,7 +1,5 @@
 package tfifteenfour.clipboard.logic.parser;
 
-import static tfifteenfour.clipboard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import tfifteenfour.clipboard.commons.core.index.Index;
 import tfifteenfour.clipboard.logic.commands.attendancecommand.MarkAbsentCommand;
 import tfifteenfour.clipboard.logic.parser.exceptions.ParseException;
@@ -23,7 +21,7 @@ public class UnmarkCommandParser implements Parser<MarkAbsentCommand> {
             return new MarkAbsentCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkAbsentCommand.MESSAGE_USAGE), pe);
+                    pe.getMessage() + MarkAbsentCommand.MESSAGE_USAGE);
         }
     }
 }

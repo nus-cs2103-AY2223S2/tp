@@ -20,6 +20,14 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 - [Quick Start](#quick-start)
 - [Navigation Guide](#navigation-guide)
 - [List of Commands](#commands)
+    - [General Commands](#general-commands)
+    - [Course Page Commands](#course-page-commands)
+    - [Group Page Commands](#group-page-commands)
+    - [Students Page Commands](#students-page-commands)
+    - [Session Page Commands](#session-page-commands)
+    - [Attendance Page Commands](#attendance-page-commands)
+    - [Task Page Commands](#task-page-commands)
+    - [Grades Page Commands](#grades-page-commands)
 
 --------------------------------------------------------------------------------------------------------------
 
@@ -36,8 +44,8 @@ CLIpboard is optimized **for use via a Command Line Interface** (CLI) while stil
 <br>e.g. typing `help` and pressing Enter will open the help window.
     <br>Some example commands you can try:
     1. `select 1` : Selects the first item in the list displayed in the list panel.
-    2. `add n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named John Doe with the particulars to the list at Student Page.
-    3. `delete 3` : Deletes the 3rd student shown in the student list when you are at Student Page.
+    2. `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X` : Adds a student named John Doe with the particulars to the list at Student Page.
+    3. `delete student 3` : Deletes the 3rd student shown in the student list when you are at Student Page.
     4. `undo` : Returns to the state before the last command you entered.
     5. `exit` : Exits the app.
 6. Refer to the commands list below for a detailed description for each command.
@@ -58,7 +66,15 @@ If you need more information on how to use these commands, just refer to our han
 
 List of commands:
 
--  [Course Page Commands: ](#course-page-commands)
+- [General Commands: ](#general-commands)
+    - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
+    - [Displaying the previous page you were at: ](#displaying-the-previous-page-you-were-at-back) `back`
+    - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
+    - [Opening help window: ](#opening-help-window-help) `help`
+    - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
+    - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
+    - [Exiting the program: ](#exiting-the-program-exit) `exit`
+- [Course Page Commands: ](#course-page-commands)
     - [Adding a course: ](#adding-a-course-add-course) `add course`
     - [Deleting a course: ](#deleting-a-course-delete-course) `delete course`
     - [Editing a course: ](#editing-a-course-edit-course) `edit course`
@@ -75,11 +91,12 @@ List of commands:
     - [Deleting a student: ](#deleting-a-student-delete-student) `delete student`
     - [Editing a student: ](#editing-a-student-edit-student) `edit student`
     - [Copying a student's email: ](#copying-a-students-email-copy) `copy`
-    - [Finding students by name: ](#finding-students-by-name-find) `find`
+    - [Finding students by name or student ID: ](#finding-students-by-name-or-student-id-find-student) `find student`
+    - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
     - [Displays a student's information:  ](#displays-a-students-information-select) `select`
     - [Adding or deleting a remark: ](#adding-or-deleting-a-remark-remark) `remark`
     - [Upload a student's photo: ](#uploading-a-students-photo-upload) `upload`
-    - [Sorting list of students: ](#sorting-list-of-students-sort) `sort`
+    - [Displays a summary of a student's attendance: ](#viewing-a-students-attendance-throughout-the-course-attendance) `attendance`
 - [Session Page Commands: ](#session-page-commands)
     - [Adding a session: ](#adding-a-session-add-session) `add session`
     - [Deleting a session: ](#deleting-a-session-delete-session) `delete session`
@@ -96,17 +113,104 @@ List of commands:
     - [Selecting a task to assign grades: ](#selecting-a-task-to-assign-grades-select) `select`
 - [Grades Page Commands: ](#grades-page-commands)
     - [Assigning a grade: ](#assigning-a-grade-to-student-assign) `assign`
-- [General Commands: ](#general-commands)
-    - [Displaying the home page (Course Page): ](#displaying-the-home-page-course-page-home) `home`
-    - [Displaying the previous page you were at: ](#displaying-the-previous-page-you-were-at-back) `back`
-    - [Undoing the last command you did: ](#undoing-the-last-command-you-did-undo) `undo`
-    - [Opening help window: ](#opening-help-window-help) `help`
-    - [Scrolling through command history: ](#scrolling-through-command-history-up-or-down-arrow-key) `UP` or `DOWN` arrow key
-    - [Clearing all entries: ](#clearing-all-entries-clear) `clear`
-    - [Exiting the program: ](#exiting-the-program-exit) `exit`
+
 
 
 --------------------------------------------------------------------------------------------------------------
+## General Commands
+Before navigating through pages in CLIpboard, you may familiarise yourself with general commands and features that can be used on any page.
+
+
+### Displaying the home page (Course Page): `home`
+
+Goes back to the home page, which is the Course Page of CLIpboard.
+
+Format:
+```
+home
+```
+
+[Back to list of commands](#commands)
+
+
+
+### Displaying the previous page you were at: `back`
+
+Goes back to the page you were at.
+
+Format:
+```
+back
+```
+
+[Back to list of commands](#commands)
+
+
+
+### Undoing the last command you did: `undo`
+
+Deletes the change that your last command did.
+
+Format:
+```
+undo
+```
+
+[Back to list of commands](#commands)
+
+
+
+### Opening help window: `help`
+
+Opens a window showing the list of commands available in the current page, as well as a link to this User Guide.
+
+Format:
+```
+help
+```
+
+[Back to list of commands](#commands)
+
+
+
+### Scrolling through command history: `UP` or `DOWN` arrow key
+
+Scrolls through past commands in command box.
+
+- Similar to Linux command-line interface, use the up or down arrow keys to scroll through previously typed commands in the command box.
+- You may use the `LEFT` or `RIGHT` arrow keys to edit the command first.
+- Press `ENTER` to execute the command.
+
+[Back to list of commands](#commands)
+
+
+
+### Clearing all entries: `clear`
+
+Clears all entries in the list pane of the current page.
+
+Format:
+```
+clear
+```
+
+[Back to list of commands](#commands)
+
+
+
+### Exiting the program: `exit`
+
+Exits the program.
+
+Format:
+```
+exit
+```
+
+[Back to list of commands](#commands)
+
+--------------------------------------------------------------------------------------------------------------
+
 ## Course Page Commands
 ![image](./images/UiCoursePage.png)
 
@@ -310,8 +414,8 @@ add student n/<NAME> p/<PHONE_NUMBER> e/<EMAIL> sid/<STUDENT_ID>
     - For example, if a student with a student ID of `A0123456X` already exists in CLIpboard, entering `add student n/Tom p/99887766 e/tom@example.com sid/A0123456X` will display an error message.
 
 Examples:
-- `add student n/John Doe p/98765432 e/johnd@example.com sid/A1234567X`
-- `add student n/Roy Balakrishnan p/92624417 e/royb@example.com sid/A7356561X`
+- `add student n/Han Wei Jiew p/98765432 e/hanwj@example.com sid/A6789012F`
+- `add student n/Siti Aisyah p/92624417 e/saisyah@example.com sid/A7890123G`
 
 [Back to list of commands](#commands)
 
@@ -335,7 +439,7 @@ Examples:
 
 ### Editing a student: `edit student`
 
-Edits an existing student in the student roster.
+Did your student change their phone number or you realised you mispelled their name? Do not worry, because you can easily change this with the edit command.
 
 Format:
 ```
@@ -371,26 +475,51 @@ Examples:
 
 
 
-### Finding students by name: `find`
+### Finding students by name or student ID: `find student`
 
-Finds students whose names contain any of the given keywords.
+Finds students whose names or student IDs contain any of the given keywords(s).
 
 Format:
 ```
-find <KEYWORD> [<MORE_KEYWORDS>]
+find student <KEYWORD> [<MORE_KEYWORDS>]
 ```
 
+- You can find students using either name or student ID for the keyword(s).
 - Keywords are separated by spaces.
+- Student IDs of invalid format will not return any students
+    - For example, `find student A1234` will not return the student with student ID A1234567X.
+    
 
 Examples:
-- `find John` returns John.
-- `find Alex Yu` returns `Alex Yeoh`, `Bernice Yu` 
+- `find student John` returns John.
+- `find student Alex Yu` returns `Alex Yeoh`, `Bernice Yu`. 
+
+- `find A1234567X` returns the student whose student ID is A1234567X.
+
+[Back to list of commands](#commands)
+
+### Sorting list of students: `sort`
+
+Sorts list of students in student roster.
+
+Format:
+```
+sort <CATEGORY>
+```
+
+- Current possible categories are `name` and `id`
+
+Examples:
+- `sort name` will sort list of students alphabetically according to name.
+- `sort id` will sort list of students alphanumerically according to student ID.
 
 [Back to list of commands](#commands)
 
 
 
 ### Displays a student's information: `select`
+
+![image](./images/UiStudentView.png)
 
 Select a particular student and display his / her particulars.
 
@@ -400,7 +529,7 @@ select <INDEX>
 ```
 
 Examples:
-- `select 2` will select the 2nd student in the student list and display his / her particulars on the view panel.
+- `select 1` will select the 1st student in the student list and display his / her particulars on the view panel on the right.
 
 [Back to list of commands](#commands)
 
@@ -453,21 +582,17 @@ Examples:
 [Back to list of commands](#commands)
 
 
+### Viewing a student's attendance throughout the course: `attendance`
 
-### Sorting list of students: `sort`
+![image](./images/UiStudentAttendanceView.png)
 
-Sorts list of students in student roster.
+Shows a summary of a student's attendance in the view pane.
 
 Format:
 ```
-sort <CATEGORY>
+attendance
 ```
-
-- Current possible categories are `name` and `id`
-
-Examples:
-- `sort name` will sort list of students alphabetically according to name.
-- `sort id` will sort list of students alphanumerically according to student ID.
+- To mark a student's attendance for a particular session, you can navigate to the [Attendance Page](#attendance-page-commands).
 
 [Back to list of commands](#commands)
 
@@ -491,6 +616,7 @@ add session <SESSION>
 - Adding a session with the same session name is not allowed.
     - For example, if a session with name `Tutorial1` already exists in CLIpboard,
       entering `add session Tutorial1` will display an error message.
+    - Note: whitespaces are not allowed in session names.
 
 Examples:
 - `add session Tutorial1`
@@ -565,7 +691,7 @@ mark <INDEX>, <INDEX>, ...
 
 Examples:
 - `mark 1` will mark the first student as present.
-- `mark 2,3,4` will mark the 2nd, 3rd and 4th students as present.
+- `mark 2, 4, 5, 6` will mark the 2nd, 4th, 5th and 6th students as present.
 
 [Back to list of commands](#commands)
 
@@ -617,12 +743,12 @@ add task <TASK NAME>
 ```
 
 - Adding a task with the same task name is not allowed.
-    - For example, if a task with name `CA1` already exists in CLIpboard,
-      entering `add task CA1` will display an error message.
+    - For example, if a task with name `OP1` already exists in CLIpboard,
+      entering `add task OP1` will display an error message.
 
 Examples:
-- `add task CA1`
-- `add task Pitch and Demo`
+- `add task OP1`
+- `add task Critical Reflection 1`
 
 [Back to list of commands](#commands)
 
@@ -693,101 +819,9 @@ assign <INDEX> <GRADE>
 - Grade must be a number between `0 and 100`, inclusive of `0 and 100`.
 
 Examples:
-- `assign 1 80` will assign the first student on the Student Page the grade of 80.
+- `assign 1 78` will assign the first student on the Student Page the grade of 78.
+- `assign 3 0` will assign the third student on the Studet Page the grade of 0.
 
 [Back to list of commands](#commands)
 
-
---------------------------------------------------------------------------------------------------------------
-
-## General Commands
-Commands that can be used on any page.
-
-### Displaying the home page (Course Page): `home`
-
-Goes back to the home page, which is the Course Page of CLIpboard.
-
-Format:
-```
-home
-```
-
-[Back to list of commands](#commands)
-
-
-
-### Displaying the previous page you were at: `back`
-
-Goes back to the page you were at.
-
-Format:
-```
-back
-```
-
-[Back to list of commands](#commands)
-
-
-
-### Undoing the last command you did: `undo`
-
-Deletes the change that your last command did.
-
-Format:
-```
-undo
-```
-
-[Back to list of commands](#commands)
-
-
-
-### Opening help window: `help`
-
-Opens a window showing a link to this User Guide.
-
-Format:
-```
-help
-```
-
-[Back to list of commands](#commands)
-
-
-
-### Scrolling through command history: `UP` or `DOWN` arrow key
-
-Scrolls through past commands in command box.
-
-- Similar to Linux command-line interface, use the up or down arrow keys to scroll through previously typed commands in the command box.
-- You may use the `LEFT` or `RIGHT` arrow keys to edit the command first.
-- Press `ENTER` to execute the command.
-
-[Back to list of commands](#commands)
-
-
-
-### Clearing all entries: `clear`
-
-Clears all entries in the student roster.
-
-Format:
-```
-clear
-```
-
-[Back to list of commands](#commands)
-
-
-
-### Exiting the program: `exit`
-
-Exits the program.
-
-Format:
-```
-exit
-```
-
-[Back to list of commands](#commands)
 

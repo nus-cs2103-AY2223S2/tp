@@ -24,7 +24,9 @@ import tfifteenfour.clipboard.model.task.Task;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.\n";
+    public static final String MESSAGE_INDEX_NOT_PROVIDED = "Index is not provided!\n";
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -50,6 +52,10 @@ public class ParserUtil {
      */
     public static Index[] parseMultipleIndex(String oneBasedIndexes) throws ParseException {
         String[] indexArray = oneBasedIndexes.split(",");
+        if (indexArray.length == 0 || indexArray[0].length() == 0) {
+            throw new ParseException(MESSAGE_INDEX_NOT_PROVIDED);
+        }
+
         String[] trimmedArray = new String[indexArray.length];
         Index[] trimmedIndexes = new Index[indexArray.length];
 
