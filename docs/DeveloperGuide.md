@@ -203,7 +203,7 @@ The tab switching mechanism is facilitated by [`TabUtil`](https://github.com/AY2
 
 ![Structure of `TabUtil`](images/TabClassDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 There are two ways to switch between tabs:
 * **Method 1:** Click on individual tabs in the tabs bar
@@ -230,7 +230,7 @@ Low-level details of the parsing of select command in logic is omitted as it has
 Upon execution, the `selectedPerson` field of AddressBook would be updated, allowing the GUI to access it
 and display changes accordingly.
 
-#### Design considerations:
+#### Design considerations
 
 There are two ways to select a contact:
 * **Method 1:** Click on the contact in the current displayed contact list
@@ -340,7 +340,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
