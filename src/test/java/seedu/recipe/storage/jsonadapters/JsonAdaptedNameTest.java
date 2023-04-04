@@ -14,7 +14,7 @@ import seedu.recipe.model.recipe.Name;
 public class JsonAdaptedNameTest {
 
     private static final String VALID_NAME = "Cheeseburger";
-    private static final String INVALID_NAME = "Burger123";
+    private static final String INVALID_NAME = "Burger#Fried";
 
     @Test
     public void constructor_validStringName_returnsJsonAdaptedName() {

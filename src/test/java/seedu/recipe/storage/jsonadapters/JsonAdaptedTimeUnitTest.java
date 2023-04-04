@@ -1,7 +1,6 @@
 package seedu.recipe.storage.jsonadapters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static seedu.recipe.testutil.Assert.assertThrows;
 import static seedu.recipe.testutil.TypicalRecipes.CACIO_E_PEPE;
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,6 @@ import seedu.recipe.model.recipe.unit.TimeUnit;
 
 public class JsonAdaptedTimeUnitTest {
     private static final String VALID_UNIT = "hour";
-    private static final String INVALID_UNIT = "123";
 
     @Test
     public void constructor_validUnitString_returnsJsonAdaptedTimeUnit() {
@@ -31,11 +29,4 @@ public class JsonAdaptedTimeUnitTest {
         TimeUnit expectedUnit = new TimeUnit(VALID_UNIT);
         assertEquals(expectedUnit, adaptedUnit.toModelType());
     }
-
-    //Should be fixed once Filber code is merged
-    //    @Test
-    //    public void toModelType_invalidUnit_throwsIllegalValueException() {
-    //        JsonAdaptedTimeUnit adaptedUnit = new JsonAdaptedTimeUnit(INVALID_UNIT);
-    //        assertThrows(IllegalValueException.class, adaptedUnit::toModelType);
-    //    }
 }
