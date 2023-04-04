@@ -21,8 +21,8 @@ import taa.testutil.TypicalPersons;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private final Model model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
-    private final Model expectedModel = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
 
     @Test
     public void equals() {

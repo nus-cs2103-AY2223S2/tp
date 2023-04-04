@@ -11,7 +11,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import taa.commons.core.GuiSettings;
 import taa.model.ClassList;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyStudentList;
 import taa.model.UserPrefs;
 import taa.testutil.TypicalPersons;
 
@@ -24,7 +24,7 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonTaaStorage addressBookStorage = new JsonTaaStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
     }
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void taaDataReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonClassListStorageTest} class.
          */
-        ClassList original = TypicalPersons.getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
+        ClassList original = TypicalPersons.getTypicalTaaData();
+        storageManager.saveTaaData(original);
+        ReadOnlyStudentList retrieved = storageManager.readTaaData().get();
         assertEquals(original, new ClassList(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getTaaDataFilePath() {
+        assertNotNull(storageManager.getTaaDataFilePath());
     }
 
 }
