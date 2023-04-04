@@ -24,9 +24,6 @@ public class FindTagCommandParser implements Parser<FindTagCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTagCommand.MESSAGE_USAGE));
         }
-        if (!trimmedArgs.startsWith("[") || !trimmedArgs.endsWith("]")) {
-            trimmedArgs = "[" + trimmedArgs + "]";
-        }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
