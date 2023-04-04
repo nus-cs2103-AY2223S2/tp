@@ -71,7 +71,7 @@ public class GoToCommand extends Command {
         } else { //Desktop package not supported in this system
             if (os.contains("nix")) {
                 Runtime runtime = Runtime.getRuntime();
-                runtime.exec("xdg-open" + url);
+                runtime.exec(String.format("xdg-open %s", url));
             }
             else {
                 throw new CommandException(NOT_SUPPORTED);
