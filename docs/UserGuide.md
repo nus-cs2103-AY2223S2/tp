@@ -502,7 +502,7 @@ You can add a fish to a specified tank in *Fish Ahoy!* with the `fish add` comma
 Use this command to add your fishes to tanks. By adding fishes in tanks that you own, you can easily categorise them by tanks and store
 important information about them.
 
-Format: `fish add n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTERVAL> tk/<TANK_INDEX> [tg/<TAG>]`
+Format: `fish add n/<FISH_NAME> lfd/<LAST_FED_DATE> s/<SPECIES> fi/<FEEDING_INTERVAL> tk/<TANK_INDEX> [tg/<TAG>]...`
 
 Parameters:
 * Prefix parameters:
@@ -516,13 +516,13 @@ Parameters:
     * `<FEEDING_INTERVAL>` should be in the format `<DAYS>d<HOURS>h`
   * `tk/<TANK_INDEX>` - [Tank prefix.](#tank-tktank_index) Specifies the index of the tank to add readings to.
     * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
-  * `[tg/<TAG>]` - [Tags prefix.](#tags-tgtag) Specifies the additional tags of this fish
+  * `[tg/<TAG>]...` - [Tags prefix.](#tags-tgtag) Specifies the additional tags of this fish
     * `<TAG>` should only contain alphanumeric characters, with **no** spaces
     * Optional, or can have multiple
     
 > :information_source: Additional information: A fish **must** belong in a tank.
 
-> :information_source: Additional information: syntax we use for tags are enclosed in square brackets `[tg/<TAG>]`, to show that a fish can contain 0 or more tags.
+> :information_source: Additional information: syntax we use for tags are enclosed in square brackets followed by '...' `[tg/<TAG>]...`, to show that a fish can contain 0 or more tags.
 
 > :exclamation: Warning: You **cannot** add two fishes of the same name to *Fish Ahoy!*
 
@@ -552,6 +552,51 @@ Parameters:
 
 Example:
 * `fish delete 3` deletes the third fish **currently displayed** in the [fishes panel](#about-the-interface)
+
+### Editing a fish: `fish edit`
+
+You can edit the details of an existing fish with the `fish edit` command.
+
+Use this command if you want to update the original sample fish names to match your fish names, or if you decide that you want to rename an existing fish.
+
+Format: `fish edit <FISH_INDEX> [n/<FISH_NAME>] [lfd/<LAST_FED_DATE>] [s/<SPECIES>] [fi/<FEEDING_INTERVAL>] [tk/<TANK_INDEX>] [tg/<TAG>]...`
+
+Parameters:
+* Index parameters:
+  * `<FISH_INDEX>` - The fish index. Specifies which fish to delete
+    * `<FISH_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual fish
+* Prefix parameters:
+  * `[n/<FISH_NAME>]` - [Name prefix.](#name-nname) Specifies the name of this fish you want to add
+    * `<FISH_NAME>` is is alphanumeric and can contain spaces. It is case-sensitive
+    * Optional. Include this to edit the name of a fish
+  * `[lfd/<LAST_FED_DATE>]` - [Last fed date prefix.](#last-fed-date-lfdlast_fed_date) Specifies the date and time this fish was last fed
+    * `<LAST_FED_DATE>` should be in the format `DD/MM/YYYY HH:MM`
+    * Optional. Include this to edit the last fed date of a fish
+  * `[s/<SPECIES>]` - [Species prefix.](#species-sspecies) Specifies the species of this fish
+    * `<SPECIES>` should only contain alphanumeric characters and spaces
+    * Optional. Include this to edit the species of a fish
+  * `[fi/<FEEDING_INTERVAL>]` - [Feeding interval prefix](#feeding-interval-fifeeding_interval) Specifies how often this fish needs to be fed
+    * `<FEEDING_INTERVAL>` should be in the format `<DAYS>d<HOURS>h`
+    * Optional. Include this to edit the feeding interval of a fish
+  * `[tk/<TANK_INDEX>]` - [Tank prefix.](#tank-tktank_index) Specifies the index of the tank to add readings to
+    * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank
+    * Optional. Include this to edit the tank of a fish
+  * `[tg/<TAG>]...` - [Tags prefix.](#tags-tgtag) Specifies the additional tags of this fish
+    * `<TAG>` should only contain alphanumeric characters, with **no** spaces
+    * Optional, or can have multiple
+
+> :information_source: Additional information: Editing tags will cause the tags to be set to your input!
+> <br> For example: If a fish with index 1 has no tags, and you use `fish edit 1 tg/Fat tg/Sick`, that fish
+> will have the tags 'Fat' and 'Sick'!
+
+> :exclamation: Warning: Even though all parameters are listed as optional, you still need to edit
+> at least 1 parameter!
+
+Example:
+* You have a fish named 'Nemo' with index 1. Using `fish edit 1 n/Found nemo` will result the fish to have the 
+following details:
+  * Name: 'Found nemo'
+  * Other details: same as before
 
 ### Sorting fishes: `fish sort`
 
@@ -682,11 +727,41 @@ Format: `task delete <TASK_INDEX>`
 
 Parameters:
 * Index parameters:
-  * `<TASK_INDEX>` - The task [index](#faq). Specifies which task to delete.
-    * `<TASK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual task.
+  * `<TASK_INDEX>` - The task [index](#faq). Specifies which task to delete
+    * `<TASK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual task
 
 Example:
 * `task delete 1` deletes the first task listed in the [tasks panel](#about-the-interface)
+
+### Editing a task: `task edit`
+
+You can edit the details of an existing task with the `task edit` command.
+
+Use this command if you want to update the original sample task descriptions to match your task descriptions, or if you decide that you want to rename an existing task or update its priority or tank.
+
+Format: `task edit <TASK_INDEX> [d/<TASK_DESCRIPTION>] [tk/<TANK_INDEX>] [p/<PRIORITY>]`
+
+Parameters:
+* Index parameters:
+  * `<TASK_INDEX>` - The task [index](#faq). Specifies which task to delete
+    * `<TASK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual task
+* Prefix parameters:
+  * `[d/<TASK_NAME>]` - [Description prefix.](#description-ddescription) Specifies the name of the task
+    * `<TASK_NAME>` is alphanumeric and can contain spaces. It is case-sensitive
+    * Optional. Include this to edit the name of a task
+  * `[tk/<TANK_INDEX>]` - [Tank prefix.](#tank-tktank_index) Specifies the index of the tank to add this task to.
+    * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
+    * Optional. Include this to edit the tank of a task
+  * `[p/<PRIORITY_LEVEL>]` - [Priority prefix.](#priority-ppriority) Specifies the priority of this task
+    * `<PRIORITY>` is one of the following: low, medium, high
+    * Optional. Include this to edit the priority of a task
+
+> :exclamation: Warning: Even though all parameters are listed as optional, you still need to edit at least 1 parameter!
+
+Example:
+* You have a task with description 'Clean tank' of index 1, and it is attached to 'freshwater tank'. `task edit 1 d/clean tank again` will change the task to have the following details:
+  * Description: 'clean tank again'
+  * Tank: 'freshwater tank'
 
 ### Listing tasks: `list tasks`
 
@@ -744,14 +819,14 @@ App data are saved as a JSON file `[JAR file location]/data/fishahoy.json`. Adva
 > :bulb: Tip: If you have a set of ammonia, pH and temperature readings you want to input in bulk,
 you might want to insert it directly in the `readings.json` file!
 
-> :exclamation: Warning: If your changes to the data file makes its format invalid, Fish Ahoy! will discard all data and start with an empty data file at the next run.
+> :exclamation: Warning: If your changes to the data file makes its format invalid, Fish Ahoy! will discard all data and start with an empty data file at the next run
 
 ## Help
 ### Viewing help : `help`
 
 Opens up a web-viewer showing this user guide!
 
-:bulb: If you do not have internet connection, an offline version will still be loaded!
+> :bulb: Tip: If you do not have internet connection, an offline version will still be loaded!
 
 ![help message](images/helpMessage.png)
 
