@@ -131,7 +131,7 @@
     -fx-background-radius: 20;
 }
 
-.list-cell:hover {
+.list-cell:filled:hover {
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0, 0, 5);
     -fx-transition: -fx-translate-y 0.5s ease;
     -fx-translate-y: -5px;
