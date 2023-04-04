@@ -29,12 +29,14 @@ title: User Guide
     * [Fishes](#fishes)
       * [Adding a fish `fish add`](#adding-a-fish-fish-add)
       * [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
+      * [Editing a fish `fish edit`](#editing-a-fish-fish-edit)
       * [Sorting fishes `fish sort`](#sorting-fishes-fish-sort)
       * [Viewing fishes `fish view`](#viewing-a-fish-fish-view)
       * [Listing fishes `list fishes`](#listing-fishes-list-fishes)
     * [Tasks](#tasks)
       * [Adding a task `task add`](#adding-a-task-task-add)
       * [Deleting a task `task delete`](#deleting-a-task-task-delete)
+      * [Editing a task `task edit](#editing-a-task-task-edit)
       * [Listing tasks `list task`](#listing-tasks-list-task)
       * [Feeding reminders](#feeding-reminders)
     * [Storage](#storage)
@@ -682,9 +684,10 @@ In the list, each task has an [index](#faq). Use these indexes to perform certai
 > :bulb: Tip: Tasks are sorted by highest priority to the lowest priority in the task panel!
 > A task with no priority is of the lowest level, and `high` is the highest.
 
-Currently, there are three operations around tasks:
+Currently, there are four command actions of type task:
 * [Adding a task `task add`](#adding-a-task-task-add)
 * [Deleting a task `task delete`](#deleting-a-task-task-delete)
+* [Editing a task `task edit`](#editing-a-task-task-edit)
 * [Listing tasks `list tasks`](#listing-tasks-list-task)
 
 ### Adding a task: `task add`
