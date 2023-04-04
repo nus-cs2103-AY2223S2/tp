@@ -310,6 +310,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Sort feature
 
+Both fields for sorting persons are compulsory, namely the order of sorting and the sort by criteria. The order and
+sort by criteria that are available are listed in the User Guide.
+
+Below shows the activity diagram when the user inputs the sort command in the command box:
+
+![Activity Diagram for sort command](images/sortcommand-activity.png){:.center}
+
+The subsidiary diagram, for SortCommandParser, is as shown below:
+
+![Activity Diagram for sort command parser](images/sortcommandparser.png){:.center}
+
 #### Implementation
 
 The `filteredPersons` variable in the ModelManager.java is defined by passing in the `getPersonList()` from `addressBook` 
