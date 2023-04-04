@@ -49,7 +49,7 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void InternshipBookReadSave() throws Exception {
+    public void internshipBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link JsonInternshipBookStorage} class.
