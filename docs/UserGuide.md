@@ -161,7 +161,7 @@ Refer to the [Features](#features) below for details of each command.
 5. Extraneous parameters will be ignored.\
    e.g. `add {module_code} /name {module_name}` if used as `add CS2040 /name DSAG /foo bar`, the `/foo` parameter is ignored.
 
-6. Arguments must be specified in the format `/{argument_name} {value}`, if the argument takes a value, or `/{argument_name}`, if the argument takes no value, and there must be a whitespace before `/{argument_name}`.
+6. Arguments must be specified in the format `/{argument_name} {value}` if the argument takes a value. If the argument expects no value, the format is in `/{argument_name}`, but if specified, the value will be ignored. Note that there must be a whitespace before `/{argument_name}`.
 
 ---
 
