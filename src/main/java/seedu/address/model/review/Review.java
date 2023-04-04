@@ -56,7 +56,7 @@ public class Review {
                 .distinct().limit(totalNumCards).boxed().collect(Collectors.toList());
 
         // initialise first card
-        currCard = this.uniqueReviewCardList.asUnmodifiableObservableList().get(orderOfCards.get(currCardIndex));
+        currCard = this.unmodifiableReviewCardList.get(orderOfCards.get(currCardIndex));
         filteredReviewCardList.setPredicate(new IsSameCardPredicate(currCard));
 
         // initialize review stats
