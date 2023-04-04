@@ -24,6 +24,11 @@ public class DeliveryDate {
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public static final DateTimeFormatter VALID_FORMAT = DateTimeFormatter.ofPattern("YYYY-MM-dd");
 
+    /**
+     * Represents invalid date in storage.
+     */
+    private static final String PLACEHOLDER = "0000-00-00";
+
     public final String date;
 
     /**
@@ -35,6 +40,15 @@ public class DeliveryDate {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         this.date = date;
+    }
+
+    /**
+     * Constructs a placeholder {@code JobDate}.
+     *
+     * @param date A valid date.
+     */
+    private DeliveryDate() {
+        this.date = PLACEHOLDER;
     }
 
     /**
@@ -74,7 +88,7 @@ public class DeliveryDate {
     }
 
     public static DeliveryDate placeholder() {
-        return new DeliveryDate("0000-00-00");
+        return new DeliveryDate();
     }
 
 }
