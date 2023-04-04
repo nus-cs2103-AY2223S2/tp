@@ -26,7 +26,6 @@ import seedu.event.model.contact.exceptions.DuplicateContactException;
 public class UniqueContactList implements Iterable<Contact> {
 
     private static HashMap<String, Integer> numberMap = new HashMap<>();
-    private static int count = 0;
     private final ObservableList<Contact> internalList = FXCollections.observableArrayList();
     private final ObservableList<Contact> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -54,8 +53,8 @@ public class UniqueContactList implements Iterable<Contact> {
             throw new DuplicateContactException();
         }
         internalList.add(toAdd);
+        int count = numberMap.size();
         numberMap.put(toAdd.getPhone().value, count);
-        count++;
     }
 
     /**
@@ -91,7 +90,6 @@ public class UniqueContactList implements Iterable<Contact> {
 
     public void setContacts(UniqueContactList replacement) {
         requireNonNull(replacement);
-        count = 0;
         internalList.setAll(replacement.internalList);
     }
 
@@ -104,7 +102,6 @@ public class UniqueContactList implements Iterable<Contact> {
         if (!contactsAreUnique(contacts)) {
             throw new DuplicateContactException();
         }
-        count = 0;
         internalList.setAll(contacts);
     }
 
