@@ -10,20 +10,32 @@ Given below are my contributions to the project.
 
 ### Summary of Contributions
 
-* **New Feature**: to be added soon
+**Code contributed**:
+https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=tabrizplv&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other
 
 **Enhancements implemented**:
 
-Created Meeting Class for v1.2
+* Implemented Meeting class for v1.2
+* Refactor storage to store and retrieve Meeting objects
+* updateMeeting feature
 
-**Contributions to the UG:** to be added soon
+**Contributions to the UG:**
 
-Added Draft User Guide
+* Added Draft User Guide
+* Added meetingUpdate section of UG
+* Reformatted UG structure to make it more reader-friendly
 
-**Contributions to the DG:** to be added soon
+**Contributions to the DG:**
+* Added updateMeeting feature section
+* Added UML diagram for updateMeeting feature
 
-**Contributions to team-based tasks:** to be added soon
+**Contributions to team-based tasks:**
+* Fixed bug where updating meeting of sample data applies changes to all sample data
+* Fixed bug where meetings are not loaded from storage upon application start
 
-**Review/Mentoring Contributions:** to be added soon
+**Review/Mentoring Contributions:**
+* Identifying bugs in team's implementations
+* Fixed checkstyle issues for team
+* Updated team's unit tests
 
 **Contributions beyond team project:** to be added soon

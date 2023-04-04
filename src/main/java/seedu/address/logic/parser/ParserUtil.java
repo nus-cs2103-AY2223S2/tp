@@ -150,10 +150,10 @@ public class ParserUtil {
         Matcher dateTimeEndMatcher = dateTimeFormat.matcher(end.trim());
 
         if (!dateTimeStartMatcher.find() || !dateTimeEndMatcher.find()) {
-            String incorrect_dateTimeFormat =
+            String incorrectDateTimeFormat =
                 "Incorrect DateTime format!\n"
                     + "Correct format is: dd-mm-yyyy hh:mm";
-            throw new ParseException(incorrect_dateTimeFormat);
+            throw new ParseException(incorrectDateTimeFormat);
         }
 
         try {

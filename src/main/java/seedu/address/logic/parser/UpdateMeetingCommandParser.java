@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_DESC;
@@ -8,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_START;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.RemoveMeetingCommand;
 import seedu.address.logic.commands.UpdateMeetingCommand;
 import seedu.address.logic.commands.UpdateMeetingCommand.EditMeetingDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
