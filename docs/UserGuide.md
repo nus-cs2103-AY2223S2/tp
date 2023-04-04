@@ -85,7 +85,7 @@ Adds a person to the address book.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [g/GROUP]…​`
 
 * A person can only be added to an **existing** group
-* Tags can only contain alphanumeric number and spaces
+* Tags can only contain alphanumeric and spaces
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags and groups (including 0)
@@ -162,6 +162,7 @@ Create a group in the address book.
 Format: `group_create g/GROUP_NAME`
 
 * Creates a group with the specified group name `GROUP_NAME`.
+* Group name can only contain alphanumeric number
 * The group name cannot be empty
 * Only one group can be created
 * If more than one group is specified, only the last occurrence of a group will be taken
