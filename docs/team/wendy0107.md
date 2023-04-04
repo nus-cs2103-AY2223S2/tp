@@ -6,10 +6,7 @@ title: Wen Li's Project Portfolio Page
 ### Project: TeachMeSenpai
 
 TeachMeSenpai **is a student managing application** specially customised for **teaching assistants** who have a lot of
-students to keep track of. It is tailored to assist the user in monitoring their students' progress, and details. 
-TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** 
-so users can easily edit their student's details, with the benefits of a
-**Graphical User Interface (GUI)** so users can conveniently view their student entries.
+students to keep track of. It is tailored to assist the user in monitoring their students' progress, and details. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** so users can easily edit their student's details, with the benefits of a **Graphical User Interface (GUI)** so users can conveniently view their student entries.
 
 Given below are my contributions to the project.
 
@@ -41,7 +38,6 @@ Given below are my contributions to the project.
     * Fixed broken hyperlinks (Pull request [\#108]())
     * Updated the user guide with features `undo`, `redo`, `clear` and updated the website landing page (Pull request [\#152]())
     * Fixed broken hyperlinks, typos, and issues with markdown rendering and images not loading (Pull requests [\#207](), [\#208]())
-    * 
   * Developer Guide:
     * Added UML diagrams, implementation details and design considerations for `add`, `edit`, `delete`, `find`, `list` (Pull requests [\#66](), [\#79](), [\#99]())
     * Updated the Ui, model, storage, and student class diagram. (Pull requests [\#66](), [\#79](), [\#99]())
@@ -54,7 +50,7 @@ Given below are my contributions to the project.
   * Created the Ui mock up (Pull request [\#33]())
   * Changed product icon
   * Managed releases for v1.2, v1.3
-  * PRs reviewed (with non-trivial review comments): [\#74](), [\#102](), [\#151]() 
+  * PRs reviewed (with non-trivial review comments): [\#74](), [\#102](), [\#151]()
 
 * **Contributions beyond the project team** (not updated):
   * Responded to forum posts ([\#42]())

@@ -4,16 +4,11 @@ title: Developer Guide
 ---
 ## **About TeachMeSenpai**
 
-TeachMeSenpai **is a student managing application** specially customised for **teaching assistants** who have a lot of 
-students to keep track of. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** with the benefits of a 
-**Graphical User Interface (GUI)**. 
+TeachMeSenpai **is a student managing application** specially customised for **teaching assistants** who have a lot of students to keep track of. TeachMeSenpai is optimised for fast-typists with a **Command Line Interface (CLI)** with the benefits of a **Graphical User Interface (GUI)**.
 
-This Developer Guide provides in-depth documentation on the design and implementation consideration behind TeachMeSenpai.
-This guide covers everything you need to know from the architecture down to the feature implementation details of TeachMeSenpai.
+This Developer Guide provides in-depth documentation on the design and implementation consideration behind TeachMeSenpai. This guide covers everything you need to know from the architecture down to the feature implementation details of TeachMeSenpai.
 
-If you're eager to get started with TeachMeSenpai, head over to [Setting up, getting started](#setting-up-getting-started)!
-If you'd like to learn more about how TeachMeSenpai was implemented, you can head over to [Implementation](#implementation)!
-You may use this guide to evolve TeachMeSenpai to suit your needs.
+If you're eager to get started with TeachMeSenpai, head over to [Setting up, getting started](#setting-up-getting-started)! If you'd like to learn more about how TeachMeSenpai was implemented, you can head over to [Implementation](#implementation)! You may use this guide to evolve TeachMeSenpai to suit your needs.
 
 ## **Table of Contents**
 {:.no_toc}
@@ -39,7 +34,6 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
-
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W12-2/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
@@ -143,10 +137,10 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
-
 </div>
 
 
@@ -175,11 +169,11 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation Details
 
-The implementation of the `add` command involves creating a new `Student` object and storing it in `AddressBook`. <br>
+The implementation of the `add` command involves creating a new `Student` object and storing it in `AddressBook`.
 
-Given below is a class diagram on the `Student` class and the classes related to its attributes: <br>
+Given below is a class diagram on the `Student` class and the classes related to its attributes:
 
-![student_diagram](images/StudentClassDiagram.png) 
+![student_diagram](images/StudentClassDiagram.png)
 
 The `Student` object is composed of attributes:
 
@@ -193,9 +187,12 @@ The `Student` object is composed of attributes:
 * `Tags`: Qualities a student has.
 
 #### Proposed Implementation
+
 The `add` command has the following fields:
-> NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`. 
+
+> NOTE : `[COMPULSORY]` indicates that the field is cannot be omitted when using `add`.
 > Unless stated as`[COMPULSORY]`, the field is optional.
+
 * Prefix `n/` followed by the name of the student `[COMPULSORY]`.
 * Prefix `p/` followed by the phone number of the student.
 * Prefix `e/` followed by the student's email.
@@ -205,9 +202,10 @@ The `add` command has the following fields:
 * Prefix `r/` followed by the remarks/notes on the student.
 * Prefix `t/` followed by the tags a student has.
 
-Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Primary 6` is run.: <br>
+Here is a sequence diagram showing the interactions between components when `add n/Alice edu/Primary 6` is run.:
 
 ![add_sequence](images/AddSequenceDiagram.png)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` and `AddCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -218,8 +216,7 @@ Here is a sequence diagram showing the interactions between components when `add
 
 #### General Design Considerations
 
-The implementation of the attributes of a `Student` is very similar to that of a `Person` in the original AB3 codebase. 
-Hence, resulting in a similar implementation of the `add` feature. </br>
+The implementation of the attributes of a `Student` is very similar to that of a `Person` in the original AB3 codebase. Hence, resulting in a similar implementation of the `add` feature. </br>
 
 Some additions made were the `Education`, `Module` and `Remark` attributes. </br>
 1. `Education` is implemented similar to the other attributes like `Address`, but is modified to fit the logic that a student can only have one education level.
@@ -248,23 +245,24 @@ When adding a student entry, these were the alternatives considered.
 
 The `delete` implementation is identical to the implementation in AB3's codebase.
 
-Here is a sequence diagram showing the interactions between components when `delete 1` is run.: <br>
+Here is a sequence diagram showing the interactions between components when `delete 1` is run.:
 
 ![delete_sequence](images/DeleteSequenceDiagram2.png)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Proposed Implementation
 
-The proposed `delete` implementation supports deleting multiple `Student` entries at once. For example, `delete 1 3 5` will delete the `Student` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). 
-However, if an invalid index is given `delete 1 2 100`, none of the `Student` entries will be deleted.
+The proposed `delete` implementation supports deleting multiple `Student` entries at once. For example, `delete 1 3 5` will delete the `Student` entries at indexes 1, 3 and 5 in the  `AddressBook` (Assuming indexes 1, 3 and 5 are valid). However, if an invalid index is given `delete 1 2 100`, none of the `Student` entries will be deleted.
 
 
 #### Design Considerations
-Taking into consideration the fact that users may make a typo, the time cost of `undo` or re-adding the deleted valid `Student` entries, 
-we believe that if a single invalid `INDEX` is given, the system should generate an error message  
 
-**Aspect: Handling invalid indexes in delete** <br>
+Taking into consideration the fact that users may make a typo, the time cost of `undo` or re-adding the deleted valid `Student` entries, we believe that if a single invalid `INDEX` is given, the system should generate an error message.
+
+**Aspect: Handling invalid indexes in delete**
+
 * **Alternative 1: (Current choice)** Delete none of the given `Student` entries, even if they are valid.
   * Pros:
     * Potentially save the user time they may have had to spend re-adding their `Student` entries
@@ -276,8 +274,7 @@ we believe that if a single invalid `INDEX` is given, the system should generate
     * Potentially save the user time editing their command if there was only a minor typo.
   * Cons:
     * Harder to implement as we have to keep track of the valid indexes to be deleted.
-    * May cost the user a lot of time if an unintended `Student` entry is deleted due to the typo and additional time is 
-    needed to re-enter the entry or `undo` the command.
+    * May cost the user a lot of time if an unintended `Student` entry is deleted due to the typo and additional time is needed to re-enter the entry or `undo` the command.
 
 [↑ Back to top](#table-of-contents)
 
@@ -301,11 +298,11 @@ This is done with the help of the `EditPersonDescriptor` class, which helps crea
 * Prefix `t/` followed by the tag name.
 * Prefix `r/` followed by the remarks/notes on the student.
 
-Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Primary 5` is run.: <br>
+Here is a sequence diagram showing the interactions between components when `edit 1 n/Bob edu/Primary 5` is run.:
 
 ![edit_sequence](images/EditSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser`, `EditCommand`, and `EditPersonDescriptor` 
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommandParser`, `EditCommand`, and `EditPersonDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 #### Feature details
@@ -333,25 +330,28 @@ Whether a new `Student` object should be created when editing a student entry.
 
 #### Implementation Details
 
-The proposed `find` feature is implemented using `MultiFieldContainsKeywordsPredicate`. <br>
+The proposed `find` feature is implemented using `MultiFieldContainsKeywordsPredicate`.
 
 Both of which implement the `Predicate<Person>` interface where the `test` method checks whether the data in the relevant field of a `Student` contains the specified keyword.
 The reason for implementing this feature with `Predicate<Person>` is that it can be easily used to filter the entire list of `Person` collected into java's `FilteredList`.
 
 
-Here is a sequence diagram showing the interactions between components when `find Alice` is run.: <br>
+Here is a sequence diagram showing the interactions between components when `find Alice` is run.:
 
 ![find_sequence](images/FindSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` 
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Feature details
-Our implementation extends from the `find` implementation in AB3 by enchancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
-> Take a person's name to be `Michelle Yeoh`. <br>
-> An example of finding by `PARTIAL_KEYWORD` is using "Ye" or "miche" while `KEYWORD` would be "Michelle Yeoh". <br>
 
-Furthermore, users are also allowed to specify the field that they want to find in by using the default [prefixes](#Add-feature) given to them. 
+Our implementation extends from the `find` implementation in AB3 by enchancing the current `find KEYWORD`feature to `find PARTIAL_KEYWORD`.
+
+> Take a person's name to be `Michelle Yeoh`.  \\
+> An example of finding by `PARTIAL_KEYWORD` is using "Ye" or "miche" while `KEYWORD` would be "Michelle Yeoh".
+
+Furthermore, users are also allowed to specify the field that they want to find in by using the default [prefixes](#Add-feature) given to them.
+
 > The prefixes refer to those that the user input in the `Add` command, eg.
 > ```
 > add n/Bob p/98712345 edu/P5
@@ -368,11 +368,11 @@ This allows the user to narrow down their `find` results even more.
 #### General Design Considerations
 The implementation of `find` is built on top of the original AB3 codebase's `find` command.
 We felt that the default `find` feature was too restrictive.
- ie. `Education` or `Address`.<br>
 
 Our implementation has some additions such as:
+
 1. Allowing `PARTIAL_KEYWORD` finds so that we can accommodate for the real-life scenarios where users are not certain of the full `KEYWORD` to input for `find`.
-2. `find PREFIX` across the various attributes of a `Student` other than their `Name`
+2. `find PREFIX` across the various attributes of a `Student` other than their `Name` _(eg. find in `Education` or `Address` attributes)_
 
 **Aspect: Command format:**
 * **Alternative 1 (Current choice):** `find PREFIX KEYWORD/PARTIAL_KEYWORD`
@@ -400,9 +400,10 @@ Our implementation has some additions such as:
 #### Implementation Details
 The `list` implementation is identical to the implementation in AB3's codebase.
 
-Here is a sequence diagram showing the interactions between components when `list` is run.: <br>
+Here is a sequence diagram showing the interactions between components when `list` is run.:
 
 ![list_sequence](images/ListSequenceDiagram.png)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -419,11 +420,12 @@ The current implementation provides users with two different methods of entering
 
 ##### Proposed Implementation
 
-The proposed remark mechanism will be facilitated by a pop-up text box. This will allow users to format their remarks however they like, 
-rather than being restricted to a single line in the command line (current implementation).
+The proposed remark mechanism will be facilitated by a pop-up text box. This will allow users to format their remarks however they like, rather than being restricted to a single line in the command line (current implementation).
 
 #### General Design Considerations
-In order to make this feature as versatile as possible, the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs). <br>
+
+In order to make this feature as versatile as possible, the `remark` feature should consider formatted inputs (eg. new lines to separate paragraphs).
+
 Additionally, the command line only provides a restricted view and input option for users, hence it does not support formatted remarks.
 
 **Aspect: Command input format**
@@ -469,20 +471,27 @@ Additionally, the command line only provides a restricted view and input option 
 
 #### Proposed Implementation
 
-The proposed `sort` implementation will sort the `UniquePersonList` object, hence it will make use of: <br>
+The proposed `sort` implementation will sort the `UniquePersonList` object, hence it will make use of:
+
 * `sort` in [javafx.collections.FXCollections](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/FXCollections.html) for the main sorting functionality.
   * In order to sort by `Name`, the comparator will be as follows `Comparator<Name>`.
-* `comparing` in [java.util.Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) class to execute `sort` in ascending and descending orders. <br>
+* `comparing` in [java.util.Comparator](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html) class to execute `sort` in ascending and descending orders.
 
 An example usage would be `sort ASC` to sort the list in ascending order, and `sort DESC` to sort the list in descending order.
-> `ASC` and `DESC` will not be case-sensitive, in other words, `sort ASC` and `sort asc` are both acceptable commands.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** `ASC` and `DESC` will not be case-sensitive, in other words, `sort ASC` and `sort asc` are both acceptable commands.
+</div>
 
 **Exepected execution:**
+
 1. Upon entering the command `sort ASC` in the command line of the application, the list of students will be sorted in alphabetically ascending order of their `Name`.
 2. Upon entering the command `sort DESC` in the command line of the application , the list of students will be sorted in alphabetically descending order of their `Name`.
 
 #### Design Considerations:
+
 **Aspect: Command format:**
+
 * **Alternative 1:** `sort`
   * Pros:
     * Simpler command for users to execute
@@ -506,9 +515,10 @@ _{more aspects to be added}_
 ### Show feature
 
 #### Implementation Details
-The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature. <br>
-Remarks longer than the width of `PersonListCard` in `PersonListPanel` 
-will not be visible. Hence, `show` allows users to view the full remark in the `ResultDisplay` since scrolling is supported.
+
+The implementation of `show` is similar to the `list` command in the AB3 codebase. The `show` feature was implemented to support the `remark` feature.
+
+Remarks longer than the width of `PersonListCard` in `PersonListPanel` will not be visible. Hence, `show` allows users to view the full remark in the `ResultDisplay` since scrolling is supported.
 
 #### General Design Considerations
 **Aspect: Display output**
@@ -519,7 +529,7 @@ will not be visible. Hence, `show` allows users to view the full remark in the `
   * Cons:
     * May reduce user convenience as `show INDEX` will likely always be followed with the `list` command to toggle back to the full list of students.
     * Harder to implement as the size of the `PersonCard` for the `Student` has to be updated everytime `show` is executed.
-  
+
 * **Alternative 2: (Current choice)** Display the entire `PersonCard` of the student chosen in the `ResultDisplay`
   * Pros:
     * Supports the `remark` feature as intended since scrolling is possible.
@@ -631,7 +641,7 @@ _{more aspects and alternatives to be added}_
 
 * Teaching Assistants (TAs)/tutors who have a class of students to manage and are preferably are proficient typers.
 
-**Value proposition**: 
+**Value proposition**:
 
 * TeachMeSenpai acts as an optimised app for tutors to manage their students' data, obtain insights on their students' data.
 
@@ -687,7 +697,7 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 
 1.  User request to add a new student's name and particulars.
 2.  System adds new student and their particulars as a new entry in the list
-    
+
     Use case ends
 
 **Extensions**
@@ -719,8 +729,8 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 **MSS**
 
 1. User requests to find a specific set of students based on a set of criteria
-2. System shows a list of students that match the criteria 
-   
+2. System shows a list of students that match the criteria
+
    Use case ends
 
 **Extensions**
@@ -759,16 +769,16 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
   * 1a1. System shows a list of students which matches the criteria input by the user
   * 1a2. User requests to delete a specific student in the list by their index from the list
   * 1a3. System deletes the student
-    
+
     Use case ends
 
 * 2a. The list is empty
-  
+
   Use case ends
 
 * 3a. The given index is invalid
   * 3a1. System shows an error message
-    
+
     Use case resumes at step 2
 
 #### Use case UC4: List student(s)
@@ -778,14 +788,14 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 
 1.  User requests to list all the students.
 2.  System shows the list of all students.
-    
+
     Use case ends.
 
 **Extensions**
 
 * 1a. Additional parameters are added behind `list`.
   * 1a1. System shows an error message.
-    
+
     Use case ends.
 
 #### Use case UC5: Update remarks
@@ -800,18 +810,18 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 5. User enters remarks
 6. User can exit writing the remarks at any time
 7. System saves the remarks
-   
+
    Use case ends
 
 **Extensions**
 
 * 2a. The list is empty
-  
+
   Use case ends
 
 * 3a. The given index is invalid
   * 3a1. System shows an error message
-    
+
     Use case resumes at step 2
 
 #### Use case UC6: Edit particulars
@@ -821,24 +831,24 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 
 1. User requests to edit a student's particulars based on the list displayed
 2. System replaces the specified fields with the new details
-   
+
    Use case ends
 
 **Extensions**
 
 * 1a. The field to edit is not specified
   * 1a1. System shows an error message
-    
+
     Use case resumes from step 1
 
 * 1b. The index is given is invalid
   * 1b1. System shows an error message
-    
+
     Use case resumes from step 1
 
 * 1c. The field is specified but the details are empty
   * 1c1. System deletes the information in the specified field
-    
+
     Use case ends
 
 #### Use case UC7: Exiting the application
@@ -849,7 +859,7 @@ For all use cases below, the **System** is the `TeachMeSenpai` app and the **Act
 1. User requests to exit the application
 2. System saves all data into a local file
 3. System exits from the application
-   
+
    Use case ends
 
 [↑ Back to top](#table-of-contents)
@@ -899,8 +909,8 @@ testers are expected to do more *exploratory* testing.
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by double-clicking the jar file.  \\
+      Expected: The most recent window size and location is retained.
 
 ### Deleting a person
 
@@ -908,16 +918,16 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   2. Test case: `delete 1`<br>
+   2. Test case: `delete 1`  \\
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `delete 0`<br>
+   3. Test case: `delete 0` \\
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size) \\
       Expected: Similar to previous.
 
-[↑ Back to top](#table-of-contents)   
+[↑ Back to top](#table-of-contents)
 
 ### Saving data
 
