@@ -38,10 +38,10 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
   - [Edit a Module](#edit-a-module)
   - [Edit a Lecture](#edit-a-lecture)
   - [Edit a Video](#edit-a-video)
-  - [Mark or Unmark Video](#mark-or-unmark-video)
   - [Delete Module](#delete-module)
   - [Delete Lecture](#delete-lecture)
   - [Delete Video](#delete-video)
+  - [Mark or Unmark Video](#mark-or-unmark-video)
   - [Tag a module](#tag-a-module)
   - [Tag a lecture](#tag-a-lecture)
   - [Tag a video](#tag-a-video)
@@ -54,10 +54,13 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
   - [Find Lectures in a Module By Tag](#find-lectures-in-a-module-by-tag)
   - [Find Videos in a Lecture](#find-videos-in-a-lecture)
   - [Find Videos in a Lecture By Tag](#find-videos-in-a-lecture-by-tag)
-  - [Clear](#clear-1)
-  - [Note](#note)
-  - [Warning](#warning)
-  - [FAQ](#faq)
+  - [Clear all Modules](#clear-all-modules)
+  - [Exit the App](#exit-the-app)
+  - [Export Data](#export-data)
+  - [Import Data](#import-data)
+- [Note](#note)
+- [Warning](#warning)
+- [FAQ](#faq)
 
 ---
 
@@ -147,19 +150,19 @@ Refer to the [Features](#features) below for details of each command.
 **:information_source: The following are rules applicable to all commands:**
 
 1. Words encapsulated in `{}` are the parameters to be supplied by the user.\
-  e.g. in `add {module_code}`, `{module_code}` is a parameter which can be used as `add CS2040`.
+   e.g. in `add {module_code}`, `{module_code}` is a parameter which can be used as `add CS2040`.
 
 2. Items in square brackets are optional.\
-  e.g. `add {module_code} [/name {module_name}]` can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
+   e.g. `add {module_code} [/name {module_name}]` can be used as `add CS2040 /name Data Structures and Algorithms` or as `add CS2040`.
 
 3. Named parameters can be specified in any order as long as it is after all unnamed parameters (if any).\
-  e.g. `edit {module_code} /code {updated_code} /name {updated_name}` can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
+   e.g. `edit {module_code} /code {updated_code} /name {updated_name}` can be used as `edit CS2040 /code CS2040S /name DSAG` or as `edit CS2040 /name DSAG /code CS2040S`.
 
 4. If a named parameter is expected only once in the command but the user specified it multiple times, only the last occurrence of the parameter will be taken.\
-  e.g. `add {module_code} [/name {module_name}]` if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be used as the value of the `/name` parameter.
+   e.g. `add {module_code} [/name {module_name}]` if used as `add CS2040 /name Data Structures and Algorithms /name DSAG`, `DSAG` will be used as the value of the `/name` parameter.
 
 5. Extraneous parameters will be ignored.\
-  e.g. `add {module_code} /name {module_name}` if used as `add CS2040 /name DSAG /foo bar`, the `/foo` parameter is ignored.
+   e.g. `add {module_code} /name {module_name}` if used as `add CS2040 /name DSAG /foo bar`, the `/foo` parameter is ignored.
 
 6. Arguments must be specified in the format `/{argument_name} {value}`, if the argument takes a value, or `/{argument_name}`, if the argument takes no value, and there must be a whitespace before `/{argument_name}`.
 
@@ -418,33 +421,6 @@ Examples:
 
 - `edit Video 1 /mod CS2040S /lec Week 1 /name Video 01 Grade Breakdown /timestamp 01:04:20 /watch /tags Intro, Short`
 
-### Mark or Unmark Video
-
-> Marks/Unmarks video(s) as watched/unwatched in a lecture of its specified module.
-
-Format:
-
-- `mark {video_name} /mod {module_name} /lec {lecture_index}`
-- `unmark {video_name} /mod {module_name} /lec {lecture_index}`
-
-Parameters:
-
-- `mark` marks `{video_name}` as watched
-- `unmark` marks `{video_name}` as unwatched
-- `{video_name}` can be names of multiple videos, separated by commas (",")
-- if `{video_name}` contains repeated names, the repeats will be ignored
-
-Note: Calling mark or unmark would only prompt an error for already marked or unmarked videos if calling on a single video, not when calling on multiple videos in one command
-
-- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos can be specified to be marked/unmarked by specifying multiple video names, separating them by commas(",")
-- Video Names must be of valid format
-- If any video specified does not exist or has already been marked or unmarked (accordingly to the command called), nothing changes within the model
-
-- `mark Vid 1 /mod CS2040 /lec Week 1`
-- `mark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
-- `unmark Vid 2 /mod CS2040 /lec Week 1`
-- `unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
-
 ### Delete Module
 
 > Deletes the specified module(s) and all its embodied content from the application
@@ -492,6 +468,33 @@ Examples:
 
 - `delete video 3 /mod CS2040 /lec lecture 1` deletes `video 3` from lecture `lecture 1` of module `CS2040`
 - `delete video 1, video 3 /mod CS2040 /lec lecture 1` deletes `video 1` and `video 3` from lecture `lecture 1` of module `CS2040`
+
+### Mark or Unmark Video
+
+> Marks/Unmarks video(s) as watched/unwatched in a lecture of its specified module.
+
+Format:
+
+- `mark {video_name} /mod {module_name} /lec {lecture_index}`
+- `unmark {video_name} /mod {module_name} /lec {lecture_index}`
+
+Parameters:
+
+- `mark` marks `{video_name}` as watched
+- `unmark` marks `{video_name}` as unwatched
+- `{video_name}` can be names of multiple videos, separated by commas (",")
+- if `{video_name}` contains repeated names, the repeats will be ignored
+
+Note: Calling mark or unmark would only prompt an error for already marked or unmarked videos if calling on a single video, not when calling on multiple videos in one command
+
+- `video_name_1`, `video_name_2`, `video_name_3`, ...: Multiple videos can be specified to be marked/unmarked by specifying multiple video names, separating them by commas(",")
+- Video Names must be of valid format
+- If any video specified does not exist or has already been marked or unmarked (accordingly to the command called), nothing changes within the model
+
+- `mark Vid 1 /mod CS2040 /lec Week 1`
+- `mark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
+- `unmark Vid 2 /mod CS2040 /lec Week 1`
+- `unmark Vid 1, Vid 2 /mod CS2040 /lec Week 1`
 
 ### Tag a module
 
@@ -681,7 +684,7 @@ Examples:
 
 _\* Both commands will show video `Vid 1` from the video list of lecture `Week 2` of module `CS2040S`_
 
-### Clear
+### Clear all Modules
 
 > Clears all information (modules, lectures, videos, tags) from Le Tracker
 
@@ -692,9 +695,23 @@ Format:
 - any following term entered after `clear` is ignored
 - calling `clear` will result in an empty Tracker
 
+### Exit the App
+
+> `exit`
+
+Exit the application.
+
+### Export Data
+
+<!-- TODO: fill this in -->
+
+### Import Data
+
+<!-- TODO: fill this in -->
+
 ---
 
-### Note
+## Note
 
 - Saving the data\
   Le Tracker data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -704,13 +721,13 @@ Format:
 
 ---
 
-### Warning
+## Warning
 
 :warning: If your changes to the data file makes its format invalid, Le Tracker will discard all data and start with an empty data file at the next run.
 
 ---
 
-### FAQ
+## FAQ
 
 **Q**: How do I transfer my data to another Computer?\
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Le Tracker home folder.
