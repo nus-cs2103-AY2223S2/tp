@@ -212,7 +212,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void setExpense(Expense target, Expense editedExpense) {
-        //TODO implement this method for editing an expense
+        expenseTracker.setExpense(target, editedExpense);
     }
 
     @Override

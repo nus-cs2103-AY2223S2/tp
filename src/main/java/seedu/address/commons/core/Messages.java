@@ -15,6 +15,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_RECURRING_EXPENSE_DISPLAYED_INDEX = "The recurring expense index "
             + "provided is invalid!";
     public static final String MESSAGE_INVALID_EXPENSE_CATEGORY = "The provided category does not exist!";
+
     public static final String MESSAGE_INVALID_EDIT_FOR_EXPENSE = "Please specify an edit to at least "
             + "the date, name, price or category of the expense!";
     public static final String MESSAGE_INVALID_EDIT_FOR_CATEGORIES = "Please specify an edit to at least "
@@ -27,7 +28,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_CATEGORY_NAME = "Please provide a category name!";
     public static final String MESSAGE_INVALID_EXPENSE_NAME = "Please provide an expense name!";
     public static final String MESSAGE_ALREADY_EXISTING_CATEGORY = "This category name is already used!";
-
 
 
 }
