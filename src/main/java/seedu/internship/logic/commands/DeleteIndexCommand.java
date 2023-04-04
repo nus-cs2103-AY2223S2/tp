@@ -27,7 +27,7 @@ public class DeleteIndexCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes all internships identified by the index numbers used in the displayed internship list.\n"
-            + "Parameters: INDEX [INDEX]... (must be a positive integer)\n"
+            + "Fields: INDEX [INDEX]... (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_DELETE_INTERNSHIP_SUCCESS = "%1$d internships have been deleted!";

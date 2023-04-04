@@ -20,25 +20,24 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships containing at least one of the "
-            + "inputs for every different type of field (name, role, status, date or tag) given by the user"
-            + "and displays them as a list with index numbers.\n"
-            + "Parameters: "
+            + "inputs for every different field (COMPANY_NAME, ROLE, STATUS, DATE or TAG) that you have provided.\n"
+            + "Fields: "
             + "[" + PREFIX_COMPANY_NAME + "COMPANY_NAME]... "
             + "[" + PREFIX_ROLE + "ROLE]... "
             + "[" + PREFIX_STATUS + "STATUS]... "
-            + "[" + PREFIX_DATE + "DATE]..."
+            + "[" + PREFIX_DATE + "DATE]... "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD
-            + PREFIX_COMPANY_NAME + "apple "
-            + PREFIX_COMPANY_NAME + "google "
-            + PREFIX_ROLE + "software "
-            + PREFIX_ROLE + "developer "
-            + PREFIX_STATUS + "applied "
-            + PREFIX_STATUS + "offered "
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_COMPANY_NAME + "Apple "
+            + PREFIX_COMPANY_NAME + "Google "
+            + PREFIX_ROLE + "Software Developer "
+            + PREFIX_ROLE + "App Developer "
+            + PREFIX_STATUS + "Applied "
+            + PREFIX_STATUS + "Offered "
             + PREFIX_DATE + "2023-01-01 "
             + PREFIX_DATE + "2023-02-02 "
-            + PREFIX_TAG + "python "
-            + PREFIX_TAG + "java";
+            + PREFIX_TAG + "Python "
+            + PREFIX_TAG + "Java";
 
     private final InternshipContainsKeywordsPredicate predicate;
 
