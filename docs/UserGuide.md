@@ -174,7 +174,7 @@ Adds a new event.
 
 **Note**:
 - `NAME` should only contain alphanumeric characters and spaces.
-- `RATE` must be a positive number.
+- `RATE` must be a positive number and below 1,000,000.
 - `ADDRESS` can be in any form, "John's House".
 - Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
 
@@ -197,6 +197,7 @@ Deletes the specified event.
 **Note**:
 - The `INDEX` refers to the index number shown in the displayed event list.
 - The `INDEX` must be a positive integer 1, 2, 3, …
+- The `INDEX` must be below 1,000,000.
 
 **Example**:
 - `delete 2`
@@ -217,6 +218,7 @@ Edits the specified event from the event book.
 **Note**:
 - The `INDEX` refers to the index number shown in the displayed event list.
 - The `INDEX` must be a positive integer 1, 2, 3, …
+- The `INDEX` must be below 1,000,000.
 - `[]` are optional parameters.
 - At least one of the optional fields must be provided.
 - Edits will replace existing values, edits are not cumulative.
@@ -282,6 +284,7 @@ Links a client contact to an event.
 **Note**:
 - The `INDEX` refers to the index number in the displayed events list.
 - The `INDEX` must be a positive integer 1, 2, 3, …
+- The `INDEX` must be below 1,000,000.
 - The `PHONE` must be a valid phone number in the contact list.
 
 **Example**:
@@ -308,6 +311,7 @@ Marks a specified event in Paidlancers as done.
 **Note**:
 - The `INDEX` refers to the index number in the displayed events list.
 - The `INDEX` must be a positive integer 1, 2, 3, …
+- The `INDEX` must be below 1,000,000.
 
 **Example**:
 - `mark 2`
@@ -327,6 +331,7 @@ Unmarks a specified event in Paidlancers.
 **Note**:
 - The `INDEX` refers to the index number in the displayed events list.
 - The `INDEX` must be a positive integer 1, 2, 3, …
+- The `INDEX` must be below 1,000,000.
 
 **Example**:
 - `unmark 2`
@@ -356,6 +361,7 @@ Displays events that start within a specified number of days.
 
 **Note**:
 - `DAYS` must be a positive integer 1, 2, 3, …
+- `DAYS` must be below 1,000,000.
 - Only events that start after the current date and time will be displayed.
 - The number of days to an event are the days from today's date to the event's start date. Their times are not considered.
 

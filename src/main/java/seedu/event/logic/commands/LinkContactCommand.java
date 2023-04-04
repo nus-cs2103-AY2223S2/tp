@@ -29,7 +29,7 @@ public class LinkContactCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links event identified by the index number to the"
             + " contact specified. \n"
             + "Parameters: "
-            + "INDEX PHONE (index must be positive integer and contact must be in contact list.)\n"
+            + "INDEX PHONE (index must be positive integer, below 1,000,000 and contact must be in contact list.)\n"
             + "Example: " + COMMAND_WORD + " 2" + " 91234567";
 
     public static final String MESSAGE_LINK_CONTACT_SUCCESS = "Successfully linked! %1$s";
