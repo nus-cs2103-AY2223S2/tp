@@ -413,7 +413,7 @@ Examples:
 
 * `edit_volunteer 1 p/91234567 e/johndoe@example.com` Edits the [phone number](#phone-number) and [email address](#phone-number) of the 1st volunteer to be `91234567` and `johndoe@example.com` respectively.
 * `edit_volunteer 2 n/Betsy Crower mt/` Edits the name of the 2nd volunteer to be `Betsy Crower` and clears all existing [medical qualifications](#medical-qualification).
-* `edit_volunteer 3 mt/CPR, BASIC mt/CARETAKING, ADVANCED` Replaces all existing [medical qualifications](#medical-qualifications) of the 3rd volunteer with `CPR, BASIC` and `CARETAKING, ADVANCED`.
+* `edit_volunteer 3 mt/CPR, BASIC mt/CARETAKING, ADVANCED` Replaces all existing [medical qualifications](#medical-qualification) of the 3rd volunteer with `CPR, BASIC` and `CARETAKING, ADVANCED`.
 
 #### Editing a person by NRIC: `edit`
 
