@@ -24,8 +24,8 @@ public class Ingredient {
     public static final String INGREDIENT_PPU_MESSAGE_CONSTRAINTS =
             "The price per unit of an ingredient should be more than OR equals to 0.";
 
-    public static final String INGREDIENT_FORMAT = "Format: i/{ingredientName}, " +
-            "{quantity}, {unit_of_measurement}, {price_per_unit}";
+    public static final String INGREDIENT_FORMAT = "Format: i/{ingredientName}, "
+            + "{quantity}, {unit_of_measurement}, {price_per_unit}";
 
 
 

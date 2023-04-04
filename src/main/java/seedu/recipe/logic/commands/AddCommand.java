@@ -1,7 +1,11 @@
 package seedu.recipe.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.recipe.logic.parser.CliSyntax.*;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.recipe.logic.commands.exceptions.CommandException;
 import seedu.recipe.model.Model;
@@ -16,35 +20,35 @@ import seedu.recipe.model.recipe.Title;
  */
 public class AddCommand extends Command {
 
-    private final Recipe toAdd;
+
 
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to recipe book. "
-            + "\nFormat: "
-            + PREFIX_TITLE + "TITLE " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_INGREDIENT +
-            "INGREDIENT " + PREFIX_STEP + "STEP " + PREFIX_TAG + "TAG\n";
+            + "\nFormat: " + PREFIX_TITLE + "TITLE " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_INGREDIENT
+            + "INGREDIENT " + PREFIX_STEP + "STEP " + PREFIX_TAG + "TAG\n";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
 
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in recipe book";
 
-    public static final String NO_TITLE_FAILURE = "A title needs to be added to the recipe. \n" +
-            Title.MESSAGE_CONSTRAINTS +
-            "\nUse the prefix `" + PREFIX_TITLE + "`.";
+    public static final String NO_TITLE_FAILURE = "A title needs to be added to the recipe. \n"
+            + Title.MESSAGE_CONSTRAINTS
+            + "\nUse the prefix `" + PREFIX_TITLE + "`.";
 
-    public static final String NO_DESC_FAILURE = "A description needs to be added to the recipe. \n" +
-            Description.MESSAGE_CONSTRAINTS +
-            "\nUse the prefix `" + PREFIX_DESCRIPTION + "`.";
+    public static final String NO_DESC_FAILURE = "A description needs to be added to the recipe. \n"
+            + Description.MESSAGE_CONSTRAINTS
+            + "\nUse the prefix `" + PREFIX_DESCRIPTION + "`.";
 
-    public static final String NO_INGREDIENT_FAILURE = "An ingredient needs to be added to the recipe. \n" +
-            "Use the prefix `" + PREFIX_INGREDIENT + "`.\n" +
-            Ingredient.INGREDIENT_FORMAT;
+    public static final String NO_INGREDIENT_FAILURE = "An ingredient needs to be added to the recipe. \n"
+            + "Use the prefix `" + PREFIX_INGREDIENT + "`.\n"
+            + Ingredient.INGREDIENT_FORMAT;
 
-    public static final String NO_STEP_FAILURE = "A step needs to be added to the recipe. \n" +
-            "Use the prefix `" + PREFIX_STEP + "`.\n" +
-            Step.MESSAGE_CONSTRAINTS;
+    public static final String NO_STEP_FAILURE = "A step needs to be added to the recipe. \n"
+            + "Use the prefix `" + PREFIX_STEP + "`.\n"
+            + Step.MESSAGE_CONSTRAINTS;
 
+    private final Recipe toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Recipe}
