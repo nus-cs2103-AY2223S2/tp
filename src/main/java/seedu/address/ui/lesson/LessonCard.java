@@ -20,8 +20,6 @@ public class LessonCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label id;
-    @FXML
     private Label title;
     @FXML
     private Label startTime;
@@ -36,7 +34,6 @@ public class LessonCard extends UiPart<Region> {
      */
     public LessonCard(Lesson lesson, int id) {
         super(FXML);
-        this.id.setText(id + DOT);
         title.setText(lesson.getTitle());
         startTime.setText(lesson.getStartTime().format(PRINT_FORMATTER));
         endTime.setText(lesson.getEndTime().format(PRINT_FORMATTER));
@@ -54,8 +51,7 @@ public class LessonCard extends UiPart<Region> {
         }
         // state check
         LessonCard card = (LessonCard) other;
-        return id.getText().equals(card.id.getText())
-                && title.getText().equals(card.title.getText())
+        return title.getText().equals(card.title.getText())
                 && startTime.getText().equals(card.startTime.getText())
                 && endTime.getText().equals(card.endTime.getText());
     }
