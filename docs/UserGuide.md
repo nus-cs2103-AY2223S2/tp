@@ -25,7 +25,7 @@ title: User Guide
   * [4.2 Managing Tasks](#42-managing-tasks)
     * [4.2.1 Adding a task](#421-adding-a-task--add-task)
     * [4.2.2 Editing a task](#422-editing-a-task--edit-task)
-    * [4.2.3. Deleting a task](#423-deleting-a-task--delete-task)
+    * [4.2.3 Deleting a task](#423-deleting-a-task--delete-task)
   * [4.3 Managing Display of Applications](#43-managing-display-for-applications)
     * [4.3.1 Listing all applications](#431-listing-all-applications--list)
     * [4.3.2 Finding applications](#432-finding-applications--find)
