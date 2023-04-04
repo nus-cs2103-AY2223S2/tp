@@ -9,12 +9,14 @@ title: User Guide
 
 <div style="page-break-after: always;"></div>
 
-## **The Intern's Ship - User Guide**
+<h1 align="center">
+    <b>The Intern's Ship - User Guide</b>
+</h1>
 <p align="center">
     <img src="images/ship.png" alt="logo" width="90"><br>
 </p>
 
-
+## Introduction
 Designed with **internship-seeking university students** in mind, **The Intern’s Ship (TinS)** aims to make
 managing your internship applications fuss-free. Despite being optimised for use via the keyboard using 
 a Command Line Interface (CLI), you will still be able to enjoy the benefits of having a visual display
@@ -70,7 +72,7 @@ Example: `list`, `POSTIION`, `data/internshipcatalogue.json`
 #### Buttons
 
 Being optimized for use via typing, you can key in your desired commands to TinS using the keyboard.
-Then, press the <button>Enter</button> to confirm your command and insturct TinS to execute them.
+Then, press the <button>Enter</button> to confirm your command and instruct TinS to execute them.
 
 ### How to use the User Guide
 * If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick-start) will guide you through the process of
@@ -92,7 +94,7 @@ be helpful for you.
 
 4. Double-click on the file `tins.jar` to launch TinS. 
    A TinS Application Interface similar to the one below should appear in a few seconds.
-   ![Ui](images/Ui-starting.png)
+   ![Ui](images/ug/home_page.png)
 
    <div markdown="span" class="alert alert-primary">
         :information source: **Info:** The default TinS application contains some sample data. These sample data can
@@ -115,7 +117,7 @@ TinS command can be found [here](#features).
 
 ### About TinS Application's Interface
 
-![gui](images/gui.png)
+![gui](images/ug/gui.png)
 
 1. **Command Box**: This is where you would input your commands.
 2. **Program Response**: This box displays the program's feedback to your inputted commands.<br>
@@ -123,18 +125,125 @@ TinS command can be found [here](#features).
    * Success Message: indicating that TinS has successfully executed your command
    * Error Message: indicating the reason why TinS was not about to execute your command and tips on what you can do to
    correct the error
-3. **Internship List Panel**: This panel displays your internships listings stored in TinS (including Position,
+3. **List Panel**: This panel displays your internships listings stored in TinS (including Position,
    Company, Status and Tags).
-4. **Internship Display Panel**: This panel displays relevant details pertaining to specific internship.
-5. **Location Bar**: This location bar tells you where your TinS data file is currently stored on your computer.
+4. **Display Panel**: This panel is used to display more details. Depending on your given command, the Details could be
+   any one of the following:
+   * More details pertaining to a Specific Internship
+   * Pages: Home, Calendar View, Statistics
+   * Results of Commands, like `clash` or `event find`
+5. **Location Bar**: This location bar states the location in which your TinS data file is currently stored on your
+   local device
 
 ### How your Internship Application Data is Organised in TinS
+![data organisation](images/ug/ug-internship-organisation.png)
+
+**Internships**
+In TinS, an internship application is stored as an **Internship**. Within an Internship, you would be able to store the
+following fields:
+* `POSITION`: The Name of Internship Position.
+* `COMPANY` : The Name of Hiring Company.
+
+<div markdown="span" class="alert alert-primary">
+
+:information_source: **Info:** Each Internship is **uniquely identifiable** by a **combination of its `POSITION` and
+`COMPANY`**. `POSITION` and `COMPANY` fields are **case-insensitive**. 
+
+Example: The following internships will be identified as same internship in TinS.
+* Internship with `POSITION` as `Software Engineer` and `COMPANY` as `Grab`
+* Internship with `POSITION` as `Software ENGINEER` and `COMPANY` as `GRAB`
+
+</div>
+
+* `STATUS` : The Status of your Application. This is an **Integer value** from **0 to 3**. Here are the statuses for the
+  corresponding integer values:
+   * `0` : Interested
+   * `1` : Applied
+   * `2` : Offered
+   * `3` : Rejected
+
+* `DESCRIPTION` : Additional details about the Internship (E.g. Contact Details of Hiring Manager, Link to Internship
+  Webpage, Requirements of Internship). This field can be left blank if you have nothing to include for this field.
+
+* `TAG` : Customised Tag (E.g. `IMPORTANT`, `PRIORITY`). An Internship can have zero or more than one tag. All Tags in
+  TinS are written in capitalised letters.
+
+An Internship can also store zero or more than one **Event**. 
+
+**Events**
+In TinS, an **Event** can be used to represent a **Deadline** or an **Interview** associated to an Internship. Within
+an Event, you would be able to store the following fields:
+* `EVENT_NAME`: The Name of the Event.
+* `START_DATETIME`: The Starting Time of an Event (in the format: DD/MM/YYYY HHMM).
+* `END_DATETIME`: The Ending Time of an Event (in the format: DD/MM/YYYY HHMM).
+  * If the Event is a **Deadline**, the `START_DATETIME` will be the same as the `END_DATETIME`.
+* `EVENT_DESCRIPTION`: Description of the Event (e.g. Venue, Things to take note of). This field can be left blank if you have
+  nothing to include for this field.
 
 ### Information about Crafting Your Command
+This section contains information on how to craft your command.
 
-#### Prefixes
+#### Prefixes and Fields
+TinS differentiates between the various fields in your command by its preceding prefix. The Prefixes are designed to be
+short, to enable you to quickly indicate which field your information is associated to. Here is the list of fields and
+their associated prefixes.
 
+<table>
 
+<tr>
+<th>Field</th>
+<th>Prefix</th>
+</tr>
+
+<tr>
+<td><code>POSITION</code></td>
+<td><code>p/</code></td>
+</tr>
+
+<tr>
+<td><code>COMPANY</code></td>
+<td><code>c/</code></td>
+</tr>
+
+<tr>
+<td><code>STATUS</code></td>
+<td><code>s/</code></td>
+</tr>
+
+<tr>
+<td><code>DESCRIPTION</code></td>
+<td><code>d/</code></td>
+</tr>
+
+<tr>
+<td><code>TAG</code></td>
+<td><code>t/</code></td>
+</tr>
+
+<tr>
+<td><code>EVENT_NAME</code></td>
+<td><code>na/</code></td>
+</tr>
+
+<tr>
+<td><code>START_DATETIME</code></td>
+<td><code>st/</code></td>
+</tr>
+
+<tr>
+<td><code>END_DATETIME</code></td>
+<td><code>en/</code></td>
+</tr>
+
+<tr>
+<td><code>EVENT_DESCRIPTION</code></td>
+<td><code>de/</code></td>
+</tr>
+
+</table>
+
+**Important Information for Use of Prefixes**
+*
 
 #### Notes about the Command Format
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
@@ -142,7 +251,7 @@ TinS command can be found [here](#features).
   used as `add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python and Java`.
 
 * Items in square brackets are optional.<br>
-  e.g `[TAG]` means that the user input is optional.
+  e.g `[t/TAG]` means that the user input is optional.
 
 
 

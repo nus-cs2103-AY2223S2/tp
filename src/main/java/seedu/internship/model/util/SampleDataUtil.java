@@ -71,8 +71,8 @@ public class SampleDataUtil {
             new Event(new Name("Technical Examination"), new Start("10/03/2023 1200"),
                     new End("10/03/2023 1400"), new EventDescription("On Zoom"),
                     internship2),
-            new Event(new Name("Technical Interview"), new Start("17/03/2023 1500"),
-                    new End("17/03/2023 1700"), new EventDescription("On Zoom"),
+            new Event(new Name("Technical Interview"), new Start("14/04/2023 1500"),
+                    new End("14/04/2023 1700"), new EventDescription("On Zoom"),
                     internship2),
             new Event(new Name("HR Interview"), new Start("25/04/2023 1500"),
                     new End("25/04/2023 1700"), new EventDescription("On Zoom"),
@@ -92,11 +92,11 @@ public class SampleDataUtil {
             new Event(new Name("Resume Submission"), new Start("01/01/2023 2359"),
                     new End("01/01/2023 2359"), new EventDescription("Via Email"),
                     internship4),
-            new Event(new Name("Resume Submission"), new Start("01/02/2023 2359"),
-                    new End("01/02/2023 2359"), new EventDescription("Via TalentConnect"),
+            new Event(new Name("Resume Submission"), new Start("04/04/2023 2359"),
+                    new End("04/04/2023 2359"), new EventDescription("Via TalentConnect"),
                     internship5),
-            new Event(new Name("Resume Submission"), new Start("01/02/2023 2359"),
-                    new End("01/02/2023 2359"), new EventDescription("Via TalentConnect"),
+            new Event(new Name("Resume Submission"), new Start("14/04/2023 2359"),
+                    new End("14/04/2023 2359"), new EventDescription("Via TalentConnect"),
                     internship6)
         };
     }
