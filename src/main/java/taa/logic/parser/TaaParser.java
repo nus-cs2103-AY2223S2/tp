@@ -16,6 +16,7 @@ import taa.logic.commands.DeleteAssignmentCommand;
 import taa.logic.commands.DeleteStudentCommand;
 import taa.logic.commands.EditStudentCommand;
 import taa.logic.commands.ExitCommand;
+import taa.logic.commands.ExportCommand;
 import taa.logic.commands.FindCommand;
 import taa.logic.commands.GradeCommand;
 import taa.logic.commands.HelpCommand;
@@ -104,6 +105,9 @@ public class TaaParser {
 
         case ImportCommand.COMMAND_WORD:
             return new ImportCommandParser().parse(arguments);
+
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommandParser().parse(arguments);
 
         case ListByClassCommand.COMMAND_WORD:
             return new ListByClassCommandParser().parse(arguments);

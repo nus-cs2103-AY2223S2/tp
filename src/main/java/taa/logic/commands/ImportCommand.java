@@ -2,7 +2,6 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,11 +17,14 @@ import java.util.stream.Collectors;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import taa.commons.util.AppUtil;
 import taa.commons.util.CsvUtil;
+import taa.commons.util.FileUtil;
 import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.ParserUtil;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
+import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
 import taa.model.student.UniqueStudentList;
@@ -31,29 +33,28 @@ import taa.model.tag.Tag;
 /**
  * Import student data in CSV format from file.
  */
-public class ImportCommand extends Command {
+public class ImportCommand extends CsvCommand {
     public static final String COMMAND_WORD = "import";
     public static final String MSG_USAGE = COMMAND_WORD + ": Import data in CSV format from file. Parameter: FILE_PATH";
     public static final String MSG_FILE_DNE = "The specified file does not exist.";
-    public static final String MSG_FILE_IS_DIR = "The specified file path is a directory.";
     public static final String MSG_FILE_CANT_RD = "The specified file does not grant read permission.";
-    public static final String MSG_FILE_ACCESS_DENIED = "Access to the specified file is denied by system.";
     public static final String MSG_FILE_NOT_FOUND = "The specified file cannot be opened for reading.";
-    public static final String MSG_RD_IO_EXCEPTION = "An IOException occurred while reading specified file.";
     public static final String MSG_ENTRY_FMT_ERR = "The following entry does not comply with format: ";
     public static final String MSG_INCONSISTENT_ENTRY = "This entry has more columns than defined fields.";
     public static final String MSG_DUP_STU_IN_FILE = "The file contains this student at least twice:";
     public static final String MSG_SUCC = "%d student(s) added.";
     private static final Predicate<String> IS_UNEMPTY = s -> !s.isEmpty();
-    private final File f;
-    private final boolean isNotForced;
 
-    /** Create import command by passing a file. Nothing is checked. */
-    public ImportCommand(File f, boolean isForced) {
-        requireNonNull(f);
-        this.f = f;
-        this.isNotForced = !isForced;
+    /**
+     * Create import command by passing a file. Nothing is checked.
+     *
+     * @param f
+     * @param isForced
+     */
+    public ImportCommand(String f, boolean isForced) {
+        super(f, isForced);
     }
+
 
     private static String mkMsgNoColumn(String keyword) {
         return "This entry has no \"" + keyword + "\"column.";
@@ -73,25 +74,27 @@ public class ImportCommand extends Command {
         }
 
         if (!record.isMapped(CsvUtil.KW_ATTENDANCE)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
-                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". "
+                    + mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
         }
-        final String atd = record.get(CsvUtil.KW_ATTENDANCE).trim();
+        final String atdStr = record.get(CsvUtil.KW_ATTENDANCE);
+        final String atd = atdStr.isBlank() ? Attendance.ORIGINAL_ATD : atdStr.trim();
 
         if (!record.isMapped(CsvUtil.KW_PP)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
-                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_PP));
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_PP));
         }
-        final String pp = record.get(CsvUtil.KW_ATTENDANCE).trim();
+        final String ppStr = record.get(CsvUtil.KW_PP);
+        final String pp = ppStr.isBlank() ? Attendance.ORIGINAL_PP : ppStr.trim();
 
-        if (!record.isMapped(CsvUtil.KW_ATTENDANCE)) {
-            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"'
-                    + record + "\". " + mkMsgNoColumn(CsvUtil.KW_ATTENDANCE));
+        final ArrayList<String> submissions = new ArrayList<>();
+        if (!record.isMapped(CsvUtil.KW_SUBMISSIONS)) {
+            throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". "
+                    + mkMsgNoColumn(CsvUtil.KW_SUBMISSIONS));
         }
-
-        ArrayList<String> submissions = new ArrayList<>();
-        Collections.addAll(submissions, record.get(CsvUtil.KW_SUBMISSION).trim().split(","));
-
+        final String submitStr = record.get(CsvUtil.KW_SUBMISSIONS);
+        if (!submitStr.isBlank()) {
+            Collections.addAll(submissions, submitStr.trim().split(";"));
+        }
 
         if (!record.isMapped(CsvUtil.KW_TAGS)) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + mkMsgNoColumn(CsvUtil.KW_TAGS));
@@ -102,7 +105,7 @@ public class ImportCommand extends Command {
         try {
             //ignore all tokens that are empty strings.
             parsedTags = ParserUtil.parseTags(
-                    Arrays.stream(tags.split(" ")).filter(IS_UNEMPTY).collect(Collectors.toList()));
+                    Arrays.stream(tags.split(";")).filter(IS_UNEMPTY).collect(Collectors.toList()));
         } catch (ParseException e) {
             throw new CommandException(MSG_ENTRY_FMT_ERR + '\"' + record + "\". " + Tag.MESSAGE_CONSTRAINTS);
         }
@@ -118,13 +121,13 @@ public class ImportCommand extends Command {
                 throw new CommandException(MSG_FILE_DNE);
             }
             if (f.isDirectory()) {
-                throw new CommandException(MSG_FILE_IS_DIR);
+                throw new CommandException(FileUtil.MSG_FILE_IS_DIR);
             }
             if (!f.canRead()) {
                 throw new CommandException(MSG_FILE_CANT_RD);
             }
         } catch (SecurityException e) {
-            throw new CommandException(MSG_FILE_ACCESS_DENIED);
+            throw new CommandException(FileUtil.MSG_FILE_ACCESS_DENIED);
         }
 
         final FileReader reader;
@@ -134,11 +137,11 @@ public class ImportCommand extends Command {
             throw new CommandException(MSG_FILE_NOT_FOUND);
         }
 
-        final CSVParser parser;
+        CSVParser parser = null;
         try {
-            parser = CsvUtil.STU_FMT.parse(reader);
+            parser = CsvUtil.IN_FMT.parse(reader);
         } catch (IOException e) {
-            throw new CommandException(MSG_RD_IO_EXCEPTION);
+            throwIoExceptionAsCmdException();
         }
 
         final HashMap<Name, Student> nameToStu = UniqueStudentList.getNameToStuMap(model.getFilteredStudentList());
@@ -155,17 +158,16 @@ public class ImportCommand extends Command {
                 }
             } else {
                 if (isNotForced) {
-                    throw new CommandException(AddStudentCommand.MESSAGE_DUPLICATE_STUDENT + ": " + stu);
+                    throw new CommandException(AddStudentCommand.MESSAGE_DUPLICATE_STUDENT + ": " + stu
+                            + "\nUse -force to overwrite.");
                 }
                 toDel.add(stuInList);
             }
         }
-        for (Student stuInList : toDel) {
-            model.deleteStudent(stuInList);
-        }
-        for (Student stu : toAdd) {
-            model.addStudent(stu);
-        }
+        AppUtil.closeIfClosable(parser);
+        AppUtil.closeIfClosable(reader);
+        toDel.forEach(model::deleteStudent);
+        toAdd.forEach(model::addStudent);
         return new CommandResult(String.format(MSG_SUCC, toAdd.size()));
     }
 }

@@ -412,27 +412,35 @@ Stores and loads data in with CSV files.
 * Export data in CSV format: `export`
 
 Our CSV files follow the following format:
-1. All CSV files are header-less. Student data has exactly 2 columns: name, tags.
-2. If a student has no tags, a comma representing the tags column is still required because [if a column is defined as optional, it means that the column is required to exist, but the value can be blank.](https://www.ibm.com/docs/en/atlas-policy-suite/6.0.3?topic=files-rules-creating-populating-csv) 
+1. All CSV files are header-less. Student data has exactly 5 columns: name, attendence, participation points,
+   submissions, and tags.
+2. All columns other than the name is optional, but a comma representing the tags column is still required
+   because [if a column is defined as optional, it means that the column is required to exist, but the value can be blank.](https://www.ibm.com/docs/en/atlas-policy-suite/6.0.3?topic=files-rules-creating-populating-csv)
 
 Acceptable CSV format example:
+
 ```
-Technoblade, Minecrafter Pig Anarchist
-Meggy Spletzer,Inkling
-John von Neumann,
+Technoblade,1;0;0;1;1;1;0;0;0;0;0;0,-1;-1;-1;-1;-1;-1;-1;-1;200;-1;-1;-1,"x,0,0,0,16;y,0,0,0,120;",Tut_T01;
+Dream Was Taken,0;0;0;0;0;0;0;0;0;0;0;0,-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1,"z,0,0,0,200",Tut_T01;Lab_L01;
+Tommy In It,,,"x,0,0,0,100;y,0,0,0,100;",Tut_T02;
+Wilbur Soot,,-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1,"x,0,0,0,100;y,0,0,0,100;",Lab_L02;
+Philza Minercaft,,,"x,0,0,0,100;y,0,0,0,100;",Rec_R03;
+Mumbo Jumbo,,,,Lab_L12;
 ```
 
-#### Import data in CSV format: `import` [in dev]
+#### Import data in CSV format: `import`
+
 Import data in CSV format from file.
 
-Format: `import [FLAG] FILE_PATH`
+Format: `import [-force] FILE_PATH`
 * Flag -force overwrites records of existing students.
 * Nothing is changed if file does not exist or file access denied.
 
-#### Export data in CSV format: `export` [coming soon]
+#### Export data in CSV format: `export`
+
 Export data in CSV format to file.
 
-Format: `export [FLAG] FILE_PATH`
+Format: `export [-force] FILE_PATH`
 * If file exists, export is blocked unless -force flag is used. Otherwise, create file and export.
 * Flag -force overwrites existing file.
 * Nothing is changed if file access denied.

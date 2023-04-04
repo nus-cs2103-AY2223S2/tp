@@ -2,7 +2,7 @@ package taa.logic.commands;
 import taa.model.Model;
 
 /**
- * Changes the remark of an existing student in the address book.
+ * Changes the remark of an existing student in the class list.
  */
 public class RemarkCommand extends Command {
 

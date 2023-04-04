@@ -31,6 +31,7 @@ public class Attendance {
 
     /**
      * Checks if the week is valid
+     *
      * @param week String value of week
      * @return true if week is valid and otherwise
      */
@@ -44,6 +45,30 @@ public class Attendance {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Convert string value of week into int, called after ensuring {@code week} is valid
+     *
+     * @param week String value of week
+     * @return int value of week
+     */
+    public static int convertToIntegerWeek(String week) {
+        return Integer.parseInt(week);
+    }
+
+    /**
+     * Checks if points is a valid value
+     *
+     * @param points String version of points to be checked
+     * @return boolean if points is valid or not
+     */
+    public static boolean isValidParticipationPoints(String points) {
+        if (!points.matches("[0-9]+")) {
+            return false;
+        }
+        int pp = Integer.parseInt(points);
+        return pp > 0 && pp < 700;
     }
 
     /**
@@ -61,6 +86,7 @@ public class Attendance {
 
     /**
      * Marks attendance as true
+     *
      * @param week week that is to be marked
      */
     public void markAttendance(int week) {
@@ -70,21 +96,12 @@ public class Attendance {
 
     /**
      * Checks if the week have been marked
+     *
      * @param week week to be checked
      * @return true if week is marked else false
      */
     public boolean isMarkedWeek(int week) {
         return this.attendanceList[week];
-    }
-
-    /**
-     * Convert string value of week into int, called after ensuring {@code week}
-     * is valid
-     * @param week String value of week
-     * @return int value of week
-     */
-    public static int convertToIntegerWeek(String week) {
-        return Integer.parseInt(week);
     }
 
     /**
@@ -98,22 +115,9 @@ public class Attendance {
     }
 
     /**
-     * Checks if points is a valid value
-     * @param points String version of points to be checked
-     * @return boolean if points is valid or not
-     */
-    public static boolean isValidParticipationPoints(String points) {
-        if (!points.matches("[0-9]+")) {
-            return false;
-        }
-        int pp = Integer.parseInt(points);
-        return pp > 0 && pp < 700;
-    }
-
-    /**
-     * Inserts participation points to the specified week.
-     * Called only after ensuring points and week is valid
-     * @param week week to add points
+     * Inserts participation points to the specified week. Called only after ensuring points and week is valid
+     *
+     * @param week   week to add points
      * @param points value of points to add
      */
     public void insertParticipationPoints(int week, int points) {
@@ -121,8 +125,8 @@ public class Attendance {
     }
 
     /**
-     * Calculate average points of student. Only consider weeks
-     * when participation points are inserted
+     * Calculate average points of student. Only consider weeks when participation points are inserted
+     *
      * @return the average participation points of student
      */
     public float getAveragePP() {
@@ -144,13 +148,9 @@ public class Attendance {
      * @return string version of attendancelist to be stored in json file
      */
     public String atdStrorageStr() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (boolean atd : this.attendanceList) {
-            if (atd) {
-                res += "1;";
-            } else {
-                res += "0;";
-            }
+            res.append(atd ? "1;" : "0;");
         }
         return res.substring(0, 23);
     }
@@ -159,9 +159,9 @@ public class Attendance {
      * @return returns string version of participation points to be stored in json file
      */
     public String partPointsStorageStr() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int val : this.participationPoint) {
-            res += String.valueOf(val) + ";";
+            res.append(val).append(";");
         }
         return res.substring(0, res.length() - 1);
     }
@@ -179,21 +179,21 @@ public class Attendance {
      * @return String version of participation points for list command
      */
     public String listAtdString() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < this.attendanceList.length; i++) {
-            res += String.format("Week %d: [%s]\n", i + 1, this.attendanceList[i] ? "X" : " ");
+            res.append(String.format("Week %d: [%s]\n", i + 1, this.attendanceList[i] ? "X" : " "));
         }
-        return res;
+        return res.toString();
     }
 
     /**
      * @return String version of participation points for list command
      */
     public String listPpString() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < this.participationPoint.length; i++) {
-            res += String.format("Week %d: [%d]\n", i + 1, this.participationPoint[i]);
+            res.append(String.format("Week %d: [%d]\n", i + 1, this.participationPoint[i]));
         }
-        return res;
+        return res.toString();
     }
 }

@@ -11,7 +11,7 @@ import taa.model.Model;
 import taa.model.student.Student;
 
 /**
- * Deletes a student identified using it's displayed index from the address book.
+ * Deletes a student identified using it's displayed index from the class list.
  */
 public class DeleteStudentCommand extends Command {
 

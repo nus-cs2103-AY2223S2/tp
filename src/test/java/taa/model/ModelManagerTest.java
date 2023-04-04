@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import taa.commons.core.GuiSettings;
 import taa.model.student.NameContainsKeywordsPredicate;
-import taa.testutil.AddressBookBuilder;
 import taa.testutil.Assert;
+import taa.testutil.ClassListBuilder;
 import taa.testutil.TypicalPersons;
 
 public class ModelManagerTest {
@@ -25,7 +25,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         Assertions.assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new ClassList(), new ClassList(modelManager.getAddressBook()));
+        assertEquals(new ClassList(), new ClassList(modelManager.getTaaData()));
     }
 
     @Test
@@ -36,14 +36,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setTaaDataFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setTaaDataFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -60,15 +60,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setTaaDataFilePath_nullPath_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> modelManager.setTaaDataFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+    public void setTaaDataFilePath_validPath_setsTaaDataFilePath() {
+        Path path = Paths.get("taa/data/file/path");
+        modelManager.setTaaDataFilePath(path);
+        assertEquals(path, modelManager.getTaaDataFilePath());
     }
 
     @Test
@@ -77,12 +77,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInStudentList_returnsFalse() {
         assertFalse(modelManager.hasStudent(TypicalPersons.ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInStudentList_returnsTrue() {
         modelManager.addStudent(TypicalPersons.ALICE);
         assertTrue(modelManager.hasStudent(TypicalPersons.ALICE));
     }
@@ -94,7 +94,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ClassList classList = new AddressBookBuilder()
+        ClassList classList = new ClassListBuilder()
                 .withPerson(TypicalPersons.ALICE)
                 .withPerson(TypicalPersons.BENSON).build();
         ClassList differentClassList = new ClassList();
@@ -127,7 +127,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setTaaDataFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(classList, differentUserPrefs)));
     }
 }

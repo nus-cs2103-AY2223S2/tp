@@ -8,7 +8,7 @@ import taa.model.ClassList;
 import taa.model.Model;
 
 /**
- * Adds a student to the address book.
+ * Adds a student to the class list.
  */
 public class CreateClassCommand extends Command {
 

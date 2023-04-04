@@ -108,9 +108,7 @@ public class Assignment {
      * Ties up loose end to prepare this Assignment for deletion.
      */
     public void delete() {
-        submissionMap.forEach((student, submission) -> {
-            student.deleteSubmission(submission);
-        });
+        submissionMap.forEach(Student::deleteSubmission);
     }
 
     @Override

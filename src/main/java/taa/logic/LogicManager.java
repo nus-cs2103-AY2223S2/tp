@@ -2,6 +2,7 @@ package taa.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -13,7 +14,7 @@ import taa.logic.commands.exceptions.CommandException;
 import taa.logic.parser.TaaParser;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.Model;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyStudentList;
 import taa.model.student.Student;
 import taa.storage.Storage;
 
@@ -27,6 +28,8 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final TaaParser taaParser;
+    private final ArrayList<String> cmdHistory;
+    private int cmdCnt;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,18 +38,23 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         taaParser = new TaaParser();
+        cmdHistory = new ArrayList<>();
+        cmdCnt = 0;
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
+        cmdHistory.add(commandText);
+        cmdCnt = cmdHistory.size();
+
         CommandResult commandResult;
         Command command = taaParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTaaData(model.getTaaData());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +63,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyStudentList getTaaData() {
+        return model.getTaaData();
     }
 
     @Override
@@ -65,8 +73,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getTaaDataFilePath() {
+        return model.getTaaDataFilePath();
     }
 
     @Override
@@ -77,5 +85,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public String getPrevCmd() {
+        return cmdCnt <= 0 ? null : cmdHistory.get(++cmdCnt);
+    }
+
+    @Override
+    public String getNextCmd() {
+        return cmdCnt >= cmdHistory.size() - 1 ? null : cmdHistory.get(--cmdCnt);
     }
 }
