@@ -243,17 +243,19 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * Only the fields of the specified prefixes are searched.
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
 * The search for tags will return any bookmark that has a tag that matches the given tag.
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
 * `find n/Chainsaw Man` after `list` returns `chainsaw man` and `Chainsaw Man` as shown in figure 1 below.
-<img width="560" src="images/find-chainsaw%20man.png">
+
+<img src="images/find-chainsaw%20man.png">
 <figcaption style="text-align:center"><em><strong>
    Figure 1
    </strong>
    : Executing find after start up
    </em></figcaption>
-<div style="page-break-after: always;"></div>
+
 
 ### Listing all bookmarks/ Resetting filters : `list`
 
@@ -263,7 +265,7 @@ Shows a list of all bookmarks in the library.
 :bulb: **Tip** - Use this command to get back the original list of bookmarks after using `find` command to filter out bookmarks.
 
 Format: `list`
-
+<div style="page-break-after: always;"></div>
 
 ### Viewing a bookmark's details : `view`
 
