@@ -9,6 +9,11 @@ public class EventMatchesDatePredicate implements Predicate<Event> {
 
     private final Date date;
 
+    /**
+     * Constructs a {@code EventMatchesDatePredicate}.
+     *
+     * @param date The given date to be matched with.
+     */
     public EventMatchesDatePredicate(Date date) {
         this.date = date;
     }
