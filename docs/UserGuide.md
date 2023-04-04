@@ -582,6 +582,14 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 </div>
 
 --------------------------------------------------
+## Coming Soon
+
+The following features are planned for the coming update
+* Edit pair by index
+* Add pair by index
+* Delete elderly, volunteer and pairs by index
+
+--------------------------------------------------
 
 ## FAQ
 
