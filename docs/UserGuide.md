@@ -102,9 +102,13 @@ Fields are the information following the slash in a command, to provide appropri
 This section describes the format and specifications of each field.
 
 #### Name
-The name of the person. 
+The name of a person. 
 * Names should only contain alphanumeric characters and spaces, and it should not be blank.
 * Particularly, non-alphanumeric characters or special characters like `/`, `@` and `?` are disallowed. 
+
+#### Address
+The home address of a person.
+* Addresses can take any values.
 
 #### NRIC
 NRIC is a unique identifier given to all Singaporeans.
@@ -236,6 +240,26 @@ Opening multiple instances may result in unexpected behaviours.
 
 ---------------------------------------------------
 ## Features
+
+### Icons
+
+<img src="../src/main/resources/images/calendar.png" width="20"/> : available dates<br />
+
+<img src="../src/main/resources/images/region.png" width="20"/> : Region<br />
+
+<img src="../src/main/resources/images/home-address.png" width="20"/> : Address<br />
+
+<img src="../src/main/resources/images/nric.png" width="20"/> : NRIC<br />
+
+<img src="../src/main/resources/images/age.png" width="20"/> : Age<br />
+
+<img src="../src/main/resources/images/phone.png" width="20"/> : Phone number<br />
+
+<img src="../src/main/resources/images/email.png" width="20"/> : Email<br />
+
+<img src="../src/main/resources/images/tags.png" width="20"/> : Tags<br />
+
+<img src="../src/main/resources/images/medical-tags.png" width="20"/> : Medical Qualifications<br />
 
 ### Adding records
 
