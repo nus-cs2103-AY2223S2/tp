@@ -5,9 +5,9 @@ import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.enums.LightDarkMode;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.logic.enums.LightDarkMode;
 
 public class HelpCommandTest {
     private Model model = new ModelManager();
