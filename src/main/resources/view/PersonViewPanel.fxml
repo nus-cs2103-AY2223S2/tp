@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox minWidth="380.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox minWidth="380.0" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
 <VBox minWidth="340.0" prefWidth="340.0" HBox.hgrow="ALWAYS">
    <children>
-         <VBox minWidth="340.0" prefWidth="370.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <VBox fx:id="particularsBox" minWidth="340.0" prefWidth="370.0" style="-fx-background-color: white; -fx-border-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
             <children>
             <Label id="name" fx:id="name" styleClass="cell_name_label" wrapText="true" />
                <HBox>
@@ -53,7 +53,7 @@
                <Insets bottom="5.0" />
             </VBox.margin>
          </VBox>
-         <VBox minWidth="340.0" prefWidth="370.0" style="-fx-border-color: white; -fx-background-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <VBox fx:id="appointmentBox" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: white; -fx-background-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
             <children>
                <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Appointments" textAlignment="CENTER">
                   <padding>
@@ -94,7 +94,7 @@
                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
             </padding>
          </VBox>
-         <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: white; -fx-background-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
+         <VBox fx:id="prescriptionBox" layoutX="15.0" layoutY="141.0" minHeight="100.0" minWidth="340.0" prefWidth="370.0" style="-fx-border-color: white; -fx-background-color: white; -fx-border-radius: 15; -fx-background-radius: 15;">
             <children>
                <Label alignment="BOTTOM_CENTER" styleClass="cell_big_label" text="Prescription" textAlignment="CENTER" />
                <ScrollPane>
@@ -106,9 +106,22 @@
                      </HBox>
                   </content>
                   <VBox.margin>
-                     <Insets bottom="5.0" />
+                     <Insets bottom="5.0" top="5.0" />
                   </VBox.margin>
+                  <padding>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                  </padding>
                </ScrollPane>
+               <!--
+               <HBox>
+                  <children>
+                     <ListView id="prescription" fx:id="prescription" style="-fx-background-color: white;">
+                        <padding>
+                           <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                        </padding>
+                     </ListView>
+                  </children>
+               </HBox> !-->
             </children>
             <padding>
                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
