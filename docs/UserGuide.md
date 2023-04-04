@@ -299,7 +299,7 @@ If the species of fish you are keeping require close monitoring of environmental
 tank keep tracks of 3 types of reading levels- ammonia level, pH and temperature. Use the following commands
 to log down the respective readings.
 
-Currently, there are seven operations around tanks:
+Currently, there are seven command actions of type tank:
 * [Adding a tank `tank add`](#adding-a-tank-tank-add)
 * [Deleting a tank `tank delete`](#deleting-a-tank-tank-delete)
 * [Editing a tank `tank edit](#editing-a-tank-tank-edit)
