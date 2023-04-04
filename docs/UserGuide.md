@@ -426,11 +426,11 @@ Parameters:
   * `<TANK_INDEX>` - The tank [index.](#index-parameters) Specifies which tank to delete.
     * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank.
 * Prefix parameters:
-  * `al/<AMMONIA_LEVEL>` - [Ammonia level prefix](#tank-ammonia-level-reading-alammonia_level) Specifies the current ammonia level of the tank
+  * `al/<AMMONIA_LEVEL>` - [Ammonia level prefix.](#tank-ammonia-level-reading-alammonia_level) Specifies the current ammonia level of the tank
     * `<AMMONIA_LEVEL>` is a number, with or without decimal points. The unit is in ppm (parts per million)
-  * `ph/<PH>` - [pH prefix](#tank-ph-reading-phph) Specifies the current pH of the tank
+  * `ph/<PH>` - [pH prefix.](#tank-ph-reading-phph) Specifies the current pH of the tank
     * `<PH>` is a number, with or without decimal points. pH is between 0-14, with 7 being neutral
-  * `tp/<TEMPERATURE>` - [Temperature prefix](#tank-temperature-reading-tptemperature) Specifies the current temperature of the tank
+  * `tp/<TEMPERATURE>` - [Temperature prefix.](#tank-temperature-reading-tptemperature) Specifies the current temperature of the tank
     * `<TEMPERATURE>` is a number, with or without decimal points. The unit is in degrees celcius
 
 > :information_source: Additional information: While adding readings, take note that you **cannot add more than 1 reading per minute**. Trying to do so
