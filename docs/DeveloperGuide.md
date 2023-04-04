@@ -8,14 +8,14 @@ title: Developer Guide
 ##### Table of Contents
 
 Todo: Add links
-1. [Acknowledgements]()
-2. [Setting up, getting started]()
-3. [Design]()
-   1. [UI Component]()
-   2. [Logic Component]()
-   3. [Model Component]()
-   4. [Storage Component]()
-4. [Implementation]()
+1. [Acknowledgements](#acknowledgements)
+2. [Setting up, getting started](#setting-up-getting-started)
+3. [Design](#design)
+   1. [UI Component](#ui-component)
+   2. [Logic Component](#logic-component)
+   3. [Model Component](#model-component)
+   4. [Storage Component](#storage-component)
+4. [Implementation](#implementation)
    1. [Salary Command]()
    2. [Deadline Command]()
    3. [Company Command]()
