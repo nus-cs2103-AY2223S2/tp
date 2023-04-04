@@ -6,10 +6,8 @@ import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_PARTICIPATION_POINTS;
 import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
-import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
 import taa.logic.commands.InsertParticipationCommand;
-import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Attendance;
 
@@ -28,12 +26,7 @@ public class InsertParticipationParser implements Parser<InsertParticipationComm
         int week = -1;
         int points = -1;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    MarkAttendanceCommand.MESSAGE_USAGE), pe);
-        }
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         if (argMultimap.getValue(PREFIX_WEEK).isPresent()) {
             week = ParserUtil.parseWeek(argMultimap.getValue(PREFIX_WEEK).get());

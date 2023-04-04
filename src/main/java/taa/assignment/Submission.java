@@ -61,6 +61,7 @@ public class Submission {
         isGraded = true;
         this.marks = marks;
         this.isLateSubmission = isLateSubmission;
+        student.updateSubmission(this);
     }
 
     /**
@@ -70,6 +71,7 @@ public class Submission {
         this.isGraded = false;
         this.isLateSubmission = false;
         this.marks = 0;
+        student.updateSubmission(this);
     }
 
     /**
@@ -104,7 +106,7 @@ public class Submission {
     public String toString() {
         char gradeChar = isGraded ? 'X' : ' ';
         String late = this.isLateSubmission ? "(*Late Submission*)" : "";
-        return String.format("[%c] %s: %d/%d marks. %s", gradeChar, student.getName().fullName,
+        return String.format("[%c] %s: %d/%d marks. %s", gradeChar, student,
                 marks, assignment.getTotalMarks(), late);
     }
 

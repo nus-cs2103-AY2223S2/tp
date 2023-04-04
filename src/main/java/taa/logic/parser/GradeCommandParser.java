@@ -33,8 +33,8 @@ public class GradeCommandParser {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        int studentId = Integer.parseInt(argMultimap.getValue(PREFIX_STUDENT_ID).get());
-        int mark = Integer.parseInt(argMultimap.getValue(PREFIX_MARK).get());
+        int studentId = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_ID).get()).getOneBased();
+        int mark = ParserUtil.parseInt(argMultimap.getValue(PREFIX_MARK).get());
         boolean isLateSubmission = arePrefixesPresent(argMultimap, PREFIX_LATE);
         return new GradeCommand(name.toString(), studentId, mark, isLateSubmission);
     }

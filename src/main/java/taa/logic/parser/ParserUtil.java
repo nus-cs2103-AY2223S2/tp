@@ -18,7 +18,7 @@ import taa.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index is not a valid non-zero unsigned integer.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -57,6 +57,11 @@ public class ParserUtil {
     public static int parseWeek(String week) throws ParseException {
         requireNonNull(week);
         String trimmedWeek = week.trim();
+        try {
+            int value = Integer.parseInt(trimmedWeek);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Attendance.WEEK_ERROR_MSG);
+        }
         if (!Attendance.isValidWeek(trimmedWeek)) {
             throw new ParseException(Attendance.WEEK_ERROR_MSG);
         }
@@ -73,6 +78,11 @@ public class ParserUtil {
     public static int parsePartPoints(String points) throws ParseException {
         requireNonNull(points);
         String trimmedPoints = points.trim();
+        try {
+            int value = Integer.parseInt(trimmedPoints);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Attendance.POINTS_ERROR_MSG);
+        }
         if (!Attendance.isValidParticipationPoints(trimmedPoints)) {
             throw new ParseException(Attendance.POINTS_ERROR_MSG);
         }
@@ -109,9 +119,27 @@ public class ParserUtil {
     /**
      * Parses time for countdown
      */
-    public static Integer parseTime(String time) {
+    public static Integer parseTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedPoints = time.trim();
+        try {
+            int value = Integer.parseInt(time);
+        } catch (NumberFormatException e) {
+            throw new ParseException("Invalid time for alarm");
+        }
         return Integer.parseInt(time);
+    }
+
+    /**
+     * Parse int input given
+     */
+    public static int parseInt(String s) throws ParseException {
+        int theInt;
+        try {
+            theInt = Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format("Invalid input: %s", s));
+        }
+        return theInt;
     }
 }
