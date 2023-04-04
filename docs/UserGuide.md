@@ -63,8 +63,18 @@ Clears the current session of patientist and restores it to empty state.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
-___
 
+---
+## Viewing the details of a specific person: view
+Lists the full detail of a specific person, including their name, patient ID and tags in the main window.
+
+**Format: `view INDEX`**
+
+**Examples:**
+**`view 1`** will display all the information associated with the 1st person shown on the GUI.
+
+[Go back to [Table of Contents](#table-of-contents)]
+___
 ## Adding a patient: addpat
 Adds a new patient to the system, and places them in the `WARD_NAME` assigned.
 Tags attached to a user are meant to be short notes that do not fit into any other category of patient details that can be added.
@@ -73,7 +83,7 @@ Tags attached to a user are meant to be short notes that do not fit into any oth
 
 **Format: `addpat n/PATIENT_NAME id/ID_NUMBER p/PHONE_NO e/EMAIL a/ADDRESS w/WARD_NAME pr/PRIORITY [t/TAG]...`**
 
-`PRIORITY` can take values of either `LOW`, `MEDIUM` or `HIGH`
+`PRIORITY` can take values of either `LOW`, `MEDIUM` or `HIGH`. Please only enter one of these 3 values (case-sensitive).\
 `ID_NUMBER` should be unique to each patient. This is not case-sensitive. A123456789B is identical to a123456789b.
 **This input will be capitalised automatically.**\
 `PATIENT_NAME` need not be unique.
@@ -192,7 +202,7 @@ them on the GUI.
 
 ---
 ## Adding patient status: addpatstatus
-Adds an entry to the list of patient statuses. This list can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
+Adds an entry to the list of patient statuses. This list of statuses can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
 command.
 
 **Note:** If the person indicated by the INDEX must be a `Patient`.
@@ -205,7 +215,7 @@ command.
 
 ---
 ## Deleting patient status: delpatstatus
-Deletes the specified entry in the list of patient statuses. This list can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
+Deletes the specified entry in the list of patient statuses. This list of statuses can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
 command.
 
 **Note:** If the person indicated by the PATIENT_INDEX must be a `Patient`.
@@ -218,7 +228,7 @@ command.
 
 ---
 ## Adding patient todo: addpattodo
-Adds an entry to the list of patient todos. This list can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
+Adds an entry to the list of patient todos. This list of todos can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
 command.
 
 **Note:** If the person indicated by the INDEX must be a `Patient`.
@@ -231,7 +241,7 @@ command.
 
 ---
 ## Deleting patient todo: delpattodo
-Deletes the specified entry in the list of patient todos. This list can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
+Deletes the specified entry in the list of patient todos. This list of todos can be viewed by the [view](#viewing-the-details-of-a-specific-person--view)
 command.
 
 **Note:** If the person indicated by the PATIENT_INDEX must be a `Patient`.
@@ -242,16 +252,7 @@ command.
 
 [Go back to [Table of Contents](#table-of-contents)]
 
----
-## Viewing the details of a specific person: view
-Lists the full detail of a specific person, including their name, patient ID and tags in the main window.
 
-**Format: `view INDEX`**
-
-**Examples:**
-**`view 1`** will display all the information associated with the 1st person shown on the GUI.
-
-[Go back to [Table of Contents](#table-of-contents)]
 
 ---
 
