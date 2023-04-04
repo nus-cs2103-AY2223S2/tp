@@ -20,9 +20,6 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
   <img width="400" height="255" src="images/internbuddy-computer.png">
 </p>
 
-
-<div style="page-break-after: always;"></div>
-
 [//]: # (@@author eugenetangkj - reused with modifications)
 
 [//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
@@ -43,6 +40,7 @@ that we went through in the initial development phase for requirements gathering
 Hopefully, interested developers would be able to easily set up the InternBuddy project and
 extends its functionality through this developer guide.
 
+<div style="page-break-after: always;"></div>
 
 ### Using the Developer Guide
 This developer guide uses a set of formatting standards and syntax to better communicate
@@ -80,7 +78,7 @@ Keyboard keys are indicated using rounded buttons.
 
 <button>Ctrl</button> <button>Alt</button> <button>Space</button> <button>Enter</button> <button>&uarr;</button>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Setting Up, Getting Started**
 
@@ -111,7 +109,7 @@ the different parts of the GUI throughout this developer guide.
 
 <br/>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -146,6 +144,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+<div style="page-break-after: always;"></div>
 
 **How the architecture components interact with each other**
 
@@ -183,6 +182,8 @@ as illustrated in the (partial) class diagram shown in Figure 4.
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI Component
 
 The **API** of this component is specified in
@@ -213,6 +214,8 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/logic/Logic.java)
@@ -234,6 +237,8 @@ How the `Logic` component works:
 3. The command can communicate with the `Model` when it is executed (e.g. to add an internship).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
+<div style="page-break-after: always;"></div>
+
 Figure 7 below illustrates the interactions within the `Logic` component for the `execute("delete-index 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -251,6 +256,8 @@ Figure 7 below illustrates the interactions within the `Logic` component for the
 limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Figure 8 shows the other classes in `Logic` (omitted from Figure 6) that are used for parsing a user command:
 
 <p align="center">
@@ -267,6 +274,8 @@ shown above to parse the user command and create a `XYZCommand` object (e.g., `A
 `InternBuddyParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `FindCommandParser`, ...) inherit from
 the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/model/Model.java)
@@ -289,6 +298,8 @@ which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` th
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-primary">:information_source: **Info:** An alternative (arguably, a more OOP)
 model is shown in Figure 10. It has a `Tag` list in the `InternBuddy`, which `Internship` references. This allows `InternBuddy`
 to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
@@ -302,6 +313,8 @@ to only require one `Tag` object per unique tag, instead of each `Internship` ne
 <p style="text-align: center;">Figure 10: Alternative model that is more OOP</p>
 <br/>
 
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -326,7 +339,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the [`seedu.internship.commons`](https://github.com/AY2223S2-CS2103T-T14-3/tp/tree/master/src/main/java/seedu/internship/commons) package.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -375,6 +388,8 @@ The following gives a more detailed explanation of the `add` command.
    this new `Internship` such that the right UI panel displays the information for this new
    `Internship`.
 
+<div style="page-break-after: always;"></div>
+
 #### Design Considerations
 
 - Whether to make all fields in the `add` command compulsory
@@ -412,9 +427,10 @@ The following gives a more detailed explanation of the `add` command.
       Without scrolling, users have to rely on the [Result Display](#setting-up-getting-started) to
       determine if the `AddCommand` is successful.
 
+<div style="page-break-after: always;"></div>
+
 [//]: # (@@author - seadragon2000341)
 ### Edit an Internship - `edit`
-### Edit feature
 
 #### Implementation
 
@@ -434,6 +450,8 @@ The following gives a more detailed explanation of the `edit` command.
 4. After the successful parsing of user input into `EditCommandParser`, the `EditCommand` object is created with a new updated `Internship` object (to maintain immutability).
 5. Following which, `EditCommand#execute(Model model)` method is called which eventually calls the `Model#setInternship(Internship toEdit, Internship edited)` method, replacing the old `Internship` object with the newly updated one.
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 
 - Aspect: How `edit` executes
@@ -451,6 +469,7 @@ The following gives a more detailed explanation of the `edit` command.
     * Cons:
         * Reduces the defensiveness of the code and class
 
+<div style="page-break-after: always;"></div>
 
 [//]: # (@@author - eugenetangkj)
 ### View an Internship - `view`
@@ -481,6 +500,8 @@ The following gives a more detailed explanation of the `view` command.
    the `Internship` obtained from Step 7 such that the right UI panel displays the information
    for this selected `Internship`.
 
+<div style="page-break-after: always;"></div>
+
 #### Design Considerations
 
 - Whether to separate the checking of valid user input into 2 classes
@@ -501,10 +522,13 @@ The following gives a more detailed explanation of the `view` command.
       is an issue in processing user input for the `ViewCommand`, there is a need to
       identify and isolate which of the 2 checks does the problem originate from.
 
+<div style="page-break-after: always;"></div>
 
 ### Copy an Internship to Clipboard - `copy`
 [TODO by Chuhao]
 
+
+<div style="page-break-after: always;"></div>
 
 [//]: # (@@author kohkaixun)
 ### Find Internships - `find`
@@ -525,6 +549,8 @@ The following gives a more detailed explanation of the `find` command.
 1. If the name, role, status, date and tag fields are all missing or one of their values are invalid, a `ParserException` will be thrown and the `FindCommand` will not be executed.
 2. After the successful parsing of user input into `FindCommandParser`, an `InternshipContainsKeywordPredicate` object, containing the lists of keywords specified in the user input, is created, which in turn is used to create a `FindCommand` object.
 3. Following which, the `FindCommand#execute(Model model)` method is called which eventually calls the `updateFilteredInternshipList(Predicate<Internship> predicate)` method with the `InternshipContainsKeywordPredicate` object, previously created by `FindCommandParser`, as its argument and updates the `FilteredList<Internship>` stored inside the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -550,6 +576,7 @@ The following gives a more detailed explanation of the `find` command.
 
 
 
+<div style="page-break-after: always;"></div>
 
 [//]: # (@@author - seadragon2000341)
 ### Get Upcoming Events and Deadlines - `upcoming`
@@ -572,6 +599,8 @@ The following gives a more detailed explanation of the `upcoming` command.
   - `OFFERED`
 - The `DATE` must be within the upcoming week.
 
+<div style="page-break-after: always;"></div>
+
 #### Design Considerations
 
 - Whether to include all possible statuses of an internship
@@ -585,6 +614,8 @@ The following gives a more detailed explanation of the `upcoming` command.
 2. **Alternative 2: Internships with any status would be accepted, even statuses that are not tied to an upcoming event or deadline**
     * Pros: May be more intuitive for users to understand.
     * Cons: This may cause users to forget the intended use case of the application, leading to confusion or misuse.
+
+<div style="page-break-after: always;"></div>
 
 [//]: # (@@author - potty10)
 ### Delete Internship Entries - `delete-field`
@@ -603,6 +634,8 @@ fields (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
 3. When the `DeleteFieldCommand` object executes, a list of `Internship` objects is obtained with `model.getFilteredInternshipList()`.
 4. For each `Internship` object in the list that matches with **at least one** value for
   **every** field type that is specified, it will be deleted using `model.deleteInternship(internshipToDelete)`
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -650,10 +683,10 @@ fields (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
       is to mass delete internships that are no longer required.
         * Difficult to define a suitable interpretation of the fields. For example, in the command `delete 1 2 n/Google`, 
       the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
- 
 
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, Logging, Testing, Configuration, Dev-ops**
 
@@ -694,6 +727,8 @@ CLI provides a simple way to interact with computers to run programs and manage 
 Computing undergraduates are taught how to use the CLI in their curriculums, and are often required to use it
 to run system tasks that cannot be done over the GUI. Hence, this would imply a reasonable level of comfort in using
 the CLI interface.
+
+<div style="page-break-after: always;"></div>
 
 * Prefers desktop applications over other types
 
@@ -827,6 +862,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
+<div style="page-break-after: always;"></div>
+
 **Use Case: Copy an internship to clipboard**
 
 **Main Success Scenario**
@@ -876,6 +913,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
+<div style="page-break-after: always;"></div>
+
 **Use Case: Get internships with upcoming events or deadlines**
 
 **Main Success Scenario**
@@ -916,6 +955,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from Step 2.
 
 <br/>
+
+<div style="page-break-after: always;"></div>
 
 **Use Case: Delete internships by fields**
 
@@ -972,6 +1013,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
+<div style="page-break-after: always;"></div>
+
 **Use case: Exit InternBuddy**
 
 **Main Success Scenario**
@@ -992,6 +1035,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. InternBuddy is not required to handle concurrent users.
 7. InternBuddy is not required to make data available online.
 
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix B: Instructions for Manual Testing**
 
@@ -1037,7 +1082,7 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
 
    **Expected**: All internship entries are listed out and displayed in the List Panel.
 
-
+<div style="page-break-after: always;"></div>
 
 ### Add an Internship
 
@@ -1079,7 +1124,7 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
    **Expected**: No new internship is added. An error message is displayed in the Result Display.
    This is because the `COMMENT` field cannot be left blank.
 
-
+<div style="page-break-after: always;"></div>
 
 ### Edit an Internship
 Assumptions: The sample data provided by InternBuddy is used, where there is a total of 7 internship entries.
@@ -1128,6 +1173,8 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    UI panel. This is because while `Amazon Technologies` is a valid company name, `Applying` is an invalid
    status.
 
+<div style="page-break-after: always;"></div>
+
 8. `edit`
 
    **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1
@@ -1143,6 +1190,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
     **Expected**: An error message is displayed in the Result Display. This is because there are only
     7 internship entries in the sample data. Index 12 is out of range.
 
+<div style="page-break-after: always;"></div>
 
 ### View an Internship
 Assumptions: The sample data provided by InternBuddy is used, where there is a total of 7 internship entries.
@@ -1187,6 +1235,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: An error message is displayed in the Result Display. This is because the compulsory
    `INDEX` field is missing.
 
+<div style="page-break-after: always;"></div>
 
 ### Copy an Internship to Clipboard
 Assumptions: The sample data provided by InternBuddy is used, where there is a total of 7 internship entries.
@@ -1231,6 +1280,8 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: An error message is displayed in the Result Display. This is because the compulsory
    `INDEX` field is missing.
 
+<div style="page-break-after: always;"></div>
+
 ### Find Internships
 Assumptions: The sample data provided by InternBuddy is used, where there is a total of 7 internship entries.
 1. `find n/Amazon`
@@ -1273,7 +1324,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    This is because all other internship entries do not have a matching value with both `Status` and
    `Tag`.
 
-
+<div style="page-break-after: always;"></div>
 
 ### Get Upcoming Events and Deadlines
 
@@ -1321,6 +1372,7 @@ Prerequisites: List all internships using the `list` command. Multiple internshi
     **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1
     index must be specified.
 
+<div style="page-break-after: always;"></div>
 
 ### Delete Internships by Fields
 Assumptions: The sample data provided by InternBuddy is used, where there is a total of 7 internship entries.
@@ -1361,7 +1413,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: Only the internship with status `Assessment` and tag `Android` is deleted, because
    all the other internships do not have a matching field for both `Status` and `Tag`.
 
-
+<div style="page-break-after: always;"></div>
 
 ### Clear all Internships
 
@@ -1395,6 +1447,8 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 3. `help edit 1 n/Apples`
 
    **Expected**: The help window opens.
+
+<div style="page-break-after: always;"></div>
 
 ### Exit InternBuddy
 
@@ -1439,6 +1493,7 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 
    **Expected**: No entry is shown in the List Panel. InternBuddy starts afresh with 0 internship entry.
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix C: Proposed Design Tweaks for Feature Flaws**
 While we strive to make InternBuddy a perfect product for you, there are nevertheless areas of improvement.
@@ -1452,8 +1507,8 @@ Explain the problem here
 
 **Proposed Design Tweak**: Explain the design tweak here
 
+<div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
 
 Table 3 provides the glossary for the terms used in this developer guide.
@@ -1471,7 +1526,6 @@ Table 3 provides the glossary for the terms used in this developer guide.
 
 <p style="text-align: center;">Table 3: Glossary for Developer Guide</p>
 
---------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
 * InternBuddy is written in **Java 11**.
