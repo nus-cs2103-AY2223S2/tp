@@ -27,8 +27,10 @@ import seedu.address.model.jobs.Earning;
  * Parses input arguments and creates a new AddDeliveryJobCommand object
  */
 public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand> {
-    private static final String MESSAGE_SLOT_MISSING = "Delivery slot missing, both date and slot are required for scheduling";
-    private static final String MESSAGE_DATE_MISSING = "Delivery date missing, both date and slot are required for scheduling";
+    private static final String MESSAGE_SLOT_MISSING = "Delivery slot missing, "
+            + "both date and slot are required for scheduling";
+    private static final String MESSAGE_DATE_MISSING = "Delivery date missing, "
+            + "both date and slot are required for scheduling";
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
@@ -71,7 +73,7 @@ public class AddDeliveryJobCommandParser implements Parser<AddDeliveryJobCommand
             throw new ParseException(
                     String.format(MESSAGE_DATE_MISSING));
         } else if (argMultimap.getValue(PREFIX_DELIVERY_DATE).isPresent()
-        && argMultimap.getValue(PREFIX_DELIVERY_SLOT).isPresent()) {
+                && argMultimap.getValue(PREFIX_DELIVERY_SLOT).isPresent()) {
             try {
                 date = argMultimap.getValue(PREFIX_DELIVERY_DATE).map(x -> new DeliveryDate(x));
             } catch (Exception e) {

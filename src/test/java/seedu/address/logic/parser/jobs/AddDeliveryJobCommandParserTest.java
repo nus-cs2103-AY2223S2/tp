@@ -95,7 +95,7 @@ public class AddDeliveryJobCommandParserTest {
         assertParseFailure(parser,
                 buildCommand(" si/", VALID_RECIPIENT, "ri/", VALID_RECIPIENT, "earn/", INVALID_EARNING),
                 Earning.MESSAGE_CONSTRAINTS);
-    
+
         // invalid date
         assertParseFailure(parser,
                         buildCommand(PREAMBLE_WHITESPACE, "si/", VALID_SENDER, "ri/", VALID_RECIPIENT, "earn/",
