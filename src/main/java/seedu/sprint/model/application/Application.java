@@ -89,13 +89,15 @@ public class Application {
         }
 
         Application otherApplication = (Application) other;
+        boolean hasTask = this.hasTask();
+        boolean otherHasTask = otherApplication.hasTask();
+        boolean tasksEqual = hasTask && otherHasTask && this.getTask().equals(otherApplication.getTask());
 
         return otherApplication.getRole().equals(this.getRole())
                 && otherApplication.getCompanyName().equals(this.getCompanyName())
                 && otherApplication.getCompanyEmail().equals(this.getCompanyEmail())
                 && otherApplication.getTags().equals(this.getTags())
-                && (this.hasTask() == otherApplication.hasTask())
-                || (this.hasTask() && this.getTask().equals(otherApplication.getTask()));
+                && (tasksEqual || (!hasTask && !otherHasTask));
     }
 
     @Override
