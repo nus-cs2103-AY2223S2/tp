@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.showParentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalParents.ALICE;
 import static seedu.address.testutil.TypicalParents.BENSON;
-import static seedu.address.testutil.TypicalParents.getTypicalPowerConnectParents;
 import static seedu.address.testutil.TypicalParents.HOON;
+import static seedu.address.testutil.TypicalParents.getTypicalPowerConnectParents;
 
 import org.junit.jupiter.api.Test;
 

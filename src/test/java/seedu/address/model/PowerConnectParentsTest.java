@@ -6,7 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalParents.*;
+import static seedu.address.testutil.TypicalParents.ALICE;
+import static seedu.address.testutil.TypicalParents.getTypicalPowerConnectParents;
 
 import java.util.Arrays;
 import java.util.Collection;

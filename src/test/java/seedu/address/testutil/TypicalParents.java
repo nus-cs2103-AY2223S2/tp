@@ -27,8 +27,11 @@ public class TypicalParents {
             .withPhone("94351253")
             .withTags("friends").build();
     public static final Parent BENSON = new ParentBuilder().withName("Benson Meier")
+            .withAge("20")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
+            .withImage("Insert parent image here!")
+            .withEmail("johnd@example.com")
+            .withPhone("98765432")
             .withTags("owesMoney", "friends").build();
     public static final Parent CARL = new ParentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").build();
