@@ -227,13 +227,13 @@ Once successfully created, the interface will display the new client's name and 
 
 - `-y year_of_birth`
     - The client’s year of birth. Any combination of four digits is acceptable.
-    - **Default**: *null*
+    - **Default**: *'No year of birth'*
 - `-src source`
     - The platform the client is sourced from, such as Fiverr. This can be any arbitrary non-empty string.
-    - **Default:** *null*
+    - **Default:** *'No source'*
 - `-mn mobile_number`
     - The client’s mobile number.
-    - **Default:** *null*
+    - **Default:** *'No mobile number'*
 
 <div markdown="span" class="alert alert-danger">
 :warning: Mycelium does not accommodate 'extreme' inputs (e.g., a client name or email with 1000 characters)
@@ -298,19 +298,19 @@ The interface will display the updated client's name and email once the update i
 At least one of the following arguments must be provided:
 - `-cn client_name`
   - The client’s new name.
-  - **Default:** *null*
+  - **Default:** *Existing name*
 - `-e2 new email`
   - The client's new email. Must be unique in Mycelium. Case sensitive.
-  - **Default:** *null*
+  - **Default:** *Existing email*
 - `-y year_of_birth`
   - The client’s new year of birth.
-  - **Default:** *null*
+  - **Default:** *Existing year of birth or 'No year of birth'*
 - `-src source`
   - The client’s new digital service platform, e.g. Fiverr.
-  - **Default:** *null*
+  - **Default:** *Existing source or 'No source'*
 - `-mn mobile_number`
   - The client’s new mobile number.
-  - **Default:** *null*
+  - **Default:** *Existing mobile number or 'No mobile number'*
 
 **Example**
 
@@ -357,16 +357,16 @@ If the project is added successfully, a message confirming the addition will be 
 - `-src source`
     - The platform the project is sourced from, such as Fiverr. This can be any
       arbitrary non-empty string.
-    - **Default:** *null*
+    - **Default:** *'Unknown'*
 - `-d description`
     - A short description of the project.
-    - **Default:** *null*
+    - **Default:** *'No description given'*
 - `-ad accepted_date`
     - The date that the project was accepted, in the format dd/MM/yyyy.
     - **Default**: the current date
 - `-dd deadline_date`
     - The deadline of the project, in the format dd/MM/yyyy.
-    - **Default:** *null*
+    - **Default:** *'No Deadline'*
 
 <div markdown="span" class="alert alert-danger">
 :warning: Mycelium does not accommodate 'extreme' inputs (e.g., a project name or description with 1000 characters)
@@ -457,26 +457,26 @@ will be used to partially update the project. The output will confirm the update
 
 * `-pn2 new_project_name`
     * A new project name.
-    * **Default:** *null*
+    * **Default:** *Existing name*
 * `-e client_email`
     * A new client email.
-    * **Default:** *null*
+    * **Default:** *Existing email*
 * `-s status`
     * A new project status. Should be set, to one of `not_started`,
       `in_progress`, or `done`.
-    * **Default:** *null*
+    * **Default:** *Existing status*
 * `-src source`
     * A new source for the project. Can be any arbitrary non-empty string.
-    * **Default:** *null*
+    * **Default:** *Existing source or 'Unknown'*
 * `-d description`
     * A new description for the project.
-    * **Default:** *null*
+    * **Default:** *'Existing description or 'No description given'*
 * `-ad accepted_date`
     * A new accepted-on date for the project.
-    * **Default:** *null*
+    * **Default:** *Existing accepted-on date*
 * `-dd deadline_date`
     * A new deadline for the project.
-    * **Default:** *null*
+    * **Default:** *Existing deadline or 'No Deadline'*
 
 Each of these arguments, if specified, will be used to (paritially) update the
 target project.
