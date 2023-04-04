@@ -72,8 +72,10 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 </div>
 
 ### Architecture
-
-<img src="images/ArchitectureDiagram.png" width="280" />
+<p>
+  <img src="images/ArchitectureDiagram.png" width="280" />
+  <em>Architecture Diagram for GoodMatch</em>
+</p>
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -99,7 +101,10 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p>
+  <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+  <em>Architecture Sequence Diagram for GoodMatch</em>
+</p>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -108,7 +113,10 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<p>
+  <img src="images/ComponentManagers.png" width="300" />
+  <em>Sequence Diagram for the Managers in GoodMatch</em>
+</p>
 
 The sections below give more details of each component.
 Details coming soon...
