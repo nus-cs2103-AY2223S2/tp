@@ -420,6 +420,9 @@ Parameters:
 > :information_source: Additional information: After viewing a specific tank, use `list fishes` and `list tasks` to see
 > the rest of the fishes and tasks belonging to other tanks again!
 
+> :exclamation: Warning: To ensure you are still viewing the correct tank after adding or editing a fish or task,
+> use `tank view` again!
+
 Example:
 * You have 2 tanks, 'Freshwater tank' with index 1 and 'Saltwater tank' with index 2. 'Freshwater tank' has a fish named 'Guppy' with a task named 'clean tank'.
 'Saltwater tank' has a fish named 'Clown fish' and a task named 'change thermometer'. `tank view 1` lists the following information in the respective panels:
