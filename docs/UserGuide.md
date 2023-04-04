@@ -130,14 +130,13 @@ TinS command can be found [here](#features).
 
 ### How your Internship Application Data is Organised in TinS
 
+### Information about Crafting Your Command
+
+#### Prefixes
 
 
-<div style="page-break-after: always;"></div>
 
-## Features (v1.3)
-
-**Notes about the command format:**
-
+#### Notes about the Command Format
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION`, `POSITION` is a parameter which can be
   used as `add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python and Java`.
@@ -146,29 +145,34 @@ TinS command can be found [here](#features).
   e.g `[TAG]` means that the user input is optional.
 
 
-### Feature List
-
-1. Opening Home Page: [`home`](#home_function)
-2. Opening Statistics Page: [`stats`](#stats_function)
-3. Opening Calendar Page: [`calendar`](#calendar_function)
-4. Adding an Internship Application: [`add`](#add_function)
-5. Listing all Internship Applications in TinS: [`list`](#list_function)
-6. Finding a Particular Internship Application in TinS: [`find`](#find_function)
-7. Editing Details of an Internship Application: [`edit`](#edit_function)
-8. Viewing Details of a Particular Internship Application: [`select`](#select_function)
-9. Deleting an Internship Application: [`delete`](#delete_function)
-10. Adding an Event to an Internship Application: [`event add`](#eventadd_function)
-11. Deleting an Event from an Internship Application: [`event delete`](#eventdelete_function)
-12. Finding a Particular Event: [`event find`](#eventfind_function)
-13. Finding all Clashing Events: [`clash`](#clash_function)
-14. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
-15. Getting help: [`help`](#help_function)
-16. Exiting the program: [`exit`](#exit_function)
-17. [Saving data in TinS](#save_function)
 
 <div style="page-break-after: always;"></div>
 
-### Opens the Home Page : `home`</h3>
+## Features
+
+### Feature List
+
+1. Opening Home Page: [`home`](#opens-the-home-page-:-home)
+2. Opening Statistics Page: [`stats`](#stats_function)
+3. Opening Calendar Page: [`calendar`](#calendar_function)
+4. Adding an Internship Application: [`add`](#add_function)
+6. Listing all Internship Applications in TinS: [`list`](#list_function)
+7. Finding a Particular Internship Application in TinS: [`find`](#find_function)
+8. Editing Details of an Internship Application: [`edit`](#edit_function)
+9. Viewing Details of a Particular Internship Application: [`select`](#select_function)
+10. Deleting an Internship Application: [`delete`](#delete_function)
+11. Adding an Event to an Internship Application: [`event add`](#eventadd_function)
+12. Deleting an Event from an Internship Application: [`event delete`](#eventdelete_function)
+13. Finding a Particular Event: [`event find`](#eventfind_function)
+14. Finding all Clashing Events: [`clash`](#clash_function)
+15. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
+16. Getting help: [`help`](#help_function)
+17. Exiting the program: [`exit`](#exit_function)
+18. [Saving data in TinS](#save_function)
+
+<div style="page-break-after: always;"></div>
+
+### Opens the Home Page : `home`
 
 Returns user to the home page. 
 
