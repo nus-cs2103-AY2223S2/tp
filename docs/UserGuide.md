@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 
 ## **Introduction**
@@ -14,7 +14,7 @@ Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assist
 With TAA, you can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
 You can even view grade statistics without the use of a dedicated data analysis application!
 
-<!-- maybe can add image here -->
+![TAA logo](./images/TAA_logo.jpg)
 
 Say goodbye to the hassle of managing teaching assistant tasks and hello to increased efficiency with TAA!
 
@@ -38,6 +38,11 @@ Aside from the usual text format, this guide includes certain special formats th
 
 Callouts are identified by a coloured box containing some text.
 
+**Note**
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** Contains important information on how the application is designed to be used.
+</div>
+
 **Information**
 <div markdown="span" class="alert alert-primary">
 :information_source: **Info:** Provides information that is not essential, but may be useful (especially for advanced users!). 
@@ -46,11 +51,6 @@ Callouts are identified by a coloured box containing some text.
 **Tip**
 <div markdown="span" class="alert alert-success">
 :bulb: **Tip:** Provides recommendations on how you can use the app more effectively.
-</div>
-
-**Note**
-<div markdown="span" class="alert alert-warning">
-:page_with_curl: **Note:** Contains information on how the application is designed to be used.
 </div>
 
 **Warning**
@@ -111,6 +111,10 @@ Labelled components of the TAA GUI
 </em></figcaption>
 
 <br />
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** Each Class List consists of 0 or more Student Cards. 
+</div>
+
 The purposes of each component, as labelled in Figure 2 above, are described in Table 1 below.
 <br />
 
@@ -120,11 +124,12 @@ Table 1
 Purposes of each GUI component
 </div>
 
-|     Component      |                              Purpose                               |
-|:------------------:|:------------------------------------------------------------------:|
-|    Command Box     |                 To accept commands from the user.                  |
-|     Output Box     |     To display the result of the commands issued by the user.      |
-| Class List Display | To display the list of students in the currently active class list |
+|     Component      |                                      Purpose                                       |
+|:------------------:|:----------------------------------------------------------------------------------:|
+|    Command Box     |                         To accept commands from the user.                          |
+|     Output Box     |             To display the result of the commands issued by the user.              |
+| Class List Display |        To display the list of students in the currently active class list.         |
+|    Student Card    | To display the relevant information for a single Student in the active class list. |
 
 
 <div markdown="span" class="alert alert-warning">
@@ -147,7 +152,7 @@ If the students being displayed are not the ones you wish to update, do remember
 <div style="text-align:center"><strong>
 Table 2
 </strong>: 
-Purposes of each GUI component
+Command syntax
 </div>
 
 |            Syntax            |                                                                      Explanation                                                                       |
@@ -163,7 +168,7 @@ Purposes of each GUI component
 </div>
 
 <div markdown="span" class="alert alert-primary">
-:information_source: **Info:** If a parameter is expected to be passed in only once, but is specified multiple times by the user, onle the last occurrence of the parameter will be taken by the application.
+:information_source: **Info:** If a parameter is expected to be passed in only once, but is specified multiple times by the user, only the last occurrence of the parameter will be taken by the application.
 </div>
 
 <div markdown="span" class="alert alert-primary">
@@ -540,7 +545,26 @@ Format: `export [-force] FILE_PATH`
 * Nothing is changed if file access denied.
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix A: Planned Enhancements**
 
+### 1. Allow multiple students with the same name to be added
+Currently, users are unable to add a student with the same name as another student that already exists in TAA.
+This could be troubling for tutors who have two students with the exact same name in the same class.
+
+However, the current state of TAA is unable to provide sufficient information about students to distinguish between two students with the same name.
+This should be doable only after TAA also has the ability to store student photos for each student (slated for future release), which would enable users to identify students using their names and portraits.
+Therefore, we plan to implement this enhancement when TAA matures further to allow users to identify students with the same name correctly. 
+
+This would be done by allowing the commands `add_student` and `edit_student` to succeed when using an existing student name, albeit with a warning "Note: A student with the same name already exists. If this is not what you intended, please undo this operation.".
+
+### 2. Enhance input validation for the student name field
+Currently, students with the same name, but with different capitalisations and whitespace positions are treated as different entities by TAA.
+However, in the real world, this is unlikely the case. Such entities are likely to represent the same student, which can lead to confusion when users accidentally create multiple student entities for the same student as a result of a typo.
+
+Therefore, we plan to further extend the checks performed on the student name provided to the commands `add_student` and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to be the same student.
+Consequently, such operations will not be allowed to execute, and an error message "A student with a similar name already exists! Did you mean <student name>?" will be shown to the user instead.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
 
 |           Term           |                                                                               Explanation                                                                                | 
