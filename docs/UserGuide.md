@@ -153,7 +153,7 @@ Our initial recipe book:
 
 ---
 ### Delete a recipe : `delete RECIPE_NUMBER`
-This command deletes the recipe at the specified *task number* from your recipe book.
+This command deletes the recipe at the specified *recipe number* from your recipe book.
 
 Format: `delete RECIPE_NUMBER`
 
@@ -318,7 +318,8 @@ Our initial recipe book:
 ---
 ### Add a recipe to the favorites: `star RECIPE_NUMBER`
 
-This command adds the recipe at the specified *task number* into your favorites, which include all recipes you like the most!
+This command adds the recipe at the specified *recipe number* into your favorites, which include all recipes 
+you like the most!
 
 Format: `star RECIPE_NUMBER`
 
@@ -343,7 +344,7 @@ Our initial recipe book:
 ---
 ### Remove a recipe from the favorites: `unstar RECIPE_NUMBER`
 
-This command removes the recipe at the specified *task number* from your favorites.
+This command removes the recipe at the specified *recipe number* from your favorites.
 
 Format: `unstar RECIPE_NUMBER`
 
