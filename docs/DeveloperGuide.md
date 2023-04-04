@@ -380,6 +380,12 @@ Step 3. An instance of `BackgroundNotificationScheduler` will be created and its
 
 Step 4. At the appropriate timings, `NotificationManager#checkReminderList()` and `NotificationManager#checkNextSchedule()` will run and display the appropriate notifications accordingly.
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Users can click on the notification to dismiss the reminders. This effectively snoozes the reminder until another
+new reminder is active. This is implemented by counting the number of active reminder through the `hasShown` attribute in `Reminder` and tracking the 
+`isDismissed` variable in `NotificationManager`.
+</div>
+
 The following sequence diagram shows how the Notification feature works:
 ![NotificationSequenceDiagram](images/NotificationSequenceDiagram.png)
 
@@ -567,22 +573,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 </pre>
 </details>
 
+<details>
+<summary><b>[RE1] Alert scheduled jobs</b></summary>
+<pre>
+<b>MSS</b>
+1. User starts up System.
+2. System checks the time. 
+3. If the current timing falls more than 20 mins before a timetable slot, System will check if there is any current job. 
+If yes, it will count and alert the user through the notification feature.
+4. System runs in the background to only check the timetable for upcoming jobs.
+   System will repeat step 2 every hour, 20 mins before the next timetable slot.
+   Use case ends.
+
+<b>Extensions:</b>
+* 3a. If the current time is within 20 mins before the next timetable slot
+    * 3a1. System will check the next timetable slot and count number of upcoming jobs.
+    * 3a2. Alert the user through the notification feature.
+* 3b. If the current time is before the first timetable slot.
+    * 3b1. System will check in the first timetable slot and count number of upcoming jobs. 
+    * 3b2. Alert the user through the notification feature.
+* 3c. If the current time is after the last timetable slot
+    * 3c1. System will not check for any or upcoming scheduled jobs.
+Use case resumes from step 4.
+
+</pre>
+</details>
 
 <details>
-<summary><b>[RE1] Receive reminders</b></summary>
+<summary><b>[RE1] Alert reminders</b></summary>
 <pre>
 <b>MSS</b>
 1. User starts up System.
 2. System loads address book from memory.
-3. System checks from address book, list of reminders. If the current date and time has pass or is equal to the date specified in the reminder, a notification will pop up.
-4. System runs in the background to check against the list of reminders before each block in the timetable.
-   System will repeat the check at step 3a.
+3. System checks from address book, list of reminders. If the current date and time has pass or is equal to the date 
+specified in a reminder, System will count it as an active reminder. 
+4. System will display the number of active notifications.
+5. System runs in the background to check against the list of reminders after every minute.
+   System will repeat the check at step 3.
    Use case ends.
 
 <b>Extensions:</b>
-* 3a. A few minutes before the next schedule, System will check if there is an job.
-    * 3a1. If there is an upcoming job, fire a pop up notification.
-    Use case resumes from step 4.
+* 4a. User can dismiss the reminder. Doing will prevent the app from showing anymore notifications.
+    * 4a1. A new reminder is activated.
+Use case resumes from step 4.
+    * 4a2. No new reminder is activated.
+Use case resumes from step 5
 </pre>
 </details>
 
