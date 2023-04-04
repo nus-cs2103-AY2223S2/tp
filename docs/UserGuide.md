@@ -14,7 +14,7 @@ Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assist
 With TAA, you can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
 You can even view grade statistics without the use of a dedicated data analysis application! 
 
-<!-- maybe can add image here -->
+![TAA logo](./images/TAA_logo.jpg)
 
 Say goodbye to the hassle of managing teaching assistant tasks and hello to increased efficiency with TAA!
 
@@ -38,6 +38,11 @@ Aside from the usual text format, this guide includes certain special formats th
  
 Callouts are identified by a coloured box containing some text. 
 
+**Note**
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** Contains important information on how the application is designed to be used.
+</div>
+
 **Information**
 <div markdown="span" class="alert alert-primary">
 :information_source: **Info:** Provides information that is not essential, but may be useful (especially for advanced users!). 
@@ -48,14 +53,9 @@ Callouts are identified by a coloured box containing some text.
 :bulb: **Tip:** Provides recommendations on how you can use the app more effectively.
 </div>
 
-**Note**
-<div markdown="span" class="alert alert-warning">
-:page_with_curl: **Note:** Contains information on how the application is designed to be used.
-</div>
-
 **Warning**
 <div markdown="span" class="alert alert-danger">
-:warning: **Warning:**  Describes actions that may cause the application to function unexpectedly.
+:warning: **Warning:** Describes actions that may cause the application to function unexpectedly.
 </div>
 
 ##### Syntax highlighting
@@ -111,6 +111,10 @@ Labelled components of the TAA GUI
 </em></figcaption>
 
 <br />
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** Each Class List consists of 0 or more Student Cards. 
+</div>
+
 The purposes of each component, as labelled in Figure 2 above, are described in Table 1 below.
 <br />
 
@@ -120,11 +124,12 @@ Table 1
 Purposes of each GUI component
 </div>
 
-|     Component      |                              Purpose                               |
-|:------------------:|:------------------------------------------------------------------:|
-|    Command Box     |                 To accept commands from the user.                  |
-|     Output Box     |     To display the result of the commands issued by the user.      |
-| Class List Display | To display the list of students in the currently active class list |
+|     Component      |                                      Purpose                                       |
+|:------------------:|:----------------------------------------------------------------------------------:|
+|    Command Box     |                         To accept commands from the user.                          |
+|     Output Box     |             To display the result of the commands issued by the user.              |
+| Class List Display |        To display the list of students in the currently active class list.         |
+|    Student Card    | To display the relevant information for a single Student in the active class list. |
 
 
 <div markdown="span" class="alert alert-warning">
@@ -147,7 +152,7 @@ If the students being displayed are not the ones you wish to update, do remember
 <div style="text-align:center"><strong>
 Table 2
 </strong>: 
-Purposes of each GUI component
+Command syntax
 </div>
 
 |            Syntax            |                                                                      Explanation                                                                       |
@@ -163,12 +168,63 @@ Purposes of each GUI component
 </div>
 
 <div markdown="span" class="alert alert-primary">
-:information_source: **Info:** If a parameter is expected to be passed in only once, but is specified multiple times by the user, onle the last occurrence of the parameter will be taken by the application.
+:information_source: **Info:** If a parameter is expected to be passed in only once, but is specified multiple times by the user, only the last occurrence of the parameter will be taken by the application.
 </div>
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Info:** Extraneous parameters for commands that do not take in parameters will be ignored.
 </div>
+
+### General
+These commands are either used to interact with students across all class lists, or just general commands that are not related to any of the sections below:
+- `list`
+- `find`
+- `clear`
+- `help`
+
+#### List all students : `list`
+Lists all students tracked by TAA, across all class lists.
+
+Format: `list`
+
+
+#### Find a particular student : `find`
+Find students across all classes whose names contain any of the specified keywords.
+
+Format: `find KEYWORD [MORE_KEYWORDS]...`
+- The given `KEYWORD`/`MORE_KEYWORDS` are not case-sensitive.
+
+Examples:
+- `find Alice Bob Charlie`
+- `find bAlAKRiSHNan`
+
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** A given keyword must exist as a whole word in a name for it to be considered as a match.
+e.g. The keyword `bala` does not match the name `Roy Balakrishnan` as `Bala` is not the full word `Balakrishnan`.
+</div>
+
+#### Clear all students: `clear`
+Removes all students currently being tracked by TAA.
+
+Format: `clear`
+
+<div markdown="span" class="alert alert-danger">
+:warning: **Warning:** This will delete all student records in TAA. Only use this command if you are sure you want to start off with a totally empty student list.
+</div>
+
+
+#### Display the help menu: `help`
+Displays the help menu.
+
+Format: `help`
+
+![Help menu](images/HelpMenu.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 3: 
+</strong>
+A preview of the help menu displayed.
+</em></figcaption>
+
 
 ### Attendance
 For attendance, you can make the following calls:
@@ -193,25 +249,75 @@ Examples
 
 ### Participation
 For participation, you can make the following calls:
-* insert
+* insertPP
+* listPP
+
+#### Clarifications on Participation points
+
+* Participation points is represented by a integer from `0` to `700` (inclusive of both `0` and `700`) <br>
+  Except for the special situation where the attendance is not marked, then the participation points will be `-1`
+  If users are inserting participation points, only a integer from `0` to `700` (inclusive of both `0` and `700`) is allowed
+* when the attendance of a student for a week is marked (not present -> present for the week) <br>
+  Then the participation points of the student changes from `-1` to `0`
+* Unmarking a student's attendance automatically changes the participation points of a student to `-1`
+* The participation points displayed in Class List portion of the TAA GUI is the average points, which is calculated using `Total participation points` / `Number of weeks present` <br>
+  `Total participation points` is the sum of all participation points for weeks when the student is present <br>
+  `Number of weeks present` refers to the number of week present from week 1 to week 12
+
 
 #### Insert participation points: `insertPP`
-Insert attendance of a student for that week<br>
-Format: `insertPP STUDENT_ID w/WEEK_NUMBER pp/POINTS`
+Inserts participation points of a student for that week<br>
+Format: `insertPP STUDENT_INDEX w/WEEK_NUMBER pp/POINTS`
+
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
+`WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
+`POINTS`: A integer between 0 and 700 (inclusive of both 0 and 700)
+
+Participation points can only be inserted for a week when the attendance is already marked. <br>
+Violation of this will result in a message `Mark the attendance of the student first before inserting points!`
+
 Examples
-* `insertPP 1 w/1 pp/200`
-* `insertPP 2 w/1 pp/300`
+* `insertPP 1 w/1 pp/200` (inserts participation points of 200 for week 1 of student with index 1)
+* `insertPP 2 w/1 pp/300` (inserts participation points of 200 for week 1 of student with index 2)
+
+#### List participation points: `listPP`
+Lists the participation points of a student from week 1 to week 12<br>
+Format: `listPP STUDENT_INDEX`
+
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
+
+Examples
+* `listAtd 1` (list participation points of student with index 1)
+* `listAtd 2` (list participation points of student with index 2)
+
+The listed participation points will be such that every line will be in the format `Week NUM: [POINTS]` <br>
+where `NUM` represents the week number, and `POINTS` is the participation points for that week
+
+Example
+* `Week 1: [200]` <br>
+  `Week 2: [300]` <br>
+  `Week 3: [400]` <br>
+  `Week 4: [-1]` <br>
+  `Week 5: [-1]` <br>
+  `Week 6: [-1]` <br>
+  `Week 7: [-1]` <br>
+  `Week 8: [-1]` <br>
+  `Week 9: [-1]` <br>
+  `Week 10: [-1]` <br>
+  `Week 11: [-1]` <br>
+  `Week 12: [-1]` <br>
+
+The above example shows that the student have a participation point of 200 for week 1, 300 for week 2, 400 for week 3 <br>
+And -1 for the rest of the weeks (attendance is not marked)
 
 ### Assignments & Submissions
 
-#### Preface:
+#### Preface
 
 Assignment: A school assignment. Has an alphanumeric name, a non-negative integer total marks, and 
 student submissions associated with it.
 
 Submission: Linked to an assignment. Each student has a submission for every existing assignment.
-
-#### Commands:
 
 For assignments & submissions, you can make the following calls:
 * add_asgn
@@ -220,7 +326,7 @@ For assignments & submissions, you can make the following calls:
 * ungrade
 * list_asgn
 
-### Add Assignment: `add_asgn`
+#### Add Assignment: `add_asgn`
 
 Adds an assignment with a specified name and total marks.
 
@@ -235,7 +341,7 @@ Example:
 * `add_asgn n/Lab 1`
 * `add_asgn n/Lab 2 m/50`
 
-### Delete Assignment: `delete_asgn`
+#### Delete Assignment: `delete_asgn`
 Deletes the assignment of assignment_name you provided, along with the student submissions for that assignment.
 
 Format: `delete n/ASSIGNMENT_NAME`<br>
@@ -243,7 +349,7 @@ Format: `delete n/ASSIGNMENT_NAME`<br>
 Example:
 * `delete_asgn n/Lab 1`
 
-### Grade Assignment: `grade`
+#### Grade Assignment: `grade`
 Grades the student submission of assignment_name and student_id with the provided marks.
 
 You can also indicate whether a student submission is late by adding "late/" at the end.
@@ -256,7 +362,7 @@ Example:
 * `grade n/Lab 1 i/2 m/20`
 * `grade n/Lab 1 i/3 m/30 late/`
 
-### Ungrade Assignment: `ungrade`
+#### Ungrade Assignment: `ungrade`
 Resets the grade of the submission of assignment_name and student_id. It will also reset
 the late submission status of the submission, if the submission was marked as late.
 
@@ -267,11 +373,11 @@ Format: `ungrade n/ASSIGNMENT_ID i/STUDENT_ID`<br>
 Example:
 * `ungrade n/Lab 1 i/2`
 
-### List all assignments: `list_asgn`
+#### List all assignments: `list_asgn`
 Lists all assignments, submissions and their respective information.
 Format: `list_asgn`
 
-## Class List
+### Class List
 For class lists, you can call the following commands:
 - Create class list: `create`
 - View class statistics: `class_stats`
@@ -281,7 +387,7 @@ For class lists, you can call the following commands:
 - Listing all students: `list`
 - Find student: `find`
 
-#### Create a class list: `create`
+#### Create a class list: `create_class`
 Creates a class list to store the information about a group of students.
 
 Format: `create_class LIST_NAME [STUDENT_NAMES]`
@@ -293,54 +399,29 @@ Examples:
 - `create_class cs2103t-t14 Alex, John, Bonnie, Clyde` creates a class list of size 4 with 4 students: Alex, John, Bonnie and Clyde.
 - `create_class cs6244` creates an empty class list.
 
-#### View class statistics: `class_stats`
-Displays statistics for the class, based on the specified field.
-
-Format: `class_stats st/FIELD [as/ASSIGNMENT_NAME]`
-- The argument `FIELD` must only be one of `attendance`/`grades`
-- If `attendance` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is not required and will be ignored.
-- If `grades` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is required.
-
-Examples:
-- `class_stats st/attendance`
-- `class_stats st/grades as/Test 1`
-
-<div markdown="span" class="alert alert-primary">
-:information_source: **Info:** The `FIELD` parameter is case-insensitive! 
-i.e. `atTenDanCE` is still a valid argument to `FIELD`.
-</div>
-
-#### Group students at random: `rand_grp` [coming soon]
-Forms random groups of a specified size within a given class list.
-
-Format: `rand_grp CLASS_LIST GROUP_SIZE`
-- The argument `CLASS_LIST` should be the name of a given class list
-- The search for `CLASS_LIST` is case-insensitive. e.g. cs2103T will match CS2103T
-- The argument `GROUP_SIZE` will determine the size of the groups to be formed.
-
-
-Examples:
-- `rand_grp cs2103t-t14 2` returns: Group 1: Alex, John; Group 2: Bonnie, Clyde
-- `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
-
 #### Add a student: `add_student`
 Adds a student to a given class list.
 
 Format: `add_student n/STUDENT_NAME cl/CLASS_NAME...`
 - The argument `STUDENT_NAME` should be the name of the student to be added
+- The argument `STUDENT_NAME` only accepts alphanumeric inputs and spaces.
 - The argument `CLASS_NAME` should be the name of a given class the student belongs to
 
 Examples:
-- `add n/Tom cl/cs2103t-t14` adds Tom to the class CS2103T-T14
-- `add n/Harry cl/cs6244` adds Harry to the class CS6244
+- `add_student n/Tom cl/cs2103t-t14` adds Tom to the class CS2103T-T14
+- `add_student n/Harry cl/cs6244` adds Harry to the class CS6244
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** If the class list `CLASS_NAME` does not exist, it will automatically be created with student
+`STUDENT_NAME` as its first student
+</div>
 
 <div markdown="span" class="alert alert-success">
 :bulb: **Tip:** You can add a student to multiple classes at once! Just specify multiple `cl/` prefixes in your command. e.g. `add n/Harry cl/cs6244 cl/cs1231s`
 </div>
 
-<div markdown="span" class="alert alert-primary">
-:information_source: **Info:** If the class list `CLASS_NAME` does not exist, it will automatically be created with student
-`STUDENT_NAME` as its first student
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** As `STUDENT_NAME` accepts alphanumeric inputs, student numbers such as `A1234567X` are perfectly valid student names!
 </div>
 
 #### Edit a student: `edit_student`
@@ -370,30 +451,65 @@ Examples:
 - `delete_student 3` removes the 3rd student in the currently active/displayed class list
 
 <div markdown="span" class="alert alert-warning">
-:page_with_curl: **Note:** This command will delete the student with the given ID on the active class list, not from the global class list with all students obtained from using the `list` command.
+:page_with_curl: **Note:** This command will delete the student with the given ID on the active class list, not from the list of all students obtained from using the `list` command.
 </div>
 
-#### List all students : `list` 
-Lists all students tracked by TAA globally.
+#### View class statistics: `class_stats`
+Displays statistics for the class, based on the specified field.
 
-Format: `list`
+Format: `class_stats st/FIELD [as/ASSIGNMENT_NAME]`
+- The argument `FIELD` must only be one of `attendance`/`grades`
+- If `attendance` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is not required and will be ignored.
+- If `grades` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is required.
+
+Examples:
+- `class_stats st/attendance` -- see Figure 4 below
+- `class_stats st/grades as/Test 2` -- see Figure 5 below
+
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** To view grade statistics, the assignment `ASSIGNMENT_NAME` must have at least 2 graded submissions, and the submission grades must contain some variance. (i.e. if all the submissions are graded with the exact same marks, then no curve will be drawn as a normal distribution cannot be modelled with 0 variance.)
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** The `FIELD` parameter is case-insensitive! 
+i.e. `atTenDanCE`, while unusual, is still a valid argument to `FIELD`.
+</div>
+
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** Want to save the chart? Right click on it, mouseover 'Save As' and click on 'PNG'!
+</div>
+
+![Attendance Statistics](images/Class_Statistics_Attendance.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 4
+</strong>
+: An example of the chart displayed for the command `class_stats st/attendance`
+</em></figcaption>
+
+<br/>
+
+![Grade Statistics](images/Class_Statistics_Grades.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 5
+</strong>
+: An example of the chart displayed for the command `class_stats st/grades as/Test 2`
+</em></figcaption>
 
 
-#### Find a particular student : `find` [coming soon]
-List the students in the class by their student number/name.
+#### Group students at random: `rand_grp` [coming soon]
+Forms random groups of a specified size within a given class list.
 
-Format: `find FLAG STUDENT_NUMBER` or `find FLAG STUDENT_NAME`
-- Flag -id refers to find by student number
-- Flag -n refers to find by name
-- The format of the command follows find flag String
-- The name or student number of the student are not case-sensitive
+Format: `rand_grp CLASS_LIST GROUP_SIZE`
+- The argument `CLASS_LIST` should be the name of a given class list
+- The search for `CLASS_LIST` is case-insensitive. e.g. cs2103T will match CS2103T
+- The argument `GROUP_SIZE` will determine the size of the groups to be formed.
 
 
 Examples:
-- find -name john lee
-- find -id a0123456b
+- `rand_grp cs2103t-t14 2` returns: Group 1: Alex, John; Group 2: Bonnie, Clyde
+- `rand_grp cs2103t-t14 3` returns: Group 1: Alex, John, Clyde; Group 2: Bonnie
 
-## Alarm
+### Alarm
 For Alarm, you can call the following commands:
 - Schedule an alarm: `add_alarm`
 - Remove a scheduled alarm: `delete_alarm`
@@ -483,7 +599,26 @@ Format: `export [-force] FILE_PATH`
  
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix A: Planned Enhancements**
 
+### 1. Allow multiple students with the same name to be added
+Currently, users are unable to add a student with the same name as another student that already exists in TAA.
+This could be troubling for tutors who have two students with the exact same name in the same class.
+
+However, the current state of TAA is unable to provide sufficient information about students to distinguish between two students with the same name.
+This should be doable only after TAA also has the ability to store student photos for each student (slated for future release), which would enable users to identify students using their names and portraits.
+Therefore, we plan to implement this enhancement when TAA matures further to allow users to identify students with the same name correctly. 
+
+This would be done by allowing the commands `add_student` and `edit_student` to succeed when using an existing student name, albeit with a warning "Note: A student with the same name already exists. If this is not what you intended, please undo this operation.".
+
+### 2. Enhance input validation for the student name field
+Currently, students with the same name, but with different capitalisations and whitespace positions are treated as different entities by TAA.
+However, in the real world, this is unlikely the case. Such entities are likely to represent the same student, which can lead to confusion when users accidentally create multiple student entities for the same student as a result of a typo.
+
+Therefore, we plan to further extend the checks performed on the student name provided to the commands `add_student` and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to be the same student.
+Consequently, such operations will not be allowed to execute, and an error message "A student with a similar name already exists! Did you mean <student name>?" will be shown to the user instead.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
 
 |           Term           |                                                                               Explanation                                                                                | 
