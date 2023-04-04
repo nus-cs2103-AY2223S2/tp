@@ -427,11 +427,11 @@ Represents the Telegram Handle of the user or contact.
 
 #### **Group Tag Set**
 
-Represents a collection of **unique** groups that the user or contact belong to.
+Represents a collection of **unique** groups that the user or contact belong to. This class was created to support easy sorting by the group field.
 
 #### **Module Tag Set**
 
-Represents a collection of **unique** modules that the user or contact is enrolled into.
+Represents a collection of **unique** modules that the user or contact is enrolled into. It contains the lessons that the person has, as well as the modules shared with the user.. This class was created to support easy sorting by the module field.
 
 ### **Tag**
 
