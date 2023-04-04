@@ -14,7 +14,6 @@ such as flight scheduling and management of crew, pilot, plane and location.
   - **[Modal Editing](#modal-editing)**
   - **[Shared Commands](#shared-commands)**
   - **[Mode-specific Commands](#mode-specific-commands)**
-  - **[Application Commands](#application-commands)**
 - **[Prefix Summary](#prefix-summary)**
 - **[Command summary](#command-summary)**
 - **[FAQ](#faq)**
@@ -119,7 +118,7 @@ for each attribute as shown in the following examples.
 Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
-##### Crew mode: `add /n name /r rank`
+###### Crew mode: `add /n name /r rank`
 
 Prefixes:
 - `/n`: the name of the crew.
@@ -138,7 +137,7 @@ Output:
 Added Cabin Service Director John Smith.
 ```
 
-##### Flight mode: `add /c code`
+###### Flight mode: `add /c code`
 
 Prefix:
 - `/c` : the code for the flight.
@@ -152,7 +151,7 @@ Output:
 Added flight SQ230.
 ```
 
-##### Location mode: `add /n name`
+###### Location mode: `add /n name`
 
 Prefix:
 - `/n`: name of the location.
@@ -166,7 +165,7 @@ Output:
 Added Tokyo.
 ```
 
-##### Pilot mode: `add /n name /r rank /a age /g gender /fh flight_hours`
+###### Pilot mode: `add /n name /r rank /a age /g gender /fh flight_hours`
 
 Prefixes:
 - `/n`: the name of the pilot.
@@ -193,7 +192,7 @@ Output:
 Added Cadet Amelia Earhart.
 ```
 
-##### Plane mode: `add /m model /a age`
+###### Plane mode: `add /m model /a age`
 
 Prefixes:
 - `/m`: model of the plane.
@@ -228,7 +227,7 @@ if you are currently in the `plane` mode, then this command will delete the spec
 
 This command has no variations across modes:
 
-##### All modes: `delete 3`
+###### All modes: `delete 3`
 Prefix:
 - `index_number`: the index number of the resource entity you wish to delete. Note that the indexing starts from 1.
 
@@ -273,7 +272,7 @@ entity in the database.
 Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
-##### Crew mode: `linklocation /lo location_index /cr crew_index`
+###### Crew mode: `linklocation /lo location_index /cr crew_index`
 
 Prefixes:
 - `/lo`: the index of the location to which the crew is to be linked to.
@@ -288,7 +287,7 @@ Output:
 Linked Cabin Service Director John Smith to Tokyo.
 ```
 
-##### Flight mode: `linklocation /fl flight_index /from location_index /to location_index`
+###### Flight mode: `linklocation /fl flight_index /from location_index /to location_index`
 
 Prefixes:
 - `/fl`: the index of the flight to be linked.
@@ -304,7 +303,7 @@ Output:
 Linked flight SQ230 departing from Tokyo, arriving in Paris.
 ```
 
-##### Pilot mode: `linklocation /lo location_index /pi pilot_index`
+###### Pilot mode: `linklocation /lo location_index /pi pilot_index`
 
 Prefixes:
 - `/lo`: the index of the location to which the pilot is to be linked to.
@@ -319,7 +318,7 @@ Output:
 Linked Cadet Amelia Earhart to Tokyo.
 ```
 
-##### Plane mode: `linklocation /lo location_index /pl plane_index`
+###### Plane mode: `linklocation /lo location_index /pl plane_index`
 
 Prefixes:
 - `/lo`: the index of the location to which the plane is to be linked to.
@@ -359,7 +358,7 @@ from the specified location entity in the database.
 Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
-##### Crew mode: `unlinklocation /lo location_index /cr crew_index`
+###### Crew mode: `unlinklocation /lo location_index /cr crew_index`
 
 Prefixes:
 - `/lo`: the index of the location from which the crew is to be unlinked from.
@@ -374,7 +373,7 @@ Output:
 Unlinked Cabin Service Director John Smith from Tokyo.
 ```
 
-##### Flight mode: `unlinklocation /fl flight_index /from departure_index /to arrival_index`
+###### Flight mode: `unlinklocation /fl flight_index /from departure_index /to arrival_index`
 
 Prefixes:
 - `/fl`: the index of the flight to be unlinked.
@@ -390,7 +389,7 @@ Output:
 Unlinked flight SQ230 from Tokyo and Paris.
 ```
 
-##### Pilot mode: `unlinklocation /lo location_index /pi pilot_index`
+###### Pilot mode: `unlinklocation /lo location_index /pi pilot_index`
 
 Prefixes:
 - `/lo`: the index of the location from which the pilot is to be unlinked from. 
@@ -405,7 +404,7 @@ Output:
 Unlinked Cadet Amelia Earhart from Tokyo.
 ```
 
-##### Plane mode: `unlinklocation /lo location_index /pl plane_index`
+###### Plane mode: `unlinklocation /lo location_index /pl plane_index`
 
 Prefixes:
 - `/lo`: the index of the location from which the plane is to be unlinked from.
@@ -442,8 +441,7 @@ if you are currently in the `plane` mode, then this command will link a `plane` 
 Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
-##### Crew mode: 
-`linkflight /fl flight_index /csd crew_index /sfa crew_index /fa crew_index /tr crew_index`
+###### Crew mode: `linkflight /fl flight_index /csd crew_index /sfa crew_index /fa crew_index /tr crew_index`
 
 Prefixes:
 - `/fl`: the flight to which the specified crew is to be linked to.
@@ -465,7 +463,7 @@ Output:
 Linked Cabin Service Director John Smith to SQ230.
 ```
 
-##### Pilot mode: `linkflight /fl flight_index /pf pilot_index /pm pilot_index`
+###### Pilot mode: `linkflight /fl flight_index /pf pilot_index /pm pilot_index`
 
 Prefixes:
 - `/fl`: the flight to which the specified pilots are to be linked to.
@@ -485,7 +483,7 @@ Output:
 Linked Cadet Amelia Earhart to SQ230.
 ```
 
-##### Plane mode: `linkflight /fl flight_index /pl plane_index`
+###### Plane mode: `linkflight /fl flight_index /pl plane_index`
 
 Prefixes:
 - `/fl`: the flight to which the specified plane is to be linked to.
@@ -524,8 +522,7 @@ database.
 Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
-##### Crew mode: 
-`unlinkflight /fl flight_index /csd crew_index /sfa crew_index /fa crew_index /tr crew_index`
+###### Crew mode: `unlinkflight /fl flight_index /csd crew_index /sfa crew_index /fa crew_index /tr crew_index`
 
 Prefixes:
 - `/fl`: the flight from which the specified crew is to be unlinked from.
@@ -547,7 +544,7 @@ Output:
 Unlinked Cabin Service Director John Smith from SQ230.
 ```
 
-##### Pilot mode: `unlinkflight /fl flight_index /pf pilot_index /pm pilot_index`
+###### Pilot mode: `unlinkflight /fl flight_index /pf pilot_index /pm pilot_index`
 
 Prefixes:
 - `/fl`: the flight from which the specified pilots are to be linked from.
@@ -568,7 +565,7 @@ Output:
 Unlinked Cadet Amelia Earhart from SQ230.
 ```
 
-##### Plane mode: `unlink /fl flight_index /pl plane_index`
+###### Plane mode: `unlink /fl flight_index /pl plane_index`
 
 Prefixes:
 - `/fl`: the flight from which the specified plane is to be linked from.
