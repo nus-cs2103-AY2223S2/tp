@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Company;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Mark;
@@ -190,11 +192,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @return The sum of the user's potential earnings.
      */
     @Override
-    public long getPotentialEarnings() {
+    public long getPotentialEarnings() throws InvocationTargetException {
         Iterator<Person> iterator = persons.iterator();
         long totalValue = 0;
         while (iterator.hasNext()) {
-            totalValue += iterator.next().getBusinessSize().getNumericValue();
+            Person temp = iterator.next();
+            if (totalValue > Long.MAX_VALUE || temp.getBusinessSize().getNumericValue() > Long.MAX_VALUE) {
+                throw new InvocationTargetException(new Throwable("The sum of potential earning has exceeded the maximum."));
+            }
+            totalValue += temp.getBusinessSize().getNumericValue();
+
         }
         return totalValue;
     }

@@ -3,6 +3,8 @@ package seedu.address.model;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Unmodifiable view of an address book
  */
@@ -22,7 +24,7 @@ public interface ReadOnlyAddressBook {
     /**
      * Returns the sum of the potential earnings.
      */
-    long getPotentialEarnings();
+    long getPotentialEarnings() throws InvocationTargetException;
 
     /**
      * Returns the a string containing all tags.
