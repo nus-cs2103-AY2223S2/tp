@@ -727,26 +727,38 @@ _Details coming soon ..._
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 ### How to Open CoDoc for Mac
 
-1. Create your home folder and place jar file into it. In this example, we created a new folder called CoDoc and placed codoc.jar into it. The folder CoDoc is now our home folder.
+1. Create your home folder and place jar file into it. <br> In this example, we created a new folder called *CoDoc* and placed our newly downloaded `codoc.jar` into it. The folder *CoDoc* is now our *home folder*.
    
    ![mac_open_01](images/user-guide/mac_open_01.png)
-2. Create an empty text file and leave it open for now.
-   * <kbd>CMD</kbd> + <kbd>Space</kbd> > textEdit.app
-   * <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>T</kbd> > to toggle to plain text.
-   * Your window should look like the image below.
+2. Create an empty text file and **leave it open for now.**
+   * Open textEdit: <kbd>CMD</kbd> + <kbd>Space</kbd> > type *textEdit.app* >  <kbd>Enter</kbd>
+   * Then, to toggle to plain text: <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>T</kbd>
+   * Your window should look like the image below
    ![mac_plain_text](images/user-guide/mac_plain_text.png)
    
-3. Right-click on your home folder and naviagate to New Terminal at Folder.
+3. Right-click on your home folder and navigate to `New Terminal at Folder`. This will open a terminal window.
    ![mac_open_home_holder](images/user-guide/mac_open_home_folder.png)
-4. Type pwd and press enter, copy your home folder path. leave this window open too.
-    ![mac_pwd](images/user-guide/mac_pwd.png)
-5. Paste your home folder path as well as java -jar codoc.jar and save it as a .command file
+4. Then, 
+    * type `pwd` > <kbd>Enter</kbd>
+    * type `pwd` > <kbd>Enter</kbd>
+    * and leave this window open too
+   ![mac_pwd](images/user-guide/mac_pwd.png)
+5. Next
+   * paste `cd *your home folder path*`
+   * as well as `java -jar codoc.jar` 
+   * and save it as a `.command file`
    ![mac_command_file_save](images/user-guide/mac_command_file_save.png)
-6. Place it into your home folder
+6. Place the newly created `.command file` into your *home folder*.
    ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
-7. Finally, on your opened terminal from step 4, type chmod 777 start.command
+7. Finally, on your opened terminal from step 4, type `chmod 777 start.command` > <kbd>Enter</kbd>
    ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
-8. You can now double click on start.command to open CoDoc. It does not have to be in the home directory. Should you change where you folder, repreat from step 2.
+8. You can now double-click on `start.command` to open our application. 
+<div markdown="span" class="alert alert-info">
+:bulb: **Tip**: You can place the `.command` file anywhere. It does not have to remain in the home directory.
+</div>
+<div markdown="span" class="alert alert-info">
+:warning: **Caution**: If you decide to change the location of your **home folder**, repeat from step 2.
+</div>
 
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 
