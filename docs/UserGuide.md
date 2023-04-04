@@ -5,7 +5,8 @@ title: User Guide
 
 ## INTRODUCTION
 
-Tutee managing system (TMS) is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
+Too many students to count? Sick and tired of scrolling through excel cells to find the date of your student's next lesson? Fret not, we present to you our revolutionary solution for managing your tutees, the Tutee managing system (TMS).
+TMS is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 [TABLE OF CONTENTS](#table-of-content)
 1. [Viewing help](#help)
