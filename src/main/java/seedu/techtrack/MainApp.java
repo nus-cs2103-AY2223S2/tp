@@ -46,8 +46,6 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
-    private String initMessage = "Welcome to TechTrack!";
-
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing TechTrack ]===========================");
@@ -81,16 +79,16 @@ public class MainApp extends Application {
         try {
             roleBookOptional = storage.readRoleBook();
             if (!roleBookOptional.isPresent()) {
-                logger.info("\nNote: Data file not found. TechTrack will start with sample data.");
+                logger.info("Data file not found. Will be starting with a sample RoleBook");
             }
             initialData = roleBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
-            initMessage += "\nNote: Data file not in the correct format. TechTrack will start with no data.";
-            logger.warning(initMessage);
+            logger.warning("Data file not in the correct format. Will be starting with an empty RoleBook"
+                    + " (storage model)");
             initialData = new RoleBook();
         } catch (IOException e) {
-            initMessage += "\nNote: Problem while reading from the file. TechTrack will start with no data.";
-            logger.warning(initMessage);
+            logger.warning("Problem while reading from the file. Will be starting with an empty RoleBook"
+                    + " (storage model)");
             initialData = new RoleBook();
         }
 
@@ -172,7 +170,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting TechTrack " + MainApp.VERSION);
-        ui.start(primaryStage, initMessage);
+        ui.start(primaryStage);
     }
 
     @Override

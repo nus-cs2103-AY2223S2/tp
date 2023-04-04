@@ -33,19 +33,14 @@ public final class RoleDisplay {
     public static Node of(Role roleToDisplay) {
         requireNonNull(roleToDisplay);
         // Header
-        Label role = new Label(roleToDisplay.getName().fullName);
+        Label role = new Label(roleToDisplay.getName().fullName + " @ ");
         role.getStyleClass().add("role-display-headers");
-
-        Label separator = new Label("@");
-        separator.getStyleClass().add("role-display-headers");
 
         Label company = new Label(roleToDisplay.getCompany().value);
         company.getStyleClass().add("role-display-headers");
 
-        HBox title = new HBox(role, separator, company);
+        HBox title = new HBox(role, company);
         title.setAlignment(Pos.CENTER);
-        title.setSpacing(10);
-        title.setMaxWidth(680);
 
         // First Card
         ImageView detailsView = new ImageView(detailsIcon);
@@ -106,18 +101,16 @@ public final class RoleDisplay {
         detailsContainer.setPadding(new Insets(5, 5, 5, 10));
         detailsContainer.setSpacing(10);
         detailsContainer.getStyleClass().add("role-display-card");
-        detailsContainer.setMaxWidth(680);
 
         VBox contactsContainer = new VBox(contactCardHeader, email, phone, website);
         contactsContainer.setPadding(new Insets(5, 5, 5, 10));
         contactsContainer.setSpacing(10);
         contactsContainer.getStyleClass().add("role-display-card");
-        contactsContainer.setMaxWidth(680);
 
         VBox allContainer = new VBox(title, new VBox(detailsContainer, contactsContainer));
         allContainer.setSpacing(10);
-        allContainer.setMaxWidth(690);
 
         return allContainer;
     }
 }
+
