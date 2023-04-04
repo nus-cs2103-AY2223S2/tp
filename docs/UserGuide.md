@@ -52,13 +52,13 @@ You can click on any of the links below to navigate to the respective sections f
     * [2.3.3 Finding a task: `find_task`](#233-finding-a-task-findtask)
     * [2.3.4 Finding a menu item: `find_item`](#234-finding-a-menu-item-finditem)
   * [2.4 Delete](#24-delete)
-    * [2.3.1 Deleting a supplier: `delete_supplier`](#231-deleting-a-supplier-deletesupplier)
-    * [2.3.2 Deleting an order: `delete_order`](#232-deleting-an-order-deleteorder)
-    * [2.3.3 Deleting a task: `delete_task`](#233-deleting-a-task-deletetask)
-    * [2.3.4 Deleting a menu item: `delete_item`](#234-deleting-a-menu-item-deleteitem)
-  * [Sort](#sort)
-    * [Sorting a task: `sort_task`](#sorting-a-task-sorttask)
-    * [Sorting a order: `sort_order`](#sorting-a-order-sortorder)
+    * [2.4.1 Deleting a supplier: `delete_supplier`](#241-deleting-a-supplier-deletesupplier)
+    * [2.4.2 Deleting an order: `delete_order`](#242-deleting-an-order-deleteorder)
+    * [2.4.3 Deleting a task: `delete_task`](#243-deleting-a-task-deletetask)
+    * [2.4.4 Deleting a menu item: `delete_item`](#244-deleting-a-menu-item-deleteitem)
+  * [2.5 Sort](#25-sort)
+    * [2.5.1 Sorting a task: `sort_task`](#251-sorting-a-task-sorttask)
+    * [2.5.2 Sorting a order: `sort_order`](#252-sorting-a-order-sortorder)
   * [List](#list)
     * [Listing all suppliers: `list_supplier`](#listing-all-suppliers-listsupplier)
     * [Listing all orders: `list_order`](#listing-all-orders-listorder)
@@ -895,7 +895,7 @@ We are working to have an undo feature in the future. Sorry for the inconvenienc
 
 </div>
 
-### 2.3.1 Deleting a supplier: `delete_supplier`
+### 2.4.1 Deleting a supplier: `delete_supplier`
 
 Deletes the specified supplier from the contact list.
 
@@ -916,7 +916,7 @@ Syntax: `delete_supplier INDEX`
 
 </div>
 
-### 2.3.2 Deleting an order: `delete_order`
+### 2.4.2 Deleting an order: `delete_order`
 
 Deletes the specified order from the order list.
 
@@ -937,7 +937,7 @@ Syntax: `delete_order INDEX`
 
 </div>
 
-### 2.3.3 Deleting a task: `delete_task`
+### 2.4.3 Deleting a task: `delete_task`
 
 Deletes the specified task from the task list.
 
@@ -961,7 +961,7 @@ Syntax: `delete_task INDEX`
 * `delete_task 2` deletes the first task
 * `find_t flour` followed by `delete_t 3` deletes the 1st task in the result of the `find_t` command
 
-### 2.3.4 Deleting a menu item: `delete_item`
+### 2.4.4 Deleting a menu item: `delete_item`
 
 Deletes the specified menu item from the menu.
 
@@ -982,9 +982,9 @@ Syntax: `delete_item INDEX`
 
 </div>
 
-## Sort
+## 2.5 Sort
 
-### Sorting a task: `sort_task`
+### 2.5.1 Sorting a task: `sort_task`
 
 Syntax: `sort_task [c/CRITERIA]`
 
@@ -1010,7 +1010,7 @@ Examples:
 * `find_t s/N` followed by `sort_t` would sort all the tasks but only the sorted result of the `find_t` command will be displayed<br>
   (to get the sorted list of all the items, use the `list_t` command)
 
-### Sorting a order: `sort_order`
+### 2.5.2 Sorting a order: `sort_order`
 
 Syntax: `sort_order [c/CRITERIA]`
 
