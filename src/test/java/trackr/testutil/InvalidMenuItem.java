@@ -22,8 +22,6 @@ public class InvalidMenuItem {
     public static MenuItem createInvalidNameItem() throws IllegalArgumentException {
         final MenuItem invalidNameItem = new MenuItemBuilder()
             .withItemName(" ")
-            .withItemPrice("5.00")
-            .withItemCost("1.00")
             .build();
         return invalidNameItem;
     }
@@ -34,9 +32,8 @@ public class InvalidMenuItem {
      * @throws IllegalArgumentException
      */
     public static MenuItem createInvalidPriceItem() throws IllegalArgumentException {
-        final MenuItem invalidPriceItem = new MenuItemBuilder().withItemName(VALID_ORDER_NAME_CHOCOLATE_COOKIES)
+        final MenuItem invalidPriceItem = new MenuItemBuilder()
             .withItemPrice(" ")
-            .withItemCost("1.00")
             .build();
         return invalidPriceItem;
     }
@@ -48,8 +45,6 @@ public class InvalidMenuItem {
      */
     public static MenuItem createInvalidCostItem() throws IllegalArgumentException {
         final MenuItem invalidCostItem = new MenuItemBuilder()
-            .withItemName(VALID_ORDER_NAME_CHOCOLATE_COOKIES)
-            .withItemPrice("5.00")
             .withItemCost(" ")
             .build();
         return invalidCostItem;

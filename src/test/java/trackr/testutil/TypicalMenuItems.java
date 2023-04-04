@@ -45,11 +45,6 @@ public class TypicalMenuItems {
             .withItemCost("9.00")
             .build();
 
-    public static final MenuItem INVALID_M = new MenuItemBuilder().withItemName("Invalid Item")
-            .withItemPrice("0.00")
-            .withItemCost("0.00")
-            .build();
-
     private TypicalMenuItems() {} // prevents instantiation
 
     /**

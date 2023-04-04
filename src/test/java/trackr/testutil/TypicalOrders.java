@@ -9,7 +9,6 @@ import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_NOT_DONE;
 import static trackr.testutil.TypicalMenuItems.CARGO_PANTS;
 import static trackr.testutil.TypicalMenuItems.CHOCOLATE_COOKIE_M;
 import static trackr.testutil.TypicalMenuItems.CUPCAKE_M;
-import static trackr.testutil.TypicalMenuItems.INVALID_M;
 import static trackr.testutil.TypicalMenuItems.NIKE_CAP;
 
 import java.util.ArrayList;
@@ -50,14 +49,6 @@ public class TypicalOrders {
             .withCustomerAddress("456 Bedok Street").build();
 
     public static final Order NIKE_CAP_O = new OrderBuilder().withOrderItem(NIKE_CAP)
-            .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
-            .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
-            .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
-            .withCustomerName(VALID_CUSTOMER_NAME)
-            .withCustomerPhone(VALID_CUSTOMER_PHONE)
-            .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
-
-    public static final Order INVALID_ORDER_ITEM = new OrderBuilder().withOrderItem(INVALID_M)
             .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
             .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
             .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
