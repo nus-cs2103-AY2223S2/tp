@@ -99,7 +99,7 @@ public class SampleDataUtil {
         return new MenuItem[] {
             new MenuItem(new ItemName("Chocolate Cookies"), new ItemSellingPrice("5.00"), new ItemCost("1.20")),
             new MenuItem(new ItemName("Cupcake"), new ItemSellingPrice("6.20"), new ItemCost("1.10")),
-            new MenuItem(new ItemName("Bracelet"), new ItemSellingPrice("10"), new ItemCost("0.5"))
+            new MenuItem(new ItemName("Bread"), new ItemSellingPrice("10"), new ItemCost("0.5"))
         };
     }
 
@@ -128,7 +128,7 @@ public class SampleDataUtil {
         MenuItem cupcake = new MenuItem(new ItemName("Cupcake"),
                                         new ItemSellingPrice("6.20"),
                                         new ItemCost("1.10"));
-        MenuItem bracelet = new MenuItem(new ItemName("Bracelet"),
+        MenuItem bread = new MenuItem(new ItemName("Bread"),
                                         new ItemSellingPrice("10"),
                                         new ItemCost("0.5"));
 
@@ -142,7 +142,7 @@ public class SampleDataUtil {
                     new OrderStatus("I"),
                     new OrderQuantity("5"),
                     bob),
-            new Order(bracelet,
+            new Order(bread,
                     new OrderDeadline("02/01/2024"),
                     new OrderStatus("D"),
                     new OrderQuantity("2"),
