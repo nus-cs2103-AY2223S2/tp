@@ -144,7 +144,7 @@ public interface Model {
 
     void deleteStudentSubmission(Student studentToDelete);
 
-    void initAssignmentsFromStorage();
+    void initAssignmentsFromStorage() throws AssignmentException;
 
     void addStudentAssignment(Student toAdd);
 
