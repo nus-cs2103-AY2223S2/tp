@@ -261,10 +261,6 @@ After executing the command, we see that Bob has been added below the list.
 
 **Note:** You must specify minimally, the person's _name_, _email_, _year_ and _course_ when adding a person.
 
-> 💡 **Understanding commands**:
-> As you can see, we first specified the `add` command, followed by the _prefix_ `n/` and the _name_ that we want to add
-> i.e. `Bob`. The same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_
-> pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
 <div markdown="span" class="alert alert-info">
 :information_source: As you can see, we first specified the `add` command, followed by the _prefix_ `n/` and the _name_ that we want to add i.e. `Bob`. The same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_ pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
 </div>
