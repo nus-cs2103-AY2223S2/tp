@@ -661,6 +661,7 @@ and view the correct person you want to edit before entering the command.
 A: This is done as it speeds up the adding and editing process since there is no need for you to manually keep track of how courses are inputted—CS vs Computer Science.
 Also, this avoids clashing acronyms such as CS which could be interpreted as Chinese Studies too.
 
+<br>
 
 **Q: My find command is not showing correct list of people**
 
