@@ -43,14 +43,11 @@ import taa.commons.core.LogsCenter;
 import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.logic.commands.enums.ChartType;
+import taa.logic.commands.exceptions.CommandException;
 import taa.model.alarm.Alarm;
 import taa.model.alarm.AlarmList;
 import taa.model.assignment.AssignmentList;
-import taa.model.assignment.exceptions.AssignmentException;
-import taa.model.assignment.exceptions.AssignmentNotFoundException;
-import taa.model.assignment.exceptions.DuplicateAssignmentException;
-import taa.model.assignment.exceptions.NoGradeVarianceException;
-import taa.model.assignment.exceptions.NoSubmissionsFoundException;
+import taa.model.assignment.exceptions.*;
 import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.SameStudentPredicate;
@@ -520,7 +517,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void initAssignmentsFromStorage() {
+    public void initAssignmentsFromStorage() throws AssignmentException {
         assignmentList.initFromStorage(filteredStudents);
         for (Student stu : filteredStudents) {
             updateStudent(stu);

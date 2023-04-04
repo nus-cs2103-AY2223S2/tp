@@ -8,11 +8,7 @@ import taa.commons.core.GuiSettings;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.alarm.Alarm;
-import taa.model.assignment.exceptions.AssignmentException;
-import taa.model.assignment.exceptions.AssignmentNotFoundException;
-import taa.model.assignment.exceptions.DuplicateAssignmentException;
-import taa.model.assignment.exceptions.NoGradeVarianceException;
-import taa.model.assignment.exceptions.NoSubmissionsFoundException;
+import taa.model.assignment.exceptions.*;
 import taa.model.student.Student;
 
 /**
@@ -144,7 +140,7 @@ public interface Model {
 
     void deleteStudentSubmission(Student studentToDelete);
 
-    void initAssignmentsFromStorage();
+    void initAssignmentsFromStorage() throws AssignmentException;
 
     void addStudentAssignment(Student toAdd);
 

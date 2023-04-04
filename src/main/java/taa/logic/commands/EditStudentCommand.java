@@ -16,6 +16,8 @@ import taa.commons.core.index.Index;
 import taa.commons.util.CollectionUtil;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
+import taa.model.assignment.exceptions.AssignmentException;
+import taa.model.assignment.exceptions.CorruptAssignmentStorageException;
 import taa.model.student.Attendance;
 import taa.model.student.Name;
 import taa.model.student.Student;
