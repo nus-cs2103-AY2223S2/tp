@@ -52,6 +52,7 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 [To be added]
 
 --------------------------------------------------------------------------------------------------------------------
+[<small>Back to top</small>](#table-of-contents)
 
 ## Command summary
 
@@ -105,6 +106,7 @@ All commands are case-insensitive.
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
+[<small>Back to top</small>](#table-of-contents)
 
 ## **Features**
 
@@ -138,6 +140,8 @@ All commands are case-insensitive.
 
 </div>
 
+[<small>Back to top</small>](#table-of-contents)
+
 ## General features
 
 ### Viewing help
@@ -163,6 +167,8 @@ ArB's data is saved as a JSON file `[JAR file location]/data/arb.json`. Advanced
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, ArB will discard all data and start with an empty data file at the next run.
 </div>
+
+[<small>Back to top</small>](#table-of-contents)
 
 ## Client commands
 
@@ -275,6 +281,8 @@ Examples:
 Short form: `sc`
 
 Sorts all clients that exist in the ArB by name in ascending order.
+
+[<small>Back to top</small>](#table-of-contents)
 
 ## Project commands
 
@@ -461,6 +469,7 @@ Short form: `lt`
 Lists all tags that exist in the ArB. These include tags added to both clients and projects. The list shows how many clients and how many projects a particular tag is used with.
 
 --------------------------------------------------------------------------------------------------------------------
+[<small>Back to top</small>](#table-of-contents)
 
 ## FAQ
 
