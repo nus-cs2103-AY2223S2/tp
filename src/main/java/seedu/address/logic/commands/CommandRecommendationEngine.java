@@ -182,7 +182,7 @@ public class CommandRecommendationEngine {
         String command = recommendation.substring(0, commandIdx == -1
                 ? recommendation.length()
                 : commandIdx);
-        if (!isCompleteCommand && !frontTrimmedInput.equals(command)) {
+        if (!isCompleteCommand && !userInput.equals(command)) {
             return command;
         } else if (!preamble.isEmpty() && suggestedCommand.contains(preamble)) {
             return userInput; // do not autocomplete
