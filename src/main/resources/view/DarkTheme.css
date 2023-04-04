@@ -452,6 +452,10 @@
 .default-color2.chart-pie { -fx-pie-color: #82f78a; }
 .default-color3.chart-pie { -fx-pie-color: #f5d0da; }
 
-HBox#reminderBox #eventCard { -fx-background-color: derive(#9bd2ec, 60%); }
+HBox#reminderBox #eventCard {
+    -fx-background-color: derive(#9bd2ec, 60%);
+    -fx-pref-width: 300;
+    -fx-min-width: 300;
+}
 
 #eventId { -fx-font-weight: bold; }
