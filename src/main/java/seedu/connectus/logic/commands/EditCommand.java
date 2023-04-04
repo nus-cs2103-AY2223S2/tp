@@ -107,78 +107,16 @@ public class EditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Person p = new Person(updatedName);
 
-        if (editPersonDescriptor.getPhone().isPresent()) {
-            p.setPhone(editPersonDescriptor.getPhone().get());
-        } else {
-            if (personToEdit.getPhone().isPresent()) {
-                p.setPhone(personToEdit.getPhone().get());
-            }
-        }
-
-        if (editPersonDescriptor.getEmail().isPresent()) {
-            p.setEmail(editPersonDescriptor.getEmail().get());
-        } else {
-            if (personToEdit.getEmail().isPresent()) {
-                p.setEmail(personToEdit.getEmail().get());
-            }
-        }
-
-        if (editPersonDescriptor.getAddress().isPresent()) {
-            p.setAddress(editPersonDescriptor.getAddress().get());
-        } else {
-            if (personToEdit.getAddress().isPresent()) {
-                p.setAddress(personToEdit.getAddress().get());
-            }
-        }
-
-        if (editPersonDescriptor.getSocialMedia().isPresent()) {
-            p.setSocialMedia(personToEdit.getSocialMedia().orElse(SocialMedia.create())
-                    .updateWith(editPersonDescriptor.getSocialMedia().get()));
-        } else {
-            if (personToEdit.getSocialMedia().isPresent()) {
-                p.setSocialMedia(personToEdit.getSocialMedia().get());
-            }
-        }
-
-        if (editPersonDescriptor.getBirthday().isPresent()) {
-            p.setBirthday(editPersonDescriptor.getBirthday().get());
-        } else {
-            if (personToEdit.getBirthday().isPresent()) {
-                p.setBirthday(personToEdit.getBirthday().get());
-            }
-        }
-
-        if (editPersonDescriptor.getRemarks().isPresent()) {
-            p.setRemarks(editPersonDescriptor.getRemarks().get());
-        } else {
-            if (!personToEdit.getRemarks().isEmpty()) {
-                p.setRemarks(personToEdit.getRemarks());
-            }
-        }
-
-        if (editPersonDescriptor.getModules().isPresent()) {
-            p.setModules(editPersonDescriptor.getModules().get());
-        } else {
-            if (!personToEdit.getModules().isEmpty()) {
-                p.setModules(personToEdit.getModules());
-            }
-        }
-
-        if (editPersonDescriptor.getCcas().isPresent()) {
-            p.setCcas(editPersonDescriptor.getCcas().get());
-        } else {
-            if (!personToEdit.getCcas().isEmpty()) {
-                p.setCcas(personToEdit.getCcas());
-            }
-        }
-
-        if (editPersonDescriptor.getMajors().isPresent()) {
-            p.setMajors(editPersonDescriptor.getMajors().get());
-        } else {
-            if (!personToEdit.getMajors().isEmpty()) {
-                p.setMajors(personToEdit.getMajors());
-            }
-        }
+        p.setPhone(editPersonDescriptor.getPhone().orElse(personToEdit.getPhone().orElse(null)));
+        p.setEmail(editPersonDescriptor.getEmail().orElse(personToEdit.getEmail().orElse(null)));
+        p.setAddress(editPersonDescriptor.getAddress().orElse(personToEdit.getAddress().orElse(null)));
+        p.setSocialMedia(editPersonDescriptor.getSocialMedia().map(s -> personToEdit.getSocialMedia()
+                .orElse(SocialMedia.create()).updateWith(s)).orElse(personToEdit.getSocialMedia().orElse(null)));
+        p.setBirthday(editPersonDescriptor.getBirthday().orElse(personToEdit.getBirthday().orElse(null)));
+        p.setRemarks(editPersonDescriptor.getRemarks().orElse(personToEdit.getRemarks()));
+        p.setModules(editPersonDescriptor.getModules().orElse(personToEdit.getModules()));
+        p.setCcas(editPersonDescriptor.getCcas().orElse(personToEdit.getCcas()));
+        p.setMajors(editPersonDescriptor.getMajors().orElse(personToEdit.getMajors()));
 
         return p;
     }
