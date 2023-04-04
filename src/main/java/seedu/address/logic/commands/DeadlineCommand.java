@@ -21,7 +21,7 @@ public class DeadlineCommand extends Command {
             + PREFIX_TASK + "TASK_DESCRIPTION "
             + PREFIX_DATE + "DATE "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TASK + "buy groceries"
+            + PREFIX_TASK + "buy groceries "
             + PREFIX_DATE + "02/11/2023";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
