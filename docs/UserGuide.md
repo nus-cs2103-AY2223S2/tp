@@ -463,22 +463,25 @@ What you should expect to find:
 
 #### 6.1.1 Create a new applicant `add`
 
-**Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`
+**Format**: `add n/NAME p/PHONE e/EMAIL a/ADDRESS [applied/APPLIED DATE TIME] [note/NOTE]`
 
 > Creates a new applicant with the provided information
 
 **Info**
-* All fields apart from `NOTE` are compulsory.
+* All fields apart from `APPLIED DATE TIME` and `NOTE` are compulsory.
 * All `NAME` and `PHONE` must be unique.
 * `NAME` is case-sensitive. (e.g. "Thomas" is different from "thomas").
 * `PHONE` does not require you to include the country code. Only include the numbers.
+* The value of `APPLIED DATE TIME` will be the time you add a new applicant if it is not provided.
 * The value of `NOTE` will be `-` if it is not provided.
 
 
 <div class="alert alert-info" role="alert">:information_source: <strong>Note:</strong> <br>
 <ul>
     <li> If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
-</li> 
+</li>
+    <li> However, if two or more `NOTE` are added, all the notes will be added to the applicant.
+</li>
 </ul> </div>
 
 
@@ -498,16 +501,15 @@ HMHero does not already contain an applicant with the name "Adam" and phone numb
 
 #### 6.1.2 Search for an applicant `find`
 
-**Format**: `find n/[KEY] p/[KEY] note/[KEY]`
+**Format**: `find n/[NAME] p/[PHONE]`
 
-> Finds all applicants in HMHero using name, phone, note or all
+> Finds all applicants in HMHero using name, phone or both
 
 **Info**
-* The notation `[KEY]...` means that we take in name or phone or note or all.
-  In this case, at least one `KEY` is required.
-* The `n/[KEY]` and `note/[KEY]` are case-insensitive. (e.g. "apples" will match "Apples").
-* The result will be applicants where each of the `KEY` are present in the `NAME` or `PHONE` or `NOTE`.
-  (e.g. "Thomas" will only match "Thomas", "91918153" will only match "91918153", "java" will only match "java")
+* We take in name, phone or both.
+  In this case, at least `NAME` or `PHONE` is required.
+* The `n/[NAME]` is case-insensitive. (e.g. "thomas" will match "Thomas").
+* This means that providing both `NAME` and `PHONE` narrows down the scope.
 
 
 <div class="alert alert-success" role="alert">:bulb: <strong>Tip:</strong> <br>
@@ -524,8 +526,9 @@ executing <code>Thomas Lee</code> will only find <code>Thomas Lee</code>. </li>
     <li> This also means that if the <code>PHONE</code> <code>91918153</code> and <code>9191</code> is in HMHero, 
 executing <code>91918153</code> will only find <code>PHONE</code> <code>91918153</code>. </li>
     <li> If you try to find applicants using both <code>NAME</code> and <code>PHONE</code>,
-it will work the same as finding individually! 
-</li>
+it will work the same as finding individually! </li>
+    <li>If two or more values of the same parameter are provided, only the last value for that parameter will be taken.
+    </li>
 </ul> </div>
 
 **Example:**
@@ -628,7 +631,7 @@ Advancing an applicant with the status `APPLIED` requires an interview date and 
 ![advance_command_applied.png](images%2Fadvance_command_applied.png)
 
 
-Advancing an applicant with the status `SHORLISTED` does not require an interview date and time.
+Advancing an applicant with the status `SHORTLISTED` does not require an interview date and time.
 
 ![advance_command_shortlisted.png](images%2Fadvance_command_shortlisted.png)
 
@@ -820,18 +823,18 @@ If your data cannot be saved successfully, HMHero will not close in order to pre
 
 ### 7.1. Applicant Commands
 
-| Action                                 | Format                                                                                                                                                               | Example                                                                     |
-|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                   | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
-| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                             | `find n/Thomas p/98764321`                                                  |
-| List all applicants                    | `list`                                                                                                                                                               | `list`                                                                      |
-| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                              | `delete n/Thomas p/98765432`                                                |
-| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `ACCEPTED` | `advance n/Thomas p/98765432 d/20-03-2024 12:12`                            |
-| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                              | `reject n/Thomas p/98765432`                                                |
-| View the interview dates of applicants | `interview`                                                                                                                                                          | `interview`                                                                 |
-| Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                            | `edit 1 n/Marry p/98763245`                                                 |
-| Remind an applicant's interview date   | `remind`                                                                                                                                                             | `remind`                                                                    |
-| View summary statistics                | `summary`                                                                                                                                                            | `remind`                                                                    |
+| Action                                 | Format                                                                                                                                                                   | Example                                                                     |
+|----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Add a new applicant                    | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [note/NOTE]`                                                                                                                       | `add n/Tom p/98763213 e/asd@gmail.com a/6 Sims Drive (s)532123 note/Python` |
+| Search for an applicant                | `find [n/NAME] [p/PHONE]` <br> (Minimally one of `n/NAME` or `p/PHONE` must be provided)                                                                                 | `find n/Thomas p/98764321`                                                  |
+| List all applicants                    | `list`                                                                                                                                                                   | `list`                                                                      |
+| Delete an applicant                    | `delete n/NAME p/PHONE`                                                                                                                                                  | `delete n/Thomas p/98765432`                                                |
+| Advance an applicant                   | `advance n/NAME p/PHONE [d/INTERVIEW DATETIME]` <br> <br> **Note:** You need to provide `INTERVIEW DATETIME` to advance applicant's `status` `APPLIED` to `SHORTLISTED`  | `advance n/Thomas p/98765432 d/20-03-2024 12:12`                            |
+| Reject an applicant                    | `reject n/NAME p/PHONE`                                                                                                                                                  | `reject n/Thomas p/98765432`                                                |
+| View the interview dates of applicants | `interview`                                                                                                                                                              | `interview`                                                                 |
+| Edit the information of an applicant   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [d/INTERVIEW DATE TIME] [note/NOTE]`                                                                                | `edit 1 n/Marry p/98763245`                                                 |
+| Remind an applicant's interview date   | `remind`                                                                                                                                                                 | `remind`                                                                    |
+| View summary statistics                | `summary`                                                                                                                                                                | `remind`                                                                    |
 
 [Back to Table of Contents](#table-of-contents)
 
