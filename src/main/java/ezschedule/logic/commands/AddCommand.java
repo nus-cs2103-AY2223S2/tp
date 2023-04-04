@@ -51,16 +51,18 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+    
+        model.clearRecent();
 
         if (model.hasEvent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         } else if (model.hasEventAtTime(toAdd)) {
             throw new CommandException(MESSAGE_EVENT_EXIST_AT_TIME);
+        } else {
+            model.recentCommands().add(this);
         }
 
         model.addEvent(toAdd);
-        model.clearRecent();
-        model.recentCommands().add(this);
         model.recentEvent().add(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
