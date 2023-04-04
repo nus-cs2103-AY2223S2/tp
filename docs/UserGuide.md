@@ -11,6 +11,7 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
 
 - [Table of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
+- [Commands](#commands)
   - [Nav](#nav)
   - [List](#list)
   - [Add](#add)
@@ -66,13 +67,39 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
 
 ## Quick Start
 
-<!-- TODO: Simplify this -->
+### Prerequisite
 
-1. Ensure you have Java `11` or above installed in your Computer.
+> Make sure you have Java `11` installed on your computer by typing `java --version` from your terminal.\
+> If not, please download it from the [Oracle website](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
 
-2. Type the command in the command box. Use the :arrow_up: and :arrow_down: arrow to toggle through previous commands that you have inputted.
+### Installation and Setup
 
-3. Press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
+1. Download the latest version of [leTracker.jar](https://github.com/AY2223S2-CS2103-F10-2/tp/releases).
+
+2. Open your terminal and navigate to the directory of the downloaded jar file.
+
+3. Run the jar file by `java -jar leTracker.jar`.
+
+### Getting Started
+
+1. Type anything in the command box, using the :arrow_up: and :arrow_down: arrows to see texts that you have typed previously.
+
+2. Press `Enter` to execute a command. For example, typing "help" and pressing `Enter` will open the help window.
+
+3. Refer to the [Commands](#commands) section for more information.
+
+### Tutorials and Examples
+
+1. To add a module, execute `add CS2103 /name Software Engineering`.
+1. To give it a tag of `BestModule`, execute `tag CS2103 /tags BestModule`.
+1. To add a lecture, execute `add Week 1 /mod CS2103`.
+1. To add a video, execute `add Vid 1 /mod CS2103 /lec Week 1`.
+1. To add a timestamp, execute `edit Vid 1 /mod CS2103 /lec Week 1 /timestamp 10:20:15`.
+1. To view the list with this video, execute `list /mod CS2103 /lec Week 1`.
+1. To delete this module, execute `delete CS2103`.
+1. To exit, execute `exit`.
+
+## Commands
 
 ### Nav
 
