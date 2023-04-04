@@ -15,24 +15,24 @@ than traditional GUI apps.
 - [Quick Start](#Quick-Start)
 - [Features](#features)
   - [Help](#Help)
-  - [Add](#add)
-  - [List](#list)
-    - [list_name](#list_name)
-  - [Edit](#edit)
+  - [Add](#add-a-patient--add)
+  - [List](#listing-all-patients--list)
+    - [list_name](#listing-patients-by-name--listname)
+  - [Edit](#editing-a-patient--edit)
   - [Appointment](#appointment)
-    - [makeApp](#makeapp)
-    - [markApp](#markapp)
-  - [Create](#create)
-  - [View](#view)
-  - [Upload](#upload)
-  - [Find](#find)
-  - [SearchDate](#searchdate)
-  - [Delete](#delete)
-    - [deletes](#deletes)
-    - [deletefile](#deletefile)
-  - [Clear](#clear)
-  - [Exit](#exit)
-- [Saving, Editing, and Archiving Data](#saving-editing-and-archiving-data)
+    - [makeApp](#making-appointment-to-a-patient--makeapp)
+    - [markApp](#marking-appointment-with-a-patient--markapp)
+  - [Create](#create-a-medical-certificate-for-patient--create)
+  - [View](#view-the-medical-file-of-a-patient--view)
+  - [Upload](#upload-a-patients-medical-file--upload)
+  - [Find](#locating-patients-by-name--find)
+  - [SearchDate](#searching-patients-with-appointment-on-specified-date--searchdate)
+  - [Delete](#deleting-a-patient--delete)
+    - [deletes](#deleting-multiple-patients--deletes)
+    - [deletefile](#delete-a-medical-file-for-the-specified-patient--deletefile)
+  - [Clear](#clearing-all-entries--clear)
+  - [Exit](#exiting-the-program--exit)
+- [Saving, Editing, and Archiving Data](#saving-the-data)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -94,7 +94,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Add : `add`
+### Add a patient : `add`
 
 Adds a patient to Medimate through command method:
 
