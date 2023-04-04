@@ -54,6 +54,12 @@ public class AddWeightCommand extends Command {
         ObservableList<Client> clientList = model.getFilteredClientList();
         Client clientToAddWeight = clientList.get(clientIndex - 1);
 
+        for (Weight currWeight : clientToAddWeight.getWeightHistory().weights) {
+            if (currWeight.date.equals(date)) {
+                throw new CommandException(Messages.MESSAGE_DUPLICATE_DATE);
+            }
+        }
+
         clientToAddWeight.getWeightHistory().addWeight(date, weightToAdd.value);
         Weight lastWeight = clientToAddWeight.getWeightHistory().getLastEntry();
         clientToAddWeight.setWeight(lastWeight);
