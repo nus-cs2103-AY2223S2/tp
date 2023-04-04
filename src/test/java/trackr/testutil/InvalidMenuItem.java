@@ -1,7 +1,5 @@
 package trackr.testutil;
 
-import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_NAME_CHOCOLATE_COOKIES;
-
 import trackr.model.menu.MenuItem;
 
 /**
