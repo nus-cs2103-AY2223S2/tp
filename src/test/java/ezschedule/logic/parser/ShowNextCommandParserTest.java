@@ -21,6 +21,9 @@ public class ShowNextCommandParserTest {
 
     private final ShowNextCommandParser parser = new ShowNextCommandParser();
 
+    private final String expectedErrorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            ShowNextCommand.MESSAGE_USAGE);
+
     @Test
     public void parse_noArgs_returnsShowNextCommandOneUpcoming() {
         final ShowNextCommand expected = new ShowNextCommand(new UpcomingEventPredicate(SHOW_UPCOMING_COUNT_ONE));
@@ -40,27 +43,28 @@ public class ShowNextCommandParserTest {
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        final String expectedErrorMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                ShowNextCommand.MESSAGE_USAGE);
-
-        // Input is NaN
+    public void parse_nanArgs_throwsParseException() {
         assertParseFailure(parser, "a", expectedErrorMessage);
         assertParseFailure(parser, "five", expectedErrorMessage);
         assertParseFailure(parser, "6C", expectedErrorMessage);
         assertParseFailure(parser, "F4", expectedErrorMessage);
+    }
 
-        // Input is not integer number
+    @Test
+    public void parse_notIntArgs_throwsParseException() {
         assertParseFailure(parser, "1.0", expectedErrorMessage);
         assertParseFailure(parser, "5.2", expectedErrorMessage);
         assertParseFailure(parser, "7.99", expectedErrorMessage);
         assertParseFailure(parser, "-2.0", expectedErrorMessage);
+    }
 
-        // Input is zero
+    @Test
+    public void parse_zeroArgs_throwsParseException() {
         assertParseFailure(parser, "0", expectedErrorMessage);
         assertParseFailure(parser, "000", expectedErrorMessage);
+    }
 
-        // Input is negative integer
+    @Test void parse_negativeIntArgs_throwsParseException() {
         assertParseFailure(parser, "-1", expectedErrorMessage);
         assertParseFailure(parser, "-20", expectedErrorMessage);
     }
