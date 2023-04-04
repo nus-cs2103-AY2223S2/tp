@@ -1,8 +1,12 @@
 package ezschedule.model;
 
 import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_A;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_B;
 import static ezschedule.testutil.Assert.assertThrows;
 import static ezschedule.testutil.TypicalEvents.ART;
+import static ezschedule.testutil.TypicalEvents.BOAT;
+import static ezschedule.testutil.TypicalEvents.CARNIVAL;
+import static ezschedule.testutil.TypicalEvents.DRAG;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -80,6 +84,48 @@ public class SchedulerTest {
     @Test
     public void getEventList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> scheduler.getEventList().remove(0));
+    }
+
+    @Test
+    public void autoSortEvents_duringAdd_eventsInChronologicalOrder() {
+        Model expectedModel;
+
+        /* --- Test adding events with different dates --- */
+
+        expectedModel = new ModelManager();
+
+        expectedModel.addEvent(DRAG);
+        expectedModel.addEvent(BOAT);
+        assertEquals(Arrays.asList(BOAT, DRAG), expectedModel.getEventList());
+
+        expectedModel.addEvent(CARNIVAL);
+        assertEquals(Arrays.asList(BOAT, CARNIVAL, DRAG), expectedModel.getEventList());
+
+        expectedModel.addEvent(ART);
+        assertEquals(Arrays.asList(ART, BOAT, CARNIVAL, DRAG), expectedModel.getEventList());
+
+        /* --- Test adding events with date but different start times --- */
+
+        Event e1 = new EventBuilder().withStartTime(VALID_START_TIME_A).build();
+        Event e2 = new EventBuilder().withStartTime(VALID_START_TIME_B).build();
+
+        expectedModel = new ModelManager();
+        expectedModel.addEvent(e2);
+        expectedModel.addEvent(e1);
+        assertEquals(Arrays.asList(e1, e2), expectedModel.getEventList());
+
+        /* --- Test adding events of "opposite" end time --- */
+        // Test sorting of events is correct even when the "later" event ends earlier than the "earlier" event.
+        // Note: theoretically, such event combination should not be allowed (due to partial overlap of time),
+        //       but for the sake of testing sorting correctness, it is done here.
+
+        Event e3 = new EventBuilder().withStartTime(VALID_START_TIME_A).withEndTime("21:00").build();
+        Event e4 = new EventBuilder().withStartTime(VALID_START_TIME_B).withEndTime("20:00").build();
+
+        expectedModel = new ModelManager();
+        expectedModel.addEvent(e4);
+        expectedModel.addEvent(e3);
+        assertEquals(Arrays.asList(e3, e4), expectedModel.getEventList());
     }
 
     /**
