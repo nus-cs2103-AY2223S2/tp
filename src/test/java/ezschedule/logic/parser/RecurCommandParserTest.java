@@ -32,13 +32,25 @@ public class RecurCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index and no recur factor specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
-
         // no index specified
-        assertParseFailure(parser, VALID_RECUR_FACTOR_DAY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, DATE_DESC_A + RECUR_FACTOR_DESC_MONTH, MESSAGE_INVALID_FORMAT);
+
+        // no date specified
+        assertParseFailure(parser, "1" + RECUR_FACTOR_DESC_MONTH, MESSAGE_INVALID_FORMAT);
 
         // no recur factor specified
+        assertParseFailure(parser, "1" + DATE_DESC_A, MESSAGE_INVALID_FORMAT);
+
+        // no index, no date, no recur factor
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+
+        // no index, no date
+        assertParseFailure(parser, RECUR_FACTOR_DESC_MONTH, MESSAGE_INVALID_FORMAT);
+
+        // no index, no recur factor
+        assertParseFailure(parser, DATE_DESC_A, MESSAGE_INVALID_FORMAT);
+
+        // no date, no recur factor
         assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
     }
 
