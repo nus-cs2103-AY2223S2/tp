@@ -494,7 +494,7 @@ In the list, each fish has an [index](#index-parameters). Use these indexes to p
 Currently, there are six command actions of type fish:
 * [Adding a fish `fish add`](#adding-a-fish-fish-add)
 * [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
-* [Editing a fish `fish edit`]
+* [Editing a fish `fish edit`](#editing-a-fish-fish-edit)
 * [Sorting fishes `fish sort`](#sorting-fishes-fish-sort)
 * [Viewing fishes `fish view`](#viewing-a-fish-fish-view)
 * [Listing fishes `list fishes`](#listing-fishes-list-fishes)
