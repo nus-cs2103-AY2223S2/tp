@@ -44,7 +44,7 @@ Given below are my contributions to the project.
    - This implementation was also used to guide the subsequent implementation of the `linklocation` feature.
 
 ### Contributions to the UG:
-- Created the general structure of the UG to work on together with the group 
+- Created the general structure of the UG to work on together with the group
 - Drafted a format for the description of each feature and created an example version for each
 - Created a glossary of key terms and added definitions for 'resource', 'resource entity' and 'prefix'
 - Created descriptions for 'How to use this guide', 'Getting started' and 'Modal Editing' sections

@@ -1,4 +1,5 @@
 ## Table of Contents
+
 - **[Acknowledgements](#acknowledgements)**
 - **[Setting up, getting started](#setting-up-getting-started)**
 - **[Architecture](#architecture)**
@@ -7,27 +8,29 @@
     * [Model Component](#model-component)
     * [Storage Component](#storage-component)
 - **[Implementation](#implementation)**
-  1. [Adding XYZ](#1-adding-xyz)
-  2. [Deleting XYZ](#2-deleting-xyz)
-  3. [Linking XYZ to a flight](#3-linking-xyz-to-a-flight)
-  4. [Unlinking XYZ from a flight](#4-unlinking-xyz-from-a-flight)
-  5. [Displaying flights across all modes](#5-displaying-flights-across-all-modes)
+    1. [Adding XYZ](#1-adding-xyz)
+    2. [Deleting XYZ](#2-deleting-xyz)
+    3. [Linking XYZ to a flight](#3-linking-xyz-to-a-flight)
+    4. [Unlinking XYZ from a flight](#4-unlinking-xyz-from-a-flight)
+    5. [Displaying flights across all modes](#5-displaying-flights-across-all-modes)
 - **[Appendix: Requirements](#appendix--requirements)**
-
 
 <div style="page-break-after: always;"></div>
 
 ## Acknowledgements
+
 Wingman was built atop the codebase for AB3. Hence, it retains the 4 layers of UI, Logic, Model, and Storage,
 albeit involving different implementations and classes.
 
 ## Setting up, Getting started
+
 Coming soon
 
 
 <div style="page-break-after: always;"></div>
 
 ## Architecture
+
 <p align="center">
 <img src="images/WingmanArchitectureDiagram.png" width="276" alt="Architecture diagram">
 </p>
@@ -42,7 +45,7 @@ Main has two classes called Main and MainApp. It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
-Commons represents a collection of classes used by multiple other components.
+  Commons represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
@@ -54,7 +57,9 @@ The rest of the App consists of four components.
 <div style="page-break-after: always;"></div>
 
 ### UI Component
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+The **API** of this component is specified
+in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 <p align="center">
 <img src="images/WingmanUiClassDiagram.png" width="1021" alt="UI Class diagram">
@@ -67,8 +72,10 @@ the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework.
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
-For example, the layout of the [`FlightListPanel`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/FlightListPanel.java)
-is specified in [`FlightListPanel.fxml`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/resources/view/FlightListPanel.fxml)
+For example, the layout of
+the [`FlightListPanel`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/ui/FlightListPanel.java)
+is specified
+in [`FlightListPanel.fxml`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/resources/view/FlightListPanel.fxml)
 
 The `UI` component,
 
@@ -80,6 +87,7 @@ The `UI` component,
 <div style="page-break-after: always;"></div>
 
 ### Logic Component
+
 <p align="center">
 <img src="images/WingmanLogicClassDiagram.png" width="608" alt="UI Class diagram">
 </p>
@@ -89,7 +97,9 @@ Description coming soon - to be updated after adjusting for code duplication
 <div style="page-break-after: always;"></div>
 
 ### Model Component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+**API
+** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W11-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 <p align="center">
 <img src="images/WingmanModelClassDiagram.png" width="478" alt="UI Class diagram">
 </p>
@@ -97,34 +107,35 @@ Description coming soon - to be updated after adjusting for code duplication
 The `Model` component,
 
 * stores Wingman data i.e., all `Item` objects (which are contained in a `UniquePersonList` object).
-  * `Item` here refers to `Flight`, `Pilot`, `Plane`, `Location` and `Crew`
+    * `Item` here refers to `Flight`, `Pilot`, `Plane`, `Location` and `Crew`
 * stores the currently 'selected' `Item` objects (e.g., results of a search query) as a separate _filtered_ list
-which is exposed to outsiders as an unmodifiable `ObservableList<Item>` that can be 'observed'
-e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+  which is exposed to outsiders as an unmodifiable `ObservableList<Item>` that can be 'observed'
+  e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences.
-This is exposed to the outside as a `ReadOnlyUserPref` objects.
+  This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components
-(as the `Model` represents data entities of the domain,
-they should make sense on their own without depending on other components)
-
+  (as the `Model` represents data entities of the domain,
+  they should make sense on their own without depending on other components)
 
 <div style="page-break-after: always;"></div>
 
 ### Storage Component
+
 <p align="center">
 <img src="images/WingmanStorageClassDiagram.png" width="616" alt="UI Class diagram">
 </p>
 
 The `Storage` component,
-* can save both Wingman data and user preference data in json format,
-and read them back into corresponding objects.
-* depends on some classes in the `Model` component
-(because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+* can save both Wingman data and user preference data in json format,
+  and read them back into corresponding objects.
+* depends on some classes in the `Model` component
+  (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 <div style="page-break-after: always;"></div>
 
 ### Overall Sequence
+
 <p align="center">
 <img src="images/WingmanArchitectureSequenceDiagram.png" width="1005" alt="Architecture Sequence diagram">
 </p>
@@ -137,6 +148,7 @@ diagrams to depict the processes at each layer in greater detail.
 <div style="page-break-after: always;"></div>
 
 ### Example Activity Diagram
+
 <p align="center">
 <img src="images/WingmanLinkFlightActivity.png" width="231" alt="Link Flight activity diagram">
 </p>
@@ -153,70 +165,94 @@ to a flight. XYZ can be a `Flight`, `Plane`, `Location`, `Pilot` or `Crew` entit
 
 **How is this feature implemented?**
 
-In our app, we have entities `Flight`, `Plane`, `Location`, `Pilot`, `Crew`, and users can add new objects 
+In our app, we have entities `Flight`, `Plane`, `Location`, `Pilot`, `Crew`, and users can add new objects
 into the database via `add` command.
 
 This feature is enabled by the following classes:
+
 * `LinkXYZCommand` - the command that can be executed and adds a new entity
-into the system
+  into the system
 * `LinkXYZCommandFactory` - The factory class that creates `LinkXYZCommand`
-object, which can be executed to complete the task
+  object, which can be executed to complete the task
 
 When a user enters the command
+
 ```
 add /XYZPrefix {} {XYZ identifier} [/OtherPrefixes {OtherAttributes}...]
 ```
 
-Initially, when the input is received, it is processed by the UI layer, which calls the logic.execute(input) function and transfers the control to the logic layer. The execute(input) function in the logic layer then utilizes the WingmanParser to break down the input into tokens, determine the command's mode, such as Crew, Flight, Location, Pilot, or Plane, and identify the command's nature.
+Initially, when the input is received, it is processed by the UI layer, which calls the logic.execute(input) function
+and transfers the control to the logic layer. The execute(input) function in the logic layer then utilizes the
+WingmanParser to break down the input into tokens, determine the command's mode, such as Crew, Flight, Location, Pilot,
+or Plane, and identify the command's nature.
 
-The WingmanParser's primary goal is to recognize the command type based on the input and return the corresponding command object. For instance, the AddXYZCommand object is returned with the {XYZ identifier} after analyzing the input's tokens.
+The WingmanParser's primary goal is to recognize the command type based on the input and return the corresponding
+command object. For instance, the AddXYZCommand object is returned with the {XYZ identifier} after analyzing the input's
+tokens.
 
-To execute the DeleteXYZCommand, the appropriate XYZManager is employed. Firstly, the getItem(id) function is used to retrieve the corresponding XYZ that needs to be deleted. Next, the addXYZ(id) function is called, which removes the desired XYZ from the Wingman app using the item.removeItem(id) method.
+To execute the DeleteXYZCommand, the appropriate XYZManager is employed. Firstly, the getItem(id) function is used to
+retrieve the corresponding XYZ that needs to be deleted. Next, the addXYZ(id) function is called, which removes the
+desired XYZ from the Wingman app using the item.removeItem(id) method.
 
-Finally, the CommandResult message, indicating a successful deletion, is returned to the user. GUI will display the return message to the user. 
+Finally, the CommandResult message, indicating a successful deletion, is returned to the user. GUI will display the
+return message to the user.
 
 <img src="images/WingmanAddCommandSequenceDiagram.png" width="966" alt="Sequence diagram for add command">
 
 **Why was it implemented this way?**
 
-Our app has different operation `mode`, e.g., location and pilot. We wish to share the common modules, but separate different components. Here, we have a global logic manager that process the input string with a parser, which instantiate the  command object corresponded to the mode. To execute mode-specific command, we have a global manager that routes commands to mode-specific managers all commands related to that mode. These abstractions allow us to naturally group functionalities among different groups and efficiently coordinate different components.
+Our app has different operation `mode`, e.g., location and pilot. We wish to share the common modules, but separate
+different components. Here, we have a global logic manager that process the input string with a parser, which
+instantiate the command object corresponded to the mode. To execute mode-specific command, we have a global manager that
+routes commands to mode-specific managers all commands related to that mode. These abstractions allow us to naturally
+group functionalities among different groups and efficiently coordinate different components.
 
 **Alternatives considered for adding XYZ**
 
-One alternative approach could be to use a more direct approach to add the new entity without using a command pattern. For instance, the UI layer could directly call the logic layer's addXYZ() function, which would handle the addition of the new entity. This approach, however, could make it more challenging to manage the application's state, particularly as the app grows more complex, and new features are added.
+One alternative approach could be to use a more direct approach to add the new entity without using a command pattern.
+For instance, the UI layer could directly call the logic layer's addXYZ() function, which would handle the addition of
+the new entity. This approach, however, could make it more challenging to manage the application's state, particularly
+as the app grows more complex, and new features are added.
 
-Another alternative is to use a different design pattern, such as the builder pattern. In this approach, a builder object is responsible for constructing an object in stages, and the construction process can be further customized by calling specific builder methods. This approach can be useful when the entity being constructed has several configurable attributes that need to be set. However, in our case, the entities have fixed attributes, and the command pattern seems to be a more natural fit.
+Another alternative is to use a different design pattern, such as the builder pattern. In this approach, a builder
+object is responsible for constructing an object in stages, and the construction process can be further customized by
+calling specific builder methods. This approach can be useful when the entity being constructed has several configurable
+attributes that need to be set. However, in our case, the entities have fixed attributes, and the command pattern seems
+to be a more natural fit.
 
 
 <div style="page-break-after: always;"></div>
 
 ### 2. Deleting XYZ
+
 **How is this feature implemented?**
 
 The deleting feature is implemented in the same way for deleting crews, flights, locations, pilots, and planes from the
 Wingman app. Hence, in this description, the general term XYZ is used instead to refer to all for simplicity.
 
 This feature is enabled by the following classes in particular:
+
 - `DeleteXYZCommand` - The command that deletes a XYZ from the Wingman app
 - `DeleteXYZCommandFactory` - The factory class that creates a {@code DeleteXYZCommand}
 
 When a user enters the command:
+
 ```
 delete {XYZ identifier}
 ```
 
 the input goes through the UI layer where `logic.execute(input)` is called which passes control to the logic layer.
 
-At the logic layer, `execute(input)` first parses the input using the WingmanParser's `parse` function. The aim of 
+At the logic layer, `execute(input)` first parses the input using the WingmanParser's `parse` function. The aim of
 parsing is to determine what type of command the user's input is and determine which mode - Crew, Flight, Location,
 Pilot, or Plane - should handle the execution of said command.
 
-The WingmanParser separates the input into tokens, determines what mode the command is from, and then returns the 
-desired command type. In this case, the input allows the WingmanParser to recognize it is a `DeleteXYZCommand` and as a 
+The WingmanParser separates the input into tokens, determines what mode the command is from, and then returns the
+desired command type. In this case, the input allows the WingmanParser to recognize it is a `DeleteXYZCommand` and as a
 result, returns a new `DeleteXYZCommand` with the {XYZ identifier}.
 
-The `DeleteXYZCommand` is executed using the corresponding `XYZManager`. Firstly, the `XYZManager` uses `getItem(id)` 
-to find the corresponding XYZ to be deleted. Secondly, the `XYZManager` calls the `deleteXYZ(id)` method. The 
+The `DeleteXYZCommand` is executed using the corresponding `XYZManager`. Firstly, the `XYZManager` uses `getItem(id)`
+to find the corresponding XYZ to be deleted. Secondly, the `XYZManager` calls the `deleteXYZ(id)` method. The
 `deleteXYZ(id)` method uses the `item.removeItem(id)` method in order to remove the desired XYZ from the Wingman app.
 
 Finally, the `CommandResult` is returned which is the message the user will see indicating a successful deletion.
@@ -225,7 +261,7 @@ Finally, the `CommandResult` is returned which is the message the user will see 
 
 **Why was it implemented this way?**
 
-For the parsing logic in the Wingman app, the commands were split based on their related "mode." This implementation 
+For the parsing logic in the Wingman app, the commands were split based on their related "mode." This implementation
 decision was made so that parsing would be more simple across the five modes. To elaborate, each mode would handle their
 related commands only.
 
@@ -240,12 +276,12 @@ Description coming soon
 
 **Rationale**
 
-The rationale behind creating a `Link` class is that only such affords us 
-the ability to describe a relationship between two objects in away that's safe. 
+The rationale behind creating a `Link` class is that only such affords us
+the ability to describe a relationship between two objects in away that's safe.
 
 **How is this feature implemented?**
 
-This linking feature is implemented in a similar way to the unlinking 
+This linking feature is implemented in a similar way to the unlinking
 feature for crews, locations, pilots, and planes to flights.
 
 Hence, in this description the general term XYZ is used instead.
@@ -253,7 +289,7 @@ Hence, in this description the general term XYZ is used instead.
 This feature is enabled by the following classes in particular:
 
 - `LinkXYZCommand` - The command that links a crew to a flight
-- `LinkXYZCommandFactory` - The factory class that creates an {@code 
+- `LinkXYZCommandFactory` - The factory class that creates an {@code
   LinkCrewCommand}
 - `Link` - The class defining a link to a target
 - `Flight` - The class defining a flight object in Wingman
@@ -264,49 +300,49 @@ This feature is enabled by the following classes in particular:
 link /XYZprefix {XYZ identifier} /fl {flight identifier}
 ```
 
-this command is passed from the UI layer to the logic layer similar to the 
+this command is passed from the UI layer to the logic layer similar to the
 way described above, in the 'Unlinking XYZ' section.
 
-At the logic layer, while the sequence of method calls is similar to what is 
+At the logic layer, while the sequence of method calls is similar to what is
 described in the 'Adding XYZ' section, the `LinkXYZCommand.execute(model)`
 method is called instead of the `UnlinkXYZCommand.execute(model)` method.
 
 This method then calls the `flight.XYZLink.add(entry.getKey(), entry.getValue
-())` method where entry refers to one key-value pairing in a mapping of 
-`FlightXYZType` keys to `XYZ` values. At this point, the process is at the 
-model layer and continues with method calls similar to the ones described in 
-the 'Unlinking XYZ from a flight' section until the control is passed back 
+())` method where entry refers to one key-value pairing in a mapping of
+`FlightXYZType` keys to `XYZ` values. At this point, the process is at the
+model layer and continues with method calls similar to the ones described in
+the 'Unlinking XYZ from a flight' section until the control is passed back
 to the logic layer.
 
-Subsequently, the control is passed to the storage layer through the 
+Subsequently, the control is passed to the storage layer through the
 `logicManager.save()` method.
 This method calls `storage.saveXYZManager(model.getXYZManager())` and
-`storage.saveFlightManager(model.getFlightManager())`;, to save the updated 
+`storage.saveFlightManager(model.getFlightManager())`;, to save the updated
 flight and XYZ objects in storage. Since
 these 2 method calls work in the same way, we shall focus on just the latter,
 to be succinct.
 
-After `model.getFlightManager()` returns the model, the saveFlightManager 
+After `model.getFlightManager()` returns the model, the saveFlightManager
 method calls the `saveFlightManager(flightManager, flightStorage.getPath())`
-method in the same class. flightStorage is an ItemStorage<Flight> object 
-and flightManager is an `ReadOnlyItemManager<Flight>` object.  This method 
- call uses the imported json package to store `JsonIdentifiableObject`
-versions of the flightManager  which in turn contains the `JsonAdaptedFlights`,
+method in the same class. flightStorage is an ItemStorage<Flight> object
+and flightManager is an `ReadOnlyItemManager<Flight>` object. This method
+call uses the imported json package to store `JsonIdentifiableObject`
+versions of the flightManager which in turn contains the `JsonAdaptedFlights`,
 including the flight with the updated link represented as a
 `Map<FlightXYZType, Deque<String>>` object.
 
 **Why this way?**
 
-In this way, we are able to make the link feature work in a very similar way 
+In this way, we are able to make the link feature work in a very similar way
 to the unlink feature, simply swapping
-some methods to perform the opposite operation (particularly the execute 
+some methods to perform the opposite operation (particularly the execute
 function of the LinkXYZCommand class).
 
 **Alternatives that were considered:**
 
-One alternative implementation that was considered was to set the link as an 
+One alternative implementation that was considered was to set the link as an
 attribute in the flight class and update
-it directly with every change. However, this approach had a few limitations 
+it directly with every change. However, this approach had a few limitations
 as discussed in the previous section.
 
 
@@ -316,18 +352,20 @@ as discussed in the previous section.
 
 **How is this feature implemented?**
 
-This unlinking feature is implemented in the same way for unlinking crews, 
+This unlinking feature is implemented in the same way for unlinking crews,
 locations, pilots and planes from flights.
 Hence, in this description the general term XYZ is used instead.
 
 This feature is enabled by the following classes in particular:
+
 - `UnlinkXYZCommand` - The command that unlinks a crew from a flight
-- `UnlinkXYZCommandFactory` - The factory class that creates an {@code 
+- `UnlinkXYZCommandFactory` - The factory class that creates an {@code
   UnlinkCrewCommand}
 - `Link` - The class defining a link to a target
 - `Flight` - The class defining a flight object in Wingman
 
 When a user enters the command:
+
 ```
 unlink /XYZprefix {XYZ identifier} /fl {flight identifier}
 ```
@@ -371,13 +409,15 @@ it directly with every change. However, this approach had a few limitations as d
 <div style="page-break-after: always;"></div>
 
 ### 5. Displaying flights across all modes
-Initially, there is only one `ItemListPanel` that displays an item list specific to each mode. 
+
+Initially, there is only one `ItemListPanel` that displays an item list specific to each mode.
 However, in order to link an object (pilot/crew/location/plane) to a flight, a separate list panel displaying flights is
 necessary for ease of selecting and linking to a specific flight.
 
 **Implementation of display of flight list**
 
-In the implementation as seen in the image below, the `MainWindow` can be filled by `ItemListPanel` as well as `FlightListPanel`:
+In the implementation as seen in the image below, the `MainWindow` can be filled by `ItemListPanel` as well
+as `FlightListPanel`:
 
 `ItemListPanel`: displays information about each `Item` using an `ItemCard` in a `ListView`.
 
@@ -388,23 +428,26 @@ In the implementation as seen in the image below, the `MainWindow` can be filled
 </p>
 
 
-By having separate list panels, it will be easier to customise the display of different Item types if required by ui improvements.
+By having separate list panels, it will be easier to customise the display of different Item types if required by ui
+improvements.
 
-In each `ItemCard` as seen in the image below, the item’s name will be shown together with its id and respective attributes. 
+In each `ItemCard` as seen in the image below, the item’s name will be shown together with its id and respective
+attributes.
 
 In each `FlightCard`, the structure is similar to that of `ItemCard` but specific to flight objects.
 
-By modifying the layout and dividing into a left section which shows the resources, and a right section which shows the flights, 
+By modifying the layout and dividing into a left section which shows the resources, and a right section which shows the
+flights,
 we can keep the information displayed organised and clear to the user.
 
 **Alternatives considered for display of flights:**
+
 * Alternative 1 (current choice): Has two panels to display items and flights in one display window
 * Pros: Easy to implement and can view all the information simultaneously after a command is executed.
     * Cons: Too cramped, which may lead to information overload.
 * Alternative 2: Has one display window for items and a separate display window for flights
     * Pros: More organised and visually pleasant.
     * Cons: Hard to implement and unable to view 2 panels simultaneously without switching between windows
-
 
 <div style="page-break-after: always;"></div>
 
@@ -420,7 +463,7 @@ we can keep the information displayed organised and clear to the user.
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 Airline managers will be able to take labor, welfare, and
 resource optimization
@@ -466,7 +509,6 @@ unlikely to have) - `*`
 | `* *`    | airline manager | unlink pilots from locations                                    | change where a pilot is located                            |
 | `* *`    | airline manager | unlink crew from locations                                      | change where a crew is located                             |
 
-
 *{More to be added}*
 
 
@@ -481,8 +523,8 @@ is the `user`, unless specified otherwise)
 
 **MSS**
 
-1.  User requests to list locations
-2.  Wingman shows a list of locations
+1. User requests to list locations
+2. Wingman shows a list of locations
 3. User requests to delete a specific location in the list
 4. Wingman deletes the location
 5. User request to add a location
@@ -504,14 +546,14 @@ is the `user`, unless specified otherwise)
 
 **MSS**
 
-1.  User requests to list crew
-2.  Wingman shows a list of crew
-3.  User requests to delete a specific crew in the list
-4.  Wingman deletes the crew
-5.  User request to add a crew
-6.  Wingman adds the crew
+1. User requests to list crew
+2. Wingman shows a list of crew
+3. User requests to delete a specific crew in the list
+4. Wingman deletes the crew
+5. User request to add a crew
+6. Wingman adds the crew
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -523,23 +565,23 @@ is the `user`, unless specified otherwise)
       Use case resumes at step 2.
 
 * 5b. The given crew is a duplicate of an existing one
-    *  5b1. Wingman shows an error message.
-       Use case resumes at step 4.
-    *  5b1. Wingman shows an error message.
-       Use case resumes at step 4.
+    * 5b1. Wingman shows an error message.
+      Use case resumes at step 4.
+    * 5b1. Wingman shows an error message.
+      Use case resumes at step 4.
 
 **Use case: Delete a plane**
 
 **MSS**
 
-1.  User requests to list planes
-2.  Wingman shows a list of planes
-3.  User requests to delete a specific plane in the list
-4.  Wingman deletes the plane
-5.  User request to add a plane
-6.  Wingman adds the plane
+1. User requests to list planes
+2. Wingman shows a list of planes
+3. User requests to delete a specific plane in the list
+4. Wingman deletes the plane
+5. User request to add a plane
+6. Wingman adds the plane
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -586,11 +628,11 @@ is the `user`, unless specified otherwise)
 
 **MSS:**
 
-1.  User chooses 'flight' mode
-2.  Wingman shows a list of scheduled flights
-3.  User enters details of the new flight to add to schedule
-4.  Wingman adds the details of the new flight to list of scheduled flights
-    Use case ends.
+1. User chooses 'flight' mode
+2. Wingman shows a list of scheduled flights
+3. User enters details of the new flight to add to schedule
+4. Wingman adds the details of the new flight to list of scheduled flights
+   Use case ends.
 
 **Extensions:**
 
@@ -599,7 +641,7 @@ is the `user`, unless specified otherwise)
     * 3a1. Wingman shows an error message and an example of a correct command.
 
       Use case resumes at step 2.
-      
+
 *{More to be added}*
 
 
@@ -607,14 +649,15 @@ is the `user`, unless specified otherwise)
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 100 flights, crews, and pilots without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4.  The system should respond within a second.
-5.  The data should be stored locally and should be in a human editable text file.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 100 flights, crews, and pilots without a noticeable sluggishness in performance for
+   typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
+   able to accomplish most of the tasks faster using commands than using the mouse.
+4. The system should respond within a second.
+5. The data should be stored locally and should be in a human editable text file.
 6. Should work without requiring an installer or a remote server
 7. Should be for a single user and should not have any shared file storage mechanism
-
 
 <br>
 
