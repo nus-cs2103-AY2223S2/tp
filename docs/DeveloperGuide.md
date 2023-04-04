@@ -364,61 +364,25 @@ AutoM8 provides the necessary features that support the management of customer, 
 
 **Use case: UC02 - Listing all vehicles**
 
-**MSS**
-1. User requests to list out all vehicles.
-2. AutoM8 shows a list of all vehicles.
+similar to use case one. 
 
-   Use case ends.
+**Use case: UC03 - Listing all appointments**
 
-**Extensions**
-
-- 2a. The list is empty.
-  Use case ends.
-  <br/><br/>
-
-**Use case: UC03 - Listing all customer appointments**
-
-**MSS**
-1. User requests to list out all customer appointments.
-2. AutoM8 shows a list of all customer appointments.
-
-   Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-  Use case ends.
-  <br/><br/>
+similar to use case one.
 
 **Use case: UC04 - Listing all spare parts**
 
-**MSS**
-1. User requests to list out all spare parts.
-2. AutoM8 shows a list of all spare parts.
+similar to use case one.
 
-   Use case ends.
+**Use case: UC05 - Listing all services**
 
-**Extensions**
+similar to use case one.
 
-- 2a. The list is empty.
-  Use case ends.
-  <br/><br/>
+**Use case: UC06 - Listing all technicians**
 
-**Use case: UC05 - Listing all service**
+similar to use case one.
 
-**MSS**
-1. User requests to list out all service .
-2. AutoM8 shows a list of all service.
-
-   Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-  Use case ends.
-  <br/><br/>
-
-**Use case: UC06 - Adding a customer**
+**Use case: UC07 - Adding a customer**
 
 **MSS**
 
@@ -435,41 +399,27 @@ AutoM8 provides the necessary features that support the management of customer, 
       Use case resumes at step 2.
       <br/><br/>
 
-**Use case: UC07 - Adding a vehicle**
+**Use case: UC08 - Adding a vehicle**
 
-**MSS**
+similar to use case seven.
 
-1. User requests to add a vehicle into the list.
-2. User inputs the information of the vehicle.
-3. AutoM8 adds the vehicle as a contact.
+**Use case: UC09 - Adding an appointment**
 
-   Use case ends.
+similar to use case seven.
 
-**Extensions**
+**Use case: UC10 - Adding a spare part**
 
-- 3a. The given plate number already exists in AutoM8.
-    - 3a1. AutoM8 shows an error message.
-      Use case resumes at step 2.
-      <br/><br/>
+similar to use case seven.
 
-**Use case: UC08 - Adding a customer appointment**
+**Use case: UC11 - Adding a service**
 
-**MSS**
+similar to use case seven.
 
-1. User requests to add a customer appointment into a list.
-2. User inputs the information of the customer appointment.
-3. AutoM8 adds the customer appointment into the list.
+**Use case: UC12 - Adding a technician**
 
-   Use case ends.
+similar to use case seven.
 
-**Extensions**
-
-- 3a. The given customer already has an appointment in AutoM8.
-    - 3a1. AutoM8 shows an error message.
-      Use case resumes at step 2.
-      <br/><br/>
-
-**Use case: UC09 - Adding a service to a vehicle**
+**Use case: UC09 - Adding a technician to a service**
 
 **MSS**
 
