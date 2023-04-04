@@ -70,7 +70,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* `DATEIME` must be in this format: `DD-MM-YYYY HH:mm`.
+* All `DATETIME` must strictly be in this format: `DD-MM-YYYY HH:mm`.
 
 </div>
 
@@ -92,7 +92,7 @@ A person can have any number of events (including 0)
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` Adds person to the address book.
-* `add n/Alex Yeoh p/89028392 e/alex@email.com a/Blk 142 Apple Street 23 evt/1` Adds 1st event to the new person `Alex Yeoh` in the address book.
+* `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1` Adds 1st event to the new person `Pearlyn Yeah` in the address book.
 
 #### Listing all persons : `list`
 
@@ -161,6 +161,10 @@ Format: `addevent ev/EVENT_NAME from/DATETIME to/DATETIME`
 * Event name must begin with alphanumeric.
 * Event name cannot exceed 50 characters.
 * Start date time cannot be after the end date time.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Past events can be added for tracking purposes.
+</div>
 
 Examples:
 * `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
@@ -289,12 +293,6 @@ AddressBook data are saved in the hard disk automatically after any command that
 
 AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -308,7 +306,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ev/EVENT_INDEX] …​` <br> e.g., `add n/Alex Yeoh p/89028392 e/alex@email.com a/Blk 142 Apple Street 23 evt/1`
+**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ev/EVENT_INDEX] …​` <br> e.g., `add n/Pearlyn Yeah p/89027382 e/pearlyn@email.com a/Blk 124 Orange Street 25 evt/1`
 **Add Event** | `addevent ev/EVENT_NAME from/DATETIME to/DATETIME` <br> e.g., `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
 **Clear** | `clear`
 **Delete Contact** | `delete INDEX`<br> e.g., `delete 3`
