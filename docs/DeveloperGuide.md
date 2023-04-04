@@ -256,7 +256,7 @@ In order, they are: `name|phone|email|address|telegram|groups|modules`. Note tha
 
 </div>
 
-For example, `Bee Shan|81121128|beeshan@gmail.com|200 Bishan Road|@beeshan|NS CCA|CS3242 BT3101 CS1010E CS3219 CE3165` provides information for a person with the following details:
+For example, `Bee Shan|81121128|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS3242 BT3101 CS1010E CS3219 CE3165` provides information for a person with the following details:
 
 | Field           | Value                                   |
 |-----------------|-----------------------------------------|
