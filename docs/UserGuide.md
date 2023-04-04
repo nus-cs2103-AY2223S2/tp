@@ -3,20 +3,30 @@ layout: page
 title: User Guide
 ---
 
-Artistic addressbook (ArB) is a **desktop app for artists, meant to help with managing clients and project information**, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
+Artistic addressbook (ArB) is a **desktop app for artists, meant to help with managing clients and project information**, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ArB can get your contact and project management tasks done faster than traditional GUI apps.
 
 ## **Table of Contents**
 {:toc}
-
+* [Quick Start](#quick-start)
+* [Detailed Setup Guide](#detailed-setup)
+* [Command Summary](#command-summary)
+* [Command Syntax](#syntax)
+* [Prefixes](#prefixes)
+* [Features](#features)
+* [General Commands](#general-commands)
+* [Client Commands](#client-commands)
+* [Project Commands](#project-commands)
+* [Tag Commands](#tag-commands)
+* [FAQ](#faq)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Quick start**
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above installed in your Computer.
 
 1. Download the latest `arb.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your ArB
+1. Copy the file to a new folder you want to use as the _home folder_ for your ArB
 
 1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar arb.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. The app may contain some sample data if being opened for the first time.<br>
@@ -27,6 +37,8 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 
    * `list-client` : Lists all clients.
 
+   * `list-project`: Lists all projects. 
+
    * `add-client name/John Doe phone/98765432 email/johnd@example.com` : Adds a client named `John Doe` to the ArB.
 
    * `delete-client 3` : Deletes the 3rd client shown in the current client list.
@@ -35,30 +47,64 @@ Artistic addressbook (ArB) is a **desktop app for artists, meant to help with ma
 
 1. Refer to the [Features](#features) below for details of each command.
 
+## **Detailed Setup**
+
+[To be added]
+
 --------------------------------------------------------------------------------------------------------------------
+
+## Command summary
+
+| Action                        | Format, Examples                                                                                                                                                      |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **List Clients**              | `list-client`                                                                                                                                                         |
+| **Add a Client**              | `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend`                |
+| **Edit a Client**             | `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*​` <br> e.g.,`edit-client 3 name/Alice Risa phone/1234 tag/classmate`                          |
+| **Delete a Client**           | `delete-client <index>`<br> e.g., `delete-client 1`                                                                                                                   |
+| **Clearing the Client List**  | `clear-client`                                                                                                                                                        |
+| **Finding a Client**          | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend`                                                                         |
+| **Sorting all Clients**       | `sort-client`                                                                                                                                                         |
+| **List Projects**             | `list-project`                                                                                                                                                        |
+| **Add a Project**             | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 tag/painting` |
+| **Edit a Project**            | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night`                                     |
+| **Mark a Project**            | `mark <index>` <br> e.g., `mark 3`                                                                                                                                    |
+| **Unmark a Project**          | `unmark <index>` <br> e.g., `unmark 3`                                                                                                                                |
+| **Delete a Project**          | `delete-project <index>`<br> e.g., `delete-project 1`                                                                                                                 |
+| **Clearing the Project List** | `clear-project`                                                                                                                                                       |
+| **Finding a Project**         | `find-project [name/NAME]* [start/START] [end/END] [tag/TAG]* [status/STATUS]` <br> e.g., `find-project name/sky start/yesterday tag/painting`                        |
+| **Sorting all Project**       | `sort-project option/Option` <br> e.g., `sort-project option/name`                                                                                                    |
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Syntax**
 
 `[ACTION VERB] [options]`
 
 `<Required argument> [optional argument]`
 
-An asterisk `*` after any argument indicates that it can be entered a variable number of times.
+An asterisk `*` after any argument indicates that it can be entered a variable number of times. E.g. `[tag/TAG]*`
 
-All commands are case insensitive.
+All commands are case-insensitive.
 
 ## **Prefixes**
 
-1. `name/n` -> name: name
-2. `email/e` -> email: valid email
-3. `phone/p` -> phone: valid phone
-4. `deadline/d` -> deadline: valid deadline
-5. `price/pr` -> price: valid price
-6. `tag/t` -> tag: valid tag
-7. `client/c` -> client: keywords to search for clients to link to a project
-8. `option/o` -> option: option to sort the project list with
-9. `start/s` -> start: valid start of a timeframe
-10. `end/e` -> end: valid end of a timeframe
-11. `status/st` -> status: valid status
+| Prefix      | Short form | Description                                        |
+|-------------|------------|----------------------------------------------------|
+| `name/`     | `n/`       | Name of client/project                             |
+| `email/`    | `e/`       | Valid email address                                |
+| `phone/`    | `p/`       | Valid phone number                                 |
+| `deadline/` | `d/`       | Valid deadline for project                         |
+| `price/`    | `pr/`      | Price of project (0 or 2 decimals)                 |
+| `tag/`      | `t/`       | Alphanumeric tag                                   |
+| `client/`   | `c/`       | Keywords to search for client to link to a project |
+| `option/`   | `o/`       | Valid option to sort projects with                 |
+| `start/`    | `s/`       | Valid start of timeframe for finding projects      |
+| `end/`      | `e/`       | Valid end of timeframe for finding projects        |
+| `status/`   | `st/`      | Valid status for finding projects                  |
+
+<br>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Features**
 
@@ -96,7 +142,7 @@ All commands are case insensitive.
 
 ### Viewing help: `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page (this guide).
 
 ![help message](images/helpMessage.png)
 
@@ -399,27 +445,3 @@ Format: `list-tag`
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous artistic addressbook home folder.
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-| Action             | Format, Examples                                                                                                              |
-|--------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| **List Clients**    | `list-client` |
-| **Add a Client**     | `add-client <name/NAME> [email/EMAIL] [phone/PHONE_NUMBER] [tag/TAG]*​` <br> e.g., `add-client name/Bob phone/12345678 email/bob@gmail.com tag/friend` |
-| **Edit a Client**    | `edit-client <index> [name/NAME] [email/EMAIL] [phone/PHONE] [tag/TAG]*​` <br> e.g.,`edit-client 3 name/Alice Risa phone/1234 tag/classmate` |
-| **Delete a Client**  | `delete-client <index>`<br> e.g., `delete-client 1`|
-| **Clearing the Client List** | `clear-client` |
-| **Finding a Client** | `find-client [name/NAME]* [tag/TAG]*` <br> e.g., `find-client name/bob name/alice tag/friend` |
-| **Sorting all Clients** | `sort-client` |
-| **List Projects**   | `list-project` |
-| **Add a Project**    | `add-project <name/NAME> [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `add-project name/Background Commission deadline/2023-05-05 price/400 tag/painting` |
-| **Edit a Project**   | `edit-project <index> [name/NAME] [deadline/DEADLINE] [price/PRICE] [tag/TAG]*` <br> e.g., `edit-project 2 name/The Starry Night` |
-| **Mark a Project**   | `mark <index>` <br> e.g., `mark 3` |
-| **Unmark a Project** | `unmark <index>` <br> e.g., `unmark 3` |
-| **Delete a Project** | `delete-project <index>`<br> e.g., `delete-project 1` |
-| **Clearing the Project List** | `clear-project` |
-| **Finding a Project** | `find-project [name/NAME]* [start/START] [end/END] [tag/TAG]* [status/STATUS]` <br> e.g., `find-project name/sky start/yesterday tag/painting` |
-| **Sorting all Project**   | `sort-project option/Option` <br> e.g., `sort-project option/name` |
-
