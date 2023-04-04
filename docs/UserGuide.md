@@ -116,7 +116,7 @@ An example is shown below.
 
 ### 1.1.2 Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Mac
 * **CLI**: Command-Line Interface
 * **GUI**: Graphical User Interface
 * **Supplier**: Supplier refers to someone whom the user seasonally or frequently orders goods from
@@ -287,7 +287,7 @@ Data list contains all of your respective data labelled out in full. The layout 
 
 * All command keywords must be in lower-case and are case-sensitive.<br>
   e.g. For add supplier command:<br>
-  :white_check_mark: `add_supplier` is valid.<br>
+  :heavy_check_mark: `add_supplier` is valid.<br>
   :x: `ADD_SUPPLIER` and `Add_Supplier` are invalid.<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
@@ -469,10 +469,10 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
 * When entering price and cost values, you may choose to
   1. input **positive** integer numbers
   2. input **positive** decimal numbers (up to 2 decimal point). For example:<br>
-     :white_check_mark: `5.1` or `5.03`<br>
+     :heavy_check_mark: `5.1` or `5.03`<br>
      :x: `5.034`
   
-* The item can have a positive or negative profit margin. Specifically:
+* The item can have a positive or negative profit margin (Profit Margin = Price - Cost). Specifically:
   * Negative profit margin means you are making a **loss**
   * Positive profit margin means you are making a **profit**
 
@@ -562,7 +562,7 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 
 Edit an existing order’s information.
 
-Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] [a/CUSTOMER_ADDRESS] [p/CUSTOMER_PHONE_NUMBER] [s/STATUS]…​`
+Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] [a/CUSTOMER_ADDRESS] [p/CUSTOMER_PHONE_NUMBER] [s/STATUS]`
 
 <div markdown="block" class="alert alert-tip">
 
@@ -593,7 +593,7 @@ Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_
 
 </div>
 
-### 2.1.3 Editing a task: `edit_task`
+### 2.2.3 Editing a task: `edit_task`
 
 Edit an existing task’s information.
 
@@ -626,7 +626,7 @@ Syntax: `edit_task INDEX [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 
 </div>
 
-### 2.1.4 Editing a menu item: `edit_item`
+### 2.2.4 Editing a menu item: `edit_item`
 
 Edit an existing menu item’s information.
 
@@ -639,10 +639,10 @@ Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
 * When entering price and cost values, you may choose to
   1. input **positive** integer numbers
   2. input **positive** decimal numbers (up to 2 decimal point). For example:<br>
-     :white_check_mark: `5.1` or `5.03`<br>
+     :heavy_check_mark: `5.1` or `5.03`<br>
      :x: `5.034`
 
-* The item can have a positive or negative profit margin. Specifically:
+* The item can have a positive or negative profit margin (Profit Margin = Price - Cost). Specifically:
   * Negative profit margin means you are making a **loss**
   * Positive profit margin means you are making a **profit**
 
@@ -668,26 +668,60 @@ Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
 
 </div>
 
-## Find
+## 2.3 Find
 
-### Finding a supplier: `find_supplier`
+Finding of specific information with the provided parameters. Below are the specific find commands for supplier, order, task and menu item.
+
+### 2.3.1 Finding a supplier: `find_supplier`
 
 Find suppliers whose information matches with any of the given parameters.
 
-Syntax: `find_supplier [n/NAME] [t/TAG]…​`
+Syntax: `find_supplier n/NAME`
 
-* Search is case-insensitive, e.g. `mark` will match `Mark`.
-* The order of the keywords does not matter, e.g. `n/Mark Lee` will match with `Lee Mark`.
-* At least one of the optional fields must be keyed in.
-* More than one tag can be given.
-* Only full words will match e.g. `Mar` will not match with `Mark`.
-* People matching with at least one keyword will be returned (i.e. `OR` search).
-  e.g. `n/Mark Lee` will return `Mark Tan`, `Lee Chan`.
+<div markdown="block" class="alert alert-tip">
 
-Examples:
+:information_source: **Information**
 
-* `find_task n/PHOON HUAT` returns supplier `Phoon Huat` and `John Phoon`
-* `find_s n/PHOON t/eggs t/flour` returns supplier `Phoon Huat` that supplies both `eggs` and `flour`
+* Search is case-insensitive (e.g. `mark` will match with `Mark`).
+* Order of the keywords does not matter (e.g. `n/Mark Lee` will match with `Lee Mark`).
+* Only full words will match (e.g. `Mar` will not match with `Mark`).
+* People matching with at least one keyword will be returned (i.e. `OR` search). <br>
+  (e.g. `n/Mark Lee` will return `Mark Tan`, `Lee Chan`)
+
+</div>
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command**
+
+* `find_task n/Prima Flour`<br>
+  Finds the supplier with the following details:
+  * Supplier Name contains either `Prima` or `Flour` in any cases.<br>
+
+  Example of suppliers that match:
+    * `Prima`
+    * `Soon Flour Pte Ltd`
+    * `PRIMA CONFECTIONARY`
+  
+  Example of suppliers that do not match:
+    * `Prim`
+    * `PrimaFlour`
+
+:clipboard: **Example 2: Shortcut command**
+
+* `find_s n/Pte`<br>
+  Finds the supplier with the following details:
+  * Supplier Name contains either `Pte`in any cases.
+  
+  Example of suppliers that match:
+    * `Soon Flour Pte Ltd`
+    * `Tech Leong PTE LTD`
+
+  Example of suppliers that do not match:
+  * `Private`
+  * `Phoon Huat PteLtd`
+
+</div>
 
 ### Finding an order: `find_order`
 
