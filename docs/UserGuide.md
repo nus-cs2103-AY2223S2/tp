@@ -94,11 +94,16 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` Adds person to the address book.
 * `add n/Alex Yeoh p/89028392 e/alex@email.com a/Blk 142 Apple Street 23 evt/1` Adds 1st event to the new person `Alex Yeoh` in the address book.
 
+![example usage for add command](images/add.png)
+
 #### Listing all persons : `list`
 
 Shows a list of all persons in the address book.
 
 Format: `list`
+
+![example usage for list command](images/list.png)
+
 
 #### Editing a person : `edit`
 
@@ -116,6 +121,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [evt/EVENT INDEX]â€
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower evt/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing event tags.
+
+![example usage for edit command](images/edit.png)
+
 
 #### Locating persons by name: `find`
 
@@ -135,6 +143,8 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+![example usage for find command](images/find.png)
+
 #### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
@@ -148,6 +158,8 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+![example usage for delete command](images/delete.png)
 
 ### Event Features
 
@@ -166,6 +178,8 @@ Examples:
 * `addevent ev/Wedding Dinner from/01-05-2023 17:00 to/01-05-2023 21:00`
 * `addevent ev/Dinner from/01-05-2023 17:30 to/01-05-2023 19:30`
 
+![example usage for addevent command](images/addevent.png)
+
 #### Listing all events : `listevent`
 
 Prints all the existing events in the address book.
@@ -177,6 +191,8 @@ Format: `listevent`
 
 Examples:
 * `listevent` prints a list of events.
+
+![example usage for listevent command](images/listevent.png)
 
 #### Listing persons from an event: `listevcontact`
 
@@ -190,6 +206,8 @@ Format: `listevcontact EVENT_INDEX`
 
 Examples:
 * `listevent` followed by `listevcontact 2` lists all the persons whose event set contains the 2nd event in the event list.
+
+![example usage for listevcontact command](images/listevcontact.png)
 
 #### Sorting events: `sortevent`
 
@@ -208,6 +226,8 @@ Format: `sortevent SORT_TYPE`
 Examples:
 * `listevent` followed by `sortevent c` sorts all the events in the address book based on their start date times in ascending order.
 
+![example usage for sortevent command](images/sortevent.png)
+
 #### Editing an event : `editevent`
 
 Edits an existing event in the address book.
@@ -222,6 +242,8 @@ Format: `editevent EVENT_INDEX [ev/EVENT_NAME] [from/DATETIME] [to/DATETIME]`
 
 Examples:
 *  `editevent 1 ev/Birthday Party from/17-07-2023 12:00` Edits the event name and start datetime of the 1st event to be `Birthday Party` and `17-07-2023 12:00` respectively.
+
+![example usage for editevent command](images/editevent.png)
 
 #### Finding events by name: `findevent`
 
@@ -240,6 +262,8 @@ Examples:
 * `findevent Dinner` returns `Wedding Dinner` and `Dinner and Dance`
 * `findevent birthday party` returns `Birthday Lunch`, `Graduation Party`
 
+![example usage for findevent command](images/findevent.png)
+
 #### Deleting an event : `delevent`
 
 Deletes the specified event from the event list and deletes all occurrences of the event tied to persons in the address book, if any.
@@ -253,6 +277,8 @@ Format: `delevent EVENT_INDEX`
 Examples:
 * `listevent` followed by `delevent 2` deletes the 2nd event in the event list and all occurrences of the 2nd event tied to persons in the address book, if any.
 
+![example usage for delevent command](images/delevent.png)
+
 ### Other Features
 
 #### Listing all persons and events : `listall`
@@ -260,6 +286,8 @@ Examples:
 Prints all the existing persons and events in the address book.
 
 Format: `listall`
+
+![example usage for listall command](images/listall.png)
 
 #### Viewing help : `help`
 
@@ -274,6 +302,8 @@ Format: `help`
 Clears all entries from the address book.
 
 Format: `clear`
+
+![example usage for clear command](images/clear.png)
 
 #### Exiting the program : `exit`
 
