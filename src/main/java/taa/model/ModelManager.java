@@ -314,7 +314,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteStudentSubmission(Student studentToDelete) {
         assignmentList.deleteStudent(studentToDelete);
-        updateStudent(studentToDelete);
     }
 
     /**
