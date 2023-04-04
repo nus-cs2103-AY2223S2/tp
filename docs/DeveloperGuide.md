@@ -5,7 +5,7 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
-# **Introduction**
+## **Introduction**
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Software OverView**
@@ -579,6 +579,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  MyLib edits the bookmark
 
     Use case ends.
+<div style="page-break-after: always;"></div>
 
 **Extensions**
 
@@ -654,6 +655,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Bookmark**: Tracker for a book that contains information about the book and a user's reading progress
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -697,6 +699,7 @@ testers are expected to do more *exploratory* testing.
       Expected: No bookmark is deleted. prompts user to enter valid index in the status message. Status bar remains the same.
 
 1. _{ more test cases …​ }_
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
