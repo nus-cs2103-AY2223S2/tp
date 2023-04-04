@@ -25,7 +25,7 @@ public class UnstarCommand extends Command {
     public static final String COMMAND_WORD = "unstar";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the recipe at the specified task number from your favourites.\n"
+            + ": Removes the recipe at the specified recipe number from your favourites.\n"
             + "Format: unstar RECIPE_NUMBER\n"
             + "RECIPE_NUMBER must be a positive integer starting from 1 and must exist in the recipe book.\n"
             + "Example: " + COMMAND_WORD + " 1";
