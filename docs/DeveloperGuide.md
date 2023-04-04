@@ -16,11 +16,11 @@ Todo: Add links
    3. [Model Component](#model-component)
    4. [Storage Component](#storage-component)
 4. [Implementation](#implementation)
-   1. [Salary Command]()
-   2. [Deadline Command]()
-   3. [Company Command]()
-   4. [Tag Command]()
-   5. [View Command]()
+   1. [Salary Command](#implemented-salary-command-feature)
+   2. [Deadline Command](#implemented-deadline-command-feature)
+   3. [Company Command](#implemented-company-command-feature)
+   4. [Tag Command](#implemented-tag-command-feature)
+   5. [View Command](#implemented-view-command-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -383,12 +383,14 @@ The following sequence diagram shows how the `view` command works:
 appending its information to the `feedbackToUser` string.
     * Pros: Easy to implement, no need to change existing code.
     * Cons: Limited customization of UI in `ResultDisplay`
-* **Alternative 2 (current choice):** Create a view manager for `ResultDisplay`, changing the children
-node of `ResultDisplay` based on command given (in this case, `view`)
+* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children
+node of `ResultDisplay` based on command given (in this case, `view`).
     * Pros: Provides an easy and extendable way to create custom views
-    * Cons: Need to refactor most of the existing codebase.
+    * Cons: Need to refactor some UI code.
 
-_{more aspects and alternatives to be added}_
+Todo: 
+(1) write about changing CommandResult<T> to be generic, 
+(2) Create sequence diagram for `view` command
 
 
 --------------------------------------------------------------------------------------------------------------------
