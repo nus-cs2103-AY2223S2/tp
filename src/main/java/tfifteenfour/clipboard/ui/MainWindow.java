@@ -330,9 +330,11 @@ public class MainWindow extends UiPart<Stage> {
                         .getCurrentSelection().getSelectedStudent()));
         ObservableList<SessionWithAttendance> sessionList =
                 logic.getModel().getCurrentSelection().getSelectedStudent().getObservableSessionList();
-        rightPanelPlaceholder.getChildren()
-                .add(new StudentViewCardWithAttendance(viewedStudent.get(0),
-                sessionList, 0).getRoot());
+        if (viewedStudent.size() != 0) {
+            rightPanelPlaceholder.getChildren()
+                    .add(new StudentViewCardWithAttendance(viewedStudent.get(0),
+                            sessionList, 0).getRoot());
+        }
     }
 
     /**

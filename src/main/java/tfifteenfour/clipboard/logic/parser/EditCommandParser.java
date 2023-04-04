@@ -64,36 +64,40 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         switch (editCommandType) {
         case MODULE:
-            Course newCourse = parseCourseInfo(args);
-            index = parseIndex(args);
             if (currentSelection.getCurrentPage() != PageType.COURSE_PAGE) {
                 throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "course"));
             }
+            Course newCourse = parseCourseInfo(args);
+            index = parseIndex(args);
+
             return new EditCourseCommand(index, newCourse);
         case GROUP:
-            Group newGroup = parseGroupInfo(args);
-            index = parseIndex(args);
             if (currentSelection.getCurrentPage() != PageType.GROUP_PAGE) {
                 throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "group"));
             }
+            Group newGroup = parseGroupInfo(args);
+            index = parseIndex(args);
+
             return new EditGroupCommand(index, newGroup);
         case SESSION:
-            Session newSession = parseSessionInfo(args);
-            index = parseIndex(args);
             if (currentSelection.getCurrentPage() != PageType.SESSION_PAGE) {
                 throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "session"));
             }
+            Session newSession = parseSessionInfo(args);
+            index = parseIndex(args);
+
             return new EditSessionCommand(index, newSession);
         case TASK:
             Task newTask = parseTaskInfo(args);
             index = parseIndex(args);
             return new EditTaskCommand(index, newTask);
         case STUDENT:
-            EditStudentDescriptor editStudentDescriptor = parseStudentInfo(args);
-            index = parseIndex(args);
             if (currentSelection.getCurrentPage() != PageType.STUDENT_PAGE) {
                 throw new CommandException(String.format(WRONG_PAGE_MESSAGE, "student"));
             }
+            EditStudentDescriptor editStudentDescriptor = parseStudentInfo(args);
+            index = parseIndex(args);
+
             return new EditStudentCommand(index, editStudentDescriptor);
         default:
             throw new ParseException("Invalid type for edit command");
