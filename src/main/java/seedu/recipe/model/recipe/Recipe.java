@@ -18,6 +18,14 @@ import seedu.recipe.model.tag.Tag;
  */
 public class Recipe {
 
+    // Message constraints for recipe and validation regex will
+    // only be used for the find command at the moment
+    public static final String MESSAGE_CONSTRAINTS =
+            "A recipe should only contain alphanumeric characters, "
+                    + "spaces, and these punctuation marks `,.!?`, and it should not be blank";
+
+    public static final String VALIDATION_REGEX = "[\\p{Alnum},.!?][\\p{Alnum} ,.!?]*";
+
     // Identity fields
     private final Title title;
     private final Description desc;
@@ -28,6 +36,8 @@ public class Recipe {
     private final Set<Tag> tags;
 
     private boolean isStar;
+
+
 
     /**
      * Every field must be present and not null except for {@code isStar} which can be left blank.
@@ -81,6 +91,9 @@ public class Recipe {
         return this.isStar;
     }
 
+    public static boolean isValidRecipe(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
     /**
      * Stars the recipe.
      */

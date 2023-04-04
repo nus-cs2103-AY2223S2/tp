@@ -16,12 +16,6 @@ import java.util.stream.Stream;
 import seedu.recipe.logic.commands.FindCommand;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.ContainsKeywordsPredicate;
-import seedu.recipe.model.recipe.DescriptionContainsKeywordsPredicate;
-import seedu.recipe.model.recipe.IngredientsContainsKeywordsPredicate;
-import seedu.recipe.model.recipe.RecipeContainsKeywordsPredicate;
-import seedu.recipe.model.recipe.StepsContainsKeywordsPredicate;
-import seedu.recipe.model.recipe.TagsContainsKeywordsPredicate;
-import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -45,22 +39,23 @@ public class FindCommandParser implements Parser<FindCommand> {
                 PREFIX_DESCRIPTION);
         String arguments = argMultimap.getValue(p).get();
         String[] recipeKeywords = arguments.split("\\s+");
-        return new FindCommand(getPredicate(p, Arrays.asList(recipeKeywords)));
+        return new FindCommand(getPredicate(p, Arrays.asList(recipeKeywords), argMultimap));
     }
 
-    private ContainsKeywordsPredicate getPredicate(Prefix prefix, List<String> keywords) throws ParseException {
+    private ContainsKeywordsPredicate getPredicate(Prefix prefix, List<String> keywords, ArgumentMultimap argMultimap)
+            throws ParseException {
         if (prefix.equals(PREFIX_RECIPE)) {
-            return new RecipeContainsKeywordsPredicate(keywords);
+            return ParserUtil.parseRecipePredicate(keywords, argMultimap);
         } else if (prefix.equals(PREFIX_DESCRIPTION)) {
-            return new DescriptionContainsKeywordsPredicate(keywords);
+            return ParserUtil.parseDescriptionPredicate(keywords, argMultimap);
         } else if (prefix.equals(PREFIX_INGREDIENT)) {
-            return new IngredientsContainsKeywordsPredicate(keywords);
+            return ParserUtil.parseIngredientsPredicate(keywords, argMultimap);
         } else if (prefix.equals(PREFIX_STEP)) {
-            return new StepsContainsKeywordsPredicate(keywords);
+            return ParserUtil.parseStepsPredicate(keywords, argMultimap);
         } else if (prefix.equals(PREFIX_TITLE)) {
-            return new TitleContainsKeywordsPredicate(keywords);
+            return ParserUtil.parseTitlePredicate(keywords, argMultimap);
         } else if (prefix.equals(PREFIX_TAG)) {
-            return new TagsContainsKeywordsPredicate(keywords);
+            return ParserUtil.parseTagsPredicate(keywords, argMultimap);
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));

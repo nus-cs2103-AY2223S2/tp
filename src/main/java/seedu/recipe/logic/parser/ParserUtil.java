@@ -1,6 +1,12 @@
 package seedu.recipe.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_INGREDIENT;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_RECIPE;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_STEP;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,10 +18,17 @@ import seedu.recipe.commons.core.index.Index;
 import seedu.recipe.commons.util.StringUtil;
 import seedu.recipe.logic.parser.exceptions.ParseException;
 import seedu.recipe.model.recipe.Description;
+import seedu.recipe.model.recipe.DescriptionContainsKeywordsPredicate;
 import seedu.recipe.model.recipe.Ingredient;
+import seedu.recipe.model.recipe.IngredientsContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.Recipe;
+import seedu.recipe.model.recipe.RecipeContainsKeywordsPredicate;
 import seedu.recipe.model.recipe.SatisfyPriceConditionPredicate;
 import seedu.recipe.model.recipe.Step;
+import seedu.recipe.model.recipe.StepsContainsKeywordsPredicate;
+import seedu.recipe.model.recipe.TagsContainsKeywordsPredicate;
 import seedu.recipe.model.recipe.Title;
+import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
 import seedu.recipe.model.tag.Tag;
 
 
@@ -54,6 +67,37 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a recipe (only for the find command).
+     *
+     * @param recipe the string after the command flag that needs to be checked
+     * @throws ParseException when the input after the command flag is invalid
+     */
+    public static void parseRecipe(String recipe) throws ParseException {
+        requireNonNull(recipe);
+        String trimmedRecipe = recipe.trim();
+        if (!Recipe.isValidRecipe(trimmedRecipe)) {
+            throw new ParseException(Recipe.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * After checking the input is valid, it should return a predicate.
+     *
+     * @param keywords the list of keywords that need to be found
+     * @param argMultimap map from each command flag to its respective inputs
+     * @return a RecipeContainsKeywordsPredicate
+     * @throws ParseException when the input is invalid
+     */
+    public static RecipeContainsKeywordsPredicate parseRecipePredicate(List<String> keywords,
+                                                                       ArgumentMultimap argMultimap)
+            throws ParseException {
+        requireNonNull(keywords);
+        requireNonNull(argMultimap);
+        parseRecipe(argMultimap.getValue(PREFIX_RECIPE).get());
+        return new RecipeContainsKeywordsPredicate(keywords);
+    }
+
+    /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -66,6 +110,23 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDesc);
+    }
+
+    /**
+     * Parses the description first before getting the predicate.
+     *
+     * @param keywords A list of words that contain all the keywords
+     * @param argMultimap Maps the command flags to the respective inputs
+     * @return a DescriptionContainsKeywordsPredicate
+     * @throws ParseException when the inputs are invalid
+     */
+    public static DescriptionContainsKeywordsPredicate parseDescriptionPredicate(List<String> keywords,
+                                                                                 ArgumentMultimap argMultimap)
+            throws ParseException {
+        requireNonNull(keywords);
+        requireNonNull(argMultimap);
+        parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        return new DescriptionContainsKeywordsPredicate(keywords);
     }
 
     /**
@@ -97,6 +158,23 @@ public class ParserUtil {
             throw new ParseException(Step.MESSAGE_CONSTRAINTS);
         }
         return new Step(trimmedStep);
+    }
+
+    /**
+     * Parses the steps first before getting the predicate.
+     *
+     * @param keywords A list of words that contain all the keywords
+     * @param argMultimap Maps the command flags to the respective inputs
+     * @return a StepsContainsKeywordsPredicate
+     * @throws ParseException when the inputs are invalid
+     */
+    public static StepsContainsKeywordsPredicate parseStepsPredicate(List<String> keywords,
+                                                                     ArgumentMultimap argMultimap)
+            throws ParseException {
+        requireNonNull(keywords);
+        requireNonNull(argMultimap);
+        parseSteps(argMultimap.getAllValues(PREFIX_STEP));
+        return new StepsContainsKeywordsPredicate(keywords);
     }
 
     /**
@@ -169,6 +247,50 @@ public class ParserUtil {
     }
 
     /**
+     * Parses the ingredient names (only used for the find command).
+     *
+     * @param ingredientNames the collection of ingredient names to be parsed
+     * @throws ParseException when the input is invalid
+     */
+    public static void parseIngredientName(Collection<String> ingredientNames) throws ParseException {
+        requireNonNull(ingredientNames);
+        for (String ingredientName : ingredientNames) {
+            parseIngredientNameHelper(ingredientName);
+        }
+    }
+
+    /**
+     * Helper function for parseIngredientNameHelper.
+     *
+     * @param ingredientName the collection of ingredient names to be parsed
+     * @throws ParseException when the input is invalid
+     */
+    public static void parseIngredientNameHelper(String ingredientName) throws ParseException {
+        requireNonNull(ingredientName);
+        String trimmedIngredientName = ingredientName.trim();
+        if (!Ingredient.isValidIngredientName(trimmedIngredientName)) {
+            throw new ParseException(Ingredient.INGREDIENT_NAME_MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses the ingredients first before getting the predicate.
+     *
+     * @param keywords A list of words that contain all the keywords
+     * @param argMultimap Maps the command flags to the respective inputs
+     * @return a IngredientsContainsKeywordsPredicate
+     * @throws ParseException when the inputs are invalid
+     */
+    public static IngredientsContainsKeywordsPredicate parseIngredientsPredicate(List<String> keywords,
+                                                                                 ArgumentMultimap argMultimap)
+            throws ParseException {
+        requireNonNull(keywords);
+        requireNonNull(argMultimap);
+        parseIngredientName(argMultimap.getAllValues(PREFIX_INGREDIENT));
+        return new IngredientsContainsKeywordsPredicate(keywords);
+    }
+
+    /**
      * Parses a {@code String title} into an {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -181,6 +303,23 @@ public class ParserUtil {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);
+    }
+
+    /**
+     * Parses the title first before getting the predicate.
+     *
+     * @param keywords A list of words that contain all the keywords
+     * @param argMultimap Maps the command flags to the respective inputs
+     * @return a TitleContainsKeywordsPredicate
+     * @throws ParseException when the inputs are invalid
+     */
+    public static TitleContainsKeywordsPredicate parseTitlePredicate(List<String> keywords,
+                                                                     ArgumentMultimap argMultimap)
+            throws ParseException {
+        requireNonNull(keywords);
+        requireNonNull(argMultimap);
+        parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        return new TitleContainsKeywordsPredicate(keywords);
     }
 
     /**
@@ -208,6 +347,23 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses the tags first before getting the predicate.
+     *
+     * @param keywords A list of words that contain all the keywords
+     * @param argMultimap Maps the command flags to the respective inputs
+     * @return a TagsContainsKeywordsPredicate
+     * @throws ParseException when the inputs are invalid
+     */
+    public static TagsContainsKeywordsPredicate parseTagsPredicate(List<String> keywords,
+                                                                   ArgumentMultimap argMultimap)
+            throws ParseException {
+        requireNonNull(keywords);
+        requireNonNull(argMultimap);
+        parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        return new TagsContainsKeywordsPredicate(keywords);
     }
 
     /**
