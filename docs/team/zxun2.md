@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     * Add available dates attributes to elderly and volunteers (Pull request [\#99](https://github.com/AY2223S2-CS2103T-W12-1/tp/pull/99))
 
 * **Documentation**:
-  * Did cosmetic tweaks to existing documentation of UG and DG
+    * Did cosmetic tweaks to existing documentation of UG and DG
     * User Guide:
         * Added documentation for the features `Command Recommendation`, `help`
     * Developer Guide:
