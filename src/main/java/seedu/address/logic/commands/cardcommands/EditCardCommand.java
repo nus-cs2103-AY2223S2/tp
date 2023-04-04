@@ -34,7 +34,7 @@ public class EditCardCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_QUESTION + "QUESTION] "
             + "[" + PREFIX_ANSWER + "ANSWER] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_EDIT_CARD_SUCCESS = "Edited Card: %1$s";
