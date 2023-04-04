@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
 import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.parser.exceptions.ParseException;
@@ -30,12 +29,7 @@ public class MarkAttendanceParser implements Parser<MarkAttendanceCommand> {
         Index index;
         int week = -1;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    MarkAttendanceCommand.MESSAGE_USAGE), pe);
-        }
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         if (argMultimap.getValue(PREFIX_WEEK).isPresent()) {
             week = ParserUtil.parseWeek(argMultimap.getValue(PREFIX_WEEK).get());

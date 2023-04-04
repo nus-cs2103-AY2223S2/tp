@@ -6,8 +6,8 @@ import java.util.Objects;
  * Attendance class, manages attendance and class participation points
  */
 public class Attendance {
-    public static final String WEEK_ERROR_MSG = "Week number out of range, should be integer between 1-12";
-    public static final String POINTS_ERROR_MSG = "Participation points should be integer between 0-700";
+    public static final String WEEK_ERROR_MSG = "Week number invalid, should be integer between 1-12";
+    public static final String POINTS_ERROR_MSG = "Participation points invalid, should be integer between 0-700";
     public static final String ORIGINAL_ATD = "0;0;0;0;0;0;0;0;0;0;0;0";
     public static final String ORIGINAL_PP = "-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1";
     public static final int NUM_WEEKS = 12;
@@ -68,7 +68,7 @@ public class Attendance {
             return false;
         }
         int pp = Integer.parseInt(points);
-        return pp > 0 && pp < 700;
+        return pp >= 0 && pp <= 700;
     }
 
     /**
@@ -125,7 +125,7 @@ public class Attendance {
     }
 
     /**
-     * Calculate average points of student. Only consider weeks when participation points are inserted
+     * Calculate average points of student. Only consider weeks where attendance is marked
      *
      * @return the average participation points of student
      */
@@ -133,7 +133,7 @@ public class Attendance {
         int pt = 0;
         int weeks = 0;
         for (int i = 0; i < NUM_WEEKS; i++) {
-            if (this.attendanceList[i] && this.participationPoint[i] > 0) {
+            if (this.attendanceList[i]) {
                 pt += this.participationPoint[i];
                 weeks += 1;
             }
