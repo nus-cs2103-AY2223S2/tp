@@ -15,7 +15,7 @@ import seedu.vms.commons.exceptions.LimitExceededException;
  *
  * <p>The uniqueness of {@code VaxType} names are maintained.
  */
-public class VaxTypeManager {
+public class VaxTypeManager implements ReadOnlyVaxTypeManage {
     public static final int DEFAULT_LIMIT = 30;
 
     private static final String ERROR_FORMAT_DUPLICATE_VACCINATION = "Vaccination %s already exist";
@@ -101,20 +101,6 @@ public class VaxTypeManager {
 
 
     /**
-     * Returns the {@code VaxType} mapped to the specified name, wrapped in an
-     * {@code Optional}. If there are no mappings to the specified name,
-     * {@code Optional.empty} is returned instead.
-     *
-     * @param name - the name of the {@code VaxType} to retrieve.
-     * @return the {@code VaxType} mapped to the specified name, wrapped in an
-     *      {@code Optional}.
-     */
-    public Optional<VaxType> get(String name) {
-        return Optional.ofNullable(typeMap.get(name));
-    }
-
-
-    /**
      * Removes the {@code VaxType} with the specified name. The {@code VaxType}
      * removed is returned and wrapped in an {@code Optional}. If there are no
      * mappings, to the specified name, nothing is done and
@@ -128,41 +114,31 @@ public class VaxTypeManager {
     }
 
 
-    /**
-     * Returns if this storage map contains a mapping to the specified name.
-     *
-     * @return {@code true} if there is a {@code VaxType} mapped to the
-     *      specified name and {@code false} otherwise.
-     */
+    @Override
+    public Optional<VaxType> get(String name) {
+        return Optional.ofNullable(typeMap.get(name));
+    }
+
+
+    @Override
     public boolean contains(String name) {
         return typeMap.containsKey(name);
     }
 
 
-    /**
-     * Returns the number of {@code VaxType} stored within this manager.
-     */
+    @Override
     public int size() {
         return typeMap.size();
     }
 
 
-    /**
-     * Returns if the manager is empty.
-     *
-     * @return {@code true} if the manager contains zero {@code VaxType} and
-     *      {@code false} otherwise.
-     */
+    @Override
     public boolean isEmpty() {
         return typeMap.isEmpty();
     }
 
 
-    /**
-     * Returns an unmodifiable map view of this storage.
-     *
-     * @return an unmodifiable map view ot this storage.
-     */
+    @Override
     public ObservableMap<String, VaxType> asUnmodifiableObservableMap() {
         return unmodifiableTypeMap;
     }

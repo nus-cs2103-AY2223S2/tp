@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.vms.commons.exceptions.IllegalValueException;
 import seedu.vms.commons.util.JsonUtil;
+import seedu.vms.model.vaccination.ReadOnlyVaxTypeManage;
 import seedu.vms.model.vaccination.VaxType;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
@@ -31,7 +32,7 @@ public class VaxTypeLoader {
     /**
      * Converts the specified {@code VaxTypeManager} to a {@code VaxTypeLoader}.
      */
-    public static VaxTypeLoader fromModelType(VaxTypeManager manager) {
+    public static VaxTypeLoader fromModelType(ReadOnlyVaxTypeManage manager) {
         List<JsonAdaptedVaxType> types = manager
                 .asUnmodifiableObservableMap()
                 .values()
