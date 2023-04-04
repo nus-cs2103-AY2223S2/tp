@@ -93,34 +93,45 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-How the `Logic` component execution queue works:
+`LogicManager` is a concrete implementation of `Logic` which handles the logical components of VMS. Its main responsibility is to handle the execution of user entered commands.
 
-1. When `Logic` is called upon to queue a user command, it queues that user command into an internal queue in `LogicManager`.
-2. `LogicManager` continues to parse and execute any previously queued command inputs until the queued command input in step 1 is next.
-3. The next user command is polled from the queue and parsed using `VmsParser` to produce a `ParseResult`.
-4. The `Command` object (more precisely, an object of one of its subclasses eg. `AddCommand`), within the resultant `ParseResult`, is executed.
-5. During execution, the `Command` object communicates with `Model` to perform its task. When it is done, it produces a `CommandMessage`.
-6. `LogicManager` combines the `CommandMessage` within `ParseResult` in 3 and the resultant `CommandMessage` in 5 into a list and passes it to its set `Consumer` to handle these `CommandMessages`. See [IU component](#ui-component) on this is handled.
-7. If the command executed has follow up commands, a new `ParseResult` is created that encapsulates the follow up command and an empty `CommandMessage`. This `ParseResult` is sent to be executed and the process starts from 4.
-8. Else, the execution for this user command ends and `LogicManager` executes the next user command in its internal queue if present, continuing from 3.
-9. If there are no user commands waiting to be executed, `Logic` waits for a user command to be queued and the cycle repeats from 1.
+`LogicManager` handles command execution in the form of an execution queue. When the user enters a command, that command is queued into an execution queue in `LogicManager`. Both queueing and the execution of commands can happen in parallel. However, at any one time, at most one command will be executed at a time.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+#### Command execution
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+For the entire command execution portion of the `Logic` component, only `queue(String)` method is exposed to the outside. As such, to queue and execute a user command, only the `queue(String)` method of `Logic` will have to be called. This method will queue the command for execution and execute it when it is its turn. Command inputs are stored and queued in an internal queue called the command queue (`cmdQueue`). To allow for parallel queuing and dequeuing, this queue has a type of `LinkedBlockingDeque`. The elements stored within the queue are the `String` of the command input that the user has entered.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+##### Queuing a command
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+When the `queue(String)` is called upon, the following happens.
 
-<img src="images/ParserClasses.png" width="600"/>
+1. The command input is added to the end of `cmdQueue`.
+2. An attempt is then made to start the execute the next command in the queue through `startNext()`. This is described in detail in the next section.
 
-How the parsing works:
+<img src="images/LogicQueueSequenceDiagram.png" id="logic-queue-sequence-diagram-fig">
 
-1. When called upon to parse a user command, `VmsParser` a `FeatureParser` or more specifically, one of its subclasses (eg `BasicParser`, `PatientParser`, etc) depending on the user command. Used input from the user command are removed.
-2. The `FeatureParser` in 1 then parses the remaining user command to create a `CommandParser`. Similar to 1, the created `CommandParser` is more specifically one of its subclasses (eg. `AddCommandParser`) and used inputs from the user command are removed.
-3. The resultant `CommandParser` parses the remaining user input to create a `Command` object, such as `AddCommand`, and optionally a `CommandMessage`. Both of which are encapsulated into a `ParseResult` and returned.
+##### Starting a command
+
+The method `startNext()` is a private method in `LogicManager` that handles the starting of the execution of a command. When it is called upon, a check is done to check if there are any command still in execution and that there are still commands yet to be executed in `cmdQueue`. If this is not the case, nothing happens and the method returns silently. If not, the following happens.
+
+1. The next command input in `cmdQueue` is polled.
+2. A new `Thread` object is created whose task is to parse and execute the command input polled in step 1.
+3. The created `Thread` objects is then started on a separate thread to perform its task of executing the command.
+
+<img src="images/StartNextCommandSequenceDiagram.png" id="logic-start-next-command-fig">
+
+##### Executing a command
+
+When the created `Thread` in `startNext()` is started, Java Virtual Machine will call its `run()` method at an appropriate time. This will start the parsing then execution of a command input by calling the `processCommand(String)` of `LogicManager`. The following sequence describes how a command input is executed when `processCommand(String)` is called.
+
+1. The command input is passed to the stored instance of `Model` in `LogicManager` to be parsed. The returned result is a `ParseResult` which is an association class of the parsed `Command` and its corresponding `CommandMessage` if there are warnings while parsing. More accurately, the parsed `Command` is one of the concrete implementations of `Command`.
+2. The `Command` in the returned `ParseResult` object of step 1 is then executed. It is given the stored instance of `Model` to perform its task and its interaction with model depends on the concrete implementation of `Command` parsed. This is represented as a **ref** frame in the sequence diagram below to highlight that the `Command` object and `Model` interacts with each other, but their interactions may vary depending on the implementation of the parsed `Command`. Once done it returns a `CommandMessage`.
+3. The new state of `Model` is then saved into hard disk through `saveModel()` method. This will return a list of `CommandMessage` containing the error messages that occurred while saving.
+4. All `CommandMessage`s that have been created from steps 1 to 3 are combined as a list and passed to `completeExecution(List<String>)` method.
+5. The `completionHandler` is then passed the combined list of `CommandMessage` in step 5 to handle the completion of the command.
+6. An attempt is then made to start the next command through `startNext()` as described in the section before.
+
+<img src="images/LogicCommandExecutionSequenceDiagram.png" id="logic-command-execution-sequence-diagram">
 
 ### Model component
 
@@ -207,15 +218,15 @@ The `Storage` component is responsible for the reading and writing of the states
 
 The cascading delete feature is an important part of the VMS's design, as it helps to maintain data integrity and avoid orphaned records in the system. When a object is deleted from the VMS, any related records should also be deleted to ensure that the system remains consistent.
 
-##### Relationship between `Patient` and `Appointment` 
+##### Relationship between `Patient` and `Appointment`
 
 When a `Patient` record is deleted from the system, any associated `Appointment` records will be deleted as well. This is because `Appointment` records are directly linked to a specific `Patient`, and it would not make sense to keep these records around if the `Patient` is no longer in the system. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
 
-##### Relationship between `VaxType` and `Appointment` 
+##### Relationship between `VaxType` and `Appointment`
 
 When a `VaxType` record is deleted from the system, any associated `Appointment` records will be deleted as well. This is because `VaxType` records are directly linked to a specific `Appointment`, and it would not make sense to keep these records around if the `VaxType` record is no longer offered by the VaxType center. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
 
-##### Relationship between `Patient` and `VaxType` 
+##### Relationship between `Patient` and `VaxType`
 
 On the other hand, `Patient` records are not deleted when a `VaxType` record is deleted from the system. This is because `Patient` records should not be modified if a `VaxType` is no longer offered. If a `VaxType` record is deleted, the associated `Appointment` records will be deleted, but any `Patient` records associated with those `VaxType` records will not be updated in the system. This is because the `Patient` records may still be relevant, even if the `VaxType` is no longer in the system.
 
@@ -223,15 +234,15 @@ On the other hand, `Patient` records are not deleted when a `VaxType` record is 
 
 The cascading change feature is an important part of the VMS's design, as it helps to maintain data integrity and avoid orphaned records in the system. When a object is changed in the VMS, any related records should also be changed to ensure that the system remains consistent.
 
-##### Relationship between `Patient` and `Appointment` 
+##### Relationship between `Patient` and `Appointment`
 
 When a `Patient` record is updated in the system, any associated `Appointment` records will be updated as well. This is because `Appointment` records are directly linked to a specific `Patient`, and if the patient's information changes, it is important to update any related `appointment`s to reflect this change. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
 
-##### Relationship between `VaxType` and `Patient` 
+##### Relationship between `VaxType` and `Patient`
 
 When a `VaxType` record is updated in the system, any associated `Patient` records will be updated as well. This is because `VaxType` records contain information about the `VaxType`s that a `patient` has taken, and if the `VaxType` information changes, it is important to update any related `patient` records to reflect this change. The implementation can be found in [`PatientManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/patient/PatientManager.java).
 
-##### Relationship between `VaxType` and `Appointment` 
+##### Relationship between `VaxType` and `Appointment`
 
 Additionally, when a `VaxType` record is updated in the system, any associated `Appointment` records will be updated as well. This is because `VaxType` records are directly linked to a specific `Appointment`, and if the `VaxType` information changes, it is important to update any related `appointment` records to reflect this change. The implementation can be found in [`AppointmentManager.java`](https://github.com/AY2223S2-CS2103-F11-3/tp/tree/master/src/main/java/seedu/vms/model/appointment/AppointmentManager.java).
 
@@ -410,7 +421,7 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 ##### Execution Sequence
 
-<!-- TODO 
+<!-- TODO
 <img src="images/appointment/AddAppointmentActivityDiagram.png" width="550" />
 <img src="images/appointment/AddAppointmentSequenceDiagram.png" width="550" />
 -->
@@ -419,7 +430,7 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 ##### Execution Sequence
 
-<!-- TODO 
+<!-- TODO
 <img src="images/appointment/ListAppointmentActivityDiagram.png" width="550" />
 <img src="images/appointment/ListAppointmentSequenceDiagram.png" width="550" />
 -->
@@ -428,7 +439,7 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 ##### Execution Sequence
 
-<!-- TODO 
+<!-- TODO
 <img src="images/appointment/FindAppointmentActivityDiagram.png" width="550" />
 <img src="images/appointment/FindAppointmentSequenceDiagram.png" width="550" />
 -->
@@ -439,7 +450,7 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 ##### Execution Sequence
 
-<!-- TODO 
+<!-- TODO
 <img src="images/vaccination/AddVaxTypeActivityDiagram.png" width="550" />
 <img src="images/vaccination/AddVaxTypeSequenceDiagram.png" width="550" />
 -->
@@ -448,7 +459,7 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 ##### Execution Sequence
 
-<!-- TODO 
+<!-- TODO
 <img src="images/vaccination/ListVaxTypeActivityDiagram.png" width="550" />
 <img src="images/vaccination/ListVaxTypeSequenceDiagram.png" width="550" />
 -->
@@ -457,7 +468,7 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 ##### Execution Sequence
 
-<!-- TODO 
+<!-- TODO
 <img src="images/vaccination/FindVaxTypeActivityDiagram.png" width="550" />
 <img src="images/vaccination/FindVaxTypeSequenceDiagram.png" width="550" />
 -->
@@ -468,7 +479,7 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 ##### Execution Sequence
 
-<!-- TODO 
+<!-- TODO
 <img src="images/keyword/AddKeywordActivityDiagram.png" width="550" />
 <img src="images/keyword/AddKeywordSequenceDiagram.png" width="550" />
 -->
@@ -477,7 +488,7 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 ##### Execution Sequence
 
-<!-- TODO 
+<!-- TODO
 <img src="images/keyword/ListKeywordActivityDiagram.png" width="550" />
 <img src="images/keyword/ListKeywordSequenceDiagram.png" width="550" />
 -->
@@ -486,7 +497,7 @@ Given below is an sequence diagram that illustrates the **Clearing Patients** me
 
 ##### Execution Sequence
 
-<!-- TODO 
+<!-- TODO
 <img src="images/keyword/FindKeywordActivityDiagram.png" width="550" />
 <img src="images/keyword/FindKeywordSequenceDiagram.png" width="550" />
 -->

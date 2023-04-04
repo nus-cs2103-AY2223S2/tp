@@ -1,0 +1,40 @@
+@startuml StartNextCommandSequenceDiagram
+!include style.puml
+skinparam RoundCorner 0
+
+mainframe **sb** start next command
+
+box Logic LOGIC_COLOR_T1
+    participant ":LogicManager" as LogicManager LOGIC_COLOR
+    participant "cmdQueue:LinkedBlockingDeque" as CommandQueue LOGIC_COLOR
+    participant ":Thread" as ExecutionThread LOGIC_COLOR
+end box
+
+[-> LogicManager : startNext()
+activate LogicManager
+
+opt no commands executing and cmdQueue not empty
+    LogicManager -> CommandQueue : poll()
+    activate CommandQueue
+
+    CommandQueue --> LogicManager : nextCmdInput
+    deactivate CommandQueue
+
+    create ExecutionThread
+    LogicManager -> ExecutionThread
+    activate ExecutionThread
+
+    ExecutionThread --> LogicManager
+    deactivate ExecutionThread
+
+    LogicManager -> ExecutionThread : start()
+    activate ExecutionThread
+
+    ExecutionThread --> LogicManager
+    deactivate ExecutionThread
+end
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml
