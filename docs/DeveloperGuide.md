@@ -94,7 +94,6 @@ the different parts of the GUI throughout this developer guide.
 
 <p style="text-align: center;">Figure 1: InternBuddy's GUI</p>
 
-<br/>
 
 | Part           | Usage                                                                                        |
 |----------------|----------------------------------------------------------------------------------------------|
@@ -121,7 +120,7 @@ the different parts of the GUI throughout this developer guide.
 ### Architecture
 The ***Architecture Diagram*** shown in Figure 2 explains the high-level design of the App.
 <p align="center">
-  <img src="images/ArchitectureDiagram.png" width="280" />
+  <img src="images/ArchitectureDiagram.png" width="260" />
 </p>
 
 <p style="text-align: center;">Figure 2: InternBuddy's architecture diagram</p>
@@ -144,7 +143,6 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-<div style="page-break-after: always;"></div>
 
 **How the architecture components interact with each other**
 
@@ -159,6 +157,7 @@ issues the command `delete-index 1`.
 <p style="text-align: center;">Figure 3: Sequence diagram that shows interactions between components </p>
 <br/>
 
+<div style="page-break-after: always;"></div>
 
 Each of the four main components (also shown in the Figure 3),
 
@@ -237,7 +236,6 @@ How the `Logic` component works:
 3. The command can communicate with the `Model` when it is executed (e.g. to add an internship).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-<div style="page-break-after: always;"></div>
 
 Figure 7 below illustrates the interactions within the `Logic` component for the `execute("delete-index 1")` API call.
 
@@ -256,12 +254,12 @@ Figure 7 below illustrates the interactions within the `Logic` component for the
 limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-<div style="page-break-after: always;"></div>
+
 
 Figure 8 shows the other classes in `Logic` (omitted from Figure 6) that are used for parsing a user command:
 
 <p align="center">
-  <img src="images/ParserClasses.png" width="600"/>
+  <img src="images/ParserClasses.png" width="500"/>
 </p>
 
 <p style="text-align: center;">Figure 8: Class diagram for parser classes in the logic component </p>
@@ -323,7 +321,7 @@ to only require one `Tag` object per unique tag, instead of each `Internship` ne
 
 Figure 11 is a class diagram for the `Storage` component.
 <p align="center">
-  <img src="images/StorageClassDiagram.png" width="550" />
+  <img src="images/StorageClassDiagram.png" width="400" />
 </p>
 
 <p style="text-align: center;">Figure 11: Class diagram for the storage component</p>
@@ -500,7 +498,6 @@ The following gives a more detailed explanation of the `view` command.
    the `Internship` obtained from Step 7 such that the right UI panel displays the information
    for this selected `Internship`.
 
-<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -728,7 +725,6 @@ Computing undergraduates are taught how to use the CLI in their curriculums, and
 to run system tasks that cannot be done over the GUI. Hence, this would imply a reasonable level of comfort in using
 the CLI interface.
 
-<div style="page-break-after: always;"></div>
 
 * Prefers desktop applications over other types
 
@@ -948,7 +944,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from Step 1.
 
 * 2a. InternBuddy detects that the internship whose details are currently displayed in the
-  [View Panel](#setting-up-getting-started) has been deleted by this `delete-field` command.
+  [View Panel](#setting-up-getting-started) has been deleted by this `delete-index` command.
     * 2a1. InternBuddy resets the [View Panel](#setting-up-getting-started) to display the
      welcome message.
 
@@ -980,7 +976,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes from Step 1.
 
 * 2a. InternBuddy detects that the internship whose details are currently displayed in the
-  [View Panel](#setting-up-getting-started) has been deleted by this `delete-index` command.
+  [View Panel](#setting-up-getting-started) has been deleted by this `delete-field` command.
     * 2a1. InternBuddy resets the [View Panel](#setting-up-getting-started) to display the
       welcome message.
 
@@ -1082,8 +1078,6 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
 
    **Expected**: All internship entries are listed out and displayed in the List Panel.
 
-<div style="page-break-after: always;"></div>
-
 ### Add an Internship
 
 1. `add n/Visa r/Software Engineer s/New d/2023-03-01 c/Considering to apply t/Payment`
@@ -1169,11 +1163,8 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 
 7. `edit 2 n/Amazon Technologies s/Applying`
 
-   **Expected**: The second internship entry is not edited. An error message is displayed in the right
-   UI panel. This is because while `Amazon Technologies` is a valid company name, `Applying` is an invalid
-   status.
-
-<div style="page-break-after: always;"></div>
+   **Expected**: No internship is edited. An error message is displayed in the Result Display.
+     This is because `Applying` is an invalid status.
 
 8. `edit`
 
@@ -1372,7 +1363,6 @@ Prerequisites: List all internships using the `list` command. Multiple internshi
     **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1
     index must be specified.
 
-<div style="page-break-after: always;"></div>
 
 ### Delete Internships by Fields
 Assumptions: The sample data provided by InternBuddy is used, where there is a total of 7 internship entries.
@@ -1525,6 +1515,8 @@ Table 3 provides the glossary for the terms used in this developer guide.
 | Tech Stack                     | A set of technologies that an individual or company uses to create and/or maintain a software system or product.                                                                                            |
 
 <p style="text-align: center;">Table 3: Glossary for Developer Guide</p>
+
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 
