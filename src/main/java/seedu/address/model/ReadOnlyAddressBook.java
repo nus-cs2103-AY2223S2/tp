@@ -1,9 +1,9 @@
 package seedu.address.model;
 
+import java.lang.reflect.InvocationTargetException;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Unmodifiable view of an address book

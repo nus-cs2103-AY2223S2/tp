@@ -106,6 +106,11 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.setAll(persons);
     }
 
+    /**
+     * Marks a person as marked or unmarked.
+     * @param index The person at index index to be marked.
+     * @param mark The mark.
+     */
     public void markPerson(Index index, Mark mark) {
         requireAllNonNull(index, mark);
         Person target = internalList.get(index.getZeroBased());

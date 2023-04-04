@@ -1,5 +1,5 @@
 
-NextBigFish (NBF) is a 
+NextBigFish (NBF) is a
 **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
  Viewing help : `help`
@@ -75,11 +75,11 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS s/Potential Sale Value c/CO
 - Name: Refers to the name of the specified person. (Duplicates are not allowed)
 - Phone Number: The handphone number of the specified person (Must be a minimum of 3 digits)
 - Email: The email of the specified person. (Must be a valid email with a domain)
-- Address: The full address of the specified person. 
-- Potential Sale Value: The expected value of revenue to be brought in by the client. 
+- Address: The full address of the specified person.
+- Potential Sale Value: The expected value of revenue to be brought in by the client.
 - Company Name: Name of the specified person's company. (Put 'NIL' if not applicable)
 - Priority: How much this client should be prioritized.
-- Transaction Count: The number of previous transaction between the user and this client. 
+- Transaction Count: The number of previous transaction between the user and this client.
 
 Examples:
 
@@ -116,13 +116,13 @@ Examples:
 ### Incrementing a person's Transaction Count : `incr`
 
 
-Increments the selected person's Transaction Count by the specified amount. 
+Increments the selected person's Transaction Count by the specified amount.
 
 Format: `incr INDEX [tr/TRANSACTION_COUNT_INCREMENT_AMOUNT]`
 
 - Increments the Transaction Count of the person at the specified 'INDEX'. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 - The increment amount cannot be left empty.
-- The increment amount must be an integer greater than zero. 
+- The increment amount must be an integer greater than zero.
 - The resultant transaction count will be the sum of the person's Transaction Count and the specified increment amount.
 
 Examples:

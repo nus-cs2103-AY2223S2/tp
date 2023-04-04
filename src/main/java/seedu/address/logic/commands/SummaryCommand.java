@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
+import java.lang.reflect.InvocationTargetException;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.ui.SummaryWindow;
-
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Format full summary view for display.

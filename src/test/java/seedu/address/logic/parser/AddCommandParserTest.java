@@ -46,7 +46,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + BUSINESS_SIZE_DESC_BOB
                 + COMPANY_DESC_BOB + PRIORITY_DESC_BOB
-                +  TRANSACTION_COUNT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + TRANSACTION_COUNT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
@@ -77,7 +77,8 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + BUSINESS_SIZE_DESC_BOB + COMPANY_DESC_BOB + PRIORITY_DESC_BOB + TRANSACTION_COUNT_DESC_BOB, expectedMessage);
+                + BUSINESS_SIZE_DESC_BOB + COMPANY_DESC_BOB + PRIORITY_DESC_BOB
+                + TRANSACTION_COUNT_DESC_BOB, expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -136,8 +137,8 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + BUSINESS_SIZE_DESC_BOB + COMPANY_DESC_BOB + PRIORITY_DESC_BOB +
-                        TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + BUSINESS_SIZE_DESC_BOB + COMPANY_DESC_BOB + PRIORITY_DESC_BOB
+                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

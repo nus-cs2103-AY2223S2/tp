@@ -1,22 +1,22 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.PersonContainsKeywordsPredicate;
-
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses input arguments and creates a new SortCommand object
  */
 public class SortCommandParser implements Parser<SortCommand> {
 
-    private final ArrayList<String> COMMAND_STRINGS = new ArrayList<>(Arrays.asList("name", "priority", "trans", "size"));
-    private final ArrayList<String> DIR_STRINGS = new ArrayList<>(Arrays.asList("asc", "desc"));
+    private final ArrayList<String> commandString =
+            new ArrayList<>(Arrays.asList("name", "priority", "trans", "size"));
+    private final ArrayList<String> dirStrings = new ArrayList<>(Arrays.asList("asc", "desc"));
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
@@ -38,7 +38,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         String fieldKeyword = nameKeywords[0].toLowerCase();
         String directionKeyword = nameKeywords[1].toLowerCase();
         //We only allow sorting by 1 field at a time and commands must match pattern of field direction
-        if (!COMMAND_STRINGS.contains(fieldKeyword) || !DIR_STRINGS.contains(directionKeyword)) {
+        if (!commandString.contains(fieldKeyword) || !dirStrings.contains(directionKeyword)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }
