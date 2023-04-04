@@ -26,10 +26,12 @@ public class ShowNextCommand extends Command {
     public ShowNextCommand(UpcomingEventPredicate predicate) {
         this.predicate = predicate;
     }
+
     @Override
     public String commandWord() {
         return COMMAND_WORD;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
