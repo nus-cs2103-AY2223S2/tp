@@ -41,7 +41,7 @@ public class TypicalPersons {
             .withOccupation("occupation")
             .withJobTitle("job title")
             .withPhone("94351253")
-            .withTask("Eat dinner.")
+            .withTask("Follow up")
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withGender("male")

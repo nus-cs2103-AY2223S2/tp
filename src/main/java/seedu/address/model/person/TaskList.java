@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import seedu.address.model.person.exceptions.TaskNotFoundException;
 
@@ -11,7 +12,7 @@ import seedu.address.model.person.exceptions.TaskNotFoundException;
 public class TaskList {
     static final String EMPTY_TASKLIST_MESSAGE = "No tasks currently.";
 
-    private final ArrayList<Task> tasks;
+    private final List<Task> tasks;
 
     /**
      * Class constructor. Empty TaskList returned.
@@ -24,14 +25,14 @@ public class TaskList {
      * Class constructor.
      * @param tasks input tasks.
      */
-    public TaskList(ArrayList<Task> tasks) {
+    public TaskList(List<Task> tasks) {
         this.tasks = tasks;
     }
 
     /**
      * Returns a clone of the tasklist, guarantees immutability
      */
-    public ArrayList<Task> getTaskList() {
+    public List<Task> getTaskList() {
         ArrayList<Task> newTasks = new ArrayList<>();
         for (Task task : this.tasks) {
             newTasks.add(task);
@@ -45,7 +46,7 @@ public class TaskList {
      * @return TaskList new updated TaskList with the Task added
      */
     public TaskList add(Task task) {
-        ArrayList<Task> newTasks = getTaskList();
+        List<Task> newTasks = getTaskList();
         newTasks.add(task);
         return new TaskList(newTasks);
     }

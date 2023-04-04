@@ -45,7 +45,9 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_OCCUPATION = BENSON.getOccupation().toString();
     private static final String VALID_JOBTITLE = BENSON.getJobTitle().toString();
     private static final String VALID_REMARK = BENSON.getRemark().toString();
-    private static final String VALID_TASK = BENSON.getTasks().toString();
+    private static final List<JsonAdaptedTask> VALID_TASK = BENSON.getTasks().getTaskList().stream()
+            .map(JsonAdaptedTask::new)
+            .collect(Collectors.toList());
     private static final JsonAdaptedLeadStatus VALID_LEADSTATUS = new JsonAdaptedLeadStatus(BENSON.getStatus());
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -252,9 +254,10 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullLeadStatus_throwsIllegalValueException() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_GENDER, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                        VALID_COMPANY, VALID_LOCATION, VALID_OCCUPATION, null,
+                        VALID_COMPANY, VALID_LOCATION, VALID_OCCUPATION, VALID_JOBTITLE,
                         VALID_REMARK, VALID_TASK, VALID_TAGS, null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LeadStatus.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
+
 }
