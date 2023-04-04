@@ -123,9 +123,9 @@ Note: The prefixes vary across different modes. Refer to the examples below for 
 Prefixes:
 - `/n`: the name of the crew.
 - `/r`: the rank of the crew.
-  - `0`: Cabin Service Director,
-  - `1`: Senior Flight Attendant,
-  - `2`: Flight Attendant,
+  - `0`: Senior Crew Member,
+  - `1`: Crew Member,
+  - `2`: Junior Crew Member,
   - `3`: Trainee.
 
 Example:
@@ -134,7 +134,7 @@ Input:
 add /n John Smith /r 0
 
 Output: 
-Added Cabin Service Director John Smith.
+Added Senior Crew Member John Smith.
 ```
 
 ###### Flight mode: `add /c code`
@@ -242,7 +242,7 @@ Output:
 Deleted A380.
 ```
 
-For instance, Flight Attendant Mary will have an index number of 1 in the image below. 
+For instance, Junior Crew Member Mary will have an index number of 1 in the image below. 
 (The index number will be displayed in future updates)
 
 <img src="images/ModeCrewLanding.jpg" width="2032" alt="Mode crew page">
@@ -284,7 +284,7 @@ Input:
 linklocation /lo 1 /cr 2
 
 Output: 
-Linked Cabin Service Director John Smith to Tokyo.
+Linked Senior Crew Member John Smith to Tokyo.
 ```
 
 ###### Flight mode: `linklocation /fl flight_index /from location_index /to location_index`
@@ -370,7 +370,7 @@ Input:
 unlinklocation /lo 1 /cr 2
 
 Output: 
-Unlinked Cabin Service Director John Smith from Tokyo.
+Unlinked Senior Crew Member John Smith from Tokyo.
 ```
 
 ###### Flight mode: `unlinklocation /fl flight_index /from departure_index /to arrival_index`
@@ -516,7 +516,8 @@ described above.
 
 This command unlinks an entity of the current resource mode from a specified flight in Wingman's database. For example,
 if you are currently in the `plane` mode, then this command will unlink a `plane` from a specified flight in the 
-database.
+database. The 'resource entity - flight' link is specified in brackets besides the entity name in the list of flights.
+This is useful to help you identify which prefix to use to unlink a particular entity from a flight.
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
