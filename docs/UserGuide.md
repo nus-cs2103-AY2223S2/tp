@@ -192,7 +192,7 @@ Examples
 
 #### Unmark attendance: `unmarkAtd`
 Unmarks the attendance of a student for that week<br>
-Format: `unmarkAtd STUDENT_ID w/WEEK_NUMBER`
+Format: `unmarkAtd STUDENT_INDEX w/WEEK_NUMBER`
 
 `STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
 `WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
@@ -213,8 +213,8 @@ Examples
 * `listAtd 1` (list attendance of student with index 1)
 * `listAtd 2` (list attendance of student with index 2)
 
-The listed attendance will be such that where every line will be in the format `Week NUM: [PRESENT]` <br>
-where NUM represents the week number, and PRESENT is X is the student is present, and empty otherwise
+The listed attendance will be such that every line will be in the format `Week NUM: [PRESENT]` <br>
+where `NUM` represents the week number, and `PRESENT` takes the value of `X` is the student is present, and empty otherwise
 
 Example
 * `Week 1: [X]` <br>
@@ -239,10 +239,10 @@ For participation, you can make the following calls:
 
 #### Explanation on how Participation points is represented in TAA
 
-* Participation points in TAA is only limited to 0 to 700 (inclusive of both 0 and 700)
-* Participation points of weeks when attendance is not marked is represented as `-1`
-* Display of participation points in TAA is the average points, which is calculated using `Total participation points` / `Number of weeks present`
-  `Total participation points` is the sum of all participation points for weeks when the student is present
+* Participation points is represented by a value from `0` to `700` (inclusive of both `0` and `700`) <br>
+Except for the special situation where the attendance is not marked, then the participation points will be `-1`
+* Display of participation points in Class List portion of the TAA GUI is the average points, which is calculated using `Total participation points` / `Number of weeks present` <br>
+  `Total participation points` is the sum of all participation points for weeks when the student is present <br>
   `Number of weeks present` refers to the number of week present from week 1 to week 12
 
 
