@@ -19,7 +19,6 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
         try {
-            System.out.println(args);
             boolean isAsc = ParserUtil.parseAsc(args);
             return new SortCommand(isAsc);
         } catch (ParseException pe) {
