@@ -103,14 +103,14 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
-//        this.addressBook.removePerson(target);
+        this.addressBook.removePerson(target);
         versionedAddressBook.removePerson(target);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addPerson(Person person) {
-//        this.addressBook.addPerson(person);
+        this.addressBook.addPerson(person);
         versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -118,7 +118,7 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-//        this.addressBook.setPerson(target, editedPerson);
+        this.addressBook.setPerson(target, editedPerson);
         versionedAddressBook.setPerson(target, editedPerson);
     }
 

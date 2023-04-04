@@ -22,7 +22,6 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model, CommandHistory commandHistory) {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-//        commandHistory.updateCommandHistory(COMMAND_WORD);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

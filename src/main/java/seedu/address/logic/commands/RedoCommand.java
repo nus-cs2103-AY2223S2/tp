@@ -35,7 +35,6 @@ public class RedoCommand extends Command {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             commandToRedo = commandHistory.getLatestModifyingCommand();
             String message = String.format(MESSAGE_SUCCESS, commandToRedo);
-//            commandHistory.updateCommandHistory(COMMAND_WORD);
             return new CommandResult(message);
         }
     }

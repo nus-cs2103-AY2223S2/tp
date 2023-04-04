@@ -1,11 +1,7 @@
 package seedu.address.model;
 
-import seedu.address.model.person.Person;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Objects.requireNonNull;
 
 //@@author wendy0107-reused
 // Reused from https://github.com/AY2223S1-CS2103T-W17-4 and adapted from proposed implementation in AB3's Developer

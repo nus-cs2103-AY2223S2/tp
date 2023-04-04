@@ -29,15 +29,6 @@ public class CommandHistory {
     }
 
     /**
-     * Updates the command history with commands that do not modify the model.
-     * @param lastExecutedCommand The name of the command to be updated to command history.
-     */
-    public void updateCommandHistory(String lastExecutedCommand) {
-        requireNonNull(lastExecutedCommand);
-        commandList.add(lastExecutedCommand);
-    }
-
-    /**
      * Updates the command history with commands that modify the model.
      * @param lastExecutedCommand The name of the command to be updated to the command history.
      */
@@ -45,11 +36,6 @@ public class CommandHistory {
         requireNonNull(lastExecutedCommand);
         commandList.add(lastExecutedCommand);
         int outdatedCommandIndex = currentVersionPointer + 1;
-//        for (int i = modifyHistoryCommandList.size() - 1; i > outdatedCommandIndex; i--) {
-//            modifyHistoryCommandList.remove(i);
-//        }
-//        modifyHistoryCommandList.add(commandList.size() - 1);
-//        commandList.subList(outdatedCommandIndex, commandList.size() - 1).clear();
         commandList.subList(outdatedCommandIndex, commandList.size());
         currentVersionPointer++;
     }
@@ -59,21 +45,10 @@ public class CommandHistory {
      * @return Command name as a string.
      */
     public String getLastExecutedCommand() {
-//        assert currentVersionPointer <= 0;
         String lastExecCommand = commandList.get(currentVersionPointer);
         currentVersionPointer--;
         return lastExecCommand;
-//        currentVersionPointer--;
-//        int index = modifyHistoryCommandList.get(currentVersionPointer + 1);
-//        return commandList.get(index);
     }
-
-//    public String getLatestModifyingCommand() {
-//        assert currentVersionPointer < modifyHistoryCommandList.size();
-//        currentVersionPointer++;
-//        int index = modifyHistoryCommandList.get(currentVersionPointer);
-//        return commandList.get(index);
-//    }
 
     /**
      * Returns the command name of the last command undone.
@@ -84,10 +59,4 @@ public class CommandHistory {
         return commandList.get(currentVersionPointer);
     }
     //@@author
-
-//    public String getLastModifyingCommand() {
-//        int index = modifyHistoryCommandList.get(currentVersionPointer);
-//        return commandList.get(index);
-//    }
-
 }
