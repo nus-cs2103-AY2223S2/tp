@@ -2,8 +2,51 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+## **Overview**
+
+GoodMatch (GM) is a **desktop app for managing applicants and job listings, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI), specifically catering to HR managers in charge of tracking job listings across many platforms. If you can type fast, GM can get your applicant and job listing management tasks done faster than traditional GUI apps
+
+---
+
+### Table of Contents
+
+- [Overview](#overview)
+  - [Table of Contents](#table-of-contents)
+  - [Purpose of this guide](#purpose-of-this-guide)
+  - [How to use this guide](#how-to-use-this-guide)
+  - [Legends](#legends)
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a listing](#deleting-a-listing)
+  - [Saving data](#saving-data)
+
+---
+
+### Purpose of this guide
+
+Welcome to the developer guide for GoodMatch. This guide will provide you with the information to work on GoodMatch by helping you understand how GoodMatch is designed. The guide also includes information on the requirements of GoodMatch as well as the instructions to manually test GoodMatch on your local machines.
+
+### How to use this guide
+
+To make the most of this guide, start by reading it from beginning to end. We recommend that you familiarize yourself with the basic concepts before moving on to the advanced topics.
+
+Use the interactive [table of contents](#table-of-contents) to navigate through the document quickly. Simply click on the bullet points to be taken to the relevant subsection. Follow the step-by-step instructions, screenshots, and examples to get the most out of the guide.
+
+### Legends
+
+ℹ️ **Notes**: You can find additional information about the command or feature here.
+
+❗ **Caution**: Be careful not to make this deadly mistake.
 
 --------------------------------------------------------------------------------------------------------------------
 
