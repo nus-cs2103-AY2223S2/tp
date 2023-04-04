@@ -14,6 +14,7 @@ import javafx.scene.layout.Region;
 import seedu.recipe.commons.core.LogsCenter;
 import seedu.recipe.model.recipe.Recipe;
 
+//@@author LeeMingDe
 /**
  * Panel containing the list of recipes.
  */
