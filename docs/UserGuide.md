@@ -626,9 +626,9 @@ Equivalent to clicking the close button via the GUI. <br>
 
 **A:** CoDoc data are saved as a JSON file at ***[JAR file location]*****/data/codoc.json**. Advanced users are welcome to update data directly by editing that data file.
 
-:warning:
-If your changes to the data file make its format invalid,
-CoDoc will discard all data and start with an empty data file at the next run.
+<div class="span" class="alert alert-danger">  
+:warning: <b>Caution:</b> If your changes to the data file make its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
+</div>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
