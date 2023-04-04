@@ -35,10 +35,10 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.userPrefs = new UserPrefs(userPrefs);
-        targetPerson = new FilteredList<Person>(addressBook.getPersonList());
-        setDefaultShowPerson();
         versionedAddressBook = new VersionedAddressBook(addressBook);
+        this.userPrefs = new UserPrefs(userPrefs);
+        targetPerson = new FilteredList<Person>(versionedAddressBook.getPersonList());
+        setDefaultShowPerson();
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
     }
 
