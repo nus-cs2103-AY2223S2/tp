@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,8 +40,10 @@ class JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Tag toModelType() throws IllegalValueException {
-        if (!Tag.isValidTagName(tagName)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Tag.isValidTagLength(tagName)) {
+            throw new ParseException(Tag.MESSAGE_LENGTH_CONSTRAINTS);
+        } else if (!Tag.isValidTagName(tagName)) {
+            throw new ParseException(Tag.MESSAGE_ALPHANUMERIC_CONSTRAINTS);
         }
         return new Tag(tagName);
     }
