@@ -657,7 +657,7 @@ Currently, students with the same name, but with different capitalisations and w
 However, in the real world, this is unlikely the case. Such entities are likely to represent the same student, which can lead to confusion when users accidentally create multiple student entities for the same student as a result of a typo.
 
 Therefore, we plan to further extend the checks performed on the student name provided to the commands `add_student` and `edit_student` that treats students with the same name, but different capitalisation and/or whitespace positions to be the same student.
-Consequently, such operations will not be allowed to execute, and an error message "A student with a similar name already exists! Did you mean <student name>?" will be shown to the user instead.
+Consequently, such operations will not be allowed to execute, and an error message "A student with a similar name already exists! Did you mean [student name]?" will be shown to the user instead.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
