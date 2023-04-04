@@ -2,9 +2,9 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import taa.assignment.exceptions.AssignmentException;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
+import taa.model.assignment.exceptions.AssignmentException;
 
 /**
  * Deletes an Assignment of {assignmentName} from AssignmentList.

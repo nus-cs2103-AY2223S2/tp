@@ -1,5 +1,7 @@
 package taa.ui;
 
+import java.util.function.Supplier;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -25,11 +27,28 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, Supplier<String> prevCmdFetcher, Supplier<String> nextCmdFetcher
+    ) {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setOnKeyPressed(event -> {
+            final String newCmd;
+            switch (event.getCode()) {
+            case UP:
+                newCmd = prevCmdFetcher.get();
+                break;
+            case DOWN:
+                newCmd = nextCmdFetcher.get();
+                break;
+            default:
+                return;
+            }
+            if (newCmd != null) {
+                setCommand(newCmd);
+            }
+        });
     }
 
     /**
@@ -70,6 +89,10 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
     }
 
+    public void setCommand(String cmd) {
+        commandTextField.setText(cmd);
+    }
+
     /**
      * Represents a function that can execute commands.
      */
@@ -81,9 +104,5 @@ public class CommandBox extends UiPart<Region> {
          * @see Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
-    }
-
-    public void setCommand(String cmd) {
-        commandTextField.setText(cmd);
     }
 }

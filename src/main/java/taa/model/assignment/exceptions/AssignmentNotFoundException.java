@@ -1,7 +1,7 @@
-package taa.assignment.exceptions;
+package taa.model.assignment.exceptions;
 
 /**
- * Assignment is not found.
+ * An exception where the assignment is not found.
  */
 public class AssignmentNotFoundException extends AssignmentException {
     public AssignmentNotFoundException(String assignmentName) {

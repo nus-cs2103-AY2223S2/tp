@@ -1,15 +1,15 @@
-package taa.assignment;
+package taa.model.assignment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javafx.collections.transformation.FilteredList;
-import taa.assignment.exceptions.InvalidGradeException;
-import taa.assignment.exceptions.SubmissionNotFoundException;
+import taa.model.assignment.exceptions.InvalidGradeException;
+import taa.model.assignment.exceptions.SubmissionNotFoundException;
 import taa.model.student.Student;
 
 /**
- * Assignment class.
+ * Assignment class, contains a list of student submissions.
  */
 public class Assignment {
     private final String name;
@@ -17,22 +17,9 @@ public class Assignment {
     private final ArrayList<Submission> submissions = new ArrayList<>();
     private final HashMap<Student, Submission> submissionMap = new HashMap<>();
 
-
     /**
-     * Called using add_asgn
-     * @param name name of the assignment
-     * @param sl   the list of students from classlist.
-     */
-    public Assignment(String name, FilteredList<Student> sl, int totalMarks) {
-        this.name = name;
-        this.totalMarks = totalMarks;
-        for (Student stu : sl) {
-            addStudent(stu);
-        }
-    }
-
-    /**
-     * Called when in storage
+     * Creates an assignment with specified totalMarks.
+     * This is used when creating from storage.
      * @param name
      * @param totalMarks
      */
@@ -42,7 +29,34 @@ public class Assignment {
     }
 
     /**
-     * Adds a new assignment to a student
+     * Creates an assignment with specified totalMarks,
+     * and then for every student in the student list: creates a new submission for them.
+     * @param name name of the assignment
+     * @param sl   the student list.
+     * @param totalMarks
+     */
+    public Assignment(String name, FilteredList<Student> sl, int totalMarks) {
+        this.name = name;
+        this.totalMarks = totalMarks;
+        for (Student stu : sl) {
+            addStudent(stu);
+        }
+    }
+
+    public int getTotalMarks() {
+        return this.totalMarks;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public ArrayList<Submission> getSubmissions() {
+        return this.submissions;
+    }
+
+    /**
+     * Adds a new assignment to a student.
      * @param stu
      */
     public void addStudent(Student stu) {
@@ -69,10 +83,11 @@ public class Assignment {
 
     /**
      * Grades a student submission of an assignment.
-     *
      * @param student
      * @param marks
      * @param isLateSubmission
+     * @throws SubmissionNotFoundException if there is no submission for that student.
+     * @throws InvalidGradeException if given marks < 0 or > totalMarks.
      */
     public void gradeSubmission(Student student, int marks, boolean isLateSubmission)
             throws SubmissionNotFoundException, InvalidGradeException {
@@ -84,8 +99,9 @@ public class Assignment {
     }
 
     /**
+     * Resets the marks and late status of a student submission.
      * @param student
-     * @throws SubmissionNotFoundException
+     * @throws SubmissionNotFoundException if there is no submission for that student.
      */
     public void ungradeSubmission(Student student) throws SubmissionNotFoundException {
         if (submissionMap.containsKey(student)) {
@@ -93,15 +109,6 @@ public class Assignment {
         } else {
             throw new SubmissionNotFoundException(student.getName().fullName);
         }
-    }
-
-
-    public ArrayList<Submission> getSubmissions() {
-        return this.submissions;
-    }
-
-    public int getTotalMarks() {
-        return this.totalMarks;
     }
 
     /**
@@ -117,7 +124,7 @@ public class Assignment {
     }
 
     /**
-     * Deletes a student submission from the submission list
+     * Deletes a student submission from the submission list.
      * @param s the student
      */
     public void deleteStudentSubmission(Student s) {
@@ -131,9 +138,4 @@ public class Assignment {
             submissions.remove(toDelete);
         }
     }
-
-    public String getName() {
-        return this.name;
-    }
-
 }

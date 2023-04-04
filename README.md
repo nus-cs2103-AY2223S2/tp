@@ -1,6 +1,7 @@
 # Teaching Assistant Assistant
 
 [![CI Status](https://github.com/AY2223S2-CS2103T-T14-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S2-CS2103T-T14-4/tp/actions)
+[![codecov](https://codecov.io/gh/nus-cs2103-AY2223S2/tp/branch/master/graph/badge.svg?token=SNV76O467D)](https://codecov.io/gh/nus-cs2103-AY2223S2/tp)
 
 ![Ui](./docs/images/Ui.png)
 

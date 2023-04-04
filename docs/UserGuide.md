@@ -12,7 +12,7 @@ title: User Guide
 Teaching Assistant Assistant (TAA) is a desktop app for managing teaching assistant activities, optimized for use via a Command Line Interface (CLI) while still retaining the benefits of a Graphical User Interface (GUI).
 
 With TAA, you can easily track student attendance and grades using just a keyboard, eliminating the need for multiple clicks.
-You can even view grade statistics without the use of a dedicated data analysis application!
+You can even view grade statistics without the use of a dedicated data analysis application! 
 
 ![TAA logo](./images/TAA_logo.jpg)
 
@@ -35,8 +35,8 @@ Alternatively, you may wish to use the built-in search function in your browser 
 Aside from the usual text format, this guide includes certain special formats that are used for different purposes.
 
 ##### Callouts
-
-Callouts are identified by a coloured box containing some text.
+ 
+Callouts are identified by a coloured box containing some text. 
 
 **Note**
 <div markdown="span" class="alert alert-warning">
@@ -55,12 +55,12 @@ Callouts are identified by a coloured box containing some text.
 
 **Warning**
 <div markdown="span" class="alert alert-danger">
-:warning: **Warning:**  Describes actions that may cause the application to function unexpectedly.
+:warning: **Warning:** Describes actions that may cause the application to function unexpectedly.
 </div>
 
 ##### Syntax highlighting
 Text contained within a `grey background` are used to denote either of the following:
-- commands that can be entered into the command bar
+- commands that can be entered into the command bar 
 - file names
 - command line commands, to be run in the [terminal](#glossary) of the host machine
 
@@ -175,174 +175,102 @@ Command syntax
 :information_source: **Info:** Extraneous parameters for commands that do not take in parameters will be ignored.
 </div>
 
-
 ### Attendance
 For attendance, you can make the following calls:
 * markAtd
 * unmarkAtd
-* listAtd
 
 #### Mark attendance: `markAtd`
 Marks the attendance of a student for that week<br>
-Format: `markAtd STUDENT_INDEX w/WEEK_NUMBER`
-
-`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI<br>
-`WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
-Marking the attendance for a week that is already marked will result in
-a message `This student's attendance has already been marked.`
+Format: `markAtd STUDENT_ID w/WEEK_NUMBER`<br>
 
 Examples
-* `markAtd 1 w/1` (marks attendance of student with index 1 for week 1)
-* `markAtd 2 w/1` (marks attendance of student with index 2 for week 1)
+* `markAtd 1 w/1`
+* `markAtd 2 w/1`
 
 #### Unmark attendance: `unmarkAtd`
 Unmarks the attendance of a student for that week<br>
-Format: `unmarkAtd STUDENT_INDEX w/WEEK_NUMBER`
-
-`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
-`WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
-Unmarking the attendance for a week that is already unmarked will just result in
-the successful unmarking message being displayed `Attendance unmarked successfully!`
+Format: `unmarkAtd STUDENT_ID w/WEEK_NUMBER`<br>
 
 Examples
-* `unmarkAtd 1 w/1` (unmarks attendance of student with index 1 for week 1)
-* `unmarkAtd 2 w/1` (unmarks attendance of student with index 2 for week 1)
-
-#### List Attendance: `listAtd`
-Lists the attendance of a student from week 1 to week 12<br>
-Format: `listAtd STUDENT_INDEX`
-
-`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
-
-Examples
-* `listAtd 1` (list attendance of student with index 1)
-* `listAtd 2` (list attendance of student with index 2)
-
-The listed attendance will be such that every line will be in the format `Week NUM: [PRESENT]` <br>
-where `NUM` represents the week number, and `PRESENT` takes the value of `X` is the student is present, and empty otherwise
-
-Example
-* `Week 1: [X]` <br>
-  `Week 2: [X]` <br>
-  `Week 3: [X]` <br>
-  `Week 4: []` <br>
-  `Week 5: []` <br>
-  `Week 6: []` <br>
-  `Week 7: []` <br>
-  `Week 8: []` <br>
-  `Week 9: []` <br>
-  `Week 10: []` <br>
-  `Week 11: []` <br>
-  `Week 12: []` <br>
-
-The above example shows that the student is present for week 1,2,3 and absent for the rest of the weeks
+* `unmarkAtd 1 w/1`
+* `unmarkAtd 2 w/1`
 
 ### Participation
 For participation, you can make the following calls:
-* insertPP
-* listPP
-
-#### Clarifications on Participation points 
-
-* Participation points is represented by a integer from `0` to `700` (inclusive of both `0` and `700`) <br>
-Except for the special situation where the attendance is not marked, then the participation points will be `-1`
-If users are inserting participation points, only a integer from `0` to `700` (inclusive of both `0` and `700`) is allowed
-* when the attendance of a student for a week is marked (not present -> present for the week) <br>
-Then the participation points of the student changes from `-1` to `0`
-* Unmarking a student's attendance automatically changes the participation points of a student to `-1`
-* The participation points displayed in Class List portion of the TAA GUI is the average points, which is calculated using `Total participation points` / `Number of weeks present` <br>
-  `Total participation points` is the sum of all participation points for weeks when the student is present <br>
-  `Number of weeks present` refers to the number of week present from week 1 to week 12
-
+* insert
 
 #### Insert participation points: `insertPP`
-Inserts participation points of a student for that week<br>
-Format: `insertPP STUDENT_INDEX w/WEEK_NUMBER pp/POINTS`
-
-`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
-`WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
-`POINTS`: A integer between 0 and 700 (inclusive of both 0 and 700)
-
-Participation points can only be inserted for a week when the attendance is already marked. <br>
-Violation of this will result in a message `Mark the attendance of the student first before inserting points!`
-
+Insert attendance of a student for that week<br>
+Format: `insertPP STUDENT_ID w/WEEK_NUMBER pp/POINTS`
 Examples
-* `insertPP 1 w/1 pp/200` (inserts participation points of 200 for week 1 of student with index 1)
-* `insertPP 2 w/1 pp/300` (inserts participation points of 200 for week 1 of student with index 2)
+* `insertPP 1 w/1 pp/200`
+* `insertPP 2 w/1 pp/300`
 
-#### List participation points: `listPP`
-Lists the participation points of a student from week 1 to week 12<br>
-Format: `listPP STUDENT_INDEX`
+### Assignments & Submissions
 
-`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
+#### Preface:
 
-Examples
-* `listAtd 1` (list participation points of student with index 1)
-* `listAtd 2` (list participation points of student with index 2)
+Assignment: A school assignment. Has an alphanumeric name, a non-negative integer total marks, and 
+student submissions associated with it.
 
-The listed participation points will be such that every line will be in the format `Week NUM: [POINTS]` <br>
-where `NUM` represents the week number, and `POINTS` is the participation points for that week
+Submission: Linked to an assignment. Each student has a submission for every existing assignment.
 
-Example
-* `Week 1: [200]` <br>
-  `Week 2: [300]` <br>
-  `Week 3: [400]` <br>
-  `Week 4: [-1]` <br>
-  `Week 5: [-1]` <br>
-  `Week 6: [-1]` <br>
-  `Week 7: [-1]` <br>
-  `Week 8: [-1]` <br>
-  `Week 9: [-1]` <br>
-  `Week 10: [-1]` <br>
-  `Week 11: [-1]` <br>
-  `Week 12: [-1]` <br>
+#### Commands:
 
-The above example shows that the student have a participation point of 200 for week 1, 300 for week 2, 400 for week 3 <br>
-And -1 for the rest of the weeks (attendance is not marked)
-
-
-### Assignments
-
-For assignments, you can make the following calls:
+For assignments & submissions, you can make the following calls:
 * add_asgn
 * delete_asgn
 * grade
 * ungrade
 * list_asgn
 
-#### Add Assignment: `add_asgn`
-Adds an assignment with name, total marks.
-If total marks for the assignment is unspecified, a default value of 100 will be given.
-All assignments will initially be ungraded.
-<br>
-Format: `add_asgn n/NAME [m/TOTAL_MARKS]`<br>
-Example:
-* `add_asgn n/Lab_1`
-* `add_asgn n/Lab_2 m/50`
+### Add Assignment: `add_asgn`
 
-#### Delete Assignment: `delete_asgn`
-Deletes the assignment of assignment_name you provided. If the assignment is not found, returns an error.<br>
-Format: `delete n/ASSIGNMENT_ID`<br>
+Adds an assignment with a specified name and total marks.
+
+If the total marks for the assignment is unspecified, a default value of 100 will be given.
+
+Student submissions for that assignment will be also created for all existing students.
+All student submissions for that assignment will initially be ungraded.
+
+
+Format: `add_asgn n/ASSIGNMENT_NAME [m/TOTAL_MARKS]`<br>
+Example:
+* `add_asgn n/Lab 1`
+* `add_asgn n/Lab 2 m/50`
+
+### Delete Assignment: `delete_asgn`
+Deletes the assignment of assignment_name you provided, along with the student submissions for that assignment.
+
+Format: `delete n/ASSIGNMENT_NAME`<br>
 
 Example:
-* `delete_asgn n/Lab_1`
+* `delete_asgn n/Lab 1`
 
-#### Grade Assignment: `grade`
-Grades the submission of assignment_name and student_id with a score you provide.
-You can also indicate whether a submission is late by using the "late/" flag at the end.
-<br>
-Format: `grade n/ASSIGNMENT_NAME i/STUDENT_ID m/SCORE [late/]`<br>
+### Grade Assignment: `grade`
+Grades the student submission of assignment_name and student_id with the provided marks.
+
+You can also indicate whether a student submission is late by adding "late/" at the end.
+
+A submission can be graded multiple times, even if it is already graded. In that case, the latest
+grade will be taken.
+
+Format: `grade n/ASSIGNMENT_NAME i/STUDENT_ID m/MARKS [late/]`<br>
 Example:
-* `grade n/Lab_1 i/2 m/20`
-* `grade n/Lab_1 i/3 m/30 late/`
+* `grade n/Lab 1 i/2 m/20`
+* `grade n/Lab 1 i/3 m/30 late/`
 
 #### Ungrade Assignment: `ungrade`
 Resets the grade of the submission of assignment_name and student_id. It will also reset
 the late submission status of the submission, if the submission was marked as late.
-<br>
+
+A submission can be ungraded multiple times, even if it is already ungraded. In that case, the subsequent ungrades
+will have no effect.
+
 Format: `ungrade n/ASSIGNMENT_ID i/STUDENT_ID`<br>
 Example:
-* `ungrade n/Lab_1 i/2`
+* `ungrade n/Lab 1 i/2`
 
 #### List all assignments: `list_asgn`
 Lists all assignments, submissions and their respective information.
@@ -423,7 +351,7 @@ Examples:
 - `edit_student 3 n/Barry Allen` changes the name of the 3rd student to "Barry Allen"
 - `edit_student 5 cl/Tutorial_T14` assigns the 5th student only to the class "Tutorial_14"
 - `edit_student 12 n/Tom Hanks cl/Lab_L11` changes the name of the 12th student to "Tom Hanks", and assigns
-  him to the class "Lab_L11"
+him to the class "Lab_L11"
 
 <div markdown="span" class="alert alert-danger">
 :warning: **Warning:**  The new fields will override the fields of the targeted student completely. i.e. to add an extra field, you will have to copy over the previous fields and add one additional parameter containing the new field to be added.
@@ -442,8 +370,13 @@ Examples:
 :page_with_curl: **Note:** This command will delete the student with the given ID on the active class list, not from the list of all students obtained from using the `list` command.
 </div>
 
+<<<<<<< HEAD
 #### List all students : `list`
 Lists all students tracked by TAA, across all class lists.
+=======
+#### List all students : `list` 
+Lists all students tracked by TAA globally.
+>>>>>>> master
 
 Format: `list`
 
@@ -533,6 +466,16 @@ Philza Minercaft,,,"x,0,0,0,100;y,0,0,0,100;",Rec_R03;
 Mumbo Jumbo,,,,Lab_L12;
 ```
 
+Excel spreadsheet format that exports acceptable CSV files:
+
+| <span style="font-weight:normal">Technoblade</span> | <span style="font-weight:normal">1;0;0;1;1;1;0;0;0;0;0;0</span> | <span style="font-weight:normal">-1;-1;-1;-1;-1;-1;-1;-1;200;-1;-1;-1</span> | <span style="font-weight:normal">x,0,0,0,16;y,0,0,0,120;</span> | <span style="font-weight:normal">Tut_T01;</span> |
+|-----------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------------|-----------------------------------------------------------------|--------------------------------------------------|
+| Dream Was Taken                                     | 0;0;0;0;0;0;0;0;0;0;0;0                                         | -1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1                                          | z,0,0,0,200                                                     | Tut_T01;Lab_L01;                                 |
+| Tommy In It                                         |                                                                 |                                                                              | x,0,0,0,100;y,0,0,0,100;                                        | Tut_T02;                                         |
+| Wilbur Soot                                         |                                                                 | -1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1                                          | x,0,0,0,100;y,0,0,0,100;                                        | Lab_L02;                                         |
+| Philza Minercaft                                    |                                                                 |                                                                              | x,0,0,0,100;y,0,0,0,100;                                        | Rec_R03;                                         |
+| Mumbo Jumbo                                         |                                                                 |                                                                              |                                                                 | Lab_L12;                                         |
+
 #### Import data in CSV format: `import`
 
 Import data in CSV format from file.
@@ -540,6 +483,9 @@ Import data in CSV format from file.
 Format: `import [-force] FILE_PATH`
 * Flag -force overwrites records of existing students.
 * Nothing is changed if file does not exist or file access denied.
+
+Successful import of a file containing the example data should display this:
+![import result](./images/importResult.png)
 
 #### Export data in CSV format: `export`
 
@@ -549,6 +495,8 @@ Format: `export [-force] FILE_PATH`
 * If file exists, export is blocked unless -force flag is used. Otherwise, create file and export.
 * Flag -force overwrites existing file.
 * Nothing is changed if file access denied.
+
+ 
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Appendix A: Planned Enhancements**
@@ -581,3 +529,8 @@ Consequently, such operations will not be allowed to execute, and an error messa
 |         Terminal         |                    Text-based interface used to interact with the computer's operating system. For Windows, it is usually called the Command Prompt.                     | 
 |       Host Machine       |                                                    The computer that is used to run the software/program in question.                                                    | 
 |        Parameter         |                                  A value that is passed in by the user. This value changes depending on what the user decides to enter.                                  | 
+|         Student          |                                  A person recorded in our app. Has an alphanumeric name and may have class list tags associated to it.                                   | 
+|        Assignment        |                      A school assignment. Has an alphanumeric name, a non-negative integer total marks, and student submissions associated with it.                      | 
+|        Submission        |                                          Linked to an assignment. Each student has a submission for every existing assignment.                                           | 
+
+
