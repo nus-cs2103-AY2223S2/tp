@@ -1,4 +1,4 @@
-package seedu.address.storage;
+package seedu.address.logic.archive;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,6 +16,7 @@ import seedu.address.model.ReadOnlyTracker;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
+import seedu.address.storage.Storage;
 
 /**
  * A class to export tracker to archive and import modules from archive to tracker
