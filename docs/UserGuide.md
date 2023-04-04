@@ -110,7 +110,10 @@ You can find more details about the Entity and Statistics panels in the followin
 
 ### Entity Panel
 
-The Entity panel is where you will be able to view your projects and clients. It is split into two tabs, one that lists all existing projects and the other that lists all existing clients.
+The Entity panel is where you will be able to view your projects and clients.
+It is split into two tabs, one that lists all existing projects and the other
+that lists all existing clients. By default, all projects and clients are
+listed in order of creation.
 
 #### Projects Tab
 
