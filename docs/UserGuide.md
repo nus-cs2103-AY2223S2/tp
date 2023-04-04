@@ -108,7 +108,7 @@ Keyboard keys are indicated using rounded buttons.
 
     - `list`: List all internships stored in InternBuddy
     - `add n/Food Panda r/Web Developer s/Applied d/2023-04-01`: Adds a new internship into InternBuddy.
-    - `delete 3` : Deletes the 3rd internship of the current list displayed in InternBuddy.
+    - `delete-index 3` : Deletes the 3rd internship of the current list displayed in InternBuddy.
     - `exit` : Exits InternBuddy.
 
 
@@ -164,7 +164,7 @@ left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
 
 ## **Command Information**
 
-### Notes about Commands and Fields
+### Command format
 
 * Words in `UPPER_CASE` are the fields to be supplied by the user.<br>
   e.g. If the command format is `add n/COMPANY_NAME`, you may input the command as `add n/Apple` where you supply the
@@ -190,22 +190,26 @@ left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
   ignored.<br>
   e.g. If the command format is `help`, typing in `help 123` will cause your input to be interpreted as `help`.
 
+* Command names are case-senstive. For example, `help` will work, but `HELP` or `Help` will not work.
 
-### Descriptions, Prefixes and Rules for Fields
+
+### Prefixes and contraints for Fields
 In InternBuddy's commands, we refer to a range of fields that you can replace with values to input information that
 is customised to your internship applications.
 
 There are 2 important things that you should note:
-1. Most fields have associated **prefixes**. Prefixes are convenient shorthands that allow you to easily identify
+1. Most fields have associated **prefixes**. 
+    * Prefixes are convenient shorthands that allow you to easily identify
    which field does a value belong to. For example, in `add n/Apple`, the value `Apple` is associated with the
    field `COMPANY_NAME` since the `n/` prefix is used.
-2. There are **rules** that you must adhere to when replacing fields with values. The rules differ based on
-   the fields. If you do not adhere to these rules, your input will be invalid and an error message will be shown
+    * Prefixes are **case-sensitive**. `n/` will work but `N/` or `name/` will not work.
+2. There are **contraints** that you must adhere to when replacing fields with values. The constraints differ based on
+   the fields. If you do not adhere to these constraints, your input will be invalid and an error message will be shown
    in the [Results Display](#exploring-the-graphical-user-interface) when you type the input in and
    press <button>Enter</button>.
 
 
-Table 2 provides a summary of the fields with their descriptions, prefixes and rules.
+Table 2 provides a summary of the fields with their descriptions, prefixes and contraints.
 
 | Field          | Description                                                                    | Prefix | Constraints                                                                                                                                             |
 |----------------|--------------------------------------------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -431,7 +435,7 @@ Examples:
 * `copy 2` Assuming that you have at least three internships displayed in the
   [List Panel](#exploring-the-graphical-user-interface), this copies the details of the
   third internship to your clipboard.
-* `view -1` Displays an error because `INDEX` must be a positive integer.
+* `copy -1` Displays an error because `INDEX` must be a positive integer.
 * `copy 8` Assuming that you have 7 internships displayed in the
   [List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
   than the maximum index shown in the [List Panel](#exploring-the-graphical-user-interface), which is 7 in this case.
@@ -539,7 +543,7 @@ e.g., `delete-field s/Applied`, `delete-field s/Applied s/New`,
 * The `delete-field` command deletes all internship entries that match with **any** of the values that you provide.
 
 Examples:
-* `delete-field n/Google n/Meta` deletes all internship entries that have a status of **either**
+* `delete-field s/Applied s/New` deletes all internship entries that have a status of **either**
   `Applied` **or** `New`.
 
 
