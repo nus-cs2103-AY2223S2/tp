@@ -59,11 +59,11 @@ You can click on any of the links below to navigate to the respective sections f
   * [2.5 Sort](#25-sort)
     * [2.5.1 Sorting a task: `sort_task`](#251-sorting-a-task-sorttask)
     * [2.5.2 Sorting a order: `sort_order`](#252-sorting-a-order-sortorder)
-  * [List](#list)
-    * [Listing all suppliers: `list_supplier`](#listing-all-suppliers-listsupplier)
-    * [Listing all orders: `list_order`](#listing-all-orders-listorder)
-    * [Listing all tasks: `list_task`](#listing-all-tasks-listtask)
-    * [Listing all menu items: `list_menu`](#listing-all-menu-items-listmenu)
+  * [2.6 List](#26-list)
+    * [2.6.1 Listing all suppliers: `list_supplier`](#261-listing-all-suppliers-listsupplier)
+    * [2.6.2 Listing all orders: `list_order`](#262-listing-all-orders-listorder)
+    * [2.6.3 Listing all tasks: `list_task`](#263-listing-all-tasks-listtask)
+    * [2.6.4 Listing all menu items: `list_menu`](#264-listing-all-menu-items-listmenu)
   * [Clear](#clear)
     * [Clear all supplier entries: `clear_supplier`](#clear-all-supplier-entries-clearsupplier)
     * [Clear all order entries: `clear_order`](#clear-all-order-entries-clearorder)
@@ -1095,31 +1095,89 @@ Syntax: `sort_order [c/CRITERIA]`
 
 </div>
 
-## List
+## 2.6 List
 
-### Listing all suppliers: `list_supplier`
+Shows all data in the specific list. Below are the specific list commands for suppliers, order, tasks and menu.
 
-Shows a list of all suppliers in the supplier list.
+### 2.6.1 Listing all suppliers: `list_supplier`
+
+Shows a list of all suppliers in the contact list.
 
 Syntax `list_supplier`
 
-### Listing all orders: `list_order`
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command**
+
+* `list_supplier`<br>
+  Shows all suppliers.
+
+:clipboard: **Example 2: Shortcut command with parameters**
+
+* `list_s n/John`<br>
+  Shows all suppliers.
+
+</div>
+
+### 2.6.2 Listing all orders: `list_order`
 
 Shows a list of all orders in the order list.
 
 Syntax `list_order`
 
-### Listing all tasks: `list_task`
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command**
+
+* `list_order`<br>
+  Shows all orders.
+
+:clipboard: **Example 2: Shortcut command with parameters**
+
+* `list_o on/Straberry`<br>
+  Shows all orders.
+
+</div>
+
+### 2.6.3 Listing all tasks: `list_task`
 
 Shows a list of all tasks in the task list.
 
 Syntax `list_task`
 
-### Listing all menu items: `list_menu`
+<div markdown="block" class="alert alert-example">
 
-Shows a list of all menu items in the menu item list.
+:clipboard: **Example 1: Standard command**
+
+* `list_task`<br>
+  Shows all tasks.
+
+:clipboard: **Example 2: Shortcut command with parameters**
+
+* `list_t s/N`<br>
+  Shows all tasks.
+
+</div>
+
+### 2.6.4 Listing all menu items: `list_menu`
+
+Shows a list of all menu items in the menu.
 
 Syntax `list_menu`
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command**
+
+* `list_menu`<br>
+  Shows all menu items.
+
+:clipboard: **Example 2: Shortcut command with parameters**
+
+* `list_m price`<br>
+  Shows all menu items.
+
+</div>
 
 ## Clear
 
