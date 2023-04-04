@@ -237,11 +237,15 @@ For participation, you can make the following calls:
 * insertPP
 * listPP
 
-#### Explanation on how Participation points is represented in TAA
+#### Clarifications on Participation points 
 
-* Participation points is represented by a value from `0` to `700` (inclusive of both `0` and `700`) <br>
+* Participation points is represented by a integer from `0` to `700` (inclusive of both `0` and `700`) <br>
 Except for the special situation where the attendance is not marked, then the participation points will be `-1`
-* Display of participation points in Class List portion of the TAA GUI is the average points, which is calculated using `Total participation points` / `Number of weeks present` <br>
+If users are inserting participation points, only a integer from `0` to `700` (inclusive of both `0` and `700`) is allowed
+* when the attendance of a student for a week is marked (not present -> present for the week) <br>
+Then the participation points of the student changes from `-1` to `0`
+* Unmarking a student's attendance automatically changes the participation points of a student to `-1`
+* The participation points displayed in Class List portion of the TAA GUI is the average points, which is calculated using `Total participation points` / `Number of weeks present` <br>
   `Total participation points` is the sum of all participation points for weeks when the student is present <br>
   `Number of weeks present` refers to the number of week present from week 1 to week 12
 
@@ -271,14 +275,14 @@ Examples
 * `listAtd 1` (list participation points of student with index 1)
 * `listAtd 2` (list participation points of student with index 2)
 
-The listed participation points will be such that where every line will be in the format `Week NUM: [POINTS]` <br>
-where NUM represents the week number, and POINTS is the participation points for that week
+The listed participation points will be such that every line will be in the format `Week NUM: [POINTS]` <br>
+where `NUM` represents the week number, and `POINTS` is the participation points for that week
 
 Example
 * `Week 1: [200]` <br>
   `Week 2: [300]` <br>
   `Week 3: [400]` <br>
-  `Week 4: [200]` <br>
+  `Week 4: [-1]` <br>
   `Week 5: [-1]` <br>
   `Week 6: [-1]` <br>
   `Week 7: [-1]` <br>
@@ -287,6 +291,10 @@ Example
   `Week 10: [-1]` <br>
   `Week 11: [-1]` <br>
   `Week 12: [-1]` <br>
+
+The above example shows that the student have a participation point of 200 for week 1, 300 for week 2, 400 for week 3 <br>
+And -1 for the rest of the weeks (attendance is not marked)
+
 
 ### Assignments
 
