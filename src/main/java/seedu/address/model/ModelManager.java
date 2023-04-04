@@ -22,7 +22,6 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
     private static final FullNamePredicate DEFAULT_EMPTY_NAME_PREDICATE = new FullNamePredicate("");
 
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Person> targetPerson;
@@ -36,11 +35,10 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        targetPerson = new FilteredList<Person>(this.addressBook.getPersonList());
+        targetPerson = new FilteredList<Person>(addressBook.getPersonList());
         setDefaultShowPerson();
-        versionedAddressBook = new VersionedAddressBook(this.addressBook);
+        versionedAddressBook = new VersionedAddressBook(addressBook);
         filteredPersons = new FilteredList<>(versionedAddressBook.getPersonList());
     }
 
@@ -103,14 +101,12 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
-        this.addressBook.removePerson(target);
         versionedAddressBook.removePerson(target);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addPerson(Person person) {
-        this.addressBook.addPerson(person);
         versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -118,7 +114,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-        this.addressBook.setPerson(target, editedPerson);
         versionedAddressBook.setPerson(target, editedPerson);
     }
 
@@ -186,17 +181,17 @@ public class ModelManager implements Model {
 
     @Override
     public ArrayList<String> getExistingTagValues() {
-        return addressBook.getExistingTagValues();
+        return versionedAddressBook.getExistingTagValues();
     }
 
     @Override
     public ArrayList<String> getExistingModuleValues() {
-        return addressBook.getExistingModuleValues();
+        return versionedAddressBook.getExistingModuleValues();
     }
 
     @Override
     public ArrayList<String> getExistingEducationValues() {
-        return addressBook.getExistingEducationValues();
+        return versionedAddressBook.getExistingEducationValues();
     }
 
     @Override
@@ -213,7 +208,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
