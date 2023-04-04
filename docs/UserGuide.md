@@ -258,7 +258,7 @@ Use commands such as `list` and `find` to show you the events you have in your l
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
 Events that have past is marked with a completed label and check mark.   
-Events are orders in chronological order.  
+Events are displayed in chronological order.  
 </div>
 
 [[Back to top](#index)]
@@ -269,7 +269,9 @@ Events are orders in chronological order.
 Displays ongoing (in case you have not start on it yet) and upcoming events you have. 
 
 <div markdown="span" class="alert alert-info">
-:bulb: **Tip:** Use `next` command to change the number of upcoming events you want to show.
+:bulb: **Tip:**
+While the default is one upcoming event,
+you can use the `next` command to change the number of upcoming events shown.
 </div>
 
 [[Back to top](#index)]
