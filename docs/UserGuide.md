@@ -64,21 +64,20 @@ TinS in a more efficient way.
 
 #### Syntax Highlighting
 
-    Commands, fields, prefixes and file paths are highlighted in the User Guide.
-    
-    Example: `list`, `POSTIION`, `data/internshipcatalogue.json`
+Commands, fields, prefixes and file paths are highlighted in the User Guide.
+Example: `list`, `POSTIION`, `data/internshipcatalogue.json`
     
 #### Buttons
 
-    Being optimized for use via typing, you can key in your desired commands to TinS using the keyboard.
-    Then, press the <button>Enter</button> to confirm your command and insturct TinS to execute them.
+Being optimized for use via typing, you can key in your desired commands to TinS using the keyboard.
+Then, press the <button>Enter</button> to confirm your command and insturct TinS to execute them.
 
 ### How to use the User Guide
-* If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick_start) will guide you through the process of
+* If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick-start) will guide you through the process of
 installing TinS and provide you with a brief introduction to TinS. 
 * If you are **a more advanced user of TinS**, the [Features](#features) section contains detailed information of what features
 TinS has to offer. Embedded in this section, there are also tips on how you can maximize your efficiency while using TinS. 
-* If you are **encountering an issue** with TinS, the [Frequently Asked Question](#frequently_asked_question) section might 
+* If you are **encountering an issue** with TinS, the [Frequently Asked Question](#frequently-asked-question) section might 
 be helpful for you.
 
 <div style="page-break-after: always;"></div>
