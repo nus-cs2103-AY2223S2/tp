@@ -14,19 +14,23 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=huggenguggen)
 
 * **Enhancements to existing features**:
-    * `find` command enhancement
+    * `find` command enhancement [PR#48](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/48)
       * Previously, `find` only by name
       * Now it will find by most attributes
       * The aim was to make the find command complete
         * This means that a user should be able to find by most attributes
         * This has major implications for future attributes if we choose to add them
-    * `alert` command
+    * Add support for different types of `Tasks` [PR#59](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/59)
+      * Added 3 subclasses, SimpleTask, Deadline, and Event.
+      * Add support in addCommandParser to add different type of tasks dynamically. 
+      * Change representation in JsonAdaptedTask such that it can represent new types of task and still parse them.
+    * `alert` command [PR#78](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/78)
       * Adding `alert` command
       * The `alert` command was inspired by the reminder systems on phones.
       * Setting an alert for `Deadlines` and `Events` felt like a natural function.
       * With alert, we thought a pop-up UI similar to `help` made sense.
       * We realized this gets in the way of users who want to continue typing and was counter to CLI restraint.
-      * I then remade the UI so that `alerts` would appear on the right instead.
+      * I then remade the UI so that `alerts` would appear on the right instead. [PR#155](https://github.com/AY2223S2-CS2103T-W13-3/tp/pull/155)
       * This made it unobtrusive but still useful.
       * A challenge faced was for alerts to be persistent over app usage.
         * I decided on making alert a attribute of tasks that users cannot directly access.

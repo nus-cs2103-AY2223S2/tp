@@ -33,6 +33,8 @@ title: Developer Guide
   * [4. Documentation, Logging, Testing, Configuration, DevOps](#4-documentation-logging-testing-configuration-dev-ops)
   * [5. Appendix: Requirements](#5-appendix-requirements)
   * [6. Appendix: Instructions for manual testing](#6-appendix-instructions-for-manual-testing)
+  * [7. Appendix: Planned Enhancements](#7-appendix-planned-enhancements)
+    * [7.1 Accommodating long inputs](#71-accommodating-long-inputs)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -889,3 +891,38 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 7. **Appendix: Planned Enhancements**
+
+**This section contains future enhancements to be implemented past v1.4.**
+
+### 7.1 Accommodating long inputs
+
+- As brought up by issue [#193](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/193) and [#168](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/168), 
+long inputs, whether it be for `n/[NAME]` or `d/[DESCRIPTION]` or `t/[TAG]` causes the user to not be able to see the parameter.
+#### Possible Solution
+- One **possible** fix would be for us to limit the length of parameters to a reasonable length (we considered 50 chars)
+- However, this does not fully solve the issue as tags numerous.
+- A better solution we plan to implement is to make use of `JavaFX wrap-around` attribute.
+- Specifically, to use it in the `TaskListCard.fxml`
+- This would have the effect of making each `TaskCard` have a dynamic height to allow all text to be shown.
+
+#### Pros
+- This solves the problem at it's root as it should theoretically allow any length input to still be viewable by the user.
+- Combined with the limiting of parameter length, it should work for most reasonably sized inputs.
+- This solution should be relatively easy to implement with only 1-2 files to edit.
+- Another benefit to this solution would be that it solves another issue brought up [#182](https://github.com/AY2223S2-CS2103T-W13-3/tp/issues/182)
+- Since the `AlertListPanel` is also made up of a `TaskListPanel` and hence `TaskCard` instances, the wrap-text if applied to all parameters would make it so all text is visible.
+
+#### Cons
+- This solution results in different possible heights for each `TaskCard` which might look slightly unpleasant.
+- If there are too many tags/the text is too long, the user would have to scroll much more to get past that `TaskCard`.
+
+#### Mock-up
+- Here is a few sample images of how the UI might look like with a simpler implementation of this fix (only on the name attribute).
+![text-wrap0](images/text-wrap0.png)
+![text-wrap1](images/text-wrap1.png)
+![text-wrap2](images/text-wrap2.png)
+- Ideally, this wrap-text would be implemented on all text fields
