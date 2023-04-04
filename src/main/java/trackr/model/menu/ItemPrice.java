@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 public class ItemPrice {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should only contain positive numbers, and it should be at most 2 decimal place";
-    private static final String VALIDATION_REGEX = "^\\d+(.\\d{0,2})?$";
+    private static final String VALIDATION_REGEX = "^[0-9]+(\\.[0-9]{1,2})?$";
     private static final DecimalFormat DF = new DecimalFormat("0.00");
     private final Double value;
     private final String formattedValue;
@@ -73,7 +73,7 @@ public class ItemPrice {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ItemPrice // instanceof handles nulls
-                && value == ((ItemPrice) other).value); // state check
+                && value.equals(((ItemPrice) other).value)); // state check
     }
 
     @Override
