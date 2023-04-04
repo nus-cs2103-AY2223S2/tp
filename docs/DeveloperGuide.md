@@ -202,6 +202,20 @@ The `Model` component,
 
 </div>
 
+### Storage component
+
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+<p>
+  <img src="images/StorageClassDiagram.png" />
+  <em>Class diagram for the Storage Component</em>
+</p>
+
+The `Storage` component,
+* can save both listing book data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `ListingBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
 ---
 
 ## **Appendix: Requirements**
