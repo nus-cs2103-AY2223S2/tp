@@ -146,7 +146,7 @@ The list of blood types are:
 
 All other values will be rejected
 
-#### `<Dob>`
+#### `<date>`
 
 The supported date formats are:
 
@@ -158,8 +158,6 @@ The supported date formats are:
   * `yyyy-mm-d hhmm`
   * `yyyy-mm-dd hhmm`
   * `yyyy-m-dd hhmm`
-
-It accepts any date that is before current system time.
 
 #### `<phone-number>`
 
@@ -311,10 +309,14 @@ A patient is uniquely identified by a generated `PATIENT_ID`. Duplicate patients
 | ------------- | --------- | ---------------------- | --------------- |
 | `name`        | YES       | `<name>`               | NO              |
 | `phone`       | YES       | `<phone-number>`       | NO              |
-| `dateOfBirth` | YES       | `<Dob>`                | NO              |
+| `dateOfBirth` | YES       | `<date>`               | NO              |
 | `bloodType`   | YES       | `<bloodType>`          | NO              |
 | `allergies`   | NO        | list of `<group-name>` | YES             |
 | `vaccines`    | NO        | list of `<group-name>` | YES             |
+
+###### dateOfBirth
+
+It accepts any `<date>` that is before current system time.
 
 #### `add` - Add a patient
 
@@ -331,7 +333,7 @@ patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BI
 
 * <code><var>PATIENT_NAME</var></code> : `<name>`
 * <code><var>PHONE</var></code> : `<phone>`
-* <code><var>DATE_OF_BIRTH</var></code> : `<dob>`
+* <code><var>DATE_OF_BIRTH</var></code> : `<date>`
 * <code><var>BLOODTYPE</var></code> : `<bloodType>`
 * <code><var>ALLERGIES</var></code> : `<group-name>`
 * <code><var>VACCINES</var></code> : `<group-name>`
@@ -435,7 +437,7 @@ patient edit <var>PATIENT_ID</var> [--n <var>PATIENT_NAME</var>] [--p <var>PHONE
 
 * <code><var>PATIENT_NAME</var></code> : `<name>`
 * <code><var>PHONE</var></code> : `<phone>`
-* <code><var>DATE_OF_BIRTH</var></code> : `<dob>`
+* <code><var>DATE_OF_BIRTH</var></code> : `<date>`
 * <code><var>BLOODTYPE</var></code> : `<bloodType>`
 * <code><var>ALLERGIES</var></code> : `<group-name>`
 * <code><var>VACCINES</var></code> : `<group-name>`
