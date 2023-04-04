@@ -4,9 +4,13 @@ import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_ADDRESS;
 import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_NAME;
 import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_PHONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_DEADLINE_2024;
-import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_NAME_CHOCOLATE_COOKIES;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_ONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_NOT_DONE;
+import static trackr.testutil.TypicalMenuItems.CHOCOLATE_COOKIE_M;
+import static trackr.testutil.TypicalMenuItems.CUPCAKE_M;
+import static trackr.testutil.TypicalMenuItems.CARGO_PANTS;
+import static trackr.testutil.TypicalMenuItems.NIKE_CAP;
+import static trackr.testutil.TypicalMenuItems.INVALID_M;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +25,7 @@ import trackr.model.order.Order;
  */
 public class TypicalOrders {
 
-    public static final Order CHEESE_CAKES = new OrderBuilder().withOrderName("Cheese Cakes")
+    public static final Order CHOCOLATE_COOKIES_O = new OrderBuilder().withOrderItem(CHOCOLATE_COOKIE_M)
             .withOrderDeadline("01/01/2024")
             .withOrderStatus("N")
             .withOrderQuantity("3")
@@ -29,7 +33,7 @@ public class TypicalOrders {
             .withCustomerPhone("98765432")
             .withCustomerAddress("123 Main Street").build();
 
-    public static final Order DONUTS = new OrderBuilder().withOrderName("Donuts")
+    public static final Order CUPCAKE_O = new OrderBuilder().withOrderItem(CUPCAKE_M)
             .withOrderDeadline("12/12/2024")
             .withOrderStatus("N")
             .withOrderQuantity("10")
@@ -37,7 +41,7 @@ public class TypicalOrders {
             .withCustomerPhone("12345678")
             .withCustomerAddress("321 Jurong Street").build();
 
-    public static final Order VANILLA_CAKE = new OrderBuilder().withOrderName("Vanilla Cake")
+    public static final Order CARGO_PANTS_O = new OrderBuilder().withOrderItem(CARGO_PANTS)
             .withOrderDeadline("31/12/2024")
             .withOrderStatus("D")
             .withOrderQuantity("100")
@@ -45,7 +49,15 @@ public class TypicalOrders {
             .withCustomerPhone("24681357")
             .withCustomerAddress("456 Bedok Street").build();
 
-    public static final Order CHOCOLATE_COOKIES = new OrderBuilder().withOrderName(VALID_ORDER_NAME_CHOCOLATE_COOKIES)
+    public static final Order NIKE_CAP_O = new OrderBuilder().withOrderItem(NIKE_CAP)
+            .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
+            .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
+            .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
+            .withCustomerName(VALID_CUSTOMER_NAME)
+            .withCustomerPhone(VALID_CUSTOMER_PHONE)
+            .withCustomerAddress(VALID_CUSTOMER_ADDRESS).build();
+
+    public static final Order INVALID_ORDER_ITEM = new OrderBuilder().withOrderItem(INVALID_M)
             .withOrderDeadline(VALID_ORDER_DEADLINE_2024)
             .withOrderStatus(VALID_ORDER_STATUS_NOT_DONE)
             .withOrderQuantity(VALID_ORDER_QUANTITY_ONE)
@@ -69,7 +81,7 @@ public class TypicalOrders {
     }
 
     public static List<Order> getTypicalOrders() {
-        return new ArrayList<>(Arrays.asList(CHEESE_CAKES, DONUTS, VANILLA_CAKE, CHOCOLATE_COOKIES));
+        return new ArrayList<>(Arrays.asList(CHOCOLATE_COOKIES_O, CUPCAKE_O, CARGO_PANTS_O, NIKE_CAP_O));
     }
 
 }

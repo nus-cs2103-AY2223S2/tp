@@ -46,6 +46,11 @@ public class TypicalMenuItems {
             .withItemCost("9")
             .build();
 
+    public static final MenuItem INVALID_M = new MenuItemBuilder().withItemName("Invalid Itme")
+            .withItemPrice(null)
+            .withItemCost(null)
+            .build();
+
     public static final String KEYWORD_MATCHING_BUY = "Buy"; // A keyword that matches BUY
 
     private TypicalMenuItems() {} // prevents instantiation

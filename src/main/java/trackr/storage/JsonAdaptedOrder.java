@@ -1,15 +1,10 @@
 package trackr.storage;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import trackr.commons.exceptions.IllegalValueException;
 import trackr.model.menu.MenuItem;
@@ -83,9 +78,6 @@ public class JsonAdaptedOrder {
      * Converts this Jackson-friendly adapted order object into the model's {@code Order} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted order.
-     * @throws IOException
-     * @throws JsonMappingException
-     * @throws JsonParseException
      */
     public Order toModelType() throws IllegalValueException {
         if (customerName == null) {
@@ -120,6 +112,7 @@ public class JsonAdaptedOrder {
                     OrderName.class.getSimpleName()));
         }
 
+        // Guaranteed validity
         final MenuItem modelMenuItem = menuItem.toModelType();
 
         if (orderDeadline == null) {
