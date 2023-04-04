@@ -33,9 +33,18 @@ Experienced users can delete the sample data and proceed with regular usage.
 
 ## Features
 
+This section highlights the core features that this application provides, as
+well as the necessary guidelines to follow when using the features. The features
+generally follow commands of the form `COMMAND_WORD ARGUMENTs`, with each
+feature having its own specific `COMMAND_WORD` and required set of `ARGUMENTS`.
+
+> **Note:** Unless otherwise stated in the guidelines for the specific 
+> feature, arguments placed within brackets ("[" and "]") denotes that the
+> argument is optional, and not required for the command to run properly.
+
 ### Add user contacts: `add`
 
-Format: `add [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]` Optional to add: `t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG`
+Format: `add n/NAME s/STATUS p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]` Optional to add: `t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG`
 
 * User is *required* to enter **name, status, phone number, email, address**
 * Note that when entering course under "status", course should be only one word, and should be in alphanumeric
@@ -58,6 +67,8 @@ Tags are categorised according to tag colors:
 * Module tags: `dark green`
 * General tags: `default blue`
 
+[Back to top](#top)
+
 ### Delete user contacts: `delete`
 
 Delete a contact.
@@ -70,25 +81,29 @@ Format: `delete INDEX`
   Example:
 * `delete 2` deletes the second person in the list of contacts.
 
+[Back to top](#top)
+
 ### Edit user contacts: `edit`
 
 Edit a contact.
 Format: `edit INDEX [n/NAME] [s/STATUS] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG, ct/COMMITMENT_TAG, mt/MODULE_TAG]`
 
+* At least one of the optional arguments must be specified.
 * Show contact details specified by `INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index *must* be a positive integer 1, 2, 3, …
 
-  Example:
-* `edit 2 n/James Lee e/jameslee@example.com s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
-  mt/cs2103` Brings up the 2nd person in the address book and edits the specified information.
+Example: `edit 2 n/James Lee e/jameslee@example.com s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
+mt/cs2103` Edits the specified information for the second person in the contact list.
+
+[Back to top](#top)
 
 ### Locating persons by keywords: `find`
 
 Finds persons whose contact details contain any of the given keywords based on the
 prefix specified.
 
-Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]...`
+Format: `find PREFIX/KEYWORD [MORE PREFIX/KEYWORD]`
 
 * The search is case-insensitive e.g. `hans` will match `Hans`
 * The search will filter by the `PREFIX` provided, e.g. `n/` searches through the
@@ -110,16 +125,21 @@ Example:
 `find n/amy t/cs2103 e/gmail` will return the list of contacts whose names are `amy`,
 has a tag labeled `cs2103`, and whose emails contain `gmail`.
 
+[Back to top](#top)
+
 ### Listing all contacts: `list`
 
 List all contacts in the address book.
 
 Format: `list`
 
+[Back to top](#top)
 
 ### Help command: `help`
 
 Shows a link to the user guide to help new users get familiar with the commands for the application.
+
+[Back to top](#top)
 
 Format: `help`
 
@@ -143,6 +163,7 @@ Examples:
 
 * `list` followed by `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person in the address book
 
+[Back to top](#top)
 
 ### Delete an Image for contacts: `delete-image`
 
@@ -172,6 +193,8 @@ Example:
 * `import soc` adds all important administrative contact for School of Computing
 * `import chs` adds all important administrative contact for College of Humanities and Sciences
 
+[Back to top](#top)
+
 ---
 
 ## Command summary
@@ -188,4 +211,4 @@ Example:
 | **Delete-Image** | `delete-image INDEX` <br> e.g.,  `delete-image 2`                                                                                                                                                                                   |                                                                                                                       |
 | **Import**       | `import [faculty]` <br> e.g.,  `import soc, import chs`                                                                                                                                                                             |
 
-
+[Back to top](#top)
