@@ -141,8 +141,8 @@ public interface Model {
     /** Gets the event at {@code index}. */
     Event getEvent(Index index);
 
-    /** Sets the {@code oldEvent} to {@code newEvent}. */
-    void setEvent(Event oldEvent, Event newEvent);
+    /** Sets the {@code event} at {@code index}. */
+    void setEvent(Index index, Event event);
 
     /** Tags {@code taggingPerson} to {@code Event}. */
     void tagPersonToEvent(Index eventIndex, Person taggingPerson);

@@ -37,10 +37,10 @@ public class CalendarPanel extends UiPart<Region> {
         Objects.requireNonNull(eventList);
 
         fillCalendarContent(eventList);
-        eventList.addListener((ListChangeListener<Event>) c -> fillCalendarContent(eventList));
+        eventList.addListener((ListChangeListener<Event>) c -> fillCalendarContent(c.getList()));
     }
 
-    private void fillCalendarContent(List<Event> events) {
+    private void fillCalendarContent(List<? extends Event> events) {
         calendarContent.getChildren().clear();
         if (events == null || events.isEmpty()) {
             calendarContent.getChildren().add(calendarContentPlaceholder);
@@ -69,7 +69,7 @@ public class CalendarPanel extends UiPart<Region> {
         calendarContent.getChildren().add(new CalendarDayCard(events, date).getRoot());
     }
 
-    private List<IndexedEvent> getIndexedEvents(List<Event> events) {
+    private List<IndexedEvent> getIndexedEvents(List<? extends Event> events) {
         List<IndexedEvent> indexedEvents = new LinkedList<>();
         int i = 0;
         for (Event event : events) {

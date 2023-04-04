@@ -25,8 +25,14 @@ public class RecurringEvent extends Event {
      */
     @Override
     public DateTime getEffectiveStartDateTime() {
+        if (!this.isRecurring()) {
+            return new DateTime(getStartDateTime().getDateTime());
+        }
+        // Gets the difference between start date time, end date time.
         long minutesElapsed = DateTime.getIntervalDuration(getStartDateTime(), getEndDateTime(), ChronoUnit.MINUTES);
+        // Then calculates the effective end datetime.
         DateTime effectiveEnd = getEffectiveEndDateTime();
+        // Then we get the new start date time by doing end date time minus the difference calculated earlier.
         return new DateTime(effectiveEnd.getDateTime().minusMinutes(minutesElapsed));
     }
 
@@ -36,9 +42,17 @@ public class RecurringEvent extends Event {
     @Override
     public DateTime getEffectiveEndDateTime() {
         LocalDateTime current = getEndDateTime().getDateTime();
+        if (!this.isRecurring()) {
+            return new DateTime(current);
+        }
         while (current.isBefore(LocalDateTime.now())) {
             current = current.plus(1, getRecurrence().getIncrementUnit());
         }
         return new DateTime(current);
+    }
+
+    @Override
+    public Event copy() {
+        return new RecurringEvent(description, startDateTime, endDateTime, recurrence, taggedPeople);
     }
 }

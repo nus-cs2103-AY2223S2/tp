@@ -34,6 +34,12 @@ import seedu.address.model.user.UserData;
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+    public static final Person SAMPLE_PERSON = new Person(new Name("John Doe"), new Phone("98765432"),
+            new Email("john.doe@example.com"), new Address("123 Main St, Anytown"), new Gender("Male"),
+            new Major("Computer Science"),
+            new Modules(Set.of(new NusMod("CS1101S"), new NusMod("CS1231S"))),
+            new Race("Caucasian"), new Tags(Set.of(new Tag("friends"), new Tag("colleagues"))),
+            new CommunicationChannel("Telegram"), new Favorite(true), new Faculty("Computing"));
     public static final Person PERSON_1 = new Person(new Name("Randy Jackson"), new Phone("84567890"),
             new Email("randy.jackson@gmail.com"), new Address("123 Main St, Anytown USA"), new Gender("Male"),
             new Major("Computer Science"),
