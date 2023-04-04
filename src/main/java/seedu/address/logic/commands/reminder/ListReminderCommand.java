@@ -16,12 +16,12 @@ public class ListReminderCommand extends Command {
     public static final String COMMAND_WORD = "list_reminder";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all reminders.\n";
-    public static final String SHOWING_REMINDERLIST_MESSAGE = "Opened reminder list window.";
+    public static final String SHOWING_REMINDER_LIST_MESSAGE = "Opened reminder list window.";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        return new CommandResult(SHOWING_REMINDERLIST_MESSAGE,
+        return new CommandResult(SHOWING_REMINDER_LIST_MESSAGE,
                 false, false, true, false, false);
     }
 }

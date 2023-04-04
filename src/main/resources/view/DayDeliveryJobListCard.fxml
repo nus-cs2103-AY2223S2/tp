@@ -29,6 +29,7 @@
             </HBox>
             <Label fx:id="receipient" styleClass="cell_small_label" text="\$receipient" />
             <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+            <Label fx:id="earn" styleClass="cell_small_label" text="\$address" />
         </VBox>
         <rowConstraints>
             <RowConstraints />

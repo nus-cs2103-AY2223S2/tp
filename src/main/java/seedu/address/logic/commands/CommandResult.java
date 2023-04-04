@@ -22,6 +22,11 @@ public class CommandResult {
     private final boolean showTimetable;
 
     /**
+     * Timetable information of specific date should be shown to the user.
+     */
+    private boolean showTimetableDate;
+
+    /**
      * List of unscheduled jobs should be shown to user.
      */
     private final boolean showUnschedule;
@@ -47,11 +52,6 @@ public class CommandResult {
     private final boolean showAddressBook;
 
     /**
-     * Main window should be shown and focused to the user.
-     */
-    private final boolean showJobList;
-
-    /**
      * The application should exit.
      */
     private final boolean exit;
@@ -63,16 +63,16 @@ public class CommandResult {
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showTimetable,
                          boolean showUnschedule, boolean showComplete, boolean showReminderList,
                          boolean showStatistics, boolean showAddressBook,
-                         boolean showJobList, boolean exit) {
+                         boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
+        this.showTimetableDate = false;
         this.showUnschedule = showUnschedule;
         this.showComplete = showComplete;
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.showAddressBook = showAddressBook;
-        this.showJobList = showJobList;
         this.exit = exit;
     }
 
@@ -86,12 +86,12 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
+        this.showTimetableDate = false;
         this.showUnschedule = showUnschedule;
         this.showComplete = showComplete;
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.showAddressBook = false;
-        this.showJobList = false;
         this.exit = exit;
     }
 
@@ -111,12 +111,12 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showTimetable = showTimetable;
+        this.showTimetableDate = false;
         this.showUnschedule = false;
         this.showComplete = false;
         this.showReminderList = showReminderList;
         this.showStatistics = showStatistics;
         this.showAddressBook = false;
-        this.showJobList = false;
         this.exit = exit;
     }
 
@@ -143,10 +143,17 @@ public class CommandResult {
     }
 
     /**
-     * Checks if timetable window is shown
+     * Checks if timetable window for any date is shown
      */
     public boolean isShowTimetable() {
         return showTimetable;
+    }
+
+    /**
+     * Checks if timetable window for specific date is shown
+     */
+    public boolean isShowTimetableDate() {
+        return showTimetableDate;
     }
 
     /**
@@ -186,17 +193,18 @@ public class CommandResult {
     }
 
     /**
-     * Checks if main window is required to focus
-     */
-    public boolean isShowJobList() {
-        return showJobList;
-    }
-
-    /**
      * Checks if main window is exited
      */
     public boolean isExit() {
         return exit;
+    }
+
+    /**
+     * Sets status of show timetable for specific date
+     * @param isShowTimetableDate
+     */
+    public void setShowTimetableDate(boolean isShowTimetableDate) {
+        this.showTimetableDate = isShowTimetableDate;
     }
 
     @Override

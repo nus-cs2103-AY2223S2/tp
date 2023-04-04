@@ -7,13 +7,13 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.ui.UiPart;
-import seedu.address.ui.jobs.DayDeliveryJobCard;
 
 /**
  * Panel containing the list of jobs divided into slots in day.
@@ -57,6 +57,11 @@ public class DayJobListPanel extends UiPart<Region> {
         addJobListToSlot(jobList4, jobListInDay.get(3));
         addJobListToSlot(jobList5, jobListInDay.get(4));
         addJobListToSlot(jobList6, jobListInDay.get(5));
+    }
+
+    private void addScrollPaneToAll() {
+        ScrollPane pane = new ScrollPane();
+
     }
 
     private void addJobListToSlot(ListView<DeliveryJob> jobSlot, ArrayList<DeliveryJob> jobList) {
