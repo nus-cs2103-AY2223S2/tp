@@ -8,6 +8,7 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
@@ -20,30 +21,31 @@ import java.util.stream.Stream;
  */
 public final class ApplicativeParser<T> {
 
+    private static final Void VOID = null;
+    private static final CharPredicate IS_WHITESPACE = Character::isWhitespace;
+    private static final CharPredicate IS_NOT_WHITESPACE = IS_WHITESPACE.negate();
+
     ///////////////////////////////////
     // PREDEFINED PARSER COMBINATORS //
     ///////////////////////////////////
 
-    private static final ApplicativeParser<?> ALWAYS_FAILED_PARSER =
-            fromRunner(ignore -> Optional.empty());
+    private static final ApplicativeParser<?> ALWAYS_FAILED_PARSER = fromRunner(
+            input -> Optional.empty());
 
     private static final ApplicativeParser<Void> EOF_PARSER = fromRunner(
-            input -> input.isEmpty() ? Optional.of(Pair.of(input, null)) : Optional.empty());
+            input -> input.isEmpty() ? Optional.of(Pair.of(input, VOID)) : Optional.empty());
 
-    private static final ApplicativeParser<Void> SKIP_WHITESPACES_PARSER = fromRunner(input -> {
-        int length = input.length();
-        int offset = 0;
-        while (offset < length && Character.isWhitespace(input.charAt(offset))) {
-            offset++;
-        }
-        return Optional.of(Pair.of(input.subview(offset), null));
-    });
+    private static final ApplicativeParser<Void> SKIP_WHITESPACES_PARSER =
+            discard(IS_WHITESPACE);
 
     private static final ApplicativeParser<Void> SKIP_WHITESPACES_1_PARSER =
-            satisfy(Character::isWhitespace).takeNext(SKIP_WHITESPACES_PARSER);
+            discard1(IS_WHITESPACE);
+
+    private static final ApplicativeParser<String> NON_WHITESPACES_PARSER =
+            munch(IS_NOT_WHITESPACE);
 
     private static final ApplicativeParser<String> NON_WHITESPACES_1_PARSER =
-            munch1(c -> !Character.isWhitespace(c));
+            munch1(IS_NOT_WHITESPACE);
 
     private static final ApplicativeParser<String> UNTIL_EOF_PARSER = fromRunner(input -> {
         int length = input.length();
@@ -83,16 +85,6 @@ public final class ApplicativeParser<T> {
     }
 
     /**
-     * Returns a parser that always fails.
-     *
-     * @param <T> the type of the parser result (which does not exist, in this case)
-     * @return a parser that always fails
-     */
-    public static <T> ApplicativeParser<T> fail() {
-        return ALWAYS_FAILED_PARSER.cast();
-    }
-
-    /**
      * Lifts a (curried) binary function to work on parsers. The first parser is run on the input,
      * and may consume some characters. Then, the second parser is run on the remaining input.
      * Finally, the results of the two parsers are combined using the binary function.
@@ -119,11 +111,35 @@ public final class ApplicativeParser<T> {
         return left.flatMap(combiner.andThen(right::map));
     }
 
+    /**
+     * Lifts a binary function to work on parsers.
+     *
+     * @see #lift(Function, ApplicativeParser, ApplicativeParser)
+     *
+     * @param <T> the type of the first parser result
+     * @param <U> the type of the second parser result
+     * @param <V> the type of the resultant parser result
+     * @param combiner the given binary function
+     * @param left the first parser
+     * @param right the second parser
+     * @return a new parser, that first runs the first parser, then the second parser, and finally
+     *         combines the result of these parsers using the binary function
+     */
     public static <T, U, V> ApplicativeParser<V> lift(
             BiFunction<? super T, ? super U, ? extends V> combiner,
             ApplicativeParser<? extends T> left,
             ApplicativeParser<? extends U> right) {
         return lift(leftValue -> rightValue -> combiner.apply(leftValue, rightValue), left, right);
+    }
+
+    /**
+     * Returns a parser that always fails.
+     *
+     * @param <T> the type of the parser result (which does not exist, in this case)
+     * @return a parser that always fails
+     */
+    public static <T> ApplicativeParser<T> fail() {
+        return ALWAYS_FAILED_PARSER.cast();
     }
 
     /**
@@ -137,14 +153,19 @@ public final class ApplicativeParser<T> {
     }
 
     /**
-     * Returns a parser that skips all leading whitespaces.
+     * Returns a parser that skips leading whitespaces.
      *
-     * @return a parser that skips all leading whitespaces
+     * @return a parser that skips leading whitespaces
      */
     public static ApplicativeParser<Void> skipWhitespaces() {
         return SKIP_WHITESPACES_PARSER;
     }
 
+    /**
+     * Returns a parser that skips at least one leading whitespace.
+     *
+     * @return a parser that skips at least one leading whitespace
+     */
     public static ApplicativeParser<Void> skipWhitespaces1() {
         return SKIP_WHITESPACES_1_PARSER;
     }
@@ -153,6 +174,16 @@ public final class ApplicativeParser<T> {
      * Returns a parser that consumes input until it reaches a whitespace character.
      *
      * @return a parser that parses until a whitespace character
+     */
+    public static ApplicativeParser<String> nonWhitespaces() {
+        return NON_WHITESPACES_PARSER;
+    }
+
+    /**
+     * Returns a parser that consumes at least one non-whitespace character. The parser stops when
+     * it reaches a whitespace character.
+     *
+     * @return a parser that consumes at least one non-whitespaces character
      */
     public static ApplicativeParser<String> nonWhitespaces1() {
         return NON_WHITESPACES_1_PARSER;
@@ -165,6 +196,24 @@ public final class ApplicativeParser<T> {
      */
     public static ApplicativeParser<String> untilEof() {
         return UNTIL_EOF_PARSER;
+    }
+
+    /**
+     * Returns a parser that parses until the given substring is encountered. The substring will not
+     * be consumed from the input. This parser will returns the substring between the start of the
+     * input, and the last character before the given substring.
+     *
+     * @param end the substring to find
+     * @return a parser that parses until the given substring is encountered
+     */
+    public static ApplicativeParser<String> until(String end) {
+        return fromRunner(input -> {
+            int offset = input.indexOf(end);
+            if (offset < 0) {
+                return Optional.empty();
+            }
+            return Optional.of(Pair.of(input.subview(offset), input.substringTo(offset)));
+        });
     }
 
     /**
@@ -181,27 +230,12 @@ public final class ApplicativeParser<T> {
     }
 
     /**
-     * Returns a parser that parses until the given substring is encountered. The substring will
-     * also be consumed from the input. This parser will returns the substring between the start of
-     * the input, and the last character before the given substring.
+     * Returns a parser that consumes and returns the next character, if it satisfies the specified
+     * predicate.
      *
-     * @param end the substring to find
-     * @return a parser that parses until the given substring is encountered
+     * @param predicate the predicate to test the character
+     * @return a parser that consumes and returns the next character
      */
-    public static ApplicativeParser<String> until(String end) {
-        return fromRunner(input -> {
-            int offset = input.indexOf(end);
-            if (offset < 0) {
-                return Optional.empty();
-            }
-            return Optional.of(Pair.of(input.subview(offset), input.substringTo(offset)));
-        });
-    }
-
-    public static ApplicativeParser<Character> character(char ch) {
-        return satisfy(c -> c == ch);
-    }
-
     public static ApplicativeParser<Character> satisfy(CharPredicate predicate) {
         return fromRunner(input -> {
             if (input.isEmpty()) {
@@ -214,19 +248,107 @@ public final class ApplicativeParser<T> {
         });
     }
 
-    public static ApplicativeParser<String> munch(CharPredicate predicate) {
+    /**
+     * Returns a parser that consumes and returns the specified character.
+     *
+     * @param character the specified character
+     * @return a parser that consumes and returns the specified character
+     */
+    public static ApplicativeParser<Character> character(char character) {
+        return satisfy(c -> c == character);
+    }
+
+    /**
+     * Returns a parser that consumes at least {@code n} characters that satisfy the specified
+     * predicate. The characters will be joined into a single string.
+     *
+     * @param predicate the predicate to test the character
+     * @param n the minimum number of characters that must be consumed
+     * @return a parser that consumes at least {@code n} characters and joins them into a string
+     */
+    public static ApplicativeParser<String> munchN(CharPredicate predicate, int n) {
         return fromRunner(input -> {
             int length = input.length();
             int offset = 0;
             while (offset < length && predicate.test(input.charAt(offset))) {
                 offset++;
             }
-            return Optional.of(Pair.of(input.subview(offset), input.substringTo(offset)));
+            return offset >= n
+                    ? Optional.of(Pair.of(input.subview(offset), input.substringTo(offset)))
+                    : Optional.empty();
         });
     }
 
+    /**
+     * Returns a parser that consumes characters that satisfy the specified predicate, and joins
+     * them into a string.
+     *
+     * @see #munchN(CharPredicate, int)
+     *
+     * @param predicate the predicate to test the character
+     * @return a parser that consumes characters and joins them into a string
+     */
+    public static ApplicativeParser<String> munch(CharPredicate predicate) {
+        return munchN(predicate, 0);
+    }
+
+    /**
+     * Returns a parser that consumes one or more characters that satisfy the specified predicate
+     * and joins them into a string.
+     *
+     * @see #munchN(CharPredicate, int)
+     *
+     * @param predicate the predicate to test the character
+     * @return a parser that consumes one or more characters and joins them into a string
+     */
     public static ApplicativeParser<String> munch1(CharPredicate predicate) {
-        return munch(predicate).filter(s -> !s.isEmpty());
+        return munchN(predicate, 1);
+    }
+
+    /**
+     * Returns a parser that consumes and discards at least {@code n} characters that satisfy the
+     * specified predicate.
+     *
+     * @param predicate the predicate to test the character
+     * @param n the minimum number of characters that must be consumed
+     * @return a parser that consumes at least {@code n} characters and discards them
+     */
+    public static ApplicativeParser<Void> discardN(CharPredicate predicate, int n) {
+        return fromRunner(input -> {
+            int length = input.length();
+            int offset = 0;
+            while (offset < length && predicate.test(input.charAt(offset))) {
+                offset++;
+            }
+            return offset >= n
+                    ? Optional.of(Pair.of(input.subview(offset), VOID))
+                    : Optional.empty();
+        });
+    }
+
+    /**
+     * Returns a parser that consumes and discards characters that satisfy the specified predicate.
+     *
+     * @see #discardN(CharPredicate, int)
+     *
+     * @param predicate the predicate to test the character
+     * @return a parser that consumes and discards characters
+     */
+    public static ApplicativeParser<Void> discard(CharPredicate predicate) {
+        return discardN(predicate, 0);
+    }
+
+    /**
+     * Returns a parser that consumes and discards one or more characters that satisfy the specified
+     * predicate.
+     *
+     * @see #discardN(CharPredicate, int)
+     *
+     * @param predicate the predicate to test the character
+     * @return a parser that consumes and discards one or more characters
+     */
+    public static ApplicativeParser<Void> discard1(CharPredicate predicate) {
+        return discardN(predicate, 1);
     }
 
     /**
@@ -241,8 +363,17 @@ public final class ApplicativeParser<T> {
         return choiceFrom(Arrays.stream(parsers));
     }
 
+    /**
+     * Reduces a stream of parsers into a single parser. The parsers in the original stream will be
+     * tried sequentially when the returned parser runs. If the stream is empty, the resultant
+     * parser will always fail.
+     *
+     * @param <T> the type of the parser results
+     * @param parsers a stream of parsers
+     * @return a parser that tries the given parsers, until one succeeds
+     */
     public static <T> ApplicativeParser<T> choiceFrom(
-            Stream<ApplicativeParser<? extends T>> parsers) {
+            Stream<? extends ApplicativeParser<? extends T>> parsers) {
         return parsers.map(ApplicativeParser::<T>cast)
                 .reduce(ApplicativeParser::or)
                 .orElse(ApplicativeParser.fail());
@@ -256,6 +387,13 @@ public final class ApplicativeParser<T> {
         return runner.apply(input);
     }
 
+    /**
+     * Casts the type argument of this parser to another type. This is an unsafe operation and
+     * should be used with caution.
+     *
+     * @param <U> the type argument to cast to
+     * @return the current parser, with the new type argument
+     */
     @SuppressWarnings("unchecked")
     private <U> ApplicativeParser<U> cast() {
         return (ApplicativeParser<U>) this;
@@ -297,7 +435,12 @@ public final class ApplicativeParser<T> {
      * @return a new parser that applies the mapper function, after running this parser
      */
     public <U> ApplicativeParser<U> map(Function<? super T, ? extends U> mapper) {
-        return fromRunner(input -> run(input).map(pair -> pair.mapSecond(mapper)));
+        return fromRunner(input -> run(input).map(pair -> {
+            StringView nextInput = pair.getFirst();
+            T value = pair.getSecond();
+            U newValue = mapper.apply(value);
+            return Pair.of(nextInput, newValue);
+        }));
     }
 
     /**
@@ -341,27 +484,34 @@ public final class ApplicativeParser<T> {
         }));
     }
 
-    public <U> ApplicativeParser<U> constMap(U otherValue) {
-        return map(ignore -> otherValue);
-    }
-
+    /**
+     * In place version of {@link #lift(BiFunction, ApplicativeParser, ApplicativeParser)}.
+     *
+     * @param <U>
+     * @param <V>
+     * @param that
+     * @param combiner
+     * @return
+     */
     public <U, V> ApplicativeParser<V> combine(
             ApplicativeParser<? extends U> that,
             BiFunction<? super T, ? super U, ? extends V> combiner) {
         return lift(combiner, this, that);
     }
 
+    /**
+     * In place version of {@link #lift(Function, ApplicativeParser, ApplicativeParser)}.
+     *
+     * @param <U>
+     * @param <V>
+     * @param that
+     * @param combiner
+     * @return
+     */
     public <U, V> ApplicativeParser<V> combine(
             ApplicativeParser<? extends U> that,
             Function<? super T, Function<? super U, ? extends V>> combiner) {
         return lift(combiner, this, that);
-    }
-
-    public ApplicativeParser<Void> consume(Consumer<? super T> action) {
-        return map(value -> {
-            action.accept(value);
-            return null;
-        });
     }
 
     /**
@@ -385,70 +535,80 @@ public final class ApplicativeParser<T> {
         return fromRunner(input -> run(input).or(() -> that.<T>cast().run(input)));
     }
 
-    public ApplicativeParser<List<T>> many() {
-        return fromRunner(input -> {
-            List<T> result = new ArrayList<>();
-            StringView nextInput = input;
-            while (true) {
-                Optional<Pair<StringView, T>> opt = run(nextInput);
-                if (opt.isEmpty()) {
-                    break;
-                }
-                Pair<StringView, T> pair = opt.get();
-                nextInput = pair.getFirst();
-                result.add(pair.getSecond());
-            }
-            return Optional.of(Pair.of(input, result));
-        });
-    }
-
-    public ApplicativeParser<List<T>> many1() {
+    public ApplicativeParser<List<T>> thenMany(ApplicativeParser<? extends T> that) {
         return fromRunner(input -> run(input).map(pair -> {
+            ApplicativeParser<T> parser = that.cast();
+            Pair<StringView, T> nextPair = pair;
             List<T> result = new ArrayList<>();
-            StringView nextInput = pair.getFirst();
-            result.add(pair.getSecond());
             while (true) {
-                Optional<Pair<StringView, T>> opt = run(nextInput);
+                StringView nextInput = nextPair.getFirst();
+                T value = nextPair.getSecond();
+                result.add(value);
+                Optional<Pair<StringView, T>> opt = parser.run(nextInput);
                 if (opt.isEmpty()) {
-                    break;
+                    return Pair.of(nextInput, result);
                 }
-                Pair<StringView, T> nextPair = opt.get();
-                nextInput = nextPair.getFirst();
-                result.add(nextPair.getSecond());
+                nextPair = opt.get();
             }
-            return Pair.of(nextInput, result);
         }));
     }
 
-    public <U> ApplicativeParser<List<T>> sepBy(ApplicativeParser<U> that) {
-        return sepBy1(that).orElse(new ArrayList<>());
+    public ApplicativeParser<List<T>> many1() {
+        return thenMany(this);
+    }
+
+    public ApplicativeParser<List<T>> many() {
+        return many1().orElse(ArrayList::new);
     }
 
     public <U> ApplicativeParser<List<T>> sepBy1(ApplicativeParser<U> that) {
-        ApplicativeParser<T> parser = that.takeNext(this);
+        return thenMany(that.takeNext(this));
+    }
+
+    public <U> ApplicativeParser<List<T>> sepBy(ApplicativeParser<U> that) {
+        return sepBy1(that).orElse(ArrayList::new);
+    }
+
+    public <U> ApplicativeParser<U> constMap(U otherValue) {
         return fromRunner(input -> run(input).map(pair -> {
-            List<T> result = new ArrayList<>();
             StringView nextInput = pair.getFirst();
-            result.add(pair.getSecond());
-            while (true) {
-                Optional<Pair<StringView, T>> opt = parser.run(nextInput);
-                if (opt.isEmpty()) {
-                    break;
-                }
-                Pair<StringView, T> nextPair = opt.get();
-                nextInput = nextPair.getFirst();
-                result.add(nextPair.getSecond());
-            }
-            return Pair.of(nextInput, result);
+            return Pair.of(nextInput, otherValue);
+        }));
+    }
+
+    public <U> ApplicativeParser<U> constMap(Supplier<? extends U> supplier) {
+        return fromRunner(input -> run(input).map(pair -> {
+            StringView nextInput = pair.getFirst();
+            U otherValue = supplier.get();
+            return Pair.of(nextInput, otherValue);
         }));
     }
 
     public ApplicativeParser<T> orElse(T otherValue) {
-        return or(of(otherValue));
+        return fromRunner(input -> run(input).or(() -> Optional.of(Pair.of(input, otherValue))));
+    }
+
+    public ApplicativeParser<T> orElse(Supplier<? extends T> supplier) {
+        return fromRunner(input -> run(input).or(() -> {
+            T otherValue = supplier.get();
+            return Optional.of(Pair.of(input, otherValue));
+        }));
+    }
+
+    public ApplicativeParser<Void> consume(Consumer<? super T> consumer) {
+        return fromRunner(input -> run(input).map(pair -> {
+            StringView nextInput = pair.getFirst();
+            T value = pair.getSecond();
+            consumer.accept(value);
+            return Pair.of(nextInput, VOID);
+        }));
     }
 
     public ApplicativeParser<Void> optional() {
-        return this.<Void>constMap(null).orElse(null);
+        return fromRunner(input -> run(input).map(pair -> {
+            StringView nextInput = pair.getFirst();
+            return Pair.of(nextInput, VOID);
+        }).or(() -> Optional.of(Pair.of(input, VOID))));
     }
 
     /**
