@@ -41,6 +41,7 @@ Given below are my contributions to the project.
   * Description and Command Summary section ([#15](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/15))
   * Quickstart section ([#47](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/47))
   * List all section ([#81](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/81))
+  * Visual examples for all commands ([#115](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/115))
 
 * **Contributions to team-based tasks**
   * Setting up the GitHub team org/repo
