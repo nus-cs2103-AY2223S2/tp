@@ -66,9 +66,12 @@ So what are you waiting for? Get ready to **Connect** with others and let **US**
     - [5.9.3 Major Tags: `maj/`](#593-major-tags-maj)
     - [5.9.4 Remark Tags: `r/`](#594-remark-tags-r)
 - [6. FAQ](#6-faq)
-- [7. Command Summary](#7-command-summary)
-- [8. Prefix Summary](#8-prefix-summary)
-- [9. Glossary](#9-glossary)
+- [7. Planned Enhancements](#7-planned-enhancements)
+  - [7.1 ](#71-edit-command)
+  - [7.2 ](#72-information-field-validation)
+- [8. Command Summary](#8-command-summary)
+- [9. Prefix Summary](#9-prefix-summary)
+- [10. Glossary](#10-glossary)
 
 ---
 
@@ -92,13 +95,13 @@ Some special notations are used throughout this guide:
 
 - If this is your **first time** using ConnectUS, head over to our [Installation](#2-installation) guide for instructions on setting up ConnectUS, and our [Quick Start Guide](#3-quick-start-guide) to begin using ConnectUS.
 
-- If you need a **refresher on command syntax**, head over to [Command Summary](#7-command-summary) for a reference table of commands, or [Prefix Summary](#8-prefix-summary) for a reference table of prefixes.
+- If you need a **refresher on command syntax**, head over to [Command Summary](#8-command-summary) for a reference table of commands, or [Prefix Summary](#9-prefix-summary) for a reference table of prefixes.
 
 - For detailed instructions about the features we offer and how to use each command, please refer to [Features](#4-features).
 
 - For detailed information about the different information fields that you can assign to a contact, please refer to [Information Fields & Prefixes](#5-information-fields--prefixes).
 
-- Refer to the [Glossary](#9-glossary) for definitions of terms used in ConnectUS.
+- Refer to the [Glossary](#10-glossary) for definitions of terms used in ConnectUS.
 
 [↑ Back to top of section](#1-using-this-guide)
 
@@ -181,7 +184,7 @@ The contact list shows the contacts that exist within your ConnectUS with all th
 * There is a scroll bar beside the contact list container for you to scroll through your contact list.
 * The index beside the contact name is the contact's index. It is used for certain commands such as `delete`. More details on this can be found in [Features](#4-features).
 * The list of information fields and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes). 
-* You can also find a condensed summary table of these information fields in the [Prefix Summary](#8-prefix-summary).
+* You can also find a condensed summary table of these information fields in the [Prefix Summary](#9-prefix-summary).
 
 <div style="page-break-after: always"></div>
 
@@ -200,7 +203,7 @@ Example: `n/NAME`
 In this case, `NAME` is the information field that you wish to input. The `n/` prefix must be used for ConnectUS to recognise that you intend on adding a `NAME` to a contact.
 
 * The list of information fields, prefixes and their details can be found in [Information Fields & Prefixes](#5-information-fields--prefixes). 
-* You can also find a condensed summary of these information fields in the [Prefix Summary](#8-prefix-summary).
+* You can also find a condensed summary of these information fields in the [Prefix Summary](#9-prefix-summary).
 
 <div markdown="block" class="alert alert-primary">:memo: **Note:**<br>
 
@@ -213,7 +216,7 @@ As of now, using non-English languages (e.g. Chinese, French) as information fie
 To use ConnectUS, type the [command](#321-command) along with its [parameters](#322-parameter), if required. You can leave the parameters empty if it is optional (i.e. if it is wrapped in square brackets like this: `help [COMMAND]`).
 
 * The detailed list of commands and their command formats can be found in [Features](#4-features). 
-* You can also find a condensed summary of these commands in the [Command Summary](#7-command-summary).
+* You can also find a condensed summary of these commands in the [Command Summary](#8-command-summary).
 
 <div style="page-break-after: always"></div>
 
@@ -248,7 +251,7 @@ To use ConnectUS, type the [command](#321-command) along with its [parameters](#
 
 ## 3.4 How to Use the CLI
 
-To use the Command Line Interface(CLI), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
+To use the Command Line Interface (CLI), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
    ![Command Box](images/ConnectUSCommandBox.png) <br>
 
 To familiarise yourself with ConnectUS, let's try out [the `add` command](#44-adding-a-contact-add) ! The `add` command allows you to add a new contact into the [Contact List](#313-contact-list).
@@ -815,7 +818,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
     * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
       The domain name must:
         - end with a domain label at least 2 characters long
-        - have each domain label start and end with <u>alphanumeric</u> characters
+        - have each domain label start and end with alphanumeric characters
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
@@ -980,7 +983,66 @@ As of now, using non-English languages (e.g. Chinese, French) as information fie
 
 <div style="page-break-after: always"></div>
 
-# 7. Command Summary
+# 7. Planned Enhancements
+
+This section contains a list of known features that we plan to enhance in future iterations of the application.
+
+## 7.1 Edit Command
+
+Currently, the edit command will not return the "Invalid Command Format" error message in the Command Result Feedback box. Instead, it states "At least one field to edit must be provided", which indirectly indicates that the command is of the correct format, when it is actually missing at least one information field to be edited.
+
+The correct format should be: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`, where at least one of the optional fields is indicated.
+
+## 7.2 Information Field Validation
+
+Currently, certain information fields can hold values that would be considered invalid in real life. Some other information fields cannot hold values that would be considered valid in real life.
+
+**Emails**: Based on the current [format constraints on valid emails](#53-email-e), an email such as `jason@gmail` would be considered valid as it is:
+* of the format local-part@domain, where
+  * local-part contains only <u>alphanumeric</u> characters and these <u>special characters</u>:`+_.-`,
+  * local-part does not start or end with any special characters,
+* followed by a '@' and then a domain name, where the domain name
+  * ends with a domain label at least 2 characters long,
+  * starts and ends with alphanumeric characters,
+  * consists of alphanumeric characters, separated only by hyphens, if any.
+
+However, such an email would be considered invalid in real life, as they are of the following format: `local-part@domain.extension`, e.g. `jason@gmail.com`.
+
+**Addresses**: Based on the current [format constraints on valid addresses](#54-address-a), an address such as `;` would be considered valid as it:
+* can take any value, and should not be blank.
+
+However, such an address would be considered invalid in real life, as it would at least include a block number, street name, and a postal code.
+
+**Instagram Usernames**: Based on the current [format constraints on valid Instagram usernames](#55-instagram-ig), an Instagram username such as `john_doe` would be considered as invalid as:
+* it contains the special character `_`, when it should only contain the special character `.`.
+
+However, such an Instagram username would be considered valid in real life.
+
+
+## 7.3 More Language Support
+
+Currently, English is the only language that is supported by our application.
+
+As we are aware that there are many international students studying in NUS SoC, we intend to add more language support (such as Chinese, French, Japanese, Korean etc.) so that international students can better enjoy our app!
+
+## 7.4 More Social Media Support
+
+Currently, only Instagram, Telegram and WhatsApp are supported.
+
+As we are aware that some students studying in NUS SoC may have other forms of social media (such as WeChat, LinkedIn, Reddit etc.), and may want to add them to contacts, we are currently working on bringing this feature to you!
+
+We plan to address and fix all the current constraints mentioned above in the next iteration of this product (V1.5).
+
+
+[↑ Back to top of section](#7-planned-enhancements)
+
+[↑ Back to top](#table-of-contents)
+
+---
+
+<div style="page-break-after: always"></div>
+
+# 8. Command Summary
 
 | Command                | Format                                                                                                                                                                                                                                                       | Example                                                                               |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
@@ -1004,7 +1066,7 @@ As of now, using non-English languages (e.g. Chinese, French) as information fie
 
 <div style="page-break-after: always"></div>
 
-# 8. Prefix Summary
+# 9. Prefix Summary
 
 | Information Field | Prefix | Example                                       |
 |-------------------|--------|-----------------------------------------------|
@@ -1027,7 +1089,7 @@ As of now, using non-English languages (e.g. Chinese, French) as information fie
 
 <div style="page-break-after: always"></div>
 
-# 9. Glossary
+# 10. Glossary
 
 ### A
 > **Alphanumeric:**
