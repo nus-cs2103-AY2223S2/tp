@@ -1,6 +1,7 @@
 package tfifteenfour.clipboard.model.course;
 
 import static java.util.Objects.requireNonNull;
+import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,8 +20,8 @@ import tfifteenfour.clipboard.model.student.UniqueStudentList;
  */
 public class Session {
 
-    public static final String MESSAGE_CONSTRAINTS = "Session names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Session names can only contain alphanumeric and special characters";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum}\\p{Punct}]+$";
 
     private final String sessionName;
     private Boolean isSelected;
@@ -38,6 +39,7 @@ public class Session {
      */
     public Session(String sessionName) {
         requireNonNull(sessionName);
+        checkArgument(isValidSessionName(sessionName), MESSAGE_CONSTRAINTS);
         this.sessionName = sessionName;
         attendance = new HashMap<>();
         isSelected = false;

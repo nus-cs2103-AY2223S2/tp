@@ -181,6 +181,9 @@ public class ParserUtil {
     public static Group parseGroup(String groupName) throws ParseException {
         requireNonNull(groupName);
         String trimmedGroup = groupName.trim();
+        if (!Group.isValidGroupName(trimmedGroup)) {
+            throw new ParseException(Group.MESSAGE_CONSTRAINTS);
+        }
         return new Group(trimmedGroup);
     }
 
@@ -191,6 +194,9 @@ public class ParserUtil {
     public static Session parseSession(String sessionName) throws ParseException {
         requireNonNull(sessionName);
         String trimmedSession = sessionName.trim();
+        if (!Session.isValidSessionName(trimmedSession)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
         return new Session(trimmedSession);
     }
 
@@ -205,18 +211,5 @@ public class ParserUtil {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
         return new Task(trimmedTask);
-    }
-
-    /**
-     * Parses {@code Collection<String> modules} into a {@code Set<ModuleCode>}.
-     */
-    public static Set<Course> parseModules(Collection<String> modules) throws ParseException {
-        requireNonNull(modules);
-        final Set<Course> moduleSet = new HashSet<>();
-
-        for (String moduleName : modules) {
-            moduleSet.add(parseCourse(moduleName));
-        }
-        return moduleSet;
     }
 }

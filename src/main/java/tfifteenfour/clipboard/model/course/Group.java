@@ -1,6 +1,7 @@
 package tfifteenfour.clipboard.model.course;
 
 import static java.util.Objects.requireNonNull;
+import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
@@ -15,8 +16,8 @@ import tfifteenfour.clipboard.model.task.UniqueTasksList;
  * Guarantees: immutable; name is valid as declared in {@link #isValidGroupName(String)}
  */
 public class Group {
-    public static final String MESSAGE_CONSTRAINTS = "Module codes should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Group names can only contain alphanumeric and special characters";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum}\\p{Punct}]+$";
 
     private String groupName;
     private final UniqueStudentList students;
@@ -40,6 +41,7 @@ public class Group {
      * @param groupName A valid group name.
      */
     public Group(String groupName) {
+        checkArgument(isValidGroupName(groupName), MESSAGE_CONSTRAINTS);
         this.groupName = groupName;
     }
 
