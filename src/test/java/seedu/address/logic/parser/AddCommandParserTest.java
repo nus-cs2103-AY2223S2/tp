@@ -57,7 +57,7 @@ public class AddCommandParserTest {
                 .build();
 
         assertParseSuccess(parser, NAME_DESC_BOB + NAME_DESC_DOG + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TIMESTAMP_DESC_BOB + DEADLINE_DESC_BOB
                 + TAG_DESC_CAT + TAG_DESC_DOG, new AddCommand(expectedPetMultipleTags));
     }
 
@@ -99,41 +99,42 @@ public class AddCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid owner name
         assertParseFailure(parser, INVALID_OWNER_NAME_DESC + NAME_DESC_DOG + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TIMESTAMP_DESC_BOB
                 + TAG_DESC_CAT + TAG_DESC_DOG, OwnerName.MESSAGE_CONSTRAINTS);
 
         // invalid pet name
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PET_NAME_DESC + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TIMESTAMP_DESC_BOB
                 + TAG_DESC_CAT + TAG_DESC_DOG, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + NAME_DESC_DOG + INVALID_PHONE_DESC
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TIMESTAMP_DESC_BOB
                 + TAG_DESC_CAT + TAG_DESC_DOG, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + NAME_DESC_DOG + PHONE_DESC_BOB
-                + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
+                + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + TIMESTAMP_DESC_BOB
                 + TAG_DESC_CAT + TAG_DESC_DOG, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + NAME_DESC_DOG + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+                + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + TIMESTAMP_DESC_BOB
                 + TAG_DESC_CAT + TAG_DESC_DOG, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + NAME_DESC_DOG + PHONE_DESC_BOB
-                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TIMESTAMP_DESC_BOB
                 + INVALID_TAG_DESC + VALID_TAG_CAT, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_OWNER_NAME_DESC + NAME_DESC_DOG + PHONE_DESC_BOB
-                        + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC, OwnerName.MESSAGE_CONSTRAINTS);
+                        + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + TIMESTAMP_DESC_BOB, OwnerName.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + NAME_DESC_DOG
-                        + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_CAT + TAG_DESC_DOG,
+                        + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + TIMESTAMP_DESC_BOB + TAG_DESC_CAT + TAG_DESC_DOG,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
