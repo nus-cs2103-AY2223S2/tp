@@ -15,7 +15,7 @@ Given below are my contributions to the project.
   * Justification: This feature enables the user to peruse the list of displayed events in accordance with their input commands.
 
 * **New Feature**: Duplicate event validation. ([#40](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/40)), ([#41](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/41)), ([#117](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/117))
-  * What it does: Validates if a newly added event is a duplicate event
+  * What it does: Validates if a newly added event is a duplicate event.
   * Justification: By validating the uniqueness of newly added events, we ensure that the system is not overwhelmed with duplicate events, which can lead to confusion and inconsistencies in event tracking. The implementation of this feature is in line with our overarching goal of maintaining the integrity of our event tagging system and providing users with a streamlined and efficient experience when utilizing our application.
   * Highlights: In keeping with our goal of maintaining the uniqueness of event tags, we have opted to implement duplicate event validation using only the event name, similar to our approach to duplicate persons validation. This measure serves to reduce ambiguity that may arise in cases where two events with identical names are assigned to the same individual.
 
