@@ -2,7 +2,7 @@ package trackr.model.menu;
 
 /**
  * Represents a Item's cost in the Item list.
- * Guarantees: immutable; is valid as declared in {@link #isValidCost(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidPrice(String)}
  */
 public class ItemCost extends ItemPrice {
 
