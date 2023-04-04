@@ -618,9 +618,13 @@ Equivalent to clicking the close button via the GUI. <br>
 
 **A:** CoDoc automatically saves your person list after every successful `add`, `edit` and `clear`.
 
+<br>
+
 **Q: How do I transfer my data to another Computer?**
 
 **A:** Install CoDoc on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
+
+<br>
 
 **Q: Where is the data file stored?**
 
