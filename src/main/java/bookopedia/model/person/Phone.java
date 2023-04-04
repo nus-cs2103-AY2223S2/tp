@@ -14,7 +14,7 @@ public class Phone {
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, that contain at least 3 digits"
             + " and at most 20 digits";
-    public static final String VALIDATION_REGEX = "\\d{3,20}";
+    public static final String VALIDATION_REGEX = "\\d{3,}";
     public final String value;
 
     /**
