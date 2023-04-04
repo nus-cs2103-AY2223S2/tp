@@ -51,7 +51,6 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-    
         model.clearRecent();
 
         if (model.hasEvent(toAdd)) {
