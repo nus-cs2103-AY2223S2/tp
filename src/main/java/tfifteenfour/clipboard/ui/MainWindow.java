@@ -627,8 +627,13 @@ public class MainWindow extends UiPart<Stage> {
 
         } else if (commandResult.getCommand() instanceof AttendanceCommand) {
             handleAttendanceCommand();
+
         } else if (commandResult.getCommand() instanceof UndoCommand) {
             handleUndoCommand(commandResult);
+
+        } else if (commandResult.getCommand() instanceof ClearCommand) {
+            leftPanelPlaceholder.getChildren().clear();
+            rightPanelPlaceholder.getChildren().clear();
         }
     }
 
