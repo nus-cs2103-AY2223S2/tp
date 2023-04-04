@@ -40,7 +40,7 @@ import seedu.address.ui.jobs.DeliveryJobListPanel;
 import seedu.address.ui.main.CommandBox;
 import seedu.address.ui.main.ResultDisplay;
 import seedu.address.ui.main.StatusBarFooter;
-import seedu.address.ui.person.AddressBookWindow;
+import seedu.address.ui.person.AddressBookDialog;
 import seedu.address.ui.timetable.CompleteWindow;
 import seedu.address.ui.timetable.UnscheduleWindow;
 
@@ -58,7 +58,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private AddressBookWindow addressBookWindow;
+    private AddressBookDialog addressBookWindow;
     private AddDeliveryJobWindow addDeliveryJobWindow;
     private CompleteWindow completeWindow;
     private DeliveryJobListPanel deliveryJobListPanel;
@@ -206,7 +206,7 @@ public class MainWindow extends UiPart<Stage> {
         completeWindow = new CompleteWindow(new Stage(), logic);
         reminderListWindow = new ReminderListWindow(new Stage(), logic);
         statsWindow = new StatisticsWindow(new Stage(), logic);
-        addressBookWindow = new AddressBookWindow(new Stage(), logic, (person) -> {}, helpWindow);
+        addressBookWindow = new AddressBookDialog(new Stage(), logic, (person) -> {}, helpWindow);
     }
 
     /**

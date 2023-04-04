@@ -53,7 +53,7 @@ public class DeliverySlot {
      * Checks if delivery slot is valid (within range 1-5)
      * @return
      */
-    public boolean isValid() {
+    public boolean isValidRange() {
         return ((Integer.parseInt(value) < 6) && (Integer.parseInt(value) > 0));
     }
 
