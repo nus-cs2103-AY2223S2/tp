@@ -32,6 +32,7 @@ public class DeleteSessionCommand extends DeleteCommand {
 
     /**
      * Creates a {@code DeleteSessionCommand} to delete the session at the specified {@code Index}.
+     *
      * @param index Index of the session to be deleted.
      */
     public DeleteSessionCommand(Index index) {
@@ -64,6 +65,6 @@ public class DeleteSessionCommand extends DeleteCommand {
         Session sessionToDelete = lastShownList.get(index.getZeroBased());
         selectedGroup.deleteSession(sessionToDelete);
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS, sessionToDelete, selectedGroup), willModifyState);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, selectedGroup, sessionToDelete), willModifyState);
     }
 }

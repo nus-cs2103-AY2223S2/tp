@@ -32,6 +32,7 @@ public class DeleteTaskCommand extends DeleteCommand {
 
     /**
      * Creates a {@code DeleteTaskCommand} to delete the task at the specified {@code Index}.
+     *
      * @param index Index of the task to be deleted.
      */
     public DeleteTaskCommand(Index index) {
@@ -64,6 +65,6 @@ public class DeleteTaskCommand extends DeleteCommand {
         Task taskToDelete = lastShownList.get(index.getZeroBased());
         selectedGroup.deleteTask(taskToDelete);
 
-        return new CommandResult(this, String.format(MESSAGE_SUCCESS, taskToDelete, selectedGroup), willModifyState);
+        return new CommandResult(this, String.format(MESSAGE_SUCCESS, selectedGroup, taskToDelete), willModifyState);
     }
 }
