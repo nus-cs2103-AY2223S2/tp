@@ -440,9 +440,9 @@ testers are expected to do more *exploratory* testing.
 
 6. All the command words, flags and arguments such as (sort asc or desc) should be case insensitive.
 
-7. We want to update the edit feature to only edit only one field instead of every single field.
+7. We want to upgrade the find command such that it can also find by substrings and not just by the words. e.g. `find t/egg` should be able to find a recipe with the title 'eggs'
 
-8. Allow ingredients prices to be more general, such as olive oil buy by bottle but in the recipe only allow to input price by tablespoon which is hard to calculate.
+8. Allow ingredients prices to be more general, for example, olive oil that is bought by the bottle. Currently in CookHub, we only allow to the users to input the price by tablespoon, which is hard to calculate.
 
 9. Allow find to work with multiple flags
 
