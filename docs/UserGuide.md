@@ -727,9 +727,14 @@ _Details coming soon ..._
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 ### How to Open CoDoc for Mac
 
-1. Create your home folder and place jar file into it. <br> In this example, we created a new folder called *CoDoc* and placed our newly downloaded `codoc.jar` into it. The folder *CoDoc* is now our *home folder*.
+1. Create your home folder and place jar file into it. In this example, <br>
+   * we created a new folder called *CoDoc* 
+   * and placed our newly downloaded `codoc.jar` into it. 
+   <div markdown="span" class="alert alert-info">
+   :information_source: **Note:** The folder CoDoc is now our home folder.
+   </div>
    
-   ![mac_open_01](images/user-guide/mac_open_01.png)
+      ![mac_open_01](images/user-guide/mac_open_01.png)
 2. Create an empty text file and **leave it open for now.**
    * Open textEdit: <kbd>CMD</kbd> + <kbd>Space</kbd> > type *textEdit.app* >  <kbd>Enter</kbd>
    * Then, to toggle to plain text: <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>T</kbd>
