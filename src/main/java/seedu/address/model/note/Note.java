@@ -7,9 +7,9 @@ import static java.util.Objects.requireNonNull;
  * Guarantees: immutable;
  */
 public class Note {
+    public static final int MAX_LENGTH = 45;
 
     public final String noteName;
-    public static final int MAX_LENGTH = 45;
 
     /**
      * Constructs a {@code Note}.
