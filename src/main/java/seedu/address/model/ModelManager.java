@@ -26,13 +26,13 @@ import seedu.address.model.person.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final Parents parents;
+    private Parents parents;
     private final PcClass pcClass;
     private final UserPrefs userPrefs;
 
     private FilteredList<Student> filteredStudents;
 
-    private final FilteredList<Parent> filteredParents;
+    private FilteredList<Parent> filteredParents;
 
     /**
      * Initializes a ModelManager with the given PowerConnect and userPrefs.
@@ -50,6 +50,18 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
         filteredParents = new FilteredList<>(this.parents.getParentList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given PowerConnect and userPrefs.
+     */
+    public ModelManager(ReadOnlyPcClass readOnlyPcClass, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(readOnlyPcClass, userPrefs);
+        logger.fine("Initializing with classes: " + readOnlyPcClass
+                + " and user prefs " + userPrefs);
+        this.pcClass = new PcClass(readOnlyPcClass);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
     }
 
     /**
