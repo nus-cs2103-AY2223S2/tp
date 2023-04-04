@@ -44,6 +44,8 @@ Use the interactive [table of contents](#table-of-contents) to navigate through 
 
 ### Legends
 
+💡 **Tip:** You can find additional tips about the developer guide here.
+
 ℹ️ **Notes**: You can find additional information about the command or feature here.
 
 ❗ **Caution**: Be careful not to make this deadly mistake.
