@@ -1,18 +1,18 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
 import java.util.List;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.model.Model;
 import ezschedule.model.event.Event;
 
 /**
- * Deletes an event identified using it's displayed index from the scheduler.
+ * Deletes an {@code Event} identified using it's displayed index from the {@code Scheduler}.
  */
 public class DeleteCommand extends Command {
 
@@ -30,6 +30,7 @@ public class DeleteCommand extends Command {
     public DeleteCommand(List<Index> targetIndexes) {
         this.targetIndexes = targetIndexes;
     }
+
     @Override
     public String commandWord() {
         return COMMAND_WORD;
@@ -43,11 +44,11 @@ public class DeleteCommand extends Command {
         Collections.sort(targetIndexes); // sort index in order
         Collections.reverse(targetIndexes); // reverse index order to prevent exception when deleting
         model.clearRecent();
-        model.recentCommand().add(this);
+        model.recentCommands().add(this);
         for (Index targetIndex : targetIndexes) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(
-                        String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, targetIndex.getZeroBased() + 1));
+                        String.format(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, targetIndex.getZeroBased() + 1));
             }
             Event eventToDelete = lastShownList.get(targetIndex.getZeroBased());
             model.deleteEvent(eventToDelete);

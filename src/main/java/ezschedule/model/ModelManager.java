@@ -58,8 +58,8 @@ public class ModelManager implements Model {
      */
     public ModelManager(ArrayList<Command> command, ArrayList<Event> event) {
         this(new Scheduler(), new UserPrefs());
-        this.recentCommand = command;
-        this.recentEvent = event;
+        recentCommand = command;
+        recentEvent = event;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -145,24 +145,24 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<Command> recentCommand() {
-        return this.recentCommand;
+    public ArrayList<Command> recentCommands() {
+        return recentCommand;
     }
 
     @Override
     public ArrayList<Event> recentEvent() {
-        return this.recentEvent;
+        return recentEvent;
     }
 
     @Override
     public void addRecentEvent(Event event) {
-        this.recentEvent.add(event);
+        recentEvent.add(event);
     }
 
     @Override
     public void clearRecent() {
-        this.recentCommand.clear();
-        this.recentEvent.clear();
+        recentCommand.clear();
+        recentEvent.clear();
     }
 
     //=========== Event List Accessors =============================================================

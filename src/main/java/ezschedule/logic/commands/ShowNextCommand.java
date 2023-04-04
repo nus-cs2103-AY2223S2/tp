@@ -1,15 +1,15 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.commons.core.Messages.MESSAGE_EVENTS_LISTED_OVERVIEW;
 import static java.util.Objects.requireNonNull;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.model.Model;
 import ezschedule.model.event.UpcomingEventPredicate;
 
 /**
- * List the next (or next few) upcoming events.
- * Completed events are not considered upcoming.
+ * List the next (or next few) upcoming {@code Event}.
+ * Completed {@code Event} are not considered upcoming.
  */
 public class ShowNextCommand extends Command {
 
@@ -26,16 +26,18 @@ public class ShowNextCommand extends Command {
     public ShowNextCommand(UpcomingEventPredicate predicate) {
         this.predicate = predicate;
     }
+
     @Override
     public String commandWord() {
         return COMMAND_WORD;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateUpcomingEventList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getUpcomingEventList().size()));
+                String.format(MESSAGE_EVENTS_LISTED_OVERVIEW, model.getUpcomingEventList().size()));
     }
 
     @Override

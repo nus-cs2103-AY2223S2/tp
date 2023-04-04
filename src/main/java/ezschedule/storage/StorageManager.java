@@ -11,7 +11,6 @@ import ezschedule.model.ReadOnlyScheduler;
 import ezschedule.model.ReadOnlyUserPrefs;
 import ezschedule.model.UserPrefs;
 
-
 /**
  * Manages storage of Scheduler data in local storage.
  */

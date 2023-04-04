@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
  * The API of the Model component.
  */
 public interface Model {
+
     /**
      * {@code Predicate} that always evaluate to true
      */
@@ -102,7 +103,7 @@ public interface Model {
      */
     void clearRecent();
 
-    ArrayList<Command> recentCommand();
+    ArrayList<Command> recentCommands();
 
     ArrayList<Event> recentEvent();
 

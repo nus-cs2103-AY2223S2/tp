@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import ezschedule.commons.util.AppUtil;
 
 /**
- * Represents the factor {day, week, month} to recur and event.
+ * Represents the factor {day, week, month} to recur an event.
  */
 public class RecurFactor {
 

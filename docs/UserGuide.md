@@ -60,6 +60,15 @@ _Ez-Schedule_ will benefit a fast typist who needs to plan and track upcoming ev
 | Help   | `help`                                                            |
 | Exit   | `exit`                                                            |
 
+<div markdown="span" class="alert alert-info">
+:exclamation: **Date Format:** Dates should follow a `YYYY-MM-DD` format
+</div>
+
+<div markdown="span" class="alert alert-info">
+:exclamation: **Time Format:** Time should be in 24-hour `HH:mm` format,
+ranging from `00:00` to `23:59`. Leading zero are required. 
+</div>
+
 [[Back to top](#index)]
 
 
@@ -71,9 +80,9 @@ Format: `add n/<event> d/<date> s/<start time> e/<end time>`
 
 Parameters:  
 `n/`: Name or description of event  
-`d/`: Date of the event in `YYYY-MM-DD` format  
-`s/`: Start time of the event in 24-hour `HH:mm` format  
-`e/`: End time of the event in 24-hour `HH:mm` format
+`d/`: Date of the event  
+`s/`: Start time of the event  
+`e/`: End time of the event
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
@@ -117,9 +126,9 @@ Format: `edit <index> n/<event> d/<date> s/<start time> e/<end time>`
 
 Parameters:  
 `n/`: Name or description of event  
-`d/`: Date of the event in `YYYY-MM-DD` format  
-`s/`: Start time of the event in 24-hour `HH:mm` format  
-`e/`: End time of the event in 24-hour `HH:mm` format
+`d/`: Date of the event  
+`s/`: Start time of the event  
+`e/`: End time of the event
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** At least one field must be provided.
@@ -179,7 +188,7 @@ Format:`find n/<name> d/<date>`
 
 Parameters:  
 `n/`: Name or description of event  
-`d/`: Date of the event in `YYYY-MM-DD` format
+`d/`: Date of the event
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** At least one field must be provided.
@@ -286,10 +295,10 @@ Functionality:
 [[Back to top](#index)]
 
 
-<h1 id="faq">FAQ</h1>
+<h1 id="faq">FAQ :question:</h1>
 ---------------------
 **Q:** On a scale of 1 to 10, how awesome is this product?  
-**A:** 10
+**A:** 10 :v:
 
 **Q:** What is one example of someone who would use this?  
 **A:** A secretary who needs to keep track the boss's meetings,

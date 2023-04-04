@@ -1,12 +1,12 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_EVERY;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.exceptions.CommandException;
 import ezschedule.model.Model;
@@ -15,7 +15,7 @@ import ezschedule.model.event.Event;
 import ezschedule.model.event.RecurFactor;
 
 /**
- * Recurs an existing event in the scheduler.
+ * Recurs an existing {@code Event} in the {@code Scheduler}.
  */
 public class RecurCommand extends Command {
 
@@ -43,7 +43,7 @@ public class RecurCommand extends Command {
     private final RecurFactor factor;
 
     /**
-     * Creates an AddEventCommand to add the specified {@code Event}
+     * Creates an {@code AddCommand} to add the specified {@code Event}
      */
     public RecurCommand(Index index, Date endDate, RecurFactor factor) {
         requireNonNull(index);
@@ -53,6 +53,7 @@ public class RecurCommand extends Command {
         this.endDate = endDate;
         this.factor = factor;
     }
+
     @Override
     public String commandWord() {
         return COMMAND_WORD;
@@ -64,12 +65,11 @@ public class RecurCommand extends Command {
         List<Event> lastShownList = model.getFilteredEventList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX,
-                    index.getZeroBased() + 1));
+            throw new CommandException(String.format(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, index.getZeroBased() + 1));
         }
 
         if (endDate.isPastDate()) {
-            throw new CommandException(String.format(MESSAGE_FAILURE_PAST_DATE, endDate));
+            throw new CommandException(MESSAGE_FAILURE_PAST_DATE);
         }
 
         Event eventToRecur = lastShownList.get(index.getZeroBased());
@@ -92,7 +92,7 @@ public class RecurCommand extends Command {
         default:
             break;
         }
-        model.recentCommand().add(this);
+        model.recentCommands().add(this);
         model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, eventToRecur));
@@ -100,7 +100,8 @@ public class RecurCommand extends Command {
 
     /**
      * Adds new events to every day until endDate.
-     * @param model model to add
+     *
+     * @param model        model to add
      * @param eventToRecur event to recur in the model
      */
     public void addEventPerDay(Model model, Event eventToRecur) throws CommandException {
@@ -131,7 +132,8 @@ public class RecurCommand extends Command {
 
     /**
      * Adds new events to every week until endDate.
-     * @param model model to add
+     *
+     * @param model        model to add
      * @param eventToRecur event to recur in the model
      */
     public void addEventPerWeek(Model model, Event eventToRecur) throws CommandException {
@@ -162,7 +164,8 @@ public class RecurCommand extends Command {
 
     /**
      * Adds new events to every month until endDate.
-     * @param model model to add
+     *
+     * @param model        model to add
      * @param eventToRecur event to recur in the model
      */
     public void addEventPerMonth(Model model, Event eventToRecur) throws CommandException {
@@ -214,6 +217,7 @@ public class RecurCommand extends Command {
 
     /**
      * Returns a String of month with the given month int.
+     *
      * @param month int of month to convert
      * @return String name of month
      */

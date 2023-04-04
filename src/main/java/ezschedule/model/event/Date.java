@@ -2,13 +2,15 @@ package ezschedule.model.event;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 import static java.time.temporal.ChronoUnit.MONTHS;
-import static java.time.temporal.ChronoUnit.YEARS;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import ezschedule.commons.util.AppUtil;
+import ezschedule.model.event.exceptions.InvalidDateException;
 
 /**
  * Represents an Event's date in the scheduler.
@@ -16,10 +18,11 @@ import ezschedule.commons.util.AppUtil;
  */
 public class Date implements Comparable<Date> {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Date should only contain numeric characters, follows the format yyyy-MM-dd, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Date should only contain numeric characters, "
+            + "follows the format yyyy-MM-dd (year from 0001, month from 01 to 12, and day from 01 to 31), "
+            + "and it should not be blank";
 
-    public static final String VALIDATION_REGEX = "^\\d{4}-\\d{2}-\\d{2}$";
+    public static final String VALIDATION_REGEX = "((000[1-9]|[1-9]\\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))";
 
     public final LocalDate date;
 
@@ -31,8 +34,13 @@ public class Date implements Comparable<Date> {
     public Date(String date) {
         requireNonNull(date);
         AppUtil.checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.date = LocalDate.parse(date, formatter);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd");
+        try {
+            this.date = LocalDate.parse(date, formatter.withResolverStyle(ResolverStyle.STRICT));
+        } catch (DateTimeParseException e) {
+            String message = String.format("Date %1$s is invalid", date);
+            throw new InvalidDateException(message);
+        }
     }
 
     /**
@@ -42,22 +50,30 @@ public class Date implements Comparable<Date> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the number of days between two valid dates.
+     */
     public long getDaysBetween(LocalDate comparingDate) {
         return DAYS.between(date, comparingDate);
     }
 
+    /**
+     * Returns the number of months between two valid dates.
+     */
     public long getMonthsBetween(LocalDate comparingDate) {
         return MONTHS.between(date, comparingDate);
     }
 
-    public long getYearsBetween(LocalDate comparingDate) {
-        return YEARS.between(date, comparingDate);
-    }
-
+    /**
+     * Returns true if date has passed.
+     */
     public boolean isPastDate() {
         return date.isBefore(LocalDate.now());
     }
 
+    /**
+     * Returns true if date has yet to pass.
+     */
     public boolean isFutureDate() {
         return date.isAfter(LocalDate.now());
     }
