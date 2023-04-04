@@ -30,8 +30,6 @@ public class UpdateProjectCommandParserTest {
     public void parse_missingRequiredArgs_throwsParseException() {
         // required arg not given
         assertParseFailure(parser, " -dd 31/12/2023", MESSAGE_INVALID_FORMAT);
-        // require arg flag present, but no value
-        assertParseFailure(parser, " -pn", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -40,6 +38,7 @@ public class UpdateProjectCommandParserTest {
             "-pn2   ", Messages.MESSAGE_EMPTY_PROJECT_NAME,
             "-s notastatus", ProjectStatus.MESSAGE_CONSTRAINTS,
             "-e notanemail", Email.MESSAGE_CONSTRAINTS,
+            "-e", Email.MESSAGE_CONSTRAINTS,
             "-src  ", Messages.MESSAGE_EMPTY_SOURCE,
             "-ad 31-12-2023", Messages.MESSAGE_INVALID_DATE,
             "-dd 31-12-2023", Messages.MESSAGE_INVALID_DATE

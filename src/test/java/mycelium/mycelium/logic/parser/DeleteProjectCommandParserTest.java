@@ -21,10 +21,9 @@ public class DeleteProjectCommandParserTest {
 
     @Test
     public void parse_missingRequiredArgs_fails() {
-        Map<String, String> tests = Map.ofEntries(
-            Map.entry("empty string", ""),
-            Map.entry("only whitespace", " "),
-            Map.entry("no project name", "-pn")
+        Map<String, String> tests = Map.of(
+            "empty string", "",
+            "only whitespace", " "
         );
         String expectedErr = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE);
         tests.forEach((desc, tt) -> {
@@ -35,10 +34,10 @@ public class DeleteProjectCommandParserTest {
 
     @Test
     public void parse_wrongArgs_fails() {
-        Map<String, String> tests = Map.ofEntries(
-            Map.entry("delete project by email", "-e alicebaker@gmail.com"),
-            Map.entry("wrong prefix for project name", "-n Luminus"),
-            Map.entry("delete project by client name", "-cn NUS")
+        Map<String, String> tests = Map.of(
+            "delete project by email", "-e alicebaker@gmail.com",
+            "wrong prefix for project name", "-n Luminus",
+            "delete project by client name", "-cn NUS"
         );
         String expectedErr = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE);
         tests.forEach((desc, tt) -> {
@@ -50,10 +49,10 @@ public class DeleteProjectCommandParserTest {
     @Test
     public void parse_validProjectName_success() {
         DeleteProjectCommand want = new DeleteProjectCommand(NonEmptyString.of("Luminus"));
-        Map<String, String> tests = Map.ofEntries(
-            Map.entry("valid project name", "-pn Luminus"),
-            Map.entry("valid project name with leading whitespace", "-pn       Luminus"),
-            Map.entry("valid project name with trailing whitespace", "-pn Luminus      ")
+        Map<String, String> tests = Map.of(
+            "valid project name", "-pn Luminus",
+            "valid project name with leading whitespace", "-pn       Luminus",
+            "valid project name with trailing whitespace", "-pn Luminus      "
         );
         tests.forEach((desc, tt) -> {
             String input = " " + tt;

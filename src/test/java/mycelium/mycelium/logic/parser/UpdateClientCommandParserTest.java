@@ -34,7 +34,6 @@ public class UpdateClientCommandParserTest {
     @Test
     public void parse_missingRequiredArgs_throwsParseException() {
         assertParseFailure(parser, " -cn 123131", MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, " -e", MESSAGE_INVALID_FORMAT);
     }
 
     @Test

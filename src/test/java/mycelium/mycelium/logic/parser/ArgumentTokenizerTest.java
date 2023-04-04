@@ -14,6 +14,8 @@ public class ArgumentTokenizerTest {
     private final Prefix dashT = new Prefix("-t");
     private final Prefix hatQ = new Prefix("^Q");
 
+    private final Prefix dashSrc = new Prefix("-src "); // note the whitespace
+
     @Test
     public void tokenize_emptyArgsString_noValues() {
         String argsString = "  ";
@@ -145,6 +147,13 @@ public class ArgumentTokenizerTest {
 
         assertNotEquals(aaa, "aaa");
         assertNotEquals(aaa, new Prefix("aab"));
+    }
+
+    @Test
+    public void tokenize_prefixAtBackWithWhitespace() {
+        var argString = "... -src foobar -src";
+        var got = ArgumentTokenizer.tokenize(argString, dashSrc);
+        assertArgumentPresent(got, dashSrc, "foobar", "");
     }
 
 }
