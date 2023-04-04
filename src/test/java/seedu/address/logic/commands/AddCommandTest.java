@@ -298,21 +298,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasClashScheduled(MeetUp meetUp) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasClashTimeTable(MeetUp meetUp) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateMeetUpForDeletePerson(Person target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ObservableList<Recommendation> getObservableRecommendationList() {
             throw new AssertionError("This method should not be called.");
         }

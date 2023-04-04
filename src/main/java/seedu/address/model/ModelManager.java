@@ -190,23 +190,35 @@ public class ModelManager implements Model {
         //todo edit person name if person in meetup list
         updateMeetUpForEditPerson(target, editedPerson);
     }
+
+    /**
+     * Updates scheduled meet up list for participants with edited details.
+     * @param target Person to edit.
+     * @param editedPerson Edited person to replace person to edit.
+     */
     public void updateMeetUpForEditPerson(Person target, Person editedPerson) {
         for (MeetUp meetUp : observableMeetUps) {
             Participants participants = meetUp.getParticipants();
-            List<Person> personList = participants.getParticipants();
+            List<Person> participantsList = participants.getParticipants();
 
-            updatePersonList(personList, target, editedPerson, meetUp);
+            updatePersonList(participantsList, target, editedPerson, meetUp);
         }
     }
 
-    public void updatePersonList(List<Person> personList, Person target,
+    /**
+     * Updates participant list of a scheduled meet up if person to edit exists.
+     * @param participantsList List of persons participating in the meet up.
+     * @param target Person to be edited.
+     * @param editedPerson Person with edited details.
+     * @param meetUp The meet up to be updated.
+     */
+    public void updatePersonList(List<Person> participantsList, Person target,
                                  Person editedPerson, MeetUp meetUp) {
-        for (Person person : personList) {
+        for (Person person : participantsList) {
             if (person.isSamePerson(target)) {
-                personList.remove(target);
-                personList.add(editedPerson);
-                meetUp.setParticipants(new Participants(personList));
-                break;
+                participantsList.remove(target);
+                participantsList.add(editedPerson);
+                meetUp.setParticipants(new Participants(participantsList));
             }
         }
     }
@@ -390,6 +402,9 @@ public class ModelManager implements Model {
         observableMeetUps.setComparator(comparator);
     }
 
+    /**
+     * Adds a meet up if there are no schedule clashes.
+     */
     public void addMeetUp(MeetUp meetUp) {
         //checks if meet up clashes with any scheduled meet ups
         if (hasClashScheduled(meetUp)) {
