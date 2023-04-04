@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 ## Table of Contents
 * Table of Contents
 {:toc}
@@ -13,21 +14,20 @@ title: User Guide
     <img src="images/ship.png" alt="logo" width="90"><br>
 </p>
 
+
 Designed with **internship-seeking university students** in mind, **The Intern’s Ship (TinS)** aims to make
-managing your internship applications fuss-free. Optimized for 
+managing your internship applications fuss-free. Despite being optimised for use via the keyboard using 
+a Command Line Interface (CLI), you will still be able to enjoy the benefits of having a visual display
+through our Graphical User Interface (GUI). 
 
-
-Designed with internship-seeking <b>university students</b> in mind, <b>The Intern’s Ship (TinS)</b> aims to make
-managing your internship applications fuss-free. Optimized for use via a Command Line Interface (CLI), while still having
-the benefits of a Graphical User Interface (GUI), this <b>desktop app</b> is perfect for fast typers. With a
-simple command, TinS can help you manage, coordinate and keep track of your internship applications conveniently and
-neatly.<br>
+With TinS, you can conveniently and efficiently manage, coordinate and keep track of your internship applications
+all in one place.
 
 ### Notable Features (v1.3)
   * Finding a particular internship application in TinS using keywords: `find`
   * Finding all clashing events: `clash`
-
-
+  
+  
 <div style="page-break-after: always;"></div>
 
 ## About the User Guide
@@ -59,7 +59,7 @@ carefully before committing
 
 <div style="page-break-after: always;"></div>
 
-<h2 id="about_gui">About TinS Application's Interface</h2>
+## About TinS Application's Interface
 
 ![gui](images/gui.png)
 
@@ -73,6 +73,7 @@ carefully before committing
    Company, Status and Tags).
 4. **Internship Display Panel**: This panel displays relevant details pertaining to specific internship.
 5. **Location Bar**: This location bar tells you where your TinS data file is currently stored on your computer.
+
 
 <div style="page-break-after: always;"></div>
 
@@ -102,6 +103,7 @@ carefully before committing
 
 6. Refer to the [Command Summary](#command_summary) below for your desired TinS Commands. More details on each specific
 TinS command can be found [here](#features).
+
 
 
 <div style="page-break-after: always;"></div>
