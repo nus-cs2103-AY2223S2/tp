@@ -59,7 +59,7 @@ public class StringUtil {
         checkArgument(preppedWord.split("\\s+").length == 1, "keyword parameter should be a single word");
 
         return tags.stream()
-                .map(Tag::toString)
+                .map(Tag::tagNameToString)
                 .anyMatch(preppedWord::equalsIgnoreCase);
     }
 

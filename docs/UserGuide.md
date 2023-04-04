@@ -15,9 +15,7 @@ Salespeople managing client contacts who prefer a CLI
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
 
-**Value proposition**: Users that want to log their sales funnel cycle and keep track of their leads. You can do it
-faster on a CLI with better NLP. Helps salesperson keep track of all the necessary details and set reminders/alerts,
-prioritise sales tasks
+**Value proposition**: Users that want a faster way to log their sales funnel cycle and keep track of their leads through our CLI app. SalesPunch helps salespersons keep track of all the necessary details and set reminders/alerts, keep track of their leads and prioritise sales tasks
 
 - Table of Contents
   {:toc}
@@ -205,7 +203,7 @@ Examples:
 
 Search for a contact based on their leads.
 
-Format: `findlead <valid lead status>`
+Format: `findlead [s/STATUS]`
 
 The user can use either the long form or short form method to search
 
@@ -222,13 +220,14 @@ The 4 stages of lead status
 
 Examples:
 
-- `findlead <leadstatus>` - returns all contacts with the associated lead status, `Dewy Thompson` or `Majorie Dewy`
+- `findlead [s/STATUS]` - returns all contacts with the associated lead status, `Dewy Thompson` or `Majorie Dewy`
 
 ### Finding a contact tag: `findall`
 
-Search for a contact based on all attributes of a Person recorded in the addressbook.
+Search for a contact based on all attributes of a Person recorded in the database.
 
 Format: `findall <any keyword that matches any attribute>`
+>findall does not for parse through tags and lead status attributes as they have their own seperate commands for searching
 
 The user can search for any attribute and if it matches with any Person, that person will be listed.
 
@@ -245,7 +244,7 @@ Examples:
 
 Search for a single contact and all txns related to this contact. The user must enter an existing user that is in the database and must match exactly the name in the database.
 
-Format: `findtxn <exact match with person name>`
+Format: `findtxn [n/NAME]`
 
 - The search is case-insensitive. e.g `[John Doe]` will match `[john doe]`
 - The spaces before and after keywords does not matter. e.g. `[ Hans Bo  ]` will match `[Bo Hans]`
@@ -383,14 +382,20 @@ _italic_ - optional
 | Action         | Format, Examples                                                                                                                                                                                                                                                                          |
 | -------------- |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
 | **Add**        | `add [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [l/LOCATION] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] ...​` <br> e.g., `add n/Amy Bee g/female p/85355255 e/amy@gmail.com c/Tesleh l/Singapore o/engineer j/industrial engineer a/123, Jurong West Ave 6, #08-111` |
-| **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [status]` <br> e.g., `sort name`                                                                                                                                            |
-| **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                                       |
-| **Clear**      | `clear`                                                                                                                                                                                                                                                                                   |
-| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                       |     |
-| **Delete Txn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                                                 |
-| **Edit**       | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                              |
-| **Edit Txn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/Closed`                                                                                                                                                                                       |
-| **Status**     | `status INDEX_NUMBER s/[STATUS …]`<br> e.g., `status 1 s/Qualified` or `status 1 s/Q`                                                                                                                                                                                                     |
-| **List**       | `list`                                                                                                                                                                                                                                                                                    |
-| **List Txn**   | `listtxn`                                                                                                                                                                                                                                                                                 |
+| **Sort**       | `sort [name] [gender] [phone number] [email] [company] [industry] [occupation] [job title] [address] [remark] [status]` <br> e.g., `sort name`                                                                                                                                             |
+| **Add Txn**    | `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER] ` <br> e.g., `addtxn [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]`                                                                                                                                                        |
+| **Clear**      | `clear`                                                                                                                                                                                                                                                                                    |
+| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                                        |     |
+| **Delete Txn** | `deletetxn INDEX`<br> e.g., `deletetxn 3`                                                                                                                                                                                                                                                  |
+| **Edit**       | `edit INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [c/COMPANY] [i/INDUSTRY] [o/OCCUPATION] [j/JOBTITLE] [a/ADDRESS] [t/TAG] …​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                               |
+| **Edit Txn**   | `edittxn INDEX [td/DESCRIPTION] [tv/VALUE] [ts/STATUS] [to/OWNER]` <br> e.g., `edittxn 1 ts/closed`                                                                                                                                                                                        |
+| **Status**     | `status INDEX_NUMBER` _`[STATUS …]`_<br> `status NAME` _`[STATUS …]`_<br> e.g., `status 1, status David closed-won`                                                                                                                                                                        |
+| **List**       | `list`                                                                                                                                                                                                                                                                                     |
+| **List Txn**   | `listtxn`                                                                                                                                                                                                                                                                                  |
+| **Find** | `find [n/NAME]`<br> e.g., `find Alex`                                                                                                                                                                                                                                                  |
+| **FindTag** | `findtag [t/TAG]`<br> e.g., `findtag [friends]`                                                                                                                                                                                                                                                  |
+| **FindLead** | `findlead [s/STATUS]`<br> e.g., `findlead Qualified` , `findlead Q`      
+| **FindAll** | `findall [Anything except for [s/STATUS] & [t/TAG]]`<br> e.g., `findall Alex` , `findall 93282505` , `findall Dover Crescent Road`
+| **FindTxn** | `findtxn [n/NAME]`<br> e.g., `findtxn Bernice Yu`                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                 |                                                                                                                                                                                                                                                                                |
 | **Help**       | `help`                                                                                                                                                                                                                                                                                    |
+

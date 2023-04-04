@@ -8,14 +8,14 @@ import seedu.address.model.person.OnlyOnePersonPredicate;
 import seedu.address.model.person.TxnContainsPersonPredicate;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindTxnByPersonCommand object
  */
 public class FindTxnByPersonCommandParser implements Parser<FindTxnByPersonCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * FindCommand
-     * and returns a FindCommand object for execution.
+     * FindTxnByPersonCommand
+     * and returns a FindTxnByPersonCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindTxnByPersonCommand parse(String args) throws ParseException {
