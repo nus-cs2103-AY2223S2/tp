@@ -184,40 +184,16 @@ public class RecurringExpenseManager {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
+    public boolean equals(Object obj) {
+        if (obj instanceof RecurringExpenseManager) {
+            RecurringExpenseManager other = (RecurringExpenseManager) obj;
+            return this.expenseName.equals(other.expenseName)
+                    && this.amount.equals(other.amount)
+                    && this.expenseCategory.equals(other.expenseCategory)
+                    && this.startDate.equals(other.startDate)
+                    && this.endDate == null ? other.endDate == null : this.endDate.equals(other.endDate)
+                    && this.recurringExpenseType.equals(other.recurringExpenseType);
         }
-        if (object == null || getClass() != object.getClass()) {
-            return false;
-        }
-
-        RecurringExpenseManager recurringExpense = (RecurringExpenseManager) object;
-
-        if (!recurringExpense.startDate.isEqual(this.startDate)) {
-            return false;
-        }
-        if (recurringExpense.amount != this.amount) {
-            return false;
-        }
-        if (!recurringExpense.nextExpenseDate.isEqual(this.nextExpenseDate)) {
-            return false;
-        }
-        if (recurringExpense.recurringExpenseType != this.recurringExpenseType) {
-            return false;
-        }
-        if (!recurringExpense.expenseCategory.equals(this.expenseCategory)) {
-            return false;
-        }
-        if (!recurringExpense.expenseName.equals(this.expenseName)) {
-            return false;
-        }
-        if (recurringExpense.endDate == null) {
-            return this.endDate == null;
-        }
-        if (!recurringExpense.endDate.isEqual(this.endDate)) {
-            return false;
-        }
-        return true;
+        return false;
     }
 }
