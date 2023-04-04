@@ -123,14 +123,12 @@
     -fx-font-size: 16px;
     -fx-text-fill: #112D4E;
     -fx-background-color: transparent;
-    -fx-wrap-text: true;
 }
 
 .cell_small_label {
     -fx-font-size: 14px;
     -fx-text-fill: #64748B;
     -fx-background-color: transparent;
-    -fx-wrap-text: true;
 }
 
 .stack-pane {
