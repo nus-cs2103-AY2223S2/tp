@@ -15,15 +15,15 @@ import seedu.internship.model.internship.Internship;
  */
 public class Event {
     private final Name name;
-    private final Start start;
-    private final End end;
+    private final DateTime start;
+    private final DateTime end;
     private final EventDescription eventDescription;
     private Internship internship;
 
     /**
      * Every Field must be present and not null.
      */
-    public Event(Name name, Start start, End end, EventDescription eventDescription, Internship internship) {
+    public Event(Name name, DateTime start, DateTime end, EventDescription eventDescription, Internship internship) {
         requireAllNonNull(name, start, end, eventDescription, internship);
         this.name = name;
         this.start = start;
@@ -56,11 +56,11 @@ public class Event {
         return name;
     }
 
-    public Start getStart() {
+    public DateTime getStart() {
         return start;
     }
 
-    public End getEnd() {
+    public DateTime getEnd() {
         return end;
     }
 
@@ -97,7 +97,7 @@ public class Event {
 
     public boolean isClash(Event otherEvent) {
         return !this.equals(otherEvent) &&
-                (this.start.isEqualTime(otherEvent.start) || this.end.isEqualTime(otherEvent.end)
+                (this.start.equals(otherEvent.start) || this.end.equals(otherEvent.end)
                 || this.start.isBetween(otherEvent.start, otherEvent.end)
                 || this.end.isBetween(otherEvent.start, otherEvent.end))
                 || otherEvent.start.isBetween(this.start, this.end)
@@ -110,14 +110,14 @@ public class Event {
         } else {
             List<LocalDateTime> timings = new ArrayList<>();
             if (this.start.compareTo(otherEvent.start) >= 0) {
-                timings.add(this.start.getLdt());
+                timings.add(this.start.getLocalDateTime());
             } else {
-                timings.add(otherEvent.start.getLdt());
+                timings.add(otherEvent.start.getLocalDateTime());
             }
             if (this.end.compareTo(otherEvent.end) <= 0) {
-                timings.add(this.end.getLdt());
+                timings.add(this.end.getLocalDateTime());
             } else {
-                timings.add(otherEvent.end.getLdt());
+                timings.add(otherEvent.end.getLocalDateTime());
             }
             return timings;
         }
@@ -127,7 +127,7 @@ public class Event {
      * Returns true if start date of event lies between the specified date inclusive.
      */
     public boolean isBetweenDate(LocalDate start, LocalDate end) {
-        return !(getStart().getLd().isBefore(start) || getStart().getLd().isAfter(end));
+        return !(getStart().getLocalDate().isBefore(start) || getStart().getLocalDate().isAfter(end));
     }
 
     /**
