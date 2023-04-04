@@ -67,7 +67,7 @@ public class JsonAdaptedParent extends JsonAdaptedPerson {
         Person person = super.toModelType();
 
         if (age == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Index Number"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Age"));
         }
         if (!Age.isValidAge(age)) {
             throw new IllegalValueException(IndexNumber.MESSAGE_CONSTRAINTS);
@@ -75,7 +75,7 @@ public class JsonAdaptedParent extends JsonAdaptedPerson {
         final Age modelAge = new Age(age);
 
         if (image == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Index Number"));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "image"));
         }
         if (!Image.isValidImage(image)) {
             throw new IllegalValueException(Image.MESSAGE_CONSTRAINTS);

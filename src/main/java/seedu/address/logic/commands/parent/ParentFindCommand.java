@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.person.parent.NameContainsKeywordsPredicate;
+import seedu.address.model.person.parent.ParentNameContainsKeywordsPredicate;
 
 /**
  * A ParentFindCommand class for parent find command
@@ -18,12 +18,12 @@ public class ParentFindCommand extends ParentCommand {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final ParentNameContainsKeywordsPredicate predicate;
     /**
      * Creates a StudentFindCommand to find the specified {@code Student}
      * @param predicate
      */
-    public ParentFindCommand(NameContainsKeywordsPredicate predicate) {
+    public ParentFindCommand(ParentNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

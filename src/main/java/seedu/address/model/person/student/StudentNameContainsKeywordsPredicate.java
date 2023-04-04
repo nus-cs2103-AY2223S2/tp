@@ -8,10 +8,10 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Student}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Student> {
+public class StudentNameContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public StudentNameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -25,8 +25,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Student> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other
-                instanceof seedu.address.model.person.student.NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((seedu.address.model.person.student.NameContainsKeywordsPredicate) other)
+                instanceof StudentNameContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((StudentNameContainsKeywordsPredicate) other)
                 .keywords)); // state check
     }
 }
