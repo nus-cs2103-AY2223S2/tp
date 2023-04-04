@@ -54,6 +54,16 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Checks if the given {@code prefix} exists in this ArgumentMultimap.
+     *
+     * @param prefix Prefix to check.
+     * @return Whether the given prefix exists.
+     */
+    public boolean containsKey(Prefix prefix) {
+        return argMultimap.containsKey(prefix);
+    }
+
+    /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
     public String getPreamble() {

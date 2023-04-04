@@ -23,6 +23,7 @@ import seedu.recipe.storage.JsonRecipeBookStorage;
 public class ExportManager {
     public static final String NULL_LOGIC = "Please provide a non-null Logic instance";
     public static final String NO_SELECTION = "Export operation cancelled.";
+
     private final Path recipeBookFilePath;
     private final Stage owner;
     private final Logic logic;
