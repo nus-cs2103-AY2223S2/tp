@@ -19,6 +19,12 @@ GoodMatch (GM) is a **desktop app for managing applicants and job listings, opti
 - [Setting up, getting started](#setting-up-getting-started)
 - [Design](#design)
   - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product scope](#product-scope)
   - [User stories](#user-stories)
@@ -219,6 +225,16 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
+
+---
+
+## **Documentation, logging, testing, configuration, dev-ops**
+
+* [Documentation guide](Documentation.md)
+* [Testing guide](Testing.md)
+* [Logging guide](Logging.md)
+* [Configuration guide](Configuration.md)
+* [DevOps guide](DevOps.md)
 
 ---
 
