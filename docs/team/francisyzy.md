@@ -16,7 +16,12 @@ Just the headings are enough. You can write to be added soon as placeholders for
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=francisyzy&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=francisyzy&tabRepo=AY2223S2-CS2103-F11-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-  * Managed releases `v1.1` - `v1.5rc` (3 releases) on GitHub
+  * Managed group coordination and communication on Telegram.
+  * Managed the allocation, tagging for PE-D.
+  * Started the use of Github [project board]() for user stories.
+  * Managed reviewing some PRs.
+  * Set up Github team org/repo for F11-3.
+  * Managed team meetings by updating meeting notes.
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
@@ -30,13 +35,11 @@ Just the headings are enough. You can write to be added soon as placeholders for
     * Added implementation details of the `delete` feature.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+  * Ip PRs reviewed (with non-trivial review comments): [\#145](https://github.com/nus-cs2103-AY2223S2/ip/pull/145), [\#253](https://github.com/nus-cs2103-AY2223S2/ip/pull/253)
+  * Contributed to [forum discussions](https://github.com/nus-cs2103-AY2223S2/forum/issues?q=francisyzy). Details also @ [dashboard](https://nus-cs2103-ay2223s2.github.io/dashboards/contents/forum-activities.html#4-fran-yik-francisyzy-41-posts).
+  * Reported 8 bugs and suggestions for other teams in the class during the PE-D. The reports can be found in [Team's Github Issue(s)](https://github.com/AY2223S2-CS2103-F10-2/tp/issues?q=francisyzy)
 
 * **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+  * Updated the CI to not run on draft PRs. This is to improve group awareness of member's activities (lets people push non working code to a PR without it failing and notifying). ([\#205](https://github.com/AY2223S2-CS2103-F11-3/tp/pull/205))
 
 * _{you can add/remove categories in the list above}_
