@@ -195,6 +195,8 @@ In general, the command format is as follows:<br>
 > :exclamation: Warning: Ensure that the index you input corresponds to an existing item. 
 > <br> Look at the [respective panels](#about-the-interface) for the index of the type of object you want to refer to.
 
+![Ui](images/UiIndex.png)
+
 ### Prefix parameters
 * Used as parameters for commands with `add`, `edit` and `addReadings` actions
 * Prefix parameters require a prefix. For example, the command is as follows: `tank add d/<TANK_NAME>`
