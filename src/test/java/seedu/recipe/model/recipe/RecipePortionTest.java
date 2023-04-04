@@ -33,7 +33,7 @@ public class RecipePortionTest {
         assertEquals(RecipePortion.of(TO_CONCAT), new RecipePortion(1, 2, new PortionUnit("servings")));
         assertEquals(RecipePortion.of(DASH_WHITESPACE), new RecipePortion(1, 2, new PortionUnit("servings")));
         assertEquals(RecipePortion.of(TO_WHITESPACE), new RecipePortion(1, 2, new PortionUnit("people")));
-        assertEquals(RecipePortion.of(SIMPLE_LOWER_RANGE), new RecipePortion(13, 0, new PortionUnit("serving sizes")));
+        assertEquals(RecipePortion.of(SIMPLE_LOWER_RANGE), new RecipePortion(13, -1, new PortionUnit("serving sizes")));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class RecipePortionTest {
     @Test
     public void testToString() {
         assertEquals(
-            new RecipePortion(1, 0, new PortionUnit("portion")).toString(), "1 portion");
+            new RecipePortion(1, -1, new PortionUnit("portion")).toString(), "1 portion");
         assertEquals(new RecipePortion(1, 3, new PortionUnit("portions")).toString(), "1 - 3 portions");
     }
 
@@ -69,7 +69,7 @@ public class RecipePortionTest {
         assertEquals(new RecipePortion(1, 3, p).getPortionUnit(), p);
         assertEquals(new RecipePortion(1, 3, p).getUpperRange(), 3);
         assertEquals(new RecipePortion(1, 3, p).getLowerRange(), 1);
-        assertEquals(new RecipePortion(1, 0, new PortionUnit("portion")).getLowerRange(), 1);
-        assertEquals(new RecipePortion(1, 0, new PortionUnit("portion")).getUpperRange(), 0);
+        assertEquals(new RecipePortion(1, -1, new PortionUnit("portion")).getLowerRange(), 1);
+        assertEquals(new RecipePortion(1, -1, new PortionUnit("portion")).getUpperRange(), -1);
     }
 }
