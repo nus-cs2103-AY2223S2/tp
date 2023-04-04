@@ -6,11 +6,11 @@ import static trackr.logic.commands.CommandTestUtil.VALID_CUSTOMER_PHONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_DEADLINE_2024;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_QUANTITY_ONE;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_NOT_DONE;
+import static trackr.testutil.TypicalMenuItems.CARGO_PANTS;
 import static trackr.testutil.TypicalMenuItems.CHOCOLATE_COOKIE_M;
 import static trackr.testutil.TypicalMenuItems.CUPCAKE_M;
-import static trackr.testutil.TypicalMenuItems.CARGO_PANTS;
-import static trackr.testutil.TypicalMenuItems.NIKE_CAP;
 import static trackr.testutil.TypicalMenuItems.INVALID_M;
+import static trackr.testutil.TypicalMenuItems.NIKE_CAP;
 
 import java.util.ArrayList;
 import java.util.Arrays;

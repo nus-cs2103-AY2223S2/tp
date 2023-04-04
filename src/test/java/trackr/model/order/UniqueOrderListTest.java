@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.logic.commands.CommandTestUtil.VALID_ORDER_STATUS_DONE;
 import static trackr.testutil.Assert.assertThrows;
-import static trackr.testutil.TypicalOrders.CUPCAKE_O;
 import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES_O;
+import static trackr.testutil.TypicalOrders.CUPCAKE_O;
 
 import java.util.Arrays;
 import java.util.Collections;

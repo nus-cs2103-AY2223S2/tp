@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static trackr.storage.JsonAdaptedOrder.MISSING_FIELD_MESSAGE_FORMAT;
 import static trackr.testutil.Assert.assertThrows;
 import static trackr.testutil.TypicalCustomer.AMY;
-import static trackr.testutil.InvalidMenuItem.createInvalidNameItem;
 import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES_O;
 
 import java.time.LocalDateTime;
