@@ -54,28 +54,49 @@ public class SchedulerParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case RecurCommand.COMMAND_WORD:
+            return new RecurCommandParser().parse(arguments);
 
         case ShowNextCommand.COMMAND_WORD:
             return new ShowNextCommandParser().parse(arguments);
 
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new UndoCommand();
+            }
+
+        case ListCommand.COMMAND_WORD:
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new ListCommand();
+            }
+
+        case ClearCommand.COMMAND_WORD:
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new ClearCommand();
+            }
+
         case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new ExitCommand();
+            }
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-        case UndoCommand.COMMAND_WORD:
-            return new UndoCommand();
-
-        case RecurCommand.COMMAND_WORD:
-            return new RecurCommandParser().parse(arguments);
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new HelpCommand();
+            }
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
