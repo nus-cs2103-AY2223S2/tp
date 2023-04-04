@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.general;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
@@ -14,7 +15,7 @@ import seedu.address.ui.ScreenType;
 /**
  * Displays the summary of an expense
  */
-public class CategorySummaryCommand implements Command {
+public class CategorySummaryCommand implements GeneralCommand {
 
     public static final String COMMAND_WORD = "scat";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays summary of category "

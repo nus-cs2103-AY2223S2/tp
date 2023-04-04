@@ -82,7 +82,8 @@ public class ListCommandTest {
                 new ExpenseInTimespanPredicate(LocalDate.of(2023, 3, 13));
         ExpenseInCategoryPredicate categoryPredicate = new ExpenseInCategoryPredicate(TECH);
 
-        ListExpensesCommand command = new ListExpensesCommand(Optional.of(categoryPredicate), Optional.of(timespanPredicate));
+        ListExpensesCommand command = new ListExpensesCommand(Optional.of(categoryPredicate),
+            Optional.of(timespanPredicate));
         expectedModel.updateFilteredExpensesList(categoryPredicate);
         expectedModel.updateFilteredExpensesList(timespanPredicate);
 

@@ -1,38 +1,46 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.edit;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 
 import java.time.LocalDate;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.edit.EditExpenseCommand;
+import seedu.address.logic.commands.edit.EditRecurringExpenseManagerCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditExpenseCommand object
+ * Parses input arguments and creates a new EditRecurringExpenseManagerCommand object
  */
-public class EditExpenseCommandParser implements Parser<EditExpenseCommand> {
+public class EditRecurringExpenseManagerCommandParser implements Parser<EditRecurringExpenseManagerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCategory
      * @param args Arguments provided by user in String form.
-     * @return EditExpenseCommand that will carry out the user's arguments to edit the expense specified.
+     * @return EditRecurringExpenseManagerCommand that will carry out the user's arguments to edit the recurring expense
+     *      specified.
      * @throws ParseException if the user input does not conform to required format.
      */
-    public EditExpenseCommand parse(String args) throws ParseException {
+    public EditRecurringExpenseManagerCommand parse(String args) throws ParseException {
         //First check if the given index is valid.
         ArgumentMultimap argMultiMap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_DATE, PREFIX_NAME, PREFIX_PRICE);
+                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_END_DATE, PREFIX_NAME, PREFIX_PRICE,
+                        PREFIX_TIMESPAN);
         Index index = ParserUtil.parseIndex(argMultiMap.getPreamble());
         String newExpenseName;
         Double newPrice;
-        LocalDate newDate;
+        LocalDate newEndDate;
         String newCategory;
+        String newFrequency;
 
-        //Get the new category name if applicable
         if (isPrefixPresent(argMultiMap, PREFIX_CATEGORY)) {
             newCategory = argMultiMap.getValue(PREFIX_CATEGORY).get();
         } else {
@@ -56,18 +64,27 @@ public class EditExpenseCommandParser implements Parser<EditExpenseCommand> {
             newPrice = null;
         }
 
-        if (isPrefixPresent(argMultiMap, PREFIX_DATE)) {
-            String inputDateInString = argMultiMap.getValue(PREFIX_DATE).get();
+        if (isPrefixPresent(argMultiMap, PREFIX_END_DATE)) {
+            String inputDateInString = argMultiMap.getValue(PREFIX_END_DATE).get();
             try {
-                newDate = ParserUtil.parseDate(inputDateInString);
+                newEndDate = ParserUtil.parseDate(inputDateInString);
             } catch (ParseException pe) {
                 throw new ParseException("Invalid date format! Please use DD/MM/YY format!", pe);
             }
         } else {
-            newDate = null;
+            newEndDate = null;
         }
 
-        return new EditExpenseCommand(index, newExpenseName, newPrice, newDate, newCategory);
+        if (isPrefixPresent(argMultiMap, PREFIX_TIMESPAN)) {
+            String inputFrequencyInString = argMultiMap.getValue(PREFIX_TIMESPAN).get();
+            newFrequency = inputFrequencyInString.toUpperCase();
+        } else {
+            newFrequency = null;
+        }
+
+        return new EditRecurringExpenseManagerCommand(index, newExpenseName, newPrice, newCategory, newFrequency,
+                newEndDate);
+
     }
 
     /**
@@ -79,5 +96,4 @@ public class EditExpenseCommandParser implements Parser<EditExpenseCommand> {
     private static boolean isPrefixPresent(ArgumentMultimap argMultiMap, Prefix toCheck) {
         return argMultiMap.getValue(toCheck).isPresent();
     }
-
 }

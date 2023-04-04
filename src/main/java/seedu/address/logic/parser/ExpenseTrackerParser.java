@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.CategorySummaryCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.SetBudgetCommand;
 import seedu.address.logic.commands.add.AddCategoryCommand;
@@ -18,6 +17,7 @@ import seedu.address.logic.commands.delete.DeleteRecurringExpenseCommand;
 import seedu.address.logic.commands.edit.EditCategoryCommand;
 import seedu.address.logic.commands.edit.EditExpenseCommand;
 import seedu.address.logic.commands.edit.EditRecurringExpenseManagerCommand;
+import seedu.address.logic.commands.general.CategorySummaryCommand;
 import seedu.address.logic.commands.general.ClearCommand;
 import seedu.address.logic.commands.general.ExitCommand;
 import seedu.address.logic.commands.general.FindCommand;
@@ -25,6 +25,15 @@ import seedu.address.logic.commands.general.HelpCommand;
 import seedu.address.logic.commands.list.ListCategoryCommand;
 import seedu.address.logic.commands.list.ListExpensesCommand;
 import seedu.address.logic.commands.list.ListRecurringExpensesCommand;
+import seedu.address.logic.parser.add.AddCategoryParser;
+import seedu.address.logic.parser.add.AddExpenseCommandParser;
+import seedu.address.logic.parser.add.AddRecurringExpenseParser;
+import seedu.address.logic.parser.delete.DeleteCategoryParser;
+import seedu.address.logic.parser.delete.DeleteExpenseCommandParser;
+import seedu.address.logic.parser.delete.DeleteRecurringExpenseParser;
+import seedu.address.logic.parser.edit.EditCategoryParser;
+import seedu.address.logic.parser.edit.EditExpenseCommandParser;
+import seedu.address.logic.parser.edit.EditRecurringExpenseManagerCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

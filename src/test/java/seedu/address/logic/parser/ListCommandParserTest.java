@@ -47,7 +47,8 @@ public class ListCommandParserTest {
     public void parse_categoryTimespanPresent_success() {
         ExpenseInTimespanPredicate timespanPredicate = new ExpenseInTimespanPredicate(YEAR);
         ExpenseInCategoryPredicate categoryPredicate = new ExpenseInCategoryPredicate(FOOD);
-        ListExpensesCommand expectedCommand = new ListExpensesCommand(Optional.of(categoryPredicate), Optional.of(timespanPredicate));
+        ListExpensesCommand expectedCommand = new ListExpensesCommand(Optional.of(categoryPredicate),
+            Optional.of(timespanPredicate));
 
         // whitespace only preamble
         assertParseSuccess(parser,

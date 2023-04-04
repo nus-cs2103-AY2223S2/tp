@@ -1,10 +1,15 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.edit;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUMMARY;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.edit.EditCategoryCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
