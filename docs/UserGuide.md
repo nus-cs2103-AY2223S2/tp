@@ -163,9 +163,9 @@ will be ignored.<br>
 
 * **TEACHER** is the name of the lecturer or TA conducting the class.
 
-* **DEADLINES** contain the details of a task with deadline.
+* **DEADLINE** contain the details of a task with deadline.
 
-* **REMARKS** are additional details about the class you want to add.
+* **REMARK** are additional details about the class you want to add.
 
 * **RESOURCE** can be the module website on Canvas, or any other external links.
 
@@ -186,22 +186,74 @@ The following commands deal with handling the details of a module in Contact nUS
 
 Adds a new module to the module tracker.
 
+Format: `add n/MODULE_NAME t/TAG [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A module can have any number of tags (including 0)
+</div>
+
+Examples:
+* `add n/CS2103T t/Lecture`
+* `add n/CS1101S t/Tutorial e/Monday 10:00 12:00 a/COM1-0217 s/Sam Wan`
+* `add n/CS2030S t/Lab a/COM1-B112 d/04042023 23:59 r/Attendance not compulsory :)`
+
+
 ### Editing a module: `edit`
 
 Edits the details of an existing module in the module tracker.
+
+Format: `edit INDEX [n/MODULE_NAME] [t/TAG] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]`
+
+* Edits the items at the specified INDEX. The index refers to the index number shown in the displayed module list.
+  The index must be a positive integer 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing the fields, the existing fields of the module will be removed i.e adding of fields is not cumulative.
+
+Examples:
+* `edit 1 n/CS2101 t/Tutorial` Edits the module name, item type and date of the 1st item to be `CS2101` and `Tutorial`
+  respectively.
+* `edit 2 a/COM3-B110 s/Professor Franklin Stein r/Funny lecturer haha` Edits the venue, teacher and remark of the 2nd
+  item to be `COM3-B110`, `Professor Franklin Stein` and `Funny lecturer haha` respectively.
+* `edit 5 n/CS1231S d/02042023 23:59` Edits the module name and deadline of the 5th item to be `CS1231S`
+  and `02042023 23:59` respectively.
 
 ### Listing all modules: `list`
 
 Displays a list of all the modules you have added into the module tracker.
 
+Format: `list`
+
 ### Finding a module: `find`
 
 Finds module(s) from the existing modules you have added, whose names match any of the given keywords.
+
+Format: `find KEYWORD`
+
+* The KEYWORD refers to the `MODULE_NAME` or `TAG` name such as CS2103T or tutorial.
+* The search is case-insensitive. e.g `CS` will match `cs`
+* Only the `MODULE_NAME` and `TAG` are searched.
+* Modules matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `CS2103T tutorial` will return the CS2103T module and tutorials in the module tracker
+
+Examples:
+* `find CS2103T` finds all instances where there is a module named CS2103T in the list.
+* `find tutorial` finds all instances of tutorials in the list.
+* `find CS` finds all instances where there is a module name that contains CS in the list.
+* `find t` finds all instances where there is the letter t in the `MODULE_NAME` or `TAG`.
 
 ### Deleting a module: `delete`
 
 Deletes the module you specified from the module tracker.
 
+Format: `delete INDEX`
+
+* Deletes the module at the specified `INDEX`.
+* The index refers to the index number shown in the displayed module list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+*  `delete 2` deletes the 2nd module in the module tracker.
 <br>
 
 ## Schedules
@@ -222,9 +274,10 @@ Shows all the deadlines and timeslots you have today
 
 Sorts the existing modules by either time slot or deadline.
 
+Format: `sort timeslot` or `sort deadline`
 <br>
 
-### Miscellaneous 
+## Miscellaneous 
 
 The following commands are additional quality-of-life features that you may be interested to use in `Contact nUS`. 
 They are able to:
@@ -236,11 +289,15 @@ They are able to:
 
 Shows a message explaining how to access the help page.
 
+Format: `help`
+
 ![help message](images/helpMessage.png)
 
 ### Clearing all modules: `clear`
 
 Clears all existing modules from the software.
+
+Format: `clear`
 
 <!--Include warning-->
 
@@ -248,6 +305,7 @@ Clears all existing modules from the software.
 
 Exits the software.
 
+Format: `exit`
 <br>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -290,7 +348,7 @@ Some text here
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer? <br>
+**Q**: How do I transfer my data to another computer? <br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
 the data of your previous Contact nUS home folder.
 
@@ -298,16 +356,16 @@ the data of your previous Contact nUS home folder.
  
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                                         |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **add**    | `n/MODULE_NAME t/TAG [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS] [c/RESOURCE]…​` <br> e.g., `add n/CS2103T t/Lecture e/310323 14:00 a/i3-AUD s/Professor Damith d/07042023 13:59 r/Can attend online! c/https://nus-cs2103-ay2223s2.github.io/website/` |
-| **delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                      |
-| **edit**   | `edit INDEX [n/MODULE_NAME] [t/TAG] [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINES] [r/REMARKS] [c/RESOURCE] ​`<br> e.g.,`edit 2 s/Low Mai Khye r/Funny TA`                                                                                                             |
-| **sort**   | `sort timeslot` or `sort deadline​`                                                                                                                                                                                                                                      |
-| **list**   | `list`                                                                                                                                                                                                                                                                   |
-| **find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS`                                                                                                                                                                                                                       |
-| **clear**  | `clear`                                                                                                                                                                                                                                                                  |
-| **help**   | `help`                                                                                                                                                                                                                                                                   |
-| **exit**   | `exit`                                                                                                                                                                                                                                                                   |
+| Action     | Format, Examples                                                                                                                                                                                                                                                             |
+|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add**    | `n/MODULE_NAME t/TAG… [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE]​` <br> e.g., `add n/CS2103T t/Lecture e/Friday 12:00 14:00 a/i3-AUD s/Professor Damith d/07042023 13:59 r/Can attend online! c/https://nus-cs2103-ay2223s2.github.io/website/` |
+| **delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                                          |
+| **edit**   | `edit INDEX [n/MODULE_NAME] [t/TAG]… [e/TIMESLOT] [a/VENUE] [s/TEACHER] [d/DEADLINE] [r/REMARK] [c/RESOURCE] ​`<br> e.g.,`edit 2 s/Low Mai Khye r/Funny TA`                                                                                                                  |
+| **sort**   | `sort timeslot` or `sort deadline​`                                                                                                                                                                                                                                          |
+| **list**   | `list`                                                                                                                                                                                                                                                                       |
+| **find**   | `find KEYWORD`<br> e.g., `find CS`                                                                                                                                                                                                                                           |
+| **clear**  | `clear`                                                                                                                                                                                                                                                                      |
+| **help**   | `help`                                                                                                                                                                                                                                                                       |
+| **exit**   | `exit`                                                                                                                                                                                                                                                                       |
 
 
