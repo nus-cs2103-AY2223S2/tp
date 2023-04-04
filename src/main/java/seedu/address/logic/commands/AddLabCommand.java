@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Lab;
 
 /**
- * Adds a lab to the address book.
+ * Adds a lab to the events that the teaching assistant would like to schedule.
  */
 public class AddLabCommand extends Command {
 
@@ -26,7 +26,9 @@ public class AddLabCommand extends Command {
     private final Lab toAdd;
 
     /**
-     * Creates an AddLab to add the specified {@code Lab}
+     * Creates an AddLab to add the specified {@code Lab}.
+     *
+     * @param lab the lab to be added.
      */
     public AddLabCommand(Lab lab) {
         requireNonNull(lab);

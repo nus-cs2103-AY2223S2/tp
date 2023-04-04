@@ -37,8 +37,10 @@ public class PerformanceCommand extends Command {
     private final Performance performance;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param performance of the person to be updated to
+     * Adds a performance to the indexed person.
+     *
+     * @param index of the person in the filtered person list to edit the remark.
+     * @param performance of the person to be updated to.
      */
     public PerformanceCommand(Index index, Performance performance) {
         requireAllNonNull(index, performance);

@@ -47,12 +47,13 @@ public class EditEventCommand extends Command {
     private final boolean isConsultation;
 
     /**
-     * Has parameters to pass data on whether the event is a tutorial, a lab or consultation for type casting
-     * @param index
-     * @param editEventDescriptor
-     * @param isTutorial
-     * @param isLab
-     * @param isConsultation
+     * Edits the event based on the index given and the fields to be edited.
+     *
+     * @param index                     the index of the event to be edited.
+     * @param editEventDescriptor       the new event details.
+     * @param isTutorial                if the event to be edited is a tutorial.
+     * @param isLab                     if the event to be edited is a lab.
+     * @param isConsultation            if the event to be edited is a consultation.
      */
     public EditEventCommand(Index index, EditEventDescriptor editEventDescriptor, boolean isTutorial,
                             boolean isLab, boolean isConsultation) {
@@ -67,10 +68,11 @@ public class EditEventCommand extends Command {
     }
 
     /**
-     * Executes model by typccasing depending on whether it is a tutorial, lab or consultation
+     * Executes model by typccasing depending on whether it is a tutorial, lab or consultation.
+     *
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException
+     * @return CommandResult.
+     * @throws CommandException if the command is invalid.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException {
@@ -85,10 +87,11 @@ public class EditEventCommand extends Command {
     }
 
     /**
-     * Executes the set tutorial with model
-     * @param model
+     * Executes the set tutorial based on the index of the last shown tutorial list.
+     *
+     * @param model                 the model to edit the tutorial from.
      * @return CommandResult
-     * @throws CommandException
+     * @throws CommandException     if the command is invalid.
      */
     public CommandResult executeTutorial(Model model) throws CommandException, ParseException {
         List<Tutorial> lastShownList = model.getFilteredTutorialList();
@@ -113,10 +116,11 @@ public class EditEventCommand extends Command {
     }
 
     /**
-     * Executes the set lab with model
-     * @param model
+     * Executes the set lab based on the index of the last shown lab list.
+     *
+     * @param model                 the model to edit the lab from.
      * @return CommandResult
-     * @throws CommandException
+     * @throws CommandException     if the command is invalid.
      */
     public CommandResult executeLab(Model model) throws CommandException, ParseException {
         List<Lab> lastShownList = model.getFilteredLabList();
@@ -140,10 +144,11 @@ public class EditEventCommand extends Command {
     }
 
     /**
-     * Executes the set consultation with model
-     * @param model
+     * Executes the set consultation based on the index of the last shown consultation list.
+     *
+     * @param model                 the model to edit the consultation from.
      * @return CommandResult
-     * @throws CommandException
+     * @throws CommandException     if the command is invalid.
      */
     public CommandResult executeConsultation(Model model) throws CommandException, ParseException {
         List<Consultation> lastShownList = model.getFilteredConsultationList();
@@ -169,8 +174,11 @@ public class EditEventCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code eventToEdit}
-     * edited with {@code editEventDescriptor}.
+     * Creates a new tutorial with the edited fields input by the user.
+     *
+     * @param eventToEdit           the type of event to be edited.
+     * @param editEventDescriptor   the new edited event.
+     * @return                      the newly edited tutorial details.
      */
     private static Tutorial createEditedTutorial(Event eventToEdit,
                                             EditEventCommand.EditEventDescriptor editEventDescriptor) {
@@ -186,8 +194,11 @@ public class EditEventCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code eventToEdit}
-     * edited with {@code editEventDescriptor}.
+     * Creates a new lab with the edited fields input by the user.
+     *
+     * @param eventToEdit           the type of event to be edited.
+     * @param editEventDescriptor   the new edited event.
+     * @return                      the newly edited lab details.
      */
     private static Lab createEditedLab(Event eventToEdit,
                                            EditEventCommand.EditEventDescriptor editEventDescriptor) {
@@ -203,8 +214,11 @@ public class EditEventCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code eventToEdit}
-     * edited with {@code editEventDescriptor}.
+     * Creates a new consultation with the edited fields input by the user.
+     *
+     * @param eventToEdit           the type of event to be edited.
+     * @param editEventDescriptor   the new edited event.
+     * @return                      the newly edited consultation details.
      */
     private static Consultation createEditedConsultation(Event eventToEdit,
                                            EditEventCommand.EditEventDescriptor editEventDescriptor) {
@@ -250,7 +264,7 @@ public class EditEventCommand extends Command {
         public EditEventDescriptor() {}
 
         /**
-         * Copy constructor.
+         * Copies constructor.
          * A defensive copy of {@code tags} is used internally.
          */
         public EditEventDescriptor(EditEventCommand.EditEventDescriptor toCopy) {

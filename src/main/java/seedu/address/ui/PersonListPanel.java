@@ -54,7 +54,7 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> persons) {
         super(FXML);
 
         table.setMouseTransparent(true);
@@ -69,7 +69,7 @@ public class PersonListPanel extends UiPart<Region> {
 
         wrapTelegram();
 
-        SortedList<Person> sorted = new SortedList<>(personList);
+        SortedList<Person> sorted = new SortedList<>(persons);
         table.setItems(sorted);
         sorted.comparatorProperty().bind(table.comparatorProperty());
         table.setRowFactory(tableView -> {

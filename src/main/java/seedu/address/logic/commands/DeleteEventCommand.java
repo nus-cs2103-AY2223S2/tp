@@ -38,9 +38,9 @@ public class DeleteEventCommand extends Command {
     private boolean isConsultation;
 
     /**
-     * Sets all the boolean flags (isTutorial, isLab, and isConsultation) to false
+     * Sets all the boolean flags (isTutorial, isLab, and isConsultation) to false.
      *
-     * @param targetIndex
+     * @param targetIndex the index of the event to be deleted.
      */
     public DeleteEventCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -50,7 +50,7 @@ public class DeleteEventCommand extends Command {
     }
 
     /**
-     * Marks the tutorial as true and the rest as false
+     * Marks the tutorial as true and the rest as false.
      */
     public void markTutorial() {
         isTutorial = true;
@@ -59,7 +59,7 @@ public class DeleteEventCommand extends Command {
     }
 
     /**
-     * Marks the lab as true and the rest as false
+     * Marks the lab as true and the rest as false.
      */
     public void markLab() {
         isLab = true;
@@ -69,7 +69,7 @@ public class DeleteEventCommand extends Command {
     }
 
     /**
-     * Marks the consultation as true and the rest as false
+     * Marks the consultation as true and the rest as false.
      */
     public void markConsultation() {
         isConsultation = true;
@@ -79,11 +79,11 @@ public class DeleteEventCommand extends Command {
     }
 
     /**
-     * Executes the deletion based on whether it is a tutorial, lab or a consultation
+     * Executes the deletion based on whether it is a tutorial, lab or a consultation.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException if the command is invalid
+     * @return CommandResult.
+     * @throws CommandException if the command is invalid.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -98,11 +98,11 @@ public class DeleteEventCommand extends Command {
     }
 
     /**
-     * Deletes the index from the list of most recent filtered tutorial list
+     * Deletes the index from the list of most recent filtered tutorial list.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException if the command is invalid
+     * @return CommandResult.
+     * @throws CommandException if the command is invalid.
      */
     public CommandResult executeTutorial(Model model) throws CommandException {
 
@@ -136,11 +136,11 @@ public class DeleteEventCommand extends Command {
     }
 
     /**
-     * Deletes the index from the list of most recent filtered lab list
+     * Deletes the index from the list of most recent filtered lab list.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException if the command is invalid
+     * @return CommandResult.
+     * @throws CommandException if the command is invalid.
      */
     public CommandResult executeLab(Model model) throws CommandException {
 
@@ -174,11 +174,11 @@ public class DeleteEventCommand extends Command {
     }
 
     /**
-     * Deletes the index from the list of most recent filtered consultation list
+     * Deletes the index from the list of most recent filtered consultation list.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException if the command is invalid
+     * @return CommandResult.
+     * @throws CommandException if the command is invalid.
      */
     public CommandResult executeConsultation(Model model) throws CommandException {
 

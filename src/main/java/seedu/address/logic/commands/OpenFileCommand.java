@@ -37,9 +37,9 @@ public class OpenFileCommand extends Command {
     private boolean isConsultation;
 
     /**
-     * Sets all the boolean flags (isTutorial, isLab, and isConsultation) to false
+     * Sets all the boolean flags (isTutorial, isLab, and isConsultation) to false.
      *
-     * @param targetIndex
+     * @param targetIndex   the index of the event to open the file from.
      */
     public OpenFileCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -49,7 +49,7 @@ public class OpenFileCommand extends Command {
     }
 
     /**
-     * Marks the tutorial as true and the rest as false
+     * Marks the tutorial as true and the rest as false.
      */
     public void markTutorial() {
         isTutorial = true;
@@ -58,7 +58,7 @@ public class OpenFileCommand extends Command {
     }
 
     /**
-     * Marks the lab as true and the rest as false
+     * Marks the lab as true and the rest as false.
      */
     public void markLab() {
         isLab = true;
@@ -68,7 +68,7 @@ public class OpenFileCommand extends Command {
     }
 
     /**
-     * Marks the consultation as true and the rest as false
+     * Marks the consultation as true and the rest as false.
      */
     public void markConsultation() {
         isConsultation = true;
@@ -78,11 +78,11 @@ public class OpenFileCommand extends Command {
     }
 
     /**
-     * Executes the open file based on whether it is a tutorial, lab or a consultation
+     * Executes the open file based on whether it is a tutorial, lab or a consultation.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException if the command is invalid
+     * @return CommandResult.
+     * @throws CommandException if the command is invalid.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -99,11 +99,11 @@ public class OpenFileCommand extends Command {
     }
 
     /**
-     * Opens the file at the index from the list of most recent filtered tutorial list
+     * Opens the file at the index from the list of most recent filtered tutorial list.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException if the command is invalid
+     * @return CommandResult.
+     * @throws CommandException if the command is invalid.
      */
     public CommandResult executeTutorial(Model model) throws CommandException {
 
@@ -122,11 +122,11 @@ public class OpenFileCommand extends Command {
     }
 
     /**
-     * Opens the file at the index from the list of most recent filtered lab list
+     * Opens the file at the index from the list of most recent filtered lab list.
      *
      * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException if the command is invalid
+     * @return CommandResult.
+     * @throws CommandException if the command is invalid.
      */
     public CommandResult executeLab(Model model) throws CommandException {
 
@@ -145,10 +145,10 @@ public class OpenFileCommand extends Command {
     }
 
     /**
-     * Throws error if user tries to open file for consultation event since consultation has no attachments
+     * Throws error if user tries to open file for consultation event since consultation has no attachments.
      *
      * @param model {@code Model} which the command should operate on.
-     * @throws CommandException if the command is invalid
+     * @throws CommandException if the command is invalid.
      */
     public void executeConsultation(Model model) throws CommandException {
         throw new CommandException(CONSULTATION_OPEN_FILE_FAILURE);
