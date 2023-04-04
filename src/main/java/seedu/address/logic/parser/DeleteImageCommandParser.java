@@ -26,8 +26,7 @@ public class DeleteImageCommandParser implements Parser<DeleteImageCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteImageCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteImageCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage());
         }
     }
 }
