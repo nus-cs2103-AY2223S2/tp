@@ -80,11 +80,13 @@ Format: `addservicetech s/SERVICE_ID t/TECHNICIAN_ID`
 Example: `addservicetech s/1 t/3`
 
 ### Adding a vehicle: `addvehicle`
-Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID.
+Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID. 
 
-Format: `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE`
+Format: `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID cl/COLOR t/TYPE`
 
-Example: `addvehicle p/SBA1234A b/Toyota c/1 t/car`
+Examples: 
+* `addvehicle p/SBA1234A b/Toyota c/1 cl/red t/car`
+* `addvehicle p/SBG5678B b/Honda c/2 cl/blue t/motorbike`
 
 ### Adding a vehicle part: `addpart`
 Adds a vehicle part to the system.
@@ -312,9 +314,6 @@ to be updated
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Command summary may be using outdated syntax please refer to guide above
-</div>
 
 | Action                                                  | Format, Examples                                                                                                                                                                |
 |---------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
