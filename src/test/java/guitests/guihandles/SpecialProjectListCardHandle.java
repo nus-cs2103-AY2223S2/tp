@@ -4,6 +4,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import mycelium.mycelium.model.project.Project;
 
+/**
+ * Provides a handle to a person card in the special project list panel.
+ */
 public class SpecialProjectListCardHandle extends NodeHandle<Node> {
     /**
      * Provides a handle to a special project card in the special project list panel.
@@ -23,7 +26,7 @@ public class SpecialProjectListCardHandle extends NodeHandle<Node> {
 
 
     /**
-     * Creates a {@code ProjectListCardHandle} with the default details.
+     * Creates a {@code SpecialProjectListCardHandle} with the default details.
      */
     public SpecialProjectListCardHandle(Node cardNode) {
         super(cardNode);
@@ -56,7 +59,7 @@ public class SpecialProjectListCardHandle extends NodeHandle<Node> {
     }
 
     /**
-     * Returns true if this handle contains {@code person}.
+     * Returns true if this handle contains {@code specialproject}.
      */
     public boolean equals(Project project) {
         return getName().equals(project.getName().toString())

@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 import mycelium.mycelium.model.client.Client;
 
 /**
- * Provides a handle to a person card in the person list panel.
+ * Provides a handle to a person card in the client list panel.
  */
 public class ClientListCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
@@ -25,7 +25,7 @@ public class ClientListCardHandle extends NodeHandle<Node> {
 
 
     /**
-     * Creates a {@code ProjectListCardHandle} with the default details.
+     * Creates a {@code ClientListCardHandle} with the default details.
      */
     public ClientListCardHandle(Node cardNode) {
         super(cardNode);
@@ -62,7 +62,7 @@ public class ClientListCardHandle extends NodeHandle<Node> {
     }
 
     /**
-     * Returns true if this handle contains {@code person}.
+     * Returns true if this handle contains {@code client}.
      */
     public boolean equals(Client client) {
         return getName().equals(client.getName().toString())

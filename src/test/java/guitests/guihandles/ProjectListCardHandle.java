@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import mycelium.mycelium.model.project.Project;
 
 /**
- * Provides a handle to a person card in the person list panel.
+ * Provides a handle to a person card in the project list panel.
  */
 public class ProjectListCardHandle extends NodeHandle<Node> {
     private static final String ID_FIELD_ID = "#id";
@@ -77,7 +77,7 @@ public class ProjectListCardHandle extends NodeHandle<Node> {
     }
 
     /**
-     * Returns true if this handle contains {@code person}.
+     * Returns true if this handle contains {@code project}.
      */
     public boolean equals(Project project) {
         return getName().equals(project.getName().toString())

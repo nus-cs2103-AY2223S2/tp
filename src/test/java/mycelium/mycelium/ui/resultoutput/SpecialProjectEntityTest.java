@@ -1,15 +1,17 @@
 package mycelium.mycelium.ui.resultoutput;
 
-import guitests.guihandles.ProjectListCardHandle;
+import static mycelium.mycelium.ui.testutil.GuiTestAssert.assertCardDisplaysSpecialProject;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import guitests.guihandles.SpecialProjectListCardHandle;
 import mycelium.mycelium.model.project.Project;
 import mycelium.mycelium.testutil.ProjectBuilder;
 import mycelium.mycelium.ui.GuiUnitTest;
 import mycelium.mycelium.ui.statisticsbox.SpecialProjectEntity;
-import org.junit.jupiter.api.Test;
-
-import static mycelium.mycelium.ui.testutil.GuiTestAssert.assertCardDisplaysSpecialProject;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class SpecialProjectEntityTest extends GuiUnitTest {
 
@@ -54,7 +56,8 @@ public class SpecialProjectEntityTest extends GuiUnitTest {
     private void assertCardDisplay(SpecialProjectEntity projectListCard, Project expectedProject, int expectedId) {
         guiRobot.pauseForHuman();
 
-        SpecialProjectListCardHandle projectListCardHandle = new SpecialProjectListCardHandle(projectListCard.getRoot());
+        SpecialProjectListCardHandle projectListCardHandle =
+                new SpecialProjectListCardHandle(projectListCard.getRoot());
 
         // verify id is displayed correctly
         assertEquals(Integer.toString(expectedId) + ". ", projectListCardHandle.getId());

@@ -18,7 +18,8 @@ public class GuiTestAssert {
     /**
      * Asserts that {@code actualCard} displays the details of {@code expectedProject}.
      */
-    public static void assertCardDisplaysSpecialProject(Project expectedProject, SpecialProjectListCardHandle actualCard) {
+    public static void assertCardDisplaysSpecialProject(Project expectedProject,
+                                                        SpecialProjectListCardHandle actualCard) {
         assertEquals(expectedProject.getName().toString(), actualCard.getName());
         assertEquals(expectedProject.getStatus().toString(), actualCard.getStatus());
         assertEquals(expectedProject.getClientEmail().value, actualCard.getClientEmail());
