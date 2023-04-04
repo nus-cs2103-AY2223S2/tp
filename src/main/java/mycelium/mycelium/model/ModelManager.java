@@ -287,6 +287,10 @@ public class ModelManager implements Model {
                 project.getStatus() == ProjectStatus.IN_PROGRESS).count();
         projectStatusWithCount.put("In Progress", inProgress);
 
+        assert projectStatusWithCount.containsKey("Not Started");
+        assert projectStatusWithCount.containsKey("Done");
+        assert projectStatusWithCount.containsKey("In Progress");
+
         return projectStatusWithCount;
     }
 

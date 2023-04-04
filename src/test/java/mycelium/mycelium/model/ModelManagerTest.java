@@ -36,7 +36,7 @@ import mycelium.mycelium.testutil.ProjectUtil;
 
 
 public class ModelManagerTest {
-    private static final int NUM_OF_VALID_STATUSES = 3;
+    private static final int NUM_OF_VALID_STATUSES = ProjectStatus.values().length;
 
     private ModelManager modelManager = new ModelManager();
 

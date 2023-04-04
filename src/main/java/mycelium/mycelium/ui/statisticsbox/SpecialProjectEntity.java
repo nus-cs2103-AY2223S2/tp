@@ -48,7 +48,7 @@ public class SpecialProjectEntity extends UiPart<Region> {
         status.setText(p.getStatus().toString());
         email.setText(p.getClientEmail().toString());
         deadline.setText(p.getDeadline().map(d -> d.format(Project.DATE_FMT)).orElse("No Deadline"));
-        logger.fine("Initialized DueProjectEntity with project: " + p.getName());
+        logger.fine("Initialized SpecialProjectEntity with project: " + p.getName());
     }
 
     @Override

@@ -13,7 +13,7 @@ import mycelium.mycelium.testutil.ClientBuilder;
 import mycelium.mycelium.ui.GuiUnitTest;
 import mycelium.mycelium.ui.entitypanel.ClientEntity;
 
-public class ClientListCardTest extends GuiUnitTest {
+public class ClientEntityTest extends GuiUnitTest {
 
     @Test
     public void display() {
