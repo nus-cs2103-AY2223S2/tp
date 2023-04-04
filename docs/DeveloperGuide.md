@@ -2,9 +2,19 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+## **NeoBook**
+NeoBook is an address book app designed to connect NUS students with their seniors or other students with similar academic paths, making their contacts much more organized. 
+The app allows students to find contacts with similar traits and view their schedules to help them connect with each other more conveniently. 
 
+This Developer Guide (DG) aims to provide technical documentation for developers who want to contribute to NeoBook's development. 
+The guide includes a list of setting up instructions, design documentation, app requirements, user stories, use cases, and other relevant technical details. 
+
+The target readers of this DG are developers who are familiar with the programming languages and frameworks used in the development of NeoBook.
+
+
+---
+* Table of Contents
+  {:toc}
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
