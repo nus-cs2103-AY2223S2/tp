@@ -208,6 +208,8 @@ A contact can have any number of tags (including 0). Tags are especially useful 
 A contact must have a name, other features are optional.
 </div>
 
+**Example context**:
+
 <img class="center" alt="**John Pic**" src="images/JohnContactCardFront.png" width="60%" />
 
 You have exchanged contacts with a person named **John** at a Computer Science Event.
@@ -234,6 +236,8 @@ Format: `list`
 `list` is automatically called after every command except `sort` in the Graphical App. Hence, you don't need to keep typing `list` after each command!
 </div>
 
+**Example context**:
+
 Now that we have added **John**, we should be able to see him in the Team Builder.
 
 **What you can type**:
@@ -246,6 +250,8 @@ These are all acceptable as anything after `list` is discarded.
 ### Updating a contact : `edit`
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [m/MAJOR] [t/TAG]… [T/TEAM_NAME]​`
+
+**Example context**:
 
 <img class="center" alt="**BACK OF JOHN'S CARD**" src="images/JohnContactCardBack.jpg" width="60%" />
 
@@ -281,6 +287,8 @@ We see **John** is index 1 in our display.
 
 Format: `delete INDEX`
 
+**Example context**:
+
 You hear from your friends that **John** is actually a **snake** :snake: and we do not want a snake as a teammate.
 
 Let's delete him from our Team Builder.
@@ -312,6 +320,8 @@ This includes:
 
 Format: `create tn/TEAMNAME td/TEAMDESC [t/TAG]...`
 
+**Example context**:
+
 You have decided to participate in NUS Hack&Roll hackathon. Let's create a team! Since your idea involves creating 
 a web application, you will need someone with technical experience in React and AWS. You would also prefer to have a UI 
 person to make your web app presentable. As this hackathon involves a tight timeline, proper project management skills 
@@ -330,6 +340,8 @@ t/Project Management t/UI Design`
 
 <a id="find-command" style="color:black"> Format: `find NAME/MAJOR/TAG [MORE_KEYWORDS]...` </a>
 
+**Example context 1**:
+
 You recall that two of your tutorial classmate named Alex and David are good at UI Design and you want to invite them
 to your team, but you have forgotten their full name and contact numbers.
 
@@ -339,7 +351,9 @@ to your team, but you have forgotten their full name and contact numbers.
 
 **Result**:
 
-<img class="center" alt="result for 'find alex david'" src="images/findAlexDavidResult.png" width="50%" />
+<img class="center" alt="result for 'find alex david'" src="images/findAlexDavid.png" width="50%" />
+
+**Example context 2**:
 
 You still feel your team needs more people, and you decide to find someone who majored in computer science.
 
@@ -350,6 +364,8 @@ You still feel your team needs more people, and you decide to find someone who m
 **Result**:
 
 <img class="center" alt="result for 'find computer science'" src="images/FindComputerScience.png" width="50%" />
+
+**Example context 3**:
 
 Now your team is almost formed, but you still need a person who mastered JavaScript.
 
@@ -378,21 +394,35 @@ Now your team is almost formed, but you still need a person who mastered JavaScr
 
 <a id="sort-command" style="color:black"> Format: `sort ORDER SORT_BY` </a>
 
+**Example context**:
+
+Perhaps you are not too sure which skills are required in your team, so you want to list persons who know a wide range 
+of skills first.
+
+**What to type**:
+
+`sort desc tcount`
+
+**Result**:
+
+<img class="center" alt="result for 'create team'" src="images/sortDesc.png" width="50%" />
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Specificity of `sort`**:
 
-* The order and sort by are case-insensitive. e.g `tcount` will match `tCount`
-* The order can only be either ascending (`asc`) or descending (`desc`)
-* The following sort by are implemented:
-  * `tcount` Sorts by person's tag count
+* The ORDER and SORT_BY are case-insensitive. e.g `tcount` will match `tCount`
+* The ORDER can only be either ascending (`asc`) or descending (`desc`)
+* The following SORT_BY are available:
+    * `tcount` Sorts by person's tag count
 
 </div>
-
 
 ### Add a person to a team : `edit`
 
 Format: `edit INDEX [T/TEAMTAG]...`
+
+**Example context**:
 
 You recall participating in a Hackathon previously with Alex Yeoh and knows he is familiar with React. You decide to 
 reach out to him to form your team for Hack&Roll. 
@@ -413,6 +443,8 @@ You can only add a person to the team if the team has been created beforehand!
 
 Format: `show TEAM_NAME [OTHER_TEAM_NAME]...`
 
+**Example context**:
+
 The Hack&Roll announced that there is a limit on team size. You want to list all people who are currently added to your
 NUSMeets team.
 
@@ -428,6 +460,8 @@ NUSMeets team.
 ### Removing a team : `remove`
 
 Format: `remove TEAMNAME`
+
+**Example context**:
 
 Oh no, you realised that you have a number of deadlines during the period of time Hack&Roll would run. You decide to 
 not participate in it anymore. 
