@@ -230,22 +230,62 @@ A preview of the help menu displayed.
 For attendance, you can make the following calls:
 * markAtd
 * unmarkAtd
+* listAtd
 
 #### Mark attendance: `markAtd`
 Marks the attendance of a student for that week<br>
-Format: `markAtd STUDENT_ID w/WEEK_NUMBER`<br>
+Format: `markAtd STUDENT_INDEX w/WEEK_NUMBER`
+
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI<br>
+`WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
+Marking the attendance for a week that is already marked will result in
+a message `This student's attendance has already been marked.`
 
 Examples
-* `markAtd 1 w/1`
-* `markAtd 2 w/1`
+* `markAtd 1 w/1` (marks attendance of student with index 1 for week 1)
+* `markAtd 2 w/1` (marks attendance of student with index 2 for week 1)
 
 #### Unmark attendance: `unmarkAtd`
 Unmarks the attendance of a student for that week<br>
-Format: `unmarkAtd STUDENT_ID w/WEEK_NUMBER`<br>
+Format: `unmarkAtd STUDENT_INDEX w/WEEK_NUMBER`
+
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
+`WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
+Unmarking the attendance for a week that is already unmarked will just result in
+the successful unmarking message being displayed `Attendance unmarked successfully!`
 
 Examples
-* `unmarkAtd 1 w/1`
-* `unmarkAtd 2 w/1`
+* `unmarkAtd 1 w/1` (unmarks attendance of student with index 1 for week 1)
+* `unmarkAtd 2 w/1` (unmarks attendance of student with index 2 for week 1)
+
+#### List Attendance: `listAtd`
+Lists the attendance of a student from week 1 to week 12<br>
+Format: `listAtd STUDENT_INDEX`
+
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
+
+Examples
+* `listAtd 1` (list attendance of student with index 1)
+* `listAtd 2` (list attendance of student with index 2)
+
+The listed attendance will be such that every line will be in the format `Week NUM: [PRESENT]` <br>
+where `NUM` represents the week number, and `PRESENT` takes the value of `X` is the student is present, and empty otherwise
+
+Example
+* `Week 1: [X]` <br>
+  `Week 2: [X]` <br>
+  `Week 3: [X]` <br>
+  `Week 4: []` <br>
+  `Week 5: []` <br>
+  `Week 6: []` <br>
+  `Week 7: []` <br>
+  `Week 8: []` <br>
+  `Week 9: []` <br>
+  `Week 10: []` <br>
+  `Week 11: []` <br>
+  `Week 12: []` <br>
+
+The above example shows that the student is present for week 1,2,3 and absent for the rest of the weeks
 
 ### Participation
 For participation, you can make the following calls:
@@ -309,6 +349,7 @@ Example
 
 The above example shows that the student have a participation point of 200 for week 1, 300 for week 2, 400 for week 3 <br>
 And -1 for the rest of the weeks (attendance is not marked)
+
 
 ### Assignments & Submissions
 
