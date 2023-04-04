@@ -9,6 +9,7 @@ Too many students to count? Sick and tired of scrolling through excel cells to f
 TMS is a **desktop application designed for private tutors managing students, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). TMS utilizes your fast typing ability to execute your management tasks faster than traditional GUI apps.
 
 [TABLE OF CONTENTS](#table-of-content)
+[Quick start](#quickstart)
 1. [Viewing help](#help)
 2. [Add student](#add)
 3. [Delete student](#delete)
