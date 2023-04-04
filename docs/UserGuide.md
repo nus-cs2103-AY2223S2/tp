@@ -18,7 +18,7 @@ than traditional GUI apps.
   - [Add a patient](#add-a-patient--add)
   - [List all patients](#listing-all-patients--list)
     - [List patients in alphabetical order](#listing-patients-in-alphabetical-order--list_name)
-  - [Show](#show-a-patients-information--show)
+  - [Show](#UserGuide.md#show-a-patients-information-show)
   - [Edit a patient](#editing-a-patient--edit)
   - [Appointment](#appointment)
     - [Make or change an appointment](#making-appointment-to-a-patient--makeapp)
