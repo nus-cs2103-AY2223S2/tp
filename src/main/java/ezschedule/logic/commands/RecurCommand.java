@@ -33,10 +33,11 @@ public class RecurCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Recurring event added: %1$s";
     public static final String MESSAGE_FAILURE_PAST_DATE = "End date indicated is in the past\n"
             + "Ensure end date of recurrence has not past.";
-    public static final String MESSAGE_RECUR_FACTOR_CAP = "Recur factor is not appropriate for "
-            + "number of recurring events.";
+    public static final String MESSAGE_RECUR_FACTOR_CAP = "Recur factor '%s' may only be used for the next %d %ss";
     public static final String MESSAGE_FAILURE_DAY_NOT_EXIST_MONTH = "Unable to recur by month.\n"
             + "%s does not have day %d";
+    public static final String MESSAGE_FAILURE_EVENT_CLASH = "Unable to recur.\n"
+            + "%d %s has a clashing event.";
 
     private final Index index;
     private final Date endDate;
@@ -106,13 +107,17 @@ public class RecurCommand extends Command {
      */
     public void addEventPerDay(Model model, Event eventToRecur) throws CommandException {
 
+        String month;
         int maxDaysInMonth = 30;
 
         Date baseDate = eventToRecur.getDate();
         int daysDiff = (int) baseDate.getDaysBetween(endDate.date);
 
+        Event[] eventsToAdd = new Event[daysDiff];
+
         if (daysDiff > maxDaysInMonth) {
-            throw new CommandException(MESSAGE_RECUR_FACTOR_CAP);
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP,
+                    factor.toString(), maxDaysInMonth, factor));
         }
 
         Date newDate = new Date(eventToRecur.getDate().date.plusDays(1).toString());
@@ -121,12 +126,26 @@ public class RecurCommand extends Command {
                         eventToRecur.getStartTime(), eventToRecur.getEndTime());
 
         for (int i = 0; i < daysDiff; i++) {
-            model.addEvent(nextEventToRecur);
+
+            month = intToStringMonth(newDate.getMonth());
+
+            //for undo
             model.addRecentEvent(nextEventToRecur);
+
+            if (model.hasEventAtTime(nextEventToRecur)) {
+                throw new CommandException(String.format(MESSAGE_FAILURE_EVENT_CLASH, newDate.getDay(), month));
+            }
+
+            eventsToAdd[i] = nextEventToRecur;
             newDate = new Date(nextEventToRecur.getDate().date.plusDays(1).toString());
             nextEventToRecur =
                     new Event(eventToRecur.getName(), newDate,
                             eventToRecur.getStartTime(), eventToRecur.getEndTime());
+        }
+
+        // if successful, add all events
+        for (int i = 0; i < daysDiff; i++) {
+            model.addEvent(eventsToAdd[i]);
         }
     }
 
@@ -138,27 +157,46 @@ public class RecurCommand extends Command {
      */
     public void addEventPerWeek(Model model, Event eventToRecur) throws CommandException {
 
+        String month;
         int daysPerWeek = 7;
         int maxWeeksInYear = 52;
 
         Date baseDate = eventToRecur.getDate();
         int weeksDiff = (int) baseDate.getDaysBetween(endDate.date) / daysPerWeek;
+
+        Event[] eventsToAdd = new Event[weeksDiff];
+
         Date newDate = new Date(eventToRecur.getDate().date.plusWeeks(1).toString());
         Event nextEventToRecur =
                 new Event(eventToRecur.getName(), newDate,
                         eventToRecur.getStartTime(), eventToRecur.getEndTime());
 
         if (weeksDiff > maxWeeksInYear) {
-            throw new CommandException(MESSAGE_RECUR_FACTOR_CAP);
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP,
+                    factor.toString(), maxWeeksInYear, factor));
         }
 
         for (int i = 0; i < weeksDiff; i++) {
-            model.addEvent(nextEventToRecur);
+
+            month = intToStringMonth(newDate.getMonth());
+
+            // for undo
             model.addRecentEvent(nextEventToRecur);
+
+            if (model.hasEventAtTime(nextEventToRecur)) {
+                throw new CommandException(String.format(MESSAGE_FAILURE_EVENT_CLASH, newDate.getDay(), month));
+            }
+
+            eventsToAdd[i] = nextEventToRecur;
             newDate = new Date(nextEventToRecur.getDate().date.plusWeeks(1).toString());
             nextEventToRecur =
                     new Event(eventToRecur.getName(), newDate,
                             eventToRecur.getStartTime(), eventToRecur.getEndTime());
+        }
+
+        // if successful, add all events
+        for (int i = 0; i < weeksDiff; i++) {
+            model.addEvent(eventsToAdd[i]);
         }
     }
 
@@ -185,7 +223,8 @@ public class RecurCommand extends Command {
                         eventToRecur.getStartTime(), eventToRecur.getEndTime());
 
         if (monthsDiff > maxMonthInYear) {
-            throw new CommandException(MESSAGE_RECUR_FACTOR_CAP);
+            throw new CommandException(String.format(MESSAGE_RECUR_FACTOR_CAP,
+                    factor.toString(), maxMonthInYear, factor));
         }
 
         for (int i = 0; i < monthsDiff; i++) {
@@ -200,9 +239,12 @@ public class RecurCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_FAILURE_DAY_NOT_EXIST_MONTH, month, dayOfMonth));
             } else {
 
+                if (model.hasEventAtTime(nextEventToRecur)) {
+                    throw new CommandException(String.format(MESSAGE_FAILURE_EVENT_CLASH, newDate.getDay(), month));
+                }
+
                 eventsToAdd[i] = nextEventToRecur;
                 newDate = new Date(nextEventToRecur.getDate().date.plusMonths(1).toString());
-
                 nextEventToRecur =
                         new Event(eventToRecur.getName(), newDate,
                                 eventToRecur.getStartTime(), eventToRecur.getEndTime());

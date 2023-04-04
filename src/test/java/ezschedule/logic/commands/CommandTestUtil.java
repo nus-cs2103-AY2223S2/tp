@@ -34,6 +34,7 @@ public class CommandTestUtil {
     public static final String VALID_START_TIME_B = "18:00";
     public static final String VALID_END_TIME_A = "15:00";
     public static final String VALID_END_TIME_B = "22:00";
+    public static final String VALID_END_TIME_BEFORE_START_TIME_B = "00:00";
 
     public static final String NAME_DESC_A = " " + PREFIX_NAME + VALID_NAME_A;
     public static final String NAME_DESC_B = " " + PREFIX_NAME + VALID_NAME_B;
@@ -43,6 +44,8 @@ public class CommandTestUtil {
     public static final String START_TIME_DESC_B = " " + PREFIX_START + VALID_START_TIME_B;
     public static final String END_TIME_DESC_A = " " + PREFIX_END + VALID_END_TIME_A;
     public static final String END_TIME_DESC_B = " " + PREFIX_END + VALID_END_TIME_B;
+    public static final String END_TIME_BEFORE_START_TIME_DESC_B =
+            " " + PREFIX_END + VALID_END_TIME_BEFORE_START_TIME_B;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Event@"; // '@' not allowed in names
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2023-01-05a"; // 'a' not allowed in phones
