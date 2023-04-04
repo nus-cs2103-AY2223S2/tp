@@ -864,13 +864,11 @@ Format: `help`
 
 | Action     | Format, Examples                                                                                                        |
 |------------|-------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `fish add` `tank add` `task add` <br>`tank addReadings`                                                                 |
-| **Clear**  | `clear` **Coming soon**                                                                                                 |
+| **Add**    | `fish add` `tank add` `task add` <br>`tank addReadings`                                                                 |                                                                                                |
 | **Delete** | `fish delete INDEX` `tank delete INDEX` `task delete INDEX` <br>`tank delLastReadings INDEX` <br> e.g., `tank delete 3` |
-| **Edit**   | **Coming soon**                                                                                                         |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> **Coming soon**                                                                      |
+| **Edit**   | `fish edit INDEX` `tank edit INDEX` `task edit INDEX`                                                                   |                                                                    |
 | **Sort**   | `fish sort KEYWORD [TANK]`<br> e.g., `fish sort by/n tk/2`                                                              |
-| **List**   | `list tanks` `list fishes`                                                                                              |
+| **List**   | `list tasks` `list fishes`                                                                                              |
 | **Help**   | `help`                                                                                                                  |
 
 ## Command prefix summary
