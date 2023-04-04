@@ -13,12 +13,36 @@ MODCheck is a **desktop app for managing contacts, optimized for use via a Comma
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
+2. The first GUI you will encounter is the `ModCheck Login`.
+3. If it is the first time that you are using MODCheck, you will be greeted with the GUI below.<br>
+   ![FirstTimeLogin](images/login/FirstTimeLoginUser.png)
+   <p align="center">
+       <em>First Time User Welcome GUI</em>
+   </p>
+   <br/>
+   
+4. Enter `yes` if you want to create a password or `no` if you want to continue to MODCheck main application. Further explanation on the `Login` feature will be described further down under `Features`.
+5. You will be greeted with one of GUI shown below that represents the `loading` screen before entering MODCheck's main application depending on the choice you have made earlier.
+   ![DefaultLoadingSection](images/login/DefaultLoadingSection.png)
+   <p align="center">
+   <em>Default Loading GUI</em>
+   </p>
+   <br/>
 
-2. Enter your desired command into the box and press `Enter` <br>
-3. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![PasswordCreatedLoadingSection](images/login/PasswordCreatedLoadingSection.png)
+   <p align="center">
+   <em>Password Created Successfully Loading GUI</em>
+   </p>
+   <br/>
+   
+6. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
+    <p align="center">
+    <em>MODCheck Main GUI</em>
+    </p>
+    <br/>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+7. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
@@ -31,7 +55,7 @@ MODCheck is a **desktop app for managing contacts, optimized for use via a Comma
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+8. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -61,6 +85,39 @@ MODCheck is a **desktop app for managing contacts, optimized for use via a Comma
 
 </div>
 
+### Logging in
+
+Login to MODCheck with given passsword that may be empty.
+
+Format: `[Password]`
+
+`[Password]`: Password of user.
+
+> :bulb:  **Tip:** User can leave the textbox empty and press `Enter` to enter inside MODCheck's main application if user did not create a password to secure MODCheck.
+
+![DefaultLoginSection](images/login/DefaultLoginSection.png)
+
+<p align="center">
+<em>Default Login GUI</em>
+</p>
+<br/>
+
+### Creating Password
+
+Creates a password to secure MODCheck from other unwanted users
+
+![CreatePasswordSection](images/login/CreatePasswordSection.png)
+
+<p align="center">
+<em>Create Password GUI</em>
+</p>
+<br/>
+
+Format: `[Password]`
+
+`[Password]`: Password of user.
+
+
 ### Viewing help : `help`
 
 Shows a message explaning how to access the help page.
@@ -84,12 +141,7 @@ Additional Fields:
 * `t/` : tags 
 * `m/` : module codes
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tips:**
-
-A person can have any number of tags or modules (including 0)
-
-The order of the fields is not important.
-</div>
+> :bulb:  **Tip:** A person can have any number of tags or modules (including 0). The order of the fields is not important.
 
 Examples:
 * `add n/John d/Important friend e/leomessi@psg.com p/98101010`
