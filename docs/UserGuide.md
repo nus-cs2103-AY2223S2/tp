@@ -302,7 +302,7 @@ to log down the respective readings.
 Currently, there are seven command actions of type tank:
 * [Adding a tank `tank add`](#adding-a-tank-tank-add)
 * [Deleting a tank `tank delete`](#deleting-a-tank-tank-delete)
-* [Editing a tank `tank edit](#editing-a-tank-tank-edit)
+* [Editing a tank `tank edit`](#editing-a-tank-tank-edit)
 * [Feeding a tank `tank feed`](#feeding-a-tank-tank-feed)
 * [Viewing a tank `tank view`](#viewing-a-tank-tank-view)
 * [Adding a set of readings to a tank `tank addReadings`](#adding-a-set-of-readings-tank-addreadings)
