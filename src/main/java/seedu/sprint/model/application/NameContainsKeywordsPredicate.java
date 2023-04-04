@@ -66,15 +66,11 @@ public class NameContainsKeywordsPredicate implements Predicate<Application> {
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         application.getCompanyName().toString(), keyword));
 
-        boolean companyEmailCheck = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        application.getCompanyEmail().toString(), keyword));
-
         boolean statusCheck = keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         application.getStatus().toString(), keyword));
 
-        return roleCheck || companyNameCheck || companyEmailCheck || statusCheck;
+        return roleCheck || companyNameCheck || statusCheck;
     }
 
 
