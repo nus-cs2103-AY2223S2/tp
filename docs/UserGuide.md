@@ -29,7 +29,7 @@ than traditional GUI apps.
   - [SearchDate](#searching-patients-with-appointment-on-specified-date--searchdate)
   - [Delete](#deleting-a-patient--delete)
     - [deletes](#deleting-multiple-patients--deletes)
-    - [deletefile](#delete-a-medical-file-for-the-specified-patient--deletefile)
+    - [deletefile](#delete-a-medical-file-for-the-specified-patient-deletefile)
   - [Clear](#clearing-all-entries--clear)
   - [Exit](#exiting-the-program--exit)
 - [Saving, Editing, and Archiving Data](#saving-the-data)
