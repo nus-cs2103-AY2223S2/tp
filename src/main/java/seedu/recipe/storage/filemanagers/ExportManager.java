@@ -73,7 +73,7 @@ public class ExportManager {
      * @param selectedFile the selected file to write to.
      * @throws IOException if there is an error while writing to the file.
      */
-    private void writeToFile(File selectedFile) throws IOException {
+    protected void writeToFile(File selectedFile) throws IOException {
         if (!recipeBookFilePath.toFile().exists()) {
             writeToFileUsingLogic(selectedFile);
             return;
