@@ -587,7 +587,7 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 FriendlyLink provides command recommendations for registered [commands](#command) and [field's](#field) [prefixes](#prefix).
 
-![Command recommendation](./images/CommandRecommendations.png)
+![Command recommendation](images/CommandRecommendations.png)
 
 For example, when adding an elderly, the recommendation engine will automatically recommend all available field prefixes.
 No new suggestions will be given once all possible prefixes has at least one value provided. If the user continues 
