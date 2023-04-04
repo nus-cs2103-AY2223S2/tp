@@ -70,7 +70,7 @@ public class EditListingDescriptorBuilder {
      * Parses the {@code platform} into a {@code ArrayList<Platform>} and set it to the {@code EditListingDescriptor}
      * that we are building.
      */
-    public EditListingDescriptorBuilder withPlatform(String... platforms) {
+    public EditListingDescriptorBuilder withPlatforms(String... platforms) {
         ArrayList<Platform> platformArrayList = new ArrayList<>(Stream.of(platforms).map((name) ->
                 new Platform(new PlatformName(name))).collect(Collectors.toList()));
         descriptor.setPlatforms(platformArrayList);

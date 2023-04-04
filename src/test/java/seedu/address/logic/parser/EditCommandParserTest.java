@@ -1,22 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPLICANT_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_BENEDICT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_BENEDICT_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_CHRIS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_CHRIS_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_ALT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_DESC_ALT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_ALT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_DESC_ALT;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICANT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_LISTING;
@@ -31,11 +18,13 @@ import seedu.address.logic.commands.EditCommand.EditListingDescriptor;
 import seedu.address.model.applicant.Name;
 import seedu.address.model.listing.JobDescription;
 import seedu.address.model.listing.JobTitle;
+import seedu.address.model.platform.PlatformName;
 import seedu.address.testutil.EditListingDescriptorBuilder;
 
 public class EditCommandParserTest {
 
     private static final String APPLICANT_EMPTY = " " + PREFIX_APPLICANT;
+    private static final String PLATFORM_EMPTY = " " + PREFIX_PLATFORM;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -77,6 +66,8 @@ public class EditCommandParserTest {
                 JobDescription.MESSAGE_CONSTRAINTS); // invalid job description
         assertParseFailure(parser, "1" + INVALID_APPLICANT_DESC,
                 Name.MESSAGE_CONSTRAINTS); // invalid applicant
+        assertParseFailure(parser, "1" + INVALID_PLATFORM_DESC,
+                PlatformName.MESSAGE_CONSTRAINTS); //invalid platforms
 
         // invalid job description followed by valid job title
         assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC + VALID_TITLE_DESC,
@@ -96,6 +87,15 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + APPLICANT_EMPTY + VALID_APPLICANT_NAME_BENEDICT_DESC
                 + VALID_APPLICANT_NAME_CHRIS_DESC, Name.MESSAGE_CONSTRAINTS);
 
+        // while parsing {@code PREFIX_PLATFORM} alone will reset the platforms of the {@code Listing} being edited,
+        // parsing it together with a valid platform results in error
+        assertParseFailure(parser, "1" + VALID_PLATFORM_NAME_LINKEDIN_DESC + VALID_PLATFORM_NAME_GLINTS_DESC
+                + PLATFORM_EMPTY, PlatformName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + VALID_PLATFORM_NAME_LINKEDIN_DESC + PLATFORM_EMPTY
+                + VALID_PLATFORM_NAME_GLINTS_DESC, PlatformName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + PLATFORM_EMPTY + VALID_PLATFORM_NAME_LINKEDIN_DESC
+                + VALID_PLATFORM_NAME_GLINTS_DESC, PlatformName.MESSAGE_CONSTRAINTS);
+
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_DESCRIPTION_DESC,
                 JobTitle.MESSAGE_CONSTRAINTS);
@@ -105,11 +105,12 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_LISTING;
         String userInput = targetIndex.getOneBased() + VALID_DESCRIPTION_DESC + VALID_APPLICANT_NAME_CHRIS_DESC
-                + VALID_TITLE_DESC + VALID_APPLICANT_NAME_BENEDICT_DESC;
+                + VALID_TITLE_DESC + VALID_APPLICANT_NAME_BENEDICT_DESC + VALID_PLATFORM_NAME_LINKEDIN_DESC;
 
         EditListingDescriptor descriptor = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE)
                 .withJobDescription(VALID_DESCRIPTION)
-                .withApplicants(VALID_APPLICANT_NAME_CHRIS, VALID_APPLICANT_NAME_BENEDICT).build();
+                .withApplicants(VALID_APPLICANT_NAME_CHRIS, VALID_APPLICANT_NAME_BENEDICT)
+                .withPlatforms(VALID_PLATFORM_NAME_LINKEDIN).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -147,6 +148,12 @@ public class EditCommandParserTest {
         descriptor = new EditListingDescriptorBuilder().withApplicants(VALID_APPLICANT_NAME_BENEDICT).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // platforms
+        userInput = targetIndex.getOneBased() + VALID_PLATFORM_NAME_LINKEDIN_DESC;
+        descriptor = new EditListingDescriptorBuilder().withPlatforms(VALID_PLATFORM_NAME_LINKEDIN).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -154,11 +161,13 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_LISTING;
         String userInput = targetIndex.getOneBased() + VALID_TITLE_DESC + VALID_DESCRIPTION_DESC
                 + VALID_TITLE_DESC + VALID_DESCRIPTION_DESC + VALID_APPLICANT_NAME_BENEDICT_DESC
-                + VALID_TITLE_DESC_ALT + VALID_DESCRIPTION_DESC_ALT + VALID_APPLICANT_NAME_CHRIS_DESC;
+                + VALID_TITLE_DESC_ALT + VALID_DESCRIPTION_DESC_ALT + VALID_APPLICANT_NAME_CHRIS_DESC
+                + VALID_PLATFORM_NAME_LINKEDIN_DESC + VALID_PLATFORM_NAME_GLINTS_DESC;
 
         EditListingDescriptor descriptor = new EditListingDescriptorBuilder().withJobDescription(VALID_DESCRIPTION_ALT)
                 .withJobTitle(VALID_TITLE_ALT).withApplicants(VALID_APPLICANT_NAME_BENEDICT,
                         VALID_APPLICANT_NAME_CHRIS)
+                .withPlatforms(VALID_PLATFORM_NAME_LINKEDIN, VALID_PLATFORM_NAME_GLINTS)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -189,6 +198,17 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + APPLICANT_EMPTY;
 
         EditListingDescriptor descriptor = new EditListingDescriptorBuilder().withApplicants().build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_resetPlatforms_success() {
+        Index targetIndex = INDEX_SECOND_LISTING;
+        String userInput = targetIndex.getOneBased() + PLATFORM_EMPTY;
+
+        EditListingDescriptor descriptor = new EditListingDescriptorBuilder().withPlatforms().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

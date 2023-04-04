@@ -106,11 +106,11 @@ public class CommandTestUtil {
         DESC_LISTING = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE)
                 .withJobDescription(VALID_DESCRIPTION)
                 .withApplicants(VALID_APPLICANT_NAME_BENEDICT)
-                .withPlatform(VALID_PLATFORM_NAME_LINKEDIN).build();
+                .withPlatforms(VALID_PLATFORM_NAME_LINKEDIN).build();
         DESC_LISTING_ALT = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE_ALT)
                 .withJobDescription(VALID_DESCRIPTION_ALT)
                 .withApplicants(VALID_APPLICANT_NAME_BENEDICT, VALID_APPLICANT_NAME_CHRIS)
-                .withPlatform(VALID_PLATFORM_NAME_LINKEDIN, VALID_PLATFORM_NAME_GLINTS).build();
+                .withPlatforms(VALID_PLATFORM_NAME_LINKEDIN, VALID_PLATFORM_NAME_GLINTS).build();
     }
 
     /**

@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_LISTING;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_LISTING_ALT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLICANT_NAME_BENEDICT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_LINKEDIN;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_ALT;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -30,6 +31,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.applicant.Applicant;
 import seedu.address.model.applicant.Name;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.platform.Platform;
+import seedu.address.model.platform.PlatformName;
 import seedu.address.testutil.EditListingDescriptorBuilder;
 import seedu.address.testutil.ListingBuilder;
 
@@ -62,10 +65,13 @@ public class EditCommandTest {
         ListingBuilder listingInList = new ListingBuilder(lastListing);
         Listing editedListing = listingInList.withTitle(VALID_TITLE).withDescription(VALID_DESCRIPTION)
                 .withApplicants(new ArrayList<>(Arrays
-                        .asList(new Applicant(new Name(VALID_APPLICANT_NAME_BENEDICT))))).build();
+                        .asList(new Applicant(new Name(VALID_APPLICANT_NAME_BENEDICT)))))
+                .withPlatforms(new ArrayList<>(Arrays
+                        .asList(new Platform(new PlatformName(VALID_PLATFORM_NAME_LINKEDIN))))).build();
 
         EditListingDescriptor descriptor = new EditListingDescriptorBuilder().withJobTitle(VALID_TITLE)
-                .withJobDescription(VALID_DESCRIPTION).withApplicants(VALID_APPLICANT_NAME_BENEDICT).build();
+                .withJobDescription(VALID_DESCRIPTION).withApplicants(VALID_APPLICANT_NAME_BENEDICT)
+                .withPlatforms(VALID_PLATFORM_NAME_LINKEDIN).build();
         EditCommand editCommand = new EditCommand(indexLastListing, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_LISTING_SUCCESS, editedListing);
