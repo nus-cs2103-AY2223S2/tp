@@ -63,6 +63,18 @@ tee, allowing you to in-process, update, and move patients around while looking 
 
 ![UiOverview](images/UiOverview.png)
 
+The main GUI has 7 sections as highlighted above.
+- **_Menu Bar_**: File and Help buttons to exit or get help.
+- **_Command Input_**: Key in commands here and press <kbd>enter</kbd> to execute.
+- **_Result Display_**: Responses from the application including error and success messages appear here.
+- **_Adjustable Panels_**: Click and drag on the purple highlighted areas to customize the panel sizes to your preference.
+- **_Patient List_**: List of patients you have.
+- **_Ward List_**: List of wards you have.
+- **_Save Location and Stats_**: Status bar which displays the location of data storage and some statistics of your hospital.
+
+[Back to Table of Contents](#table-of-contents)
+
+---
 ## How to use the User Guide
 
 This Guide contains detailed explanations on the **commmands** available and what they do.
