@@ -5,13 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Collections;
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.PersonBuilder;
 
 public class PolicyExistInPersonPredicateTest {
 
-    List<String> firstPredicateKeywordList = Collections.singletonList("Insurance");
-    List<String> secondPredicateKeywordList = Collections.singletonList("Investment");
+    private final List<String> firstPredicateKeywordList = Collections.singletonList("Insurance");
+    private final List<String> secondPredicateKeywordList = Collections.singletonList("Investment");
 
     private final Person dudeWithInsurancePolicy = new PersonBuilder().withTags("Insurance").build();
     private final Person dudeWithInvestmentPolicy = new PersonBuilder().withTags("Investment").build();

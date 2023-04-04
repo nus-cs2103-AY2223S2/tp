@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -160,6 +161,7 @@ public class UniquePersonList implements Iterable<Person> {
         ArrayList<MeetingWithPerson> meeting = internalList.stream()
                                            .flatMap(p -> p.getMeetings().stream().map(m -> new MeetingWithPerson(m, p)))
                                            .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        Collections.sort(meeting);
         internalMeetingList.clear();
         internalMeetingList.addAll(meeting);
     }

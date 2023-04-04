@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
@@ -182,5 +183,14 @@ public class ParserUtil {
         int startHour = Integer.parseInt(time[0]);
         int startMinute = Integer.parseInt(time[1]);
         return LocalDateTime.of(year, month, day, startHour, startMinute);
+    }
+
+    public static LocalDate parseDate(String date) {
+        String[] input = date.split(" ");
+        String[] dates = input[1].split("/");
+        int day = Integer.parseInt(dates[0]);
+        int month = Integer.parseInt(dates[1]);
+        int year= Integer.parseInt(dates[2]);
+        return LocalDate.of(year, month, day);
     }
 }

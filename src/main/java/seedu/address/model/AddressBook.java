@@ -2,9 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
@@ -104,7 +102,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Adds a meeting to the Person
      * @param personToEdit person we want to add meeting to
      * @param meeting meeting that is to be added
-     * @return 
+     * @return Person object with a new meeting added
      */
     public Person addMeeting(Person personToEdit, Meeting meeting) {
         personToEdit.getMeetings().add(meeting);
@@ -116,6 +114,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return editedPerson;
     }
 
+    /**
+     * Removes a meeting from the {@code Person} list of meetings
+     * @param personToEdit person we want to remove the meeting from
+     * @param indexMeeting index in meeting list at which the meeting is to be removed
+     * @return Person with specified meeting removed
+     */
     public Person removeMeeting(Person personToEdit, Index indexMeeting) {
         personToEdit.getMeetings().remove(indexMeeting.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
@@ -125,6 +129,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return editedPerson;
     }
 
+    /**
+     * Update {@code Person} list of meetings with updated meeting information
+     * @param personToEdit person we want to update meeting to
+     * @param meetingIndex index in meeting list in which we want to update the meeting
+     * @param editedMeeting the updated meeting
+     */
     public void updateMeeting(Person personToEdit, Index meetingIndex, Meeting editedMeeting) {
         personToEdit.setMeeting(meetingIndex.getZeroBased(), editedMeeting);
         persons.refreshInternalMeetingList();

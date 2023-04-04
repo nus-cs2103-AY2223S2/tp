@@ -10,7 +10,7 @@ import seedu.address.model.person.PolicyExistInPersonPredicate;
 /**
  * Finds people with specified policy tag
  */
-public class FindPolicyCommand extends Command{
+public class FindPolicyCommand extends Command {
     public static final String COMMAND_WORD = "findPolicy";
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": finds clients that have the policy specified\n"
