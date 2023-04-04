@@ -10,7 +10,7 @@ FriendlyLink is a personnel information management tool designed for Voluntary W
 Given below are my contributions to the project.
 
 * **New Feature**: Command recommendations and autocompletion
-    * What it does: Provides command recommendations for registered [commands](UserGuide.html#command) and [field's](UserGuide.html#field) [prefixes](UserGuide.html#prefix).
+    * What it does: Provides command recommendations for registered [commands](../UserGuide.html#command) and [field's](../UserGuide.html#field) [prefixes](../UserGuide.html#prefix).
     * Justification: Autocompletion and Recommendation are features that can greatly enhance the user experience when using the application. By predicting the set of words that the user intends to type, it allows the user to operate efficiently and effectively when typing the commands into the application.
     * Highlights: The implementation was challenging as it requires attention to intricate details and different edges cases. Code is written as modular as possible, so that it is easily extensible to more input validation, and plugins.
     * Credits: Adapted from [Agolia Documentation](https://www.algolia.com/doc/guides/solutions/ecommerce/search/autocomplete/predictive-search-suggestions/)
