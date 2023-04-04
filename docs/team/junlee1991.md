@@ -17,7 +17,7 @@ Given below are my contributions to the project.
     * Credits: [zhixianggg](https://github.com/zhixianggg) - I reused and adapted some of his code to implement the UndoRedoStack.
                [bakano98](https://github.com/bakano98) - I reused and adapted some of his code to implement the undo redo test. 
 
-* **New Feature**: Added the ability totalappointment command. 
+* **New Feature**: Added the totalappointment command. 
   * What it does: Finds the number of appointments on a specified date.
   * Justification: This feature enhances the application significantly because users can keep track of the number of appointments they have on any single date.  
   * Consideration: This feature required in depth understanding of localDatesTime API to determine the most optimal solution for this project.
