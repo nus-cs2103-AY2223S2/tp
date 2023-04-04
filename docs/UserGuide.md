@@ -75,11 +75,11 @@ They can also be used to denote keys that should be held together, at the same t
 
 1. Ensure you have Java 11 or above installed in your Computer.
 
-1. Download the latest `taa.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases).
+2. Download the latest `taa.jar` from [here](https://github.com/AY2223S2-CS2103T-T14-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TAA.
+3. Copy the file to the folder you want to use as the _home folder_ for your TAA.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taa.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar taa.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
    ![Ui](./images/Ui.png)
    <figcaption style="text-align:center"><em><strong>
@@ -88,7 +88,7 @@ They can also be used to denote keys that should be held together, at the same t
    : TAA window
    </em></figcaption>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all students.
@@ -99,7 +99,8 @@ They can also be used to denote keys that should be held together, at the same t
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+    Refer to the [Features](#features) below for details of each command.
+6. Use <Button>↑</Button> and <Button>↓</Button> to navigate through command history.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Graphical User Interface**
