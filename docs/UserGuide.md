@@ -754,14 +754,17 @@ _Details coming soon ..._
 6. Place the newly created `.command file` into your *home folder*.
    ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
 7. Finally, on your opened terminal from step 4, type `chmod 777 start.command` > <kbd>Enter</kbd>.
+   <br>
    <div markdown="span" class="alert alert-info">
-   :information_source: **Note:** Replace start with whatever you name your `.command` file from step 5*.
+   :information_source: **Note:** Replace **start** with whatever you name your `.command` file from step 5.
    </div>
    ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
-8. You can now double-click on your `.command` file to open CoDoc. 
+8. You can now double-click on your `.command` file to open CoDoc.
+   <br>
    <div markdown="span" class="alert alert-info">
    :bulb: **Tip**: You can place the `.command` file anywhere. It does not have to stay in your *home folder*.
    </div>
+   <br>
    <div markdown="span" class="alert alert-info">  
    :warning: **Caution**: If you decide to change the location of your *home folder*, repeat from step 2.
    </div>
