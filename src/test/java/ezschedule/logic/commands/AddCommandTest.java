@@ -278,8 +278,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void clearRecent() {
-        }
+        public void clearRecent() {}
 
         @Override
         public ReadOnlyScheduler getScheduler() {
