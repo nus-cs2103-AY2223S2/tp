@@ -1,10 +1,9 @@
-package seedu.address.model.module;
+package seedu.address.model.video;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.video.Video;
 
 /**
  * Tests that a {@code Video}'s {@code name} matches any of the keywords given.

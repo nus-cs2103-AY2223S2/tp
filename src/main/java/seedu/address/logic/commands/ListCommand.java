@@ -12,11 +12,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.DisplayListLevel;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.LecturePredicate;
 import seedu.address.model.lecture.ReadOnlyLecture;
-import seedu.address.model.module.LecturePredicate;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ReadOnlyModule;
-import seedu.address.model.module.VideoPredicate;
+import seedu.address.model.video.VideoPredicate;
 
 
 /**

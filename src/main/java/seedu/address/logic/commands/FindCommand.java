@@ -15,16 +15,16 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lecture.LectureName;
+import seedu.address.model.lecture.LectureNameContainsKeywordsPredicate;
+import seedu.address.model.lecture.LectureTagContainsKeywordsPredicate;
 import seedu.address.model.lecture.ReadOnlyLecture;
-import seedu.address.model.module.LectureNameContainsKeywordsPredicate;
-import seedu.address.model.module.LectureTagContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 import seedu.address.model.module.ModuleTagContainsKeywordsPredicate;
 import seedu.address.model.module.ReadOnlyModule;
-import seedu.address.model.module.VideoNameContainsKeywordsPredicate;
-import seedu.address.model.module.VideoTagContainsKeywordsPredicate;
 import seedu.address.model.video.Video;
+import seedu.address.model.video.VideoNameContainsKeywordsPredicate;
+import seedu.address.model.video.VideoTagContainsKeywordsPredicate;
 
 /**
  * Finds and lists all modules/lectures/videos in Le Tracker current context

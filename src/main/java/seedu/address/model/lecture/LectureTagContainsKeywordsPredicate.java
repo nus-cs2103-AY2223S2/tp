@@ -1,10 +1,9 @@
-package seedu.address.model.module;
+package seedu.address.model.lecture;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.lecture.ReadOnlyLecture;
 
 /**
  * Tests that a {@code Lecture}'s {@code tags} matches any of the keywords given.
