@@ -463,13 +463,37 @@ Format: `class_stats st/FIELD [as/ASSIGNMENT_NAME]`
 - If `grades` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is required.
 
 Examples:
-- `class_stats st/attendance`
-- `class_stats st/grades as/Test 1`
+- `class_stats st/attendance` -- see Figure 4 below
+- `class_stats st/grades as/Test 2` -- see Figure 5 below
+
+<div markdown="span" class="alert alert-warning">
+:page_with_curl: **Note:** To view grade statistics, the assignment `ASSIGNMENT_NAME` must have at least 2 graded submissions, and the submission grades must contain some variance. (i.e. if all the submissions are graded with the exact same marks, then no curve will be drawn as a normal distribution cannot be modelled with 0 variance.)
+</div>
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Info:** The `FIELD` parameter is case-insensitive! 
 i.e. `atTenDanCE`, while unusual, is still a valid argument to `FIELD`.
 </div>
+
+<div markdown="span" class="alert alert-success">
+:bulb: **Tip:** Want to save the chart? Right click on it, mouseover 'Save As' and click on 'PNG'!
+</div>
+
+![Attendance Statistics](images/Class_Statistics_Attendance.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 4
+</strong>
+: An example of the chart displayed for the command `class_stats st/attendance`
+</em></figcaption>
+
+<br/>
+
+![Grade Statistics](images/Class_Statistics_Grades.png)
+<figcaption style="text-align:center"><em><strong>
+Figure 5
+</strong>
+: An example of the chart displayed for the command `class_stats st/grades as/Test 2`
+</em></figcaption>
 
 
 #### Group students at random: `rand_grp` [coming soon]
