@@ -54,7 +54,7 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar myLib.jar` command to run the application.
 
-5. A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+5. A GUI similar to the below should appear in a few seconds with first bookmark selected. Note how the app contains some sample data.
 
     <img width="560" height="400"  src="images/Ui.png">
 
@@ -90,6 +90,10 @@ If you are an experienced user, you can refer to [Command Summary](#command-summ
 |     Result Box     | To display the result of the commands that user executed. |
 | BookmarkList Panel |         To display the current list of bookmarks          |
 |     View Panel     |      To display the details of a specified bookmark       |
+
+### Bookmark UI details
+
+<img width="680" src="images/bookmarkCardUI.png">
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -153,6 +157,11 @@ Example:
 Lists all tags in the tag list.
 
 Format: `tags`
+
+### Listing available Genres: `genre`
+Shows list of all valid Genres.
+
+Format: `genre`
 <div style="page-break-after: always;"></div>
 
 ### Adding a bookmark: `add`
@@ -169,27 +178,19 @@ Examples:
 * `add n/Hobbit a/J. R. R. Tolkien p/1 ~ 256 r/4 g/Fantasy`
 * `add n/The Odyssey a/Homer p/1 1 23 g/Action r/5 t/Literature`
 
-### Listing all bookmarks/ Resetting filters : `list`
+### Deleting a bookmark : `delete`
 
-Shows a list of all bookmarks in the library.
+Deletes the specified bookmark from the library.
 
+Format: `delete INDEX`
 
-:bulb: **Tip** - Use this command to get back the original list of bookmarks after using `find` command to filter out bookmarks.
-
-Format: `list`
-
-### Sorting bookmarks : `sort`
-
-Sorts the list of bookmarks by ratings in either ascending or descending order.
-
-Format : sort [ORDER]
-* ORDER can only be either `asc` or `desc`
-* ORDER is case-sensitive. e.g. `sort ASC` does not work.
+* Deletes the bookmark at the specified `INDEX`.
+* The index refers to the index number shown in the displayed bookmark list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* sort asc
-* sort desc
-<div style="page-break-after: always;"></div>
+* `list` followed by `delete 2` deletes the 2nd bookmark in the library.
+* `find n/Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
 
 ### Editing a bookmark : `edit`
 
@@ -207,6 +208,19 @@ Format: `edit INDEX [n/TITLE] [a/AUTHOR] [p/PROGRESS] [g/GENRE] [r/RATING] [u/UR
 Examples:
 *  `edit 1 n/Hobbit a/J. R. R. Tolkien` Edits the title and author of the 1st bookmark to be `Hobbit` and `J. R. R. Tolkien` respectively.
 *  `edit 2 n/The Odyssey t/` Edits the name of the 2nd bookmark to be `The Odyssey` and clears all existing tags.
+
+### Sorting bookmarks : `sort`
+
+Sorts the list of bookmarks by ratings in either ascending or descending order.
+
+Format : sort [ORDER]
+* ORDER can only be either `asc` or `desc`
+* ORDER is case-sensitive. e.g. `sort ASC` does not work.
+
+Examples:
+* sort asc
+* sort desc
+<div style="page-break-after: always;"></div>
 
 ### Locating bookmarks by specific fields: `find`
 
@@ -233,22 +247,23 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
 *  `find a/Yoo Heonhwa` returns every bookmark whose author of the book is Yoo Heonhwa<br>
-* `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man`
-![find_reply](images/find-chainsaw%20man.png)
+* `find n/Chainsaw Man` returns `chainsaw man` and `Chainsaw Man` as shown in figure 1 below.
+  ![find_reply](images/find-chainsaw%20man.png)
+<figcaption style="text-align:center"><em><strong>
+   Figure 1
+   </strong>
+   : Executing find after start up
+   </em></figcaption>
 
-### Deleting a bookmark : `delete`
+### Listing all bookmarks/ Resetting filters : `list`
 
-Deletes the specified bookmark from the library.
+Shows a list of all bookmarks in the library.
 
-Format: `delete INDEX`
 
-* Deletes the bookmark at the specified `INDEX`.
-* The index refers to the index number shown in the displayed bookmark list.
-* The index **must be a positive integer** 1, 2, 3, …​
+:bulb: **Tip** - Use this command to get back the original list of bookmarks after using `find` command to filter out bookmarks.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd bookmark in the library.
-* `find n/Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
+Format: `list`
+
 
 ### Viewing a bookmark's details : `view`
 
@@ -261,12 +276,20 @@ Format: `view INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `view 2` displays the 2nd bookmark in the library.
+* `list` followed by `view 2` displays the 2nd bookmark in the library as shown in figure 2 below.
 * `find n/Chainsaw Man` followed by `goto 1` displays 1st bookmark in the results of the `find` command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Our Application also supports this feature in gui format, simply click onto the bookmark you want and watch the magic happen.
 </div>
+
+<img src="images/View-command.png">
+<figcaption style="text-align:center"><em><strong>
+   Figure 2
+   </strong>
+   : Executing view after list
+   </em></figcaption>
+
 
 ### Going to a url : `goto`
 
@@ -292,11 +315,6 @@ Our Application also supports this feature in gui format, clicking on the url in
 Clears all bookmark entries from the MyLib. You will still keep your list of genres and tags after using the `clear` command.
 
 Format: `clear`
-
-### Listing available Genres: `genre`
-Shows list of all valid Genres.
-
-Format: `genre`
 
 ### Viewing help : `help`
 

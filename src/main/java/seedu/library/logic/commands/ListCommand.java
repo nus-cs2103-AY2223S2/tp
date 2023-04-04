@@ -20,6 +20,6 @@ public class ListCommand extends Command {
         requireNonNull(model);
         model.updateFilteredBookmarkList(PREDICATE_SHOW_ALL_BOOKMARKS);
         model.updateSelectedIndex(-1);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 }
