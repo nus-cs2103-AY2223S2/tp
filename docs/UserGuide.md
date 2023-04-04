@@ -305,7 +305,7 @@ Tanks form the basis of *Fish Ahoy!*, as most, if not all our activities revolve
 first requirement of fish keeping. (Can't have a fish without a tank!) Similarly, *Fish Ahoy!* also requires you to add
 a tank first, before allowing you to add in any fishes. These tanks directly represent your tanks in real life, so 
 customize them with their own names and add in their respective fishes!
-In the list, each tank has an [index](#about-the-interface). Use these indexes to perform certain operations on them.
+In the list, each tank has an [index](#index-parameters). Use these indexes to perform certain operations on them.
 <br>
 ## Tank readings
 
@@ -488,7 +488,7 @@ deletes the most recent readings, the set made at 3pm.
 Fishes are yet another core aspect of *Fish Ahoy!* This app is built around helping you keep these little guys healthy, 
 so many important details such as species, last fed date, feeding intervals are being recorded. *Fish Ahoy!* features 
 images for common species of fish currently, and aims to expand to include more fishes in the future!
-In the list, each fish has an [index](#about-the-interface). Use these indexes to perform certain operations on them.
+In the list, each fish has an [index](#index-parameters). Use these indexes to perform certain operations on them.
 <br>
 
 Currently, there are six command actions of type fish:
@@ -684,7 +684,7 @@ Only 'fish 1' is displayed in the fish panel. Using `list fishes` will display a
 These are the routine tasks that all fish keepers have to undertake to keep their fish bright and healthy. Create tasks 
 to remind you and help you in your fish keeping. *Fish Ahoy!* will automatically generate feeding reminders for you 
 based off your fishes' last fed date. These will have a **high** priority to remind you to feed them!
-In the list, each task has an [index](#about-the-interface). Use these indexes to perform certain operations on them.
+In the list, each task has an [index](#index-parameters). Use these indexes to perform certain operations on them.
 
 > :bulb: Tip: Tasks are sorted by highest priority to the lowest priority in the task panel!
 > A task with no priority is of the lowest level, and `high` is the highest.
@@ -735,7 +735,7 @@ Format: `task delete <TASK_INDEX>`
 
 Parameters:
 * Index parameters:
-  * `<TASK_INDEX>` - The task [index](#about-the-interface). Specifies which task to delete
+  * `<TASK_INDEX>` - The task [index](#index-parameters). Specifies which task to delete
     * `<TASK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual task
 
 Example:
@@ -751,7 +751,7 @@ Format: `task edit <TASK_INDEX> [d/<TASK_DESCRIPTION>] [tk/<TANK_INDEX>] [p/<PRI
 
 Parameters:
 * Index parameters:
-  * `<TASK_INDEX>` - The task [index](#about-the-interface). Specifies which task to delete
+  * `<TASK_INDEX>` - The task [index](#index-parameters). Specifies which task to delete
     * `<TASK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual task
 * Prefix parameters:
   * `[d/<TASK_NAME>]` - [Description prefix.](#description-ddescription) Specifies the name of the task
