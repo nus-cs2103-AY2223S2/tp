@@ -4,7 +4,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditFishDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;

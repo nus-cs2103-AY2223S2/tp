@@ -37,7 +37,6 @@ import static seedu.address.testutil.TypicalFishes.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.fish.LastFedDateTime;
