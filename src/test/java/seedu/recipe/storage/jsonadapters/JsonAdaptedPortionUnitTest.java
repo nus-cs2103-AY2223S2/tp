@@ -1,6 +1,7 @@
 package seedu.recipe.storage.jsonadapters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,8 @@ import seedu.recipe.model.recipe.unit.PortionUnit;
 //@@author alson001
 public class JsonAdaptedPortionUnitTest {
     private static final String VALID_UNIT = "grams";
+    private static final String INVALID_UNIT = "";
+    private static final String NULL_UNIT = null;
 
     @Test
     public void constructor_validUnit_returnsJsonAdaptedPortionUnitTest() {
@@ -23,5 +26,17 @@ public class JsonAdaptedPortionUnitTest {
         JsonAdaptedPortionUnit adaptedUnit = new JsonAdaptedPortionUnit(VALID_UNIT);
         PortionUnit modelUnit = adaptedUnit.toModelType();
         assertEquals(VALID_UNIT, modelUnit.getUnit());
+    }
+
+    @Test
+    public void toModelType_invalidUnit_error() {
+        assertThrows(IllegalValueException.class, () ->
+            new JsonAdaptedPortionUnit(INVALID_UNIT).toModelType());
+    }
+
+    @Test
+    public void toModelType_nullUnit_error() {
+        assertThrows(NullPointerException.class, () ->
+            new JsonAdaptedTimeUnit(NULL_UNIT).toModelType());
     }
 }
