@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PLATFORM_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_GLINTS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_GLINTS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PLATFORM_NAME_INDEED_DESC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLATFORM;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -9,10 +12,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_LISTING;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddApplicantCommand;
 import seedu.address.logic.commands.AddPlatformCommand;
 import seedu.address.model.platform.PlatformName;
-import seedu.address.testutil.ApplicantBuilder;
 import seedu.address.testutil.PlatformBuilder;
 
 public class AddPlatformCommandParserTest {
