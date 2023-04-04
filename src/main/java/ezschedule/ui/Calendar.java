@@ -38,7 +38,7 @@ public class Calendar extends UiPart<Region> {
     private Text month;
 
     /**
-     * Creates a {@code Calendar} with the given {@code ObservableList} amd {@code FilterExecutor}.
+     * Creates a {@code Calendar} with the given {@code ObservableList} and {@code FilterExecutor}.
      */
     public Calendar(ObservableList<Event> eventList, ObservableList<Event> findEventList,
                     FilterExecutor filterExecutor) {

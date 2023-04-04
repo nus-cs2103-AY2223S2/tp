@@ -1,5 +1,7 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.commons.core.Messages.MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME;
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_END;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
@@ -9,7 +11,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 import java.util.Optional;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.commons.util.CollectionUtil;
 import ezschedule.logic.commands.exceptions.CommandException;
@@ -20,7 +21,7 @@ import ezschedule.model.event.Name;
 import ezschedule.model.event.Time;
 
 /**
- * Edits the details of an existing event in the scheduler.
+ * Edits the details of an existing {@code Event} in the {@code Scheduler}.
  */
 public class EditCommand extends Command {
 
@@ -43,8 +44,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the scheduler.";
-    public static final String MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME =
-            "Event's start time should come before end time";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
@@ -87,7 +86,7 @@ public class EditCommand extends Command {
         List<Event> lastShownList = model.getFilteredEventList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(String.format(
-                    Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, index.getZeroBased() + 1));
+                    MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, index.getZeroBased() + 1));
         }
 
         Event eventToEdit = lastShownList.get(index.getZeroBased());

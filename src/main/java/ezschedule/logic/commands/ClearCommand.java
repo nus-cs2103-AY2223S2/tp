@@ -6,7 +6,7 @@ import ezschedule.model.Model;
 import ezschedule.model.Scheduler;
 
 /**
- * Clears the scheduler.
+ * Clears the {@code Scheduler}.
  */
 public class ClearCommand extends Command {
 

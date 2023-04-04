@@ -1,8 +1,9 @@
 package ezschedule.logic.parser;
 
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import java.util.List;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.DeleteCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
@@ -24,7 +25,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return new DeleteCommand(indexes);
         } catch (ParseException pe) {
             throw new ParseException(
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 }

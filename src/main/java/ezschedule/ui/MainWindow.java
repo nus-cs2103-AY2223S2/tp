@@ -19,7 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
- * The Main Window. Provides the basic application layout containing
+ * The {@code MainWindow}. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
@@ -79,7 +79,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sets the accelerator of a MenuItem.
+     * Sets the accelerator of a {@code MenuItem}.
      *
      * @param keyCombination the KeyCombination value of the accelerator
      */
@@ -134,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sets the default size based on {@code guiSettings}.
+     * Sets the default size based on {@code GuiSettings}.
      */
     private void setWindowDefaultSize(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
@@ -146,7 +146,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the help window or focuses on it if it's already opened.
+     * Opens the {@code HelpWindow} or focuses on it if it's already opened.
      */
     @FXML
     public void handleHelp() {
