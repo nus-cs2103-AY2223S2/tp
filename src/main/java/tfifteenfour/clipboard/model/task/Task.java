@@ -21,7 +21,7 @@ public class Task {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Tasks should only contain alphanumeric characters and spaces, and it should not be blank";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} \\p{Punct}]*";
 
     private final String taskName;
     private Boolean isSelected;
