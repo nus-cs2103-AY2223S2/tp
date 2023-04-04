@@ -563,7 +563,7 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 
 FriendlyLink provides command recommendations for registered [commands](#command) and [field's](#field) [prefixes](#prefix).
 
-![Command recommendation](images/CommandRecommendations.png)
+<img src="images/CommandRecommendations.png" alt="Command Recommendation Example">
 
 For example, when adding an elderly, the recommendation engine will automatically recommend all available field prefixes.
 No new suggestions will be given once all possible prefixes has at least one value provided. If the user continues 
@@ -572,7 +572,7 @@ to specify more attributes like `t/`, the recommendation will be done on a case-
 Example:
 
 * Typing `add_volunteer n/Harry p/12345686 `, FriendlyLink will
-  suggest `bd/BIRTH_DATE ic/NRIC e/[EMAIL] a/[ADDRESS] re/[REGION] mt/[MEDICAL_QUALIFICATION] t/[TAG]… dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` as
+  suggest `bd/BIRTH_DATE ic/NRIC e/[EMAIL] a/[ADDRESS] re/[REGION] mt/[MEDICAL_QUALIFICATION] t/[TAG] dr/[AVAILABLE_DATE_START, AVAILABLE_DATE_END]` as
   these fields have not been filled. 
 * Typing `add_volunteer n/Betsy p/1234567 e/test@test.com a/Linken Drive bd/1990-01-01 ic/S8959886I re/NORTH t/experienced mt/CPR,ADVANCED dr/2023-06-03,2023-06-17` 
   will not suggest anything by default as all possible fields have at least one value.
