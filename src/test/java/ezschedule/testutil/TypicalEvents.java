@@ -27,6 +27,8 @@ public class TypicalEvents {
             .withDate("2023-05-05").withStartTime("12:00").withEndTime("13:00").build();
     public static final Event FISHING = new EventBuilder().withName("Fishing contest")
             .withDate("2023-05-06").withStartTime("14:00").withEndTime("16:00").build();
+    public static final Event OVERLAP_ART_EVENT = new EventBuilder().withName("Golfing")
+            .withDate("2023-05-01").withStartTime("13:00").withEndTime("15:00").build();
 
 
     // Manually added - Event's details found in {@code CommandTestUtil}
@@ -36,8 +38,6 @@ public class TypicalEvents {
     public static final Event EVENT_B = new EventBuilder().withName(CommandTestUtil.VALID_NAME_B)
             .withDate(CommandTestUtil.VALID_DATE_B).withStartTime(CommandTestUtil.VALID_START_TIME_B)
             .withEndTime(CommandTestUtil.VALID_END_TIME_B).build();
-
-    public static final String KEYWORD_MATCHING_RACE = "race"; // A keyword that matches race
 
     private TypicalEvents() {} // prevents instantiation
 

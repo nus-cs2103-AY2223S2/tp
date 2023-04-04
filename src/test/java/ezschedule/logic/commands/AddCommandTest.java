@@ -3,8 +3,7 @@ package ezschedule.logic.commands;
 import static ezschedule.testutil.Assert.assertThrows;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -51,6 +50,24 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_eventExistAtTime_throwsCommandException() {
+        Event validEvent = new EventBuilder().build();
+        Event validOverlapEvent = new EventBuilder().withStartTime("09:00").withEndTime("11:00").build();
+        AddCommand addCommand = new AddCommand(validEvent);
+        ModelStub modelStub = new ModelStubWithEvent(validOverlapEvent);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_EVENT_EXIST_AT_TIME, ()
+                -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void commandWord_returnSuccessful() {
+        Event validEvent = new EventBuilder().build();
+        AddCommand addCommand = new AddCommand(validEvent);
+        assertEquals(AddCommand.COMMAND_WORD, addCommand.commandWord());
+    }
+
+    @Test
     public void equals() {
         Event a = new EventBuilder().withName("Event A").build();
         Event b = new EventBuilder().withName("Event B").build();
@@ -58,26 +75,27 @@ public class AddCommandTest {
         AddCommand addEventBCommand = new AddCommand(b);
 
         // same object -> returns true
-        assertTrue(addEventACommand.equals(addEventACommand));
+        assertEquals(addEventACommand, addEventACommand);
 
         // same values -> returns true
         AddCommand addEventACommandCopy = new AddCommand(a);
-        assertTrue(addEventACommand.equals(addEventACommandCopy));
+        assertEquals(addEventACommand, addEventACommandCopy);
 
         // different types -> returns false
-        assertFalse(addEventACommand.equals(1));
+        assertNotEquals(1, addEventACommand);
 
         // null -> returns false
-        assertFalse(addEventACommand.equals(null));
+        assertNotEquals(null, addEventACommand);
 
         // different event -> returns false
-        assertFalse(addEventACommand.equals(addEventBCommand));
+        assertNotEquals(addEventACommand, addEventBCommand);
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
+
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
@@ -109,11 +127,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addEvent(Event event) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public ReadOnlyScheduler getScheduler() {
             throw new AssertionError("This method should not be called.");
         }
@@ -134,6 +147,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteEvent(Event target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -142,6 +160,7 @@ public class AddCommandTest {
         public void setEvent(Event target, Event editedEvent) {
             throw new AssertionError("This method should not be called.");
         }
+
         @Override
         public ArrayList<Command> recentCommands() {
             throw new AssertionError("This method should not be called.");
@@ -214,6 +233,12 @@ public class AddCommandTest {
             requireNonNull(event);
             return this.event.equals(event);
         }
+
+        @Override
+        public boolean hasEventAtTime(Event event) {
+            requireNonNull(event);
+            return this.event.isEventOverlap(event);
+        }
     }
 
     /**
@@ -243,9 +268,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void clearRecent() {}
-
-        @Override
         public ArrayList<Command> recentCommands() {
             return recentCommand;
         }
@@ -253,6 +275,10 @@ public class AddCommandTest {
         @Override
         public ArrayList<Event> recentEvent() {
             return recentEvent;
+        }
+
+        @Override
+        public void clearRecent() {
         }
 
         @Override
