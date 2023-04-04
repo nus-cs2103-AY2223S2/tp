@@ -16,32 +16,35 @@ import seedu.recipe.model.recipe.Title;
  */
 public class AddCommand extends Command {
 
+    private final Recipe toAdd;
+
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to recipe book. "
             + "\nFormat: "
             + PREFIX_TITLE + "TITLE " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_INGREDIENT +
-            "INGREDIENT " + PREFIX_STEP + "STEP " + PREFIX_TAG + "TAG";
+            "INGREDIENT " + PREFIX_STEP + "STEP " + PREFIX_TAG + "TAG\n";
 
     public static final String MESSAGE_SUCCESS = "New recipe added: %1$s";
+
     public static final String MESSAGE_DUPLICATE_RECIPE = "This recipe already exists in recipe book";
-    private final Recipe toAdd;
 
     public static final String NO_TITLE_FAILURE = "A title needs to be added to the recipe. \n" +
             Title.MESSAGE_CONSTRAINTS +
-            "\nUse the prefix " + PREFIX_TITLE + ".";
+            "\nUse the prefix `" + PREFIX_TITLE + "`.";
 
     public static final String NO_DESC_FAILURE = "A description needs to be added to the recipe. \n" +
             Description.MESSAGE_CONSTRAINTS +
-            "\nUse the prefix " + PREFIX_DESCRIPTION + ".";
+            "\nUse the prefix `" + PREFIX_DESCRIPTION + "`.";
 
     public static final String NO_INGREDIENT_FAILURE = "An ingredient needs to be added to the recipe. \n" +
-            Ingredient.INGREDIENT_FORMAT +
-            "\nUse the prefix " + PREFIX_INGREDIENT + ".";
+            "Use the prefix `" + PREFIX_INGREDIENT + "`.\n" +
+            Ingredient.INGREDIENT_FORMAT;
 
     public static final String NO_STEP_FAILURE = "A step needs to be added to the recipe. \n" +
-            Step.MESSAGE_CONSTRAINTS +
-            "\nUse the prefix " + PREFIX_STEP + ".";
+            "Use the prefix `" + PREFIX_STEP + "`.\n" +
+            Step.MESSAGE_CONSTRAINTS;
+
 
     /**
      * Creates an AddCommand to add the specified {@code Recipe}
