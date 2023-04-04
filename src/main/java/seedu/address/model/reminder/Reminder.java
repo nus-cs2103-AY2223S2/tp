@@ -51,9 +51,7 @@ public class Reminder {
      * @return Description
      */
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription());
-        return builder.toString();
+        return getDescription();
     }
 
 }

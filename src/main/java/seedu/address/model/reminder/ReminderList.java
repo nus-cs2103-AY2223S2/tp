@@ -3,7 +3,6 @@ package seedu.address.model.reminder;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -52,7 +51,7 @@ public class ReminderList implements Iterable<Reminder> {
     }
 
     public void sortByOldest() {
-        Collections.sort(internalList, new ReminderListComparator());
+        internalList.sort(new ReminderListComparator());
     }
 
     /**
