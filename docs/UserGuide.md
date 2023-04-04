@@ -143,9 +143,10 @@ placeholder
 This section describes the requirements of the specified data fields.
 
 ### Person names
-The first character of the name must not be a whitespace
 * Names must only contain alphabets and spaces.
-* Names have a maximum allowed length of 50 and cannot be blank.
+* If an input name contains unnecessary whitespaces, they will be trimmed first. 
+  The name will be read in without these whitespaces.
+* Names have a maximum allowed length of 54 by Singaporean law and cannot be blank.
 
 ### Postal codes
 * Postal codes must be in of the following formats:
