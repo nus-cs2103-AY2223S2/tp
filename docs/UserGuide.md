@@ -29,10 +29,10 @@ title: User Guide
 - [Application Features](#application-features)
     - [Exit from TrAcker](#exit)
     - [Switch Tabs](#switch-tabs)
+- [Populated TrAcker](#populated-tracker)
 - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
-
 
 ## Quick start
 
@@ -45,9 +45,6 @@ title: User Guide
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TrAcker.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
-   ![Ui](images/Ui2.png)
-   ![Ui](images/Ui3.png)
-   ![Ui](images/Ui4.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -444,6 +441,21 @@ Examples:
 * `cd_student`
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div id='populated-tracker'></div>
+
+## Populated TrAcker
+
+Here is an example of how the populated TrAcker events page will look like
+
+![Ui](images/Ui2.png)
+
+By double-clicking on events, the notes section will appear 
+
+![Ui](images/Ui3.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
 
 ## Command Summary
 
