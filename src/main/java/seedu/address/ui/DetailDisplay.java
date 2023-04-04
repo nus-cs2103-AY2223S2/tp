@@ -116,7 +116,12 @@ public class DetailDisplay extends UiPart<Region> {
         //Reused from https://github.com/AY2223S1-CS2103T-T17-1/tp/tree/master/src/main/java/seedu/address/ui
         // with minor modifications
         person.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.setMaxWidth(400);
+                    tagLabel.setWrapText(true);
+                    tags.getChildren().add(tagLabel);
+                });
         //@@author
     }
 
