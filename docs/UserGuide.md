@@ -399,6 +399,13 @@ exist in Mycelium. You can add them later if you wish.
 in Mycelium, an error will be displayed to block the operation.
 </div>
 
+<div markdown="span" class="alert alert-info">
+:information_source: Mycelium does not enforce that a project's deadline be
+after its accepted date. This allows for the possibility of accepting overdue
+projects. You can also key in an accepted date in the future if you can
+anticipate it.
+</div>
+
 ### Deleting a project: `dp`
 
 Deleting a project requires specifying the project's name, which is case-sensitive. If the project is deleted successfully,
