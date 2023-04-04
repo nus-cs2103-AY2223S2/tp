@@ -2,6 +2,7 @@ package seedu.task.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.task.logic.parser.CliSyntax.PREFIX_EFFORT;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -22,16 +23,18 @@ public class AddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the task book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_EFFORT + "EFFORT] \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_DESCRIPTION + "Example description "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_NAME + "Read Book "
+            + PREFIX_DESCRIPTION + "Make sure to take notes "
+            + PREFIX_TAG + "leisure "
+            + PREFIX_TAG + "relaxing "
+            + PREFIX_EFFORT + "2 ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task book";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task book.";
 
     private final ArrayList<Task> toAdd;
 
