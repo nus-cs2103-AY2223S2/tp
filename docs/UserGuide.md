@@ -58,11 +58,7 @@ A command is an instruction given by you to FriendlyLink to perform a specific t
 #### Prefix
 Prefixes are the characters appearing before a slash in a command. Prefixes label the information that they represent. For example, the add elderly command `add_elderly ic/S1234567A ...` contains the prefix `ic` to indicate that the text that follows is the NRIC of the elderly.
 * Prefixes should be entered in all lower case (E.g. n/Abdul instead of N/Abdul)
-* Fields after prefixes have leading and trailing whitespaces removed (E.g. `n/ Mary` is truncated to `n/Mary`)
-
-#### Index
-Indexes are natural numbers (numbers used for counting) that are used for numbering persons in a list.
-* An index must be a positive integer (E.g. 1, 2, 3, …​)
+* Fields after prefixes have leading and trailing whitespaces removed (E.g. `n/ Mary` is trimmed to `n/Mary`)
 
 #### Field
 Fields are the information following the slash in a command, to provide appropriate information to FriendlyLink, such as indicating a volunteer's name, phone number, email and other information.
@@ -74,6 +70,13 @@ Fields are the information following the slash in a command, to provide appropri
 * Extraneous fields for commands that do not take in fields (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
     * E.g. If you specify `help 123`, it will be interpreted as `help`.
 * For more information on each specific field, refer to the [Fields](#fields) section
+
+#### Preamble
+Preamble are information specified with the `<PREAMBLE>` notation. 
+* They have to be specified before fields. 
+  * E.g. A command format like `edit_elderly <NRIC> n/NAME ...` indicates `edit_elderly S1234567A n/John Doe`. 
+  On the other hand, specifying `edit_elderly n/John Doe S1234567A` is invalid as `S1234567A` has to come first. 
+* In some cases, they are also specified as `<[PREAMBLE]>` which indicates that the preamble is optional.
 
 #### Duplicate Entry
 * Person (Elderly and Volunteers)
@@ -115,6 +118,10 @@ NRIC is a unique identifier given to all Singaporeans.
   * `XXXXXXX` is a 7-digit serial number
   * `#` is a letter from A to Z
 * There is no cross validation of birthdate against NRIC (There are no checks for the birth year in first 2 digits of NRIC)
+
+#### Index
+Indexes are natural numbers (numbers used for counting) that are used for numbering persons in a list.
+* An index must be a positive integer (E.g. 1, 2, 3, …​)
 
 #### Phone number
 The phone number of a person.
@@ -446,27 +453,6 @@ Examples
 
 -----------------------------------------
 
-### Listing persons: `list`
-
-Shows a list of all persons in FriendlyLink or paired and unpaired persons if specified.
-
-Format: `list <PAIRED | UNPAIRED>`
-
-* All persons will be listed if "paired" or "unpaired" is not specified after the list word
-* `<PAIRED | UNPAIRED>` is case-insensitive e.g. `pAIReD` will match `paired`.
-* Pair list will always list all pairs when the command executes.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-`list` is useful if you need to refresh all the lists after they have been filtered.
-</div>
-Examples:
-
-* `list`
-* `list paired`
-* `list unpaired`
-
---------------------------------------
-
 ### Finding people and their related pairs: `find`
 
 Finds any elderly or volunteers matching **all** the relevant specified fields, and pairings that they are involved in.
@@ -500,20 +486,21 @@ Examples:
 
 Shows a list of all persons in FriendlyLink or paired and unpaired persons if specified.
 
-Format: `list [paired/unpaired]`
+Format: `list <[PAIRED \ UNPAIRED]>`
 
-* All persons will be listed if "paired" or "unpaired" is not specified after the list word
-* `[paired/unpaired]` is case-insensitive E.g. `pAIReD` is equivalent to `paired`.
+* `<[PAIRED \ UNPAIRED]>` indicates that either "paired" or "unpaired" can be specified after the list command.
+    * If "paired" or "unpaired" is not specified, all persons will be listed.
+* The preamble is case-insensitive E.g. `pAIReD` will match `paired`.
 * Pair list will always list all pairs when the command executes.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-`list` is useful if you need to refresh all the lists after they have been filtered with the `find` command.
+`list` is useful if you need to refresh all the lists after they have been filtered.
 </div>
-Examples:
 
-* `list` lists all elderly, volunteers and pairs.
-* `list paired` lists all paired elderly, paired volunteers and all pairs.
-* `list unpaired` lists all unpaired elderly, unpaired volunteers
+Examples:
+* `list`
+* `list paired`
+* `list unpaired`
 
 ---------------------------------------
 
@@ -620,9 +607,9 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 ## Coming Soon
 
 The following features are planned for the coming update
-* Edit pair by index
-* Add pair by index
+* Edit and add pair by index 
 * Delete elderly, volunteers and pairs by index
+* View pair details
 
 --------------------------------------------------
 
@@ -647,7 +634,7 @@ The following features are planned for the coming update
 | **Delete Elderly**   | `delete_elderly <NRIC> `<br> <br> E.g., `delete_elderly S8238655C`                                                                                                                                                                                                                                                          |
 | **Delete Volunteer** | `delete_volunteer <NRIC> `<br> <br> E.g., `delete_volunteer S8238658J`                                                                                                                                                                                                                                                      |
 | **Unpair**           | `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> E.g., `unpair vic/t0123423a eic/S2235243I`                                                                                                                                                                                                                            |
-| **Listing people**   | `list [paired/unpaired]`                                                                                                                                                                                                                                                                                                    |
+| **Listing people**   | `list <[PAIRED \ UNPAIRED]>`                                                                                                                                                                                                                                                                                                |                                                                                                                                                                                                                                                                                                          |
 | **Find People**      | `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> E.g., `find n/John Doe`                                                                                           |
 | **Summarise Data**   | `stats`                                                                                                                                                                                                                                                                                                                     |
 | **Help**             | `help`                                                                                                                                                                                                                                                                                                                      |

@@ -40,7 +40,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         return new CommandInfo(
                 ListCommand.COMMAND_WORD,
                 ListCommand.COMMAND_PROMPTS,
-                ListCommandParser::validate, "<UNPAIRED | PAIRED>");
+                ListCommandParser::validate, "<[UNPAIRED \\ PAIRED]>");
     }
 
     /**
