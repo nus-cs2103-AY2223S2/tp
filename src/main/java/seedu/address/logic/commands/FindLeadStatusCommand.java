@@ -17,7 +17,7 @@ public class FindLeadStatusCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts that matches the lead status in "
             + "the specified keyword (case-insensitive) and displays as a list of contacts.\n"
             + "Parameters: [s/STATUS] \n"
-            + "Example: " + COMMAND_WORD + " Uncontacted or U";
+            + "Example: " + COMMAND_WORD + " Uncontacted, " + COMMAND_WORD + " U";
 
     private final FindContainsStatusPredicate predicate;
 
