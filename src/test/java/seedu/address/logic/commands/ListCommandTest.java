@@ -15,6 +15,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.list.ListExpensesCommand;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -43,7 +44,7 @@ public class ListCommandTest {
     public void execute_listIsNotFiltered_showsSameList() {
 
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 7);
-        ListCommand command = new ListCommand(Optional.empty(), Optional.empty());
+        ListExpensesCommand command = new ListExpensesCommand(Optional.empty(), Optional.empty());
         expectedModel.updateFilteredExpensesList(PREDICATE_SHOW_ALL_EXPENSES);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(
@@ -57,7 +58,7 @@ public class ListCommandTest {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 2);
         ExpenseInCategoryPredicate predicate = new ExpenseInCategoryPredicate(FOOD);
 
-        ListCommand command = new ListCommand(Optional.of(predicate), Optional.empty());
+        ListExpensesCommand command = new ListExpensesCommand(Optional.of(predicate), Optional.empty());
         expectedModel.updateFilteredExpensesList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TypicalExpenses.APPLE, TypicalExpenses.BANANA), model.getFilteredExpenseList());
@@ -68,7 +69,7 @@ public class ListCommandTest {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 2);
         ExpenseInTimespanPredicate predicate = new ExpenseInTimespanPredicate(LocalDate.of(2023, 3, 13));
 
-        ListCommand command = new ListCommand(Optional.empty(), Optional.of(predicate));
+        ListExpensesCommand command = new ListExpensesCommand(Optional.empty(), Optional.of(predicate));
         expectedModel.updateFilteredExpensesList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TypicalExpenses.GRAPE, TypicalExpenses.DURIAN), model.getFilteredExpenseList());
@@ -81,7 +82,8 @@ public class ListCommandTest {
                 new ExpenseInTimespanPredicate(LocalDate.of(2023, 3, 13));
         ExpenseInCategoryPredicate categoryPredicate = new ExpenseInCategoryPredicate(TECH);
 
-        ListCommand command = new ListCommand(Optional.of(categoryPredicate), Optional.of(timespanPredicate));
+        ListExpensesCommand command = new ListExpensesCommand(Optional.of(categoryPredicate),
+            Optional.of(timespanPredicate));
         expectedModel.updateFilteredExpensesList(categoryPredicate);
         expectedModel.updateFilteredExpensesList(timespanPredicate);
 

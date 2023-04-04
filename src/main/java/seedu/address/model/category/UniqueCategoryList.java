@@ -20,11 +20,11 @@ public class UniqueCategoryList implements Iterable<Category> {
 
     /**
      * Returns true if the list contains an equivalent category as the given argument.
-     * @param toCheck Category to check for
+     * @param category Category to check for
      */
-    public boolean contains(Category toCheck) {
-        requireNonNull(toCheck);
-        return internalListOfCategories.stream().anyMatch(toCheck::equals);
+    public boolean contains(Category category) {
+        requireNonNull(category);
+        return internalListOfCategories.stream().anyMatch(category::equals);
     }
 
     /**
@@ -43,12 +43,12 @@ public class UniqueCategoryList implements Iterable<Category> {
     /**
      * Replaces the category {@code target} in the list with {@code editedCategory}.
      * {@code target} must exist in the list.
-     * @param toRemove Category to remove
+     * @param category Category to remove
      */
-    public void remove(Category toRemove) {
-        requireNonNull(toRemove);
+    public void remove(Category category) {
+        requireNonNull(category);
 
-        if (!internalListOfCategories.remove(toRemove)) {
+        if (!internalListOfCategories.remove(category)) {
             //Throw an exception here later
         }
     }

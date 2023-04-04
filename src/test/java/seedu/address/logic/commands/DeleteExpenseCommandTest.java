@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.stubs.ModelStub;
+import seedu.address.logic.commands.delete.DeleteExpenseCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.expense.Expense;

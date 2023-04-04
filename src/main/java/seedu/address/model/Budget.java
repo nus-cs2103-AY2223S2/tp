@@ -30,12 +30,8 @@ public class Budget {
      * Set monthlyBudget.
      * @param monthBudget
      */
-    public void set(double monthBudget) {
+    public void setMonthlyBudget(double monthBudget) {
         this.monthBudget = monthBudget;
-    }
-
-    public void set(Budget budget) {
-        this.monthBudget = budget.getMonthlyBudget();
     }
 
     @Override

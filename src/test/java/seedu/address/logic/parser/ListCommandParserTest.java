@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.list.ListExpensesCommand;
 import seedu.address.model.expense.ExpenseInCategoryPredicate;
 import seedu.address.model.expense.ExpenseInTimespanPredicate;
 
@@ -22,7 +22,7 @@ public class ListCommandParserTest {
     @Test
     public void parse_categoryFieldPresent_success() {
         ExpenseInCategoryPredicate predicate = new ExpenseInCategoryPredicate(FOOD);
-        ListCommand expectedCommand = new ListCommand(Optional.of(predicate), Optional.empty());
+        ListExpensesCommand expectedCommand = new ListExpensesCommand(Optional.of(predicate), Optional.empty());
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PREFIX_CATEGORY + FOOD.getCategoryName(), expectedCommand);
@@ -34,7 +34,7 @@ public class ListCommandParserTest {
     @Test
     public void parse_timespanFieldPresent_success() {
         ExpenseInTimespanPredicate predicate = new ExpenseInTimespanPredicate(YEAR);
-        ListCommand expectedCommand = new ListCommand(Optional.empty(), Optional.of(predicate));
+        ListExpensesCommand expectedCommand = new ListExpensesCommand(Optional.empty(), Optional.of(predicate));
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PREFIX_TIMESPAN + "year", expectedCommand);
@@ -47,7 +47,8 @@ public class ListCommandParserTest {
     public void parse_categoryTimespanPresent_success() {
         ExpenseInTimespanPredicate timespanPredicate = new ExpenseInTimespanPredicate(YEAR);
         ExpenseInCategoryPredicate categoryPredicate = new ExpenseInCategoryPredicate(FOOD);
-        ListCommand expectedCommand = new ListCommand(Optional.of(categoryPredicate), Optional.of(timespanPredicate));
+        ListExpensesCommand expectedCommand = new ListExpensesCommand(Optional.of(categoryPredicate),
+            Optional.of(timespanPredicate));
 
         // whitespace only preamble
         assertParseSuccess(parser,
@@ -66,7 +67,7 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_noFields_success() {
-        ListCommand expectedCommand = new ListCommand(Optional.empty(), Optional.empty());
+        ListExpensesCommand expectedCommand = new ListExpensesCommand(Optional.empty(), Optional.empty());
 
         // whitespace preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE, expectedCommand);

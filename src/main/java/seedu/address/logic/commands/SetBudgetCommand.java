@@ -9,7 +9,7 @@ import seedu.address.ui.ScreenType;
 /**
  * Sets the monthly budget for FastTrack.
  */
-public class SetBudgetCommand extends Command {
+public class SetBudgetCommand implements Command {
 
 
     public static final String COMMAND_WORD = "set";

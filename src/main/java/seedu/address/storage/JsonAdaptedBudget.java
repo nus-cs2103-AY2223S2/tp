@@ -42,7 +42,6 @@ class JsonAdaptedBudget {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
         }
 
-        final String modelBudget = amount;
         return new Budget(Double.parseDouble(amount));
     }
 

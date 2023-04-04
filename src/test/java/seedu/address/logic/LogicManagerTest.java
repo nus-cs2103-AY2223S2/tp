@@ -15,8 +15,8 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.list.ListExpensesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -60,7 +60,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
+        String listCommand = ListExpensesCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand,
                 String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW, dataModel.getFilteredExpenseList().size()),
                 dataModel);

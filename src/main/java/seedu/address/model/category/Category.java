@@ -25,8 +25,8 @@ public abstract class Category {
     /**
      * Returns true if a given string is a valid category name.
      */
-    public static boolean isValidCategoryName(String test) {
-        return test.matches(VALIDATION_REGEX) && !test.isBlank();
+    public static boolean isValidCategoryName(String categoryName) {
+        return categoryName.matches(VALIDATION_REGEX) && !categoryName.isBlank();
     }
 
     public String getCategoryName() {
