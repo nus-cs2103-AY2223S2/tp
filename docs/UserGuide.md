@@ -69,12 +69,12 @@ You can click on any of the links below to navigate to the respective sections f
     * [2.7.2 Clear all order entries: `clear_order`](#272-clear-all-order-entries-clearorder)
     * [2.7.3 Clear all task entries: `clear_task`](#273-clear-all-task-entries-cleartask)
     * [2.7.4 Clear all menu item entries: `clear_menu`](#274-clear-all-menu-item-entries-clearmenu)
-  * [Switch](#switch)
-    * [Switching tabs: `tab`](#switching-tabs-tab)
-  * [Others](#others)
-    * [Viewing help: `help`](#viewing-help-help)
-    * [Uploading a csv file](#uploading-a-csv-file)
-    * [Exiting the program: `exit`](#exiting-the-program-exit)
+  * [2.8 Switch](#28-switch)
+    * [2.8.1 Switching tabs: `tab`](#281-switching-tabs-tab)
+  * [2.9 Others](#29-others)
+    * [2.9.1 Viewing help: `help`](#291-viewing-help-help)
+    * [2.9.2 Uploading a csv file](#292-uploading-a-csv-file)
+    * [2.9.3 Exiting the program: `exit`](#293-exiting-the-program-exit)
 * [Data](#data)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
@@ -1301,31 +1301,47 @@ Syntax: `tab TAB`
 
 </div>
 
-## Others
+## 2.9 Others
 
-### Viewing help: `help`
+Here are other functionalities and commands that are available for you to utilise.
 
-Shows a message explaining how to access the help page.
+### 2.9.1 Viewing help: `help`
 
-![help message](images/helpMessage.png)
+Shows a message with a link to the help page (this page).
+
+<p align="center">
+  <img src="images/ug/HelpMessage.png">
+  <br>Figure 2.9.1.1: Help Command Message
+</p>
 
 Syntax: `help`
 
-### Uploading a csv file
+### 2.9.2 Uploading a csv file
 
-Uploads a valid csv file onto Trackr and parses each add command for `Task`, `Order` and `Suppliers`, and adds them to their respective lists. It is important that a strict format is used in order for the commands to be parsed correctly.
+Uploading of a valid csv file into Trackr allows Trackr to parse the data to `Task`, `Order`, `Supplier` and `Menu Items` and adds them to their respective lists.
 
-* First indicate what item is to be added. (i.e. `Orders`)
-* List out the item fields in the next row. (i.e. `OrderName`, `Quanity`, `Deadline`, etc.)
-* Fill in the valid values for each field. (i.e. `Chocolate Cookies`, `10`, `10/01/2023`, etc.)
-* If there are any optional fields (i.e. `Suppler`'s `Tag` field), indicate it with a '-' if you don't wish to put any values in that particular field.
+It is important to strictly follow the format specified below for your data to parse successfully.
+
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
+**Step 1:** Start each row with the type of item you want to add (i.e. `Orders`)
+
+**Step 2:** List out on the next row all the respective item fields (i.e. `OrderName`, `Quantity`, ...)
+
+**Step 3:** Fill in the next few rows will all the corresponding data, without leaving any fields empty (i.e. `Chocolate Cookies`, `10`, ...)
+
+Note: For any **optional** fields, you can indicate it with a `-` to have it be taken as its default value.
+
+</div>
 
 <p align="center">
-  <img src="images/ValidCsvFile.png" width="600" />
-  <br>Figure 3: Valid csv file Example
+  <img src="images/ug/ValidCsvFile.png" width="600" />
+  <br>Figure 2.9.2.1: Example of a valid csv file
 </p>
 
-### Exiting the program: `exit`
+### 2.9.3 Exiting the program: `exit`
 
 Exits the program.
 
