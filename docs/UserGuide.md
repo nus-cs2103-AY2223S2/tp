@@ -263,19 +263,74 @@ Data list contains all of your respective data labelled out in full. The layout 
 
 * Orders
 
-< Labelled Order Card Figure Here >
+Orders contains order information, with their data represented by their respective cards.
+
+Order Card consists of the following components:
+
+1. Index of the order
+2. Name of the order item (Menu item name)
+3. Quantity of order item
+4. Deadline for delivery of the order
+5. Status of the order item
+6. Customer name
+7. Customer phone number
+8. Customer address
+
+<p align="center">
+  <img src="images/ug/OrderCardLabeled.png">
+  <br>Figure 1.4.2.1: Labeled Order Card
+</p>
 
 * Tasks
 
-< Labelled Task Card Figure Here >
+Tasks contains task information, with their data represented by their respective cards.
+
+Task Card consists of the following components:
+
+1. Index of the task
+2. Name of the task 
+3. Deadline of the task
+4. Status of the task
+
+<p align="center">
+  <img src="images/ug/TaskCardLabeled.png">
+  <br>Figure 1.4.2.2: Labeled Task Card
+</p>
 
 * Contacts
 
-< Labelled Contact Card Figure Here >
+Contacts contains supplier information, with their data represented by their respective cards.
+
+Supplier Card consists of the following components:
+
+1. Index of the supplier
+2. Name of the supplier
+3. Tags related to the supplier
+4. Phone number of the supplier
+5. Address of the supplier
+6. Email of the supplier
+
+<p align="center">
+  <img src="images/ug/SupplierCardLabeled.png">
+  <br>Figure 1.4.2.3: Labeled Supplier Card
+</p>
 
 * Menu
 
-< Labelled Menu Card Figure Here >
+Menu contains menu items, with their data represented by their respective cards.
+
+Menu Item Card consists of the following components:
+
+1. Index of the menu item
+2. Menu item name
+3. Selling price of the menu item
+4. Cost of making the menu item
+5. Profit from selling the menu item (Profit = Selling Price - Cost)
+
+<p align="center">
+  <img src="images/ug/MenuCardLabeled.png">
+  <br>Figure 1.4.2.4: Labeled Menu Card
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
