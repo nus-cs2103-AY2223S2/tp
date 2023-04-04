@@ -31,6 +31,9 @@ MenuItem *--> "1 " ItemCost
 MenuItem *--> "1 " ItemProfit
 ItemProfit --> "1 " ItemPrice
 ItemProfit --> "1 " ItemCost
+ItemPrice --> "1 " ItemSellingPrice
+ItemPrice --> "1 " ItemCost
+
 
 
 

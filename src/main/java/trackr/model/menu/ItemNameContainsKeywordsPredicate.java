@@ -1,38 +1,77 @@
 package trackr.model.menu;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import trackr.commons.util.StringUtil;
 import trackr.model.item.Item;
 
 /**
- * Tests that a {@code MenuItem}'s {@code ItemName} matches any of the keywords given.
+ * Tests that a {@code Suppliers}'s {@code Name} matches any of the keywords given.
  */
-public class ItemNameContainsKeywordsPredicate implements Predicate<Item> {
-    private final List<String> keywords;
+public class ItemNameContainsKeywordsPredicate extends MenuItemDescriptor implements Predicate<Item> {
+    private List<String> itemNameKeywords;
 
-    public ItemNameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    public ItemNameContainsKeywordsPredicate() {
+        super();
+    }
+
+    /**
+     * Copy constructor.
+     */
+    public ItemNameContainsKeywordsPredicate(ItemNameContainsKeywordsPredicate toCopy) {
+        setItemNameKeywords(toCopy.itemNameKeywords);
+    }
+
+    public void setItemNameKeywords(List<String> itemNameKeywords) {
+        this.itemNameKeywords = itemNameKeywords;
+    }
+
+    public Optional<List<String>> getItemNameKeywords() {
+        return Optional.ofNullable(itemNameKeywords);
+    }
+
+    public boolean isAnyFieldPresent() {
+        return isAnyFieldNonNull() || itemNameKeywords != null;
     }
 
     @Override
     public boolean test(Item item) {
-        if (!(item instanceof MenuItem)) {
+        if (!(item instanceof Item)) {
             return false;
         }
 
         MenuItem menuItem = (MenuItem) item;
 
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(menuItem.getItemName().getName(), keyword));
+        boolean isItemNameMatch;
+
+        if (itemNameKeywords != null) {
+            isItemNameMatch = itemNameKeywords.stream()
+                    .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(menuItem.getItemName().getName(), keyword));
+        } else {
+            // Default value since no name keyword is set
+            isItemNameMatch = true;
+        }
+
+        return isItemNameMatch;
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ItemNameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((ItemNameContainsKeywordsPredicate) other).keywords)); // state check
-    }
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
 
+        // instanceof handles nulls
+        if (!(other instanceof ItemNameContainsKeywordsPredicate)) {
+            return false;
+        }
+
+        // state check
+        ItemNameContainsKeywordsPredicate predicate = (ItemNameContainsKeywordsPredicate) other;
+
+        return getItemNameKeywords().equals(predicate.getItemNameKeywords());
+    }
 }

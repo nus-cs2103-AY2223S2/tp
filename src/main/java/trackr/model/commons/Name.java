@@ -15,7 +15,7 @@ public abstract class Name {
     /*
      * The first character of the name must not be a whitespace, otherwise " " (a blank string) becomes a valid input.
      */
-    private static final String VALIDATION_REGEX = "^[a-zA-Z ]+$";
+    private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     private final String name;
 
