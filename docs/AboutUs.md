@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/liumc-sg.md)]
 
 * Role: Software Developer
-* Responsibilities: Team Lead
+* Responsibilities: Team Lead (Documentation, Deliverables)
 
 ### Darren Chang
 
