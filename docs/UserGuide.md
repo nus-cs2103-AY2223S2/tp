@@ -754,7 +754,7 @@ _Details coming soon ..._
 6. Place the newly created `.command` file into your *home folder*.
    ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
 7. Finally, on your opened terminal from step 4, type `chmod 777 start.command` > <kbd>Enter</kbd>.
-   <div  class="alert alert-info">
+   <div class="alert alert-info">
    :information_source: **Note:** Replace **start** with whatever you name your `.command` file from step 5.
    </div>
    ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
@@ -765,7 +765,7 @@ _Details coming soon ..._
    </div>
 
    <div class="span" class="alert alert-danger">  
-   <b>:warning: **Caution**: If you decide to change the location of *home folder*, repeat from step 2.
+   :warning: **Caution**: If you decide to change the location of *home folder*, repeat from step 2.
    </div>
 
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
