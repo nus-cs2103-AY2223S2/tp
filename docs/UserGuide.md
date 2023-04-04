@@ -36,6 +36,8 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 
    * `delete 3` : Deletes the 3rd contact shown in the current contact list.
 
+   * `findevent disney` : Displays events with the word 'disney' present in their event name as a keyword.
+
    * `delevent 1` : Deletes the 1st event shown in the current event list.
 
    * `clear` : Deletes all contacts and events.
@@ -65,7 +67,9 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. 
+
+* As a result of the earlier feature, input by the user must not contain command prefix. This is to avoid misrepresentation of the command. e.g. `add n/Jane Lee p/62353535 e/janeizbored99@myspace.com a/123 n/Sapporo Shi` would be recognised as adding a contact with name, 'Sapporo Shi' because of `n/`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -83,6 +87,7 @@ Adds a person to the address book and adds existing event to this person if even
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`
 
 * Person name cannot exceed 50 characters.
+* Person name is restricted to alphanumeric characters. 
 * The event index refers to the index number shown in the displayed event list.
 * The event index **must be a positive integer** 1, 2, 3, …​
 
