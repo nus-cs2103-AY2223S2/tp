@@ -119,7 +119,10 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 
 ### Autocompletion
 
-Start typing the first letters of a command to get shadow-like autocomplete suggestions. The format of the suggested arguments are as described in the [**Guide on using Features**](#guide-on-using-features).
+TeachMeSenpai has a lot of features for you to experiment with, however we understand that it might take some getting used to. Hence, we've
+included an autocompletion feature!
+Start typing the first letters of a command to get shadow-like autocomplete suggestions. 
+The format of the suggested arguments are as described in the [**Guide on using Features**](#guide-on-using-features).
 
 <div markdown="span" class="alert alert-info">**:information_source: Tip:** You can press the `TAB` to fill in the next suggested word!
 </div>
@@ -128,9 +131,16 @@ Start typing the first letters of a command to get shadow-like autocomplete sugg
 
 <br>
 
-For the `module`, `tag`, `education` fields, it will also autocomplete for existing values.
+For the `module`, `tag`, `education` fields, it will also suggest all the existing values to you.
 
 ![help popup gui](images/user-guide/autocomplete_arg_values.jpg)
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** The `|` seen above are not part of the commands TeachMeSenpai accepts! They simply indicate the existing
+modules/education/tags in the current list.
+</div>
+
 
 ### Viewing help: `help`
 
