@@ -9,7 +9,7 @@
 <?import javafx.stage.Stage?>
 
 <?import javafx.scene.control.TextArea?>
-<fx:root resizable="true" title="Editing remarks" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="true" title="Editing remarks" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
   <icons>
     <Image url="@/images/remarkWindowIcon.png" />
   </icons>
