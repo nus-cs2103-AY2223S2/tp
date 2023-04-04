@@ -1,10 +1,12 @@
 package ezschedule.logic.parser;
 
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_EVERY;
 import static java.util.Objects.requireNonNull;
 
 import java.util.stream.Stream;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.RecurCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
@@ -33,20 +35,25 @@ public class RecurCommandParser implements Parser<RecurCommand> {
     public RecurCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_DATE, CliSyntax.PREFIX_EVERY);
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_EVERY);
 
         Index index;
         Date endDate;
         RecurFactor recurFactor;
 
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_DATE, CliSyntax.PREFIX_EVERY)) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    RecurCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_EVERY)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RecurCommand.MESSAGE_USAGE));
         }
 
-        index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        endDate = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get());
-        recurFactor = ParserUtil.parseRecurFactor(argMultimap.getValue(CliSyntax.PREFIX_EVERY).get());
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RecurCommand.MESSAGE_USAGE), pe);
+        }
+
+        endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        recurFactor = ParserUtil.parseRecurFactor(argMultimap.getValue(PREFIX_EVERY).get());
 
         return new RecurCommand(index, endDate, recurFactor);
     }

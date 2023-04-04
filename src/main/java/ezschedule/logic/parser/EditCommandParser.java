@@ -1,12 +1,12 @@
 package ezschedule.logic.parser;
 
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_END;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_START;
 import static java.util.Objects.requireNonNull;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.commons.core.index.Index;
 import ezschedule.logic.commands.EditCommand;
 import ezschedule.logic.commands.EditCommand.EditEventDescriptor;
@@ -34,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditEventDescriptor editEventDescriptor = new EditEventDescriptor();

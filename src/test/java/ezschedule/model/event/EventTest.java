@@ -91,8 +91,8 @@ public class EventTest {
     public void getCompletedStatus() {
         Event pastEventMorningTime = new EventBuilder(ART).withDate("2020-01-01").withEndTime("00:00").build();
         Event pastEventNightTime = new EventBuilder(ART).withDate("2020-01-01").withEndTime("23:59").build();
-        Event futureEventMorningTime = new EventBuilder(ART).withDate("3000-01-01").withEndTime("00:00").build();
-        Event futureEventNightTime = new EventBuilder(ART).withDate("3000-01-01").withEndTime("23:59").build();
+        Event futureEventMorningTime = new EventBuilder(ART).withDate("2999-01-01").withEndTime("00:00").build();
+        Event futureEventNightTime = new EventBuilder(ART).withDate("2999-01-01").withEndTime("23:59").build();
 
         assertTrue(pastEventMorningTime.isCompleted());
         assertTrue(pastEventNightTime.isCompleted());

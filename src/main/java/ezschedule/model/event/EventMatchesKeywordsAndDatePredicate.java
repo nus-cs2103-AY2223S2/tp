@@ -6,7 +6,8 @@ import java.util.function.Predicate;
 import ezschedule.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Event}'s {@code Name} matches any of the keywords and {@code Date} matches the date given.
+ * Tests that a {@code Event}'s {@code Name} partially-matches any of the keywords and
+ * {@code Date} matches the date given.
  */
 public class EventMatchesKeywordsAndDatePredicate implements Predicate<Event> {
 
@@ -14,7 +15,10 @@ public class EventMatchesKeywordsAndDatePredicate implements Predicate<Event> {
     private final Date date;
 
     /**
-     * Constructor for EventMatchesKeywordsAndDatePredicate.
+     * Constructs a {@code EventMatchesKeywordsAndDatePredicate}.
+     *
+     * @param keywords The given words to be matched with.
+     * @param date     The given date to be matched with.
      */
     public EventMatchesKeywordsAndDatePredicate(List<String> keywords, Date date) {
         this.keywords = keywords;

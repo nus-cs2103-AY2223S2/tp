@@ -1,8 +1,8 @@
 package ezschedule.logic.parser;
 
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ezschedule.logic.commands.ShowNextCommand.SHOW_UPCOMING_COUNT_ONE;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.logic.commands.ShowNextCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.model.event.UpcomingEventPredicate;
@@ -36,6 +36,6 @@ public class ShowNextCommandParser implements Parser<ShowNextCommand> {
 
         // Thrown when failed to Parse int, or when count <= 0
         throw new ParseException(
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ShowNextCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowNextCommand.MESSAGE_USAGE));
     }
 }

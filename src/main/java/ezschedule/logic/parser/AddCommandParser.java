@@ -1,5 +1,7 @@
 package ezschedule.logic.parser;
 
+import static ezschedule.commons.core.Messages.MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME;
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_END;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
@@ -7,7 +9,6 @@ import static ezschedule.logic.parser.CliSyntax.PREFIX_START;
 
 import java.util.stream.Stream;
 
-import ezschedule.commons.core.Messages;
 import ezschedule.logic.commands.AddCommand;
 import ezschedule.logic.parser.exceptions.ParseException;
 import ezschedule.model.event.Date;
@@ -40,7 +41,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DATE, PREFIX_START, PREFIX_END)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).orElse(null));
@@ -49,7 +50,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Time endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END).orElse(null));
 
         if (endTime.isBefore(startTime)) {
-            throw new ParseException(AddCommand.MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME);
+            throw new ParseException(MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME);
         }
 
         Event event = new Event(name, date, startTime, endTime);
