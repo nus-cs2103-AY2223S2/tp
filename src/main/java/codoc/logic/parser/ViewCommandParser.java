@@ -3,6 +3,8 @@ package codoc.logic.parser;
 import static codoc.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static java.util.Objects.requireNonNull;
 
+import java.math.BigInteger;
+
 import codoc.commons.core.index.Index;
 import codoc.logic.commands.ViewCommand;
 import codoc.logic.parser.exceptions.ParseException;
@@ -33,9 +35,15 @@ public class ViewCommandParser implements Parser<ViewCommand> {
 
     private boolean isNumeric(String arg) {
         try {
-            int num = Integer.parseInt(arg);
-        } catch (NumberFormatException e) {
-            return false;
+            Index num = ParserUtil.parseIndex(arg);
+        } catch (ParseException e) { // Could be due to overflowing integer
+            try {
+                BigInteger val = new BigInteger(arg); // Try to use BigInteger
+                // If it can parse into BigInteger
+                return true;
+            } catch (NumberFormatException nfe) { // BigInteger fails too.
+                return false;
+            }
         }
         return true;
     }
