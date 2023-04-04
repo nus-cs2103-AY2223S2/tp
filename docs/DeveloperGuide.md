@@ -263,7 +263,7 @@ For example, `Bee Shan|81121128|beeshan@gmail.com|Bishan|@beeshan|NS CCA|CS3242 
 | Name            | Bee Shan                                |
 | Phone           | 81121128                                |
 | Email           | beeshan@gmail.com                       |
- | Station         | 200 Bishan Road                         |
+ | Station         | Bishan                                  |
  | Telegram Handle | @beeshan                                |
  | Groups          | NS, CCA                                 |
  | Modules         | CS3242, BT3101, CS1010E, CS3219, CE3165 |
