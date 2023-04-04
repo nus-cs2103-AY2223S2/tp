@@ -20,7 +20,8 @@ Below are my contributions to the project:
 the due soon projects, overdue projects and progress overview based on project status. I also made enhancements
 on the GUI including positioning and styling main UI components.
 
-* **Testing**: I am responsible for testing the Statistics dashboard's related methods along with the GUI. 
+* **Testing**: I am responsible for testing the Statistics dashboard's related methods along with the GUI (with the 
+GUI testing structure based on [Address book-level4](https://github.com/se-edu/addressbook-level4)). 
 
 * **Project management**: I helped set up the Issue Tracker and planned some of the weekly meeting's agenda. 
 
