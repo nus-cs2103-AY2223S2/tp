@@ -51,9 +51,9 @@ public class MenuItemPriceTest {
         ItemPrice differentItemPrice = new ItemPrice("21.00");
 
         assertTrue(itemPrice.equals(itemPrice)); // same object
-        // assertTrue(itemPrice.equals(new ItemPrice("10.00")));
-        // assertTrue(itemPrice.equals(new ItemPrice("10")));
-        // assertTrue(itemPrice.equals(new ItemPrice("10.0")));
+        assertTrue(itemPrice.equals(new ItemPrice("10.00")));
+        assertTrue(itemPrice.equals(new ItemPrice("10")));
+        assertTrue(itemPrice.equals(new ItemPrice("10.0")));
 
         assertFalse(itemPrice.equals(null));
         assertFalse(itemPrice.equals(differentItemPrice));
