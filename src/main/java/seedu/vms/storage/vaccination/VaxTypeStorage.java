@@ -2,6 +2,7 @@ package seedu.vms.storage.vaccination;
 
 import java.io.IOException;
 
+import seedu.vms.model.vaccination.ReadOnlyVaxTypeManage;
 import seedu.vms.model.vaccination.VaxTypeManager;
 
 
@@ -31,5 +32,5 @@ public interface VaxTypeStorage {
      *
      * @throws IOException if an I/O error occurs.
      */
-    public void saveVaxTypes(VaxTypeManager manager) throws IOException;
+    public void saveVaxTypes(ReadOnlyVaxTypeManage manager) throws IOException;
 }
