@@ -1,7 +1,7 @@
-package taa.assignment.exceptions;
+package taa.model.assignment.exceptions;
 
 /**
- * Grade has marks < 0 or > totalMarks.
+ * Exception where the grade has marks < 0 or > totalMarks.
  */
 public class InvalidGradeException extends AssignmentException {
     public InvalidGradeException(String message) {

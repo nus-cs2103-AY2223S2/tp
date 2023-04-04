@@ -1,14 +1,13 @@
-package taa.assignment;
+package taa.model.assignment;
 
 import java.util.Optional;
 
-import taa.assignment.exceptions.InvalidGradeException;
+import taa.model.assignment.exceptions.InvalidGradeException;
 import taa.model.student.Student;
 
 /**
- * An assignment submission
+ * An assignment submission for a particular student.
  */
-
 public class Submission {
     private boolean isGraded = false;
     private boolean isLateSubmission = false;
@@ -17,7 +16,9 @@ public class Submission {
     private final Student student;
 
     /**
-     * @param student The student who made this submission.
+     * Constructor for our submission.
+     * @param student
+     * @param assignment
      */
     public Submission(Student student, Assignment assignment) {
         this.student = student;
@@ -25,7 +26,7 @@ public class Submission {
     }
 
     /**
-     * Creates a Submission, used when creating from storage.
+     * Creates a Submission, this is used when creating from storage.
      * @param student
      * @param assignment
      * @param isGraded
@@ -46,7 +47,7 @@ public class Submission {
     }
 
     /**
-     * Grades a students submission.
+     * Grades a students submission with the given marks.
      * @param marks
      * @throws InvalidGradeException when marks is out of range 0-totalMarks.
      */
@@ -65,7 +66,7 @@ public class Submission {
     }
 
     /**
-     * Resets the grade of a student submission.
+     * Resets the marks, and late status of a student submission.
      */
     public void ungrade() {
         this.isGraded = false;
@@ -76,6 +77,7 @@ public class Submission {
 
     /**
      * Describes the assignment this submission belongs to, along with details of this submission.
+     * @return the details of the submission
      */
     public String describeSubmission() {
         String gradeStatus = this.isGraded ? marks + "/" + assignment.getTotalMarks() : "Ungraded";
@@ -84,15 +86,15 @@ public class Submission {
     }
 
     /**
-     * Returns true if this submission belongs to an assignment with the given name.
+     * @param assignmentName
+     * @return true if this submission belongs to an assignment with the given name.
      */
     public boolean isForAssignment(String assignmentName) {
         return this.assignment.toString().equals(assignmentName);
     }
 
     /**
-     * Returns the score of this submission, if graded.
-     * Otherwise, an Optional.empty() is returned.
+     * @return Returns the score of this submission, if graded. Otherwise, an Optional.empty() is returned.
      */
     public Optional<Integer> getScore() {
         if (isGraded) {
@@ -112,6 +114,8 @@ public class Submission {
 
     /**
      * Creates a string for a submission to store into our storage.
+     * The data given is separated by commas, in the following manner:
+     * "assignmentName,isGraded,isLate,marks,totalMarks"
      * @return The storage string
      */
     public String toStorageString() {

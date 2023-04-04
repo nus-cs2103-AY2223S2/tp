@@ -1,4 +1,4 @@
-package taa.assignment.exceptions;
+package taa.model.assignment.exceptions;
 
 /**
  * Signals that this operation will result in a duplicate Assignment being added.

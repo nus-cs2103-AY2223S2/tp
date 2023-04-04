@@ -1,4 +1,4 @@
-package taa.assignment.exceptions;
+package taa.model.assignment.exceptions;
 
 /**
  * Signals that a normal distribution curve cannot be drawn due to variance being 0.
