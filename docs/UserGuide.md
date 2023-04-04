@@ -17,7 +17,7 @@ than traditional GUI apps.
   - [Help](#Help)
   - [Add](#add-a-patient--add)
   - [List](#listing-all-patients--list)
-    - [list_name](#listing-patients-by-name--listname)
+  - [list_name](#listing-patients-by-name--listname)
   - [Edit](#editing-a-patient--edit)
   - [Appointment](#appointment)
     - [makeApp](#making-appointment-to-a-patient--makeapp)
@@ -136,7 +136,7 @@ Shows a list of all patients in MediMate.
 
 Format: `list`
 
-#### Listing patients by name : `list_name`
+### Listing patients by name : `list_name`
 
 Shows a list of all patients in MediMate by their name in alphabetical order. The screenshot below shows the list of patient
 
