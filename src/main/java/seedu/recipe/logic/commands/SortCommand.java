@@ -22,7 +22,7 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Returns a sorted list of recipes in ascending or descending order.\n"
-            + "Parameters: {asc or desc}\n"
+            + "Parameters are in lowercase: {asc or desc}\n"
             + "Example: " + COMMAND_WORD + " asc";
 
     private final boolean isAsc;

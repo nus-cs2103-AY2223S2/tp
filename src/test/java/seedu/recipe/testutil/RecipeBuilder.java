@@ -92,7 +92,7 @@ public class RecipeBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Steps} of the {@code Recipe} that we are building.
      */
     public RecipeBuilder withSteps(String... steps) {
         List<Step> stepList = Stream.of(steps).map(Step::new).collect(Collectors.toList());
