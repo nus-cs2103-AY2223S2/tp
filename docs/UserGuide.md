@@ -4,7 +4,8 @@ title: User Guide
 ---
 ## About TeachMeSenpai
 
-TeachMeSenpai is a **desktop app targeted at teaching assistants who have many students to keep track of.** It is tailored to assist the user in monitoring their students' progress, and details. 
+TeachMeSenpai is a **desktop app targeted at teaching assistants who have many students to keep track of.** It is tailored to assist the user in monitoring their students' progress, and details.
+
 As a teaching assistant, you can easily view and edit your student's details on the go. Tailored to fast-typist, TeachMeSenpai is built around a **Command Line Interface (CLI)**, complete with an **autocomplete** feature
 to help you manage your students quicker than a traditional point-and-click app can.
 
@@ -62,30 +63,29 @@ TeachMeSenpai has been designed to work for all Operating Systems!
 
 :bulb: **Notes about the command format:**
 
-- Words in `UPPER_CASE` are the parameters to be supplied by the user.  
+- Words in `UPPER_CASE` are the parameters to be supplied by the user. \\
   _(eg. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`)_
 
-- Items in square brackets are optional.  
+- Items in square brackets are optional. \\
   _(eg. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`)_
 
-- Items with `...` after them can be used multiple times including zero times.  
+- Items with `...` after them can be used multiple times including zero times. \\
   _(eg. `[t/TAG]...` can be excluded completely, or once `t/friend`, or twice `t/friend t/family`, etc.)_
 
-- Parameters can be in any order.  
+- Parameters can be in any order. \\
   _(eg. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable)_
 
-- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.  
+- If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. \\
   _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored.  
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored. \\
   _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
 
 </div>
 
 ## Parameter descriptions
 
-Firstly, parameters are the inputs/information you have to enter together with their respective commands in the command line 
-when using TeachMeSenpai!
+Firstly, parameters are the inputs/information you have to enter together with their respective commands in the command line when using TeachMeSenpai!
 
 Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
 
@@ -157,8 +157,7 @@ Exits the program.
 
 ### Listing all students: `list`
 
-Shows a list of the saved all students. 
-This is useful for displaying the full list after using commands that modifies the list _(eg. [`find`](#findfilter-students-findfilter))_.
+Shows a list of the saved all students. This is useful for displaying the full list after using commands that modifies the list _(eg. [`find`](#findfilter-students-findfilter))_.
 
 > Format: `list`
 
@@ -289,18 +288,18 @@ Examples:
 
 ### Find/filter students: `find`/`filter`
 
-Finds entries of students based on a keyword in the field that you want. <br>
+Finds entries of students based on a keyword in the field that you want.
 
-The `find` and `filter` command allows you to match keywords or partial keywords with the entries, for example:<br>
-`find n/Sh` displays the students with names which contain `sh` in them, such as `Shaun` or `Amresh`.<br>
-This applies to all fields EXCEPT tags and modules, where you will have to enter and find them by the 
-tags and modules in full. <br><br>
-the `find` command allows you to hone in on an entry that matches **all** your `FIELD` and `KEYWORDS`
-, but `filter` will also show you those who match with **at least one** of the criteria.
+The `find` and `filter` command allows you to match keywords or partial keywords with the entries, for example:
 
-> Format: <br>
-> `find FIELD... KEYWORDS...` <br>
+`find n/Sh` displays the students with names which contain `sh` in them, such as `Shaun` or `Amresh`. This applies to all fields EXCEPT tags and modules, where you will have to enter and find them by the tags and modules in full.
+
+The `find` command allows you to hone in on an entry that matches **all** your `FIELD` and `KEYWORDS`, but `filter` will also show you those who match with **at least one** of the criteria.
+
+> Format: \\
+> `find FIELD... KEYWORDS...` \\
 > `filter FIELD... KEYWORDS...`
+
 * `FIELD` refers to the type of details such as name, address, email and so on.
 * Input the field like so:
   * Name: `n/`
@@ -313,8 +312,7 @@ the `find` command allows you to hone in on an entry that matches **all** your `
   * Tags: `t/`
   * Modules: `m/`
 
-<div markdown="span" class="alert alert-info">**:information_source: Tip:** Using `find` without any `FIELDS` has the same outcome as `list`! TeachMeSenpai will 
-simply display the list of all your students.
+<div markdown="span" class="alert alert-info">**:information_source: Tip:** Using `find` without any `FIELDS` has the same outcome as `list`! TeachMeSenpai will simply display the list of all your students.
 </div>
 
 Examples:
@@ -381,7 +379,8 @@ Examples:
     <br><i><b>Above:</b> After entering <code>delete</code> command</i>
 </p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Tip:** You can combine `find` and `delete` when you have a very long list of students. <br>For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
+<div markdown="span" class="alert alert-info">:information_source: **Tip:** You can combine `find` and `delete` when you have a very long list of students.
+<br>For instance, you can `find` the student(s) you want gone, and then `delete` using the index from the list displayed!
 </div>
 
 ---
@@ -395,9 +394,9 @@ You can `undo` as many times as required, as long as the previous commmand is **
 <div markdown="span" class="alert alert-info":bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message.
 </div>
 
-> Format: `undo` 
+> Format: `undo`
 
-Example: `delete 1 4` followed by `undo`. <br>
+Example: `delete 1 4` followed by `undo`.
 
 ### Redo a previous `undo`: `redo`
 

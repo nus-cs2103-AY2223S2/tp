@@ -30,7 +30,8 @@ public class TelegramTest {
 
         // valid handles - long handles
         assertTrue(Telegram.isValidHandle("@aaaaaaaaaa_bbbbbbbbbb_cccccccccc")); // lowercase with underscore
-        assertTrue(Telegram.isValidHandle("@a444444444_bbbbbbbbbb_cccccccccc")); // lowercase with underscore and numbers
+        // lowercase with underscore and numbers
+        assertTrue(Telegram.isValidHandle("@a444444444_bbbbbbbbbb_cccccccccc"));
         assertTrue(Telegram.isValidHandle("@a4444444442H3bh4b23b5HB23b5J2b3h")); // uppercase and lowercase with numbers
 
         // invalid handles
