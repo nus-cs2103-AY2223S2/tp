@@ -36,15 +36,33 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_INGREDIENT, PREFIX_TITLE,
                         PREFIX_STEP, PREFIX_TAG);
 
-        if (!areAllPrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_INGREDIENT, PREFIX_TITLE,
-                PREFIX_STEP)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (args.length() == 0) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        if (!areAllPrefixesPresent(argMultimap, PREFIX_TITLE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddCommand.NO_TITLE_FAILURE));
+        }
+
+        if (!areAllPrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddCommand.NO_DESC_FAILURE));
+        }
+
+        if (!areAllPrefixesPresent(argMultimap, PREFIX_INGREDIENT)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddCommand.NO_INGREDIENT_FAILURE));
+        }
+
+        if (!areAllPrefixesPresent(argMultimap, PREFIX_STEP)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddCommand.NO_STEP_FAILURE));
+        }
+
+        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Set<Ingredient> ingredients = ParserUtil.parseIngredients(argMultimap.getAllValues(PREFIX_INGREDIENT));
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         List<Step> steps = ParserUtil.parseSteps(argMultimap.getAllValues(PREFIX_STEP));
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
