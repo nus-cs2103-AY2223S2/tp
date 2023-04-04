@@ -11,16 +11,6 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
 
 - [Table of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
-- [Commands](#commands)
-  - [Nav](#nav)
-  - [List](#list)
-  - [Add](#add)
-  - [Edit](#edit)
-  - [Mark/Unmark](#markunmark)
-  - [Delete](#delete)
-  - [Tag](#tag)
-  - [Find](#find)
-  - [Clear](#clear)
 - [Command Syntax](#command-syntax)
 - [Argument Formats](#argument-formats)
 - [Navigation](#navigation)
@@ -82,93 +72,45 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
 
 ### Getting Started
 
-1. Type anything in the command box, using the :arrow_up: and :arrow_down: arrows to see texts that you have typed previously.
+1. Type anything in the command box, using the :arrow_up: and :arrow_down: arrows to toggle through the texts you have typed.
 
-2. Press `Enter` to execute a command. For example, typing "help" and pressing `Enter` will open the help window.
-
-3. Refer to the [Commands](#commands) section for more information.
+2. Press `Enter` to execute a command.\
+   For example, typing "help" and pressing `Enter` will open the help window.
 
 ### Tutorials and Examples
 
-1. To add a module, execute `add CS2103 /name Software Engineering`.
-1. To give it a tag of `BestModule`, execute `tag CS2103 /tags BestModule`.
-1. To add a lecture, execute `add Week 1 /mod CS2103`.
-1. To add a video, execute `add Vid 1 /mod CS2103 /lec Week 1`.
-1. To add a timestamp, execute `edit Vid 1 /mod CS2103 /lec Week 1 /timestamp 10:20:15`.
-1. To view the list with this video, execute `list /mod CS2103 /lec Week 1`.
-1. To delete this module, execute `delete CS2103`.
-1. To exit, execute `exit`.
+Scenario 1:
 
-## Commands
+1. To add a module, run `add CS2103 /name Software Engineering`.
+1. To give it a tag of `BestModule`, run `tag CS2103 /tags BestModule`.
+1. To add a lecture, run `add Week 1 /mod CS2103`.
+1. To add a video, run `add Vid 1 /mod CS2103 /lec Week 1`.
+1. To add a timestamp, run `edit Vid 1 /mod CS2103 /lec Week 1 /timestamp 10:20:15`.
+1. To view the list with this video, run `list /mod CS2103 /lec Week 1`.
+1. To delete this module, run `delete CS2103`.
 
-### Nav
+Scenario 2:
 
-- `nav`: Navigates to the top-most context (root)
-- `nav {module_code / lecture_name}`: Navigates relative to the current context to a module or lecture context
-- `nav /mod {module_code / lecture_name} [/lec {lecture_name}]`: Navigates directly to the specified module or lecture context
-- `navb`: Navigates to the parent context of the current context
+1. To navigate into module `CS2040S`, run `nav CS2040S`.
+1. To find a lecture named `Week 1`, run `find Week 1`.
+1. To find a video named `Vid 1` in `Week 1` lecture, run `find Vid 1 /lec Week 1`.
+1. To navigate back to root context, run `nav` or `navb`.
+1. To export all data, run `export data.json`.
+1. To clear all data, run `clear`.
+1. To import data, run `import data.json`.
 
-### List
+Scenario 3:
 
-- `list`: Lists all modules/lectures/videos based on context
-- `list /r`: Lists all modules from any context
-- `list [/mod {module_code}]`: Lists all the lectures in a specified module
-- `list [/lec {lecture_name}]`: Lists all the videos in a navigated module and specified lecture (:exclamation: only works if you are in `module` context)
-- `list [/mod {module_code} /lec {lecture_name}]`: Lists all the videos in a specified module and lecture
+1. To view lectures in module `ST2334`, run `list /mod ST2334`.
+1. To delete a video `Vid 3` in lecture `Topic 1` in module `ST2334`, run `delete Vid 3 /mod ST2334 /lec Topic 1`
+1. To navigate into lecture `Topic 2` in module `ST2334`, run `nav /mod ST2334 /lec Topic 2`.
+1. To unmark a video `Vid 1` in lecture `Topic 2` in module `ST2334` as unwatched, run `unmark Vid 1`
+1. To change the video name to `video 1`, run `edit Vid 1 /name video 1`
+1. To delete this lecture, run `delete Topic 2 /mod ST2334`
+1. To exit the app, run `exit`.
 
-### Add
-
-- `add {module_code} [/name {module_name}] [/tags {tag_1}, [{tag_2}, ...]]`: Adds a module to Le Tracker
-- `add {lecture_name} [/mod {module_code}] [/tags {tag_1}, [{tag_2}, ...]]`: Adds a lecture to a module
-- `add {video_name} [/mod {module_code}] [/lec {lecture_name}] [/timestamp {timestamp}] [/watch] [/tags {tag_1}, [{tag_2}, ...]]`: Adds a video to a lecture
-
-### Edit
-
-- `edit {module_code} [/code {updated_code}] [/name {updated_name}] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a module in Le Tracker
-- `edit {lecture_name} [/mod {module_code}] [/name {updated_name}] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a lecture
-- `edit {video_name} [/mod {module_code}] [/lec {lecture_name}] [/name {updated_name}] [/timestamp {updated_timestamp}] [/watch] [/unwatch] [/tags {tag_1}, [{tag_2}, ...]]`: Edits the details of a video
-
-### Mark/Unmark
-
-- `mark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_name}`: Marks video(s) as watched
-- `unmark {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] /mod {module_code} /lec {lecture_index}`: Unmarks video(s) as unwatched
-
-### Delete
-
-- `delete {module_code_1}[, {module_code_2}[, {module_code_3}[, ...]]]`: Deletes module(s) from Le Tracker
-- `delete {lecture_name_1}[, {lecture_name_2}[, {lecture_name_3}[, ...]]] [/mod {module_code}]`: Deletes the specified lecture(s) from the specified module
-- `delete {video_name_1}[, {video_name_2}[, {video_name_3}[, ...]]] [/mod {module_code}] [/lec {lecture_name}]`: Deletes the specified video(s) from the specified lecture from the specified module
-
-### Tag
-
-- `tag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a module from Le Tracker
-- `tag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Tags a lecture from
-  a module
-- `tag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`:
-  Tags a video from a lecture
-- `untag {module_code} /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes specified tags from a module
-  from Le Tracker
-- `untag {lecture_name} [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`: Removes the
-  specified tags from a lecture
-- `untag {video_name} [/lec {lecture_name}] [/mod {module_code}] /tags {tag_1}[, {tag_2}[, {tag_3}, ...]]]`:
-  Removes the specified tags of a video
-
-### Find
-
-- `find {keywords}`: Find all modules/lectures/videos based on context whose code/name (whichever applicable) starts with any of the keyword(s)
-- `find {keywords} [/byTag]`: Find all modules/lectures/videos based on context whose tag list contains any tag that starts with any of the keyword(s)
-- `find {keywords} [/mod {module_code}]`: Find all lectures in a specified module whose name starts with any of the keyword(s)
-- `find {keywords} [/byTag /mod {module_code}]`: Find all lectures in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
-- `find {keywords} [/lec {lecture_name}]`: Find all videos in a specified lecture in navigated module whose name starts with any of the keyword(s) (:exclamation: only works if you are in `module` context)
-- `find {keywords} [/byTag /lec {lecture_name}]`: Find all videos in a specified lecture in a navigated module whose tag list contains any tag that starts with any of the keyword(s) (:exclamation: only works if you are in `module` context)
-- `find {keywords} [/mod {module_code} /lec {lecture_name}]`: Find all videos in a specified lecture in specified module whose name starts with any of the keyword(s)
-- `find {keywords} [/byTag /mod {module_code} /lec {lecture_name}]`: Find all videos in a specified lecture in a specifed module whose tag list contains any tag that starts with any of the keyword(s)
-
-### Clear
-
-- `clear`: Clears all information from Le Tracker
-
-Refer to the [Features](#features) below for details of each command.
+:clap: That covers all the main commands. Refer to the [Features](#features) section for details of each command.\
+Feel free to play around with the sample data to familiarise yourself with the commands. Once you are comfortable, execute `clear` to delete all data and start from scratch, challenge yourself without using the `import` command :wink:
 
 ---
 
