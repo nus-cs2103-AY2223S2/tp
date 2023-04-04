@@ -27,7 +27,7 @@ public class ToDoCommandParser implements Parser<ToDoCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TASK)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ToDoCommand.MESSAGE_USAGE));
         }
 
         TaskDescription description = ParserUtil.parseTaskDescription(argMultimap.getValue(PREFIX_TASK).get());
