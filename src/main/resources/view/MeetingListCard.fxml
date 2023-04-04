@@ -24,10 +24,10 @@
                         <Region fx:constant="USE_PREF_SIZE"/>
                     </minWidth>
                 </Label>
-                <Label fx:id="title" styleClass="cell_big_label"/>
+                <Label fx:id="title" styleClass="cell_big_label" wrapText="true"/>
             </HBox>
             <Label fx:id="dateTime" styleClass="cell_small_label"/>
-            <Label fx:id="description" styleClass="cell_small_label"/>
+            <Label fx:id="description" styleClass="cell_small_label" wrapText="true"/>
             <Label fx:id="attendees" styleClass="cell_small_label"/>
             <Label fx:id="meetingLocation" styleClass="cell_small_label" wrapText="true"/>
         </VBox>
