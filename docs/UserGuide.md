@@ -180,6 +180,8 @@ Examples:
 
 :warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, <span style="color:#34A853">Deadline</span>, <span style="color:#FBBC05">Event</span>) of the same name.
 
+:warning: Tags will be automatically sorted lexicographically!
+
 :warning: Adding multiple **Tags** of the same tag name will only result in one tag!
 
 e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
@@ -211,7 +213,7 @@ Add multiple tasks with the same parameters except for name with this command:`a
 
 Edits an existing task in the task book.
 
-Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT]…​ [t/TAG]…​`
+Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
