@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,6 +23,7 @@ public class CommandBox extends UiPart<Region> {
     private final CommandExecutor commandExecutor;
     private final CommandSuggestor commandSuggestor;
     private final CommandAutocomplete commandAutocomplete;
+    private Font textFieldFont;
 
     @FXML
     private TextField commandTextField;
@@ -45,6 +47,7 @@ public class CommandBox extends UiPart<Region> {
 
         //@@author EvitanRelta-reused
         // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
+        // with no modifications.
         commandTextField.textProperty()
                 .addListener((observable, oldValue, newValue) -> updateCommandSuggestion(newValue));
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> handleKeyPressed(event));
@@ -136,6 +139,7 @@ public class CommandBox extends UiPart<Region> {
 
     //@@author EvitanRelta-reused
     // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
+    // with minor modification and bug fixes.
     /**
      * Auto-completes user input when the user presses the Tab key.
      */
@@ -176,8 +180,17 @@ public class CommandBox extends UiPart<Region> {
      * @return true if the command text field is overflowing.
      */
     public boolean isOverflow() {
+        if (textFieldFont == null) {
+            // 'textFieldFont' is only set here (instead of in the constructor),
+            // to avoid getting the font before the CSS has been loaded.
+            textFieldFont = commandTextField.getFont();
+        }
         Text t = new Text(commandTextField.getText() + "12345"); // `12345` is used to pad the text
-        t.setFont(commandTextField.getFont());
+
+        // 'commandTextField.getFont()' is not used here as sometimes the font
+        // hasn't loaded, which returns the default system font, and causes bugs.
+        t.setFont(textFieldFont);
+
         double width = t.getLayoutBounds().getWidth();
         return width > commandTextField.getWidth();
     }
