@@ -1273,19 +1273,33 @@ Syntax: `clear_menu`
 
 </div>
 
-## Switch
+## 2.8 Switch
 
-### Switching tabs: `tab`
+Allows for you to switch to the tab for view your respective information. You can use the GUI to navigate it as shown [here](#14-navigating-the-user-interface) or use the command shown here.
+
+### 2.8.1 Switching tabs: `tab`
 
 Switch to another tab.
 
-Syntax: `tab t/TAB`
+Syntax: `tab TAB`
 
-* The available tabs are: `Home`, `Orders`, `Contacts`, `Menu`
+<div markdown="block" class="alert alert-tip">
 
-Examples:
+:information_source: **Information**
 
-* `tab t/HOME` switches the tab to the `Home` tab
+* `TAB` needs to be in all-caps and is case sensitive
+* The available tabs are `HOME`, `ORDERS`, `CONTACTS`, `MENU`, `TASKS`
+
+</div>
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command**
+
+* `tab HOME`<br>
+  Navigates you to the home tab
+
+</div>
 
 ## Others
 
