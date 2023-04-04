@@ -36,14 +36,14 @@ public class TypicalApplications {
             .withStatus("applied")
             .withTags("employeeDiscounts").build();
     public static final Application MICROSOFT = new ApplicationBuilder().withRole("Software Testing Intern")
-            .withCompanyName("Microsoft").withCompanyEmail("hrthires@hrt.com")
+            .withCompanyName("Microsoft").withCompanyEmail("microsofthires@microsoft.com")
             .withStatus("offered")
             .withTags("windowsSupremacy").build();
     public static final Application META = new ApplicationBuilder().withRole("UX Design Intern")
             .withCompanyName("Meta").withCompanyEmail("metahires@meta.com")
             .withStatus("applied").withTask("01-11-2023", "Online Assessment")
             .build();
-    public static final Application GOVTECH = new ApplicationBuilder().withRole("Cybersecurity Intern")
+    public static final Application GOVTECH = new ApplicationBuilder().withRole("CyberSecurity Intern")
             .withCompanyName("Govtech").withCompanyEmail("govtechhires@govtech.sg")
             .withStatus("applied").withTask("31-10-2023", "Interview")
             .build();

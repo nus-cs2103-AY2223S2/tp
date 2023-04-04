@@ -40,6 +40,9 @@ public class Task {
      */
     @Override
     public boolean equals(Object other) {
+        if (this == null && other == null) {
+            return true;
+        }
         if (other == this) {
             return true;
         }

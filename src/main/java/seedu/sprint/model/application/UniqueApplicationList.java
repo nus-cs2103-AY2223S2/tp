@@ -90,6 +90,7 @@ public class UniqueApplicationList implements Iterable<Application> {
      */
     public void setApplications(List<Application> applications) {
         requireAllNonNull(applications);
+
         if (!applicationsAreUnique(applications)) {
             throw new DuplicateApplicationException();
         }

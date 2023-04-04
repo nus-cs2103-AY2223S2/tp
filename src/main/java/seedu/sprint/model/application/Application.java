@@ -89,11 +89,13 @@ public class Application {
         }
 
         Application otherApplication = (Application) other;
-        return otherApplication.getRole().equals(getRole())
-                && otherApplication.getCompanyName().equals(getCompanyName())
-                && otherApplication.getCompanyEmail().equals(getCompanyEmail())
-                && otherApplication.getTags().equals(getTags())
-                && otherApplication.hasTask() == hasTask();
+
+        return otherApplication.getRole().equals(this.getRole())
+                && otherApplication.getCompanyName().equals(this.getCompanyName())
+                && otherApplication.getCompanyEmail().equals(this.getCompanyEmail())
+                && otherApplication.getTags().equals(this.getTags())
+                && (this.hasTask() == otherApplication.hasTask())
+                || (this.hasTask() && this.getTask().equals(otherApplication.getTask()));
     }
 
     @Override
