@@ -10,8 +10,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
 
 import java.util.Set;
 
+import seedu.address.logic.commands.fish.FishAddCommand;
+import seedu.address.logic.commands.fish.FishCommand;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tag.Tag;
+import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
 
 /**
  * A utility class for Fish.
@@ -22,7 +25,7 @@ public class FishUtil {
      * Returns an add command string for adding the {@code fish}.
      */
     public static String getAddCommand(Fish fish) {
-        return AddCommand.COMMAND_WORD + " " + getFishDetails(fish);
+        return FishCommand.COMMAND_WORD + " " + FishAddCommand.COMMAND_WORD + " " + getFishDetails(fish);
     }
 
     /**

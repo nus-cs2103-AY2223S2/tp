@@ -23,6 +23,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.fish.FishEditCommand;
+import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -50,12 +52,12 @@ public class EditCommandTest {
                 getTypicalTaskList(),
                 getTypicalTankList(), getTypicalFullReadingLevels());
         Fish editedFish = new FishBuilder().build();
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
+        String expectedMessage = String.format(FishEditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
         //In edit command, a new fish with new tank is created. Since edited fish also belongs in tank index 1,
         // hard coded 1 here
         editedFish.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder(editedFish).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_FISH, descriptor);
+        FishEditCommand editCommand = new FishEditCommand(INDEX_FIRST_FISH, descriptor);
 
         expectedModel.setFish(expectedModel.getFilteredFishList().get(0), editedFish);
 
@@ -77,11 +79,11 @@ public class EditCommandTest {
         Fish editedFish = fishInList.withName(VALID_NAME_BOB).withLastFedDate(VALID_LAST_FED_DATE_BOB)
                 .withSpecies(VALID_SPECIES_BOB).withTank(TYPICAL_TANK_2_STRING).withTags(VALID_TAG_HUSBAND).build();
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
+        String expectedMessage = String.format(FishEditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
         //In edit command, a new fish with new tank is created. Since new fish is in tank 2, hard coded 2 here
         editedFish.setTank(new Tank(new TankName("2"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder(editedFish).build();
-        EditCommand editCommand = new EditCommand(indexLastFish, descriptor);
+        FishEditCommand editCommand = new FishEditCommand(indexLastFish, descriptor);
         expectedModel.setFish(lastFish, editedFish);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -97,12 +99,12 @@ public class EditCommandTest {
                 getTypicalTankList(), getTypicalFullReadingLevels());
         Fish editedFish = new FishBuilder(expectedModel.getFilteredFishList().get(INDEX_FIRST_FISH.getZeroBased()))
                 .build();
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
+        String expectedMessage = String.format(FishEditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
         //In edit command, a new fish with new tank is created. Since edited fish also belongs in tank index 1,
         // hard coded 1 here
         editedFish.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder(editedFish).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_FISH, descriptor);
+        FishEditCommand editCommand = new FishEditCommand(INDEX_FIRST_FISH, descriptor);
         expectedModel.setFish(expectedModel.getFilteredFishList().get(INDEX_FIRST_FISH.getZeroBased()), editedFish);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -120,11 +122,11 @@ public class EditCommandTest {
         showFishAtIndex(model, INDEX_FIRST_FISH);
         Fish fishInFilteredList = expectedModel.getFilteredFishList().get(INDEX_FIRST_FISH.getZeroBased());
         Fish editedFish = new FishBuilder(fishInFilteredList).withName(VALID_NAME_BOB).build();
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
+        String expectedMessage = String.format(FishEditCommand.MESSAGE_EDIT_FISH_SUCCESS, editedFish);
         //In edit command, a new fish with new tank is created. Since edited fish also belongs in tank index 1,
         // hard coded 1 here
         editedFish.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_FISH,
+        FishEditCommand editCommand = new FishEditCommand(INDEX_FIRST_FISH,
                 new EditFishDescriptorBuilder(editedFish).build());
         expectedModel.setFish(expectedModel.getFilteredFishList().get(0), editedFish);
 
@@ -138,9 +140,9 @@ public class EditCommandTest {
         Fish firstFish = model.getFilteredFishList().get(INDEX_FIRST_FISH.getZeroBased());
         firstFish.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder(firstFish).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_FISH, descriptor);
+        FishEditCommand editCommand = new FishEditCommand(INDEX_SECOND_FISH, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FISH);
+        assertCommandFailure(editCommand, model, FishEditCommand.MESSAGE_DUPLICATE_FISH);
     }
 
     @Test
@@ -153,10 +155,10 @@ public class EditCommandTest {
         Fish fishInList = model.getAddressBook().getFishList().get(INDEX_SECOND_FISH.getZeroBased());
         // user inputs tank attribute will be a number for edit commands
         fishInList.setTank(new Tank(new TankName("1"), new AddressBook(), new UniqueIndividualReadingLevels()));
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_FISH,
+        FishEditCommand editCommand = new FishEditCommand(INDEX_FIRST_FISH,
                 new EditFishDescriptorBuilder(fishInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_FISH);
+        assertCommandFailure(editCommand, model, FishEditCommand.MESSAGE_DUPLICATE_FISH);
     }
 
     @Test
@@ -166,7 +168,7 @@ public class EditCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFishList().size() + 1);
         //The fish parameter of edit commands have tank attribute as an index.
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withName(VALID_NAME_BOB).withTank("1").build();
-        EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
+        FishEditCommand editCommand = new FishEditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
     }
@@ -185,7 +187,7 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getFishList().size());
 
         //The fish parameter of edit commands have tank attribute as an index.
-        EditCommand editCommand = new EditCommand(outOfBoundIndex,
+        FishEditCommand editCommand = new FishEditCommand(outOfBoundIndex,
                 new EditFishDescriptorBuilder().withName(VALID_NAME_BOB).withTank("1").build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_FISH_DISPLAYED_INDEX);
@@ -195,11 +197,11 @@ public class EditCommandTest {
     public void equals() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTaskList(),
                 getTypicalTankList(), getTypicalFullReadingLevels());
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_FISH, DESC_AMY);
+        final FishEditCommand standardCommand = new FishEditCommand(INDEX_FIRST_FISH, DESC_AMY);
 
         // same values -> returns true
         EditFishDescriptor copyDescriptor = new EditFishDescriptor(DESC_AMY);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_FISH, copyDescriptor);
+        FishEditCommand commandWithSameValues = new FishEditCommand(INDEX_FIRST_FISH, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -208,14 +210,11 @@ public class EditCommandTest {
         // null -> returns false
         assertFalse(standardCommand.equals(null));
 
-        // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
-
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_FISH, DESC_AMY)));
+        assertFalse(standardCommand.equals(new FishEditCommand(INDEX_SECOND_FISH, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_FISH, DESC_BOB)));
+        assertFalse(standardCommand.equals(new FishEditCommand(INDEX_FIRST_FISH, DESC_BOB)));
     }
 
 }

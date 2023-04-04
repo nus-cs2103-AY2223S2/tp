@@ -14,6 +14,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.TankName;
 import seedu.address.model.tank.readings.UniqueIndividualReadingLevels;
+import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
 
 /**
  * A utility class to help with building EditFishDescriptor objects.

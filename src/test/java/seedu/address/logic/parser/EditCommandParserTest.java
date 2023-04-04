@@ -39,6 +39,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_FISH;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.fish.FishEditCommand;
+import seedu.address.logic.commands.fish.FishEditCommand.EditFishDescriptor;
+import seedu.address.logic.parser.fish.FishEditCommandParser;
 import seedu.address.model.fish.FeedingInterval;
 import seedu.address.model.fish.LastFedDateTime;
 import seedu.address.model.fish.Name;
@@ -52,9 +55,9 @@ public class EditCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FishEditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private FishEditCommandParser parser = new FishEditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -62,7 +65,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", FishEditCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -127,7 +130,7 @@ public class EditCommandParserTest {
                 .withLastFedDate(VALID_LAST_FED_DATE_BOB).withSpecies(VALID_SPECIES_AMY)
                 .withFeedingInterval(VALID_FEEDING_INTERVAL_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withTank(VALID_TANK_BOB).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        FishEditCommand expectedCommand = new FishEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -139,7 +142,7 @@ public class EditCommandParserTest {
 
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withLastFedDate(VALID_LAST_FED_DATE_BOB)
                 .withSpecies(VALID_SPECIES_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        FishEditCommand expectedCommand = new FishEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -150,37 +153,37 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_FISH;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withName(VALID_NAME_AMY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        FishEditCommand expectedCommand = new FishEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // lastFedDate
         userInput = targetIndex.getOneBased() + LAST_FED_DATE_DESC_AMY;
         descriptor = new EditFishDescriptorBuilder().withLastFedDate(VALID_LAST_FED_DATE_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new FishEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // species
         userInput = targetIndex.getOneBased() + SPECIES_DESC_AMY;
         descriptor = new EditFishDescriptorBuilder().withSpecies(VALID_SPECIES_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new FishEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // feeding interval
         userInput = targetIndex.getOneBased() + FEEDING_INTERVAL_DESC_AMY;
         descriptor = new EditFishDescriptorBuilder().withFeedingInterval(VALID_FEEDING_INTERVAL_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new FishEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tank
         userInput = targetIndex.getOneBased() + TANK_DESC_AMY;
         descriptor = new EditFishDescriptorBuilder().withTank(VALID_TANK_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new FishEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
         descriptor = new EditFishDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new FishEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -196,7 +199,7 @@ public class EditCommandParserTest {
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withLastFedDate(VALID_LAST_FED_DATE_BOB)
                 .withSpecies(VALID_SPECIES_BOB).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB)
                 .withTank(VALID_TANK_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        FishEditCommand expectedCommand = new FishEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -208,7 +211,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + INVALID_LAST_FED_DATE_DESC + LAST_FED_DATE_DESC_BOB;
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withLastFedDate(VALID_LAST_FED_DATE_BOB)
                 .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        FishEditCommand expectedCommand = new FishEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
@@ -217,7 +220,7 @@ public class EditCommandParserTest {
                 + LAST_FED_DATE_DESC_BOB;
         descriptor = new EditFishDescriptorBuilder().withLastFedDate(VALID_LAST_FED_DATE_BOB)
                 .withSpecies(VALID_SPECIES_BOB).withFeedingInterval(VALID_FEEDING_INTERVAL_BOB).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new FishEditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -227,7 +230,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditFishDescriptor descriptor = new EditFishDescriptorBuilder().withTags().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        FishEditCommand expectedCommand = new FishEditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
