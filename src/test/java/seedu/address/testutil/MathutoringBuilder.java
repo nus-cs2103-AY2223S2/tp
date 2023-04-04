@@ -23,7 +23,7 @@ public class MathutoringBuilder {
     /**
      * Adds a new {@code Student} to the {@code Mathutoring} that we are building.
      */
-    public MathutoringBuilder withPerson(Student student) {
+    public MathutoringBuilder withStudent(Student student) {
         mathutoring.addStudent(student);
         return this;
     }
