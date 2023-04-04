@@ -60,9 +60,9 @@ public class DecrementCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
-        int currentCount = lastShownList.get(index.getZeroBased()).getTransactionCount().getIntValue();
-        int incrementCount = editPersonDescriptor.getTransactionCount().get().getIntValue();
-        int finalAmount = currentCount - incrementCount;
+        long currentCount = lastShownList.get(index.getZeroBased()).getTransactionCount().getLongValue();
+        long incrementCount = editPersonDescriptor.getTransactionCount().get().getLongValue();
+        long finalAmount = currentCount - incrementCount;
 
         if (finalAmount < 0) {
             throw new CommandException(MESSAGE_FINAL_COUNT_NEGATIVE);

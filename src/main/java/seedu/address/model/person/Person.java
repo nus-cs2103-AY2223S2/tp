@@ -85,7 +85,7 @@ public class Person implements Comparable<Person> {
     }
 
 
-    public Integer getTransactionCountInt() { return transactionCount.getIntValue(); }
+    public long getTransactionCountInt() { return transactionCount.getLongValue(); }
 
 
     public void changeMark() {
