@@ -8,19 +8,19 @@ title: Developer Guide
 ##### Table of Contents
 
 Todo: Add links
-1. [Acknowledgements]()
-2. [Setting up, getting started]()
-3. [Design]()
-   1. [UI Component]()
-   2. [Logic Component]()
-   3. [Model Component]()
-   4. [Storage Component]()
-4. [Implementation]()
-   1. [Salary Command]()
-   2. [Deadline Command]()
-   3. [Company Command]()
-   4. [Tag Command]()
-   5. [View Command]()
+1. [Acknowledgements](#acknowledgements)
+2. [Setting up, getting started](#setting-up-getting-started)
+3. [Design](#design)
+   1. [UI Component](#ui-component)
+   2. [Logic Component](#logic-component)
+   3. [Model Component](#model-component)
+   4. [Storage Component](#storage-component)
+4. [Implementation](#implementation)
+   1. [Salary Command](#implemented-salary-command-feature)
+   2. [Deadline Command](#implemented-deadline-command-feature)
+   3. [Company Command](#implemented-company-command-feature)
+   4. [Tag Command](#implemented-tag-command-feature)
+   5. [View Command](#implemented-view-command-feature)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -179,14 +179,13 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="750" />
 
 </div>
 
 ### Storage component
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -209,7 +208,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Salary Command Feature
+### \[Implemented\] Salary Command Feature
 
 The proposed SalaryCommand feature allows the user to sort their roles based on the given salaries. The idea is that the
 user can sort the list with different attributes with commands such as the salary command which allows the roles to be
@@ -234,13 +233,10 @@ Given below is an example usage of how Salary Command is being used in the follo
 
       <img src="images/UICommandImages/SalaryCommand2.png" width="800" />
 
-The following sequence diagram shows how the Salary Command is being done:
+The following sequence diagram shows how the `salary` command works:
 
 <img src="images/SalaryCommandSequenceDiagram.png" width="800" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -257,7 +253,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 
-### \[Proposed\] Deadline Command Feature
+### \[Implemented\] Deadline Command Feature
 
 The proposed DeadlineCommand feature allows the user to sort their roles based on the given deadline of application. The idea is that the
 user can sort the list with different attributes with commands such as the deadline command which allows the roles to be
@@ -268,7 +264,7 @@ The feature uses operations in the `Model` interface as `Model#displaySortedDead
 Given below is an example usage of how Salary Command is being used in the following steps.
 
 1. The user launches the application for the first time. The `AddressBook` will be initialized with the
-   current address book. <img src="images/DeadlineCommand0.png" width="800" />
+   current address book. <img src="images/UiCommandImages/DeadlineCommand0.png" width="800" />
 
 2. The user can choose to use the `DeadlineCommand` in asc or desc orderParser.
     - The user executes `deadline asc` command to sort the salary of the roles in the ascending
@@ -276,13 +272,9 @@ Given below is an example usage of how Salary Command is being used in the follo
     - The user executes `deadline desc` command to sort the salary of the roles in the descending
       order. <img src="images/UICommandImages/DeadlineCommand2.png" width="800" />
 
-The following sequence diagram shows how the Deadline Command is being done and used:
+The following sequence diagram shows how the `deadline` command works:
 
 <img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -299,7 +291,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 
-### Company Command Feature
+### \[Implemented\] Company Command Feature
 
 The proposed Company Command feature allows the user to filter companies based on a given keyword. This enables the
 user to filter the job list by company which shows all roles pertaining to a certain company.
@@ -315,13 +307,10 @@ Given below is an example usage of how CompanyCommand is being used in the follo
     - The user executes `company <keyword>` command to filter roles by their company.
     <img src="images/UICommandImages/CompanyCommand1.png" width="800" />
 
-The following sequence diagram shows how the Company Command is being done:
+The following sequence diagram shows how the `company` command works:
 
 <img src="images/CompanyCommandSequenceDiagram.png" width="800" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -334,7 +323,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Less confusing for the user, as all filtering will be done using a single command. e.g. find c/Google
     * Cons: Harder to implement, and the addition of multiple parameters may be confusing too.
 
-### Tag Command Feature
+### \[Implemented\] Tag Command Feature
 
 The proposed TagCommand feature allows the user to filter tags based on a given keyword. The idea is that the
 user can filter the job list by tag which shows all roles pertaining to a certain tag.
@@ -350,13 +339,10 @@ Given below is an example usage of how TagCommand is being used in the following
     - The user executes `tag <keyword>` command to filter roles by their tag.
       <img src="images/UICommandImages/TagCommand.png" width="800" />
 
-The following sequence diagram shows how the Tag Command is being done:
+The following sequence diagram shows how the `tag` command works:
 
 <img src="images/TagCommandSequenceDiagram.png" width="800" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -369,13 +355,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 
-### \[Proposed\] View Command Feature
+### \[Implemented\] View Command Feature
 The proposed ViewCommand feature allows the user to view more details about a specific role. We decided to hide
 less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline,
 etc.
 
-The view command does not affect the address book in any way. In other words, it does not add/edit/delete
-any roles in the address book.
+The view command does not affect the role book in any way. In other words, it does not add/edit/delete
+any roles in the role book.
 
 An example usage of the `View` command is given below:
 
@@ -385,26 +371,26 @@ An example usage of the `View` command is given below:
    - The user executes `view 1` to view details regarding the first role.
      <img src="images/UICommandImages/ViewCommand1.png" width="800" />
 
-The following sequence diagram shows how the `view` Command is being done:
-[to be created]
+The following sequence diagram shows how the `view` command works:
+<img src="images/ViewCommandSequenceDiagram.png" width="800" />
 
-The following activity diagram summarizes what happens when a user executes a `view` command:
-[to be created]
 
 #### Design considerations:
 
 **Aspect: How view Command executes:**
 
-* **Alternative 1 (current choice):** Displays the remaining details of a `role` object in the `ResultDisplay` through
+* **Alternative 1 (alternative choice):** Displays the remaining details of a `role` object in the `ResultDisplay` through
 appending its information to the `feedbackToUser` string.
-    * Pros: Easy to implement, hard to have bugs.
-    * Cons: Limited customization of `feedbackToUser` in `ResultDisplay`
-* **Alternative 2 (alternative choice):** Create a view manager for `ResultDisplay`, changing the children
-node of `ResultDisplay` based on command given (in this case, `view`)
+    * Pros: Easy to implement, no need to change existing code.
+    * Cons: Limited customization of UI in `ResultDisplay`
+* **Alternative 2 (current choice):** Use `ResultDisplay` as a placeholder, changing the children
+node of `ResultDisplay` based on command given (in this case, `view`).
     * Pros: Provides an easy and extendable way to create custom views
-    * Cons: Need to refactor most of the existing codebase.
+    * Cons: Need to refactor some UI code.
 
-_{more aspects and alternatives to be added}_
+Todo: 
+(1) write about changing CommandResult<T> to be generic, 
+(2) Create sequence diagram for `view` command
 
 
 --------------------------------------------------------------------------------------------------------------------
