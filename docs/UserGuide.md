@@ -1,5 +1,5 @@
 ---
-span
+MediMate: The Doctor's Companion 
 ---
 MediMate (MM) is a cross-platform desktop application for medical professionals, specifically for private doctors or
 their receptionists,
