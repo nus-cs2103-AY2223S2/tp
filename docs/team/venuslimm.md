@@ -26,38 +26,41 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=venuslimm&breakdown=true)
 
+* **Enhancements implemented**:
+  * Updated the application's user interface.
+
 * **Project Management**:
   * Released [v1.2.1](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.2.1) on GitHub
 
 * **Contributions to the Developer Guide**
   * Model section
-    * Updated information on Model to include the newly added `Event` objects
-    * Redrew [class diagram for Model](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/ModelClassDiagram.png)
+    * Updated information on Model to include the newly added `Event` objects.
+    * Redrew [class diagram for Model](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/ModelClassDiagram.png).
   * Add event feature section
-    * Added information on how `addevent` command works
-    * Drew [sequence diagram for addevent](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/AddEventSequenceDiagram.png)
+    * Added information on how `addevent` command works.
+    * Drew [sequence diagram for addevent](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/AddEventSequenceDiagram.png).
   * Sort events feature section
-    * Added information on how `sortevent` command works
-    * Drew [sequence diagram for sortevent](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/SortEventSequenceDiagram.png)
+    * Added information on how `sortevent` command works.
+    * Drew [sequence diagram for sortevent](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/images/SortEventSequenceDiagram.png).
   * User stories
-    * Crafted user stories with the team
+    * Crafted user stories with the team.
   * Use cases
-    * Crafted some use cases with the team
+    * Crafted some use cases with the team.
   * Appendix section
-    * Updated `Launch and shutdown`
+    * Updated `Launch and shutdown`.
 
 * **Contributions to the User Guide**
   * Quick start section
-    * Updated to match our current application
+    * Updated to match our current application.
   * Add event section
   * Sort event section
 
 * **Contributions to team-based tasks**
-  * Updated [README.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/README.md) and [index.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/index.md) badges
+  * Updated [README.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/README.md) and [index.md](https://github.com/AY2223S2-CS2103-W16-3/tp/blob/master/docs/index.md) badges.
 
 * **Review/mentoring contributions**
-  * Reviewed and commented non-trivial comments on the following PRs: [#4](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/4), [#10](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/10), [#39](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/39), [#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48), [#55](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/55), [#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56), [#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63), [#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68), [#112](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/112)
-  * Reviewed the following PRs: [#14](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/14), [#15](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/15), [#30](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/30), [#34](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/34), [#40](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/40), [#41](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/41), [#42](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/42), [#49](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/49), [#54](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/54), [#60](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/60), [#65](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/65), [#67](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/67), [#72](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/72), [#75](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/75), [#87](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/87)
+  * Reviewed and commented non-trivial comments on the following PRs: [#4](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/4), [#10](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/10), [#39](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/39), [#48](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/48), [#55](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/55), [#56](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/56), [#63](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/63), [#68](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/68), [#112](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/112).
+  * Reviewed the following PRs: [#14](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/14), [#15](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/15), [#30](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/30), [#34](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/34), [#40](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/40), [#41](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/41), [#42](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/42), [#49](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/49), [#54](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/54), [#60](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/60), [#65](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/65), [#67](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/67), [#72](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/72), [#75](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/75), [#87](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/87).
 
 * **Contributions beyond the project team**
-  * Reported 20 bugs for Team AY2223S2 CS2103T-W11-4: [PE-D Issues Link](https://github.com/venuslimm/ped/issues)
+  * Reported 20 bugs for Team AY2223S2 CS2103T-W11-4: [PE-D Issues Link](https://github.com/venuslimm/ped/issues).
