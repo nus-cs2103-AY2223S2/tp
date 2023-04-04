@@ -52,7 +52,7 @@ destroy AddCommandParser
 TrackerParser --> LogicManager : a
 deactivate TrackerParser
 
-LogicManager -> AddModuleCommand : execute()
+LogicManager -> AddModuleCommand : execute(model)
 activate AddModuleCommand
 
 AddModuleCommand -> Model : hasModule(m)

@@ -159,48 +159,43 @@ This section describes some noteworthy details on how certain features are imple
 
 The `add` command supports:
 
-- Adding a module to the tracker
-- Adding a lecture to a module in the tracker
-- Adding a video to a lecture which belongs to a module in the tracker
+- Adding a `Module` object to the `Tracker` object contained in the `ModelManager` object
+- Adding a `Lecture` object to a `Module` object contained in the `Tracker` object
+- Adding a `Video` object to a `Lecture` object contained in a `Module` object that is contained in the `Tracker` object
 
-It's behaviour is dependent on the arguments provided by the user.
+It's behaviour is dependent on the user's input.
 
-The feature utilises the following classes:
+**Notable Classes**
 
 - `AddCommandParser` – Creates the appropriate `AddCommand` subclass object base on the user's input
-- `AddCommand` – Base class of any `Command` subclass that adds some entity to the tracker
-- `AddModuleCommand` – Subclass of `AddCommand` which handles adding a module to the tracker
-- `AddLectureCommand` – Subclass of `AddCommand` which handles adding a lecture to a module
-- `AddVideoCommand` – Subclass of `AddCommand` which handles adding a video to a lecture
+- `AddCommand` – Base class of any `Command` subclass that adds some entity to the `Tracker` object
+- `AddModuleCommand` – Subclass of `AddCommand` which handles adding a `Module` object to the `Tracker` object
+- `AddLectureCommand` – Subclass of `AddCommand` which handles adding a `Lecture` object to a `Module` object
+- `AddVideoCommand` – Subclass of `AddCommand` which handles adding a `Video` object to a `Lecture` object
 
 The following sequence diagram depicts an `add` command execution for adding a module to the tracker.
 
-![AddSequenceDiagram](images/AddSequenceDiagram.png)
+<img src="images/AddSequenceDiagram.png" width="1252"/>
 
-![AddSequenceDiagramRefCreateModel](images/AddSequenceDiagramRefCreateModule.png)
+**Notes for `AddCommandParser#parse(String)`**
 
-The following is a description of the code execution flow:
+- The string passed in contains the arguments in the user's input and is use to determine the intent of the command as well as the appropriate subclass of `AddCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of arguments not described in the table will result in a `ParseException` being thrown and the command will not be executed.
 
-1. `AddCommandParser#parse(String)` takes the user's input as an argument and determines the intent of the command as well as the appropriate subclass of `AddCommand` to create an object for. The following table describes how the intent is determined base on the arguments provided in the user's input. Any combination of inputs that do not comply with the combination of arguments specified in the table is considered an error and will result in a `ParseException` being thrown and the command will not be executed.
+  | Has preamble | Has `/mod` argument | Has `/lec` argument |   Intent    | `AddCommand` subclass |
+  | :----------: | :-----------------: | :-----------------: | :---------: | :-------------------: |
+  |     Yes      |         No          |         No          | Add module  |  `AddModuleCommand`   |
+  |     Yes      |         Yes         |         No          | Add lecture |  `AddLectureCommand`  |
+  |     Yes      |         Yes         |         Yes         |  Add video  |   `AddVideoCommand`   |
 
-   | Has preamble | Has `/mod` argument | Has `/lec` argument | Intent      | `AddCommand` subclass |
-   | ------------ | ------------------- | ------------------- | ----------- | --------------------- |
-   | Yes          | No                  | No                  | Add module  | `AddModuleCommand`    |
-   | Yes          | Yes                 | No                  | Add lecture | `AddLectureCommand`   |
-   | Yes          | Yes                 | Yes                 | Add video   | `AddVideoCommand`     |
+- The argument values are checked for their validity by using the appropriate methods in the `ParserUtil` class. If any of the values are invalid, a `ParserException` object will be thrown and the command will not be executed.
 
-2. The argument values are then checked for their validity by using the appropriate methods in `ParserUtil`. If any of the values are invalid, a `ParserException` will be thrown and the command will not be executed.
+**Notes for `AddCommand#execute()`**
 
-3. The appropriate `AddCommand` subclass object is created and then returned to the caller.
-
-4. `LogicManager` calls the `Command#execute(Model)` method of the `Command` object returned by `AddCommandParser#parse(String)`. During execution of the command, a `CommandException` can be thrown for the following scenarios:
-
-   - The `Module`, `Lecture`, or `Video` being added already exist
-   - The `Module` which a `Lecture` is being added to does not exist
-   - The `Module` which a `Lecture` is specified to be in does not exist
-   - The `Lecture` which a `Video` is being added to does not exist
-
-5. If no errors occur (no exceptions are thrown), the command succeeds in adding the module/lecture/video to the tracker.
+- A `CommandException` object can be thrown for the following scenarios:
+  - The `Module` object, `Lecture` object, or `Video` object being added already exist
+  - The `Module` object which a `Lecture` object is being added to does not exist
+  - The `Module` object which a `Lecture` object is specified to be in does not exist
+  - The `Lecture` object which a `Video` object is being added to does not exist
 
 ### Delete module, lecture, and video feature
 
