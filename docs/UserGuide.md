@@ -501,7 +501,7 @@ Output:
 Setting patient's allergies and vaccination details, values prior will be overridden
 
 ```text
-patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --set true --a grass --v protovax --set true
+patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --a grass --v protovax --set true
 ```
 
 Output:
