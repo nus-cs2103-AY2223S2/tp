@@ -1,6 +1,6 @@
 package vimification.internal.parser.ui;
 
-import vimification.commons.core.Index;
+import vimification.common.core.Index;
 import vimification.internal.command.ui.JumpCommand;
 import vimification.internal.parser.ApplicativeParser;
 import vimification.internal.parser.CommandParser;

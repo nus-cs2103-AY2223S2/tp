@@ -1,6 +1,6 @@
 package vimification.internal.command.ui;
 
-import vimification.commons.core.Index;
+import vimification.common.core.Index;
 import vimification.internal.command.CommandResult;
 import vimification.ui.MainScreen;
 

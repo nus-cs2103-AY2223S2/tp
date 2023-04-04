@@ -1,4 +1,4 @@
-package vimification.commons.core;
+package vimification.common.core;
 
 import java.io.IOException;
 import java.util.Arrays;

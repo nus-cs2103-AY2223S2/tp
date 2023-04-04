@@ -1,4 +1,4 @@
-package vimification.commons.core;
+package vimification.common.core;
 
 import java.nio.file.Path;
 import java.util.Objects;

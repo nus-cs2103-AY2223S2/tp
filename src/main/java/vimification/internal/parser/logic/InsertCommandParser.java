@@ -1,6 +1,6 @@
 package vimification.internal.parser.logic;
 
-import vimification.commons.core.Index;
+import vimification.common.core.Index;
 import vimification.internal.command.logic.InsertCommand;
 import vimification.internal.command.logic.InsertRequest;
 import vimification.internal.parser.ApplicativeParser;

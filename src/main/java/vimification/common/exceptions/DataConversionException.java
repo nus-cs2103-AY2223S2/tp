@@ -1,4 +1,4 @@
-package vimification.commons.exceptions;
+package vimification.common.exceptions;
 
 /**
  * Represents an error during conversion of data from one format to another

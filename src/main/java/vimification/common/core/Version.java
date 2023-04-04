@@ -1,4 +1,4 @@
-package vimification.commons.core;
+package vimification.common.core;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

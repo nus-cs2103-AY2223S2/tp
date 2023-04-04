@@ -1,12 +1,14 @@
 package vimification.model.task;
 
-import static vimification.commons.util.CollectionUtil.requireAllNonNull;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+
+import vimification.common.util.CollectionUtil;
+import vimification.common.util.StringUtil;
 
 /**
  * This class is the model of a task in the application.
@@ -22,6 +24,8 @@ import java.util.Set;
  * <li>A priority (stored as an enum, cannot be null)</li>
  * <li>Multiple labels (stored as a {@code Set<String>})</li>
  * </ul>
+ *
+ * Defensive coding is applied for methods that modify the interal state of instances.
  */
 public class Task {
 
@@ -43,7 +47,8 @@ public class Task {
      * @param priority the priority of the task
      */
     public Task(String title, LocalDateTime deadline, Status status, Priority priority) {
-        requireAllNonNull(title, status, priority);
+        CollectionUtil.requireAllNonNull(title, status, priority);
+        StringUtil.requireNonEmpty(title);
         this.title = title;
         this.deadline = deadline;
         this.status = status;
@@ -70,6 +75,7 @@ public class Task {
 
     public void setTitle(String title) {
         Objects.requireNonNull(title);
+        StringUtil.requireNonEmpty(title);
         this.title = title;
     }
 
@@ -90,8 +96,14 @@ public class Task {
         this.deadline = null;
     }
 
+    /**
+     * Returns the deadline of this task as a string. If this task has no deadline, a special string
+     * will be returned instead.
+     *
+     * @return the deadline of this task as a string
+     */
     public String getDeadlineAsString() {
-        return DEADLINE_FORMATTER.format(deadline);
+        return deadline == null ? "-" : DEADLINE_FORMATTER.format(deadline);
     }
 
     ////////////
@@ -133,22 +145,24 @@ public class Task {
     ////////////
 
     public Set<String> getLabels() {
-        return labels;
+        return Collections.unmodifiableSet(labels);
     }
 
     public void addLabel(String label) {
         Objects.requireNonNull(label);
+        StringUtil.requireNonEmpty(label);
         label = label.toLowerCase();
         if (!labels.add(label)) {
-            throw new IllegalArgumentException("Tag already exists");
+            throw new IllegalArgumentException("Label already exists");
         }
     }
 
     public void removeLabel(String label) {
         Objects.requireNonNull(label);
+        StringUtil.requireNonEmpty(label);
         label = label.toLowerCase();
         if (!labels.remove(label)) {
-            throw new IllegalArgumentException("Tag does not exist");
+            throw new IllegalArgumentException("Label does not exist");
         }
     }
 
@@ -178,17 +192,6 @@ public class Task {
         return clonedTask;
     }
 
-    public boolean isSameTask(Task otherTask) {
-        if (otherTask == this) {
-            return true;
-        }
-        return Objects.equals(title, otherTask.title)
-                && Objects.equals(deadline, otherTask.deadline)
-                && Objects.equals(status, otherTask.status)
-                && Objects.equals(priority, otherTask.priority)
-                && Objects.equals(labels, otherTask.labels);
-    }
-
     public String display() {
         StringBuilder sb = new StringBuilder();
         sb.append(title);
@@ -196,7 +199,6 @@ public class Task {
             sb.append("; by: ");
             sb.append(getDeadlineAsString());
         }
-        // sb.append(priority.asEnding());
         return sb.toString();
     }
 

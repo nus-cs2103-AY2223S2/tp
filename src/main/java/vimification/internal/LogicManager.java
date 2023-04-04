@@ -8,7 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import vimification.commons.core.LogsCenter;
+import vimification.common.core.LogsCenter;
 import vimification.internal.command.Command;
 import vimification.internal.command.CommandResult;
 import vimification.internal.command.logic.LogicCommand;
@@ -93,6 +93,7 @@ public class LogicManager implements Logic {
         } catch (ParserException ex) {
             result = new CommandResult(ex.getMessage());
         } catch (RuntimeException ex) {
+            ex.printStackTrace();
             result = new CommandResult(LIST_OPS_ERROR_MESSAGE);
         } catch (IOException ex) {
             result = new CommandResult(FILE_OPS_ERROR_MESSAGE);

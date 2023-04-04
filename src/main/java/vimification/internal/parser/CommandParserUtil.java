@@ -9,7 +9,7 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.Optional;
 import java.util.function.Supplier;
 
-import vimification.commons.core.Index;
+import vimification.common.core.Index;
 import vimification.model.task.Priority;
 import vimification.model.task.Status;
 

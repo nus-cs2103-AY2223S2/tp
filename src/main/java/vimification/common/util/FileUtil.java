@@ -1,4 +1,4 @@
-package vimification.commons.util;
+package vimification.common.util;
 
 import java.io.IOException;
 import java.nio.file.Files;

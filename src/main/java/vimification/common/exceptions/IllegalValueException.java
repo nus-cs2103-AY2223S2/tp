@@ -1,4 +1,4 @@
-package vimification.commons.exceptions;
+package vimification.common.exceptions;
 
 /**
  * Signals that some given data does not fulfill some constraints.

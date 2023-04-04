@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import vimification.commons.core.Config;
-import vimification.commons.core.LogsCenter;
-import vimification.commons.exceptions.DataConversionException;
-import vimification.commons.util.JsonUtil;
-import vimification.commons.util.StringUtil;
+import vimification.common.core.Config;
+import vimification.common.core.LogsCenter;
+import vimification.common.exceptions.DataConversionException;
+import vimification.common.util.JsonUtil;
+import vimification.common.util.StringUtil;
 import vimification.internal.Logic;
 import vimification.internal.LogicManager;
 import vimification.model.CommandStack;

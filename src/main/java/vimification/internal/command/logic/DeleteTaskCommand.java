@@ -2,7 +2,7 @@ package vimification.internal.command.logic;
 
 import java.util.Objects;
 
-import vimification.commons.core.Index;
+import vimification.common.core.Index;
 import vimification.internal.command.CommandResult;
 import vimification.model.CommandStack;
 import vimification.model.LogicTaskList;

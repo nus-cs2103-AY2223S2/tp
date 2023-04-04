@@ -1,6 +1,6 @@
 package vimification.internal.parser.logic;
 
-import vimification.commons.core.Index;
+import vimification.common.core.Index;
 import vimification.internal.command.logic.DeleteCommand;
 import vimification.internal.command.logic.DeleteFieldsCommand;
 import vimification.internal.command.logic.DeleteFieldsRequest;

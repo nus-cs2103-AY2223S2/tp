@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import vimification.commons.exceptions.IllegalValueException;
+import vimification.common.exceptions.IllegalValueException;
 import vimification.model.TaskListRef;
 import vimification.model.task.Task;
 

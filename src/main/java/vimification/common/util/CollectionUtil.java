@@ -1,4 +1,4 @@
-package vimification.commons.util;
+package vimification.common.util;
 
 import static java.util.Objects.requireNonNull;
 

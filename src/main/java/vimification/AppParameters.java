@@ -7,8 +7,8 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 import javafx.application.Application;
-import vimification.commons.core.LogsCenter;
-import vimification.commons.util.FileUtil;
+import vimification.common.core.LogsCenter;
+import vimification.common.util.FileUtil;
 
 /**
  * Represents the parsed command-line parameters given to the application.

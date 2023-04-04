@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 
-import vimification.commons.core.GuiSettings;
+import vimification.common.core.GuiSettings;
 
 /**
  * Represents User's preferences.

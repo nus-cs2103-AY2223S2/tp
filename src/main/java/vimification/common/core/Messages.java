@@ -1,4 +1,4 @@
-package vimification.commons.core;
+package vimification.common.core;
 
 /**
  * Container for user visible messages.

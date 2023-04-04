@@ -2,7 +2,7 @@ package vimification.internal.parser;
 
 import java.util.logging.Logger;
 
-import vimification.commons.core.LogsCenter;
+import vimification.common.core.LogsCenter;
 import vimification.internal.command.Command;
 import vimification.internal.command.logic.LogicCommand;
 import vimification.internal.command.macro.MacroCommand;

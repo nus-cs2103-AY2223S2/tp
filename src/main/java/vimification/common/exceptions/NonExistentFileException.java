@@ -1,4 +1,4 @@
-package vimification.commons.exceptions;
+package vimification.common.exceptions;
 
 public class NonExistentFileException extends Exception {
 

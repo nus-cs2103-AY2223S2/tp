@@ -1,4 +1,4 @@
-package vimification.commons.core;
+package vimification.common.core;
 
 /**
  * Represents a zero-based or one-based index.

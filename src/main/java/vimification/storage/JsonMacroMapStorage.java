@@ -3,7 +3,7 @@ package vimification.storage;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import vimification.commons.util.JsonUtil;
+import vimification.common.util.JsonUtil;
 import vimification.model.MacroMap;
 
 public class JsonMacroMapStorage {

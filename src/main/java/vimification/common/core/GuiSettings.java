@@ -1,4 +1,4 @@
-package vimification.commons.core;
+package vimification.common.core;
 
 import java.awt.Point;
 import java.io.Serializable;
