@@ -100,7 +100,7 @@ public class MainWindow extends UiPart<Stage> {
             refreshDeliveryJobDetailPane();
         } catch (ParseException | CommandException e) {
             logger.warning(e.getMessage());
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | IllegalArgumentException e) {
             logger.warning(e.getMessage());
         }
     };
@@ -123,7 +123,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(new DeleteDeliveryJobCommand(job.getJobId()));
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             refreshDeliveryJobDetailPane();
-        } catch (ParseException | CommandException | FileNotFoundException e) {
+        } catch (ParseException | CommandException | FileNotFoundException | IllegalArgumentException e) {
             logger.warning(e.getMessage());
         }
     };
@@ -408,7 +408,7 @@ public class MainWindow extends UiPart<Stage> {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             } catch (CommandException | ParseException e) {
                 resultDisplay.setFeedbackToUser(e.getMessage());
-            } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException | IllegalArgumentException e) {
                 resultDisplay.setFeedbackToUser(e.getMessage());
             }
             completeWindow.show();
@@ -497,7 +497,7 @@ public class MainWindow extends UiPart<Stage> {
             logic.execute(new ImportDeliveryJobCommand(selectedFile));
         } catch (ParseException | CommandException e) {
             logger.warning("[Event] importDeliveryJob" + e.getMessage());
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | IllegalArgumentException e) {
             logger.warning("[Event] importDeliveryJob" + e.getMessage());
         }
     }

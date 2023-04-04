@@ -2,7 +2,6 @@ package seedu.address.ui.timetable;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -11,7 +10,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
 import seedu.address.ui.UiPart;
 
