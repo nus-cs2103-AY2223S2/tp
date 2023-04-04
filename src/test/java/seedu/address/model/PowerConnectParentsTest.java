@@ -38,7 +38,7 @@ public class PowerConnectParentsTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Parents newData = getTypicalPcParents();
+        Parents newData = getTypicalPowerConnectParents();
         parents.resetData(newData);
         assertEquals(newData, parents);
     }

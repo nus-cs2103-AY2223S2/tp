@@ -59,9 +59,9 @@ public class TypicalParents {
     private TypicalParents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical parents.
+     * Returns an {@code Parents} with all the typical parents.
      */
-    public static Parents getTypicalPcParents() {
+    public static Parents getTypicalPowerConnectParents() {
         Parents parents = new Parents();
         for (Parent parent : getTypicalParents()) {
             parents.addParent(parent);

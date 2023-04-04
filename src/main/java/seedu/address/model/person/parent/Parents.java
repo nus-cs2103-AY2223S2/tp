@@ -54,7 +54,7 @@ public class Parents implements ReadOnlyParents {
     //// parent-level operations
 
     /**
-     * Returns true if a parent with the same identity as {@code parent} exists in tea pet.
+     * Returns true if a parent with the same identity as {@code parent} exists in powerConnect.
      */
     public boolean hasParent(Parent parent) {
         requireNonNull(parent);
@@ -62,7 +62,7 @@ public class Parents implements ReadOnlyParents {
     }
 
     /**
-     * Returns true if a parent with the same identity as {@code parent} exists in tea pet.
+     * Returns true if a parent with the same identity as {@code parent} exists in powerConnect.
      */
     public boolean hasParentName(String parent) {
         requireNonNull(parent);
@@ -76,7 +76,7 @@ public class Parents implements ReadOnlyParents {
     }
 
     /**
-     * Returns true if a parent with the same identity as {@code parent} exists in tea pet.
+     * Returns true if a parent with the same identity as {@code parent} exists in powerConnect.
      */
     public boolean hasParentNameNonCaseSensitive(String parent) {
         requireNonNull(parent);
@@ -99,7 +99,7 @@ public class Parents implements ReadOnlyParents {
 
     /**
      * Replaces the given parent {@code target} in the list with {@code editedParent}.
-     * {@code target} must exist in tea pet.
+     * {@code target} must exist in powerConnect.
      * The parent identity of {@code editedParent} must not be the same as another existing parent in
      * tea pet.
      */
@@ -110,7 +110,7 @@ public class Parents implements ReadOnlyParents {
 
     /**
      * Removes {@code key} from this {@code Parents}.
-     * {@code key} must exist in tea pet.
+     * {@code key} must exist in powerConnect.
      */
     public void removeParent(Parent key) {
         parents.remove(key);

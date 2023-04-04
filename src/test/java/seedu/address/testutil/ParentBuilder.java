@@ -21,7 +21,7 @@ public class ParentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_AGE = "20";
-    public static final String DEFAULT_IMAGE = "C:\\Users\\teacher\\OneDrive\\Desktop\\Pictures\\marygoh.jpg";
+    public static final String DEFAULT_IMAGE = "Insert parent image here!";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";

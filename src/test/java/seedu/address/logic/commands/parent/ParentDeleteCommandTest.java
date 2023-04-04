@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showParentAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalParents.ALICE;
 import static seedu.address.testutil.TypicalParents.BENSON;
-import static seedu.address.testutil.TypicalParents.getTypicalPcParents;
+import static seedu.address.testutil.TypicalParents.getTypicalPowerConnectParents;
 import static seedu.address.testutil.TypicalParents.HOON;
 
 import org.junit.jupiter.api.Test;
@@ -25,31 +25,32 @@ import seedu.address.model.person.parent.Parent;
  */
 public class ParentDeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalPcParents(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalPowerConnectParents(), new UserPrefs());
 
     @Test
     public void execute_validNameAndNumberUnfilteredList_success() {
         Parent parentToDelete = model.getFilteredParentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        ParentDeleteCommand deleteCommand = new ParentDeleteCommand(ALICE.getName(), ALICE.getPhone());
+        assert parentToDelete != null : "Parent to delete should not be null!";
 
+        ParentDeleteCommand parentDeleteCommand = new ParentDeleteCommand(ALICE.getName(), ALICE.getPhone());
         String expectedMessage = String.format(ParentDeleteCommand.MESSAGE_DELETE_PARENT_SUCCESS, parentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getParents(), new UserPrefs());
         expectedModel.deleteParent(parentToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(parentDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidNameUnfilteredList_throwsCommandException() {
-        ParentDeleteCommand deleteCommand = new ParentDeleteCommand(HOON.getName(), ALICE.getPhone());
-        assertParentCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PARENT);
+        ParentDeleteCommand parentDeleteCommand = new ParentDeleteCommand(HOON.getName(), ALICE.getPhone());
+        assertParentCommandFailure(parentDeleteCommand, model, Messages.MESSAGE_INVALID_PARENT);
     }
 
     @Test
     public void execute_invalidPhoneNumberUnfilteredList_throwsCommandException() {
-        ParentDeleteCommand deleteCommand = new ParentDeleteCommand(ALICE.getName(), HOON.getPhone());
-        assertParentCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PARENT);
+        ParentDeleteCommand parentDeleteCommand = new ParentDeleteCommand(ALICE.getName(), HOON.getPhone());
+        assertParentCommandFailure(parentDeleteCommand, model, Messages.MESSAGE_INVALID_PARENT);
     }
 
     @Test
@@ -57,15 +58,16 @@ public class ParentDeleteCommandTest {
         showParentAtIndex(model, INDEX_FIRST_PERSON);
 
         Parent parentToDelete = model.getFilteredParentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        ParentDeleteCommand deleteCommand = new ParentDeleteCommand(ALICE.getName(), ALICE.getPhone());
+        assert parentToDelete != null : "Parent to delete should not be null!";
 
+        ParentDeleteCommand parentDeleteCommand = new ParentDeleteCommand(ALICE.getName(), ALICE.getPhone());
         String expectedMessage = String.format(ParentDeleteCommand.MESSAGE_DELETE_PARENT_SUCCESS, parentToDelete);
 
         Model expectedModel = new ModelManager(model.getParents(), new UserPrefs());
         expectedModel.deleteParent(parentToDelete);
         showNoParent(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(parentDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
