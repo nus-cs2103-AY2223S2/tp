@@ -3,32 +3,32 @@ layout: page
 title: User Guide
 ---
 
-TechTrack is a powerful internship/job tracking application that combines the flexibility of a Command Line Interface (CLI) with the benefits of a Graphical User Interface (GUI).
-
-Designed for computing students and professionals, TechTrack helps you manage your internship/job search project by tracking deadlines and information regarding various roles.
-Its CLI interface is optimized for speed, efficiency, and ease of use, making it a valuable tool for students who are already familiar with CLI environments.
+{{ site.data.techtrack.about.summary }}
 
 1. [Quick Start](#quick-start)
 2. [Features](#features)
-   1. [Creating Role Info](#creating-role-info)
+   1. [What is a Role?](#what-is-a-role)
+   2. [Creating Role Info](#creating-role-info)
       1. [Add Roles: `add`](#adding-a-role-add)
       2. [Edit Role: `edit`](#editing-a-role-edit)
       3. [Delete Role: `delete`](#deleting-a-role-delete)
-   2. [Viewing Role Info](#viewing-role-info)
-      1. [Find roles by name `name`](#find-roles-by-name-name)
-      2. [Find roles by company `company`](#find-roles-by-company-company)
-      3. [Find roles by tag `tag`](#find-roles-by-tag-tag)
-      4. [Sorting a role by deadline `deadline`](#sorting-by-deadline-deadline)
-      5. [Sorting a role by salary `salary`](#sorting-by-salary-salary)
-      6. [Viewing a role `view`](#viewing-a-role-view)
-   3. [General Commands](#general-commands)
+   3. [Viewing Role Info](#viewing-role-info)
+      1. [Finding roles](#finding-roles)
+         1. [Find roles by name `name`](#find-roles-by-name-name)
+         2. [Find roles by company `company`](#find-roles-by-company-company)
+         3. [Find roles by tag `tag`](#find-roles-by-tag-tag)
+      2. [Sorting roles](#sorting-roles)
+         1. [Sorting a role by deadline `deadline`](#sorting-by-deadline-deadline)
+         2. [Sorting a role by salary `salary`](#sorting-by-salary-salary)
+         3. [Viewing a role `view`](#viewing-a-role-view)
+   4. [General Commands](#general-commands)
       1. [List all roles `list`](#list-list)
       2. [Clear all roles `clear`](#clear-clear)
       3. [Help (Display command format) `help`](#help-help)
       4. [Exit TechTrack `exit`](#exit-exit)
-   4. [Editing raw data](#editing-raw-data)
-5. [FAQ](#faq)
-6. [Command Summary](#command-summary)
+   5. [Editing raw data](#editing-raw-data)
+4. [FAQ](#faq)
+5. [Command Summary](#command-summary)
 
 # Quick Start
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -39,10 +39,40 @@ Its CLI interface is optimized for speed, efficiency, and ease of use, making it
 
 ![QuickStart](images/UICommandImages/QuickStart.png)
 
-## Features
+# What is a Role?
 
-This section guides you on how to use features available in TechTrack.
+In TechTrack, users can manage their favourite roles through various commands. 
+Here is what TechTrack can store per role:
 
+**The prefixes and their respective parameters are as follows:**
+
+| Required | Prefix | Parameter            | Restrictions                                                                                                                                                                                                                      |
+|----------|--------|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Yes`    | n      | NAME                 | The string must contain at least one alphanumeric character or space. <br/>If the string consists of only one character, it cannot be a space.                                                                                    |
+| `Yes`    | c      | CONTACT              | Numeric characters only. At least 3 numeric characters.                                                                                                                                                                           |
+| `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information.                                                                                                                                                                 |
+| `Yes`    | coy    | COMPANY              | The string must contain at least one non-space character.                                                                                                                                                                         |
+| `No`     | t      | TAG                  | The string must contain at least one alphanumeric character or space. <br/>If the string consists of only one character, it cannot be a space.<br/>Note: Editing a role's tag to a space character removes the tag from that role |
+| `Yes`     | w      | WEBSITE              | Must be in www.(Any Characters).com                                                                                                                                                                                               |
+| `Yes`    | jd     | JOB DESCRIPTION      | The string must contain at least one non-space character.                                                                                                                                                                         |
+| `Yes`    | $      | SALARY               | Positive number with up to two decimal points. Must not be padded with leading zeroes (e.g., 001000.00).                                                                                                                          |
+| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.                                                                                                                                                                      |
+| `Yes`    | x      | EXPERIENCE REQUIRED  | The string must contain at least one non-space character.                                                                                                                                                                         
+
+**Email Format**
+* Emails should be of the format local-part@domain and adhere to the following constraints:
+  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
+  2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+* The domain name must:
+    * end with a domain label at least 2 characters long
+    * have each domain label start and end with alphanumeric characters
+    * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+
+💡 **Note:** TechTrack does not allow users to store duplicate Roles. Roles are considered duplicates if they have the same NAME and COMPANY (both are case-sensitive).
+
+# Features
+
+This section guides you on how to utilise features available in TechTrack.
 
 
 **The features of TechTrack can be split into 3 main categories:**
@@ -52,7 +82,7 @@ This section guides you on how to use features available in TechTrack.
 * [General Commands](#general-commands)
 
 
-## Creating Role Info
+# Creating Role Info
 The commands in this segment are focused on creating, editing and removing data to and from the application.
 These commands are:
 
@@ -72,43 +102,27 @@ Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/J
 
    Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year n/Frontend Developer`
    
-   In this case, the name 'Software Engineering' will be replaced by 'Frontend Developer'.
+   In this case, the name 'Software Engineering' will be replaced by 'Frontend Developer'. As such, users will only be able
+   to add one role at a time.
 
-**The prefixes and their respective parameters are as follows:**
-
-| Required | Prefix | Parameter            | Restrictions                                                      |
-|----------|--------|----------------------|-------------------------------------------------------------------|
-| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only. Should not just contain a space.                           |
-| `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                               |
-| `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information. |
-| `Yes`    | coy    | COMPANY              | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
-| `No`     | t      | TAG                  | Alphanumeric characters and spaces only. Should not just contain a space. Multiple tag can be added.                                          |
-| `No`     | w      | WEBSITE              | Must be in www.{Any character}.com                                |
-| `Yes`    | jd     | JOB DESCRIPTION      | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
-| `Yes`    | $      | SALARY               | Positive integers only.                                           |
-| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.      |
-| `Yes`    | x      | EXPERIENCE REQUIRED  | Alphanumeric characters and spaces only. Should not just contain a space.    
-
-**Email Format**
-* Emails should be of the format local-part@domain and adhere to the following constraints:
-* 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters.
-* 2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
-* The domain name must:
-    * end with a domain label at least 2 characters long
-    * have each domain label start and end with alphanumeric characters
-    * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.|
-
+💡 **Note:** Refer to the attributes of a role [here](#what-is-a-role)
 
 ### Editing a Role: `edit`
 Edit any parameters of a preexisting role. 
 
+💡 **Note:** The user must provide at least one parameter to edit!
+
 Format: `edit {index} {Prefix}/{Parameter}…​`
 
-Example: `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed 
-$/4000 d/2023-10-20 x/Javascript - 1 Year`
+Example 1:
 
-![Edit](images/UICommandImages/editCommand.png)
+![image](https://user-images.githubusercontent.com/87350229/229332390-1f1cd42e-8123-4308-ae39-9f7f8e2a1041.png)
 
+User executes command: `edit 1 n/Software Engineer`.
+
+![image](https://user-images.githubusercontent.com/87350229/229332413-cc41c3f9-ed0d-4d62-9ba1-fcd942220cf6.png)
+
+💡 **Note:** Refer to the attributes of a role [here](#what-is-a-role)
 
 ### Deleting a role: `delete`
 Deletes the role from the current list of roles. Uses a 1-based index.
@@ -119,25 +133,32 @@ Example: `delete 1`
 
 ![Delete](images/UICommandImages/deleteCommand.png)
 
-## Viewing Role Info
+# Viewing Role Info
 The commands in this segment are focused on viewing formats and details of the preexisting roles.
 These commands are:
 
-* [Find roles by name](#find-roles-by-name-name)
-* [Find roles by company](#find-roles-by-company-company)
-* [Find roles by tag](#find-roles-by-tag-tag)
-* [Sorting a role by deadline](#sorting-by-deadline-deadline)
-* [Sorting a role by salary](#sorting-by-salary-salary)
-* [Viewing a role](#viewing-a-role-view)
+* [Finding roles](#finding-roles)
+  * [Find roles by name](#find-roles-by-name-name)
+  * [Find roles by company](#find-roles-by-company-company)
+  * [Find roles by tag](#find-roles-by-tag-tag)
+* [Sorting roles](#sorting-roles)
+  * [Sorting a role by deadline](#sorting-by-deadline-deadline)
+  * [Sorting a role by salary](#sorting-by-salary-salary)
+  * [Viewing a role](#viewing-a-role-view)
+
+## Finding roles
 
 ### Find roles by Name: `name`
-Searches for roles with the provided names.
+Searches for roles with the provided names. If multiple keywords inputted, there may be multiple results that contains these key words.
 
 Format: `name {keywords}...`
 
 Example: `name analyst engineer data`
 
 ![Name](images/UICommandImages/nameCommand.png)
+
+![image](https://user-images.githubusercontent.com/87350229/229332092-b37ec670-b27a-48b3-9019-885eea612cbc.png)
+
 
 ### Find roles by Company: `company`
 Searches for roles with the provided companies.
@@ -157,6 +178,7 @@ Example: `tag frontend`
 
 ![Tag](images/UICommandImages/TagCommand0.png)
 
+## Sorting roles
 ### Sorting by Deadline: `deadline`
 Sort roles based on deadline, in ascending/descending orderParser.
 
@@ -212,7 +234,7 @@ Exits and closes TechTrack.
 ## Editing raw data
 You can directly edit TechTrack's data file after running and exiting the app. 
 
-**Important Note:** if the data file is in an invalid format, TechTrack will discard that data file and start with an empty list of roles.
+❗ **Caution:** If your changes to the data file makes its format invalid, TechTrack will discard that data file and start with an empty list of roles.
 
 ## FAQ
 Q: How do I transfer my data to another Computer?
@@ -220,7 +242,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Command Summary
 
-| Action   | Format                                                             | Example                                                                                                                                                                                                   |
+| Command  | Format                                                             | Example                                                                                                                                                                                                   |
 |----------|--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | add      | add {Prefix}/{Parameter}…​ (all parameters are required)           | `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year` |
 | edit     | edit {index} {Prefix}/{Parameter}…​ (only 1 parameter is required) | `edit 1 e/johndoe@example.com w/www.google.com c/91234567 jd/Working on HFT systems - C++ knowledge needed $/4000 d/2023-10-20 x/Javascript - 1 Year`                                                     |
@@ -236,17 +258,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | help     | help                                                               | `help`                                                                                                                                                                                                    |
 | exit     | exit                                                               | `exit`                                                                                                                                                                                                    |
 
-**The prefixes and their respective parameters are as follows:**
+💡 **Note:** Refer to the attributes of a role [here](#what-is-a-role)
 
-| Required | Prefix | Parameter            | Restrictions                                                      |
-|----------|--------|----------------------|-------------------------------------------------------------------|
-| `Yes`    | n      | NAME                 | Alphanumeric characters and spaces only. Should not just contain a space.                           |
-| `Yes`    | c      | CONTACT              | Numbers only and at least 3 digits.                               |
-| `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information. |
-| `Yes`    | coy    | COMPANY              | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
-| `No`     | t      | TAG                  | Alphanumeric characters and spaces only. Should not just contain a space.                                              |
-| `No`     | w      | WEBSITE              | Must be in www.{Any character}.com                                |
-| `Yes`    | jd     | JOB DESCRIPTION      | Alphanumeric characters and spaces only. Should not just contain a space.                                             |
-| `Yes`    | $      | SALARY               | Positive integers only.                                           |
-| `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.      |
-| `Yes`    | x      | EXPERIENCE REQUIRED  | Alphanumeric characters and spaces only. Should not just contain a space.                                              |
+
+

@@ -3,8 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-TechTrack is a software which helps students with internship search and optimizes their search progress. Computing
-students are more familiar with and used to using CLI.
+{{ site.data.techtrack.about.summary }}
 
 ##### Table of Contents
 
@@ -17,6 +16,11 @@ Todo: Add links
    3. [Model Component]()
    4. [Storage Component]()
 4. [Implementation]()
+   1. [Salary Command]()
+   2. [Deadline Command]()
+   3. [Company Command]()
+   4. [Tag Command]()
+   5. [View Command]()
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -114,7 +118,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Role` object residing in the `Model`.
 
 ### Logic component
 
@@ -297,15 +301,15 @@ _{more aspects and alternatives to be added}_
 
 ### Company Command Feature
 
-The proposed CompanyCommand feature allows the user to filter companies based on a given keyword. The idea is that the
-user can filter the job list by company which shows all roles pertaining to a certain company.
+The proposed Company Command feature allows the user to filter companies based on a given keyword. This enables the
+user to filter the job list by company which shows all roles pertaining to a certain company.
 
 The feature uses operations in the `Model` interface as `Model#updateFilteredRoleList()`.
 
 Given below is an example usage of how CompanyCommand is being used in the following steps.
 
-1. The user launches the application for the first time. The `AddressBook` will be initialized with the
-   current address book. <img src="images/startUp.png" width="800" />
+1. The user launches the application for the first time. The `RoleBook` will be initialized with the
+   current Role book. <img src="images/startUp.png" width="800" />
 
 2. The user can choose to use the `Company Command` to filter companies.
     - The user executes `company <keyword>` command to filter roles by their company.
@@ -326,8 +330,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 1 (current choice):** Filter roles that contain the keyword in the company field.
     * Pros: Easy to implement.
     * Cons: More CLI needs to be added if more attributes are needed to sort.
-
-_{more aspects and alternatives to be added}_
+* **Alternative 2 (alternative choice):** Filter roles by using and extending a generic find command.
+    * Pros: Less confusing for the user, as all filtering will be done using a single command. e.g. find c/Google
+    * Cons: Harder to implement, and the addition of multiple parameters may be confusing too.
 
 ### Tag Command Feature
 
@@ -430,18 +435,18 @@ _{more aspects and alternatives to be added}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a…. | I want to …                                | So that I can…                                          |
-|----------|--------|--------------------------------------------|---------------------------------------------------------|
-| ***      | user   | add contacts for companies                 | quickly send my application through those contacts      |
-| ***      | user   | add a job/internship to the program        | see whether the internship is suitable for me           |
-| ***      | user   | view all the internships that I have added | see all the internships that I'm interested in one shot |
-| ***      | user   | delete company internship                  | ignore the companies that I don't like                  |
-| ***      | user   | Save data                                  | view my internship job later on                         |
-| **       | user   | rank the jobs                              | know which job I am most interested                     |
-| *        | user   | use the UI with ease                       | quicky do certain app operations                        |
-| *        | user   | find by tags                               | filter by certain skills or notes of the job            |
-| *        | user   | sort by salary                             | view by the highest paid role                           |
-| *        | user   | find companies                             | find relevant comapnies and relevant roles              |
+| Priority | As a…. | I want to …                                | So that I can…                                                              |
+|----------|--------|--------------------------------------------|-----------------------------------------------------------------------------|
+| ***      | user   | add contacts for companies                 | save these contacts to the corresponding role and send my application.      |
+| ***      | user   | add a job/internship to the program        | save all jobs/internship that im interested in applying for.                |
+| ***      | user   | view all the internships that I have added | view all the jobs/internship that I'm interested in.                        |
+| ***      | user   | delete company internship                  | Remove jobs/internship that might not interest me anymore.                  |
+| ***      | user   | Save data                                  | view my jobs/internship opportunities even after the application is closed. |
+| **       | user   | find by tags                               | filter by certain skills or notes of the job                                |
+| **       | user   | sort by salary                             | know which jobs/internship has a higher starting salary.                    |
+| **       | user   | sort by deadline                           | know which jobs/internship has upcoming deadlines.                          |
+| **       | user   | find companies                             | find relevant companies and their respective roles.                         |
+| **       | user   | use the UI with ease                       | quickly perform certain app operations                                      |
 
 ### Use cases
 
@@ -452,131 +457,147 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User opens the program
-2. User enters job to add a job
-3. TechTrack adds a job to its list.
+2. TechTrack shows the list of jobs.
+3. User enters "add" with the required parameters to add a job.
+4. TechTrack adds a job to its list.
 
 Use case ends.
 
 **Extensions**
 
-* 3a. Job exist
-    * 3a1. TechTrack
+* 3a. Job exists.
+    * 3a1. TechTrack resumes.
+  
       Use case resumes at step 3b.
-* 3b. Save job
-    * 3b1. Job is auto-saved
-      Use case resumes at step 2.
-* 3c. Duplicate job detected
-    * 3c1. TechTrack outputs error
-      Use case resumes at Step 2
-* 3d. Invalid data detected
-    * 3d1. TechTrack outputs error
-      Use case resumes at Step 2
+* 3b. Save job.
+    * 3b1. Job is auto-saved.
+
+      Use case resumes at step 4.
+* 3c. Duplicate job detected.
+    * 3c1. TechTrack outputs error for duplicate jobs.
+  
+      Use case ends.
+* 3d. Invalid data detected.
+    * 3d1. TechTrack outputs error for invalid data.
+  
+      Use case ends.
+
+**Use case: Edit a job**
+
+**MSS**
+
+1. User opens the program
+2. TechTrack shows the list of jobs.
+3. User enters "edit" followed by an index to edit the job.
+4. TechTrack updates the corresponding job and saves the new job list.
+
+Use case ends.
+
+**Extensions**
+
+* 3a. Index does not exist.
+    * 3a1. TechTrack outputs an error message for invalid index.
+
+      Use case ends.
+
+* 3b. Invalid data detected.
+    * 3b1. TechTrack outputs an error for invalid data.
+
+      Use case ends.
 
 **Use case: View a job**
 **MSS**
 
-1. User opens the application
-2. User enters the “view” command
-3. UI displays more specific details on the jobs saved
+1. User opens the application.
+2. TechTrack shows the list of jobs.
+3. User enters the “view {index}” command.
+4. UI displays more specific details on the jobs saved based on the index.
 
 Use case ends.
 
 **Extensions:**
 
-* 2a. Job does not exist
-    * 2a1. TechTrack outputs error
-      Use case resumes at step 2.
-* 2b. List is empty
-  Use Case ends.
+* 2a. List is empty.
+  Use case ends.
+
+* 3a. Index entered is invalid.
+    * 2a1. TechTrack outputs error.
+  
+      Use case ends.
 
 **Use case: Delete a job**
 
 **MSS**
 
-1. User opens the application
-2. User enters the “view” command to see which jobs to delete
-3. UI display the list of jobs with its index
-4. User enters the “delete {job ID}” to delete the jobs
-5. UI will response with the selected jobs being deleted
+1. User opens the application.
+2. TechTrack shows the list of jobs.
+3. UI display the list of jobs with its index.
+4. User enters the “delete {job ID}” to delete the jobs.
+5. UI will respond with the selected jobs being deleted.
 
 Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-  Use case ends.
-* 3a. The given index is invalid.
-    * 3a1. TechTrack shows an error message.
-      Use case resumes at step 2.
+* 3a. The displayed list is empty.
 
-* 4a. Save job
-    * 4a1. Job is saved
+  Use case ends.
+
+* 4a. The given index is invalid.
+    * 4a1. TechTrack shows an error message.
+
+      Use case ends.
+
+* 4a. The given index is valid.
+    * 4a1. joblist is saved to the data file.
+  
+      Use case resumes at step 5.
 
 **Use case: Sort jobs by salary**
 
 **MSS**
 
 1. User opens the application
-2. User enters the “salary” command followed by either "asc" or "desc"
-3. UI display the list of jobs sorted by salaries in either ascending or descending orderParser with indexes.
+2. TechTrack shows the list of jobs.
+3. User enters the “salary {asc/desc}"
+4. UI display the list of jobs sorted by salaries in either ascending or descending orderParser with indexes.
 
 Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
-  Use case ends
-* 2b. The given second command is invalid e.g "ascending".
-    * 2b1. TechTrack shows an error message.
-      Use case resumes at step 2.
+* 3a. The list is empty.
+  Use case ends.
+* 3b. The given second command is invalid e.g "ascending".
+    * 3b1. TechTrack shows an error message.
+  
+      Use case ends.
 
 **Use case: Sort jobs by deadline**
 
 **MSS**
+* MSS is similar to sorting salaries. Replace `salary` in the previous MSS with `deadline` for the MSS of the deadline command.
 
-1. User opens the application
-2. User enters the “deadline” command followed by either "asc" or "desc"
-3. UI display the list of jobs sorted by deadlines in either ascending or descending orderParser with their indexes.
-
-Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-  Use case ends.
-* 2b. The given second command is invalid e.g "ascending".
-    * 2b1. TechTrack shows an error message.
-      Use case resumes at step 2.
-
-**Use case: find jobs by Companies**
+**Use case: find jobs by company**
 
 **MSS**
 
 1. User opens the application
-2. User enters the “Company” command followed by the keyword.
-3. UI display the list of jobs with companies that contain the keyword.
+2. TechTrack shows the list of jobs.
+3. User enters the "company {keyword}" command
+4. UI display the list of jobs with companies that contains the keyword.
 
 Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 3a. The list is empty.
   Use case ends.
 
-**Use case: find jobs by Tags**
+**Use case: find jobs by their tags**
 
 **MSS**
-
-1. User opens the application
-2. User enters the “Tag” command followed by the keyword.
-3. UI display the list of jobs with companies that contain the keyword.
-
-Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-  Use case ends.
+* MSS is similar to the company command. Replace `company` in the previous MSS with `tag` for the MSS of the tag command.
 
 ### Non-function requirement
 

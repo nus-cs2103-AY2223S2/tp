@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
 participant ":DeadlineCommandParser" as DeadlineCommandParser LOGIC_COLOR
 participant "s:DeadlineCommand" as DeadlineCommand LOGIC_COLOR
 participant "o:Order" as Order LOGIC_COLOR
@@ -18,17 +18,17 @@ end box
 [-> LogicManager : execute("deadline asc")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("deadline asc")
-activate AddressBookParser
+LogicManager -> RoleBookParser : parseCommand("deadline asc")
+activate RoleBookParser
 
 create DeadlineCommandParser
-AddressBookParser -> DeadlineCommandParser
+RoleBookParser -> DeadlineCommandParser
 activate DeadlineCommandParser
 
-DeadlineCommandParser --> AddressBookParser
+DeadlineCommandParser --> RoleBookParser
 deactivate DeadlineCommandParser
 
-AddressBookParser -> DeadlineCommandParser : parse("asc")
+RoleBookParser -> DeadlineCommandParser : parse("asc")
 activate DeadlineCommandParser
 
 create DeadlineCommand
@@ -46,14 +46,14 @@ Order --> DeadlineCommand : o
 deactivate Order
 
 
-DeadlineCommandParser --> AddressBookParser : s
+DeadlineCommandParser --> RoleBookParser : s
 deactivate DeadlineCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeadlineCommandParser -[hidden]-> AddressBookParser
+DeadlineCommandParser -[hidden]-> RoleBookParser
 destroy DeadlineCommandParser
 
-AddressBookParser --> LogicManager : s
-deactivate AddressBookParser
+RoleBookParser --> LogicManager : s
+deactivate RoleBookParser
 
 
 LogicManager -> DeadlineCommand : execute()
