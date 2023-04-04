@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane style="-fx-background-color: transparent;" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-radius: 0; -fx-background-color: transparent;" text="Hi there! How can I help you today?">
+  <TextArea fx:id="resultDisplay" editable="false" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-radius: 0; -fx-background-color: transparent;" text="Hi there! How can I help you today?">
       <padding>
          <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
       </padding></TextArea>

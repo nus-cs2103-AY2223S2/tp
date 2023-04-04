@@ -136,6 +136,7 @@ public class Client implements Comparable<Client> {
     /**
      * Clone a {@code Client} with the details of {@code clientToEdit}
      * Make sure it is pass by value not by reference
+     *
      * @return
      */
     public Client cloneClient() {
@@ -160,7 +161,7 @@ public class Client implements Comparable<Client> {
     }
 
     public String getPhoneNumber() {
-        return this.getPhoneNumber().toString();
+        return this.getPhoneNumber();
     }
 
 }

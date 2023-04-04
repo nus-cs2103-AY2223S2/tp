@@ -122,10 +122,18 @@ public class MainWindow extends UiPart<Stage> {
      * Selects a client based on user input.
      */
     public void handleSelect() {
-        Client selectedClient = logic.getSelectedClient();
-        int selectedClientIndex = logic.getSelectedClientIndex();
-        ClientLabel selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
-        AppointmentLabel selectedAppointmentCard = new AppointmentLabel(selectedClient);
+        ClientLabel selectedClientCard;
+        AppointmentLabel selectedAppointmentCard;
+
+        if (logic.getFilteredClientList().isEmpty()) {
+            selectedClientCard = null;
+            selectedAppointmentCard = null;
+        } else {
+            Client selectedClient = logic.getSelectedClient();
+            int selectedClientIndex = logic.getSelectedClientIndex();
+            selectedClientCard = new ClientLabel(selectedClient, selectedClientIndex);
+            selectedAppointmentCard = new AppointmentLabel(selectedClient);
+        }
 
         if (clientLabel.getChildren().size() > 0) {
             clientLabel.getChildren().remove(0);

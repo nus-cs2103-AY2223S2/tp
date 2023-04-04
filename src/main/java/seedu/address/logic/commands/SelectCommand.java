@@ -40,7 +40,8 @@ public class SelectCommand extends Command {
         }
 
         model.setSelectedClientIndex(targetIndex);
-        return new CommandResult(String.format(MESSAGE_SELECT_CLIENT_SUCCESS, targetIndex));
+        Client selectedClient = model.getSelectedClient();
+        return new CommandResult(String.format(MESSAGE_SELECT_CLIENT_SUCCESS, selectedClient));
     }
 
     @Override
