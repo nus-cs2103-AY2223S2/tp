@@ -45,12 +45,12 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
                 tutorialName.orElse(labName.orElse(consultationName.orElse(""))));
 
         //todo: remove magic literals
-        String eventType = "tutorial";
+        String eventType = PREFIX_TUTORIAL.getPrefix();
         if (!labName.isEmpty()) {
-            eventType = "lab";
+            eventType = PREFIX_LAB.getPrefix();
         }
         if (!consultationName.isEmpty()) {
-            eventType = "consultation";
+            eventType = PREFIX_CONSULTATION.getPrefix();
         }
 
         return new AddStudentToEventCommand(studentIndex, eventIndex, eventType);

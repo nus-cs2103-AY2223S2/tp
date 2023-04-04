@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -15,9 +18,9 @@ public class AddStudentToEventCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Student at specified index added to event";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + " cannot be recognized!";
-    public static final String TUTORIAL_STRING = "tutorial";
-    public static final String LAB_STRING = "lab";
-    public static final String CONSULTATION_STRING = "consultation";
+    public static final String TUTORIAL_STRING = PREFIX_TUTORIAL.getPrefix();
+    public static final String LAB_STRING = PREFIX_LAB.getPrefix();
+    public static final String CONSULTATION_STRING = PREFIX_CONSULTATION.getPrefix();
     private final Index studentIndex;
     private final Index eventIndex;
     private final String eventType;
