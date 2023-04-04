@@ -20,10 +20,9 @@ public class DeleteClientCommandParserTest {
 
     @Test
     public void parse_missingRequiredArgs_fails() {
-        Map<String, String> tests = Map.ofEntries(
-            Map.entry("empty string", ""),
-            Map.entry("only whitespace", " "),
-            Map.entry("no email", "-e")
+        Map<String, String> tests = Map.of(
+            "empty string", "",
+            "only whitespace", " "
         );
         String expectedErr = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE);
         tests.forEach((desc, tt) -> {
@@ -34,9 +33,10 @@ public class DeleteClientCommandParserTest {
 
     @Test
     public void parse_invalidEmail_fails() {
-        Map<String, String> tests = Map.ofEntries(
-            Map.entry("email is whitespace", "-e "),
-            Map.entry("invalid email", "-e foobar")
+        Map<String, String> tests = Map.of(
+            "email is whitespace", "-e ",
+            "email is empty", "-e",
+            "invalid email", "-e foobar"
         );
         tests.forEach((desc, tt) -> {
             String input = " " + tt;
@@ -47,10 +47,10 @@ public class DeleteClientCommandParserTest {
     @Test
     public void parse_validEmail_success() {
         DeleteClientCommand want = new DeleteClientCommand(new Email("jamal@hogriders.org"));
-        Map<String, String> tests = Map.ofEntries(
-            Map.entry("valid email", "-e jamal@hogriders.org"),
-            Map.entry("valid email with trailing whitespace", "-e jamal@hogriders.org   "),
-            Map.entry("multiple emails", "-e jamar@hogriders.org -e jamal@hogriders.org")
+        Map<String, String> tests = Map.of(
+            "valid email", "-e jamal@hogriders.org",
+            "valid email with trailing whitespace", "-e jamal@hogriders.org   ",
+            "multiple emails", "-e jamar@hogriders.org -e jamal@hogriders.org"
         );
         tests.forEach((desc, tt) -> {
             String input = " " + tt;

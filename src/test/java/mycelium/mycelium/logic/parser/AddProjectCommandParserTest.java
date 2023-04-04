@@ -36,8 +36,6 @@ public class AddProjectCommandParserTest {
             Map.entry("has email prefix only, but no whitespace", "-ejamal@hogriders.org"),
 
             Map.entry("prefixes are not separated", "-pn-e"),
-            Map.entry("no name nor email", "-pn -e"),
-            Map.entry("name, but no email", "-pn Bing -e"),
             Map.entry("name and email not separated", "-pnBing-ejamal@hogriders.org")
         );
         String expectedOutput =
@@ -60,6 +58,8 @@ public class AddProjectCommandParserTest {
                 Pair.of("-pn  -e jamal@hogriders.org", Messages.MESSAGE_EMPTY_PROJECT_NAME)),
             Map.entry("invalid email (whitespace)",
                 Pair.of("-pn Bing -e ", Email.MESSAGE_CONSTRAINTS)),
+            Map.entry("invalid email (empty as last arg)",
+                Pair.of("-pn Bing -e", Email.MESSAGE_CONSTRAINTS)),
             Map.entry("invalid email",
                 Pair.of("-pn Bing -e foobar", Email.MESSAGE_CONSTRAINTS)),
 

@@ -15,21 +15,21 @@ import org.junit.jupiter.api.Test;
 import mycelium.mycelium.testutil.Pair;
 
 public class ProjectStatusTest {
-    private static final Map<String, Pair<String, ProjectStatus>> okInput = Map.ofEntries(
-        Map.entry("not started", Pair.of("not_started", NOT_STARTED)),
-        Map.entry("in progress", Pair.of("in_progress", IN_PROGRESS)),
-        Map.entry("done", Pair.of("done", DONE)),
-        Map.entry("not started (uppercase)", Pair.of("NOT_STARTED", NOT_STARTED)),
-        Map.entry("in progress (uppercase)", Pair.of("IN_PROGRESS", IN_PROGRESS)),
-        Map.entry("done (uppercase)", Pair.of("DONE", DONE)),
-        Map.entry("not started (mixed case)", Pair.of("NoT_sTaRtEd", NOT_STARTED)),
-        Map.entry("in progress (mixed case)", Pair.of("In_PrOgReSs", IN_PROGRESS)),
-        Map.entry("done (mixed case)", Pair.of("dOnE", DONE))
+    private static final Map<String, Pair<String, ProjectStatus>> okInput = Map.of(
+        "not started", Pair.of("not_started", NOT_STARTED),
+        "in progress", Pair.of("in_progress", IN_PROGRESS),
+        "done", Pair.of("done", DONE),
+        "not started (uppercase)", Pair.of("NOT_STARTED", NOT_STARTED),
+        "in progress (uppercase)", Pair.of("IN_PROGRESS", IN_PROGRESS),
+        "done (uppercase)", Pair.of("DONE", DONE),
+        "not started (mixed case)", Pair.of("NoT_sTaRtEd", NOT_STARTED),
+        "in progress (mixed case)", Pair.of("In_PrOgReSs", IN_PROGRESS),
+        "done (mixed case)", Pair.of("dOnE", DONE)
     );
-    private static final Map<String, String> badInput = Map.ofEntries(
-        Map.entry("empty string", ""),
-        Map.entry("only whitespace", " "),
-        Map.entry("invalid status", "foobar")
+    private static final Map<String, String> badInput = Map.of(
+        "empty string", "",
+        "only whitespace", " ",
+        "invalid status", "foobar"
     );
 
     @Test
