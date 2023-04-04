@@ -32,6 +32,7 @@ public class ImportManager {
     private static final String DURATION_PREFIX = CliSyntax.PREFIX_DURATION.getPrefix();
     private static final String PORTION_PREFIX = CliSyntax.PREFIX_PORTION.getPrefix();
     private static final String TAG_PREFIX = CliSyntax.PREFIX_TAG.getPrefix();
+    private static final String INGREDIENT_PREFIX = CliSyntax.PREFIX_INGREDIENT.getPrefix();
     private static final String STEP_PREFIX = CliSyntax.PREFIX_STEP.getPrefix();
 
     private final Stage owner;
@@ -151,7 +152,8 @@ public class ImportManager {
 
         //Ingredients
         recipe.getIngredients().forEach((ingredient, information) ->
-                stringBuilder.append(new IngredientBuilder(ingredient, information)));
+                stringBuilder.append(" ").append(INGREDIENT_PREFIX)
+                        .append(new IngredientBuilder(ingredient, information)));
         //Steps
         recipe.getSteps().forEach(step ->
                 stringBuilder.append(" ").append(STEP_PREFIX).append(step));
