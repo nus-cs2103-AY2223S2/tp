@@ -157,7 +157,14 @@ An example of the final command is displayed below.
 
 </div>
 
-A GUI similar to the below should appear in a few seconds, with the following areas:
+A GUI similar to the below should appear in a few seconds.
+
+<p align="center">
+  <img src="images/ug/HomePageUI.png" />
+  <br>Figure 1.2.1: Home Tab UI
+</p>
+
+The UI has the following areas:
 
 * <span style="background-color:rgba(252.4, 248.4, 124.1, 0.5)">Tabs</span>
 * <span style="background-color:rgba(0.0, 255.0, 0.0, 0.5)">Sales (Total Revenue and Profit)</span>
@@ -172,12 +179,12 @@ For more information on how to navigate the User Interface (UI), you can go [her
 
 <p align="center">
   <img src="images/ug/HomePageUILabeled.png" />
-  <br>Figure 1.2.1: Trackr Home Tab UI
+  <br>Figure 1.2.2: Labeled Home Tab UI
 </p>
 
 <p align="center">
   <img src="images/ug/DataTabUILabeled.png" />
-  <br>Figure 1.2.2: Trackr Data Tab UI
+  <br>Figure 1.2.3: Labeled Data Tab UI
 </p>
 
 <div markdown="block" class="alert alert-warning">
@@ -571,7 +578,7 @@ Editing of an information to the specific list. Below are the specific edit comm
 
 <div markdown="span" class="alert alert-danger">
 
-:exclamation: **Danger**<br>
+:exclamation: **Danger**<br><br>
 
 Editing of information is one-way (i.e. You cannot revert your command).<br>
 
@@ -692,6 +699,9 @@ Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
 
 :information_source: **Information**
 
+* Editing a menu item does not invalidate or update the orders with the same order item name.
+* Editing a menu item does not update and change the total revenue and profits on the home tab.
+
 * When entering price and cost values, you may choose to
   1. input **positive** integer numbers
   2. input **positive** decimal numbers (up to 2 decimal point). For example:<br>
@@ -741,7 +751,7 @@ Syntax: `find_supplier NAME`
 * Search is case-insensitive (e.g. `mark` will match with `Mark`).
 * Order of the keywords does not matter (e.g. `Mark Lee` will match with `Lee Mark`).
 * Only full words will match (e.g. `Mar` will not match with `Mark`).
-* People matching with at least one keyword will be returned (i.e. `OR` search). <br>
+* Suppliers matching with at least one keyword will be returned (i.e. `OR` search). <br>
   (e.g. `Mark Lee` will return `Mark Tan`, `Lee Chan`)
 
 </div>
@@ -750,7 +760,7 @@ Syntax: `find_supplier NAME`
 
 :clipboard: **Example 1: Standard command**
 
-* `find_task Prima Flour`<br>
+* `find_supplier Prima Flour`<br>
   Finds the supplier with the following details:
   * Supplier Name contains either `Prima` or `Flour`.<br>
 
@@ -794,7 +804,7 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
   * Search is case-insensitive (e.g. `cookie` will match with `Cookie`).
   * Order of the keywords does not matter (e.g. `Chocolate Cookie` will match with `Cookie Chocolate`).
   * Only full words will match (e.g. `Chocolate` will not match with `Choco`).
-  * People matching with at least one keyword will be returned (i.e. `OR` search). <br>
+  * Orders matching with at least one keyword will be returned (i.e. `OR` search). <br>
     (e.g. `Chocolate Cake` will return `Chocolate Cookie`, `Strawberry Cake`)
 
 </div>
@@ -807,18 +817,18 @@ Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] 
   Finds the order with the following details:
   * Order Item contains `Chocolate` or `Cake`<br>
 
-  Example of suppliers that match:
+  Example of orders that match:
   * `Chocolate Cookie`
   * `Chocolate Cake`
   * `CAKE WITH VANILLA`
 
-  Example of suppliers that do not match:
+  Example of orders that do not match:
   * `Choco`
   * `ChocolatePie`
 
 :clipboard: **Example 2: Shortcut command with multiple fields**
 
-* `find_s on/Cake d/01/01/2023`<br>
+* `find_o on/Cake d/01/01/2023`<br>
   Finds the order with the following details:
   * Supplier Name contains `Cake`
   * Deadline is on `01/01/2023`<br>
@@ -848,7 +858,7 @@ Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
   * Search is case-insensitive (e.g. `sugar` will match with `Sugar`).
   * Order of the keywords does not matter (e.g. `Flour Sugar` will match with `Sugar Flour`).
   * Only full words will match (e.g. `Sugar` will not match with `Sugars`).
-  * People matching with at least one keyword will be returned (i.e. `OR` search). <br>
+  * Tasks matching with at least one keyword will be returned (i.e. `OR` search). <br>
     (e.g. `Order Flour` will return `Order Sugar`, `Order 10kg Flour`)
 
 </div>
@@ -890,7 +900,7 @@ Syntax: `find_item ITEM_NAME`
 * Search is case-insensitive (e.g. `cookie` will match with `Cookie`).
 * Order of the keywords does not matter (e.g. `Chocolate Cookie` will match with `Cookie Chocolate`).
 * Only full words will match (e.g. `Chocolate` will not match with `Choco`).
-* People matching with at least one keyword will be returned (i.e. `OR` search). <br>
+* Menu items matching with at least one keyword will be returned (i.e. `OR` search). <br>
   (e.g. `Chocolate Cake` will return `Chocolate Cookie`, `Strawberry Cake`)
 
 </div>
@@ -900,8 +910,8 @@ Syntax: `find_item ITEM_NAME`
 :clipboard: **Example 1: Standard command**
 
 * `find_item vanilla cupcake`<br>
-  Finds the supplier with the following details:
-  * Supplier Name contains either `Prima` or `Flour`.<br>
+  Finds the menu item with the following details:
+  * Item Name contains either `vanilla` or `cake`.<br>
 
   Example of order items that match:
   * `Strawberry cupcake`
@@ -941,7 +951,7 @@ Deleting of an information to the specific list. Below are the specific delete c
 
 <div markdown="span" class="alert alert-danger">
 
-:exclamation: **Danger**<br>
+:exclamation: **Danger**<br><br>
 
 Deleting of information is one-way (i.e. You cannot revert your command).<br>
 
@@ -1020,6 +1030,14 @@ Syntax: `delete_task INDEX`
 Deletes the specified menu item from the menu.
 
 Syntax: `delete_item INDEX`
+
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
+Deleting a menu item does not invalidate the orders with the same order item name.
+
+</div>
 
 <div markdown="block" class="alert alert-example">
 
@@ -1239,7 +1257,7 @@ Clears all data in the specific list. Below are the specific clear commands for 
 
 <div markdown="span" class="alert alert-danger">
 
-:exclamation: **Danger**<br>
+:exclamation: **Danger**<br><br>
 
 Clearing of data is one-way (i.e. You cannot revert your command).<br>
 
@@ -1313,6 +1331,14 @@ Clears all menu item entries from the menu.
 
 Syntax: `clear_menu`
 
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
+Clearing all menu items does not invalidate the orders.
+
+</div>
+
 <div markdown="block" class="alert alert-example">
 
 :clipboard: **Example 1: Standard command**
@@ -1335,13 +1361,13 @@ Allows for you to switch to the tab for view your respective information. You ca
 
 Switch to another tab.
 
-Syntax: `tab TAB`
+Syntax: `tab t/TAB`
 
 <div markdown="block" class="alert alert-tip">
 
 :information_source: **Information**
 
-* `TAB` needs to be in all-caps and is case sensitive
+* `TAB` needs to be in all-caps and is case-sensitive
 * The available tabs are `HOME`, `ORDERS`, `CONTACTS`, `MENU`, `TASKS`
 
 </div>
@@ -1350,7 +1376,7 @@ Syntax: `tab TAB`
 
 :clipboard: **Example 1: Standard command**
 
-* `tab HOME`<br>
+* `tab t/HOME`<br>
   Navigates you to the home tab
 
 </div>
@@ -1417,7 +1443,7 @@ Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
+:warning: **Caution:**<br><br>
 
 It is advised to make your changes through our application and not through editing the data file directly.
 
@@ -1429,7 +1455,7 @@ Please proceed with caution.
 
 <div markdown="span" class="alert alert-danger">
 
-:exclamation: **Danger**<br>
+:exclamation: **Danger**<br><br>
 
 If your changes to the data file is invalid, Trackr will discard all data and start with an empty data file at the next run.
 
@@ -1553,6 +1579,6 @@ Here are the respective formats for each of the data types:
 | **Sort**   | `sort_task` / `sort_t` <br> e.g., `sort_t c/Deadline` <br> <br> `sort_order` / `sort_o` <br> e.g., `sort_order c/Deadline`                                                                                                                                                                                                                                                                      |
 | **List**   | `list_supplier` / `list_s` <br> <br> `list_order` / `list_o` <br> <br> `list_task` / `list_t` <br> <br> `list_menu` / `list_m`                                                                                                                                                                                                                                                                  |
 | **Clear**  | `clear_supplier` / `clear_s` <br> <br> `clear_order` / `clear_o` <br> <br> `clear_task` / `clear_t` <br> <br> `clear_menu` / `clear_m`                                                                                                                                                                                                                                                          |
-| **Tab**    | `tab` <br> e.g., `tab Home`                                                                                                                                                                                                                                                                                                                                                                     |
+| **Tab**    | `tab` <br> e.g., `tab t/Home`                                                                                                                                                                                                                                                                                                                                                                   |
 | **Help**   | `help`                                                                                                                                                                                                                                                                                                                                                                                          |
 | **Exit**   | `exit`                                                                                                                                                                                                                                                                                                                                                                                          |
