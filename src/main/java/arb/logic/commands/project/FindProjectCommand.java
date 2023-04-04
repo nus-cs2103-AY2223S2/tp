@@ -21,6 +21,8 @@ import arb.model.project.Project;
  */
 public class FindProjectCommand extends Command {
 
+    public static final String MESSAGE_END_BEFORE_START_ERROR = "End date cannot be before start date.";
+
     private static final String MAIN_COMMAND_WORD = "find-project";
     private static final String ALIAS_COMMAND_WORD = "fp";
     private static final Set<String> COMMAND_WORDS =
