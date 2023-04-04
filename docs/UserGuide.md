@@ -2,67 +2,68 @@
 layout: page
 title: User Guide
 ---
-## **Table of Contents**
+
+## Table of Contents
 * Table of Contents
 {:toc}
 
 <div style="page-break-after: always;"></div>
 
-<div class="header" align="center">
-  <h1 id="intro"><img src="images/ship.png" alt="logo" width="90"><br>
-      The Intern's Ship - User Guide</h1>
-</div>
+## **The Intern's Ship - User Guide**
+<p align="center">
+    <img src="images/ship.png" alt="logo" width="90"><br>
+</p>
 
-Whether it is to fulfil a graduation requirement or simply to gain real world working experience, taking up an 
-internship during one's course of study has become a popular option amongst many university students. Studies have
-found that the completion of an internship increases one's chance of employment after graduation by a whopping 85%.<br>
 
-To increase one's chances of successfully securing an internship, it is recommended that one sources out at least 50
-potential employers and submit a minimum of 20 internships applications. Being required to keep track of the
-application deadlines of multiple internships or finding ways to schedule interview timing so that they do not
-clash can be a confusing and time-consuming process.<br>
+Designed with **internship-seeking university students** in mind, **The Intern’s Ship (TinS)** aims to make
+managing your internship applications fuss-free. Despite being optimised for use via the keyboard using 
+a Command Line Interface (CLI), you will still be able to enjoy the benefits of having a visual display
+through our Graphical User Interface (GUI). 
 
-Designed with internship-seeking <b>university students</b> in mind, <b>The Intern’s Ship (TinS)</b> aims to make
-managing your internship applications fuss-free. Optimized for use via a Command Line Interface (CLI), while still having
-the benefits of a Graphical User Interface (GUI), this <b>desktop app</b> is perfect for fast typers. With a
-simple command, TinS can help you manage, coordinate and keep track of your internship applications conveniently and
-neatly.<br>
+With TinS, you can conveniently and efficiently manage, coordinate and keep track of your internship applications
+all in one place.
 
-<h3>Notable Features (v1.3)</h3>
+### Notable Features (v1.3)
   * Finding a particular internship application in TinS using keywords: `find`
   * Finding all clashing events: `clash`
+  
+  
+<div style="page-break-after: always;"></div>
 
-<h2>Table of Contents</h2>
+## About the User Guide
+The Objective of this User Guide is to provide you with useful instructions on how to navigate the TinS application.
+To ensure a smooth on-boarding process for you to the TinS application, this User Guide will include detailed
+step-by-step instructions on how to install the TinS application into your device, as well as how to use the various 
+features of TinS. If you are a frequent user of TinS, this User Guide will also include useful tips on how you can use
+TinS in a more efficient way.
 
-1. [About TinS Application's Interface](#about_gui)
-2. [Quick Start](#quick_start)
-3. [Features](#features)
+## How the User Guide is Formatted
+**Information Box**
+<div markdown="span" class="alert alert-primary">
 
-   1. Opening Home Page: [`home`](#home_function)
-   2. Opening Statistics Page: [`stats`](#stats_function)
-   3. Opening Calendar Page: [`calendar`](#calendar_function)
-   4. Adding an Internship Application: [`add`](#add_function)
-   5. Listing all Internship Applications in TinS: [`list`](#list_function)
-   6. Finding a Particular Internship Application in TinS: [`find`](#find_function)
-   7. Editing Details of an Internship Application: [`edit`](#edit_function)
-   8. Viewing Details of a Particular Internship Application: [`select`](#select_function)
-   9. Deleting an Internship Application: [`delete`](#delete_function)
-   10. Adding an Event to an Internship Application: [`event add`](#eventadd_function)
-   11. Deleting an Event from an Internship Application: [`event delete`](#eventdelete_function)
-   12. Finding a Particular Event: [`event find`](#eventfind_function)
-   13. Finding all Clashing Events: [`clash`](#clash_function)
-   14. Clearing all Internship Applications in TinS: [`clear`](#clear_function)
-   15. Getting help: [`help`](#help_function)
-   16. Exiting the program: [`exit`](#exit_function)
-   17. [Saving data in TinS](#save_function)
+:information_source: **Info:** Provides useful information that supplements the main text
+</div>
 
-4. [Command Summary](#command_summary)
+**Tip Box**
+<div markdown="span" class="alert alert-success">
 
-<h2 id="about_gui">About TinS Application's Interface</h2>
+:bulb: **Tip:**  Suggestions on how to enhance your experience
+</div>
+
+**Warning Box**
+<div markdown="span" class="alert alert-danger">
+
+:warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
+carefully before committing
+</div>
+
+<div style="page-break-after: always;"></div>
+
+## About TinS Application's Interface
 
 ![gui](images/gui.png)
 
-1. **Command Line**: This is where you would input your commands.
+1. **Command Box**: This is where you would input your commands.
 2. **Program Response**: This box displays the program's feedback to your inputted commands.<br>
    Types of Program Response Messages:
    * Success Message: indicating that TinS has successfully executed your command
@@ -71,33 +72,43 @@ neatly.<br>
 3. **Internship List Panel**: This panel displays your internships listings stored in TinS (including Position,
    Company, Status and Tags).
 4. **Internship Display Panel**: This panel displays relevant details pertaining to specific internship.
+5. **Location Bar**: This location bar tells you where your TinS data file is currently stored on your computer.
 
 
-<h2 id="quick_start">Quick Start</h2>
+<div style="page-break-after: always;"></div>
+
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `tins.jar` from [here](https://github.com/AY2223S2-CS2103T-W11-2/tp/releases/tag/v1.3(trial)).
+2. Download the latest `tins.jar` from [here](https://github.com/AY2223S2-CS2103T-W11-2/tp/releases/tag/v1.3).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TinS.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tins.jar` command to 
-   run the application.<br>
+4. Double-click on the file `tins.jar` to launch TinS. 
    A TinS Application Interface similar to the one below should appear in a few seconds.
+   ![Ui](images/Ui-starting.png)
 
-   > Note: The default TinS application contains some sample data. To remove all sample data, use the
-   > [`clear`](#clear_function) feature.
+   <div markdown="span" class="alert alert-primary">
+        :information source: **Info:** The default TinS application contains some sample data. These sample data can
+        come in handy for you to try out the various commands of TinS. To remove all sample data, use the 
+        <code>deleteall</code> feature.
+    </div>
 
-    ![Ui](images/Ui-starting.png)
+5. Type your command into the Command Box, then press <button>Enter</button> to instruct TinS to execute your command.
+   Here are some basic commands you can try:
+    * `list`
+    * `add`
+    * `delete`
 
-5. Refer to the [Command Summary](#command_summary) below for your desired TinS Commands. More details on each specific
+6. Refer to the [Command Summary](#command_summary) below for your desired TinS Commands. More details on each specific
 TinS command can be found [here](#features).
 
-7. Type your command in the [command line](#about_gui) and press the `Enter` key for TinS to execute it.
 
-<div markdown="block" class="alert alert-info" style="page-break-after:always; break-after: page;">
 
-<h2 id="features">Features (v1.3)</h2>
+<div style="page-break-after: always;"></div>
+
+## Features (v1.3)
 
 **Notes about the command format:**
 
@@ -109,7 +120,7 @@ TinS command can be found [here](#features).
   e.g `[TAG]` means that the user input is optional.
 
 
-<h3>Feature List</h3>
+### Feature List
 
 1. Opening Home Page: [`home`](#home_function)
 2. Opening Statistics Page: [`stats`](#stats_function)
@@ -128,12 +139,10 @@ TinS command can be found [here](#features).
 15. Getting help: [`help`](#help_function)
 16. Exiting the program: [`exit`](#exit_function)
 17. [Saving data in TinS](#save_function)
-</div>
 
+<div style="page-break-after: always;"></div>
 
-
-<div style="page-break-after:always; break-after: page;">
-<h3 id="home_function"> Opens the Home Page : `home`</h3>
+### Opens the Home Page : `home`</h3>
 
 Returns user to the home page. 
 
@@ -146,10 +155,9 @@ Example: `home`
 
 ![home_page](images/home_page.png)
 
-</div>
+<div style="page-break-after: always;"></div>
 
-<div style="page-break-after:always; break-after: page;">
-<h3 id="stats_function"> Opens the Statistics Page : `stats`</h3>
+### Opens the Statistics Page : `stats`
 
 Displays the user's statistics.
 
@@ -162,10 +170,9 @@ Example: `stats`
 
 ![stats_page](images/stats_page.jpeg)
 
-</div>
+<div style="page-break-after: always;"></div>
 
-<div style="page-break-after:always; break-after: page;">
-<h3 id="calendar_function"> Opens the Calendar Page : `calendar`</h3>
+### Opens the Calendar Page : `calendar`
 
 Displays the user's events on a Calendar.
 
@@ -177,11 +184,9 @@ Example: `calendar`
 
 ![calendar_page](images/calendar_page.png)
 
-</div>
+<div style="page-break-after: always;"></div>
 
-<div style="page-break-after:always; break-after: page;">
-
-<h3 id="add_function">Adding an Internship Application : `add`</h3>
+### Adding an Internship Application : `add`
 
 Adds an internship and its details to TinS.
 
@@ -210,18 +215,15 @@ Format: `add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION [t/TAG
     * An Internship can have more than one tag.
     * Example of commonly used Tags: `Important`, `Priority`
 
-</div>
-
-<div style="page-break-after:always; break-after: page;">
+<div style="page-break-after: always;"></div>
 
 Example: `add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python and Java t/Important t/Priority`
 
 ![Ui](images/ug-add.png)
 
-</div>
+<div style="page-break-after: always;"></div>
 
-<div style="page-break-after:always; break-after: page;">
-<h3 id="list_function">Listing all Internships Applications : `list`</h3>
+### Listing all Internships Applications : `list`
 
 List all the internships in Internship List panel of TinS.
 
@@ -233,11 +235,9 @@ Example: `list`
 
 ![internship_list_panel](images/internship_list_panel.png)
 
-</div>
+<div style="page-break-after: always;"></div>
 
-<div style="page-break-after:always; break-after: page;">
-
-<h3 id="find_function">Finding Internships: `find`</h3>
+### Finding Internships: `find`
 
 Finds an Internships by their fields (`POSITION`, `COMPANY_NAME`, `APPLICATION_STATUS`, `TAGS`).
 Format: `find p/[POSITION] c/[COMPANY_NAME] s/[APPLICATION_STATUS] t/[TAG] t/[TAG]`
@@ -254,11 +254,9 @@ GovTech.
 
 ![find_internship](images/ug-find.png)
 
-</div>
+<div style="page-break-after: always;"></div>
 
-<div style="page-break-after:always; break-after: page;">
-
-<h3 id="select_function">Viewing Details of a Particular Internship Application : `select`</h3>
+### Viewing Details of a Particular Internship Application : `select`
 
 View details of the internship application selected by ID.
 
@@ -272,11 +270,9 @@ Example: `select 2`
 
 ![select_internship](images/ug-select.png)
 
-</div>
+<div style="page-break-after: always;"></div>
 
-<div style="page-break-after:always; break-after: page;">
-
-<h3 id="edit_function">Editing Details of Internship Application : `edit`</h3>
+### Editing Details of Internship Application : `edit`
 
 Edit details of the internship application selected by ID.
 
@@ -299,11 +295,9 @@ following results.
 
 ![view_internship](images/ug-edit.png)
 
-</div>
+<div style="page-break-after: always;"></div>
 
-<div style="page-break-after:always; break-after: page;">
-
-<h3 id="delete_function">Deleting an Internship Application : `delete`</h3>
+### Deleting an Internship Application : `delete`
 
 Deletes an internship along with its details by its ID.
 
@@ -315,15 +309,13 @@ internship application with `POSITION` as Data Analytics and `COMPANY_NAME` as G
 
 ![delete_internship](images/ug-delete.png)
 
-</div>
+<div style="page-break-after: always;"></div>
 
-<div style="page-break-after:always; break-after: page;">
-
-<h3 id="eventadd_function">Adding an Event to an Internship Application : `event add`</h3>
+### Adding an Event to an Internship Application : `event add`
 
 Adds an Event along with its details to the selected internship.
 
-> Note: Before adding an event, you have to select an internship using [`select ID`](#select_function).
+> Note: Before adding an event, you have to select an internship using `select ID`.
 
 Format: `event add na/EVENT_NAME st/[START_DATETIME] en/END_DATETIME de/DESCRIPTION`
 
@@ -340,9 +332,7 @@ Examples:
 
 ![eventadd_internship](images/ug-eventadd.png)
 
-</div>
-
-<div style="page-break-after:always; break-after: page;">
+<div style="page-break-after: always;"></div>
 
 <h3 id="eventdelete_function">Deleting an Event from an Internship Application : `event delete`</h3>
 
@@ -355,9 +345,7 @@ Format: `event delete ID`
 
 Examples: `event delete 1` entered after `select 1` deletes the first event in the first internship.
 
-</div>
-
-<div style="page-break-after:always; break-after: page;">
+<div style="page-break-after: always;"></div>
 
 <h3 id="eventfind_function">Finding a particular Event : `find event`</h3>
 
@@ -368,9 +356,7 @@ Format: `event add na/[EVENT_NAME] st/[START_DATETIME] en/[END_DATETIME]`
 Example: `event add na/Technical Interview st/20/03/2023 1400` returns a list of events with the name Technical
 Interview and starting time 20 March 2023, 2pm.
 
-</div>
-
-<div style="page-break-after:always; break-after: page;">
+<div style="page-break-after: always;"></div>
 
 <h3 id="clash_function">Finding all Clashing Events : `clash`</h3>
 
@@ -382,9 +368,7 @@ Example:
 
 ![clash_function](images/ug-clash.png)
 
-</div>
-
-<div style="page-break-after:always; break-after: page;">
+<div style="page-break-after: always;"></div>
 
 <h3 id="clear_function">Clearing all Internship Applications in TinS : `clear`</h3>
 
@@ -412,7 +396,7 @@ Format: `exit`
 The Intern Ship’s data is saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
-</div>
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
