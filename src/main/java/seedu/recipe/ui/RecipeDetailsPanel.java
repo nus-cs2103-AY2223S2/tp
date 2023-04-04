@@ -62,6 +62,7 @@ public class RecipeDetailsPanel extends UiPart<Region> {
                     });
             steps.getChildren().clear();
             stepsTitle.setText("Instructions");
+            /*
             recipe.getSteps().stream()
                     .forEach(step -> {
                         String eachStep = recipe.getSteps().indexOf(step) + 1 + ".  " + step.step;
@@ -69,6 +70,13 @@ public class RecipeDetailsPanel extends UiPart<Region> {
                         stepLabel.setWrapText(true);
                         steps.getChildren().add(stepLabel);
                     });
+             */
+            for (int i = 1; i <= recipe.getSteps().size(); ++i) {
+                String eachStep = i + ".  " + recipe.getSteps().get(i - 1).step;
+                Label stepLabel = new Label(eachStep);
+                stepLabel.setWrapText(true);
+                steps.getChildren().add(stepLabel);
+            }
         }
     }
 

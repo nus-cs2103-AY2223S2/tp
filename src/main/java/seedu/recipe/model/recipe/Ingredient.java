@@ -10,7 +10,7 @@ public class Ingredient {
     public static final String INGREDIENT_WRONG_ARGUMENTS_MESSAGE_CONSTRAINTS =
             "The wrong arguments have been passed into ingredients!\n"
                     + "Usage: i/{ingredientName}, {quantity}, {unit_of_measurement}, {price_per_unit}\n"
-                    + "Example: i/sugar, 2.5, tablespoon, 0.010;\n";
+                    + "Example: i/sugar, 2.5, tablespoon, 0.010\n";
     public static final String INGREDIENT_NAME_MESSAGE_CONSTRAINTS =
             "An ingredient should only contain alphanumeric characters and spaces, and it should not be blank.";
 

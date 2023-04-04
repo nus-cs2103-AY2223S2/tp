@@ -87,9 +87,9 @@ Here is a short overview of the features and capabilities of CookHub:
 
 ---
 
-## Beginners' commands
+### Beginners' commands
 
-### Add a recipe : `add`
+#### Add a recipe : `add`
 
 This command adds a recipe to your recipe book.
 
@@ -121,7 +121,7 @@ multiple `i/` command flags are allowed. A recipe similar to the image shown bel
 
 
 ---
-### Edit a recipe: `edit RECIPE_NUMBER`
+#### Edit a recipe: `edit RECIPE_NUMBER`
 This command edits a recipe in your recipe book.
 
 Format: `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [tag/TAG]...`
@@ -152,7 +152,7 @@ Our initial recipe book:
 
 
 ---
-### Delete a recipe : `delete RECIPE_NUMBER`
+#### Delete a recipe : `delete RECIPE_NUMBER`
 This command deletes the recipe at the specified *task number* from your recipe book.
 
 Format: `delete RECIPE_NUMBER`
@@ -176,7 +176,7 @@ Our initial recipe book:
 
 
 ---
-### List recipe : `list`
+#### List recipe : `list`
 
 This command lists out all the recipes that you have added to the recipe book
 
@@ -188,7 +188,7 @@ Example: `list` will list all the recipes similar to the image shown below:
 
 
 ---
-### Clear recipe : `clear`
+#### Clear recipe : `clear`
 
 This command clears your recipe book of all its recipes.
 
@@ -200,9 +200,9 @@ Example: `clear` will clear all recipes similar to the image shown below:
 
 
 ---
-## Advanced commands
+### Advanced commands
 
-### Find recipe : `find`
+#### Find recipe : `find`
 
 This command finds the recipes in your recipe book according to what you are looking for.
 
@@ -240,7 +240,7 @@ shown below:
 
 
 ---
-### Search recipe with limited ingredients: `only`
+#### Search recipe with limited ingredients: `only`
 
 This command searches for recipes that can be made with only those ingredients.
 
@@ -269,7 +269,7 @@ A recipe that only needs eggs will also be valid. The result of the command is s
 
 
 ---
-### Sort recipe by cost: `sort ORDER`
+#### Sort recipe by cost: `sort ORDER`
 
 This command sorts the recipes in your recipe book by price in the order specified. 
 
@@ -292,7 +292,7 @@ Our initial recipe book:
 
 ---
 
-### Filter recipe by price: `fp COMPARATOR PRICE`
+#### Filter recipe by price: `fp COMPARATOR PRICE`
 
 This command filters the recipes in your recipe book by price according to the comparator specified. 
 
@@ -316,7 +316,7 @@ Our initial recipe book:
 
 
 ---
-### Add a recipe to the favorites: `star RECIPE_NUMBER`
+#### Add a recipe to the favorites: `star RECIPE_NUMBER`
 
 This command adds the recipe at the specified *task number* into your favorites, which include all recipes you like the most!
 
@@ -341,7 +341,7 @@ Our initial recipe book:
 
 
 ---
-### Remove a recipe from the favorites: `unstar RECIPE_NUMBER`
+#### Remove a recipe from the favorites: `unstar RECIPE_NUMBER`
 
 This command removes the recipe at the specified *task number* from your favorites.
 
@@ -366,7 +366,7 @@ Our initial recipe book:
 
 
 ---
-### List all recipes in the favorites : `favorites`
+#### List all recipes in the favorites : `favorites`
 
 This command lists out all the recipes that you have added to your favorites.
 
@@ -384,7 +384,7 @@ Our initial recipe book:
 
 
 ---
-### Provide link to the user guide : `help`
+#### Provide link to the user guide : `help`
 
 This command generates a link to our user guide.
 
