@@ -202,9 +202,18 @@ Examples
 * `insertPP 1 w/1 pp/200`
 * `insertPP 2 w/1 pp/300`
 
-### Assignments
+### Assignments & Submissions
 
-For assignments, you can make the following calls:
+#### Preface:
+
+Assignment: A school assignment. Has an alphanumeric name, a non-negative integer total marks, and 
+student submissions associated with it.
+
+Submission: Linked to an assignment. Each student has a submission for every existing assignment.
+
+#### Commands:
+
+For assignments & submissions, you can make the following calls:
 * add_asgn
 * delete_asgn
 * grade
@@ -212,38 +221,51 @@ For assignments, you can make the following calls:
 * list_asgn
 
 ### Add Assignment: `add_asgn`
-Adds an assignment with name, total marks. 
-If total marks for the assignment is unspecified, a default value of 100 will be given.
-All assignments will initially be ungraded.
-<br>
-Format: `add_asgn n/NAME [m/TOTAL_MARKS]`<br>
+
+Adds an assignment with a specified name and total marks.
+
+If the total marks for the assignment is unspecified, a default value of 100 will be given.
+
+Student submissions for that assignment will be also created for all existing students.
+All student submissions for that assignment will initially be ungraded.
+
+
+Format: `add_asgn n/ASSIGNMENT_NAME [m/TOTAL_MARKS]`<br>
 Example:
-* `add_asgn n/Lab_1`
-* `add_asgn n/Lab_2 m/50`
+* `add_asgn n/Lab 1`
+* `add_asgn n/Lab 2 m/50`
 
 ### Delete Assignment: `delete_asgn`
-Deletes the assignment of assignment_name you provided. If the assignment is not found, returns an error.<br>
-Format: `delete n/ASSIGNMENT_ID`<br>
+Deletes the assignment of assignment_name you provided, along with the student submissions for that assignment.
+
+Format: `delete n/ASSIGNMENT_NAME`<br>
 
 Example:
-* `delete_asgn n/Lab_1`
+* `delete_asgn n/Lab 1`
 
 ### Grade Assignment: `grade`
-Grades the submission of assignment_name and student_id with a score you provide. 
-You can also indicate whether a submission is late by using the "late/" flag at the end.
-<br>
-Format: `grade n/ASSIGNMENT_NAME i/STUDENT_ID m/SCORE [late/]`<br>
+Grades the student submission of assignment_name and student_id with the provided marks.
+
+You can also indicate whether a student submission is late by adding "late/" at the end.
+
+A submission can be graded multiple times, even if it is already graded. In that case, the latest
+grade will be taken.
+
+Format: `grade n/ASSIGNMENT_NAME i/STUDENT_ID m/MARKS [late/]`<br>
 Example:
-* `grade n/Lab_1 i/2 m/20`
-* `grade n/Lab_1 i/3 m/30 late/`
+* `grade n/Lab 1 i/2 m/20`
+* `grade n/Lab 1 i/3 m/30 late/`
 
 ### Ungrade Assignment: `ungrade`
 Resets the grade of the submission of assignment_name and student_id. It will also reset
 the late submission status of the submission, if the submission was marked as late.
-<br>
+
+A submission can be ungraded multiple times, even if it is already ungraded. In that case, the subsequent ungrades
+will have no effect.
+
 Format: `ungrade n/ASSIGNMENT_ID i/STUDENT_ID`<br>
 Example:
-* `ungrade n/Lab_1 i/2`
+* `ungrade n/Lab 1 i/2`
 
 ### List all assignments: `list_asgn`
 Lists all assignments, submissions and their respective information.
@@ -457,3 +479,8 @@ Format: `export [-force] FILE_PATH`
 |         Terminal         |                    Text-based interface used to interact with the computer's operating system. For Windows, it is usually called the Command Prompt.                     | 
 |       Host Machine       |                                                    The computer that is used to run the software/program in question.                                                    | 
 |        Parameter         |                                  A value that is passed in by the user. This value changes depending on what the user decides to enter.                                  | 
+|         Student          |                                  A person recorded in our app. Has an alphanumeric name and may have class list tags associated to it.                                   | 
+|        Assignment        |                      A school assignment. Has an alphanumeric name, a non-negative integer total marks, and student submissions associated with it.                      | 
+|        Submission        |                                          Linked to an assignment. Each student has a submission for every existing assignment.                                           | 
+
+

@@ -1,7 +1,7 @@
-package taa.assignment.exceptions;
+package taa.model.assignment.exceptions;
 
 /**
- * Submission is not found.
+ * Exception where the submission is not found.
  */
 public class SubmissionNotFoundException extends AssignmentException {
     public SubmissionNotFoundException(String studentName) {

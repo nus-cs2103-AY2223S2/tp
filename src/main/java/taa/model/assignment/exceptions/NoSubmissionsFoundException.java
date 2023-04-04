@@ -1,4 +1,4 @@
-package taa.assignment.exceptions;
+package taa.model.assignment.exceptions;
 
 /**
  * Signals that there are submissions to display statistics for.

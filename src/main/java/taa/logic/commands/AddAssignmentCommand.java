@@ -2,9 +2,9 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import taa.assignment.exceptions.DuplicateAssignmentException;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
+import taa.model.assignment.exceptions.DuplicateAssignmentException;
 
 /**
  * Adds a new assignment of {assignmentName} into AssignmentList.  .
@@ -19,7 +19,9 @@ public class AddAssignmentCommand extends Command {
     private final int totalMarks;
 
     /**
+     * Constructor for our command
      * @param assignmentName
+     * @param totalMarks
      */
     public AddAssignmentCommand(String assignmentName, int totalMarks) {
         requireNonNull(assignmentName);

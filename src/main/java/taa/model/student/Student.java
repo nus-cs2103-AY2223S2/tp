@@ -7,9 +7,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import taa.assignment.Submission;
-import taa.assignment.exceptions.AssignmentNotFoundException;
 import taa.commons.util.CollectionUtil;
+import taa.model.assignment.Submission;
+import taa.model.assignment.exceptions.AssignmentNotFoundException;
 import taa.model.tag.Tag;
 
 /**

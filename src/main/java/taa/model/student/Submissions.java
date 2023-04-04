@@ -3,8 +3,8 @@ package taa.model.student;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import taa.assignment.Submission;
-import taa.assignment.exceptions.AssignmentNotFoundException;
+import taa.model.assignment.Submission;
+import taa.model.assignment.exceptions.AssignmentNotFoundException;
 
 /**
  * A list of Submissions belonging to a Student.

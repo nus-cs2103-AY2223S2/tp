@@ -14,7 +14,6 @@ import taa.model.student.Name;
  * Parses input arguments and creates a new DeleteStudentCommand object
  */
 public class DeleteAssignmentCommandParser implements Parser<DeleteAssignmentCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteAssignmentCommand
      * and returns a DeleteAssignmentCommand object for execution.

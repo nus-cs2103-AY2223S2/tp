@@ -1,4 +1,6 @@
-package taa.assignment.exceptions;
+package taa.model.assignment.exceptions;
+
+import taa.model.assignment.Assignment;
 
 /**
  * Represents an error which occurs during execution involving an {@link Assignment}.
