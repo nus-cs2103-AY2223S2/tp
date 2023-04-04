@@ -139,7 +139,7 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     </td>
   </tr>
   <tr>
-    <td><strong>:warning: Caution</strong></td>
+    <td><strong>:exclamation: Caution</strong></td>
     <td>
       To inform you of some unintended consequences that may occur when you use the commands, so you will be
       able to use them appropriately.
@@ -261,10 +261,9 @@ After executing the command, we see that Bob has been added below the list.
 
 **Note:** You must specify minimally, the person's _name_, _email_, _year_ and _course_ when adding a person.
 
-> 💡 **Understanding commands**:
-> As you can see, we first specified the `add` command, followed by the _prefix_ `n/` and the _name_ that we want to add
-> i.e. `Bob`. The same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_
-> pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
+<div markdown="span" class="alert alert-info">
+:information_source: As you can see, we first specified the `add` command, followed by the _prefix_ `n/` and the _name_ that we want to add i.e. `Bob`. The same goes for the _year_, _course_ and _email_. This `n/` and `Bob` pair, is the _prefix_ and _parameter_ pair that occurs frequently in other commands too. Refer to [Glossary](#glossary) for more info.
+</div>
 
 Here, you may have noticed we entered `c/6` and wonder why the parameter for _course_ was `6` instead of `Computer Science`.
 
@@ -622,18 +621,25 @@ Equivalent to clicking the close button via the GUI. <br>
 ---
 
 ## Data Management
-**Q**: How do I save my person list?<br>
-**A**: CoDoc automatically saves your person list after every successful `add`, `edit` and `clear`.
+**Q: How do I save my person list?**
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install CoDoc on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
+**A:** CoDoc automatically saves your person list after every successful `add`, `edit` and `clear`.
 
-**Q**: Where is the data file stored?<br>
-**A**: CoDoc data are saved as a JSON file at ***[JAR file location]*****/data/codoc.json**. Advanced users are welcome to update data directly by editing that data file.
+<br>
 
-:warning:
-If your changes to the data file make its format invalid,
-CoDoc will discard all data and start with an empty data file at the next run.
+**Q: How do I transfer my data to another Computer?**
+
+**A:** Install CoDoc on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
+
+<br>
+
+**Q: Where is the data file stored?**
+
+**A:** CoDoc data are saved as a JSON file at ***[JAR file location]*****/data/codoc.json**. Advanced users are welcome to update data directly by editing that data file.
+
+<div class="span" class="alert alert-danger">  
+:exclamation: <b>Caution:</b> If your changes to the data file make its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
+</div>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -645,41 +651,42 @@ CoDoc will discard all data and start with an empty data file at the next run.
 
 **Q: I have added a person with wrong details. How do I change it?**
 
-A: Use CoDoc's [Edit command](#4-editing-a-person--edit) to update the details. If you have also forgotten to add certain
+**A:** Use CoDoc's [Edit command](#4-editing-a-person--edit) to update the details. If you have also forgotten to add certain
 details, you may use the same command to add them (e.g. `edit m+/AY2223S2 CS2101` to add module _CS2101_).
 
 <br>
 
 **Q: My edit command is not working/changes are not shown.**
 
-A: Check that you have entered the command in correct format and command result shown in the **Results Panel** is not
+**A:** Check that you have entered the command in correct format and command result shown in the **Results Panel** is not
 showing any errors.
 
 <br>
 
 **Q: My edit command is editing the wrong person.**
 
-A: Edit command works on the current person you are viewing. Change the viewed person with the [View command](#3-viewing-a-personchanging-tabs--view)
+**A:** Edit command works on the current person you are viewing. Change the viewed person with the [View command](#3-viewing-a-personchanging-tabs--view)
 and view the correct person you want to edit before entering the command.
 
 <br>
 
 **Q: Why is it `find c/COURSE` and not `c/COURSE_INDEX` like `add` and `edit`?**
 
-A: This is done as it speeds up the adding and editing process since there is no need for you to manually keep track of how courses are inputted—CS vs Computer Science.
+**A:** This is done as it speeds up the adding and editing process since there is no need for you to manually keep track of how courses are inputted—CS vs Computer Science.
 Also, this avoids clashing acronyms such as CS which could be interpreted as Chinese Studies too.
 
+<br>
 
 **Q: My find command is not showing correct list of people**
 
-A: This could be because there is existing list of filters before you entered the [Find command](#5-finding-a-person--find).
+**A:** This could be because there is existing list of filters before you entered the [Find command](#5-finding-a-person--find).
 Try clearing all filters with [List command](#6-listing-all-personsresetting-filters--list) then re-enter the Find command.
 
 <br>
 
 **Q: I cannot find the course I want to add in the Course List Panel.**
 
-A: We understand that the current list of courses available is limited. This is because this program is initially designed
+**A:** We understand that the current list of courses available is limited. This is because this program is initially designed
 to be used mainly by _Computer Science_ students, hence it only lists courses of people which they may encounter during
 their studies. We are currently working to add as many courses as possible so that the program can be used by users
 outside _Computer Science_. Meanwhile, you would have to assign any other courses to the person and remember it.
@@ -734,26 +741,46 @@ _Details coming soon ..._
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 ### How to Open CoDoc for Mac
 
-1. Create your home folder and place jar file into it. In this example, we created a new folder called CoDoc and placed codoc.jar into it. The folder CoDoc is now our home folder.
-   
+1. Create your *home folder* and place the jar file into it. In this example, <br>
+   * we create a new folder called *CoDoc* 
+   * and place our `codoc.jar` into it
    ![mac_open_01](images/user-guide/mac_open_01.png)
-2. Create an empty text file and leave it open for now.
-   * <kbd>CMD</kbd> + <kbd>Space</kbd> > textEdit.app
-   * <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>T</kbd> > to toggle to plain text.
-   * Your window should look like the image below.
+   <div class="span" class="alert alert-info">
+   :information_source: <b>Note:</b> The folder CoDoc is now our <em>home folder</em>.
+   </div>
+2. Create an empty text file and **leave it open for now.**
+   * <kbd>CMD</kbd> + <kbd>Space</kbd> > type *textEdit.app* >  <kbd>Enter</kbd> (to open textEdit)
+   * <kbd>CMD</kbd> + <kbd>SHIFT</kbd> + <kbd>T</kbd> (to toggle textEdit to plain text)
+   * Your window should look like the image below
    ![mac_plain_text](images/user-guide/mac_plain_text.png)
-   
-3. Right-click on your home folder and naviagate to New Terminal at Folder.
+3. Right-click on your home folder and navigate to `New Terminal at Folder`. This will open a terminal window.
    ![mac_open_home_holder](images/user-guide/mac_open_home_folder.png)
-4. Type pwd and press enter, copy your home folder path. leave this window open too.
-    ![mac_pwd](images/user-guide/mac_pwd.png)
-5. Paste your home folder path as well as java -jar codoc.jar and save it as a .command file
+4. Then, 
+    * type `pwd` > <kbd>Enter</kbd>
+    * copy the output which is yourHomeFolderPath
+    * **leave this window open too**
+   ![mac_pwd](images/user-guide/mac_pwd.png)
+5. Next,
+   * paste `cd yourHomeFolderPath`
+   * as well as `java -jar codoc.jar` 
+   * and save it as a `.command` file
    ![mac_command_file_save](images/user-guide/mac_command_file_save.png)
-6. Place it into your home folder
+6. Place the newly created `.command` file into your *home folder*.
    ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
-7. Finally, on your opened terminal from step 4, type chmod 777 start.command
+7. Finally, on your opened terminal from step 4, type `chmod 777 start.command` > <kbd>Enter</kbd>.
+
+   <div class="span" class="alert alert-info">
+   :information_source: <b>Note:</b> Replace <code>start</code> with whatever you name your <code>.command</code> file from step 5.
+   </div>
    ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
-8. You can now double click on start.command to open CoDoc. It does not have to be in the home directory. Should you change where you folder, repreat from step 2.
+8. You can now double-click on your `.command` file to open CoDoc.
+
+   <div class="span" class="alert alert-warning">
+   :bulb: <b>Tip:</b> You can now place the <code>.command</code> file anywhere.
+   </div>
+   <div class="span" class="alert alert-danger">  
+   :exclamation: <b>Caution:</b> If you decide to change the location of <em>home folder</em>, repeat from step 2.
+   </div>
 
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
 
@@ -773,7 +800,9 @@ extension, see [here](https://www.howtogeek.com/205086/beginner-how-to-make-wind
     
     ![open_rename](images/user-guide/open_rename.png)
 
-    **Note**: You may see a warning message below. This is because you are converting a text file to a batch file.
+    <div class="span" class="alert alert-info">
+    :information_source: <b>Note:</b> You may see a warning message below. This is because you are converting a text file to a batch file.
+    </div>
 
     ![open_rename_warning](images/user-guide/open_rename_warning.PNG)
    
