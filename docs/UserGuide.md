@@ -221,6 +221,7 @@ Edits the specified event from the event book.
 - At least one of the optional fields must be provided.
 - Edits will replace existing values, edits are not cumulative.
 - Tags can be removed by typing `t/` without specifying any tags after it.
+- Existing tags will also be removed when editing editing tags, it will be necessary to input all the existing tags during the edit.
 - Do note that `edit` is only for editing the event details, not the contact details.
 - To link the event to a new contact, consider using [`linkcontact`](#link-contact-to-event) instead.
 
