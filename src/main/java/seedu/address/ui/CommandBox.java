@@ -47,6 +47,7 @@ public class CommandBox extends UiPart<Region> {
 
         //@@author EvitanRelta-reused
         // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
+        // with no modifications.
         commandTextField.textProperty()
                 .addListener((observable, oldValue, newValue) -> updateCommandSuggestion(newValue));
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> handleKeyPressed(event));
@@ -138,6 +139,7 @@ public class CommandBox extends UiPart<Region> {
 
     //@@author EvitanRelta-reused
     // Reused from https://github.com/AY2223S1-CS2103T-T12-2/tp
+    // with minor modification and bug fixes.
     /**
      * Auto-completes user input when the user presses the Tab key.
      */
