@@ -60,7 +60,9 @@ public class FindCommand extends Command {
         }
 
         if (filterInternshipDescriptor.getTags().isPresent()) {
-            filterStat = x -> x.getTags().containsAll(filterInternshipDescriptor.getTags().get());
+            filterStat = x -> filterInternshipDescriptor.getTags().get().isEmpty()
+                    ? false
+                    :x.getTags().containsAll(filterInternshipDescriptor.getTags().get());
         }
         Predicate<Internship> finalFilterPos = filterPos;
         Predicate<Internship> finalFilterCom = filterCom;
