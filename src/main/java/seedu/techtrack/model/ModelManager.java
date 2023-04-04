@@ -133,7 +133,8 @@ public class ModelManager implements Model {
 
     @Override
     public void displaySortedSalaryList(OrderParser orderParser) {
-        List<Role> roles = filteredRoles.sorted((r1, r2) -> {
+        FilteredList<Role> filteredRoleCopy = new FilteredList<>(this.roleBook.getRoleList());
+        List<Role> roles = filteredRoleCopy.sorted((r1, r2) -> {
             int s1 = Integer.parseInt(r1.getSalary().toString());
             int s2 = Integer.parseInt(r2.getSalary().toString());
             if (orderParser.toString().equals("asc")) {
@@ -149,7 +150,8 @@ public class ModelManager implements Model {
 
     @Override
     public void displaySortedDeadlineList(OrderParser orderParser) {
-        List<Role> roles = filteredRoles.sorted((r1, r2) -> {
+        FilteredList<Role> filteredRoleCopy = new FilteredList<>(this.roleBook.getRoleList());
+        List<Role> roles = filteredRoleCopy.sorted((r1, r2) -> {
             LocalDate s1 = LocalDate.parse(r1.getDeadline().toString());
             LocalDate s2 = LocalDate.parse(r2.getDeadline().toString());
             if (orderParser.toString().equals("asc")) {
