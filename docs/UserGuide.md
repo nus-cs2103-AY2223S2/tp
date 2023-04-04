@@ -398,7 +398,11 @@ Example:
   }
 ]
 ```
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
 Optional Parameter `f/` that forces imports regardless of duplicate values.
+</div>
 
 Format: `import JSON [f/]`
 
@@ -411,10 +415,9 @@ Adds a meeting to the address book.
 Format: `addm m/TITLE [p/PERSON]... [dt/DATE_TIME] [l/LOCATION] [des/DESCRIPTION]`
 
 Constraints:
-* `TITLE` must be provided.
-* `DATE_TIME` must be provided in the format `dd-MM-yyyy HH:mm`.
+* `DATE_TIME` must be provided in the format as shown [here](#date-and-time-formats).
 * `Person` must be a valid person in the address book.
-* 
+
 Examples:
 * `addm m/CS2103T Tutorial p/John Doe p/Jane Doe dt/04-01-2023 10:00 l/COM1-B103 des/CS2103T Tutorial`
 * `addm m/CS2103T Tutorial p/John Doe p/Mary Jane dt/04-01-2023 22:22 l/COM1-B103 des/CS2101 Tutorial`
@@ -428,19 +431,27 @@ Format: `editm INDEX [t/TITLE] [dt/DATE] [l/LOCATION] [des/DESCRIPTION]`
 * Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* `DATE` must be provided in the format `DD-MM-YYYY`, `HH:MM` (24-hour) respectively.
+* `DATE_TIME` must be provided in the format as defined [here](#date-and-time-formats).
 
 Example:
 * `editm 1 t/Project Update dt/04-01-2023 10:00`  Edits the date/time first meeting to be on `04-01-2023 10:00`, and changes its title to `Project Update`.
 
 ### Sorting Meetings : `sortm`
 
-Sorts meetings in the currently displayed address book by a specified attribute.
+Sorts meetings in the currently displayed address book by a specified attribute, in **ascending** order.
 
 Format: `sortm ATTRIBUTE [r]`
 
-* Sorts the meetings in the address book by the specified `ATTRIBUTE`, which can be one of the following: `m/` (meeting title), `dt/` (date/time), `l/` (location), or `des/` (description).
-* If the `r` option is included, the meetings will be sorted in reverse order.
+* Sorts the meetings in the address book by the specified `ATTRIBUTE`:
+
+| Prefix | ATTRIBUTE     |
+|--------|---------------|
+| `m/`   | Meeting Title |
+| `dt/`  | Date/Time     |
+| `l/`   | Location      |
+| `des/` | Description   |
+
+* If the `r` option is included, the meetings will be sorted in reverse(descending) order.
 * Meetings with the same value for the specified attribute will be sorted by date/time in ascending order.
 * Example: `sortm m/` sorts meetings by title in ascending order.
 * Example: `sortm dt/r` sorts meetings by date/time in descending order.
