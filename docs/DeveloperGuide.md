@@ -1437,8 +1437,8 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 1. User requests to add a basic module tag to a contact.
 2. EduMate tags the module to the contact.
-3. EduMate displays the tagged person's information in the profile panel.
-4. EduMate gives feedback for what modules have been added.
+3. EduMate displays a list of successfully added modules.
+4. EduMate displays the tagged person's information in the profile panel.
 
    Use case ends.
 
@@ -1452,6 +1452,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 2a. The module code exists in the person's contact.
     * 2a1. EduMate does not add any tags.
+    * 2b2. EduMate does not show the module in the feedback message.
 
   Use case resumes at step 2.
 
@@ -1460,7 +1461,8 @@ Help NUS students maintain both their social and academic life by lowering the b
 1. User requests to add a non-basic module tag to a contact.
 2. EduMate assigns lessons to the contact.
 3. EduMate tags the module to the contact.
-4. EduMate displays the tagged person's information in the profile panel.
+4. EduMate displays a list of successfully added modules.
+5. EduMate displays the tagged person's information in the profile panel.
 
 **Extensions**
 
@@ -1471,17 +1473,19 @@ Help NUS students maintain both their social and academic life by lowering the b
     * 1b1. EduMate shows an error message.
 
 * 2a. The lesson clashes with the contact's timetable.
-    * 2a1. EduMate shows an error message.
+    * 2a1. EduMate shows an error message with details of clashes.
 
 * 2b. The added lessons clash with each other.
-    * 2b1. EduMate shows an error message.
+    * 2b1. EduMate shows an error message with.
 
 * 3a. The module does not exist in the contact's module set.
     * 3a1. EduMate adds the module and lesson to the contact's module set.
+    * 3a2. EduMate displays the added lesson in the feedback message.
     
   Use case resumes at step 3.
 * 3b. The module exists in the contact's module set but the lesson does not.
     * 3b1. EduMate adds the module and lesson to the contact's module set.
+    * 3b2. EduMate displays the added lesson in the feedback message.
   
   Use case resumes at step 3.
 * 3c. The module and lesson exist in the contact's module set.
@@ -1492,6 +1496,8 @@ Help NUS students maintain both their social and academic life by lowering the b
 1. User requests to remove a module tag from a contact.
 2. EduMate untags the module from the contact.
 3. EduMate removes the associated lessons from the contact.
+4. EduMate displays a list of successfully removed modules.
+5. EduMate displays the untagged person's information in the profile panel.
 
    Use case ends.
 
@@ -1500,17 +1506,25 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
-
-* 1b. The given details is invalid.
+* 1b. The given details are invalid.
     * 1b1. EduMate shows an error message.
 
-  Use case resumes at step 1.
+* 2a. The module does not exist in the contact's module set.
+    * 2a1. EduMate does not remove any module.
+
+  Use case resumes at step 2
+* 2b. The module and lesson exists in EduMate.
+    * 2b1. EduMate removes that lesson.
+    * 2b2. EduMate removes the module from the module set if there are no more lessons.
+  
+  Use case resumes at step 2
 
 **Use case: UC07 - Tag a group to a contact**
 
 1. User requests to add a group tag to a contact.
 2. EduMate tags the group to the contact.
+3. EduMate displays a list of successfully added groups.
+4. EduMate displays the tagged person's information in the profile panel.
 
    Use case ends.
 
@@ -1519,17 +1533,18 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
-
-* 1b. The given details is invalid.
+* 1b. The given details are invalid.
     * 1b1. EduMate shows an error message.
 
-  Use case resumes at step 1.
+* 2a. The group already exists in the group set.
+    * 2a1. EduMate does not display the group in the feedback message.
 
 **Use case: UC08 - Untag a group from a contact**
 
 1. User requests to remove a group tag from a contact.
 2. EduMate untags the group from the contact.
+3. EduMate displays a list of successfully removed groups.
+4. EduMate displays the untagged person's information in the profile panel.
 
    Use case ends.
 
@@ -1538,12 +1553,13 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-  Use case resumes at step 1.
-
-* 1b. The given details is invalid.
+* 1b. The given details are invalid.
     * 1b1. EduMate shows an error message.
 
-  Use case resumes at step 1.
+* 2a. The group does not exist in the group set.
+    * 2a1. EduMate does not display the group in the feedback message.
+  
+  Use case resumes at step 2
 
 **Use case: UC09 - Find contacts based on search criteria**
 
