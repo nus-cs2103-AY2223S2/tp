@@ -23,6 +23,9 @@ You can click on any of the links below to navigate to the respective sections f
 # Table of Contents
 
 <!-- TOC -->
+* [Overview](#overview)
+* [About This Guide](#about-this-guide)
+* [Table of Contents](#table-of-contents)
 * [1 Quick start](#1-quick-start)
   * [1.1 Prerequisites](#11-prerequisites)
     * [1.1.1 Java](#111-java)
@@ -34,20 +37,20 @@ You can click on any of the links below to navigate to the respective sections f
     * [1.4.2 Data Tab](#142-data-tab)
 * [2 Commands](#2-commands)
   * [2.1 Add](#21-add)
-    * [2.1.1 Adding a supplier: `add_supplier`](#211-adding-a-supplier-add_supplier)
-    * [2.1.2 Adding an order: `add_order`](#212-adding-an-order-add_order)
-    * [2.1.3 Adding a task: `add_task`](#213-adding-a-task-add_task)
-    * [2.1.4 Adding a menu item: `add_item`](#214-adding-a-menu-item-add_item)
+    * [2.1.1 Adding a supplier: `add_supplier`](#211-adding-a-supplier-addsupplier)
+    * [2.1.2 Adding an order: `add_order`](#212-adding-an-order-addorder)
+    * [2.1.3 Adding a task: `add_task`](#213-adding-a-task-addtask)
+    * [2.1.4 Adding a menu item: `add_item`](#214-adding-a-menu-item-additem)
   * [2.2 Edit](#22-edit)
-    * [2.2.1 Editing a supplier: `edit_supplier`](#221-editing-a-supplier-edit_supplier)
-    * [2.2.2 Editing an order: `edit_order`](#222-editing-an-order-edit_order)
-    * [2.1.3 Editing a task: `edit_task`](#213-editing-a-task-edit_task)
-    * [2.1.4 Editing a menu item: `edit_item`](#214-editing-a-menu-item-edit_item)
-  * [Find](#find)
-    * [Finding a supplier: `find_supplier`](#finding-a-supplier-findsupplier)
-    * [Finding an order: `find_order`](#finding-an-order-findorder)
-    * [Finding a task: `find_task`](#finding-a-task-findtask)
-    * [Finding a menu item: `find_item`](#finding-a-menu-item-finditem)
+    * [2.2.1 Editing a supplier: `edit_supplier`](#221-editing-a-supplier-editsupplier)
+    * [2.2.2 Editing an order: `edit_order`](#222-editing-an-order-editorder)
+    * [2.2.3 Editing a task: `edit_task`](#223-editing-a-task-edittask)
+    * [2.2.4 Editing a menu item: `edit_item`](#224-editing-a-menu-item-edititem)
+  * [2.3 Find](#23-find)
+    * [2.3.1 Finding a supplier: `find_supplier`](#231-finding-a-supplier-findsupplier)
+    * [2.3.2 Finding an order: `find_order`](#232-finding-an-order-findorder)
+    * [2.3.3 Finding a task: `find_task`](#233-finding-a-task-findtask)
+    * [2.3.4 Finding a menu item: `find_item`](#234-finding-a-menu-item-finditem)
   * [Delete](#delete)
     * [Deleting a supplier: `delete_supplier`](#deleting-a-supplier-deletesupplier)
     * [Deleting an order: `delete_order`](#deleting-an-order-deleteorder)
@@ -676,17 +679,17 @@ Finding of specific information with the provided parameters. Below are the spec
 
 Find suppliers whose information matches with any of the given parameters.
 
-Syntax: `find_supplier n/NAME`
+Syntax: `find_supplier NAME`
 
 <div markdown="block" class="alert alert-tip">
 
 :information_source: **Information**
 
 * Search is case-insensitive (e.g. `mark` will match with `Mark`).
-* Order of the keywords does not matter (e.g. `n/Mark Lee` will match with `Lee Mark`).
+* Order of the keywords does not matter (e.g. `Mark Lee` will match with `Lee Mark`).
 * Only full words will match (e.g. `Mar` will not match with `Mark`).
 * People matching with at least one keyword will be returned (i.e. `OR` search). <br>
-  (e.g. `n/Mark Lee` will return `Mark Tan`, `Lee Chan`)
+  (e.g. `Mark Lee` will return `Mark Tan`, `Lee Chan`)
 
 </div>
 
@@ -694,9 +697,9 @@ Syntax: `find_supplier n/NAME`
 
 :clipboard: **Example 1: Standard command**
 
-* `find_task n/Prima Flour`<br>
+* `find_task Prima Flour`<br>
   Finds the supplier with the following details:
-  * Supplier Name contains either `Prima` or `Flour` in any cases.<br>
+  * Supplier Name contains either `Prima` or `Flour`.<br>
 
   Example of suppliers that match:
     * `Prima`
@@ -709,9 +712,9 @@ Syntax: `find_supplier n/NAME`
 
 :clipboard: **Example 2: Shortcut command**
 
-* `find_s n/Pte`<br>
+* `find_s Pte`<br>
   Finds the supplier with the following details:
-  * Supplier Name contains either `Pte`in any cases.
+  * Supplier Name contains `Pte`.
   
   Example of suppliers that match:
     * `Soon Flour Pte Ltd`
@@ -723,60 +726,151 @@ Syntax: `find_supplier n/NAME`
 
 </div>
 
-### Finding an order: `find_order`
+### 2.3.2 Finding an order: `find_order`
 
 Find orders whose information matches with any of the given parameters.
 
-Syntax: `find_order [on/ORDER_NAME] [q/QUANTITY] [s/STATUS] [d/DEADLINE] [n/CUSTOMER_NAME] [p/CUSTOMER_PHONE_NUMBER] [a/CUSTOMER_ADDRESS]…​`
+Syntax: `find_order [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] [a/CUSTOMER_ADDRESS] [p/CUSTOMER_PHONE_NUMBER] [s/STATUS]`
 
-* Search is case-insensitive, e.g. `mark` will match `Mark`.
-* The order of the keywords does not matter, e.g. `n/Mark Lee` will match with `Lee Mark`.
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
 * At least one of the optional fields must be keyed in.
-* Only full words will match e.g. `Mar` will not match with `Mark`.
-* People matching with at least one keyword will be returned (i.e. `OR` search).
-  e.g. `n/Mark Lee` will return `Mark Tan`, `Lee Chan`.
+* For order item:
+  * Search is case-insensitive (e.g. `cookie` will match with `Cookie`).
+  * Order of the keywords does not matter (e.g. `Chocolate Cookie` will match with `Cookie Chocolate`).
+  * Only full words will match (e.g. `Chocolate` will not match with `Choco`).
+  * People matching with at least one keyword will be returned (i.e. `OR` search). <br>
+    (e.g. `Chocolate Cake` will return `Chocolate Cookie`, `Strawberry Cake`)
 
-Examples:
+</div>
 
-* `find_order on/Chocolate` returns orders `Chocolate Cake` and `Chocolate Cookies`
-* `find_s on/Cake d/01/01/2023` returns order `Chocolate Cake` that has a delivery dateline of `01/01/2023`
+<div markdown="block" class="alert alert-example">
 
-### Finding a task: `find_task`
+:clipboard: **Example 1: Standard command with single fields**
+
+* `find_order on/Chocolate Cake`<br>
+  Finds the order with the following details:
+  * Order Item contains `Chocolate` or `Cake`<br>
+
+  Example of suppliers that match:
+  * `Chocolate Cookie`
+  * `Chocolate Cake`
+  * `CAKE WITH VANILLA`
+
+  Example of suppliers that do not match:
+  * `Choco`
+  * `ChocolatePie`
+
+:clipboard: **Example 2: Shortcut command with multiple fields**
+
+* `find_s on/Cake d/01/01/2023`<br>
+  Finds the order with the following details:
+  * Supplier Name contains `Cake`
+  * Deadline is on `01/01/2023`<br>
+
+  Example of orders that match:
+  * `on/Chocolate Cake d/01/01/2023`
+  * `on/CAKE WITH VANILLA AND CHOCOLATE d/01/01/2023`
+
+  Example of orders that do not match:
+  * `on/Chocolate Cake d/03/03/2024`
+  * `on/VANILLA CAKES d/01/01/2023`
+
+</div>
+
+### 2.3.3 Finding a task: `find_task`
 
 Find tasks with information that matches with any of the given parameters.
 
-Syntax: `find_task [n/TASK_DESCRIPTION] [d/DEADLINE] [s/STATUS]`
+Syntax: `find_task [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 
-* Search is case-insensitive, e.g. `match` will match `Match`.
-* The order of the keywords does not matter, e.g. `n/Mark Lee` will match with `Lee Mark`.
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
 * At least one of the optional fields must be keyed in.
-* Only full words will match e.g. `Mar` will not match with `Mark`.
-* Tasks matching with at least one keyword will be returned (i.e. `OR` search).
-  e.g. `n/order flour` will match with `order sugar` and `order 10kg flour`.
+* For task name:
+  * Search is case-insensitive (e.g. `sugar` will match with `Sugar`).
+  * Order of the keywords does not matter (e.g. `Flour Sugar` will match with `Sugar Flour`).
+  * Only full words will match (e.g. `Sugar` will not match with `Sugars`).
+  * People matching with at least one keyword will be returned (i.e. `OR` search). <br>
+    (e.g. `Order Flour` will return `Order Sugar`, `Order 10kg Flour`)
 
-Examples:
+</div>
 
-* `find_task n/order flour` returns `Order milk` and `mix flour`
-* `find_t n/buy eggs d/2023-02-17` returns tasks with `buy` or `egg` with deadline of `2023-02-17`
-* `find_t s/N` returns all tasks not done
+<div markdown="block" class="alert alert-example">
 
-### Finding a menu item: `find_item`
+:clipboard: **Example 1: Standard command with single fields**
+
+* `find_task s/N`<br>
+  Finds all task that are `Not Done`.
+
+:clipboard: **Example 2: Shortcut command with multiple fields**
+
+* `find_t n/Buy eggs d/17/02/2023`<br>
+  Finds the order with the following details:
+  * Task Name contains `Buy eggs`.
+  * Deadline is on `17/02/2023`
+
+  Example of tasks that match:
+  * `n/Buy eggs d/17/02/2023`
+  * `n/Buy flour d/17/02/2023`
+
+  Example of tasks that do not match:
+  * `n/Make eggcream d/17/02/2023`
+  * `n/Buy flour d/30/03/2024`
+
+</div>
+
+### 2.3.4 Finding a menu item: `find_item`
 
 Find tasks with information that matches with any of the given parameters.
 
-Syntax: `find_item [ITEM_NAME]`
+Syntax: `find_item ITEM_NAME`
 
-* Search is case-insensitive, e.g. `match` will match `Match`.
-* The order of the keywords does not matter, e.g. `n/Chocolate cookies` will match with `Cookies chocolate`.
-* At least one of the optional fields must be keyed in.
-* Only full words will match e.g. `Choco` will not match with `Chocolate`.
-* Menu Items matching with at least one keyword will be returned (i.e. `OR` search).
-  e.g. `n/chocolate cookies` will match with `chocolate cupcake` and `hot chocolate`.
+<div markdown="block" class="alert alert-tip">
 
-Examples:
+:information_source: **Information**
 
-* `find_item n/vanilla cupcake` returns `vanilla ice cream` and `Disney cupcake`
-* `find_i n/shirt d/2023-02-17` returns menu items with `shirt`
+* Search is case-insensitive (e.g. `cookie` will match with `Cookie`).
+* Order of the keywords does not matter (e.g. `Chocolate Cookie` will match with `Cookie Chocolate`).
+* Only full words will match (e.g. `Chocolate` will not match with `Choco`).
+* People matching with at least one keyword will be returned (i.e. `OR` search). <br>
+  (e.g. `Chocolate Cake` will return `Chocolate Cookie`, `Strawberry Cake`)
+
+</div>
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command**
+
+* `find_item vanilla cupcake`<br>
+  Finds the supplier with the following details:
+  * Supplier Name contains either `Prima` or `Flour`.<br>
+
+  Example of order items that match:
+  * `Strawberry cupcake`
+  * `CAKE WITH VANILLA`
+
+  Example of order item that do not match:
+  * `chocolate cake`
+
+:clipboard: **Example 2: Shortcut command**
+
+* `find_i Cake`<br>
+  Finds the menu item with the following details:
+  * Item Name contains `Cake`.
+
+  Example of order items that match:
+  * `Strawberry Cake`
+  * `CAKE WITH VANILLA`
+
+  Example of order item that do not match:
+  * `Vanilla Cupcake`
+
+</div>
 
 ## Delete
 
