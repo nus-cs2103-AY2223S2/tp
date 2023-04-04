@@ -191,7 +191,7 @@ public class CommandRecommendationEngine {
             return recommendation.substring(0, userInput.length() + nextIdx);
         }
     }
-    
+
     private static boolean isCommandPrefixComplete(String userInput, String delimiter) {
         return userInput.contains(delimiter);
     }
