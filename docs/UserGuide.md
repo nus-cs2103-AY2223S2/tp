@@ -1,4 +1,10 @@
-### Wingman User Guide
+---
+layout: page
+title: User Guide
+---
+<p align="center">
+  <img src="../src/main/resources/images/Wingman.png" />
+</p>
 
 Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
 flights, locations, pilots, and planes via command lines. The functionalities include adding, deleting, checking, or associating these
@@ -12,11 +18,19 @@ such as flight scheduling and management of crew, pilot, plane and location.
 
 - **[How to use this guide?](#how-to-use-this-guide)**
 - **[Getting Started](#getting-started)**
+- **[Modal Editing: `mode`](#modal-editing)**
 - **[Features](#features)**
-  - **[Modal Editing](#modal-editing)**
   - **[Shared Commands](#shared-commands)**
+    - **[Adding a resource: `add`](#1-adding-a-resource)**
+    - **[Deleting a resource: `delete`](#2-deleting-a-resource)**
   - **[Mode-specific Commands](#mode-specific-commands)**
+    - **[Linking a resource to a location: `linklocation`](#1-linking-a-resource-to-a-location)**
+    - **[Unlinking a resource from a location: `unlinklocation`](#2-unlinking-a-resource-from-a-location)**
+    - **[Linking a resource to a flight: `linkflight`](#3-linking-a-resource-to-a-flight)**
+    - **[Unlinking a resource from a flight: `unlinkflight`](#4-unlinking-a-resource-from-a-flight)**
+    - **[Checking a resource's availability: `check`](#5-checking-a-resources-availability)**
   - **[Application Commands](#application-commands)**
+    - **[Exiting from Wingman: `exit`](#1-exiting-from-wingman)**
 - **[Prefix Summary](#prefix-summary)**
 - **[Command summary](#command-summary)**
 - **[FAQ](#faq)**
@@ -46,6 +60,8 @@ a
 plane's index would be inputted. The index of any resource can be found as the number next to it in the list. Please
 refer to the image below for clarity.
 
+<div style="page-break-after: always;"></div>
+
 ## Getting Started
 
 You can get started with Wingman in just 3 simple steps:
@@ -53,7 +69,7 @@ You can get started with Wingman in just 3 simple steps:
 1. Ensure you have `JAVA 11` installed on your computer. If you are unsure how to check JAVA version on your computer,
 please check out [FAQ](#faq). 
 2. Click [here](https://github.com/AY2223S2-CS2103T-W11-1/tp/releases/tag/v1.3) to download the Wingman.jar file
-3. Open a command terminal on your computing, and run the command to start the application:  `java -jar Wingman.jar`
+3. Open a command terminal on your computer, and run the command to start the application:  `java -jar Wingman.jar`
 
 A GUI similar to the one below should appear in a few seconds.
 
@@ -68,6 +84,8 @@ Note how the app below contains some sample data. This may not be the case if it
 Congratulations on successfully setting up Wingman!
 Before you start using Wingman to manage your resources, do take a moment to read
 the following section on [Modal Editing](#modal-editing) to understand how Wingman's commands are structured.
+
+<div style="page-break-after: always;"></div>
 
 ### Modal Editing
 
@@ -98,7 +116,7 @@ As shown in the image above, upon successfully switching to a mode, Wingman will
 display the current mode's name in the status bar in the bottom left corner of the window.
 The window also displays a list for each resource, to aid you in keeping track of links between resources.
 
-
+[Back to contents](#table-of-contents)
 <div style="page-break-after: always;"></div>
 
 ## Features
@@ -135,6 +153,10 @@ Prefixes:
     - `1`: Senior Flight Attendant,
     - `2`: Flight Attendant,
     - `3`: Trainee.
+
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note: Your selection is limited to the designated ranks
+</div>
 
 Example:
 
@@ -197,6 +219,10 @@ Prefixes:
     - `2`: other
 - `/fh`: the flight hours of the pilot.
 
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note: Your selection is limited to the designated ranks and gender identities.
+</div>
+
 Example:
 
 ```
@@ -229,6 +255,7 @@ The response box describes the addition that was made and the new entity should 
 
 <img src="images/AddSuccessPage.jpg" width="2032" alt="Successful plane addition page">
 
+[Back to contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -268,6 +295,8 @@ For instance, Flight Attendant Mary will have an index number of 1 in the image 
 (The index number will be displayed in future updates)
 
 <img src="images/ModeCrewLanding.jpg" width="2032" alt="Mode crew page">
+
+[Back to contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -369,6 +398,7 @@ If the command is valid, Wingman will return a response describing the link that
 
 <img src="images/LinkLocationSuccess.jpg" width="2032" alt="Successful link of plane to location">
 
+[Back to contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -462,6 +492,8 @@ Output:
 Unlinked A380 from Tokyo.
 ```
 
+[Back to contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 #### 3. Linking a resource to a flight
@@ -528,7 +560,7 @@ Example:
 
 ```
 Input:
-linkflight /fl 1 /csd 2
+linkflight /fl 1 /pf 2
 
 Output: 
 Linked Cadet Amelia Earhart to SQ230.
@@ -550,6 +582,8 @@ linkflight /fl 1 /pl 2
 Output: 
 Linked A380 to SQ230.
 ```
+
+[Back to contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -675,6 +709,8 @@ Output:
 A380 is available.
 ```
 
+[Back to contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ### Application Commands
@@ -687,6 +723,8 @@ exit
 
 This will close the application window and exit the program.
 All your changes to your resources will be saved for you to get back to when you reopen the application.
+
+[Back to contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -716,6 +754,8 @@ All your changes to your resources will be saved for you to get back to when you
 | /pm        | `pilot monitoring`        | Index of pilot monitoring        |
 | /id        | `index`                   | Index of an entity               |
 
+[Back to contents](#table-of-contents)
+
 <div style="page-break-after: always;"></div>
 
 ## Command Summary
@@ -730,6 +770,8 @@ All your changes to your resources will be saved for you to get back to when you
 | Unlink flight   | `unlinkflight /fl flight_index /resource_prefix resource_index `    | `unlinkflight /fl 0 /pu 1`     |
 | Check           | `check /id resource_index`                                          | `check /id 0`                  |
 | Exit            | `exit`                                                              | `exit`                         |
+
+[Back to contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -762,3 +804,5 @@ OpenJDK 64-Bit Server VM Zulu11.62+17-CA (build 11.0.18+10-LTS, mixed mode)
 ## Other information
 
 This App is developed at the National University of Singapore.
+
+[Back to contents](#table-of-contents)
