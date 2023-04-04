@@ -10,16 +10,16 @@ It provides a centralised platform for them to manage their work, contacts, and 
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added a UI for event
-  * What it does: Allow users to view the displayed events
+* **New Feature**: Added a UI for event. ([#49](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/49))
+  * What it does: Allow users to view the displayed events.
   * Justification: This feature enables the user to peruse the list of displayed events in accordance with their input commands.
 
-* **New Feature**: Duplicate event validation
+* **New Feature**: Duplicate event validation. ([#40](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/40)), ([#41](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/41)), ([#117](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/117))
   * What it does: Validates if a newly added event is a duplicate event
   * Justification: By validating the uniqueness of newly added events, we ensure that the system is not overwhelmed with duplicate events, which can lead to confusion and inconsistencies in event tracking. The implementation of this feature is in line with our overarching goal of maintaining the integrity of our event tagging system and providing users with a streamlined and efficient experience when utilizing our application.
   * Highlights: In keeping with our goal of maintaining the uniqueness of event tags, we have opted to implement duplicate event validation using only the event name, similar to our approach to duplicate persons validation. This measure serves to reduce ambiguity that may arise in cases where two events with identical names are assigned to the same individual.
 
-* **New Feature**: Added a `listall` command. 
+* **New Feature**: Added a `listall` command. ([#61](https://github.com/AY2223S2-CS2103-W16-3/tp/pull/61))
   * What it does: Allow users to list all persons and events.
   * Justification: Given the functionality of filters in PlanEase, it is possible that the list of persons or events displayed on the user interface may not include all available options. Therefore, users may find it necessary to utilize a command that will reset the filters and display the complete list of persons and events within the application.
 
