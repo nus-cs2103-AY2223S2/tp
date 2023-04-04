@@ -249,25 +249,75 @@ Examples
 
 ### Participation
 For participation, you can make the following calls:
-* `insertPP`
+* insertPP
+* listPP
+
+#### Clarifications on Participation points
+
+* Participation points is represented by a integer from `0` to `700` (inclusive of both `0` and `700`) <br>
+  Except for the special situation where the attendance is not marked, then the participation points will be `-1`
+  If users are inserting participation points, only a integer from `0` to `700` (inclusive of both `0` and `700`) is allowed
+* when the attendance of a student for a week is marked (not present -> present for the week) <br>
+  Then the participation points of the student changes from `-1` to `0`
+* Unmarking a student's attendance automatically changes the participation points of a student to `-1`
+* The participation points displayed in Class List portion of the TAA GUI is the average points, which is calculated using `Total participation points` / `Number of weeks present` <br>
+  `Total participation points` is the sum of all participation points for weeks when the student is present <br>
+  `Number of weeks present` refers to the number of week present from week 1 to week 12
+
 
 #### Insert participation points: `insertPP`
-Insert attendance of a student for that week<br>
-Format: `insertPP STUDENT_ID w/WEEK_NUMBER pp/POINTS`
+Inserts participation points of a student for that week<br>
+Format: `insertPP STUDENT_INDEX w/WEEK_NUMBER pp/POINTS`
+
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
+`WEEK_NUMBER`: A integer between 1 and 12 (inclusive of both 1 and 12) <br>
+`POINTS`: A integer between 0 and 700 (inclusive of both 0 and 700)
+
+Participation points can only be inserted for a week when the attendance is already marked. <br>
+Violation of this will result in a message `Mark the attendance of the student first before inserting points!`
+
 Examples
-* `insertPP 1 w/1 pp/200`
-* `insertPP 2 w/1 pp/300`
+* `insertPP 1 w/1 pp/200` (inserts participation points of 200 for week 1 of student with index 1)
+* `insertPP 2 w/1 pp/300` (inserts participation points of 200 for week 1 of student with index 2)
+
+#### List participation points: `listPP`
+Lists the participation points of a student from week 1 to week 12<br>
+Format: `listPP STUDENT_INDEX`
+
+`STUDENT_INDEX`: A positive integer that represents the index of student as shown in Class List display portion of TAA GUI <br>
+
+Examples
+* `listAtd 1` (list participation points of student with index 1)
+* `listAtd 2` (list participation points of student with index 2)
+
+The listed participation points will be such that every line will be in the format `Week NUM: [POINTS]` <br>
+where `NUM` represents the week number, and `POINTS` is the participation points for that week
+
+Example
+* `Week 1: [200]` <br>
+  `Week 2: [300]` <br>
+  `Week 3: [400]` <br>
+  `Week 4: [-1]` <br>
+  `Week 5: [-1]` <br>
+  `Week 6: [-1]` <br>
+  `Week 7: [-1]` <br>
+  `Week 8: [-1]` <br>
+  `Week 9: [-1]` <br>
+  `Week 10: [-1]` <br>
+  `Week 11: [-1]` <br>
+  `Week 12: [-1]` <br>
+
+The above example shows that the student have a participation point of 200 for week 1, 300 for week 2, 400 for week 3 <br>
+And -1 for the rest of the weeks (attendance is not marked)
 
 ### Assignments & Submissions
 
-#### Preface:
+#### Preface
 
 Assignment: A school assignment. Has an alphanumeric name, a non-negative integer total marks, and 
 student submissions associated with it.
 
 Submission: Linked to an assignment. Each student has a submission for every existing assignment.
-
-#### Commands:
 
 For assignments & submissions, you can make the following calls:
 * add_asgn
@@ -276,7 +326,7 @@ For assignments & submissions, you can make the following calls:
 * ungrade
 * list_asgn
 
-### Add Assignment: `add_asgn`
+#### Add Assignment: `add_asgn`
 
 Adds an assignment with a specified name and total marks.
 
@@ -291,7 +341,7 @@ Example:
 * `add_asgn n/Lab 1`
 * `add_asgn n/Lab 2 m/50`
 
-### Delete Assignment: `delete_asgn`
+#### Delete Assignment: `delete_asgn`
 Deletes the assignment of assignment_name you provided, along with the student submissions for that assignment.
 
 Format: `delete n/ASSIGNMENT_NAME`<br>
@@ -299,7 +349,7 @@ Format: `delete n/ASSIGNMENT_NAME`<br>
 Example:
 * `delete_asgn n/Lab 1`
 
-### Grade Assignment: `grade`
+#### Grade Assignment: `grade`
 Grades the student submission of assignment_name and student_id with the provided marks.
 
 You can also indicate whether a student submission is late by adding "late/" at the end.
@@ -348,23 +398,6 @@ Format: `create_class LIST_NAME [STUDENT_NAMES]`
 Examples:
 - `create_class cs2103t-t14 Alex, John, Bonnie, Clyde` creates a class list of size 4 with 4 students: Alex, John, Bonnie and Clyde.
 - `create_class cs6244` creates an empty class list.
-
-#### View class statistics: `class_stats`
-Displays statistics for the class, based on the specified field.
-
-Format: `class_stats st/FIELD [as/ASSIGNMENT_NAME]`
-- The argument `FIELD` must only be one of `attendance`/`grades`
-- If `attendance` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is not required and will be ignored.
-- If `grades` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is required.
-
-Examples:
-- `class_stats st/attendance`
-- `class_stats st/grades as/Test 1`
-
-<div markdown="span" class="alert alert-primary">
-:information_source: **Info:** The `FIELD` parameter is case-insensitive! 
-i.e. `atTenDanCE`, while unusual, is still a valid argument to `FIELD`.
-</div>
 
 #### Add a student: `add_student`
 Adds a student to a given class list.
@@ -420,6 +453,24 @@ Examples:
 <div markdown="span" class="alert alert-warning">
 :page_with_curl: **Note:** This command will delete the student with the given ID on the active class list, not from the list of all students obtained from using the `list` command.
 </div>
+
+#### View class statistics: `class_stats`
+Displays statistics for the class, based on the specified field.
+
+Format: `class_stats st/FIELD [as/ASSIGNMENT_NAME]`
+- The argument `FIELD` must only be one of `attendance`/`grades`
+- If `attendance` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is not required and will be ignored.
+- If `grades` is entered as the `FIELD` parameter, then `ASSIGNMENT_NAME` is required.
+
+Examples:
+- `class_stats st/attendance`
+- `class_stats st/grades as/Test 1`
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Info:** The `FIELD` parameter is case-insensitive! 
+i.e. `atTenDanCE`, while unusual, is still a valid argument to `FIELD`.
+</div>
+
 
 #### Group students at random: `rand_grp` [coming soon]
 Forms random groups of a specified size within a given class list.
