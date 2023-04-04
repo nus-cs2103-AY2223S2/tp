@@ -1042,7 +1042,8 @@ Edits the details of an existing appointment.
 ##### Syntax
 
 <pre>
-appointment edit <var>APPOINTMENT_ID</var> [--p <var>PATIENT_ID</var>] [--s <var>STARTING_TIME</var>] [--e <var>ENDING_TIME</var>] \
+appointment edit <var>APPOINTMENT_ID</var> [--p <var>PATIENT_ID</var>] \
+    [--s <var>STARTING_TIME</var>] [--e <var>ENDING_TIME</var>] \
     [--v <var>VACCINATION</var>]
 </pre>
 
