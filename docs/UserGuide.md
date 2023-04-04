@@ -755,7 +755,7 @@ _Details coming soon ..._
    ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
 7. Finally, on your opened terminal from step 4, type `chmod 777 start.command` > <kbd>Enter</kbd>.
    <div class="alert alert-info">
-   :information_source: <b>Note:</b> Replace <code>start</code> with whatever you name your <code>.command<code> file from step 5.
+   :information_source: <b>Note:</b> Replace <code>start</code> with whatever you name your <code>.command</code> file from step 5.
    </div>
    ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
 8. You can now double-click on your `.command` file to open CoDoc.
