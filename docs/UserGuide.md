@@ -617,7 +617,7 @@ Parameters:
       * `n` - Fish name, sorted lexicographically
       * `lfd` - Fish last fed date, sorted from earliest to latest
       * `s` - Fish species, sorted lexicographically 
-      * `fi` - Feeding interval, sorted from shortest to longest  
+      * `fi` - Feeding interval, sorted by days first, then by hours
       * `tk` - Tank name, sorted lexicographically
   * `[tk/<TANK_INDEX>]` - [Tank prefix.](#tank-tktank_index) Specifies which tank's fishes you want to sort and display
     * `<TANK_INDEX>` is a positive integer (1, 2, 3...) and must correspond to an actual tank
@@ -633,6 +633,9 @@ Parameters:
 > :information_source: Additional information: The tank prefix is enclosed in square brackets `[tk/<TANK_INDEX>]` because it is optional,
 
 > :bulb: Tip: Subsequent fishes added will be given an index according to previous `fish sort` commands!
+
+> :exclamation: Warning: If you have feeding intervals with hours greater than 23, `fish sort by/fi` may not work
+> as you thought it would! A fish with feeding interval `0d26h` will appear before one with `1d0h`!
 
 Example:
 * There are 3 fishes, 'B fish', 'C fish' and 'D fish' in the tank with index 1. There is 1 fish 'A fish' in the tank with index 2.
