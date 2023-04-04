@@ -99,10 +99,8 @@ This example also highlights the adaptive nature of VMS CLI syntax from steps 2 
 
 **:information_source: Command syntaxes presentation**<br>
 
-* **Pink italicized bolded capitalized words** represents _placeholders_ that the reader will have to replace with a
-  variable. For example, <code><var>PATIENT_ID</var></code> will represent a patient ID in commands or example outputs.
-* **Backslash** (`\`) before line breaks represents a _command continuation_ where the following line break and
-  backslash are to be replaced with an EMPTY character. For example,<br>
+* **Pink italicized bolded capitalized words** represents _placeholders_ that the reader will have to replace with a variable. For example, <code><var>PATIENT_ID</var></code> will represent a patient ID in commands or example outputs.
+* **Backslash** (`\`) before line breaks represents a _command continuation_ where the following line break and backslash are to be replaced with an EMPTY character. For example,<br>
   <pre>
   appointment add --p <var>PATIENT_ID</var> \
       --s <var>START_TIME</var> --e <var>END_TIME</var> \
@@ -112,18 +110,18 @@ This example also highlights the adaptive nature of VMS CLI syntax from steps 2 
   <pre>
   appointment add --p <var>PATIENT_ID</var> --s <var>START_TIME</var> --e <var>END_TIME</var> --v <var>VAX_NAME</var>
   </pre>
-* **Square brackets** (`[` and `]`) around arguments indicate that the argument is optional. For example,
+* **Square brackets** (`[` and `]`) around arguments indicate that the argument is _optional_. For example,
   <br><code>[--n <var>NEW_NAME</var>]</code> would mean that <wbr><code>--n <var>NEW_NAME</var></code> is optional.
-* **Three dots with no space** (`...`) <u>after</u> arguments indicates that multiple of the same type of
-  argument can be repeated. For example <wbr><code>[--r <var>REQUIREMENT</var>]...</code> would mean that
-  <code>--r <var>REQUIREMENT</var></code> can appear multiple times.
-* **Three dots with no space** <u>before</u> and <u>after</u> an argument would indicate that a list of that argument
-  is required. The elements of a list are delimited by commas (`,`) and the keyword `{EMPTY}` is used to represent an
-  empty list. For example, <code>--g ...<var>GROUP</var>...</code> would mean that a list of
-  <code><var>GROUP</var></code> is required. Accepted arguments may be
-  <code>--g <var>GROUP_1</var>, <var>GROUP_2</var>, <var>GROUP_3</var></code> for a list of 3 groups or `--g {EMPTY}`
-  for an empty list of groups.'
+* **Three dots with no space** (`...`) <u>after</u> arguments indicates that multiple of the same type of argument can be repeated. For example <wbr><code>[--r <var>REQUIREMENT</var>]...</code> would mean that <code>--r <var>REQUIREMENT</var></code> can appear multiple times.
+* **Plus** (`+`) indicates that the argument before must occur at least once but may be repeated multiple times.
+* **Three dots with no space** (`...`) <u>before</u> and <u>after</u> an argument would indicate that a _list_ of that argument is required. The elements of a list are delimited by commas (`,`) and the keyword `<EMPTY>` (case sensitive) is used to represent an empty list. For example, <code>--g ...<var>GROUP</var>...</code> would mean that a list of <code><var>GROUP</var></code> is required. Accepted arguments may be <code>--g <var>GROUP_1</var>, <var>GROUP_2</var>, <var>GROUP_3</var></code> for a list of 3 groups or `--g <EMPTY>` for an empty list of groups.
 * **Triangle brackets** (`<` and `>`) around words represent a [type](#types).
+* **Braces** (`{` and `}`) are represents _argument groups_.
+* **Pipe** (`|`) represents _mutually exclusive arguments_. For example,<br>
+  <pre>
+  {<var>PATIENT_NAME</var> | [--<var>ATTRIBUTE_FLAG</var> <var>FLAG_ARGUMENT</var>]+}
+  </pre>
+  would mean that the user will have to choose between entering the argument of the form <code><var>PATIENT_NAME</var></code> or <code>[--<var>ATTRIBUTE_FLAG</var> <var>FLAG_ARGUMENT</var>]+</code> but not both.
 
 </div>
 
@@ -150,8 +148,6 @@ The general command line syntax is as follows:<br>
 * Leading and trailing white spaces in <code><var>ARGUMENTS</var></code> and elements in lists will be ignored.
 * For flag arguments, if the command only requires one occurrence of it but multiple are given, only the last argument will be taken.
   * Example: If a command only requires one <code>--force <var>IS_FORCE</var></code>, but `--force false --force true` is present in the command input, only the last argument, `--force true`, will be taken.
-* The UI allows the user to click on the boxes and fields for aesthetic and organisational purposes only.
-* All of the user functions can be accessed via the CLI manner, the use of mouse is not required.
 
 ### Types
 
@@ -183,13 +179,17 @@ A non-blank character sequence consisting of only alphanumeric character and all
 
 An integer value between `-2147483648` and `2147483647`.
 
+#### `<index>`
+
+An extension of `<integer>` allowing only positive non-zero values (ie. `x > 0`).
+
 #### `<age>`
 
 An extension of `<integer>`, allowing only positive values (ie. `x >= 0`). Age also has a max value of `200` which is
 allowed to be exceeded, provided it conforms to `<integer>` restrictions as well. All values of age that exceed the max
 value will be evaluated to be equal.
 
-#### `<bloodType>`
+#### `<blood-type>`
 
 The list of blood types are:
 
@@ -212,10 +212,6 @@ The supported date formats are:
     eg. 2023-05-03T04:45
 * `yyyy-m-d hhmm` - single and double digit day and months are supported.<br>
   eg. 2023-5-3 0455
-  * The following formats are also acceptable:
-  * `yyyy-mm-d hhmm`
-  * `yyyy-mm-dd hhmm`
-  * `yyyy-m-dd hhmm`
 
 #### `<phone-number>`
 
@@ -295,7 +291,7 @@ help
 Keywords are identified by their sub and main keywords. Following is the list of the attributes that a keyword has.
 
 * **Keyword name** : `<keyword>` - the name of the user-defined keyword.
-* **Main Keyword** : `<mainKeyword>` - the main keyword that the user-defined keyword is paired to.
+* **Main Keyword** : `<string>` - the main keyword that the user-defined keyword is paired to.
 
 Default keywords implemented are shown in the list below.
 * pat-->patient
@@ -312,8 +308,8 @@ Adds a new keyword as defined in the command into the system.
 keyword add --k <var>MAIN_KEYWORD</var> --n <var>KEYWORD</var>
 </pre>
 
-* <code><var>MAIN_KEYWORD</var></code> : `<mainKeyword>`
-* <code><var>KEYWORD</var></code> : `<keyword>`
+* <code><var>MAIN_KEYWORD</var></code> : `<keyword>`
+* <code><var>KEYWORD</var></code> : `<string>`
 
 ##### Example
 
@@ -323,8 +319,7 @@ Example assumes that the keyword does not exist yet.
 keyword add --k patient --n pa
 ```
 
-<br><br>
-Output:<br>
+Output:
 
 ```text
 [INFO] New keyword added: pa-->patient
@@ -340,7 +335,7 @@ Deletes a keyword as defined in the command in the system.
 keyword delete <var>KEYWORD</var>
 </pre>
 
-* <code><var>KEYWORD</var></code> : `<keyword>`
+* <code><var>KEYWORD</var></code> : `<string>`
 
 ##### Example
 
@@ -350,8 +345,7 @@ Example assumes that the keyword already exists.
 keyword delete pat
 ```
 
-<br><br>
-Output:<br>
+Output:
 
 ```text
 [INFO] Deleted keyword: pa-->patient
@@ -368,7 +362,7 @@ A patient is uniquely identified by a generated `PATIENT_ID`. Duplicate patients
 | `name`        | YES       | `<name>`               | NO              |
 | `phone`       | YES       | `<phone-number>`       | NO              |
 | `dateOfBirth` | YES       | `<date>`               | NO              |
-| `bloodType`   | YES       | `<bloodType>`          | NO              |
+| `bloodType`   | YES       | `<blood-type>`         | NO              |
 | `allergies`   | NO        | list of `<group-name>` | YES             |
 | `vaccines`    | NO        | list of `<group-name>` | YES             |
 
@@ -389,12 +383,12 @@ patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BI
     --b <var>BLOODTYPE</var> [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
 </pre>
 
-* `--n` : <code><var>PATIENT_NAME</var></code> : `<name>`
-* `--p` : <code><var>PHONE</var></code> : `<phone>`
-* `--d` : <code><var>DATE_OF_BIRTH</var></code> : `<date>`
-* `--b` : <code><var>BLOODTYPE</var></code> : `<bloodType>`
-* `--a` : <code><var>ALLERGIES</var></code> : `<group-name>`
-* `--v` : <code><var>VACCINES</var></code> : `<group-name>`
+* <code><var>PATIENT_NAME</var></code> : `<name>`
+* <code><var>PHONE</var></code> : `<phone>`
+* <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* <code><var>BLOODTYPE</var></code> : `<blood-type>`
+* <code><var>ALLERGIES</var></code> : `<group-name>`
+* <code><var>VACCINES</var></code> : `<group-name>`
 
 ##### Example
 
@@ -439,8 +433,6 @@ Output:
 
 * <code><var>PATIENT_ID</var></code> must exist in the system.
 
-<br>
-
 #### `list` - List all patients
 
 Resets the view of the patient pane to display all the Patients. Useful command after using the find command.
@@ -469,22 +461,25 @@ Finds patients whose names contain any of the given keywords. You can also inclu
 patient find {<var>PATIENT_NAME</var> | [--<var>ATTRIBUTE_FLAG</var> <var>FLAG_ARGUMENT</var>]+}
 </pre>
 
-*`|` represents a mutually exclusive argument.*
+* <code><var>PATIENT_NAME</var></code> : `<string>`
 
-##### ATTRIBUTE_FLAG
+##### Find by flag
 
-Attribute flags are the same flags used when adding Patient. Below are the list of flags that are accepted for `patient find`
+<code><var>ATTRIBUTE_FLAG</var></code> and their corresponding <code><var>FLAG_ARGUMENT</var></code> have similar mappings and requirements to to patient's [`add`](#add---add-a-patient). That is,
 
-Do note that only one `ALLERGIES` flag can be used at one find command.
+* `--n` -> <code><var>PATIENT_NAME</var></code> : `<name>`
+* `--p` -> <code><var>PHONE</var></code> : `<phone>`
+* `--d` -> <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* `--b` -> <code><var>BLOODTYPE</var></code> : `<blood-type>`
+* `--a` -> <code><var>ALLERGIES</var></code> : `<group-name>`
+* `--v` -> <code><var>VACCINES</var></code> : `<group-name>`
 
-Do note that only one `VACCINES` flag can be used at one find command.
+Where the right side of `->` represents <code><var>ATTRIBUTE_FLAG</var></code> and the left represent <code><var>FLAG_ARGUMENT</var></code>
 
-* `--n` : <code><var>PATIENT_NAME</var></code> : `<name>`
-* `--p` : <code><var>PHONE</var></code> : `<phone>`
-* `--d` : <code><var>DATE_OF_BIRTH</var></code> : `<date>`
-* `--b` : <code><var>BLOODTYPE</var></code> : `<bloodType>`
-* `--a` : <code><var>ALLERGIES</var></code> : `<group-name>`
-* `--v` : <code><var>VACCINES</var></code> : `<group-name>`
+However, the following exceptions apply:
+
+* Only one `ALLERGIES` flag can be used at one find command.
+* Only one `VACCINES` flag can be used at one find command.
 
 ##### Example
 
@@ -512,13 +507,13 @@ patient edit <var>PATIENT_ID</var> [--n <var>PATIENT_NAME</var>] [--p <var>PHONE
     [--b <var>BLOODTYPE</var>] [--a ...<var>ALLERGIES</var>...]... [--v ...<var>VACCINES</var>...]...
 </pre>
 
-* `--n` : <code><var>PATIENT_NAME</var></code> : `<name>`
-* `--p` : <code><var>PHONE</var></code> : `<phone>`
-* `--d` : <code><var>DATE_OF_BIRTH</var></code> : `<date>`
-* `--b` : <code><var>BLOODTYPE</var></code> : `<bloodType>`
-* `--a` : <code><var>ALLERGIES</var></code> : `<group-name>`
-* `--v` : <code><var>VACCINES</var></code> : `<group-name>`
-* `--set` : <code><var>IS_SET</var></code> : `<boolean>`
+* <code><var>PATIENT_NAME</var></code> : `<name>`
+* <code><var>PHONE</var></code> : `<phone>`
+* <code><var>DATE_OF_BIRTH</var></code> : `<date>`
+* <code><var>BLOODTYPE</var></code> : `<blood-type>`
+* <code><var>ALLERGIES</var></code> : `<group-name>`
+* <code><var>VACCINES</var></code> : `<group-name>`
+* <code><var>IS_SET</var></code> : `<boolean>`
   * `true` to replace all list-like patient attributes (**ALLERGIES**, and **VACCINES**) with the one specified in the command or `false` to append them.
   * It is `false` by default.
 
@@ -543,8 +538,11 @@ Output:
 Appending patient's allergies and vaccination details
 
 ```text
-patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax
+patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ \
+    --a dogfur --a fern --v norovax
 ```
+
+Copy and paste: `patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax`
 
 Output:
 
@@ -559,8 +557,11 @@ Output:
 Setting patient's allergies and vaccination details, values prior will be overridden
 
 ```text
-patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --set true --a grass --v protovax --set true
+patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ \
+    --a nofur --a grass --v protovax --set true
 ```
+
+Copy and paste: `patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --a grass --v protovax --set true`
 
 Output:
 
@@ -573,8 +574,6 @@ Output:
 ##### Restrictions
 
 * <code><var>PATIENT_ID</var></code> must exist in the system.
-
-<br>
 
 #### `delete` - Delete a patient
 
@@ -601,8 +600,6 @@ Output:
 ##### Restrictions
 
 * <code><var>PATIENT_ID</var></code> must exist in the system.
-
-<br>
 
 #### `clear` - Clear Patients
 
@@ -690,6 +687,12 @@ vaccination add <var>VAX_NAME</var> [--g ...<var>GROUP</var>...]... \
 * <code><var>INGREDIENT</var></code> : `<group-name>`
 * <code><var>HISTORY_REQ</var></code> : `<req>`
 
+<div markdown="block" class="alert alert-info" id="vaccination-min-max-age-flag">
+:information_source: **Age flags**
+
+The flags `--lal` and `--ual` for minimum and maximum age stand for **<u>L</u>ower <u>A</u>ge <u>L</u>imit** and **<u>U</u>pper <u>A</u>ge <u>L</u>imit** respectively.
+</div>
+
 <div markdown="block" class="alert alert-success" id="vaccination-add-command-tip">
 :bulb: **Breaking up vaccination `add` syntax**
 
@@ -722,10 +725,9 @@ vaccination add ABC VAX --g ABC, VACCINATION \
     --h NONE::ABC
 ```
 
-Copy and paste:<br>
-`vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --i ALC-0315, ALC-0159 --h NONE::ABC`
-<br><br>
-Output:<br>
+Copy and paste: `vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --i ALC-0315, ALC-0159 --h NONE::ABC`
+
+Output:
 
 ```text
 [INFO] Vaccination: ABC VAX added
@@ -755,7 +757,7 @@ Example assumes none of the default start-up vaccinations are deleted yet.
 vaccination detail Dose 1 (Moderna)
 ```
 
-Output:<br>
+Output:
 
 ```text
 [INFO] Detailing vaccination: Dose 1 (Moderna)
@@ -766,8 +768,6 @@ Output:<br>
 ##### Restrictions
 
 * <code><var>VACCINATION</var></code> must exist in the system.
-
-<br>
 
 #### `list` - Lists all vaccination
 
@@ -809,7 +809,7 @@ vaccination find <var>VAX_NAME</var>
 vaccination find dose 1
 ```
 
-Output:<br>
+Output:
 
 ```text
 [INFO] 3 vaccinations listed!
@@ -820,8 +820,6 @@ Output:<br>
 ##### Restrictions
 
 * <code><var>VAX_NAME</var></code> cannot be blank.
-
-<br>
 
 #### `edit` - Edit a vaccination type
 
@@ -858,7 +856,7 @@ Following examples are independent of each other and follow after vaccination <a
 vaccination edit INDEX::1 --lal 5 --ual 25 --i NaOH --set true
 ```
 
-Output:<br>
+Output:
 
 ```text
 [INFO] Vaccination: ABC VAX updated
@@ -872,7 +870,7 @@ Output:<br>
 vaccination edit INDEX::1 --lal 5 --ual 25 --i NaOH
 ```
 
-Output:<br>
+Output:
 
 ```text
 [INFO] Vaccination: ABC VAX updated
@@ -884,8 +882,6 @@ Output:<br>
 
 * <code><var>VACCINATION</var></code> must exist in the system.
 * <code><var>NEW_NAME</var></code> must be a name that does not yet exist in the system unless it is the same as the vaccination being updated.
-
-<br>
 
 #### `delete` - Deletes a vaccination
 
@@ -922,7 +918,7 @@ vaccination delete ABC VAX
 vaccination delete NAME::ABC VAX
 ```
 
-Output:<br>
+Output:
 
 ```text
 vaccination: ABC VAX deleted
@@ -932,17 +928,17 @@ vaccination: ABC VAX deleted
 
 * <code><var>VACCINATION</var></code> must exist in the system.
 
-<br>
-
 #### `clear` - Clears all vaccination data
-
-##### Syntax
 
 Similar to vaccination delete, deletion of vaccinations may cause some appointment to become invalid. Add an additional `--force true` to force the change.
 
+##### Syntax
+
 <pre>
-vaccination clear
+vaccination clear --force <var>IS_FORCE</var>
 </pre>
+
+* <code><var>IS_FORCE</var></code> : `<boolean>`
 
 ##### Example
 
@@ -950,7 +946,7 @@ vaccination clear
 vaccination clear
 ```
 
-Output:<br>
+Output:
 
 ```text
 [INFO] Vaccinations successfully cleared
@@ -958,15 +954,13 @@ Output:<br>
 
 ### `appointment` - Appointment functionalities
 
-| Attribute     | Type              | Description                                |
-| ------------- | ----------------- | ------------------------------------------ |
-| Patient id    | `<PATIENT_ID>`    | The patient id of the appointment.         |
-| Starting time | `<localDateTime>` | The starting time of the appointment.      |
-| Ending time   | `<localDateTime>` | The ending time of the appointment.        |
-| Vaccination   | `<GroupName>`     | The vaccine type used for the appointment. |
-| Status        | `<Boolean>`       | The completion status of the appointment.  |
-
-<br>
+| Attribute     | Type           | Description                                |
+| ------------- | -------------- | ------------------------------------------ |
+| Patient id    | `<index>`      | The patient id of the appointment.         |
+| Starting time | `<date>`       | The starting time of the appointment.      |
+| Ending time   | `<date>`       | The ending time of the appointment.        |
+| Vaccination   | `<group-name>` | The vaccine type used for the appointment. |
+| Status        | `<boolean>`    | The completion status of the appointment.  |
 
 #### `add` - Add an appointment
 
@@ -978,11 +972,10 @@ Adds a new appointment to the appointment manager
 appointment add --p <var>PATIENT_ID</var> --s <var>STARTING_TIME</var> --e <var>ENDING_TIME</var> --v <var>VAX_GROUP</var>
 </pre>
 
-
-* <code><var>PATIENT_ID</var></code> : `<PATIENT_ID>`
-* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
-* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
-* <code><var>VAX_GROUP</var></code> : `<GroupName>`
+* <code><var>PATIENT_ID</var></code> : `<index>`
+* <code><var>STARTING_TIME</var></code> : `<date>`
+* <code><var>ENDING_TIME</var></code> : `<date>`
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
 
 ##### Example
 
@@ -998,8 +991,6 @@ appointment add --p 5 --s 2023-05-01 0700 --e 2023-05-01 0800 --v Dose 1 (Modern
 * The ending time must be after the given starting time.
 * The vaccination must be an existing vaccination type in the vaxtype manager.
 
-<br>
-
 #### `list` - List all appointments
 
 Resets the view of the appointment pane to display all the appointments. Useful command after using the find command.
@@ -1010,8 +1001,6 @@ Resets the view of the appointment pane to display all the appointments. Useful 
 appointment list
 </pre>
 
-<br>
-
 #### `find` - Find all matching appointments
 
 List all the appointments that matches the predicates provided.
@@ -1019,24 +1008,25 @@ List all the appointments that matches the predicates provided.
 * <code><var>PATIENT_ID</var></code> : List appointments of a specific patient
 * <code><var>STARTING_TIME</var></code> : List appointments after the starting time
 * <code><var>ENDING_TIME</var></code> : List appointments before the ending time
-* <code><var>VAX_GROUP</var></code> : List appointments that uses the specific vaccination
+* <code><var>VAX_NAME</var></code> : List appointments that uses the specific vaccination
 * <code><var>KEYWORDS</var></code> : List appointments that matches the keywords
 
 ##### Syntax
 
 <pre>
-appointment find [--p <var>PATIENT_ID</var>] [--s <var>STARTING_TIME</var>] [--e <var>ENDING_TIME</var>] \
-    [--v ...<var>VAX_GROUP</var>...]`
-
-appointment find [...<var>KEYWORDS</var>...]
+appointment find {...<var>KEYWORDS</var>... | [--<var>ATTRIBUTE_FLAG</var> <var>FLAG_ARGUMENT</var>]+}
 </pre>
 
+* <code><var>KEYWORD</var></code> : `<string>`
 
-* <code><var>PATIENT_ID</var></code> : `<PATIENT_ID>`
-* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
-* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
-* <code><var>VAX_GROUP</var></code> : `<GroupName>`
-* <code><var>KEYWORDS</var></code> : `<String>`
+##### Find by flag
+
+<code><var>ATTRIBUTE_FLAG</var></code> and their corresponding <code><var>FLAG_ARGUMENT</var></code> have similar mappings and requirements to to appointment's [`add`](#add---add-an-appointment). That is,
+
+* `--p` -> <code><var>PATIENT_ID</var></code> : `<integer>`
+* `--s` -> <code><var>STARTING_TIME</var></code> : `<date>`
+* `--e` -> <code><var>ENDING_TIME</var></code> : `<date>`
+* `--v` -> <code><var>VAX_NAME</var></code> : `<group-name>`
 
 ##### Example
 
@@ -1045,8 +1035,6 @@ appointment find --p 1
 appointment find Dose 1
 ```
 
-<br>
-
 #### `edit` - Edit an appointment
 
 Edits the details of an existing appointment.
@@ -1054,15 +1042,15 @@ Edits the details of an existing appointment.
 ##### Syntax
 
 <pre>
-appointment edit INDEX [--p <var>PATIENT_ID</var>] [--s <var>STARTING_TIME</var>] [--e <var>ENDING_TIME</var>] \
-    [--v <var>VAX_GROUP</var>]
+appointment edit <var>APPOINTMENT_ID</var> [--p <var>PATIENT_ID</var>] [--s <var>STARTING_TIME</var>] [--e <var>ENDING_TIME</var>] \
+    [--v <var>VACCINATION</var>]
 </pre>
 
-* <code><var>INDEX</var></code> : `<Index>`
-* <code><var>PATIENT_ID</var></code> : `<PATIENT_ID>`
-* <code><var>STARTING_TIME</var></code> : `<localDateTime>`
-* <code><var>ENDING_TIME</var></code> : `<localDateTime>`
-* <code><var>VAX_GROUP</var></code> : `<GroupName>`
+* <code><var>APPOINTMENT_ID</var></code> : `<index>`
+* <code><var>PATIENT_ID</var></code> : `<index>`
+* <code><var>STARTING_TIME</var></code> : `<date>`
+* <code><var>ENDING_TIME</var></code> : `<date>`
+* <code><var>VACCINATION</var></code> : `<vax-retriever>`
 
 ##### Example
 
@@ -1072,14 +1060,12 @@ appointment edit 1 --p 5 --s 2024-03-05 0700 --e 2024-03-05 0800 --v Dose 1 (Pfi
 
 ##### Restrictions
 
-* The index must be an existing index in the appointment manager.
-* The index must be of an appointment that has not yet passed.
-* The patient id must be an existing PATIENT_ID in the patient manager.
-* The starting time must be after the current locale time.
-* The ending time must be after the given starting time.
-* The vaccination must be an existing vaccination type in the vaxtype manager.
-
-<br>
+* The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
+* The <code><var>APPOINTMENT_ID</var></code> must be of an appointment that has not yet passed.
+* The <code><var>PATIENT_ID</var></code> must refer to an existing patient in the system.
+* The <code><var>START_TIME</var></code> must be after the current locale time.
+* The <code><var>END_TIME</var></code> must be after the given starting time.
+* The <code><var>VACCINATION</var></code> must refer to an existing vaccination in the system.
 
 #### `mark` - Marks an appointment as completed
 
@@ -1088,10 +1074,10 @@ Marks an existing appointment as completed.
 ##### Syntax
 
 <pre>
-appointment mark <var>INDEX</var>
+appointment mark <var>APPOINTMENT_ID</var>
 </pre>
 
-* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>APPOINTMENT_ID</var></code> : `<index>`
 
 ##### Example
 
@@ -1101,10 +1087,8 @@ appointment mark 1
 
 ##### Restrictions
 
-* The index must be an existing index in the appointment manager.
+* The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
 * The specified appointment should not already be done.
-
-<br>
 
 #### `unmark` - Changes an appointment's status to not done
 
@@ -1113,10 +1097,10 @@ Changes the completion status to not done.
 ##### Syntax
 
 <pre>
-appointment unmark <var>INDEX</var>
+appointment unmark <var>APPOINTMENT_ID</var>
 </pre>
 
-* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>APPOINTMENT_ID</var></code> : `<index>`
 
 ##### Example
 
@@ -1126,10 +1110,8 @@ appointment unmark 1
 
 ##### Restrictions
 
-* The index must be an existing index in the appointment manager.
+* The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
 * The specified appointment should already be done.
-
-<br>
 
 #### `delete` - Delete an appointment
 
@@ -1138,10 +1120,10 @@ Removes the specified appointment from the appointment manager.
 ##### Syntax
 
 <pre>
-appointment delete <var>INDEX</var>
+appointment delete <var>APPOINTMENT_ID</var>
 </pre>
 
-* <code><var>INDEX</var></code> : `<Index>`
+* <code><var>APPOINTMENT_ID</var></code> : `<index>`
 
 ##### Example
 
@@ -1151,9 +1133,7 @@ appointment delete 5
 
 ##### Restrictions
 
-* The index must be an existing index in the appointment manager.
-
-<br>
+* The <code><var>APPOINTMENT_ID</var></code> must be an existing index in the appointment manager.
 
 ## Data files
 
