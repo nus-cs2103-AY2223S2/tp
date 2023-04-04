@@ -4,13 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static taa.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_STAT_TYPE;
 
-import taa.assignment.exceptions.AssignmentNotFoundException;
-import taa.assignment.exceptions.NoGradeVarianceException;
-import taa.assignment.exceptions.NoSubmissionsFoundException;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
-
+import taa.model.assignment.exceptions.AssignmentNotFoundException;
+import taa.model.assignment.exceptions.NoGradeVarianceException;
+import taa.model.assignment.exceptions.NoSubmissionsFoundException;
 
 /**
  * Displays the statistics for the active class list.

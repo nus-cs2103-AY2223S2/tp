@@ -11,7 +11,7 @@ import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Name;
 
 /**
- * Parser for grading command.
+ * Parser for UngradeCommand.
  */
 public class UngradeCommandParser {
     /**

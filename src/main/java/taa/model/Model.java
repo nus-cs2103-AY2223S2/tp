@@ -4,15 +4,15 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import taa.assignment.exceptions.AssignmentException;
-import taa.assignment.exceptions.AssignmentNotFoundException;
-import taa.assignment.exceptions.DuplicateAssignmentException;
-import taa.assignment.exceptions.NoGradeVarianceException;
-import taa.assignment.exceptions.NoSubmissionsFoundException;
 import taa.commons.core.GuiSettings;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.alarm.Alarm;
+import taa.model.assignment.exceptions.AssignmentException;
+import taa.model.assignment.exceptions.AssignmentNotFoundException;
+import taa.model.assignment.exceptions.DuplicateAssignmentException;
+import taa.model.assignment.exceptions.NoGradeVarianceException;
+import taa.model.assignment.exceptions.NoSubmissionsFoundException;
 import taa.model.student.Student;
 
 /**

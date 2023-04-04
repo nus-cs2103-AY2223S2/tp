@@ -2,12 +2,12 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import taa.assignment.exceptions.AssignmentException;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
+import taa.model.assignment.exceptions.AssignmentException;
 
 /**
- * Grades a student submission of an assignment.
+ * Grades a student submission of an assignment of assignmentName.
  */
 public class GradeCommand extends Command {
 
@@ -23,6 +23,7 @@ public class GradeCommand extends Command {
     private final boolean isLateSubmission;
 
     /**
+     * Constructor for GradeCommand
      * @param assignmentName
      * @param studentId
      * @param marks

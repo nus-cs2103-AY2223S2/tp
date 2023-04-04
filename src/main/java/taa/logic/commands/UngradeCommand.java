@@ -2,12 +2,12 @@ package taa.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import taa.assignment.exceptions.AssignmentException;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
+import taa.model.assignment.exceptions.AssignmentException;
 
 /**
- * Grades a student submission of an assignment.
+ * Resets the marks and late status of a student submission.
  */
 public class UngradeCommand extends Command {
 
