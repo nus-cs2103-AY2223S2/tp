@@ -732,7 +732,7 @@ _Details coming soon ..._
    * and place our `codoc.jar` into it
    ![mac_open_01](images/user-guide/mac_open_01.png)
    <div class="span" class="alert alert-info">
-   :information_source: <b>Note:</b> The folder CoDoc is now our *home folder*.
+   :information_source: <b>Note:</b> The folder CoDoc is now our <em>home folder</em>.
    </div>
 2. Create an empty text file and **leave it open for now.**
    * <kbd>CMD</kbd> + <kbd>Space</kbd> > type *textEdit.app* >  <kbd>Enter</kbd> (to open textEdit)
@@ -755,17 +755,17 @@ _Details coming soon ..._
    ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
 7. Finally, on your opened terminal from step 4, type `chmod 777 start.command` > <kbd>Enter</kbd>.
    <div class="alert alert-info">
-   :information_source: <b>Note:</b> Replace **start** with whatever you name your `.command` file from step 5.
+   :information_source: <b>Note:</b> Replace <code>start</code> with whatever you name your <code>.command<code> file from step 5.
    </div>
    ![mac_command_file_chmod](images/user-guide/mac_command_file_chmod.png)
 8. You can now double-click on your `.command` file to open CoDoc.
 
    <div class="span" class="alert alert-warning">
-   :bulb: <b>Tip:</b> You can now place the `.command` file anywhere.
+   :bulb: <b>Tip:</b> You can now place the <code>.command</code> file anywhere.
    </div>
 
    <div class="span" class="alert alert-danger">  
-   :warning: <b>Caution:</b> If you decide to change the location of *home folder*, repeat from step 2.
+   :warning: <b>Caution:</b> If you decide to change the location of <em>home folder</em>, repeat from step 2.
    </div>
 
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
