@@ -10,32 +10,90 @@ An increasing number of vaccination are now having more complicated prerequisite
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Start up
 
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `vms.jar` from [here](https://github.com/AY2223S2-CS2103-F11-3/tp/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your VMS.
-
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar vms.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Ensure that java `11` or above is properly installed on your device.
+2. Download the latest [`VMS.jar`](https://github.com/AY2223S2-CS2103-F11-3/tp/releases).
+3. Copy the file to an appropriate folder for VMS to execute in.
+4. Open the command terminal, `cd` into the folder in step 3 and start VMS with `java -jar vms.jar` command. A GUI similar similar to what is shown below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+<div markdown="block" class="alert alert-info" id="start-up-warning-info">
+:information_source: **Start up warning messages**
 
-   * `patient list` : Lists all patients.
-   * `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+` : Adds a patient named `John Doe` to the Patient List.
-   * `patient delete 3` : Deletes the 3rd patient shown in the current list.
-   * `patient clear` : Deletes all patients.
-   * `exit` : Exits the app.
+If this is your first time starting up the application, you might be greeted with a few warning messages. However, do not be alarmed as this is to protect your save data. They will only show if VMS is unable to find or load your save data for whatever reason.
 
-1. Refer to the [Command line syntax](#command-line-syntax) below for details of each command.
+Any successful command execution will save the current state of VMS and stop the warning messages from showing, assuming that the data files are not tempered with. You can try entering the `help` or `exit` commands to initialize the starting data files.
+
+View the [data files section](#data-files) to learn more about these data files.
+</div>
+
+<div markdown="block" class="alert alert-danger" id="start-up-warning-warning">
+:warning: **Potential loss of data**
+
+If this is not your first time using VMS, do **<u>NOT</u>** attempt to execute any commands. Review the warning messages first ensuring that the warnings are expected due to intentional tempering with the data files (eg. deleting the entire data folder or one of the data files) before continuing.
+
+**If any commands were to successfully be executed, <u>ALL</u> previous data in the data folder, if present, will be overwritten and lost forever.**
+</div>
+
+## GUI of VMS
+
+<img src="images/AnnotatedUiDisplay.png" id="annotated-ui-display">
+
+| Number                                | Name                     | Detail                                       |
+| ------------------------------------- | ------------------------ | -------------------------------------------- |
+| <span class="circled-number">1</span> | Command input field      | Where commands are entered                   |
+| <span class="circled-number">2</span> | Message panel            | Where messages are displayed                 |
+| <span class="circled-number">3</span> | Patient list panel       | A list view of patients                      |
+| <span class="circled-number">3</span> | Patient detail panel     | Panel where patients are shown in detail     |
+| <span class="circled-number">5</span> | Vaccination list panel   | A list view of vaccinations                  |
+| <span class="circled-number">6</span> | Vaccination detail panel | Panel where vaccinations are shown in detail |
+| <span class="circled-number">7</span> | Appointment list panel   | A list view of appointments                  |
+
+## Usage guide
+
+##### Initializing
+
+Before diving into VMS, first initialize the data of the vaccinations that your clinic supports.
+
+* VMS is initialized with a few COVID-19 vaccinations by default. If your clinic do not offer these vaccinations, these data can be purged by running vaccination's [`clear`](#clear---clears-all-vaccination-data) command.
+* See [`add`](#add---add-a-vaccination-type) on how you can add a vaccination.
+
+##### Normal usage
+
+After initializing the vaccination data of your clinic, you are ready to go! All you will have to do is follow these simple steps and VMS will ease your receptionist duties.
+
+1. Wait for a patient to call in to book an appointment for a vaccination.
+2. If they do not exist in the system yet, add them into the system using patient's [`add`](#add---add-a-patient) command.
+3. Schedule an appointment for them by running appointment's ['add'](#add---add-an-appointment) command.
+4. If the patient is eligible to take the vaccination that they want, the appointment will be added into VMS. Otherwise, an error message will show and you can inform them about their ineligibility to take the vaccination.
+5. If you wish to retrieve a patient's contact number, maybe to remind them of their upcoming appointment, you can retrieve it by using patient's ['detail'](#detail---displays-the-detail-of-a-patient) command. The patient's ID number is conveniently displayed on the appointment card for easy reference.
+
+##### Example scenario
+
+Here is an scenario example usage using <u>VMS start up sample data</u> immediately after [start up](#start-up):
+
+1. A patient calls, he provides information that his name is **Tan Xiao Ming**, born on **1999 April 15**, blood type **A+**, allergic to nothing and has already taken **Dose 1 (Moderna)**. From your clinic phone, the number is **97643158**. The following command will add this patient into the system:
+```text
+patient add --n Tan Xiao Ming --p 97643158 --d 1999-04-15 --b A+ --v Dose 1 (Moderna)
+```
+2. He mentions that he wishes to take **Dose 2 (Pfizer)** on **2024 March 5th at 1600**. You clinic's average vaccination appointment take roughly about 30mins. From step 2, it is shown that Xiao Ming has an ID of **7** as well. The following command will attempt to schedule an appointment for him:
+```text
+appointment add --p 7 --v Dose 2 (Pfizer) --s 2024-3-5 1600 --e 2024-3-5 1630
+```
+3. Uah! An error message shows saying that the he cannot take that vaccination. According to MOH, this is so as patient's first and second COVID-19 vaccination doses must be of the same brand. You inform him of this and he decides that he will take Dose 2 (Moderna) instead. Without scrolling, you see that this vaccination is in index **4** of the vaccination list panel. To attempt to schedule this new appointment for Xiao Ming, enter the following command:
+```text
+appointment add --p 7 --v 4 --s 2024-3-5 1600 --e 2024-3-5 1630
+```
+4. The appointment get successfully added and you inform him that you have schedule the appointment for him.
+
+With this, VMS has automated the validation of patient's appointment scheduling, making your receptionist duties easier!
+
+This example also highlights the adaptive nature of VMS CLI syntax from steps 2 and 3. See the [features](#features) to understand more about VMS full capabilities.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command line syntax
+## Features
 
 <div markdown="block" class="alert alert-info" id="CLI-presentation-format">
 
@@ -901,7 +959,7 @@ Output:<br>
 ### `appointment` - Appointment functionalities
 
 | Attribute     | Type              | Description                                |
-|---------------|-------------------|--------------------------------------------|
+| ------------- | ----------------- | ------------------------------------------ |
 | Patient id    | `<PATIENT_ID>`    | The patient id of the appointment.         |
 | Starting time | `<localDateTime>` | The starting time of the appointment.      |
 | Ending time   | `<localDateTime>` | The ending time of the appointment.        |
@@ -1097,7 +1155,7 @@ appointment delete 5
 
 <br>
 
-## Advance
+## Data files
 
 VMS data are saved as a JSON files in `[JAR file location]/data`. Advanced users are welcome to update data directly by editing that data file.
 
