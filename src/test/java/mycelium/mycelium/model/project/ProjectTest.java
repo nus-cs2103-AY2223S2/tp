@@ -184,7 +184,7 @@ public class ProjectTest {
     }
 
     @Test
-    public void compareToWithDeadline_caseTwoProjectsWithDifferentDeadlines() {
+    public void compareToWithDeadline_twoProjectsWithDifferentDeadlines_negativeIntegerReturned() {
         Project project = new ProjectBuilder(BARD).withDeadline(LocalDate.now()).build();
         Project projectAfter = new ProjectBuilder(BARD).withDeadline(LocalDate.now().plusDays(2)).build();
 
@@ -192,7 +192,7 @@ public class ProjectTest {
     }
 
     @Test
-    public void compareToWithDeadline_caseTwoProjectsWithSameDeadlines() {
+    public void compareToWithDeadline_twoProjectsWithSameDeadlines_negativeIntegerReturned() {
         LocalDate currentDate = LocalDate.now();
         Project project = new ProjectBuilder(BARD).withDeadline(currentDate).build();
         Project projectWithSameDeadline = new ProjectBuilder(BING).withDeadline(currentDate).build();
@@ -200,9 +200,15 @@ public class ProjectTest {
     }
 
     @Test
-    public void compareToWithDeadline_caseTwoProjectsWithNoDeadlines() {
+    public void compareToWithDeadline_oneProjectWithNoDeadlines_exceptionThrown() {
         Project project = new ProjectBuilder(BOSE).build();
-        Project otherProject = new ProjectBuilder(BARD).build();
+        Project otherProject = new ProjectBuilder(BARD).withDeadline(LocalDate.now()).build();
         assertThrows(AssertionError.class, () -> project.compareToWithDeadline(otherProject));
+    }
+
+    @Test
+    public void compareToWithDeadline_sameProjectWithDeadlines_zeroReturned() {
+        Project project = new ProjectBuilder(BARD).withDeadline(LocalDate.now()).build();
+        assertTrue(project.compareToWithDeadline(project) == 0);
     }
 }

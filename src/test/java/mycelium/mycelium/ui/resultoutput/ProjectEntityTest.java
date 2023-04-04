@@ -14,7 +14,7 @@ import mycelium.mycelium.testutil.ProjectBuilder;
 import mycelium.mycelium.ui.GuiUnitTest;
 import mycelium.mycelium.ui.entitypanel.ProjectEntity;
 
-public class ProjectListCardTest extends GuiUnitTest {
+public class ProjectEntityTest extends GuiUnitTest {
 
     @Test
     public void display() {
@@ -29,7 +29,7 @@ public class ProjectListCardTest extends GuiUnitTest {
         Project project = new ProjectBuilder().build();
         ProjectEntity projectCard = new ProjectEntity(project, 0);
 
-        // same person, same index -> returns true
+        // same project, same index -> returns true
         ProjectEntity copy = new ProjectEntity(project, 0);
         assertTrue(projectCard.equals(copy));
 
@@ -42,9 +42,9 @@ public class ProjectListCardTest extends GuiUnitTest {
         // different types -> returns false
         assertFalse(projectCard.equals(0));
 
-        // different person, same index -> returns false
-        Project differentPerson = new ProjectBuilder().withName("differentName").build();
-        assertFalse(projectCard.equals(new ProjectEntity(differentPerson, 0)));
+        // different project, same index -> returns false
+        Project differentProject = new ProjectBuilder().withName("differentName").build();
+        assertFalse(projectCard.equals(new ProjectEntity(differentProject, 0)));
 
         // same person, different index -> returns false
         assertFalse(projectCard.equals(new ProjectEntity(project, 1)));
