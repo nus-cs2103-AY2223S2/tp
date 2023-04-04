@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+
+box sd List lectures in a module
+participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "code:ModuleCode" as ModuleCode LOGIC_COLOR
+end box
+
+activate ListCommandParser
+
+ListCommandParser -> ParserUtil : parseModuleCode("CS2040S")
+activate ParserUtil
+
+create ModuleCode
+ParserUtil -> ModuleCode : ModuleCode("CS2040S")
+activate ModuleCode
+
+ModuleCode --> ParserUtil : code
+deactivate ModuleCode
+
+ParserUtil --> ListCommandParser : code
+deactivate ParserUtil
+
+ListCommandParser -[hidden]-> ListCommandParser
+deactivate ListCommandParser
+
+@enduml
