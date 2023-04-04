@@ -3,12 +3,15 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.logic.commands.exceptions.CommandException;
 import java.time.LocalDate;
+import java.util.List;
 
-
+import seedu.address.model.person.MeetingWithPersonPredicate;
 import seedu.address.model.person.MeetingStartDatePredicate;
+import seedu.address.model.person.Person;
 
 /**
  * Finds meetings with matching start date and time
@@ -23,8 +26,8 @@ public class FindMeetingCommand extends Command {
             + "Example: " + COMMAND_WORD + "23/03/2023";
 
 
-    private final LocalDate meetingStart;
-
+    private LocalDate meetingStart;
+    private Index personIndex;
     /**
      * Finds meeting with specified start date and time
      * @param meetingStart start date and time
@@ -32,6 +35,10 @@ public class FindMeetingCommand extends Command {
     public FindMeetingCommand(LocalDate meetingStart) {
         requireNonNull(meetingStart);
         this.meetingStart = meetingStart;
+    }
+    public FindMeetingCommand(Index personIndex) {
+        requireNonNull(personIndex);
+        this.personIndex = personIndex;
     }
 
     /**
@@ -41,9 +48,19 @@ public class FindMeetingCommand extends Command {
      */
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredMeetingList(new MeetingStartDatePredicate(meetingStart));
+        if (meetingStart != null) {
+            model.updateFilteredMeetingList(new MeetingStartDatePredicate(meetingStart));
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
+        }
+        List<Person> lastShownList = model.getFilteredPersonList();
+        if (personIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        Person person = lastShownList.get(personIndex.getZeroBased());
+        model.updateFilteredMeetingList(new MeetingWithPersonPredicate(person));
         return new CommandResult(
-            String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
+                String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW, model.getFilteredMeetingList().size()));
     }
 
 
