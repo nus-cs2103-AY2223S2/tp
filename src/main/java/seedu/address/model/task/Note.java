@@ -20,10 +20,8 @@ public class Note {
     private NoteContent note;
 
     /**
-     * A Note constructor to create an instance of note.
+     * A Note constructor to create an instance of note with content {@code note}.
      * Every field must be present and not null.
-     *
-     * @param note represents a short note for the respective note
      */
     public Note(NoteContent note) {
         requireAllNonNull(note);
@@ -33,12 +31,9 @@ public class Note {
     }
 
     /**
-     * A Note constructor to create an instance of note.
+     * A Note constructor to create an instance of note with content {@code note}, {@code date} and {@code type}.
      * Every field must be present and not null.
-     *
-     * @param note represents a short note for the respective note
-     * @param date represents the date of the note created, auto-assigned
-     * @param type represents the type of instance, it is in default set to `TaskType.NOTE`
+     * This constructor is used to create a {@code Note} from the respective Json data file entry.
      */
     public Note(NoteContent note, LocalDate date, TaskType type) {
         requireAllNonNull(note, date, type);

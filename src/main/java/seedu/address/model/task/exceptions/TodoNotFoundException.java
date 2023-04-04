@@ -1,7 +1,7 @@
 package seedu.address.model.task.exceptions;
 
 /**
- * Signals that the operation will result requesting unavailable todo.
+ * Signals that the operation will result requesting unavailable Todo.
  */
 public class TodoNotFoundException extends RuntimeException {
 

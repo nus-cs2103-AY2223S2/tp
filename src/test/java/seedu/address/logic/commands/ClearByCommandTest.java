@@ -9,8 +9,8 @@ import static seedu.address.logic.commands.ClearByCommand.MESSAGE_NULL;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalInternships.getTypicalInternships;
-import static seedu.address.testutil.TypicalInternships.getTypicalNoteList;
-import static seedu.address.testutil.TypicalInternships.getTypicalTodoList;
+import static seedu.address.testutil.TypicalNotes.getTypicalNoteList;
+import static seedu.address.testutil.TypicalTodos.getTypicalTodoList;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,6 +27,9 @@ import seedu.address.model.person.InternshipApplication;
 import seedu.address.model.person.InternshipStatus;
 import seedu.address.model.person.JobTitle;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for {@code ClearByCommand}.
+ */
 public class ClearByCommandTest {
 
     private Model model;

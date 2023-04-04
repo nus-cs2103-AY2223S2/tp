@@ -11,13 +11,14 @@ import seedu.address.model.person.InterviewDate;
 import seedu.address.ui.control.PopupEditInternship;
 
 /**
- * An UI component that displays information of a {@code InternshipApplication} for ReminderWindow.
+ * A UI component that displays information of a {@code InternshipApplication} for ReminderWindow.
  */
 public class ReminderApplicationCard extends UiPart<Region> {
     private static final String FXML = "ReminderApplicationCard.fxml";
     public final InternshipApplication application;
     private PopupEditInternship popupEditInternship;
     private final MainWindow mainWindow;
+
     /**
      * NoteList: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -25,7 +26,6 @@ public class ReminderApplicationCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
-
     @FXML
     private HBox cardPane;
     @FXML

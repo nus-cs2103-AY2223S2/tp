@@ -11,8 +11,8 @@ import seedu.address.model.person.JobTitle;
 import seedu.address.model.tag.TaskType;
 
 /**
- * Represents an Interested Internship that has not applied in the planner.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Represents an interested Internship that has not applied in the {@code TodoList}.
+ * Guarantees: details are present, field values are validated, immutable.
  */
 public class InternshipTodo {
     // Identity fields
@@ -20,18 +20,15 @@ public class InternshipTodo {
     private final JobTitle jobTitle;
     private final LocalDate date;
     private final TaskType type;
+    private ApplicationDeadline deadline;
 
     //Optional field
-    private ApplicationDeadline deadline;
     private NoteContent note;
 
     /**
-     * An InternshipTodo constructor to create an instance of todo internship application.
+     * An InternshipTodo constructor to create an instance of todo internship application with company name
+     * {@code title}, {@code jobTitle} and {@code deadline}.
      * Every field must be present and not null.
-     *
-     * @param title represents title of a todo internship application, acts as the title for the todo tasks
-     * @param jobTitle represents the job name
-     * @param deadline represents the deadline of the todo task
      */
     public InternshipTodo(CompanyName title, JobTitle jobTitle, ApplicationDeadline deadline) {
         requireAllNonNull(title, jobTitle, deadline);
@@ -44,14 +41,10 @@ public class InternshipTodo {
     }
 
     /**
-     * An InternshipTodo constructor to create an instance of todo internship application.
+     * An InternshipTodo constructor to create an instance of todo internship application with company name
+     * {@code title}, {@code jobTitle}, {@code deadline}, date created {@code date} and {@code type}.
      * Every field must be present and not null.
-     *
-     * @param title represents title of a todo internship application, acts as the title for the todo tasks
-     * @param jobTitle represents the job name
-     * @param deadline represents the deadline of the todo task
-     * @param date represents the date of the todo task created, auto-assigned
-     * @param type represents the type of instance, it is in default set to `TaskType.TODO`
+     * This constructor is used to create {@code InternshipTodo} from the Json data file when {@code note} is null.
      */
     public InternshipTodo(CompanyName title, JobTitle jobTitle, ApplicationDeadline deadline, LocalDate date,
                           TaskType type) {
@@ -65,13 +58,9 @@ public class InternshipTodo {
     }
 
     /**
-     * An InternshipTodo constructor to create an instance of todo internship application.
+     * An InternshipTodo constructor to create an instance of todo internship application with company name
+     * {@code title}, {@code jobTitle}, {@code deadline} and {@code note}.
      * Every field must be present and not null.
-     *
-     * @param title represents title of a todo internship application, acts as the title for the todo tasks
-     * @param jobTitle represents the job name
-     * @param deadline represents the deadline of the todo task
-     * @param note represents a short note for the respective todo task
      */
     public InternshipTodo(CompanyName title, JobTitle jobTitle, ApplicationDeadline deadline, NoteContent note) {
         requireAllNonNull(title, jobTitle, deadline);
@@ -84,15 +73,11 @@ public class InternshipTodo {
     }
 
     /**
-     * An InternshipTodo constructor to create an instance of todo internship application.
+     * An InternshipTodo constructor to create an instance of todo internship application with company name
+     * {@code title}, {@code jobTitle}, {@code deadline}, {@code note}, date created {@code date} and {@code type}.
      * Every field must be present and not null.
-     *
-     * @param title represents title of a todo internship application, acts as the title for the todo tasks
-     * @param jobTitle represents the job name
-     * @param deadline represents the deadline of the todo task
-     * @param note represents a short note for the respective todo task
-     * @param date represents the date of the todo task created, auto-assigned
-     * @param type represents the type of instance, it is in default set to `TaskType.TODO`
+     * This constructor is used to create {@code InternshipTodo} from the Json data file, when the {@code note} is
+     * not null.
      */
     public InternshipTodo(CompanyName title, JobTitle jobTitle, ApplicationDeadline deadline, NoteContent note,
                           LocalDate date, TaskType type) {

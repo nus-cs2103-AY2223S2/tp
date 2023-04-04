@@ -15,10 +15,8 @@ import seedu.address.model.task.exceptions.TodoNotFoundException;
  * A list of InternshipTodo that enforces uniqueness between its elements and does not allow nulls.
  * An InternshipTodo is considered unique by comparing using {@code InternshipTodo#isSameTodo(InternshipTodo)}.
  * As such, adding and updating of todos uses InternshipTodo#isSameTodo(InternshipTodo) for equality to ensure that the
- * todo being added or updated is unique in terms of identity in the UniqueTodoList.
- * However, the removal of a todo uses InternshipTodo#equals(Object) to ensure that the InternshipTodo with exactly the
- * same fields will be removed.
- *
+ * todo being added or updated is unique in terms of identity in the UniqueTodoList. However, the removal of a todo uses
+ * InternshipTodo#equals(Object) to ensure that the InternshipTodo with exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
  * @see InternshipTodo#isSameTodo(InternshipTodo)

@@ -52,6 +52,7 @@ public class MixedPanel extends UiPart<Region> {
     /**
      * Handles mouse clicks for todoListView to show the corresponding {@code InternshipTodo}
      * in the {@code ViewContentPanel}
+     *
      * @param arg0 mouse click event
      */
     @FXML public void handleTodoMouseClick(MouseEvent arg0) {
@@ -63,6 +64,7 @@ public class MixedPanel extends UiPart<Region> {
     /**
      * Handles mouse clicks for noteListView to show the corresponding {@code Note}
      * in the {@code ViewContentPanel}
+     *
      * @param arg0 mouse click event
      */
     @FXML public void handleNoteMouseClick(MouseEvent arg0) {

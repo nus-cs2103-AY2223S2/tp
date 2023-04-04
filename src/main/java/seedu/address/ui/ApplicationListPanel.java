@@ -48,6 +48,7 @@ public class ApplicationListPanel extends UiPart<Region> {
     /**
      * Handles mouse clicks for applicationListView to show the corresponding {@code InternshipApplication}
      * in the {@code ViewContentPanel}
+     *
      * @param arg0 mouse click event
      */
     @FXML public void handleMouseClick(MouseEvent arg0) {

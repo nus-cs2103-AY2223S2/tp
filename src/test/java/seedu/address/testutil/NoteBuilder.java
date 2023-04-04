@@ -7,7 +7,7 @@ import seedu.address.model.task.Note;
 import seedu.address.model.task.NoteContent;
 
 /**
- * A utility class to help with building Contact objects.
+ * A utility class to help with building {@code Note} objects.
  */
 public class NoteBuilder {
 
@@ -15,13 +15,12 @@ public class NoteBuilder {
     private static final TaskType TASK_TYPE = TaskType.NOTE;
     private static final NoteContent DEFAULT_NOTE = new NoteContent("This is a note!");
 
-    //Optional field
     private LocalDate date;
     private TaskType type;
     private NoteContent note;
 
     /**
-     * Creates a {@code InternshipTodoBuilder} with the default details.
+     * Creates a {@code NoteBuilder} with the default details.
      */
     public NoteBuilder() {
         date = CURRENT_DATE;
@@ -30,7 +29,7 @@ public class NoteBuilder {
     }
 
     /**
-     * Initializes the InternshipTodoBuilder with the data of {@code noteToCopy}.
+     * Initializes the {@code NoteBuilder} with the data of {@code noteToCopy}.
      */
     public NoteBuilder(Note noteToCopy) {
         date = noteToCopy.getDate();
@@ -39,7 +38,7 @@ public class NoteBuilder {
     }
 
     /**
-     * Sets the {@code LocalDate} of the {@code InternshipTodo} that we are building.
+     * Sets the {@code LocalDate} of the {@code Note} that we are building.
      */
     public NoteBuilder withDate(String date) {
         this.date = LocalDate.parse(date);
@@ -47,7 +46,7 @@ public class NoteBuilder {
     }
 
     /**
-     * Sets the {@code NoteContent} of the {@code InternshipTodo} that we are building.
+     * Sets the {@code NoteContent} of the {@code Note} that we are building.
      */
     public NoteBuilder withNote(String note) {
         this.note = new NoteContent(note);

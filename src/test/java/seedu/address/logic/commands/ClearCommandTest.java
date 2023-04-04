@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalInternships.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalInternships.getTypicalNoteList;
-import static seedu.address.testutil.TypicalInternships.getTypicalTodoList;
+import static seedu.address.testutil.TypicalNotes.getTypicalNoteList;
+import static seedu.address.testutil.TypicalTodos.getTypicalTodoList;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-
+/**
+ * Contains integration tests (interaction with the Model) for {@code ClearCommand}.
+ */
 public class ClearCommandTest {
 
     private Model model;
@@ -24,7 +26,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyInternEase_success() {
         model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -33,7 +35,7 @@ public class ClearCommandTest {
 
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyInternEase_success() {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalTodoList(),
                 getTypicalNoteList());
         expectedModel.setInternEase(new AddressBook());

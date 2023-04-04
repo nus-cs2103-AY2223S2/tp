@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
-import seedu.address.model.NoteList;
-import seedu.address.model.TodoList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
@@ -79,11 +77,4 @@ public class TypicalInternships {
                 FIONA, GEORGE, HARRY, IAN, JAMES, ORACLE, AMAZON));
     }
 
-    public static NoteList getTypicalNoteList() {
-        return new NoteList();
-    }
-
-    public static TodoList getTypicalTodoList() {
-        return new TodoList();
-    }
 }

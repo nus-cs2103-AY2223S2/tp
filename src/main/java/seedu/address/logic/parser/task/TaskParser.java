@@ -24,16 +24,14 @@ import seedu.address.logic.parser.task.todo.EditContentCommandParser;
 import seedu.address.logic.parser.task.todo.EditDeadlineCommandParser;
 
 /**
- * Parses user input related to task package.
+ * Parses user inputs related to the task package.
  */
 public class TaskParser {
 
     /**
-     * Parses user input into task related command for execution.
+     * Parses user input into task related command according to the {@code commandWord} with the {@code arguments} for
+     * execution.
      *
-     * @param commandWord command word in user input
-     * @param arguments command argument related to specified parameter types
-     * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseTaskCommand(String commandWord, String arguments) throws ParseException {

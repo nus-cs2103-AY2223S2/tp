@@ -9,7 +9,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.InternshipApplication;
 
 /**
- * Controller for a reminder window
+ * Controller for a reminder window.
  */
 public class ReminderWindow extends UiPart<Stage> {
 

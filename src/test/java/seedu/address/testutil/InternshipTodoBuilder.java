@@ -10,7 +10,7 @@ import seedu.address.model.task.InternshipTodo;
 import seedu.address.model.task.NoteContent;
 
 /**
- * A utility class to help with building Contact objects.
+ * A utility class to help with building {@code InternshipTodo} objects.
  */
 public class InternshipTodoBuilder {
 
@@ -21,7 +21,6 @@ public class InternshipTodoBuilder {
     private static final ApplicationDeadline DEFAULT_DEADLINE = new ApplicationDeadline(LocalDate.parse("2025-03-04"));
     private static final NoteContent DEFAULT_NOTE = new NoteContent("No content");
 
-    //Optional field
     private CompanyName title;
     private JobTitle jobTitle;
     private LocalDate date;
@@ -42,7 +41,7 @@ public class InternshipTodoBuilder {
     }
 
     /**
-     * Initializes the InternshipTodoBuilder with the data of {@code todoToCopy}.
+     * Initializes the {@code InternshipTodoBuilder} with the data of {@code todoToCopy}.
      */
     public InternshipTodoBuilder(InternshipTodo todoToCopy) {
         title = todoToCopy.getInternshipTitle();

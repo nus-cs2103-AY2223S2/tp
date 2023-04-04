@@ -21,7 +21,7 @@ import seedu.address.model.person.JobTitle;
  */
 public class ClearByCommand extends Command {
     /**
-     * An enum class to specify the clear_by type.
+     * An enum class to specify the clear_by types.
      */
     enum ParamType {
         JOBTITLE("Job title"), COMPANYNAME("Company name"), STATUS("Status");
@@ -29,7 +29,7 @@ public class ClearByCommand extends Command {
         private String name;
 
         /**
-         * Creates string representation{@code name} for the respective ParamType.
+         * Creates a string representation {@code name} for the respective ParamType.
          */
         ParamType(String name) {
             this.name = name;
@@ -59,7 +59,7 @@ public class ClearByCommand extends Command {
     public static final String MESSAGE_NO_PARAMETER = "Please provide clear_by parameter!";
     public static final String MESSAGE_CLEAR_SUCCESS = "All internship application with %s : %s has been cleared!";
     public static final String MESSAGE_NULL = "There is nothing to clear!";
-    public static final String MESSAGE_FAILED = "Clear command cannot be executed!";
+    public static final String MESSAGE_FAILED = "Clear_by command cannot be executed!";
     public static final String MESSAGE_EMPTY_FILTERED_LIST = "There is no %s with keyword \"%s\"!";
 
     private CompanyName companyName = null;
@@ -70,7 +70,7 @@ public class ClearByCommand extends Command {
     private ParamType paramType;
 
     /**
-     * Creates a ClearByCommand to delete all the relevant applications that have company names match
+     * Creates a ClearByCommand to delete all the relevant applications that have company names match with
      * {@code companyName}.
      */
     public ClearByCommand(CompanyName companyName) {
@@ -80,7 +80,7 @@ public class ClearByCommand extends Command {
     }
 
     /**
-     * Creates a ClearByCommand to delete all the relevant applications that have jobTitles match
+     * Creates a ClearByCommand to delete all the relevant applications that have jobTitles match with
      * {@code jobTitle}.
      */
     public ClearByCommand(JobTitle jobTitle) {
@@ -90,7 +90,7 @@ public class ClearByCommand extends Command {
     }
 
     /**
-     * Creates a ClearByCommand to delete all the relevant applications that have statuses match
+     * Creates a ClearByCommand to delete all the relevant applications that have statuses match with
      * {@code status}.
      */
     public ClearByCommand(InternshipStatus status) {
