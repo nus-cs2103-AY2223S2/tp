@@ -856,6 +856,7 @@ testers are expected to do more *exploratory* testing.
 * **Event**: A freelancing gig
 
 ## Appendix: Planned Enhancements
+1. The current `newevent` and `edit` commands allows an event's start time to be after its end time. We plan to only allow an event to be added or successfully edited if its start time is before or the same as its end time, with an error message `Start time must be before end time.` being shown otherwise.
 
 <div style="position: fixed; font-size: large; bottom: 25px; right: 50px; background-color: #d8d8d8">
   <a href="#top">Back to top</a>
