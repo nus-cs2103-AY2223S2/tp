@@ -1324,8 +1324,26 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2a. The list is empty.
 
   Use case ends.
+* 2b. The list has already been filtered or sorted.
+    * 2b1. EduMate resets the filters and sorts.
 
-**Use case: UC02 - Add a contact**
+  Use case resumes from step 2.
+
+**Use case: UCXX - Clear the list of contacts**
+
+**MSS**
+
+1. User requests to clear the list of contacts.
+2. EduMate shows an empty state.
+
+   Use case ends.
+
+**Use case: UCXX - Create a sample EduMate**
+
+1. User requests to create a sample EduMate.
+2. EduMate 
+
+**Use case: UCXX - Add a contact**
 
 **MSS**
 
@@ -1358,12 +1376,12 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 * 1g. No group tags are given.
 
-  Use case resumes at step 1
+  Use case resumes from step 1.
 * 1h. No module tags are given.
 
-  Use case resumes at step 1
+  Use case resumes from step 1.
 
-**Use case: UC03 - Add a contact with missing fields**
+**Use case: UCXX - Add a contact with missing fields**
 
 **MSS**
 
@@ -1385,181 +1403,236 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2a. The email field is missing.
     * 2a1. EduMate assigns an email based on the name.
   
-  Use case resumes at step 2
+  Use case resumes from step 2.
 * 2b. The telegram handle field is missing.
     * 2b1. EduMate assigns a telegram handle based on the name.
   
-  Use case resumes at step 2
+  Use case resumes from step 2.
 * 2c. The station field is missing.
     * 2c1. EduMate assigns a default station "Kent Ridge" to the person.
   
-  Use case resumes at step 2
+  Use case resumes from step 2.
 * 2d. The phone field is missing.
     * 2d1. EduMate assigns a default phone number "00000000" to the person.
 
-  Use case resumes at step 2
+  Use case resumes from step 2.
+
+**Use case: UCXX - View user information**
+
+**MSS**
+
+1. User requests to view a profile without an index.
+2. EduMate shows the user's profile in the profile panel.
+
+   Use case ends.
+
+**Use case: UCXX - View a contact's information by name**
+
+**MSS**
+
+1. User requests to view a profile using the contact's name.
+2. EduMate shows the contact's profile in the profile panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given name is not found.
+    * 1a1. EduMate shows an error message.
+
+**Use case: UCXX - View a contact's information by index**
+
+**MSS**
+
+1. User requests to view a profile using the contact's index.
+2. EduMate shows the contact's profile in the profile panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given index is invalid.
+    * 1a1. EduMate shows an error message.
 
 **Use case: UC03 - Edit a contact**
 
 **MSS**
 
-1. User requests to edit a person's details with new information.
-2. EduMate edits the person's information.
-3. EduMate shows the edited person's information in the profile panel.
+1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+2. User requests to edit a person's details with new information. 
+3. EduMate edits the person's information. 
+4. EduMate shows the edited person's information in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
 
-* 1b. The given details are invalid.
-    * 1b1. EduMate shows an error message.
+* 2b. The given details are invalid.
+    * 2b1. EduMate shows an error message.
 
-* 1c. The edited name is already found in the EduMate.
-    * 1c1. EduMate shows an error message.
+* 2c. The edited name is already found in the EduMate.
+    * 2c1. EduMate shows an error message.
 
 **Use case: UC04 - Delete a contact**
 
-1. User requests to delete a person from the contact list.
-2. EduMate deletes the person from the contact list.
-3. EduMate shows the user's information in the profile panel.
+1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+2. User requests to delete a person from the contact list. 
+3. EduMate deletes the person from the contact list. 
+4. EduMate shows the user's information in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
 
 **Use case: UC05 - Tag a basic module to a contact**
 
-1. User requests to add a basic module tag to a contact.
-2. EduMate tags the module to the contact.
-3. EduMate displays a list of successfully added modules.
-4. EduMate displays the tagged person's information in the profile panel.
+1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+2. User requests to add a basic module tag to a contact. 
+3. EduMate tags the module to the contact. 
+4. EduMate displays a list of successfully added modules. 
+5. EduMate displays the tagged person's information in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
 
-* 1b. The given module code is invalid.
-    * 1b1. EduMate shows an error message.
+* 2b. The given module code is invalid.
+    * 2b1. EduMate shows an error message.
 
-* 2a. The module code exists in the person's contact.
-    * 2a1. EduMate does not add any tags.
-    * 2b2. EduMate does not show the module in the feedback message.
+* 3a. The module code exists in the person's contact.
+    * 3a1. EduMate does not add any tags.
+    * 3b2. EduMate does not show the module in the feedback message.
 
-  Use case resumes at step 2.
+  Use case resumes at step 5.
 
 **Use case: UCXX - Tag a non-basic module to a contact**
 
-1. User requests to add a non-basic module tag to a contact.
-2. EduMate assigns lessons to the contact.
-3. EduMate tags the module to the contact.
-4. EduMate displays a list of successfully added modules.
-5. EduMate displays the tagged person's information in the profile panel.
+1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+2. User requests to add a non-basic module tag to a contact. 
+3. EduMate assigns lessons to the contact. 
+4. EduMate tags the module to the contact. 
+5. EduMate displays a list of successfully added modules. 
+6. EduMate displays the tagged person's information in the profile panel.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
 
-* 1b. The given module information is invalid.
-    * 1b1. EduMate shows an error message.
+* 2b. The given module information is invalid.
+    * 2b1. EduMate shows an error message.
 
-* 2a. The lesson clashes with the contact's timetable.
-    * 2a1. EduMate shows an error message with details of clashes.
+* 3a. The lesson clashes with the contact's timetable.
+    * 3a1. EduMate shows an error message with details of clashes.
 
-* 2b. The added lessons clash with each other.
-    * 2b1. EduMate shows an error message with.
+* 3b. The added lessons clash with each other.
+    * 3b1. EduMate shows an error message.
+
+* 4a. The module does not exist in the contact's module set.
+    * 4a1. EduMate adds the module and lesson to the contact's module set.
+    * 4a2. EduMate displays the added lesson in the feedback message.
+    
+  Use case resumes at step 6.
+* 4b. The module exists in the contact's module set but the lesson does not.
+    * 4b1. EduMate adds the module and lesson to the contact's module set.
+    * 4b2. EduMate displays the added lesson in the feedback message.
+  
+  Use case resumes at step 6.
+* 4c. The module and lesson exist in the contact's module set.
+    * 4c1. EduMate throws an error message.
+
+**Use case: UCXX - Untag a module from a contact**
+
+1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+2. User requests to remove a module tag from a contact. 
+3. EduMate untags the module from the contact. 
+4. EduMate removes the associated lessons from the contact. 
+5. EduMate displays a list of successfully removed module tags. 
+6. EduMate displays the untagged person's information in the profile panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
+
+* 2b. The given details are invalid.
+    * 2b1. EduMate shows an error message.
 
 * 3a. The module does not exist in the contact's module set.
-    * 3a1. EduMate adds the module and lesson to the contact's module set.
-    * 3a2. EduMate displays the added lesson in the feedback message.
-    
-  Use case resumes at step 3.
-* 3b. The module exists in the contact's module set but the lesson does not.
-    * 3b1. EduMate adds the module and lesson to the contact's module set.
-    * 3b2. EduMate displays the added lesson in the feedback message.
+    * 3a1. EduMate does not remove any module.
+
+  Use case resumes at step 6.
+* 3b. The module and lesson exists in EduMate.
+    * 3b1. EduMate removes that lesson.
+    * 3b2. EduMate removes the module from the module set if there are no more lessons.
   
-  Use case resumes at step 3.
-* 3c. The module and lesson exist in the contact's module set.
-    * 3c1. EduMate throws an error message.
+  Use case resumes at step 5.
+* 3c. The module exists in EduMate, but the lesson does not.
+    * 3c1. EduMate does not remove the module.
+    * 3c2. EduMate does not display the module and lesson in the feedback message.
 
-**Use case: UC06 - Untag a module from a contact**
+  Use case resumes at step 6.
+* 3d. The module does not come with have a lesson.
+    * 3d1. EduMate removes the entire module from that person's module set.
 
-1. User requests to remove a module tag from a contact.
-2. EduMate untags the module from the contact.
-3. EduMate removes the associated lessons from the contact.
-4. EduMate displays a list of successfully removed modules.
+  Use case resumes at step 6.
+
+**Use case: UC07 - Tag a group to a contact**
+
+1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+2. User requests to add a group tag to a contact. 
+3. EduMate tags the group to the contact. 
+4. EduMate displays a list of successfully added groups. 
+5. EduMate displays the tagged person's information in the profile panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
+
+* 2b. The given details are invalid.
+    * 2b1. EduMate shows an error message.
+
+* 3a. The group already exists in the group set.
+    * 3a1. EduMate does not display the group in the feedback message.
+
+  Use case resumes at step 5.
+
+**Use case: UC08 - Untag a group from a contact**
+
+1. User requests to <u>view a contact's information by name (UCXX)</u>. 
+2. User requests to remove a group tag from a contact. 
+3. EduMate untags the group from the contact. 
+4. EduMate displays a list of successfully removed groups. 
 5. EduMate displays the untagged person's information in the profile panel.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
 
-* 1b. The given details are invalid.
-    * 1b1. EduMate shows an error message.
+* 2b. The given details are invalid.
+    * 2b1. EduMate shows an error message.
 
-* 2a. The module does not exist in the contact's module set.
-    * 2a1. EduMate does not remove any module.
-
-  Use case resumes at step 2
-* 2b. The module and lesson exists in EduMate.
-    * 2b1. EduMate removes that lesson.
-    * 2b2. EduMate removes the module from the module set if there are no more lessons.
+* 3a. The group does not exist in the group set.
+    * 3a1. EduMate does not display the group in the feedback message.
   
-  Use case resumes at step 2
-
-**Use case: UC07 - Tag a group to a contact**
-
-1. User requests to add a group tag to a contact.
-2. EduMate tags the group to the contact.
-3. EduMate displays a list of successfully added groups.
-4. EduMate displays the tagged person's information in the profile panel.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
-
-* 1b. The given details are invalid.
-    * 1b1. EduMate shows an error message.
-
-* 2a. The group already exists in the group set.
-    * 2a1. EduMate does not display the group in the feedback message.
-
-**Use case: UC08 - Untag a group from a contact**
-
-1. User requests to remove a group tag from a contact.
-2. EduMate untags the group from the contact.
-3. EduMate displays a list of successfully removed groups.
-4. EduMate displays the untagged person's information in the profile panel.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The given index is invalid.
-    * 1a1. EduMate shows an error message.
-
-* 1b. The given details are invalid.
-    * 1b1. EduMate shows an error message.
-
-* 2a. The group does not exist in the group set.
-    * 2a1. EduMate does not display the group in the feedback message.
-  
-  Use case resumes at step 2
+  Use case resumes at step 5.
 
 **Use case: UC09 - Find contacts based on search criteria**
 
@@ -1574,36 +1647,182 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2a. The given details are invalid.
     * 2a1. EduMate shows an error message.
 
-* 3a. The filtered list is empty.
+* 3a. No contacts satisfy the criteria.
+    * 3a1. EduMate shows no contacts.
+  Use case ends.
 
-  Use case ends
-
-**Use case: UC10 - Sort contacts based on matching modules**
+**Use case: UCXX - Sort contacts based on index**
 
 1. User requests to <u>view the list of contacts (UC01)</u>.
-2. User requests to sort contacts.
-3. EduMate shows a list of contacts sorted by their number of shared modules.
+2. User requests to sort contacts without using any prefix.
+3. EduMate shows a list of contacts sorted by their index.
 
    Use case ends.
 
 **Extensions**
+
+* 2a. The given details are invalid.
+    * 2a1. EduMate shows an error message.
 
 * 3a. The sorted list is empty.
 
   Use case ends.
 
-**Use case: UC11 - View user profile**
+**Use case: UCXX - Sort contacts based on matching modules**
 
-1. User requests to view their user profile.
-2. EduMate shows the user information.
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to sort contacts based on number of common modules.
+3. EduMate shows a list of contacts sorted by their number of shared modules, followed by their index.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. User information is empty.
+* 2a. The given details are invalid.
+    * 2a1. EduMate shows an error message.
+
+* 3a. The sorted list is empty.
 
   Use case ends.
+
+**Use case: UCXX - Sort contacts based on multiple search criteria**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to sort contacts based on multiple search criteria.
+3. EduMate shows a list of contacts sorted by the criteria, followed by their index.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given details are invalid.
+    * 2a1. EduMate shows an error message.
+
+* 3a. The sorted list is empty.
+
+  Use case ends.
+
+**Use case: UCXX - Recommend meet up locations and timings**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to meet with a set of contacts.
+3. EduMate shows a list of recommendations of where and when to meet.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The set of contacts is empty.
+    * 2a1. EduMate shows an error message.
+
+* 2b. Some indices are invalid.
+    * 2b1. EduMate shows an error message.
+
+* 3a. There are no available timings to meet up.
+    * 3a1. EduMate shows an empty list.
+  
+  Use case ends.
+
+**Use case: UCXX - Recommend places and times to eat**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to eat with a set of contacts.
+3. EduMate shows a list of recommendations of where and when to eat with with contacts.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The set of contacts is empty.
+    * 2a1. EduMate shows an error message.
+
+* 2b. Some indices are invalid.
+*    * 2b1. EduMate shows an error message.
+
+* 3a. There are no available timings to eat.
+    * 3a1. EduMate shows an empty list.
+
+  Use case ends.
+
+**Use case: UCXX - Recommend study locations and timings**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to study with a set of contacts.
+3. EduMate shows a list of recommendations of where and when to study.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The set of contacts is empty.
+    * 2a1. EduMate shows an error message.
+
+* 2b. Some indices are invalid.
+    * 2b1. EduMate shows an error message.
+
+* 3a. There are no available timings to study.
+    * 3a1. EduMate shows an empty list.
+
+  Use case ends.
+
+**Use case: UCXX - Organise a meet up using recommendation**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to organise a meet up with contacts using a recommendation index.
+3. EduMate creates a meet up and displays it in the meet up panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The recommendation index is invalid.
+    * 2a1. EduMate shows an error message.
+
+* 2b. Some contact indices are invalid.
+    * 2b1. EduMate shows an error message.
+
+**Use case: UCXX - Organise a meet up manually**
+
+**MSS**
+
+1. User requests to <u>view the list of contacts (UC01)</u>.
+2. User requests to organise a meet up with contacts by typing the day, time and location.
+3. EduMate creates a meet up and displays it in the meet up panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Recommendation index is invalid.
+    * 2a1. EduMate shows an error message.
+
+* 2b. Some contact indices are invalid.
+    * 2b1. EduMate shows an error message.
+
+* 2c. The details provided are invalid.
+    * 2c1. EduMate shows an error message.
+
+**Use case: UCXX - Unorganise a meet up**
+
+**MSS**
+
+1. User requests to unorganise a meet up by index.
+2. EduMate removes the organised meet up from the meet up panel.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+    * 2a1. EduMate shows an error message.
 
 ### **Non-Functional Requirements**
 
