@@ -554,6 +554,9 @@ This command will only display a single fish, making it easier for you to see it
 
 Format: `fish view <FISH_INDEX>`
 
+> :bulb: Tip: Calling this command will change the indexes of your fish. 
+> Call `list fishes` to reset the panel!
+
 ### Listing fishes: `list fishes`
 
 Lists all fishes owned.
@@ -566,7 +569,7 @@ Format: `list fishes`
 These are the routine tasks that all fish keepers have to undertake to keep their fish bright and healthy. Create tasks 
 to remind you and help you in your fish keeping. *Fish Ahoy!* will automatically generate feeding reminders for you 
 based off your fishes' last fed date. These will have a **high** priority to remind you to feed them!
-In the list, each fish has an [index](#faq). Use these indexes to perform certain operations on them.
+In the list, each task has an [index](#faq). Use these indexes to perform certain operations on them.
 
 
 Currently, there are three operations around tasks:
