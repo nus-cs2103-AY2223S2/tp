@@ -10,7 +10,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_TASK_DISPLAYED_INDEX = "The task index provided is invalid";
-    public static final String MESSAGE_INVALID_EVENT_DATES = "The dates provided are chronologically invalid";
     public static final String MESSAGE_INVALID_SCORE = "The score provided is invalid";
     public static final String MESSAGE_TASK_ALREADY_DONE = "The task is already completed";
     public static final String MESSAGE_NOT_EVENT_TASK = "The parameters used are for event tasks.";
