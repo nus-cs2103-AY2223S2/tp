@@ -6,7 +6,8 @@ import static ezschedule.logic.commands.CommandTestUtil.showEventAtIndex;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static ezschedule.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -22,12 +23,11 @@ import ezschedule.model.UserPrefs;
 import ezschedule.model.event.Event;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * Contains integration tests (interaction with the {@code Model}) and unit tests for {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -45,12 +45,44 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_multipleValidIndexUnfilteredList_success() {
+        List<Index> indexesToDelete = new ArrayList<>();
+        indexesToDelete.add(INDEX_FIRST_EVENT);
+        indexesToDelete.add(INDEX_SECOND_EVENT);
+        DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
+
+        Event firstEventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
+        Event secondEventToDelete = model.getFilteredEventList().get(INDEX_SECOND_EVENT.getZeroBased());
+        String expectedMessage = DeleteCommand.MESSAGE_DELETE_EVENT_SUCCESS
+                + firstEventToDelete.toString() + secondEventToDelete.toString();
+
+        ModelManager expectedModel = new ModelManager(model.getScheduler(), new UserPrefs());
+        expectedModel.deleteEvent(firstEventToDelete);
+        expectedModel.deleteEvent(secondEventToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         List<Index> outOfBoundIndex = new ArrayList<>();
         outOfBoundIndex.add(Index.fromOneBased(model.getFilteredEventList().size() + 1));
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, 5));
+        assertCommandFailure(deleteCommand, model,
+                String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, model.getFilteredEventList().size() + 1));
+    }
+
+    @Test
+    public void execute_multipleInvalidIndexUnfilteredList_throwsCommandException() {
+        List<Index> outOfBoundIndexes = new ArrayList<>();
+        outOfBoundIndexes.add(Index.fromOneBased(model.getFilteredEventList().size() + 1));
+        outOfBoundIndexes.add(Index.fromOneBased(model.getFilteredEventList().size() + 3));
+        DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndexes);
+
+        // the largest invalid index shown be thrown
+        assertCommandFailure(deleteCommand, model,
+                String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, model.getFilteredEventList().size() + 3));
     }
 
     @Test
@@ -77,12 +109,15 @@ public class DeleteCommandTest {
 
         List<Index> outOfBoundIndex = new ArrayList<>();
         outOfBoundIndex.add(INDEX_SECOND_EVENT);
+        int outOutBoundIndexInt = 2;
+
         // ensures that outOfBoundIndex is still in bounds of scheduler list
         assertTrue(outOfBoundIndex.get(0).getZeroBased() < model.getScheduler().getEventList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, 2));
+        assertCommandFailure(deleteCommand, model,
+                String.format(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, outOutBoundIndexInt));
     }
 
     @Test
@@ -96,24 +131,24 @@ public class DeleteCommandTest {
         DeleteCommand deleteSecondCommand = new DeleteCommand(indexSecondEvent);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertEquals(deleteFirstCommand, deleteFirstCommand);
 
         // same values -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(indexFirstEvent);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertNotEquals(1, deleteFirstCommand);
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertNotEquals(null, deleteFirstCommand);
 
         // different event -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertNotEquals(deleteFirstCommand, deleteSecondCommand);
     }
 
     /**
-     * Updates {@code model}'s filtered list to show no one.
+     * Updates {@code Model}'s filtered list to show no one.
      */
     private void showNoEvent(Model model) {
         model.updateFilteredEventList(p -> false);
