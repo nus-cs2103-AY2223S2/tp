@@ -4,6 +4,7 @@ import static seedu.task.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.task.logic.parser.CliSyntax.PREFIX_EFFORT;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import seedu.task.logic.commands.exceptions.CommandException;
 import seedu.task.model.Model;
@@ -59,8 +60,17 @@ public class ScheduleCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ScheduleCommand // instanceof handles nulls
-                && (date.equals(((ScheduleCommand) other).date))); // state check
+        if (other == this) {
+            return true;
+        } else if (other instanceof ScheduleCommand) {
+            ScheduleCommand sd = (ScheduleCommand) other;
+            if (Objects.isNull(sd.effort) || Objects.isNull(effort)) {
+                return date.equals(sd.date);
+            } else {
+                return date.equals(sd.date) && effort.equals(sd.effort);
+            }
+        } else {
+            return false;
+        }
     }
 }

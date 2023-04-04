@@ -3,6 +3,7 @@ package seedu.task.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.task.model.task.Effort.isValidEffort;
 import static seedu.task.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,17 @@ public class EffortTest {
     @Test
     public void constructor_invalidEffort_throwsInvalidEffortException() {
         assertThrows(InvalidEffortException.class, () -> new Effort(INVALID_EFFORT));
+    }
+
+    @Test
+    public void isValidEffortTest() {
+        // valid effort -> return true
+        assertTrue(isValidEffort("50"));
+        assertTrue(isValidEffort("0"));
+
+        // invalid effort -> return false
+        assertFalse(isValidEffort("ABC"));
+        assertFalse(isValidEffort("-1"));
     }
 
     @Test
@@ -46,6 +58,9 @@ public class EffortTest {
         Effort effort0 = new Effort(VALID_EFFORT_0);
         Effort effort1 = new Effort(VALID_EFFORT_1);
         Effort effort3 = new Effort(VALID_EFFORT_3);
+
+        // not effort -> return false
+        assertFalse(effort0.equals(new Name("TEST")));
 
         // same instance -> return true
         assertTrue(effort0.equals(effort0));

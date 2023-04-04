@@ -69,4 +69,8 @@ public class TypicalEvents {
     public static List<Task> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(MEETING, STUDY, REST));
     }
+
+    public static List<Task> getTypicalEventsInApril() {
+        return new ArrayList<>(Arrays.asList(EXAM, SLEEPOVER));
+    }
 }

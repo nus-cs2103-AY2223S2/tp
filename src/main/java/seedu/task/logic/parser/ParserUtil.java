@@ -28,7 +28,6 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_TIME = "Timeframe is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_WORKLOAD = "Workload has to be a non-zero unsigned integer";
     public static final String MESSAGE_INVALID_LOCAL_DATE = "Format of date entered should be yyyy-mm-dd";
 
     /**
@@ -57,7 +56,7 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
 
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex) || hasIntegerOverflow(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
@@ -69,7 +68,7 @@ public class ParserUtil {
      */
     public static int parseTimeFrame(String hours) throws ParseException {
         String trimmedHours = hours.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedHours)) {
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedHours) || hasIntegerOverflow(trimmedHours)) {
             throw new ParseException(MESSAGE_INVALID_TIME);
         }
         return Integer.parseInt(trimmedHours);
@@ -221,27 +220,12 @@ public class ParserUtil {
     public static Effort parseEffort(String effort) throws ParseException {
         requireNonNull(effort);
         String trimmedEffort = effort.trim();
-        if (!Effort.isValidEffort(trimmedEffort)) {
+        if (!Effort.isValidEffort(trimmedEffort) || hasIntegerOverflow(trimmedEffort)) {
             throw new ParseException(Effort.MESSAGE_CONSTRAINTS);
         }
         long taskEffort = Long.parseLong(trimmedEffort);
         return new Effort(taskEffort);
     }
-
-    /**
-     * Parses a {@code String Workload} into a {@code Workload}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code Workload} is invalid.
-     */
-    public static int parseWorkload(String work) throws ParseException {
-        String trimmedWork = work.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedWork)) {
-            throw new ParseException(MESSAGE_INVALID_WORKLOAD);
-        }
-        return Integer.parseInt(trimmedWork);
-    }
-
 
     /**
      * Parses a {@code String tag} into a {@code Tag}.
@@ -281,6 +265,20 @@ public class ParserUtil {
         }
         System.out.println(tagList);
         return tagList;
+    }
+
+    private static boolean hasIntegerOverflow(String value) {
+        if (value.length() > 10) {
+            return true;
+        } else if (value.length() < 10) {
+            return false;
+        } else {
+            return Integer.parseInt(value.substring(0, 1)) > 2 || Integer.parseInt(value.substring(1, 2)) > 1
+                    || Integer.parseInt(value.substring(2, 3)) > 4 || Integer.parseInt(value.substring(3, 4)) > 7
+                    || Integer.parseInt(value.substring(4, 5)) > 4 || Integer.parseInt(value.substring(5, 6)) > 8
+                    || Integer.parseInt(value.substring(6, 7)) > 3 || Integer.parseInt(value.substring(7, 8)) > 6
+                    || Integer.parseInt(value.substring(8, 9)) > 4 || Integer.parseInt(value.substring(9)) > 7;
+        }
     }
 
 }

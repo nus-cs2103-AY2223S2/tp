@@ -15,4 +15,11 @@ public class SameEffortPredicate implements Predicate<Task> {
     public boolean test(Task task) {
         return task.getEffort().equals(this.effort);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SameEffortPredicate // instanceof handles nulls
+                && effort.equals(((SameEffortPredicate) other).effort)); // state check
+    }
 }

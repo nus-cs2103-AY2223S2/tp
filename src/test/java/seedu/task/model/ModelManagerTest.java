@@ -27,6 +27,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new TaskBook(), new TaskBook(modelManager.getTaskBook()));
+        assertEquals(new Planner(), new Planner(modelManager.getPlanner()));
     }
 
     @Test
@@ -37,14 +38,18 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setTaskBookFilePath(Paths.get("task/book/file/path"));
+        Path path = Paths.get("task/book/file/path");
+        userPrefs.setTaskBookFilePath(path);
+        userPrefs.setPlannerFilePath(path);
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setTaskBookFilePath(Paths.get("new/task/book/file/path"));
+        path = Paths.get("new/task/book/file/path");
+        userPrefs.setTaskBookFilePath(path);
+        userPrefs.setPlannerFilePath(path);
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 

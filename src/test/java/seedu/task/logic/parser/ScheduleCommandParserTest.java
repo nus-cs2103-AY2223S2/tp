@@ -9,13 +9,20 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import seedu.task.logic.commands.ScheduleCommand;
+import seedu.task.model.task.Effort;
 
 public class ScheduleCommandParserTest {
     private ScheduleCommandParser parser = new ScheduleCommandParser();
 
     @Test
-    public void parse_validArgs_returnsScheduleCommand() {
+    public void parse_haveDateNoEffort_returnsScheduleCommand() {
         assertParseSuccess(parser, " D/2023-07-18", new ScheduleCommand(LocalDate.parse("2023-07-18")));
+    }
+
+    @Test
+    public void parse_haveDateHaveEffort_returnsScheduleCommand() {
+        assertParseSuccess(parser, " D/2023-07-18 E/10", new ScheduleCommand(LocalDate.parse("2023-07-18"),
+                new Effort(10)));
     }
 
     @Test

@@ -12,7 +12,7 @@ import seedu.task.logic.commands.exceptions.CommandException;
 public class IndexListTest {
 
     @Test
-    public void getCorrectIndex() {
+    public void getZeroBasedIndex() {
         IndexList list = new IndexList();
         list.add(Index.fromOneBased(1));
         list.add(Index.fromOneBased(2));
@@ -23,17 +23,32 @@ public class IndexListTest {
     }
 
     @Test
-    public void checkValidIndex() {
+    public void checkValidIndex_invalidIndex_throwsCommandException() {
         IndexList list = new IndexList();
         list.add(Index.fromOneBased(1));
         list.add(Index.fromOneBased(2));
         list.add(Index.fromOneBased(3));
 
+        // index deleting from is greater than list size
         assertThrows(CommandException.class, () -> list.isValidIndex(2));
+
+        // index entered in non-ascending order
+        list.add(Index.fromOneBased(2));
+        assertThrows(CommandException.class, () -> list.isValidIndex(4));
     }
 
     @Test
-    public void modifyDeleteIndex() {
+    public void checkValidIndex_validIndexList_throwsCommandException() throws CommandException {
+        IndexList list = new IndexList();
+        list.add(Index.fromOneBased(1));
+        list.add(Index.fromOneBased(2));
+        list.add(Index.fromOneBased(3));
+
+        assertTrue(list.isValidIndex(3));
+    }
+
+    @Test
+    public void modifyForDelete() {
         IndexList referenceList = new IndexList();
         referenceList.add(Index.fromOneBased(1));
         referenceList.add(Index.fromOneBased(1));
@@ -49,7 +64,7 @@ public class IndexListTest {
     }
 
     @Test
-    public void modifyFromOneBasedList() {
+    public void fromOneBasedList() {
         IndexList expectedList = new IndexList();
         expectedList.add(Index.fromOneBased(1));
         expectedList.add(Index.fromOneBased(2));
@@ -72,6 +87,10 @@ public class IndexListTest {
         checklist2.add(Index.fromZeroBased(0));
         checklist2.add(Index.fromZeroBased(1));
 
+        IndexList checklist3 = new IndexList();
+        checklist3.add(Index.fromZeroBased(0));
+        checklist3.add(Index.fromZeroBased(2));
+
         // same values -> returns true
         assertTrue(checklist1.equals(checklist2));
 
@@ -81,9 +100,12 @@ public class IndexListTest {
         // null -> returns false
         assertFalse(checklist1.equals(null));
 
-        // different index -> returns false
-        IndexList checklist3 = new IndexList();
-        checklist3.add(Index.fromOneBased(2));
-        assertFalse(checklist3.equals(checklist1));
+        // different number of index -> returns false
+        IndexList checklist4 = new IndexList();
+        checklist4.add(Index.fromOneBased(2));
+        assertFalse(checklist4.equals(checklist1));
+
+        // same number of index, different values -> return false
+        assertFalse(checklist2.equals(checklist3));
     }
 }

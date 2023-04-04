@@ -46,4 +46,16 @@ public class EventList extends CategoricalTaskList {
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else if (other instanceof EventList) {
+            EventList list = (EventList) other;
+            return taskList.equals(list.taskList);
+        } else {
+            return false;
+        }
+    }
 }
