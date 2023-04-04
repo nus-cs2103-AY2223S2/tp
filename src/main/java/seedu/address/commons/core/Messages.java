@@ -11,5 +11,5 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_INVALID_PERSON_NAME = "The person you are looking for cannot be found, "
             + "below is a list of people with similar names";
-
+    public static final String MESSAGE_INVALID_PERSON = "The person you are looking for cannot be found";
 }
