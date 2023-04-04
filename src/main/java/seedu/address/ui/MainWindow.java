@@ -521,6 +521,7 @@ public class MainWindow extends UiPart<Stage> {
         unscheduleWindow.hide();
         completeWindow.hide();
         statsWindow.hide();
+        reminderListWindow.hide();
         addressBookWindow.hide();
         if (addDeliveryJobWindow != null) {
             addDeliveryJobWindow.hide();

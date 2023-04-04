@@ -8,11 +8,11 @@ import javafx.application.Platform;
  * Runs a {@code TimerTask} to notify the user of upcoming schedules
  */
 public class BackgroundScheduleTask extends TimerTask {
-    private NotificationManager notificationManager;
+    private final NotificationManager notificationManager;
 
     /**
      * Creates a {@code BackgroundScheduleTask} with the given {@code NotificationManager}.
-     * @param notificationManager
+     * @param notificationManager Notification Manager responsible for this app
      */
     public BackgroundScheduleTask(NotificationManager notificationManager) {
         this.notificationManager = notificationManager;
@@ -24,11 +24,6 @@ public class BackgroundScheduleTask extends TimerTask {
      */
     @Override
     public void run() {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                notificationManager.checkNextSchedule();
-            }
-        });
+        Platform.runLater(notificationManager::checkNextSchedule);
     }
 }
