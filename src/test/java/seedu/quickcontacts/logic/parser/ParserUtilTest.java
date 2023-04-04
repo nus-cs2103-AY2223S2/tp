@@ -39,7 +39,7 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_NAME_2 = "Jack Walker";
     private static final String VALID_TITLE = "Meeting 1";
-    private static final String VALID_DATETIME = "29/02/2023 12:00";
+    private static final String VALID_DATETIME = "28/02/2023 12:00";
     private static final String VALID_LOCATION = "Singapore NUS";
     private static final String VALID_DESCRIPTION = "Meeting with Jack";
     private static final String VALID_PHONE = "123456";
