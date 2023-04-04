@@ -1,6 +1,7 @@
 @startuml
 !include style.puml
 
+
 box Logic LOGIC_COLOR_T1
 participant ":FishSortCommand" as FishSortCommand LOGIC_COLOR
 end box
@@ -8,11 +9,7 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":SortedList" as SortedList MODEL_COLOR
-end box
-
-box Ui UI_COLOR_T1
-participant ":MainWindow" as MainWindow UI_COLOR
-participant ":SortedFishPanel" as SortedFishPanel UI_COLOR
+participant ":FilteredFish" as FilteredFish MODEL_COLOR
 end box
 
 [-> FishSortCommand : execute
@@ -24,7 +21,7 @@ activate Model
 Model -> SortedList : setComparator
 activate SortedList
 
-SortedList -> SortedFishPanel : Updates
+SortedList -> FilteredFish : Updates
 
 SortedList --> Model
 deactivate SortedList
@@ -32,18 +29,20 @@ deactivate SortedList
 Model --> FishSortCommand
 deactivate Model
 
-FishSortCommand -> Model : setGuiMode
+FishSortCommand -> Model : getFilteredTankList
 activate Model
 
-Model -> MainWindow : handleGuiChange
-activate MainWindow
+Model --> FishSortCommand
+deactivate Model
 
-MainWindow -> SortedFishPanel : setMiddlePanel
+FishSortCommand -> Model : updateFilteredFishList
+activate Model
 
-MainWindow <-- SortedFishPanel
+Model -> FilteredFish : setPredicate
+activate FilteredFish
 
-MainWindow --> Model
-deactivate MainWindow
+FilteredFish --> Model
+deactivate FilteredFish
 
 Model --> FishSortCommand
 deactivate Model
