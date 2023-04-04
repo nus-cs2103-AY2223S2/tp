@@ -187,12 +187,15 @@ Format: `edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE] [e/EMAIL] [pc/PARCEL]…​`
 * Existing values will be updated to the input values.
 * When editing parcels, the existing parcels of the person will be removed i.e adding of parcels is not cumulative.
 * You can remove all the person’s parcels by typing `pc/` without specifying any parcels after it.
+* You can remove the optional field of a person's phone number by typing `p/` without specifying a phone number after it.
+* You can remove the optional field of a person's email address by typing `e/` without specifying an email address after it.
 
 Constraints:
 * Deliveries with **done** or **return** status _**cannot be edited**_.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/ e/` Edits the phone number and email address of the 1st person to be empty, effectively removing these optional fields.
 *  `edit 2 n/Betsy Crower pc/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing parcels.
 
 ### Finding delivery by name: `find`
