@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
-import seedu.address.ui.enums.LightDarkMode;
+import seedu.address.logic.enums.LightDarkMode;
 import seedu.address.ui.result.ResultDisplay;
 
 /**

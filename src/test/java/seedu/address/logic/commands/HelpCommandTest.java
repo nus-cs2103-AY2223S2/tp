@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.ui.enums.LightDarkMode;
+import seedu.address.logic.enums.LightDarkMode;
 
 public class HelpCommandTest {
     private Model model = new ModelManager();

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
-import seedu.address.ui.enums.LightDarkMode;
+import seedu.address.logic.enums.LightDarkMode;
 import seedu.address.ui.result.ResultDisplay;
 
 /**
