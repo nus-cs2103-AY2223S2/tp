@@ -102,7 +102,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Mathutoring mathutoring = new MathutoringBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Mathutoring mathutoring = new MathutoringBuilder().withStudent(ALICE).withStudent(BENSON).build();
         Mathutoring differentMathutoring = new Mathutoring();
         UserPrefs userPrefs = new UserPrefs();
 
