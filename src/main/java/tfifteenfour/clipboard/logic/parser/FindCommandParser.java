@@ -98,15 +98,20 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (tokens.length < 2) {
             switch (findCommandType) {
             case MODULE:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCourseCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindCourseCommand.MESSAGE_USAGE));
             case GROUP:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindGroupCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindGroupCommand.MESSAGE_USAGE));
             case SESSION:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindSessionCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindSessionCommand.MESSAGE_USAGE));
             case STUDENT:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindStudentCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindStudentCommand.MESSAGE_USAGE));
             case TASK:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        FindTaskCommand.MESSAGE_USAGE));
             default:
                 throw new ParseException("Invalid type for find command");
             }
