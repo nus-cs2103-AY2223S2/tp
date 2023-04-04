@@ -25,18 +25,17 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
      * Reminder and notifications:
        * Set reminder for upcoming deadlines
        * Get notified as soon as you open the app
-       * Timetable:
-       * Linked with list of jobs
-       * Sort job list by date and slot
+       * Schedule notification:
+         * Get notified of current and upcoming jobs in the timetable
      * Display timetable of all scheduled/upcoming jobs in the week
        * Display list of invalid and completed jobs
      * Statistics dashboard:
        * Show statistics on:
-       * Total number of jobs
-       * Pending jobs
-       * Completed jobs
-       * Total earnings
-       * Statistics from previous week
+         * Total number of jobs
+         * Pending jobs
+         * Completed jobs
+         * Total earnings
+         * Statistics from previous week
 
 
 --------------------------------------------------------------------------------------------------------------------
