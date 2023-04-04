@@ -376,6 +376,7 @@ at this version. This will be added in a future version. Meanwhile, you can limi
 to your screen size and resize if needed to see the full text. 
 </div>
 
+
 **Example**
 
 The following command creates a new project whose name is *Mycelium Desktop*,
