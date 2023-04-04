@@ -184,7 +184,7 @@ The susceptibility level of an elderly to injury or sickness.
 
 The availability of a person.
 * The start of the available dates must be before the end of the available dates.
-* If a person does not have any specified available dates, it means that they are available all the time.
+* A person with no specified available dates is considered as available all the time.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 
