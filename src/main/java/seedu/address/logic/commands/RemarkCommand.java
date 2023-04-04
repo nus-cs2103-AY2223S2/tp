@@ -74,7 +74,7 @@ public class RemarkCommand extends Command {
                 personToEdit.getOptionalEmail().orElse(null),
                 personToEdit.getOptionalAddress().orElse(null),
                 personToEdit.getOptionalEducation().orElse(null),
-                remark,
+                remark.value.equals("\0") ? null : remark,
                 personToEdit.getOptionalTelegram().orElse(null),
                 personToEdit.getModules(),
                 personToEdit.getTags()
