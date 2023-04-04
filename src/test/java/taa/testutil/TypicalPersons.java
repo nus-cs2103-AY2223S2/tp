@@ -45,7 +45,7 @@ public class TypicalPersons {
     /**
      * Returns an {@code ClassList} with all the typical persons.
      */
-    public static ClassList getTypicalAddressBook() {
+    public static ClassList getTypicalTaaData() {
         ClassList ab = new ClassList();
         for (Student student : getTypicalPersons()) {
             ab.addStudent(student);

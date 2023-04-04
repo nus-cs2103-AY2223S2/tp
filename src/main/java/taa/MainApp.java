@@ -19,14 +19,14 @@ import taa.logic.LogicManager;
 import taa.model.ClassList;
 import taa.model.Model;
 import taa.model.ModelManager;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyStudentList;
 import taa.model.ReadOnlyUserPrefs;
 import taa.model.UserPrefs;
-import taa.storage.AddressBookStorage;
-import taa.storage.JsonAddressBookStorage;
+import taa.storage.JsonTaaStorage;
 import taa.storage.JsonUserPrefsStorage;
 import taa.storage.Storage;
 import taa.storage.StorageManager;
+import taa.storage.TaaStorage;
 import taa.storage.UserPrefsStorage;
 import taa.ui.Ui;
 import taa.ui.UiManager;
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        TaaStorage taaStorage = new JsonTaaStorage(userPrefs.getTaaDataFilePath());
+        storage = new StorageManager(taaStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -70,19 +70,19 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s student list and {@code userPrefs}. <br>
+     * The data from the sample student list will be used instead if {@code storage}'s student list is not found,
+     * or an empty student list will be used instead if errors occur when reading {@code storage}'s student list.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyStudentList> addressBookOptional;
+        ReadOnlyStudentList initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
+            addressBookOptional = storage.readTaaData();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ClassList");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleTaaData);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ClassList");
             initialData = new ClassList();

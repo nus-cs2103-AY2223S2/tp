@@ -19,14 +19,14 @@ public class AddStudentCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(TypicalPersons.getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(TypicalPersons.getTypicalTaaData(), new UserPrefs());
     }
 
     @Test
     public void execute_newPerson_success() {
         Student validStudent = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTaaData(), new UserPrefs());
         expectedModel.addStudent(validStudent);
 
         CommandTestUtil.assertCommandSuccess(new AddStudentCommand(validStudent), model,
@@ -35,7 +35,7 @@ public class AddStudentCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Student studentInList = model.getAddressBook().getStudentList().get(0);
+        Student studentInList = model.getTaaData().getStudentList().get(0);
         CommandTestUtil.assertCommandFailure(
                 new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
     }

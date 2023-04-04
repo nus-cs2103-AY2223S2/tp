@@ -12,41 +12,41 @@ import taa.commons.exceptions.DataConversionException;
 import taa.commons.exceptions.IllegalValueException;
 import taa.commons.util.FileUtil;
 import taa.commons.util.JsonUtil;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyStudentList;
 
 /**
  * A class to access ClassList data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonTaaStorage implements TaaStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonTaaStorage.class);
 
     private final Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonTaaStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getTaaDataFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyStudentList> readTaaData() throws DataConversionException {
+        return readTaaData(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readTaaData()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyStudentList> readTaaData(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializableTaaData> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializableTaaData.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -60,21 +60,21 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void saveTaaData(ReadOnlyStudentList studentList) throws IOException {
+        saveTaaData(studentList, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
+     * Similar to {@link #saveTaaData(ReadOnlyStudentList)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveTaaData(ReadOnlyStudentList studentList, Path filePath) throws IOException {
+        requireNonNull(studentList);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableTaaData(studentList), filePath);
     }
 
 }

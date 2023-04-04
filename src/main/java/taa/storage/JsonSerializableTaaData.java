@@ -10,14 +10,14 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import taa.commons.exceptions.IllegalValueException;
 import taa.model.ClassList;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyStudentList;
 import taa.model.student.Student;
 
 /**
  * An Immutable ClassList that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "taaData")
+class JsonSerializableTaaData {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Persons list contains duplicate student(s).";
 
@@ -27,21 +27,21 @@ class JsonSerializableAddressBook {
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students) {
+    public JsonSerializableTaaData(@JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.students.addAll(students);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyStudentList} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableTaaData(ReadOnlyStudentList source) {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code ClassList} object.
+     * Converts this TAA data into the model's {@code ClassList} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
