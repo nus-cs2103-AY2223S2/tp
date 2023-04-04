@@ -375,7 +375,7 @@ Output:
 
 ##### Restrictions
 
-* <code><var>PATIENT</var></code> must exist in the system.
+* <code><var>PATIENT_ID</var></code> must exist in the system.
 
 <br>
 
@@ -487,7 +487,7 @@ Output:
 
 ##### Restrictions
 
-* <code><var>PATIENT</var></code> must exist in the system.
+* <code><var>PATIENT_ID</var></code> must exist in the system.
 
 <br>
 
@@ -513,7 +513,7 @@ Output:
 
 ##### Restrictions
 
-* <code><var>PATIENT</var></code> must exist in the system.
+* <code><var>PATIENT_ID</var></code> must exist in the system.
 
 <br>
 
