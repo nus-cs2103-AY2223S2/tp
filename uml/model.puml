@@ -1,0 +1,227 @@
+@startuml model
+hide empty members
+hide circle
+skinparam classAttributeIconSize 0
+
+class Budget {
+    + Budget(budget: double)
+    + getMonthlyBudget(): double
+    + getWeeklyBudget(): double
+    + setMonthlyBudget(monthBudget: double): void
+    - monthBudget: double
+}
+
+abstract class Category {
+    + Category(categoryName: String, summary: String)
+    + getCategoryName(): String
+    + getSummary(): String
+    + isValidCategoryName(categoryName: String): boolean
+    # categoryName: String
+    # summary: String
+}
+
+class MiscellaneousCategory extends Category {
+    + MiscellaneousCategory()
+}
+
+class UserDefinedCategory extends Category {
+    + UserDefinedCategory(categoryName: String, summary: String)
+    + setCategoryName(categoryName: String): void
+    + setDescription(summary: String): void
+}
+
+class UniqueCategoryList {
+    + contains(category: Category): boolean
+    + add(newCategory: Category): void
+    + remove(category: Category): void
+    + clear(): void
+    + setCategoryList(listOfCategories: List<Category>): void
+    + categoriesAreUnique(listOfCategories: List<Category>): boolean
+    + asUnmodifiableList(): ObservableList<Category>
+    - internalListOfCategories: ObservableList<Category>
+    - internalUnmodifiableList: ObservableList<Category>
+}
+
+' getters and setters are not shown
+class Expense {
+    + Expense(name: String, amount: Price, date: LocalDate, category: Category)
+    + getFormattedDate(): String
+    + {static} isValidName(name: String): boolean
+    + {static} MESSAGE_CONSTRAINTS: String
+    + {static} VALIDATION_REGEX: String
+    - name: String
+    - amount: Price
+    - date: LocalDate
+    - category: Category
+}
+
+class Price {
+    + Price(amount: String)
+    + getPriceAsDouble(): double
+    + {static} isValidPrice(amount: String): boolean
+    + {static} MESSAGE_CONSTRAINTS: String
+    + {static} VALIDATION_REGEX: String
+    - amount: String
+}
+
+class ExpenseList {
+    + add(newExpense: Expense): void
+    + remove(expense: Expense): void
+    + clear(): void
+    + set(index: int, expense: Expense): void
+    + replaceDeletedCategory(target: Category): void
+    + contains(expense: Expense): boolean
+    + setExpenseList(listOfExpenses: List<Expense>): void
+    + getSize(): int
+    + getTotalAmount(): double
+    + sortList(): void
+    + asUnmodifiableList(): ObservableList<Expense>
+    - internalListOfExpenses: ObservableList<Expense>
+    - internalUnmodifiableList: ObservableList<Expense>
+    - misc: MiscellaneousCategory
+}
+
+class RecurringExpenseList {
+    + addRecurringExpense(recurringExpense: RecurringExpenseManager): void
+    + removeRecurringExpense(recurringExpense: RecurringExpenseManager): void
+    + getExpenses(): ArrayList<Expense>
+    + cleanupExpiredGenerators(): void
+    + getSize(): int
+    : getTotalAmount(): double
+    + asUnmodifiableList(): ObservableList<RecurringExpenseManager>
+    - recurringExpenseList: ObservableList<RecurringExpenseManager>
+    - internalUnmodifiableList: ObservableList<RecurringExpenseManager>
+}
+
+class RecurringExpenseManager {
+    + RecurringExpenseManager(expenseName: String, amount: Price, expenseCategory: Category, numberOfExpenses: int, nextExpenseDate: LocalDate, startDate: LocalDate, endDate: LocalDate, recurringExpenseType: RecurringExpenseType)
+    + getExpenses(): ArrayList<Expense>
+    - expenseName: String
+    - amount: Price
+    - expenseCategory: Category
+    - numberOfExpenses: int
+    - nextExpenseDate: LocalDate
+    - startDate: LocalDate
+    - endDate: LocalDate
+    - recurringExpenseType: RecurringExpenseType
+}
+
+enum RecurringExpenseType {
+    + DAILY
+    + WEEKLY
+    + MONTHLY
+    + YEARLY
+    + getNextExpenseDate(currentDate: LocalDate): LocalDate
+}
+
+class ExpenseContainsKeywordsPredicate {
+    + ExpenseContainsKeywordsPredicate(keywords: List<String>)
+    - keywords: List<String>
+}
+
+class ExpenseInTimespanPredicate {
+    + ExpenseInTimespanPredicate(timespan: Timespan)
+    - timespan: Timespan
+}
+
+class ExpenseInCategoryPredicate {
+    + ExpenseInCategoryPredicate(category: Category)
+    - category: Category
+}
+
+enum AnalyticsType {
+    + MONTHLY_SPENT
+    + WEEKLY_SPENT
+    + TOTAL_SPENT
+    + MONTHLY_REMAINING
+    + WEEKLY_REMAINING
+    + WEEKLY_CHANGE
+    + MONTHLY_CHANGE
+    + BUDGET_PERCENTAGE
+}
+
+interface AnalyticModel {
+    + getAnalyticsData(type: AnalyticsType): double
+    + getMonthlyBudget(): DoubleProperty
+    + getMonthlyRemaining(): DoubleProperty
+    + getWeeklySpent(): DoubleProperty
+    + getWeeklyRemaining(): DoubleProperty
+    + getWeeklyChange(): DoubleProperty
+    + getMonthlyChange(): DoubleProperty
+    + getTotalSpent(): DoubleProperty
+    + getBudgetPercentage(): DoubleProperty
+    + updateMonthlyBudgetProperty(newBudget: Budget): void
+    + updateWeeklyBudgetProperty(newBudget: Budget): void
+    + updateAllStatistics(): void
+}
+
+class AnalyticsModelManager {
+    + AnalyticsModelManager(expenseTracker: ExpenseTracker, referenceDate: LocalDate)
+}
+
+
+interface ReadOnlyExpenseTracker {
+    + getExpenseList(): ObservableList<Expense>
+    + getRecurringExpenseGenerators(): ObservableList<RecurringExpenseManager>
+    + getCategoryList(): ObservableList<Category>
+    + getBudgetForStats(): ObjectProperty<Budget>
+    + getBudget(): Budget
+}
+
+' add, has, and remove methods are not shown
+class ExpenseTracker {
+    + ExpenseTracker()
+    + ExpenseTracker(toBeCopied: ReadOnlyExpenseTracker)
+    + resetData(newData: ReadOnlyExpenseTracker): void
+    + generateRetroactiveExpenses(): void
+    + cleanUpRecurrenceGenerators(): void
+    - expenses: ExpenseList
+    - recurringGenerators: RecurringExpenseList
+    - categories: UniqueCategoryList
+    - simpleBudget: ObjectProperty<Budget>
+}
+
+interface ReadOnlyUserPrefs {
+    + getGuiSettings(): GuiSettings
+    + getExpenseTrackerFilePath(): Path
+}
+
+class UserPrefs {
+    + UserPrefs(UserPrefs: : ReadOnlyUserPrefs)
+    + resetData(newUserPrefs: ReadOnlyUserPrefs): void
+    - guiSettings: GuiSettings
+    - expenseTrackerFilePath: Path
+}
+
+ReadOnlyExpenseTracker <|-- ExpenseTracker
+ReadOnlyUserPrefs <|-- UserPrefs
+ExpenseTracker *-- ExpenseList
+ExpenseTracker *-- RecurringExpenseList
+ExpenseTracker *-- UniqueCategoryList
+ExpenseTracker *-- Budget
+ExpenseList *-- Expense
+RecurringExpenseList *-- RecurringExpenseManager
+UniqueCategoryList *-- Category
+Category <|-- MiscellaneousCategory
+Category <|-- UserDefinedCategory
+Expense *-- Price
+Expense *-- Category
+RecurringExpenseManager *-- Price
+RecurringExpenseManager *-- Category
+RecurringExpenseManager *-- RecurringExpenseType
+ExpenseList *-- ExpenseContainsKeywordsPredicate
+ExpenseList *-- ExpenseInTimespanPredicate
+ExpenseList *-- ExpenseInCategoryPredicate
+AnalyticModel <|-- AnalyticsModelManager
+AnalyticsModelManager *-- ExpenseTracker
+AnalyticsModelManager *-- LocalDate
+AnalyticsModelManager *-- Budget
+AnalyticsModelManager *-- AnalyticsType
+AnalyticsModelManager *-- DoubleProperty
+AnalyticsModelManager *-- ObjectProperty
+AnalyticsModelManager *-- ReadOnlyExpenseTracker
+AnalyticsModelManager *-- ReadOnlyUserPrefs
+AnalyticsModelManager *-- GuiSettings
+AnalyticsModelManager *-- Path
+
+@enduml

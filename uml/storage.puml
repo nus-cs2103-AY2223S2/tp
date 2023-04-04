@@ -1,0 +1,109 @@
+@startuml storage
+
+interface UserPrefsStorage {
+    getUserPrefsFilePath(): Path
+    readUserPrefs(): Optional<UserPrefs>
+    saveUserPrefs(userPrefs: ReadOnlyUserPrefs): void
+}
+
+interface ExpenseTrackerStorage {
+    getExpenseTrackerFilePath(): Path
+    readExpenseTracker(): Optional<ReadOnlyExpenseTracker>
+    readExpenseTracker(filePath: Path): Optional<ReadOnlyExpenseTracker>
+    saveExpenseTracker(expenseTracker: ReadOnlyExpenseTracker): void
+    saveExpenseTracker(expenseTracker: ReadOnlyExpenseTracker, filePath: Path): void
+}
+
+interface Storage extends ExpenseTrackerStorage, UserPrefsStorage {
+}
+
+class JsonAdaptedBudget {
+    + JsonAdaptedBudget(source: Budget)
+    + JsonAdaptedBudget(amount: String)
+    + toModelType(): Budget
+    {static} MISSING_FIELD_MESSAGE_FORMAT: String
+    - amount: String
+}
+
+class JsonAdaptedCategory {
+    + JsonAdaptedCategory(source: Category)
+    + JsonAdaptedCategory(categoryName: String, summary: String)
+    + toModelType(): Category
+    {static} MISSING_FIELD_MESSAGE_FORMAT: String
+    - categoryName: String
+    - summary: String
+}
+
+class JsonAdaptedExpense {
+    + JsonAdaptedExpense(source: Expense)
+    + JsonAdaptedExpense(name: String, amount: String, date: String, category: String, category: JsonAdaptedCategory)
+    + toModelType(): Expense
+    {static} MISSING_FIELD_MESSAGE_FORMAT: String
+    - name: String
+    - amount: String
+    - date: String
+    - category: JsonAdaptedCategory
+}
+
+class JsonAdaptedRecurringExpenseManager {
+    + JsonAdaptedRecurringExpenseManager(source: RecurringExpenseManager)
+    + JsonAdaptedRecurringExpenseManager(expenseName: String, expenseAmount: String, expenseCategory: JsonAdaptedCategory, nextExpenseDate: String, startDate: String, endDate: String, recurringExpenseType: String)
+    + toModelType(): RecurringExpenseManager
+    {static} MISSING_FIELD_MESSAGE_FORMAT: String
+    - expenseName: String
+    - expenseAmount: String
+    - expenseCategory: JsonAdaptedCategory
+    - nextExpenseDate: String
+    - startDate: String
+    - endDate: String
+    - recurringExpenseType: String
+}
+
+class JsonExpenseTrackerStorage {
+    + JsonExpenseTrackerStorage(filePath: Path)
+    + getExpenseTrackerFilePath(): Path
+    + readExpenseTracker(filePath: Path): Optional<ReadOnlyExpenseTracker>
+    + saveExpenseTracker(expenseTracker: ReadOnlyExpenseTracker, filePath: Path): void
+    - {static} logger: Logger
+    - filePath: Path
+}
+
+class JsonSerializableExpenseTracker {
+    + JsonSerializableExpenseTracker(source: ReadOnlyExpenseTracker)
+    + JsonSerializableExpenseTracker(listOfCategories: List<JsonAdaptedCategory>, listOfExpenses: List<JsonAdaptedExpense>, budget: JsonAdaptedBudget, recurringGenerators: List<JsonAdaptedRecurringExpenseManager>)
+    + toModelType(): ExpenseTracker
+    - getAssociatedCategory(expense: Expense, expenseTracker: ExpenseTracker): Category
+    - getAssociatedCategoryForRecurring(recur: RecurringExpenseManager, expenseTracker: ExpenseTracker): Category
+    - categories: ArrayList<JsonAdaptedCategory>
+    - expenses: ArrayList<JsonAdaptedExpense>
+    - budget: JsonAdaptedBudget
+    - recurringGenerators: ArrayList<JsonAdaptedRecurringExpenseManager>
+}
+
+class JsonUserPrefsStorage {
+    + JsonUserPrefsStorage(filePath: Path)
+    + readUserPrefs(prefsFilePath: Path): Optional<UserPrefs>
+    - filePath: Path
+}
+
+class StorageManager {
+    + StorageManager(expenseTracker: ExpenseTrackerStorage, UserPrefsStorage: UserPrefsStorage)
+    - {static} logger: Logger
+    - expenseTrackerStorage: ExpenseTrackerStorage
+    - userPrefsStorage: UserPrefsStorage
+}
+
+
+Storage <|-- StorageManager
+ExpenseTrackerStorage <|-- JsonExpenseTrackerStorage
+UserPrefsStorage <|-- JsonUserPrefsStorage
+JsonExpenseTrackerStorage *-- "1" JsonSerializableExpenseTracker
+JsonSerializableExpenseTracker *-- "1" JsonAdaptedExpense
+JsonSerializableExpenseTracker *-- "1" JsonAdaptedCategory
+JsonSerializableExpenseTracker *-- "1" JsonAdaptedBudget
+JsonSerializableExpenseTracker *-- "1" JsonAdaptedRecurringExpenseManager
+' JsonAdaptedExpense *-- "1" Expense
+' JsonAdaptedCategory *-- "1" Category
+' JsonAdaptedBudget *-- "1" Budget
+' JsonAdaptedRecurringExpenseManager *-- "1" RecurringExpenseManager
+@enduml
