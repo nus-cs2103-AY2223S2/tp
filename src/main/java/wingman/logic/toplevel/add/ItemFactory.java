@@ -25,7 +25,6 @@ public interface ItemFactory<T extends Item> {
      */
     T create(CommandParam param) throws ParseException;
 
-
     /**
      * Creates a plane.
      *

@@ -122,8 +122,7 @@ public class Crew implements Item {
     public List<String> getDisplayList() {
         return List.of(
                 String.format("%s", name),
-                String.format("%s: %s", RANK_STRING, rank),
-                String.format("%s: %s", AVAILABILITY_STRING, getAvailabilityString())
+                String.format("%s: %s", RANK_STRING, rank)
         );
     }
 
@@ -133,5 +132,20 @@ public class Crew implements Item {
                 "%s %s",
                 rank,
                 name);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Crew)) {
+            return false;
+        }
+
+        Crew other = (Crew) obj;
+
+        return other.getName().equals(getName());
     }
 }

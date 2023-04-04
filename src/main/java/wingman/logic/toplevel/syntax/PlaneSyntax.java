@@ -6,12 +6,13 @@ import wingman.logic.core.CommandParam;
 import wingman.logic.core.exceptions.ParseException;
 import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
+import wingman.model.item.exceptions.DuplicateItemException;
 import wingman.model.plane.Plane;
 
 /**
  * The syntax for a plane.
  */
-public abstract class PlaneSyntax {
+public abstract class PlaneSyntax extends ModelSyntax {
     /**
      * The prefix for model.
      */
@@ -40,6 +41,10 @@ public abstract class PlaneSyntax {
     public static Plane factory(CommandParam param) throws ParseException {
         String model = param.getNamedValuesOrThrow(PREFIX_MODEL);
         int age = param.getNamedIntOrThrow(PREFIX_AGE);
+
+        requireAllAlphanumericOrSpace(model);
+        requireAllNonNegative(age);
+
         return new Plane(model, age);
     }
 
@@ -49,7 +54,7 @@ public abstract class PlaneSyntax {
      * @param model the model to which the plane shall be added.
      * @param plane the plane that which shall be added to the model.
      */
-    public static void add(Model model, Plane plane) {
+    public static void add(Model model, Plane plane) throws DuplicateItemException {
         model.addPlane(plane);
     }
 

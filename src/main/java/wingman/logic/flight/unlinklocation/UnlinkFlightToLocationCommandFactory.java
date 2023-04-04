@@ -192,7 +192,7 @@ public class UnlinkFlightToLocationCommandFactory implements CommandFactory<Unli
                     locationDepartureIdOptional,
                     FlightLocationType.LOCATION_DEPARTURE,
                     locations
-            ) || addLocation(
+            ) && addLocation(
                     locationArrivalIdOptional,
                     FlightLocationType.LOCATION_ARRIVAL,
                     locations

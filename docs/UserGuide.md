@@ -1,11 +1,11 @@
 ### Wingman User Guide
 
 Wingman is a resource management tool designed for airline managers that allows for efficient management of crew,
-flights, locations, pilots, and planes via a Command Line Interface (CLI) while still providing the benefits of a
-Graphical User Interface (GUI). The functionalities include adding, deleting, checking, or associating these
-flight-related resources.
+flights, locations, pilots, and planes via command lines. The functionalities include adding, deleting, checking, or associating these
+airline-related resources. The program is highly optimized for fast typers, while having an intuitive graphical interface
+for managers to monitor the status of airline-related resources. 
 
-This guide is to guide you on how to use Wingman to efficiently manage the various aspects of airline operations,
+In this flight, we will guide you on how to use Wingman to efficiently manage the various aspects of airline operations,
 such as flight scheduling and management of crew, pilot, plane and location.
 
 ## Table of Contents
@@ -13,12 +13,14 @@ such as flight scheduling and management of crew, pilot, plane and location.
 - **[How to use this guide?](#how-to-use-this-guide)**
 - **[Getting Started](#getting-started)**
 - **[Features](#features)**
-    - **[Modal Editing](#modal-editing)**
-    - **[Shared Commands](#shared-commands)**
-    - **[Mode-specific Commands](#mode-specific-commands)**
-    - **[Application Commands](#application-commands)**
+  - **[Modal Editing](#modal-editing)**
+  - **[Shared Commands](#shared-commands)**
+  - **[Mode-specific Commands](#mode-specific-commands)**
+  - **[Application Commands](#application-commands)**
+- **[Prefix Summary](#prefix-summary)**
 - **[Command summary](#command-summary)**
 - **[FAQ](#faq)**
+- **[Glossary](#glossary)**
 - **[Other information](#other-information)**
 
 <div style="page-break-after: always;"></div>
@@ -27,8 +29,17 @@ such as flight scheduling and management of crew, pilot, plane and location.
 
 This user guide provides an in-depth documentation on the multiple features that enable Wingman
 to assist you in managing your resources.
-We have also included a handy [command summary](#command-summary) where you can view all the commands at a glance.
-Refer to the next section to see how you can get started in just a few steps!
+
+If you are an experienced user trying to find a specific command, you can head over to
+the [command summary](#command-summary) section where you can view all the commands at a glance.
+
+If you are a first-time user, you can begin by reading the [Getting Started](#getting-started) section to learn how to
+get started with Wingman in just a few simple steps!
+
+To find an in depth description of Wingman's features, simply search for the feature in the
+[table of contents](#table-of-contents) and head over to the relevant section.
+Each section contains a detailed description of the feature, and it's command format 
+along with some examples of possible uses and expected outputs.
 
 For the description of commands, `{resource}_index` (e.g. `plane_index`) acts a placeholder in the command format where
 a
@@ -39,28 +50,29 @@ refer to the image below for clarity.
 
 You can get started with Wingman in just 3 simple steps:
 
-1. Click [here](https://github.com/AY2223S2-CS2103T-W11-1/tp/releases/tag/v1.3) to download the Wingman.jar file
-2. Open the terminal or command prompt (for Windows users) application in your device
-3. Run the following command in your terminal under the directory: `java -jar Wingman.jar`
+1. Ensure you have `JAVA 11` installed on your computer. If you are unsure how to check JAVA version on your computer,
+please check out [FAQ](#faq). 
+2. Click [here](https://github.com/AY2223S2-CS2103T-W11-1/tp/releases/tag/v1.3) to download the Wingman.jar file
+3. Open a command terminal on your computing, and run the command to start the application:  `java -jar Wingman.jar`
 
-You should now be in the Wingman application.
+A GUI similar to the one below should appear in a few seconds.
 
-A GUI similar to the below should appear in a few seconds.
-Note how the app contains some sample data.
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note how the app below contains some sample data. This may not be the case if it's your first time using Wingman.
+</div>
 
 <img src = "images/UG-index-reference.png" width="2032" alt="Wingman home page">
 
-If that is not the case, head over to our [FAQ](#faq) section to troubleshoot
+(If you encounter any issues during installation, please head over to our [FAQ](#faq) section to troubleshoot.)
 
-
-<div style="page-break-after: always;"></div>
-
-## Features
+Congratulations on successfully setting up Wingman!
+Before you start using Wingman to manage your resources, do take a moment to read
+the following section on [Modal Editing](#modal-editing) to understand how Wingman's commands are structured.
 
 ### Modal Editing
 
 Wingman offers 5 different modes through which you can manage your resources, with each mode
-corresponding to one resource that the app can manage:
+corresponding to one [resource](#glossary) that the app can manage:
 
 - `crew` mode: to manage the crews that form your airline workforce
 - `flight` mode: to manage the flights that your airline operates
@@ -68,11 +80,9 @@ corresponding to one resource that the app can manage:
 - `pilot` mode: to manage the pilots that form your airline workforce
 - `plane` mode: to manage the planes that your airline operates
 
-The different modes offer similar and intuitive commands, with optimisations to cater to the subject
+The different modes offer similar and intuitive commands, with optimisations to cater to the resource
 that the mode is managing. This means you do not have to worry about memorising complex commands and instead
-can dive right into the management of your airline. As a result of Wingman's modal design, you will be
-able to complete a variety of management tasks through singular commands. These commands are detailed
-in the subsequent [sections](#shared-commands).
+can dive right into the management of your airline.
 
 To switch between different modes simply enter the following command:
 
@@ -80,17 +90,18 @@ To switch between different modes simply enter the following command:
 mode XYZ
 ```
 
-where XYZ can be any of the modes as described above (i.e. `crew`, `flight`, `location`, `pilot`, `plane`).
+where XYZ can be any of the modes described above (i.e. `crew`, `flight`, `location`, `pilot`, `plane`).
 
 <img src="images/ModeCrewLanding.jpg" width="2032" alt="Switching to mode crew">
 
 As shown in the image above, upon successfully switching to a mode, Wingman will
 display the current mode's name in the status bar in the bottom left corner of the window.
-The window also displays 2 lists, the left one displaying the entities belonging to the current resource mode
-and the right one displaying all the flights that these entities can be linked to.
+The window also displays a list for each resource, to aid you in keeping track of links between resources.
 
 
 <div style="page-break-after: always;"></div>
+
+## Features
 
 ### Shared Commands
 
@@ -106,10 +117,13 @@ add /prefix_A value_A /prefix_B value_B
 ```
 
 This commands adds an entity of the current resource mode to Wingman's database. For example,
-if you are currently in the `plane` mode, then this command will add a new `plane` to the database. It should be noted,
-however, that the prefixes specified in different modes are different.
+if you are currently in the `plane` mode, then this command will add a new `plane` to the database.
+Each `/prefix` is an attribute of the resource entity, and you can specify the values
+for each attribute as shown in the following examples.
 
-Here are some examples of how the command works in each mode:
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
+</div>
 
 ##### Crew mode: `add /n name /r rank`
 
@@ -236,7 +250,7 @@ This command has no variations across modes:
 
 Prefix:
 
-- `index_number`: the index number of the resource entity you wish to delete. Note that the indexing starts from 0.
+- `index_number`: the index number of the resource entity you wish to delete. Note that the indexing starts from 1.
 
 The index number of an entity can be obtained from its position in the displayed list.
 
@@ -244,7 +258,7 @@ Example (in `plane` mode):
 
 ```
 Input:
-delete 0
+delete 1
 
 Output: 
 Deleted A380.
@@ -274,12 +288,13 @@ linklocation /lo location_index /resource_prefix resource_index
 This command is ONLY available in the following modes: `crew`, `flight`, `pilot` and `plane`.
 
 This commands links an entity of the current resource mode to a specified location entity in Wingman's database.
-For example, if you are currently in the `plane` mode, then this command will link a `plane` to a specified location
-entity in the database. It shall be noted, however, that the prefixes specified in different modes are different.
 
-Note: Indexing for `location_index` and `resource_index` starts from 0.
+For example, if you are currently in the `plane` mode, then this command will link a `plane` to a specified location 
+entity in the database.
 
-Here are some examples of how the command works in each mode:
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
+</div>
 
 ##### Crew mode: `linklocation /lo location_index /cr crew_index`
 
@@ -292,7 +307,7 @@ Example:
 
 ```
 Input:
-linklocation /lo 0 /cr 1
+linklocation /lo 1 /cr 2
 
 Output: 
 Linked Cabin Service Director John Smith to Tokyo.
@@ -310,7 +325,7 @@ Example:
 
 ```
 Input:
-linklocation /fl 0 /from 0 /to 1
+linklocation /fl 1 /from 1 /to 2
 
 Output: 
 Linked flight SQ230 departing from Tokyo, arriving in Paris.
@@ -327,7 +342,7 @@ Example:
 
 ```
 Input:
-linklocation /lo 0 /pi 1
+linklocation /lo 1 /pi 2
 
 Output: 
 Linked Cadet Amelia Earhart to Tokyo.
@@ -344,7 +359,7 @@ Example:
 
 ```
 Input:
-linklocation /lo 0 /pl 1
+linklocation /lo 1 /pl 2
 
 Output: 
 Linked A380 to Tokyo.
@@ -372,12 +387,11 @@ and `plane`.
 
 This commands unlinks an entity of the current resource mode to a specified location entity in Wingman's database.
 For example, if you are currently in the `plane` mode, then this command will unlink a `plane`
-from the specified location entity in the database. It shall be noted, however,
-that the prefixes that are specified in different modes are different.
+from the specified location entity in the database.
 
-Note: Indexing for `location_index` and `resource_index` starts from 0.
-
-Here are some examples of how the command works in each mode:
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
+</div>
 
 ##### Crew mode: `unlinklocation /lo location_index /cr crew_index`
 
@@ -390,7 +404,7 @@ Example:
 
 ```
 Input:
-unlinklocation /lo 0 /cr 1
+unlinklocation /lo 1 /cr 2
 
 Output: 
 Unlinked Cabin Service Director John Smith from Tokyo.
@@ -408,7 +422,7 @@ Example:
 
 ```
 Input:
-unlinklocation /fl 0 /from 0 /to 1
+unlinklocation /fl 1 /from 1 /to 2
 
 Output: 
 Unlinked flight SQ230 from Tokyo and Paris.
@@ -425,7 +439,7 @@ Example:
 
 ```
 Input:
-unlinklocation /lo 0 /pi 1
+unlinklocation /lo 1 /pi 2
 
 Output: 
 Unlinked Cadet Amelia Earhart from Tokyo.
@@ -442,7 +456,7 @@ Example:
 
 ```
 Input:
-unlinklocation /lo 0 /pl 1
+unlinklocation /lo 1 /pl 2
 
 Output: 
 Unlinked A380 from Tokyo.
@@ -459,17 +473,18 @@ you can use this command to link each pilot to a flight).
 linkflight /fl flight_index /resource_prefix resource_index
 ```
 
-This command is ONLY available in the following modes: `crew`, `pilot` and `plane`.
-(Note: Locations are linked to flights through the `flight` mode, using the `linklocation` command described
-[above](#1-linking-a-resource-to-a-location))
+This command is ONLY available in the following modes: `crew`, `pilot` and `plane`. 
+
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note: Locations are linked to flights through the `flight` mode, using the `linklocation` command described above.
+</div>
 
 This commands links an entity of the current resource mode to a specified flight in Wingman's database. For example,
-if you are currently in the `plane` mode, then this command will link a `plane` to a specified flight in the database.
-It shall be noted, however, that the indexes specified in different modes are different.
+if you are currently in the `plane` mode, then this command will link a `plane` to a specified flight in the database. 
 
-Note: Indexing for `flight_index` and `resource_index` starts from 0.
-
-Here are some examples of how the command works in each mode:
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
+</div>
 
 ##### Crew mode:
 
@@ -483,13 +498,15 @@ Prefixes:
 - `/fa`: the index of the crew to be linked as Flight Attendant (FA) for this flight.
 - `/tr`: the index of the crew to be linked as Trainee (TR) for this flight.
 
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 Note: In each `linkflight` command under crew mode, you only need to fill up **at least** 1 crew related prefix.
+</div>
 
 Example:
 
 ```
 Input:
-linkflight /fl 0 /csd 1
+linkflight /fl 1 /csd 2
 
 Output: 
 Linked Cabin Service Director John Smith to SQ230.
@@ -503,13 +520,15 @@ Prefixes:
 - `/pf`: the index of the flying pilot to be linked to the flight.
 - `/pm`: the index of the monitoring pilot to be linked to the flight.
 
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 Note: In each `linkflight` command under pilot mode, you only need to fill up **at least** 1 pilot related prefix.
+</div>
 
 Example:
 
 ```
 Input:
-linkflight /fl 0 /csd 1
+linkflight /fl 1 /csd 2
 
 Output: 
 Linked Cadet Amelia Earhart to SQ230.
@@ -526,7 +545,7 @@ Example:
 
 ```
 Input:
-linkflight /fl 0 /pl 1
+linkflight /fl 1 /pl 2
 
 Output: 
 Linked A380 to SQ230.
@@ -543,17 +562,20 @@ you can use this command to unlink the crew members from the flight).
 unlinkflight /fl flight_index /resource_prefix resource_index 
 ```
 
-This command is ONLY available in the following modes: `crew`, `pilot` and `plane`.
-(Note: Locations are unlinked from flights through the `flight` mode, using the `unlinklocation` command described
-[above](#2-unlinking-a-resource-from-a-location))
+This command is **ONLY** available in the following modes: `crew`, `pilot` and `plane`.
+
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note: Locations are unlinked from flights through the `flight` mode, using the `unlinklocation` command
+described above.
+</div>
 
 This command unlinks an entity of the current resource mode from a specified flight in Wingman's database. For example,
-if you are currently in the `plane` mode, then this command will unlink a `plane` from a specified flight in the
-database. It shall be noted, however, that the prefixes specified in different modes are different.
+if you are currently in the `plane` mode, then this command will unlink a `plane` from a specified flight in the 
+database.
 
-Note: Indexing for `flight_index` and `resource_index` starts from 0.
-
-Here are some examples of how the command works in each mode:
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note: The prefixes vary across different modes. Refer to the examples below for more clarity.
+</div>
 
 ##### Crew mode:
 
@@ -567,13 +589,15 @@ Prefixes:
 - `/fa`: the index of the crew to be unlinked as Flight Attendant (FA) for this flight.
 - `/tr`: the index of the crew to be unlinked as Trainee (TR) for this flight.
 
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 Note: In each `unlinkflight` command in crew mode, you only need to fill up **at least** 1 crew related prefix.
+</div>
 
 Example:
 
 ```
 Input:
-unlinkflight /fl 0 /csd 1
+unlinkflight /fl 1 /csd 2
 
 Output: 
 Unlinked Cabin Service Director John Smith from SQ230.
@@ -587,13 +611,16 @@ Prefixes:
 - `/pf`: the index of the flying pilot to be unlinked from the flight.
 - `/pm`: the index of the monitoring pilot to be unlinked from the flight.
 
-Note: In each `unlinkflight` command in pilot mode, you only need to fill up **at least** 1 pilot related prefix.
+
+<div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
+Note: In each `unlinkflight` command in pilot mode, you only need to fill up **at least** 1 crew related prefix.
+</div>
 
 Example:
 
 ```
 Input:
-unlinkflight /fl 0 /csd 1
+unlinkflight /fl 1 /csd 2
 
 Output: 
 Unlinked Cadet Amelia Earhart from SQ230.
@@ -610,7 +637,7 @@ Example:
 
 ```
 Input:
-unlinkflight /fl 0 /pl 1
+unlinkflight /fl 1 /pl 2
 
 Output: 
 Unlinked A380 from SQ230.
@@ -638,13 +665,11 @@ to any flights or not and indicate its availability.
 
 This command is the same across `crew`, `pilot`, and `plane`.
 
-Note: Indexing for `resource_index` starts from 0.
-
 Example (in `plane` mode):
 
 ```
 Input:
-check /id 0
+check /id 1
 
 Output: 
 A380 is available.
@@ -713,17 +738,26 @@ All your changes to your resources will be saved for you to get back to when you
 ### 1. Why is Wingman not opening when I run the `java -jar` command?
 
 - You might be running the command in the wrong directory.
-  Navigate to the directory where you downloaded the application file and run the same command again.
-- Verify that your java version is 11. You may run `java -version` in your terminal to see your Java SDK version.
-  If you need to install Java 11, please follow
-  this [guide](https://nus-cs2103-ay2223s2.github.io/website/admin/programmingLanguages.html#programming-language).
-  Below is one example showing the correct version:
 
+Navigate to the directory where you downloaded the application file and run the same command again. 
+- Verify that your java version is 11. See the following question.
+
+### 2. How to check my `JAVA` version?
+You may run `java -version` in your terminal to see your Java SDK version. 
+If you need to install Java 11, please follow this [guide](https://nus-cs2103-ay2223s2.github.io/website/admin/programmingLanguages.html#programming-language).
+Below is one example showing the correct version: 
 ```agsl
 openjdk version 11.0.18 2023-01-17 LTS
 OpenJDK Runtime Environment Zulu11.62+17-CA (build 11.0.18+10-LTS)
 OpenJDK 64-Bit Server VM Zulu11.62+17-CA (build 11.0.18+10-LTS, mixed mode)
 ```
+
+## Glossary
+| **Term**        | **Definition**                                                            |
+|-----------------|---------------------------------------------------------------------------|
+| Resource        | Crews, Pilots, Planes, Flights or Locations                               |
+| Resource Entity | An entity of any of the resource types specified above (e.g. Captain Bob) |
+| Prefix          | A placeholder term referring to an attribute name (e.g. /g for gender)    |
 
 ## Other information
 

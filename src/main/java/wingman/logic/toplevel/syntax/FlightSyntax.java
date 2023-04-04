@@ -7,11 +7,12 @@ import wingman.logic.core.exceptions.ParseException;
 import wingman.model.Model;
 import wingman.model.ReadOnlyItemManager;
 import wingman.model.flight.Flight;
+import wingman.model.item.exceptions.DuplicateItemException;
 
 /**
  * The syntax for flight.
  */
-public abstract class FlightSyntax {
+public abstract class FlightSyntax extends ModelSyntax {
     /**
      * The prefix for code.
      */
@@ -31,6 +32,7 @@ public abstract class FlightSyntax {
      */
     public static Flight factory(CommandParam param) throws ParseException {
         final String code = param.getNamedValuesOrThrow(PREFIX_CODE);
+        requireAllAlphanumericOrSpace(code);
         return new Flight(code);
     }
 
@@ -40,7 +42,7 @@ public abstract class FlightSyntax {
      * @param model  the model to which the flight shall be added.
      * @param flight the flight that which will be added to the model.
      */
-    public static void add(Model model, Flight flight) {
+    public static void add(Model model, Flight flight) throws DuplicateItemException {
         model.addFlight(flight);
     }
 

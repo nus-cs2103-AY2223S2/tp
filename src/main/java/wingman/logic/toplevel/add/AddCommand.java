@@ -5,6 +5,7 @@ import wingman.logic.core.CommandResult;
 import wingman.logic.core.exceptions.CommandException;
 import wingman.model.Model;
 import wingman.model.item.Item;
+import wingman.model.item.exceptions.DuplicateItemException;
 
 /**
  * The command that adds an item to the model.
@@ -42,10 +43,21 @@ public class AddCommand<T extends Item> implements Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        addFunction.add(model, item);
-        return new CommandResult(String.format(
-                "Added %s.",
-                item.toString()
-        ));
+        try {
+            addFunction.add(model, item);
+        } catch (DuplicateItemException e) {
+            return new CommandResult(
+                    String.format(
+                            "%s %s already exists. Duplication not allowed. ",
+                            typeName.substring(0, 1).toUpperCase() + typeName.substring(1),
+                            item
+                    )
+            );
+        }
+        return new CommandResult(
+                String.format(
+                    "Added %s.", item.toString()
+                )
+        );
     }
 }

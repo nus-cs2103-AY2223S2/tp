@@ -20,6 +20,7 @@ import wingman.model.exception.IndexOutOfBoundException;
 import wingman.model.flight.Flight;
 import wingman.model.flight.exceptions.FlightNotFoundException;
 import wingman.model.item.Item;
+import wingman.model.item.exceptions.DuplicateItemException;
 import wingman.model.location.Location;
 import wingman.model.location.exceptions.LocationNotFoundException;
 import wingman.model.pilot.Pilot;
@@ -370,7 +371,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addLocation(Location location) {
+    public void addLocation(Location location) throws DuplicateItemException {
         requireNonNull(location);
         locationManager.addItem(location);
     }
@@ -430,7 +431,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addCrew(Crew crew) {
+    public void addCrew(Crew crew) throws DuplicateItemException {
         requireNonNull(crew);
         crewManager.addItem(crew);
     }
@@ -509,7 +510,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPlane(Plane plane) {
+    public void addPlane(Plane plane) throws DuplicateItemException {
         CollectionUtil.requireAllNonNull(plane);
         planeManager.addItem(plane);
     }
@@ -641,7 +642,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addFlight(Flight flight) {
+    public void addFlight(Flight flight) throws DuplicateItemException {
         requireNonNull(flight);
         flightManager.addItem(flight);
     }
@@ -693,6 +694,6 @@ public class ModelManager implements Model {
             int index,
             ReadOnlyItemManager<T> itemManager
     ) {
-        return index <= itemManager.size() && index >= 0;
+        return index <= itemManager.size() && index > 0;
     }
 }

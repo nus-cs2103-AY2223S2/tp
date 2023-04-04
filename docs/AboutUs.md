@@ -10,7 +10,7 @@ email [support@parkourlabs.io](mailto:support@parkourlabs.io)
 
 ### Ai Bo
 
-<img src="images/BoAi01.png" width="200px">
+<img src="images/boai01.png" width="200" height="200">
 
 [[webpage](https://albertboai.com/)]
 [[github](https://github.com/BoAi01)]
