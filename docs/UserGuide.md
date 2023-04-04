@@ -1454,6 +1454,18 @@ Here are the respective formats for each of the data types:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Trackr home folder.
 
+
+**Q**: Can I search for `suppliers` by other fields such as `tags`?<br>
+**A**: Currently it is not supported but will be added in the future. You can only find `suppliers` by their `names`. Sorry for the inconvenience caused.
+
+
+**Q**: Can I edit tags present in `suppliers`?<br>
+**A**: This is not supported currently. You can just replace the tags directly using the [`edit_supplier`](#221-editing-a-supplier-editsupplier) command. We will consider adding this as a feature in the future.
+
+
+**Q**: Do I require internet access to use Trackr?<br>
+**A**: No, you can use Trackr without any internet access.
+
 --------------------------------------------------------------------------------------------------------------------
 
 # 6 Summary
