@@ -17,7 +17,7 @@ than traditional GUI apps.
   - [Help](#Help)
   - [Add](#add-a-patient--add)
   - [List](#listing-all-patients--list)
-  - [list_name](#listing-patients-in-alphabetical-order--listname)
+  - [List By Name](#listing-patients-in-alphabetical-order--listname)
   - [Edit](#editing-a-patient--edit)
   - [Appointment](#appointment)
     - [makeApp](#making-appointment-to-a-patient--makeapp)
@@ -177,7 +177,7 @@ Examples:
 
 ### Appointment
 
-#### Making Appointment to a patient : `makeApp`
+### Making Appointment to a patient : `makeApp`
 
 Make an appointment to Medimate through command method:
 
@@ -206,7 +206,7 @@ Make an appointement to MediMate through button method:
 
 💡Date must be in **YYYY-MM-DD** format and Time must be in the format of 24hr clock.
 
-#### Marking Appointment with a patient: `markApp`
+### Marking Appointment with a patient: `markApp`
 
 Marks an appointment with a patient as done using command method:
 
