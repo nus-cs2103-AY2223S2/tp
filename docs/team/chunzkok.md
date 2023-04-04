@@ -22,7 +22,7 @@ Given below are my contributions to the project.
 - **Enhancements**
   - **Refactored Person class to the Student class** ([PR #67](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/67))
     - Replaced all usages of `Person` and its related classes from original AB-3 code to use `Student` instead
-    - Removed redundant fields in Person (`Address`, `Phone`, `Email`) 
+    - Removed redundant fields in Person (`Address`, `Phone`, `Email`)
     - Update JavaFX view for `StudentCard` (previously `PersonCard`) to follow mockup of the product
     - Tweaked all failing tests to pass with the new `Student` class (e.g. replacing reference .json files and expected outputs)
   - **Modified `add` command into `add_student`** ([PR #85](https://github.com/AY2223S2-CS2103T-T14-4/tp/pull/85))

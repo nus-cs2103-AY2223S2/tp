@@ -429,7 +429,7 @@ Below is the main success scenario of students-related commands.
 
 * 1b. The given class(es) does not exist.
   * 1b1. TAA creates a new class for each class that does not exist yet.
-   
+
     Use case resumes from step 2.
 
 
