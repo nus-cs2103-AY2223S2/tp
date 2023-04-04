@@ -163,5 +163,4 @@ public class CommandTestUtil {
         model.updateFilteredParentList(new ParentNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
         assertEquals(1, model.getFilteredParentList().size());
     }
-
 }
