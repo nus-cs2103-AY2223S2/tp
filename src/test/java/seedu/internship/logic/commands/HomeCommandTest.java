@@ -23,8 +23,6 @@ public class HomeCommandTest {
         expectedModel = new ModelManager(model.getInternshipCatalogue(),model.getEventCatalogue(), new UserPrefs());
     }
 
-
-
     @Test
     public void execute_home_success() {
         expectedModel.updateFilteredEventList(HomeCommand.PREDICATE_EVENT_REMINDER);

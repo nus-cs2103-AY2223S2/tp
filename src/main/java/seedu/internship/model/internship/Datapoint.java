@@ -12,6 +12,10 @@ public class Datapoint {
         this.value = value;
     }
 
+    public Datapoint(String name) {
+        this(name, 0);
+    }
+
     public String getName() {
         return name;
     }

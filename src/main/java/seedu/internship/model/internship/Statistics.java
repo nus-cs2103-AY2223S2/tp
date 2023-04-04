@@ -10,27 +10,48 @@ public class Statistics {
 
     public static final Statistics EMPTY_STATISTICS = new Statistics();
 
-    private Datapoint totalInternships;
-    private Datapoint numInterested;
-    private Datapoint numApplied;
-    private Datapoint numOffered;
-    private Datapoint numRejected;
+    private final Datapoint totalInternships;
+    private final Datapoint numInterested;
+    private final Datapoint numApplied;
+    private final Datapoint numOffered;
+    private final Datapoint numRejected;
+    private final Datapoint numEvents;
+
+    public static String TOTAL_INTERNSHIPS_NAME = "Total Internships";
+    public static String NUM_INTERESTED_NAME = "Interested";
+    public static String NUM_APPLIED_NAME = "Applied";
+    public static String NUM_OFFERED_NAME = "Offered";
+    public static String NUM_REJECTED_NAME = "Rejected";
+    public static String NUM_EVENTS_NAME = "Total Events";
+
     private final ObservableList<Datapoint> allDatapoints;
 
     private Statistics() {
-        this.allDatapoints = FXCollections.observableArrayList();
-        totalInternships = new Datapoint("Total Internships", 0);
-        numInterested = new Datapoint("Interested", 0);
-        numApplied = new Datapoint("Applied", 0);
-        numOffered = new Datapoint("Offered", 0);
-        numRejected = new Datapoint("Rejected", 0);
-        allDatapoints.addAll(totalInternships, numInterested, numApplied, numOffered, numRejected);
+        allDatapoints = FXCollections.observableArrayList();
+        totalInternships = new Datapoint(TOTAL_INTERNSHIPS_NAME);
+        numInterested = new Datapoint(NUM_INTERESTED_NAME);
+        numApplied = new Datapoint(NUM_APPLIED_NAME);
+        numOffered = new Datapoint(NUM_OFFERED_NAME);
+        numRejected = new Datapoint(NUM_REJECTED_NAME);
+        numEvents = new Datapoint(NUM_EVENTS_NAME);
+        allDatapoints.addAll(totalInternships, numInterested, numApplied, numOffered, numRejected, numEvents);
     }
 
     public Statistics(ObservableList<Internship> internships, ObservableList<Event> events) {
         this();
         parseInternshipList(internships);
         parseEventList(events);
+    }
+
+    public Statistics(int totalInternships, int numInterested, int numApplied, int numOffered, int numRejected,
+                      int numEvents) {
+        this();
+        this.totalInternships.incrementValue(totalInternships);
+        this.numInterested.incrementValue(numInterested);
+        this.numApplied.incrementValue(numApplied);
+        this.numOffered.incrementValue(numOffered);
+        this.numRejected.incrementValue(numRejected);
+        this.numEvents.incrementValue(numEvents);
     }
 
     private void parseInternshipList(ObservableList<Internship> internships) {
@@ -54,7 +75,7 @@ public class Statistics {
     }
 
     private void parseEventList(ObservableList<Event> events) {
-        allDatapoints.add(new Datapoint("Total Events", events.size()));
+        numEvents.incrementValue(events.size());
     }
 
     public Datapoint getTotalInternships() {
@@ -94,10 +115,12 @@ public class Statistics {
 
         Statistics otherStatistics = (Statistics) other;
 
-        return totalInternships.equals(otherStatistics.totalInternships)
+        return allDatapoints.equals(otherStatistics.allDatapoints)
+                && totalInternships.equals(otherStatistics.totalInternships)
                 && numApplied.equals(otherStatistics.numApplied)
                 && numOffered.equals(otherStatistics.numOffered)
-                && numRejected.equals(otherStatistics.numRejected);
+                && numRejected.equals(otherStatistics.numRejected)
+                && numEvents.equals(otherStatistics.numEvents);
     }
 
     @Override
