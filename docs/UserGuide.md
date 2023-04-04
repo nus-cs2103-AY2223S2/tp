@@ -209,9 +209,17 @@ All other values will be rejected
 The supported date formats are:
 
 * `yyyy-mm-ddThh:mm`<br>
-    eg. 2023-05-03T04:45
+  eg. 2023-05-03T04:45
 * `yyyy-m-d hhmm` - single and double digit day and months are supported.<br>
   eg. 2023-5-3 0455
+
+<div markdown="block" class="alert alert-info" id="date-limitation-info">
+:information_source: **Day and month restrictions**
+
+**Month** can only take the values <u>1 to 12 inclusive</u>. Any other number are not allowed.
+
+**Days of the month** can take any values from <u>1 to 31 inclusive</u>. Any other numbers are not allowed. If the entered day of the month is greater than the number of days in that month, the last day of that month will be assumed. Meaning, `2023-2-31` (Feb 31st) will become `2023-2-28` (Feb 28th).
+</div>
 
 #### `<phone-number>`
 
@@ -969,7 +977,7 @@ Adds a new appointment to the appointment manager
 ##### Syntax
 
 <pre>
-appointment add --p <var>PATIENT_ID</var> --s <var>STARTING_TIME</var> --e <var>ENDING_TIME</var> --v <var>VAX_GROUP</var>
+appointment add --p <var>PATIENT_ID</var> --s <var>STARTING_TIME</var> --e <var>ENDING_TIME</var> --v <var>VACCINATION</var>
 </pre>
 
 * <code><var>PATIENT_ID</var></code> : `<index>`
