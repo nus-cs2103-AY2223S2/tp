@@ -72,8 +72,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 </div>
 
 ### Architecture
+
 <p>
-  <img src="images/ArchitectureDiagram.png" width="280" />
+  <img src="images/ArchitectureDiagram.png" />
   <em>Architecture Diagram for GoodMatch</em>
 </p>
 
@@ -102,7 +103,7 @@ The rest of the App consists of four components.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <p>
-  <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+  <img src="images/ArchitectureSequenceDiagram.png" />
   <em>Architecture Sequence Diagram for GoodMatch</em>
 </p>
 
@@ -114,12 +115,29 @@ Each of the four main components (also shown in the diagram above),
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <p>
-  <img src="images/ComponentManagers.png" width="300" />
+  <img src="images/ComponentManagers.png" />
   <em>Sequence Diagram for the Managers in GoodMatch</em>
 </p>
 
-The sections below give more details of each component.
-Details coming soon...
+### UI component
+
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+<p>
+  <img src="images/UiClassDiagram.png" />
+  <em>Structure of the UI Component</em>
+</p>
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ListingListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-W14-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+The `UI` component,
+
+* executes user commands using the `Logic` component.
+* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it displays `Listing` object residing in the `Model`.
 
 ---
 
