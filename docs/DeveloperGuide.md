@@ -27,7 +27,6 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
 
 [//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
 
-[//]: # ()
 
 ## **About the Developer Guide**
 
@@ -70,7 +69,7 @@ carefully before committing
 
 **Syntax Highlighting**
 
-Commands, fields, file paths and class names are highlighted.
+[Commands](#glossary), [fields](#glossary), file paths and class names are highlighted.
 
 `command`, `FIELD`, `filepath.json`, `ClassName`
 
@@ -88,9 +87,9 @@ Keyboard keys are indicated using rounded buttons.
 Refer to the guide [_Setting up and getting started_](SettingUp.md) for instructions on how to
 set up the InternBuddy project in your personal computer.
 
-After setting up and launching InternBuddy, you would see a [GUI](#glossary). Figures 1 illustrates the main parts
-of InternBuddy's [GUI](#glossary) and Table 1 explains the function for each part. We would be referencing
-the different parts of the [GUI](#glossary) throughout this developer guide.
+After setting up and launching InternBuddy, you would see a GUI. Figures 1 illustrates the main parts
+of InternBuddy's GUI and Table 1 explains the function for each part. We would be referencing
+the different parts of the GUI throughout this developer guide.
 
 
 ![Graphical User Interface](images/gui-markup.png)
@@ -200,7 +199,7 @@ The class diagram for the UI component is shown in Figure 5.
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
 `InternshipListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
 inherit from the abstract `UiPart` class which captures the commonalities between classes that
-represent parts of the visible [GUI](#glossary).
+represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching
 `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the
@@ -533,21 +532,21 @@ The following gives a more detailed explanation of the `find` command.
 
 1. **Alternative 1 (current choice):** Find internship by exact match of user input and `Internship` object's corresponding attributes
     * Pros:
-        * Instructions on how to use the find command will be clear and easily communicated to user
+        * Instructions on how to use the find command will be clear and easily communicated to user.
     * Cons:
-        * Very restrictive for user (e.g. an internship with the company name `Google Ltd` will not turn up for the command `find n/Google`)
+        * Very restrictive for user (e.g. an internship with the company name `Google Ltd` will not turn up for the command `find n/Google`).
 
-* **Alternative 2:** Find internship by match of user input and `Internship` object's attributes' corresponding attributes' substrings
+2. **Alternative 2:** Find internship by match of user input and `Internship` object's attributes' corresponding attributes' substrings
     * Pros:
-        * Command is much more flexible (e.g. an internship with the company name `Google` will turn up for the find command `find n/goo`)
+        * Command is much more flexible (e.g. an internship with the company name `Google` will turn up for the find command `find n/goo`).
     * Cons:
-        * May be confusing for user (e.g. user assumes find command works for matching substrings of individual words and inputs `find n/goo inc` for an `Internship` with company name `Google Incorporated`)
+        * May be confusing for user (e.g. user assumes find command works for matching substrings of individual words and inputs `find n/goo inc` for an `Internship` with company name `Google Incorporated`).
 
-* **Alternative 3:** Find internship by match of any word of user input and any word of `Internship` object's corresponding attributes
+3. **Alternative 3:** Find internship by match of any word of user input and any word of `Internship` object's corresponding attributes
     * Pros:
-        * Command is much more flexible
+        * Command is much more flexible.
     * Cons:
-        * Command becomes too flexible (e.g. a find command like `find n/google ltd` will return `Internship` objects that not just has the word `Google`, like "Google Ltd", in their company names but `ltd` as well, like `Apple Ltd`, `Meta Ltd` and more)
+        * Command becomes too flexible (e.g. a find command like `find n/google ltd` will return `Internship` objects that not just has the word `Google`, like "Google Ltd", in their company names but `ltd` as well, like `Apple Ltd`, `Meta Ltd` and more).
 
 
 
@@ -559,8 +558,10 @@ The following gives a more detailed explanation of the `find` command.
 Figure 17 shows how the `upcoming` command works.
 
 ![UpcomingSequenceDiagram](images/UpcomingSequenceDiagram.png)
+<p style="text-align: center;">Figure 17: Sequence diagram for the upcoming command</p>
+<br/>
 
-The following gives a more detailed explanation of the `upcoming` operation.
+The following gives a more detailed explanation of the `upcoming` command.
 1. When the user enters an `upcoming` command, an `UpcomingCommand` object is created.
 2. Following which, `FilteredList<Internship>` stored inside the model will be updated by checking each internship entry against a predicate.
 3. The predicate checks whether both of the following conditions are met: 
@@ -573,79 +574,81 @@ The following gives a more detailed explanation of the `upcoming` operation.
 
 #### Design Considerations
 
-###### Whether to include all possible statuses of internship
+- Whether to include all possible statuses of an internship
 1. **Alternative 1 (chosen): The predicate for the `upcoming` command should limit to internships that have the status `NEW/ASSESSMENT/INTERVIEW/OFFERED`**
-    * Pros: Makes more sense practically as these statuses have dates that are tied to an event or deadline:
-      * `NEW` - Application deadline
+    * Pros: Makes more practical sense as these statuses have dates that are tied to an event or deadline:
+      * `NEW` - Deadline of Application
       * `ASSESSMENT` - Date of Assessment
       * `INTERVIEW` - Date of Interview
-      * `Offered` - Deadline of offer acceptance
-    * Cons: If the instructions for using the command are not clearly explained in the user guide, users may have difficulty understanding the output that is generated
+      * `Offered` - Deadline of Offer Acceptance
+    * Cons: If the instructions for using the command are not clearly explained in the user guide, users may have difficulty understanding the output that is generated.
 2. **Alternative 2: Internships with any status would be accepted, even statuses that are not tied to an upcoming event or deadline**
-    * Pros: May be more intuitive for users to understand
+    * Pros: May be more intuitive for users to understand.
     * Cons: This may cause users to forget the intended use case of the application, leading to confusion or misuse.
 
 [//]: # (@@author - potty10)
 ### Delete Internship Entries - `delete-field`
 #### Implementation
-Figure XX shows how the `delete-field` command works.
+Figure 18 shows how the `delete-field` command works.
 
 ![DeleteFieldSequenceDiagram](images/DeleteSequenceDiagram.png)
+<p style="text-align: center;">Figure 18: Sequence diagram for the delete-field command</p>
+<br/>
 
-The following gives a more detailed explanation of the `delete-field` operation.
+The following gives a more detailed explanation of the `delete-field` command.
 
 1. When the user enters a `delete-field` command, the  `DeleteFieldCommandParser` parses the user's input. It attempts to parse the arguments as a set of prefixed
-parameters (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
+fields (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
 2. A new `InternshipContainsKeywordPredicate` object is created. A `DeleteFieldCommand` object is then created.
 3. When the `DeleteFieldCommand` object executes, a list of `Internship` objects is obtained with `model.getFilteredInternshipList()`.
 4. For each `Internship` object in the list that matches with **at least one** value for
-  **every** parameter type that is specified, it will be deleted using `model.deleteInternship(internshipToDelete)`
+  **every** field type that is specified, it will be deleted using `model.deleteInternship(internshipToDelete)`
 
-### Design Considerations
+#### Design Considerations
 
-**Aspect: Whether to use an AND relationship or OR relationship for predicate matching**
+- Whether to use an AND relationship or an OR relationship for predicate matching
 
-* **Alternative 1 (current choice):**  Use an AND relationship
+1. **Alternative 1 (current choice):**  Use an AND relationship
     * Pros:
         * More user-centric as users will be able to have more fine-grained control over what internships they want to delete. For example, they may want to delete all internship entries related to a certain company and role.
     * Cons:
         * In order to delete internships based on an OR relationships, they need to call `clear` multiple times.
 
-* **Alternative 2:** Use an OR relationship
+2. **Alternative 2:** Use an OR relationship
     * Pros:
         * The current `delete` command takes in no arguments.
     * Cons:
         * Less fine-grained control over `delete`.
 
-**Aspect: Whether to add this enhancement to `clear` or `delete` command**
 
-* **Alternative 1 (current choice):** Enhance the `delete` command
+- Whether to add this enhancement to `clear` or `delete` command
+
+1. **Alternative 1 (current choice):** Enhance the `delete` command
     * Pros:
         * Combine all delete features into one keyword.
     * Cons:
         * Delete now has 2 formats, and this may be a source of confusion.
-
-* **Alternative 2:**  Enhance the `clear` command
+2. **Alternative 2:**  Enhance the `clear` command
     * Pros:
         * The current `clear` command takes in no arguments, so it is much easier to implement.
     * Cons:
         * May be confusing to the user, since there is no clear distinction between `delete` and `clear`.
 
-**Aspect: Whether to merge both formats**
+- Whether to merge both formats
 
-* **Alternative 1 (current choice):** Separate both formats
+1. **Alternative 1 (current choice):** Separate both formats
     * Pros:
         * Combine all delete features into one keyword, which may be easier to remember.
     * Cons:
         * Delete now has 2 formats, and this may be a source of confusion for beginners.
 
-* **Alternative 2:**  Combine both formats
+2. **Alternative 2:**  Combine both formats
     * Pros:
         * Offers extreme fine-grained control over what to delete for expert users.
     * Cons:
         * Very difficult to justify usage. It is unlikely for a user to require such absolute fine-grained control. A more likely use case
       is to mass delete internships that are no longer required.
-        * Difficult to define a suitable interpretation of the parameters. For example, in the command `delete 1 2 n/Google`, 
+        * Difficult to define a suitable interpretation of the fields. For example, in the command `delete 1 2 n/Google`, 
       the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
  
 
@@ -660,20 +663,20 @@ parameters (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+
 
 ## **Appendix A: Requirements**
 
 ### Product scope
 
 **Target user profile:**
-Computing Undergraduates
+[Computing Undergraduates](#glossary)
 
 **Characteristics of user profile:**
 * Has a need to manage many internship applications
 
-Internships form an integral part of the undergraduate curriculum for Computing Undergraduates. In a technical field
-like Computing, it is especially important for undergraduates to practice what they have learnt in classrooms.
+Internships form an integral part of the undergraduate curriculum for Computing Undergraduates. 
+In a technical field like Computing, it is especially important for undergraduates to practice what they have learnt in classrooms.
 However, given the tight competition in the market, many undergraduates source for numerous internship opportunities
 before being accepted for one. Therefore, many Computing undergraduates face the need to track many applications
 where each could be in a different phase of the application process.
@@ -685,11 +688,11 @@ extensive typing. This justifies a sufficiently good level of proficiency with r
 existence of keyboard shortcuts, many programmers prefer typing over using the mouse because of the efficiency gains.
 
 
-* Reasonably comfortable in using Command Line Interface (CLI) apps
+* Reasonably comfortable in using [Command Line Interface](#glossary) (CLI) apps
 
 CLI provides a simple way to interact with computers to run programs and manage files.
 Computing undergraduates are taught how to use the CLI in their curriculums, and are often required to use it
-to run system tasks that cannot be done over the [GUI](#glossary). Hence, this would imply a reasonable level of comfort in using
+to run system tasks that cannot be done over the GUI. Hence, this would imply a reasonable level of comfort in using
 the CLI interface.
 
 * Prefers desktop applications over other types
@@ -703,8 +706,11 @@ capabilities for easy tracking and follow-ups while eliminating the need to hand
 
 
 ### User stories
+Table 2 documents the user stories for InternBuddy.
+
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+
 
 | Priority | As a …​                                                                                  | I want to …​                                                     | So that I can…​                                                                                     |
 |----------|------------------------------------------------------------------------------------------|------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
@@ -718,7 +724,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | careless Computing undergraduate                                                         | modify the details of an entry                                   | correct my typos without having to create a new entry from scratch.                                 |
 | `* *`    | careless Computing undergraduate                                                         | be prompted with a confirmation message before I delete an entry | avoid accidental deletes.                                                                           |
 | `* *`    | forgetful Computing undergraduate                                                        | rely on auto-saving of data                                      | avoid the problem of forgetting to save my entries when I make changes to them.                     |
-| `* *`    | Computing undergraduate applying for technical roles                                     | tag each entry with its associated tech stack                    | identify the technical requirements associated with each application.                               |
+| `* *`    | Computing undergraduate applying for technical roles                                     | tag each entry with its associated [tech stack](#glossary)       | identify the technical requirements associated with each application.                               |
 | `* *`    | Computing undergraduate applying for technical roles                                     | filter internship entries by tags                                | narrow down the search to internship applications with the tech stack that I would like to work on. |
 | `*`      | Computing undergraduate managing many concurrent internship applications                 | filter internship entries by date                                | identify the upcoming tasks or deadlines.                                                           |
 | `* *`    | Computing undergraduate with many internship applications                                | search an entry by name                                          | easily and swiftly locate the desired application entry.                                            |
@@ -726,16 +732,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | detail-oriented Computing undergraduate                                                  | add custom remarks to each entry                                 | have the flexibility of documenting miscellaneous but relevant information.                         |
 | `* *`    | Computing undergraduate managing many concurrent internship applications                 | obtain reminders                                                 | avoid forgetting about upcoming tasks or deadlines.                                                 |
 | `* *`    | Computing undergraduate using multiple devices                                           | export my internship data into a file                            | view the same data when I am not using the device with InternBuddy installed.                       |
+| `* *`    | Computing undergraduate who wants to share my internship details with others             | copy the details of an internship                                | send the details to other people.                                                                   |
 | `*`      | Computing undergraduate who is slow in learning                                          | go through a step-by-step in-app tutorial                        | learn how to use InternBuddy in a guided and self-paced environment.                                |
 | `*`      | analytical Computing undergraduate                                                       | have a summary overview of all the entries                       | analyse the composition of the entries, such as what percentage of applications were successful.    |
 | `*`      | Computing undergraduate who is planning to track internship applications in the long run | archive old entries                                              | delete them from InternBuddy while maintaining a backup copy of the outdated data.                  |
 | `*`      | Computing undergraduate who is experienced in using InternBuddy                          | have shortcuts to existing commands                              | carry out tasks in InternBuddy even more efficiently than previously.                               |
 
+<p style="text-align: center;">Table 2: List of user stories</p>
+
+
+
 ### Use cases
 
 (For all use cases below, the **System** is `InternBuddy` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: List all internship applications.**
+**Use case: List all internships**
 
 **Main Success Scenario**
 
@@ -746,7 +757,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
-**Use case: Add an internship entry**
+**Use case: Add an internship**
 
 **Main Success Scenario**
 
@@ -757,19 +768,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a.  InternBuddy detects that one or more compulsory parameters are missing.
+* 1a.  InternBuddy detects that one or more compulsory fields are missing.
     * 1a1. InternBuddy prompts the user for an `add` command of the correct format.
 
       Use case resumes from Step 1.
 
-* 1b.  InternBuddy detects one or more parameters are invalid.
+* 1b.  InternBuddy detects one or more fields are invalid.
     * 1b1. InternBuddy prompts the user for an `add` command of the correct format.
 
       Use case resumes from Step 1.
 
 <br/>
 
-**Use Case: Edit an internship entry**
+**Use Case: Edit an internship**
 
 **Main Success Story**
 
@@ -780,19 +791,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. InternBuddy detects that one or more compulsory parameters are missing.
+* 1a. InternBuddy detects that one or more compulsory fields are missing.
     * 1a1. InternBuddy prompts the user for an `edit` command of the correct format.
 
       Use case resumes from Step 1.
 
-* 1b. InternBuddy detects one or more parameters are invalid.
+* 1b. InternBuddy detects one or more fields are invalid.
     * 1b1. InternBuddy prompts the user for an `edit` command of the correct format.
 
       Use case resumes from Step 1.
 
 <br/>
 
-**Use Case: View an internship entry**
+**Use Case: View an internship**
 
 **Main Success Scenario**
 
@@ -816,24 +827,48 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
-**Use Case: Find internship entries**
+**Use Case: Copy an internship to clipboard**
 
 **Main Success Scenario**
 
-1.  User finds internship entries based on the parameters given.
-2.  InternBuddy lists the internships that match the given parameters and displays a success message indicating
+1.  User copies an internship entry to clipboard.
+2.  InternBuddy displays a success message.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. InternBuddy detects that the required internship index is missing.
+    * 1a1. InternBuddy prompts the user for a `copy` command of the correct format.
+
+      Use case resumes from Step 1.
+
+* 1b. InternBuddy detects that the internship index entered is invalid.
+    * 1b1. InternBuddy prompts the user for a `view` command of the correct format.
+
+      Use case resumes from Step 1.
+
+<br/>
+
+
+**Use Case: Find internships**
+
+**Main Success Scenario**
+
+1.  User finds internship entries based on the fields given.
+2.  InternBuddy lists the internships that match the given fields and displays a success message indicating
     how many internships were found.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. InternBuddy detects that no parameter is given.
+* 1a. InternBuddy detects that no field is given.
     * 1a1. InternBuddy prompts the user for a `find` command of the correct format.
 
       Use case resumes from Step 1.
 
-* 1b. InternBuddy detects that one or more parameters given are invalid.
+* 1b. InternBuddy detects that one or more field given are invalid.
     * 1b1. InternBuddy prompts the user for a `find` command of the correct format.
 
       Use case resumes from Step 1.
@@ -841,7 +876,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
-**Use Case: Get internship entries with upcoming events or deadlines**
+**Use Case: Get internships with upcoming events or deadlines**
 
 **Main Success Scenario**
 
@@ -852,41 +887,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
-**Use Case: Delete internship entries**
+**Use Case: Delete internships by index**
 
 **Main Success Scenario**
 
-1.  User deletes internship entries based on the parameters given.
+1.  User deletes internship entries based on specified indices.
 2.  InternBuddy displays a success message that indicates how many internships were deleted.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. InternBuddy detects that no parameter is given.
-    * 1a1. InternBuddy prompts the user for a `delete` command of the correct format.
+* 1a. InternBuddy detects that no index is given.
+    * 1a1. InternBuddy prompts the user for a `delete-index` command of the correct format.
 
       Use case resumes from Step 1.
 
-* 1b. InternBuddy detects that one or more parameters given are invalid.
-    * 1b1. InternBuddy prompts the user for a `delete` command of the correct format.
+* 1b. InternBuddy detects that one or more fields given are invalid.
+    * 1b1. InternBuddy prompts the user for a `delete-index` command of the correct format.
 
       Use case resumes from Step 1.
 
-* 2a. InternBuddy detects that the internship whose details are currently displayed in the right UI
-  panel has been deleted by this `delete` command.
-    * 2a1. InternBuddy resets the View Panel to display the introductory message.
+* 2a. InternBuddy detects that the internship whose details are currently displayed in the
+  [View Panel](#setting-up-getting-started) has been deleted by this `delete-field` command.
+    * 2a1. InternBuddy resets the [View Panel](#setting-up-getting-started) to display the
+     welcome message.
 
       Use case resumes from Step 2.
 
 <br/>
 
-**Use Case: Clear all internship entries**
+**Use Case: Delete internships by fields**
+
+**Main Success Scenario**
+
+1.  User deletes internship entries based on specified fields.
+2.  InternBuddy displays a success message that indicates how many internships were deleted.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. InternBuddy detects that no field is given.
+    * 1a1. InternBuddy prompts the user for a `delete-field` command of the correct format.
+
+      Use case resumes from Step 1.
+
+* 1b. InternBuddy detects that one or more fields given are invalid.
+    * 1b1. InternBuddy prompts the user for a `delete-field` command of the correct format.
+
+      Use case resumes from Step 1.
+
+* 2a. InternBuddy detects that the internship whose details are currently displayed in the
+  [View Panel](#setting-up-getting-started) has been deleted by this `delete-index` command.
+    * 2a1. InternBuddy resets the [View Panel](#setting-up-getting-started) to display the
+      welcome message.
+
+      Use case resumes from Step 2.
+
+<br/>
+
+
+**Use Case: Clear all internships**
 
 **Main Success Scenario**
 
 1.  User requests to clear all internship entries stored in InternBuddy.
-2.  InternBuddy deletes all internship entries. It resets the View Panel to display the introductory
+2.  InternBuddy deletes all internship entries. It resets the [View Panel](#setting-up-getting-started) to display the welcome
     message and shows a success message.
 
     Use case ends.
@@ -917,16 +984,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1. InternBuddy should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. InternBuddy should work on any [_mainstream OS_](#glossary) as long as it has Java `11` or above installed.
 2. InternBuddy should be able to hold up to 500 internship entries without a noticeable sluggishness in performance for typical usage.
-3. InternBuddy Should be able to respond to user input within 6 seconds.
+3. InternBuddy should be able to respond to user input within 6 seconds.
 4. A Computing undergraduate with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. Computing undergraduates who have never used command line applications to track internships before should be able to easily pick up InternBuddy.
 6. InternBuddy is not required to handle concurrent users.
 7. InternBuddy is not required to make data available online.
 
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix B: Instructions for Manual Testing**
 
@@ -941,11 +1006,11 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
 
 1. **Initial launch**
 
-    1. Download the [InternBuddy jar file](https://github.com/AY2223S2-CS2103T-T14-3/tp/releases/tag/v1.3.1) and copy into an empty folder.
+    1. Download the [InternBuddy jar file](https://github.com/AY2223S2-CS2103T-T14-3/tp/releases) and copy into an empty folder.
 
     2. Double-click the jar file.
 
-   **Expected**: Shows the [GUI](#glossary)) with a set of sample internships. The window size may not be optimum.
+   **Expected**: Shows the GUI with a set of sample internships. The window size may not be optimal.
 
 
 2. **Saving window preferences**
@@ -981,51 +1046,38 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
    **Expected**: A new internship entry is successfully added. The new internship entry will have company name
    `Visa`, role `Software Engineer`, status `New`, deadline of application `2023-03-01`, comment `Considering to apply`,
    and tag `Payment`. The View Panel displays the information for this new internship entry, and a success
-   message is displayed in the Results Display.
-
+   message is displayed in the Result Display.
 
 2. `add n/Mastercard r/Software Engineer s/New d/2023-03-01`
 
    **Expected**: A new internship entry is successfully added. The new internship entry will have company name
-   `Mastercard`, role `Software Engineer`, status `New` and deadline of application `2023-03-01`. The right
-   UI panel displays the information for this new internship entry, where the comment is shown as `NA`. A success message
-   is displayed in the Results Display.
-
+   `Mastercard`, role `Software Engineer`, status `New` and deadline of application `2023-03-01`. The View Panel displays the information for this new internship entry, where the comment is shown as `NA`. A success message
+   is displayed in the Result Display.
 
 3. `add n/Visa s/New d/2023-03-01`
 
-   **Expected**: No new internship is added. An error message is displayed in the Results Display.
-   This is because the compulsory parameter for role is missing.
+   **Expected**: No new internship is added. An error message is displayed in the Result Display.
+   This is because the compulsory field for role is missing.
+ 
+4. `add n/Visa r/Software Engineer s/Applying d/2023-03-01`
 
+   **Expected**: No new internship is added. An error message is displayed in the Result Display.
+   This is because `Applying` is not a valid value for the `STATUS` field.
 
-4. `add n/Vis@ r/Software Engineer s/New d/2023-03-01`
+5. `add n/Visa r/Software Engineer s/Applied d/1st March 2023`
 
-   **Expected**: No new internship is added. An error message  is displayed in the Results Display.
-   This is because the parameter for `COMPANY_NAME` must be alphanumeric.
+   **Expected**: No new internship is added. An error message is displayed in the Result Display.
+   This is because the field for `DATE` must be in the format of `YYYY-MM-DD`.
 
+6. `add n/Visa r/Software Engineer s/Applied d/2023-02-32`
 
-5. `add n/Visa r/Software Engineer s/Applying d/2023-03-01`
-
-   **Expected**: No new internship is added. An error message is displayed in the Results Display.
-   This is because `Applying` is not a valid value for the `STATUS` parameter.
-
-
-6. `add n/Visa r/Software Engineer s/Applied d/1st March 2023`
-
-   **Expected**: No new internship is added. An error message is displayed in the Results Display.
-   This is because the parameter for `DATE` must be in the format of `YYYY-MM-DD`.
-
-
-7. `add n/Visa r/Software Engineer s/Applied d/2023-02-32`
-
-   **Expected**: No new internship is added. An error message is displayed in the Results Display.
+   **Expected**: No new internship is added. An error message is displayed in the Result Display.
    This is because `2023-02-32` is not a valid date (i.e. March does not have 32 days).
 
+7. `add n/Visa r/Software Engineer s/Applied d/2023-02-15 c/`
 
-8. `add n/Visa r/Software Engineer s/Applied d/2023-02-15 c/`
-
-   **Expected**: No new internship is added. An error message is displayed in the Results Display.
-   This is because the `COMMENT` parameter cannot be left blank.
+   **Expected**: No new internship is added. An error message is displayed in the Result Display.
+   This is because the `COMMENT` field cannot be left blank.
 
 
 
@@ -1038,13 +1090,11 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: The company name of the second internship entry is updated to `Amazon Technologies`.
    The View Panel displays the updated details of the second internship entry.
 
-
 2. `edit 2 n/Amazon Technologies s/Applied`
 
    **Expected**: The company name and status of the second internship entry are updated to
    `Amazon Technologies` and `Applied` respectively. The View Panel displays the updated details
    of the second internship entry.
-
 
 3. `edit 2 t/front-end`
 
@@ -1052,12 +1102,10 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    `front-end` is added. The View Panel displays the updated details fo the second internship
    entry.
 
-
 4. `edit 2 c/`
 
    **Expected**: The comment of the second internship entry is updated to `NA`. The View Panel
    displays the updated details of the second internship entry.
-
 
 5. Successful editing through the filtered internship list
     1. `find n/Apple n/Google`
@@ -1066,15 +1114,13 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    **Expected**: The company name of the internship entry whose original company name is `Google` is updated
    to become `Google Technologies`. The View Panel displays the updated details for this internship entry.
 
-
 6. Unsuccessful editing through the filtered internship list
     1. `find n/Apple n/Google`
     2.  `edit 3 n/Google Technologies`
 
-   **Expected**: An error message is displayed in the Results Display. This is because in the filtered
+   **Expected**: An error message is displayed in the Result Display. This is because in the filtered
    internship list, there are only 2 internship entries, implying that`3` is not a valid value for the
-   `INDEX` parameter.
-
+   `INDEX` field.
 
 7. `edit 2 n/Amazon Technologies s/Applying`
 
@@ -1082,22 +1128,19 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    UI panel. This is because while `Amazon Technologies` is a valid company name, `Applying` is an invalid
    status.
 
-
 8. `edit`
 
-   **Expected**: An error message is displayed in the Results Display. This is because a minimum of 1
-   optional parameter must be specified.
-
+   **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1
+   optional field must be specified.
 
 9. `edit -2 n/Amazon Technologies`
 
-   **Expected**: An error message is displayed in the Results Display. This is because the `INDEX`
-   parameter must be a positive integer greater than or equal to 1.
-
+   **Expected**: An error message is displayed in the Result Display. This is because the `INDEX`
+   field must be a positive integer greater than or equal to 1.
 
 10. `edit 12 n/Amazon Technologies`
 
-    **Expected**: An error message is displayed in the Results Display. This is because there are only
+    **Expected**: An error message is displayed in the Result Display. This is because there are only
     7 internship entries in the sample data. Index 12 is out of range.
 
 
@@ -1106,7 +1149,6 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 1. `view 2`
 
    **Expected**: The View Panel displays the details for the second internship entry.
-
 
 2. Successful viewing through the filtered internship list
 
@@ -1117,87 +1159,119 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    filtered internship list. In this case, it displays the details for the entry whose company
    name is `Google`.
 
-
 3. Unsuccessful viewing through the filtered internship list
     1. `find n/Apple n/Google`
     2.  `view 3`
 
-   **Expected**: An error message is displayed in the Results Display. This is because in the filtered
+   **Expected**: An error message is displayed in the Result Display. This is because in the filtered
    internship list, there are only 2 internship entries, implying that`3` is not a valid value for the
-   `INDEX` parameter.
+   `INDEX` field.
 
+4. `view -1`
 
+   **Expected**: An error message is displayed in the Result Display. This is because the `INDEX`
+   field must be a positive integer greater than or equal to 1.
 
-2. `view -1`
+5. `view 1 2`
 
-   **Expected**: An error message is displayed in the Results Display. This is because the `INDEX`
-   parameter must be a positive integer greater than or equal to 1.
-
-
-3. `view 1 2`
-
-   **Expected**: An error message is displayed in the Results Display. This is because the `view`
+   **Expected**: An error message is displayed in the Result Display. This is because the `view`
    command does not support viewing of more than 1 internship entry simultaneously.
 
+6. `view 12`
 
-4. `view 12`
-
-   **Expected**: An error message is displayed in the Results Display. This is because there are only
+   **Expected**: An error message is displayed in the Result Display. This is because there are only
    7 internship entries in the sample data. Index 12 is out of range.
 
+7. `view`
 
-5. `view`
-
-   **Expected**: An error message is displayed in the Results Display. This is because the compulsory
-   `INDEX` parameter is missing.
+   **Expected**: An error message is displayed in the Result Display. This is because the compulsory
+   `INDEX` field is missing.
 
 
 ### Copy an Internship to Clipboard
-[More test cases for `copy` will be added...]
+Assumptions: The sample data provided by InternBuddy is used, where there is a total of 7 internship entries.
+1. `copy 2`
 
-### Find Internship Entries
+   **Expected**: The details of the second internship entry are copied to the clipboard.
 
+2. Successful copying through the filtered internship list
+
+    1. `find n/Apple n/Google`
+    2. `copy 2`
+
+   **Expected**: The details of the second internship shown in the List Panel will be copied to the
+   clipboard. In this case, it copies the details for the entry whose company
+   name is `Google`.
+
+3. Unsuccessful copying through the filtered internship list
+    1. `find n/Apple n/Google`
+    2.  `copy 3`
+
+   **Expected**: An error message is displayed in the Result Display. This is because in the filtered
+   internship list, there are only 2 internship entries, implying that`3` is not a valid value for the
+   `INDEX` field.
+
+4. `copy -1`
+
+   **Expected**: An error message is displayed in the Result Display. This is because the `INDEX`
+   field must be a positive integer greater than or equal to 1.
+
+5. `copy 1 2`
+
+   **Expected**: An error message is displayed in the Result Display. This is because the `copy`
+   command does not support copying of more than 1 internship entry simultaneously.
+
+6. `copy 12`
+
+   **Expected**: An error message is displayed in the Result Display. This is because there are only
+   7 internship entries in the sample data. Index 12 is out of range.
+
+7. `copy`
+
+   **Expected**: An error message is displayed in the Result Display. This is because the compulsory
+   `INDEX` field is missing.
+
+### Find Internships
+Assumptions: The sample data provided by InternBuddy is used, where there is a total of 7 internship entries.
 1. `find n/Amazon`
 
    **Expected**: The List Panel shows the internship entry whose company name matches with
-   `Amazon`. A success message is displayed in the Results Display.
-
+   `Amazon`. A success message is displayed in the Result Display.
 
 2. `find n/Amazon n/Google`
 
    **Expected**: The List Panel shows the internship entries whose company name  matches with
-   `Amazon` or `Google`. A success message is displayed in the Results Display.
+   `Amazon` or `Google`. A success message is displayed in the Result Display.
 
 3. Finding through the filtered internship list
     1. `find n/Apple n/Google`
     2. `find n/Amazon`
 
    **Expected**: The List Panel shows the internship entry whose company name matches with
-   `Amazon`. This means that for the `find` command, the search is always done in the unfiltered list
+   `Amazon`. This means that for the `find` command, the search is always done in the **unfiltered list**
    even if the List Panel was showing a filtered list.
-
 
 4. `find`
 
-   **Expected**: An error message is displayed in the Results Display. This is because a minimum of 1
-   optional parameter must be specified.
-
+   **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1
+   optional field must be specified.
 
 5. `find s/Applied s/Interviewing`
 
-   **Expected**: An error message is displayed in the Results Display. This is because `Interviewing`
-   is not a valid value for the `STATUS` parameter.
+   **Expected**: An error message is displayed in the Result Display. This is because `Interviewing`
+   is not a valid value for the `STATUS` field.
 
-6. `find n/Google n/Meta s/new s/applied`
+6. `find n/Google n/Meta s/New s/Assessment`
 
-   **Expected**: The List Panel shows the internship entries with company name of either `Google` or `Meta` where
-   those entries must have a status of either `New` or `Applied`. A success message is displayed in the
-   Results Display.
+   **Expected**: Only the internship entry with company name `Google` and status `Assessment` is
+   filtered out. This is because all other internship entries do not have a matching value with both
+   `CompanyName` and `Status`.
 
-7. `find s/assessment s/interview r/frontend r/backend t/python t/java`
+7. `find s/Assessment s/Interview t/Golang`
 
-   **Expected**: The List Panel shows the internship entries which have a status of either `Assessment`
-   or `Interview`, a role of either `Frontend` or `Backend` and a tag of either `Python` or `Java`.
+   **Expected**: Only the internship entry with status `Assessment` and tag `Golang` is filtered out.
+   This is because all other internship entries do not have a matching value with both `Status` and
+   `Tag`.
 
 
 
@@ -1230,13 +1304,11 @@ Prerequisites: List all internships using the `list` command. Multiple internshi
    UI panel was displaying the details of the deleted internship entry, it defaults to displaying
    the welcome message.
 
-
 2. `delete-index 1 2`
 
    **Expected**: The first and second internship entry in the List Panel are deleted. If the View
    Panel was displaying the details of either of the deleted internship entries, it defaults to displaying
    the welcome message.
-
 
 3. `delete-index 3 1 3 3 1`
 
@@ -1246,11 +1318,48 @@ Prerequisites: List all internships using the `list` command. Multiple internshi
 
 4. `delete-index`
 
-**Expected**: An error message is displayed in the Results Display. This is because a minimum of 1
-index must be specified.
+    **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1
+    index must be specified.
 
 
 ### Delete Internships by Fields
+Assumptions: The sample data provided by InternBuddy is used, where there is a total of 7 internship entries.
+1. `delete-field n/Amazon`
+
+   **Expected**: The internship entry whose company name matches with `Amazon` is deleted.
+   A success message is displayed in the Result Display.
+
+2. `delete-field n/Amazon n/Google`
+
+   **Expected**: The internship entries whose company name is either `Amazon` or `Google` are deleted.
+    A success message is displayed in the Result Display.
+
+3. Deleting through the filtered internship list
+    1. `find n/Apple n/Google`
+    2. `delete-field n/Amazon`
+
+   **Expected**: No internship is deleted. This is because in the List Panel, there is no internship
+   with company name `Amazon`. This shows that `delete-field` searches through the **filtered list**.
+
+4. `delete-field`
+
+   **Expected**: An error message is displayed in the Result Display. This is because a minimum of 1
+   optional field must be specified.
+
+5. `delete s/Applied s/Interviewing`
+
+   **Expected**: An error message is displayed in the Result Display. This is because `Interviewing`
+   is not a valid value for the `STATUS` field.
+
+6. `delete n/Google n/Meta s/Assessment s/Applied`
+
+   **Expected**: Only the internship with company name `Google` and status `Applied` is deleted,
+   because all the other internships do not have a matching field for both `CompanyName` and `Status`.
+
+7. `find s/Assessment s/Interview t/Android`
+
+   **Expected**: Only the internship with status `Assessment` and tag `Android` is deleted, because
+   all the other internships do not have a matching field for both `Status` and `Tag`.
 
 
 
@@ -1308,7 +1417,8 @@ index must be specified.
 
 1. Missing Data File
 
-   Prerequisite: There is no file called `internbuddy.json` in the folder where InternBuddy is located.
+   Prerequisite: There is no file called `internbuddy.json` in the `data` subfolder of the folder
+   where InternBuddy is located.
 
     1. If you have an existing `internbuddy.json` file, delete the file.
     2. Double-click InternBuddy's jar file.
@@ -1316,23 +1426,18 @@ index must be specified.
    **Expected**: InternBuddy launches with the sample internship data shown in the List Panel. There
    is a total of 7 internship entries.
 
-
 2. Corrupted Data File
 
-   Prerequisite: There is a file called `internbuddy.json` in the folder where InternBuddy is located.
-   You should have made some changes to the data (e.g. editing the company name of an entry via the `edit`
-   command or add a new internship entry) such the data differs from the sample data.
+   Prerequisite: There is a file called `internbuddy.json` in the `data` subfolder where InternBuddy is located.
 
     1. Ensure that InternBuddy is not running. If it is running, close it.
-    2. Open the file `internbuddy.json`. If prompted to select an application to open it, choose `Notepad`
-       (Windows)/[Insert for Mac]/[Insert for Linux].
+    2. Open the file `internbuddy.json`.
     3. In `internbuddy.json`, locate any line that contains the word `CompanyName`.
     4. Highlight the line located in Step 4 and delete the entire line.
     5. Save the `internbuddy.json` file and close it.
     6. Launch InternBuddy.
 
-   **Expected**: Your previous changes to the sample data are no longer present. InternBuddy launches
-   with the sample internship data shown in the List Panel. There is a total of 7 internship entries.
+   **Expected**: No entry is shown in the List Panel. InternBuddy starts afresh with 0 internship entry.
 
 
 ## **Appendix C: Proposed Design Tweaks for Feature Flaws**
@@ -1351,18 +1456,20 @@ Explain the problem here
 --------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
 
-| Term                           | Definition                                                                                                                                                                                                              |
-|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Command                        | An instruction for InternBuddy to perform an action.                                                                                                                                                                    |
-| Command Line Interface (CLI)   | A CLI is the text-based interface that you can use to provide instructions to your computer. Examples of instructions include opening files and running programs.                                                       |
-| Computing undergraduate        | A university undergraduate pursuing a Computing degree.                                                                                                                                                                 |
-| Graphical User Interface (GUI) | A GUI is the visual interface that you see when an application launches, allowing you to interact with it by clicking on its various buttons and components.                                                            |
-| Mainstream OS                  | Includes Windows, macOS, Linux and Unix.                                                                                                                                                                                |
-| Parameter                      | A part of the command where you have to supply a value for the command to be valid.                                                                                                                                     |
-| Prefix                         | A short form for the name of a parameter. It indicates which parameter does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the parameter `COMPANY_NAME` since the `n/` prefix is used. |
-| Tech Stack                     | A set of technologies that an individual or company uses to create and/or maintain a software system or product.                                                                                                        |
+Table 3 provides the glossary for the terms used in this developer guide.
 
+| Term                           | Definition                                                                                                                                                                                                  |
+|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command                        | An instruction for InternBuddy to perform an action.                                                                                                                                                        |
+| Command Line Interface (CLI)   | A CLI is the text-based interface that you can use to provide instructions to your computer. Examples of instructions include opening files and running programs.                                           |
+| Computing undergraduate        | A university undergraduate pursuing a Computing degree.                                                                                                                                                     |
+| Graphical User Interface (GUI) | A GUI is the visual interface that you see when an application launches, allowing you to interact with it by clicking on its various buttons and components.                                                |
+| Mainstream OS                  | Includes Windows, macOS, Linux and Unix.                                                                                                                                                                    |
+| Field                          | A part of the command where you have to supply a value for the command to be valid.                                                                                                                         |
+| Prefix                         | A short form for the name of a field. It indicates which field does a value belongs to. For example, in `n/Apple`, the value `Apple` is supplied to the field `COMPANY_NAME` since the `n/` prefix is used. |
+| Tech Stack                     | A set of technologies that an individual or company uses to create and/or maintain a software system or product.                                                                                            |
 
+<p style="text-align: center;">Table 3: Glossary for Developer Guide</p>
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
