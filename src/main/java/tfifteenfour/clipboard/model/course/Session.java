@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.model.course;
 
 import static java.util.Objects.requireNonNull;
-import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +38,6 @@ public class Session {
      */
     public Session(String sessionName) {
         requireNonNull(sessionName);
-        checkArgument(isValidSessionName(sessionName), MESSAGE_CONSTRAINTS);
         this.sessionName = sessionName;
         attendance = new HashMap<>();
         isSelected = false;

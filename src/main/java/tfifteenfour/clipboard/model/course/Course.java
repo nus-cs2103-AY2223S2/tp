@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.model.course;
 
 import static java.util.Objects.requireNonNull;
-import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
@@ -29,7 +28,6 @@ public class Course {
      */
     public Course(String courseCode) {
         requireNonNull(courseCode);
-        checkArgument(isValidCourseCode(courseCode), MESSAGE_CONSTRAINTS);
         this.courseCode = courseCode;
     }
 

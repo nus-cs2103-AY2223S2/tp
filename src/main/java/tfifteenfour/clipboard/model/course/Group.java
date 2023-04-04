@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.model.course;
 
 import static java.util.Objects.requireNonNull;
-import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
@@ -41,7 +40,7 @@ public class Group {
      * @param groupName A valid group name.
      */
     public Group(String groupName) {
-        checkArgument(isValidGroupName(groupName), MESSAGE_CONSTRAINTS);
+        requireNonNull(groupName);
         this.groupName = groupName;
     }
 

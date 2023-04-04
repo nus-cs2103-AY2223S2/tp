@@ -1,7 +1,6 @@
 package tfifteenfour.clipboard.model.task;
 
 import static java.util.Objects.requireNonNull;
-import static tfifteenfour.clipboard.commons.util.AppUtil.checkArgument;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +39,6 @@ public class Task {
      */
     public Task(String taskName) {
         requireNonNull(taskName);
-        checkArgument(isValidTaskName(taskName), MESSAGE_CONSTRAINTS);
         this.taskName = taskName;
         gradeList = new HashMap<>();
         isSelected = false;
