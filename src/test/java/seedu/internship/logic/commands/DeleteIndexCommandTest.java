@@ -1,5 +1,6 @@
 package seedu.internship.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.logic.commands.CommandTestUtil.NON_EMPTY_INDEXLIST;
@@ -106,6 +107,40 @@ public class DeleteIndexCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
+
+    // @@author eugenetangkj - reused
+    // Reused with modifications from my teammate, Christopher, in order to cover the
+    // conditional case that is not covered within test cases
+    @Test
+    public void updateRightPanel_success() {
+        // Case 1: Right panel is null, should not update
+        Internship internshipToDelete = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        Internship internshipNotDeleted = model.getFilteredInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
+        DeleteIndexCommand deleteCommand = new DeleteIndexCommand(NON_EMPTY_INDEXLIST);
+        String expectedMessage = String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, 1);
+
+        ModelManager expectedModel = new ModelManager(model.getInternBuddy(), new UserPrefs());
+        model.updateSelectedInternship(internshipNotDeleted);
+        expectedModel.deleteInternship(internshipToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertEquals(model.getSelectedInternship(), internshipNotDeleted);
+
+
+        // Case 2: Right panel has internship that is deleted, should reset to original welcome message
+        internshipToDelete = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+        internshipNotDeleted = model.getFilteredInternshipList().get(INDEX_SECOND_INTERNSHIP.getZeroBased());
+        deleteCommand = new DeleteIndexCommand(NON_EMPTY_INDEXLIST);
+        expectedMessage = String.format(MESSAGE_DELETE_INTERNSHIP_SUCCESS, 1);
+
+        expectedModel = new ModelManager(model.getInternBuddy(), new UserPrefs());
+        model.updateSelectedInternship(internshipToDelete);
+        expectedModel.deleteInternship(internshipToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertEquals(model.getSelectedInternship(), null);
+    }
+
     /**
      * Updates {@code model}'s filtered list to show no internship entry.
      */
@@ -114,4 +149,5 @@ public class DeleteIndexCommandTest {
 
         assertTrue(model.getFilteredInternshipList().isEmpty());
     }
+
 }

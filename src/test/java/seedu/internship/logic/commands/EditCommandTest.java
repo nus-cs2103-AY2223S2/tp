@@ -3,6 +3,7 @@ package seedu.internship.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.internship.logic.commands.CommandTestUtil.DESC_APPLE;
+import static seedu.internship.logic.commands.CommandTestUtil.DESC_APPLE_DIFFERENT_COMMENT;
 import static seedu.internship.logic.commands.CommandTestUtil.DESC_GOOGLE;
 import static seedu.internship.logic.commands.CommandTestUtil.VALID_COMPANY_NAME_GOOGLE;
 import static seedu.internship.logic.commands.CommandTestUtil.VALID_ROLE_GOOGLE;
@@ -174,6 +175,9 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_GOOGLE)));
+
+        // different comments -> return false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_INTERNSHIP, DESC_APPLE_DIFFERENT_COMMENT)));
     }
 
 }

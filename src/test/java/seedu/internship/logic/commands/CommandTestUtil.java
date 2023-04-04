@@ -102,6 +102,7 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditInternshipDescriptor DESC_APPLE;
     public static final EditCommand.EditInternshipDescriptor DESC_GOOGLE;
+    public static final EditCommand.EditInternshipDescriptor DESC_APPLE_DIFFERENT_COMMENT;
 
     static {
         DESC_APPLE = new EditInternshipDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE)
@@ -110,6 +111,9 @@ public class CommandTestUtil {
         DESC_GOOGLE = new EditInternshipDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_GOOGLE)
                 .withRole(VALID_ROLE_GOOGLE).withStatus(VALID_STATUS_GOOGLE).withDate(VALID_DATE_GOOGLE)
                 .withComment(VALID_COMMENT_GOOGLE).withTags(VALID_TAG_BACK, VALID_TAG_FRONT).build();
+        DESC_APPLE_DIFFERENT_COMMENT = new EditInternshipDescriptorBuilder().withCompanyName(VALID_COMPANY_NAME_APPLE)
+                .withRole(VALID_ROLE_APPLE).withStatus(VALID_STATUS_APPLE).withDate(VALID_DATE_APPLE)
+                .withComment(COMMENT_DESC_GOOGLE).withTags(VALID_TAG_FRONT).build();
     }
 
     /**

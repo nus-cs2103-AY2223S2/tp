@@ -1,6 +1,7 @@
 package seedu.internship.logic.parser;
 
 import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.internship.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.internship.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.internship.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
@@ -28,6 +29,9 @@ public class ViewCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ViewCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX,
                 ViewCommand.MESSAGE_USAGE));
     }
 }
