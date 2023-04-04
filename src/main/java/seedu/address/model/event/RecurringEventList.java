@@ -9,6 +9,7 @@ import java.util.TreeSet;
 import seedu.address.model.event.exceptions.EventConflictException;
 import seedu.address.model.event.exceptions.EventNotFoundException;
 import seedu.address.model.person.Person;
+import seedu.address.model.time.TimeMask;
 
 /**
  * Represents the list of {@code RecurringEvent} that each {@code Person} has.
@@ -16,9 +17,12 @@ import seedu.address.model.person.Person;
 public class RecurringEventList {
     private final TreeSet<RecurringEvent> recurringEvents = new TreeSet<>();
 
+    private final TimeMask recurringMask = new TimeMask();
+
     public TreeSet<RecurringEvent> getRecurringEvents() {
         return recurringEvents;
     }
+
 
     /**
      * Gets the total number of event in the recurringEvents
@@ -68,14 +72,6 @@ public class RecurringEventList {
     }
 
     /**
-     * Delete the recurring event from the recurring event list.
-     * @param event to be deleted.
-     */
-    public void deleteRecurringEvent(RecurringEvent event) {
-        recurringEvents.remove(event);
-    }
-
-    /**
      * Get the recurring event in the recurring event list with the event's index.
      * @param index of the event.
      * @return recurringEventObject
@@ -92,19 +88,6 @@ public class RecurringEventList {
             counter++;
         }
         return recurringEvent;
-    }
-
-    /**
-     * Edit recurring event parameters in the recurring event list
-     * @param originalEvent to be edited
-     * @param editedRecurringEvent to be edited to
-     */
-    public void edit(RecurringEvent originalEvent, RecurringEvent editedRecurringEvent) {
-        if (!recurringEvents.contains(originalEvent)) {
-            throw new EventNotFoundException();
-        }
-        recurringEvents.remove(originalEvent);
-        recurringEvents.add(editedRecurringEvent);
     }
 
     /**
@@ -189,9 +172,18 @@ public class RecurringEventList {
 
     }
 
+    /**
+     * Add all the recurring events into the person's recurring event list and update the recurring event list's time
+     * mask.
+     * @param recurringEvents
+     */
     public void addAll(Set<RecurringEvent> recurringEvents) {
         this.recurringEvents.addAll(recurringEvents);
+        for (RecurringEvent recurringEvent: recurringEvents) {
+            recurringMask.modifyOccupancy(recurringEvent, true);
+        }
     }
+
     public ArrayList<RecurringEvent> getList() {
         return new ArrayList<>(this.recurringEvents);
     }
@@ -205,7 +197,7 @@ public class RecurringEventList {
      * @param endPeriod stands for the ending date of the time period
      * @return a string of all events that occured within the time period
      */
-    public String listBetweenOccurence(LocalDateTime startPeriod, LocalDateTime endPeriod) {
+    public String listBetweenOccurrence(LocalDateTime startPeriod, LocalDateTime endPeriod) {
         StringBuilder output = new StringBuilder();
         for (RecurringEvent re : recurringEvents) {
             if (re.occursBetween(startPeriod, endPeriod)) {
@@ -213,6 +205,32 @@ public class RecurringEventList {
             }
         }
         return output.toString();
+    }
+
+    /**
+     * Delete the recurring event from the person's recurring event list and update the time mask of the recurring
+     * event list.
+     * @param event
+     */
+    public void deleteRecurringEvent(RecurringEvent event) {
+        recurringEvents.remove(event);
+        recurringMask.modifyOccupancy(event, false);
+    }
+
+    /**
+     * Edit recurring event parameters in the recurring event list
+     * @param originalEvent to be edited
+     * @param editedRecurringEvent to be edited to
+     */
+    public void edit(RecurringEvent originalEvent, RecurringEvent editedRecurringEvent) {
+        if (!recurringEvents.contains(originalEvent)) {
+            throw new EventNotFoundException();
+        }
+        recurringEvents.remove(originalEvent);
+        recurringEvents.add(editedRecurringEvent);
+
+        recurringMask.modifyOccupancy(originalEvent, false);
+        recurringMask.modifyOccupancy(editedRecurringEvent, true);
     }
 
     @Override
@@ -225,4 +243,11 @@ public class RecurringEventList {
         }
         return output.toString();
     }
+
+
+    public TimeMask getRecurringMask() {
+        return recurringMask;
+    }
+
+
 }

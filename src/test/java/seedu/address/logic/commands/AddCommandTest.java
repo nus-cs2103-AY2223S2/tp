@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -200,6 +201,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredTimeSlotList(Group group, LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addIsolatedEvent(Person index, IsolatedEvent eventToAdd) {
             throw new AssertionError("This method should not be called.");
         }
@@ -228,6 +234,11 @@ public class AddCommandTest {
         @Override
         public void setRecurringEvent(Person personToEdit, RecurringEvent originalEvent,
                                       RecurringEvent editedRecurringEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteExpiredEvent() {
             throw new AssertionError("This method should not be called.");
         }
     }

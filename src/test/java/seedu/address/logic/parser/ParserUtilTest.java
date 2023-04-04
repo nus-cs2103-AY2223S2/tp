@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.parseDate;
+import static seedu.address.logic.parser.ParserUtil.parseDateTime;
 import static seedu.address.logic.parser.ParserUtil.parseDayOfWeek;
 import static seedu.address.logic.parser.ParserUtil.parseEventName;
 import static seedu.address.logic.parser.ParserUtil.parsePeriod;
@@ -249,12 +249,12 @@ public class ParserUtilTest {
 
     @Test
     public void parseDate_emptyDate_throwError() {
-        assertThrows(ParseException.class, () -> parseDate(""));
+        assertThrows(ParseException.class, () -> parseDateTime(""));
     }
 
     @Test
     public void parseDate_invalidDateFormat_throwError() {
-        assertThrows(ParseException.class, () -> parseDate("09-03-2023 1400"));
+        assertThrows(ParseException.class, () -> parseDateTime("09-03-2023 1400"));
     }
 
     @Test
@@ -262,7 +262,7 @@ public class ParserUtilTest {
         DateTimeFormatter newFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         LocalDateTime expected = LocalDateTime.parse("09/03/2023 14:00", newFormatter);
 
-        assertEquals(expected, parseDate("09/03/2023 14:00"));
+        assertEquals(expected, parseDateTime("09/03/2023 14:00"));
     }
 
     @Test
@@ -274,5 +274,10 @@ public class ParserUtilTest {
     public void parseEventName_validEventName_returnTrimmed() throws ParseException {
         assertEquals("biking", parseEventName("biking     "));
 
+    }
+
+    @Test
+    public void parseDate_notHourlyTime() {
+        assertThrows(ParseException.class, () -> parseDateTime("09-03-2023 1400"));
     }
 }

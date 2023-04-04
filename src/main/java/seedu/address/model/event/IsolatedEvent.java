@@ -43,6 +43,14 @@ public class IsolatedEvent extends Event implements Comparable<IsolatedEvent> {
         return this.endDate;
     }
 
+    public int getStartDayValue() {
+        return startDate.getDayOfWeek().getValue();
+    }
+
+    public int getEndDayValue() {
+        return endDate.getDayOfWeek().getValue();
+    }
+
     public String getEventName() {
         return this.eventName;
     }

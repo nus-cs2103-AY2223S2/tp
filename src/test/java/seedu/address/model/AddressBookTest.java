@@ -116,6 +116,16 @@ public class AddressBookTest {
         assertTrue(!addressBook.hasGroup(group));
     }
 
+    @Test
+    public void deleteGroup_groupInAddressBook_returnsTrue() {
+        Group group = new Group("CS2101");
+        addressBook.addGroup(group);
+        Person person = new PersonBuilder(ALICE).withGroups("CS2101").build();
+        addressBook.addPerson(person);
+        addressBook.deleteGroup(group);
+        assertFalse(person.getGroups().contains(group));
+
+    }
 
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.

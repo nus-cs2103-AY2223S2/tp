@@ -81,6 +81,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<String> getFilteredTimeSlotList() {
+        return null;
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

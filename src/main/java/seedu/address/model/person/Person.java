@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,6 +16,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.group.exceptions.PersonAlreadyInGroupException;
 import seedu.address.model.group.exceptions.PersonNotInGroupException;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.time.TimeMask;
 
 /**
  * Represents a Person in the address book.
@@ -33,10 +35,10 @@ public class Person {
     private final IsolatedEventList isolatedEventList = new IsolatedEventList();
     private final RecurringEventList recurringEventList = new RecurringEventList();
     private Set<Group> groups = new HashSet<>();
+
     /**
      * Every field must be present and not null.
      */
-
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Group> groups,
                   Set<IsolatedEvent> isolatedEvents, Set<RecurringEvent> recurringEvents) {
         requireAllNonNull(name, phone, email, address, tags, groups, isolatedEvents, recurringEvents);
@@ -99,8 +101,14 @@ public class Person {
         return isolatedEventList;
     }
 
+    /**
+     * Add the recurring event into the person's recurring event list.
+     * @param event
+     */
     public void addRecurringEvent(RecurringEvent event) {
+        // TODO: Should standardise Add/Delete in EventList or in Person
         recurringEventList.insert(event);
+        getRecurringMask().modifyOccupancy(event, true);
     }
 
     public RecurringEventList getRecurringEventList() {
@@ -123,6 +131,10 @@ public class Person {
         return Collections.unmodifiableSet(groups);
     }
 
+    public TimeMask getRecurringMask() {
+        return recurringEventList.getRecurringMask();
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -134,6 +146,21 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Remove the expired isolated events from the person's isolated event list.
+     */
+    public void removeExpiredEvent() {
+        int len = isolatedEventList.getSize();
+        LocalDateTime now = LocalDateTime.now();
+
+        for (int i = 0; i < len; i++) {
+            IsolatedEvent event = isolatedEventList.getIsolatedEvent(i);
+            if (event.getStartDate().isBefore(now)) {
+                isolatedEventList.deleteIsolatedEvent(event);
+            }
+        }
     }
 
     /**
@@ -169,39 +196,33 @@ public class Person {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\nEmail: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\nAddress: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("\nTags: ");
             tags.forEach(builder::append);
         }
 
         Set<Group> groups = getGroups();
         if (!groups.isEmpty()) {
-            builder.append("; Groups: ");
+            builder.append("\nGroups: ");
             groups.forEach(builder::append);
         }
 
-        Set<IsolatedEvent> isolatedEvents = getIsolatedEventList().getSet();
-        if (!isolatedEvents.isEmpty()) {
-            builder.append("; Isolated events: ");
-            for (IsolatedEvent isoEvent : isolatedEvents) {
-                builder.append("[" + isoEvent + "]");
-            }
+        if (isolatedEventList.getSize() > 0) {
+            builder.append("\n");
+            builder.append(isolatedEventList);
         }
 
-        Set<RecurringEvent> recurringEvents = getRecurringEventList().getSet();
-        if (!recurringEvents.isEmpty()) {
-            builder.append("; Recurring events: ");
-            for (RecurringEvent recurEvent : recurringEvents) {
-                builder.append("[" + recurEvent + "]");
-            }
+        if (recurringEventList.getSize() > 0) {
+            builder.append("\n");
+            builder.append(recurringEventList);
         }
 
         return builder.toString();
