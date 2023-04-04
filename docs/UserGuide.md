@@ -15,21 +15,21 @@ than traditional GUI apps.
 - [Quick Start](#Quick-Start)
 - [Features](#features)
   - [Help](#Help)
-  - [Add](#add-a-patient--add)
-  - [List](#listing-all-patients--list)
-  - [List By Name](#listing-patients-in-alphabetical-order--list_name)
-  - [Edit](#editing-a-patient--edit)
+  - [Add a patient](#add-a-patient--add)
+  - [List all patients](#listing-all-patients--list)
+    - [List patients in alphabetical order](#listing-patients-in-alphabetical-order--list_name)
+  - [Edit a patient](#editing-a-patient--edit)
   - [Appointment](#appointment)
-    - [makeApp](#making-appointment-to-a-patient--makeapp)
-    - [markApp](#marking-appointment-with-a-patient--markapp)
-  - [Create](#create-a-medical-certificate-for-patient--create)
-  - [View](#view-the-medical-file-of-a-patient--view)
-  - [Upload](#upload-a-patients-medical-file--upload)
-  - [Find](#locating-patients-by-name--find)
-  - [SearchDate](#searching-patients-with-appointment-on-specified-date--searchdate)
+    - [Make or change an appointment](#making-appointment-to-a-patient--makeapp)
+    - [Mark an appointment](#marking-appointment-with-a-patient--markapp)
+  - [Create a medical certificate for patient](#create-a-medical-certificate-for-patient--create)
+  - [View a medical file](#view-the-medical-file-of-a-patient--view)
+  - [Upload a medical file](#upload-a-patients-medical-file--upload)
+  - [Find a patient](#locating-patients-by-name--find)
+  - [Search Appointment date](#searching-patients-with-appointment-on-specified-date--searchdate)
   - [Delete](#deleting-a-patient--delete)
-    - [deletes](#deleting-multiple-patients--deletes)
-    - [deletefile](#delete-a-medical-file-for-the-specified-patient-deletefile)
+    - [Deletes multiple patients](#deleting-multiple-patients--deletes)
+    - [Delete a medical file](#delete-a-medical-file-for-the-specified-patient-deletefile)
   - [Clear](#clearing-all-entries--clear)
   - [Exit](#exiting-the-program--exit)
 - [Saving, Editing, and Archiving Data](#saving-the-data)
@@ -364,7 +364,7 @@ Examples:
 * `list` followed by `delete 3 1` deletes the 3rd and 1st person in MediMate.
 * `find Betsy` followed by `delete 1 2` deletes the 1st and 2nd person in the results of the `find` command.
 
-### Delete a medical file for the specified patient: `deleteFile`
+### Delete a medical file for the specified patient: `deletefile`
 
 Delete a medical file from the patient's record and remove it from the database.
 
