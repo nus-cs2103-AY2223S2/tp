@@ -398,10 +398,19 @@ Example:
   }
 ]
 ```
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+You can append `f/` to force import regardless of duplicate values.
+
+</div>
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note**<br>
-Optional Parameter `f/` that forces imports regardless of duplicate values.
+`f/` will be your last argument, if added.
+
+Duplicate values will still be ignored, but you can be assured the value is added if it did not exist before.
 </div>
 
 Format: `import JSON [f/]`
