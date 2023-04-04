@@ -6,10 +6,8 @@ import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_PARTICIPATION_POINTS;
 import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
-import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
 import taa.logic.commands.InsertParticipationCommand;
-import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.parser.exceptions.ParseException;
 import taa.model.student.Attendance;
 

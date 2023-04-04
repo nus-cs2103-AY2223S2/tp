@@ -1,18 +1,15 @@
 package taa.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static taa.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
-import static taa.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
 import taa.logic.commands.MarkAttendanceCommand;
 import taa.logic.parser.exceptions.ParseException;

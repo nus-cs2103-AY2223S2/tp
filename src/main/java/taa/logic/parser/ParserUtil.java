@@ -1,7 +1,6 @@
 package taa.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static taa.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 
 import java.util.Collection;
 import java.util.HashSet;

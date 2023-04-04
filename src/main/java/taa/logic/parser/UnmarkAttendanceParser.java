@@ -5,7 +5,6 @@ import static taa.logic.parser.CliSyntax.PREFIX_CLASS_TAG;
 import static taa.logic.parser.CliSyntax.PREFIX_NAME;
 import static taa.logic.parser.CliSyntax.PREFIX_WEEK;
 
-import taa.commons.core.Messages;
 import taa.commons.core.index.Index;
 import taa.logic.commands.UnmarkAttendanceCommand;
 import taa.logic.parser.exceptions.ParseException;
