@@ -4,6 +4,8 @@ import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static ezschedule.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ezschedule.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
+import static ezschedule.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
+import static ezschedule.testutil.TypicalIndexes.INDEX_THIRD_EVENT;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,7 @@ import ezschedule.logic.commands.DeleteCommand;
  */
 public class DeleteCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private final DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
@@ -32,7 +34,35 @@ public class DeleteCommandParserTest {
     }
 
     @Test
+    public void parse_multipleValidArgs_returnsDeleteCommand() {
+        List<Index> multipleIndexes = new ArrayList<>();
+        multipleIndexes.add(INDEX_FIRST_EVENT);
+        multipleIndexes.add(INDEX_SECOND_EVENT);
+        multipleIndexes.add(INDEX_THIRD_EVENT);
+        assertParseSuccess(parser, "1 2 3", new DeleteCommand(multipleIndexes));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_ZeroIndex_throwsParseException() {
+        assertParseFailure(parser, "0",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_negativeIndex_throwsParseException() {
+        assertParseFailure(parser, "-1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_mixOfValidAndInvalidIndexes_throwsParseException() {
+        assertParseFailure(parser, "-2 0 1 4",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }
