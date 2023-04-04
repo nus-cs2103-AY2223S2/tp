@@ -925,7 +925,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   3b1. LeTracker shows an error message.
 
-  Use case reumes at step 1.
+  Use case resumes at step 1.
 
 **Use case: Delete a Module**
 
@@ -1031,6 +1031,289 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 3c1. Le Tracker shows an error message.
 
     Use case resumes at step 2.
+
+**Use case: Tag a module**
+
+**MSS**
+
+1. User requests to tag a module.
+2. User specifies the tags and the reference to the module.
+3. The module is tagged.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. Module does not exist.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Reference to module is empty.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. No tag is provided.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Tag a lecture**
+
+**Precondition: User has added a module and a lecture**
+
+**MSS**
+
+1. User requests to tag a lecture of a module.
+2. User specifies the tags as well as the lecture and the module the lecture belongs to.
+3. The lecture is tagged.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. Module does not exist.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+  
+- 2b. Reference to module is empty.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. Lecture does not exist.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2d. Reference to lecture is empty.
+
+    - 2d1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2e. No tag is provided.
+
+    - 2e1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Tag a video**
+
+**Precondition: User has added a module, a lecture, and a video**
+
+**MSS**
+
+1. User requests to tag a video of a lecture.
+2. User specified the tags, as well as the video, the lecture the video belongs to, and the module 
+   the lecture belongs to.
+3. The video is tagged.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. Module does not exist.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Reference to module is empty.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. Lecture does not exist.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2d. Reference to lecture is empty.
+
+    - 2d1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2e. Video does not exist.
+
+    - 2e1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2f. Reference to video is empty.
+
+    - 2f1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2g. No tag is provided.
+
+    - 2g1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Untag a module**
+
+**Precondition: User has added a module, and has tagged that module**
+
+**MSS**
+
+1. User requests to remove some tags from a module.
+2. User specifies the tags to remove and the reference to the module.
+3. The module's tags are removed.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. Module does not exist.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Reference to module is empty.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. No tag is provided.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+  
+- 2d. Module tags do not exist.
+
+    - 2d1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Untag a lecture**
+
+**Precondition: User has added a module and a lecture, and has tagged the lecture**
+
+**MSS**
+
+1. User requests to remove some tags from a lecture of a module.
+2. User specifies the tags as well as the lecture and the module the lecture belongs to.
+3. The lecture's tags are removed.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. Module does not exist.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Reference to module is empty.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. Lecture does not exist.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2d. Reference to lecture is empty.
+
+    - 2d1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2e. No tag is provided.
+
+    - 2e1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+  
+- 2f. Lecture tags do not exist.
+
+    - 2f1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Tag a video**
+
+**Precondition: User has added a module, a lecture, and a video, and has tagged the video**
+
+**MSS**
+
+1. User requests to remove some tags from a video of a lecture.
+2. User specified the tags, as well as the video, the lecture the video belongs to, and the module
+   the lecture belongs to.
+3. The video's tags are removed.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. Module does not exist.
+
+    - 2a1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. Reference to module is empty.
+
+    - 2b1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2c. Lecture does not exist.
+
+    - 2c1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2d. Reference to lecture is empty.
+
+    - 2d1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2e. Video does not exist.
+
+    - 2e1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2f. Reference to video is empty.
+
+    - 2f1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2g. No tag is provided.
+
+    - 2g1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
+- 2h. Video tags do not exist.
+
+    - 2h1. LeTracker shows an error message.
+
+      Use case resumes at step 1.
+
 
 ### Non-Functional Requirements
 

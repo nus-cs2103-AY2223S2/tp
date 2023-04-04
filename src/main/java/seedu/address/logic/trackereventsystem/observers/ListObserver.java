@@ -78,6 +78,7 @@ public class ListObserver implements
             ReadOnlyLecture originalLecture, ModuleCode editedInModuleCode) {
         return curDisplayListLevel == DisplayListLevel.VIDEO
                 && editedInModuleCode.equals(curModule.getCode())
+                && originalLecture != null
                 && originalLecture.equals(curLecture);
     }
 
@@ -115,12 +116,14 @@ public class ListObserver implements
     private boolean isLecturesAffectedByModuleEdit(DisplayListLevel curDisplayListLevel,
             ReadOnlyModule curModule, ReadOnlyModule originalModule) {
         return curDisplayListLevel == DisplayListLevel.LECTURE
+                && originalModule != null
                 && curModule.getCode().equals(originalModule.getCode());
     }
 
     private boolean isVideosAffectedByModuleEdit(DisplayListLevel curDisplayListLevel,
             ReadOnlyModule curModule, ReadOnlyModule originalModule) {
         return curDisplayListLevel == DisplayListLevel.VIDEO
+                && originalModule != null
                 && curModule.getCode().equals(originalModule.getCode());
     }
 }
