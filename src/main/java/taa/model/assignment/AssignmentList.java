@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javafx.collections.transformation.FilteredList;
 import taa.model.assignment.exceptions.AssignmentNotFoundException;
+import taa.model.assignment.exceptions.CorruptAssignmentStorageException;
 import taa.model.assignment.exceptions.DuplicateAssignmentException;
 import taa.model.assignment.exceptions.InvalidGradeException;
 import taa.model.assignment.exceptions.SubmissionNotFoundException;
@@ -130,7 +131,7 @@ public class AssignmentList {
      * This is also called when we edit a student.
      * @param sl the student list
      */
-    public void initFromStorage(FilteredList<Student> sl) {
+    public void initFromStorage(FilteredList<Student> sl) throws CorruptAssignmentStorageException {
         if (sl.isEmpty()) {
             return;
         }
@@ -152,6 +153,11 @@ public class AssignmentList {
             for (String submissionString : stu.getSubmissionStorageStrings()) {
                 String assignmentName = submissionString.split(",")[0];
                 Assignment toAdd = assignmentMap.get(assignmentName);
+                if (toAdd == null) { // student has an assignment different from the first student.
+                    assignments.clear();
+                    assignmentMap.clear();
+                    throw new CorruptAssignmentStorageException("Assignments must be the same for all students");
+                }
                 toAdd.addStudentSubmission(stu, submissionString);
             }
         }
