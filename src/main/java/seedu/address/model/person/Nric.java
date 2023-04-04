@@ -27,9 +27,10 @@ public class Nric {
      * @return boolean, true if is a valid NRIC number
      */
     public static boolean isValidNumber(String number) {
+        char c = (char) number.indexOf(0);
         if (number.equals("")) {
             return true;
-        } else if (number.indexOf(0) == 'S' || number.indexOf(0) == 'T' || number.indexOf(0) == 'G') {
+        } else if (number.charAt(0) == 'S' || number.charAt(0) == 'T' || number.charAt(0) == 'G') {
             if (number.length() == 9) {
                 return true;
             } else {
