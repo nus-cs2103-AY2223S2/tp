@@ -92,7 +92,7 @@ Format: `addPatient n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]`  <b
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`addDoctor n/NAME p/PHONE_NUMBER e/EMAIL ic/NRIC a/ADDRESS [t/TAG]`
 
 * Adds the specified person to MediConnect.
-* Each person can be added only once.
+* Each person can be added only once and can be **either** a Patient or a Doctor.
 * Each person's NRIC must be distinct.
 
 Examples:
