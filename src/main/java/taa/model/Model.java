@@ -8,7 +8,11 @@ import taa.commons.core.GuiSettings;
 import taa.logic.commands.enums.ChartType;
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.alarm.Alarm;
-import taa.model.assignment.exceptions.*;
+import taa.model.assignment.exceptions.AssignmentException;
+import taa.model.assignment.exceptions.AssignmentNotFoundException;
+import taa.model.assignment.exceptions.DuplicateAssignmentException;
+import taa.model.assignment.exceptions.NoGradeVarianceException;
+import taa.model.assignment.exceptions.NoSubmissionsFoundException;
 import taa.model.student.Student;
 
 /**
