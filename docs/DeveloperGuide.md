@@ -540,6 +540,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 11. Bookopedia should be for a single user i.e. (not a multi-user product).
 12. Bookopedia should respond to commands within 5s.
 
+
+### Planned Enhancement
+1. Upgrade the View Display into a ScrollPane to accommodate more parcels being added.
+2. Wrapping the text in View Display to allow for more extreme inputs.
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
