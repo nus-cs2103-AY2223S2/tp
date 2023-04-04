@@ -74,7 +74,7 @@ public class RemarkCommand extends Command {
                 personToEdit.getOptionalEmail().orElse(null),
                 personToEdit.getOptionalAddress().orElse(null),
                 personToEdit.getOptionalEducation().orElse(null),
-                remark,
+                remark.value.equals("\0") ? null : remark,
                 personToEdit.getOptionalTelegram().orElse(null),
                 personToEdit.getModules(),
                 personToEdit.getTags()
@@ -93,7 +93,9 @@ public class RemarkCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = personToEdit.getOptionalRemark().isPresent()
+                ? MESSAGE_ADD_REMARK_SUCCESS
+                : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, personToEdit);
     }
 
