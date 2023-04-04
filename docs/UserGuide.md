@@ -180,6 +180,8 @@ Examples:
 
 :warning: You are unable to add any tasks (<span style="color:#4285F4">simpleTask</span>, <span style="color:#34A853">Deadline</span>, <span style="color:#FBBC05">Event</span>) of the same name.
 
+:warning: Tags will be automatically sorted lexicographically!
+
 :warning: Adding multiple **Tags** of the same tag name will only result in one tag!
 
 e.g. `add n/SampleTask t/CS2102 t/CS2102` will only register t/CS2102 once!
@@ -202,7 +204,7 @@ Add multiple tasks with the same parameters except for name with this command:`a
 
 :bulb: **PRO TIP**: Parameters that comes after the command can be in any order!
 
-:bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color. [Why are my different tags same color?](#q5-why-does-two-different-tags-have-the-same-tag-color)
+:bulb: **PRO TIP**: A task can have any number of tags (including 0). Each tag will be automatically assigned a color. [Why are my different tags same color?](#q10-why-does-two-different-tags-have-the-same-tag-color)
 
 
 ### 3.2 Editing a task : `edit`
@@ -211,7 +213,7 @@ Add multiple tasks with the same parameters except for name with this command:`a
 
 Edits an existing task in the task book.
 
-Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT]…​ [t/TAG]…​`
+Format: `edit INDEX [n/TASKNAME] [d/DESCRIPTION] [E/EFFORT] [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -333,12 +335,12 @@ Format: `stats`
 :man_technologist: **Beep! Beep! Well, not really, but alert is here to warn you about tasks which are due soon!**
 
 Displays in the tasks that fall within the window specified on the right panel. If not supplied, assumed to be 24 hours.
-On opening of app, the **alert panel** will open to show **Tasks** which have deadlines within the **latest** window specified.
+On opening of app, the **alert panel** will open to show **Tasks** which have **start or have deadlines** within the **latest** window specified.
 Have to specify `ALERT WINDOW` in hours and only integers.
 
 Examples:
-- `alert` followed by `48` will show the alert window with all tasks which end within 48 hours.
-- `alert` alone will show the alert window with all tasks which end within 24 hours.
+- `alert` followed by `48` will show the alert window with all tasks which **start or end** within 48 hours.
+- `alert` alone will show the alert window with all tasks which **start or end** within 24 hours.
 
 
 ### 3.9 Schedule of the day : `schedule D/SHORTDATE [E/EFFORT]`
@@ -349,7 +351,7 @@ Examples:
 
 #### 3.9.1 How it Works
 Entering `schedule D/SHORTDATE E/EFFORT` generates a new 30-day plan for users based on their intended `E/EFFORT`, and display a list of tasks to be done on `D/SHORTDATE`.
-Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan. [What is a short date?](#q6-what-is-the-difference-between-a-date-and-a-shortdate-)
+Entering `schedule D/SHORTDATE` displays a list of tasks to be done on `D/SHORTDATE` based on the previously generated plan. [What is a short date?](#q6-what-is-the-difference-between-a-longdate-and-a-shortdate)
 
 #### 3.9.2 Generating a New Plan
 When the schedule command is ran with an `E/EFFORT` flag, an internal planning algorithm is run, and all tasks will be allocated to a 30-day plan starting from the day the command is run.
