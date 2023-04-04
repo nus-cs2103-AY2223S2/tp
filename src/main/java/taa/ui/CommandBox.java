@@ -33,6 +33,7 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        // Set navigation keys
         commandTextField.setOnKeyPressed(event -> {
             final String newCmd;
             switch (event.getCode()) {
@@ -47,6 +48,7 @@ public class CommandBox extends UiPart<Region> {
             }
             if (newCmd != null) {
                 setCommand(newCmd);
+                commandTextField.positionCaret(newCmd.length());
             }
         });
     }
