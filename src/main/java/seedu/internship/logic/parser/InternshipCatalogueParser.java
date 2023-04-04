@@ -7,12 +7,21 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.internship.logic.commands.AddCommand;
+import seedu.internship.logic.commands.CalendarCommand;
+import seedu.internship.logic.commands.ClashCommand;
+import seedu.internship.logic.commands.DeleteAllCommand;
 import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.commands.DeleteCommand;
+import seedu.internship.logic.commands.EditCommand;
 import seedu.internship.logic.commands.ExitCommand;
+import seedu.internship.logic.commands.FindCommand;
 import seedu.internship.logic.commands.HelpCommand;
+import seedu.internship.logic.commands.HomeCommand;
 import seedu.internship.logic.commands.ListCommand;
-import seedu.internship.logic.commands.ViewCommand;
+import seedu.internship.logic.commands.SelectCommand;
+import seedu.internship.logic.commands.StatsCommand;
+import seedu.internship.logic.commands.ListCommand;
+import seedu.internship.logic.commands.SelectCommand;
 import seedu.internship.logic.commands.event.EventCommand;
 import seedu.internship.logic.parser.event.EventCatalogueParser;
 import seedu.internship.logic.parser.exceptions.ParseException;
@@ -40,7 +49,7 @@ public class InternshipCatalogueParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
 
 
@@ -51,14 +60,28 @@ public class InternshipCatalogueParser {
             return new DeleteCommandParser().parse(arguments);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
-        case ViewCommand.COMMAND_WORD:
-            return new ViewCommandParser().parse(arguments);
+        case SelectCommand.COMMAND_WORD:
+            return new SelectCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+        case HomeCommand.COMMAND_WORD:
+            return new HomeCommand();
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommand();
+        case DeleteAllCommand.COMMAND_WORD:
+            return new DeleteAllCommandParser().parse(arguments);
         case EventCommand.COMMAND_WORD:
             return new EventCatalogueParser().parse(arguments);
+        case ClashCommand.COMMAND_WORD:
+            return new ClashCommand();
+        case CalendarCommand.COMMAND_WORD:
+            return new CalendarCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

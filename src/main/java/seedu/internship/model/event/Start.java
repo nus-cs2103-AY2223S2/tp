@@ -1,36 +1,31 @@
 package seedu.internship.model.event;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.internship.commons.util.AppUtil.checkArgument;
 
-import static java.util.Objects.requireNonNull;
-
-public class Start implements Comparable<Start> {
+/**
+ * Represents an Event's start timing (time and date).
+ */
+public class Start extends TimeParser {
     public static final String MESSAGE_CONSTRAINTS =
             "Date needs to be of the format DD/MM/YYYY HHMM";
 
-    private static final String DATE_TIME_PATTERN = "E,dd'%s' MMMM,yyyy ha";
-    private static final String DATE_PARSE_FORMAT = "d/M/y";
-    private static final String TIME_PARSE_FORMAT = "HHMM";
+    public static final String START_DATE_TIME_PATTERN = "E,dd'%s' MMMM,yyyy ha";
+    public static final String START_DATE_PARSE_FORMAT = "d/M/y";
+    public static final String START_TIME_PARSE_FORMAT = "HHMM";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "\\p{Digit}/\\p{Digit}/\\p{Digit} \\p{Digit}";
-
-    private final String startDateTime;
-
-    public static final TimeParser tp = new TimeParser(DATE_TIME_PATTERN, DATE_PARSE_FORMAT, TIME_PARSE_FORMAT);
+    public final String startDateTime;
 
     /**
-     * Constructs a {@code Position}.
+     * Constructs a {@code Start}.
      *
-     * @param startDateTime A valid name for a Position.
+     * @param startDateTime A valid startDateTime for a Start.
      */
     public Start(String startDateTime) {
+        super(START_DATE_TIME_PATTERN, START_DATE_PARSE_FORMAT, START_TIME_PARSE_FORMAT);
         requireNonNull(startDateTime);
         this.startDateTime = startDateTime;
-        this.tp.parse(startDateTime);
+        this.parse(startDateTime);
         checkArgument(isValidStart(), MESSAGE_CONSTRAINTS);
     }
 
@@ -38,32 +33,9 @@ public class Start implements Comparable<Start> {
      * Returns true if a given string is a valid startDateTime.
      */
     public boolean isValidStart() {
-        return this.tp.isValidTimeParser();
+        return this.isValidTimeParser();
     }
 
-    @Override
-    public int compareTo(Start start) {
-        return this.tp.compareTo(start.tp);
-    }
-
-    public int compareEnd(End end){
-        return this.tp.compareTo(End.tp);
-    }
-
-
-    @Override
-    public String toString() {
-        return tp.toString();
-    }
-
-
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Start // instanceof handles nulls
-                && this.tp.equals(((Start) other).tp)); // state check
-    }
 
     @Override
     public int hashCode() {

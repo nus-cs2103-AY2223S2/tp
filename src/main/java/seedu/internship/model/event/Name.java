@@ -1,20 +1,16 @@
 package seedu.internship.model.event;
 
-import static seedu.internship.commons.util.AppUtil.checkArgument;
+import java.util.Locale;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.internship.commons.util.AppUtil.checkArgument;
 
-
-
+/**
+ * Represents an Event's name.
+ */
 public class Name {
     public static final String MESSAGE_CONSTRAINTS =
-            "Names of  should only contain alphanumeric characters and spaces, and it should not be blank";
-
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+            "Name should not be blank";
 
     public final String name;
 
@@ -33,9 +29,13 @@ public class Name {
      * Returns true if a given string is a valid Name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        // Anything can be a valid Name, so return True
+        if (test.equals("")) {
+            // An Empty String Cannot Be Valid
+            return false;
+        }
+        return true;
     }
-
 
     @Override
     public String toString() {

@@ -397,7 +397,7 @@
 
 
 .info-panel-h1 {
-    -fx-font-size: 24pt;
+    -fx-font-size: 28pt;
     -fx-font-family: "Helvetica";
     -fx-font-weight: bold;
     -fx-padding: 0 10 0 10;
@@ -407,7 +407,7 @@
 }
 
 .info-panel-h2 {
-    -fx-font-size: 20pt;
+    -fx-font-size: 16pt;
     -fx-font-family: "Helvetica";
     -fx-padding: 0 10 0 10;
     /* -fx-border-width: 1 0 0 0;
@@ -415,9 +415,21 @@
 }
 
 .info-panel-h3 {
-    -fx-font-size: 10pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Helvetica";
     -fx-padding: 0 0 0 10;
+}
+
+.info-panel-h2-bold {
+    -fx-font-size: 16pt;
+    -fx-font-family: "Helvetica";
+    -fx-padding: 0 0 0 0;
+    -fx-font-weight: bold;
+}
+
+.info-panel-special-header {
+    -fx-font-style: italic;
+    -fx-font-size: 12px;
 }
 
 .list-view .scroll-bar:horizontal .increment-arrow,
@@ -428,9 +440,18 @@
 }
 
 .event-card-h1, .event-card-text {
-    -fx-font-size: 10;
+    -fx-font-size: 14;
 }
 
 .event-card-h1 {
     -fx-font-weight: bold;
 }
+
+.default-color0.chart-pie { -fx-pie-color: #9bd2ec; }
+.default-color1.chart-pie { -fx-pie-color: #268fb5; }
+.default-color2.chart-pie { -fx-pie-color: #82f78a; }
+.default-color3.chart-pie { -fx-pie-color: #f5d0da; }
+
+HBox#reminderBox #eventCard { -fx-background-color: derive(#9bd2ec, 60%); }
+
+#eventId { -fx-font-weight: bold; }

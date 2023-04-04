@@ -36,6 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setInternshipCatalogueFilePath(newUserPrefs.getInternshipCatalogueFilePath());
+        setEventCatalogueFilePath(newUserPrefs.getEventCatalogueFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -77,19 +78,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && internshipCatalogueFilePath.equals(o.internshipCatalogueFilePath);
+                && internshipCatalogueFilePath.equals(o.internshipCatalogueFilePath)
+                && eventCatalogueFilePath.equals(o.eventCatalogueFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, internshipCatalogueFilePath);
+        return Objects.hash(guiSettings, internshipCatalogueFilePath, eventCatalogueFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + internshipCatalogueFilePath);
+        sb.append("\nLocal data file location : " + internshipCatalogueFilePath + " | " + eventCatalogueFilePath);
         return sb.toString();
     }
 

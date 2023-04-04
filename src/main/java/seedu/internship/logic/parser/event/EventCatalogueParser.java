@@ -5,18 +5,19 @@ import static seedu.internship.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import seedu.internship.logic.commands.Command;
 import seedu.internship.logic.commands.HelpCommand;
 import seedu.internship.logic.commands.event.EventAddCommand;
-import seedu.internship.logic.parser.AddCommandParser;
+import seedu.internship.logic.commands.event.EventFindCommand;
+import seedu.internship.logic.commands.event.EventDeleteCommand;
 import seedu.internship.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses and Execute Event Commands
+ */
 public class EventCatalogueParser {
 
-
-    /**
-     * Parses and Execute Event Commands
-     */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
@@ -31,13 +32,17 @@ public class EventCatalogueParser {
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
-        final String commandWord = matcher.group("commandWord");
+        final String commandWord = matcher.group("commandWord").toLowerCase();
         final String arguments = matcher.group("arguments");
 
 
         switch (commandWord) {
         case EventAddCommand.COMMAND_WORD:
             return new EventAddCommandParser().parse(arguments);
+        case EventFindCommand.COMMAND_WORD:
+            return new EventFindCommandParser().parse(arguments);
+        case EventDeleteCommand.COMMAND_WORD:
+            return new EventDeleteCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
