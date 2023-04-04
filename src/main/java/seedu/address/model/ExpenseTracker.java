@@ -224,6 +224,11 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
         expenses.sortList();
     }
 
+    public void setExpense(Expense target, Expense editedExpense) {
+        expenses.setExpense(target, editedExpense);
+        expenses.sortList();
+    }
+
     /**
      * Delete all Expense.
      */

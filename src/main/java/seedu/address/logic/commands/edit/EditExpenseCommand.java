@@ -113,7 +113,7 @@ public class EditExpenseCommand implements EditCommand {
         }
 
         Expense newExpense = new Expense(name, amount, date, category);
-        model.setExpense(targetIndex.getZeroBased(), newExpense);
+        model.setExpense(expenseToEdit, newExpense);
         return new CommandResult(
             String.format(Messages.MESSAGE_SUCCESSFULLY_EDITED_EXPENSE, newExpense),
             ScreenType.EXPENSE_SCREEN);

@@ -40,8 +40,15 @@ public class ExpenseList implements Iterable<Expense> {
         internalListOfExpenses.remove(toRemove);
     }
 
-    public void set(int index, Expense expense) {
-        internalListOfExpenses.set(index, expense);
+    public void setExpense(Expense target, Expense editedExpense) {
+        requireAllNonNull(target, editedExpense);
+        int index = internalListOfExpenses.indexOf(target);
+
+        internalListOfExpenses.set(index, editedExpense);
+    }
+
+    public void set(int index, Expense newExpense) {
+        internalListOfExpenses.set(index, newExpense);
     }
 
     /**
