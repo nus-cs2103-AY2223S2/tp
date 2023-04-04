@@ -86,7 +86,6 @@ public class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, CUSTOMER_ID_MESSAGE_FIELD));
         }
         Customer customer;
-//        Customer customer = addressBook.getCustomer(customerId);
         try {
             customer = addressBook.getCustomer(customerId);
         } catch (CustomerNotFoundException e) {
