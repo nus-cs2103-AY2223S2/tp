@@ -18,6 +18,7 @@ title: Developer Guide
   [JUnit5](https://github.com/junit-team/junit5)
 * With inspiration from: [fzf](https://github.com/junegunn/fzf) (for fuzzy
   finding), [Vim](https://www.vim.org/) (for hotkeys)
+* With GUI testing structure based on: [Address book-level4](https://github.com/se-edu/addressbook-level4) 
 * Originally forked from: [AddressBook
   3](https://github.com/nus-cs2103-AY2223S2/tp)
 
