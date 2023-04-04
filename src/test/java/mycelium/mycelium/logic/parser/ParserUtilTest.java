@@ -240,4 +240,12 @@ public class ParserUtilTest {
             Assertions.assertEquals(want, ParserUtil.parseLocalDate(tt, Project.DATE_FMT));
         }
     }
+
+    @Test
+    public void parseProjectName_illegalValue_throwsParseException() {
+        for (var name : ParserUtil.ILLEGAL_PROJECT_NAMES) {
+            var msg = String.format(Messages.MESSAGE_ILLEGAL_PROJECT_NAME_FMT, name);
+            Assert.assertThrows(ParseException.class, msg, () -> ParserUtil.parseProjectName(name));
+        }
+    }
 }

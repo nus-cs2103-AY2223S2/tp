@@ -14,5 +14,9 @@ public class Messages {
 
     public static final String MESSAGE_EMPTY_PROJECT_NAME =
         "Project name cannot be empty or consist of only whitespace";
+    public static final String
+        MESSAGE_ILLEGAL_PROJECT_NAME_FMT =
+        "'%s' is an illegal project name as it interferes with parsing. Please consider differentiating it from an "
+            + "argument flag.";
     public static final String MESSAGE_EMPTY_SOURCE = "Source cannot be empty or consist of only whitespace";
 }
