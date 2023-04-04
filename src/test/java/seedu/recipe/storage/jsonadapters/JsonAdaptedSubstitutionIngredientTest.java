@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.recipe.model.recipe.ingredient.Ingredient;
 
+//@@author alson001
 public class JsonAdaptedSubstitutionIngredientTest {
     private static final String VALID_INGREDIENT_NAME = "Sugar";
     private static final String INVALID_INGREDIENT_NAME = "";

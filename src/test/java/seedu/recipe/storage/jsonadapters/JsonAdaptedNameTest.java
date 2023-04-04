@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.Name;
 
-
+//@@author alson001
 public class JsonAdaptedNameTest {
 
     private static final String VALID_NAME = "Cheeseburger";

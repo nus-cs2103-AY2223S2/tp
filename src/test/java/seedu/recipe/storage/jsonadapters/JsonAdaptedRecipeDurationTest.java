@@ -10,6 +10,7 @@ import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.RecipeDuration;
 import seedu.recipe.model.recipe.unit.TimeUnit;
 
+//@@author alson001
 public class JsonAdaptedRecipeDurationTest {
     private static final RecipeDuration RECIPE_DURATION = new RecipeDuration(30, new TimeUnit("minutes"));
     private static final double TIME = 30;

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.Step;
 
+//@@author alson001
 public class JsonAdaptedStepTest {
 
     private static final String VALID_STEP = "Preheat oven to 200C";

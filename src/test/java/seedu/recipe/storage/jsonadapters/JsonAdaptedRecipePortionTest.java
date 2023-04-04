@@ -10,6 +10,7 @@ import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.RecipePortion;
 import seedu.recipe.model.recipe.unit.PortionUnit;
 
+//@@author alson001
 public class JsonAdaptedRecipePortionTest {
 
     private static final JsonAdaptedPortionUnit JSON_ADAPTED_PORTION_UNIT = new JsonAdaptedPortionUnit("people");

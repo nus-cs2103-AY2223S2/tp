@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.tag.Tag;
 
+//@@author alson001
 public class JsonAdaptedTagTest {
     private static final String VALID_TAG_NAME = "healthy";
     private static final String INVALID_TAG_NAME = "#fatty";
