@@ -248,19 +248,23 @@ _Here are some important requirements for you to take note:_
   * `INDEX` must be a **positive integer**.
 * At least one field must be provided.
 
-For the following fields, they are considered a `SuperField`.
+For the following fields, they are considered a `FieldGroup`.
 * Modules
 * Tags
 
-A `SuperField` can contain many parameters in that single field.
-When using edit, the command looks for each parameter in the `SuperField`:
-* If the parameter already exists in the `SuperField` it will be removed.
-* Otherwise, the parameter will be added into the `SuperField`.
-  * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field of a contact if it already exists and adds it if it does not.
-  * e.g. `edit t/10x Coder t/Intern Friend`
-    * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
-    * For a contact which has `10x Coder` as a tag, he will have the `10x Coder` removed and `Intern Friend` added as a tag.
-  
+A `FieldGroup` can contain many parameters in that single field.
+When using edit, the command looks for each parameter in the `FieldGroup`:
+* If the parameter already exists in the `FieldGroup` it will be removed.
+* Otherwise, the parameter will be added into the `FieldGroup`.
+* Examples:
+  * The first contact has `CS2103T`, `MA2001` and `GEA1000` as its modules, 
+    * `edit 1 mt/CS2103T` removes CS2103T from the Modules field since it is already a part of its Modules field.
+    * So the first contact in your Neobook will have `MA2001` and `GEA1000` as its only modules
+  * The second contact has the following tags `Friend`, `Amazing Coder`
+    * `edit 2 t/10x Coder t/Intern Friend` adds both `10x Coder` and `Intern Friend` as tags to the contact as neither existed in its Tags field.
+    * So the second contact in your NeoBook would have `Friend`, `Amazing Coder`, `10x Coder` and `Intern Friend` in its Tags field.
+
+
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
 | n      | Name                            | No        |
@@ -294,7 +298,7 @@ Use this command to find contacts using keywords and fields you specify!
 
 | Prefix | Name of Field                   | Optional? |
 |--------|---------------------------------|-----------|
-| n      | Name                            | No        |
+| n      | Name                            | Yes       |
 | e      | Email address                   | Yes       |
 | p      | Phone Number                    | Yes       |
 | a      | Address                         | Yes       |
@@ -310,7 +314,7 @@ _Here are some important requirements for you to take note:_
   * i.e. `find n/Abigail` can return people with names of 'Abigail', 'aBiGail', 'abigail', 'ABIGAIL'.
 
 
-* For each field specified, as long as one of the keywords is contained
+* For **each** field specified, as long as one of the keywords is contained
 in that field, then the person will be returned.
   * i.e. `find n/John n/Peter James`
     * Can return:
