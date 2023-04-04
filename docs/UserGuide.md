@@ -164,6 +164,7 @@ left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
 
 ## **Command Information**
 
+[//]: # (@@author potty10)
 ### Command Format
 
 * Words in `UPPER_CASE` are the fields to be supplied by the user.<br>
@@ -192,7 +193,7 @@ left-clicking and/or using <button>&uarr;</button> and <button>&darr;</button>
 
 * Command names are case-sensitive. For example, `help` will work, but `HELP` or `Help` will not work.
 
-
+[//]: # (@@author eugenetangkj)
 ### Prefixes and Rules for Fields
 In InternBuddy's commands, we refer to a range of fields that you can replace with values to input information that
 is customised to your internship applications.
@@ -260,7 +261,7 @@ documents the meaning of `DATE` with respect to each `STATUS` value.
 
 <p style="text-align: center;">Table 4: Description of dates</p>
 
-
+[//]: # (@@author seadragon2000341)
 ### Duplicate Internships
 InternBuddy does not allow for the storage of duplicate internships. Should you enter a command that attempts to store 
 a duplicate internship, InternBuddy will remind you that the internship already exists.
@@ -302,11 +303,14 @@ internships, because they have different values for `COMPANY_NAME`.
 
 <div style="page-break-after: always;"></div>
 
+
+[//]: # (@@author potty10)
 ### Duplicate Tags
 If you attempt to store duplicate tags within the same internship entry, InternBuddy would only store one of them. A duplicate tag refers to a tag that is identical to another tag in every way, including the spelling and capitalisation (tags are **case-sensitive**). In other words, a duplicate tag is a tag that is an exact copy of another tag.
 
 ## **Features**
 
+[//]: # (@@author eugenetangkj)
 ### Listing all Internships : `list`
 Shows the list of all internship entries that you have stored in InternBuddy.
 
@@ -319,7 +323,7 @@ Shows the list of all internship entries that you have stored in InternBuddy.
 
 Format: `list`
 
-
+[//]: # (@@author eugenetangkj)
 ### Adding an Internship : `add`
 
 Do you have a new internship to track? Add it to InternBuddy using the `add` command.
@@ -355,7 +359,7 @@ Examples:
 
 <br/>
 
-
+[//]: # (@@author seadragon2000341)
 ### Editing an Internship : `edit`
 
 Made a mistake, or wish to update your internship entry? The `edit` command allows you to make modifications.
@@ -391,7 +395,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-
+[//]: # (@@author eugenetangkj)
 ### Viewing an Internship : `view`
 Want to view the details of a specific internship entry? You can do so using the `view` command.
 
@@ -413,8 +417,8 @@ Examples:
   [List Panel](#exploring-the-graphical-user-interface), this displays an error because `INDEX` cannot be greater
   than the maximum index shown in the [List Panel](#exploring-the-graphical-user-interface), which is 7 in this case.
 
-  
 
+[//]: # (@@author DerrickSaltFish)
 ### Copying an Internship to Clipboard : `copy`
 Need to quickly export the details of an internship? Use `copy` to copy the details of an internship to
 your clipboard.
@@ -437,7 +441,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-
+[//]: # (@@author kohkaixun)
 ### Finding Internships : `find`
 Want to locate selected internship entries? Use the `find` command to filter through
 your entries and narrow down your search.
@@ -491,7 +495,7 @@ in the [List Panel](#exploring-the-graphical-user-interface).
 </div>
 
 
-
+[//]: # (@@author seadragon2000341)
 ### Getting Upcoming Events and Deadlines : `upcoming`
 Want to view your upcoming events and deadlines? You can do so using the `upcoming` command.
 
@@ -507,6 +511,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
+[//]: # (@@author potty10)
 ### Deleting Internships by Index : `delete-index`
 Need to keep your screen nice and tidy? `delete-index` can help you achieve this by deleting multiple internships using their indices.
 
@@ -529,6 +534,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
+[//]: # (@@author potty10)
 ### Deleting Internships by Fields : `delete-field`
 Wish that you could delete internships using fields instead of indices? You can
 certainly do so using `delete-field`.
@@ -586,7 +592,7 @@ part of your input value. For example, `delete-field r/Engineer c/Good company` 
 of `Engineer c/Good company`.
 </div>
 
-
+[//]: # (@@author potty10)
 ### Clearing all Internships : `clear`
 The `clear` command permanently deletes all entries from InternBuddy.
 
@@ -603,6 +609,7 @@ to repopulate InternBuddy with sample data.
 
 <div style="page-break-after: always;"></div>
 
+[//]: # (@@author eugenetangkj)
 ### Getting Help : `help`
 Forgot the commands for InternBuddy? Fret not! You can easily view the list of supported commands and their formats
 using the `help` command.
@@ -670,7 +677,7 @@ with the content in `internbuddy.json` unless you are confident in doing so. If 
 
 <div style="page-break-after: always;"></div>
 
-
+[//]: # (@@author kohkaixun)
 ### Navigating through Past Commands
 
 Want to reuse a command you entered just now but too lazy to type it all out again? InternBuddy's got you!
@@ -708,6 +715,7 @@ that we are exploring and hope to implement in the future!
 
 <div style="page-break-after: always;"></div>
 
+[//]: # (@@author potty10)
 ## **Command Summary**
 Table 7 provides an overview of the commands supported in InternBuddy.
 
