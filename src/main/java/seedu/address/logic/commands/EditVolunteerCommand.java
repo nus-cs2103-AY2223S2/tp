@@ -58,20 +58,20 @@ public class EditVolunteerCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the volunteer identified "
             + "by the index number used in the displayed volunteer list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: <INDEX> (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NRIC + "NRIC] "
-            + "[" + PREFIX_BIRTH_DATE + "BIRTHDATE] "
+            + "[" + PREFIX_BIRTH_DATE + "BIRTH_DATE] "
             + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_MEDICAL_TAG + "MEDICAL_TAG]... "
             + "[" + PREFIX_AVAILABILITY + "AVAILABLE_DATE_START,AVAILABLE_DATE_END]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com"
+            + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_BIRTH_DATE + "1989-02-01 ";
 
     public static final String MESSAGE_EDIT_VOLUNTEER_SUCCESS = "Edited volunteer: %1$s";

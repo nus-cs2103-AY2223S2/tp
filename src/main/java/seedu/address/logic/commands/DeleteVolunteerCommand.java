@@ -23,7 +23,7 @@ public class DeleteVolunteerCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the volunteer identified by their NRIC.\n"
-            + "Parameters: NRIC \n"
+            + "Parameters: <NRIC> \n"
             + "Example: " + COMMAND_WORD + " S1234567I";
 
     public static final String MESSAGE_DELETE_VOLUNTEER_SUCCESS = "Deleted Volunteer: %1$s";
