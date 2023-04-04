@@ -404,7 +404,7 @@ Adds a student to a given class list.
 
 Format: `add_student n/STUDENT_NAME cl/CLASS_NAME...`
 - The argument `STUDENT_NAME` should be the name of the student to be added
-- The argument `STUDENT_NAME` only accepts alphanumeric inputs.
+- The argument `STUDENT_NAME` only accepts alphanumeric inputs and spaces.
 - The argument `CLASS_NAME` should be the name of a given class the student belongs to
 
 Examples:
