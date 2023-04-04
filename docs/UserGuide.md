@@ -747,15 +747,13 @@ _Details coming soon ..._
     * **leave this window open too**
    ![mac_pwd](images/user-guide/mac_pwd.png)
 5. Next,
-   * paste `cd yourHomeFolderPath*`
+   * paste `cd yourHomeFolderPath`
    * as well as `java -jar codoc.jar` 
-   * and save it as a `.command file`
+   * and save it as a `.command` file
    ![mac_command_file_save](images/user-guide/mac_command_file_save.png)
-6. Place the newly created `.command file` into your *home folder*.
+6. Place the newly created `.command` file into your *home folder*.
    ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
 7. Finally, on your opened terminal from step 4, type `chmod 777 start.command` > <kbd>Enter</kbd>.
-
-   <br>
    <div markdown="span" class="alert alert-info">
    :information_source: **Note:** Replace **start** with whatever you name your `.command` file from step 5.
    </div>
@@ -763,8 +761,9 @@ _Details coming soon ..._
 8. You can now double-click on your `.command` file to open CoDoc.
    <br>
    <div markdown="span" class="alert alert-info">
-   :bulb: **Tip**: You can place the `.command` file anywhere after Step 8.
-   </div>
+   :bulb: **Tip**: You can now place the `.command` file anywhere.
+   <div>
+   <br>
    <div markdown="span" class="alert alert-info">  
    :warning: **Caution**: If you decide to change the location of *home folder*, repeat from step 2.
    </div>
