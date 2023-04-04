@@ -24,7 +24,8 @@ public class AddScoreCommand extends Command {
 
     public static final String COMMAND_WORD = "addscore";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a score detail to the specified student.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a score detail to the specified student. "
+            + "Every score must have different date.\n"
             + "Parameters: INDEX (must be a positive number) "
             + PREFIX_SCORE_LABEL + "LABEL "
             + PREFIX_SCORE_VALUE + "VALUE "
@@ -35,7 +36,8 @@ public class AddScoreCommand extends Command {
             + PREFIX_SCORE_DATE + "2012-08-09 ";
 
     public static final String MESSAGE_SUCCESS = "Added score to Student %1$s: %2$s";
-    public static final String MESSAGE_DUPLICATE_SCORE = "This score already exists in this student's score list";
+    public static final String MESSAGE_DUPLICATE_SCORE = "This score already exists in this student's score list. "
+            + "Please recheck the score date entered.";
 
     private static final Logger logger = LogsCenter.getLogger(AppParameters.class);
     private final Index index;
