@@ -19,9 +19,9 @@ import seedu.library.model.bookmark.Bookmark;
  * open up a browser and goes to specified index bookmark's url if present.
  */
 public class GoToCommand extends Command {
-
     public static final String COMMAND_WORD = "goto";
     public static final String URI_OPS_ERROR = "could not go to url";
+    public static final String NOT_SUPPORTED = "this function is not supported on your OS will be available in the future";
     public static final String EMPTY_URL_ERROR = "url field is not present cannot goto site";
 
 
@@ -63,10 +63,22 @@ public class GoToCommand extends Command {
      * @param url
      * @throws IOException
      */
-    public static void openUrl(String url) throws IOException {
+    public static void openUrl(String url) throws IOException, CommandException {
         URI targetUrl = URI.create(url);
-        Desktop.getDesktop().browse(targetUrl);
+        String os = System.getProperty("os.name").toLowerCase();
+        if (Desktop.isDesktopSupported()) {
+            Desktop.getDesktop().browse(targetUrl);
+        } else { //Desktop package not supported in this system
+            if (os.contains("nix")) {
+                Runtime runtime = Runtime.getRuntime();
+                runtime.exec("xdg-open" + url);
+            }
+            else{
+                throw new CommandException(NOT_SUPPORTED);
+            }
+        }
     }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object

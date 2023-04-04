@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.bookmark.Bookmark;
 
 
@@ -94,12 +95,22 @@ public class ZoomView extends UiPart<Region> {
      * @param url url to open
      */
     public void openLink(String url) {
+        URI targetUrl = URI.create(url);
+        String os = System.getProperty("os.name").toLowerCase();
         try {
-            Desktop.getDesktop().browse(new URI(url));
-        } catch (IOException | URISyntaxException ex) {
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(targetUrl);
+            } else { //Desktop package not supported in this system
+                if (os.contains("nix")) {
+                    Runtime runtime = Runtime.getRuntime();
+                    runtime.exec("xdg-open" + url);
+                }
+            }
+        } catch (IOException ex) {
             throw new AssertionError(ex);
         }
     }
+
 
     /**
      * Helps set rating image in bookmarkcard
