@@ -47,11 +47,12 @@ Given below are my contributions to the project.
     * Added documentation for all commands.
     * Added Quick Start Guide into User Guide.
     * Added FAQ into User Guide.
+    * Added Planned Enhancements into User Guide.
     * Added Command Summary Table into User Guide.
     * Added Prefix Summary Table into User Guide.
     * Added Glossary into User Guide.
     * Updated table of contents, sections and fixed bugs in User Guide.
-    * Pull requests: [\#137]()
+    * Pull requests: [\#137](), [\#211]()
     
   * Developer Guide:
     * Refactored AB3's Developer Guide into ConnectUS Developer Guide.
