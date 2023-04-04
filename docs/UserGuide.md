@@ -450,6 +450,16 @@ Philza Minercaft,,,"x,0,0,0,100;y,0,0,0,100;",Rec_R03;
 Mumbo Jumbo,,,,Lab_L12;
 ```
 
+Excel spreadsheet format that exports acceptable CSV files:
+
+| <span style="font-weight:normal">Technoblade</span> | <span style="font-weight:normal">1;0;0;1;1;1;0;0;0;0;0;0</span> | <span style="font-weight:normal">-1;-1;-1;-1;-1;-1;-1;-1;200;-1;-1;-1</span> | <span style="font-weight:normal">x,0,0,0,16;y,0,0,0,120;</span> | <span style="font-weight:normal">Tut_T01;</span> |
+|-----------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------------------------|-----------------------------------------------------------------|--------------------------------------------------|
+| Dream Was Taken                                     | 0;0;0;0;0;0;0;0;0;0;0;0                                         | -1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1                                          | z,0,0,0,200                                                     | Tut_T01;Lab_L01;                                 |
+| Tommy In It                                         |                                                                 |                                                                              | x,0,0,0,100;y,0,0,0,100;                                        | Tut_T02;                                         |
+| Wilbur Soot                                         |                                                                 | -1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1;-1                                          | x,0,0,0,100;y,0,0,0,100;                                        | Lab_L02;                                         |
+| Philza Minercaft                                    |                                                                 |                                                                              | x,0,0,0,100;y,0,0,0,100;                                        | Rec_R03;                                         |
+| Mumbo Jumbo                                         |                                                                 |                                                                              |                                                                 | Lab_L12;                                         |
+
 #### Import data in CSV format: `import`
 
 Import data in CSV format from file.
@@ -457,6 +467,9 @@ Import data in CSV format from file.
 Format: `import [-force] FILE_PATH`
 * Flag -force overwrites records of existing students.
 * Nothing is changed if file does not exist or file access denied.
+
+Successful import of a file containing the example data should display this:
+![import result](./images/importResult.png)
 
 #### Export data in CSV format: `export`
 
@@ -466,6 +479,8 @@ Format: `export [-force] FILE_PATH`
 * If file exists, export is blocked unless -force flag is used. Otherwise, create file and export.
 * Flag -force overwrites existing file.
 * Nothing is changed if file access denied.
+
+ 
 
 --------------------------------------------------------------------------------------------------------------------
 
