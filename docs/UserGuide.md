@@ -984,61 +984,116 @@ Syntax: `delete_item INDEX`
 
 ## 2.5 Sort
 
+Sorting of information in the specific list. Below are the specific sort commands for task and order.
+
+<div markdown="block" class="alert alert-tip">
+
+:information_source: **Information**
+
+* Sorts all the data in the specific list according to a criteria.
+* Criteria is case-insensitive (i.e. `time_added`, `TIME_ADDED` `Time_Added` are all valid).
+* The default criteria (when no criteria are specified) is `Status_and_deadline`.
+
+* Criteria available are:
+  * `Time_added` - Sorts data in ascending order<br>
+    Data added **first** is at the **top** while data added the **latest** is at the **bottom**
+  * `Deadline` - Sorts data in ascending order<br>
+    Data with the **earliest** deadline is at the **top** while those with the **latest** deadline is at the **bottom**
+  * `Status` - Refer to the specific data
+  * `Name` - Sorts data in lexicographical order (ignoring case) with respect to the name<br>
+    Data with name starting with "**a**" will be placed **above** a data with name starting with "**B**".
+  * `Status_and_deadline` - Sorts all data by their status first, followed by their deadline
+
+</div>
+
 ### 2.5.1 Sorting a task: `sort_task`
+
+Sorts tasks according to the criteria specified.
 
 Syntax: `sort_task [c/CRITERIA]`
 
-* Sorts all the tasks according to a criteria.
-* Criteria available are: `Time_added`, `Deadline`, `Status`, `Name` and `Status_and_deadline`.
-* Criteria is case-insensitive (i.e. `time_added`, `TIME_ADDED` `Time_Added` are all valid).
-* The default criteria (when no criteria is specified) is `Status_and_deadline`.
+<div markdown="block" class="alert alert-tip">
 
-* Sorting by `Time_added` puts the tasks added first at the top and tasks added later below.
-* Sorting by `Deadline` puts the tasks with the earlier deadlines on the top of tasks with further deadlines.
-* Sorting by `Status` puts the tasks with "Not Done" status on top and tasks with "Done" status below.
-* Sorting by `Name` sorts the tasks in a lexicographical order (ignoring-case)
-  (i.e. A task with the task name "a" will be placed on top of a different task with the task name"B").
-* Sorting by `Status_and_deadline` puts the tasks that are not done and have the earliest deadlines
-  on top and tasks done and have the furthest deadlines below.<br>
-  (i.e. The tasks will be sorted in the order:
-  Not done and earliest deadline > Not done and latest deadline > Done and earliest deadline > Not Done and latest deadline)
+:information_source: **Information**
 
-Examples:
+* `Status` - Sorted in this order from top to bottom:
+  * `Not Done`
+  * `Done`
+* `Status_and_deadline` - Sorts all data by their status first, followed by their deadline<br>
+  Specifically in this order from top to bottom:
+  * `Not Done` & `Earliest Deadline`
+  * `Not Done` & `Latest Deadline`
+  * `Done` & `Earliest Deadline`
+  * `Done` & `Latest Deadline`
 
-* `sort_t` sorts all tasks by their status and deadline
-* `sort_task c/deadline` sorts all tasks by their deadlines
-* `find_t s/N` followed by `sort_t` would sort all the tasks but only the sorted result of the `find_t` command will be displayed<br>
-  (to get the sorted list of all the items, use the `list_t` command)
+</div>
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command with default parameters**
+
+* `sort_task`<br>
+  Sorts all tasks according to their `Status_and_deadline`
+
+:clipboard: **Example 2: Shortcut command with parameters**
+
+* `sort_t c/deadline`<br>
+  Sorts all tasks according to their `deadline`
+
+:clipboard: **Example 3: Shortcut command after using `find_task`**
+
+* `find_task s/N` followed by `sort_t c/Deadline`<br>
+  Sorts all `Not Done` tasks according to their `Deadline`
+  * `find_task s/N` lists all tasks with status as `Not Done`
+  * `sort_t c/deadline` sorts all tasks according to their `Deadline`
+
+</div>
 
 ### 2.5.2 Sorting a order: `sort_order`
 
+Sorts orders according to the criteria specified.
+
 Syntax: `sort_order [c/CRITERIA]`
 
-* Sorts all the orders according to a criteria.
-* Criteria available are: `Time_added`, `Deadline`, `Status`, `Name` and `Status_and_deadline`.
-* Criteria is case-insensitive (i.e. `time_added`, `TIME_ADDED` `Time_Added` are all valid).
-* The default criteria (when no criteria is specified) is `Status_and_deadline`.
+<div markdown="block" class="alert alert-tip">
 
-* Sorting by `Time_added` puts the orders added first at the top and tasks added later below.
-* Sorting by `Deadline` puts the orders with the earlier deadlines on the top of tasks with further deadlines.
-* Sorting by `Status` puts the orders in the order of "Not Delivered" > "In Progress" > "Delivered" (with orders that are "Not Delivered" placed on top).
-* Sorting by `Name` sorts the orders in a lexicographical order (ignoring-case)
-  (i.e. A order with the order name "a" will be placed on top of a different order with the order name "B").
-* Sorting by `Status_and_deadline` first sorts the orders using their status and then sort them with deadlines.<br>
-  (i.e. The orders will first be sorted in the order of: Not delivered > In progress > Delivered,<br>
-  then, among orders of the same status, they will be sorted in the order of: earliest deadline to furthest deadline)
+:information_source: **Information**
 
-Examples:
+* `Status` - Sorted in this order from top to bottom:
+  * `Not Delivered`
+  * `In Progress`
+  * `Delivered`
+* `Status_and_deadline` - Sorts all data by their status first, followed by their deadline<br>
+  Specifically in this order from top to bottom:
+  * `Not Delivered` & `Earliest Deadline`
+  * `Not Delivered` & `Latest Deadline`
+  * `In Progress` & `Earliest Deadline`
+  * `In Progress` & `Latest Deadline`
+  * `Delivered` & `Earliest Deadline`
+  * `Delivered` & `Latest Deadline`
 
-* `sort_o` sorts all orders by their status and deadline
-* `sort_order c/status` sorts all orders by their deadlines
-* `find_o s/N` followed by `sort_o` would sort all the orders but only the sorted result of the `find_o` command will be displayed<br>
-  (to get the sorted list of all the orders, use the `list_o` command)
+</div>
 
-<p align="center">
-  <img src="images/SortOrdersExample.png" width="600" />
-  <br>Figure 2: `sort_o` Example
-</p>
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command with default parameters**
+
+* `sort_order`<br>
+  Sorts all orders according to their `Status_and_deadline`
+
+:clipboard: **Example 2: Shortcut command with parameters**
+
+* `sort_o c/Status`<br>
+  Sorts all orders according to their `Status`
+
+:clipboard: **Example 3: Shortcut command after using `find_order`**
+
+* `find_order s/N` followed by `sort_o c/Name`<br>
+  Sorts all `Not Delievered` orders according to their `Name`
+  * `find_order s/N` lists all orders with status as `Not Delievered`
+  * `sort_o c/Name` sorts all orders according to their `Name`
+
+</div>
 
 ## List
 
