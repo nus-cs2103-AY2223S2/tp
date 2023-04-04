@@ -80,7 +80,7 @@ public class UniqueStudentList implements Iterable<Student> {
         }
     }
 
-    public void setPersons(UniqueStudentList replacement) {
+    public void setStudents(UniqueStudentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }

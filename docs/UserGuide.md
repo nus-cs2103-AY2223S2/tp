@@ -97,10 +97,6 @@ Prompts the help page link.
 
 Format: `help`
 
-Note:
-
-* Any information behind `help` will be ignored.
-
 ### 2. Adding a student's contact: `add`
 
 Adds a student to the student list.
@@ -121,10 +117,6 @@ Examples:
 Lists all the students in the student list.
 
 Format: `list`
-
-Note:
-
-* Any information behind `list` will be ignored.
 
 ### 4. Editing a student: `edit`
 
@@ -298,20 +290,11 @@ Clears all entries from the address book.
 
 Format: `clear`
 
-Note:
-
-* Any information behind `clear` will be ignored.
-
-
 ### 14. Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
-
-Note:
-
-* Any information behind `exit` will be ignored.
 
 ### 15. Filtering students by tag: `filter`
 

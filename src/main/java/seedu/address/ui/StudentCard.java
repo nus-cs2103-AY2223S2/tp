@@ -86,7 +86,7 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream().sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        personCardImage(student);
+        studentCardImage(student);
         this.exportProgressWindow = exportProgressWindow;
 
     }
@@ -96,7 +96,7 @@ public class StudentCard extends UiPart<Region> {
      *
      * @param student a given student
      */
-    private void personCardImage(Student student) {
+    private void studentCardImage(Student student) {
         if (student.getTags() != null) {
             boolean isMale = false;
             boolean isFemale = false;
@@ -142,7 +142,7 @@ public class StudentCard extends UiPart<Region> {
      * Opens the export progress window or focuses on it if it's already opened.
      */
     public void exportProgress() {
-        this.exportProgressWindow.setCheckedPerson(this.student);
+        this.exportProgressWindow.setCheckedStudent(this.student);
         if (!this.exportProgressWindow.isShowing()) {
             exportProgressWindow.show();
         } else {

@@ -31,7 +31,7 @@ public class StudentListPanel extends UiPart<Region> {
         super(FXML);
         this.logic = logic;
         studentListView.setItems(logic.getFilteredStudentList());
-        studentListView.setCellFactory(listView -> new PersonListViewCell());
+        studentListView.setCellFactory(listView -> new StudentListViewCell());
         this.exportProgressWindow = new ExportProgressWindow(null, this.logic);
     }
 
@@ -42,7 +42,7 @@ public class StudentListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
-    class PersonListViewCell extends ListCell<Student> {
+    class StudentListViewCell extends ListCell<Student> {
         @Override
         protected void updateItem(Student student, boolean empty) {
             super.updateItem(student, empty);

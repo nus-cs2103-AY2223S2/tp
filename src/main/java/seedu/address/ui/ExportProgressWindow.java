@@ -108,7 +108,7 @@ public class ExportProgressWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-    public ExportProgressWindow setCheckedPerson(Student student) {
+    public ExportProgressWindow setCheckedStudent(Student student) {
         this.student = student;
         resultDisplay.setText("Export " + student.getName().fullName + "'s progress");
         saveAsButton.setDisable(false);

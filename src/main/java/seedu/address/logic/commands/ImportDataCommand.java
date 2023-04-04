@@ -46,8 +46,8 @@ public class ImportDataCommand extends Command {
 
         try {
             Path dataFilePath = Paths.get(filePath);
-            MathutoringStorage addressBookStorage = new JsonMathutoringStorage(dataFilePath);
-            ReadOnlyMathutoring data = addressBookStorage.readMathutoring().get();
+            MathutoringStorage mathutoringStorage = new JsonMathutoringStorage(dataFilePath);
+            ReadOnlyMathutoring data = mathutoringStorage.readMathutoring().get();
             model.setMathutoring(data);
         } catch (DataConversionException d) {
             throw new CommandException(MESSAGE_BAD_FILE_INPUT + "\n" + MESSAGE_USAGE);

@@ -24,7 +24,7 @@ class JsonAdaptedTaskTest {
     private static final String VALID_TASK_CREATION_DATE = VALID_TASK_1.getCreationDate().toString();
 
     @Test
-    public void toModelType_validPersonDetails_returnsTask() throws Exception {
+    public void toModelType_validStudentDetails_returnsTask() throws Exception {
         JsonAdaptedTask task = new JsonAdaptedTask(VALID_TASK_1);
         assertEquals(VALID_TASK_1, task.toModelType());
     }
