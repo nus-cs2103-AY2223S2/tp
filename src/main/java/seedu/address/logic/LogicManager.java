@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.jobs.DeliveryJob;
 import seedu.address.model.jobs.DeliveryList;
+import seedu.address.model.jobs.sorters.SortbyTimeAndEarn;
 import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.stats.WeeklyStats;
@@ -35,6 +36,8 @@ import seedu.address.storage.Storage;
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+    public static final SortbyTimeAndEarn SORTER_BY_DATE = new SortbyTimeAndEarn();
+
 
     private final Model model;
     private final Storage storage;
@@ -200,6 +203,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void setWeekDeliveryJobList(LocalDate focusDate) {
+        model.updateFocusDate(focusDate);
         model.updateWeekDeliveryJobList(focusDate);
     }
 
@@ -219,6 +223,7 @@ public class LogicManager implements Logic {
 
     @Override
     public void updateSortedDeliveryJobListByDate() {
+        model.updateSortedDeliveryJobList(SORTER_BY_DATE);
         model.updateSortedDeliveryJobListByDate();
     }
 
@@ -231,5 +236,6 @@ public class LogicManager implements Logic {
     public LocalDate getFocusDate() {
         return model.getFocusDate();
     }
+
 
 }

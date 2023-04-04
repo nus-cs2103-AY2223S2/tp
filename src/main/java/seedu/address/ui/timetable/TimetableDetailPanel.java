@@ -60,13 +60,14 @@ public class TimetableDetailPanel extends UiPart<Region> {
         //Get year and month of week
         setMonthYearPanel();
 
+        logic.updateSortedDeliveryJobListByDate();
+        logic.setWeekDeliveryJobList(focusDate);
+
         dayOfWeekPanel.getChildren().add(new DayOfWeekPanel(logic, primaryStage).getRoot());
         dayOfMonthPanel.getChildren().add(new DayOfMonthPanel(focusDate, logic, primaryStage).getRoot());
         jobListPanel.getChildren().add(new WeekJobListPanel(logic, primaryStage).getRoot());
 
-        logic.updateSortedDeliveryJobListByDate();
-        logic.setWeekDeliveryJobList(focusDate);
-        logger.fine("Filled in timetable detail with focus date as " + focusDate.toString());
+        logger.fine("[Timetable Detail] Filled in timetable detail with focus date as " + focusDate.toString());
 
     }
 

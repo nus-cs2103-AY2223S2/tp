@@ -349,7 +349,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
         } catch (CommandException | ParseException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | IllegalArgumentException e) {
             resultDisplay.setFeedbackToUser(e.getMessage());
         }
         if (timetableWindow.isShowing()) {
@@ -580,7 +580,7 @@ public class MainWindow extends UiPart<Stage> {
 
             refreshDeliveryJobDetailPane();
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | IllegalArgumentException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
