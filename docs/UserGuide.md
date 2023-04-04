@@ -184,6 +184,7 @@ The susceptibility level of an elderly to injury or sickness.
 
 The availability of a person.
 * The start of the available dates must be before the end of the available dates.
+* If a person does not have any specified available dates, it means that they are available all the time.
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 
@@ -487,7 +488,6 @@ Examples:
 #### Unpair volunteer and elderly: `unpair`
 
 Unpairs an elderly from its assigned volunteer.
-
 This deletes the pair while still keeping the elderly and volunteer.
 
 Format `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`
@@ -515,9 +515,9 @@ Format: `list [paired/unpaired]`
 </div>
 Examples:
 
-* `list`
-* `list paired`
-* `list unpaired`
+* `list` lists all elderly, volunteers and pairs.
+* `list paired` lists all paired elderly, paired volunteers and all pairs.
+* `list unpaired` lists all unpaired elderly, unpaired volunteers and all pairs.
 
 --------------------------------------
 
@@ -531,21 +531,22 @@ Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRT
 * The fields are optional so any combination of them is possible but **at least one** field must be specified.
 * The search is case-insensitive for all fields. e.g. `jANe` will match `Jane`.
 * Elderly specific fields will not be searched for in the volunteer list and vice versa.
-    * `find r/HIGH` will show all volunteers since volunteers do not contain risk level field.
-    * `find mt/cpr, basic` will show all elderly since elderly do not contain medical qualifications field.
+  * `find r/HIGH` will show all volunteers since volunteers do not contain risk level field.
+  * `find mt/cpr, basic` will show all elderly since elderly do not contain medical qualifications field.
 * `[n/NAME]` `[ic/NRIC]` `[p/PHONE_NUMBER]` `[e/EMAIL]` `[a/ADDRESS]` `[t/TAG]` need not be specified in full e.g. `Joh` for the `n/NAME` field will match `John` and `John Doe`.
-    * Such fields can contain any value but cannot be empty.
+  * Such fields can contain any value but cannot be empty.
 * `[r/RISK_LEVEL]`, `[bd/BIRTH_DATE]`, `[re/REGION]` and `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` are required to be fully specified.
-    * Such fields have to be valid.
-* For `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` date ranges that starts before or equal to `AVAILABLE_DATE_START` and ends after or equal to `AVAILABLE_DATE_END` will match.
+  * Such fields have to be valid.
+* `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` will find any date range that contains the specified range
+  * People with no dates will be found because having no dates means that they are available all the time.
 * For `[mt/MEDICAL_QUALIFICATIONS]` you can either specify just the type e.g. `mt/cpr` or the type and its level separated by comma e.g. `mt/cpr, basic`.
     * The type need not be specified in full so it can contain any non-empty value.
     * Qualification level needs to be fully specified if present.
 
 Examples:
 
-* `find t/experienced p/1234567 e/betsycrowe@example.com a/Newgate Estate`
-* `find n/John Wick e/johnwick@example.com a/New York p/1234561 ic/T1254567D re/north r/low t/funny dr/2023-04-01,2023-04-15`
+* `find n/john` finds all volunteers or elderly whose name contains `john`.
+* `find re/NORTH t/lonely` finds all volunteers or elderly who has the region `NORTH` and tag containing `lonely`.
 
 ---------------------------------------
 
@@ -642,7 +643,7 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 | Action               | Format, Examples                                                                                                                                                                                                                                                                                                            |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Elderly**      | `add_elderly n/NAME ic/NRIC bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g.,`add_elderly n/John ic/S1234567C bd/1950-02-03 p/98765432 e/johnd@example.com a/John street re/NORTH r/HIGH t/lonely dr/2023-06-03,2023-06-17` |
-| **Add Volunteer**    | `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [t/TAG]… [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g.,`add_volunteer n/Doe bd/1998-02-01 ic/S8457677H p/98765432 e/johnd@example.com a/block 123 re/WEST t/graduate mt/CPR, BASIC`    |
+| **Add Volunteer**    | `add_volunteer ic/NRIC n/NAME bd/BIRTH_DATE [p/PHONE] [e/EMAIL] [a/ADDRESS] [re/REGION] [t/TAG]… [mt/MEDICAL_QUALIFICATIONS]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g.,`add_volunteer n/Doe bd/1998-02-01 ic/S8457677H p/98765432 e/johnd@example.com a/block 123 re/WEST t/graduate mt/CPR, BASIC`   |
 | **Pair Up**          | `pair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> e.g., `pair eic/S2235243I vic/t0123423a`                                                                                                                                                                                                                                |
 | **Auto Pair**        | `auto_pair`                                                                                                                                                                                                                                                                                                                 |
 | **Edit Elderly**     | `edit_elderly INDEX [n/NAME] [ic/NRIC] [p/PHONE] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [t/TAG]… [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]…` <br> <br> e.g., `edit_elderly 1 p/91234567 e/johndoe@example.com`                                                                                |
@@ -651,6 +652,7 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 | **Delete Elderly**   | `delete_elderly NRIC`<br> <br> e.g., `delete_elderly S8238655C`                                                                                                                                                                                                                                                             |
 | **Delete Volunteer** | `delete_volunteer NRIC`<br> <br> e.g., `delete_volunteer S8238658J`                                                                                                                                                                                                                                                         |
 | **Unpair**           | `unpair eic/ELDERLY_NRIC vic/VOLUNTEER_NRIC`<br> <br> e.g., `unpair vic/t0123423a eic/S2235243I`                                                                                                                                                                                                                            |
+| **Listing people**   | `list [paired/unpaired]`                                                                                                                                                                                                                                                                                                    |
 | **Find People**      | `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRTH_DATE] [re/REGION] [r/RISK_LEVEL] [mt/MEDICAL_QUALIFICATIONS] [t/TAG] [dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` <br> <br> e.g., `find n/John Doe`                                                                                             |
 | **Summarise Data**   | `stats`                                                                                                                                                                                                                                                                                                                     |
 | **Help**             | `help`                                                                                                                                                                                                                                                                                                                      |
