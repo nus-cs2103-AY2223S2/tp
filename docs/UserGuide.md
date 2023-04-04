@@ -20,7 +20,7 @@ Please read this section before skipping to specific parts ahead.
 
 ### How to use this User Guide
 
-This guide aims to quickly gets you started to use and navigate FriendlyLink.
+This guide aims to quickly get you started in using and navigating FriendlyLink.
 
 We suggest reading this guide in sequential order (or at least the [Terminology](#terminology) section) to familiarise yourself with the keywords used in this guide in the glossary and differently styled text which have special meanings.
 
@@ -587,7 +587,7 @@ If your changes to the data file makes its format invalid, FriendlyLink will dis
 The following features are planned for the coming update
 * Edit pair by index
 * Add pair by index
-* Delete elderly, volunteer and pairs by index
+* Delete elderly, volunteers and pairs by index
 
 --------------------------------------------------
 
