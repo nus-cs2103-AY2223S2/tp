@@ -45,7 +45,7 @@ public class FindDeliveryJobCommand extends DeliveryJobCommand {
                 String.format(
                         Messages.MESSAGE_DELIVERY_JOB_LISTED_OVERVIEW + "\nQuery options:\n" + query,
                         model.getFilteredDeliveryJobList().size()),
-                false, false, false, false, false, false, false, true, false);
+                false, false, false, false, false, false, false, false);
     }
 
     @Override

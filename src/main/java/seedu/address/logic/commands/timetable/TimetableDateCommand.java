@@ -52,7 +52,9 @@ public class TimetableDateCommand extends Command {
         model.updateWeekDeliveryJobList(jobDate);
 
         String showTimetableMessage = String.format(SHOWING_TIMETABLE_MESSAGE, jobDate.toString());
-        return new CommandResult(showTimetableMessage, false, true, false, false, false);
+        CommandResult commandResult = new CommandResult(showTimetableMessage, false, true, false, false, false);
+        commandResult.setShowTimetableDate(true);
+        return commandResult;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package seedu.address.ui.jobs;
+package seedu.address.ui.timetable;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -36,6 +36,8 @@ public class DayDeliveryJobCard extends UiPart<Region> {
     @FXML
     private Label receipient;
     @FXML
+    private Label earn;
+    @FXML
     private Label address;
 
     /**
@@ -51,11 +53,10 @@ public class DayDeliveryJobCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         jobID.setText(job.getJobId());
 
-        String receipientInfo = "";
         if (job.getRecipientId() != null) {
-            receipientInfo = "To: " + job.getRecipientId();
+            receipient.setText("To: " + job.getRecipientId());
         } else {
-            receipientInfo = "To: N.A.";
+            receipient.setText("To: N.A.");
         }
 
         addressBook.getPersonById(job.getRecipientId()).ifPresentOrElse(per -> {
@@ -65,13 +66,10 @@ public class DayDeliveryJobCard extends UiPart<Region> {
         });
 
         if (job.getEarning().isPresent()) {
-            receipientInfo += " +$" + job.getEarning().get();
+            earn.setText("Earn: +$" + job.getEarning().get());
         } else {
-            receipientInfo += " +$0.0";
+            earn.setText("Earn: +$0.0");
         }
-
-        receipient.setText(receipientInfo);
-
     }
 
     @Override
