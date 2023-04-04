@@ -9,7 +9,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.model.category.Category;
-import seedu.address.model.category.MiscellaneousCategory;
 import seedu.address.model.category.UniqueCategoryList;
 import seedu.address.model.expense.Expense;
 import seedu.address.model.expense.ExpenseList;
@@ -22,7 +21,6 @@ import seedu.address.model.expense.RecurringExpenseManager;
  */
 public class ExpenseTracker implements ReadOnlyExpenseTracker {
 
-    private static final MiscellaneousCategory MISCELLANEOUS_CATEGORY = new MiscellaneousCategory();
     private final UniqueCategoryList categories;
     private final ExpenseList expenses;
     private final RecurringExpenseList recurringGenerators;
@@ -134,24 +132,13 @@ public class ExpenseTracker implements ReadOnlyExpenseTracker {
     }
 
     /**
-     * Replaces the given category {@code target} in the list with
-     * {@code editedCategory}.
-     * {@code key} must exist in the expense tracker
-     * The category identity of {@code editedCategory} must not be the same as
-     * another existing category in the expense tracker.
-     */
-    public void setCategory(Category key) {
-        categories.remove(key);
-    }
-
-    /**
      * Deletes the given category {@code key} in the UniqueCategoryList.
      * Replaces all expenses with {@code key} with the MiscellaneousCategory object.
      * @param key
      */
     public void removeCategory(Category key) {
         categories.remove(key);
-        expenses.replaceDeletedCategory(key, MISCELLANEOUS_CATEGORY);
+        expenses.replaceDeletedCategory(key);
     }
 
     @Override

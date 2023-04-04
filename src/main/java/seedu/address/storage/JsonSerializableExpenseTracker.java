@@ -21,12 +21,8 @@ import seedu.address.model.expense.RecurringExpenseManager;
 @JsonRootName(value = "expenseTracker")
 class JsonSerializableExpenseTracker {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-    public static final String MESSAGE_DUPLICATE_CATEGORY = "Category list contains duplicate categories!";
-
     private final List<JsonAdaptedCategory> categories = new ArrayList<>();
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
-
     private final List<JsonAdaptedRecurringExpenseManager> recurringGenerators = new ArrayList<>();
     private final JsonAdaptedBudget budget;
 

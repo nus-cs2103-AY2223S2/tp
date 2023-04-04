@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 import java.time.LocalDate;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddRecurringExpenseCommand;
+import seedu.address.logic.commands.add.AddRecurringExpenseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Price;

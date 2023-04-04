@@ -136,18 +136,6 @@ public class RecurringExpenseManager {
         this.recurringExpenseType = recurringExpenseType;
     }
 
-    public void editRecurringExpenseName(String name) {
-        expenseName = name;
-    }
-
-    public void editRecurringExpenseAmount(String expenseAmount) {
-        amount = new Price(expenseAmount);
-    }
-
-    public void editRecurringExpenseCategory(Category category) {
-        expenseCategory = category;
-    }
-
     public int getNumberOfExpenses() {
         return numberOfExpenses;
     }
@@ -209,31 +197,24 @@ public class RecurringExpenseManager {
         if (!recurringExpense.startDate.isEqual(this.startDate)) {
             return false;
         }
-
         if (recurringExpense.amount != this.amount) {
             return false;
         }
-
         if (!recurringExpense.nextExpenseDate.isEqual(this.nextExpenseDate)) {
             return false;
         }
-
         if (recurringExpense.recurringExpenseType != this.recurringExpenseType) {
             return false;
         }
-
         if (!recurringExpense.expenseCategory.equals(this.expenseCategory)) {
             return false;
         }
-
         if (!recurringExpense.expenseName.equals(this.expenseName)) {
             return false;
         }
-
         if (recurringExpense.endDate == null) {
             return this.endDate == null;
         }
-
         if (!recurringExpense.endDate.isEqual(this.endDate)) {
             return false;
         }

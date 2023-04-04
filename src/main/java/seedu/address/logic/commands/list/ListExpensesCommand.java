@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.list;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.expense.Expense;
@@ -19,7 +20,7 @@ import seedu.address.ui.ScreenType;
 /**
  * List all the expenses in the expense tracker.
  */
-public class ListCommand extends Command {
+public class ListExpensesCommand implements ListCommand {
 
     public static final String COMMAND_WORD = "list";
 
@@ -39,7 +40,7 @@ public class ListCommand extends Command {
      * @param categoryPredicate Predicate to filter by category
      * @param timespanPredicate Predicate to filter by recency
      */
-    public ListCommand(Optional<ExpenseInCategoryPredicate> categoryPredicate,
+    public ListExpensesCommand(Optional<ExpenseInCategoryPredicate> categoryPredicate,
                        Optional<ExpenseInTimespanPredicate> timespanPredicate) {
         this.categoryPredicate = categoryPredicate;
         this.timespanPredicate = timespanPredicate;
@@ -72,8 +73,8 @@ public class ListCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ListCommand // instanceof handles nulls
-                && categoryPredicate.equals(((ListCommand) other).categoryPredicate)
-                && timespanPredicate.equals(((ListCommand) other).timespanPredicate)); // state check
+                || (other instanceof ListExpensesCommand // instanceof handles nulls
+                && categoryPredicate.equals(((ListExpensesCommand) other).categoryPredicate)
+                && timespanPredicate.equals(((ListExpensesCommand) other).timespanPredicate)); // state check
     }
 }

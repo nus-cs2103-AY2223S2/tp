@@ -14,7 +14,7 @@ import seedu.address.ui.ScreenType;
 /**
  * Displays the summary of an expense
  */
-public class CategorySummaryCommand extends Command {
+public class CategorySummaryCommand implements Command {
 
     public static final String COMMAND_WORD = "scat";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays summary of category "

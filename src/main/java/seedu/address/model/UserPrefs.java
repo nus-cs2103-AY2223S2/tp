@@ -38,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setExpenseTrackerFilePath(newUserPrefs.getExpenseTrackerFilePath());
     }
 
+    @Override
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }
@@ -47,6 +48,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
+    @Override
     public Path getExpenseTrackerFilePath() {
         return expenseTrackerFilePath;
     }

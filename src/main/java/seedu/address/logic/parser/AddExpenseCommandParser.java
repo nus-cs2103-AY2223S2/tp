@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddExpenseCommand;
+import seedu.address.logic.commands.add.AddExpenseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.category.Category;
 import seedu.address.model.expense.Expense;

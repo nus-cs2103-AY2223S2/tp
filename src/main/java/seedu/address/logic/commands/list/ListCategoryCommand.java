@@ -1,15 +1,16 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.list;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
 
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.ui.ScreenType;
 
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListCategoryCommand extends Command {
+public class ListCategoryCommand implements ListCommand {
 
     public static final String COMMAND_WORD = "lcat";
 

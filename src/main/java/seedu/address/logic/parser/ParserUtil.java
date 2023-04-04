@@ -139,7 +139,6 @@ public class ParserUtil {
         assert timespan != null : "input should not be null";
         requireNonNull(timespan);
         String trimmedTimespan = timespan.trim();
-        LocalDate now = LocalDate.now();
         if (trimmedTimespan.equals("week") || trimmedTimespan.equals("w")) {
             return Timespan.WEEK;
         }

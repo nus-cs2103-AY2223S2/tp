@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.add;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
@@ -17,7 +18,7 @@ import seedu.address.ui.ScreenType;
 /**
  * Adds a category to the Expense Tracker.
  */
-public class AddRecurringExpenseCommand extends Command {
+public class AddRecurringExpenseCommand implements AddCommand {
 
     public static final String COMMAND_WORD = "addrec";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recurring expense to FastTrack. "

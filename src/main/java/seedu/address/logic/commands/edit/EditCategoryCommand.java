@@ -1,7 +1,7 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.edit;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.AddCategoryCommand.MESSAGE_DUPLICATE_CATEGORY;
+import static seedu.address.logic.commands.add.AddCategoryCommand.MESSAGE_DUPLICATE_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUMMARY;
 
@@ -9,6 +9,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
@@ -19,7 +20,7 @@ import seedu.address.ui.ScreenType;
 /**
  * Edits a category in the ExpenseTracker
  */
-public class EditCategory extends Command {
+public class EditCategoryCommand implements EditCommand {
     public static final String COMMAND_WORD = "edcat";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -33,19 +34,19 @@ public class EditCategory extends Command {
 
     private final String newCategoryName;
 
-    private final String newSummaryName;
+    private final String newSummary;
 
     /**
      * Creates an EditCategory to edit the specified {@code Category}
      * @param targetIndex index of the expense in the filtered category list to edit.
      * @param newCategoryName String representation of the new category name to be edited to, if applicable.
-     * @param newSummaryName String representation of the new summary name to be edited to, if applicable.
+     * @param newSummary String representation of the new summary to be edited to, if applicable.
      */
-    public EditCategory(Index targetIndex, String newCategoryName, String newSummaryName) {
+    public EditCategoryCommand(Index targetIndex, String newCategoryName, String newSummary) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
         this.newCategoryName = newCategoryName;
-        this.newSummaryName = newSummaryName;
+        this.newSummary = newSummary;
     }
 
 
@@ -69,11 +70,11 @@ public class EditCategory extends Command {
                 throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
             }
         }
-        if (newSummaryName != null) {
-            categoryToEdit.setDescription(newSummaryName.replaceAll("\\s+", " "));
+        if (newSummary != null) {
+            categoryToEdit.setDescription(newSummary.replaceAll("\\s+", " "));
         }
 
-        if (newCategoryName == null && newSummaryName == null) {
+        if (newCategoryName == null && newSummary == null) {
             throw new CommandException(Messages.MESSAGE_INVALID_EDIT_FOR_CATEGORIES);
         }
 
@@ -86,7 +87,7 @@ public class EditCategory extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof EditCategory // instanceof handles nulls
-                && targetIndex.equals(((EditCategory) other).targetIndex)); // state check
+                || (other instanceof EditCategoryCommand // instanceof handles nulls
+                && targetIndex.equals(((EditCategoryCommand) other).targetIndex)); // state check
     }
 }

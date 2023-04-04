@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESPAN;
 import java.time.LocalDate;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditRecurringExpenseManagerCommand;
+import seedu.address.logic.commands.edit.EditRecurringExpenseManagerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

@@ -20,6 +20,7 @@ public class ExpenseList implements Iterable<Expense> {
     private final ObservableList<Expense> internalListOfExpenses = FXCollections.observableArrayList();
     private final ObservableList<Expense> internalUnmodifiableList = FXCollections
             .unmodifiableObservableList(internalListOfExpenses);
+    private final Category misc = new MiscellaneousCategory();
 
     /**
      * Adds an expense to the internal list of expenses
@@ -39,16 +40,15 @@ public class ExpenseList implements Iterable<Expense> {
         internalListOfExpenses.remove(toRemove);
     }
 
-    public void set(int index, Expense newExpense) {
-        internalListOfExpenses.set(index, newExpense);
+    public void set(int index, Expense expense) {
+        internalListOfExpenses.set(index, expense);
     }
 
     /**
      * Replace expenses with {@code target} category with Misc object
      * @param target
-     * @param misc
      */
-    public void replaceDeletedCategory(Category target, MiscellaneousCategory misc) {
+    public void replaceDeletedCategory(Category target) {
         requireNonNull(target);
         internalListOfExpenses.forEach(expense -> {
             if (expense.getCategory().equals(target)) {
@@ -137,10 +137,11 @@ public class ExpenseList implements Iterable<Expense> {
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
+     * @param expense Expense to check
      */
-    public boolean contains(Expense toCheck) {
-        requireNonNull(toCheck);
-        return internalListOfExpenses.stream().anyMatch(toCheck::equals);
+    public boolean contains(Expense expense) {
+        requireNonNull(expense);
+        return internalListOfExpenses.stream().anyMatch(expense::equals);
     }
 
     @Override

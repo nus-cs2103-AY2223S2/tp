@@ -1,12 +1,13 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.general;
 
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.ui.ScreenType;
 
 /**
  * Terminates the program.
  */
-public class ExitCommand extends Command {
+public class ExitCommand implements GeneralCommand {
 
     public static final String COMMAND_WORD = "exit";
 
