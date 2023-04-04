@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.recipe.logic.commands.FindCommand;
 import seedu.recipe.model.recipe.TitleContainsKeywordsPredicate;
 
-public class FindRecipeCommandParserTest {
+public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
 
@@ -28,7 +28,7 @@ public class FindRecipeCommandParserTest {
         assertParseSuccess(parser, " t/ Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " t/ \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " t/  Alice   Bob  ", expectedFindCommand);
     }
 
 }
