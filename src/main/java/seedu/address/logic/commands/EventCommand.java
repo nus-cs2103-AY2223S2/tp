@@ -23,9 +23,9 @@ public class EventCommand extends Command {
             + PREFIX_START_DATE + "DATE "
             + PREFIX_END_DATE + "DATE "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TASK + "manage open house"
-            + PREFIX_START_DATE + "02/11/2023"
-            + PREFIX_END_DATE + "07/11/2023";
+            + PREFIX_TASK + "manage open house "
+            + PREFIX_START_DATE + "02/11/2023 "
+            + PREFIX_END_DATE + "07/11/2023 ";
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
