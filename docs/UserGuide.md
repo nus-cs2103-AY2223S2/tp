@@ -763,8 +763,8 @@ _Details coming soon ..._
    <div markdown="span" class="alert alert-info">
    :bulb: **Tip**: You can now place the `.command` file anywhere.
    </div>
-   <br>
-   <div markdown="span" class="alert alert-info">  
+
+   <div markdown="span" class="alert alert-danger">  
    :warning: **Caution**: If you decide to change the location of *home folder*, repeat from step 2.
    </div>
 
