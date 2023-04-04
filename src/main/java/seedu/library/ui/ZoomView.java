@@ -4,7 +4,6 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -14,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import seedu.library.logic.commands.exceptions.CommandException;
 import seedu.library.model.bookmark.Bookmark;
 
 

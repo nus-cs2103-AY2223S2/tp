@@ -73,7 +73,7 @@ public class GoToCommand extends Command {
                 Runtime runtime = Runtime.getRuntime();
                 runtime.exec("xdg-open" + url);
             }
-            else{
+            else {
                 throw new CommandException(NOT_SUPPORTED);
             }
         }
