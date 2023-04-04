@@ -518,6 +518,11 @@ match any given query, thus potentially filtering out more items. Hence, this
 is a point for possible fine-tuning in the future.
 </div>
 
+<div markdown="span" class="alert alert-info">
+:information_source: In Mycelium, fuzzy ranking is *not* case-sensitive. All
+strings are converted to lowercase before any comparison.
+</div>
+
 #### `FuzzyManager`
 
 In order to use fuzzy search from the application, we also have the
