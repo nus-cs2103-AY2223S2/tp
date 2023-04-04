@@ -2,11 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -135,18 +138,32 @@ public class ParserUtil {
     /**
      * Parses {@code String meeting} into a {@code Meeting}.
      * Leading and trailing whitespaces will be trimmed.
-     *
      */
-    public static Meeting parseMeeting(String desc, String start, String end) {
+    public static Meeting parseMeeting(String desc, String start, String end) throws ParseException {
         requireNonNull(desc);
         requireNonNull(start);
         requireNonNull(end);
         String trimmedDesc = desc.trim();
 
-        LocalDateTime parsedStart = parseDateTime(start.trim());
-        LocalDateTime parsedEnd = parseDateTime(end.trim());
+        Pattern dateTimeFormat = Pattern.compile("\\d{2}-\\d{2}-\\d{4}.\\d{2}:\\d{2}");
+        Matcher dateTimeStartMatcher = dateTimeFormat.matcher(start.trim());
+        Matcher dateTimeEndMatcher = dateTimeFormat.matcher(end.trim());
 
-        return new Meeting(trimmedDesc, parsedStart, parsedEnd);
+        if (!dateTimeStartMatcher.find() || !dateTimeEndMatcher.find()) {
+            String incorrect_dateTimeFormat =
+                "Incorrect DateTime format!\n"
+                    + "Correct format is: dd-mm-yyyy hh:mm";
+            throw new ParseException(incorrect_dateTimeFormat);
+        }
+
+        try {
+            LocalDateTime parsedStart = parseDateTime(start.trim());
+            LocalDateTime parsedEnd = parseDateTime(end.trim());
+
+            return new Meeting(trimmedDesc, parsedStart, parsedEnd);
+        } catch (DateTimeException dateTimeErr) {
+            throw new ParseException(dateTimeErr.getMessage());
+        }
     }
 
     /**
@@ -170,6 +187,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String} into a {@code LocalDateTime}
+     *
      * @param dateTime String of meeting start or end
      * @return meeting dateTime parsed to LocalDateTime
      */
@@ -185,12 +203,15 @@ public class ParserUtil {
         return LocalDateTime.of(year, month, day, startHour, startMinute);
     }
 
+    /**
+     * converts date in String form to LocalDate object
+     */
     public static LocalDate parseDate(String date) {
         String[] input = date.split(" ");
         String[] dates = input[1].split("/");
         int day = Integer.parseInt(dates[0]);
         int month = Integer.parseInt(dates[1]);
-        int year= Integer.parseInt(dates[2]);
+        int year = Integer.parseInt(dates[2]);
         return LocalDate.of(year, month, day);
     }
 }

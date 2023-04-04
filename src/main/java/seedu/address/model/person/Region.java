@@ -11,7 +11,7 @@ package seedu.address.model.person;
 public class Region {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Region in Singapore should be either North, South, East, West or Central\n"
+            "Region in Singapore should be either North, South, East, West, Central or Unknown\n"
             + "No other regions are accepted!\n";
 
     /**

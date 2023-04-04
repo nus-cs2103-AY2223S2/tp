@@ -114,9 +114,7 @@ class JsonAdaptedPerson {
 
         final Set<PolicyTag> modelTags = new HashSet<>(personTags);
 
-        final ArrayList<Meeting> modelMeetings = new ArrayList<>();
-        //modelMeetings.add(new Meeting());
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelMeetings);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, personMeetings);
     }
 
 }

@@ -24,8 +24,9 @@ public class AddMeetingCommand extends Command {
         + "by the index number used in the last person listing.\n"
         + "A new meeting will not be added if there are clashes with"
         + "other meetings on the day or period specified.\n"
-        + "Parameters: [INDEX] /md [DESC] /ms [DATE&TIME START] /me [DATE&TIME END]\n"
-        + "Example: " + COMMAND_WORD + " 1 /md Test /ms 30-03-2020 20:10 /me 30-03-2020 22:10";
+        + "Parameters: [INDEX] md/ [DESC] ms/ [DATE&TIME START] me/ [DATE&TIME END]\n"
+        + "INDEX is a positive number\n"
+        + "Example: " + COMMAND_WORD + " 1 md/ Test ms/ 30-03-2020 20:10 me/ 30-03-2020 22:10";
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting to Person: %1$s";
 
     private final Index index;
@@ -65,18 +66,17 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(incorrectDateTimeMsg);
         }
 
+        if (meeting.isPastDateTime()) {
+            String pastTodayMsg = "Date and time given is before today's date and time!";
+            throw new CommandException(pastTodayMsg);
+        }
+
         Person personToEdit = lastShownList.get(index.getZeroBased());
 
         if (hasClash(meeting, personToEdit)) {
             String meetingClashMsg = "Meeting specified clashes with other meetings!";
             throw new CommandException(meetingClashMsg);
         }
-
-        // personToEdit.getMeetings().add(meeting);
-        // Person editedPerson = new Person(
-        //     personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-        //     personToEdit.getAddress(), personToEdit.getTags(), personToEdit.getMeetings());
-        // model.setPerson(personToEdit, editedPerson);
 
         // Adds meeting and returns edited person
         Person editedPerson = model.addMeeting(personToEdit, meeting);

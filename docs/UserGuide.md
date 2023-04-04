@@ -260,7 +260,7 @@ Lists all meetings scheduled for the day from address book
 
 ### List by region : `listRegion`
 
-Lists all clients living in a given region
+Lists all clients living in a given region, currently works for North, South, East, West, Central and Unknown
 
 Required information:
 

@@ -107,7 +107,11 @@ public class Meeting implements Comparable<Meeting> {
     }
 
     public boolean isCorrectPeriod() {
-        return end.isBefore(start);
+        return end.isBefore(start) || end.isEqual(start);
+    }
+
+    public boolean isPastDateTime() {
+        return start.isBefore(LocalDateTime.now());
     }
 
     public LocalDateTime getStart() {

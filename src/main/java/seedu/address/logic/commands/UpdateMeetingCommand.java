@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDateTime;
@@ -26,6 +27,7 @@ public class UpdateMeetingCommand extends Command {
         + "The meeting will not be updated if there are clashes with"
         + "other meetings on the day or period specified, " + "or if the end is before the start.\n"
         + "Parameters: [INDEX] [MEETINGINDEX] md/[DESCRIPTION] ms/[DATE START] me/[DATE END]\n"
+        + "INDEX is a positive number\n"
         + "Example: " + COMMAND_WORD + " 1 2 md/Policy discussion ms/30-03-2020 20:10 me/22:10";
     public static final String MESSAGE_UPDATE_MEETING_SUCCESS = "Meeting of Person updated: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -93,6 +95,7 @@ public class UpdateMeetingCommand extends Command {
         }
         model.updateMeeting(personToEdit, meetingIndex, editedMeeting);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_UPDATE_MEETING_SUCCESS, editedMeeting));
     }
 
