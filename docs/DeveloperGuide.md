@@ -1329,6 +1329,24 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes from step 2.
 
+**Use case: UCXX - Get a help message using a command**
+
+**MSS**
+
+1. User requests for help.
+2. EduMate shows a help message containing usages for commands.
+
+   Use case ends.
+
+**Use case: UCXX - Get a help message using a button**
+
+**MSS**
+
+1. User clicks the help button.
+2. EduMate shows a help message containing usages for commands.
+
+   Use case ends.
+
 **Use case: UCXX - Clear the list of contacts**
 
 **MSS**
@@ -1341,7 +1359,15 @@ Help NUS students maintain both their social and academic life by lowering the b
 **Use case: UCXX - Create a sample EduMate**
 
 1. User requests to create a sample EduMate.
-2. EduMate 
+2. EduMate resets the person list.
+3. EduMate selects random contacts and adds them to the person list.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given number of samples is invalid.
+    * 1a1. EduMate shows an error message.
 
 **Use case: UCXX - Add a contact**
 
@@ -1454,7 +1480,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 1a. The given index is invalid.
     * 1a1. EduMate shows an error message.
 
-**Use case: UC03 - Edit a contact**
+**Use case: UCXX - Edit a contact**
 
 **MSS**
 
@@ -1476,7 +1502,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2c. The edited name is already found in the EduMate.
     * 2c1. EduMate shows an error message.
 
-**Use case: UC04 - Delete a contact**
+**Use case: UCXX - Delete a contact**
 
 1. User requests to <u>view a contact's information by name (UCXX)</u>. 
 2. User requests to delete a person from the contact list. 
@@ -1490,7 +1516,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 * 2a. The given index is invalid.
     * 2a1. EduMate shows an error message.
 
-**Use case: UC05 - Tag a basic module to a contact**
+**Use case: UCXX - Tag a basic module to a contact**
 
 1. User requests to <u>view a contact's information by name (UCXX)</u>. 
 2. User requests to add a basic module tag to a contact. 
@@ -1588,7 +1614,7 @@ Help NUS students maintain both their social and academic life by lowering the b
 
   Use case resumes at step 6.
 
-**Use case: UC07 - Tag a group to a contact**
+**Use case: UCXX - Tag a group to a contact**
 
 1. User requests to <u>view a contact's information by name (UCXX)</u>. 
 2. User requests to add a group tag to a contact. 
@@ -1821,8 +1847,107 @@ Help NUS students maintain both their social and academic life by lowering the b
 
 **Extensions**
 
-* 2a. The given index is invalid.
+* 1a. The given index is invalid.
+    * 1a1. EduMate shows an error message.
+
+* 2a. The given index does not exist.
     * 2a1. EduMate shows an error message.
+
+**Use case: UCXX - Save to a backup file**
+
+**MSS**
+
+1. User requests to save EduMate into a backup file.
+2. EduMate saves the file in the "data" folder.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given file name is invalid.
+    * 1a1. EduMate shows an error message.
+
+* 2a. A file with the name already exists within the folder.
+    * 2a1. EduMate replaces the file in the folder.
+
+  Use case ends.
+
+**Use case: UCXX - Load from a backup file**
+
+**MSS**
+
+1. User requests to load EduMate from a backup file.
+2. EduMate loads the file in the "data" folder.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given file name is invalid.
+    * 1a1. EduMate shows an error message.
+
+* 2a. The given file name does not exist.
+    * 2a1. EduMate shows an error message.
+
+**Use case: UCXX - Exit the application using a command**
+
+**MSS**
+
+1. User requests to exit the application.
+2. EduMate saves its current state.
+3. EduMate closes.
+
+   Use case ends.
+
+**Use case: UCXX - Exit the application using a button**
+
+**MSS**
+
+1. User clicks the exit button.
+2. EduMate saves its current state.
+3. EduMate closes.
+
+   Use case ends.
+
+**Use case: UCXX - View a previous command**
+
+**MSS**
+
+1. User presses the UP button.
+2. EduMate shows a previous command in the command box.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user has already typed in the command box.
+    * 2a1. EduMate does not show a previous command.
+
+  Use case ends.
+* 2b. There are no more previous commands.
+    * 2b1. EduMate does not show a previous command.
+
+  Use case ends.
+
+**Use case: UCXX - View the next command**
+
+**MSS**
+
+1. User presses the DOWN button.
+2. EduMate shows a next command in the command box.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user has already typed in the command box.
+    * 2a1. EduMate does not show the next command.
+
+  Use case ends.
+* 2b. There are no more next commands.
+    * 2b1. EduMate does not show the next command.
+
+  Use case ends.
 
 ### **Non-Functional Requirements**
 
