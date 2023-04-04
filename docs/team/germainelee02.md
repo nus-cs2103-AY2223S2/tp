@@ -3,7 +3,7 @@ layout: page
 title: Germaine Lee's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: CookHub
 
 CookHub is a desktop application for student chefs to store and check their recipes, especially for those who only have limited budget and time to cook themselves.
 It is written in Java and uses JavaFX to create GUI.

@@ -55,7 +55,12 @@ public class RecipeCard extends UiPart<Region> {
 
         recipe.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tmp = new Label(tag.tagName);
+                    tmp.setWrapText(true);
+                    tmp.setMaxWidth(230);
+                    tags.getChildren().add(tmp);
+                });
 
     }
 
