@@ -101,6 +101,8 @@ Here's a (partial) class diagram of the `Logic` component:
 
 For the entire command execution portion of the `Logic` component, only `queue(String)` method is exposed to the outside. As such, to queue and execute a user command, only the `queue(String)` method of `Logic` will have to be called. This method will queue the command for execution and execute it when it is its turn. Command inputs are stored and queued in an internal queue called the command queue (`cmdQueue`). To allow for parallel queuing and dequeuing, this queue has a type of `LinkedBlockingDeque`. The elements stored within the queue are the `String` of the command input that the user has entered.
 
+To avoid dependencies with other classes, specifically UI related classes, `ModelManager` stores a `completionHandler`, which is a `Consumer<List<CommandMessage>>`. `completionHandler` can be set and changed by other classes and is called whenever a command execution is completed.
+
 ##### Queuing a command
 
 When the `queue(String)` is called upon, the following happens.
