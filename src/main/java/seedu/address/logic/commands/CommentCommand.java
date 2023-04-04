@@ -29,7 +29,7 @@ public class CommentCommand extends Command {
             + PREFIX_TASK_INDEX + "TASK_ID "
             + PREFIX_COMMENT + "COMMENT "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TASK_INDEX + "1"
+            + PREFIX_TASK_INDEX + "1 "
             + PREFIX_COMMENT + "Joe has accomplished this task exceptionally well";
 
     public static final String MESSAGE_COMMENT_SUCCESS = "New comment added: %1$s to Task: %2$s \n ";
