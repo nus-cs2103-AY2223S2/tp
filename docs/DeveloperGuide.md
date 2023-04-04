@@ -6,13 +6,13 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 
+<div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ## **Introducing InternBuddy**
 
 InternBuddy is a desktop application for Computing undergraduates to manage their internship applications.
-It is optimized for typing where it allows users to complete internship management tasks much more efficiently
-via the keyboard as compared to using traditional Graphical User Interface (GUI) applications. InternBuddy runs
+It is optimized for typing where it allows you to complete internship management tasks much more efficiently
+via the keyboard as compared to using traditional [Graphical User Interface](#glossary) (GUI) applications. InternBuddy runs
 using Java 11, and is available on the Windows, macOS and Linux operating systems.
 
 <br/>
@@ -21,8 +21,14 @@ using Java 11, and is available on the Windows, macOS and Linux operating system
 </p>
 
 
+<div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
+[//]: # (@@author eugenetangkj - reused with modifications)
+
+[//]: # (Adapted from https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html#navigating-the-user-guide)
+
+[//]: # ()
+
 ## **About the Developer Guide**
 
 ### Objectives of the Developer Guide
@@ -64,9 +70,9 @@ carefully before committing
 
 **Syntax Highlighting**
 
-Commands, parameters, file paths and class names are highlighted.
+Commands, fields, file paths and class names are highlighted.
 
-`command`, `PARAMETER`, `filepath.json`, `ClassName`
+`command`, `FIELD`, `filepath.json`, `ClassName`
 
 
 **Keyboard Actions**
@@ -82,8 +88,9 @@ Keyboard keys are indicated using rounded buttons.
 Refer to the guide [_Setting up and getting started_](SettingUp.md) for instructions on how to
 set up the InternBuddy project in your personal computer.
 
-After setting up and launching InternBuddy, you would see a GUI. Figures 1 and 2 illustrate the main parts
-of InternBuddy's GUI, which are referenced throughout this developer guide.
+After setting up and launching InternBuddy, you would see a [GUI](#glossary). Figures 1 illustrates the main parts
+of InternBuddy's [GUI](#glossary) and Table 1 explains the function for each part. We would be referencing
+the different parts of the [GUI](#glossary) throughout this developer guide.
 
 
 ![Graphical User Interface](images/gui-markup.png)
@@ -92,15 +99,16 @@ of InternBuddy's GUI, which are referenced throughout this developer guide.
 
 <br/>
 
-| Part            | Usage                                                                                        |
-|-----------------|----------------------------------------------------------------------------------------------|
-| Input Box       | You can type in your commands here to interact with InternBuddy.                             |
-| Results Display | This is where the results of your command will be displayed.                                 |
-| List Panel      | Displays a list of internship entries.                                                       |
-| View Panel      | Displays either the welcome message or detailed information of a specified internship entry. |
-| Location Bar    | States where your InternBuddy data file is located on your computer.                         |
+| Part           | Usage                                                                                        |
+|----------------|----------------------------------------------------------------------------------------------|
+| Command Box    | You can type in your commands here to interact with InternBuddy.                             |
+| Result Display | This is where the results of your command will be displayed.                                 |
+| List Panel     | Displays a list of internship entries.                                                       |
+| View Panel     | Displays either the welcome message or detailed information of a specified internship entry. |
+| Status Bar     | States where your InternBuddy data file is located on your computer.                         |
 
-<p style="text-align: center;">Figure 2: Different parts of InternBuddy's GUI</p>
+<p style="text-align: center;">Table 1: Explanation of the different parts of InternBuddy's GUI</p>
+
 
 <br/>
 
@@ -110,23 +118,23 @@ of InternBuddy's GUI, which are referenced throughout this developer guide.
 
 <div markdown="span" class="alert alert-success">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T14-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this developer guide can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-T14-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit these diagrams.
 </div>
 
 ### Architecture
-The ***Architecture Diagram*** shown in Figure 3 explains the high-level design of the App.
+The ***Architecture Diagram*** shown in Figure 2 explains the high-level design of the App.
 <p align="center">
   <img src="images/ArchitectureDiagram.png" width="280" />
 </p>
 
-<p style="text-align: center;">Figure 3: InternBuddy's architecture diagram</p>
+<p style="text-align: center;">Figure 2: InternBuddy's architecture diagram</p>
 
 
-Given below is a quick overview of main components and how they interact with each other.
+Given below is a quick overview of the main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/Main.java) and [`MainApp`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -142,19 +150,19 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-Figure 4 is a *Sequence Diagram* that shows how the components interact with each other for the scenario where the user
-issues the command `delete 1`.
+Figure 3 is a *Sequence Diagram* that shows how the components interact with each other for the scenario where the user
+issues the command `delete-index 1`.
 
 
 <p align="center">
   <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 </p>
 
-<p style="text-align: center;">Figure 4: Sequence diagram that shows interactions between components </p>
+<p style="text-align: center;">Figure 3: Sequence diagram that shows interactions between components </p>
 <br/>
 
 
-Each of the four main components (also shown in the Figure 4),
+Each of the four main components (also shown in the Figure 3),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
@@ -163,14 +171,14 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components
 interact with a given component through its interface rather than the concrete class
 (reason: to prevent outside component's being coupled to the implementation of a component),
-as illustrated in the (partial) class diagram shown in Figure 5.
+as illustrated in the (partial) class diagram shown in Figure 4.
 
 
 <p align="center">
   <img src="images/ComponentManagers.png" width="300" />
 </p>
 
-<p style="text-align: center;">Figure 5: Partial class diagram for the logic, model and storage components </p>
+<p style="text-align: center;">Figure 4: Partial class diagram for the logic, model and storage components </p>
 <br/>
 
 
@@ -178,23 +186,25 @@ The sections below give more details of each component.
 
 ### UI Component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in
+[`Ui.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/ui/Ui.java).
+The class diagram for the UI component is shown in Figure 5.
 
 <p align="center">
   <img src="images/UiClassDiagram.png" />
 </p>
 
-<p style="text-align: center;">Figure 6: Class diagram for the UI component </p>
+<p style="text-align: center;">Figure 5: Class diagram for the UI component </p>
 <br/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
 `InternshipListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`,
 inherit from the abstract `UiPart` class which captures the commonalities between classes that
-represent parts of the visible GUI.
+represent parts of the visible [GUI](#glossary).
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching
 `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the
-[`MainWindow`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java)
+[`MainWindow`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/ui/MainWindow.java)
 is specified in [`MainWindow.fxml`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -206,31 +216,31 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/logic/Logic.java)
 
-Figure 7 illustrates a (partial) class diagram of the `Logic` component:
+Figure 6 illustrates a (partial) class diagram of the `Logic` component:
 
 <p align="center">
   <img src="images/LogicClassDiagram.png" width="550"/>
 </p>
 
-<p style="text-align: center;">Figure 7: Partial class diagram for the logic component </p>
+<p style="text-align: center;">Figure 6: Partial class diagram for the logic component </p>
 <br/>
 
 
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `InternBuddyParser` class to parse the user command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+2. This results in a `Command` object (more precisely, an object of one of its subclasses such as `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add an internship).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-Figure 8 below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+Figure 7 below illustrates the interactions within the `Logic` component for the `execute("delete-index 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 
-<p style="text-align: center;">Figure 8: Sequence diagram for the delete command </p>
+<p style="text-align: center;">Figure 7: Sequence diagram for the delete command </p>
 <br/>
 
 
@@ -242,13 +252,13 @@ Figure 8 below illustrates the interactions within the `Logic` component for the
 limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Figure 9 shows the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+Figure 8 shows the other classes in `Logic` (omitted from Figure 6) that are used for parsing a user command:
 
 <p align="center">
   <img src="images/ParserClasses.png" width="600"/>
 </p>
 
-<p style="text-align: center;">Figure 9: Class diagram for parser classes in the logic component </p>
+<p style="text-align: center;">Figure 8: Class diagram for parser classes in the logic component </p>
 <br/>
 
 How the parsing works:
@@ -256,17 +266,19 @@ How the parsing works:
 (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes
 shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the
 `InternBuddyParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `FindCommandParser`, ...) inherit from
 the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/model/Model.java)
+
+Figure 9 is a class diagram for the `Model` component.
 
 <p align="center">
   <img src="images/ModelClassDiagram.png" width="450" />
 </p>
 
-<p style="text-align: center;">Figure 10: Class diagram for the model component</p>
+<p style="text-align: center;">Figure 9: Class diagram for the model component</p>
 <br/>
 
 The `Model` component,
@@ -279,7 +291,7 @@ which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` th
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-primary">:information_source: **Info:** An alternative (arguably, a more OOP)
-model is given below. It has a `Tag` list in the `InternBuddy`, which `Internship` references. This allows `InternBuddy`
+model is shown in Figure 10. It has a `Tag` list in the `InternBuddy`, which `Internship` references. This allows `InternBuddy`
 to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
 
 </div>
@@ -288,19 +300,21 @@ to only require one `Tag` object per unique tag, instead of each `Internship` ne
   <img src="images/BetterModelClassDiagram.png" width="450" />
 </p>
 
-<p style="text-align: center;">Figure 11: Alternative model that is more OOP</p>
+<p style="text-align: center;">Figure 10: Alternative model that is more OOP</p>
 <br/>
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/src/main/java/seedu/internship/storage/Storage.java)
 
+
+Figure 11 is a class diagram for the `Storage` component.
 <p align="center">
   <img src="images/StorageClassDiagram.png" width="550" />
 </p>
 
-<p style="text-align: center;">Figure 12: Class diagram for the storage component</p>
+<p style="text-align: center;">Figure 11: Class diagram for the storage component</p>
 <br/>
 
 
@@ -311,7 +325,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.internship.commons` package.
+Classes used by multiple components are in the [`seedu.internship.commons`](https://github.com/AY2223S2-CS2103T-T14-3/tp/tree/master/src/main/java/seedu/internship/commons) package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -325,35 +339,34 @@ with destroy markers (X), their lifelines would have ended at the markers.
 
 </div>
 
+[//]: # (@@author - eugenetangkj)
 ### Add an Internship - `add`
 
 #### Implementation
 
-Figure 13 provides an overview on how the `add` operation works.
+Figure 12 shows how the `add` command works.
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
-<p style="text-align: center;">Figure 13: Sequence diagram for the add command</p>
+<p style="text-align: center;">Figure 12: Sequence diagram for the add command</p>
 <br/>
 
 
 
-The following gives a more detailed explanation of the `add` operation.
+The following gives a more detailed explanation of the `add` command.
 
-**Step 1: Validate Input**
+
 1. When the user enters an `add` command, the `AddCommandParser` parses the user's input.
 2. It checks for the following:
-- `n/` followed by the company's name [Compulsory]
-- `r/` followed by the role applied [Compulsory]
-- `s/` followed by the status of the internship application [Compulsory]
-- `d/` followed by the date associated with the entry [Compulsory]
-- `c/` followed by the comment for the entry [Optional]
-- `t/` followed by tags for the entry [Optional]
+   - `n/` followed by the company's name [Compulsory]
+   - `r/` followed by the role applied [Compulsory]
+   - `s/` followed by the status of the internship application [Compulsory]
+   - `d/` followed by the date associated with the entry [Compulsory]
+   - `c/` followed by the comment for the entry [Optional]
+   - `t/` followed by tags for the entry [Optional]
 3. If any of the compulsory fields is missing or any of the fields entered by the user
-   does not meet the parameter requirements, a `ParserException` will be thrown.
+   does not meet the field requirements, a `ParserException` will be thrown.
 4. An `Internship` will be created from the parsed user's input.
-
-**Step 2: Adding the Internship**
 5. A check is done to see if the `Model` component, which stores all the `Internship` entries,
    contains the `Internship` created in Step 4.
 6. If a duplicate `Internship` is found, a `CommandException` will be thrown.
@@ -379,38 +392,42 @@ The following gives a more detailed explanation of the `add` operation.
     * Cons: Less user-centric where users who do not want to include `Comment` and `Tag`
             are forced to input something for the `Add` command to work.
 
-- Whether to update the right UI panel according to the `add` command
+- Whether to update the [View Panel](#setting-up-getting-started) according to the `add` command
 
-1. **Alternative 1 (chosen): Update the right panel whenever a new `Internship` is added**
+1. **Alternative 1 (chosen): Update the [View Panel](#setting-up-getting-started) whenever a new `Internship` is added**
     * Pros: Better visual indication that the `add` command has been successfully executed.
       if the user has  a lot of `Internship` entries, when a new `Internship` is added,
-      the new entry will be placed at the bottom of the left UI panel, which is not visible
-      if the user's scroll position is at the top of the left UI panel. Therefore, updating
-      the right panel enhances visual indication to the user that the `Internship` has been
-      successfully added.
+      the new entry will be placed at the bottom of the [List Panel](#setting-up-getting-started),
+      which is not visible  if the user's scroll position is at the top of the
+      [List Panel](#setting-up-getting-started). Therefore, updating
+      the [View Panel](#setting-up-getting-started) enhances visual indication to the user
+      that the `Internship` has been successfully added.
     * Cons: An additional line of code is required in the `execute` method of `AddCommand`
       to update the selected `Internship` in the `Model` component in order to update
-      the right panel.
+      the [View Panel](#setting-up-getting-started).
 
-2. **Alternative 2: Do not update the right panel when a new `Internship` is added**
+2. **Alternative 2: Do not update the [View Panel](#setting-up-getting-started) when a new `Internship` is added**
     * Pros: No additional code is required in the `execute` method of `AddCommand`.
-    * Cons: When the user has a lot of `Internship` entries, the added entry in the left
-      UI panel may not be visible since it is added to the bottom. Without scrolling, users
-      have to rely on the Results Display box to determine if the `AddCommand` is successful.
+    * Cons: When the user has a lot of `Internship` entries, the added entry in the
+      [List Panel](#setting-up-getting-started) may not be visible since it is added to the bottom.
+      Without scrolling, users have to rely on the [Result Display](#setting-up-getting-started) to
+      determine if the `AddCommand` is successful.
 
-
+[//]: # (@@author - seadragon2000341)
 ### Edit an Internship - `edit`
 ### Edit feature
 
 #### Implementation
 
 
-The following sequence diagram shows how the edit operation works:
+Figure 13 shows how the `edit` command works.
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
+<p style="text-align: center;">Figure 13: Sequence diagram for the edit command</p>
+<br/>
 
 
-The following is a more detailed explanation on how `EditCommand` works.
+The following gives a more detailed explanation of the `edit` command.
 
 1. When the user enters an `edit` command, the `EditCommandParser` parses the user's input.
 2. If the internship index specified is invalid, a `ParserException` will be thrown and the specified `Internship` will not be edited.
@@ -418,17 +435,17 @@ The following is a more detailed explanation on how `EditCommand` works.
 4. After the successful parsing of user input into `EditCommandParser`, the `EditCommand` object is created with a new updated `Internship` object (to maintain immutability).
 5. Following which, `EditCommand#execute(Model model)` method is called which eventually calls the `Model#setInternship(Internship toEdit, Internship edited)` method, replacing the old `Internship` object with the newly updated one.
 
-#### Design considerations:
+#### Design considerations
 
-**Aspect: How edit executes:**
+- Aspect: How `edit` executes
 
-* **Alternative 1 (current choice):** Edit command will create a new `Internship` to replace the existing `Internship` object.
+1. **Alternative 1 (current choice):** Edit command will create a new `Internship` to replace the existing `Internship` object.
     * Pros:
         * Maintains immutability of `Internship` class
     * Cons:
         * May be less efficient than alternative 2
 
-* **Alternative 2:** Edit command will directly edit the `internship` by modifying its attributes
+2. **Alternative 2:** Edit command will directly edit the `Internship` by modifying its attributes.
     * Pros:
         * Will use less memory (no new `internship` object will be created).
         * Saves time since there is no need to create the new object.
@@ -436,28 +453,26 @@ The following is a more detailed explanation on how `EditCommand` works.
         * Reduces the defensiveness of the code and class
 
 
-
+[//]: # (@@author - eugenetangkj)
 ### View an Internship - `view`
 
 #### Implementation
-Figure XX provides an overview on how the `view` operation works.
+Figure 14 shows how the `view` command works.
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
-<p style="text-align: center;">Figure XX: Sequence diagram for the view command</p>
+<p style="text-align: center;">Figure 14: Sequence diagram for the view command</p>
 <br/>
 
-The following gives a more detailed explanation of the `view` operation.
+The following gives a more detailed explanation of the `view` command.
 
-**Step 1: Validate Input**
+
 1. When the user enters a `view` command, the `ViewCommandParser` parses the user's input.
 2. It checks for the following:
-- The `INDEX` entered by the user must be able to be converted into a numeric index.
+   - The `INDEX` entered by the user must be able to be converted into a numeric index.
 3. If the user entered a value of `INDEX` that cannot be converted, a `ParserException` will
    be thrown.
 4. An `Index` will be created from the user's input if Step 2 passes.
-
-**Step 2: Viewing the Internship**
 5. A check is done to see if the `Index` created in Step 4 is a valid index given the number
    of `Internship` entries in the filtered `Internship` list of the `Model` component.
 6. If the `Index` is invalid, a `CommandException` will be thrown.
@@ -491,13 +506,57 @@ The following gives a more detailed explanation of the `view` operation.
 ### Copy an Internship to Clipboard - `copy`
 [TODO by Chuhao]
 
-### Find Internships - `find`
-[TODO by Kai Xun]
 
+[//]: # (@@author kohkaixun)
+### Find Internships - `find`
+#### Implementation
+
+Figure 16 shows how the `find` command works.
+
+![FindSequenceDiagram](images/FindSequenceDiagram.png)
+
+<p style="text-align: center;">Figure 16: Sequence diagram for the find command</p>
+<br/>
+
+
+
+
+The following gives a more detailed explanation of the `find` command.
+
+1. If the name, role, status, date and tag fields are all missing or one of their values are invalid, a `ParserException` will be thrown and the `FindCommand` will not be executed.
+2. After the successful parsing of user input into `FindCommandParser`, an `InternshipContainsKeywordPredicate` object, containing the lists of keywords specified in the user input, is created, which in turn is used to create a `FindCommand` object.
+3. Following which, the `FindCommand#execute(Model model)` method is called which eventually calls the `updateFilteredInternshipList(Predicate<Internship> predicate)` method with the `InternshipContainsKeywordPredicate` object, previously created by `FindCommandParser`, as its argument and updates the `FilteredList<Internship>` stored inside the `Model`.
+
+#### Design Considerations
+
+- Aspect: How `find` command uses user input
+
+1. **Alternative 1 (current choice):** Find internship by exact match of user input and `Internship` object's corresponding attributes
+    * Pros:
+        * Instructions on how to use the find command will be clear and easily communicated to user
+    * Cons:
+        * Very restrictive for user (e.g. an internship with the company name `Google Ltd` will not turn up for the command `find n/Google`)
+
+* **Alternative 2:** Find internship by match of user input and `Internship` object's attributes' corresponding attributes' substrings
+    * Pros:
+        * Command is much more flexible (e.g. an internship with the company name `Google` will turn up for the find command `find n/goo`)
+    * Cons:
+        * May be confusing for user (e.g. user assumes find command works for matching substrings of individual words and inputs `find n/goo inc` for an `Internship` with company name `Google Incorporated`)
+
+* **Alternative 3:** Find internship by match of any word of user input and any word of `Internship` object's corresponding attributes
+    * Pros:
+        * Command is much more flexible
+    * Cons:
+        * Command becomes too flexible (e.g. a find command like `find n/google ltd` will return `Internship` objects that not just has the word `Google`, like "Google Ltd", in their company names but `ltd` as well, like `Apple Ltd`, `Meta Ltd` and more)
+
+
+
+
+[//]: # (@@author - seadragon2000341)
 ### Get Upcoming Events and Deadlines - `upcoming`
 
 #### Implementation
-The following sequence diagram provides an overview on how the `upcoming` operation works.
+Figure 17 shows how the `upcoming` command works.
 
 ![UpcomingSequenceDiagram](images/UpcomingSequenceDiagram.png)
 
@@ -525,10 +584,11 @@ The following gives a more detailed explanation of the `upcoming` operation.
 2. **Alternative 2: Internships with any status would be accepted, even statuses that are not tied to an upcoming event or deadline**
     * Pros: May be more intuitive for users to understand
     * Cons: This may cause users to forget the intended use case of the application, leading to confusion or misuse.
-   
+
+[//]: # (@@author - potty10)
 ### Delete Internship Entries - `delete-field`
 #### Implementation
-The following sequence diagram provides an overview on how the `delete-field` operation works.
+Figure XX shows how the `delete-field` command works.
 
 ![DeleteFieldSequenceDiagram](images/DeleteSequenceDiagram.png)
 
@@ -587,176 +647,8 @@ parameters (`[n/COMPANY_NAME] [r/ROLE] [s/STATUS] [d/DATE] [t/TAG]`).
       is to mass delete internships that are no longer required.
         * Difficult to define a suitable interpretation of the parameters. For example, in the command `delete 1 2 n/Google`, 
       the command should delete internships with (index 1 OR 2) AND has the name `Google` in it. Maintaining both AND and OR relationships can be confusing for the user.
+ 
 
-### \[Proposed\] Undo/Redo Actions - `undo`/`redo`
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedInternBuddy`. It extends `InternBuddy` with an undo/redo history, stored internally as an `internBuddyStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedInternBuddy#commit()` — Saves the current InternBuddy state in its history.
-* `VersionedInternBuddy#undo()` — Restores the previous InternBuddy state from its history.
-* `VersionedInternBuddy#redo()` — Restores a previously undone InternBuddy state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitInternBuddy()`, `Model#undoInternBuddy()` and `Model#redoInternBuddy()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedInternBuddy` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-<p align="center">
-  <img src="images/UndoRedoState0.png"/>
-</p>
-
-<p style="text-align: center;">Figure XX: Step 1 of the undo/redo mechanism</p>
-<br/>
-
-
-
-Step 2. The user executes `delete 5` command to delete the 5th internship in InternBuddy. The `delete` command calls `Model#commitInternBuddy()`, causing the modified state of InternBuddy after the `delete 5` command executes to be saved in the `internBuddyStateList`, and the `currentStatePointer` is shifted to the newly inserted InternBuddy state.
-
-<p align="center">
-  <img src="images/UndoRedoState1.png"/>
-</p>
-
-<p style="text-align: center;">Figure XX: Step 2 of the undo/redo mechanism</p>
-<br/>
-
-
-Step 3. The user executes `add n/Tesla …​` to add a new internship. The `add` command also calls `Model#commitInternBuddy()`, causing another modified InternBuddy state to be saved into the `internBuddyStateList`.
-
-<p align="center">
-  <img src="images/UndoRedoState2.png"/>
-</p>
-
-<p style="text-align: center;">Figure XX: Step 3 of the undo/redo mechanism</p>
-<br/>
-
-
-
-<div markdown="span" class="alert alert-primary">:information_source: **Info:** If a command fails its execution, it will not call `Model#commitInternBuddy()`, so the address book state will not be saved into the `internBuddyStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoInternBuddy()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-<p align="center">
-  <img src="images/UndoRedoState3.png"/>
-</p>
-
-<p style="text-align: center;">Figure XX: Step 4 of the undo/redo mechanism</p>
-<br/>
-
-
-<div markdown="span" class="alert alert-primary">:information_source: **Info:** If the `currentStatePointer` is at index 0, pointing to the initial InternBuddy state, then there are no previous InternBuddy states to restore. The `undo` command uses `Model#canUndoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-Figure XX is a sequence diagram that shows how the undo operation works:
-
-<p align="center">
-  <img src="images/UndoSequenceDiagram.png"/>
-</p>
-
-<p style="text-align: center;">Figure XX: Sequence diagram for the undo command</p>
-<br/>
-
-
-The `redo` command does the opposite — it calls `Model#redoInternBuddy()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores InternBuddy to that state.
-
-<div markdown="span" class="alert alert-primary">:information_source: **Info:** If the `currentStatePointer` is at index `internBuddyStateList.size() - 1`, pointing to the latest InternBuddy state, then there are no undone InternBuddy states to restore. The `redo` command uses `Model#canRedoInternBuddy()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify InternBuddy, such as `list`, will usually not call `Model#commitInternBuddy()`, `Model#undoInternBuddy()` or `Model#redoInternBuddy()`. Thus, the `internBuddyStateList` remains unchanged.
-
-<p align="center">
-  <img src="images/UndoRedoState4.png"/>
-</p>
-
-<p style="text-align: center;">Figure XX: Step 5 of the undo/redo mechanism</p>
-<br/>
-
-
-Step 6. The user executes `clear`, which calls `Model#commitInternBuddy()`. Since the `currentStatePointer` is not pointing at the end of the `internBuddyStateList`, all InternBuddy states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/Tesla …​` command. This is the behavior that most modern desktop applications follow.
-
-<p align="center">
-  <img src="images/UndoRedoState5.png"/>
-</p>
-
-<p style="text-align: center;">Figure XX: Step 6 of the undo/redo mechanism</p>
-<br/>
-
-
-Figure XX summarizes what happens when a user executes a new command:
-
-<p align="center">
-  <img src="images/CommitActivityDiagram.png" width="250" />
-</p>
-
-<p style="text-align: center;">Figure XX: Activity diagram for the activity of a user executing a new command</p>
-<br/>
-
-
-
-#### Design Considerations
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire InternBuddy.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-
-
-### \[Proposed\] Data Archiving
-
-To be explored in v2.0...
-
-
-### Find feature
-
-#### Implementation
-
-The following sequence diagram shows how the find operation works:
-
-![FindSequenceDiagram](images/FindSequenceDiagram.png)
-
-The following is a more detailed explanation on how 'FindCommand' works.
-
-1. If the name, role, status, date or tag fields are missing (at least one must be present) or invalid, a `ParserException` will be thrown and the `FindCommand` will not be executed.
-2. After the successful parsing of user input into `FindCommandParser`, an `InternshipContainsKeywordPredicate` object, containing the lists of keywords specified in the user input, is created, which in turn is used to create a `FindCommand` object.
-3. Following which, the `FindCommand#execute(Model model)` method is called which eventually calls the `updateFilteredInternshipList(Predicate<Internship> predicate)` method with the `InternshipContainsKeywordPredicate` object, previously created by `FindCommandParser`, as its argument and updates the `FilteredList<Internship>` stored inside the `Model`.
-
-### Design Considerations
-
-**Aspect: How find command uses user input:**
-
-* **Alternative 1 (current choice):** Find internship by exact match of user input and `Internship` object's corresponding attributes
-    * Pros:
-        * Instructions on how to use the find command will be clear and easily communicated to user
-    * Cons:
-        * Very restrictive for user (e.g. an internship with the name "Google Ltd" will not turn up for the find command "find n/Google")
-
-* **Alternative 2:** Find internship by match of user input and `Internship` object's attributes' corresponding attributes' substrings
-    * Pros:
-        * Command is much more flexible (e.g. an internship with the name "Google" will turn up for the find command "find n/goo")
-    * Cons:
-        * May be confusing for user (e.g. user assumes find command works for matching substrings of individual words and inputs "find n/goo inc" for an `Internship` object named "Google Incorporated")
-
-* **Alternative 3:** Find internship by match of any word of user input and any word of `Internship` object's corresponding attributes
-    * Pros:
-        * Command is much more flexible
-    * Cons:
-        * Command becomes too flexible (e.g. a find command like "find n/google ltd" will return `Internship` objects that not just has the word "Google", like "Google Ltd", in their names but "ltd" as well, like "Apple Ltd", "Meta Ltd" and more)
-
-_{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -797,7 +689,7 @@ existence of keyboard shortcuts, many programmers prefer typing over using the m
 
 CLI provides a simple way to interact with computers to run programs and manage files.
 Computing undergraduates are taught how to use the CLI in their curriculums, and are often required to use it
-to run system tasks that cannot be done over the GUI. Hence, this would imply a reasonable level of comfort in using
+to run system tasks that cannot be done over the [GUI](#glossary). Hence, this would imply a reasonable level of comfort in using
 the CLI interface.
 
 * Prefers desktop applications over other types
@@ -1036,7 +928,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix B: Instructions for manual testing**
+## **Appendix B: Instructions for Manual Testing**
 
 Given below are instructions and test cases to test InternBuddy manually.
 
@@ -1053,7 +945,7 @@ Testers are expected to do more *exploratory* testing. Also, each test case is i
 
     2. Double-click the jar file.
 
-   **Expected**: Shows the GUI with a set of sample internships. The window size may not be optimum.
+   **Expected**: Shows the [GUI](#glossary)) with a set of sample internships. The window size may not be optimum.
 
 
 2. **Saving window preferences**
@@ -1267,20 +1159,20 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 
 1. `find n/Amazon`
 
-   **Expected**: The List Panel shows the internship entry whose company name exactly matches with
+   **Expected**: The List Panel shows the internship entry whose company name matches with
    `Amazon`. A success message is displayed in the Results Display.
 
 
 2. `find n/Amazon n/Google`
 
-   **Expected**: The List Panel shows the internship entries whose company name exactly matches with
+   **Expected**: The List Panel shows the internship entries whose company name  matches with
    `Amazon` or `Google`. A success message is displayed in the Results Display.
 
 3. Finding through the filtered internship list
     1. `find n/Apple n/Google`
     2. `find n/Amazon`
 
-   **Expected**: The List Panel shows the internship entry whose company name exactly matches with
+   **Expected**: The List Panel shows the internship entry whose company name matches with
    `Amazon`. This means that for the `find` command, the search is always done in the unfiltered list
    even if the List Panel was showing a filtered list.
 
@@ -1298,14 +1190,15 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
 
 6. `find n/Google n/Meta s/new s/applied`
 
-   **Expected**: The List Panel shows the internship entries whose company name exactly matches at least one of the company name fields ('Google' or 'Meta') and status matches at least one of the status fields ('new' or 'applied').
-   This means that for the `find` command, whenever there are multiple instances of different fields, the internship entries filtered out must match at least one input from every different field.
+   **Expected**: The List Panel shows the internship entries with company name of either `Google` or `Meta` where
+   those entries must have a status of either `New` or `Applied`. A success message is displayed in the
+   Results Display.
 
 7. `find s/assessment s/interview r/frontend r/backend t/python t/java`
 
-   **Expected**: The List Panel shows the internship entries status matches at least one of the status fields ('assessment' or 'interview'), role matches at least one of the role fields ('frontend' or 'backend') and tag matches at least one of the tag fields ('python' or 'java').
+   **Expected**: The List Panel shows the internship entries which have a status of either `Assessment`
+   or `Interview`, a role of either `Frontend` or `Backend` and a tag of either `Python` or `Java`.
 
-[More test cases will be added for combination of parameters...]
 
 
 ### Get Upcoming Events and Deadlines
@@ -1328,36 +1221,37 @@ Assumptions: The sample data provided by InternBuddy is used, where there is a t
    listed out and displayed in the List Panel.
 
 
-### Delete Internships
+### Delete Internships by Index
 Prerequisites: List all internships using the `list` command. Multiple internships are present in the list.
 
-1. `delete 1`
+1. `delete-index 1`
 
    **Expected**: The first internship entry in the List Panel is deleted. If the right
    UI panel was displaying the details of the deleted internship entry, it defaults to displaying
    the welcome message.
 
 
-2. `delete 1 2`
+2. `delete-index 1 2`
 
-   **Expected**: The first and second internship entry in the List Panel are deleted. If the right
-   UI panel was displaying the details of either deleted internship entries, it defaults to displaying
+   **Expected**: The first and second internship entry in the List Panel are deleted. If the View
+   Panel was displaying the details of either of the deleted internship entries, it defaults to displaying
    the welcome message.
 
 
-3. `delete s/New`
+3. `delete-index 3 1 3 3 1`
 
-   **Expected**: All internship entries with the status `New` are deleted. If the View Panel was
-   displaying the details of one of these deleted internship entries, it defaults to displaying the
+   **Expected**: The first and third internship entries in the List Panel are deleted. If the View Panel was
+   displaying the details of either of the deleted internship entries, it defaults to displaying the
    welcome message.
 
-4. `delete`
+4. `delete-index`
 
 **Expected**: An error message is displayed in the Results Display. This is because a minimum of 1
-optional parameter must be specified.
+index must be specified.
 
 
-[More test cases will be added for mixing of parameters and for filtered internship list... ]
+### Delete Internships by Fields
+
 
 
 ### Clear all Internships
@@ -1441,6 +1335,18 @@ optional parameter must be specified.
    with the sample internship data shown in the List Panel. There is a total of 7 internship entries.
 
 
+## **Appendix C: Proposed Design Tweaks for Feature Flaws**
+While we strive to make InternBuddy a perfect product for you, there are nevertheless areas of improvement.
+Hence, we are constantly striving to make InternBuddy better. This appendix documents some of the areas
+that our team is currently working on, and we would release them in the future once their functionalities
+have been finalised.
+
+### Title of Design Tweak
+**Problem:**
+Explain the problem here
+
+**Proposed Design Tweak**: Explain the design tweak here
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Glossary**
@@ -1468,4 +1374,4 @@ optional parameter must be specified.
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
 * Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
   , [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) and [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp)
-  (for the purposes of GUI testing and the feature of navigating through past commands).
+  (primarily for the purposes of GUI testing and the feature of navigating through past commands).

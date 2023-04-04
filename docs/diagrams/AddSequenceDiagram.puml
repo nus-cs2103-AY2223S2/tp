@@ -32,7 +32,7 @@ InternBuddyParser -> AddCommandParser : parse("n/Google r/Engineer s/Applied d/2
 activate AddCommandParser
 
 create AddCommand
-AddCommandParser -> AddCommand : new AddCommand(toAdd)
+AddCommandParser -> AddCommand : AddCommand(toAdd)
 activate AddCommand
 
 AddCommand --> AddCommandParser

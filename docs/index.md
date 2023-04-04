@@ -32,4 +32,4 @@ InternBuddy runs using Java 11, and is available on the Windows, macOS and Linux
   [JUnit5](https://github.com/junit-team/junit5) and [TestFX](https://github.com/TestFX/TestFX).
 * Other references: [AddressBook Level 4](https://github.com/se-edu/addressbook-level4)
   , [Please Hire Us](https://github.com/AY2223S1-CS2103T-W17-4/tp) and [HackNet](https://github.com/AY2122S2-CS2103T-W13-3/tp)
-  (for the purposes of GUI testing and the feature of navigating through past commands).
+  (primarily for the purposes of GUI testing and the feature of navigating through past commands).
