@@ -11,7 +11,7 @@ public class Website {
 
     public static final String MESSAGE_CONSTRAINTS = "Websites should be of the format www.domain.com"
             + " and adhere to the following constraints:\n"
-            + "1. The first part should only contain www.\n"
+            + "1. The first part should only contain 'www'.\n"
             + "2. This is followed by a '.' and the website/domain name.\n"
             + "3. The last part should end with '.com'.";
     // alphanumeric and special character

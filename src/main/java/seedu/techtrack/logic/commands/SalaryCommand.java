@@ -2,6 +2,7 @@ package seedu.techtrack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.techtrack.commons.core.Messages;
 import seedu.techtrack.logic.commands.exceptions.CommandException;
 import seedu.techtrack.logic.parser.OrderParser;
 import seedu.techtrack.model.Model;
@@ -18,7 +19,6 @@ public class SalaryCommand extends Command {
             + ": Sorts the salary in asc/desc order.\n \n"
             + "Parameters: ORDER (must be either asc OR desc)\n \n"
             + "Example: " + COMMAND_WORD + " desc";
-    public static final String MESSAGE_SUCCESS = "Salaries sorted in %1$s";
     private OrderParser orderParser;
 
     public SalaryCommand(OrderParser orderParser) {
@@ -29,6 +29,6 @@ public class SalaryCommand extends Command {
     public CommandResult<String> execute(Model model) throws CommandException {
         requireNonNull(model);
         model.displaySortedSalaryList(this.orderParser);
-        return new CommandResult<>(String.format(MESSAGE_SUCCESS, this.orderParser.toString()));
+        return new CommandResult<>(String.format(Messages.MESSAGE_SALARY_COMMAND_FORMAT, this.orderParser.toString()));
     }
 }
