@@ -38,7 +38,7 @@ than traditional GUI apps.
 
 ---
 
-## Quick Start 
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 2. Download the latest `MediMate.jar`
@@ -46,7 +46,7 @@ than traditional GUI apps.
 3. Copy the file to the folder you want to use as the _home folder_ for your MediMate.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar MediMate.jar` command
    to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. The application will starts will an empty MediMate.<br>
+   A GUI similar to the below should appear in a few seconds with sample data included.<br>
    ![Ui](images/userGuide/Ui.png)
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -73,13 +73,13 @@ than traditional GUI apps.
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 * Items with `…` after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…` can be used as `t/friend`, `t/friend t/family` etc. It is optional field, hence it is not required to fill in.
 * Parameters can be in any order for **add**, **edit** and **deletes** function only.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken. 
+  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 * All commands and prefix are case-sensitive. Invalid cases for command or prefix will result in displaying `Unknown command` or `Invalid command format!` respectively.<br>
-  e.g. `EDIT 1 ag/50` and `edit 1 AG/50` will not be recognised as a valid command to change the age. 
+  e.g. `EDIT 1 ag/50` and `edit 1 AG/50` will not be recognised as a valid command to change the age.
   e.g. The correct format should be `edit 1 n/John Doe` and `edit 1 ag/50`.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -100,25 +100,38 @@ Adds a patient to Medimate through command method:
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [ag/AGE] [m/MEDICAL_CONDITION] [nric/NRIC_NUMBER] [t/TAG]…`
 
-* MANDATORY: You must add the patient's name, phone number, email, and address to successfully add the patient into MediMate.
+* MANDATORY: You must add the patient's name, phone number, email, and address to successfully add the patient into MediMate.  
+* Name allows number as a valid input.
+* No special characters is allowed at the start or end of the email `username`. (username@domain.com) 
+* No multiple (More than 1) special characters is allowed at the middle of the email username. 
+* Allowed special characters are `+` , `_`, `-`, `.` 
+e.g. `abc@gmail.com` is allowed 
+e.g. `ab.c@gmail.com` is allowed 
+e.g. `ab..c@gmail.com` is not allowed
+e.g. `abc.@gmail.com` is not allowed 
+e.g. `.abc@gmail.com` is not allowed
 * You can add any number of tags to the patient's profile by adding "t/" followed by the tag.
 * OPTIONAL: You can also add patient's age, medical condition, nric.
 * NRIC need to be in the correct format. The first letter must be either 'S', 'T' or 'G' (E.g. S9935010Y)
+* NRIC is case-sensitive. Hence, 's' , 't' or 'g' is not allowed for the first letter.
+* NRIC is not unique. Hence, please be aware to check your NRIC input before adding to prevent duplicate.
 * Age need to be less than or equal to 120 and must be a positive integer.
 * To record a patient's other information, add them as additional tags to the patient's profile.
+* Invalid prefix (such as `A/` in upper case or `ABC` unknown prefix) will cause MediMate to assume it as the description of the previous prefix
 
 The first example contains strictly required information to identify a patient.
 
 The second example contains more information relevant to that patient.
 
-<div markdown="span" class="alert alert-primary">
-:bulb:**Tip:** A patient can have any number of tags (including 0)
-</div>
-
 Examples:
 
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 m/cough nric/S9935010Y t/criminal`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 ag/12 m/cough nric/S9935010Y t/criminal` 
+* `add n/John Doe p/98765432 e/johnd@example.com A/John street, block 123, #01-01` will cause MediMate to assumes that `A/John street, block 123, #01-01` is a part of the email address, causing `add` to fail.
+
+<div markdown="span" class="alert alert-primary">
+:bulb:**Tip:** A patient can have any number of tags (including 0)
+</div>
 
 Adds a patient to MediMate through button method:
 
@@ -142,6 +155,18 @@ Shows a list of all patients in MediMate by their name in alphabetical order. Th
 
 Format: `list_name`
 
+### Show a patient's information: `show`
+
+Format: `show INEX`
+Shows the patient's information at the right panel.
+
+<div style="display:flex;">
+    <img src="images/userGuide/show_before.png" style="width:50%; padding-right:10px;">
+    <img src="images/userGuide/show_after.png" style="width:50%; padding-left:10px;">
+</div>
+
+E.g. `show 1` will display the patient information at the right panel
+
 ### Editing a patient : `edit`
 
 Edits an existing patient in the patient list:
@@ -149,7 +174,9 @@ Edits an existing patient in the patient list:
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [ag/AGE] [m/MEDICAL_CONDITION] [nric/NRIC_NUMBER] [t/TAG]…`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
-  The index **must be a positive integer** 1, 2, 3, …
+  The index **must be a positive integer** 1, 2, 3, … 
+* When index 0 is provided, it will display `Invalid Command Format` as 0 will never exist in the system. 
+* When index is more than the number of patients in MediMate, it will displays `The person Index provided is invalid`. 
 * Specify the field you want to edit (name, phone, email, address, age, medical condition, nric, or tag) followed by the
   new value. At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -173,7 +200,7 @@ Examples:
 * `edit 2 m/Flu` Edits the medication condition of the 2nd patient to be `Flu`.
 * `edit 3 ag/50` Edits the age of the 3rd patient to be `50`.
 * `edit 3 ag/1222` This command is not allowed as age should be less than or equal to 120 and must be a positive
-  integer. 
+  integer.
 
 ### Appointment
 
@@ -188,7 +215,7 @@ Format: `makeApp INDEX /from {startTime} /to {endTime}`
 * startTime and endTime should be on the same date
 * startTime has to be earlier than the endTime else appointment will not be created.
 * If a patient already had an appointment, it will reschedule this appointment
-* Appointment will not be created if the timing clash with existing appointment timing
+* Appointment will not be created if the timing clash with the doctor's existing appointment timing
 
 Examples:
 
@@ -202,9 +229,10 @@ Make an appointement to MediMate through button method:
 1. Click on the **Appointment Button** as shown in the above screenshot.
 
 ![Appointment_Popup](images/userGuide/Appointment_2.png "Appointment Popup")
-2. A popup window will appear, as shown in the screenshot above. **Check Availability** with the given date will show a list of patients that have appointment on the given date
+2. A popup window will appear, as shown in the screenshot above. **Check Availability** with the given date will show a list of patients that have appointment on the given date.
 
 💡Date must be in **YYYY-MM-DD** format and Time must be in the format of 24hr clock.
+💡Once the appointment button is clicked, patient's card should not be clicked again, else the appointment made will be assigned to the latest patient's card clicked.
 
 ### Marking Appointment with a patient: `markApp`
 
@@ -222,8 +250,6 @@ Examples:
 
 * `markApp 5` Marks an appointment with 5th patient as done.
 
-Marks an appointment with a patient as done using button method:
-
 ### Create a Medical Certificate for patient: `create`
 
 Create a PDF Medical Certificate for a patient using command:
@@ -233,6 +259,7 @@ Format: `create INDEX doc/DOCTOR_NAME m/MEDICAL_CONDITION d/DAYS`
 * Create a PDF medical certificate for a patient at the specified `INDEX`. The index refers to the index number shown in
   the displayed patient list. The index **must be a positive integer** 1,2,3 …
 * Days representing the number of days of unfit, and it **must be positive integer** 1,2,3 …
+* The maximum allowed days is 60. Hence, any days more than 60 is regards as invalid.
 
 Examples:
 
@@ -279,7 +306,7 @@ Upload Medical File of a patient's through command:
 
 Format: `upload INDEX`
 
-Upload the medical file. File must be in either in pdf, bmp, jpg, png or gif format.
+Upload the medical file. File must be in either in pdf, jpg, png or format.
 This index file can contain additional information about the patient, such as medical history,
 test results, or treatment plans.
 
@@ -316,7 +343,7 @@ Examples:
 
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find alex david'](images/userGuide/find.png)
 
 ### Searching patients with Appointment on specified date: `searchDate`
 
@@ -329,14 +356,14 @@ Format: `searchDate {date}`
 
 Examples:
 
-* `searchDate 2002-11-21` lists three patients with appointment on 2002-11-21 and the time is sorted<br>
-  ![result for 'find alex david'](images/screenshot_of_searchDate.png)
+* `searchDate 2023-05-20` lists three patients with appointment on 2002-11-21 and the time is sorted<br>
+  ![result for 'find alex david'](images/userGuide/searchDate.png)
 
 ### Deleting a patient : `delete`
 
 Deletes the specified patient from the MediMate.
 
-Format: `delete INDEX`
+Format: `deletes INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The INDEX refers to the index number shown in the displayed patient list.
