@@ -42,8 +42,7 @@ public interface ProjectModel {
     void addProject(Project project);
 
     /**
-     * Replaces the project with the same name as {@code project} with {@code newProject}. If no such
-     * project exists, then a {@code ProjectNotFoundException} is thrown.
+     * Replaces the project with the same name as {@code project} with {@code newProject}.
      */
     void setProject(Project project, Project newProject);
 
