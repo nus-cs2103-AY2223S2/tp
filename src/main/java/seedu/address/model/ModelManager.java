@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -187,8 +188,12 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         eduMate.setPerson(target, editedPerson);
-        //todo edit person name if person in meetup list
+        editParticipants(target, editedPerson);
         updateMeetUpForEditPerson(target, editedPerson);
+    }
+
+    public void editParticipants(Person target, Person editedPerson) {
+        eduMate.editParticipants(target, editedPerson);
     }
 
     /**
@@ -197,10 +202,11 @@ public class ModelManager implements Model {
      * @param editedPerson Edited person to replace person to edit.
      */
     public void updateMeetUpForEditPerson(Person target, Person editedPerson) {
-        for (MeetUp meetUp : observableMeetUps) {
+        Iterator<MeetUp> iterator = observableMeetUps.iterator();
+        while (iterator.hasNext()) {
+            MeetUp meetUp = iterator.next();
             Participants participants = meetUp.getParticipants();
             List<Person> participantsList = participants.getParticipants();
-
             updatePersonList(participantsList, target, editedPerson, meetUp);
         }
     }
@@ -214,9 +220,11 @@ public class ModelManager implements Model {
      */
     public void updatePersonList(List<Person> participantsList, Person target,
                                  Person editedPerson, MeetUp meetUp) {
-        for (Person person : participantsList) {
+        Iterator<Person> iterator = participantsList.iterator();
+        while (iterator.hasNext()) {
+            Person person = iterator.next();
             if (person.isSamePerson(target)) {
-                participantsList.remove(target);
+                participantsList.remove(person);
                 participantsList.add(editedPerson);
                 meetUp.setParticipants(new Participants(participantsList));
             }

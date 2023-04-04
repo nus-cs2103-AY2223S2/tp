@@ -130,7 +130,7 @@ public class OrganiseCommand extends Command {
         Participants participants = model.getParticipants();
 
         for (Person person : participants.getParticipants()) {
-            if (!model.hasPerson(person)) { //meet -> delete someone -> organise
+            if (!model.hasPerson(person)) {
                 throw new CommandException(String.format(MESSAGE_NO_SUCH_PERSON, person.getName()));
             }
         }

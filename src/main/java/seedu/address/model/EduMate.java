@@ -288,6 +288,18 @@ public class EduMate implements ReadOnlyEduMate {
         this.participants = participants;
     }
 
+    /**
+     * Updates participants list of latest meet command.
+     */
+    public void editParticipants(Person target, Person editedPerson) {
+        if (participants.getParticipants().contains(target)) {
+            List<Person> personList = participants.getParticipants();
+            personList.remove(target);
+            personList.add(editedPerson);
+            participants.setParticipants(personList);
+        }
+    }
+
     public void removeMeetUp(MeetUp meetUp) {
         meets.remove(meetUp);
     }
