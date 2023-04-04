@@ -1,5 +1,6 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.commons.core.Messages.MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_END;
 import static ezschedule.logic.parser.CliSyntax.PREFIX_NAME;
@@ -43,8 +44,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the scheduler.";
-    public static final String MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME =
-            "Event's start time should come before end time";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
