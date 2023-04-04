@@ -12,7 +12,6 @@ import ezschedule.model.ModelManager;
 import ezschedule.model.Scheduler;
 import ezschedule.model.UserPrefs;
 import ezschedule.model.event.UpcomingEventPredicate;
-import ezschedule.testutil.TypicalEvents;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ShowNextCommand.
