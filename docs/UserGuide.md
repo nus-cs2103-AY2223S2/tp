@@ -340,8 +340,10 @@ patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BI
 
 ##### Example
 
-* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax`
-* `patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+`
+```text
+patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax
+patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+
+```
 
 Output:
 
@@ -428,8 +430,10 @@ Do note that only one `VACCINES` flag can be used at one find command.
 
 ##### Example
 
-* `patient find john`
-* `patient find --n john --b B+`
+```text
+patient find john
+patient find --n john --b B+
+```
 
 Output:
 
@@ -464,7 +468,9 @@ patient edit <var>PATIENT_ID</var> [--n <var>PATIENT_NAME</var>] [--p <var>PHONE
 
 Basic edit, changing patient's attributes that is not related to list-like attributes
 
-* `patient edit 7 --n John Deer`
+```text
+patient edit 7 --n John Deer
+```
 
 Output:
 
@@ -478,7 +484,9 @@ Output:
 
 Appending patient's allergies and vaccination details
 
-* `patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax`
+```text
+patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax
+```
 
 Output:
 
@@ -492,7 +500,9 @@ Output:
 
 Setting patient's allergies and vaccination details, values prior will be overridden
 
-* `patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --set true --a grass --v protovax --set true`
+```text
+patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --set true --a grass --v protovax --set true
+```
 
 Output:
 
@@ -520,7 +530,9 @@ patient delete <var>PATIENT_ID</var>
 
 ##### Example
 
-* `patient delete 7`
+```text
+patient delete 7
+```
 
 Output:
 
@@ -546,7 +558,9 @@ patient clear
 
 ##### Example
 
-* `patient clear`
+```text
+patient clear
+```
 
 Output:
 
