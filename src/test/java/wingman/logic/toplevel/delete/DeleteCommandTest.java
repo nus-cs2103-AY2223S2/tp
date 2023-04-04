@@ -68,8 +68,8 @@ public class DeleteCommandTest {
         );
 
         assertThrows(
-                CommandException.class, (
-                    ) -> deleteCommand.execute(model)
+                CommandException.class,
+                () -> deleteCommand.execute(model)
         );
 
         verify(getManagerFunction, times(1)).get(model);
