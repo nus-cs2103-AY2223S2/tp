@@ -453,7 +453,7 @@ The following gives a more detailed explanation of the `edit` command.
 
 #### Design considerations
 
-- Aspect: How `edit` executes
+- How `edit` executes
 
 1. **Alternative 1 (current choice):** Edit command will create a new `Internship` to replace the existing `Internship` object.
     * Pros:
@@ -503,6 +503,7 @@ The following gives a more detailed explanation of the `view` command.
 #### Design Considerations
 
 - Whether to separate the checking of valid user input into 2 classes
+
 1. **Alternative 1: Allow `ViewCommand` to handle checking of whether user input can be
    parsed into an index, and whether it is a valid index**
     * Pros: No need for a separate `ViewCommandParser` class and any problems with checking of
