@@ -6,6 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,6 +15,8 @@ import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
+
+
 
 /**
  * Deletes an appointment
@@ -56,6 +59,17 @@ public class DeleteAppointmentCommand extends Command {
         List<Person> persons = model.getFilteredPersonList();
         List<Appointment> appointments = model.getAddressBook().getAppointmentList();
         Patient appointmentPatient = null;
+        boolean found = false;
+        for (Person p : persons) {
+            if (p.getNric().equals(nric)) {
+                found = true;
+            }
+        }
+
+        if (found == false) {
+            throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+        }
+
         for (Person p : persons) {
             if (p.getNric().equals(nric)) {
                 if (!p.isPatient()) {
