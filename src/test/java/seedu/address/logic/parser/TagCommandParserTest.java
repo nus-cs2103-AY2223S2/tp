@@ -25,6 +25,14 @@ public class TagCommandParserTest {
     }
 
     @Test
+    public void parse_emptyArgWithPrefix_throwsParseException() {
+        assertParseFailure(parser, "1 g/", String.format(TagCommand.MESSAGE_NO_TAGS));
+        assertParseFailure(parser, " g/", String.format(TagCommand.MESSAGE_NO_TAGS));
+        assertParseFailure(parser, "1 m/", String.format(TagCommand.MESSAGE_NO_TAGS));
+        assertParseFailure(parser, " m/", String.format(TagCommand.MESSAGE_NO_TAGS));
+    }
+
+    @Test
     public void parse_validArgs_returnsTagCommand() {
         createModuleValidArgsReturnsTagCommand(
                 new ContactIndex(1),

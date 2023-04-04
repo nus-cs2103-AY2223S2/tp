@@ -22,6 +22,14 @@ public class UntagCommandParserTest {
     }
 
     @Test
+    public void parse_emptyArgWithPrefix_throwsParseException() {
+        assertParseFailure(parser, "1 g/", String.format(UntagCommand.MESSAGE_NO_TAGS));
+        assertParseFailure(parser, " g/", String.format(UntagCommand.MESSAGE_NO_TAGS));
+        assertParseFailure(parser, "1 m/", String.format(UntagCommand.MESSAGE_NO_TAGS));
+        assertParseFailure(parser, " m/", String.format(UntagCommand.MESSAGE_NO_TAGS));
+    }
+
+    @Test
     public void parse_validArgs_returnsUntagCommand() {
         createModuleValidArgsReturnsUntagCommand(
                 new ContactIndex(1),
