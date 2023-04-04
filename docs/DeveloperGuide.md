@@ -407,14 +407,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * Similar to UC2 extension, for student index
 
-**Use case 7: Update a remark under a student's profile**
+<h3>Use case 7: Update a remark under a student's profile</h3>
 
 **Preconditions: User is on the Student Page**
 
 **MSS**
 
-3.  User requests to update a remark under a specific student in the list
-4.  CLIpboard updates the particulars of the student to the new remark
+1.  User requests to update a remark under a specific student in the list
+2.  CLIpboard updates the particulars of the student to the new remark
 
     Use case ends.
 
