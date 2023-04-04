@@ -46,7 +46,7 @@ public class PersonStatsListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code PersonStats} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code PersonStats} using a {@code PersonStatsCard}.
      */
     class PersonStatsListViewCell extends ListCell<PersonStats> {
         @Override

@@ -192,7 +192,6 @@ Action | Format, Examples
 **List tasks** | `list`
 **Mark** | `mark t/{TASK_ID} s/{PERFORMANCE_SCORE}` <br> e.g., `mark t/1 s/4`
 **Todo** | `todo task/{TASK_NAME}` <br> e.g., `todo task/Edit User Guide`
-**Role** | `role n/{MEMBER_NAME} r/{ROLE}` <br> e.g., `role n/John Doe r/Leader`
 **Unmark** | `unmark t/{TASK_ID}` <br> e.g., `unmark t/1`
 **View persons** | `view`
 **View statistics** | `review`
