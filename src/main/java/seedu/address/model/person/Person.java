@@ -159,12 +159,8 @@ public class Person {
             return occupation.toString();
         case "job title":
             return jobTitle.toString();
-        case "remark":
-            return remark.toString();
         case "status":
             return status.getStatusName().getLabel();
-        case "task": //"should be changed to tasklist but need to check through based on where it is
-            return tasks.toString();
         default:
             throw new IllegalValueException("Attribute does not exists!");
         }
