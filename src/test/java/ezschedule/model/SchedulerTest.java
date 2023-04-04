@@ -8,10 +8,12 @@ import static ezschedule.testutil.TypicalEvents.BOAT;
 import static ezschedule.testutil.TypicalEvents.CARNIVAL;
 import static ezschedule.testutil.TypicalEvents.DRAG;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -128,6 +130,26 @@ public class SchedulerTest {
         assertEquals(Arrays.asList(e3, e4), expectedModel.getEventList());
     }
 
+    @Test
+    public void autoSortEvent_afterEdit_eventsInChronologicalOrder() {
+        Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
+
+        // "edit" the event by changing the date
+        model.setEvent(CARNIVAL, new EventBuilder(CARNIVAL).withDate("2023-04-30").build());
+
+        String[] actualOrder = getEventNameFrom(model.getEventList());
+        String[] expectedOrder = new String[]{
+                CARNIVAL.getName().toString(),
+                ART.getName().toString(),
+                BOAT.getName().toString(),
+                DRAG.getName().toString(),
+        };
+
+        assertArrayEquals(expectedOrder, actualOrder);
+    }
+
+
+
     /**
      * A stub ReadOnlyScheduler whose events list can violate interface constraints.
      */
@@ -142,5 +164,18 @@ public class SchedulerTest {
         public ObservableList<Event> getEventList() {
             return events;
         }
+    }
+
+    private static String[] getEventNameFrom(List<Event> events) {
+        ArrayList<String> arr = new ArrayList<>();
+
+        for (Event e : events) {
+            arr.add(e.getName().toString());
+        }
+
+        String[] strArr = new String[arr.size()];
+        strArr = arr.toArray(strArr);
+
+        return strArr;
     }
 }
