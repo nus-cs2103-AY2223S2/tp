@@ -49,9 +49,18 @@ public class TagCommandParser implements Parser<TagCommand> {
         }
 
         if (groupsToAdd.isPresent()) {
-            return new TagCommand(contactIndex, groupsToAdd.get(), TagType.GROUP);
+            Set<GroupTag> groups = groupsToAdd.get();
+            if (groups.isEmpty()) {
+                throw new ParseException(TagCommand.MESSAGE_NO_TAGS);
+            }
+            return new TagCommand(contactIndex, groups, TagType.GROUP);
         }
 
-        return new TagCommand(contactIndex, modulesToAdd.get(), TagType.MODULE);
+        Set<ModuleTag> modules = modulesToAdd.get();
+        if (modules.isEmpty()) {
+            throw new ParseException(TagCommand.MESSAGE_NO_TAGS);
+        }
+
+        return new TagCommand(contactIndex, modules, TagType.MODULE);
     }
 }
