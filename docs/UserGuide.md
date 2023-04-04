@@ -42,31 +42,34 @@ TinS in a more efficient way.
 ### How the User Guide is Formatted
 
 #### Additional Tips and Comments
-    **Information Box**
-    <div markdown="span" class="alert alert-primary">
+
+**Information Box**
+<div markdown="span" class="alert alert-primary">
 
     :information_source: **Info:** Provides useful information that supplements the main text
-    </div>
+</div>
 
-    **Tip Box**
-    <div markdown="span" class="alert alert-success">
+**Tip Box**
+<div markdown="span" class="alert alert-success">
 
     :bulb: **Tip:**  Suggestions on how to enhance your experience
-    </div>
+</div>
 
-    **Warning Box**
-    <div markdown="span" class="alert alert-danger">
+**Warning Box**
+<div markdown="span" class="alert alert-danger">
 
     :warning: **Warning:**  Warns of a dangerous action that you should be aware of and to consider
     carefully before committing
-    </div>
+</div>
 
 #### Syntax Highlighting
+
     Commands, fields, prefixes and file paths are highlighted in the User Guide.
     
     Example: `list`, `POSTIION`, `data/internshipcatalogue.json`
     
 #### Buttons
+
     Being optimized for use via typing, you can key in your desired commands to TinS using the keyboard.
     Then, press the <button>Enter</button> to confirm your command and insturct TinS to execute them.
 
