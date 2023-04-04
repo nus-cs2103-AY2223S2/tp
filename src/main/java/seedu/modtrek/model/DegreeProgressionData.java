@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Stack;
 import java.util.stream.Collectors;
 
 import seedu.modtrek.model.module.Module;
@@ -25,7 +26,7 @@ public class DegreeProgressionData {
         "MS", 16,
         "UE", 40));
 
-    // User's calculateProgressd data
+    // User's calculateProgress data
     private int completedCredit = 0; // Credits counted for gpa
     private int plannedCredit = 0;
     private HashMap<String, Integer> completedRequirementCredits = new HashMap<>();
@@ -46,14 +47,58 @@ public class DegreeProgressionData {
      */
     public static DegreeProgressionData generate(UniqueModuleList modList) {
         DegreeProgressionData data = new DegreeProgressionData();
+        Stack<Module> multiTagged = new Stack<>();
         data.initCompletedRequirementCredits();
         modList.forEach((module) -> {
-            data.computeModule(module);
+            if (module.isMultiTagged()) {
+                multiTagged.add(module);
+            } else {
+                data.computeSingleTagModule(module);
+            }
         });
-        data.totalRequirementCredits.merge("UE", data.duplicatedCredits, (x, y) -> x + y);
+        data.computeMultiTagModules(multiTagged);
+        data.updateUeTotal();
         data.computeGpa();
         data.calculateProgress();
         return data;
+    }
+
+    private void updateUeTotal() {
+        this.totalRequirementCredits.merge("UE", this.duplicatedCredits, (x, y) -> x + y);
+    }
+
+    private void computeMultiTagModules(Stack<Module> stack) {
+        while (!stack.isEmpty()) {
+            Module module = stack.pop();
+            int credit = Integer.valueOf(module.getCredit().toString());
+            if (module.isComplete() && module.isGradeable()) {
+                int total = module.getTags()
+                        .stream()
+                        .map((tag) -> {
+                            String tagName = tag.tagName;
+                            return Math.min(credit,
+                                    totalRequirementCredits.get(tagName) - completedRequirementCredits.get(tagName));
+                        })
+                        .reduce(0, (old, next) -> {
+                            return old + next;
+                        });
+                duplicatedCredits += Math.max(total - credit, 0);
+                module.getTags().forEach((tag) -> {
+                    completedRequirementCredits.merge(tag.tagName,
+                            credit, (oldValue, newValue) -> {
+                                int merged = oldValue + newValue;
+                                int cap = totalRequirementCredits.get(tag.tagName);
+                                return merged > cap ? cap : merged;
+                            });
+                });
+                if (!module.isSatisfactory()) { // Checks for SU option
+                    completedCredit += credit;
+                    cumulativePoints += credit * module.getGrade().toPoints();
+                }
+            } else if (!module.isComplete()) {
+                plannedCredit += credit;
+            }
+        }
     }
 
     public Map<String, Integer> getTotalRequirementCredits() {
@@ -117,16 +162,16 @@ public class DegreeProgressionData {
         overallPercentage = (int) (totalRequirementCompletion / TOTALCREDIT * 100);
     }
 
-    private void computeModule(Module module) {
+    private void computeSingleTagModule(Module module) {
         assert module != null;
         int credit = Integer.valueOf(module.getCredit().toString());
         if (module.isComplete() && module.isGradeable()) {
-            duplicatedCredits -= credit;
             module.getTags().forEach((tag) -> {
-                duplicatedCredits += credit;
                 completedRequirementCredits.merge(tag.tagName,
                         credit, (oldValue, newValue) -> {
-                            return oldValue + newValue;
+                            int merged = oldValue + newValue;
+                            int cap = totalRequirementCredits.get(tag.tagName);
+                            return merged > cap ? cap : merged;
                         });
             });
             if (!module.isSatisfactory()) { // Checks for SU option
