@@ -36,8 +36,8 @@ public class AddAssignmentCommandParser implements Parser<AddAssignmentCommand> 
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         int totalMarks = 100;
-        if (arePrefixesPresent(argMultimap, PREFIX_MARK)) { // may have error if ppl just m/abc or m/, fix next time
-            totalMarks = Integer.parseInt(argMultimap.getValue(PREFIX_MARK).get());
+        if (arePrefixesPresent(argMultimap, PREFIX_MARK)) {
+            totalMarks = ParserUtil.parseInt(argMultimap.getValue(PREFIX_MARK).get());
             if (totalMarks < 0) {
                 throw new ParseException("Marks cannot be negative.");
             }

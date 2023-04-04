@@ -31,7 +31,7 @@ public class UngradeCommandParser {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        int studentId = Integer.parseInt(argMultimap.getValue(PREFIX_STUDENT_ID).get());
+        int studentId = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_STUDENT_ID).get()).getOneBased();
         return new UngradeCommand(name.toString(), studentId);
     }
 

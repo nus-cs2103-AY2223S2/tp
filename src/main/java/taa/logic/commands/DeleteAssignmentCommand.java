@@ -29,7 +29,7 @@ public class DeleteAssignmentCommand extends Command {
             model.deleteAssignment(assignmentName);
         } catch (AssignmentException e) {
             throw new CommandException(String.format(
-                "An error occurred when deleting assignment %%s:\n%s",
+                "An error occurred when deleting assignment %s:\n%s",
                 assignmentName,
                 e.getMessage()));
         }

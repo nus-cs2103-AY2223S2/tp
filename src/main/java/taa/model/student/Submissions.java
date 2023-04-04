@@ -10,8 +10,8 @@ import taa.assignment.exceptions.AssignmentNotFoundException;
  * A list of Submissions belonging to a Student.
  */
 public class Submissions {
-    private ArrayList<Submission> submissions;
-    private Student student;
+    private final ArrayList<Submission> submissions;
+    private final Student student;
 
     /**
      * @param submissions A list containing Submissions.
@@ -33,6 +33,10 @@ public class Submissions {
      */
     public void deleteSubmission(Submission submission) {
         this.submissions.remove(submission);
+    }
+
+    public int getSubmissionIndex(Submission s) {
+        return this.submissions.indexOf(s);
     }
 
     /**
