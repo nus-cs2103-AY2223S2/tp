@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -12,6 +14,8 @@ title: User Guide
 FriendlyLink **streamlines volunteer and elderly management** for single administrators of small VWOs. With FriendlyLink, administrators such as yourself can easily manage your database and pair volunteers with the elderly as you wish, all through an intuitive, user-friendly interface. Our goal is to make volunteer and elderly management simple, efficient, and effective, so that you can focus on making a difference in your communities.
 
 With its easy-to-use **text-based interface** and contact management features, say goodbye to manual record-keeping and hello to a more efficient and organised way of managing the volunteers’ and elderly’s contact details.
+
+With FriendlyLink, you can record elderly and volunteer information and pair them up automatically. You can also update and delete records easily, and see a summary of all records in FriendlyLink!
 
 ## Before you Begin
 
@@ -107,6 +111,7 @@ Fields are the information following the slash in a command, to provide appropri
     * Items with `[ellipsis]…` after them can be used 0 or more times.<br>
       e.g. `add_elderly n/NAME [t/TAG]…` can be used as `add_elderly n/John Doe` (no tags included), `add_elderly n/John Doe t/friend` (1 tag), `add_elderly n/John Doe t/friend t/family` (2 tags) and more.
 
+[Back to top](#table-of-contents)
 -------------------------------------------
 
 ### Attributes
@@ -163,7 +168,6 @@ Although a birthdate is required for personal information input, it is not displ
 If a user wishes to view the specific birthdate of a particular person, he / she can refer to the JSON file where the corresponding data is stored.
 </div>
 
-
 #### Region
 The regional area in **Singapore**.
 * Region must be one of the following values: `NORTH`, `NORTHEAST`, `CENTRAL`, `WEST` and `EAST`.
@@ -197,7 +201,8 @@ please ensure your input available date ranges are non-overlapping.
 A tag is a generic description for a group of people.
 * Only alphanumeric, non-space characters are allowed.
 
--------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ## Glossary
 
@@ -263,8 +268,9 @@ Opening multiple instances may result in unexpected behaviours.
 
 </div>
 
+[Back to top](#table-of-contents)
+-------------------------------------------
 
----------------------------------------------------
 ## Features
 
 ### Viewing help : `help`
@@ -275,7 +281,8 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
---------------------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ### Adding records
 
@@ -386,7 +393,8 @@ starting point.
 
 </div>
 
----------------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ### Editing records
 
@@ -453,7 +461,8 @@ Examples:
 * `edit S2233556T p/91642345 re/NORTH` Edits the phone number of the person identified by `S2233556T` to be `91642345` and region to be `NORTH`.
 * `edit S8833657U re/CENTRAL r/HIGH` Edits the region of the person identified by `S8833657U` to be `CENTRAL` and risk level to be `HIGH`. However, if `S8833657U` identifies a volunteer, the risk level edit will be ignored.
 
-------------------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ### Deleting records
 
@@ -500,7 +509,8 @@ Examples
   <img src="images/userGuide/unpair.png" width="800" />
 * `unpair eic/s1135243A vic/S0773423a` unpairs the elderly with NRIC S1135243A with the volunteer with NRIC S0773423A.
 
------------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ### Listing persons: `list`
 
@@ -521,7 +531,8 @@ Examples:
 * `list paired`
 * `list unpaired`
 
---------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ### Finding people and their related pairs: `find`
 
@@ -549,7 +560,8 @@ Examples:
 * `find t/experienced p/1234567 e/betsycrowe@example.com a/Newgate Estate`
 * `find n/John Wick e/johnwick@example.com a/New York p/1234561 ic/T1254567D re/north r/low t/funny dr/2023-04-01,2023-04-15`
 
----------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ### Show Summary Statistics: `stats`
 
@@ -572,6 +584,8 @@ Examples
   ```
   Display summary statistics for all persons (and associated pairs) living in the north.
   <img src="images/userGuide/findStats.png" width="800" />
+
+  --[Back to top](#table-of-contents)
 -------------------------------------------
 
 ### Exiting the program : `exit`
@@ -580,7 +594,8 @@ Exits the program.
 
 Format: `exit`
 
----------------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ### Auto-complete
 
@@ -614,14 +629,16 @@ Example:
 
 </div>
 
---------------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ### Saving the data
 
 FriendlyLink data are saved in the hard disk automatically after any command that changes the data. There is no need to
 save manually.
 
---------------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ### Editing the data file
 
@@ -631,14 +648,16 @@ FriendlyLink data are saved in the JSON files `JAR_FILE_LOCATION/data/elderly.js
 If your changes to the data file makes its format invalid, FriendlyLink will discard all data and start with an empty data file at the next run.
 </div>
 
---------------------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FriendlyLink home folder.
 
----------------------------------------------------
+[Back to top](#table-of-contents)
+-------------------------------------------
 
 ## Command summary
 
