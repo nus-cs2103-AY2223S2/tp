@@ -1,5 +1,6 @@
 package ezschedule.logic.commands;
 
+import static ezschedule.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static ezschedule.logic.commands.CommandTestUtil.DESC_A;
 import static ezschedule.logic.commands.CommandTestUtil.DESC_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_DATE_B;
@@ -10,7 +11,8 @@ import static ezschedule.logic.commands.CommandTestUtil.showEventAtIndex;
 import static ezschedule.testutil.TypicalEvents.getTypicalScheduler;
 import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 import static ezschedule.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -27,11 +29,11 @@ import ezschedule.testutil.EditEventDescriptorBuilder;
 import ezschedule.testutil.EventBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the {@code Model}) and unit tests for {@code EditCommand}.
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalScheduler(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -118,13 +120,21 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_eventEndTimeEarlierThanStartTime_failure() {
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_EVENT,
+                new EditEventDescriptorBuilder().withStartTime("11:00").withEndTime("00:00").build());
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_EVENT_END_TIME_EARLIER_THAN_START_TIME);
+    }
+
+    @Test
     public void execute_invalidEventIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_B).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, String.format(
-                Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, model.getFilteredEventList().size() + 1));
+                MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, model.getFilteredEventList().size() + 1));
     }
 
     /**
@@ -142,7 +152,7 @@ public class EditCommandTest {
                 new EditEventDescriptorBuilder().withName(VALID_NAME_B).build());
 
         assertCommandFailure(editCommand, model, String.format(
-                Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, outOfBoundIndex.getZeroBased() + 1));
+                MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, outOfBoundIndex.getZeroBased() + 1));
     }
 
     @Test
@@ -152,21 +162,21 @@ public class EditCommandTest {
         // same values -> returns true
         EditEventDescriptor copyDescriptor = new EditEventDescriptor(DESC_A);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_EVENT, copyDescriptor);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertEquals(standardCommand, standardCommand);
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertNotEquals(null, standardCommand);
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        assertNotEquals(standardCommand, new ClearCommand());
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_EVENT, DESC_A)));
+        assertNotEquals(standardCommand, new EditCommand(INDEX_SECOND_EVENT, DESC_A));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_EVENT, DESC_B)));
+        assertNotEquals(standardCommand, new EditCommand(INDEX_FIRST_EVENT, DESC_B));
     }
 }
