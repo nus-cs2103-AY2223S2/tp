@@ -2,18 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -72,19 +68,15 @@ public class SetPictureCommand extends Command {
     }
 
     private Path chooseSourcePicture() throws CommandException {
-        JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "JPG, JPEG, or PNG images", "jpg", "jpeg", "png");
-        ThumbNailView thumbNailView = new ThumbNailView();
-        chooser.setFileFilter(filter);
-        chooser.setFileView(thumbNailView);
-        chooser.setDialogTitle("Choose input file");
-
-        int returnVal = chooser.showOpenDialog(null);
-        if (returnVal != JFileChooser.APPROVE_OPTION) {
+        FileChooser fileChooser = new FileChooser();
+        ExtensionFilter filter = new ExtensionFilter("image files", "*.png", "*.jpg", "*.jpeg");
+        fileChooser.getExtensionFilters().add(filter);
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home"), "Downloads"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile == null) {
             throw new CommandException(MESSAGE_SET_PICTURE_FAILURE);
         }
-        return chooser.getSelectedFile().toPath();
+        return selectedFile.toPath();
     }
 
     @Override
@@ -93,25 +85,4 @@ public class SetPictureCommand extends Command {
                 || (other instanceof SetPictureCommand // instanceof handles nulls
                 && employeeId.equals(((SetPictureCommand) other).employeeId)); // state check
     }
-
-    //@@author abenx162-reused
-    // Reused from https://stackoverflow.com/questions/4096433/making-jfilechooser-show-image-thumbnails
-    // with minor modifications
-    /**
-     * A FileView that provides a filechooser with 16x16 icons for representing files.
-     */
-    public static class ThumbNailView extends FileView {
-        public Icon getIcon(File f) {
-            Icon icon = createImageIcon(f.getPath());
-            return icon;
-        }
-
-        private ImageIcon createImageIcon(String path) {
-            ImageIcon icon = new ImageIcon(path);
-            Image image = icon.getImage();
-            Image scaledImage = image.getScaledInstance(16, 16, Image.SCALE_SMOOTH);
-            return new ImageIcon(scaledImage);
-        }
-    }
-    //@@author
 }
