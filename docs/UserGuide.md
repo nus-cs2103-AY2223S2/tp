@@ -478,7 +478,7 @@ images for common species of fish currently, and aims to expand to include more 
 In the list, each fish has an [index](#faq). Use these indexes to perform certain operations on them.
 <br>
 
-Currently, there are five operations around fishes:
+Currently, there are six command actions of type fish:
 * [Adding a fish `fish add`](#adding-a-fish-fish-add)
 * [Deleting a fish `fish delete`](#deleting-a-fish-fish-delete)
 * [Sorting fishes `fish sort`](#sorting-fishes-fish-sort)
@@ -702,4 +702,5 @@ Format: `help`
 | **Tank**          | **Ammonia level reading** | **al/**  |
 | **Tank**          | **PH reading**            | **ph/**  |
 | **Tank**          | **Temperature reading**   | **tp/**  |
+| **Task**          | **Priority**              | **p/**   |
 | **All**           | **Tank**                  | **tk/**  |
