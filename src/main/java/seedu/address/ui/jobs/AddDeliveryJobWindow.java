@@ -357,17 +357,17 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
     }
 
     private boolean validateFields() {
-        boolean flag = true;
+        boolean isError = true;
         if (inputSender.getText().isEmpty()) {
             inputSender.getStyleClass().add("error-input");
             outputError("Sender cannot be empty.");
-            flag = false;
+            isError = false;
         }
 
         if (inputRecipient.getText().isEmpty()) {
             inputRecipient.getStyleClass().add("error-input");
             outputError("Recipient cannot be empty.");
-            flag = false;
+            isError = false;
         }
 
         if (!inputSender.getText().isEmpty() && !inputRecipient.getText().isEmpty()) {
@@ -375,53 +375,53 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
                 inputSender.getStyleClass().add("error-input");
                 inputRecipient.getStyleClass().add("error-input");
                 outputError("Sender and Recipient cannot be the same.");
-                flag = false;
+                isError = false;
             }
         }
 
         if (inputEarning.getText().isEmpty()) {
             inputEarning.getStyleClass().add("error-input");
             outputError("Earning cannot be empty.");
-            flag = false;
+            isError = false;
         }
 
         // any has value
         if (inputDeliveryDate.getValue() != null || inputDeliverySlot.getValue() != null) {
-            boolean dateFilled = false;
-            boolean slotFilled = false;
+            boolean isDateFilled = false;
+            boolean isSlotFilled = false;
 
             // date filled
             if (inputDeliveryDate.getValue() != null && !inputDeliveryDate.getEditor().getText().isBlank()) {
-                dateFilled = true;
+                isDateFilled = true;
             }
 
             // slot filled
             if (inputDeliverySlot.getValue() != null && !inputDeliverySlot.getValue().isBlank()) {
-                slotFilled = true;
+                isSlotFilled = true;
             }
 
-            if (dateFilled || slotFilled) {
+            if (isDateFilled || isSlotFilled) {
                 // date empty
-                if (!dateFilled) {
+                if (!isDateFilled) {
                     showDateError();
-                    flag = false;
+                    isError = false;
                 } else {
                     // date filled, check format
                     if (!DeliveryDate.isValidDate(inputDeliveryDate.getEditor().getText())) {
                         showDateError();
-                        flag = false;
+                        isError = false;
                     }
                 }
 
                 // slot empty
-                if (!slotFilled) {
+                if (!isSlotFilled) {
                     showSlotError();
-                    flag = false;
+                    isError = false;
                 } else {
                     // slot might have value, check field
                     if (inputDeliverySlot.getValue().isBlank()) {
                         showSlotError();
-                        flag = false;
+                        isError = false;
                     }
                 }
             } else {
@@ -430,7 +430,7 @@ public class AddDeliveryJobWindow extends UiPart<Stage> {
             }
         }
 
-        return flag;
+        return isError;
     }
 
     private void showDateError() {

@@ -134,14 +134,14 @@ public class EditDeliveryJobCommandParser implements Parser<EditDeliveryJobComma
 
         if (argMultimap.getValue(PREFIX_IS_DELIVERED).isPresent()) {
             String val = argMultimap.getValue(PREFIX_IS_DELIVERED).get().toLowerCase();
-            boolean done = false;
+            boolean isDone = false;
             if (val.isBlank() || (!val.equals("t") && !val.equals("f"))) {
                 throw new ParseException(String.format(MESSAGE_EMPTY_STATUS));
             }
             if (val.startsWith("t")) {
-                done = true;
+                isDone = true;
             }
-            editDeliveryJobDescriptor.setDelivered(done);
+            editDeliveryJobDescriptor.setDelivered(isDone);
         }
 
         if (!editDeliveryJobDescriptor.isAnyFieldEdited()) {

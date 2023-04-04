@@ -38,7 +38,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     private Consumer<DeliveryJob> onCheckHandler;
     private Optional<BiFunction<DeliverySortOption, Boolean, ObservableList<DeliveryJob>>> sortHandler;
 
-    private boolean sortOrder = false;
+    private boolean isSortByAsc = false;
 
     @FXML
     private ListView<DeliveryJob> deliveryJobListView;
@@ -216,8 +216,8 @@ public class DeliveryJobListPanel extends UiPart<Region> {
     }
 
     private void toggleOrder() {
-        sortOrder = !sortOrder;
-        if (sortOrder) {
+        isSortByAsc = !isSortByAsc;
+        if (isSortByAsc) {
             orderIndicator.setRotate(0);
         } else {
             orderIndicator.setRotate(180);
@@ -229,7 +229,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
         logger.info("[handleOrderByDelivered]");
         sortHandler.ifPresent(fun -> {
             toggleOrder();
-            deliveryJobListView.setItems(fun.apply(DeliverySortOption.COM, sortOrder));
+            deliveryJobListView.setItems(fun.apply(DeliverySortOption.COM, isSortByAsc));
         });
     }
 
@@ -238,7 +238,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
         logger.info("[handleOrderByEarning]");
         sortHandler.ifPresent(fun -> {
             toggleOrder();
-            deliveryJobListView.setItems(fun.apply(DeliverySortOption.EARN, sortOrder));
+            deliveryJobListView.setItems(fun.apply(DeliverySortOption.EARN, isSortByAsc));
         });
     }
 
@@ -247,7 +247,7 @@ public class DeliveryJobListPanel extends UiPart<Region> {
         logger.info("[handleOrderBySchedule]");
         sortHandler.ifPresent(fun -> {
             toggleOrder();
-            deliveryJobListView.setItems(fun.apply(DeliverySortOption.DATE, sortOrder));
+            deliveryJobListView.setItems(fun.apply(DeliverySortOption.DATE, isSortByAsc));
         });
     }
 }

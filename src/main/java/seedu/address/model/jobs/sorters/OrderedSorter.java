@@ -5,13 +5,13 @@ import java.util.Comparator;
 import seedu.address.model.jobs.DeliveryJob;
 
 abstract class OrderedSorter implements Comparator<DeliveryJob> {
-    private boolean asc;
+    private boolean isAsc;
 
-    public OrderedSorter(boolean asc) {
-        this.asc = asc;
+    public OrderedSorter(boolean isAsc) {
+        this.isAsc = isAsc;
     }
 
     public boolean isAsc() {
-        return asc;
+        return isAsc;
     }
 }

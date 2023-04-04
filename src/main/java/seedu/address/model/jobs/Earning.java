@@ -26,7 +26,7 @@ public class Earning implements Comparable<Earning> {
     public Earning(String earning) {
         requireNonNull(earning);
         checkArgument(isValidEarning(earning), MESSAGE_CONSTRAINTS);
-        value = earning;
+        value = Double.toString(Double.parseDouble(earning));
 
         String[] format = earning.split("\\.");
         if (format.length == 2) {
