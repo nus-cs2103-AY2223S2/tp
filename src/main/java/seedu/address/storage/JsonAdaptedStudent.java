@@ -110,7 +110,7 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         if (!Phone.isMoreThanMaxDigits(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_EXCEED_MAX_IGITS);
+            throw new IllegalValueException(Phone.MESSAGE_EXCEED_MAX_DIGITS);
         }
         final Phone modelPhone = new Phone(phone);
 
@@ -133,11 +133,12 @@ class JsonAdaptedStudent {
         if (parentPhone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
+
         if (!Phone.isValidPhone(parentPhone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         if (!Phone.isMoreThanMaxDigits(parentPhone)) {
-            throw new IllegalValueException(Phone.MESSAGE_EXCEED_MAX_IGITS);
+            throw new IllegalValueException(Phone.MESSAGE_EXCEED_MAX_DIGITS);
         }
         final Phone modelParentPhone = new Phone(parentPhone);
 

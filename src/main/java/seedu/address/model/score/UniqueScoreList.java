@@ -107,8 +107,10 @@ public class UniqueScoreList implements Iterable<Score> {
         Double average = scoreSummary.getAverage();
         Double maxValue = scoreSummary.getMax();
         Double minValue = scoreSummary.getMin();
-        Double percentage = (recentScoreList.get(recentScoreList.size() - 1).getValue().value
-                - recentScoreList.get(0).getValue().value) / recentScoreList.get(0).getValue().value * 100;
+        Double oldValue = recentScoreList.get(0).getValue().value;
+        Double newValue = recentScoreList.get(recentScoreList.size() - 1).getValue().value;
+        Double percentage = newValue - oldValue == 0 ? 0 : oldValue == 0 ? (newValue - oldValue) / 1
+            : (newValue - oldValue) / oldValue * 100;
         average = Double.valueOf(df.format(average));
         percentage = Double.valueOf(df.format(percentage));
         ScoreSummary ss = new ScoreSummary(maxValue, minValue, average, percentage);

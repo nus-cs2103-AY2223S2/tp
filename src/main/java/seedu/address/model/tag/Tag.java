@@ -10,6 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
+    public static final String MESSAGE_EXCEED_MAX_LETTERS =
+            "A tag should not contains more than 20 letters. Please try again.";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -22,7 +24,18 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(isMoreThanMaxLetters(tagName), MESSAGE_EXCEED_MAX_LETTERS);
         this.tagName = tagName;
+    }
+
+    /**
+     * Returns true if a given tag length is not exceed 20 letters long.
+     */
+    public static boolean isMoreThanMaxLetters(String test) {
+        if (test.length() > 20) {
+            return false;
+        }
+        return true;
     }
 
     /**

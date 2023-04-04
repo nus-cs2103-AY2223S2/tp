@@ -62,6 +62,21 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void setMathutoring(ReadOnlyMathutoring mathutoring) throws CommandException {
+        model.setMathutoring(mathutoring);
+
+        try {
+            storage.saveMathutoring(model.getMathutoring());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+    }
+
+    @Override
+    public void storeMathutoring(Path filePath) throws IOException {
+        storage.saveMathutoring(model.getMathutoring(), filePath);
+    }
+
     public ObservableList<Student> getFilteredStudentList() {
         return model.getFilteredStudentList();
     }

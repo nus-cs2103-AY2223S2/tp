@@ -6,7 +6,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Score's value in the Score object.
  * Guarantees: immutable; is valid as declared in {@link #isValidScoreValue(String)}
- * {@link #isNegative(String)} {@link #isLargerThanMax(String)}
  */
 public class ScoreValue {
     public static final String MESSAGE_CONSTRAINTS =

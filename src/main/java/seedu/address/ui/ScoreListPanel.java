@@ -78,7 +78,6 @@ public class ScoreListPanel extends UiPart<Region> {
     private final Color yellow = Color.rgb(244, 181, 55);
     private final Color red = Color.rgb(194, 47, 40);
 
-
     /**
      * Creates a {@code ScoreListPanel} with the given {@code ObservableList}.
      *

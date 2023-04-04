@@ -32,6 +32,17 @@ public interface Logic {
      */
     ReadOnlyMathutoring getMathutoring();
 
+    /**
+     * Sets the mathutoring to the given mathutoring.
+     */
+    void setMathutoring(ReadOnlyMathutoring mathutoring) throws CommandException;
+
+    /**
+     * Stores the mathutoring data to the given file path.
+     */
+    void storeMathutoring(Path filePath) throws IOException;
+
+
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
 
