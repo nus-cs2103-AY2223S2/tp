@@ -2,12 +2,29 @@
 layout: page
 title: Developer Guide
 ---
+
+# Welcome to ConnectUS!
+
+ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing (SoC) student, this app is for you. With ConnectUS, you can **easily connect with people** without the anxiety of _remembering who you met where_ holding you back from socialising.
+
+We're focused on:
+- **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
+- **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **easily navigate through your contact information** to find exactly what you need to **connect** with others.
+
+This User Guide will provide you with an in-depth documentation for you to easily integrate ConnectUS into your daily life. It covers **step-by-step instructions** on setting up ConnectUS, core ConnectUS features and commands, and a glossary for definitions of terms used in ConnectUS.
+
+So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
+
+---
+
+<div style="page-break-after: always"></div>
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+# **Acknowledgements**
 
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 - This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
@@ -16,20 +33,20 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+# **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+# **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+## Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -70,7 +87,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+## UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -87,7 +104,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+## Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -116,7 +133,7 @@ How the parsing works:
 * When called upon to parse a user command, the `ConnectUsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ConnectUsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+## Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -136,7 +153,7 @@ The `Model` component,
 </div>
 
 
-### Storage component
+## Storage component
 
 **API** : [`Storage.java`](https://github.com/gremmyz/tp/blob/branch-dont-break/src/main/java/seedu/connectus/storage/Storage.java)
 
@@ -147,17 +164,17 @@ The `Storage` component,
 * inherits from both `ConnectUsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+## Common classes
 
 Classes used by multiple components are in the `seedu.connectus.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+# **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add Command
+## Add Command
 The `add` command is used to create a new contact in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
 
 The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
@@ -183,7 +200,7 @@ The following sequence diagram shows how the `informationFields` are parsed by `
 
 ![AddCommandParseInformationFieldsSequenceDiagram](images/AddCommandParseInformationFieldsDiagram.png)
 
-### Edit Command
+## Edit Command
 The `edit` command is used to change the information of an existing contact in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
 
 The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#editing-a-person--edit).
@@ -204,13 +221,70 @@ The following sequence diagram shows how `edit` works:
 The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
 ![EditCommandParseInformationFieldsSequenceDiagram](images/EditCommandParseInformationFieldsDiagram.png)
 
-### [To Add] Delete Command
+## [To Add] Delete Command
 
-### [To Add] Help Command
+## [To Add] Help Command
 
-### [To Add] Adding Additional Tags
+## [To Add] Adding Additional Tags
 
-### [To Add] Deleting Individual Tags
+## [To Add] Deleting Individual Tags
+
+# Planned Enhancements
+
+This section contains a list of known features that we plan to enhance in future iterations of the application.
+
+## Improve Edit Command
+
+Currently, the edit command will not return the "Invalid Command Format" error message in the Command Result Feedback box. Instead, it states "At least one field to edit must be provided", which indirectly indicates that the command is of the correct format, when it is actually missing at least one information field to be edited.
+
+The correct format should be: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`, where at least one of the optional fields is indicated.
+
+## Better Information Field Validation
+
+Currently, certain information fields can hold values that would be considered invalid in real life. Some other information fields cannot hold values that would be considered valid in real life.
+
+**Emails**: Based on the current [format constraints on valid emails](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#53-email-e), an email such as `jason@gmail` would be considered valid as it is:
+* of the format local-part@domain, where
+    * local-part contains only <u>alphanumeric</u> characters and these <u>special characters</u>:`+_.-`,
+    * local-part does not start or end with any special characters,
+* followed by a '@' and then a domain name, where the domain name
+    * ends with a domain label at least 2 characters long,
+    * starts and ends with alphanumeric characters,
+    * consists of alphanumeric characters, separated only by hyphens, if any.
+
+However, such an email would be considered invalid in real life, as they are of the following format: `local-part@domain.extension`, e.g. `jason@gmail.com`.
+
+**Addresses**: Based on the current [format constraints on valid addresses](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#54-address-a), an address such as `;` would be considered valid as it:
+* can take any value, and should not be blank.
+
+However, such an address would be considered invalid in real life, as it would at least include a block number, street name, and a postal code.
+
+**Instagram Usernames**: Based on the current [format constraints on valid Instagram usernames](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#55-instagram-ig), an Instagram username such as `john_doe` would be considered as invalid as:
+* it contains the special character `_`, when it should only contain the special character `.`.
+
+However, such an Instagram username would be considered valid in real life.
+
+
+## More Language Support
+
+Currently, English is the only language that is supported by our application.
+
+As we are aware that there are many international students studying in NUS SoC, we intend to add more language support (such as Chinese, French, Japanese, Korean etc.) so that international students can better enjoy our app!
+
+## More Social Media Support
+
+Currently, only Instagram, Telegram and WhatsApp are supported.
+
+As we are aware that some students studying in NUS SoC may have other forms of social media (such as WeChat, LinkedIn, Reddit etc.), and may want to add them to contacts, we are currently working on bringing this feature to you!
+
+We plan to address and fix all the current constraints mentioned above in the next iteration of this product (V1.5).
+
+
+[↑ Back to top of section](#planned-enhancements)
+
+---
+
+<div style="page-break-after: always"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 

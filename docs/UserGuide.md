@@ -248,7 +248,7 @@ To use ConnectUS, type the [command](#321-command) along with its [parameters](#
 
 ## 3.4 How to Use the CLI
 
-To use the Command Line Interface(CLI), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
+To use the Command Line Interface (CLI), you can type a [command](#321-command) in the [Command Box](#311-command-box) and press Enter to execute it. For example, typing **`help`** and pressing Enter will open the help window.<br>
    ![Command Box](images/ConnectUSCommandBox.png) <br>
 
 To familiarise yourself with ConnectUS, let's try out [the `add` command](#44-adding-a-contact-add) ! The `add` command allows you to add a new contact into the [Contact List](#313-contact-list).
@@ -815,7 +815,7 @@ ConnectUS uses prefixes to distinguish between the different types of informatio
     * This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
       The domain name must:
         - end with a domain label at least 2 characters long
-        - have each domain label start and end with <u>alphanumeric</u> characters
+        - have each domain label start and end with alphanumeric characters
         - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 [↑ Back to prefix list](#5-information-fields--prefixes)
