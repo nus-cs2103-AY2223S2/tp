@@ -46,6 +46,7 @@ public class Review {
                 ? cardsInDeck.size()
                 : Integer.min(userSetNum, cardsInDeck.size());
 
+        // Initialize the unique card list
         initReviewCardList(cardsInDeck);
         this.unmodifiableReviewCardList = uniqueReviewCardList.asUnmodifiableObservableList();
         filteredReviewCardList = new FilteredList<>(this.unmodifiableReviewCardList);
@@ -64,7 +65,7 @@ public class Review {
     }
 
     /**
-     * Initialize all cards as unflipped.
+     * Initialize all cards as unflipped in an UniqueCardList instance.
      *
      * @param cardList List of Cards to initialize UniqueCardList with.
      */
@@ -192,15 +193,21 @@ public class Review {
     }
 
     public int getNoOfEasyTags() {
-        return (int) unmodifiableReviewCardList.stream().filter(card -> card.getTagName().equals("easy")).count();
+        return (int) unmodifiableReviewCardList.stream()
+                .filter(card -> orderOfCards.contains(unmodifiableReviewCardList.indexOf(card)))
+                .filter(card -> card.getTagName().equals("easy")).count();
     }
 
     public int getNoOfMediumTags() {
-        return (int) unmodifiableReviewCardList.stream().filter(card -> card.getTagName().equals("medium")).count();
+        return (int) unmodifiableReviewCardList.stream()
+                .filter(card -> orderOfCards.contains(unmodifiableReviewCardList.indexOf(card)))
+                .filter(card -> card.getTagName().equals("medium")).count();
     }
 
     public int getNoOfHardTags() {
-        return (int) unmodifiableReviewCardList.stream().filter(card -> card.getTagName().equals("hard")).count();
+        return (int) unmodifiableReviewCardList.stream()
+                .filter(card -> orderOfCards.contains(unmodifiableReviewCardList.indexOf(card)))
+                .filter(card -> card.getTagName().equals("hard")).count();
     }
 
     public int getNoOfUntagged() {
