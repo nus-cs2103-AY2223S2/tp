@@ -156,7 +156,6 @@ public class ModelManager implements Model {
      * Updates the scheduled meet up list to remove deleted persons.
      * @param target The deleted person.
      */
-    @Override
     public void updateMeetUpForDeletePerson(Person target) {
         for (MeetUp meetUp : observableMeetUps) {
             Participants participants = meetUp.getParticipants();
@@ -170,7 +169,6 @@ public class ModelManager implements Model {
         removeEmptyMeetUps();
     }
 
-    @Override
     public void removeEmptyMeetUps() {
         this.eduMate.removeEmptyMeetUps();
     }
@@ -188,8 +186,29 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         eduMate.setPerson(target, editedPerson);
+        //todo edit person name if person in meetup list
+        updateMeetUpForEditPerson(target, editedPerson);
+    }
+    public void updateMeetUpForEditPerson(Person target, Person editedPerson) {
+        for (MeetUp meetUp : observableMeetUps) {
+            Participants participants = meetUp.getParticipants();
+            List<Person> personList = participants.getParticipants();
+
+            updatePersonList(personList, target, editedPerson, meetUp);
+        }
+    }
+
+    public void updatePersonList(List<Person> personList, Person target,
+                                 Person editedPerson, MeetUp meetUp) {
+        for (Person person : personList) {
+            if (person.isSamePerson(target)) {
+                personList.remove(target);
+                personList.add(editedPerson);
+                meetUp.setParticipants(new Participants(personList));
+                break;
+            }
+        }
     }
 
     @Override
@@ -371,7 +390,6 @@ public class ModelManager implements Model {
         observableMeetUps.setComparator(comparator);
     }
 
-    @Override
     public void addMeetUp(MeetUp meetUp) {
         //checks if meet up clashes with any scheduled meet ups
         if (hasClashScheduled(meetUp)) {
@@ -389,7 +407,6 @@ public class ModelManager implements Model {
      * Checks if meet up clashes with already scheduled meet up.
      * @return true if a clash exists, else false.
      */
-    @Override
     public boolean hasClashScheduled(MeetUp meetUp) {
         List<TimePeriod> timePeriods = new ArrayList<>();
         for (MeetUp meet : observableMeetUps) {
@@ -403,7 +420,6 @@ public class ModelManager implements Model {
      * Checks if meet up clashes with lessons
      * @return true if a clash exists, else false.
      */
-    @Override
     public boolean hasClashTimeTable(MeetUp meetUp) {
         //check if user timetable has clash
         Timetable userTimeTable = getUser().getTimetable();

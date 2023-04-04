@@ -224,12 +224,6 @@ public interface Model {
 
     void removeEmptyMeetUps();
 
-    boolean hasClashScheduled(MeetUp meetUp);
-
-    boolean hasClashTimeTable(MeetUp meetUp);
-
-    void updateMeetUpForDeletePerson(Person target);
-
     void setParticipants(Set<ContactIndex> indices);
 
     Participants getParticipants();
