@@ -10,7 +10,7 @@
          <TableColumn fx:id="index" editable="false" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" style="-fx-alignment: CENTER;" text="Id" />
          <TableColumn fx:id="name" editable="false" text="Name" />
          <TableColumn fx:id="photo" editable="false" prefWidth="30.0" style="-fx-alignment: CENTER;" text="Photo" />
-         <TableColumn fx:id="telegram" style="-fx-alignment: CENTER;" text="Telegram/Phone" />
+         <TableColumn fx:id="telegram" style="-fx-alignment: CENTER;" text="Telegram" />
          <TableColumn fx:id="email" text="NUS Email" />
          <TableColumn fx:id="address" prefWidth="120.0" text="Address" />
          <TableColumn editable="false" text="Statistics">

@@ -283,9 +283,9 @@ Deletes a student from an event.
 - The STUDENT_INDEX input refers to the index of the student in the student list.
 - The EVENT_INDEX input refers to the index of the event within its own list (tutorial list/lab list/consultation list).
 - The index inputs are 1-based.
-- Valid indexes must be provided.
+- Valid indexes must be provided (TrAcker checks for valid event index first before checking for valid student index)
 - EVENT_TYPE refers to the type of event (Tutorial/Lab/Consultation).
-- Event type input must be valid and the first letter must be capitalized.
+- Event type input must be valid and the first letter must be capitalized
 
 Format: `deleteStudent [STUDENT_INDEX] [EVENT_TYPE]/[EVENT_INDEX]`
 

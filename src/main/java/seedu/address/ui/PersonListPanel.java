@@ -61,6 +61,8 @@ public class PersonListPanel extends UiPart<Region> {
 
         setIndexColumn();
 
+        wrapName();
+
         wrapAddress();
 
         wrapTelegram();
@@ -68,7 +70,6 @@ public class PersonListPanel extends UiPart<Region> {
         SortedList<Person> sorted = new SortedList<>(personList);
         table.setItems(sorted);
         sorted.comparatorProperty().bind(table.comparatorProperty());
-        int i = 0;
         table.setRowFactory(tableView -> {
             TableRow<Person> row = new TableRow<>();
             return row;
@@ -105,6 +106,27 @@ public class PersonListPanel extends UiPart<Region> {
                 }
             }, cell.emptyProperty(), cell.indexProperty()));
             return cell;
+        });
+    }
+
+    public void wrapName() {
+        name.setCellFactory(param -> {
+            return new TableCell<Person, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    if (item == null || empty) {
+                        setText(null);
+                        setGraphic(null);
+                    } else {
+                        //Credit to P113305A009D8M
+                        //https://stackoverflow.com/questions/22732013/javafx-tablecolumn-text-wrapping
+                        Text text = new Text(item);
+                        text.setStyle("-fx-text-alignment:justify; -fx-fill:derive(#828282, -50%)");
+                        text.wrappingWidthProperty().bind(getTableColumn().widthProperty().subtract(35));
+                        setGraphic(text);
+                    }
+                }
+            };
         });
     }
 

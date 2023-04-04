@@ -150,8 +150,9 @@ public class EventCard extends UiPart<Region> {
         if (event.countStudents() > 0) {
             for (int i = 1; i <= event.countStudents(); i++) {
                 Person student = event.getStudents().get(i - 1);
-                Label label = new Label(i + ". " + student.getName() + ". Overall performance: "
+                Label label = new Label(i + "." + student.getName() + ". Overall performance: "
                         + student.getPerformance() + "/100");
+                label.setWrapText(true);
                 studentBox.getChildren().add(label);
             }
         }

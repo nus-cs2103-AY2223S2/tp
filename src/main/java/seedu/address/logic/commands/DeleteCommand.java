@@ -20,7 +20,7 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "rm";
 
-    public static final String MESSAGE_USAGE = "Delete syntax: rm INDEX (must be a positive integer)";
+    public static final String MESSAGE_USAGE = "Delete syntax: rm INDEX";
 
     public static final String DELETE_EXAMPLE = "Example: " + COMMAND_WORD + " 1";
 

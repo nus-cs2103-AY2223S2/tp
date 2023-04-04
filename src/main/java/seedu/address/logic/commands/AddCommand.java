@@ -29,7 +29,7 @@ public class AddCommand extends Command {
     public static final String ADD_EXAMPLE = "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
+            + PREFIX_EMAIL + "e9182842@u.nus.edu "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_PERFORMANCE + "40 ";
 

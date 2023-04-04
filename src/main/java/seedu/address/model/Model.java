@@ -136,7 +136,7 @@ public interface Model {
      * @param eventIndex the index of the event that the student will be deleted from.
      * @param eventType the type of event that the student will be deleted from.
      */
-    void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType);
+    void deleteStudentFromEvent(Index toDel, Index eventIndex, String eventType) throws ParseException;
 
     /** Returns an unmodifiable view of the filtered tutorial list */
     ObservableList<Tutorial> getFilteredTutorialList();
