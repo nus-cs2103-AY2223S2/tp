@@ -57,6 +57,8 @@ public class PersonListPanel extends UiPart<Region> {
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
 
+        table.setMouseTransparent(true);
+
         initCellValue();
 
         setIndexColumn();

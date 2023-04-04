@@ -31,7 +31,6 @@ import seedu.address.model.person.Person;
 public class EventCard extends UiPart<Region> {
     private static final String FXML = "EventListCard.fxml";
     public final Event event;
-    //private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @javafx.fxml.FXML
     private HBox cardPane;
@@ -75,9 +74,9 @@ public class EventCard extends UiPart<Region> {
     private Line line;
 
     /**
-     * Adds an event with a unique index
-     * @param event
-     * @param displayedIndex
+     * Adds an event with a unique index and renders the event card displays
+     * @param event the type of event to handle which is either Tutorial or Lab or Consultation
+     * @param displayedIndex the displayed index of the event card
      */
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
@@ -102,6 +101,10 @@ public class EventCard extends UiPart<Region> {
         handleNoteClick();
     }
 
+    /**
+     * Displays all the student that are present in the event by the student name and the student performance.
+     * The index of the student in the event is also displayed, starting from 1
+     */
     private void displayStudentNames() {
         if (event.countStudents() > 0) {
             for (int i = 1; i <= event.countStudents(); i++) {
@@ -114,6 +117,9 @@ public class EventCard extends UiPart<Region> {
         }
     }
 
+    /**
+     * Allows the user to toggle the display of notes by double-clicking on the event card
+     */
     private void handleNoteClick() {
         if (event.countNotes() > 0) {
             cardPane.addEventHandler(MouseEvent.MOUSE_CLICKED, click -> {
@@ -126,7 +132,12 @@ public class EventCard extends UiPart<Region> {
         }
     }
 
-
+    /**
+     * Sets a specific imageview to an icon based on the filepath. The size is retrieved from the gui settings
+     * @param imageView the imageview to set the image one
+     * @param filePath  the filepath to the image
+     * @param size      the TrAcker wide size for icons from the gui settings
+     */
     private void setImageIcon(ImageView imageView, String filePath, int size) {
         Image newImage = new Image(Objects.requireNonNull(this.getClass()
                 .getResourceAsStream(filePath)));
@@ -135,6 +146,12 @@ public class EventCard extends UiPart<Region> {
         imageView.setFitHeight(size);
     }
 
+    /**
+     * Sets the image on a new imageview that has yet to be rendered
+     * @param filePath  the filepath to the image
+     * @param size      the TrAcker wide size for icons from the gui settings
+     * @return the new ImageView
+     */
     private ImageView setImageIcon(String filePath, int size) {
         ImageView imageView = new ImageView();
         Image newImage = new Image(Objects.requireNonNull(this.getClass()
@@ -145,6 +162,13 @@ public class EventCard extends UiPart<Region> {
         return imageView;
     }
 
+    /**
+     * Sets the corner profile icons at the top right of the event card. If there are more
+     * than 4 students, a more ellipses icon is added.
+     * @param event         the type of event to render the top right profile icons
+     * @param morePhoto     the filepath to the ellipses photo / more photo icon
+     * @param size          the TrAcker wide size for icons from the gui settings
+     */
     private void setTopRightProfiles(Event event, String morePhoto, int size) {
         //set list of student profiles at top right
         for (int i = 0; i < event.countStudents(); i++) {
@@ -164,12 +188,23 @@ public class EventCard extends UiPart<Region> {
         }
     }
 
+    /**
+     * Allows the progress bar to be updated based on the number of students are present. The maximum
+     * number of students to fill up the progress bar is 20
+     * @param event the type of event to set the progress bar
+     */
     private void handleProgressBar(Event event) {
         if (event.countStudents() > 0) {
             progressBar.setProgress((double) event.countStudents() / 20);
         }
     }
 
+    /**
+     * Renders the notes for event card in a list manner and hides it at first
+     * @param event         the type of event to render the notes
+     * @param noteIcon      the filepath to the note icon
+     * @param size          the TrAcker wide size for icons from the gui settings
+     */
     private void displayNotes(Event event, String noteIcon, int size) {
         List<String> noteStrs;
         if (event.countNotes() > 0) {
@@ -192,8 +227,11 @@ public class EventCard extends UiPart<Region> {
         }
     }
 
-
-    //Add more comparison in equals
+    /**
+     * Compares equality of event cards based on the id and the event
+     * @param other the object to compare to
+     * @return      the boolean status of whether the current event card is equals to the object of comparison
+     */
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
