@@ -2,7 +2,6 @@ package ezschedule.model.event;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 import static java.time.temporal.ChronoUnit.MONTHS;
-import static java.time.temporal.ChronoUnit.YEARS;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
@@ -39,7 +38,7 @@ public class Date implements Comparable<Date> {
         try {
             this.date = LocalDate.parse(date, formatter.withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException e) {
-            String message = String.format("Date %1s is invalid", date);
+            String message = String.format("Date %1$s is invalid", date);
             throw new InvalidDateException(message);
         }
     }
@@ -51,22 +50,30 @@ public class Date implements Comparable<Date> {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the number of days between two valid dates.
+     */
     public long getDaysBetween(LocalDate comparingDate) {
         return DAYS.between(date, comparingDate);
     }
 
+    /**
+     * Returns the number of months between two valid dates.
+     */
     public long getMonthsBetween(LocalDate comparingDate) {
         return MONTHS.between(date, comparingDate);
     }
 
-    public long getYearsBetween(LocalDate comparingDate) {
-        return YEARS.between(date, comparingDate);
-    }
-
+    /**
+     * Returns true if date has passed.
+     */
     public boolean isPastDate() {
         return date.isBefore(LocalDate.now());
     }
 
+    /**
+     * Returns true if date has yet to pass.
+     */
     public boolean isFutureDate() {
         return date.isAfter(LocalDate.now());
     }
