@@ -12,7 +12,6 @@ import bookopedia.model.person.Person;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -53,7 +52,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private ScrollPane viewDisplayPlaceHolder;
+    private StackPane viewDisplayPlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -127,12 +126,10 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        viewDisplayPlaceHolder.setFitToWidth(true);
-
         if (logic.getFilteredPersonList().size() != 0) {
             Person defaultPerson = logic.getFilteredPersonList().get(0);
             ViewDisplay viewDisplay = new ViewDisplay(defaultPerson, 0);
-            viewDisplayPlaceHolder.setContent(viewDisplay.getRoot());
+            viewDisplayPlaceHolder.getChildren().add(viewDisplay.getRoot());
         }
     }
 
@@ -178,10 +175,10 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private void handleView(Person person, int id) {
-        viewDisplayPlaceHolder.setContent(null);
+        viewDisplayPlaceHolder.getChildren().clear();
         if (person != null) {
             ViewDisplay viewDisplay = new ViewDisplay(person, id);
-            viewDisplayPlaceHolder.setContent(viewDisplay.getRoot());
+            viewDisplayPlaceHolder.getChildren().add(viewDisplay.getRoot());
         }
     }
 
