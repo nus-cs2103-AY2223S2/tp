@@ -3,8 +3,6 @@ package seedu.address.logic.parser.fish;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TANK;
-import static seedu.address.model.date.DateUtil.parseFeedingIntervalDays;
-import static seedu.address.model.date.DateUtil.parseFeedingIntervalHours;
 
 import java.util.Comparator;
 import java.util.stream.Stream;
@@ -40,7 +38,9 @@ public class FishSortCommandParser implements Parser<FishSortCommand> {
         int d2 = Integer.parseInt(f2.getFeedingInterval().days);
         int h2 = Integer.parseInt(f2.getFeedingInterval().hours);
         if (d1 == d2) {
-            if (h1 == h2) return 0;
+            if (h1 == h2) {
+                return 0;
+            }
             return h1 > h2 ? 1 : -1;
         } else {
             return d1 > d2 ? 1 : -1;
