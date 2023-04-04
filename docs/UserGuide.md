@@ -64,11 +64,11 @@ You can click on any of the links below to navigate to the respective sections f
     * [2.6.2 Listing all orders: `list_order`](#262-listing-all-orders-listorder)
     * [2.6.3 Listing all tasks: `list_task`](#263-listing-all-tasks-listtask)
     * [2.6.4 Listing all menu items: `list_menu`](#264-listing-all-menu-items-listmenu)
-  * [Clear](#clear)
-    * [Clear all supplier entries: `clear_supplier`](#clear-all-supplier-entries-clearsupplier)
-    * [Clear all order entries: `clear_order`](#clear-all-order-entries-clearorder)
-    * [Clear all task entries: `clear_task`](#clear-all-task-entries-cleartask)
-    * [Clear all menu item entries: `clear_menu`](#clear-all-menu-item-entries-clearmenu)
+  * [2.7 Clear](#27-clear)
+    * [2.7.1 Clear all supplier entries: `clear_supplier`](#271-clear-all-supplier-entries-clearsupplier)
+    * [2.7.2 Clear all order entries: `clear_order`](#272-clear-all-order-entries-clearorder)
+    * [2.7.3 Clear all task entries: `clear_task`](#273-clear-all-task-entries-cleartask)
+    * [2.7.4 Clear all menu item entries: `clear_menu`](#274-clear-all-menu-item-entries-clearmenu)
   * [Switch](#switch)
     * [Switching tabs: `tab`](#switching-tabs-tab)
   * [Others](#others)
@@ -1179,31 +1179,99 @@ Syntax `list_menu`
 
 </div>
 
-## Clear
+## 2.7 Clear
 
-### Clear all supplier entries: `clear_supplier`
+Clears all data in the specific list. Below are the specific clear commands for suppliers, order, tasks and menu.
 
-Clears all supplier entries from the supplier list.
+<div markdown="span" class="alert alert-danger">
+
+:exclamation: **Danger**<br>
+
+Clearing of data is one-way (i.e. You cannot revert your command).<br>
+
+We are working to have an undo feature in the future. Sorry for the inconvenience caused.
+
+</div>
+
+### 2.7.1 Clear all supplier entries: `clear_supplier`
+
+Clears all supplier entries from the contact list.
 
 Syntax: `clear_supplier`
 
-### Clear all order entries: `clear_order`
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command**
+
+* `clear_supplier`<br>
+  Clears all supplier data from contact list.
+
+:clipboard: **Example 2: Shortcut command with parameters**
+
+* `clear_s n/Name`<br>
+  Clears all supplier data from contact list.
+
+</div>
+
+### 2.7.2 Clear all order entries: `clear_order`
 
 Clears all order entries from the order list.
 
 Syntax: `clear_order`
 
-### Clear all task entries: `clear_task`
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command**
+
+* `clear_order`<br>
+  Clears all order data from order list.
+
+:clipboard: **Example 2: Shortcut command with parameters**
+
+* `clear_o on/Chocolate`<br>
+  Clears all order data from order list.
+
+</div>
+
+### 2.7.3 Clear all task entries: `clear_task`
 
 Clears all task entries from the task list.
 
 Syntax: `clear_task`
 
-### Clear all menu item entries: `clear_menu`
+<div markdown="block" class="alert alert-example">
 
-Clears all menu item entries from the menu item list.
+:clipboard: **Example 1: Standard command**
+
+* `clear_task`<br>
+  Clears all task data from task list.
+
+:clipboard: **Example 2: Shortcut command with parameters**
+
+* `clear_t s/N`<br>
+  Clears all task data from task list.
+
+</div>
+
+### 2.7.4 Clear all menu item entries: `clear_menu`
+
+Clears all menu item entries from the menu.
 
 Syntax: `clear_menu`
+
+<div markdown="block" class="alert alert-example">
+
+:clipboard: **Example 1: Standard command**
+
+* `clear_menu`<br>
+  Clears all menu item data from menu.
+
+:clipboard: **Example 2: Shortcut command with parameters**
+
+* `clear_m price`<br>
+  Clears all menu item data from menu.
+
+</div>
 
 ## Switch
 
