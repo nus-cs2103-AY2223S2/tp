@@ -25,17 +25,17 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
    Some example commands you can try:
 
    * `list` : Lists all contacts.
-   
+
    * `listevent` : Lists all events.
-   
+
    * `listall` : Lists all contacts and events using a single command.
 
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-   
+
    * `addevent ev/CEO's 50th Birthday Carnival from/17-07-2023 12:00 to/23-07-2023 22:00` : Adds an event named `CEO's 50th Birthday Carnival` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current contact list.
-   
+
    * `delevent 1` : Deletes the 1st event shown in the current event list.
 
    * `clear` : Deletes all contacts and events.

@@ -197,7 +197,7 @@ The `deleteEventFromPersonList` method will check through the full list of `Pers
 
 #### Current Implementation
 
-Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`. 
+Sorting a list of events is a feature that uses the command `sortevent a/b/c/d`.
 The events can be sorted based on their:
 - names in ascending ASCII order (using `sortevent a`)
 - names in descending ASCII order (using `sortevent b`)
@@ -223,7 +223,7 @@ Listing persons from an event is a feature that uses the command `listevcontact 
 
 The `listevcontact` constructs an `EventSetContainsEventPredicate` object first, then executes `Model#updateFilteredPersonList(EventSetContainsEventPredicate)` to update the list according to the predicate to list of persons whose event set contain the specified event.
 
-The `EventSetContainsEventPredicate` object is created in `ListEvContactCommand` instead of `ListEvContactCommandParser` because the `EventSetContainsEventPredicate` object needs to take in the specified `Event` which can only be referenced by the `EVENT_INDEX` in `ListEvContactCommand` class. 
+The `EventSetContainsEventPredicate` object is created in `ListEvContactCommand` instead of `ListEvContactCommandParser` because the `EventSetContainsEventPredicate` object needs to take in the specified `Event` which can only be referenced by the `EVENT_INDEX` in `ListEvContactCommand` class.
 
 ---
 
@@ -418,7 +418,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder
 
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-   
+
 2. Shutting down
 
    1. Enter `exit` in the app's input box or click on the cancel button on the top right of the app.
