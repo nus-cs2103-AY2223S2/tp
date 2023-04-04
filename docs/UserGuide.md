@@ -191,22 +191,24 @@ Format: `add_contact INDEX p/PHONE_NUMBER e/EMAIL`
 - Adds contact details to the internship application at the specified `INDEX`.
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
+- **Both** the phone number and email must be provided.
 - `PHONE_NUMBER` should be a valid phone number of at least 3 digits.
 - `EMAIL` should be a valid email of the format `username@domain.com`.
 
 Examples:
 * `add_contact 1 p/87654321 e/abc@gmail.com` adds the contact number `87654321` and email `abc@gmail.com` to the 1st application in the list of applications.
-* `add_contact 2 e/someemail@gmail.com` adds the email `someemail@gmail.com` to the 2nd application in the list of applications.
+* `add_contact 2 p/65432100 e/someemail@gmail.com` adds the contact number `65432100` and the email `someemail@gmail.com` to the 2nd application in the list of applications.
 
 ### Edit contact details : `edit_contact`
 
 Edits the contact details of a company previously added to a specified application.
 
-Format: `edit_contact INDEX p/PHONE_NUMBER e/EMAIL`
+Format: `edit_contact INDEX [p/PHONE_NUMBER] [e/EMAIL]`
 
 - Edits contact details of the internship application at the specified `INDEX`.
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
+- **At least one** field should be provided.
 - `PHONE_NUMBER` should be a valid phone number of at least 3 digits.
 - `EMAIL` should be a valid email of the format `username@domain.com`.
 
@@ -254,6 +256,7 @@ Format: `add_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK`
 
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
+- **Both** the resume link and the cover letter link must be provided.
 - `RESUME_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
 - `COVER_LETTER_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
 
@@ -267,10 +270,11 @@ Examples:
 
 Edits the documents which include the resume link and cover letter link previously added to a specified application.
 
-Format: `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK`
+Format: `edit_docs INDEX [rs/RESUME_LINK] [cl/COVER_LETTER_LINK]`
 
 - The index refers to the index number shown in the displayed internship list.
 - The index must be a positive integer 1, 2, 3, …​
+- **At least one** field should be provided.
 - `RESUME_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
 - `COVER_LETTER_LINK` must be a valid URL in the format `http://domain/path` or `https://domain/path`.
 
@@ -617,8 +621,8 @@ Action | Format, Examples
 **Delete Note** |`delete_note INDEX` <br> e.g., `delete_note 2`
 **Delete Todo** |`delete_todo INDEX` <br> e.g., `delete_todo 2`
 **Edit** | `edit INDEX [n/COMPANY_NAME] [j/JOB_TITLE] [l/LOCATION] [s/SALARY] [rate/RATING] [q/QUALIFICATION]... [p/PROGRAMMINGLANGUAGE]... [r/REVIEW]... [note/NOTE]... [reflect/REFLECTION]...` <br> e.g., `edit 1 q/Singapore citizen q/Pursuing CS degree` 
-**Edit Contact** | `edit_contact INDEX p/PHONE_NUMBER e/EMAIL` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
-**Edit Documents** | `edit_docs INDEX rs/RESUME_LINK cl/COVER_LETTER_LINK` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
+**Edit Contact** | `edit_contact INDEX [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `edit_contact 3 p/98765432 e/def@gmail.com`
+**Edit Documents** | `edit_docs INDEX [rs/RESUME_LINK] [cl/COVER_LETTER_LINK]` <br> e.g., `edit_docs 2 rs/https://www.goodresume.com/myresume cl/https://www.goodcoverletter.com/mycoverletter`
 **Edit Deadline** |`edit_deadline INDEX by/DEADLINE` <br> e.g., `edit_deadline 2 by/2023-06-05`
 **Edit Note Content** |`edit_content c/NOTE_CONTENT` <br> e.g., `edit_content 2 c/Venue changed`
 **Edit Status** | `edit_status INDEX s/STATUS` <br> e.g., `edit_status 2 s/PENDING`
