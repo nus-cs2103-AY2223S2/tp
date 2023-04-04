@@ -162,7 +162,7 @@ Create a group in the address book.
 Format: `group_create g/GROUP_NAME`
 
 * Creates a group with the specified group name `GROUP_NAME`.
-* Group name can only contain alphanumeric number
+* Group name can only contain alphanumeric number but whitespaces are not allowed
 * The group name cannot be empty
 * Only one group can be created
 * If more than one group is specified, only the last occurrence of a group will be taken
