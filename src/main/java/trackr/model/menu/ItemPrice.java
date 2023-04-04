@@ -56,7 +56,7 @@ public class ItemPrice {
 
     @Override
     public String toString() {
-        return "Price: $" + formattedValue;
+        return formattedValue;
     }
 
     @Override

@@ -13,6 +13,9 @@ public class ItemSellingPrice extends ItemPrice {
         super(value);
     }
 
+    public ItemSellingPrice(Double value) {
+        super(value);
+    }
     @Override
     public String toString() {
         return "Selling Price: $" + this.getFormattedValue();
