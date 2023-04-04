@@ -145,7 +145,8 @@ The other tab lists projects that are overdue. For example, if the current date 
 will not appear in **Overdue project list**, but projects with deadlines on 10/04/2023 will appear in the **Overdue
 project list**.
 
-The bottom portion shows a pie chart that displays the relative proportions of projects that are not started, in progress, and done.
+The bottom portion shows a pie chart that displays the relative proportions of projects that are not started, in progress, and done
+(which corresponds to the statuses of projects in Mycelium).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -234,6 +235,11 @@ Once successfully created, the interface will display the new client's name and 
     - The client’s mobile number.
     - **Default:** *null*
 
+<div markdown="span" class="alert alert-danger">
+:warning: Mycelium does not accommodate 'extreme' inputs (e.g., a client name or email with 1000 characters)
+at this version. This will be added in a future version. Meanwhile, you can limit the characters of each field
+to your screen size and resize if needed to see the full text. 
+</div>
 
 **Example**
 
@@ -363,6 +369,12 @@ If the project is added successfully, a message confirming the addition will be 
 - `-dd deadline_date`
     - The deadline of the project, in the format dd/MM/yyyy.
     - **Default:** *null*
+
+<div markdown="span" class="alert alert-danger">
+:warning: Mycelium does not accommodate 'extreme' inputs (e.g., a project name or description with 1000 characters)
+at this version. This will be added in a future version. Meanwhile, you can limit the characters of each field
+to your screen size and resize if needed to see the full text. 
+</div>
 
 **Example**
 
