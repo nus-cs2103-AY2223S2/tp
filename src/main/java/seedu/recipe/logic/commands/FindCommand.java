@@ -15,10 +15,11 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all recipes whose titles/descriptions,"
-            + " steps, ingredients contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: " + PREFIX_TITLE + "KEYWORD [MORE_KEYWORDS]...\n";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the recipes in your recipe according"
+            + " to what you are looking for.\n"
+            + "Format: " + PREFIX_TITLE + "[r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]\n"
+            + "Only one command flag can be present.\n"
+            + "Example: find r/eggs";
 
 
     private final ContainsKeywordsPredicate predicate;

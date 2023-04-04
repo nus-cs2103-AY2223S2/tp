@@ -18,8 +18,9 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the recipe identified by the index number used in the displayed recipe list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + ": Deletes the recipe at the specified recipe number from your recipe book.\n"
+            + "Format: delete RECIPE_NUMBER \n"
+            + "RECIPE_NUMBER must be a positive integer starting from 1 and must exist in the recipe book.\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_RECIPE_SUCCESS = "Deleted Recipe: %1$s";
