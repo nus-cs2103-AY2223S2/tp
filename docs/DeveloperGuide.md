@@ -6,23 +6,8 @@ title: Developer Guide
 <img src="images/logo_DG.png" width="300">
 </p>
 
-# Table of Contents
-* [About](#about)
-* [Acknowledgements](#acknowledgements)
-* [Setting up, getting started](#Getting-started)
-* [Design](#Design)
-  * [Architecture](#Architecture)
-  * [UI component](#UI-component)
-  * [Model component](#Model-component)
-  * [Storage component](#Storage-component)
-  * [Common classes](#Common-classes)
-* [Feature Implementations](#Feature-Implementations)
-  * [Automatic Feeding Reminders](#Automatic-Feeding-Reminders)
-  * [FishSortCommand feature](#FishSortCommand-feature)
-  * [TankFeedCommand feature](#TankFeedCommand-feature)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-* [Appendix: Requirements](#appendix-requirements)
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+* Table of Contents
+  {:toc}
 
 ## About
 
@@ -41,7 +26,8 @@ new developers can use this guide as an entry point for navigating this extensiv
 ## Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* AY22/23 S1 CS2103T W15-1 [[Github repo]](https://github.com/AY2223S1-CS2103T-W15-1/tp) - Task implementation 
+* Task implementation was inspired by [SoConnect](https://github.com/AY2223S1-CS2103T-W15-1/tp) and fxml file was reused. However, our implementation is entirely new.
+* Help implementation (including the code) was reused with minimal changes from the [CLIMods](https://github.com/AY2223S1-CS2103-F14-1/tp) project. Html files were not reused.
 
 --------------------------------------------------------------------------------------------------------------------
 
