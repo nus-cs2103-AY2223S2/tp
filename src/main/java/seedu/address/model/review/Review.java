@@ -193,20 +193,21 @@ public class Review {
     }
 
     public int getNoOfEasyTags() {
-        return (int) unmodifiableReviewCardList.stream()
-                .filter(card -> orderOfCards.contains(unmodifiableReviewCardList.indexOf(card)))
+        return (int) orderOfCards.stream()
+                .map(unmodifiableReviewCardList::get)
                 .filter(card -> card.getTagName().equals("easy")).count();
+
     }
 
     public int getNoOfMediumTags() {
-        return (int) unmodifiableReviewCardList.stream()
-                .filter(card -> orderOfCards.contains(unmodifiableReviewCardList.indexOf(card)))
+        return (int) orderOfCards.stream()
+                .map(unmodifiableReviewCardList::get)
                 .filter(card -> card.getTagName().equals("medium")).count();
     }
 
     public int getNoOfHardTags() {
-        return (int) unmodifiableReviewCardList.stream()
-                .filter(card -> orderOfCards.contains(unmodifiableReviewCardList.indexOf(card)))
+        return (int) orderOfCards.stream()
+                .map(unmodifiableReviewCardList::get)
                 .filter(card -> card.getTagName().equals("hard")).count();
     }
 
