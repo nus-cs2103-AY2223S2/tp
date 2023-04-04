@@ -614,14 +614,14 @@ Equivalent to clicking the close button via the GUI. <br>
 ---
 
 ## Data Management
-**Q**: How do I save my person list?<br>
-**A**: CoDoc automatically saves your person list after every successful `add`, `edit` and `clear`.
+**Q: How do I save my person list?** <br>
+**A:** CoDoc automatically saves your person list after every successful `add`, `edit` and `clear`.
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install CoDoc on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
+**Q: How do I transfer my data to another Computer?** <br>
+**A:** Install CoDoc on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoDoc home folder.
 
-**Q**: Where is the data file stored?<br>
-**A**: CoDoc data are saved as a JSON file at ***[JAR file location]*****/data/codoc.json**. Advanced users are welcome to update data directly by editing that data file.
+**Q: Where is the data file stored?** <br>
+**A:** CoDoc data are saved as a JSON file at ***[JAR file location]*****/data/codoc.json**. Advanced users are welcome to update data directly by editing that data file.
 
 :warning:
 If your changes to the data file make its format invalid,
@@ -637,42 +637,42 @@ CoDoc will discard all data and start with an empty data file at the next run.
 
 **Q: I have added a person with wrong details. How do I change it?**
 
-A: Use CoDoc's [Edit command](#4-editing-a-person--edit) to update the details. If you have also forgotten to add certain
+**A:** Use CoDoc's [Edit command](#4-editing-a-person--edit) to update the details. If you have also forgotten to add certain
 details, you may use the same command to add them (e.g. `edit m+/AY2223S2 CS2101` to add module _CS2101_).
 
 <br>
 
 **Q: My edit command is not working/changes are not shown.**
 
-A: Check that you have entered the command in correct format and command result shown in the **Results Panel** is not
+**A:** Check that you have entered the command in correct format and command result shown in the **Results Panel** is not
 showing any errors.
 
 <br>
 
 **Q: My edit command is editing the wrong person.**
 
-A: Edit command works on the current person you are viewing. Change the viewed person with the [View command](#3-viewing-a-personchanging-tabs--view)
+**A:** Edit command works on the current person you are viewing. Change the viewed person with the [View command](#3-viewing-a-personchanging-tabs--view)
 and view the correct person you want to edit before entering the command.
 
 <br>
 
 **Q: Why is it `find c/COURSE` and not `c/COURSE_INDEX` like `add` and `edit`?**
 
-A: This is done as it speeds up the adding and editing process since there is no need for you to manually keep track of how courses are inputted—CS vs Computer Science.
+**A:** This is done as it speeds up the adding and editing process since there is no need for you to manually keep track of how courses are inputted—CS vs Computer Science.
 Also, this avoids clashing acronyms such as CS which could be interpreted as Chinese Studies too.
 
 <br>
 
 **Q: My find command is not showing correct list of people**
 
-A: This could be because there is existing list of filters before you entered the [Find command](#5-finding-a-person--find).
+**A:** This could be because there is existing list of filters before you entered the [Find command](#5-finding-a-person--find).
 Try clearing all filters with [List command](#6-listing-all-personsresetting-filters--list) then re-enter the Find command.
 
 <br>
 
 **Q: I cannot find the course I want to add in the Course List Panel.**
 
-A: We understand that the current list of courses available is limited. This is because this program is initially designed
+**A:** We understand that the current list of courses available is limited. This is because this program is initially designed
 to be used mainly by _Computer Science_ students, hence it only lists courses of people which they may encounter during
 their studies. We are currently working to add as many courses as possible so that the program can be used by users
 outside _Computer Science_. Meanwhile, you would have to assign any other courses to the person and remember it.
