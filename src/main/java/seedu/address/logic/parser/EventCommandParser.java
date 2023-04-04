@@ -38,7 +38,7 @@ public class EventCommandParser implements Parser<EventCommand> {
         Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
 
         if (endDate.isBefore(startDate)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_EVENT_DATES,EventCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_EVENT_DATES, EventCommand.MESSAGE_USAGE));
         }
 
         EventTask eventTask = new EventTask(description, startDate, endDate);

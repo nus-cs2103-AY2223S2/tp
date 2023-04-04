@@ -1,13 +1,15 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+
 
 /**
  * Represents a Date in the address book.
@@ -16,8 +18,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be valid only contain numeric characters and be in the format dd/mm/yyyy ," +
-                    " and it should not be blank";
+            "Dates should be valid only contain numeric characters and be in the format dd/mm/yyyy ,"
+                    + " and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -57,14 +59,14 @@ public class Date {
      * @param dateStr
      * @return true is given date is valid.
      */
-    public static boolean validateJavaDate(String dateStr){
+    public static boolean validateJavaDate(String dateStr) {
         DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
         try {
-        sdf.parse(dateStr);
-    } catch (ParseException e) {
-        return false;
-    }
+            sdf.parse(dateStr);
+        } catch (ParseException e) {
+            return false;
+        }
         return true;
     }
 
