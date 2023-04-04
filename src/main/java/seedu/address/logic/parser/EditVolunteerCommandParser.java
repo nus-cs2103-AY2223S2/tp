@@ -15,8 +15,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
+import seedu.address.commons.util.PrefixUtil;
+import seedu.address.logic.commands.CommandInfo;
 import seedu.address.logic.commands.EditVolunteerCommand;
+import seedu.address.logic.commands.exceptions.RecommendationException;
 import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -24,7 +26,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new EditVolunteerCommand object.
  */
 public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> {
-
+    private static final Prefix[] availablePrefixes = {PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION, PREFIX_TAG, PREFIX_MEDICAL_TAG, PREFIX_AVAILABILITY};
     /**
      * Parses the given {@code String} of arguments in the context of the EditVolunteerCommand
      * and returns an EditVolunteerCommand object for execution.
@@ -36,9 +39,7 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
     public EditVolunteerCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_NRIC, PREFIX_BIRTH_DATE, PREFIX_REGION,
-                        PREFIX_TAG, PREFIX_MEDICAL_TAG, PREFIX_AVAILABILITY);
+                ArgumentTokenizer.tokenize(args, availablePrefixes);
 
         Index index;
 
@@ -94,14 +95,30 @@ public class EditVolunteerCommandParser implements Parser<EditVolunteerCommand> 
         return new EditVolunteerCommand(index, editDescriptor);
     }
 
+    @Override
+    public CommandInfo getCommandInfo() {
+        return new CommandInfo(
+                EditVolunteerCommand.COMMAND_WORD,
+                EditVolunteerCommand.COMMAND_PROMPTS,
+                EditVolunteerCommandParser::validate, "<INDEX>");
+    }
+
     /**
      * Validates the given ArgumentMultimap by checking that it fulfils certain criteria.
      *
      * @param map the ArgumentMultimap to be validated.
      * @return true if the ArgumentMultimap is valid, false otherwise.
      */
-    public static boolean validate(ArgumentMultimap map) {
-        return map.getPreamble().length() == 1 && StringUtil.isNonZeroUnsignedInteger(map.getPreamble());
+    public static boolean validate(ArgumentMultimap map) throws RecommendationException {
+        if (PrefixUtil.checkIfContainsInvalidPrefixes(map)) {
+            throw new RecommendationException("Invalid prefix.");
+        } else if (map.getValue(PREFIX_TAG).orElse("").length() > 20) {
+            throw new RecommendationException("Length of tag is too long.");
+        } else if (map.getValue(PREFIX_NAME).orElse("").length() > 100) {
+            throw new RecommendationException("Length of name is too long.");
+        } else {
+            return true;
+        }
     }
 }
 

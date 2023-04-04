@@ -60,6 +60,15 @@ public class ArgumentMultimap {
     }
 
     /**
+     * Returns the list of values in the argMultiMap.
+     *
+     * @return All values inside the argMultiMap
+     */
+    public List<List<String>> getAllValues() {
+        return new ArrayList<>(argMultimap.values());
+    }
+
+    /**
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      *
      * @return Trimmed preamble.
