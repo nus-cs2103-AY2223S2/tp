@@ -27,6 +27,7 @@ public class StudentFindCommandParser implements Parser<StudentFindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new StudentFindCommand(studentClass, new StudentNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new StudentFindCommand(studentClass,
+                new StudentNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 }
