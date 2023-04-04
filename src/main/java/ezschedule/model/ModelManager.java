@@ -145,7 +145,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ArrayList<Command> recentCommand() {
+    public ArrayList<Command> recentCommands() {
         return this.recentCommand;
     }
 

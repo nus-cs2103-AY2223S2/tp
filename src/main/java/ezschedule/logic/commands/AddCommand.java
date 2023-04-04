@@ -62,7 +62,7 @@ public class AddCommand extends Command {
 
         model.addEvent(toAdd);
         model.clearRecent();
-        model.recentCommand().add(this);
+        model.recentCommands().add(this);
         model.recentEvent().add(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

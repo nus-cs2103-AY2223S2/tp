@@ -54,30 +54,37 @@ public class SchedulerParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
+        case RecurCommand.COMMAND_WORD:
+            return new RecurCommandParser().parse(arguments);
 
-            if (!arguments.equals("")) {
-                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
-            } else {
-                return new ClearCommand();
-            }
+        case ShowNextCommand.COMMAND_WORD:
+            return new ShowNextCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
+        case UndoCommand.COMMAND_WORD:
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new UndoCommand();
+            }
 
+        case ListCommand.COMMAND_WORD:
             if (!arguments.equals("")) {
                 throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
             } else {
                 return new ListCommand();
             }
 
-        case ShowNextCommand.COMMAND_WORD:
-            return new ShowNextCommandParser().parse(arguments);
+        case ClearCommand.COMMAND_WORD:
+            if (!arguments.equals("")) {
+                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            } else {
+                return new ClearCommand();
+            }
 
         case ExitCommand.COMMAND_WORD:
-
             if (!arguments.equals("")) {
                 throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
             } else {
@@ -85,23 +92,11 @@ public class SchedulerParser {
             }
 
         case HelpCommand.COMMAND_WORD:
-
             if (!arguments.equals("")) {
                 throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
             } else {
                 return new HelpCommand();
             }
-
-        case UndoCommand.COMMAND_WORD:
-
-            if (!arguments.equals("")) {
-                throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
-            } else {
-                return new UndoCommand();
-            }
-
-        case RecurCommand.COMMAND_WORD:
-            return new RecurCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

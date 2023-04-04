@@ -102,7 +102,7 @@ public interface Model {
      */
     void clearRecent();
 
-    ArrayList<Command> recentCommand();
+    ArrayList<Command> recentCommands();
 
     ArrayList<Event> recentEvent();
 
