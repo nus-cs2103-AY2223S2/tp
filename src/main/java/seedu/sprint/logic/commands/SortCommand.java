@@ -36,6 +36,9 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SORT_DEADLINE_SUCCESS = "Listed all applications with task deadlines"
             + " and sorted them in order!";
 
+    public static final String MESSAGE_SORT_NO_APPLICATIONS_WITH_DEADLINE =
+            "You don't have any application with a deadline!";
+
     private final SortingOrder sortingOrder;
 
     private final SortingSequence sortingSequence;
@@ -67,6 +70,9 @@ public class SortCommand extends Command {
         requireNonNull(model);
         if (this.sortingOrder == SortingOrder.DEADLINE) {
             model.updateFilteredApplicationList(new ApplicationHasTaskPredicate());
+            if (model.getFilteredApplicationList().isEmpty()) {
+                return new CommandResult(MESSAGE_SORT_NO_APPLICATIONS_WITH_DEADLINE);
+            }
         }
         model.updateSortedApplicationList(comparator);
         model.commitInternshipBookChange();
@@ -75,5 +81,14 @@ public class SortCommand extends Command {
             return new CommandResult(MESSAGE_SORT_DEADLINE_SUCCESS);
         }
         return new CommandResult(MESSAGE_SORT_ALPHABETICAL_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand // instanceof handles nulls
+                && sortingOrder.equals(((SortCommand) other).sortingOrder)
+                && sortingSequence.equals(((SortCommand) other).sortingSequence)
+                && comparator.equals(((SortCommand) other).comparator));
     }
 }
