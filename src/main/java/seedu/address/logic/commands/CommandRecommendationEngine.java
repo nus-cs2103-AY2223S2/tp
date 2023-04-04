@@ -191,27 +191,7 @@ public class CommandRecommendationEngine {
             return recommendation.substring(0, userInput.length() + nextIdx);
         }
     }
-
-    /**
-     * Returns the leading spaces of a given string.
-     *
-     * @param input Given string.
-     * @return String representing the leading spaces.
-     */
-    private String getLeadingSpaces(String input) {
-        return input.replaceAll("^(\\s*).*", "$1");
-    }
-
-    /**
-     * Trims the leading whitespaces of a given string.
-     *
-     * @param input Given string.
-     * @return String with the leading whitespaces trimmed.
-     */
-    private String trimLeadingSpaces(String input) {
-        return input.replaceAll("^\\s++", "");
-    }
-
+    
     private static boolean isCommandPrefixComplete(String userInput, String delimiter) {
         return userInput.contains(delimiter);
     }
