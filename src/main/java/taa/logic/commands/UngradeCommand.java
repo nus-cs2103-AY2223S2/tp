@@ -37,7 +37,7 @@ public class UngradeCommand extends Command {
         } catch (AssignmentException e) {
             throw new CommandException(
                     String.format(
-                            "An error occurred when ungrading assignment %%s for student %d:\n",
+                            "An error occurred when ungrading assignment %s for student %d:\n",
                             assignmentName, studentId)
                     + e.getMessage());
         }

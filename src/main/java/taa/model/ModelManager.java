@@ -294,14 +294,24 @@ public class ModelManager implements Model {
     @Override
     public void grade(String assignmentName, int studentId, int marks, boolean isLateSubmission)
             throws AssignmentException {
-        Student student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
+        Student student;
+        try {
+            student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new AssignmentException(String.format("Invalid student id: %d", studentId));
+        }
         assignmentList.grade(assignmentName, student, marks, isLateSubmission);
         updateStudent(student);
     }
 
     @Override
     public void ungrade(String assignmentName, int studentId) throws AssignmentException {
-        Student student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
+        Student student;
+        try {
+            student = this.filteredStudents.get(Index.fromOneBased(studentId).getZeroBased());
+        } catch (IndexOutOfBoundsException e) {
+            throw new AssignmentException(String.format("Invalid student id: %d", studentId));
+        }
         assignmentList.ungrade(assignmentName, student);
         updateStudent(student);
     }

@@ -114,4 +114,17 @@ public class ParserUtil {
         String trimmedPoints = time.trim();
         return Integer.parseInt(time);
     }
+
+    /**
+     * Parse int input given
+     */
+    public static int parseInt(String s) throws ParseException {
+        int theInt;
+        try {
+            theInt = Integer.parseInt(s);
+        } catch (NumberFormatException e) {
+            throw new ParseException(String.format("Invalid input: %s", s));
+        }
+        return theInt;
+    }
 }

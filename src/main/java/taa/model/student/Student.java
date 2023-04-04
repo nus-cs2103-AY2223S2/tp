@@ -78,7 +78,7 @@ public class Student {
     }
 
     /**
-     * Attributes a new submission to this student.
+     * Adds a new submission to this student.
      */
     public void addSubmission(Submission submission) {
         this.submissions.addSubmission(submission);
@@ -91,9 +91,17 @@ public class Student {
      * Removes a submission attributed to this student.
      */
     public void deleteSubmission(Submission submission) {
-
         this.submissions.deleteSubmission(submission);
         submissionStringArr.remove(submission.toStorageString());
+    }
+
+    /**
+     * Updates the submission storage string when grading/ungrading a student submission.
+     * @param submission
+     */
+    public void updateSubmission(Submission submission) {
+        int idx = submissions.getSubmissionIndex(submission);
+        submissionStringArr.set(idx, submission.toStorageString());
     }
 
     /**

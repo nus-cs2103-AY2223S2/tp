@@ -117,6 +117,10 @@ public class AssignmentList {
         if (sl.isEmpty()) {
             return;
         }
+        // Step 0: Make sure everything empty.
+        assignments.clear();
+        assignmentMap.clear();
+
         // Step 1: populate the assignment list and hashmap with empty assignments.
         Student firstStudent = sl.get(0);
         for (String submissionString : firstStudent.getSubmissionStorageStrings()) {
