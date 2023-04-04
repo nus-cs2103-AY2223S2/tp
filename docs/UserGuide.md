@@ -463,7 +463,7 @@ Format: `find [n/NAME] [ic/NRIC] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [bd/BIRT
   * Such fields have to be valid.
 * `[dr/AVAILABLE_DATE_START, AVAILABLE_DATE_END]` will find any date range that contains the specified range.
   * People with no dates will be found because having no dates means that they are available all the time.
-* For `[mt/MEDICAL_QUALIFICATIONS]` you can either specify just the type E.g. `mt/cpr` or the type and its level separated by comma e.g. `mt/cpr, basic`.
+* For `[mt/MEDICAL_QUALIFICATIONS]` you can either specify just the type E.g. `mt/cpr` or the type and its level separated by comma E.g. `mt/cpr, basic`.
     * The type need not be specified in full, so it can contain any non-empty value.
     * Qualification level needs to be fully specified if present.
 
