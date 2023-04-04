@@ -43,7 +43,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_REMARK + "REMARK] "
-            + "[" + PREFIX_KEYDATE + "KEY@DATE]...\n"
+            + "[" + PREFIX_KEYDATE + "KEYDATE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_COMPANY + "Microsoft "
             + PREFIX_EMAIL + "johndoe@example.com";

@@ -5,12 +5,33 @@ title: User Guide
 
 Ultron is a **desktop app for compiling job and internship openings, optimized for use via typing**. The application interface provides you both a summary list and a detailed display, with a text input box for commands. If you are familiar with the Ultron interface and type fast, it can help you organise your openings in a quick and structured manner.
 
-- Table of Contents
-  {:toc}
+---
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Quick start](#quick-start)
+- [Features](#features)
+  - [Adding an opening : `add`](#adding-an-opening--add)
+  - [Listing all openings : `list`](#listing-all-openings--list)
+  - [Editing an opening : `edit`](#editing-an-opening--edit)
+  - [Editing an opening's remarks : `remark`](#editing-an-openings-remarks--remark)
+  - [Showing full details of opening: `show`](#showing-full-details-of-opening-show)
+  - [Listing upcoming dates : `upcoming`](#listing-upcoming-dates--upcoming)
+  - [Filtering openings by company or position: `find`](#filtering-openings-by-company-or-position-find)
+  - [Filtering openings by status: `status`](#filtering-openings-by-status-status)
+  - [Deleting an opening : `delete`](#deleting-an-opening--delete)
+  - [Deleting all openings : `clear`](#deleting-all-openings--clear)
+  - [Accessing help window : `help`](#accessing-help-window--help)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
+  - [Saving the data](#saving-the-data)
+- [FAQ](#faq)
+- [Command summary](#command-summary)
 
 ---
 
 ## Quick start
+
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `Ultron.jar` from [here](https://github.com/AY2223S2-CS2103T-F12-4/tp/releases/download/v1.3/ultron.jar).
@@ -25,8 +46,8 @@ Ultron is a **desktop app for compiling job and internship openings, optimized f
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list` : Lists all contacts.
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   - `list` : Lists all openings.
+   - `delete 3` : Deletes the 3rd opening shown in the current list.
 
 Refer to the [Features](#features) below for details of each command.
 
@@ -61,19 +82,19 @@ Refer to the [Features](#features) below for details of each command.
 
 ### Adding an opening : `add`
 
-Having too many internships offers and being unable to keep track of all of them? 
-Ultron provides you with a platform to remember all your openings so you don't have to! 
-Just type 'add' followed by details of your opening in the format below and you can see 
-it being added to Ultron. 
+Having too many internships offers and being unable to keep track of all of them?
+Ultron provides you with a platform to remember all your openings so you don't have to!
+Just type 'add' followed by details of your opening in the format below and you can see
+it being added to Ultron.
 
 Format: `add p/POSITION c/COMPANY e/EMAIL s/STATUS [r/REMARK] [d/KEYDATE]…​`
 
 - `KEYDATE` must be in the form `KEY@DATE`, where `KEY` is a key event in the application process and `DATE` is the date of the event in `YYYY-MM-DD` format.
-- `KEY` must only contain alphabetic characters, cannot be blank and cannot only contain whitespaces. 
-- `STATUS` **must be of either found, applied, interviewing, offered, accepted or rejected**.
-- If both `COMPANY` and `POSITION` of a new opening matches a current opening, the new opening will not be added. 
-- Opening displayed after adding only displays `POSITION`, `COMPANY`, `STATUS` and `KEYDATES`. 
-- To view the full details of the opening, use `show` command. 
+- `KEY` must only contain alphabetic characters, cannot be blank and cannot only contain whitespaces.
+- `STATUS` must be of either **found, applied, interviewing, offered, accepted or rejected** and is case-insensitive.
+- If both `COMPANY` and `POSITION` of a new opening matches a current opening, the new opening will not be added.
+- The openings in the list only display `POSITION`, `COMPANY`, `STATUS` and `KEYDATES`.
+- To view the full details of the opening, use `show` command.
 
 Examples:
 
@@ -83,20 +104,20 @@ Examples:
 
 ### Listing all openings : `list`
 
-Ultron gives you the option to view all your recorded openings in one window. Just type 'list' 
-and the full list of openings will be displayed starting with the earliest added opening. 
+Ultron gives you the option to view all your recorded openings in one window. Just type 'list'
+and the full list of openings will be displayed starting with the earliest added opening.
 
 Format: `list`
 
-- The most recently added opening will be displayed last. 
+- The most recently added opening will be displayed last.
 
 ![List](images/List.png)
 
 ### Editing an opening : `edit`
 
-Accidentally typed the wrong company name? Don't worry, Ultron allows you to edit a previously 
-added opening without having to delete and start over. Just type in 'edit' followed by the index 
-number of the desired opening with the field you want to change. Ultron will update the opening with just a single command line. 
+Accidentally typed the wrong company name? Don't worry, Ultron allows you to edit a previously
+added opening without having to delete and start over. Just type in 'edit' followed by the index
+number of the desired opening with the field you want to change. Ultron will update the opening with just a single command line.
 
 Format: `edit INDEX [p/POSITION] [c/COMPANY] [e/EMAIL] [s/STATUS] [d/KEYDATE]…​`
 
@@ -116,23 +137,22 @@ Examples:
 
 ### Editing an opening's remarks : `remark`
 
-Edits the remark field of the opening at the specified INDEX to REMARK. 
+Edits the remark field of the opening at the specified INDEX to REMARK.
 
 Format: `remark INDEX r/REMARK`
 
-- Edits the remark of the opening at the specified `INDEX`. The index refers to the index number shown in the displayed opening list. 
+- Edits the remark of the opening at the specified `INDEX`. The index refers to the index number shown in the displayed opening list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - Existing values will be updated to the input values.
 - When editing `REMARK`, the existing `REMARK` of the opening will be removed i.e editing of `REMARK` is not cumulative.
 - You can remove all the `REMARK` of the opening by typing `d/` without
   specifying any `REMARK` after it.
 
-
 ![Remark](images/Remark.png)
 
-# Showing full details of opening: `show`
+### Showing full details of opening: `show`
 
-Displays the full details of the opening at the specified INDEX. 
+Displays the full details of the opening at the specified INDEX.
 
 Format: `show INDEX`
 
@@ -140,17 +160,18 @@ Format: `show INDEX`
 - The index refers to the index number shown in the displayed opening list.
 - The index **must be a positive integer** 1, 2, 3, …​
 
-# Listing upcoming dates : `upcoming`
+### Listing upcoming dates : `upcoming`
 
 Lists openings which has events today or within the next `DAYS` days, sorting in order of the first keydate of each relevant opening in ascending order.
 
 Format: `upcoming DAYS`
 
-* Lists all openings which has events today or within the next `DAYS` days.
-* `DAYS` **must be a positive integer** 1, 2, 3, …​
+- Lists all openings which has events today or within the next `DAYS` days.
+- `DAYS` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `upcoming 1` lists all openings with events happening in the next 1 day, ie. today or tomorrow.
+
+- `upcoming 1` lists all openings with events happening in the next 1 day, ie. today or tomorrow.
 
 ![Upcoming](images/Upcoming.png)
 
@@ -171,12 +192,6 @@ Examples:
 
 - `find Google` returns `google` and `Google Cloud`
 - `find bank america` returns `Bank of America`, `Bank of Singapore`, `Bank Manager`<br>
-
-Format: `find ORDER`
-
-- `ORDER` **must be of asc or desc**.
-- The `ORDER` is case-insensitive. e.g. `AsC` will still order the relevant openings in ascending order
-- The openings without keydates or with keydates that have already passed today will not be shown.
 
 ![Find](images/Find.png)
 
@@ -219,8 +234,8 @@ Deletes all openings from the list.
 
 Format: `clear`
 
-* This command allows you to delete all openings from the list in a single command
-* Useful when you want to start a fresh new list!
+- This command allows you to delete all openings from the list in a single command
+- Useful when you want to start a fresh new list!
 
 ### Accessing help window : `help`
 
@@ -266,4 +281,3 @@ Ultron data are saved in the hard disk automatically after any command that chan
 | **Find**     | `find KEYWORD [MORE_KEYWORDS]...`<br/> e.g., `find Engineer data Software`                                                                                                    |
 | **Help**     | `help`                                                                                                                                                                        |
 | **Exit**     | `exit`                                                                                                                                                                        |
-
