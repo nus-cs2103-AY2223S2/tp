@@ -389,6 +389,8 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * `D` or `d` for `Delivered`
 * If no status is provided, it is **defaulted** to `Not Delivered`.
 
+* All `ORDER_ITEM` **must** match a menu item in the menu.
+
 </div>
 
 <div markdown="block" class="alert alert-example">
