@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents a job's job date in the address book.
@@ -40,6 +41,11 @@ public class DeliveryDate {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidDate(String test) {
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
