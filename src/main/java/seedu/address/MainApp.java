@@ -27,6 +27,8 @@ import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.statstics.StatsManager;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.ui.Ui;
+import seedu.address.ui.UiManager;
 import storage.AddressBookStorage;
 import storage.JsonAddressBookStorage;
 import storage.JsonUserPrefsStorage;
@@ -37,8 +39,6 @@ import storage.task.note.JsonNoteListStorage;
 import storage.task.note.NoteStorage;
 import storage.task.todo.JsonTodoListStorage;
 import storage.task.todo.TodoListStorage;
-import seedu.address.ui.Ui;
-import seedu.address.ui.UiManager;
 
 /**
  * Runs the application.
