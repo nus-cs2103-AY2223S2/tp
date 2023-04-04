@@ -1,23 +1,27 @@
 package ezschedule.logic.parser;
 
 import static ezschedule.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static ezschedule.logic.commands.CommandTestUtil.*;
-import static ezschedule.logic.parser.CliSyntax.*;
-import static ezschedule.logic.parser.CliSyntax.PREFIX_START;
+import static ezschedule.logic.commands.CommandTestUtil.DATE_DESC_A;
+import static ezschedule.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static ezschedule.logic.commands.CommandTestUtil.INVALID_RECUR_FACTOR;
+import static ezschedule.logic.commands.CommandTestUtil.RECUR_FACTOR_DESC_DAY;
+import static ezschedule.logic.commands.CommandTestUtil.RECUR_FACTOR_DESC_MONTH;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_DATE_A;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_A;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_RECUR_FACTOR_DAY;
+import static ezschedule.logic.commands.CommandTestUtil.VALID_RECUR_FACTOR_MONTH;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_DATE;
+import static ezschedule.logic.parser.CliSyntax.PREFIX_EVERY;
 import static ezschedule.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static ezschedule.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static ezschedule.testutil.TypicalIndexes.*;
 import static ezschedule.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 
+import org.junit.jupiter.api.Test;
+
 import ezschedule.commons.core.index.Index;
-import ezschedule.logic.commands.EditCommand;
 import ezschedule.logic.commands.RecurCommand;
 import ezschedule.model.event.Date;
-import ezschedule.model.event.Name;
 import ezschedule.model.event.RecurFactor;
-import ezschedule.model.event.Time;
-import ezschedule.testutil.EditEventDescriptorBuilder;
-import org.junit.jupiter.api.Test;
 
 public class RecurCommandParserTest {
 
@@ -84,87 +88,16 @@ public class RecurCommandParserTest {
         assertParseFailure(parser, "1" + DATE_DESC_A + INVALID_RECUR_FACTOR, RecurFactor.MESSAGE_CONSTRAINTS);
     }
 
-    // here
-
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_EVENT;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_A + DATE_DESC_A + START_TIME_DESC_A + END_TIME_DESC_A;
-
-        EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_A)
-                .withDate(VALID_DATE_A).withStartTime(VALID_START_TIME_A).withEndTime(VALID_END_TIME_A).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_EVENT;
-        String userInput = targetIndex.getOneBased() + DATE_DESC_A + START_TIME_DESC_A;
+        Date endDate = new Date(VALID_DATE_A);
+        RecurFactor rf = new RecurFactor(VALID_RECUR_FACTOR_MONTH);
 
-        EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withDate(VALID_DATE_A)
-                .withStartTime(VALID_START_TIME_A).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        String userInput = targetIndex.getOneBased() + DATE_DESC_A + RECUR_FACTOR_DESC_MONTH;
 
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
+        RecurCommand expectedCommand = new RecurCommand(targetIndex, endDate, rf);
 
-    @Test
-    public void parse_oneFieldSpecified_success() {
-        // name
-        Index targetIndex = INDEX_THIRD_EVENT;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_A;
-        EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_A).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // date
-        userInput = targetIndex.getOneBased() + DATE_DESC_A;
-        descriptor = new EditEventDescriptorBuilder().withDate(VALID_DATE_A).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // start time
-        userInput = targetIndex.getOneBased() + START_TIME_DESC_A;
-        descriptor = new EditEventDescriptorBuilder().withStartTime(VALID_START_TIME_A).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // end time
-        userInput = targetIndex.getOneBased() + END_TIME_DESC_A;
-        descriptor = new EditEventDescriptorBuilder().withEndTime(VALID_END_TIME_A).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_EVENT;
-        String userInput = targetIndex.getOneBased() + DATE_DESC_A + START_TIME_DESC_A + END_TIME_DESC_A
-                + DATE_DESC_B + START_TIME_DESC_B + END_TIME_DESC_B;
-
-        EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withDate(VALID_DATE_B)
-                .withStartTime(VALID_START_TIME_B).withEndTime(VALID_END_TIME_B).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_invalidValueFollowedByValidValue_success() {
-        // no other valid values specified
-        Index targetIndex = INDEX_FIRST_EVENT;
-        String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_B;
-        EditCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withDate(VALID_DATE_B).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // other valid values specified
-        userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_B + START_TIME_DESC_B + END_TIME_DESC_B;
-        descriptor = new EditEventDescriptorBuilder().withDate(VALID_DATE_B)
-                .withStartTime(VALID_START_TIME_B).withEndTime(VALID_END_TIME_B).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }
