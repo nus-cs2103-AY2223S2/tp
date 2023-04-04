@@ -754,8 +754,7 @@ _Details coming soon ..._
 6. Place the newly created `.command` file into your *home folder*.
    ![mac_command_file_result](images/user-guide/mac_command_file_result.png)
 7. Finally, on your opened terminal from step 4, type `chmod 777 start.command` > <kbd>Enter</kbd>.
-   <br>
-   <br>
+
    <div class="span" class="alert alert-info">
    :information_source: <b>Note:</b> Replace <code>start</code> with whatever you name your <code>.command</code> file from step 5.
    </div>
