@@ -208,7 +208,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Salary Command Feature
+### \[Implemented\] Salary Command Feature
 
 The proposed SalaryCommand feature allows the user to sort their roles based on the given salaries. The idea is that the
 user can sort the list with different attributes with commands such as the salary command which allows the roles to be
@@ -233,13 +233,10 @@ Given below is an example usage of how Salary Command is being used in the follo
 
       <img src="images/UICommandImages/SalaryCommand2.png" width="800" />
 
-The following sequence diagram shows how the Salary Command is being done:
+The following sequence diagram shows how the `salary` command works:
 
 <img src="images/SalaryCommandSequenceDiagram.png" width="800" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -256,7 +253,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 
-### \[Proposed\] Deadline Command Feature
+### \[Implemented\] Deadline Command Feature
 
 The proposed DeadlineCommand feature allows the user to sort their roles based on the given deadline of application. The idea is that the
 user can sort the list with different attributes with commands such as the deadline command which allows the roles to be
@@ -275,13 +272,9 @@ Given below is an example usage of how Salary Command is being used in the follo
     - The user executes `deadline desc` command to sort the salary of the roles in the descending
       order. <img src="images/UICommandImages/DeadlineCommand2.png" width="800" />
 
-The following sequence diagram shows how the Deadline Command is being done and used:
+The following sequence diagram shows how the `deadline` command works:
 
 <img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -298,7 +291,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 
-### Company Command Feature
+### \[Implemented\] Company Command Feature
 
 The proposed Company Command feature allows the user to filter companies based on a given keyword. This enables the
 user to filter the job list by company which shows all roles pertaining to a certain company.
@@ -314,13 +307,10 @@ Given below is an example usage of how CompanyCommand is being used in the follo
     - The user executes `company <keyword>` command to filter roles by their company.
     <img src="images/UICommandImages/CompanyCommand1.png" width="800" />
 
-The following sequence diagram shows how the Company Command is being done:
+The following sequence diagram shows how the `company` command works:
 
 <img src="images/CompanyCommandSequenceDiagram.png" width="800" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -333,7 +323,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Less confusing for the user, as all filtering will be done using a single command. e.g. find c/Google
     * Cons: Harder to implement, and the addition of multiple parameters may be confusing too.
 
-### Tag Command Feature
+### \[Implemented\] Tag Command Feature
 
 The proposed TagCommand feature allows the user to filter tags based on a given keyword. The idea is that the
 user can filter the job list by tag which shows all roles pertaining to a certain tag.
@@ -349,13 +339,10 @@ Given below is an example usage of how TagCommand is being used in the following
     - The user executes `tag <keyword>` command to filter roles by their tag.
       <img src="images/UICommandImages/TagCommand.png" width="800" />
 
-The following sequence diagram shows how the Tag Command is being done:
+The following sequence diagram shows how the `tag` command works:
 
 <img src="images/TagCommandSequenceDiagram.png" width="800" />
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="300" />
 
 #### Design considerations:
 
@@ -368,7 +355,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 _{more aspects and alternatives to be added}_
 
 
-### \[Proposed\] View Command Feature
+### \[Implemented\] View Command Feature
 The proposed ViewCommand feature allows the user to view more details about a specific role. We decided to hide
 less important details regarding a role, and only show certain important details like Name, Company, Salary, Deadline,
 etc.
@@ -384,7 +371,7 @@ An example usage of the `View` command is given below:
    - The user executes `view 1` to view details regarding the first role.
      <img src="images/UICommandImages/ViewCommand1.png" width="800" />
 
-The following sequence diagram shows how the `view` Command is being done:
+The following sequence diagram shows how the `view` command works:
 <img src="images/ViewCommandSequenceDiagram.png" width="800" />
 
 
@@ -394,8 +381,8 @@ The following sequence diagram shows how the `view` Command is being done:
 
 * **Alternative 1 (alternative choice):** Displays the remaining details of a `role` object in the `ResultDisplay` through
 appending its information to the `feedbackToUser` string.
-    * Pros: Easy to implement, hard to have bugs.
-    * Cons: Limited customization of `feedbackToUser` in `ResultDisplay`
+    * Pros: Easy to implement, no need to change existing code.
+    * Cons: Limited customization of UI in `ResultDisplay`
 * **Alternative 2 (current choice):** Create a view manager for `ResultDisplay`, changing the children
 node of `ResultDisplay` based on command given (in this case, `view`)
     * Pros: Provides an easy and extendable way to create custom views
