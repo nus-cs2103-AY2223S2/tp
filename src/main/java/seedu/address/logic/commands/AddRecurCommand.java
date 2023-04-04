@@ -17,7 +17,7 @@ import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 
 /**
- * Adds a recurring event to the address book.
+ * Adds a recurring event to the events that the teaching assistant would like to schedule.
  */
 public class AddRecurCommand extends Command {
 
@@ -29,7 +29,6 @@ public class AddRecurCommand extends Command {
             "Please enter the Tutorial/ or Consultation/ or Lab/ prefix";
 
     public static final String MESSAGE_SUCCESS = "New recurring event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RECUR = "This recurring event already exists in the address book";
 
     private final Event toAdd;
     private final int count;
@@ -38,7 +37,13 @@ public class AddRecurCommand extends Command {
     private final boolean consultation;
 
     /**
-     * Creates an AddRecur to add the specified {@code Recur}
+     * Creates an AddRecur to add the specified {@code Recur}.
+     *
+     * @param recurring         the recurring event.
+     * @param lab               if the event is a lab.
+     * @param tutorial          if the event is a tutorial.
+     * @param consultation      if the event is a consultation.
+     * @param count             the number of recurrences of the event.
      */
     public AddRecurCommand(Event recurring, boolean lab, boolean tutorial, boolean consultation, int count) {
         requireNonNull(recurring);
@@ -49,12 +54,6 @@ public class AddRecurCommand extends Command {
         this.consultation = consultation;
     }
 
-    /**
-     * Executes the model
-     * @param model {@code Model} which the command should operate on.
-     * @return CommandResult
-     * @throws CommandException
-     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -71,6 +70,17 @@ public class AddRecurCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CONSULTATION);
         }
 
+        addEvents(model);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, true);
+    }
+
+    /**
+     * Adds valid recurring events to the list of events.
+     *
+     * @param model the model too add the events to.
+     */
+    void addEvents(Model model) {
         Event newEvent = toAdd.copy();
         for (int i = 0; i < count; i++) {
             LocalDateTime[] range = new LocalDateTime[2];
@@ -95,7 +105,6 @@ public class AddRecurCommand extends Command {
             LocalDateTime newDate = currDate.plus(1, ChronoUnit.WEEKS);
             newEvent.changeDate(newDate);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, true);
     }
 
     @Override

@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Photo;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the photo of an existing person in the address book.
  */
 public class PhotoCommand extends Command {
 
@@ -37,8 +37,10 @@ public class PhotoCommand extends Command {
     private final Photo photo;
 
     /**
-     * @param index of the person in the filtered person list to edit the photo
-     * @param photo of the person to be updated to
+     * Adds the photo to te index of the specified person.
+     *
+     * @param index of the person in the filtered person list to edit the photo.
+     * @param photo of the person to be updated to.
      */
     public PhotoCommand(Index index, Photo photo) {
         requireAllNonNull(index, photo);
@@ -69,7 +71,7 @@ public class PhotoCommand extends Command {
 
     /**
      * Generates a command execution success message based on whether
-     * the remark is added to or removed from
+     * the photo is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {

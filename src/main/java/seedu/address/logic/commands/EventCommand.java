@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
 /**
- * Adds a lab to the address book.
+ * Adds an event to the address book.
  */
 public class EventCommand extends Command {
 

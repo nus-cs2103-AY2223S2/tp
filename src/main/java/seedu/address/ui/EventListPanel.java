@@ -19,18 +19,18 @@ import seedu.address.model.event.Lab;
 import seedu.address.model.event.Tutorial;
 
 /**
- * Panel containing the list of events.
+ * Contains a panel that displays all the event cards
  */
 public class EventListPanel extends UiPart<Region> {
     private static final String FXML = "EventListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(EventListPanel.class);
 
     @FXML
-    private ListView<Tutorial> eventListViewLeftCol;
+    private ListView<Tutorial> eventListViewTutorials;
     @FXML
-    private ListView<Lab> eventListViewMidCol;
+    private ListView<Lab> eventListViewLabs;
     @FXML
-    private ListView<Consultation> eventListViewRightCol;
+    private ListView<Consultation> eventListViewConsultations;
 
     @FXML
     private ImageView tutorial;
@@ -42,17 +42,17 @@ public class EventListPanel extends UiPart<Region> {
     /**
      * Creates a {@code EventListPanel} with the given {@code ObservableList}.
      */
-    public EventListPanel(List<ObservableList<? extends Event>> eventList) {
+    public EventListPanel(List<ObservableList<? extends Event>> events) {
         super(FXML);
 
-        eventListViewLeftCol.setItems((ObservableList<Tutorial>) eventList.get(0));
-        eventListViewLeftCol.setCellFactory(listView -> new TutorialListViewCell());
+        eventListViewTutorials.setItems((ObservableList<Tutorial>) events.get(0));
+        eventListViewTutorials.setCellFactory(listView -> new TutorialListViewCell());
 
-        eventListViewMidCol.setItems((ObservableList<Lab>) eventList.get(1));
-        eventListViewMidCol.setCellFactory(listView -> new LabListViewCell());
+        eventListViewLabs.setItems((ObservableList<Lab>) events.get(1));
+        eventListViewLabs.setCellFactory(listView -> new LabListViewCell());
 
-        eventListViewRightCol.setItems((ObservableList<Consultation>) eventList.get(2));
-        eventListViewRightCol.setCellFactory(listView -> new ConsultationListViewCell());
+        eventListViewConsultations.setItems((ObservableList<Consultation>) events.get(2));
+        eventListViewConsultations.setCellFactory(listView -> new ConsultationListViewCell());
 
         GuiSettings guiSettings = new GuiSettings();
         int size = guiSettings.getEventIconSize();
@@ -80,7 +80,7 @@ public class EventListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCard}.
+     * Displays the graphics of a {@code Consultation} using a {@code EventCard}.
      */
     class ConsultationListViewCell extends ListCell<Consultation> {
         @Override
@@ -97,7 +97,7 @@ public class EventListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCard}.
+     * Displays the graphics of a {@code Tutorial} using a {@code EventCard}.
      */
     class TutorialListViewCell extends ListCell<Tutorial> {
         @Override
@@ -114,7 +114,7 @@ public class EventListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCard}.
+     * Displays the graphics of a {@code Lab} using a {@code EventCard}.
      */
     class LabListViewCell extends ListCell<Lab> {
         @Override

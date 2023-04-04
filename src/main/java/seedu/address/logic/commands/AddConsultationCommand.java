@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Consultation;
 
 /**
- * Adds a consultation to the address book.
+ * Adds a consultation to the events that the teaching assistant would like to schedule.
  */
 public class AddConsultationCommand extends Command {
 
@@ -26,7 +26,9 @@ public class AddConsultationCommand extends Command {
     private final Consultation toAdd;
 
     /**
-     * Creates an AddConsultation to add the specified {@code Consultation}
+     * Creates an AddConsultation to add the specified {@code Consultation}.
+     *
+     * @param consultation the consultation to be added.
      */
     public AddConsultationCommand(Consultation consultation) {
         requireNonNull(consultation);

@@ -19,7 +19,7 @@
            <ImageView fx:id="tutorial" />
            </HBox>
            <children>
-                  <ListView fx:id="eventListViewLeftCol" prefHeight="6662.0" prefWidth="70.0">
+                  <ListView fx:id="eventListViewTutorials" prefHeight="6662.0" prefWidth="70.0">
                       <padding>
                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                       </padding>
@@ -35,7 +35,7 @@
                      </padding></Label>
                 <ImageView fx:id="lab" />
               </HBox>
-              <ListView fx:id="eventListViewMidCol" prefHeight="6662.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
+              <ListView fx:id="eventListViewLabs" prefHeight="6662.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </padding>
@@ -54,7 +54,7 @@
                      </padding></Label>
               <ImageView fx:id="consultation" />
               </HBox>
-              <ListView fx:id="eventListViewRightCol" prefHeight="6662.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
+              <ListView fx:id="eventListViewConsultations" prefHeight="6662.0" prefWidth="70.0" HBox.hgrow="ALWAYS">
                 <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                 </HBox.margin>

@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.event.Tutorial;
 
 /**
- * Adds a tutorial to the address book.
+ * Adds a tutorial to the events that the teaching assistant would like to schedule.
  */
 public class AddTutorialCommand extends Command {
 
@@ -26,7 +26,9 @@ public class AddTutorialCommand extends Command {
     private final Tutorial toAdd;
 
     /**
-     * Creates an AddTutorial to add the specified {@code Tutorial}
+     * Creates an AddTutorial to add the specified {@code Tutorial}.
+     *
+     * @param tutorial the tutorial to add.
      */
     public AddTutorialCommand(Tutorial tutorial) {
         requireNonNull(tutorial);

@@ -24,22 +24,23 @@ public class GreetingBar extends UiPart<Region> {
     private int size;
 
     /**
-     * Displays the number of students / tasks
-     * @param personList
+     * Displays the number of students / tasks.
+     *
+     * @param persons    the observable list containing persons
      */
-    public GreetingBar(ObservableList<Person> personList) {
+    public GreetingBar(ObservableList<Person> persons) {
         super(FXML);
 
-        if (personList == null) {
+        if (persons == null) {
             size = 0;
         } else {
-            size = personList.size();
+            size = persons.size();
         }
 
         greetingText = "You have " + size + " students currently";
         greetings.setText(greetingText);
 
-        personList.addListener((ListChangeListener<Person>) change -> {
+        persons.addListener((ListChangeListener<Person>) change -> {
             while (change.next()) {
                 if (change.wasAdded() || change.wasRemoved()) {
                     size = change.getList().size();

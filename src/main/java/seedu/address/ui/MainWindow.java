@@ -3,10 +3,7 @@ package seedu.address.ui;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +22,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.Tutorial;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -164,41 +160,6 @@ public class MainWindow extends UiPart<Stage> {
         events.add(logic.getFilteredLabList());
         events.add(logic.getFilteredConsultationList());
         return events;
-    }
-
-    /**
-     * Filters the observable list into three columns.The first element goes to the left list,
-     * the second element goes to the middle list, the third element goes to the right list,
-     * the fourth element then goes back to the left list and so on.
-     * @param tutorialList
-     * @return List of ObservableList
-     */
-    List<ObservableList<Tutorial>> filterTutorialList(ObservableList<Tutorial> tutorialList) {
-
-        int skip = 3;
-        //Store all the filtered lists into a single list
-        List<ObservableList<Tutorial>> filteredList = new ArrayList<>();
-
-        //If nothing to filter, return empty list
-        if (tutorialList.size() == 0) {
-            return filteredList;
-        }
-
-        int terminate = Math.min(tutorialList.size(), 3);
-
-        //Filter according to which list it belongs
-        for (int j = 0; j < terminate; j++) {
-            int size = tutorialList.size() - j;
-            int limit = size / skip + Math.min(size % skip, 1);
-
-            ObservableList<Tutorial> subList = Stream.iterate(j, i -> i + skip)
-                    .limit(limit)
-                    .map(tutorialList::get)
-                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
-
-            filteredList.add(subList);
-        }
-        return filteredList;
     }
 
     /**
