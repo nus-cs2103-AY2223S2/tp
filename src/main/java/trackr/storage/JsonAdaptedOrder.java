@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import trackr.commons.exceptions.IllegalValueException;
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
 import trackr.model.order.OrderName;
@@ -27,10 +28,11 @@ public class JsonAdaptedOrder {
             "Unexpected error encountered when parsing Order's `timeAdded` "
                     + "field that was read from storage file";
 
+
     private final String customerName;
     private final String customerPhone;
     private final String customerAddress;
-    private final String orderName;
+    private final JsonAdaptedMenuItem menuItem;
     private final String orderDeadline;
     private final String orderQuantity;
     private final String orderStatus;
@@ -43,7 +45,7 @@ public class JsonAdaptedOrder {
     public JsonAdaptedOrder(@JsonProperty("customerName") String customerName,
                            @JsonProperty("customerPhone") String customerPhone,
                            @JsonProperty("customerAddress") String customerAddress,
-                           @JsonProperty("orderName") String orderName,
+                           @JsonProperty("menuItem") JsonAdaptedMenuItem menuItem,
                            @JsonProperty("orderDeadline") String orderDeadline,
                            @JsonProperty("orderQuantity") String orderQuantity,
                            @JsonProperty("orderStatus") String orderStatus,
@@ -51,7 +53,7 @@ public class JsonAdaptedOrder {
         this.customerName = customerName;
         this.customerPhone = customerPhone;
         this.customerAddress = customerAddress;
-        this.orderName = orderName;
+        this.menuItem = menuItem;
         this.orderDeadline = orderDeadline;
         this.orderQuantity = orderQuantity;
         this.orderStatus = orderStatus;
@@ -65,7 +67,7 @@ public class JsonAdaptedOrder {
         customerName = source.getCustomer().getCustomerName().getName();
         customerPhone = source.getCustomer().getCustomerPhone().personPhone;
         customerAddress = source.getCustomer().getCustomerAddress().personAddress;
-        orderName = source.getOrderName().getName();
+        menuItem = new JsonAdaptedMenuItem(source.getOrderItem());
         orderDeadline = source.getOrderDeadline().toJsonString();
         orderQuantity = source.getOrderQuantity().value;
         orderStatus = source.getOrderStatus().toJsonString();
@@ -105,14 +107,13 @@ public class JsonAdaptedOrder {
         }
         final PersonAddress modelAddress = new PersonAddress(customerAddress);
 
-        if (orderName == null) {
+        if (menuItem == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     OrderName.class.getSimpleName()));
         }
-        if (!OrderName.isValidName(orderName)) {
-            throw new IllegalValueException(OrderName.MESSAGE_CONSTRAINTS);
-        }
-        final OrderName modelOrderName = new OrderName(orderName);
+
+        // Guaranteed validity
+        final MenuItem modelMenuItem = menuItem.toModelType();
 
         if (orderDeadline == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -149,7 +150,7 @@ public class JsonAdaptedOrder {
         }
 
         Customer customer = new Customer(modelName, modelPhone, modelAddress);
-        return new Order(modelOrderName, modelOrderDeadline,
+        return new Order(modelMenuItem, modelOrderDeadline,
                 modelOrderStatus, modelOrderQuantity, customer, modelTimeAdded);
     }
 }

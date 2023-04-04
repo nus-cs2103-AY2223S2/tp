@@ -2,7 +2,7 @@ package trackr.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES;
+import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES_O;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ public class AddOrderCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Order expectedTask = new OrderBuilder(CHOCOLATE_COOKIES).build();
+        Order expectedTask = new OrderBuilder(CHOCOLATE_COOKIES_O).build();
 
         // whitespace only preamble
         assertTrue(expectedTask.equals(expectedTask));
@@ -24,7 +24,7 @@ public class AddOrderCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // no status
-        Order expectedTask = new OrderBuilder(CHOCOLATE_COOKIES).withOrderStatus().build();
+        Order expectedTask = new OrderBuilder(CHOCOLATE_COOKIES_O).withOrderStatus().build();
         assertTrue(expectedTask.equals(expectedTask));
     }
 

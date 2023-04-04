@@ -1,8 +1,10 @@
 package trackr.testutil;
 
+import static trackr.testutil.TypicalMenuItems.CHOCOLATE_COOKIE_M;
+
+import trackr.model.menu.MenuItem;
 import trackr.model.order.Order;
 import trackr.model.order.OrderDeadline;
-import trackr.model.order.OrderName;
 import trackr.model.order.OrderQuantity;
 import trackr.model.order.OrderStatus;
 import trackr.model.person.Customer;
@@ -15,7 +17,7 @@ import trackr.model.person.PersonPhone;
  */
 public class OrderBuilder {
 
-    public static final String DEFAULT_ORDER_NAME = "Chocolate Cookies";
+    public static final MenuItem DEFAULT_ORDER_ITEM = CHOCOLATE_COOKIE_M;
     public static final String DEFAULT_ORDER_DEADLINE = "01/01/2027";
     public static final String DEFAULT_ORDER_QUANTITY = "3";
     public static final String DEFAULT_ORDER_STATUS = "N";
@@ -23,7 +25,7 @@ public class OrderBuilder {
     public static final String DEFAULT_CUSTOMER_PHONE = "98765432";
     public static final String DEFAULT_CUSTOMER_ADDRESS = "123 Main Street";
 
-    private OrderName orderName;
+    private MenuItem orderItem;
     private OrderQuantity orderQuantity;
     private OrderDeadline orderDeadline;
     private OrderStatus orderStatus;
@@ -35,7 +37,7 @@ public class OrderBuilder {
      * Creates a {@code OrderBuilder} with the default details.
      */
     public OrderBuilder() {
-        orderName = new OrderName(DEFAULT_ORDER_NAME);
+        orderItem = CHOCOLATE_COOKIE_M;
         orderQuantity = new OrderQuantity(DEFAULT_ORDER_QUANTITY);
         orderDeadline = new OrderDeadline(DEFAULT_ORDER_DEADLINE);
         orderStatus = new OrderStatus(DEFAULT_ORDER_STATUS);
@@ -48,7 +50,7 @@ public class OrderBuilder {
      * Initializes the OrderBuilder with the data of {@code orderToCopy}.
      */
     public OrderBuilder(Order orderToCopy) {
-        orderName = orderToCopy.getOrderName();
+        orderItem = orderToCopy.getOrderItem();
         orderQuantity = orderToCopy.getOrderQuantity();
         orderDeadline = orderToCopy.getOrderDeadline();
         orderStatus = orderToCopy.getOrderStatus();
@@ -60,8 +62,8 @@ public class OrderBuilder {
     /**
      * Sets the {@code OrderName} of the {@code Order} that we are building.
      */
-    public OrderBuilder withOrderName(String orderName) {
-        this.orderName = new OrderName(orderName);
+    public OrderBuilder withOrderItem(MenuItem orderItem) {
+        this.orderItem = orderItem;
         return this;
     }
 
@@ -126,7 +128,7 @@ public class OrderBuilder {
      */
     public Order build() {
         Customer c = new Customer(customerName, customerPhone, customerAddress);
-        return new Order(orderName, orderDeadline, orderStatus, orderQuantity, c);
+        return new Order(orderItem, orderDeadline, orderStatus, orderQuantity, c);
     }
 
 }

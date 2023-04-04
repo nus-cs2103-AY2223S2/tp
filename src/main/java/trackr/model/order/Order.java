@@ -250,7 +250,6 @@ public class Order extends Item {
         return otherOrder != null
                 && otherOrder.getCustomer().equals(this.getCustomer())
                 && otherOrder.getOrderName().equals(this.getOrderName())
-                && otherOrder.getOrderItem().equals(this.getOrderItem())
                 && otherOrder.getOrderDeadline().equals(this.getOrderDeadline())
                 && otherOrder.getOrderStatus().equals(this.getOrderStatus())
                 && otherOrder.getOrderQuantity().equals(this.getOrderQuantity());
@@ -266,7 +265,7 @@ public class Order extends Item {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getOrderName())
-                .append("; Quantity: ")
+                .append("; ")
                 .append(getOrderQuantity())
                 .append("; Deadline: ")
                 .append(getOrderDeadline())

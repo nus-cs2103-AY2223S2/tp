@@ -12,12 +12,12 @@ import trackr.model.menu.MenuItem;
 public class MenuItemBuilder {
 
     public static final String DEFAULT_ITEM_NAME = "Chocolate cookies";
-    public static final String DEFAULT_ITEM_COST = "1";
-    public static final String DEFAULT_ITEM_PRICE = "5";
+    public static final String DEFAULT_ITEM_PRICE = "5.00";
+    public static final String DEFAULT_ITEM_COST = "1.00";
 
     private ItemName itemName;
-    private ItemCost itemCost;
     private ItemSellingPrice itemPrice;
+    private ItemCost itemCost;
     private ItemProfit itemProfit;
 
     /**
@@ -25,8 +25,8 @@ public class MenuItemBuilder {
      */
     public MenuItemBuilder() {
         itemName = new ItemName(DEFAULT_ITEM_NAME);
-        itemCost = new ItemCost(DEFAULT_ITEM_COST);
         itemPrice = new ItemSellingPrice(DEFAULT_ITEM_PRICE);
+        itemCost = new ItemCost(DEFAULT_ITEM_COST);
         itemProfit = new ItemProfit(itemPrice, itemCost);
     }
 
@@ -35,8 +35,8 @@ public class MenuItemBuilder {
      */
     public MenuItemBuilder(MenuItem menuItemToCopy) {
         itemName = menuItemToCopy.getItemName();
-        itemCost = menuItemToCopy.getItemCost();
         itemPrice = menuItemToCopy.getItemPrice();
+        itemCost = menuItemToCopy.getItemCost();
     }
 
     /**

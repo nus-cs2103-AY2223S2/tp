@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static trackr.commons.core.Messages.MESSAGE_ORDERS_LISTED_OVERVIEW;
 import static trackr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static trackr.testutil.TypicalMenuItems.getTypicalMenu;
-import static trackr.testutil.TypicalOrders.CHEESE_CAKES;
-import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES;
-import static trackr.testutil.TypicalOrders.DONUTS;
-import static trackr.testutil.TypicalOrders.VANILLA_CAKE;
+import static trackr.testutil.TypicalOrders.CARGO_PANTS_O;
+import static trackr.testutil.TypicalOrders.CHOCOLATE_COOKIES_O;
+import static trackr.testutil.TypicalOrders.CUPCAKE_O;
+import static trackr.testutil.TypicalOrders.NIKE_CAP_O;
 import static trackr.testutil.TypicalOrders.getTypicalOrderList;
 import static trackr.testutil.TypicalSuppliers.getTypicalSupplierList;
 import static trackr.testutil.TypicalTasks.getTypicalTaskList;
@@ -89,11 +89,11 @@ public class FindOrderCommandTest {
     @Test
     public void execute_multipleOrderNameKeywords_multipleOrdersFound() throws ParseException {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 2);
-        OrderContainsKeywordsPredicate predicate = preparePredicate("Cheese Donuts", null, null);
+        OrderContainsKeywordsPredicate predicate = preparePredicate("Chocolate Cargo", null, null);
         FindOrderCommand command = new FindOrderCommand(predicate);
         expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CHEESE_CAKES, DONUTS), model.getFilteredOrderList());
+        assertEquals(Arrays.asList(CHOCOLATE_COOKIES_O, CARGO_PANTS_O), model.getFilteredOrderList());
     }
 
     @Test
@@ -113,7 +113,7 @@ public class FindOrderCommandTest {
         FindOrderCommand command = new FindOrderCommand(predicate);
         expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CHEESE_CAKES, CHOCOLATE_COOKIES), model.getFilteredOrderList());
+        assertEquals(Arrays.asList(CHOCOLATE_COOKIES_O, NIKE_CAP_O), model.getFilteredOrderList());
     }
 
     @Test
@@ -121,8 +121,8 @@ public class FindOrderCommandTest {
         String expectedMessage = String.format(MESSAGE_ORDERS_LISTED_OVERVIEW, 0);
         OrderContainsKeywordsPredicate predicate = preparePredicate(null, null, "D");
         FindOrderCommand command = new FindOrderCommand(predicate);
-        expectedModel.deleteItem(VANILLA_CAKE, ModelEnum.ORDER);
-        model.deleteItem(VANILLA_CAKE, ModelEnum.ORDER);
+        expectedModel.deleteItem(CARGO_PANTS_O, ModelEnum.ORDER);
+        model.deleteItem(CARGO_PANTS_O, ModelEnum.ORDER);
         expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredOrderList());
@@ -135,7 +135,7 @@ public class FindOrderCommandTest {
         FindOrderCommand command = new FindOrderCommand(predicate);
         expectedModel.updateFilteredItemList(predicate, ModelEnum.ORDER);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CHEESE_CAKES, DONUTS, CHOCOLATE_COOKIES), model.getFilteredOrderList());
+        assertEquals(Arrays.asList(CHOCOLATE_COOKIES_O, CUPCAKE_O, NIKE_CAP_O), model.getFilteredOrderList());
     }
 
     /**
