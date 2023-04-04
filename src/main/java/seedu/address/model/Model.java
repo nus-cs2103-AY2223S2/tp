@@ -59,6 +59,15 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person in the address book can be replaced by another
+     * without causing any duplicates of person in the address book.
+     *
+     * @param toBeReplaced The person to be replaced.
+     * @param replacement The replacement person.
+     */
+    boolean canReplacePerson(Person toBeReplaced, Person replacement);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -86,20 +95,48 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Updates the person to be shown as an empty person.
+     */
     void setDefaultShowPerson();
 
+    /**
+     * Updates the person to be shown as the person who matches the predicate.
+     * @param predicate Full name of person to be shown.
+     */
     void updateShowPerson(Predicate<Person> predicate);
 
+    /**
+     * Returns the person to be shown in an ObservableList.
+     * @return ObservableList containing the person be shown.
+     */
     ObservableList<Person> getShowPerson();
 
+    /**
+     * Checks if the versionedAddressBook has prior history to be undone.
+     * @return true if undo is possible and false otherwise.
+     */
     boolean checkUndoable();
 
+    /**
+     * Checks if the versionedAddressBook has recent undo history to be redone.
+     * @return true if redo is possible and false otherwise.
+     */
     boolean checkRedoable();
 
+    /**
+     * Restores a previous version of AddressBook.
+     */
     void undoAddressBook();
 
+    /**
+     * Restores an undone version of AddressBook.
+     */
     void redoAddressBook();
 
+    /**
+     * Saves the current version of AddressBook to versionStateHistory.
+     */
     void commitAddressBook();
 
     /**

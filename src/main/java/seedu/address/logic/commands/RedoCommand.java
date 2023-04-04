@@ -9,9 +9,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 
-//author
+//@@author wendy0107-reused
+// Reused from https://github.com/AY2223S1-CS2103T-W17-4 and adapted from proposed implementation in AB3's Developer
+// Guide https://se-education.org/addressbook-level3/DeveloperGuide.html
+// with minor modifications such as renaming and some different implementation.
 /**
- * Redo the last changed undid by the last undo command.
+ * Redo the changes done by a prior undo command.
  */
 public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
@@ -19,7 +22,7 @@ public class RedoCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "The command %s has been redone!";
     public static final String MESSAGE_FAILURE =
-            "TeachMeSenpai is already in the latest version! There is nothing to redo";
+            "TeachMeSenpai is already in the latest version! There is no recent undo to redo";
     private String commandToRedo;
 
     @Override
@@ -32,8 +35,8 @@ public class RedoCommand extends Command {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             commandToRedo = commandHistory.getLatestModifyingCommand();
             String message = String.format(MESSAGE_SUCCESS, commandToRedo);
-            commandHistory.updateCommandHistory(COMMAND_WORD);
             return new CommandResult(message);
         }
     }
 }
+//@@author

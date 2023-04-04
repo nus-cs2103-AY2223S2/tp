@@ -18,6 +18,10 @@ public class Remark {
         value = remark;
     }
 
+    /**
+     * Truncates a person's remark to 30 characters or if it contains a newline character.
+     * @return truncated Remark string.
+     */
     public String truncateRemark() {
         String ellipsis = "...";
         if (value == null) {
@@ -41,11 +45,20 @@ public class Remark {
         }
     }
 
+    /**
+     * Checks if remark can be truncated.
+     * @param str Remark as a string.
+     * @return true if remark can be truncated and false otherwise.
+     */
     public boolean canTruncate(String str) {
         assert str != null;
         return str.length() > 30;
     }
 
+    /**
+     * Checks if remark contains a newline character.
+     * @return true if contains at least one newline character and false otherwise.
+     */
     public boolean containsNewLine() {
         assert value != null;
         return value.contains("\n");

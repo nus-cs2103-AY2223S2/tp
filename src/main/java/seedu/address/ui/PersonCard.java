@@ -87,17 +87,31 @@ public class PersonCard extends UiPart<Region> {
         resizeFlowPane(tags);
     }
 
+    /**
+     * Sets the style for the Label containing Education.
+     * @param label Label containing Education.
+     * @return Label after setting style.
+     */
     public Label setStyleEducationLabel(Label label) {
         label.setStyle("-fx-background-color : #107896;");
         return label;
     }
 
-    public Label createModuleLabel(Module s) {
-        Label moduleLabel = new Label(s.moduleName);
+    /**
+     * Sets the style and creates a Label for Module.
+     * @param module Module to create a label for.
+     * @return Module as a Label.
+     */
+    public Label createModuleLabel(Module module) {
+        Label moduleLabel = new Label(module.moduleName);
         moduleLabel.setStyle("-fx-background-color : #829356;");
         return moduleLabel;
     }
 
+    /**
+     * Checks if Labels are empty and sets them as invisible.
+     * @param labels List of labels to check.
+     */
     public void resizeLabels(List<Label> labels) {
         for (int i = 0; i < labels.size(); i++) {
             Label label = labels.get(i);
@@ -109,6 +123,10 @@ public class PersonCard extends UiPart<Region> {
         }
     }
 
+    /**
+     * Checks if flowpane is empty and sets the flowpane to be invisble if so, otherwise adds an icon to the flowpane.
+     * @param flowpane Flowpane to check for.
+     */
     public void resizeFlowPane(FlowPane flowpane) {
         if (flowpane.getChildren().isEmpty()) {
             flowpane.setVisible(false);
