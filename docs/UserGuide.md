@@ -139,7 +139,7 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     </td>
   </tr>
   <tr>
-    <td><strong>:warning: Caution</strong></td>
+    <td><strong>:exclamation: Caution</strong></td>
     <td>
       To inform you of some unintended consequences that may occur when you use the commands, so you will be
       able to use them appropriately.
@@ -631,7 +631,7 @@ Equivalent to clicking the close button via the GUI. <br>
 **A:** CoDoc data are saved as a JSON file at ***[JAR file location]*****/data/codoc.json**. Advanced users are welcome to update data directly by editing that data file.
 
 <div class="span" class="alert alert-danger">  
-:warning: <b>Caution:</b> If your changes to the data file make its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
+:exclamation: <b>Caution:</b> If your changes to the data file make its format invalid, CoDoc will discard all data and start with an empty data file at the next run.
 </div>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
@@ -772,7 +772,7 @@ _Details coming soon ..._
    :bulb: <b>Tip:</b> You can now place the <code>.command</code> file anywhere.
    </div>
    <div class="span" class="alert alert-danger">  
-   :warning: <b>Caution:</b> If you decide to change the location of <em>home folder</em>, repeat from step 2.
+   :exclamation: <b>Caution:</b> If you decide to change the location of <em>home folder</em>, repeat from step 2.
    </div>
 
 [Scroll back to *Downloading CoDoc*](#download-and-installation)
