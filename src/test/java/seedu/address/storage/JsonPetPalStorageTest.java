@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPets.ALICE;
+import static seedu.address.testutil.TypicalPets.WHISKERS;
 import static seedu.address.testutil.TypicalPets.HOON;
 import static seedu.address.testutil.TypicalPets.IDA;
 import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
@@ -77,7 +77,7 @@ public class JsonPetPalStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addPet(HOON);
-        original.removePet(ALICE);
+        original.removePet(WHISKERS);
         jsonPetPalStorage.savePetPal(original, filePath);
         readBack = jsonPetPalStorage.readPetPal(filePath).get();
         assertEquals(original, new PetPal(readBack));

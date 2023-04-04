@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DOG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPets.ALICE;
+import static seedu.address.testutil.TypicalPets.WHISKERS;
 import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
 
 import java.util.Arrays;
@@ -46,9 +46,9 @@ public class PetPalTest {
     @Test
     public void resetData_withDuplicatePets_throwsDuplicatePetException() {
         // Two Pets with the same identity fields
-        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
+        Pet editedWHISKERS = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
-        List<Pet> newPets = Arrays.asList(ALICE, editedAlice);
+        List<Pet> newPets = Arrays.asList(WHISKERS, editedWHISKERS);
         PetPalStub newData = new PetPalStub(newPets);
 
         assertThrows(DuplicatePetException.class, () -> petPal.resetData(newData));
@@ -61,21 +61,21 @@ public class PetPalTest {
 
     @Test
     public void hasPet_petNotInPetPal_returnsFalse() {
-        assertFalse(petPal.hasPet(ALICE));
+        assertFalse(petPal.hasPet(WHISKERS));
     }
 
     @Test
     public void hasPet_petInPetPal_returnsTrue() {
-        petPal.addPet(ALICE);
-        assertTrue(petPal.hasPet(ALICE));
+        petPal.addPet(WHISKERS);
+        assertTrue(petPal.hasPet(WHISKERS));
     }
 
     @Test
     public void hasPet_petWithSameIdentityFieldsInPetPal_returnsTrue() {
-        petPal.addPet(ALICE);
-        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
+        petPal.addPet(WHISKERS);
+        Pet editedWHISKERS = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
-        assertTrue(petPal.hasPet(editedAlice));
+        assertTrue(petPal.hasPet(editedWHISKERS));
     }
 
     @Test

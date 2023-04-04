@@ -5,8 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PETS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPets.ALICE;
-import static seedu.address.testutil.TypicalPets.BENSON;
+import static seedu.address.testutil.TypicalPets.*;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +78,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasPet_petNotInPetPal_returnsFalse() {
-        assertFalse(modelManager.hasPet(ALICE));
+        assertFalse(modelManager.hasPet(WHISKERS));
     }
 
     @Test
     public void hasPet_petInPetPal_returnsTrue() {
-        modelManager.addPet(ALICE);
-        assertTrue(modelManager.hasPet(ALICE));
+        modelManager.addPet(WHISKERS);
+        assertTrue(modelManager.hasPet(WHISKERS));
     }
 
     @Test
@@ -95,7 +94,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        PetPal petPal = new PetPalBuilder().withPet(ALICE).withPet(BENSON).build();
+        PetPal petPal = new PetPalBuilder().withPet(WHISKERS).withPet(WOOFERS).build();
         PetPal archivePetPal = new PetPal();
         PetPal differentPetPal = new PetPal();
         UserPrefs userPrefs = new UserPrefs();
@@ -118,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentPetPal, archivePetPal, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = WHISKERS.getName().fullName.split("\\s+");
         modelManager.updateFilteredPetList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(petPal, archivePetPal, userPrefs)));
 

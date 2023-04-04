@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DOG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPets.ALICE;
+import static seedu.address.testutil.TypicalPets.WHISKERS;
 import static seedu.address.testutil.TypicalPets.EXAMPLE_DOG;
 
 import java.util.Arrays;
@@ -30,21 +30,21 @@ public class UniquePetListTest {
 
     @Test
     public void contains_petNotInList_returnsFalse() {
-        assertFalse(uniquePetList.contains(ALICE));
+        assertFalse(uniquePetList.contains(WHISKERS));
     }
 
     @Test
     public void contains_petInList_returnsTrue() {
-        uniquePetList.add(ALICE);
-        assertTrue(uniquePetList.contains(ALICE));
+        uniquePetList.add(WHISKERS);
+        assertTrue(uniquePetList.contains(WHISKERS));
     }
 
     @Test
     public void contains_petWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePetList.add(ALICE);
-        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
+        uniquePetList.add(WHISKERS);
+        Pet editedWHISKERS = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
-        assertTrue(uniquePetList.contains(editedAlice));
+        assertTrue(uniquePetList.contains(editedWHISKERS));
     }
 
     @Test
@@ -54,49 +54,49 @@ public class UniquePetListTest {
 
     @Test
     public void add_duplicatePet_throwsDuplicatePetException() {
-        uniquePetList.add(ALICE);
-        assertThrows(DuplicatePetException.class, () -> uniquePetList.add(ALICE));
+        uniquePetList.add(WHISKERS);
+        assertThrows(DuplicatePetException.class, () -> uniquePetList.add(WHISKERS));
     }
 
     @Test
     public void setPet_nullTargetPet_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePetList.setPet(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniquePetList.setPet(null, WHISKERS));
     }
 
     @Test
     public void setPet_nullEditedPet_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePetList.setPet(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniquePetList.setPet(WHISKERS, null));
     }
 
     @Test
     public void setPet_targetPetNotInList_throwsPetNotFoundException() {
-        assertThrows(PetNotFoundException.class, () -> uniquePetList.setPet(ALICE, ALICE));
+        assertThrows(PetNotFoundException.class, () -> uniquePetList.setPet(WHISKERS, WHISKERS));
     }
 
     @Test
     public void setPet_editedPetIsSamePet_success() {
-        uniquePetList.add(ALICE);
-        uniquePetList.setPet(ALICE, ALICE);
+        uniquePetList.add(WHISKERS);
+        uniquePetList.setPet(WHISKERS, WHISKERS);
         UniquePetList expectedUniquePetList = new UniquePetList();
-        expectedUniquePetList.add(ALICE);
+        expectedUniquePetList.add(WHISKERS);
         assertEquals(expectedUniquePetList, uniquePetList);
     }
 
     @Test
     public void setPet_editedPetHasSameIdentity_success() {
-        uniquePetList.add(ALICE);
-        Pet editedAlice = new PetBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
+        uniquePetList.add(WHISKERS);
+        Pet editedWHISKERS = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
-        uniquePetList.setPet(ALICE, editedAlice);
+        uniquePetList.setPet(WHISKERS, editedWHISKERS);
         UniquePetList expectedUniquePetList = new UniquePetList();
-        expectedUniquePetList.add(editedAlice);
+        expectedUniquePetList.add(editedWHISKERS);
         assertEquals(expectedUniquePetList, uniquePetList);
     }
 
     @Test
     public void setPet_editedPetHasDifferentIdentity_success() {
-        uniquePetList.add(ALICE);
-        uniquePetList.setPet(ALICE, EXAMPLE_DOG);
+        uniquePetList.add(WHISKERS);
+        uniquePetList.setPet(WHISKERS, EXAMPLE_DOG);
         UniquePetList expectedUniquePetList = new UniquePetList();
         expectedUniquePetList.add(EXAMPLE_DOG);
         assertEquals(expectedUniquePetList, uniquePetList);
@@ -104,9 +104,9 @@ public class UniquePetListTest {
 
     @Test
     public void setPet_editedPetHasNonUniqueIdentity_throwsDuplicatePetException() {
-        uniquePetList.add(ALICE);
+        uniquePetList.add(WHISKERS);
         uniquePetList.add(EXAMPLE_DOG);
-        assertThrows(DuplicatePetException.class, () -> uniquePetList.setPet(ALICE, EXAMPLE_DOG));
+        assertThrows(DuplicatePetException.class, () -> uniquePetList.setPet(WHISKERS, EXAMPLE_DOG));
     }
 
     @Test
@@ -116,13 +116,13 @@ public class UniquePetListTest {
 
     @Test
     public void remove_petDoesNotExist_throwsPetNotFoundException() {
-        assertThrows(PetNotFoundException.class, () -> uniquePetList.remove(ALICE));
+        assertThrows(PetNotFoundException.class, () -> uniquePetList.remove(WHISKERS));
     }
 
     @Test
     public void remove_existingPet_removesPet() {
-        uniquePetList.add(ALICE);
-        uniquePetList.remove(ALICE);
+        uniquePetList.add(WHISKERS);
+        uniquePetList.remove(WHISKERS);
         UniquePetList expectedUniquePetList = new UniquePetList();
         assertEquals(expectedUniquePetList, uniquePetList);
     }
@@ -134,7 +134,7 @@ public class UniquePetListTest {
 
     @Test
     public void setPets_uniquePetList_replacesOwnListWithProvidedUniquePetList() {
-        uniquePetList.add(ALICE);
+        uniquePetList.add(WHISKERS);
         UniquePetList expectedUniquePetList = new UniquePetList();
         expectedUniquePetList.add(EXAMPLE_DOG);
         uniquePetList.setPets(expectedUniquePetList);
@@ -148,7 +148,7 @@ public class UniquePetListTest {
 
     @Test
     public void setPets_list_replacesOwnListWithProvidedList() {
-        uniquePetList.add(ALICE);
+        uniquePetList.add(WHISKERS);
         List<Pet> petList = Collections.singletonList(EXAMPLE_DOG);
         uniquePetList.setPets(petList);
         UniquePetList expectedUniquePetList = new UniquePetList();
@@ -158,7 +158,7 @@ public class UniquePetListTest {
 
     @Test
     public void setPets_listWithDuplicatePets_throwsDuplicatePetException() {
-        List<Pet> listWithDuplicatePets = Arrays.asList(ALICE, ALICE);
+        List<Pet> listWithDuplicatePets = Arrays.asList(WHISKERS, WHISKERS);
         assertThrows(DuplicatePetException.class, () -> uniquePetList.setPets(listWithDuplicatePets));
     }
 

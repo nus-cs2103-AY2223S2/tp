@@ -2,7 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OWNER_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -28,7 +35,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_TIMESTAMP, PREFIX_DEADLINE);
+                ArgumentTokenizer.tokenize(args, PREFIX_OWNER_NAME, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_TIMESTAMP, PREFIX_DEADLINE);
 
         Index index;
 
@@ -39,6 +47,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditPetDescriptor editPetDescriptor = new EditPetDescriptor();
+        if (argMultimap.getValue(PREFIX_OWNER_NAME).isPresent()) {
+            editPetDescriptor.setOwnerName(ParserUtil.parseOwnerName(argMultimap.getValue(PREFIX_OWNER_NAME).get()));
+        }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPetDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }

@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPet.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPets.BENSON;
+import static seedu.address.testutil.TypicalPets.WOOFERS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,22 +26,22 @@ public class JsonAdaptedPetTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_OWNER_NAME = BENSON.getOwnerName().toString();
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_ADDRESS = BENSON.getAddress().toString();
-    private static final String VALID_TIMESTAMP = BENSON.getTimeStamp().toString();
-    private static final String VALID_DEADLINE = BENSON.getDeadline().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_OWNER_NAME = WOOFERS.getOwnerName().toString();
+    private static final String VALID_NAME = WOOFERS.getName().toString();
+    private static final String VALID_PHONE = WOOFERS.getPhone().toString();
+    private static final String VALID_EMAIL = WOOFERS.getEmail().toString();
+    private static final String VALID_ADDRESS = WOOFERS.getAddress().toString();
+    private static final String VALID_TIMESTAMP = WOOFERS.getTimeStamp().toString();
+    private static final String VALID_DEADLINE = WOOFERS.getDeadline().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = WOOFERS.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     private static final String VALID_MARK = "Unmarked";
     @Test
     public void toModelType_validPetDetails_returnsPet() throws Exception {
-        JsonAdaptedPet pet = new JsonAdaptedPet(BENSON);
-        assertEquals(BENSON, pet.toModelType());
+        JsonAdaptedPet pet = new JsonAdaptedPet(WOOFERS);
+        assertEquals(WOOFERS, pet.toModelType());
     }
 
     @Test
