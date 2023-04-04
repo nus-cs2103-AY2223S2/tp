@@ -64,7 +64,7 @@ public class EditVolunteerCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_NRIC + "NRIC] "
-            + "[" + PREFIX_BIRTH_DATE + "BIRTHDATE] "
+            + "[" + PREFIX_BIRTH_DATE + "BIRTH_DATE] "
             + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_MEDICAL_TAG + "MEDICAL_TAG]... "

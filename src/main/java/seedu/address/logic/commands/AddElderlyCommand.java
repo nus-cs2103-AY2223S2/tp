@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_ELDERLY;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_IN_VOLUNTEERS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_AGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTH_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -50,7 +49,7 @@ public class AddElderlyCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_NRIC + "NRIC "
-            + PREFIX_BIRTH_DATE + "BIRTHDATE "
+            + PREFIX_BIRTH_DATE + "BIRTH_DATE "
             + "[" + PREFIX_REGION + "REGION] "
             + "[" + PREFIX_RISK + "MEDICAL RISK (LOW, MEDIUM or HIGH)] "
             + "[" + PREFIX_PHONE + "PHONE] "
