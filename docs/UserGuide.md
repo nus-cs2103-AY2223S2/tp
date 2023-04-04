@@ -191,13 +191,8 @@ The range of valid years is from -9999 to 9999.
 <div markdown="span" class="alert alert-danger">
 :warning: Avoid having any argument flag appear literally in your argument's
 data. For example, any attempts to create a project named *Mycelium -pn
-Desktop* would fail.
-
-```bash
-p -pn Mycelium -pn Desktop -e spiderman@gmail.com
-```
-
-In the command above, *Desktop* is interpreted as another argument, actually
+Desktop* would fail. In the command `p -pn Mycelium -pn Desktop -e
+spiderman@gmail.com`, *Desktop* is interpreted as another argument and
 overrides *Mycelium*. So we end up with a project named *Desktop*.
 </div>
 
