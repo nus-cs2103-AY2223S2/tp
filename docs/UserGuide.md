@@ -551,7 +551,7 @@ _Here are some important requirements for you to take note:_
 | r      | Recurrence Interval           | Yes       |
 
 Examples:
-*  `editevent 1 d/read book e/weekly` Edits the description and recurrence of the 1st event to be `read book` and `weekly` respectively.
+*  `editevent 1 d/read book r/weekly` Edits the description and recurrence of the 1st event to be `read book` and `weekly` respectively.
 *  `editevent 2 s/2023-01-01 1800 e/2023-01-02 2000` Edits the start date and end date of the 1st and 2nd event to be `20203-01-01 1800` and `2023-01-02 2000` respectively.
 
 [Back To Contents](#table-of-contents)
