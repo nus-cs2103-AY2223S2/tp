@@ -94,23 +94,25 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldsEmpty_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
-
         // missing name field
-        assertParseFailure(parser, PREFIX_NAME + DATE_DESC_B + START_TIME_DESC_B + END_TIME_DESC_B,
-                expectedMessage);
+        assertParseFailure(parser, " " + PREFIX_NAME + DATE_DESC_B + START_TIME_DESC_B + END_TIME_DESC_B,
+                Name.MESSAGE_CONSTRAINTS);
 
         // missing date field
-        assertParseFailure(parser, NAME_DESC_B + PREFIX_DATE + START_TIME_DESC_B + END_TIME_DESC_B,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_B + " " + PREFIX_DATE + START_TIME_DESC_B + END_TIME_DESC_B,
+                Date.MESSAGE_CONSTRAINTS);
 
         // missing start time field
-        assertParseFailure(parser, NAME_DESC_B + DATE_DESC_B + PREFIX_START + END_TIME_DESC_B,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_B + DATE_DESC_B + " " + PREFIX_START + END_TIME_DESC_B,
+                Time.MESSAGE_CONSTRAINTS);
 
         // missing end time field
-        assertParseFailure(parser, NAME_DESC_B + DATE_DESC_B + START_TIME_DESC_B + PREFIX_END,
-                expectedMessage);
+        assertParseFailure(parser, NAME_DESC_B + DATE_DESC_B + START_TIME_DESC_B + " " + PREFIX_END,
+                Time.MESSAGE_CONSTRAINTS);
+
+        // multiple missing fields - date followed by start time
+        assertParseFailure(parser, NAME_DESC_A
+                + " " + PREFIX_DATE + " " + PREFIX_START + END_TIME_DESC_B, Date.MESSAGE_CONSTRAINTS);
     }
 
     @Test
