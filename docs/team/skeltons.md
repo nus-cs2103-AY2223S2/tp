@@ -11,29 +11,35 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=skeltons&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **New Feature**: _to be added soon_
-    * What it does: _to be added soon_
-    * Justification: _to be added soon_
-    * Highlights: _to be added soon_
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Added the ability to view deliveries in more detail.
+    * What it does: Shows more information about the selected delivery
+    * Justification: Extra information pertaining to the delivery (such as number of attempts) were not shown in the delivery list as it will make it look messy and clutter, hence the view command is needed to get these extra information.
+    * Highlights: 
+        * There is a section in the GUI dedicated to show the extra information of a delivery.
+        * Any time a command make changes to a delivery, the delivery will show up in the Viewing Section of the UI to allow the user to verify said changes.
+    * Credits: This feature was implemented by following the tutorial provided by SEEDU.
 
 * **Enhancements to existing features**:
-    * _to be added soon_
+    * Redesigned the GUI to work with the `view` command which includes a pane to display more information about the delivery of interest
+    * Redesigned the GUI to reduce clutter in the delivery list
 
 * **Documentation**:
     * User Guide:
-        * _to be added soon_
-        * _to be added soon_
+        * Added documentation for the `view` feature
     * Developer Guide:
-        * _to be added soon_
+        * Added implementation details for the `view` feature
+        * Added design considerations for the `view` feature
 
 * **Contributions to team-based tasks**:
-    * _to be added soon_
+    * Bug fix for the phone field of a delivery, as it is not behaving as intended
 
 * **Review/mentoring contributions**:
-    * _to be added soon_
+    * Reviewed PR [#93](https://github.com/AY2223S2-CS2103-W16-1/tp/pull/93)
+    * Reviewed PR [#41](https://github.com/AY2223S2-CS2103-W16-1/tp/pull/41)
+    * Reviewed PR [#37](https://github.com/AY2223S2-CS2103-W16-1/tp/pull/37)
 
 * **Contributions beyond the project team**:
-    * _to be added soon_
+    * Assisted in CATcher load test
+    * Reported bugs for other projects during PE-D
 
 
