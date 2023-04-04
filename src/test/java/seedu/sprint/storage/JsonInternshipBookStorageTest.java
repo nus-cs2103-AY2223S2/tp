@@ -89,12 +89,12 @@ public class JsonInternshipBookStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveInternshipBook_nullInternshipBook_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveInternshipBook(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves {@code internshipBook} at the specified {@code filePath}.
      */
     private void saveInternshipBook(ReadOnlyInternshipBook internshipBook, String filePath) {
         try {
@@ -106,7 +106,7 @@ public class JsonInternshipBookStorageTest {
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
+    public void saveInternshipBook_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveInternshipBook(new InternshipBook(), null));
     }
 }
