@@ -200,6 +200,7 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd bookmark in the library.
 * `find n/Chainsaw Man` followed by `delete 1` deletes the 1st bookmark in the results of the `find` command.
+<div style="page-break-after: always;"></div>
 
 ### Editing a bookmark : `edit`
 
@@ -239,7 +240,9 @@ Find bookmarks whose specified fields contain the given keywords.
 want to filter out certain bookmarks from your large list of bookmarks. `find` allows you to search for bookmarks
 using the title, author, genre and/or tags of a bookmark.
 
-:bulb: **Tip** - You can use the `list` command to get back the bookmarks that you have filtered out after `find`.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can use the `list` command to get back the bookmarks that you have filtered out after `find`.
+</div>
 
 Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 
@@ -251,13 +254,13 @@ Format: `find [n/TITLE] [a/AUTHOR] [g/GENRE] [t/TAG]…​`
 * Only the fields of the specified prefixes are searched.
 * Only full words will be matched e.g. `Ranker` will not match `Ranker's`.
 * The search for tags will return any bookmark that has a tag that matches the given tag.
-<div style="page-break-after: always;"></div>
 
 Examples:
 * `find n/ranker's g/Fantasy` returns `Ranker's Guide to an Ordinary Life` that has the genre `Fantasy`
 * `find n/Chainsaw Man` after `list` returns `chainsaw man` and `Chainsaw Man` as shown in figure 1 below.
+<div style="page-break-after: always;"></div>
 
-<img src="images/find-chainsaw%20man.png">
+![Find](images/find-chainsaw%20man.png)
 <figcaption style="text-align:center"><em><strong>
    Figure 1
    </strong>
@@ -269,8 +272,9 @@ Examples:
 
 Shows a list of all bookmarks in the library.
 
-
-:bulb: **Tip** - Use this command to get back the original list of bookmarks after using `find` command to filter out bookmarks.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Use this command to get back the original list of bookmarks after using `find` command to filter out bookmarks.
+</div>
 
 Format: `list`
 <div style="page-break-after: always;"></div>
@@ -289,17 +293,17 @@ Examples:
 * `list` followed by `view 2` displays the 2nd bookmark in the library as shown in figure 2 below.
 * `find n/Chainsaw Man` followed by `goto 1` displays 1st bookmark in the results of the `find` command.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Our Application also supports this feature in gui format, simply click onto the bookmark you want and watch the magic happen.
-</div>
-
-<img src="images/View-command.png">
+![View](images/View-command.png)
 <figcaption style="text-align:center"><em><strong>
    Figure 2
    </strong>
    : Executing view after list
    </em></figcaption>
 <div style="page-break-after: always;"></div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Our Application also supports this feature in gui format, simply click onto the bookmark you want and watch the magic happen.
+</div>
 
 ### Going to a url : `goto`
 
@@ -324,6 +328,7 @@ Our Application also supports this feature in gui format, clicking on the url in
 Clears all bookmark entries from the MyLib. You will still keep your list of genres and tags after using the `clear` command.
 
 Format: `clear`
+<div style="page-break-after: always;"></div>
 
 ### Viewing help : `help`
 
@@ -332,7 +337,7 @@ Shows a message explaning how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-<div style="page-break-after: always;"></div>
+
 
 ### Exiting the program : `exit`
 
@@ -351,13 +356,14 @@ MyLib data are saved as a JSON file `[JAR file location]/data/library.json`. Adv
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, MyLib will discard all data and start with an empty data file at the next run.
 </div>
+<div style="page-break-after: always;"></div>
 
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
+
 
 ## FAQ
 
