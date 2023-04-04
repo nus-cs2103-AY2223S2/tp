@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.techtrack.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a Role's website in the role book.
  * Guarantees: immutable; is valid as declared in {@link #isValidWebsite(String)}
  */
 public class Website {

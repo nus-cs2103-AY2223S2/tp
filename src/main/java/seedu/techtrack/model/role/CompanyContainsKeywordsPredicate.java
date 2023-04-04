@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.techtrack.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Job}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Role}'s {@code Company} matches any of the keywords given.
  */
 public class CompanyContainsKeywordsPredicate implements Predicate<Role> {
     private final List<String> keywords;

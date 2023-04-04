@@ -15,18 +15,18 @@ import org.junit.jupiter.api.Test;
 
 import seedu.techtrack.logic.commands.exceptions.exceptions.ParseException;
 import seedu.techtrack.model.role.Company;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Deadline;
 import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
 import seedu.techtrack.model.role.Website;
 import seedu.techtrack.model.util.tag.Tag;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_CONTACT = "+651234";
+    private static final String INVALID_COMPANY = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_WEBSITE = "#www.com";
@@ -34,8 +34,8 @@ public class ParserUtilTest {
     private static final String INVALID_EXPERIENCE = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_CONTACT = "123456";
+    private static final String VALID_COMPANY = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -88,49 +88,49 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parsePhone_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+    public void parseContact_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseContact((String) null));
     }
 
     @Test
-    public void parsePhone_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parsePhone(INVALID_PHONE));
+    public void parseContact_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseContact(INVALID_CONTACT));
     }
 
     @Test
-    public void parsePhone_validValueWithoutWhitespace_returnsPhone() throws Exception {
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(VALID_PHONE));
+    public void parseContact_validValueWithoutWhitespace_returnsContact() throws Exception {
+        Contact expectedContact = new Contact(VALID_CONTACT);
+        assertEquals(expectedContact, ParserUtil.parseContact(VALID_CONTACT));
     }
 
     @Test
-    public void parsePhone_validValueWithWhitespace_returnsTrimmedPhone() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        Phone expectedPhone = new Phone(VALID_PHONE);
-        assertEquals(expectedPhone, ParserUtil.parsePhone(phoneWithWhitespace));
+    public void parseContact_validValueWithWhitespace_returnsTrimmedContact() throws Exception {
+        String contactWithWhitespace = WHITESPACE + VALID_CONTACT + WHITESPACE;
+        Contact expectedContact = new Contact(VALID_CONTACT);
+        assertEquals(expectedContact, ParserUtil.parseContact(contactWithWhitespace));
     }
 
     @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
+    public void parseCompany_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany((String) null));
     }
 
     @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseCompany_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCompany(INVALID_COMPANY));
     }
 
     @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Company expectedCompany = new Company(VALID_ADDRESS);
-        assertEquals(expectedCompany, ParserUtil.parseAddress(VALID_ADDRESS));
+    public void parseCompany_validValueWithoutWhitespace_returnsCompany() throws Exception {
+        Company expectedCompany = new Company(VALID_COMPANY);
+        assertEquals(expectedCompany, ParserUtil.parseCompany(VALID_COMPANY));
     }
 
     @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Company expectedCompany = new Company(VALID_ADDRESS);
-        assertEquals(expectedCompany, ParserUtil.parseAddress(addressWithWhitespace));
+    public void parseCompany_validValueWithWhitespace_returnsTrimmedCompany() throws Exception {
+        String companyWithWhitespace = WHITESPACE + VALID_COMPANY + WHITESPACE;
+        Company expectedCompany = new Company(VALID_COMPANY);
+        assertEquals(expectedCompany, ParserUtil.parseCompany(companyWithWhitespace));
     }
 
     @Test
@@ -214,7 +214,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseDeadline_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parsePhone((String) null));
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseContact((String) null));
     }
 
     @Test
@@ -224,14 +224,14 @@ public class ParserUtilTest {
     @Test
     public void parseDeadline_validValueWithoutWhitespace_returnsEmail() throws Exception {
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseDateline(VALID_DEADLINE));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(VALID_DEADLINE));
     }
 
     @Test
     public void parseDeadline_validValueWithWhitespace_returnsTrimmedDeadline() throws Exception {
         String deadlineWithWhitespace = WHITESPACE + VALID_DEADLINE + WHITESPACE;
         Deadline expectedDeadline = new Deadline(VALID_DEADLINE);
-        assertEquals(expectedDeadline, ParserUtil.parseDateline(deadlineWithWhitespace));
+        assertEquals(expectedDeadline, ParserUtil.parseDeadline(deadlineWithWhitespace));
     }
 
     @Test

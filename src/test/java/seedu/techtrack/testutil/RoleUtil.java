@@ -39,7 +39,7 @@ public class RoleUtil {
     public static String getRoleDetails(Role role) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + role.getName().fullName + " ");
-        sb.append(PREFIX_CONTACT + role.getPhone().value + " ");
+        sb.append(PREFIX_CONTACT + role.getContact().value + " ");
         sb.append(PREFIX_EMAIL + role.getEmail().value + " ");
         sb.append(PREFIX_COMPANY + role.getCompany().value + " ");
         sb.append(PREFIX_JOBDESCRIPTION + role.getJobDescription().value + " ");

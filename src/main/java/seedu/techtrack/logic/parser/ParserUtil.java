@@ -10,12 +10,12 @@ import seedu.techtrack.commons.core.index.Index;
 import seedu.techtrack.commons.util.StringUtil;
 import seedu.techtrack.logic.commands.exceptions.exceptions.ParseException;
 import seedu.techtrack.model.role.Company;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Deadline;
 import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
 import seedu.techtrack.model.role.Salary;
 import seedu.techtrack.model.role.Website;
 import seedu.techtrack.model.util.tag.Tag;
@@ -56,33 +56,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String phone} into a {@code Contact}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code Contact} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Contact parseContact(String contact) throws ParseException {
+        requireNonNull(contact);
+        String trimmedContact = contact.trim();
+        if (!Contact.isValidContact(trimmedContact)) {
+            throw new ParseException(Contact.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        return new Contact(trimmedContact);
     }
 
     /**
-     * Parses a {@code String address} into an {@code Company}.
+     * Parses a {@code String company} into an {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code company} is invalid.
      */
-    public static Company parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Company.isValidCompany(trimmedAddress)) {
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompany = company.trim();
+        if (!Company.isValidCompany(trimmedCompany)) {
             throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
-        return new Company(trimmedAddress);
+        return new Company(trimmedCompany);
     }
 
     /**
@@ -178,7 +178,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Deadline parseDateline(String deadline) throws ParseException {
+    public static Deadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         if (!Deadline.doesNotExist(trimmedDeadline)) {

@@ -91,7 +91,7 @@ public final class RoleDisplay {
         Label email = new Label("Email: " + roleToDisplay.getEmail());
         email.getStyleClass().add("role-display-body");
 
-        Label phone = new Label("Phone No.: " + roleToDisplay.getPhone());
+        Label phone = new Label("Contact No.: " + roleToDisplay.getContact());
         phone.getStyleClass().add("role-display-body");
 
         Label website = new Label("Website: " + roleToDisplay.getWebsite());

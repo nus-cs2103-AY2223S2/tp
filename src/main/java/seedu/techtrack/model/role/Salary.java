@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.techtrack.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Salary in the Tech track.
+ * Represents a Role's Salary in the role book.
  * Guarantees: immutable; is valid as declared in {@link #isValidSalary(String)}
  */
 public class Salary {

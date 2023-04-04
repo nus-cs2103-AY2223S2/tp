@@ -10,14 +10,14 @@ import java.util.Set;
 import seedu.techtrack.model.util.tag.Tag;
 
 /**
- * Represents a Role in the company book.
+ * Represents a Role in the role book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Role {
 
     // Identity fields
     private final Name name;
-    private final Phone phone;
+    private final Contact contact;
     private final Email email;
     private final Website website;
 
@@ -32,12 +32,12 @@ public class Role {
     /**
      * Every field must be present and not null.
      */
-    public Role(Name name, Phone phone, Email email, Company company, JobDescription jd, Set<Tag> tags,
+    public Role(Name name, Contact contact, Email email, Company company, JobDescription jd, Set<Tag> tags,
                 Website website, Salary salary, Deadline deadline, Experience experience) {
-        requireAllNonNull(name, phone, email, company, jd, tags, website, salary, deadline, experience);
+        requireAllNonNull(name, contact, email, company, jd, tags, website, salary, deadline, experience);
 
         this.name = name;
-        this.phone = phone;
+        this.contact = contact;
         this.email = email;
         this.company = company;
         this.jobDescription = jd;
@@ -52,8 +52,8 @@ public class Role {
         return name;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public Contact getContact() {
+        return contact;
     }
 
     public Email getEmail() {
@@ -126,7 +126,7 @@ public class Role {
 
         Role otherRole = (Role) other;
         return otherRole.getName().equals(getName())
-                && otherRole.getPhone().equals(getPhone())
+                && otherRole.getContact().equals(getContact())
                 && otherRole.getEmail().equals(getEmail())
                 && otherRole.getCompany().equals(getCompany())
                 && otherRole.getJobDescription().equals(getJobDescription())
@@ -140,7 +140,7 @@ public class Role {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, company, jobDescription, tags, website, salary, deadline, experience);
+        return Objects.hash(name, contact, email, company, jobDescription, tags, website, salary, deadline, experience);
 
     }
 
@@ -166,7 +166,7 @@ public class Role {
                 .append("\n")
                 .append("Experience: ").append(getExperience())
                 .append("\n")
-                .append("Phone: ").append(getPhone())
+                .append("Contact: ").append(getContact())
                 .append("\n")
                 .append("Email: ").append(getEmail())
                 .append("\n")
