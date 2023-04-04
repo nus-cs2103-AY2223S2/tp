@@ -89,8 +89,9 @@ After setting up and launching InternBuddy, you would see a GUI. Figures 1 illus
 of InternBuddy's GUI and Table 1 explains the function for each part. We would be referencing
 the different parts of the GUI throughout this developer guide.
 
-
-![Graphical User Interface](images/gui-markup.png)
+<p align="center">
+  <img src="images/gui-markup.png" width="700" />
+</p>
 
 <p style="text-align: center;">Figure 1: InternBuddy's GUI</p>
 
@@ -858,8 +859,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
-<div style="page-break-after: always;"></div>
-
 **Use Case: Copy an internship to clipboard**
 
 **Main Success Scenario**
@@ -952,7 +951,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br/>
 
-<div style="page-break-after: always;"></div>
 
 **Use Case: Delete internships by fields**
 
