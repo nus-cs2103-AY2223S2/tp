@@ -161,12 +161,21 @@ public class CommandParserUtil {
     public static final ApplicativeParser<Index> ZERO_BASED_INDEX_PARSER =
             INT_PARSER.map(Index::fromZeroBased);
 
+    public static final ApplicativeParser<Void> END_OF_COMMAND_PARSER =
+            ApplicativeParser
+                    .skipWhitespaces()
+                    .dropNext(ApplicativeParser.choice(
+                            ApplicativeParser.eof(),
+                            ApplicativeParser.untilEof().consume(remaining -> {
+                                throw new ParserException("Syntax error: " + remaining);
+                            })));
+
     ///////////////
     // UTILITIES //
     ///////////////
 
     public static ApplicativeParser<LiteralArgumentFlag> parseFlag(LiteralArgumentFlag flag) {
-        return ApplicativeParser.choiceFrom(
+        return ApplicativeParser.choice(
                 flag.getForms()
                         .stream()
                         .map(ApplicativeParser::string))
@@ -174,7 +183,7 @@ public class CommandParserUtil {
     }
 
     public static ApplicativeParser<ComposedArgumentFlag> parseFlag(ComposedArgumentFlag flag) {
-        return ApplicativeParser.choiceFrom(
+        return ApplicativeParser.choice(
                 flag.getFlags()
                         .stream()
                         .map(CommandParserUtil::parseFlag))

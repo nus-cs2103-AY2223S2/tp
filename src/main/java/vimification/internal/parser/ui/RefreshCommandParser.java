@@ -1,13 +1,21 @@
-package vimification.internal.parser;
+package vimification.internal.parser.ui;
 
 import vimification.internal.command.ui.RefreshCommand;
+import vimification.internal.parser.ApplicativeParser;
+import vimification.internal.parser.CommandParser;
+import vimification.internal.parser.CommandParserUtil;
 
 public class RefreshCommandParser implements CommandParser<RefreshCommand> {
+
+    private static final ApplicativeParser<RefreshCommand> COMMAND_PARSER =
+            ApplicativeParser
+                    .of(new RefreshCommand())
+                    .dropNext(CommandParserUtil.END_OF_COMMAND_PARSER);
 
     private static final ApplicativeParser<ApplicativeParser<RefreshCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .string("refresh")
-                    .constMap(ApplicativeParser.of(new RefreshCommand()));
+                    .constMap(COMMAND_PARSER);
 
     private static final RefreshCommandParser INSTANCE = new RefreshCommandParser();
 

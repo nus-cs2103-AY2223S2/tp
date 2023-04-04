@@ -7,6 +7,18 @@ import vimification.internal.command.Command;
 import vimification.internal.command.logic.LogicCommand;
 import vimification.internal.command.macro.MacroCommand;
 import vimification.internal.command.ui.UiCommand;
+import vimification.internal.parser.logic.AddCommandParser;
+import vimification.internal.parser.logic.DeleteCommandParser;
+import vimification.internal.parser.logic.EditCommandParser;
+import vimification.internal.parser.logic.InsertCommandParser;
+import vimification.internal.parser.logic.UndoCommandParser;
+import vimification.internal.parser.macro.MacroCommandParser;
+import vimification.internal.parser.ui.FilterCommandParser;
+import vimification.internal.parser.ui.HelpCommandParser;
+import vimification.internal.parser.ui.JumpCommandParser;
+import vimification.internal.parser.ui.QuitCommandParser;
+import vimification.internal.parser.ui.RefreshCommandParser;
+import vimification.internal.parser.ui.SortCommandParser;
 import vimification.model.MacroMap;
 
 public class VimificationParser {
@@ -16,11 +28,6 @@ public class VimificationParser {
     private static final ApplicativeParser<Void> PREPROCESSOR = ApplicativeParser
             .string(":")
             .optional();
-
-    private static final ApplicativeParser<Void> POSTPROCESSOR = ApplicativeParser
-            .skipWhitespaces()
-            .takeNext(ApplicativeParser.eof())
-            .throwIfFail("Too many arguments");
 
     private static final CommandParser<LogicCommand> LOGIC_COMMAND_PARSER =
             AddCommandParser.getInstance()
@@ -47,9 +54,7 @@ public class VimificationParser {
                     .<Command>cast()
                     .or(UI_COMMAND_PARSER)
                     .or(MACRO_COMMAND_PARSER)
-                    .updateInternalParser(parser -> parser
-                            .throwIfFail("Unknown command")
-                            .map(commandParser -> commandParser.dropNext(POSTPROCESSOR)));
+                    .updateInternalParser(parser -> parser.throwIfFail("Unknown command"));
 
     private MacroMap macroMap;
 
@@ -77,9 +82,9 @@ public class VimificationParser {
      * @return
      */
     public Command parse(String input) {
-        LOGGER.info(input);
+        LOGGER.info("Original input: " + input);
         String preprocessedInput = macroPreprocessor.parse(input);
-        System.out.println("Input expanded to: " + preprocessedInput);
+        LOGGER.info("Input expanded to: " + preprocessedInput);
         return COMMAND_PARSER.parse(preprocessedInput);
     }
 }

@@ -1,15 +1,24 @@
-package vimification.internal.parser;
+package vimification.internal.parser.ui;
 
 import vimification.internal.command.ui.QuitCommand;
+import vimification.internal.parser.ApplicativeParser;
+import vimification.internal.parser.CommandParser;
+import vimification.internal.parser.CommandParserUtil;
 
 public class QuitCommandParser implements CommandParser<QuitCommand> {
+
+    private static final ApplicativeParser<QuitCommand> COMMAND_PARSER =
+            ApplicativeParser
+                    .of(new QuitCommand())
+                    .dropNext(CommandParserUtil.END_OF_COMMAND_PARSER);
+
 
     private static final ApplicativeParser<ApplicativeParser<QuitCommand>> INTERNAL_PARSER =
             ApplicativeParser.choice(
                     ApplicativeParser.string("quit"),
                     // ApplicativeParser.string("q"),
                     ApplicativeParser.string("q!"))
-                    .constMap(ApplicativeParser.of(new QuitCommand()));
+                    .constMap(COMMAND_PARSER);
 
     private static final QuitCommandParser INSTANCE = new QuitCommandParser();
 

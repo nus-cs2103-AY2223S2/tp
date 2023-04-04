@@ -56,8 +56,17 @@ public final class ApplicativeParser<T> {
     // INSTANCE FIELDS AND CONSTRUCTOR //
     /////////////////////////////////////
 
+    /**
+     * The wrapped function.
+     * <p>
+     * The parser can be made more powerful by changing the container used. For now,
+     * {@code Optional} is enough.
+     */
     private final Function<StringView, Optional<Pair<StringView, T>>> runner;
 
+    /**
+     * Constructs a new {@code ApplicativeParser} instance that wraps a function.
+     */
     private ApplicativeParser(
             Function<StringView, Optional<Pair<StringView, T>>> runner) {
         this.runner = runner;
@@ -360,7 +369,7 @@ public final class ApplicativeParser<T> {
      */
     @SafeVarargs
     public static <T> ApplicativeParser<T> choice(ApplicativeParser<? extends T>... parsers) {
-        return choiceFrom(Arrays.stream(parsers));
+        return choice(Arrays.stream(parsers));
     }
 
     /**
@@ -372,7 +381,7 @@ public final class ApplicativeParser<T> {
      * @param parsers a stream of parsers
      * @return a parser that tries the given parsers, until one succeeds
      */
-    public static <T> ApplicativeParser<T> choiceFrom(
+    public static <T> ApplicativeParser<T> choice(
             Stream<? extends ApplicativeParser<? extends T>> parsers) {
         return parsers.map(ApplicativeParser::<T>cast)
                 .reduce(ApplicativeParser::or)
@@ -485,32 +494,34 @@ public final class ApplicativeParser<T> {
     }
 
     /**
-     * In place version of {@link #lift(BiFunction, ApplicativeParser, ApplicativeParser)}.
-     *
-     * @param <U>
-     * @param <V>
-     * @param that
-     * @param combiner
-     * @return
-     */
-    public <U, V> ApplicativeParser<V> combine(
-            ApplicativeParser<? extends U> that,
-            BiFunction<? super T, ? super U, ? extends V> combiner) {
-        return lift(combiner, this, that);
-    }
-
-    /**
      * In place version of {@link #lift(Function, ApplicativeParser, ApplicativeParser)}.
      *
-     * @param <U>
-     * @param <V>
-     * @param that
-     * @param combiner
-     * @return
+     * @param <U> the type of the other parser result
+     * @param <V> the type of the resultant parser result
+     * @param combiner the (curried) binary function to combine the parser results
+     * @param that the other parser
+     * @return a new parser, that first runs this parser, then the other parser, and finally
+     *         combines the result of these parsers using the (curried) binary function
      */
     public <U, V> ApplicativeParser<V> combine(
             ApplicativeParser<? extends U> that,
             Function<? super T, Function<? super U, ? extends V>> combiner) {
+        return lift(combiner, this, that);
+    }
+
+    /**
+     * In place version of {@link #lift(BiFunction, ApplicativeParser, ApplicativeParser)}.
+     *
+     * @param <U> the type of the other parser result
+     * @param <V> the type of the resultant parser result
+     * @param combiner the binary function to combine the parser results
+     * @param that the other parser
+     * @return a new parser, that first runs this parser, then the other parser, and finally
+     *         combines the result of these parsers using the binary function
+     */
+    public <U, V> ApplicativeParser<V> combine(
+            ApplicativeParser<? extends U> that,
+            BiFunction<? super T, ? super U, ? extends V> combiner) {
         return lift(combiner, this, that);
     }
 
@@ -592,6 +603,14 @@ public final class ApplicativeParser<T> {
         return fromRunner(input -> run(input).or(() -> {
             T otherValue = supplier.get();
             return Optional.of(Pair.of(input, otherValue));
+        }));
+    }
+
+    public ApplicativeParser<T> visit(Consumer<? super T> visiter) {
+        return fromRunner(input -> run(input).map(pair -> {
+            T value = pair.getSecond();
+            visiter.accept(value);
+            return pair;
         }));
     }
 

@@ -1,4 +1,4 @@
-package vimification.internal.parser;
+package vimification.internal.parser.logic;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import vimification.internal.command.logic.InsertCommand;
+import vimification.internal.parser.ParserException;
 
 public class InsertCommandParserTest {
 
@@ -13,7 +14,7 @@ public class InsertCommandParserTest {
     private static final InsertCommandParser INSTANCE = InsertCommandParser.getInstance();
 
     @Test
-    public void urecognizaleArgs_shouldThrow() {
+    public void unrecognizableArgs_shouldThrow() {
         String input = "i \"description\" -t stickytag -p 0";
         assertThrows(EXPECTED_EXCEPTION_CLASS, () -> INSTANCE.parse(input));
 

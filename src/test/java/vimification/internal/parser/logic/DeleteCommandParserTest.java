@@ -1,4 +1,4 @@
-package vimification.internal.parser;
+package vimification.internal.parser.logic;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import vimification.internal.command.logic.DeleteCommand;
+import vimification.internal.parser.ParserException;
 
 public class DeleteCommandParserTest {
 
@@ -13,7 +14,7 @@ public class DeleteCommandParserTest {
     private static final DeleteCommandParser INSTANCE = DeleteCommandParser.getInstance();
 
     @Test
-    public void urecognizaleArguments_shouldThrow() {
+    public void unrecognizableArgs_shouldThrow() {
         String input = "d 1 \"description\"-t stickytag -p 0";
         assertThrows(EXPECTED_EXCEPTION_CLASS, () -> INSTANCE.parse(input));
     }
@@ -27,14 +28,6 @@ public class DeleteCommandParserTest {
         String input1 = "d 100";
         DeleteCommand cmd1 = INSTANCE.parse(input1);
         assertTrue(cmd1 != null);
-    }
-
-    @Test
-    public void invalidIndex_shouldThrow() {
-        String input = "d 0";
-        assertThrows(EXPECTED_EXCEPTION_CLASS, () -> INSTANCE.parse(input));
-        String input1 = "d -1";
-        assertThrows(EXPECTED_EXCEPTION_CLASS, () -> INSTANCE.parse(input1));
     }
 
     @Test

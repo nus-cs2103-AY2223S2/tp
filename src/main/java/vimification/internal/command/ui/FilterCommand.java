@@ -37,9 +37,20 @@ public class FilterCommand extends UiCommand {
         }
         request.getSearchedLabels()
                 .forEach(label -> predicates.add(task -> task.containsLabel(label)));
-        Predicate<Task> predicate = predicates.stream()
-                .reduce(request.getMode() == FilterRequest.Mode.OR ? Predicate::or : Predicate::and)
-                .orElse(ignore -> true);
+        Predicate<Task> predicate = null;
+        switch (request.getMode()) {
+        case DEFAULT:
+            predicate = predicates.get(0);
+            break;
+        case AND:
+            predicate = predicates.stream().reduce(Predicate::and).orElse(ignore -> true);
+            break;
+        case OR:
+            predicate = predicates.stream().reduce(Predicate::or).orElse(ignore -> false);
+            break;
+        default:
+            throw new RuntimeException("Should not reach here!");
+        }
         mainScreen.getTaskTabPanel().searchForTask(predicate, request.getSearchedStatus());
         return new CommandResult(SUCCESS_MESSAGE);
     }

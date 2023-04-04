@@ -1,16 +1,20 @@
-package vimification.internal.parser;
+package vimification.internal.parser.logic;
 
 import vimification.commons.core.Index;
 import vimification.internal.command.logic.EditCommand;
 import vimification.internal.command.logic.EditRequest;
+import vimification.internal.parser.ApplicativeParser;
+import vimification.internal.parser.ArgumentCounter;
+import vimification.internal.parser.CommandParser;
+import vimification.internal.parser.CommandParserUtil;
+import vimification.internal.parser.Pair;
 
 public class EditCommandParser implements CommandParser<EditCommand> {
 
     private static final ApplicativeParser<EditCommand> COMMAND_PARSER =
             CommandParserUtil.ONE_BASED_INDEX_PARSER
                     .flatMap(EditCommandParser::parseArguments)
-                    .dropNext(ApplicativeParser.skipWhitespaces())
-                    .dropNext(ApplicativeParser.eof());
+                    .dropNext(CommandParserUtil.END_OF_COMMAND_PARSER);
 
     private static final ApplicativeParser<ApplicativeParser<EditCommand>> INTERNAL_PARSER =
             ApplicativeParser

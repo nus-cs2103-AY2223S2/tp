@@ -1,4 +1,4 @@
-package vimification.internal.parser;
+package vimification.internal.parser.logic;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import vimification.internal.command.logic.EditCommand;
+import vimification.internal.parser.ParserException;
 
 public class EditCommandParserTest {
 
@@ -17,7 +18,7 @@ public class EditCommandParserTest {
         String input = "e \"description\" -t stickytag -p 0";
         assertThrows(EXPECTED_EXCEPTION_CLASS, () -> INSTANCE.parse(input));
 
-        String input1 = "e 10 -p 0 --before Thu";
+        String input1 = "e 10 -p 1p --before Thu";
         assertThrows(EXPECTED_EXCEPTION_CLASS, () -> INSTANCE.parse(input1));
 
         String input2 = "e 10 -l idola"; // must have 2 args for label

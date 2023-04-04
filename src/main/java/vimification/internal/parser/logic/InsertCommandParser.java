@@ -1,16 +1,20 @@
-package vimification.internal.parser;
+package vimification.internal.parser.logic;
 
 import vimification.commons.core.Index;
 import vimification.internal.command.logic.InsertCommand;
 import vimification.internal.command.logic.InsertRequest;
+import vimification.internal.parser.ApplicativeParser;
+import vimification.internal.parser.ArgumentCounter;
+import vimification.internal.parser.CommandParser;
+import vimification.internal.parser.CommandParserUtil;
+import vimification.internal.parser.Pair;
 
 public class InsertCommandParser implements CommandParser<InsertCommand> {
 
     private static ApplicativeParser<InsertCommand> COMMAND_PARSER =
             CommandParserUtil.ONE_BASED_INDEX_PARSER
                     .flatMap(InsertCommandParser::parseArguments)
-                    .dropNext(ApplicativeParser.skipWhitespaces())
-                    .dropNext(ApplicativeParser.eof());
+                    .dropNext(CommandParserUtil.END_OF_COMMAND_PARSER);
 
     private static ApplicativeParser<ApplicativeParser<InsertCommand>> INTERNAL_PARSER =
             ApplicativeParser

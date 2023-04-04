@@ -1,16 +1,19 @@
-package vimification.internal.parser;
+package vimification.internal.parser.logic;
 
 import vimification.internal.command.logic.AddCommand;
+import vimification.internal.parser.ApplicativeParser;
+import vimification.internal.parser.ArgumentCounter;
+import vimification.internal.parser.CommandParser;
+import vimification.internal.parser.CommandParserUtil;
+import vimification.internal.parser.Pair;
 import vimification.model.task.Task;
 
 public class AddCommandParser implements CommandParser<AddCommand> {
 
     private static final ApplicativeParser<AddCommand> COMMAND_PARSER =
             CommandParserUtil.TITLE_PARSER
-                    .map(Task::new)
                     .flatMap(AddCommandParser::parseArguments)
-                    .dropNext(ApplicativeParser.skipWhitespaces())
-                    .dropNext(ApplicativeParser.eof());
+                    .dropNext(CommandParserUtil.END_OF_COMMAND_PARSER);
 
     private static final ApplicativeParser<ApplicativeParser<AddCommand>> INTERNAL_PARSER =
             ApplicativeParser
@@ -22,7 +25,8 @@ public class AddCommandParser implements CommandParser<AddCommand> {
 
     private AddCommandParser() {}
 
-    private static ApplicativeParser<AddCommand> parseArguments(Task task) {
+    private static ApplicativeParser<AddCommand> parseArguments(String title) {
+        Task task = new Task(title);
         ArgumentCounter counter = new ArgumentCounter(
                 Pair.of(CommandParserUtil.LABEL_FLAG, Integer.MAX_VALUE),
                 Pair.of(CommandParserUtil.PRIORITY_FLAG, 1),

@@ -1,18 +1,22 @@
-package vimification.internal.parser;
+package vimification.internal.parser.logic;
 
 import vimification.commons.core.Index;
 import vimification.internal.command.logic.DeleteCommand;
 import vimification.internal.command.logic.DeleteFieldsCommand;
 import vimification.internal.command.logic.DeleteFieldsRequest;
 import vimification.internal.command.logic.DeleteTaskCommand;
+import vimification.internal.parser.ApplicativeParser;
+import vimification.internal.parser.ArgumentCounter;
+import vimification.internal.parser.CommandParser;
+import vimification.internal.parser.CommandParserUtil;
+import vimification.internal.parser.Pair;
 
 public class DeleteCommandParser implements CommandParser<DeleteCommand> {
 
     private static final ApplicativeParser<DeleteCommand> COMMAND_PARSER =
             CommandParserUtil.ONE_BASED_INDEX_PARSER
                     .flatMap(DeleteCommandParser::parseArguments)
-                    .dropNext(ApplicativeParser.skipWhitespaces())
-                    .dropNext(ApplicativeParser.eof());
+                    .dropNext(CommandParserUtil.END_OF_COMMAND_PARSER);
 
     private static final ApplicativeParser<ApplicativeParser<DeleteCommand>> INTERNAL_PARSER =
             ApplicativeParser
@@ -45,8 +49,8 @@ public class DeleteCommandParser implements CommandParser<DeleteCommand> {
         return ApplicativeParser
                 .skipWhitespaces1()
                 .takeNext(flagParser.sepBy1(ApplicativeParser.skipWhitespaces1()))
-                .<DeleteCommand>constMap(new DeleteFieldsCommand(index, request))
-                .orElse(new DeleteTaskCommand(index));
+                .<DeleteCommand>constMap(() -> new DeleteFieldsCommand(index, request))
+                .orElse(() -> new DeleteTaskCommand(index));
     }
 
     public static DeleteCommandParser getInstance() {

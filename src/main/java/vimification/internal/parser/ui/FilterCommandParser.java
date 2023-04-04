@@ -1,18 +1,26 @@
-package vimification.internal.parser;
+package vimification.internal.parser.ui;
 
 import java.util.function.Consumer;
 
 import vimification.internal.command.ui.FilterCommand;
 import vimification.internal.command.ui.FilterRequest;
+import vimification.internal.parser.ApplicativeParser;
+import vimification.internal.parser.ArgumentCounter;
+import vimification.internal.parser.CommandParser;
+import vimification.internal.parser.CommandParserUtil;
+import vimification.internal.parser.ComposedArgumentFlag;
+import vimification.internal.parser.LiteralArgumentFlag;
+import vimification.internal.parser.Pair;
+import vimification.internal.parser.ParserException;
 
 public class FilterCommandParser implements CommandParser<FilterCommand> {
 
     private static final ApplicativeParser<ApplicativeParser<FilterCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .string("f") // filter
-                    .map(FilterCommandParser::parseArguments);
+                    .constMap(FilterCommandParser::parseArguments);
 
-    private static ApplicativeParser<FilterCommand> parseArguments(Object ignore) {
+    private static ApplicativeParser<FilterCommand> parseArguments() {
         FilterRequest request = new FilterRequest();
         ArgumentCounter counter = new ArgumentCounter(
                 Pair.of(CommandParserUtil.KEYWORD_FLAG, 1),
@@ -77,8 +85,7 @@ public class FilterCommandParser implements CommandParser<FilterCommand> {
                 .filter(ignore1 -> !request.getMode().equals(FilterRequest.Mode.DEFAULT)
                         || counter.totalCount() == 1)
                 .constMap(new FilterCommand(request))
-                .dropNext(ApplicativeParser.skipWhitespaces())
-                .dropNext(ApplicativeParser.eof());
+                .dropNext(CommandParserUtil.END_OF_COMMAND_PARSER);
     }
 
     private static final FilterCommandParser INSTANCE = new FilterCommandParser();

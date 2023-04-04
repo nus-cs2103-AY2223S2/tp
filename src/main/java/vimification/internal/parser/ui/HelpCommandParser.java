@@ -1,13 +1,21 @@
-package vimification.internal.parser;
+package vimification.internal.parser.ui;
 
 import vimification.internal.command.ui.HelpCommand;
+import vimification.internal.parser.ApplicativeParser;
+import vimification.internal.parser.CommandParser;
+import vimification.internal.parser.CommandParserUtil;
 
 public class HelpCommandParser implements CommandParser<HelpCommand> {
+
+    private static final ApplicativeParser<HelpCommand> COMMAND_PARSER =
+            ApplicativeParser
+                    .of(new HelpCommand())
+                    .dropNext(CommandParserUtil.END_OF_COMMAND_PARSER);
 
     private static final ApplicativeParser<ApplicativeParser<HelpCommand>> INTERNAL_PARSER =
             ApplicativeParser
                     .string("help")
-                    .constMap(ApplicativeParser.of(new HelpCommand()));
+                    .constMap(COMMAND_PARSER);
 
     private static final HelpCommandParser INSTANCE = new HelpCommandParser();
 
