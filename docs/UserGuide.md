@@ -427,6 +427,9 @@ Parameters:
 > :exclamation: Warning: To ensure you are still viewing the correct tank after adding or editing a fish or task,
 > use `tank view` again!
 
+> :exclamation: Warning: Tasks that do not have a tank attached will not be shown when you view a tank! To see them
+> again, use `list tasks`
+
 Example:
 * You have 2 tanks, 'Freshwater tank' with index 1 and 'Saltwater tank' with index 2. 'Freshwater tank' has a fish named 'Guppy' with a task named 'clean tank'.
 'Saltwater tank' has a fish named 'Clown fish' and a task named 'change thermometer'. `tank view 1` lists the following information in the respective panels:
