@@ -1,5 +1,7 @@
 package seedu.recipe.storage.filemanagers;
 
+import static seedu.recipe.commons.util.AppUtil.checkArgument;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -19,7 +21,7 @@ import seedu.recipe.storage.JsonRecipeBookStorage;
  * API to export current RecipeBook
  */
 public class ExportManager {
-
+    public static final String NULL_LOGIC = "Please provide a non-null Logic instance";
     public static final String NO_SELECTION = "Export operation cancelled.";
     private final Path recipeBookFilePath;
     private final Stage owner;
@@ -32,6 +34,7 @@ public class ExportManager {
      * @param logic The Logic that helps to derive the current Recipe Book path for the export operation.
      */
     public ExportManager(Stage owner, Logic logic) {
+        checkArgument(logic != null, NULL_LOGIC);
         this.owner = owner;
         this.logic = logic;
         this.recipeBookFilePath = logic.getRecipeBookFilePath();

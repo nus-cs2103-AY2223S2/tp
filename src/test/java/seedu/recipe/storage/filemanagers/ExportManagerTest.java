@@ -1,6 +1,7 @@
 package seedu.recipe.storage.filemanagers;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -55,6 +56,11 @@ public class ExportManagerTest {
     //the behavior of the following methods cannot be mocked:
     //- ExportManager::createFile
     //- ExportManager::execute
+    @Test
+    public void test_constructorNullLogicInstance() {
+        Logic nullLogic = null;
+        assertThrows(IllegalArgumentException.class, () -> new ExportManager(null, nullLogic));
+    }
 
     /**
      * Tests the export logic when the current RecipeBook file does not yet exist.
