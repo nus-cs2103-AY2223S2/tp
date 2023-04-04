@@ -36,7 +36,7 @@ public class ClassListTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        ClassList newData = TypicalPersons.getTypicalAddressBook();
+        ClassList newData = TypicalPersons.getTypicalTaaData();
         classList.resetData(newData);
         assertEquals(newData, classList);
     }
@@ -47,7 +47,7 @@ public class ClassListTest {
         Student editedAlice = new PersonBuilder(TypicalPersons.ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(TypicalPersons.ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newStudents);
+        StudentListStub newData = new StudentListStub(newStudents);
 
         Assert.assertThrows(DuplicateStudentException.class, () -> classList.resetData(newData));
     }
@@ -84,10 +84,10 @@ public class ClassListTest {
     /**
      * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class StudentListStub implements ReadOnlyStudentList {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> students) {
+        StudentListStub(Collection<Student> students) {
             this.students.setAll(students);
         }
 

@@ -58,7 +58,7 @@ import taa.model.student.Student;
 import taa.model.tag.Tag;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the student listdata.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -76,13 +76,13 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given classList and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        CollectionUtil.requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyStudentList studentList, ReadOnlyUserPrefs userPrefs) {
+        CollectionUtil.requireAllNonNull(studentList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with student list: " + studentList + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
-        this.classList = new ClassList(addressBook);
+        this.classList = new ClassList(studentList);
         UniqueClassLists temp = new UniqueClassLists(this.classList);
         this.tutor = new Tutor(new Name("James"), new HashSet<>(), temp);
         this.filteredStudents = new FilteredList<>(this.classList.getStudentList());
@@ -123,23 +123,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTaaDataFilePath() {
+        return userPrefs.getTaaDataFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTaaDataFilePath(Path taaDataFilePath) {
+        requireNonNull(taaDataFilePath);
+        userPrefs.setTaaDataFilePath(taaDataFilePath);
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.classList.resetData(addressBook);
+    public void setTaaData(ReadOnlyStudentList taaData) {
+        this.classList.resetData(taaData);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyStudentList getTaaData() {
         return classList;
     }
 
@@ -324,7 +324,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteStudentSubmission(Student studentToDelete) {
         assignmentList.deleteStudent(studentToDelete);
-        updateStudent(studentToDelete);
     }
 
     /**

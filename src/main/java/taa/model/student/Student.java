@@ -13,7 +13,7 @@ import taa.commons.util.CollectionUtil;
 import taa.model.tag.Tag;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in TAA.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {

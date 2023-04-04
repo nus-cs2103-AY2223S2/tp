@@ -12,7 +12,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import taa.commons.exceptions.DataConversionException;
 import taa.model.ClassList;
-import taa.model.ReadOnlyAddressBook;
+import taa.model.ReadOnlyStudentList;
 import taa.testutil.Assert;
 import taa.testutil.TypicalPersons;
 
@@ -24,12 +24,12 @@ public class JsonClassListStorageTest {
     public Path testFolder;
 
     @Test
-    public void readAddressBook_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> readAddressBook(null));
+    public void readTaaData_nullFilePath_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> readTaaData(null));
     }
 
-    private java.util.Optional<ReadOnlyAddressBook> readAddressBook(String filePath) throws Exception {
-        return new JsonAddressBookStorage(Paths.get(filePath)).readAddressBook(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyStudentList> readTaaData(String filePath) throws Exception {
+        return new JsonTaaStorage(Paths.get(filePath)).readTaaData(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -40,73 +40,73 @@ public class JsonClassListStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readAddressBook("NonExistentFile.json").isPresent());
+        assertFalse(readTaaData("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
         Assert.assertThrows(DataConversionException.class, ()
-                -> readAddressBook("notJsonFormatAddressBook.json"));
+                -> readTaaData("notJsonFormatTaaData.json"));
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
+    public void readTaaData_invalidPersonTaaData_throwDataConversionException() {
         Assert.assertThrows(DataConversionException.class, ()
-                -> readAddressBook("invalidPersonAddressBook.json"));
+                -> readTaaData("invalidPersonTaaData.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
+    public void readTaaData_invalidAndValidPersonTaaData_throwDataConversionException() {
         Assert.assertThrows(DataConversionException.class, ()
-                -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+                -> readTaaData("invalidAndValidPersonTaaData.json"));
     }
 
     @Test
-    public void readAndSaveAddressBook_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
-        ClassList original = TypicalPersons.getTypicalAddressBook();
-        JsonAddressBookStorage jsonAddressBookStorage = new JsonAddressBookStorage(filePath);
+    public void readAndSaveTaaData_allInOrder_success() throws Exception {
+        Path filePath = testFolder.resolve("TempTaaData.json");
+        ClassList original = TypicalPersons.getTypicalTaaData();
+        JsonTaaStorage jsonTaaDataStorage = new JsonTaaStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        ReadOnlyAddressBook readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonTaaDataStorage.saveTaaData(original, filePath);
+        ReadOnlyStudentList readBack = jsonTaaDataStorage.readTaaData(filePath).get();
         assertEquals(original, new ClassList(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addStudent(TypicalPersons.HOON);
         original.removeStudent(TypicalPersons.ALICE);
-        jsonAddressBookStorage.saveAddressBook(original, filePath);
-        readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
+        jsonTaaDataStorage.saveTaaData(original, filePath);
+        readBack = jsonTaaDataStorage.readTaaData(filePath).get();
         assertEquals(original, new ClassList(readBack));
 
         // Save and read without specifying file path
         original.addStudent(TypicalPersons.IDA);
-        jsonAddressBookStorage.saveAddressBook(original); // file path not specified
-        readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
+        jsonTaaDataStorage.saveTaaData(original); // file path not specified
+        readBack = jsonTaaDataStorage.readTaaData().get(); // file path not specified
         assertEquals(original, new ClassList(readBack));
 
     }
 
     @Test
-    public void saveAddressBook_nullAddressBook_throwsNullPointerException() {
+    public void saveTaaData_nullTaaData_throwsNullPointerException() {
         Assert.assertThrows(NullPointerException.class, ()
-                -> saveAddressBook(null, "SomeFile.json"));
+                -> saveTaaData(null, "SomeFile.json"));
     }
 
     /**
-     * Saves {@code addressBook} at the specified {@code filePath}.
+     * Saves TAA data at the specified {@code filePath}.
      */
-    private void saveAddressBook(ReadOnlyAddressBook addressBook, String filePath) {
+    private void saveTaaData(ReadOnlyStudentList taaData, String filePath) {
         try {
-            new JsonAddressBookStorage(Paths.get(filePath))
-                    .saveAddressBook(addressBook, addToTestDataPathIfNotNull(filePath));
+            new JsonTaaStorage(Paths.get(filePath))
+                    .saveTaaData(taaData, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
     }
 
     @Test
-    public void saveAddressBook_nullFilePath_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> saveAddressBook(new ClassList(), null));
+    public void saveTaaData_nullFilePath_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> saveTaaData(new ClassList(), null));
     }
 }
