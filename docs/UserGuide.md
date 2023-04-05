@@ -133,7 +133,7 @@ Format: `addDeck DECK_NAME`
 Example:
 * `addDeck Science` will create a deck titled Science.
 
-#### 3.3.2. Editing a Deck : `editDeck`
+### 3.3.2. Editing a Deck : `editDeck`
 
 You just created a deck, but you realised you made a typo! Fret not, you can easily edit the name of the deck with this command.  
 
