@@ -51,6 +51,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_INTERNSHIP_UNCHANGED = "Internship is unchanged";
     public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists "
             + "in the internship catalogue.";
 
@@ -81,8 +82,14 @@ public class EditCommand extends Command {
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
         Internship editedInternship = createEditedInternship(internshipToEdit, editInternshipDescriptor);
 
+        // if another internship other than internshipToEdit has same Position and Company as editedInternship
         if (!internshipToEdit.isSameInternship(editedInternship) && model.hasInternship(editedInternship)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
+        }
+
+        // if internshipToEdit is not changed.
+        if (internshipToEdit.equals(editedInternship)) {
+            throw new CommandException(MESSAGE_INTERNSHIP_UNCHANGED);
         }
 
         model.setInternship(internshipToEdit, editedInternship);
