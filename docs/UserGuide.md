@@ -6,7 +6,9 @@ title: User Guide
 Duke Driver is a desktop app for managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your daily tasks more efficiently, according to your requirements.
 
 ## Table of Content
+* [How to use this guide?](#how-to-use-this-guide-?)
 * [Quick start <a name="quick-start"></a>](#quick-start--a-name--quick-start----a-)
+* [Windows and Features Overview](#windows-and-features-overview)
 - [Features](#features)
     * [1. Features related to Customers](#1-features-related-to-customers)
         + [1.1. Adding a person: `add`](#11-adding-a-person---add-)
@@ -48,8 +50,22 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
 
 --------------------------------------------------------------------------------------------------------------------
+## How to use this guide?
 
-## Quick start <a name="quick-start"></a>
+This user guide is an in-depth documentation on all the features that Duke Driver has.
+
+
+The [command summary](#command-summary) section allows you to quickly scan all the commands if you are an experienced user attempting to discover a specific command.
+
+Look up the feature in the [Table of Contents](#table-of-contents) and navigate to the appropriate section to obtain a detailed description of Duke Driver's features.
+Each section includes a thorough explanation of the function, its command syntax, some examples of potential applications, and information on expected results.
+
+If you are a first-time user, you can begin by reading the [Quick Start](#quick-start) section!
+
+
+<div style="page-break-after: always;"></div>
+
+## Quick start 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -74,7 +90,10 @@ Duke Driver is a desktop app for managing delivery jobs and contacts. If you are
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Windows and Features Overview](#windows-and-features-overview) and [Features](#features) below for details of each command.
+
+## Windows and Features Overview
+Duke Driver has 5 main windows: Delivery Job Window (Main Window), Customer Window (Window for customers' address book), Timetable Window, Reminder Window, Statistics Window.
 
 --------------------------------------------------------------------------------------------------------------------
 
