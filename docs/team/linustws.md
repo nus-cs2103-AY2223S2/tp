@@ -21,7 +21,7 @@ Given below are my contributions to the project.
   * Justification: To add flexibility and convenience for users on top of the `view` command.
   * Highlights:
     * Had trouble implementing things like FireEvent/CatchEvent/EventDispatcherChain to handle events smoothly, but managed to work around it though not the best solution.
-    * Was later improved with Harin's fix. [#129](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/129)
+    * Was later improved with [Harin](https://ay2223s2-cs2103t-f12-2.github.io/tp/team/harin0826.html)'s fix. [#129](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/129)
 * **New Feature**: Added default profile pictures. [#119](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/119)
   * What it does: Improves aesthetics of CoDoc, can allow users to identify contacts by specific profile pictures as well.
   * Justification: As much as we wanted to allow the user to be able to add their own preferred profile pictures, this allows each contact to have a semi-unique (allows duplicates) profile picture the moment it is added, eliminating the need for the user to add it manually every time.
@@ -37,24 +37,28 @@ Given below are my contributions to the project.
     * Reviewed and commented on PRs.
     * Opened and assigned issues to teammates and me.
     * Updated project notes from time to time.
-    * Sourced and modified Figma template for mock UI.
+    * Sourced and modified Figma template for mock UI. [Figma](https://www.figma.com/file/6FyhHLhFrLIqt5TPRHkN58/CoDoc?node-id=0-1&t=ua9RFnI4eIA5ZkcT-0)
+    * Updated README file. [#25](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/25)
     * Updated site-wide settings. [#28](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/28)
     * Renamed packages to remove anything related to AB3. [#64](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/64)
 
 * **Enhancements to existing features**:
   * Modified `Tag` to `Skill` to fit CoDoc's value proposition better. [#46](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/46)
-  * Modified `Phone` to `GitHub` with appropriate constraints, made optional. [#58](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/58), [#56](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/56)
-  * Modified `Address` to `LinkedIn` with appropriate constraints, made optional. [#64](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/64), [#56](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/56)
+  * Modified `Phone` to `GitHub` with appropriate constraints, made optional. [#56](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/56), [#58](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/58)
+  * Modified `Address` to `LinkedIn` with appropriate constraints, made optional. [#56](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/56), [#64](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/64)
   * Modified `PersonListCard` and rearranged the details to improve user visibility. [#119](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/119)
-  * Added scroll to last person when added so user can see its index for convenience. [#160](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/160)
+  * Added scroll to last `Person` when added so user can see its index for convenience. [#160](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/160)
   * Minor improvements and bug fixes: [#107](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/107), [#122](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/122), [#126](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/126), [#127](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/127), [#135](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/135), [#147](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/147), [#170](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/170)
 
 * **Documentation**:
   * User Guide:
-    * Created tutorial section
-    * (To be added)
+    * Created _Navigating CoDoc_ and _Tutorial_ sections. [#138](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/138)
+    * Updated pictures for _Tutorial_ section. [#157](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/157)
+    * Fixed and organised table of contents. [#143](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/143)
   * Developer Guide:
-    * A(To be added)
+    * Added details for `ProfilePicture`, `GitHub`, `LinkedIn` and `Skill` attributes under _Person Class_. [#92](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/92), [#213](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/213)
+    * Added all `find` command implementation details, including sequence diagram, activity diagram and design considerations. [#92](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/92), [#102](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/102), [#213](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/213)
+    * Added _Appendix: Planned Enhancements_ section. [#213](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/213)
 
 * **Community**:
   * (To be added)
