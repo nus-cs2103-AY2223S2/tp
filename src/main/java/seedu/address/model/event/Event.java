@@ -171,7 +171,8 @@ public abstract class Event {
         return otherEvent.getDescription().equals(getDescription())
                 && otherEvent.getStartDateTime().equals(getStartDateTime())
                 && otherEvent.getEndDateTime().equals(getEndDateTime())
-                && otherEvent.getRecurrence().equals(getRecurrence());
+                && otherEvent.getRecurrence().equals(getRecurrence())
+                && otherEvent.getTaggedPeople().equals(getTaggedPeople());
     }
 
     @Override
