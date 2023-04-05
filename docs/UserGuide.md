@@ -98,6 +98,7 @@ Then, press the <button>Enter</button> to confirm your command and instruct TinS
    ![Ui](images/ug/home_page.png)
 
    <div markdown="span" class="alert alert-primary">
+    
         :information source: **Info:** The default TinS application contains some sample data. These sample data can
         come in handy for you to try out the various commands of TinS. To remove all sample data, use the 
         <code>deleteall</code> feature.
