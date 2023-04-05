@@ -40,7 +40,6 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Wrote additional tests for parent delete to increase coverage from 20.09% to 24.13% (Pull requests [\#213](https://github.com/AY2223S2-CS2103T-T09-1/tp/pull/213))
-    * Improved implementation of setParent in Student Edit command
 
 * **Documentation**:
     * User Guide:

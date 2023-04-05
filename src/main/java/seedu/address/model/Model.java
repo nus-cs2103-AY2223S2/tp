@@ -6,10 +6,13 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Class;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPcClass;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.ReadOnlyParents;
+import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
 
 /**
@@ -85,11 +88,43 @@ public interface Model {
     boolean hasStudent(Student student);
 
     /**
-     * Returns true if a parent with the same identity as {@code parent} exists in the address book.
+     * Returns true if a student with the same index number and class as {@code student} exists in the PCClass.
+     * @param indexNumber must not be null.
+     * @param studentClass must not be null.
+     * @return true if a student with the same identity as {@code student} exists in the PCClass.
+     */
+    boolean hasStudent(IndexNumber indexNumber, Class studentClass);
+
+    /**
+     * Returns student with the same index number and class as {@code student} exists in the PCClass.
+     * @param indexNumber must not be null.
+     * @param studentClass must not be null.
+     * @return student with the same index number and class as {@code student} exists in the PCClass.
+     */
+    Student getStudent(IndexNumber indexNumber, Class studentClass);
+
+    /**
+     * Returns true if a parent with the same identity as {@code parent} exists in the PowerConnect.
      * @param parent must not be null.
-     * @return true if a parent with the same identity as {@code parent} exists in the address book.
+     * @return true if a parent with the same identity as {@code parent} exists in the PowerConnect.
      */
     boolean hasParent(Parent parent);
+
+    /**
+     * Returns true if a parent with the same name and phone number as {@code parent} exists in the PowerConnect.
+     * @param name must not be null.
+     * @param phone must not be null.
+     * @return true if a parent with the same name and phone number as {@code parent} exists in the PowerConnect.
+     */
+    boolean hasParent(Name name, Phone phone);
+
+    /**
+     * Returns true if a parent with the same name and phone number as {@code parent} exists in the PowerConnect.
+     * @param name must not be null.
+     * @param phone must not be null.
+     * @return true if a parent with the same name and phone number as {@code parent} exists in the PowerConnect.
+     */
+    Parent getParent(Name name, Phone phone);
 
     /**
      * Deletes the given student.

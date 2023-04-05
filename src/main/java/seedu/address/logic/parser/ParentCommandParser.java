@@ -62,9 +62,8 @@ public class ParentCommandParser {
                         PREFIX_EMAIL);
 
         ArgumentMultimap argMultimapDelete =
-                ArgumentTokenizer.tokenize(args, PREFIX_DELETE, PREFIX_ADDRESS,
-                        PREFIX_NAME, PREFIX_PARENTAGE, PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT,
-                        PREFIX_EMAIL);
+                ArgumentTokenizer.tokenize(args, PREFIX_DELETE, PREFIX_NAME, PREFIX_PHONEPARENT);
+
         ArgumentMultimap argMultimapEdit =
                 ArgumentTokenizer.tokenize(args, PREFIX_EDIT, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_PARENTAGE,
                         PREFIX_IMAGEPARENT, PREFIX_PHONEPARENT, PREFIX_EMAIL, PREFIX_NEWNAME, PREFIX_NEWPHONEPARENT);

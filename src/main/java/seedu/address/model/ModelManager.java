@@ -13,12 +13,16 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Class;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.PcClass;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.ReadOnlyPcClass;
 import seedu.address.model.person.parent.Parent;
 import seedu.address.model.person.parent.Parents;
 import seedu.address.model.person.parent.ReadOnlyParents;
+import seedu.address.model.person.student.IndexNumber;
 import seedu.address.model.person.student.Student;
+import seedu.address.model.person.student.UniqueStudentList;
 
 /**
  * Represents the in-memory model of the PowerConnect data.
@@ -195,6 +199,54 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns true if a student with the same identity as {@code student} exists in the PCClass.
+     *
+     * @param indexNumber must not be null.
+     * @param studentClass must not be null.
+     * @return true if a student with the same identity as {@code student} exists in the PCClass.
+     */
+    @Override
+    public boolean hasStudent(IndexNumber indexNumber, Class studentClass) {
+        requireNonNull(indexNumber);
+        requireAllNonNull(studentClass);
+        UniqueStudentList students = Class.getAllStudents();
+
+        for (Student student : students) {
+            IndexNumber currStudentIndexNumber = student.getIndexNumber();
+            Class currStudentClass = student.getStudentClass();
+
+            if (currStudentIndexNumber.equals(indexNumber) && currStudentClass.equals(studentClass)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in the PCClass.
+     *
+     * @param indexNumber must not be null.
+     * @param studentClass must not be null.
+     * @return true if a student with the same identity as {@code student} exists in the PCClass.
+     */
+    @Override
+    public Student getStudent(IndexNumber indexNumber, Class studentClass) {
+        requireNonNull(indexNumber);
+        requireAllNonNull(studentClass);
+        UniqueStudentList students = Class.getAllStudents();
+
+        for (Student student : students) {
+            IndexNumber currStudentIndexNumber = student.getIndexNumber();
+            Class currStudentClass = student.getStudentClass();
+
+            if (currStudentIndexNumber.equals(indexNumber) && currStudentClass.equals(studentClass)) {
+                return student;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Returns true if a parent with the same identity as {@code parent} exists in the address book.
      *
      * @param parent must not be null.
@@ -204,6 +256,52 @@ public class ModelManager implements Model {
     public boolean hasParent(Parent parent) {
         requireNonNull(parent);
         return parents.getParentList().contains(parent);
+    }
+
+    /**
+     * Returns true if a parent with the same identity as {@code parent} exists in the PowerConnect.
+     *
+     * @param name must not be null.
+     * @param phone must not be null.
+     * @return true if a parent with the same identity as {@code parent} exists in the PowerConnect.
+     */
+    @Override
+    public boolean hasParent(Name name, Phone phone) {
+        requireNonNull(name);
+        requireNonNull(phone);
+        ObservableList<Parent> parentList = parents.getParentList();
+        for (Parent parent : parentList) {
+            Name currParentName = parent.getName();
+            Phone currParentPhoneNumber = parent.getPhone();
+
+            if (currParentName.equals(name) && currParentPhoneNumber.equals(phone)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if a parent with the same identity as {@code parent} exists in the PowerConnect.
+     *
+     * @param name must not be null.
+     * @param phone must not be null.
+     * @return true if a parent with the same identity as {@code parent} exists in the PowerConnect.
+     */
+    @Override
+    public Parent getParent(Name name, Phone phone) {
+        requireNonNull(name);
+        requireNonNull(phone);
+        ObservableList<Parent> parentList = parents.getParentList();
+        for (Parent parent : parentList) {
+            Name currParentName = parent.getName();
+            Phone currParentPhoneNumber = parent.getPhone();
+
+            if (currParentName.equals(name) && currParentPhoneNumber.equals(phone)) {
+                return parent;
+            }
+        }
+        return null;
     }
 
     /**
@@ -270,6 +368,8 @@ public class ModelManager implements Model {
         Class cEdit = Class.of(editedStudent.getStudentClass().getClassName());
         cEdit.addStudent(editedStudent);
     }
+
+
 
     /**
      * Replaces the given parent {@code target} with {@code editedParent}.

@@ -269,10 +269,10 @@ Examples:
 **If the source of the image is not specified:**
 * A Default Image of a question mark will be displayed. <br>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+<div markdown="span" class="alert alert-warning">:exclamation: Caution: <br>
 1. You cannot create two students of the same index number and same class. <br>
 2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get bound to the matching parent. <br>
-3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images) after specifying the exact image location when using the student <CLASS> add command, it will not update. <br>
+3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images) after specifying the exact image location when using the student <CLASS> add command</CLASS>, it will not update. <br>
 Please delete the student and add without the image source path specified in the student <CLASS> add command</CLASS>. <br>
 4. If you have entered the `ABSOLUTE PATH TO IMAGE`, note that once the image changes location, the picture will not render properly. <br>
 It is recommended to store the images using the folder [method](#images) instead. <br>
@@ -283,7 +283,6 @@ It is recommended to store the images using the folder [method](#images) instead
 9. As we **ALLOW** you to create `CCA` containing **numbers** due to our beliefs that **CCAs* could have **numbers**, it is **HENCE** reliant on you to ensure the field for `CCA` is keyed in correctly. <br>
 10. By default, `Attendance` is set to `F`, representing **ABSENT**. <br>
 11. Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis (midnight at 0000 hours).
-
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -448,23 +447,22 @@ Examples:
 
 Edits personal details of students for the student corresponding to the `INDEX_NUMBER` in the `CLASS` based on the particulars given by the teacher.
 
-Format: `student <class> edit in/<INDEX_NUMBER (of student)> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE]
-imgS/[IMAGE] cca/[CCA] att/[ATTENDANCE] com/[COMMENTS] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS]
-npn/[NEW PARENT NAME] npnP/[NEW PARENT PHONE NUMBER] rls/[RELATIONSHIP] ]`
+Format: `student <class> edit in/<INDEX_NUMBER> [nn/[NEWNAME] nin/[NEWINDEXNUMBER] nc/[NEWCLASS] s/[SEX] ageS/[STUDENT AGE]
+imgS/[IMAGE] cca/[CCA] com/[COMMENTS] pnS/[STUDENT PHONE NUMBER] eS/[STUDENT EMAIL] a/[ADDRESS] npn/[NEW PARENT NAME] npnP/[NEW PARENT PHONE NUMBER] rls/[RELATIONSHIP] ]`
 
 ***Click [HERE](#glossary) to understand `ABSOLUTE PATH TO IMAGE`!!!***
 
 Examples:
-* `student 1A edit in/03 cca/basketball`
+* `student 1A edit in/13 cca/basketball`
 * `student 1A edit in/03 cca/badminton ageS/23`
 
-**Expected Outcome:**
-* Edited student: TanAhCow; Student Class: 1A; Index Number: 03; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
-* Edited student: TanAhCow; Student Class: 1B; Index Number: 03; Sex: M; Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: badminton <br>
+* Edited student: Tan Ah Cow; Student Class: 1A; Index Number: 13;
+* Edited student: TanAhCow; Student Class: 1B; Index Number: 03;
+
 `Student list before edit:`
-![original_edit](images/originaledit.png)
+![original_edit](images/studentBeforeEdit.png)
 `Student list after edit:`
-![after_edit](images/afteredit.png)
+![after_edit](images/studentAfterEdit.png)
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 If you want to change the parent for this student only, please kindly fill in the **NEW** parent/NOK **NAME**, **PHONE NUMBER** and **RELATIONSHIP**. <br><br>
@@ -514,15 +512,15 @@ Deletes student corresponding to the `INDEX_NUMBER` in the `CLASS`  from the dat
 Format: `student <class> delete in/<INDEX_NUMBER>`
 
 Examples:
-* `student 1A delete in/14`
+* `student 1A delete in/13`
 * `student 1B delete in/23`
 
 **Expected Outcome:**
 
-* Deleted Student: TanAhCow; Student Class: 1A; Index Number: 14; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
-* Deleted Student: TanAhCow; Student Class: 1B; Index Number: 23; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+* Deleted Student: Tan Ah Cow Class: 1A Index Number: 13
+* Deleted Student: Tan Ah Niu Class: 1B Index Number: 23
 
-![student_delete.png](images/studentdelete.png)
+![student_delete.png](images/studentDeleteSuccess.png)
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -633,18 +631,14 @@ Deletes parent with corresponding `NAME` and `PARENT_PHONE_NUMBER` from the data
 Format: `delete n/NAME pnP/PHONE `
 
 Examples:
-* `parent delete n/TanAhCow pnP/91234567` <br>
-* `parent delete n/TanAhNiu pnP/91234566` <br>
+* `parent delete n/TanAhCow pnP/91234566` <br>
+* `parent delete n/TanAhNiu pnP/91234567` <br>
 
+Deleted Parent: TanAhCow Phone Number: 91234566
+Deleted Parent: TanAhNiu Phone Number: 91234567
 
-Expected Outcome: <br>
-```
-Deleted Parent: TanAhCow; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: Insert parent email here!; Parent Phone: 91234567;
-```
-```
-Deleted Parent: TanAhNiu; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: bestniuinthetown@gmail.com; Parent Phone: 91234566;
-```
-![parent_delete_success](images/parentdeletesuccess.png)
+![parent_delete_success](images/parentDeleteSuccess.png)
+
 **Note:**
 1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BINDED* to him/her. System will display an error message for this. <br><br>
    ![parent_delete_attach_fail](images/parentdeleteattach.png)
@@ -846,7 +840,7 @@ Need to add parent before each command!!
 | **Add**    | `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS]`                                         |
 | **List**   | `list`                                                                                                                                                                        |
 | **Edit**   | `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]` |
-| **Delete** | `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]`                                                                                               |
+| **Delete** | `delete n/NAME pnP/PHONE `                                                                                                                                                    |
 
 [Back to Table of Contents](#table-of-contents)
 

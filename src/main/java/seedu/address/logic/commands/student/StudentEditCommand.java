@@ -3,7 +3,6 @@ package seedu.address.logic.commands.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CCA;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAILSTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_IMAGESTUDENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEXNUMBER;
@@ -65,8 +64,6 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_STUDENTAGE + "AGE "
             + PREFIX_IMAGESTUDENT + "IMAGE STUDENT "
             + PREFIX_CCA + "CCA "
-            //+ PREFIX_ATTENDANCE + "ATTENDANCE"
-            + PREFIX_COMMENT + "COMMENT "
             + PREFIX_PHONESTUDENT + "STUDENT NUMBER "
             + PREFIX_EMAILSTUDENT + "STUDENT EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
@@ -83,8 +80,6 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_STUDENTAGE + "10 "
             + PREFIX_IMAGESTUDENT + "XX.png (where XX is your image name) "
             + PREFIX_CCA + "AIKIDO "
-            //+ PREFIX_ATTENDANCE + "T "
-            + PREFIX_COMMENT + "GOOD BOY "
             + PREFIX_PHONESTUDENT + "90909090 "
             + PREFIX_EMAILSTUDENT + "tanahcow@gmail.com "
             + PREFIX_ADDRESS + "Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245) "
@@ -92,7 +87,7 @@ public class StudentEditCommand extends StudentCommand {
             + PREFIX_NEWPHONEPARENT + "98989898 "
             + PREFIX_RELATIONSHIP + "FATHER";
 
-    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";
+    public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s; Class: %2$s; Index Number: %3$s;";
 
     private IndexNumber indexNumber;
     private IndexNumber newIndexNumber;
@@ -115,15 +110,13 @@ public class StudentEditCommand extends StudentCommand {
     private Phone newParentPhoneNumber;
     private Name newParentName;
 
-
     /**
      * @param indexNumber of the person in the filtered person list to edit
      */
     public StudentEditCommand(Name newName, IndexNumber indexNumber, IndexNumber newIndexNumber,
                               Class studentClass, Class newStudentClass, Sex newSex, Phone newParentPhoneNumber,
                               Name newParentName, Relationship newRelationship, Age newAge, Image newImage, Cca newCca,
-                              Comment newComment, Phone newStudentPhoneNumber, Email newEmail,
-                              Address newAddress, Set<Tag> newTagList) {
+                              Comment newComment, Phone newStudentPhoneNumber, Email newEmail, Address newAddress) {
         requireNonNull(indexNumber);
         requireNonNull(studentClass);
 
@@ -141,7 +134,6 @@ public class StudentEditCommand extends StudentCommand {
         this.newEmail = newEmail;
         this.newAddress = newAddress;
         this.newSex = newSex;
-        this.newTagList = newTagList;
         this.newIndexNumber = newIndexNumber;
         this.newStudentClass = newStudentClass;
     }
@@ -149,93 +141,93 @@ public class StudentEditCommand extends StudentCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
-        List<Student> students = model.getPcClass().getClassList().get(0).getStudents().asUnmodifiableObservableList();
-        for (int i = 0; i < model.getPcClass().getClassList().size(); i++) {
-            if (model.getPcClass().getClassList().get(i).getClassName().equals(studentClass.getClassName())) {
-                students = model.getPcClass().getClassList().get(i).getStudents().asUnmodifiableObservableList();
-                break;
-            }
+
+        if (!model.hasStudent(indexNumber, studentClass)) {
+            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
         }
 
-        for (Student student : students) {
-            if (student.getIndexNumber().equals(indexNumber) && student.getStudentClass().equals(studentClass)) {
-                if (Name.isDefaultName(newName.fullName)) {
-                    this.newName = student.getName();
-                }
-                if (IndexNumber.isDefaultIndexNumber(newIndexNumber.value)) {
-                    this.newIndexNumber = this.indexNumber;
-                }
-                if (Class.isDefaultClass(newStudentClass.getClassName())) {
-                    this.newStudentClass = this.studentClass;
-                }
-                if (Phone.isDefaultPhone(newParentPhoneNumber.value)) {
-                    this.newParentPhoneNumber = student.getParentNumber();
-                }
-                if (Phone.isDefaultPhone(newStudentPhoneNumber.value)) {
-                    this.newStudentPhoneNumber = student.getPhone();
-                }
-                if (Age.isDefaultAge(newAge.value)) {
-                    this.newAge = student.getAge();
-                }
-                if (Image.isDefaultImage(newImage.value)) {
-                    this.newImage = student.getImage();
-                }
-                if (Cca.isDefaultCca(newCca.value)) {
-                    this.newCca = student.getCca();
-                }
-                if (Comment.isDefaultComment(newComment.value)) {
-                    this.newComment = student.getComment();
-                }
-                if (Image.isDefaultImage(newImage.value)) {
-                    this.newImage = student.getImage();
-                }
-                if (Email.isDefaultEmail(newEmail.value)) {
-                    this.newEmail = student.getEmail();
-                }
-                if (Address.isDefaultAddress(newAddress.value)) {
-                    this.newAddress = student.getAddress();
-                }
-                if (Sex.isDefaultSex(newSex.value)) {
-                    this.newSex = student.getSex();
-                }
-                if (Relationship.isDefaultRelationship(newRelationship.rls)) {
-                    this.newRelationship = student.getRls();
-                }
-                if (Name.isDefaultName(newParentName.fullName)) {
-                    this.newParentName = student.getParentName();
-                }
+        Student studentToEdit = model.getStudent(indexNumber, studentClass);
+        Student editedStudent = createEditedStudent(studentToEdit);
 
-                this.newTagList = student.getTagList();
-                this.newTest = student.getTest();
-                this.newHomework = student.getHomeworkSet();
-                this.newAttendance = student.getAttendance();
+        model.setStudent(studentToEdit, setParent(editedStudent, model, studentToEdit));
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent.getName(),
+                editedStudent.getStudentClass(), editedStudent.getIndexNumber()));
+    }
 
-                Student newStudent = new Student(newName, this.newStudentClass, this.newIndexNumber, this.newSex,
-                        this.newParentName, this.newParentPhoneNumber, this.newRelationship, this.newAge, this.newImage,
-                        this.newEmail, this.newStudentPhoneNumber, this.newCca, this.newAddress, this.newAttendance,
-                        newHomework, this.newTest, this.newTagList, this.newComment);
-
-                ObservableList<Parent> parents = model.getFilteredParentList();
-                model.setStudent(student, setParent(parents, newStudent, model, student));
-                model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-                return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, newStudent));
-            }
+    /**
+     * Creates and returns a {@code Student} with the details of {@code student}
+     */
+    public Student createEditedStudent(Student student) {
+        if (Name.isDefaultName(newName.fullName)) {
+            this.newName = student.getName();
+        }
+        if (IndexNumber.isDefaultIndexNumber(newIndexNumber.value)) {
+            this.newIndexNumber = this.indexNumber;
+        }
+        if (Class.isDefaultClass(newStudentClass.getClassName())) {
+            this.newStudentClass = this.studentClass;
+        }
+        if (Phone.isDefaultPhone(newParentPhoneNumber.value)) {
+            this.newParentPhoneNumber = student.getParentNumber();
+        }
+        if (Phone.isDefaultPhone(newStudentPhoneNumber.value)) {
+            this.newStudentPhoneNumber = student.getPhone();
+        }
+        if (Age.isDefaultAge(newAge.value)) {
+            this.newAge = student.getAge();
+        }
+        if (Image.isDefaultImage(newImage.value)) {
+            this.newImage = student.getImage();
+        }
+        if (Cca.isDefaultCca(newCca.value)) {
+            this.newCca = student.getCca();
+        }
+        if (Comment.isDefaultComment(newComment.value)) {
+            this.newComment = student.getComment();
+        }
+        if (Image.isDefaultImage(newImage.value)) {
+            this.newImage = student.getImage();
+        }
+        if (Email.isDefaultEmail(newEmail.value)) {
+            this.newEmail = student.getEmail();
+        }
+        if (Address.isDefaultAddress(newAddress.value)) {
+            this.newAddress = student.getAddress();
+        }
+        if (Sex.isDefaultSex(newSex.value)) {
+            this.newSex = student.getSex();
+        }
+        if (Relationship.isDefaultRelationship(newRelationship.rls)) {
+            this.newRelationship = student.getRls();
+        }
+        if (Name.isDefaultName(newParentName.fullName)) {
+            this.newParentName = student.getParentName();
         }
 
-        throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED);
+        this.newTagList = student.getTagList();
+        this.newTest = student.getTest();
+        this.newHomework = student.getHomeworkSet();
+        this.newAttendance = student.getAttendance();
+
+        return new Student(newName, this.newStudentClass, this.newIndexNumber, this.newSex,
+                this.newParentName, this.newParentPhoneNumber, this.newRelationship, this.newAge, this.newImage,
+                this.newEmail, this.newStudentPhoneNumber, this.newCca, this.newAddress, this.newAttendance,
+                newHomework, this.newTest, this.newTagList, this.newComment);
     }
 
     /**
      * A method that binds the Student's Parent / NOK to the Student
      *
-     * @param parents    List of existing Parents / NOK.
      * @param student    Student with edited particulars.
      * @param model      {@code Model} which the command should operate on.
      * @param oldStudent Student with original particulars before being edited.
      * @return Edited Student that is bound to its Parent / NOK.
      */
-    public Student setParent(ObservableList<Parent> parents, Student student, Model model, Student oldStudent)
+    public Student setParent(Student student, Model model, Student oldStudent)
             throws ParseException {
+
+        ObservableList<Parent> parents = model.getFilteredParentList();
         if (student.getParentNumber() == oldStudent.getParentNumber()) { // Parent phone number did not change
             if (student.getParentName() != oldStudent.getParentName()) { // Parent changed his/her name
                 for (Parent p : parents) {
