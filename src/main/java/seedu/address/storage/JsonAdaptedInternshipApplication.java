@@ -10,12 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Phone;
-import seedu.address.model.documents.CoverLetterLink;
-import seedu.address.model.documents.Documents;
-import seedu.address.model.documents.ResumeLink;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.InternshipApplication;
 import seedu.address.model.application.InternshipStatus;
@@ -29,6 +23,12 @@ import seedu.address.model.application.Rating;
 import seedu.address.model.application.Reflection;
 import seedu.address.model.application.Review;
 import seedu.address.model.application.Salary;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Phone;
+import seedu.address.model.documents.CoverLetterLink;
+import seedu.address.model.documents.Documents;
+import seedu.address.model.documents.ResumeLink;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.application.InternshipApplication}.

@@ -12,7 +12,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.documents.Documents;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.InternshipApplication;
 import seedu.address.model.application.InternshipStatus;
@@ -26,6 +25,7 @@ import seedu.address.model.application.Rating;
 import seedu.address.model.application.Reflection;
 import seedu.address.model.application.Review;
 import seedu.address.model.application.Salary;
+import seedu.address.model.documents.Documents;
 
 /**
  * Delete the contact details of an application identified using it's displayed index

@@ -3,13 +3,13 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.contact.Contact;
-import seedu.address.model.documents.Documents;
 import seedu.address.model.application.CompanyName;
 import seedu.address.model.application.InternshipApplication;
 import seedu.address.model.application.InternshipStatus;
 import seedu.address.model.application.JobTitle;
 import seedu.address.model.application.Review;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.documents.Documents;
 
 /**
  * A utility class to help with building InternshipApplication objects.
