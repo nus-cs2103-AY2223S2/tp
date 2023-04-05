@@ -5,42 +5,60 @@ title: An Cheng Yang's Project Portfolio Page
 
 ### Project: CoDoc
 
-CoDoc is a desktop address book application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about (To be added) kLoC.
+CoDoc is a desktop contact management application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about (To be added) kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: (To be added)
-    * What it does: (To be added)
-    * Justification: (To be added)
-    * Highlights: (To be added)
-    * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* **New Feature**: Edit command and edit command parser: [#48](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/48), [#66](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/66), [#141](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/141), [#201](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/201)
+    * What it does: It is able to add and delete individual modules and skills from a person.
+    * Justification: This allows the module and skill list to be easily updated. The original edit would only replace the original skill list with the new skills that the user fed as inputs.
+    * Highlights: New prefixes were added, `m+/`, `m-/`, `s+/` and `s-/`. This allows the user to flexibly manage the lists without having to recreate the original list. For v1.2, there were other prefixes such as `so/` and `sn/` to represent a 1-to-1 update of the skill list. User would have to specify the old skill to be updated and the new skill. These were later removed in v1.3 as I realised that using `s-/` and `s+/` in the same command has the same functionality as `so/` and `sn/`.
 
-* **New Feature**: (To be added)
+* **New Feature**: Course List: [#120](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/120)
+  * What it does: A list of courses that our application supports.
+  * Justification: The list was introduced to standardize user inputs for courses, preventing users from inputting `cs` or `comp sci` to represent `Computer Science`. This helped to make our `find` function more user-friendly as users know what to search for, rather than having to toggle between the different names representing the same course. Users could simply input the index of the course that is shown in the left panel, minimising the keystrokes as well.
+  * Highlights: This is displayed as a list with index numbers in the left panel of our application.
 
-* **Code contributed**: (To be added)
+* **New Feature**: Help window: [#98](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/98), [#99](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/99)
+  * What it does: Improved the help window to display a table of our command summary.
+  * Justification: Experienced users need not refer to our user guide everytime they forget a specific command. They can simply refer to our command summary table in the help window and this would increase the user experience as it can be troublesome to reference the user guide everytime.
+  * Highlights: The table also allows users to copy the commands and paste them into the text box, streamlining the user experience.
+
+* **New Feature**: Copy url buttons: [#139](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/139), [#148](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/148)
+  * What it does: Allows user to copy the email address, github profile and linkedin profile links of a contact.
+  * Justification: Improved the user experience as the links can be copied to their clipboard to be used in their browser.
+  * Highlights: Copy to clipboard
+  * Credits: The original copy url button that was meant for the user guide link in the help window.
+
+* **Code contributed**: I implemented the new prefixes for the edit command. I had to alter many files just to implement these as there were many files that were affected by the changes. I had to change many test cases and fix many bugs along the way as well since the edit command plays quite a big role in AB3 previously. I also provided bug fixes for my teammates whenever they needed help. I made some UI modifications using scene builder as well, particularly the help window, left course list panel and the copy buttons. Lastly, I added some test cases to increase the test case coverage of our program.
 
 * **Project management**:
-    * (To be added)
+    * Merged PRs by teammates
+    * Provided feedback on PRS
+    * Assigned issues to teammates and myself
+    * Reminded teammates about the deliverables every week
 
 * **Enhancements to existing features**:
-    * (To be added)
-    * (To be added)
+    * Modified the CodocParser with every new iteration
+    * Created a singleton for a dummy person within the Person class to be displayed when the contact list was empty: [#125](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/125)
+    * Enhanced the help window: [#97](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/97)
+    * Enhanced the add and edit command: [#67](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/67)
+    * Minor improvements and bug fixes: [#83](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/83), [#86](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/86), [#87](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/87)
 
 * **Documentation**:
     * User Guide:
-        * (To be added)
-        * (To be added)
+        * Add new sections for the user guide, particularly the Glossary, Command Summary, Navigating the User Guide and Notes about the Command Format: [#149](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/149)
+        * Edited the user guide pertaining to the features that I implemented: [#151](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/151), [#203](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/203), [#208](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/208)
+        * Edited the table of contents and navigation of the user guide with every new iteration
     * Developer Guide:
-        * A(To be added)
-
-* **Community**:
-    * (To be added)
-    * (To be added)
-    * (To be added)
-    * (To be added)
+        * Add new sections for the developer guide, particularly the Glossary, Target Audience and Navigating the Developer Guide: [#88](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/88)
+        * Edited the non-functional requirements and use cases: [#29](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/29), [#134](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/134)
+        * Edited the developer guide pertaining to the features that I implemented with UML diagrams: [#88](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/88), [#90](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/90), [#134](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/134)
+        * Edited the table of contents and navigation of the developer guide with every new iteration
 
 * **Tools**:
-    * (To be added)
-    * (To be added)
-
-* _{you can add/remove categories in the list above}_
+    * Java
+    * JavaFX
+    * SceneBuilder
+    * Jackson
+    * Junit5
