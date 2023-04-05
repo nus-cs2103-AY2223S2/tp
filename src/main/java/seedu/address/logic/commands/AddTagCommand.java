@@ -26,12 +26,12 @@ public class AddTagCommand extends Command {
 
     public static final String COMMAND_WORD = "add-tag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a person of index i to a tag specified. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tag specified to a athlete at index i . "
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "varsity";
-    public static final String ADD_TAG_PERSON_SUCCESS = "Added Person: %1$s to tags: %2$s";
+    public static final String ADD_TAG_PERSON_SUCCESS = "Added tag: %2$s to athlete: %1$s";
     public static final String STUDENT_ALREADY_ADDED_FAILURE = "%1$s already has tag: %2$s";
 
     private final Set<Tag> tagsToAdd;

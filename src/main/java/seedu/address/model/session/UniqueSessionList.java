@@ -67,7 +67,8 @@ public class UniqueSessionList implements Iterable<Session> {
             throw new DuplicateSessionException();
         }
 
-        internalList.set(index, editedSession);
+        internalList.add(index, editedSession);
+        internalList.remove(index + 1);
     }
 
     /**
