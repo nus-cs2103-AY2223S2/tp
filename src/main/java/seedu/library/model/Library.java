@@ -2,11 +2,14 @@ package seedu.library.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.library.model.bookmark.Bookmark;
 import seedu.library.model.bookmark.UniqueBookmarkList;
+import seedu.library.model.tag.Tag;
 
 /**
  * Wraps all data at the library level
@@ -101,9 +104,30 @@ public class Library implements ReadOnlyLibrary {
     }
 
     //// library-level operations
+
+    /**
+     * Sorts bookmark by order of rating.
+     *
+     * @param order Either ascending or descending order.
+     */
     public void sortBookmarks(String order) {
         bookmarks.sortBookmarks(order);
     }
+
+    /**
+     * Gets all the tags that are used by all bookmarks.
+     *
+     * @return Set of all the tags used by all bookmarks.
+     */
+    public Set<Tag> getAllTags() {
+        Set<Tag> allTags = new HashSet<>();
+        for (Bookmark bookmark : getBookmarkList()) {
+            allTags.addAll(bookmark.getTags());
+        }
+        return allTags;
+    }
+
+
 
     //// util methods
 

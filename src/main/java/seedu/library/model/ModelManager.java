@@ -156,6 +156,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean tagInUse(Tag target) {
+        Set<Tag> allTags = library.getAllTags();
+        return allTags.contains(target);
+    }
+
+    @Override
     public void deleteTag(Tag target) {
         tagList.removeTag(target);
     }

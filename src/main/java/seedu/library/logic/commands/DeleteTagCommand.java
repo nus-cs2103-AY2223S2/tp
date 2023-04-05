@@ -20,6 +20,7 @@ public class DeleteTagCommand extends Command {
             + "Example: " + COMMAND_WORD + " MaleProtagonist";
 
     public static final String MESSAGE_DELETE_TAG_SUCCESS = "Deleted Tag: %1$s";
+    public static final String PREVENT_USED_TAG_DELETION = "Cannot delete tags that are currently used by bookmarks";
 
     private final Tag tag;
 
@@ -30,6 +31,10 @@ public class DeleteTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.tagInUse(tag)) {
+            throw new CommandException(PREVENT_USED_TAG_DELETION);
+        }
 
         if (!model.hasTag(tag)) {
             throw new CommandException(Messages.MESSAGE_INVALID_TAG_NAME);
