@@ -285,13 +285,6 @@ Shows a message explaining how to access the help page.
 
 ## Person-Related Commands
 
-### Adding a person: `add`
-<div markdown="block" class="alert alert-warning">
-
-**:warning: Caution**<br>
-Tags of more than 10 characters are unsupported! UI artifacts may occur.
-
-</div>
 ### Adding a person : `add`
 
 Adds a person to the address book.
@@ -300,8 +293,18 @@ Adds a person to the address book.
 
 Format: `add n/CONTACT_NAME [p/CONTACT_PHONE_NUMBER] [e/CONTACT_EMAIL] [a/CONTACT_ADDRESS] [t/CONTACT_TAG]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Tip**<br>
+A person can have any number of tags (including 0).
+
+</div>
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning: Caution**<br>
+Tags of more than 10 characters are unsupported! UI artifacts may occur.
+
 </div>
 
 Examples:
