@@ -1,44 +1,82 @@
 ---
 layout: page
-title: Justin's Project Portfolio Page
+title: Leng Wei Cong, Justin's Project Portfolio Page
 ---
 
-### Project: Well Informed Fridge Environment (WIFE) Level 3
+### Project: Well Informed Fridge Environment (WIFE)
 
-WIFE is always right and never question her. Our product Well Informed Fridge Environment (WIFE) helps users to manage their food items in the fridge. With this, one never have to worry about optimizing storage and organization of food items in a refrigerator, thereby reducing waste and improving the efficiency of grocery shopping.
+Enhance life with WIFE! Our product Well Informed Fridge Environment &lt;WIFE/&gt; helps users to manage their food items in the fridge, and never question her. With this, one never have to worry about optimizing storage and organization of food items in a refrigerator, thereby reducing waste and improving the efficiency of grocery shopping.
+ing the efficiency of grocery shopping.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+-   **New Feature**: Added the ability to list food list by specified tags.
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+    -   What it does: allows the user to list food by specified tags.
+    -   Justification: This feature improves the product significantly because the user will now be able to focus on food they are interested in. This way if the user were to tag their food with their name, they can easily list food by their name to give them a personalised experience in managing their food even in communal living.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=scorpiussigma&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ScorpiusSigma&tabRepo=AY2223S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+-   **New Feature**: Added the ability to Delete food list by specified tags.
 
-* **Project management**:
-  * TO BE ADDED
+    -   What it does: allows the user to delete food by specified tags.
+    -   Justification: This feature improves the product significantly because the user will now be able to delete multiple food based on their tag. This way if the user were to remove food from the fridge with a specific tag, the user can easily delete all of them at once with the tag.
+        Highlights: This enhancement affects commands to be added in future. This feature will be useful for future feature where WIFE will automatically tag food that are expired with an "expired" tag. With this feature, user can easily delete all food by the expired tag.
 
-* **Enhancements to existing features**:
-  * TO BE ADDED
+-   **New Feature**: Added the ability to Delete specified tag.
 
-* **Documentation**:
-  * User Guide:
-    * Added documentation for the features `list` and `delete` [\#72]()
-  * Developer Guide:
-    * TO BE ADDED
+    -   What it does: allows the user to delete specified tags in the WIFE.
+    -   Justification: This feature improves the product significantly because the user will now be able to remove all specifieds tags in the WIFE and all occurrences of the food items in the food list.
 
-* **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
+<br/>
 
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
+-   **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=scorpiussigma&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=ScorpiusSigma&tabRepo=AY2223S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~other~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* _{you can add/remove categories in the list above}_
+-   **Project management**:
+
+    -   Managed the merging of PR to `staging` branch and subsequently `staging` to `master` branch.
+    -   Managed releases `v1.3.1` on GitHub
+
+  <br/>
+
+-   **Testing**:
+
+    -   Added test for `ListByTagCommand` and `ListByTagCommandParser` (Pull Request [\#155](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/155))
+    -   Added test for `DeleteByTagCommand` and `DeleteByTagCommandParser` (Pull Request [\#156](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/156))
+    -   Added test for `DeleteTagCommand` and `DeleteTagCommandParser` (Pull Request [\#158](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/158))
+
+<br/>
+
+-   **Documentation**:
+
+    -   User Guide:
+        -   Added documentation for the features `listbytag`, `delbytag` and `deltag` (Pull Request [\#168](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/168))
+    -   Developer Guide:
+        -   Added documentation for the features `listbytag`, `delbytag` and `deltag` (Pull Request [\#174](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/174))
+
+<br/>
+
+-   **Community**:
+
+    -   PRs reviewed
+        -   [\#193](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/193)
+        -   [\#191](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/191)
+        -   [\#185](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/185)
+        -   [\#183](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/183)
+        -   [\#171](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/171)
+        -   [\#162](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/162)
+        -   [\#153](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/153)
+        -   [\#139](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/139)
+        -   [\#138](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/138)
+        -   [\#134](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/134)
+        -   [\#129](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/129)
+        -   [\#125](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/125)
+        -   [\#118](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/118)
+        -   [\#106](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/106)
+        -   [\#98](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/98)
+        -   [\#89](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/89)
+        -   [\#85](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/85)
+        -   [\#74](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/74)
+        -   [\#68](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/68)
+        -   [\#67](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/67)
+        -   [\#66](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/66)
+        -   [\#60](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/60)
+        -   [\#41](https://github.com/AY2223S2-CS2103T-T11-1/tp/pull/41)
