@@ -4,13 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
-import static seedu.sprint.testutil.TypicalApplications.APPLE;
 import static seedu.sprint.testutil.TypicalApplications.AMAZON;
+import static seedu.sprint.testutil.TypicalApplications.APPLE;
 import static seedu.sprint.testutil.TypicalApplications.GOOGLE;
 import static seedu.sprint.testutil.TypicalApplications.GOVTECH;
 import static seedu.sprint.testutil.TypicalApplications.META;
 import static seedu.sprint.testutil.TypicalApplications.MICROSOFT;
 import static seedu.sprint.testutil.TypicalApplications.getTypicalInternshipBook;
+
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -58,7 +59,6 @@ public class SortCommandTest {
         // both sequence and order different -> returns false
         assertFalse(sortAscAlphabeticalCommand.equals(sortDscDeadlineCommand));
     }
-    
     @Test
     public void execute_sortAlphabetical_success() {
         String expectedSuccessMessage = "Sorted all applications by alphabetical order!";

@@ -1,15 +1,17 @@
 package seedu.sprint.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.sprint.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 import static seedu.sprint.logic.commands.ApplicationCommandTestUtil.assertCommandSuccess;
-import static seedu.sprint.testutil.TypicalApplications.APPLE;
+import static seedu.sprint.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 import static seedu.sprint.testutil.TypicalApplications.AMAZON;
+import static seedu.sprint.testutil.TypicalApplications.APPLE;
 import static seedu.sprint.testutil.TypicalApplications.GOOGLE;
 import static seedu.sprint.testutil.TypicalApplications.GOVTECH;
 import static seedu.sprint.testutil.TypicalApplications.META;
 import static seedu.sprint.testutil.TypicalApplications.MICROSOFT;
 import static seedu.sprint.testutil.TypicalApplications.getTypicalInternshipBook;
+
+import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,8 +26,6 @@ import seedu.sprint.model.application.ApplicationHasTaskPredicate;
 import seedu.sprint.model.application.DeadlineComparator;
 import seedu.sprint.model.application.DefaultComparator;
 import seedu.sprint.model.application.NameContainsKeywordsPredicate;
-
-import java.util.Arrays;
 
 /**
  * Contains integration tests (interaction with other commands like Sort and Find) for ListCommand.
