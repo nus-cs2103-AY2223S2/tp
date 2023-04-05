@@ -4,8 +4,8 @@ title: User Guide
 ---
 <!-- omit in toc -->
 ## Docedex
-<!-- omit in toc -->
-### Taking control of hospital administrative management is just a few keystrokes away!
+
+***Taking control of hospital administrative management is just a few keystrokes away!***
 
 Docedex is a **desktop application** built for **medical administrative assistants**
 to manage doctors and patients within clinics.
