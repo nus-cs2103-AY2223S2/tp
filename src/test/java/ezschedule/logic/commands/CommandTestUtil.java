@@ -39,6 +39,10 @@ public class CommandTestUtil {
     public static final String VALID_RECUR_FACTOR_DAY = "day";
     public static final String VALID_RECUR_FACTOR_WEEK = "week";
     public static final String VALID_RECUR_FACTOR_MONTH = "month";
+    public static final String INVALID_NAME = "Event@";
+    public static final String INVALID_DATE = "2023-01-05a";
+    public static final String INVALID_START_TIME = "1800";
+    public static final String INVALID_END_TIME = "22:00*";
 
     public static final String NAME_DESC_A = " " + PREFIX_NAME + VALID_NAME_A;
     public static final String NAME_DESC_B = " " + PREFIX_NAME + VALID_NAME_B;
@@ -58,6 +62,10 @@ public class CommandTestUtil {
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_START + "1800"; // missing ':' symbol
     public static final String INVALID_END_TIME_DESC = " " + PREFIX_END + "22:00*"; // '*' not allowed in tags
     public static final String INVALID_RECUR_FACTOR = " " + PREFIX_EVERY + "DAY"; // uppercase invalid
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + INVALID_NAME; // '@' not allowed in names
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + INVALID_DATE; // 'a' not allowed in phones
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_START + INVALID_START_TIME; // missing ':' symbol
+    public static final String INVALID_END_TIME_DESC = " " + PREFIX_END + INVALID_END_TIME; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -107,11 +115,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        Scheduler expectedAddressBook = new Scheduler(actualModel.getScheduler());
+        Scheduler expectedScheduler = new Scheduler(actualModel.getScheduler());
         List<Event> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEventList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getScheduler());
+        assertEquals(expectedScheduler, actualModel.getScheduler());
         assertEquals(expectedFilteredList, actualModel.getFilteredEventList());
     }
 
