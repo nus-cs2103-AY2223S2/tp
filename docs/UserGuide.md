@@ -584,7 +584,7 @@ Format: `delm INDEX`
 
 Examples:
 
-* `listm` followed by `delm 2` deletes the 2nd meeting.
+* `findm` followed by `delm 2` deletes the 2nd meeting.
 
 ### Marking Meetings as done or undone : `mark` or `unmark`
 
