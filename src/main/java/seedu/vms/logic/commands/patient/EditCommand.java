@@ -7,6 +7,7 @@ import static seedu.vms.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.vms.logic.parser.CliSyntax.PREFIX_SET;
 import static seedu.vms.logic.parser.CliSyntax.PREFIX_VACCINATION;
 import static seedu.vms.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
@@ -41,15 +42,17 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_GROUP + " " + COMMAND_WORD
             + ": Edits the details of the patient identified "
-            + "by the index number used in the displayed patient list. "
+            + "by the PATIENT_ID used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: PATIENT_ID (must be a positive integer) "
             + "[" + DELIMITER + PREFIX_NAME + " NAME] "
             + "[" + DELIMITER + PREFIX_PHONE + " PHONE] "
             + "[" + DELIMITER + PREFIX_DOB + " Date of Birth] "
             + "[" + DELIMITER + PREFIX_BLOODTYPE + " BLOODTYPE] "
-            + "[" + DELIMITER + PREFIX_ALLERGY + " ALLERGY]...\n"
+            + "[" + DELIMITER + PREFIX_ALLERGY + " ALLERGY]... "
             + "[" + DELIMITER + PREFIX_VACCINATION + " VACCINE]...\n"
+            + "[" + DELIMITER + PREFIX_SET + " BOOLEAN] If true, it will replace all the list-like attributes "
+            + "(ALLERGY, VACCINE) with the specified. If false, it will append the values. False by default.\n"
             + "Example: " + COMMAND_GROUP + " " + COMMAND_WORD + " 1 "
             + DELIMITER + PREFIX_PHONE + " 91234567 "
             + DELIMITER + PREFIX_DOB + " 2000-02-18";
