@@ -9,14 +9,15 @@ import taa.model.student.Student;
  * An assignment submission for a particular student.
  */
 public class Submission {
+    private final Assignment assignment;
+    private final Student student;
     private boolean isGraded = false;
     private boolean isLateSubmission = false;
     private int marks = 0;
-    private final Assignment assignment;
-    private final Student student;
 
     /**
      * Constructor for our submission.
+     *
      * @param student
      * @param assignment
      */
@@ -27,6 +28,7 @@ public class Submission {
 
     /**
      * Creates a Submission, this is used when creating from storage.
+     *
      * @param student
      * @param assignment
      * @param isGraded
@@ -48,6 +50,7 @@ public class Submission {
 
     /**
      * Grades a students submission with the given marks.
+     *
      * @param marks
      * @throws InvalidGradeException when marks is out of range 0-totalMarks.
      */
@@ -77,6 +80,7 @@ public class Submission {
 
     /**
      * Describes the assignment this submission belongs to, along with details of this submission.
+     *
      * @return the details of the submission
      */
     public String describeSubmission() {
@@ -113,9 +117,9 @@ public class Submission {
     }
 
     /**
-     * Creates a string for a submission to store into our storage.
-     * The data given is separated by commas, in the following manner:
-     * "assignmentName,isGraded,isLate,marks,totalMarks"
+     * Creates a string for a submission to store into our storage. The data given is separated by commas, in the
+     * following manner: "assignmentName,isGraded,isLate,marks,totalMarks"
+     *
      * @return The storage string
      */
     public String toStorageString() {
