@@ -403,7 +403,7 @@ Examples:
 - `find t/ URGENT` will display students who have the exact tag `URGENT`
 - `find m/ CS2101` will display students who have the exact module `CS2101`
 
-**Using the following input fields `find n/a m/CS2103T`:**
+**Using the following input fields** `find n/a m/CS2103T`:
 <p align=center>
     <img alt="find before" src="images/user-guide/find_before.jpg" />
     <br><i><b>Above:</b> Before entering <code>find</code> command</i>
@@ -556,7 +556,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 | Remark                         | Notes or things to take note of for a student.                                                                  | "Not good in Japanese", "Has not submitted MC" etc.                                                                                                                                                                                                        |
 
 
-# Command summary
+## Command summary
 
 | Action | Format, Examples                                                                                                                                                                                                                                                      |
 |--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -576,7 +576,7 @@ If you'd still like to edit the data file directly, please proceed to [Appendix:
 
 ---
 
-# Prefix summary
+## Prefix summary
 
 | Prefix | Meaning                                 | Example                               |
 |--------|-----------------------------------------|---------------------------------------|
