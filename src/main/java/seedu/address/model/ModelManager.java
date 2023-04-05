@@ -144,19 +144,20 @@ public class ModelManager implements Model {
 //                || Objects.equals(type, "trans")
 //                || Objects.equals(type, "name");
         switch (type) {
-        case "size":
-            addressBook.sortPersonsBusinessSize(ascending);
-        case "name":
-            addressBook.sortPersonsName(ascending);
-            break;
-        case "priority":
-            addressBook.sortPersonsPriority(ascending);
-            break;
-        case "trans":
-            addressBook.sortPersonsTransactionCount(ascending);
-            break;
-        default:
-            addressBook.sortPersonsName(ascending);
+            case "size":
+                addressBook.sortPersonsBusinessSize(ascending);
+                break;
+            case "name":
+                addressBook.sortPersonsName(ascending);
+                break;
+            case "priority":
+                addressBook.sortPersonsPriority(ascending);
+                break;
+            case "trans":
+                addressBook.sortPersonsTransactionCount(ascending);
+                break;
+            default:
+                addressBook.sortPersonsName(ascending);
         }
 
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
