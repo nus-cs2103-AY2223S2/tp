@@ -95,6 +95,10 @@ public class CommandTestUtil {
     public static final String END_DATETIME_DESC_2 = " " + PREFIX_END_DATE_TIME + VALID_END_DATETIME_2;
     public static final String RECURRENCE_DESC_1 = " " + PREFIX_RECURRENCE + VALID_RECURRENCE_1;
     public static final String RECURRENCE_DESC_2 = " " + PREFIX_RECURRENCE + VALID_RECURRENCE_2;
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " \n\t"; // blank description not allowed
+    public static final String INVALID_START_DATETIME_DESC = " " + PREFIX_START_DATE_TIME + "2023/01/01 0000"; // forward slash not allowed
+    public static final String INVALID_END_DATETIME_DESC = " " + PREFIX_END_DATE_TIME + "2023-01-01 00:00"; // colon not allowed
+    public static final String INVALID_RECURRENCE_DESC = " " + PREFIX_RECURRENCE + "hourly";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

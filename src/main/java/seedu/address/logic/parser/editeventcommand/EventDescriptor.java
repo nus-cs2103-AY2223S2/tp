@@ -102,7 +102,7 @@ public class EventDescriptor {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof PersonDescriptor)) {
+        if (!(other instanceof EventDescriptor)) {
             return false;
         }
 
@@ -112,6 +112,7 @@ public class EventDescriptor {
         return getDescription().equals(e.getDescription())
                 && getStartDateTime().equals(e.getStartDateTime())
                 && getEndDateTime().equals(e.getEndDateTime())
-                && getRecurrence().equals(e.getRecurrence());
+                && getRecurrence().equals(e.getRecurrence())
+                && getTaggedPeople().equals(e.getTaggedPeople());
     }
 }

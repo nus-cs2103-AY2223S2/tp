@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddEventCommand;
+import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.OneTimeEvent;
 import seedu.address.model.event.RecurringEvent;
@@ -11,12 +12,15 @@ import seedu.address.model.event.fields.Recurrence;
 
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_2;
 import static seedu.address.logic.commands.CommandTestUtil.END_DATETIME_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.END_DATETIME_DESC_2;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_END_DATETIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECURRENCE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_START_DATETIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.RECURRENCE_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.RECURRENCE_DESC_2;
@@ -84,5 +88,26 @@ class AddEventCommandParserTest {
         assertParseFailure(parser,
                 String.format("%s%s%s", START_DATETIME_DESC_1, DESCRIPTION_DESC_1, RECURRENCE_DESC_1),
                 expectedMessage);
+    }
+
+    @Test
+    void parse_invalidValue_failure() {
+        assertParseFailure(parser, String.format("%s%s%s%s", INVALID_DESCRIPTION_DESC,
+                START_DATETIME_DESC_1, END_DATETIME_DESC_1, RECURRENCE_DESC_1), Description.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser, String.format("%s%s%s%s", DESCRIPTION_DESC_1,
+                INVALID_START_DATETIME_DESC, END_DATETIME_DESC_1, RECURRENCE_DESC_1), DateTime.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser, String.format("%s%s%s%s", DESCRIPTION_DESC_1,
+                START_DATETIME_DESC_1, INVALID_END_DATETIME_DESC, RECURRENCE_DESC_1), DateTime.MESSAGE_CONSTRAINTS);
+
+        assertParseFailure(parser, String.format("%s%s%s%s", DESCRIPTION_DESC_1,
+                START_DATETIME_DESC_1, END_DATETIME_DESC_1, INVALID_RECURRENCE_DESC), Recurrence.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    void parse_startBeforeEnd_failure() {
+        assertParseFailure(parser, "1 e/2023-01-01 0000 s/2023-01-01 0001",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
     }
 }
