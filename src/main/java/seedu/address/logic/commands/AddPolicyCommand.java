@@ -23,7 +23,7 @@ public class AddPolicyCommand extends Command {
 
     public static final String COMMAND_WORD = "addPolicy";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to a client in the program. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to a client in the program. " + "\n"
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + "POLICY (must be a valid policy)\n"

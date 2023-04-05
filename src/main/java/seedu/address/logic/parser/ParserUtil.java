@@ -19,7 +19,6 @@ import seedu.address.model.client.policy.CustomDate;
 import seedu.address.model.client.policy.Frequency;
 import seedu.address.model.client.policy.PolicyName;
 import seedu.address.model.client.policy.Premium;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -31,6 +30,7 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -102,33 +102,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
-
-    /**
      * Parses a {@code String appointmentName} into an {@code AppointmentName}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -164,6 +137,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String policyName} into a {@code PolicyName}.
+     *
      * @param policyName String to be parsed
      * @return PolicyName
      * @throws ParseException if the given {@code policyName} is invalid.
@@ -182,6 +156,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String customDate} into a {@code CustomDate}.
+     *
      * @param customDate
      * @return CustomDate
      * @throws ParseException if the given {@code customDate} is invalid.
@@ -197,6 +172,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String premium} into a {@code Premium}.
+     *
      * @param premium String to be parsed
      * @return Premium
      * @throws ParseException if the given {@code premium} is invalid.
@@ -212,6 +188,7 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String frequency} into a {@code Frequency}.
+     *
      * @param frequency String to be parsed
      * @return Frequency
      * @throws ParseException if the given {@code frequency} is invalid.

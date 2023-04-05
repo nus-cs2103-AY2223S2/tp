@@ -34,7 +34,8 @@ public class AddAppointmentCommand extends Command {
 
     /**
      * Creates an AddAppointmentCommand to add the specified {@code Appointment}
-     * @param index The index of the person to add the policy to.
+     *
+     * @param index       The index of the person to add the policy to.
      * @param appointment The appointment to be added.
      */
     public AddAppointmentCommand(Index index, Appointment appointment) {
@@ -42,6 +43,7 @@ public class AddAppointmentCommand extends Command {
         this.index = index;
         this.appointment = appointment;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -54,7 +56,7 @@ public class AddAppointmentCommand extends Command {
 
         Client editedClient = new Client(clientToAddAppointment.getName(), clientToAddAppointment.getPhone(),
                 clientToAddAppointment.getEmail(), clientToAddAppointment.getAddress(),
-                clientToAddAppointment.getTags(), clientToAddAppointment.getPolicyList(),
+                clientToAddAppointment.getPolicyList(),
                 appointment);
         Client addedAppointmentClient = editedClient.cloneClient();
         model.setClient(clientToAddAppointment, editedClient);
@@ -65,11 +67,13 @@ public class AddAppointmentCommand extends Command {
 
     /**
      * Generates a command execution success message based on the appointment added.
+     *
      * @return success message
      */
     private String generateSuccessMessage() {
         return String.format("Added Appointment: %1$s to client: %2$s", appointment, index.getOneBased());
     }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
