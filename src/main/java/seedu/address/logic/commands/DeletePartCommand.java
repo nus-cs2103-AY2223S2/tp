@@ -8,7 +8,8 @@ import seedu.address.model.Model;
 import seedu.address.model.service.PartMap;
 
 /**
- * Deletes a vehicle identified using it's displayed index from viewpart.
+ * Deletes a part identified using it's displayed name from viewpart or listparts.
+ * This only deletes from the global list, and does not affect each appointment individually.
  */
 public class DeletePartCommand extends RedoableCommand {
 
@@ -31,8 +32,6 @@ public class DeletePartCommand extends RedoableCommand {
     public CommandResult executeUndoableCommand(Model model) throws CommandException {
         requireNonNull(model);
         PartMap pm = model.getPartMap();
-
-        // This is here due to not implementing parser
 
         if (pm.contains(userString) == false) {
             throw new CommandException(String.format(MESSAGE_INVAID_PART_REQUESTED, DeletePartCommand.MESSAGE_USAGE));

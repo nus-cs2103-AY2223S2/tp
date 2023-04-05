@@ -10,14 +10,14 @@ import seedu.address.model.Model;
 import seedu.address.model.service.Service;
 
 /**
- * Deletes a vehicle identified using it's displayed index from viewvehicle.
+ * Deletes a service  identified using it's displayed index from viewservice and listservices.
  */
 public class DeleteServiceCommand extends RedoableCommand {
 
     public static final String COMMAND_WORD = "deleteservice";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the vehicle identified by the id number displayed by the list command.\n"
+            + ": Deletes the service identified by the id number displayed by the list command.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -47,7 +47,7 @@ public class DeleteServiceCommand extends RedoableCommand {
 
         model.deleteService(serviceToDeletes);
         IdGenerator.setServiceIdUnused(id);
-        return new CommandResult(String.format(MESSAGE_DELETE_SERVICE_SUCCESS, serviceToDeletes.getId()), Tab.SERVICES);
+        return new CommandResult(String.format(MESSAGE_DELETE_SERVICE_SUCCESS, id), Tab.SERVICES);
     }
 
     @Override

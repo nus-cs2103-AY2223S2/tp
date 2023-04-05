@@ -23,7 +23,7 @@ import seedu.address.model.service.appointment.Appointment;
 
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing appointment in autom8.
  */
 public class EditAppointmentCommand extends RedoableCommand {
 
@@ -44,6 +44,7 @@ public class EditAppointmentCommand extends RedoableCommand {
             + PREFIX_TIME + "17:00";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
+
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Appointment %d does not exist";
 
@@ -83,7 +84,7 @@ public class EditAppointmentCommand extends RedoableCommand {
 
         if (!model.hasCustomer(editedAppointment.getCustomerId())) {
             throw new CommandException(String.format(MESSAGE_CUSTOMER_NOT_FOUND, editedAppointment.getCustomerId()));
-        }
+        } // Invalid customer Id is handed here
 
         if (editedAppointment.getCustomerId() != appointmentToEdit.getCustomerId()) {
             Customer oldCustomer = model.getFilteredCustomerList().stream()
@@ -97,7 +98,7 @@ public class EditAppointmentCommand extends RedoableCommand {
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);
-        //model.selectAppointment(editedAppointment);
+        // model.selectAppointment(editedAppointment);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPOINTMENT_SUCCESS, editedAppointment), Tab.APPOINTMENTS);

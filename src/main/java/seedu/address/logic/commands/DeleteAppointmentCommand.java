@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.appointment.Appointment;
 
 /**
- * Deletes a vehicle identified using it's displayed index from viewvehicle.
+ * Deletes the appointment identified using it's displayed index from viewappointment or listappointments.
  */
 public class DeleteAppointmentCommand extends RedoableCommand {
 
@@ -23,7 +23,6 @@ public class DeleteAppointmentCommand extends RedoableCommand {
 
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
     public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "Appointment not found";
-
 
     private final int id;
 
@@ -45,6 +44,7 @@ public class DeleteAppointmentCommand extends RedoableCommand {
 
         model.deleteAppointment(appointmentToDelete);
         IdGenerator.setAppointmentIdUnused(id);
+
         return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, id),
                 Tab.APPOINTMENTS);
     }

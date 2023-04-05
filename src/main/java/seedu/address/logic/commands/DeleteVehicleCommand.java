@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.Vehicle;
 
 /**
- * Deletes a vehicle identified using it's displayed index from viewvehicle.
+ * Deletes a vehicle identified using it's displayed index from viewvehicle or listvehicles.
  */
 public class DeleteVehicleCommand extends RedoableCommand {
 
@@ -38,7 +38,6 @@ public class DeleteVehicleCommand extends RedoableCommand {
         requireNonNull(model);
         List<Vehicle> lastShownList = model.getFilteredVehicleList();
 
-        // Get vehicle based on given id
         Vehicle vehicleToDelete = lastShownList.stream().filter(vehicle->
                 id == vehicle.getId()).findFirst().orElse(VEHICLE_DOES_NOT_EXIST);
 
