@@ -37,7 +37,7 @@ public class EditBookmarkDescriptorTest {
 
         // different name -> returns false
         EditBookmarkDescriptor editedAmy = new EditBookmarkDescriptorBuilder(DESC_AMY)
-                .withName(VALID_TITLE_BOB).build();
+                .withTitle(VALID_TITLE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different progress -> returns false

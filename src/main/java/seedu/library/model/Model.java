@@ -140,7 +140,7 @@ public interface Model {
      * Adds the given tags.
      * {@code tag} must not already exist in the tag list.
      */
-    void addTags(Set<Tag> tag);
+    void addTags(Set<Tag> tags);
 
     /**
      * Deletes the given tag.

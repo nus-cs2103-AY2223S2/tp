@@ -64,10 +64,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditBookmarkDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_AMY)
+        DESC_AMY = new EditBookmarkDescriptorBuilder().withTitle(VALID_TITLE_AMY)
                 .withProgress(VALID_PROGRESS_AMY).withGenre(VALID_GENRE_AMY).withAuthor(VALID_AUTHOR_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_BOB)
+        DESC_BOB = new EditBookmarkDescriptorBuilder().withTitle(VALID_TITLE_BOB)
                 .withProgress(VALID_PROGRESS_BOB).withGenre(VALID_GENRE_BOB).withAuthor(VALID_AUTHOR_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }

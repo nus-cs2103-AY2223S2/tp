@@ -115,7 +115,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + PROGRESS_DESC_BOB + TAG_DESC_HUSBAND
                 + GENRE_DESC_AMY + AUTHOR_DESC_AMY + TITLE_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withName(VALID_TITLE_AMY)
+        EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder().withTitle(VALID_TITLE_AMY)
                 .withProgress(VALID_PROGRESS_BOB).withGenre(VALID_GENRE_AMY).withAuthor(VALID_AUTHOR_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -142,7 +142,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_BOOKMARK;
         String userInput = targetIndex.getOneBased() + TITLE_DESC_AMY;
         EditCommand.EditBookmarkDescriptor descriptor = new EditBookmarkDescriptorBuilder()
-                .withName(VALID_TITLE_AMY).build();
+                .withTitle(VALID_TITLE_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
