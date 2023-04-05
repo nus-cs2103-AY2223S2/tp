@@ -162,9 +162,9 @@ Edited food item: Cauliflower (expires on: 03-04-2033)
 
 ### Find a food: `find`
 
-Find food items in WIFE.
+Find food items in WIFE which names contain any of the specified keywords. Keywords are case-insensitive.
 
-Format: `find KEYWORD`
+Format: `find KEYWORD [KEYWORD]...`
 
 Example: <br/>
 `find Broccoli` returns
