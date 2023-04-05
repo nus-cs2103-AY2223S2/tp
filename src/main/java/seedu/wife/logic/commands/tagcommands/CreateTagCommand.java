@@ -49,7 +49,7 @@ public class CreateTagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         String messageString = MESSAGE_TAG_CREATE_SUCCESS;
-        
+
         for (Tag tag: this.toCreate) {
             if (model.hasTag(tag)) {
                 continue;
