@@ -3,8 +3,49 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+## **Table of Contents**
+
+- [**Table of Contents**](#table-of-contents)
+- [**Acknowledgements**](#acknowledgements)
+- [**Setting up, getting started**](#setting-up-getting-started)
+- [**Design**](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [**Implementation**](#implementation)
+  - [Find by Tag Feature](#find-by-tag-feature)
+    - [About](#about)
+    - [Implementation](#implementation-1)
+  - [Sort feature](#sort-feature)
+    - [About](#about-1)
+    - [Implementation](#implementation-2)
+  - [Lead Status feature](#lead-status-feature)
+  - [Tasks Feature](#tasks-feature)
+    - [About](#about-2)
+    - [Implementation](#implementation-3)
+  - [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
+    - [Proposed Implementation](#proposed-implementation)
+    - [Design considerations:](#design-considerations)
+  - [\[Proposed\] Data archiving](#proposed-data-archiving)
+  - [Add transaction feature](#add-transaction-feature)
+    - [Proposed Implementation](#proposed-implementation-1)
+    - [Design considerations:](#design-considerations-1)
+- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+- [**Appendix: Requirements**](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a person](#deleting-a-person)
+  - [Saving data](#saving-data)
+
+
 
 ---
 
