@@ -700,6 +700,12 @@ the (ENTER) key would extract the client's email. This way you can quickly
 reference a project or client in your command, without having to type out the
 full name or email.
 
+<div markdown="span" class="alert alert-danger">
+:warning: Avoid using your mouse to select a project or client. Instead, use
+the (CTRL+J) and (CTRL+K) hotkeys. Using a mouse to select a project or client
+is not officially supported by Mycelium.
+</div>
+
 ### Fuzzy search Gotchas
 
 In general, fuzzy search in Mycelium should feel familiar to most developers,
