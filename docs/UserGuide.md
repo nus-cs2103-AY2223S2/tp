@@ -48,9 +48,9 @@ TeachMeSenpai has been designed to work for all Operating Systems!
     <img alt="TeachMeSenpai upon launch" src="images/user-guide/sample_GUI.jpg" />
 </p>
 
-1.  Ensure you have `Java 11` or above installed in your Computer.
+1.  Ensure you have `Java 11` or above installed in your computer (you may refer to [Java Help Resources](https://www.java.com/en/download/help/version_manual.html) if you're not sure how to do so).
 2.  Download the latest `teachmesenpai.jar` from [here](https://github.com/AY2223S2-CS2103T-W12-2/tp/releases/latest).
-3.  Copy the file to the folder you want to use as the home folder for your application.
+3.  Copy or move the file to the folder you want to use as the home folder for your application.
 4.  Double-click the file to start the app.
 
 [↑ Back to top](#table-of-contents)
@@ -235,8 +235,15 @@ Edits a student's remarks.
 
 > Format: `remark INDEX`
 
-There you can type your desired remarks into the popup text box. When you are done, you can simply press `Ctrl` + `S`
-and your remarks will be saved.
+With `remark` you can type your desired remarks and notes into the popup text box! The text box can take in 
+multiple sentences, paragraphs etc. When you are done, you can simply press `Ctrl` + `S`
+and your remarks will be saved once the text box closes.
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** Do not edit or type commands into the command line of TeachMeSenpai while the remark text box is open!
+The current version of TeachMeSenpai requires you to close the remark text box before you continue with other commands :)
+</div>
 
 Examples:
 
@@ -392,7 +399,7 @@ Did you make a mistake with a command? Don't worry, simply `undo` it!
 You can `undo` as many times as required, as long as the previous commmand is **undoable**.
 
 <div markdown="span" class="alert alert-info":bulb: **Note:** You can only undo `add`, `edit`, `delete`, `remark`, `clear`, and `redo` commands as these are the only commands that change the data of your TeachMeSenpai app! Trying to `undo` without having ANY of the above commands prior will cause TeachMeSenpai to show you an error message.
-</div>
+</>
 
 > Format: `undo`
 
