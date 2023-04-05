@@ -14,10 +14,9 @@ Class UserPrefs
 
 Class UniqueRoleList
 Class Role
-Class Address
 Class Email
 Class Name
-Class Phone
+Class Contact
 Class Tag
 
 Class Salary
@@ -42,9 +41,8 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 RoleBook *--> "1" UniqueRoleList
 
 Role *--> Name
-Role *--> Phone
+Role *--> Contact
 Role *--> Email
-Role *--> Address
 Role *--> "*" Tag
 Role *--> Salary
 Role *--> Website
@@ -52,8 +50,8 @@ Role *--> Deadline
 Role *--> JobDescription
 Role *--> Experience
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Role
+Name -[hidden]right-> Contact
+Contact -[hidden]right-> Role
 Role -[hidden]right-> Email
 
 ModelManager -->"~* filtered" Role
