@@ -99,7 +99,7 @@ public class ParserUtil {
      */
     public static BusinessSize parseBusinessSize(String businessSize) throws ParseException {
         requireNonNull(businessSize);
-        String trimmedBusinessSize = businessSize.strip();
+        String trimmedBusinessSize = businessSize.strip().replaceFirst("^0+(?!$)", "");
         System.out.println(trimmedBusinessSize);
         if (!BusinessSize.isValidBusinessSize(trimmedBusinessSize)) {
             throw new ParseException(BusinessSize.MESSAGE_CONSTRAINTS);
@@ -141,7 +141,7 @@ public class ParserUtil {
      */
     public static TransactionCount parseTransactionCount(String transactionCount) throws ParseException {
         requireNonNull(transactionCount);
-        String trimmedTransactionCount = transactionCount.trim();
+        String trimmedTransactionCount = transactionCount.strip().replaceFirst("^0+(?!$)", "");
         if (!TransactionCount.isValidTransactionCount(trimmedTransactionCount)) {
             throw new ParseException(TransactionCount.MESSAGE_CONSTRAINTS);
         }

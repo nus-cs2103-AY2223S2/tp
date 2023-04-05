@@ -1,6 +1,13 @@
 
+![NBFTheme](images/NBF_theme.png)
+
 NextBigFish (NBF) is a
-**desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+**desktop app tailored for the needs of sales-people, supporting the management of contacts, leads or clients ** 
+and optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+If you can type fast, NBF can get your client and lead management tasks done faster than traditional GUI apps.
+NBF allows client contacts to hold data on their potential business size and counts of past transactions and aids users in categorising them using `tag`s
+On top of that, NBF also provides a summary page to allow users to quickly get an overview of their performance each season, detailing relevant statistics.
+
 
  Viewing help : `help`
 =======
@@ -25,7 +32,7 @@ NextBigFish (NBF) is a
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/50 c/software engineering is not cs pr/HIGH tr/0 t/friends t/owesMoney` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/500 c/Bacefook pr/HIGH tr/25 t/friends t/owesMoney` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
@@ -33,7 +40,7 @@ NextBigFish (NBF) is a
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each available command.
 
 --------------------------------------------------------------------------------------------------------------------
 
