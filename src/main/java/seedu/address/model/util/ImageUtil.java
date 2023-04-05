@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.UUID;
+import javax.imageio.ImageIO;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -47,8 +48,10 @@ public class ImageUtil {
         if (!validImageType) {
             throw new CommandException("Please only upload png or jpeg images.");
         }
-        assert type != null : "File Type is null";
-        assert type.contains("image") : "File type is not image";
+        if (ImageIO.read(new File(stringPath)) == null) {
+            throw new CommandException("Referenced file is not an image");
+        }
+
 
         String newName = UUID.randomUUID().toString();
         String extension = ".png";
@@ -113,6 +116,11 @@ public class ImageUtil {
         if (!validImageType) {
             return false;
         }
+
+        if (ImageIO.read(new File(filePath)) == null) {
+            return false;
+        }
+
         return true;
     }
 
