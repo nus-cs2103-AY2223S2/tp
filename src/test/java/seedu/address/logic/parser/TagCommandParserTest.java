@@ -25,6 +25,14 @@ public class TagCommandParserTest {
     }
 
     @Test
+    public void parse_emptyArgWithPrefix_throwsParseException() {
+        assertParseFailure(parser, "1 g/", String.format(TagCommand.MESSAGE_NO_TAGS));
+        assertParseFailure(parser, " g/", String.format(TagCommand.MESSAGE_NO_TAGS));
+        assertParseFailure(parser, "1 m/", String.format(TagCommand.MESSAGE_NO_TAGS));
+        assertParseFailure(parser, " m/", String.format(TagCommand.MESSAGE_NO_TAGS));
+    }
+
+    @Test
     public void parse_validArgs_returnsTagCommand() {
         createModuleValidArgsReturnsTagCommand(
                 new ContactIndex(1),
@@ -33,12 +41,28 @@ public class TagCommandParserTest {
                     }},
                 "1 m/CS1234");
 
+        createModuleValidArgsReturnsTagCommand(
+                new ContactIndex(3),
+                new HashSet<ModuleTag>() {{
+                    add(new ModuleTag("CS1234"));
+                    add(new ModuleTag("CS2345"));
+                }},
+                "3 m/CS1234 m/CS2345");
+
         createGroupValidArgsReturnsTagCommand(
                 new ContactIndex(2),
                 new HashSet<GroupTag>() {{
                     add(new GroupTag("Enemy"));
                 }},
                 "2 g/Enemy");
+
+        createGroupValidArgsReturnsTagCommand(
+                new ContactIndex(4),
+                new HashSet<GroupTag>() {{
+                    add(new GroupTag("Bro"));
+                    add(new GroupTag("Family"));
+                }},
+                "4 g/Bro g/Family");
     }
 
     @Test
@@ -49,7 +73,10 @@ public class TagCommandParserTest {
     @Test
     public void parse_bothTagsInputted_throwsParseException() {
         assertThrows(ParseException.class, () -> parser.parse("m/CS2100 g/TA"));
+        assertParseFailure(parser, " m/ g/", String.format(TagCommand.MESSAGE_BOTH_TAGS_INPUTTED));
     }
+
+
 
     private void createModuleValidArgsReturnsTagCommand(ContactIndex index, Set<ModuleTag> modules, String userInput) {
         TagCommand expectedTagCommand = new TagCommand(index, modules, TagType.MODULE);
