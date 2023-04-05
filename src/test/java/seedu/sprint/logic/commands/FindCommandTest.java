@@ -20,7 +20,7 @@ import seedu.sprint.model.UserPrefs;
 import seedu.sprint.model.application.NameContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Application Model) for {@code FindApplicationCommand}.
+ * Contains integration tests (interaction with the Application Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
     private Model model = new ModelManager(

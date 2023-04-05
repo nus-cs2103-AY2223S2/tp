@@ -12,9 +12,10 @@ import seedu.sprint.logic.CommandHistory;
 import seedu.sprint.model.Model;
 import seedu.sprint.model.ModelManager;
 import seedu.sprint.model.UserPrefs;
+
 /**
  * Contains integration tests (interaction with the Model)
- * and unit tests for ListApplicationCommand.
+ * and unit tests for ListCommand.
  */
 public class ListCommandTest {
 
