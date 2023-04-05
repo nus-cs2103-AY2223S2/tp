@@ -18,6 +18,7 @@ title: Developer Guide
     * [User Stories](#user-stories)
     * [Use Cases](#use-cases)
     * [Glossary](#glossary)
+    * [Planned Enhancement](#planned-enhancement)
 
 ## Acknowledgements
 
@@ -545,3 +546,15 @@ System repeats Step 1-2 until valid details are entered.
 * Contact: A person of interest whose details have been recorded by the user
 
 [Back to top](#top)
+
+### Planned Enhancement
+
+1. Currently, when attempting to retrieve image and is unsucessful, the default image is displayed. 
+    We plan to include and display an “error image” instead of default image to better express to user that the retrieval was unsuccessful. 
+    With this error image, the `delete-image` command on this contact will change it to default image. 
+    Currently, it only shows a success message as the image is already the default image.<br>
+   (Ways that retrieval can be unsucessful erroneous editing of Image field in `addressbook.json` or removing/changing images saved in `/profile_pictures` to invalid images or to a non-matching file name)
+2. Currently, there is no restrictions with regards to image size for the `add-image` command. We plan to impose a minimum image size restriction to prevent images that are too small.
+
+[Back to top](#top)
+
