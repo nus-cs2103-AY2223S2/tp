@@ -20,6 +20,13 @@ public class UpdateClientDescriptorBuilder {
     }
 
     /**
+     * Copies the given {@code descriptor} into a new {@code UpdateClientDescriptorBuilder}.
+     */
+    public UpdateClientDescriptorBuilder(UpdateClientCommand.UpdateClientDescriptor descriptor) {
+        this.descriptor = new UpdateClientCommand.UpdateClientDescriptor(descriptor);
+    }
+
+    /**
      * Creates a new {@code UpdateClientDescriptorBuilder} with the fields of the given {@code descriptor} copied.
      *
      * @param name the name of the client.
@@ -38,6 +45,14 @@ public class UpdateClientDescriptorBuilder {
      */
     public UpdateClientDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(Optional.ofNullable(email).map(Email::new));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code UpdateClientDescriptorBuilder} that we are building.
+     */
+    public UpdateClientDescriptorBuilder withEmail(Email email) {
+        descriptor.setEmail(Optional.ofNullable(email));
         return this;
     }
 

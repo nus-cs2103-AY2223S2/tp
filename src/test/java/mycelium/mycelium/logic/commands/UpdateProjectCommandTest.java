@@ -156,4 +156,19 @@ public class UpdateProjectCommandTest {
         assertFalse(model.hasProject(BING)); // BING should not be in the model
         assertTrue(model.hasProject(BARD)); // BARD should be in the model
     }
+
+    @Test
+    public void execute_sameNameButOtherChanges_success() {
+        var cmd = new UpdateProjectCommand(BARD.getName(),
+            new UpdateProjectDescriptorBuilder(BING).withName(BARD.getName()).build());
+        model.addProject(BARD);
+
+        var updatedProject = new ProjectBuilder(BING).withName(BARD.getName()).build();
+        var expMsg = String.format(UpdateProjectCommand.MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject);
+        var expRes = buildCommandResult.apply(expMsg);
+        var expModel = new ModelManager();
+        expModel.addProject(updatedProject);
+
+        assertCommandSuccess(cmd, model, expRes, expModel);
+    }
 }

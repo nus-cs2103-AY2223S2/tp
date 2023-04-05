@@ -135,9 +135,12 @@ public class UpdateProjectCommand extends Command {
         if (updatedProject.isEmpty()) {
             throw new CommandException(MESSAGE_NOT_UPDATED, action);
         }
-        if (desc.name.isPresent() && model.hasProject(updatedProject.get())) {
+        if (desc.name.isPresent()
+            && model.hasProject(updatedProject.get())
+            && !target.get().isSame(updatedProject.get())) {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT, action);
         }
+
         model.setProject(target.get(), updatedProject.get());
         return new CommandResult(String.format(MESSAGE_UPDATE_PROJECT_SUCCESS, updatedProject.get()), action);
     }
