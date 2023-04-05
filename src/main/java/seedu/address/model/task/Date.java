@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be valid only contain numeric characters and be in the format dd/mm/yyyy ,"
+            "Dates should only contain numeric characters and be in the format dd/mm/yyyy ,"
                     + " and it should not be blank";
 
     /*
