@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_IMAGE;
 import static seedu.address.model.util.ImageUtil.deleteImage;
 import static seedu.address.model.util.ImageUtil.importImage;
@@ -37,12 +38,15 @@ public class AddImageCommand extends Command {
      * Creates an AddImageCommand to add the specified {@code Image}
      */
     public AddImageCommand(Index index, String stringPath) {
+        requireNonNull(index);
+        requireNonNull(stringPath);
         this.stringPath = stringPath;
         this.index = index;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -84,9 +88,21 @@ public class AddImageCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddImageCommand // instanceof handles nulls
-                && this.stringPath.equals(((AddImageCommand) other).stringPath));
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddImageCommand)) {
+            return false;
+        }
+
+        // state check
+        AddImageCommand a = (AddImageCommand) other;
+        return index.equals(a.index)
+                && this.stringPath.equals(a.stringPath);
+
     }
 
 }
