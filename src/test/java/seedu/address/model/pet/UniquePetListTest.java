@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DOG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPets.WHISKERS;
 import static seedu.address.testutil.TypicalPets.EXAMPLE_DOG;
+import static seedu.address.testutil.TypicalPets.WHISKERS;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,9 +42,9 @@ public class UniquePetListTest {
     @Test
     public void contains_petWithSameIdentityFieldsInList_returnsTrue() {
         uniquePetList.add(WHISKERS);
-        Pet editedWHISKERS = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
+        Pet editedWhiskers = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
-        assertTrue(uniquePetList.contains(editedWHISKERS));
+        assertTrue(uniquePetList.contains(editedWhiskers));
     }
 
     @Test
@@ -85,11 +85,11 @@ public class UniquePetListTest {
     @Test
     public void setPet_editedPetHasSameIdentity_success() {
         uniquePetList.add(WHISKERS);
-        Pet editedWHISKERS = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
+        Pet editedWhiskers = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
-        uniquePetList.setPet(WHISKERS, editedWHISKERS);
+        uniquePetList.setPet(WHISKERS, editedWhiskers);
         UniquePetList expectedUniquePetList = new UniquePetList();
-        expectedUniquePetList.add(editedWHISKERS);
+        expectedUniquePetList.add(editedWhiskers);
         assertEquals(expectedUniquePetList, uniquePetList);
     }
 

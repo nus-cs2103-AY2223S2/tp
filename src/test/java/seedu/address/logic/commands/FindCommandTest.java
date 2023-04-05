@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PETS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPets.*;
+import static seedu.address.testutil.TypicalPets.GRIZZLY;
+import static seedu.address.testutil.TypicalPets.PENGY;
+import static seedu.address.testutil.TypicalPets.SHARKY;
+import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
 
 import java.util.Arrays;
 import java.util.Collections;

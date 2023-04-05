@@ -1,17 +1,16 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PET;
+import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.PetPal;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.pet.Pet;
-import seedu.address.testutil.EditPetDescriptorBuilder;
-import seedu.address.testutil.PetBuilder;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PET;
-import static seedu.address.testutil.TypicalPets.getTypicalPetPal;
 
 public class ChangeCostCommandTest {
 

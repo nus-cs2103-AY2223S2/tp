@@ -46,9 +46,9 @@ public class PetPalTest {
     @Test
     public void resetData_withDuplicatePets_throwsDuplicatePetException() {
         // Two Pets with the same identity fields
-        Pet editedWHISKERS = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
+        Pet editedWhiskers = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
-        List<Pet> newPets = Arrays.asList(WHISKERS, editedWHISKERS);
+        List<Pet> newPets = Arrays.asList(WHISKERS, editedWhiskers);
         PetPalStub newData = new PetPalStub(newPets);
 
         assertThrows(DuplicatePetException.class, () -> petPal.resetData(newData));
@@ -73,9 +73,9 @@ public class PetPalTest {
     @Test
     public void hasPet_petWithSameIdentityFieldsInPetPal_returnsTrue() {
         petPal.addPet(WHISKERS);
-        Pet editedWHISKERS = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
+        Pet editedWhiskers = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG)
                 .build();
-        assertTrue(petPal.hasPet(editedWHISKERS));
+        assertTrue(petPal.hasPet(editedWhiskers));
     }
 
     @Test

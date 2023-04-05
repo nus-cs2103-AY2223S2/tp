@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DOG;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPets.WHISKERS;
 import static seedu.address.testutil.TypicalPets.EXAMPLE_DOG;
+import static seedu.address.testutil.TypicalPets.WHISKERS;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,13 +32,13 @@ public class PetTest {
         assertFalse(WHISKERS.isSamePet(null));
 
         // same name, all other attributes different -> returns true
-        Pet editedWHISKERS = new PetBuilder(WHISKERS).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        Pet editedWhiskers = new PetBuilder(WHISKERS).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_DOG).build();
-        assertTrue(WHISKERS.isSamePet(editedWHISKERS));
+        assertTrue(WHISKERS.isSamePet(editedWhiskers));
 
         // different name, all other attributes same -> returns false
-        editedWHISKERS = new PetBuilder(WHISKERS).withName(VALID_NAME_BOB).build();
-        assertFalse(WHISKERS.isSamePet(editedWHISKERS));
+        editedWhiskers = new PetBuilder(WHISKERS).withName(VALID_NAME_BOB).build();
+        assertFalse(WHISKERS.isSamePet(editedWhiskers));
 
         // name differs in case, all other attributes same -> returns false
         Pet editedBob = new PetBuilder(EXAMPLE_DOG).withName(VALID_NAME_BOB.toLowerCase()).build();
@@ -53,8 +53,8 @@ public class PetTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Pet WHISKERSCopy = new PetBuilder(WHISKERS).build();
-        assertTrue(WHISKERS.equals(WHISKERSCopy));
+        Pet whiskersCopy = new PetBuilder(WHISKERS).build();
+        assertTrue(WHISKERS.equals(whiskersCopy));
 
         // same object -> returns true
         assertTrue(WHISKERS.equals(WHISKERS));
@@ -69,23 +69,23 @@ public class PetTest {
         assertFalse(WHISKERS.equals(EXAMPLE_DOG));
 
         // different name -> returns false
-        Pet editedWHISKERS = new PetBuilder(WHISKERS).withName(VALID_NAME_BOB).build();
-        assertFalse(WHISKERS.equals(editedWHISKERS));
+        Pet editedWhiskers = new PetBuilder(WHISKERS).withName(VALID_NAME_BOB).build();
+        assertFalse(WHISKERS.equals(editedWhiskers));
 
         // different phone -> returns false
-        editedWHISKERS = new PetBuilder(WHISKERS).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(WHISKERS.equals(editedWHISKERS));
+        editedWhiskers = new PetBuilder(WHISKERS).withPhone(VALID_PHONE_BOB).build();
+        assertFalse(WHISKERS.equals(editedWhiskers));
 
         // different email -> returns false
-        editedWHISKERS = new PetBuilder(WHISKERS).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(WHISKERS.equals(editedWHISKERS));
+        editedWhiskers = new PetBuilder(WHISKERS).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(WHISKERS.equals(editedWhiskers));
 
         // different address -> returns false
-        editedWHISKERS = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(WHISKERS.equals(editedWHISKERS));
+        editedWhiskers = new PetBuilder(WHISKERS).withAddress(VALID_ADDRESS_BOB).build();
+        assertFalse(WHISKERS.equals(editedWhiskers));
 
         // different tags -> returns false
-        editedWHISKERS = new PetBuilder(WHISKERS).withTags(VALID_TAG_DOG).build();
-        assertFalse(WHISKERS.equals(editedWHISKERS));
+        editedWhiskers = new PetBuilder(WHISKERS).withTags(VALID_TAG_DOG).build();
+        assertFalse(WHISKERS.equals(editedWhiskers));
     }
 }

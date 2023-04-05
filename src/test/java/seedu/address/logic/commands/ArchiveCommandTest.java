@@ -81,11 +81,11 @@ public class ArchiveCommandTest {
         ArchiveCommand archiveSecondCommand = new ArchiveCommand(INDEX_SECOND_PET);
 
         // same object -> returns true
-         assertEquals(archiveFirstCommand, archiveFirstCommand);
+        assertEquals(archiveFirstCommand, archiveFirstCommand);
 
         // same values -> returns true
         ArchiveCommand archiveFirstCommandCopy = new ArchiveCommand(INDEX_FIRST_PET);
-         assertEquals(archiveFirstCommand, archiveFirstCommandCopy);
+        assertEquals(archiveFirstCommand, archiveFirstCommandCopy);
 
 
         // different types -> returns false

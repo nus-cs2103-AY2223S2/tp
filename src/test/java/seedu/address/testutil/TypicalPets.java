@@ -1,5 +1,22 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_DOG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESTAMP_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMESTAMP_BOB;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,9 +24,6 @@ import java.util.List;
 
 import seedu.address.model.PetPal;
 import seedu.address.model.pet.Pet;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
-
 
 /**
  * A utility class containing a list of {@code Pet} objects to be used in tests.
@@ -27,37 +41,43 @@ public class TypicalPets {
             .withName("Woofers")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withDeadline("Feed dog", LocalDateTime.now().plusDays(4)).withTimestamp(LocalDateTime.now().minusDays(1))
+            .withDeadline("Feed dog", LocalDateTime.now().plusDays(4))
+            .withTimestamp(LocalDateTime.now().minusDays(1))
             .withTags("GoldenRetriever", "Male").build();
     public static final Pet BOBBY = new PetBuilder().withOwnerName("Yuan Xun")
             .withName("Bobby")
             .withAddress("311, Kent Ridge Ave 2, #04-25")
             .withEmail("yx@example.com").withPhone("91111111")
-            .withDeadline("Feed turtle", LocalDateTime.now().plusDays(3)).withTimestamp(LocalDateTime.now().minusDays(1))
+            .withDeadline("Feed turtle", LocalDateTime.now().plusDays(3))
+            .withTimestamp(LocalDateTime.now().minusDays(1))
             .withTags("Turtle").build();
     public static final Pet GREGORY = new PetBuilder().withOwnerName("Weng Kit")
             .withName("GREGORY")
             .withAddress("411, Bukit Panjang Ave 2, #02-25")
             .withEmail("wk@example.com").withPhone("98761234")
-            .withDeadline("Feed mouse", LocalDateTime.now().plusDays(3)).withTimestamp(LocalDateTime.now().minusDays(1))
+            .withDeadline("Feed mouse", LocalDateTime.now().plusDays(3))
+            .withTimestamp(LocalDateTime.now().minusDays(1))
             .withTags("Mouse").build();
     public static final Pet PENGY = new PetBuilder().withOwnerName("Daniel Irwan")
             .withName("Pengy")
             .withAddress("122, Bukit Batok Ave 10, #06-25")
             .withEmail("dirwan@example.com").withPhone("93323334")
-            .withDeadline("Feed penguin", LocalDateTime.now().plusDays(3)).withTimestamp(LocalDateTime.now().minusDays(1))
+            .withDeadline("Feed penguin", LocalDateTime.now().plusDays(3))
+            .withTimestamp(LocalDateTime.now().minusDays(1))
             .withTags("Penguin").build();
     public static final Pet SHARKY = new PetBuilder().withOwnerName("Shui Mei")
             .withName("SHARKY")
             .withAddress("444, Chinatown St 2, #01-25")
             .withEmail("shuimei@example.com").withPhone("12345678")
-            .withDeadline("Feed parrot", LocalDateTime.now().plusDays(3)).withTimestamp(LocalDateTime.now().minusDays(1))
+            .withDeadline("Feed parrot", LocalDateTime.now().plusDays(3))
+            .withTimestamp(LocalDateTime.now().minusDays(1))
             .withTags("Parrot", "Female").build();
     public static final Pet GRIZZLY = new PetBuilder().withOwnerName("Yang Shan")
             .withName("Grizzly")
             .withAddress("888, Shenton Ave 2, #02-25")
             .withEmail("ys123@example.com").withPhone("92313222")
-            .withDeadline("Vaccination", LocalDateTime.now().plusDays(10)).withTimestamp(LocalDateTime.now().minusDays(1))
+            .withDeadline("Vaccination", LocalDateTime.now().plusDays(10))
+            .withTimestamp(LocalDateTime.now().minusDays(1))
             .withTags("Snake").build();
 
     // Manually added
