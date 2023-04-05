@@ -35,6 +35,7 @@ title: Developer Guide
   - [Undo and Redo Feature](#proposed-undo-and-redo-feature)
   - [Data Archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Planned Enhancements](#appendix-planned-enhancements)
 - [Appendix: Requirements](#appendix-requirements)
   - [Product Scope](#product-scope-)
   - [User Stories](#user-stories-)
@@ -969,6 +970,11 @@ _{Explain here how the data archiving feature will be implemented}_
 [Scroll back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned Enhancements**
+
+1. CoDoc does not check for duplicate `GitHub` usernames or `LinkedIn` profile urls, so the user can add 2 or more contacts with the same `GitHub` usernames and/or `LinkedIn` profile urls. We plan to make it such that CoDoc checks for this, on top of email, so each person can be uniquely identified by their `GitHub` username and `LinkedIn` profile url as well. 
+
+[Scroll back to top](#table-of-contents)
 
 ## **Appendix: Requirements**
 
