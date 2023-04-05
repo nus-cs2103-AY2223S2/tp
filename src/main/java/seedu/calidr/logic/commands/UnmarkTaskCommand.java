@@ -45,8 +45,8 @@ public class UnmarkTaskCommand extends Command {
         }
 
         Task taskToUnmark = readOnlyTaskList.get(index.getZeroBased());
-
         model.unmarkTask(taskToUnmark);
+
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, taskToUnmark));
     }
 

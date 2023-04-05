@@ -164,6 +164,11 @@ To provide an example of how this feature works, consider the following usage sc
     * Pros: Will use less resources and time, thus improving system performance.
     * Cons: Requires more complex implementation logic to track and update the modified fields.
 
+### Planned Enhancements
+1. The base Calendar GUI leaves much to be desired. We plan to implement a more user-friendly GUI, where the calendar entries are color-coded according to priority and status, instead of being expressed textually, to workaround text-wrapping.
+2. We plan to implement a more robust search function, where the user can search for tasks by details other than the title, such as the description, priority, and tags.
+3. We're looking to give users the option of whether they want tasks to overlap or clash. The current implementation assumes that tasks can overlap.
+
 ## Appendix
 
 ### Requirements
@@ -191,7 +196,7 @@ To provide an example of how this feature works, consider the following usage sc
 |----------------------------------|-------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
 | NUS staff/student                | add my classes and todos to my calendar                                                               | keep track of my daily schedule.                                                                                                                                      | *High*   |
 | NUS staff/student                | add a title to an event/todo during it's creation                                                     | distinguish events/todos                                                                                                                                              | *High*   |
-| NUS student                | import/export my calendar as an iCalendar (`.ics`) file                                               | save it as an offline copy                                                                                                                                            | *High*   |
+| NUS staff/student                | import/export my calendar as an iCalendar (`.ics`) file                                               | save it as an offline copy                                                                                                                                            | *High*   |
 | NUS student                      | set notifications for upcoming exams and assignments                                                  | not forget to complete them on time.                                                                                                                                  | *High*   |
 | NUS student with a busy schedule | view my calendar in different views (daily, weekly, monthly)                                          | get a comprehensive view of my schedule.                                                                                                                              | *Mid*    |
 | NUS staff/student                | search/sort for todos <ul><li>by description</li><li>by a range of dates</li><li>by recency</li></ul> | <ul><li>look for specific or related todos for editing</li><li>check my availability during holidays/exam weeks</li><li>identify todos with higher priority</li></ul> | *High*   |

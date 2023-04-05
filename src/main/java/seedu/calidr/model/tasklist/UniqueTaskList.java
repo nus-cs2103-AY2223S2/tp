@@ -19,7 +19,6 @@ import seedu.calidr.model.task.params.Priority;
  * tasks uses Task#isSameTask(Task) for equality so as to ensure that the task being added or updated is
  * unique in terms of identity in the UniqueTaskList. However, the removal of a task uses Task#equals(Object) so
  * as to ensure that the task with exactly the same fields will be removed.
- *
  * Supports a minimal set of list operations.
  *
  * @see Task#isSameTask(Task)
@@ -58,8 +57,7 @@ public class UniqueTaskList implements Iterable<Task> {
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
-        int index = internalList.indexOf(target);
-        if (index == -1) {
+        if (!internalList.contains(target)) {
             throw new TaskNotFoundException();
         }
 
@@ -67,7 +65,8 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
 
-        internalList.set(index, editedTask);
+        internalList.remove(target);
+        internalList.add(editedTask);
     }
 
     /**
@@ -94,7 +93,9 @@ public class UniqueTaskList implements Iterable<Task> {
         if (targetIndex == -1) {
             throw new TaskNotFoundException();
         }
-        internalList.get(targetIndex).mark();
+        Task task = internalList.remove(targetIndex);
+        task.mark();
+        internalList.add(targetIndex, task);
     }
 
     /**
@@ -111,7 +112,9 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new TaskNotFoundException();
         }
 
-        internalList.get(targetIndex).unmark();
+        Task task = internalList.remove(targetIndex);
+        task.unmark();
+        internalList.add(targetIndex, task);
     }
 
     public void setTaskPriority(Task target, Priority priority) {

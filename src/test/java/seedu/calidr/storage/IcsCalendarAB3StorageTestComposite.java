@@ -1,25 +1,11 @@
 package seedu.calidr.storage;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
 import net.fortuna.ical4j.data.ParserException;
 import seedu.calidr.exception.CalidrException;
-import seedu.calidr.model.task.Event;
-import seedu.calidr.model.task.ToDo;
-import seedu.calidr.model.task.params.EventDateTimes;
-import seedu.calidr.model.task.params.Priority;
-import seedu.calidr.model.task.params.Title;
-import seedu.calidr.model.task.params.TodoDateTime;
-import seedu.calidr.model.tasklist.TaskList;
 
 public class IcsCalendarAB3StorageTestComposite {
     @Test

@@ -50,7 +50,7 @@ If you have any questions or run into problems, check out the [FAQ](#faq) for so
 ### Command definitions
 
 <div markdown="block" class="alert alert-info">
-🕮 From now on we'll be using a slightly modifided version of the <a href="http://docopt.org/">docopt</a> command description language.
+🕮 From now on we'll be using a slightly modified version of the <a href="http://docopt.org/">docopt</a> command description language.
 </div>
 
 <details>
@@ -97,7 +97,7 @@ mutually-inclusive elements (if <em>one</em> element is present, then <em>anothe
 ### Data terminology
 
 1. Elements on a calendar are referred to as **Tasks**.
-2. Tasks must have a **title**.
+2. Tasks must have a *unique* **title**.
 3. A task can have an optional **description**, **location**, and multiple **tags(s)**.
 4. Tasks have an associated **priority**.
     1. Priority is one of `HIGH`, `MEDIUM` or `LOW`.
@@ -112,7 +112,11 @@ mutually-inclusive elements (if <em>one</em> element is present, then <em>anothe
    accepts and automatically parser the following keywords as date-times:
 
    `today`, `tomorrow`, `next week`, `next month`, `next year`
-7. Tasks are uniquely identified by their **task index**. This is given in the list panel, and is also used to refer to
+<div markdown="block" class="alert alert-info">
+🕮 If the date-time you provide is a little off, Calidr will still try its best to parse it. For instance, the time <code>2400</code> will automatically resolve to <code>0000</code> the next day, and <code>29-02-2023</code> will automatically resolve to <code>28-02-2023</code> as 2023 is not a leap year.
+</div>
+
+7. Tasks are uniquely identified by their **task index**. This is given in the [list panel](#ui-terminology), and is also used to refer to
    tasks in commands.
 
 ### UI terminology
@@ -127,14 +131,18 @@ mutually-inclusive elements (if <em>one</em> element is present, then <em>anothe
 1. **Calendar panel**
 
    The calendar panel is where you can view your tasks graphically. Tasks are displayed as coloured
-   blocks, with green being **ToDos** and blue being **Events**. The calendar panel also displays the _focused_ date and
+   blocks, with green being **ToDos** and blue being **Events**. High priority tasks have a light pink background, low priority tasks are in italics, and marked tasks are translucent. The calendar panel also displays the _focused_ date and
    time, which [may not be the current time](#viewing-a-different-date-view).
+
+    
+<div markdown="block" class="alert alert-info">
+🕮 The calendar panel comes in <a href="#switching-to-a-different-layout--page">several layouts</a>. If you'd prefer to stick to the keyboard, you can scroll the different layouts using the <code>up</code> and <code>down</code> arrow keys. 
+</div>
 
 1. **List panel**
 
-   The list panel is where Calidr will display the list of tasks that match your command. This usually
-   just shows all the tasks in the calendar, but can
-   be [filtered by title, date, or other criteria](#searching-and-filtering-for-tasks-search).
+   The list panel is where Calidr will display a list of the _current selection_ of tasks, along with their [task index](#data-terminology), available to commands. This usually
+   just shows all the tasks in the calendar, unless you just tried to [filtering tasks by title](#searching-and-filtering-for-tasks-search).
 
 1. **Result panel**
 
@@ -142,11 +150,11 @@ mutually-inclusive elements (if <em>one</em> element is present, then <em>anothe
 
 ## :paperclip: Features
 
-#### View help: `help`
+### View help: `help`
 
 Shows a message explaining how to access this help page.
 
-#### Adding tasks
+### Adding tasks
 
 - #### Adding a ToDo: `todo`
   Adds a new ToDo with the given title, date-time, description, location and tags to the list of tasks.
@@ -162,7 +170,7 @@ Shows a message explaining how to access this help page.
       Adds a new ToDo with the title `CS2103T tP`, due today, with description `Complete the tP`, location `Online`, a
       high priority, and tags `CS2103T` and `tP`.
 
-  You should see the following in the calendar and results panel respectively:
+  You should see the following in the [calendar and results panel](#ui-terminology) respectively:
 
 | Calendar panel                  | Results Panel                |
 |---------------------------------|------------------------------|
@@ -184,7 +192,7 @@ Shows a message explaining how to access this help page.
       Adds a new event with the title `CS2103T Tutorial`, starting today and ending on the 31st of March 2023 at 4pm,
       with description `Lecture on UML`, location `Online`, a high priority, and tags `CS2103T` and `Tutorial`.
 
-  You should see the following in the calendar and results panel respectively:
+  You should see the following in the [calendar and results panel](#ui-terminology) respectively:
 
 | Calendar panel                  | Results Panel                |
 |---------------------------------|------------------------------|
@@ -223,29 +231,30 @@ Examples:
 
   Example: `unmark 1`
 
-#### Searching and filtering for tasks: `search`
+### Searching and filtering for tasks: `search`
 
-Searches for tasks with matching keywords in their fields. Filtered tasks are displayed in a list to the side.
+Searches for tasks with matching keywords in their fields. The [list panel](#ui-terminology) is updated to show only filtered tasks.
 
 <div markdown="block" class="alert alert-info">
 🕮 
 <ul>
 <li>Keyword matching is case-insensitive</li>
     <li>All tasks whose titles have any of the given keywords will be displayed in the list.</li>
-    <li>The entire keyword must be contained in the title of the task for the task to be displayed.</li>
+    <li>You can only run commands on tasks currently displayed in the list panel.</li>
+    <li>If there are no matches, all tasks are displayed.</li>
+    <li>To manually clear your filter/reset the list panel, run the command without any parameters: <code>search</code></li>
 </ul>    
 </div>
 
-Format: `search KEYWORD [MORE KEYWORDS]...`
+Format: `search [KEYWORD]...`
 
 Examples:
 
 - `search book`
 - `search assignment homework`
+- `search`: Displays all tasks.
 
-<!--- TODO -->
-
-#### Deleting a task: `delete`
+### Deleting a task: `delete`
 
 Deletes one or more tasks from the calendar.
 
@@ -253,7 +262,7 @@ Format: `delete TASK_INDEX`
 
 Example: `delete 2`
 
-#### Editing task details: `edit`
+### Editing task details: `edit`
 
 Edits information pertaining to a particular task given by the index.
 
@@ -262,9 +271,9 @@ Format: `edit TASK_INDEX (OPTION <argument>)...`
 Example: for a task which is an event of index 4,
 `edit 4 from/ 05-03-2023 2000 to/ 06-03-2023 2000`
 
-#### Switching to a different layout: `page`
+### Switching to a different layout: `page`
 
-By default, the calendar panel is displayed in a monthly-layout. A weekly or daily-layout is supported if you wish to
+By default, the [calendar panel](#ui-terminology) is displayed in a monthly-layout. A weekly or daily-layout is supported if you wish to
 view more or less tasks.
 
 Format: `page LAYOUT`, where `LAYOUT` is one of `month`, `week`, or `day`.
@@ -275,7 +284,7 @@ Example: `page week`
 
 #### Viewing a different date: `view`
 
-By default, the calendar panel is focused on the current date. When you wish to view a different month, week or day, you
+By default, the [calendar panel](#ui-terminology) is focused on the current date. When you wish to view a different month, week or day, you
 can use the `view` command.
 
 Format: `view <date-time>`.
@@ -285,9 +294,9 @@ Example:
 - `view 01-03-2023`
 - `view next week`
 
-#### Showing all the details of a task: `show`
+### Showing all the details of a task: `show`
 
-The GUI displays a condensed representation of tasks in both the calendar and list panels. This commmand shows all the
+The GUI displays a condensed representation of tasks in both the [calendar and list panels](#ui-terminology). This commmand shows all the
 details of a particular task, including its description, location and tags, in a pop-up dialog.
 
 Format: `show TASK_INDEX`
@@ -305,21 +314,22 @@ Example: `show 2`
 | **Edit**        | `edit TASK_INDEX [t/ <title>] [by/ <date-time>] [from/ <date-time>] [to/ <date-time>] [d/ <description>] [l/ <location>] [p/ <priority>] [tag/ <tag>]...` <br> e.g. `edit 2 t/ Essay by/ 04-04-2023 2359 d/700 words p/ high tag/ ES2660`                            |
 | **Mark**        | `mark TASK_INDEX`<br> e.g., `mark 3`                                                                                                                                                                                                                                 |
 | **Unmark**      | `unmark TASK_INDEX`<br> e.g., `unmark 1`                                                                                                                                                                                                                             |                                                                                                                                                                                                      
-| **Delete**      | `delete TASK_INDEX`<br> e.g., `delete 2`                                                                                                                                                                                                                             |                                                                                                                                                             |
+| **Search**      | `search [KEYWORD]...`<br> e.g., `search book`                                                                                                                                                                                                                        |
+| **Delete**      | `delete TASK_INDEX`<br> e.g., `delete 2`                                                                                                                                                                                                                             |
 | **Help**        | `help`                                                                                                                                                                                                                                                               |
 | **Switch Page** | `page LAYOUT`<br> e.g., `page day`                                                                                                                                                                                                                                   |
 | **View Date**   | `view <date-time>`<br> e.g., `view next week`                                                                                                                                                                                                                        |
 | **Show Task**   | `show TASK_INDEX`<br> e.g., `show 1`                                                                                                                                                                                                                                 |
 
-### Other
+## Other
 
-#### Saving your data
+### Saving your data
 
 Calidr user preferences and calendar information is saved in the hard disk automatically after any modification command.
 The calendar data is stored
 as an [ics file](https://www.ical4j.org/).
 
-#### Editing the data file
+### Editing the data file
 
 The `calendar.ics` save file is located in the `data` folder the directory the program resides in (
 i.e. `[root_directory]/data/calendar.ics`). Advanced

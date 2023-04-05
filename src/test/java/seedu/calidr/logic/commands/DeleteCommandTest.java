@@ -1,14 +1,14 @@
 package seedu.calidr.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.calidr.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.calidr.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.calidr.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.calidr.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.calidr.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.calidr.testutil.TypicalPersons.getTypicalAddressBook;
 
+import org.apache.commons.collections4.sequence.DeleteCommand;
 import org.junit.jupiter.api.Test;
 
 import seedu.calidr.commons.core.Messages;
@@ -24,7 +24,7 @@ import seedu.calidr.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -82,11 +82,11 @@ public class DeleteCommandTest {
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertEquals(deleteFirstCommand, deleteFirstCommand);
 
         // same values -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
 
         // different types -> returns false
         assertFalse(deleteFirstCommand.equals(1));

@@ -13,12 +13,12 @@
 <?import javafx.stage.Stage?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" minHeight="800.0"
          minWidth="1000.0"
-         title="Address App"
+         title="Calidr"
          onCloseRequest="#handleExit"
          type="javafx.stage.Stage"
          xmlns="http://javafx.com/javafx/19">
     <icons>
-        <Image url="@/images/address_book_32.png"/>
+        <Image url="@/images/calidr_icon.png"/>
     </icons>
     <scene>
         <Scene>
