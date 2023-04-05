@@ -12,7 +12,7 @@ public class Medication {
     public static final String MESSAGE_CONSTRAINTS = "Medications should only contain alphanumeric character and"
             + "spaces, and it should not be blank.";
 
-    public static final String VALIDATION_REGEX = "^[\\w][\\w ]+$";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String value;
 
