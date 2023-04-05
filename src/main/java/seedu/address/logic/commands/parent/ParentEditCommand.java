@@ -113,7 +113,8 @@ public class ParentEditCommand extends ParentCommand {
                 Parent newParent = new Parent(this.newName, this.newAge, this.newImage, this.newEmail,
                         this.newPhoneNumber, this.newAddress, this.newTagList);
                 model.setParent(parent, editParent(parent, newParent, model));
-                return new CommandResult(String.format(MESSAGE_EDIT_PARENT_SUCCESS, newParent.getName(), newParent.getPhone()));
+                return new CommandResult(String.format(MESSAGE_EDIT_PARENT_SUCCESS, newParent.getName(),
+                        newParent.getPhone()));
             }
         }
         throw new CommandException(Messages.MESSAGE_PARENT_NOT_FOUND);
