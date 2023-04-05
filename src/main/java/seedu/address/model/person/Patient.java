@@ -10,7 +10,7 @@ import seedu.address.model.prescription.Prescription;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Patient in the address book.
+ * Represents a Patient in MediConnect.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient extends Person {
