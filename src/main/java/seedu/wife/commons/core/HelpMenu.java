@@ -55,12 +55,6 @@ public enum HelpMenu {
             return "Lists all food items - list";
         }
     },
-    VIEW("view") {
-        @Override
-        public String getCommandUsage() {
-            return "View a food item - view INDEX";
-        }
-    },
     SORTBYEXPIRY("expiry") {
         @Override
         public String getCommandUsage() {
