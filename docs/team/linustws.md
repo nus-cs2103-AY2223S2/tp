@@ -33,10 +33,11 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=linustws&tabRepo=AY2223S2-CS2103T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-    * Merged PRs authored by team members.
-    * Reviewed, commented and provided feedback on PRs.
-    * Opened and assigned issues to team members and myself.
-    * Reminded teammates about the deliverables every week.
+    * Merged PRs authored by teammates.
+    * Reviewed and commented on PRs.
+    * Opened and assigned issues to teammates and me.
+    * Updated project notes from time to time.
+    * Sourced and modified Figma template for mock UI.
     * Updated site-wide settings. [#28](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/28)
     * Renamed packages to remove anything related to AB3. [#64](https://github.com/AY2223S2-CS2103T-F12-2/tp/pull/64)
 
@@ -50,7 +51,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * (To be added)
+    * Created tutorial section
     * (To be added)
   * Developer Guide:
     * A(To be added)
@@ -67,5 +68,5 @@ Given below are my contributions to the project.
     * SceneBuilder
     * Jackson
     * Junit5
+    * Figma
 
-* _{you can add/remove categories in the list above}_
