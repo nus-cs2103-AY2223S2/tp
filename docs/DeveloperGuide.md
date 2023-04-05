@@ -647,3 +647,9 @@ testers are expected to do more *exploratory* testing.
 1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Planned enhancement**
+
+### Implementing support for more websites
+1. Currently, only websites of the format www.hostname.com are supported. Thus, users are not able to fill in websites that do not end with .com like www.who.int which is not ideal. More domains should be added in order to support more websites. However, the team is unable to add this feature due to the v1.4 feature freeze. Therefore, this issue is labelled as a feature flaw and is not in scope, therefore the team will not be addressing this flaw.
