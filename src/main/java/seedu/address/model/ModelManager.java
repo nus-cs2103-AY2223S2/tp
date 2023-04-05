@@ -150,6 +150,7 @@ public class ModelManager implements Model {
         switch (type) {
             case "size":
                 addressBook.sortPersonsBusinessSize(ascending);
+                break;
             case "name":
                 addressBook.sortPersonsName(ascending);
                 break;
