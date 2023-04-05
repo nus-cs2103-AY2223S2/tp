@@ -250,7 +250,11 @@ The following sequence diagram shows how the `salary` command works:
     * Pros: Easy CLI for the user to use.
     * Cons: Can be harder to implement and debug if more attributes are being sorted.
 
-_{more aspects and alternatives to be added}_
+#### Limitations:
+
+The sorting algorithm for salary will sort based on the order given. This will sort the current and old view of 
+the roles. E.g.: filtering the roles based on name, tag and applying this command `salary asc` or `salary desc` will
+sort both views.
 
 
 ### \[Implemented\] Deadline Command Feature
@@ -276,6 +280,7 @@ The following sequence diagram shows how the `deadline` command works:
 
 <img src="images/DeadlineCommandSequenceDiagram.png" width="800" />
 
+
 #### Design considerations:
 
 **Aspect: How Salary Command executes:**
@@ -288,7 +293,11 @@ The following sequence diagram shows how the `deadline` command works:
     * Pros: Easy CLI for the user to use.
     * Cons: Can be harder to implement and debug if more attributes are being sorted.
 
-_{more aspects and alternatives to be added}_
+#### Limitations:
+
+The sorting algorithm for deadline will sort based on the order given. This will sort the current and old view of
+the roles. E.g.: filtering the roles based on name, tag and applying this command `deadline asc` or `deadline desc` 
+will sort both views.
 
 
 ### \[Implemented\] Company Command Feature
