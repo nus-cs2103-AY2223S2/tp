@@ -123,7 +123,7 @@ How the parsing works:
 
 <img src="images/ModelClassDiagram.png" width="611" />
 
-** This class diagram omits some classes and dependencies in the `Model` component for the purpose of simplicity (classes excluded include `ModuleCode`, `ModuleName`, `LectureName`, `VideoName`, `Tag` and other classes)
+\*\* This class diagram omits some classes and dependencies in the `Model` component for the purpose of simplicity (classes excluded include `ModuleCode`, `ModuleName`, `LectureName`, `VideoName`, `Tag` and other classes)
 
 The `Model` component,
 
@@ -717,9 +717,9 @@ The following is a description of the code execution flow:
 
 **Value proposition**: fast and stress-free way to organise and track module progress and lecture material
 
-- Easily log lecture progress, search for lectures and lecture media by module code, keywords, or tags for a 
+- Easily log lecture progress, search for lectures and lecture media by module code, keywords, or tags for a
   stress-free learning environment
-- Tailored to needs of students: provides additional information specific to lecture media such as watch progress, 
+- Tailored to needs of students: provides additional information specific to lecture media such as watch progress,
   topics, and tags
 - Allow students to track progress of all modules
 - Offer the users great control over their current modules progress
@@ -731,57 +731,77 @@ The following is a description of the code execution flow:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a/an …​       | I can …​                                                                      | So that I can…​                                                                          |
-| -------- | ---------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `* * *`  | new user         | access a starter guide on how to use the app                                  |                                                                                          |
-| `* * *`  | forgetful user   | access a help manual easily                                                   | recall on how to use the app                                                             |
-| `* * *`  | user             | add a module, lecture or video                                                |                                                                                          |
-| `* * *`  | user             | delete a module, lecture or video                                             | remove entries that I no longer need                                                     |
-| `* * *`  | user             | find modules or lectures or videos by relevant keywords                       | can avoid wasting unnecessary time at looking through the list to find it one-by-one     |
-| `* * *`  | user             | mark the video that I have watched                                            | know the ones that I have not watched                                                    |
-| `* * *`  | user             | unmark the video that I have previously marked as watched                     | correct my mistakes when I mark a video wrongly                                          |
-| `* * *`  | user             | tag modules, lectures and videos                                              | find a specific modules/lectures/videos by relevant keywords                             |
-| `* * *`  | user             | set timestamps on videos                                                      | know where I pause on the video I was watching                                           |
-| `* * *`  | user             | remove tags from modules, lectures or videos                                  | revert when I tag a module, lecture or video wrongly                                     |
-| `* * *`  | user             | see my lecture watch progress of a module (lectures watched / total lectures) | have an idea of my current progress for the module                                       |
-| `* *`    | seasoned user    | export and archive my progress from previous semesters                        | have a clean tracker but still reference lecture information from past modules if needed |
-| `* *`    | user             | backup data that I have entered into the app and import previous backups      | restore my tracker should I change my device or wipe my device                           |
-| `* *`    | seasoned user    | look up notes from previous semester module content                           | supplement my current semester content                                                   |
-| `* *`    | user             | easily access my lecture slides                                               | refer to them when watching a lecture                                                    |
-| `* *`    | user             | find lecture videos that cover a specific topic                               | avoid wasting time on non-relevant videos                                                |
-| `* *`    | unmotivated user | feel rewarded for making progress in watching lectures                        | be motivated to keep up or catch up                                                      |
-| `* *`    | user             | bookmark the lectures                                                         | find them easily                                                                         |
-| `* *`    | user             | group my lectures                                                             | they appear more organise                                                                |
-| `* *`    | forgetful user   | constantly be reminded of the "help" command                                  | continue using the app even when I forgot all the other commands                         |
-| `* *`    | seasoned user    | bypass the tutorial and disable any features for helping beginners            | I am not held back and annoyed by those features                                         |
-| `* *`    | user             | write summaries/notes for lectures I have watched                             | reference those notes when I'm revising the contents of the lecture                      |
-| `* *`    | user             | collate questions about a specific lecture                                    | pull it up when I have a chance to ask the professor                                     |
-| `* *`    | seasoned user    | delete notes from previous semesters                                          | save my storage space                                                                    |
-| `* *`    | user             | see a quick overview of my current progress for all modules                   |                                                                                          |
-| `*`      | user             | view videos on any device (e.g. laptop, mobile)                               | access them wherever I am                                                                |
-| `*`      | user             | allow app notification to notify me when a new lecture is out                 | stay up to date with my lectures                                                         |
+| Priority | As a/an …​       | I can …​                                                                           | So that I can…​                                                                                                       |
+| -------- | ---------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `* * *`  | new user         | access a guide on how to use the app                                               | learn how to use the app                                                                                              | <!-- TODO: Verify by shaowee -->   |
+| `* * *`  | user             | add a video                                                                        | track what videos I have watched                                                                                      | <!-- TODO: Verify by hingen -->    |
+| `* * *`  | user             | add a lecture                                                                      | track my watch progress by lectures and organise my videos by lectures                                                | <!-- TODO: Verify by hingen -->    |
+| `* * *`  | user             | add a module                                                                       | track my watch progress by modules and organise my lectures                                                           | <!-- TODO: Verify by hingen -->    |
+| `* * *`  | user             | edit details of existing modules                                                   | add new details and correct mistakes                                                                                  | <!-- TODO: Verify by hingen -->    |
+| `* * *`  | user             | edit details of existing lectures                                                  | add new details and correct mistakes                                                                                  | <!-- TODO: Verify by hingen -->    |
+| `* * *`  | user             | edit details of existing videos                                                    | add new details and correct mistakes                                                                                  | <!-- TODO: Verify by hingen -->    |
+| `* * *`  | user             | delete specific modules                                                            | remove modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed)         | <!-- TODO: Verify by joytqt -->    |
+| `* * *`  | user             | delete specific lectures                                                           | remove lectures that were added by accident                                                                           | <!-- TODO: Verify by joytqt -->    |
+| `* * *`  | user             | delete specific videos                                                             | remove videos that were added by accident                                                                             | <!-- TODO: Verify by joytqt -->    |
+| `* * *`  | user             | mark videos that I have watched                                                    | track which videos I have watched                                                                                     | <!-- TODO: Verify by joytqt -->    |
+| `* * *`  | user             | unmark videos that I have previously marked as watched                             | correct my mistakes when I mark a video by accident                                                                   | <!-- TODO: Verify by joytqt -->    |
+| `* * *`  | user             | list my modules                                                                    | view the details of all modules that are being tracked by the app                                                     | <!-- TODO: Verify by shaowee -->   |
+| `* * *`  | user             | list lectures of a specific module                                                 | view the details of all lectures of a module                                                                          | <!-- TODO: Verify by shaowee -->   |
+| `* * *`  | user             | list videos of a specific lecture                                                  | view the details of all videos of a lecture                                                                           | <!-- TODO: Verify by shaowee -->   |
+| `* *`    | user             | find modules, lectures or videos by relevant keywords                              | can avoid wasting time manually searching through a list to find a specific module, lecture, or video                 | <!-- TODO: Verify by shaowee -->   |
+| `* *`    | user             | add tags to modules                                                                | label and organise my modules more effectively                                                                        | <!-- TODO: Verify by lennoxtr -->  |
+| `* *`    | user             | add tags to lectures                                                               | label and organise my lectures more effectively                                                                       | <!-- TODO: Verify by lennoxtr -->  |
+| `* *`    | user             | add tags to videos                                                                 | label and organise my lectures more effectively                                                                       | <!-- TODO: Verify by lennoxtr -->  |
+| `* *`    | user             | remove tags from modules                                                           | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
+| `* *`    | user             | remove tags from lectures                                                          | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
+| `* *`    | user             | remove tags from videos                                                            | remove tags that are no longer relevant or added by accident                                                          | <!-- TODO: Verify by lennoxtr -->  |
+| `* *`    | user             | delete all modules                                                                 | remove obsolete modules quickly after a semester is over                                                              | <!-- TODO: Verify by joytqt -->    |
+| `* *`    | user             | set timestamps on videos                                                           | track where I last left off on a video                                                                                | <!-- TODO: Verify by hingen -->    |
+| `* *`    | user             | view the overall watch progress of a module                                        | have an idea of how much progress I have made for a module and how much more progress is left                         | <!-- TODO: Verify by jedidiahC --> |
+| `* *`    | user             | view the overall watch progress of a lecture                                       | have an idea of how much progress I have made for a lecture and how much more progress is left                        | <!-- TODO: Verify by jedidiahC --> |
+| `* *`    | user             | export my progress data                                                            | backup my data or transfer it to a new device                                                                         | <!-- TODO: Verify by lennoxtr -->  |
+| `* *`    | user             | import my progress data                                                            | restore my tracker should I change or wipe my device                                                                  | <!-- TODO: Verify by lennoxtr -->  |
+| `* *`    | forgetful user   | be reminded of where to find the guide                                             | recall how to use the app                                                                                             | <!-- TODO: Verify by jedidiahC --> |
+| `* *`    | user             | navigate through the hierarchy of modules, lectures, and videos                    | TODO:                                                                                                                 | <!-- TODO: Verify by jedidiahC --> |
+| `*`      | user             | delete multiple modules of my choosing through one action                          | quickly remove modules that were added by accident or are no longer relevant to my studies (e.g. dropped / completed) | <!-- TODO: Verify by joytqt -->    |
+| `*`      | user             | delete multiple lectures of my choosing through one action                         | quickly remove lectures that were added by accident                                                                   | <!-- TODO: Verify by joytqt -->    |
+| `*`      | user             | delete multiple videos of my choosing through one action                           | quickly remove videos that were added by accident                                                                     | <!-- TODO: Verify by joytqt -->    |
+| `*`      | user             | mark multiple videos that I have watched through one action                        | quickly update my progress when I open up the app after watching multiple videos                                      | <!-- TODO: Verify by joytqt -->    |
+| `*`      | user             | unmark multiple videos that I have previously marked as watched through one action | quickly fix my mistake when I mark multiple videos by accident                                                        | <!-- TODO: Verify by joytqt -->    |
+| `*`      | user             | scroll commands I have previously executed                                         | execute similar commands without typing out the command again                                                         | <!-- TODO: Verify by shaowee -->   |
+| `*`      | unmotivated user | feel rewarded for making progress in watching lectures videos                      | be motivated to keep up or catch up                                                                                   | <!-- TODO: Verify by shaowee -->   |
+| `*`      | user             | be notified when a new lecture video is out                                        | stay up to date with my lectures                                                                                      | <!-- TODO: Verify by shaowee -->   |
+| `*`      | user             | store summaries/notes for lectures                                                 | reference those notes when I'm revising the contents of the lecture                                                   | <!-- TODO: Verify by shaowee -->   |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Le Tracker` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: List modules**
 
 **MSS**
 
 1. User wants to see all modules.
-2. User types in command `list`.
+2. User executes list modules command.
 3. A list of module is populated.
 
    Use case ends.
+
+**Extensions**
+
+- 2a. The list command is invalid.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: List module's lectures**
 
 **MSS**
 
 1. User wants to see all lectures of a module.
-2. User types in command `list /mod CS2040S`.
-3. A list of lectures of module `CS2040S` is populated.
+2. User supplies a module and executes list lectures command.
+3. A list of lectures of specified module is populated.
 
    Use case ends.
 
@@ -793,13 +813,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
+- 2b. The list command is invalid.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
 **Use case: List lecture's videos**
 
 **MSS**
 
 1. User wants to see all videos of a lecture in a module.
-2. User types in command `list /mod CS2040S /lec Week 1`.
-3. A list of videos of lecture `Week 1` in module `CS2040S` is populated.
+2. User supplies a module and a lecture and executes list videos command.
+3. A list of videos of the specified lecture in the specified module is populated.
 
    Use case ends.
 
@@ -813,7 +839,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2b. The lecture does not exists.
 
-  - 2a1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. The list command is invalid.
+
+  - 2c1. LeTracker shows an error message.
 
     Use case resumes at step 1.
 
@@ -821,113 +853,313 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User wants to find modules that starts with `Data`.
-2. User types in command `find Data`.
-3. A list of modules whose name starts with `Data` is populated.
+1. User wants to find modules that starts with a keyword.
+2. User supplies the keyword and executes find modules command.
+3. A list of modules relevant to the keyword is populated.
 
    Use case ends.
+
+- 2a. The keyword is in wrong format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The find command is invalid.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Find lecture**
 
 **MSS**
 
-1. User wants to find lectures belonging to module `CS2040S` that starts with `Week`.
-2. User types in command `find Week /mod CS2040S`.
-3. A list of lectures whose name starts with `Week` is populated.
+1. User wants to find lectures in a module that starts with a keyword.
+2. User supplies the keyword and a module and executes find lecture command.
+3. A list of lectures in the specified module which are relevant to the keyword is populated.
 
    Use case ends.
+
+- 2a. The keyword is in wrong format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The module does not exists.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. The find command is invalid.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Find video**
 
 **MSS**
 
-1. User wants to find videos belonging to lecture `Week 1` of module `CS2040S` that starts with `Vid`.
-2. User types in command `find Vid /mod CS2040S /lec Week 1`.
-3. A list of lectures whose name starts with `Vid` is populated.
+1. User wants to find videos in a lecture belonging in a module that starts with a keyword.
+2. User supplies the keyword and a lecture and a module and executes find video command.
+3. A list of videos in the specified lecture in the specified module which are relevant to the keyword is populated.
 
    Use case ends.
+
+- 2a. The keyword is in wrong format.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. The module does not exists.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. The lecture does not exists.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. The find command is invalid.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Add a module**
 
 **MSS**
 
-1. User requests to add a new module.
-2. User specifies the name and code of the module.
-3. A new module is added into the list.
+1. User requests to add a module and specifies the details of the module.
+2. Le Tracker adds the module.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The module name or code is blank.
+- 1a. The user does not enter sufficient details for the module.
 
-  - 2a1. LeTracker shows an error message.
+  - 1a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2b. Module code already exists.
+- 1b. One or more of the details specified is invalid.
 
-  - 2b1. LeTracker shows an error message.
+  - 1b1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
+
+- 1c. The module to be added is a duplicate of an existing module in Le Tracker.
+
+  - 1c1. Le Tracker shows an error message.
+
+    Use case ends.
 
 **Use case: Add a lecture**
 
-**Preconditions**: User has added a module
-
 **MSS**
 
-1. User requests to add a new lecture.
-2. User specifies a name for the lecture with reference to a module code.
-3. A new lecture is appended into the list in that module.
+1. User requests to add a lecture to a module and specifies the details of the lecture.
+2. Le Tracker adds the lecture.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. Lecture name is blank.
+- 1a. The module to add the lecture to does not exist.
 
-  - 2a1. LeTracker shows an error message.
+  - 1a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2b. Module code does not exist.
+- 1b. The user does not enter sufficient details for the lecture.
 
-  - 2b1. LeTracker shows an error message.
+  - 1b1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
+
+- 1c. One or more of the details specified is invalid.
+
+  - 1c1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1d. The lecture to be added is a duplicate of an existing lecture in the module.
+
+  - 1d1. Le Tracker shows an error message.
+
+    Use case ends.
 
 **Use case: Add a video**
 
-**Preconditions**: User has added a module and a lecture
-
 **MSS**
 
-1. User requests to add a new video.
-2. User specifies a name for the video with reference to a module code and that module lecture index number.
-3. A new video is appended into the list in that lecture residing in the module.
+1. User requests to add a video to a lecture of a module and specifies the details of the video.
+2. Le Tracker adds the video.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. Video name is blank.
+- 1a. The module that is suppose to contain the lecture does not exist.
 
-  - 2a1. LeTracker shows an error message.
+  - 1a1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2b. Module code does not exist.
+- 1b. The lecture to add the video to does not exist.
 
-  - 2b1. LeTracker shows an error message.
+  - 1b1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
 
-- 2c. Lecture index does not exist.
+- 1c. The user does not enter sufficient details for the video.
 
-  - 2c1. LeTracker shows an error message.
+  - 1c1. Le Tracker shows an error message.
 
-    Use case resumes at step 1.
+    Use case ends.
+
+- 1d. One or more of the details specified is invalid.
+
+  - 1d1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1e. The video to be added is a duplicate of an existing video in the lecture.
+
+  - 1e1. Le Tracker shows an error message.
+
+    Use case ends.
+
+**Use case: Edit a module**
+
+**MSS**
+
+1. User requests to edit a module and specifies the updated details for the module.
+2. Le Tracker edits the module.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The module the user is requesting to edit does not exist.
+
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1b. The user does not enter any updated details.
+
+  - 1b1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1c. One or more of the updated details specified is invalid.
+
+  - 1c1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1d. The resulting edited module is a duplicate of another module in Le Tracker.
+
+  - 1d1. Le Tracker shows an error message.
+
+    Use case ends.
+
+**Use case: Edit a lecture**
+
+**MSS**
+
+1. User requests to edit a lecture of a module and specifies the updated details of the lecture.
+2. Le Tracker adds the lecture.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The module that is suppose to contain the lecture to edit does not exist.
+
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1b. The lecture the user is requesting to edit does not exist.
+
+  - 1b1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1c. The user does not enter any updated details.
+
+  - 1c1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1d. One or more of the updated details specified is invalid.
+
+  - 1d1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1e. The resulting edited lecture is a duplicate of another lecture in the module.
+
+  - 1e1. Le Tracker shows an error message.
+
+    Use case ends.
+
+**Use case: Edit a video**
+
+**MSS**
+
+1. User requests to edit a video of a lecture belonging to a module and specifies the updated details of the video.
+2. Le Tracker adds the lecture.
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. The module that is suppose to contain the lecture does not exist.
+
+  - 1a1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1b. The lecture that is suppose to contain the video to edit does not exist.
+
+  - 1b1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1c. The video the user is requesting to edit does not exist.
+
+  - 1c1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1d. The user does not enter any updated details.
+
+  - 1d1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1e. One or more of the updated details specified is invalid.
+
+  - 1e1. Le Tracker shows an error message.
+
+    Use case ends.
+
+- 1f. The resulting edited video is a duplicate of another video in the lecture.
+
+  - 1f1. Le Tracker shows an error message.
+
+    Use case ends.
 
 **Use case: Mark/Unmark a video**
 
@@ -1092,21 +1324,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. No tag is provided.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Tag a lecture**
 
@@ -1124,33 +1356,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2e. No tag is provided.
 
-    - 2e1. LeTracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Tag a video**
 
@@ -1169,45 +1401,45 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2e. Video does not exist.
 
-    - 2e1. LeTracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2f. Reference to video is empty.
 
-    - 2f1. LeTracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2g. No tag is provided.
 
-    - 2g1. LeTracker shows an error message.
+  - 2g1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Untag a module**
 
@@ -1225,27 +1457,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. No tag is provided.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Module tags do not exist.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Untag a lecture**
 
@@ -1263,39 +1495,39 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2e. No tag is provided.
 
-    - 2e1. LeTracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2f. Lecture tags do not exist.
 
-    - 2f1. LeTracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Tag a video**
 
@@ -1314,51 +1546,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. Module does not exist.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. Reference to module is empty.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. Lecture does not exist.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Reference to lecture is empty.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2e. Video does not exist.
 
-    - 2e1. LeTracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2f. Reference to video is empty.
 
-    - 2f1. LeTracker shows an error message.
+  - 2f1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2g. No tag is provided.
 
-    - 2g1. LeTracker shows an error message.
+  - 2g1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2h. Video tags do not exist.
 
-    - 2h1. LeTracker shows an error message.
+  - 2h1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Export all modules to a new file**
 
@@ -1374,15 +1606,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. File name is invalid.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. File already exists.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Export all modules to an existing file**
 
@@ -1398,57 +1630,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. File name is invalid.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. File cannot be written to.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. No indication of overwriting file.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
-
-**Use case: Import all modules from a file**
-
-**MSS**
-
-1. User requests to import all modules data from an existing file.
-2. User specifies the name of the file to import from.
-3. All modules data in the file is imported to the current tracker.
-
-   Use case ends.
-
-**Extensions**
-
-- 2a. File name is invalid.
-
-    - 2a1. LeTracker shows an error message.
-
-      Use case resumes at step 1.
-
-- 2b. File does not exist.
-
-    - 2b1. LeTracker shows an error message.
-
-      Use case resumes at step 1.
-
-- 2c. File cannot be read.
-
-    - 2c1. LeTracker shows an error message.
-
-      Use case resumes at step 1.
-
-- 2d. Some modules already exist in the current tracker.
-
-    - 2d1. LeTracker shows an error message.
-
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 **Use case: Import all modules from a file**
 
@@ -1464,27 +1660,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. File name is invalid.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. File does not exist.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. File cannot be read.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Some modules already exist in the current tracker.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
+
+**Use case: Import all modules from a file**
+
+**MSS**
+
+1. User requests to import all modules data from an existing file.
+2. User specifies the name of the file to import from.
+3. All modules data in the file is imported to the current tracker.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. File name is invalid.
+
+  - 2a1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2b. File does not exist.
+
+  - 2b1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2c. File cannot be read.
+
+  - 2c1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
+
+- 2d. Some modules already exist in the current tracker.
+
+  - 2d1. LeTracker shows an error message.
+
+    Use case resumes at step 1.
 
 **Use case: Import some modules from a file**
 
@@ -1500,34 +1732,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. File name is invalid.
 
-    - 2a1. LeTracker shows an error message.
+  - 2a1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2b. File does not exist.
 
-    - 2b1. LeTracker shows an error message.
+  - 2b1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2c. File cannot be read.
 
-    - 2c1. LeTracker shows an error message.
+  - 2c1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2d. Some modules already exist in the current tracker.
 
-    - 2d1. LeTracker shows an error message.
+  - 2d1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
+    Use case resumes at step 1.
 
 - 2e. Specified modules do not exist in the saved file.
 
-    - 2e1. LeTracker shows an error message.
+  - 2e1. LeTracker shows an error message.
 
-      Use case resumes at step 1.
-
+    Use case resumes at step 1.
 
 ### Non-Functional Requirements
 

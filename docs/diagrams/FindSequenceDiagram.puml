@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find CS2040S")
+[-> LogicManager : execute(\n"find CS2040S")
 activate LogicManager
 
-LogicManager -> TrackerParser : parseCommand("find CS2040S")
+LogicManager -> TrackerParser : parseCommand(\n"find CS2040S")
 activate TrackerParser
 
 create FindCommandParser
@@ -50,7 +50,7 @@ activate FindCommand
 
 FindCommand -> FindCommand : filterByVideoList(model)
 
-FindCommand -> Model : updateFilteredModuleList(predicate)
+FindCommand -> Model : updateFilteredModuleList(\npredicate)
 activate Model
 
 Model --> FindCommand
