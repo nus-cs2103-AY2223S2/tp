@@ -641,8 +641,23 @@ There is no need to save manually.
 </tr>
 
 <tr>
+<td><b>Home Page</b></td>
+<td><code>home</code>></td>
+</tr>
+
+<tr>
+<td><b>Statistics Page</b></td>
+<td><code>stats</code>></td>
+</tr>
+
+<tr>
+<td><b>Calendar View</b></td>
+<td><code>calendar</code>></td>
+</tr>
+
+<tr>
 <td><b>Add</b></td>
-<td><code>add p/POSITION c/COMPANY_NAME s/APPLICATION_STATUS d/DESCRIPTION [t/TAG] ...</code><br>
+<td><code>add p/POSITION c/COMPANY s/STATUS d/DESCRIPTION [t/TAG]...</code><br>
 E.g. <code>add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python t/Important t/Priority</code></td>
 </tr>
 
@@ -652,53 +667,69 @@ E.g. <code>add p/Software Engineer c/Grab s/1 d/Requires knowledge of Python t/I
 </tr>
 
 <tr>
-<td><b><a href="#edit_function">Edit</a></b></td>
-<td><code>edit ID [p/POSITION] [c/COMPANY_NAME] [s/APPLICATION_STATUS] [d/DESCRIPTION] [t/TAG] ...</code><br>
-E.g. <code>edit 1 p/Data Analyst</code> edits the <code>POSITION</code> of first internship in the Internship List panel
-to Data Analyst</td>
+<td><b>Find</b></td>
+<td><code>find [p/POSITION] [c/COMPANY] [s/STATUS] [d/DESCRIPTION] [t/TAG]...</code><br>
+E.g. <code>find c/tech t/important</code> would return the list of internships with <code>COMPANY</code> containing the
+word “gov” and <code>TAG</code> as <code>IMPORTANT</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#delete_function">Delete</a></b></td>
-<td><code>delete ID</code><br>
-E.g. <code>delete 1</code> deletes the first internship in the Internship List panel</td>
-</tr>
-
-<tr>
-<td><b><a href="select_function">Select</a></b></td>
+<td><b>Select</b></td>
 <td><code>select ID</code><br>
-E.g. <code>select 1</code> selects the first internship in the Internship List panel</td>
+E.g. <code>select 1</code> selects the first internship in the List Panel</td>
 </tr>
 
 <tr>
-<td><b><a href="#eventadd_function">Add Event</a></b></td>
-<td><code>event add na/EVENT_NAME st/[START_DATETIME] en/END_DATETIME de/DESCRIPTION</code><br>
-E.g. <code>event add na/Technical Interview st/10/09/2023 1500 en/10/09/2023 1700 de/On Zoom</code></td>
+<td><b>Edit</b></td>
+<td><code>edit ID [p/POSITION] [c/COMPANY] [s/STATUS] [d/DESCRIPTION] [t/TAG]...</code><br>
+E.g. <code>edit 1 p/Data Analyst</code> edits the <code>POSITION</code> of first internship in the List Panel
+to <code>Data Analyst</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#eventdelete_function">Delete Event</a></b></td>
-<td><code>event delete ID</code><br>
-E.g. <code>event delete 1</code></td>
+<td><b>Delete</b></td>
+<td><code>delete ID</code><br>
+E.g. <code>delete 1</code> deletes the first internship in the List Panel</td>
 </tr>
 
 <tr>
-<td><b><a href="#clash_function">Clash</a></b></td>
+<td><b>Add Event</b></td>
+<td><code>select ID</code>, then <code>event add na/EVENT_NAME [st/START_DATETIME en/END_DATETIME
+de/EVENT_DESCRIPTION</code><br>
+E.g. <code>select 1</code>, then <code>event add na/Technical Interview st/10/09/2023 1500 en/10/09/2023 1700
+de/On Zoom</code> adds the event to the first internship in List Panel</td>
+</tr>
+
+<tr>
+<td><b>Delete Event</b></td>
+<td><code>select ID</code>, then <code>event delete ID</code><br>
+E.g. <code>select 1</code>, then <code>event delete 1</code> deletes the first event from the first internship</td>
+listed in the List Panel
+</tr>
+
+<tr>
+<td><b>Find Event</b></td>
+<td><<code>event add [na/EVENT_NAME] [st/START_DATETIME] [en/END_DATETIME]</code><br>
+E.g. <code>event find na/Technical Interview st/20/03/2023 1400</code></td>
+</tr>
+
+<tr>
+<td><b>Clash</b></td>
 <td><code>clash</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#clear_function">Clear</a></b></td>
-<td><code>clear</code></td>
+<td><b>Delete All</b></td>
+<td><code>delete</code>, followed by <code>deleteall confirm</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#help_function">Help</a></b></td>
+<td><b>Help</b></td>
 <td><code>help</code></td>
 </tr>
 
 <tr>
-<td><b><a href="#exit_function">Exit</a></b></td>
+<td><b>Exit</b></td>
 <td><code>exit</code></td>
 </tr>
 
