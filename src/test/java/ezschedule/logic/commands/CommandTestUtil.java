@@ -62,7 +62,8 @@ public class CommandTestUtil {
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + INVALID_DATE; // 'a' not allowed in phones
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_START + INVALID_START_TIME; // missing ':' symbol
     public static final String INVALID_END_TIME_DESC = " " + PREFIX_END + INVALID_END_TIME; // '*' not allowed in tags
-    public static final String INVALID_RECUR_FACTOR = " " + PREFIX_EVERY + INVALID_RECUR_FACTOR_DAY; // uppercase invalid
+    public static final String INVALID_RECUR_FACTOR =
+            " " + PREFIX_EVERY + INVALID_RECUR_FACTOR_DAY; // 'DAY' uppercase not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
