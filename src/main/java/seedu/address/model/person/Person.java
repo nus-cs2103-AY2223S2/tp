@@ -178,10 +178,7 @@ public class Person {
      * Returns false otherwise.
      */
     public boolean isDoctor() {
-        if (role.toString().equals("Doctor")) {
-            return true;
-        }
-        return false;
+        return role.toString().equals("Doctor");
     }
 
     /**
@@ -189,10 +186,7 @@ public class Person {
      * Returns false otherwise.
      */
     public boolean isPatient() {
-        if (role.toString().equals("Patient")) {
-            return true;
-        }
-        return false;
+        return role.toString().equals("Patient");
     }
 
     /**

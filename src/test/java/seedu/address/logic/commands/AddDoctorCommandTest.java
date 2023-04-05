@@ -221,6 +221,11 @@ public class AddDoctorCommandTest {
         public Person getPersonDisplay() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Person getPersonByNric(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

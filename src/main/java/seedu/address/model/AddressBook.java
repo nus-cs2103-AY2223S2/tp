@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.HospitalAppointmentList;
 import seedu.address.model.person.Doctor;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
@@ -248,8 +247,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.containsDrByNric(nric);
     }
 
-    public Name getNameByNric(Nric drNric) {
-        return persons.getNameByNric(drNric);
+    /**
+     * Returns the person with the given {@code nric}, returns it. This person must exist.
+     * @param nric of the person
+     * @return Person with a given Nric
+     */
+    public Person getPersonByNric(Nric nric) {
+        return persons.getPersonByNric(nric);
     }
 
 }

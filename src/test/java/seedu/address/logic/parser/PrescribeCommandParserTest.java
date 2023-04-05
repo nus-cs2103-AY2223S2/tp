@@ -36,6 +36,6 @@ class PrescribeCommandParserTest {
         assertParseFailure(parser, MEDICATION_DESC_AMY + COST_DESC_AMY,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, PrescribeCommand.MESSAGE_USAGE));
         // Incorrect format for Medication
-        assertParseFailure(parser, NRIC_DESC_AMY + " m/a" + COST_DESC_AMY, Medication.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NRIC_DESC_AMY + " m/-" + COST_DESC_AMY, Medication.MESSAGE_CONSTRAINTS);
     }
 }

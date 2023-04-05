@@ -41,13 +41,14 @@ public class PrescribeCommandTest {
     // TODO
     public void execute_editPrescription_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Nric amyNric = new Nric(VALID_NRIC_AMY);
+
         Prescription amyPrescription = new Prescription(
                 new Medication(VALID_MEDICATION_AMY), new Cost(VALID_COST_AMY));
 
         Person targetPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(targetPerson)
-                .withPrescriptions(VALID_MEDICATION_AMY, VALID_COST_AMY).build();
+                .withPrescriptions(VALID_MEDICATION_AMY, VALID_COST_BOB).build();
+
         PrescribeCommand prescribeCommand = new PrescribeCommand(amyNric, amyPrescription);
 
         String expectedMessage = String.format(PrescribeCommand.MESSAGE_EDIT_SUCCESS, editedPerson);

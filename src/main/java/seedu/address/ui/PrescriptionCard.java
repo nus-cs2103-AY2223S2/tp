@@ -35,7 +35,7 @@ public class PrescriptionCard extends UiPart<Region> {
      */
     public PrescriptionCard(Patient patient, Prescription prescription) {
         super(FXML);
-        this.patient = (Patient) patient;
+        this.patient = patient;
         this.prescription = prescription;
 
         meds.setText(patient.getPrescriptions().toString());
