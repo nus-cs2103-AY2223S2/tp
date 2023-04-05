@@ -601,9 +601,13 @@ the database.
 <strong>Note:</strong> The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
+<<<<<<< HEAD
 If the command is valid, Wingman will return a response confirming the link that has been made, as shown below:
 
 <img src="images/ug/UG-linkflight.jpg" width="2032">
+=======
+##### Crew mode: `linkflight /fl flight_index /csd crew_index /sfa crew_index /fa crew_index /tr crew_index`
+>>>>>>> 8d0bcf27 (Fix unaligned documentation)
 
 ###### Crew mode: `linkflight /fl flight-index /csd crew-index /sfa crew-index /fa crew-index /tr crew-index`
 
@@ -717,9 +721,13 @@ This is useful to help you identify which prefix to use to unlink a particular e
 <strong>Note:</strong> The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
+<<<<<<< HEAD
 If the command is valid, Wingman will return a response confirming the link that has been undone, as shown below:
 
 <img src="images/ug/UG-unlinkflight.jpg" width="2032">
+=======
+##### Crew mode: `unlinkflight /fl flight_index /csd crew_index /sfa crew_index /fa crew_index /tr crew_index`
+>>>>>>> 8d0bcf27 (Fix unaligned documentation)
 
 ###### Crew mode: `unlinkflight /fl flight-index /csd crew-index /sfa crew-index /fa crew-index /tr crew-index`
 
