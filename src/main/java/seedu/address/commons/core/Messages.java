@@ -11,7 +11,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX =
             "The student index provided is invalid/ not found";
     public static final String MESSAGE_INVALID_STUDENT_CLASS = "The student class provided is invalid/not found";
-    public static final String MESSAGE_INVALID_STUDENT_DISPLAYED =
+    public static final String MESSAGE_STUDENT_NOT_FOUND =
             "The student with the corresponding index number and class cannot be not found";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_HOMEWORK = "This homework already exists!";
@@ -22,7 +22,7 @@ public class Messages {
             + "student attached! You can't delete the parent!";
     //public static final String MESSAGE_INVALID_PARENT_NAME = "The parent name provided does not match the "
     //        + "parent name attached to given phone number.";
-    public static final String MESSAGE_INVALID_PARENT = "The parent name and parent number provided does not match "
+    public static final String MESSAGE_PARENT_NOT_FOUND = "The parent name and parent number provided does not match "
             + "any of the parents in our parent list!";
     public static final String MESSAGE_DUPLICATE_ATTENDANCE = "This attendance already exists!";
     public static final String MESSAGE_BLANK_FIND = "Please enter letters to find a name!";

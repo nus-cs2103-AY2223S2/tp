@@ -437,8 +437,8 @@ Examples:
 * `student 1A edit in/03 cca/badminton ageS/23`
 
 **Expected Outcome:**
-* Edited student: TanAhCow; Student Class: 1A; Index Number: 03; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: basketball
-* Edited student: TanAhCow; Student Class: 1B; Index Number: 03; Sex: M; Student Age: 23; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: badminton
+* Edited student: TanAhCow; Student Class: 1A; Index Number: 03;
+* Edited student: TanAhCow; Student Class: 1B; Index Number: 03;
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 If you want to change the parent for this student only, please kindly fill in the **NEW** parent/NOK **NAME**, **PHONE NUMBER** and **RELATIONSHIP**. <br><br>
@@ -487,8 +487,8 @@ Examples:
 
 **Expected Outcome:**
 
-* Deleted Student: TanAhCow; Student Class: 1A; Index Number: 14; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
-* Deleted Student: TanAhCow; Student Class: 1B; Index Number: 23; Sex: M; Student Age: Insert student age here!; Image Path: Insert student image here!; Student Email: Insert student email here!; Student Phone: Insert student phone number here!; CCA: Insert student CCA here!
+* Deleted Student: Tan Ah Cow Class: 1A Index Number: 14
+* Deleted Student: Tan Ah Niu Class: 1B Index Number: 23
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -586,12 +586,10 @@ Examples:
 * `parent delete n/TanAhNiu pnP/91234566` <br>
 
 Expected Outcome: <br>
-```
-Deleted Parent: TanAhCow; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: Insert parent email here!; Parent Phone: 91234567;
-```
-```
-Deleted Parent: TanAhNiu; Parent Age: Insert parent age here!; Address: Insert Address here!; Image Path: Insert parent image here!; Parent Email: bestniuinthetown@gmail.com; Parent Phone: 91234566;
-```
+
+Deleted Parent: TanAhCow Phone Number: 91234567
+Deleted Parent: TanAhNiu Phone Number: 91234566
+
 **Note:**
 1. You *CANNOT* delete the parent/[NOK](#glossary) if the parent/[NOK](#glossary) has students *BINDED* to him/her. System will display an error message for this. <br><br>
 
@@ -789,7 +787,7 @@ Need to add parent before each command!!
 | **Add**    | `add n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [ageP/[AGE] imgP/[ABSOLUTE_PATH_TO_IMAGE] e/[EMAIL_ADDRESS] a/[RESIDENTIAL_ADDRESS]`                                         |
 | **List**   | `list`                                                                                                                                                                        |
 | **Edit**   | `edit n/<PARENT_NAME/NOK_NAME> pnP/<PHONE_NUMBER> [nn/[NEW_NAME] npnP/[NEW_PHONE_NUMBER] ageP/[NEW_AGE] imgP/[NEW_IMAGE] e/[NEW_EMAIL_ADDRESS] a/[NEW_RESIDENTIAL_ADDRESS] ]` |
-| **Delete** | `delete n/NAME pnP/PHONE [ageP/[AGE] imgP/[PARENT_IMAGE] e/[EMAIL a/ADDRESS] ]`                                                                                               |
+| **Delete** | `delete n/NAME pnP/PHONE `                                                                                                                                                    |
 
 ### General Command Summary
 

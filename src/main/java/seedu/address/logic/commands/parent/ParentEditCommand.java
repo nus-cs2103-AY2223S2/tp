@@ -116,7 +116,7 @@ public class ParentEditCommand extends ParentCommand {
                 return new CommandResult(String.format(MESSAGE_EDIT_PARENT_SUCCESS, parent));
             }
         }
-        throw new CommandException(Messages.MESSAGE_INVALID_PARENT);
+        throw new CommandException(Messages.MESSAGE_PARENT_NOT_FOUND);
     }
 
     /**
