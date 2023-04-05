@@ -219,6 +219,7 @@ public class MasterDeckParser {
             throw new ParseException(String.format(MESSAGE_DECK_SELECTED, ClearCommand.COMMAND_WORD));
 
         default:
+            break;
 
         }
 
@@ -319,7 +320,7 @@ public class MasterDeckParser {
             throw new ParseException(String.format(MESSAGE_IN_REVIEW, ClearCommand.COMMAND_WORD));
 
         default:
-            
+            break;
         }
 
         switch(commandWord.toLowerCase()) {
