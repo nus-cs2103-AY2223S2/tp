@@ -64,8 +64,8 @@ public class Age {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ParentName// instanceof handles nulls
-                && value.equals(((ParentName) other).value)); // state check
+                || (other instanceof Age// instanceof handles nulls
+                && value.equals(((Age) other).value)); // state check
     }
 
     @Override

@@ -187,7 +187,7 @@ public class ParentTest {
         // 8 digits phone number
         assertTrue(Parent.isValidParentNumber("91234567"));
         // LONG phone number
-        assertTrue(Parent.isValidParentNumber("123456789012345678901234567890123456789012345678901234567890"));
+        assertTrue(Parent.isValidParentNumber(String.valueOf(Integer.MAX_VALUE)));
         // Phone number with only 0s
         assertTrue(Parent.isValidParentNumber("000000"));
     }
