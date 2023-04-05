@@ -35,27 +35,27 @@ Intellij is configured to use **JDK 11**.
 
 1. **Configure the coding style**
 
-   If using IDEA, follow the guide 
-[_[se-edu/guides] IDEA: Configuring the code style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html) 
+   If using IDEA, follow the guide
+[_[se-edu/guides] IDEA: Configuring the code style_](https://se-education.org/guides/tutorials/intellijCodeStyle.html)
 to set up IDEA's coding style to match ours.
 
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-   Optionally, you can follow the guide 
-[_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the 
+   Optionally, you can follow the guide
+[_[se-edu/guides] Using Checkstyle_](https://se-education.org/guides/tutorials/checkstyle.html) to find how to use the
 CheckStyle within IDEA e.g., to report problems _as_ you write code.
    </div>
 
 2. **Set up CI**
 
-   This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those 
-files, it will run the CI for your project automatically at each push to the `master` branch or to any PR. 
+   This project comes with a GitHub Actions config files (in `.github/workflows` folder). When GitHub detects those
+files, it will run the CI for your project automatically at each push to the `master` branch or to any PR.
 No set up required.
 
 3. **Learn the design**
 
    When you are ready to start coding, we recommend that you get some sense of the overall design by reading about
-[AddressBook’s architecture](DeveloperGuide.md#architecture).
+[ModuleTracker’s architecture](DeveloperGuide.md#architecture).
 
 4. **Do the tutorials**
    These tutorials will help you get acquainted with the codebase.

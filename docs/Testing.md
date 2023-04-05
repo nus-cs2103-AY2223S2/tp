@@ -20,7 +20,7 @@ There are two ways to run tests.
   * Open a console and run the command `gradlew clean test` (Mac/Linux: `./gradlew clean test`)
 
 <div markdown="span" class="alert alert-secondary">:link: **Link**: Read
-[this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html) to learn more 
+[this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html) to learn more
 about using Gradle.
 </div>
 
@@ -32,7 +32,7 @@ This project has three types of tests:
 
 1. *Unit tests* targeting the lowest level methods/classes.<br>
    e.g. `seedu.address.commons.StringUtilTest`
-2. *Integration tests* that are checking the integration of multiple code units 
+2. *Integration tests* that are checking the integration of multiple code units
 (those code units are assumed to be working).<br>
    e.g. `seedu.address.storage.StorageManagerTest`
 3. Hybrids of unit and integration tests. These test are checking multiple code units as well as how they

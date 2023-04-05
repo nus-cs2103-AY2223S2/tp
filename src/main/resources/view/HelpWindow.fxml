@@ -23,7 +23,6 @@
          <ScrollPane VBox.vgrow="ALWAYS">
             <content>
             <VBox fx:id="helpMessageContainer">
-      
               <children>
                 <Label fx:id="guide" alignment="TOP_LEFT" />
                 <Label fx:id="urlLink" alignment="TOP_LEFT" />
@@ -34,7 +33,6 @@
                         </font></Label>
                 <Label fx:id="helpMessage" alignment="TOP_LEFT" minHeight="-Infinity" />
               </children>
-      
               <opaqueInsets>
                 <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
               </opaqueInsets>
