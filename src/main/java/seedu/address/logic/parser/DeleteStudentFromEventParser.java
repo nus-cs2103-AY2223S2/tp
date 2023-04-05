@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONSULTATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LAB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
@@ -28,27 +27,27 @@ public class DeleteStudentFromEventParser implements Parser<DeleteStudentFromEve
      */
     public DeleteStudentFromEventCommand parse(String args) throws ParseException {
         Index studentIndex;
+        Index eventIndex;
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
-        try {
-            studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteStudentFromEventCommand.MESSAGE_USAGE), pe);
-        }
-
         Optional<String> tutorialName = argMultimap.getValue(PREFIX_TUTORIAL);
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
 
+        try {
+            studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+            eventIndex = ParserUtil.parseIndex(
+                    tutorialName.orElse(labName.orElse(consultationName.orElse(""))));
+        } catch (ParseException pe) {
+            throw pe;
+        }
+
         if (tutorialName.isEmpty() && labName.isEmpty() && consultationName.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(DeleteStudentFromEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED,
                     DeleteStudentFromEventCommand.MESSAGE_USAGE));
         }
 
-        Index eventIndex = ParserUtil.parseIndex(
-                tutorialName.orElse(labName.orElse(consultationName.orElse(""))));
         String eventType = PREFIX_TUTORIAL.getPrefix();
         if (!labName.isEmpty()) {
             eventType = PREFIX_LAB.getPrefix();

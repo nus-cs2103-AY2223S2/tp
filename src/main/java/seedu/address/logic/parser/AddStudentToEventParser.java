@@ -10,7 +10,6 @@ import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddStudentToEventCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -29,28 +28,35 @@ public class AddStudentToEventParser implements Parser<AddStudentToEventCommand>
      */
     public AddStudentToEventCommand parse(String args) throws ParseException {
         Index studentIndex;
+        Index eventIndex;
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL, PREFIX_LAB, PREFIX_CONSULTATION);
-        try {
-            studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-        }
 
         Optional<String> tutorialName = argMultimap.getValue(PREFIX_TUTORIAL);
         Optional<String> labName = argMultimap.getValue(PREFIX_LAB);
         Optional<String> consultationName = argMultimap.getValue(PREFIX_CONSULTATION);
-        Index eventIndex = ParserUtil.parseIndex(
-                tutorialName.orElse(labName.orElse(consultationName.orElse(""))));
 
-        //todo: remove magic literals
-        String eventType = "tutorial";
+        if (tutorialName.isEmpty() && labName.isEmpty() && consultationName.isEmpty()) {
+            throw new ParseException(String.format(AddStudentToEventCommand.MESSAGE_EVENT_TYPE_NOT_RECOGNIZED,
+                    AddStudentToEventCommand.MESSAGE_USAGE));
+        }
+
+        try {
+            studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+            eventIndex = ParserUtil.parseIndex(
+                    tutorialName.orElse(labName.orElse(consultationName.orElse(""))));
+        } catch (ParseException pe) {
+            // index not non-zero integer
+            throw pe;
+        }
+
+        String eventType = PREFIX_TUTORIAL.getPrefix();
         if (!labName.isEmpty()) {
-            eventType = "lab";
+            eventType = PREFIX_LAB.getPrefix();
         }
         if (!consultationName.isEmpty()) {
-            eventType = "consultation";
+            eventType = PREFIX_CONSULTATION.getPrefix();
         }
 
         return new AddStudentToEventCommand(studentIndex, eventIndex, eventType);
