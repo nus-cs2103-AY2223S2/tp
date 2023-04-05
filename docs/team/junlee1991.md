@@ -46,7 +46,7 @@ Given below are my contributions to the project.
         * Added Product Scope, User Stories and NFRs [(PR #34)](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/34) 
 
 - **Bugfixes**
-   * [\#144](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/144), 
+   * [\#144](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/144), [\#147](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/147)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#88](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/88), [\#73](https://github.com/AY2223S2-CS2103-W17-4/tp/pull/73) 
