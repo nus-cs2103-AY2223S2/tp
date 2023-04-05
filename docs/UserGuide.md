@@ -616,7 +616,7 @@ _Here are some important requirements for you to take note:_
   * NAME must be the name of a contact already registered in NeoBook
 Examples:
 * Suppose you have an Event at `INDEX 3` with `DESCRIPTION: Hackathon Meeting`, `START DATE & TIME: 2023-05-04 1400`,
-`START DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` 
+`END DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` 
 
 ![img.png](images/UntaggedEvent.png)
 
@@ -653,7 +653,7 @@ tagged to that event.
 
 Examples:
 * Suppose you have an Event at `INDEX 3` with `DESCRIPTION: Hackathon Meeting`, `START DATE & TIME: 2023-05-04 1400`,
-  `START DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` and `Baljeet FF` tagged to this Event.
+  `END DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` and `Baljeet FF` tagged to this Event.
 
 ![img_1.png](images/TaggedEvent.png)
 
