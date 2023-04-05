@@ -304,10 +304,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: Difficult to extend. Performance issues in terms of memeory usage. Undo/Redo timeline tied to TeamBuilder. No user feedback on what command was undone/redone.
 
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Sort feature
 
 Both fields for sorting persons are compulsory, namely the order of sorting and the sort by criteria. The order and
