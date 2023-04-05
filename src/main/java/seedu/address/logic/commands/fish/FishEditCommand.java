@@ -96,7 +96,6 @@ public class FishEditCommand extends FishCommand {
             fishToEdit.getTank().getFishList().setFish(fishToEdit, editedFish);
         }
 
-        //model.updateFilteredFishList(PREDICATE_SHOW_ALL_FISHES);
         return new CommandResult(String.format(MESSAGE_EDIT_FISH_SUCCESS, editedFish));
     }
 
