@@ -39,6 +39,10 @@ public class CommandTestUtil {
     public static final String VALID_RECUR_FACTOR_DAY = "day";
     public static final String VALID_RECUR_FACTOR_WEEK = "week";
     public static final String VALID_RECUR_FACTOR_MONTH = "month";
+    public static final String INVALID_NAME = "Event@";
+    public static final String INVALID_DATE = "2023-01-05a";
+    public static final String INVALID_START_TIME = "1800";
+    public static final String INVALID_END_TIME = "22:00*";
 
     public static final String NAME_DESC_A = " " + PREFIX_NAME + VALID_NAME_A;
     public static final String NAME_DESC_B = " " + PREFIX_NAME + VALID_NAME_B;
@@ -107,11 +111,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        Scheduler expectedAddressBook = new Scheduler(actualModel.getScheduler());
+        Scheduler expectedScheduler = new Scheduler(actualModel.getScheduler());
         List<Event> expectedFilteredList = new ArrayList<>(actualModel.getFilteredEventList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getScheduler());
+        assertEquals(expectedScheduler, actualModel.getScheduler());
         assertEquals(expectedFilteredList, actualModel.getFilteredEventList());
     }
 

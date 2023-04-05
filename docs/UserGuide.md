@@ -258,7 +258,7 @@ Use commands such as `list` and `find` to show you the events you have in your l
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:**  
 Events that have past is marked with a completed label and check mark.   
-Events are orders in chronological order.  
+Events are displayed in chronological order.  
 </div>
 
 [[Back to top](#index)]
@@ -266,8 +266,13 @@ Events are orders in chronological order.
 
 <h3 id="upcoming">Upcoming Events</h3>
 ![upcoming-events.png](images/upcoming-events.png)
-Displays to you the upcoming events you have.
-Use `next` command to change the number of upcoming events you want to show.
+Displays ongoing (in case you have not start on it yet) and upcoming events you have. 
+
+<div markdown="span" class="alert alert-info">
+:bulb: **Tip:**
+While the default is one upcoming event,
+you can use the `next` command to change the number of upcoming events shown.
+</div>
 
 [[Back to top](#index)]
 
@@ -295,13 +300,32 @@ Functionality:
 [[Back to top](#index)]
 
 
-<h1 id="faq">FAQ :question:</h1>
+<h1 id="faq">FAQ</h1>
 ---------------------
-**Q:** On a scale of 1 to 10, how awesome is this product?  
-**A:** 10 :v:
+**Q:** On a scale of 1 to 10, how awesome is _Ez-Schedule_?  
+**A:** I would say off the charts, but it looks like 10 is the highest :v:
 
 **Q:** What is one example of someone who would use this?  
 **A:** A secretary who needs to keep track the boss's meetings,
-and inform the boss of what the next meeting is for.
+       and inform the boss of what the next meeting is for.
+
+**Q:** I am not allowed to add an event with no start/end time. Why?  
+**A:** Events with no start/end time are not the focus of _Ez-Schedule_,
+       since these events inherently cannot be scheduled.
+
+**Q:** The `recur` feature only allow me to repeat in certain frequency. It does not have the frequency I want.  
+**A:** Oh no, that is sad to hear. As a extra feature designed for user convenience,
+       we cannot possibly support everyone's preferred frequency. 
+       In case that you really need to have events repeating at an unsupported frequency,
+       you can manually add the events one by one. (You type fast, right? :sunglasses:)
+
+**Q:** The calendar only displays a one or two events only, 
+       even though I have more events on that day. Is this a bug?  
+**A:** As with other conventional calendar applications (eg. Google/Outlook calendar), 
+       the UI has limited space and thus almost impossible to display all events on that day.
+
+**Q:** You say this is optimised for CLI use, but there is no command to transverse the calendar?  
+**A:** The calendar UI is a value-added feature and is not meant to totally replace the `find` feature, 
+       which allows the user to focus directly to a specific day.
 
 [[Back to top](#index)]
