@@ -19,7 +19,7 @@ managers to efficiently delegate tasks in an organised manner.
 
 ## 1. Getting started
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have **Java 11** or above installed in your Computer.
 
 2. Download the latest `officeconnect.jar` from [OfficeConnect Release Page](https://github.com/AY2223S2-CS2103T-W10-1/tp/releases).
 
