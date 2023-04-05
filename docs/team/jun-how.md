@@ -26,15 +26,36 @@ Given below are my contributions to the project.
   * Highlights: Enhanced the HelpCommandParser and HelpCommand classes to apply help function for every command, including a general one.
 
   * **Enhancement to existing feature**: Delete Command
-  * What it does: 
-* **Project management**: to be added soon
+  * What it does: Allow the delete command to delete all modules possible that are found in the list. Offered 3 cases to be considered:
+  1) If the delete command only provides modules found in the list, all the modules are deleted successfully.
+  2) If the delete command only provides modules not found in the list, an exception is thrown.
+  3) If the delete command provides both module(s) found and not found in the list, the modules found are deleted and the ones not found are simply ignored.
+  * Justification: Previously, if the delete command provides both module(s) found and not found in the list, an exception is thrown. This allows for more flexibility when trying to delete modules.
+  * Highlights: Modified the DeleteCommand class to accommodate this enhancement.
 
-* **Enhancements to existing features**: to be added soon
+  * **Miscellaneous**: Integration of logic into UI components
+  * What it does: Render the command result message and graphics accurately in the GUI.
+  * Highlights: Implemented the basic functionality of the controllers, dynamically accept user commands in the CLI section and display all the relevant information in the Graphics section by calling relevant methods in Logic and Model.
 
-* **Documentation**: to be added soon
-  * User Guide: to be added soon
-  * Developer Guide: to be added soon
+  * **Miscellaneous**: Prettify and standardise the format of output messages
+  * What it does: The format of correct messages and errors are standardised to make it easier for users to read.
+  * Highlights: Handled edge cases for error messages to hint to users where the mistake in their input command lies.
 
-* **Community**: to be added soon
+  * **Miscellaneous**: Wrote and updated extensive test cases to align with new features in ModTrek.
 
-* **Tools**: to be added soon
+  * **Miscellaneous**: Ensured adherence to coding standards and code quality.
+
+* **Project management**: Set up the Team Repo on GitHub (Issue tracker, GitHub Actions, project website etc.)
+
+* **Documentation**:
+  * User Guide: 
+    * Offered suggestions to improve on the quality of the UG. (Example: [1](https://github.com/AY2223S2-CS2103T-T13-1/tp/issues/88))
+  * Developer Guide: 
+    * Wrote the implementation of the Find module(s) feature and designed sequence and activity diagrams. Contributed to some parts of the Appendix.
+
+* **Community**: 
+  * Reviewed PRs of team members (Examples: [1](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/45), [2](https://github.com/AY2223S2-CS2103T-T13-1/tp/pull/165))
+
+* **Tools**: 
+  * Java (for code)
+  * PlantUML (for diagrams)
