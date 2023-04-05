@@ -42,22 +42,23 @@ public class NameTest {
 
     @Test
     public void equals() {
+        Name nameA = new Name(VALID_NAME_A);
+        Name nameB = new Name(VALID_NAME_B);
+
         // same object -> returns true
-        Name name = new Name(VALID_NAME_A);
-        assertTrue(name.equals(name));
+        assertTrue(nameA.equals(nameA));
 
         // same object -> returns true
         Name nameCopy = new Name(VALID_NAME_A);
-        assertTrue(name.equals(nameCopy));
+        assertTrue(nameA.equals(nameCopy));
 
         // null -> returns false
-        assertFalse(name.equals(null));
+        assertFalse(nameA.equals(null));
 
         // different type -> returns false
-        assertFalse(name.equals(5));
+        assertFalse(nameA.equals(5));
 
         // different name -> returns false
-        Name differentName = new Name(VALID_NAME_B);
-        assertFalse(name.equals(differentName));
+        assertFalse(nameA.equals(nameB));
     }
 }
