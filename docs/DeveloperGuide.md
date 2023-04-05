@@ -56,17 +56,45 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 # 2. How to Use the Developer Guide
 
+Thank you for your interest in ConnectUS! We aim to provide you with all the information necessary to understand, maintain, upgrade, and evolve ConnectUS.
 
+While you do not need to read the Developer Guide in a sequential order, we recommend going through the [Design] section to get a high-level overview of ConnectUS before looking for information that concerns you.
 
+## 2.1 Notation
 
-# **Design**
+Some special notations are used throughout this guide:
+
+- [Links in blue](#21-notation) will help you navigate through this document, or take you to places on the Internet.
+- **Bolded words** are phrases that you should pay attention to.
+- <u>Underlined words</u> can be found in the [Glossary](#9-glossary).
+
+## 2.2 Navigation
+
+The Developer Guide has six main sections:
+
+1. [Design](#3-design)
+2. [Implementation](#4-implementation)
+3. [Planned Enhancements](#5-planned-enhancements)
+4. [Documentation, Testing, and Other Guides](#6-documentation-logging-testing-configuration-dev-ops)
+5. [Instructions for Manual Testing](#7-instructions-for-manual-testing)
+6. [Requirements](#8-requirements)
+
+- If you are a **developer**, the first four sections will be most applicable to you. [Design](#3-design) gives you a high-level overview of how ConnectUS is structured, and the key components of ConnectUs. [Implementation](#4-implementation) addresses how the features in ConnectUS are implemented. [Planned Enhancements](#5-planned-enhancements) provides insights on known bugs and issues in the latest release of ConnectUS, and plans we have to address and fix these issues. Finally, [Documentation, Testing, and Other Guides](#6-documentation-logging-testing-configuration-dev-ops) provides guides on creating documentation, logging, testing, configuring, and DevOps for ConnectUS.
+
+- If you are a **tester**, the [Instructions for Manual Testing](#7-instructions-for-manual-testing) will provide you with a guide for testing. It covers how to launch and shut down the application, as well as how to test some commands in ConnectUS.
+
+- If you are in the **marketing or product team**, or are interested in knowing why ConnectUS was created, the [Requirements](#8-requirements) section addresses our [Product Scope](#81-product-scope), [User Stories](#82-user-stories), [Use Cases](#83-use-cases), and [Non-Functional Requirements (NFRs)](#84-non-functional-requirements).
+
+- Refer to the [Glossary](#9-glossary) for definitions of terms used in ConnectUS.
+
+# 3. Design
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S2-CS2103T-W15-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-## Architecture
+## 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -107,7 +135,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-## UI component
+## 3.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -124,7 +152,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-## Logic component
+## 3.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -153,7 +181,7 @@ How the parsing works:
 * When called upon to parse a user command, the `ConnectUsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ConnectUsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-## Model component
+## 3.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S2-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -173,7 +201,7 @@ The `Model` component,
 </div>
 
 
-## Storage component
+## 3.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/gremmyz/tp/blob/branch-dont-break/src/main/java/seedu/connectus/storage/Storage.java)
 
@@ -184,17 +212,17 @@ The `Storage` component,
 * inherits from both `ConnectUsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-## Common classes
+## 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.connectus.commons` package.
 
 ---
 
-# **Implementation**
+# 4. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Add Command
+## 4.1 Add Command
 The `add` command is used to create a new contact in ConnectUS with information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
 
 The format for the `add` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#adding-a-person-add).
@@ -220,7 +248,7 @@ The following sequence diagram shows how the `informationFields` are parsed by `
 
 ![AddCommandParseInformationFieldsSequenceDiagram](images/AddCommandParseInformationFieldsDiagram.png)
 
-## Edit Command
+## 4.2 Edit Command
 The `edit` command is used to change the information of an existing contact in ConnectUS with the information fields specified by the user, namely the `Name`, `Phone`, `Email`, `Address`, `Birthday`, `Social Media` (i.e. Telegram, Instagram, WhatsApp), `Birthday`, `Modules`, and `Tags` fields.
 
 The format for the `edit` command can be found [here](https://ay2223s2-cs2103t-w15-1.github.io/tp/UserGuide.html#editing-a-person--edit).
@@ -241,25 +269,29 @@ The following sequence diagram shows how `edit` works:
 The following sequence diagram shows how the `informationFields` are parsed by `ParserUtil`:
 ![EditCommandParseInformationFieldsSequenceDiagram](images/EditCommandParseInformationFieldsDiagram.png)
 
-## [To Add] Delete Command
+## 4.3 Delete Command
 
-## [To Add] Help Command
+## 4.4 Help Command
 
-## [To Add] Adding Additional Tags
+## 4.5 Adding Additional Tags
 
-## [To Add] Deleting Individual Tags
+## 4.6 Deleting Individual Tags
 
-# Planned Enhancements
+## 4.7 Search Command
+
+## 4.8 Upcoming Birthdays Command
+
+# 5. Planned Enhancements
 
 This section contains a list of known features that we plan to enhance in future iterations of the application.
 
-## Improve Edit Command
+## 5.1 Improve Edit Command
 
 Currently, the edit command will not return the "Invalid Command Format" error message in the Command Result Feedback box. Instead, it states "At least one field to edit must be provided", which indirectly indicates that the command is of the correct format, when it is actually missing at least one information field to be edited.
 
 The correct format should be: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [e/EMAIL] [ig/INSTAGRAM] [tg/TELEGRAM] [wa/WHATSAPP] [b/BIRTHDAY]`, where at least one of the optional fields is indicated.
 
-## Better Information Field Validation
+## 5.2 Better Information Field Validation
 
 Currently, certain information fields can hold values that would be considered invalid in real life. Some other information fields cannot hold values that would be considered valid in real life.
 
@@ -285,13 +317,13 @@ However, such an address would be considered invalid in real life, as it would a
 However, such an Instagram username would be considered valid in real life.
 
 
-## More Language Support
+## 5.3 More Language Support
 
 Currently, English is the only language that is supported by our application.
 
 As we are aware that there are many international students studying in NUS SoC, we intend to add more language support (such as Chinese, French, Japanese, Korean etc.) so that international students can better enjoy our app!
 
-## More Social Media Support
+## 5.4 More Social Media Support
 
 Currently, only Instagram, Telegram and WhatsApp are supported.
 
@@ -300,7 +332,7 @@ As we are aware that some students studying in NUS SoC may have other forms of s
 We plan to address and fix all the current constraints mentioned above in the next iteration of this product (V1.5).
 
 
-[↑ Back to top of section](#planned-enhancements)
+[↑ Back to top of section](#5-planned-enhancements)
 
 ---
 
@@ -308,7 +340,7 @@ We plan to address and fix all the current constraints mentioned above in the ne
 
 ---
 
-# **Documentation, logging, testing, configuration, dev-ops**
+# 6. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -318,9 +350,72 @@ We plan to address and fix all the current constraints mentioned above in the ne
 
 ---
 
-# **Appendix A: Requirements**
+#7. Instructions for Manual Testing
 
-## Product scope
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+## 7.1 Launch and shutdown
+
+1. Initial launch
+
+    1. Download the jar file and copy into an empty folder
+
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+
+1. Saving window preferences
+
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+    1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
+
+1. _{ more test cases …​ }_
+
+## 7.2 Adding a contact:
+1. Adding a contact with just name and email
+    1. Prerequisites: None
+    2. Test case: `add n/JohnDoe e/email@example.com`<br>
+       Expected: a new contact named JohnDoe with given email is  created. Details of the new contact shown in the status message. Contact is visible in contact list.
+    3. Test case: `add n/ e/email@example.com`<br>
+       Expected: No contact is created. Error details shown in status message.
+    4. _{ more test cases …​ }_
+
+
+## 7.3 Deleting a contact
+
+1. Deleting a contact while all persons are being shown
+
+    1. Prerequisites: List all contact using the `list` command. Multiple contacts in the list.
+
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+## 7.4 Saving data
+
+1. Dealing with missing/corrupted data files
+
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+2. _{ more test cases …​ }_
+
+---
+
+# 8. Requirements
+
+## 8.1 Product scope
 
 **Target user profile**:
 
@@ -335,7 +430,7 @@ We plan to address and fix all the current constraints mentioned above in the ne
 **Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends information, saving time and effort as users can access this information at their fingertips.
 
 
-## User stories
+## 8.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -376,7 +471,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with friends from other schools         | add school tags to a person                                             | remember which school they are from                                                       |
 | `*`      | user with friends from companies             | add company tags to a person                                            | remember which company they are from                                                      |
 
-## Use cases
+## 8.3 Use cases
 
 (For all use cases below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -496,7 +591,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-## Non-Functional Requirements
+## 8.4 Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
@@ -510,7 +605,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. Should be packaged into a single JAR file not exceeding 100MB.
 11. Should not have any hard-to-test features or features that make it hard-to-test.
 
-## Glossary
+---
+
+# 9. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: A command line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
@@ -522,65 +619,4 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **CCA**: Co-curricular activities that students participate in.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
---------------------------------------------------------------------------------------------------------------------
 
-# **Appendix B: Instructions for manual testing**
-
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
-
-## Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-## Adding a contact:
-1. Adding a contact with just name and email
-    1. Prerequisites: None
-   2. Test case: `add n/JohnDoe e/email@example.com`<br>
-   Expected: a new contact named JohnDoe with given email is  created. Details of the new contact shown in the status message. Contact is visible in contact list.
-   3. Test case: `add n/ e/email@example.com`<br>
-   Expected: No contact is created. Error details shown in status message.
-   4. _{ more test cases …​ }_
-
-
-## Deleting a contact
-
-1. Deleting a contact while all persons are being shown
-
-   1. Prerequisites: List all contact using the `list` command. Multiple contacts in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-## Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
