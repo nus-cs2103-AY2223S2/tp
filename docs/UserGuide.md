@@ -77,7 +77,7 @@ add t/Cookies d/Yummy s/Mix the batter i/Flour, 30, grams, 0.20
 The first word of the command, `add`, tells **CookHub** that you have the intention of adding a recipe. Subsequently, the `t/` command flag
 tells **CookHub** that the following words make up the *title* of the recipe. Hence, **CookHub** will recognise that the title of the recipe is 'Cookies'.
 Then, the `d/` command flag signifies that 'Yummy' is the *description* of the recipe, and the `s/` command flag signifies that the sentences 'Mix the batter' is a *step* in the recipe. 
-Lastly, the `i/` flag signifies that the recipe has ingredient 'Flour, 30, grams, 0.20'. 'Flour, 30, grams, 0.20' is to be interpreted as
+Lastly, the `i/` flag signifies that the recipe has *ingredient* 'Flour, 30, grams, 0.20'. 'Flour, 30, grams, 0.20' is to be interpreted as
 30 grams of flour, in which it costs $0.20 for each gram of flour.
 
 Another fundamental command is the `edit` command. A sample `edit` command is shown below: <br>
