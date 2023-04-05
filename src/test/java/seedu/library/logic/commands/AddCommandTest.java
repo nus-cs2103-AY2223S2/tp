@@ -173,6 +173,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean tagInUse(Tag target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Bookmark> getFilteredBookmarkList() {
             throw new AssertionError("This method should not be called.");
         }
