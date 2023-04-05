@@ -14,7 +14,7 @@ public class RemindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all events whose start time is within "
             + "the specified number of days and displays them as a list with index numbers.\n"
-            + "Parameters: DAYS (must be a positive integer)\n"
+            + "Parameters: DAYS (must be a positive integer and below 1,000,000)\n"
             + "Example: " + COMMAND_WORD + " 3";
 
     private final StartTimeWithinDaysPredicate predicate;
