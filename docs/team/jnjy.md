@@ -13,17 +13,29 @@ P.S. Never question WIFE.
 Given below are my contributions to the project.
 
 * **New Feature**: 
-* Added the ability to add tags to the food items.
-  * What it does: allows the user to add specified tags to the food item they wish to categorise.
-  * Justification: This feature improves the product significantly because a user can conveniently search the food item based on the tags as well as allow easier categorisation.
-  * Highlights: This enhancement affects existing commands and commands to be added in the future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+* Added the ability to list all the created tags.
+  * What it does: Displays to the user the list of tags that had been created in WIFE.
+  * Justification: This feature improves the product significantly because a user can conveniently list
+  all the tags that had been created in the system for easier reference. This allows the user to easily
+  select the tags that user wish to tag their food item with.
+  * Highlights: This feature is useful when the user wish to tag food or filter out food based on the tags
+  available.
 
-* **New Feature**: *to be added*
+* **New Feature**:
+* Added the ability to add tags to the food items.
+  * What it does: Allows the user to add valid tags to any valid food item in WIFE that they wish to categorise.
+  * Justification: This feature improves the product significantly because a user can conveniently classify
+    the food item based on the food's unique characteristic. It also allows for easier search of the food item
+    based on the tags allocated for the food item.
+  * Highlights: This enhancement allows for easier classification of food item in the fridge and will ease the filtering
+    of the food item in the fridge.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=jnjy&breakdown=true&sort=groupTitle&sortWithin=title&since=2023-02-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
+  * *To be added*
+
+* **Testing**:
   * *To be added*
 
 * **Enhancements to existing features**:
