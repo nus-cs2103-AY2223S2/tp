@@ -100,6 +100,7 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBox.focusCommandPrompt();
         viewContentPanel = new ViewContentPanel();
         viewContentPanelPlaceholder.getChildren().add(viewContentPanel.getRoot());
 
@@ -255,12 +256,11 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-            quickAccessToolbar.focusHomeButton();
 
             if (commandResult.isRemind()) {
                 handleReminder();
             }
-
+            commandBox.focusCommandPrompt();
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

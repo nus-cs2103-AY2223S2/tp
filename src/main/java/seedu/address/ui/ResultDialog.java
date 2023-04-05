@@ -62,7 +62,7 @@ public class ResultDialog {
     }
 
     private static void displayDialog(Alert result) {
-        Timeline timer = new Timeline(new KeyFrame(Duration.seconds(2.5), new EventHandler<ActionEvent>() {
+        Timeline timer = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 result.setResult(ButtonType.OK);
