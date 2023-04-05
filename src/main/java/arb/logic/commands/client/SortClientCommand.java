@@ -3,10 +3,8 @@ package arb.logic.commands.client;
 import static arb.model.Model.CLIENT_NAME_COMPARATOR;
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import arb.logic.commands.Command;
@@ -33,11 +31,8 @@ public class SortClientCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS, ListType.CLIENT);
     }
 
-    public static boolean isCommandWord(String commandWord) {
-        return COMMAND_WORDS.contains(commandWord);
-    }
-
-    public static List<String> getCommandWords() {
-        return new ArrayList<>(COMMAND_WORDS);
+    /** Get all valid command words as a List. */
+    public static Set<String> getCommandWords() {
+        return COMMAND_WORDS;
     }
 }

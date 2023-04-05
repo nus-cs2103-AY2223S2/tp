@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -23,8 +24,10 @@ import arb.model.Model;
 import arb.model.ReadOnlyAddressBook;
 import arb.model.ReadOnlyUserPrefs;
 import arb.model.client.Client;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Project;
 import arb.model.tag.TagMapping;
+import arb.testutil.PredicateUtil;
 import arb.testutil.ProjectBuilder;
 import javafx.collections.ObservableList;
 
@@ -40,7 +43,7 @@ public class AddProjectCommandTest {
         ModelStubAcceptingProjectAdded modelStub = new ModelStubAcceptingProjectAdded();
         Project validProject = new ProjectBuilder().build();
 
-        CommandResult commandResult = new AddProjectCommand(validProject, Arrays.asList())
+        CommandResult commandResult = new AddProjectCommand(validProject, Optional.empty())
                 .execute(modelStub, ListType.CLIENT);
 
         assertEquals(String.format(AddProjectCommand.MESSAGE_SUCCESS, validProject), commandResult.getFeedbackToUser());
@@ -51,7 +54,7 @@ public class AddProjectCommandTest {
     @Test
     public void execute_duplicateProject_throwsCommandException() {
         Project validProject = new ProjectBuilder().build();
-        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject, Arrays.asList());
+        AddProjectCommand addProjectCommand = new AddProjectCommand(validProject, Optional.empty());
         ModelStub modelStub = new ModelStubWithProject(validProject);
 
         assertThrows(CommandException.class, AddProjectCommand.MESSAGE_DUPLICATE_PROJECT, () ->
@@ -62,14 +65,19 @@ public class AddProjectCommandTest {
     public void equals() {
         Project crochet = new ProjectBuilder().withTitle("Crochet").build();
         Project sculpture = new ProjectBuilder().withTitle("sculpture").build();
-        AddProjectCommand addCrochetCommand = new AddProjectCommand(crochet, Arrays.asList());
-        AddProjectCommand addSculptureCommand = new AddProjectCommand(sculpture, Arrays.asList());
+        NameContainsKeywordsPredicate crochetPredicate =
+                PredicateUtil.getNameContainsKeywordsPredicate("crochet", "test");
+        NameContainsKeywordsPredicate sculpturePredicate = PredicateUtil.getNameContainsKeywordsPredicate("sculpture");
+        AddProjectCommand addCrochetCommand = new AddProjectCommand(crochet, Optional.of(crochetPredicate));
+        AddProjectCommand addSculptureCommand = new AddProjectCommand(sculpture, Optional.of(sculpturePredicate));
 
         // same object -> returns true
         assertTrue(addCrochetCommand.equals(addCrochetCommand));
 
         // same values -> returns true
-        AddProjectCommand addCrochetCommandCopy = new AddProjectCommand(crochet, Arrays.asList());
+        NameContainsKeywordsPredicate crochetPredicateCopy =
+                PredicateUtil.getNameContainsKeywordsPredicate("test", "crochet");
+        AddProjectCommand addCrochetCommandCopy = new AddProjectCommand(crochet, Optional.of(crochetPredicateCopy));
         assertTrue(addCrochetCommand.equals(addCrochetCommandCopy));
 
         // different types -> returns false
@@ -177,6 +185,11 @@ public class AddProjectCommandTest {
         }
 
         @Override
+        public int numberOfClientsMatchingPredicate(Predicate<Client> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setProjectToLink(Project project) {
             throw new AssertionError("This method should not be called.");
         }
@@ -203,6 +216,16 @@ public class AddProjectCommandTest {
 
         @Override
         public void markProjectAsNotDone(Project project) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetFilteredAndSortedClientList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetFilteredAndSortedProjectList() {
             throw new AssertionError("This method should not be called.");
         }
 

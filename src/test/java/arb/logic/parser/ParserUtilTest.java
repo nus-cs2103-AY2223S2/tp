@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -202,6 +204,23 @@ public class ParserUtilTest {
                 VALID_TAG_2.toUpperCase()));
 
         assertEquals(tagSet, capitalTagSet);
+    }
+
+    @Test
+    public void parseTagsForEdit_emptyCollection_returnsEmptyOptional() throws Exception {
+        assertEquals(Optional.empty(), ParserUtil.parseTagsForEdit(Collections.emptyList()));
+    }
+
+    @Test
+    public void parseTagsForEdit_emptyPrefix_returnsEmptySet() throws Exception {
+        assertEquals(Optional.of(Collections.emptySet()), ParserUtil.parseTagsForEdit(Arrays.asList("")));
+    }
+
+    @Test
+    public void parseTagsForEdit_nonEmptySet() throws Exception {
+        List<String> listOfTagKeywords = Arrays.asList("a", "b");
+        List<Tag> listOfTags = Arrays.asList(new Tag("a"), new Tag("b"));
+        assertEquals(Optional.of(new HashSet<>(listOfTags)), ParserUtil.parseTagsForEdit(listOfTagKeywords));
     }
 
     @Test

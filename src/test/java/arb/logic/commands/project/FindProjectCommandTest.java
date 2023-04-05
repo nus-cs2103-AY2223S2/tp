@@ -22,6 +22,7 @@ import arb.model.ModelManager;
 import arb.model.UserPrefs;
 import arb.model.project.Project;
 import arb.model.project.predicates.TitleContainsKeywordsPredicate;
+import arb.testutil.PredicateUtil;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindProjectCommand}.
@@ -33,9 +34,9 @@ public class FindProjectCommandTest {
     @Test
     public void equals() {
         TitleContainsKeywordsPredicate firstPredicate =
-                new TitleContainsKeywordsPredicate(Collections.singletonList("first"));
+                PredicateUtil.getTitleContainsKeywordsPredicate("first");
         TitleContainsKeywordsPredicate secondPredicate =
-                new TitleContainsKeywordsPredicate(Collections.singletonList("second"));
+                PredicateUtil.getTitleContainsKeywordsPredicate("second");
 
         FindProjectCommand findFirstCommand = new FindProjectCommand(firstPredicate);
         FindProjectCommand findSecondCommand = new FindProjectCommand(secondPredicate);
@@ -58,9 +59,10 @@ public class FindProjectCommandTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void execute_zeroKeywords_noProjectFound() {
-        TitleContainsKeywordsPredicate predicate = preparePredicate(" ");
-        CombinedPredicate<Project> finalPredicate = new CombinedPredicate<>(Arrays.asList(predicate));
+        TitleContainsKeywordsPredicate predicate = PredicateUtil.getTitleContainsKeywordsPredicate();
+        CombinedPredicate<Project> finalPredicate = PredicateUtil.getCombinedPredicate(predicate);
         FindProjectCommand command = new FindProjectCommand(finalPredicate);
         expectedModel.updateFilteredProjectList(finalPredicate);
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 0) + "\n" + finalPredicate;
@@ -69,9 +71,11 @@ public class FindProjectCommandTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void execute_multipleKeywords_multipleProjectsFound() {
-        TitleContainsKeywordsPredicate predicate = preparePredicate("Crayon Digital Sculpture");
-        CombinedPredicate<Project> finalPredicate = new CombinedPredicate<>(Arrays.asList(predicate));
+        TitleContainsKeywordsPredicate predicate =
+                PredicateUtil.getTitleContainsKeywordsPredicate("Crayon", "Digital", "Sculpture");
+        CombinedPredicate<Project> finalPredicate = PredicateUtil.getCombinedPredicate(predicate);
         FindProjectCommand command = new FindProjectCommand(finalPredicate);
         expectedModel.updateFilteredProjectList(finalPredicate);
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3) + "\n" + finalPredicate;
@@ -79,10 +83,4 @@ public class FindProjectCommandTest {
         assertEquals(Arrays.asList(CRAYON_PROJECT, DIGITAL_PROJECT, SCULPTURE_PROJECT), model.getFilteredProjectList());
     }
 
-    /**
-     * Parses {@code userInput} into a {@code TitleContainsKeywordsPredicate}.
-     */
-    private TitleContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new TitleContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    }
 }

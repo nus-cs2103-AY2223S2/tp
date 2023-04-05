@@ -25,6 +25,11 @@ public class LinkProjectToClientCommandParserTest {
     }
 
     @Test
+    public void parse_validFirstArg_returnsLinkClientToProjectCommand() {
+        assertParseSuccess(parser, "1 a", new LinkProjectToClientCommand(INDEX_FIRST));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
                 "Invalid index! " + LinkProjectToClientCommand.MESSAGE_USAGE);

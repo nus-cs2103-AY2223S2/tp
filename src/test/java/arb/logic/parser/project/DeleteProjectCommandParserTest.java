@@ -26,6 +26,11 @@ public class DeleteProjectCommandParserTest {
     }
 
     @Test
+    public void parse_validFirstArg_returnsDeleteProjectCommand() {
+        assertParseSuccess(parser, "1 a", new DeleteProjectCommand(INDEX_FIRST));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE));

@@ -1,13 +1,13 @@
 package arb.testutil;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import arb.logic.commands.project.EditProjectCommand.EditProjectDescriptor;
+import arb.model.client.predicates.NameContainsKeywordsPredicate;
 import arb.model.project.Deadline;
 import arb.model.project.Price;
 import arb.model.project.Project;
@@ -38,9 +38,9 @@ public class EditProjectDescriptorBuilder {
         descriptor.setDeadline(project.getDeadline());
         descriptor.setPrice(project.getPrice());
         descriptor.setTags(project.getTags());
-        descriptor.setClientNameKeywords(project.getClientName() == null
-                ? Arrays.asList()
-                : Arrays.asList(project.getClientName()));
+        descriptor.setClientNamePredicate(project.getClientName() == null
+                ? null
+                : new NameContainsKeywordsPredicate(Arrays.asList(project.getClientName())));
     }
 
     /**
@@ -79,8 +79,8 @@ public class EditProjectDescriptorBuilder {
     /**
      * Sets the {@code clientNameKeywords} of the {@code EditProjectDescriptor} that we are building.
      */
-    public EditProjectDescriptorBuilder withLinkedClientNameKeywords(List<String> clientNameKeywords) {
-        descriptor.setClientNameKeywords(clientNameKeywords);
+    public EditProjectDescriptorBuilder withClientNamePredicate(NameContainsKeywordsPredicate predicate) {
+        descriptor.setClientNamePredicate(predicate);
         return this;
     }
 

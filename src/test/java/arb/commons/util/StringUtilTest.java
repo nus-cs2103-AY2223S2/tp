@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -45,6 +48,37 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
 
+    //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
+
+    @Test
+    public void isUnsignedInteger() {
+
+        // EP: empty strings
+        assertFalse(StringUtil.isUnsignedInteger("")); // Boundary value
+        assertFalse(StringUtil.isUnsignedInteger("  "));
+
+        // EP: not a number
+        assertFalse(StringUtil.isUnsignedInteger("a"));
+        assertFalse(StringUtil.isUnsignedInteger("aaa"));
+
+        // EP: zero as prefix
+        assertTrue(StringUtil.isUnsignedInteger("01"));
+
+        // EP: signed numbers
+        assertFalse(StringUtil.isUnsignedInteger("-1"));
+        assertFalse(StringUtil.isUnsignedInteger("+1"));
+
+        // EP: numbers with white space
+        assertFalse(StringUtil.isUnsignedInteger(" 10 ")); // Leading/trailing spaces
+        assertFalse(StringUtil.isUnsignedInteger("1 0")); // Spaces in the middle
+
+        // EP: number larger than Integer.MAX_VALUE
+        assertFalse(StringUtil.isUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)));
+
+        // EP: valid numbers, should return true
+        assertTrue(StringUtil.isUnsignedInteger("0")); // Boundary value
+        assertTrue(StringUtil.isUnsignedInteger("10"));
+    }
 
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 
@@ -140,4 +174,20 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    //---------------- Tests for splitKeywords --------------------------------------
+    @Test
+    public void splitKeywords() {
+        List<String> expectedSplitKeywords = Arrays.asList("first", "second");
+        assertTrue(expectedSplitKeywords.equals(StringUtil.splitKeywords("first second")
+                .collect(Collectors.toList())));
+    }
+
+    //---------------- Tests for getFirstArgument --------------------------------------
+    @Test
+    public void getFirstArgument() {
+        assertTrue("first".equals(StringUtil.getFirstArgument("first second")));
+        assertTrue("first".equals(StringUtil.getFirstArgument("first")));
+        assertTrue("first".equals(StringUtil.getFirstArgument("   first second")));
+        assertTrue("".equals(StringUtil.getFirstArgument("")));
+    }
 }

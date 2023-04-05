@@ -39,4 +39,10 @@ public class ClearProjectCommandTest {
                 Messages.MESSAGE_INVALID_LIST_PROJECT);
     }
 
+    @Test
+    public void execute_withCurrentListTypeTag_failure() {
+        assertCommandFailure(new ClearProjectCommand(), ListType.TAG, new ModelManager(),
+                Messages.MESSAGE_INVALID_LIST_PROJECT);
+    }
+
 }

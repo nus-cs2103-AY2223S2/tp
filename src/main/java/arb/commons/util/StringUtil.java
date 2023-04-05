@@ -6,6 +6,7 @@ import static java.util.Objects.requireNonNull;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 /**
  * Helper functions for handling strings.
@@ -73,7 +74,7 @@ public class StringUtil {
      * e.g. empty string, "-1", "+1", and " 2 " (untrimmed), "3 0" (contains whitespace), "1 a" (contains letters)
      * @throws NullPointerException if {@code s} is null.
      */
-    public static boolean isNonUnsignedInteger(String s) {
+    public static boolean isUnsignedInteger(String s) {
         requireNonNull(s);
 
         try {
@@ -83,4 +84,20 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Splits a {@code String} consisting of keywords into its individual keywords and returns them
+     * as a {@code Stream}.
+     */
+    public static Stream<String> splitKeywords(String keywords) {
+        return Arrays.asList(keywords.split(" ")).stream();
+    }
+
+    /**
+     * Returns the first argument in {@code args}.
+     */
+    public static String getFirstArgument(String args) {
+        return args.trim().split(" ")[0];
+    }
+
 }

@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
 public class Title implements Comparable<Title> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Titles should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

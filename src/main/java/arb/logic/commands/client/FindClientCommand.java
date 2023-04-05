@@ -2,10 +2,9 @@ package arb.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -56,11 +55,9 @@ public class FindClientCommand extends Command {
                 && predicate.equals(((FindClientCommand) other).predicate)); // state check
     }
 
-    public static boolean isCommandWord(String commandWord) {
-        return COMMAND_WORDS.contains(commandWord);
+    /** Get all valid command words as an unmodifiable set. */
+    public static Set<String> getCommandWords() {
+        return Collections.unmodifiableSet(COMMAND_WORDS);
     }
 
-    public static List<String> getCommandWords() {
-        return new ArrayList<>(COMMAND_WORDS);
-    }
 }

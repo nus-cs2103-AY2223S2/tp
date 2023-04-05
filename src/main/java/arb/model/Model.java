@@ -154,6 +154,11 @@ public interface Model {
     void setProject(Project target, Project editedProject);
 
     /**
+     * Returns the number of clients in the addressbook that fulfill {@code predicate}.
+     */
+    int numberOfClientsMatchingPredicate(Predicate<Client> predicate);
+
+    /**
      * Sets the {@code project} to be linked to a client.
      */
     void setProjectToLink(Project project);
@@ -224,4 +229,16 @@ public interface Model {
      * Returns contents of list of project.
      */
     String getProjectsContent();
+
+    /**
+     * Resets the filtered and sorted client lists to their
+     * initial states.
+     */
+    void resetFilteredAndSortedClientList();
+
+    /**
+     * Resets the filtered and sorted project lists to their
+     * initial states.
+     */
+    void resetFilteredAndSortedProjectList();
 }

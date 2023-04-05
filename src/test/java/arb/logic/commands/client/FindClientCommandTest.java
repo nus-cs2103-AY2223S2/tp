@@ -22,6 +22,7 @@ import arb.model.ModelManager;
 import arb.model.UserPrefs;
 import arb.model.client.Client;
 import arb.model.client.predicates.NameContainsKeywordsPredicate;
+import arb.testutil.PredicateUtil;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindClientCommand}.
@@ -33,9 +34,9 @@ public class FindClientCommandTest {
     @Test
     public void equals() {
         NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
+                PredicateUtil.getNameContainsKeywordsPredicate("first");
         NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+                PredicateUtil.getNameContainsKeywordsPredicate("second");
 
         FindClientCommand findFirstCommand = new FindClientCommand(firstPredicate);
         FindClientCommand findSecondCommand = new FindClientCommand(secondPredicate);
@@ -58,9 +59,10 @@ public class FindClientCommandTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void execute_zeroKeywords_noClientFound() {
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        CombinedPredicate<Client> finalPredicate = new CombinedPredicate<>(Arrays.asList(predicate));
+        NameContainsKeywordsPredicate predicate = PredicateUtil.getNameContainsKeywordsPredicate();
+        CombinedPredicate<Client> finalPredicate = PredicateUtil.getCombinedPredicate(predicate);
         FindClientCommand command = new FindClientCommand(finalPredicate);
         expectedModel.updateFilteredClientList(finalPredicate);
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 0) + "\n" + finalPredicate;
@@ -69,9 +71,11 @@ public class FindClientCommandTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void execute_multipleKeywords_multipleClientsFound() {
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        CombinedPredicate<Client> finalPredicate = new CombinedPredicate<>(Arrays.asList(predicate));
+        NameContainsKeywordsPredicate predicate =
+                PredicateUtil.getNameContainsKeywordsPredicate("Kurz", "Elle", "Kunz");
+        CombinedPredicate<Client> finalPredicate = PredicateUtil.getCombinedPredicate(predicate);
         FindClientCommand command = new FindClientCommand(finalPredicate);
         expectedModel.updateFilteredClientList(finalPredicate);
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 3) + "\n" + finalPredicate;
@@ -79,10 +83,4 @@ public class FindClientCommandTest {
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }
 
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    }
 }
