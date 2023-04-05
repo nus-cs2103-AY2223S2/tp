@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam groupInheritance 1
+
+Abstract Class "{abstract}\nItem" as Item
+Abstract Class "{abstract}\nPerson" as Person
+Class Supplier
+Class Customer
+Abstract Class "{abstract}\nName" as Name
+
+together {
+Class PersonName
+Class PersonAddress
+Class PersonEmail
+Class PersonPhone
+Class Tag
+}
+
+Class ItemList<T extends Item>
+Class "UniqueItemList<T> " as UniqueItemList
+
+ItemList *--> "1" UniqueItemList
+UniqueItemList --> "*" Item
+
+SupplierList *--> "1" UniqueSupplierList
+UniqueSupplierList --> "*" Supplier
+SupplierList --l|> ItemList
+UniqueSupplierList --l|> UniqueItemList
+CustomerList *--d> "1" UniqueCustomerList
+UniqueCustomerList --d> "             *" Customer
+CustomerList --r|> ItemList
+UniqueCustomerList --r|> UniqueItemList
+
+Person *--> "1" PersonName
+Person *--> "1" PersonPhone
+Person *--> "1" PersonEmail
+Person *--> "1" PersonAddress
+Person *--> "*" Tag
+Person --u|> Item
+
+Supplier --|> Person
+Customer --|> Person
+
+PersonName --|> Name
+
+@enduml

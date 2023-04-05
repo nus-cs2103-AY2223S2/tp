@@ -4,47 +4,42 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+top to bottom direction
+
+package "Model " MODEL_COLOR_T1 {
+Class "<<interface>>\nReadOnlyXYZList" as ReadOnlyXYZList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class XYZList
 Class ModelManager
 Class UserPrefs
-
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-
+Class UniqueXYZList
+Class XYZ
+Class "{abstract}\nItem" as Item
+Class ItemList<T extends Item>
+Class "UniqueItemList<T> " as UniqueItemList
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ModelManager ..u|> Model
+Model ..r> ReadOnlyUserPrefs
+Model ..l> ReadOnlyXYZList
+ModelManager --l> " 1" XYZList
+ModelManager --r> "1 " UserPrefs
+UserPrefs ..u> ReadOnlyUserPrefs
 
-ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+XYZList ..u|> ReadOnlyXYZList
+XYZList *--d> "         1" UniqueXYZList
+UniqueXYZList --> "*" XYZ : contains all >
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ModelManager ----> "*" XYZ : contains filtered >
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ItemList *-d> "1 " UniqueItemList
+UniqueItemList -d> "              *" Item
 
-ModelManager -->"~* filtered" Person
+UniqueXYZList --l|> UniqueItemList
+XYZList --l|> ItemList
+XYZ --l|> Item
 @enduml

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="488px" preserveAspectRatio="none" style="width:660px;height:488px;background:#FFFFFF;" version="1.1" viewBox="0 0 660 488" width="660px" zoomAndPan="magnify"><defs/><g><!--MD5=[703019aa5f8c8aa387047de168090ce7]
+cluster Parser classes--><g id="cluster_Parser classes"><rect fill="none" height="402" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="528" x="7" y="80"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="102" x="220" y="95.5352">Parser classes</text></g><!--MD5=[628cc5a2753cca06eb1ffef55c386535]
+class Parser--><g id="elem_Parser"><rect codeLine="10" fill="#3333C4" height="42.1973" id="Parser" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="93" x="258.5" y="115"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="87" x="261.5" y="133.1318">&lt;&lt;interface&gt;&gt;</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="42" x="284" y="149.2305">Parser</text></g><!--MD5=[c55b3b0e591a57f21b6daadc7a5e584c]
+class AddressBookParser--><g id="elem_AddressBookParser"><rect codeLine="11" fill="#3333C4" height="26.0986" id="AddressBookParser" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="132" x="387" y="123"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="126" x="390" y="141.1318">AddressBookParser</text></g><!--MD5=[746b88d7985d9e505b8852bd181da32b]
+class XYZCommandParser--><g id="elem_XYZCommandParser"><rect codeLine="12" fill="#3333C4" height="26.0986" id="XYZCommandParser" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="141" x="312.5" y="242"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="135" x="315.5" y="260.1318">XYZCommandParser</text></g><!--MD5=[a5f9b6bdaa662156cb9d68223195a1d4]
+class CliSyntax--><g id="elem_CliSyntax"><rect codeLine="13" fill="#3333C4" height="26.0986" id="CliSyntax" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="65" x="350.5" y="353"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="59" x="353.5" y="371.1318">CliSyntax</text></g><!--MD5=[2d4364422ef2416875213e99e5053212]
+class ParserUtil--><g id="elem_ParserUtil"><rect codeLine="14" fill="#3333C4" height="26.0986" id="ParserUtil" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="68" x="451" y="353"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="62" x="454" y="371.1318">ParserUtil</text></g><!--MD5=[219f3ac85648aee436ae9305d11a5044]
+class ArgumentMultimap--><g id="elem_ArgumentMultimap"><rect codeLine="15" fill="#3333C4" height="26.0986" id="ArgumentMultimap" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="126" x="23" y="353"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="120" x="26" y="371.1318">ArgumentMultimap</text></g><!--MD5=[976c1e937c698a0ce33eedc81d81cedc]
+class ArgumentTokenizer--><g id="elem_ArgumentTokenizer"><rect codeLine="16" fill="#3333C4" height="26.0986" id="ArgumentTokenizer" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="131" x="184.5" y="353"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="125" x="187.5" y="371.1318">ArgumentTokenizer</text></g><!--MD5=[441c273129fdc179bfb2b8ffb4e98281]
+class Prefix--><g id="elem_Prefix"><rect codeLine="17" fill="#3333C4" height="26.0986" id="Prefix" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="50" x="358" y="440"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="36" x="365" y="458.1318">Prefix</text></g><!--MD5=[521817ab83e81da341a3f4b5e91bae41]
+class Command--><g id="elem_Command"><rect codeLine="6" fill="#3333C4" height="42.1973" id="Command" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="72" x="559" y="234"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="564.5" y="252.1318">{abstract}</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="66" x="562" y="268.2305">Command</text></g><!--MD5=[20b3262af791fb1c285bffe8069ced12]
+class XYZCommand--><g id="elem_XYZCommand"><rect codeLine="7" fill="#3333C4" height="26.0986" id="XYZCommand" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="99" x="554.5" y="353"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="557.5" y="371.1318">XYZCommand</text></g><!--MD5=[f8dc820cca8808bdb695301f77a92b66]
+class HiddenOutside--><g id="elem_HiddenOutside"><rect codeLine="20" fill="#FFFFFF" height="26.0986" id="HiddenOutside" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.0;" width="100" x="403" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="406" y="25.1318">HiddenOutside</text></g><!--MD5=[cc9301565b24b2b2f57ed1e5f3abbd8d]
+link HiddenOutside to AddressBookParser--><g id="link_HiddenOutside_AddressBookParser"><path codeLine="21" d="M453,33.2 C453,53.07 453,92.54 453,116.07 " fill="none" id="HiddenOutside-to-AddressBookParser" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="453,121.03,457,112.03,453,116.03,449,112.03,453,121.03" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[9dcc20432aa74acff501cdd9cd480f84]
+link AddressBookParser to XYZCommandParser--><g id="link_AddressBookParser_XYZCommandParser"><path codeLine="23" d="M445.77,149.08 C433.35,169.84 407.92,212.35 393.53,236.4 " fill="none" id="AddressBookParser-to-XYZCommandParser" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="391.07,240.51,399.1304,234.8505,393.6425,236.2225,392.2705,230.7346,391.07,240.51" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="#000000" points="424.433,199.946,431.5988,193.6928,426.5547,190.6751,424.433,199.946" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="45" x="436" y="200.5684">creates</text></g><!--MD5=[d27984addfc542d1d1be725c2279ae44]
+link XYZCommandParser to XYZCommand--><g id="link_XYZCommandParser_XYZCommand"><path codeLine="25" d="M407.92,268.29 C448.54,288.33 528.92,327.97 573.1,349.76 " fill="none" id="XYZCommandParser-to-XYZCommand" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="577.47,351.92,571.1799,344.3415,572.9893,349.7011,567.6297,351.5106,577.47,351.92" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="#000000" points="522.4842,316.867,515.6722,310.2302,513.0722,315.5017,522.4842,316.867" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="45" x="527" y="319.5684">creates</text></g><!--MD5=[06c753ca6734b5ffde448918d4ce695b]
+link AddressBookParser to Command--><g id="link_AddressBookParser_Command"><path codeLine="26" d="M467.93,149.3 C490.95,168.27 535.56,205.03 565.32,229.55 " fill="none" id="AddressBookParser-to-Command" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="569.16,232.71,564.768,223.8946,565.3049,229.526,559.6736,230.0628,569.16,232.71" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="#000000" points="540.8587,198.8349,535.7471,190.8148,532.0093,195.351,540.8587,198.8349" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="45" x="546" y="200.5684">returns</text></g><!--MD5=[f47c1d38bfb0bbd90ce9ecfd02721fe6]
+reverse link Parser to XYZCommandParser--><g id="link_Parser_XYZCommandParser"><path codeLine="27" d="M330.49,175.23 C345.85,198.27 364.39,226.09 374.83,241.74 " fill="none" id="Parser-backto-XYZCommandParser" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="324.7,179.16,319.43,158.64,336.34,171.4,324.7,179.16" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[7704627926244de72f7ef2eb6defa245]
+link XYZCommandParser to ArgumentMultimap--><g id="link_XYZCommandParser_ArgumentMultimap"><path codeLine="28" d="M349.22,268.4 C293.95,288.68 184.48,328.86 125.63,350.46 " fill="none" id="XYZCommandParser-to-ArgumentMultimap" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="121.17,352.09,130.9982,352.7279,125.861,350.3595,128.2294,345.2223,121.17,352.09" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[3e460ee2718e2446fc84ab0c879fd975]
+link XYZCommandParser to ArgumentTokenizer--><g id="link_XYZCommandParser_ArgumentTokenizer"><path codeLine="29" d="M368,268.29 C343.95,288 296.76,326.68 269.91,348.68 " fill="none" id="XYZCommandParser-to-ArgumentTokenizer" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="266.32,351.63,275.8227,349.042,270.1949,348.47,270.7668,342.8422,266.32,351.63" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[744126052430dceb43a1fc87b0afff3a]
+reverse link ArgumentMultimap to ArgumentTokenizer--><g id="link_ArgumentMultimap_ArgumentTokenizer"><path codeLine="30" d="M155.7,366 C165.27,366 174.83,366 184.39,366 " fill="none" id="ArgumentMultimap-backto-ArgumentTokenizer" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="150.94,366,159.94,370,155.94,366,159.94,362,150.94,366" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[57b8f0a03f5f0a08076cf01ef235fbd0]
+link XYZCommandParser to CliSyntax--><g id="link_XYZCommandParser_CliSyntax"><path codeLine="31" d="M383,268.08 C383,286.97 383,323.64 383,346.06 " fill="none" id="XYZCommandParser-to-CliSyntax" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="383,351.02,387,342.02,383,346.02,379,342.02,383,351.02" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[46bd36fa196b2102764e4db65e78a96e]
+link CliSyntax to Prefix--><g id="link_CliSyntax_Prefix"><path codeLine="32" d="M383,379.18 C383,393.36 383,416.95 383,433.42 " fill="none" id="CliSyntax-to-Prefix" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="383,438.05,387,429.05,383,433.05,379,429.05,383,438.05" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[23dc644bd6e395904f7fbc7f95585d62]
+link XYZCommandParser to ParserUtil--><g id="link_XYZCommandParser_ParserUtil"><path codeLine="33" d="M393.18,268.1 C404.73,281.71 424.28,304.34 442,323 C450.09,331.52 459.39,340.68 467.26,348.25 " fill="none" id="XYZCommandParser-to-ParserUtil" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="470.86,351.7,467.1211,342.5884,467.2468,348.2439,461.5913,348.3696,470.86,351.7" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[0e7e27ed237fb40dcd22197309d5f712]
+link ParserUtil to Prefix--><g id="link_ParserUtil_Prefix"><path codeLine="34" d="M470.39,379.18 C452.61,393.99 422.54,419.05 402.72,435.57 " fill="none" id="ParserUtil-to-Prefix" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="399.08,438.6,408.5557,435.9147,402.9223,435.4005,403.4365,429.767,399.08,438.6" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[5a965c56be27e54f1a55401a0d6400e9]
+link ArgumentTokenizer to Prefix--><g id="link_ArgumentTokenizer_Prefix"><path codeLine="35" d="M269.34,379.36 C292.88,394.4 332.67,419.83 358.38,436.26 " fill="none" id="ArgumentTokenizer-to-Prefix" style="stroke:#101086;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#101086" points="362.36,438.81,356.9199,430.5999,358.1435,436.1228,352.6205,437.3464,362.36,438.81" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[520da0335c5a8803876f267d9ec2ad91]
+reverse link Command to XYZCommand--><g id="link_Command_XYZCommand"><path codeLine="36" d="M598.43,297.58 C600.06,317.24 601.88,339.29 602.98,352.66 " fill="none" id="Command-backto-XYZCommand" style="stroke:#101086;stroke-width:1.1;"/><polygon fill="none" points="591.47,298.26,596.8,277.76,605.42,297.11,591.47,298.26" style="stroke:#101086;stroke-width:1.1;"/></g><!--MD5=[60d6e1405079e4fe0e3de9790aece7f9]
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+Class "{abstract}\nCommand" as Command
+Class XYZCommand
+
+package "Parser classes"{
+Class "<<interface>>\nParser" as Parser
+Class AddressBookParser
+Class XYZCommandParser
+Class CliSyntax
+Class ParserUtil
+Class ArgumentMultimap
+Class ArgumentTokenizer
+Class Prefix
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> AddressBookParser
+
+AddressBookParser .down.> XYZCommandParser: creates >
+
+XYZCommandParser ..> XYZCommand : creates >
+AddressBookParser ..> Command : returns >
+XYZCommandParser .up.|> Parser
+XYZCommandParser ..> ArgumentMultimap
+XYZCommandParser ..> ArgumentTokenizer
+ArgumentTokenizer .left.> ArgumentMultimap
+XYZCommandParser ..> CliSyntax
+CliSyntax ..> Prefix
+XYZCommandParser ..> ParserUtil
+ParserUtil .down.> Prefix
+ArgumentTokenizer .down.> Prefix
+XYZCommand -up-|> Command
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 0
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam arrowThickness 1.1
+skinparam arrowColor #101086
+skinparam classBackgroundColor #3333C4
+
+Class "{abstract}\nCommand" as Command
+Class XYZCommand
+
+package "Parser classes"{
+Class "<<interface>>\nParser" as Parser
+Class AddressBookParser
+Class XYZCommandParser
+Class CliSyntax
+Class ParserUtil
+Class ArgumentMultimap
+Class ArgumentTokenizer
+Class Prefix
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> AddressBookParser
+
+AddressBookParser .down.> XYZCommandParser: creates >
+
+XYZCommandParser ..> XYZCommand : creates >
+AddressBookParser ..> Command : returns >
+XYZCommandParser .up.|> Parser
+XYZCommandParser ..> ArgumentMultimap
+XYZCommandParser ..> ArgumentTokenizer
+ArgumentTokenizer .left.> ArgumentMultimap
+XYZCommandParser ..> CliSyntax
+CliSyntax ..> Prefix
+XYZCommandParser ..> ParserUtil
+ParserUtil .down.> Prefix
+ArgumentTokenizer .down.> Prefix
+XYZCommand -up-|> Command
+@enduml
+
+PlantUML version 1.2022.7(Tue Aug 23 01:01:30 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: SG
+--></g></svg>

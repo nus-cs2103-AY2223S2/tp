@@ -1,0 +1,35 @@
+{
+    "_comment": "Trackr save file which contains the same Order values as in TypicalOrders#getTypicalOrderList()",
+    "suppliers": [ ],
+    "tasks": [ ],
+    "orders": [ {
+        "customerName": "John Doe",
+        "customerPhone": "98765432",
+        "customerAddress": "123 Smith Street",
+        "menuItem": {
+            "itemName": "Chocolate Cookies",
+            "itemCost": "2.00",
+            "itemPrice": "5.00",
+            "itemProfit": "3.00"
+        },
+        "orderDeadline": "01/01/2024",
+        "orderStatus": "N",
+        "orderQuantity": "3",
+        "timeAdded" : "2023-02-27T19:26:53.230822300"
+    }, {
+        "customerName": "Mary Jane",
+        "customerPhone": "12345678",
+        "customerAddress": "321 Jurong Street",
+        "menuItem": {
+            "itemName": "Cupcakes",
+            "itemCost": "1.00",
+            "itemPrice": "3.00",
+            "itemProfit": "2.00"
+        },
+        "orderDeadline": "12/12/2024",
+        "orderStatus": "N",
+        "orderQuantity": "10",
+        "timeAdded" : "2023-03-18T14:49:22.368274900"
+    } ],
+    "menuItems": [ ]
+  }

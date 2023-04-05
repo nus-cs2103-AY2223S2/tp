@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="TOP_CENTER" centerShape="false" hgap="10.0" prefHeight="531.0" prefWidth="430.0" vgap="10.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@DarkTheme.css" />
+   </stylesheets>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" />
+    <ColumnConstraints hgrow="SOMETIMES" />
+      <ColumnConstraints hgrow="SOMETIMES" />
+      <ColumnConstraints hgrow="SOMETIMES" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="85.0" prefHeight="21.0" vgrow="NEVER" />
+    <RowConstraints maxHeight="229.0" prefHeight="62.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="241.0" minHeight="29.0" prefHeight="29.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="217.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="195.0" minHeight="26.0" prefHeight="26.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="378.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <opaqueInsets>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+   </padding>
+   <children>
+      <GridPane minHeight="-Infinity" minWidth="-Infinity" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <children>
+                  <Text fx:id="revenuePlaceholder" strokeType="OUTSIDE" strokeWidth="0.0" text="Revenue" textAlignment="CENTER">
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </FlowPane.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" />
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0">
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </FlowPane.margin>
+                  </Text>
+                  <Text fx:id="profitPlaceholder" strokeType="OUTSIDE" strokeWidth="0.0" text="\$1000" />
+               </children>
+            </FlowPane>
+         </children>
+      </GridPane>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sales">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Orders" GridPane.rowIndex="2">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <StackPane fx:id="ordersPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="3" styleClass="dashboard-elems"/>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks" GridPane.columnIndex="3" GridPane.rowIndex="2">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <StackPane fx:id="tasksPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" styleClass="dashboard-elems" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" GridPane.columnIndex="3" GridPane.rowIndex="4">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <StackPane fx:id="menuPlaceholder" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" styleClass="dashboard-elems" />
+   </children>
+</GridPane>

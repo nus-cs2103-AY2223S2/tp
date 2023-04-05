@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="561px" preserveAspectRatio="none"
+     style="width:511px;height:561px;background:#FFFFFF;" version="1.1" viewBox="0 0 511 561" width="511px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g><!--cluster Model -->
+        <g id="cluster_Model ">
+            <rect fill="#F97181" height="475" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="498"
+                  x="7" y="80"/>
+            <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing"
+                  textLength="44" x="232" y="97.1074">Model
+            </text>
+        </g><!--class ReadOnlyXYZList-->
+        <g id="elem_ReadOnlyXYZList">
+            <rect codeLine="9" fill="#9D0012" height="41.2813" id="ReadOnlyXYZList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="116" x="94" y="117"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="116.5"
+                  y="134.6738">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="110" x="97"
+                  y="150.3145">ReadOnlyXYZList
+            </text>
+        </g><!--class ReadOnlyUserPrefs-->
+        <g id="elem_ReadOnlyUserPrefs">
+            <rect codeLine="10" fill="#9D0012" height="41.2813" id="ReadOnlyUserPrefs" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="131" x="357.5" y="117"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="387.5"
+                  y="134.6738">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="125" x="360.5"
+                  y="150.3145">ReadOnlyUserPrefs
+            </text>
+        </g><!--class Model-->
+        <g id="elem_Model">
+            <rect codeLine="11" fill="#9D0012" height="41.2813" id="Model" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="77" x="245.5" y="117"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="71" x="248.5"
+                  y="134.6738">&#171;interface&#187;
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="38" x="265"
+                  y="150.3145">Model
+            </text>
+        </g><!--class XYZList-->
+        <g id="elem_XYZList">
+            <rect codeLine="12" fill="#9D0012" height="25.6406" id="XYZList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="53" x="197.5" y="219"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="47" x="200.5"
+                  y="236.6738">XYZList
+            </text>
+        </g><!--class ModelManager-->
+        <g id="elem_ModelManager">
+            <rect codeLine="13" fill="#9D0012" height="25.6406" id="ModelManager" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="100" x="286" y="219"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="289"
+                  y="236.6738">ModelManager
+            </text>
+        </g><!--class UserPrefs-->
+        <g id="elem_UserPrefs">
+            <rect codeLine="14" fill="#9D0012" height="25.6406" id="UserPrefs" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="68" x="421" y="219"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="62" x="424"
+                  y="236.6738">UserPrefs
+            </text>
+        </g><!--class UniqueXYZList-->
+        <g id="elem_UniqueXYZList">
+            <rect codeLine="15" fill="#9D0012" height="25.6406" id="UniqueXYZList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="97" x="187.5" y="306"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="91" x="190.5"
+                  y="323.6738">UniqueXYZList
+            </text>
+        </g><!--class XYZ-->
+        <g id="elem_XYZ">
+            <rect codeLine="16" fill="#9D0012" height="25.6406" id="XYZ" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="50" x="194" y="513"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="25" x="206.5"
+                  y="530.6738">XYZ
+            </text>
+        </g><!--class Item-->
+        <g id="elem_Item">
+            <rect codeLine="17" fill="#9D0012" height="41.2813" id="Item" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="67" x="69.5" y="362"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="72.5"
+                  y="379.6738">{abstract}
+            </text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="26" x="90"
+                  y="395.3145">Item
+            </text>
+        </g><!--class ItemList-->
+        <g id="elem_ItemList">
+            <rect codeLine="18" fill="#9D0012" height="25.6406" id="ItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="139" x="23.5" y="219"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="48" x="26.5"
+                  y="236.6738">ItemList
+            </text>
+            <rect fill="#FFFFFF" height="17.9609" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;"
+                  width="83" x="82.5" y="216"/>
+            <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing"
+                  textLength="81" x="83.5" y="229.9492">T extends Item
+            </text>
+        </g><!--class UniqueItemList-->
+        <g id="elem_UniqueItemList">
+            <rect codeLine="19" fill="#9D0012" height="25.6406" id="UniqueItemList" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="127" x="25.5" y="306"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="117" x="28.5"
+                  y="323.6738">UniqueItemList&lt;T&gt;
+            </text>
+        </g><!--class HiddenOutside-->
+        <g id="elem_HiddenOutside">
+            <rect codeLine="22" fill="#FFFFFF" height="25.6406" id="HiddenOutside" rx="2.5" ry="2.5"
+                  style="stroke:#181818;stroke-width:0.0;" width="99" x="234.5" y="7"/>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="93" x="237.5"
+                  y="24.6738">HiddenOutside
+            </text>
+        </g><!--link HiddenOutside to Model-->
+        <g id="link_HiddenOutside_Model">
+            <path codeLine="23" d="M284,33.36 C284,51.55 284,85.98 284,110.03 " fill="none" id="HiddenOutside-to-Model"
+                  style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#9D0012" points="284,115.01,288,106.01,284,110.01,280,106.01,284,115.01"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link Model to ModelManager-->
+        <g id="link_Model_ModelManager">
+            <path codeLine="25" d="M305.55,176.83 C313.93,191.74 322.94,207.78 328.97,218.5 " fill="none"
+                  id="Model-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="299.47,180.3,295.77,159.44,311.67,173.44,299.47,180.3"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link Model to ReadOnlyUserPrefs-->
+        <g id="link_Model_ReadOnlyUserPrefs">
+            <path codeLine="26" d="M322.82,137.5 C332.15,137.5 341.48,137.5 350.8,137.5 " fill="none"
+                  id="Model-to-ReadOnlyUserPrefs" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#9D0012" points="355.74,137.5,346.74,133.5,350.74,137.5,346.74,141.5,355.74,137.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link ReadOnlyXYZList to Model-->
+        <g id="link_ReadOnlyXYZList_Model">
+            <path codeLine="27" d="M216.53,137.5 C226.06,137.5 235.59,137.5 245.12,137.5 " fill="none"
+                  id="ReadOnlyXYZList-backto-Model" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#9D0012" points="211.78,137.5,220.78,141.5,216.78,137.5,220.78,133.5,211.78,137.5"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link XYZList to ModelManager-->
+        <g id="link_XYZList_ModelManager">
+            <path codeLine="28" d="M256.98,232 C266.54,232 276.11,232 285.68,232 " fill="none"
+                  id="XYZList-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="252.2,232,261.2,236,257.2,232,261.2,228,252.2,232"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="262.5363" y="227.0357">1
+            </text>
+        </g><!--link ModelManager to UserPrefs-->
+        <g id="link_ModelManager_UserPrefs">
+            <path codeLine="29" d="M386.2,232 C395.52,232 404.84,232 414.15,232 " fill="none"
+                  id="ModelManager-to-UserPrefs" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="419.09,232,410.09,228,414.09,232,410.09,236,419.09,232"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="401.9941" y="227.47">1
+            </text>
+        </g><!--reverse link ReadOnlyUserPrefs to UserPrefs-->
+        <g id="link_ReadOnlyUserPrefs_UserPrefs">
+            <path codeLine="30" d="M431.79,163.91 C437.93,181.65 445.85,204.56 450.68,218.5 " fill="none"
+                  id="ReadOnlyUserPrefs-backto-UserPrefs"
+                  style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="#9D0012"
+                     points="430.28,159.55,429.4288,169.362,431.9082,164.2775,436.9927,166.7569,430.28,159.55"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link ReadOnlyXYZList to XYZList-->
+        <g id="link_ReadOnlyXYZList_XYZList">
+            <path codeLine="32" d="M180.46,175.07 C192.44,190.46 205.59,207.35 214.27,218.5 " fill="none"
+                  id="ReadOnlyXYZList-backto-XYZList"
+                  style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/>
+            <polygon fill="none" points="174.96,179.39,168.2,159.31,186.01,170.79,174.96,179.39"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--link XYZList to UniqueXYZList-->
+        <g id="link_XYZList_UniqueXYZList">
+            <path codeLine="33" d="M227.69,259.12 C229.14,269.37 230.8,281.14 232.25,291.44 " fill="none"
+                  id="XYZList-UniqueXYZList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="225.93,246.68,222.8137,253.183,227.6178,258.5607,230.7341,252.0577,225.93,246.68"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="234.03,304.07,236.7347,294.5998,233.3321,299.1189,228.813,295.7164,234.03,304.07"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="233.3321" x2="232.215" y1="299.1189" y2="291.195"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="218.6629" y="294.6315">1
+            </text>
+        </g><!--link UniqueXYZList to XYZ-->
+        <g id="link_UniqueXYZList_XYZ">
+            <path codeLine="34" d="M234.99,332.21 C232.13,366.67 223.99,464.84 220.56,506.23 " fill="none"
+                  id="UniqueXYZList-to-XYZ" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="220.15,511.09,224.8815,502.4521,220.564,506.1072,216.909,501.7897,220.15,511.09"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#000000" points="230.5868,447.6284,234.2632,438.8571,228.4054,438.3714,230.5868,447.6284"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="66" x="240"
+                  y="448.0283">contains all
+            </text>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="214.4879" y="501.6726">*
+            </text>
+        </g><!--link ModelManager to XYZ-->
+        <g id="link_ModelManager_XYZ">
+            <path codeLine="36"
+                  d="M338.06,245.38 C343.26,280.42 353.84,382.26 315,452 C300.35,478.31 271.86,498.09 249.71,510.39 "
+                  fill="none" id="ModelManager-to-XYZ" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="245.56,512.63,255.3804,511.8812,249.9614,510.2578,251.5848,504.8389,245.56,512.63"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#000000" points="344.4186,387.3889,350.0674,379.7376,344.4913,377.8786,344.4186,387.3889"
+                     style="stroke:#000000;stroke-width:1.0;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="91" x="355"
+                  y="388.0283">contains filtered
+            </text>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="252.0291" y="504.5213">*
+            </text>
+        </g><!--link ItemList to UniqueItemList-->
+        <g id="link_ItemList_UniqueItemList">
+            <path codeLine="38" d="M91.75,259.6 C91.27,269.68 90.73,281.15 90.26,291.24 " fill="none"
+                  id="ItemList-UniqueItemList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="92.36,246.69,88.081,252.4943,91.793,258.6766,96.072,252.8723,92.36,246.69"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012" points="89.66,304.06,94.0711,295.2542,89.8908,299.0653,86.0797,294.885,89.66,304.06"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="89.8908" x2="90.265" y1="299.0653" y2="291.07"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7"
+                  x="76.7794" y="294.6315">1
+            </text>
+        </g><!--link UniqueItemList to Item-->
+        <g id="link_UniqueItemList_Item">
+            <path codeLine="39" d="M91.83,332.45 C93.36,339.16 95.31,347.7 97.14,355.77 " fill="none"
+                  id="UniqueItemList-to-Item" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="#9D0012"
+                     points="98.18,360.33,100.0725,350.6647,97.0651,355.4559,92.2739,352.4485,98.18,360.33"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="5"
+                  x="80.1185" y="353.6856">*
+            </text>
+        </g><!--reverse link UniqueItemList to UniqueXYZList-->
+        <g id="link_UniqueItemList_UniqueXYZList">
+            <path codeLine="41" d="M174.02,319 C178.42,319 182.81,319 187.21,319 " fill="none"
+                  id="UniqueItemList-backto-UniqueXYZList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="174.25,326,154.25,319,174.25,312,174.25,326"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link ItemList to XYZList-->
+        <g id="link_ItemList_XYZList">
+            <path codeLine="42" d="M184.35,232 C188.65,232 192.95,232 197.25,232 " fill="none"
+                  id="ItemList-backto-XYZList" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="184.36,239,164.36,232,184.36,225,184.36,239"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--reverse link Item to XYZ-->
+        <g id="link_Item_XYZ">
+            <path codeLine="43" d="M132.83,419.89 C157.84,450.4 192.08,492.16 208.87,512.65 " fill="none"
+                  id="Item-backto-XYZ" style="stroke:#9D0012;stroke-width:1.1;"/>
+            <polygon fill="none" points="127.6,424.55,120.33,404.64,138.43,415.67,127.6,424.55"
+                     style="stroke:#9D0012;stroke-width:1.1;"/>
+        </g><!--SRC=[XLBHQi8m57tFLznrRuA5lWxfmzp61ag7A6n3aDXSNJ0cBadPnFdlIsEhJLNMf-JSSyuzjpStNEQYO0Z6RWN6cs8jY5bnkQ6Qhe5ghRx7dpnVIJG6aZXf5_jAA0t3xE5nCEjdWspK8EI26dDFyzLIgqAoSognQWDMmLnPgzR0kCRSSYK9sJWLNI94GyLGGDIKpSO9x4Y_D8Uer-FIebxG7DDqAaT8MIR5zktzOy2DZO0QQ67_A2S6zQl6XGcqH_IAsiVq2d-gM657NnbIwURI5TIsdKZ-LM0eSxUwwOxEZTKqj_kfVB6uzWtBGqKeZwMoDmRyiIZP0Kfh_S7-n4h1EuGmsPEA_ymPGvaLrd3tG6wV_4T2D8xJQcJIdC_XnMzTEUmmZdLwuN_MHP6UBIemx7P56JU9u4hPkKU9OvoiZwSopQNUfBAgqhRxrzLEjylAtlNdCeIB2cukYYDtV4wuWrn9IxaqG8M0bBHJNo4lk72l2rcfg1VZSh1wnd1ZuHN2jFvp7VmxEOigtDmjjx3OX1lG7m00]-->
+    </g>
+</svg>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="us-ascii" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" contentStyleType="text/css" height="764px" preserveAspectRatio="none"
+     style="width:516px;height:764px;background:#FFFFFF;" version="1.1" viewBox="0 0 516 764" width="516px"
+     zoomAndPan="magnify">
+    <defs/>
+    <g>
+        <ellipse cx="219.25" cy="20" fill="#222222" rx="10" ry="10" style="stroke:#222222;stroke-width:1.0;"/>
+        <rect fill="#F1F1F1" height="35.9609" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="206"
+              x="116.25" y="50"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="186" x="126.25"
+              y="72.9492">User executes FindXYZCommand
+        </text>
+        <rect fill="#F1F1F1" height="51.9219" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="337"
+              x="50.75" y="105.9609"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="317" x="60.75"
+              y="128.9102">FindXYZCommandParser extracts the relevant information
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="131" x="153.75"
+              y="144.8711">from the input argument
+        </text>
+        <polygon fill="#F1F1F1"
+                 points="219.25,177.8828,219.25,177.8828,231.25,189.8828,219.25,201.8828,219.25,201.8828,207.25,189.8828,219.25,177.8828"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="112" x="95.25"
+              y="187.1221">[Invalid Input Argument]
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="26" x="231.25"
+              y="187.1221">[else]
+        </text>
+        <rect fill="#F1F1F1" height="51.9219" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="187"
+              x="11" y="211.8828"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="126" x="41.5"
+              y="234.832">Display error message
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="167" x="21"
+              y="250.793">on invalid command argument
+        </text>
+        <ellipse cx="104.5" cy="309.8047" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="104.5" cy="309.8047" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <rect fill="#F1F1F1" height="35.9609" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="230"
+              x="219" y="211.8828"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="210" x="229"
+              y="234.832">Create XYZContainsKeywordPredicate
+        </text>
+        <rect fill="#F1F1F1" height="51.9219" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="129"
+              x="269.5" y="340.8047"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="109" x="279.5"
+              y="363.7539">Check if current XYZ
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="102" x="283"
+              y="379.7148">matches predicate
+        </text>
+        <rect fill="#F1F1F1" height="35.9609" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="148"
+              x="260" y="462.042"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="125" x="273"
+              y="484.9912">Keep XYZ in filtered list
+        </text>
+        <polygon fill="#F1F1F1"
+                 points="334,412.7266,334,412.7266,346,424.7266,334,436.7266,334,436.7266,322,424.7266,334,412.7266"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="25" x="338"
+              y="448.5967">[true]
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="30" x="346"
+              y="421.9658">[false]
+        </text>
+        <polygon fill="#F1F1F1" points="334,518.0029,346,530.0029,334,542.0029,322,530.0029,334,518.0029"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <polygon fill="#F1F1F1" points="334,282.8438,346,294.8438,334,306.8438,322,294.8438,334,282.8438"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <polygon fill="#F1F1F1"
+                 points="334,562.0029,334,562.0029,346,574.0029,334,586.0029,334,586.0029,322,574.0029,334,562.0029"
+                 style="stroke:#181818;stroke-width:0.5;"/>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="26" x="338"
+              y="597.873">[else]
+        </text>
+        <text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="158" x="346"
+              y="571.2422">[Have remaining XYZ in XYZList]
+        </text>
+        <rect fill="#F1F1F1" height="35.9609" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="232"
+              x="218" y="619.373"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="209" x="231"
+              y="642.3223">Show all filtered XYZ in FilteredXYZList
+        </text>
+        <rect fill="#F1F1F1" height="35.9609" rx="12.5" ry="12.5" style="stroke:#181818;stroke-width:0.5;" width="189"
+              x="239.5" y="675.334"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="166" x="252.5"
+              y="698.2832">Success message is returned
+        </text>
+        <ellipse cx="334" cy="742.2949" fill="none" rx="11" ry="11" style="stroke:#222222;stroke-width:1.0;"/>
+        <ellipse cx="334" cy="742.2949" fill="#222222" rx="6" ry="6" style="stroke:#111111;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="219.25" x2="219.25" y1="30" y2="50"/>
+        <polygon fill="#181818" points="215.25,40,219.25,50,223.25,40,219.25,44"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="219.25" x2="219.25" y1="85.9609" y2="105.9609"/>
+        <polygon fill="#181818" points="215.25,95.9609,219.25,105.9609,223.25,95.9609,219.25,99.9609"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="104.5" x2="104.5" y1="263.8047" y2="298.8047"/>
+        <polygon fill="#181818" points="100.5,288.8047,104.5,298.8047,108.5,288.8047,104.5,292.8047"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="334" x2="334" y1="436.7266" y2="462.042"/>
+        <polygon fill="#181818" points="330,452.042,334,462.042,338,452.042,334,456.042"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="346" x2="418" y1="424.7266" y2="424.7266"/>
+        <polygon fill="#181818" points="414,470.0225,418,480.0225,422,470.0225,418,474.0225"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="418" x2="418" y1="424.7266" y2="530.0029"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="418" x2="346" y1="530.0029" y2="530.0029"/>
+        <polygon fill="#181818" points="356,526.0029,346,530.0029,356,534.0029,352,530.0029"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="334" x2="334" y1="498.0029" y2="518.0029"/>
+        <polygon fill="#181818" points="330,508.0029,334,518.0029,338,508.0029,334,512.0029"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="334" x2="334" y1="392.7266" y2="412.7266"/>
+        <polygon fill="#181818" points="330,402.7266,334,412.7266,338,402.7266,334,406.7266"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="334" x2="334" y1="306.8438" y2="340.8047"/>
+        <polygon fill="#181818" points="330,330.8047,334,340.8047,338,330.8047,334,334.8047"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="346" x2="442" y1="574.0029" y2="574.0029"/>
+        <polygon fill="#181818" points="438,446.5615,442,436.5615,446,446.5615,442,442.5615"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="442" x2="442" y1="294.8438" y2="574.0029"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="442" x2="346" y1="294.8438" y2="294.8438"/>
+        <polygon fill="#181818" points="356,290.8438,346,294.8438,356,298.8438,352,294.8438"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="334" x2="334" y1="542.0029" y2="562.0029"/>
+        <polygon fill="#181818" points="330,552.0029,334,562.0029,338,552.0029,334,556.0029"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="334" x2="334" y1="247.8438" y2="282.8438"/>
+        <polygon fill="#181818" points="330,272.8438,334,282.8438,338,272.8438,334,276.8438"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="334" x2="334" y1="586.0029" y2="619.373"/>
+        <polygon fill="#181818" points="330,609.373,334,619.373,338,609.373,334,613.373"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="334" x2="334" y1="655.334" y2="675.334"/>
+        <polygon fill="#181818" points="330,665.334,334,675.334,338,665.334,334,669.334"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="334" x2="334" y1="711.2949" y2="731.2949"/>
+        <polygon fill="#181818" points="330,721.2949,334,731.2949,338,721.2949,334,725.2949"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="207.25" x2="104.5" y1="189.8828" y2="189.8828"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="104.5" x2="104.5" y1="189.8828" y2="211.8828"/>
+        <polygon fill="#181818" points="100.5,201.8828,104.5,211.8828,108.5,201.8828,104.5,205.8828"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="231.25" x2="334" y1="189.8828" y2="189.8828"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="334" x2="334" y1="189.8828" y2="211.8828"/>
+        <polygon fill="#181818" points="330,201.8828,334,211.8828,338,201.8828,334,205.8828"
+                 style="stroke:#181818;stroke-width:1.0;"/>
+        <line style="stroke:#181818;stroke-width:1.0;" x1="219.25" x2="219.25" y1="157.8828" y2="177.8828"/>
+        <polygon fill="#181818" points="215.25,167.8828,219.25,177.8828,223.25,167.8828,219.25,171.8828"
+                 style="stroke:#181818;stroke-width:1.0;"/><!--SRC=[LLB9Rjmm3BthAzXJCfTymCofI14qI0u1WW1DYXnOYHuBqGQAcidyVIdRi-aYsuzy2-aVFjdG746LGw2xqc8mfWgocFLR9GRw9jk4AZpuvFwyVzpd636vZLbVVtX1dik5qKe56GcO0kqm2VWqP8ueFYSpS8uJwbDf0iZR5Yd9nfYRLpL34_QF1A4Uak0tkApgAGlKLafcWHBG-hIT2crEpdTUo4sgTrExkN4UeoAmfwbQnLHfDYNSb9ynsL4jL25qTyRu0MvN7Kzm-_SnxJ1u1u-Jmv-Bmy-L0JthNxugvm68EJD4gXMtD47gmY-jTfxAHRnUK2KNGw6IYlJhI7dFX48mJLCpgwqdEkmpknScvwrYSpzJqSBvUMuSoNw1chUDMMKwnGdLWTjHPrUkIVgvYjidiZWv4SCJKUbicWW67uIK18Al5-fBa07FIOxdNAFh6IwymtxqWRguhzhx6tVzDuaQkMzqqTFhMPK-LzFQJwDQm-kOzu0Xd1qj7G_B-zAvwRNDMjtDSK5TZqaQ9zAVjo_YFm00]-->
+    </g>
+</svg>

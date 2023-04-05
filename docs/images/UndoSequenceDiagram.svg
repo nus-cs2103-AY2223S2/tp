@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="470px" preserveAspectRatio="none" style="width:827px;height:470px;background:#FFFFFF;" version="1.1" viewBox="0 0 827 470" width="827px" zoomAndPan="magnify"><defs/><g><rect fill="#C8C8FA" height="451.7344" style="stroke:#181818;stroke-width:0.5;" width="441.5" x="38" y="6"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="35" x="239.25" y="19.4951">Logic</text><rect fill="#F97181" height="451.7344" style="stroke:#181818;stroke-width:0.5;" width="245" x="481.5" y="6"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="39" x="582.5" y="19.4951">Model</text><rect fill="#FFFFFF" height="354.4219" style="stroke:#181818;stroke-width:1.0;" width="10" x="101" y="91.3125"/><rect fill="#FFFFFF" height="86.9609" style="stroke:#181818;stroke-width:1.0;" width="10" x="257" y="121.6641"/><rect fill="#FFFFFF" height="32.6094" style="stroke:#181818;stroke-width:1.0;" width="10" x="399" y="145.6641"/><rect fill="#FFFFFF" height="162.4063" style="stroke:#181818;stroke-width:1.0;" width="10" x="399" y="238.9766"/><rect fill="#FFFFFF" height="101.7031" style="stroke:#181818;stroke-width:1.0;" width="10" x="522.5" y="269.3281"/><rect fill="#FFFFFF" height="57.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="646" y="299.6797"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="106" x2="106" y1="58.9609" y2="463.7344"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="261.5" x2="261.5" y1="58.9609" y2="463.7344"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="403.5" x2="403.5" y1="160.9688" y2="463.7344"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="527.5" x2="527.5" y1="58.9609" y2="463.7344"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="650.5" x2="650.5" y1="58.9609" y2="463.7344"/><rect fill="#3333C4" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="108" x="52" y="26.3516"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="94" x="59" y="47.8848">:LogicManager</text><rect fill="#3333C4" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="101" x="211.5" y="26.3516"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="87" x="218.5" y="47.8848">:TrackrParser</text><rect fill="#9D0012" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="64" x="495.5" y="26.3516"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="42" x="506.5" y="47.8848">:Model</text><rect fill="#9D0012" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="123" x="589.5" y="26.3516"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109" x="596.5" y="47.8848">:VersionedTrackr</text><rect fill="#FFFFFF" height="354.4219" style="stroke:#181818;stroke-width:1.0;" width="10" x="101" y="91.3125"/><rect fill="#FFFFFF" height="86.9609" style="stroke:#181818;stroke-width:1.0;" width="10" x="257" y="121.6641"/><rect fill="#FFFFFF" height="32.6094" style="stroke:#181818;stroke-width:1.0;" width="10" x="399" y="145.6641"/><rect fill="#FFFFFF" height="162.4063" style="stroke:#181818;stroke-width:1.0;" width="10" x="399" y="238.9766"/><rect fill="#FFFFFF" height="101.7031" style="stroke:#181818;stroke-width:1.0;" width="10" x="522.5" y="269.3281"/><rect fill="#FFFFFF" height="57.3516" style="stroke:#181818;stroke-width:1.0;" width="10" x="646" y="299.6797"/><polygon fill="#181818" points="89,87.3125,99,91.3125,89,95.3125,93,91.3125" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="0" x2="95" y1="91.3125" y2="91.3125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="9.5" y="86.4561">execute(undo)</text><polygon fill="#181818" points="245,117.6641,255,121.6641,245,125.6641,249,121.6641" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="111" x2="251" y1="121.6641" y2="121.6641"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="127" x="120.5" y="116.8076">parseCommand(undo)</text><polygon fill="#181818" points="330.5,131.6641,340.5,135.6641,330.5,139.6641,334.5,135.6641" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="267" x2="336.5" y1="135.6641" y2="135.6641"/><rect fill="#3333C4" height="31.6094" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="123" x="342.5" y="129.6641"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="109" x="349.5" y="151.1973">u:UndoCommand</text><polygon fill="#181818" points="278,174.2734,268,178.2734,278,182.2734,274,178.2734" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="272" x2="403" y1="178.2734" y2="178.2734"/><polygon fill="#181818" points="122,204.625,112,208.625,122,212.625,118,208.625" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="116" x2="261" y1="208.625" y2="208.625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="183" y="203.7686">u</text><polygon fill="#181818" points="387,234.9766,397,238.9766,387,242.9766,391,238.9766" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="111" x2="393" y1="238.9766" y2="238.9766"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="54" x="228" y="234.1201">execute()</text><polygon fill="#181818" points="510.5,265.3281,520.5,269.3281,510.5,273.3281,514.5,269.3281" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="409" x2="516.5" y1="269.3281" y2="269.3281"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="72" x="429.75" y="264.4717">undoTrackr()</text><polygon fill="#181818" points="634,295.6797,644,299.6797,634,303.6797,638,299.6797" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="532.5" x2="640" y1="299.6797" y2="299.6797"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="571.25" y="294.8232">undo()</text><line style="stroke:#181818;stroke-width:1.0;" x1="656" x2="698" y1="330.0313" y2="330.0313"/><line style="stroke:#181818;stroke-width:1.0;" x1="698" x2="698" y1="330.0313" y2="343.0313"/><line style="stroke:#181818;stroke-width:1.0;" x1="657" x2="698" y1="343.0313" y2="343.0313"/><polygon fill="#181818" points="667,339.0313,657,343.0313,667,347.0313,663,343.0313" style="stroke:#181818;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="157" x="663" y="325.1748">resetData(ReadOnlyTrackr)</text><polygon fill="#181818" points="543.5,353.0313,533.5,357.0313,543.5,361.0313,539.5,357.0313" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="537.5" x2="650" y1="357.0313" y2="357.0313"/><polygon fill="#181818" points="420,367.0313,410,371.0313,420,375.0313,416,371.0313" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="414" x2="526.5" y1="371.0313" y2="371.0313"/><polygon fill="#181818" points="122,397.3828,112,401.3828,122,405.3828,118,401.3828" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="116" x2="403" y1="401.3828" y2="401.3828"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="32" x="241.5" y="396.5264">result</text><line style="stroke:#A80036;stroke-width:2.0;" x1="395" x2="413" y1="422.7344" y2="440.7344"/><line style="stroke:#A80036;stroke-width:2.0;" x1="395" x2="413" y1="440.7344" y2="422.7344"/><polygon fill="#181818" points="11,441.7344,1,445.7344,11,449.7344,7,445.7344" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="5" x2="105" y1="445.7344" y2="445.7344"/><!--MD5=[89b82a8103b3bc67027bf553d92e716d]
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackrParser" as TrackrParser LOGIC_COLOR
+participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":VersionedTrackr" as VersionedTrackr MODEL_COLOR
+end box
+[-> LogicManager : execute(undo)
+activate LogicManager
+
+LogicManager -> TrackrParser : parseCommand(undo)
+activate TrackrParser
+
+create UndoCommand
+TrackrParser -> UndoCommand
+activate UndoCommand
+
+UndoCommand - -> TrackrParser
+deactivate UndoCommand
+
+TrackrParser - -> LogicManager : u
+deactivate TrackrParser
+
+LogicManager -> UndoCommand : execute()
+activate UndoCommand
+
+UndoCommand -> Model : undoTrackr()
+activate Model
+
+Model -> VersionedTrackr : undo()
+activate VersionedTrackr
+
+VersionedTrackr -> VersionedTrackr :resetData(ReadOnlyTrackr)
+VersionedTrackr - -> Model :
+deactivate VersionedTrackr
+
+Model - -> UndoCommand
+deactivate Model
+
+UndoCommand - -> LogicManager : result
+deactivate UndoCommand
+UndoCommand -[hidden]-> LogicManager : result
+destroy UndoCommand
+
+[<- -LogicManager
+deactivate LogicManager
+@enduml
+
+@startuml
+
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+
+box Logic #C8C8FA
+participant ":LogicManager" as LogicManager #3333C4
+participant ":TrackrParser" as TrackrParser #3333C4
+participant "u:UndoCommand" as UndoCommand #3333C4
+end box
+
+box Model #F97181
+participant ":Model" as Model #9D0012
+participant ":VersionedTrackr" as VersionedTrackr #9D0012
+end box
+[-> LogicManager : execute(undo)
+activate LogicManager
+
+LogicManager -> TrackrParser : parseCommand(undo)
+activate TrackrParser
+
+create UndoCommand
+TrackrParser -> UndoCommand
+activate UndoCommand
+
+UndoCommand - -> TrackrParser
+deactivate UndoCommand
+
+TrackrParser - -> LogicManager : u
+deactivate TrackrParser
+
+LogicManager -> UndoCommand : execute()
+activate UndoCommand
+
+UndoCommand -> Model : undoTrackr()
+activate Model
+
+Model -> VersionedTrackr : undo()
+activate VersionedTrackr
+
+VersionedTrackr -> VersionedTrackr :resetData(ReadOnlyTrackr)
+VersionedTrackr - -> Model :
+deactivate VersionedTrackr
+
+Model - -> UndoCommand
+deactivate Model
+
+UndoCommand - -> LogicManager : result
+deactivate UndoCommand
+UndoCommand -[hidden]-> LogicManager : result
+destroy UndoCommand
+
+[<- -LogicManager
+deactivate LogicManager
+@enduml
+
+PlantUML version 1.2022.12(Mon Oct 24 02:12:26 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: SG
+--></g></svg>

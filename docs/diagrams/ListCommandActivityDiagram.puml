@@ -1,0 +1,11 @@
+@startuml
+!include style.puml
+
+ start
+ :User executes ListXYZCommand;
+ :Retrieve FilteredXYZList;
+ :FilteredXYZList is updated to have all XYZ objects;
+ :XYZList is shown to the users;
+ :Success message is returned;
+ stop
+ @enduml
