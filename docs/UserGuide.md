@@ -332,9 +332,6 @@ Format: `new-exam [name/STUDENT_NAME_1] (optional)[name/STUDENT_NAME_2].. [exam/
 * `START_TIME` and `END_TIME` provided must be in any of the supported date-time formats (see appendix).
 * the format of `GRADE` should be `grade/ACTUAL_SCORE/TOTAL_SCORE`
 
-💡 **Tip:** the subject of the exam should be included in the `EXAM_NAME` field to facilitate grade calculations. 
-See `calculate-grade` below:
-
 Examples:
 * `new-exam name/John Doe exam/Math MYE start/2023-05-21 12:00 end/2023-05-21 14:00`
 * `new-exam name/John Doe name/Faye Doe exam/Science MYE start/2023-05-22 12:00 end/2023-05-22 14:00`
