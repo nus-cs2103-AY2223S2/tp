@@ -391,7 +391,13 @@ The **Deleting a Patients** mechanism is facilitated by `VMS`. It will delete sp
 
 Given below is an example usage scenario when a user enter `patient delete 5` as a command.
 
-<!-- TODO -->
+1. The user enters the command in the `UI component`
+2. It will be passed to the `Logic component`
+3. When `DeleteCommandParser` receives the information from `PatientParser`, it will invoke the `ParseUtil#parseIndex` to parse PATIENT_ID. It will throw a `ParseException` if there are no args present.
+4. After successfully parsing the args, `FindCommandParser` will create an `DeleteCommand` with the parsed index
+5. When `DeleteCommand#execute` is called, `model#setDeletedPatient` will be called to update the ui to display the Patient requested.
+
+The activity diagram below summarises the action when the patient `DeleteCommand` is executed.
 
 <img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
 <img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
