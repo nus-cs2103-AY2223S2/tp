@@ -13,7 +13,7 @@ import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
 
 /**
- * Represents a module list comprising module groups.
+ * A UI component comprising of ModuleGroups.
  */
 public class ModuleList extends UiPart<Region> {
     private static final String FXML = "modulesection/ModuleList.fxml";
@@ -25,9 +25,8 @@ public class ModuleList extends UiPart<Region> {
     private VBox moduleList;
 
     /**
-     * Instantiates a new ModuleList.
-     *
-     * @param modules        the entire list of modules
+     * Instantiates a new ModuleList component.
+     * @param modules the list of modules to be displayed on the ModuleList.
      */
     public ModuleList(ObservableList<Module> modules) {
         super(FXML);
@@ -36,9 +35,8 @@ public class ModuleList extends UiPart<Region> {
     }
 
     /**
-     * Instantiates a new Module list.
-     *
-     * @param moduleGroups the module groups
+     * Instantiates a new ModuleList component.
+     * @param moduleGroups the list of modules (categorised in groups) to be displayed on the ModuleList.
      */
     public ModuleList(TreeMap<Object, ObservableList<Module>> moduleGroups) {
         super(FXML);
@@ -46,8 +44,8 @@ public class ModuleList extends UiPart<Region> {
         updateSortedModules(moduleGroups);
     }
     /**
-     * Displays all module groups within a module list.
-     * @param modules the list of modules
+     * Updates the list of filtered modules in the ModuleList.
+     * @param modules the list of filtered modules.
      */
     public void updateFilteredModules(ObservableList<Module> modules) {
         moduleList.getChildren().clear();
@@ -63,8 +61,8 @@ public class ModuleList extends UiPart<Region> {
     }
 
     /**
-     * Updates the sorted module groups.
-     * @param moduleGroups The sorted module groups.
+     * Updates the list of modules (categorised in groups by a certain sorting criteria) in the ModuleList.
+     * @param moduleGroups the list of modules categorised in groups.
      */
     public void updateSortedModules(TreeMap<Object, ObservableList<Module>> moduleGroups) {
         moduleList.getChildren().clear();
@@ -82,7 +80,7 @@ public class ModuleList extends UiPart<Region> {
     }
 
     /**
-     * Displays the placeholder text message when no modules are present in the module list.
+     * Displays the placeholder text message when no modules are present in the ModuleList.
      */
     private void displayPlaceholderText(String text) {
         Label placeholder = new Label(text);

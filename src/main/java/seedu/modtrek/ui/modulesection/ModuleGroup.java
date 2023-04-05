@@ -10,7 +10,7 @@ import seedu.modtrek.model.module.Module;
 import seedu.modtrek.ui.UiPart;
 
 /**
- * Represents a module group comprising module cards.
+ * A UI component comprising a group of ModuleCards.
  */
 public class ModuleGroup extends UiPart<Region> {
     private static final String FXML = "modulesection/ModuleGroup.fxml";
@@ -22,7 +22,7 @@ public class ModuleGroup extends UiPart<Region> {
     private GridPane moduleCardGroup;
 
     /**
-     * Instantiates a new ModuleGroup.
+     * Instantiates a new ModuleGroup component.
      *
      * @param modules the list of modules for the semYear
      * @param title title of the ModuleGroup
@@ -33,8 +33,8 @@ public class ModuleGroup extends UiPart<Region> {
     }
 
     /**
-     * Displays all module cards within a module group.
-     * @param modules the list of modules for the group
+     * Displays all ModuleCards within the ModuleGroup.
+     * @param modules the list of modules to be displayed as ModuleCards in the ModuleGroup.
      */
     public void displayModuleCards(ObservableList<Module> modules, String title) {
         if (title.length() > 0) {
