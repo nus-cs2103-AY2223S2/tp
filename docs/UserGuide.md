@@ -164,7 +164,7 @@ Format: `add-image INDEX ai/PATH-TO-IMAGE`
 * The index **must be a positive integer** 1, 2, 3,...
 * Ensure that `ai/` prefix is used before the image path (note that `ai/` is not part of your path)
 * A default image is used by default
-* After an image is added, if the application is unable to retrieve the image (e.g. erroneous manual edit of AddressBook.json or the saved images) then it will revert to the default image
+* After an image is added, if the application is unable to retrieve the image (e.g. erroneous manual edit of addressbook.json or the saved images) then it will revert to the default image
 
 Examples:
 * Windows: `list` followed by `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` adds the image `weekiat.png` to the 2nd person in the address book
@@ -179,8 +179,10 @@ How to get Image Path?
   3. The path should be copied once you select the option 
 
 * Windows:
-  1. 
-  > **Note:** That for windows copied path may have quotation marks, please remove them before using in BookFace.<br>
+  1. Right-click on the image file
+  2. Select "copy as path" option
+  3. The path should be copied once you select the option
+  > **Note:** That for Windows copied path may have quotation marks, please remove them before using in BookFace.<br>
   > For instance: `add-image 2 ai/"C:/Users/user/Downloads/weekiat.png"` will be invalid, whereas
   > `add-image 2 ai/C:/Users/user/Downloads/weekiat.png` will be valid.
 
