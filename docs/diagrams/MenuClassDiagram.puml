@@ -34,9 +34,6 @@ ItemProfit --> "1 " ItemCost
 ItemPrice --> "1 " ItemSellingPrice
 ItemPrice --> "1 " ItemCost
 
-
-
-
 MenuItem -u|> Item
 
 ItemName --|> Name
