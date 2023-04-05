@@ -1,6 +1,5 @@
 package expresslibrary.logic.parser;
 
-import static expresslibrary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static expresslibrary.logic.parser.CliSyntax.PREFIX_FORCE;
 import static java.util.Objects.requireNonNull;
 
