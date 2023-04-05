@@ -248,14 +248,14 @@ _Here are some important requirements for you to take note:_
   * `INDEX` must be a **positive integer**.
 * At least one field must be provided.
 
-For the following fields, they are considered a `SuperField`.
+For the following fields, they are considered a `FieldGroup`.
 * Modules
 * Tags
 
-A `SuperField` can contain many parameters in that single field.
-When using edit, the command looks for each parameter in the `SuperField`:
-* If the parameter already exists in the `SuperField` it will be removed.
-* Otherwise, the parameter will be added into the `SuperField`.
+A `FieldGroup` can contain many parameters in that single field.
+When using edit, the command looks for each parameter in the `FieldGroup`:
+* If the parameter already exists in the `FieldGroup` it will be removed.
+* Otherwise, the parameter will be added into the `FieldGroup`.
   * e.g. `edit mt/CS2103T` removes CS2103T from the Modules field of a contact if it already exists and adds it if it does not.
   * e.g. `edit t/10x Coder t/Intern Friend`
     * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
@@ -297,14 +297,14 @@ _Here are some important requirements for you to take note:_
 
 * At least one field must be provided.
 
-For the following fields, they are considered a `SuperField`.
+For the following fields, they are considered a `FieldGroup`.
 * Modules
 * Tags
 
-A `SuperField` can contain many parameters in that single field.
-When using edit, the command looks for each parameter in the `SuperField`:
-* If the parameter already exists in the `SuperField` it will be removed.
-* Otherwise, the parameter will be added into the `SuperField`.
+A `FieldGroup` can contain many parameters in that single field.
+When using edit, the command looks for each parameter in the `FieldGroup`:
+* If the parameter already exists in the `FieldGroup` it will be removed.
+* Otherwise, the parameter will be added into the `FieldGroup`.
     * e.g. `edituser mt/CS2103T` removes CS2103T from the Modules field of a contact if it already exists and adds it if it does not.
     * e.g. `edituser t/10x Coder t/Intern Friend`
         * For a contact with none of the above tags, both `10x Coder` and `Intern Friend` will be added as tags
