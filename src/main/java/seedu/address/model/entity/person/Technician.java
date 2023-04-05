@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.address.model.tag.Tag;
 
@@ -47,6 +48,14 @@ public class Technician extends Staff {
      */
     public List<Integer> getAppointmentIds() {
         return new ArrayList<>(this.appointmentIds);
+    }
+
+    public void removeAppointmentIds(Predicate<? super Integer> pred) {
+        this.appointmentIds.removeIf(pred);
+    }
+
+    public void removeServiceIds(Predicate<? super Integer> pred) {
+        this.serviceIds.removeIf(pred);
     }
 
     @Override

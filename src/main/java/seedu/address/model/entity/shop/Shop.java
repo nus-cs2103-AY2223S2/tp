@@ -12,12 +12,15 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import com.sun.javafx.collections.ObservableListWrapper;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.idgen.IdGenerator;
 import seedu.address.model.ReadOnlyShop;
 import seedu.address.model.entity.person.Address;
@@ -54,12 +57,15 @@ import seedu.address.model.tag.Tag;
  * A Shop is an entity that usually buy sells things.
  */
 public class Shop implements ReadOnlyShop {
+    public static final String MSG_RUNTIME_ERROR =
+        "Relationships in shop broken, bug in one of the modification methods";
     private final ObservableList<Customer> customers = FXCollections.observableArrayList();
     private final ObservableList<Vehicle> vehicles = FXCollections.observableArrayList();
     private final ObservableList<Technician> technicians = FXCollections.observableArrayList();
     private final ObservableList<Service> services = FXCollections.observableArrayList();
     private final ObservableList<Appointment> appointments = FXCollections.observableArrayList();
     private final ObservableMap<String, Integer> parts = FXCollections.observableHashMap();
+    private final Logger logger = LogsCenter.getLogger(this.getClass());
 
     /**
      * Constructor for class Shop.
@@ -75,7 +81,7 @@ public class Shop implements ReadOnlyShop {
         resetData(toBeCopied);
     }
 
-    // Getters
+    // Getters ---------------------------------------------------------------------
 
     // Whole list
     public ObservableList<Customer> getCustomerList() {
@@ -104,44 +110,48 @@ public class Shop implements ReadOnlyShop {
 
     // Individual item
 
-    public Customer getCustomer(int id) throws CustomerNotFoundException {
+    private Customer getCustomer(int id) throws CustomerNotFoundException {
         return this.customers.stream()
             .filter(c -> c.getId() == id)
             .findFirst()
             .orElseThrow(() -> new CustomerNotFoundException(id));
     }
-    public Vehicle getVehicle(int id) throws VehicleNotFoundException {
+    private Vehicle getVehicle(int id) throws VehicleNotFoundException {
         return this.vehicles.stream()
             .filter(v -> v.getId() == id)
             .findFirst()
             .orElseThrow(() -> new VehicleNotFoundException(id));
     }
-    public Service getService(int id) throws ServiceNotFoundException {
+   private Service getService(int id) throws ServiceNotFoundException {
         return this.services.stream()
             .filter(c -> c.getId() == id)
             .findFirst()
             .orElseThrow(() -> new ServiceNotFoundException(id));
     }
-    public Technician getTechnician(int id) throws TechnicianNotFoundException {
+    private Technician getTechnician(int id) throws TechnicianNotFoundException {
         return this.technicians.stream()
             .filter(c -> c.getId() == id)
             .findFirst()
             .orElseThrow(() -> new TechnicianNotFoundException(id));
     }
-    public Appointment getAppointment(int id) throws AppointmentNotFoundException {
+    private Appointment getAppointment(int id) throws AppointmentNotFoundException {
         return this.appointments.stream()
             .filter(c -> c.getId() == id)
             .findFirst()
             .orElseThrow(() -> new AppointmentNotFoundException(id));
     }
-    public int getPartQty(String partName) throws PartNotFoundException {
-        if (!this.parts.containsKey(partName)) {
-            throw new PartNotFoundException(partName);
+    public int getPartQty(String partName) throws EmptyInputException, PartNotFoundException {
+        if (partName.isBlank()) {
+            throw new EmptyInputException("PartName cannot be blank");
         }
-        return this.parts.get(partName);
+        String normalizedName = partName.toUpperCase();
+        if (!this.parts.containsKey(normalizedName)) {
+            throw new PartNotFoundException(normalizedName);
+        }
+        return this.parts.get(normalizedName);
     }
 
-    // Checkers
+    // Checkers -----------------------------------------------------------------------------------
 
     private boolean hasCustomer(int id) {
         return this.customers.stream().anyMatch(c -> c.getId() == id);
@@ -167,33 +177,39 @@ public class Shop implements ReadOnlyShop {
         return this.parts.containsKey(partName.toUpperCase());
     }
 
-    // Add
+    // Add ------------------------------------------------------------------------------------------------------
 
     public void addCustomer(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         Customer toAdd = new Customer(IdGenerator.generateCustomerId(), name, phone, email, address, tags);
         this.customers.add(toAdd);
+        logger.info(toAdd + " added");
     }
 
     public void addVehicle(int ownerId, String plateNumber, String color, String brand, VehicleType type)
             throws CustomerNotFoundException, EmptyInputException {
         if (plateNumber.isBlank()) {
+            logger.info("Empty input for vehicle plate number");
             throw new EmptyInputException("Plate number should not be blank");
         }
         if (color.isBlank()) {
+            logger.info("Empty input for vehicle color");
             throw new EmptyInputException("Color should not be blank");
         }
         if (brand.isBlank()) {
+            logger.info("Empty input for vehicle brand");
             throw new EmptyInputException("Brand should not be blank");
         }
         Vehicle toAdd = new Vehicle(IdGenerator.generateVehicleId(), ownerId, plateNumber, color, brand, type);
         this.getCustomer(ownerId).addVehicle(toAdd.getId());
         this.vehicles.add(toAdd);
+        logger.info(toAdd + " added");
     }
 
     public void addService(int vehicleId, Optional<LocalDate> maybeEntryDate, String description,
                            Optional<LocalDate> maybeEstimatedFinishDate, Optional<ServiceStatus> maybeServiceStatus)
                 throws VehicleNotFoundException, EmptyInputException {
         if (description.isBlank()) {
+            logger.info("Empty input for service description");
             throw new EmptyInputException("Description should not be blank");
         }
         LocalDate entryDate = maybeEntryDate.orElseGet(LocalDate::now);
@@ -203,11 +219,13 @@ public class Shop implements ReadOnlyShop {
             description, estimatedFinishDate, serviceStatus);
         this.getVehicle(vehicleId).addService(toAdd);
         this.services.add(toAdd);
+        logger.info(toAdd + " added");
     }
 
     public void addTechnician(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         Technician toAdd = new Technician(IdGenerator.generateStaffId(), name, phone, email, address, tags);
         this.technicians.add(toAdd);
+        logger.info(toAdd + " added");
     }
 
     public void addTechnicianToService(int techId, int serviceId)
@@ -235,41 +253,190 @@ public class Shop implements ReadOnlyShop {
         Appointment toAdd = new Appointment(IdGenerator.generateAppointmentId(), customerId, timeDate);
         this.getCustomer(customerId).addAppointment(toAdd);
         this.appointments.add(toAdd);
+        logger.info(toAdd + " added");
     }
 
-    public void addPart(String part, int qty) throws PartNotFoundException, InvalidQuantityException {
-        if (!this.hasPart(part)) {
-            throw new PartNotFoundException(part);
+    public void addPart(String part, int qty)
+            throws PartNotFoundException, InvalidQuantityException, EmptyInputException {
+        if (part.isBlank()) {
+            throw new EmptyInputException("PartName cannot be blank");
         }
+        String normalizedPartName = part.toUpperCase();
         if (qty <= 0) {
             throw new InvalidQuantityException(qty);
         }
-        this.parts.put(part, this.parts.get(part) + qty);
+        if (!this.hasPart(normalizedPartName)) {
+            throw new PartNotFoundException(normalizedPartName);
+        }
+        this.parts.put(normalizedPartName, this.parts.get(normalizedPartName) + qty);
+        logger.info(String.format("%s, %d added", normalizedPartName, qty));
     }
 
     public void addPartToService(int serviceId, String partName, int qty)
             throws PartNotFoundException, InsufficientPartException, ServiceNotFoundException,
-                    InvalidQuantityException {
+                    InvalidQuantityException, EmptyInputException {
+        if (partName.isBlank()) {
+            throw new EmptyInputException("PartName cannot be blank");
+        }
+        String normalizedPartName = partName.toUpperCase();
         if (qty <= 0) {
             throw new InvalidQuantityException(qty);
         }
-        if (!this.hasPart(partName)) {
-            throw new PartNotFoundException(partName);
+        if (!this.hasPart(normalizedPartName)) {
+            throw new PartNotFoundException(normalizedPartName);
         }
-        if (this.getPartQty(partName) < qty) {
-            throw new InsufficientPartException(partName, this.getPartQty(partName));
+        if (this.getPartQty(normalizedPartName) < qty) {
+            throw new InsufficientPartException(normalizedPartName, this.getPartQty(normalizedPartName));
         }
         Service service = this.getService(serviceId);
-        this.parts.put(partName, this.parts.get(partName) - qty);
-        service.addPart(partName, qty);
+        this.parts.put(normalizedPartName, this.parts.get(normalizedPartName) - qty);
+        service.addPart(normalizedPartName, qty);
     }
 
-    // Delete
+    // Delete -----------------------------------------------------------------------------------------------
 
     public void removeCustomer(int customerId) throws CustomerNotFoundException {
         Customer toRemove = this.getCustomer(customerId);
-
+        try {
+            for (int i : toRemove.getVehicleIds()) {
+                this.removeVehicle(i);
+            }
+            for (int i : toRemove.getAppointmentIds()) {
+                this.removeAppointment(i);
+            }
+            this.customers.removeIf(c -> c.getId() == customerId);
+            logger.info(String.format("Customer %d removed", customerId));
+        } catch (VehicleNotFoundException | AppointmentNotFoundException e) {
+            logger.severe(e.getMessage());
+            throw new RuntimeException(MSG_RUNTIME_ERROR);
+        }
     }
+
+    public void removeVehicle(int vehicleId) throws VehicleNotFoundException {
+        Vehicle toRemove = this.getVehicle(vehicleId);
+        try {
+            for (int i : toRemove.getServiceIds()) {
+                this.removeService(i);
+            }
+            this.getCustomer(toRemove.getOwnerId()).removeVehicle(toRemove);
+            this.vehicles.removeIf(v -> v.getId() == vehicleId);
+            logger.info(String.format("Vehicle %d removed", vehicleId));
+        } catch (ServiceNotFoundException | CustomerNotFoundException e) {
+            logger.severe(e.getMessage());
+            throw new RuntimeException(MSG_RUNTIME_ERROR);
+        }
+    }
+
+    public void removeAppointment(int appointmentId) throws AppointmentNotFoundException {
+        Appointment toRemove = this.getAppointment(appointmentId);
+        try {
+            this.getCustomer(toRemove.getCustomerId()).removeAppointment(toRemove);
+            for (int i : toRemove.getStaffIds()) {
+                this.getTechnician(i).removeAppointmentIds(x -> x == i);
+            }
+            this.appointments.removeIf(a -> a.getId() == appointmentId);
+            logger.info(String.format("Appointment %d removed", appointmentId));
+        } catch (CustomerNotFoundException | TechnicianNotFoundException e) {
+            logger.severe(e.getMessage());
+            throw new RuntimeException(MSG_RUNTIME_ERROR);
+        }
+    }
+
+    public void removeService(int serviceId) throws ServiceNotFoundException {
+        Service toRemove = this.getService(serviceId);
+        try {
+            for (var entry : toRemove.getRequiredParts().entrySet()) {
+                String partName = entry.getKey();
+                int qty = entry.getValue();
+                if (this.parts.containsKey(partName)) {
+                    this.parts.put(partName, this.parts.get(partName) + qty);
+                } else {
+                    this.parts.put(partName, qty);
+                }
+            }
+            this.getVehicle(toRemove.getId()).removeService(toRemove);
+            for (int i : toRemove.getAssignedToIds()) {
+                this.getTechnician(i).removeServiceIds(x -> x == serviceId);
+            }
+            this.services.removeIf(s -> s.getId() == serviceId);
+            logger.info(String.format("Service %d removed", serviceId));
+        } catch (VehicleNotFoundException | TechnicianNotFoundException ex) {
+            logger.severe(ex.getMessage());
+            throw new RuntimeException(MSG_RUNTIME_ERROR);
+        }
+    }
+
+    public void removeTechnician(int techId) throws TechnicianNotFoundException {
+        Technician toRemove = this.getTechnician(techId);
+        try {
+            for (int i : toRemove.getServiceIds()) {
+                this.getService(i).removeTechnician(toRemove);
+            }
+            for (int i : toRemove.getAppointmentIds()) {
+                this.getAppointment(i).removeTechnician(toRemove.getId());
+            }
+            this.removeTechnician(techId);
+            logger.info("Technician %d removed");
+        } catch (ServiceNotFoundException | AppointmentNotFoundException e) {
+            logger.severe(e.getMessage());
+            throw new RuntimeException(MSG_RUNTIME_ERROR);
+        }
+    }
+
+    public void removePart(String name, int quantity)
+            throws PartNotFoundException, InsufficientPartException, InvalidQuantityException, EmptyInputException {
+        if (name.isBlank()) {
+            throw new EmptyInputException("PartName cannot be blank");
+        }
+        String normalizedPartName = name.toUpperCase();
+        if (quantity <= 0) {
+            throw new InvalidQuantityException(quantity);
+        }
+        if (this.getPartQty(normalizedPartName) < quantity) {
+            throw new InsufficientPartException(normalizedPartName, quantity);
+        }
+        int newQty = this.getPartQty(normalizedPartName) - quantity;
+        this.parts.put(normalizedPartName, newQty);
+        logger.info(String.format("%s x %d added", normalizedPartName, quantity));
+    }
+
+    public void removePartFromService(String partName, int serviceId)
+            throws PartNotFoundException, ServiceNotFoundException, EmptyInputException {
+        if (partName.isBlank()) {
+            throw new EmptyInputException("PartName cannot be blank");
+        }
+        String normalizedPartName = partName.toUpperCase();
+        Service service = this.getService(serviceId);
+        if (!service.getRequiredParts().containsKey(normalizedPartName)) {
+            throw new PartNotFoundException(normalizedPartName);
+        }
+        int qty = service.getRequiredParts().get(normalizedPartName);
+        if (this.parts.containsKey(normalizedPartName)) {
+            this.parts.put(normalizedPartName, this.getPartQty(normalizedPartName) + qty);
+        } else {
+            this.parts.put(normalizedPartName, qty);
+        }
+        service.getRequiredParts().remove(normalizedPartName);
+        logger.info(String.format("%s x % d transferred back to shop", normalizedPartName, qty);
+    }
+
+    public void removeTechnicianFromService(int techId, int serviceId)
+            throws TechnicianNotFoundException, ServiceNotFoundException {
+        Service service = this.getService(serviceId);
+        Technician technician = this.getTechnician(techId);
+        service.removeTechnician(technician);
+        logger.info(String.format("Technician %d removed from service %d", techId, serviceId));
+    }
+
+    public void removeTechnicianFromAppointment(int techId, int appointmentId)
+            throws TechnicianNotFoundException, AppointmentNotFoundException {
+        Appointment appointment = this.getAppointment(appointmentId);
+        Technician technician = this.getTechnician(techId);
+        appointment.removeTechnician(techId);
+        logger.info(String.format("Technician %d removed from appointment %d", techId, appointmentId));
+    }
+
+    // Edit --------------------------------------------------------------------------------------------------
 
 //    // --------------------------------------------------
 //    //// Service-level operations
