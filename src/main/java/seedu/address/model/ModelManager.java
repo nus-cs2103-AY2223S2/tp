@@ -183,7 +183,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return listingBook.equals(other.listingBook)
                 && userPrefs.equals(other.userPrefs)
-                && prevListingBookStates.equals(other.prevListingBookStates)
                 && filteredListings.equals(other.filteredListings)
                 && displayedListings.equals(other.displayedListings);
     }
