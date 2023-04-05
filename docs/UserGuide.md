@@ -221,7 +221,7 @@ Congratulations on completing the tutorial! For the complete list of commands, y
 **[Command Summary](#7-command-summary)** section. For more details about each command, you can read on for the next
 section on **[Features](#4-features)**.
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -382,7 +382,7 @@ Example:
 * `edit-app 2 t/creditBearing t/mentoringProvided`: removes all tags except `creditBearing` and `mentoringProvided`
   from the 2nd application on the Application List Panel, assuming the application had more than 2 tags initially.
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -454,7 +454,7 @@ Examples:
 * `list` followed by `delete-task 2`: deletes the task for the 2nd application on the Application List Panel.
 * `find Google` followed by `delete-task 1`: deletes the task of the 1st application shown in the results of the `find` command.
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -490,6 +490,11 @@ Examples:
 
 Sorts internship applications in the order you desire.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+While you can't undo a sort command, if you wish to go back to the default view, you can just use list.
+</div>
+
+
 Format: `sort SEQUENCE ORDER`
 
 The following table details the parameters to be used with the `sort` command:
@@ -511,7 +516,7 @@ Examples:
 * `sort a deadline` will show applications with task deadlines. Those with earlier deadlines will be higher up in the list.
 * `sort d alphabetical` will show applications in descending alphabetical order. (Z to A)
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -529,12 +534,11 @@ Format: `help`
 
 Undoes the previous command that you have typed in.
 
-This command works for all the commands made in the period that you opened sprINT for.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use this command if you have accidentally deleted an application entry or cleared the entire internship book, 
-and wish to retrieve them back.
+<div markdown="span" class="alert alert-primary">:information_source: **Info:**
+Only `add-app`, `edit-app`, `delete-app`, `add-task`, `edit-task`, `delete-task`, `undo` and `clear` can be undone.  
 </div>
+
+This command works for all the commands made in the period that you opened sprINT for.
 
 Format: `undo`
 
@@ -574,14 +578,14 @@ There is no need to save manually.
 
 #### 4.4.7 Editing the data file **(for Advanced users)**
 
-Data in the internship book are actually saved as a JSON file `[JAR file location]/data/internshipbook.json`. 
+Data in the internship book are actually saved as a JSON file `[JAR file location]/data/sprint.json`. 
 Advanced users are welcome to update their data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, the internship book will discard all data and start with an empty data file at the next run.
 </div>
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -669,7 +673,7 @@ sprINT can process your data more quickly!
 | **Clear**                   | :heavy_check_mark: | `clear`                                                                                                                                                                  |
 | **Exit**                    | :x:                | `exit`                                                                                                                                                                   |
 
-######*Return to the [Table of Contents](#table-of-contents).*
+#### *Return to the [Table of Contents](#table-of-contents).*
 
 <div style="page-break-after: always;"></div>
 
