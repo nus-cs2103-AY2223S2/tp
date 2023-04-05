@@ -20,9 +20,6 @@ public class HelpTutorialCommand extends HelpCommand {
     public static final String ADD_TUTORIAL = "Add:                         "
             + "touch Tutorial/TUTORIAL_NAME";
 
-    public static final String ADD_RECUR = "Add Multiple:            "
-            + "schedule Recur/Tutorial/TUTORIAL_NAME -n REPETITIONS";
-
     public static final String DELETE_TUTORIAL = "Delete:                     "
             + "delete Tutorial/INDEX";
 
@@ -51,7 +48,6 @@ public class HelpTutorialCommand extends HelpCommand {
     public CommandResult execute(Model model) {
         return new CommandResult(HEADER_1
                 + ADD_TUTORIAL + "\n"
-                + ADD_RECUR + "\n"
                 + DELETE_TUTORIAL + "\n"
                 + EDIT_TUTORIAL + "\n"
                 + HEADER_2

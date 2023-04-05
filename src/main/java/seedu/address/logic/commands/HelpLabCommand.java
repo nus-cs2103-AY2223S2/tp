@@ -20,9 +20,6 @@ public class HelpLabCommand extends HelpCommand {
     public static final String ADD_LAB = "Add:                         "
             + "vim Lab/LAB_NAME";
 
-    public static final String ADD_RECUR = "Add Multiple:            "
-            + "schedule Recur/Lab/LAB_NAME -n REPETITIONS";
-
     public static final String DELETE_LAB = "Delete:                     "
             + "delete Lab/INDEX";
 
@@ -51,7 +48,6 @@ public class HelpLabCommand extends HelpCommand {
     public CommandResult execute(Model model) {
         return new CommandResult(HEADER_1
                 + ADD_LAB + "\n"
-                + ADD_RECUR + "\n"
                 + DELETE_LAB + "\n"
                 + EDIT_LAB + "\n"
                 + HEADER_2
