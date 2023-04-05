@@ -199,7 +199,7 @@ class ModelStub implements Model {
     }
 
     @Override
-    public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
+    public boolean checkIsSuitableRegion(Nric elderlyNric, Nric volunteerNric) {
         throw new AssertionError("This method should not be called.");
     }
 

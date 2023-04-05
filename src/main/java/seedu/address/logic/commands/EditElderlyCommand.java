@@ -122,7 +122,7 @@ public class EditElderlyCommand extends Command {
         model.updateFilteredElderlyList(predicate);
 
         String finalMessage = String.format(MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly);
-        if (!model.checkIsSameRegion(editedElderly.getNric(), null)) {
+        if (!model.checkIsSuitableRegion(editedElderly.getNric(), null)) {
             finalMessage += MESSAGE_WARNING_REGION;
         }
         if (!model.checkHasSuitableAvailableDates(editedElderly.getNric(), null)) {

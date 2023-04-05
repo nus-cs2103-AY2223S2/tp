@@ -299,7 +299,7 @@ public interface Model {
      * @param volunteerNric Nric of the volunteer.
      * @return True if both persons belong in the same region, false otherwise.
      */
-    boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric);
+    boolean checkIsSuitableRegion(Nric elderlyNric, Nric volunteerNric);
 
     /**
      * Checks whether there are suitable available dates between an elderly and a volunteer.

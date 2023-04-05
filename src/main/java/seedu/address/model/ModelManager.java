@@ -281,8 +281,8 @@ public class ModelManager implements Model {
     //=========== Others ==================================================================================
 
     @Override
-    public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
-        return friendlyLink.checkIsSameRegion(elderlyNric, volunteerNric);
+    public boolean checkIsSuitableRegion(Nric elderlyNric, Nric volunteerNric) {
+        return friendlyLink.checkIsSuitableRegion(elderlyNric, volunteerNric);
     }
 
     @Override

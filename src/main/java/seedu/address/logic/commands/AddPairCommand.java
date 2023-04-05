@@ -67,7 +67,7 @@ public class AddPairCommand extends Command {
         try {
             String finalMessage = String.format(MESSAGE_ADD_PAIR_SUCCESS, elderlyNric, volunteerNric);
             model.addPair(elderlyNric, volunteerNric);
-            if (!model.checkIsSameRegion(elderlyNric, volunteerNric)) {
+            if (!model.checkIsSuitableRegion(elderlyNric, volunteerNric)) {
                 finalMessage += MESSAGE_WARNING_REGION;
             }
             if (!model.checkHasSuitableAvailableDates(elderlyNric, volunteerNric)) {

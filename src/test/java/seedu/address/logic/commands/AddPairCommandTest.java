@@ -261,7 +261,7 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
+        public boolean checkIsSuitableRegion(Nric elderlyNric, Nric volunteerNric) {
             return true;
         }
 

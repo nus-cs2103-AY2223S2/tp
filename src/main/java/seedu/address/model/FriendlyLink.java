@@ -378,9 +378,9 @@ public class FriendlyLink implements ReadOnlyFriendlyLink {
      * @param volunteerNric Nric of the volunteer.
      * @return True if both persons of all involved pairs belong in the same region, false otherwise.
      */
-    public boolean checkIsSameRegion(Nric elderlyNric, Nric volunteerNric) {
+    public boolean checkIsSuitableRegion(Nric elderlyNric, Nric volunteerNric) {
         return checkPairs(elderlyNric,
-                volunteerNric, Person::isSameRegion);
+                volunteerNric, Person::isSuitableRegion);
     }
 
     /**

@@ -123,7 +123,7 @@ public class EditVolunteerCommand extends Command {
         model.updateFilteredVolunteerList(predicate);
 
         String finalMessage = String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer);
-        if (!model.checkIsSameRegion(null, editedVolunteer.getNric())) {
+        if (!model.checkIsSuitableRegion(null, editedVolunteer.getNric())) {
             finalMessage += MESSAGE_WARNING_REGION;
         }
         if (!model.checkHasSuitableAvailableDates(null, editedVolunteer.getNric())) {
