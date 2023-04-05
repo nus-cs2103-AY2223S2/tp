@@ -93,7 +93,7 @@ Parameters:
 <div markdown="span" class="alert alert-warning">
 :information_source: **Note:**  
 Name/Description is alphanumeric only.  
-Start time should come before end time.  
+:warning: Start time should come before end time.  
 Adding of events that overlaps in time is not allowed.
 </div>
 
@@ -137,7 +137,7 @@ Parameters:
 `e/`: End time of the event
 
 <div markdown="span" class="alert alert-warning">
-:information_source: **Note:** At least one field must be provided.
+:warning: **Warning:** At least one field must be provided.
 </div>
 
 Example: `edit 1 n/tennis` or `edit 3 d/2023-06-01 s/10:00`
@@ -197,7 +197,7 @@ Parameters:
 `d/`: Date of the event
 
 <div markdown="span" class="alert alert-warning">
-:information_source: **Note:** At least one field must be provided.
+:warning: **Warning:** At least one field must be provided.
 </div>
 
 Example: `find n/tennis` or `find d/2023-03-01` or `find n/tennis d/2023-03-01`
