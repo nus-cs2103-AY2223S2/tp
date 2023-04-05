@@ -57,7 +57,7 @@ public class ParentEditCommand extends ParentCommand {
             + PREFIX_EMAIL + "tanahcow@gmail.com "
             + PREFIX_ADDRESS + "Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245)";
 
-    public static final String MESSAGE_EDIT_PARENT_SUCCESS = "Edited Parent: %1$s";
+    public static final String MESSAGE_EDIT_PARENT_SUCCESS = "Edited Parent: %1$s; Phone number: %2$s;";
 
     private Address newAddress;
     private Age newAge;
@@ -113,7 +113,7 @@ public class ParentEditCommand extends ParentCommand {
                 Parent newParent = new Parent(this.newName, this.newAge, this.newImage, this.newEmail,
                         this.newPhoneNumber, this.newAddress, this.newTagList);
                 model.setParent(parent, editParent(parent, newParent, model));
-                return new CommandResult(String.format(MESSAGE_EDIT_PARENT_SUCCESS, parent));
+                return new CommandResult(String.format(MESSAGE_EDIT_PARENT_SUCCESS, newParent.getName(), newParent.getPhone()));
             }
         }
         throw new CommandException(Messages.MESSAGE_PARENT_NOT_FOUND);
