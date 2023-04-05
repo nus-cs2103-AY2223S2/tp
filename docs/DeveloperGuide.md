@@ -1508,7 +1508,11 @@ Thus, an invalid command format error message is displayed when these integer ov
 
 <br/>
 
-**Proposed Design Tweak**: Include checks of the input when InternBuddy recognises it as not an integer (Fig. XX).
+**Proposed Design Tweak**: We plan to display the invalid index and out of range index error messages even when there is negative and positive integer overflow respectively.
+
+* When InternBuddy recognises an input as not an integer, we can check if the input begins with the negative sign and is followed by only digits or contains only digits (Fig. XX).
+   * If the latter is true, there is a negative integer overflow and InternBuddy can be configured to display an invalid index error message (Fig. XX).
+   * If the former is true, there is a positive integer overflow and InternBuddy can be configured to display an index out of range error message (Fig. XX).
 
 <p align="center">
   <img src="images/dg-int-overflow-solution.png" width="1000" />
@@ -1517,10 +1521,6 @@ Thus, an invalid command format error message is displayed when these integer ov
    <p style="text-align: center;">Figure XX: Checking of input added when InternBuddy recognises that it isn't an integer.</p>
 
 <br/>
-
-* When InternBuddy recognises an input as not an integer, we can check if the input contains only digits or begins with the negative sign and is followed by only digits.
-   * If the latter is true, there is a negative integer overflow and InternBuddy can be configured to display an invalid index error message (Fig. XX).
-   * If the former is true, there is a positive integer overflow and InternBuddy can be configured to display an index out of range error message (Fig. XX).
 
 <p align="center">
   <img src="images/dg-negative-int-overflow-solved.png" width="1000" />
