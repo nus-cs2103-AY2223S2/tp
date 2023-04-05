@@ -25,8 +25,9 @@ through our Graphical User Interface (GUI).
 With TinS, you can conveniently and efficiently manage, coordinate and keep track of your internship applications
 all in one place.
 
-### Notable Features (v1.3)
+**Notable Features**
   * Finding a particular internship application in TinS using keywords: `find`
+  * Calendar View: `calendar`
   * Finding all clashing events: `clash`
   
   
@@ -68,20 +69,13 @@ TinS in a more efficient way.
 
 Commands, fields, prefixes and file paths are highlighted in the User Guide.
 Example: `list`, `POSTIION`, `data/internshipcatalogue.json`
-    
-#### Buttons
-
-Being optimized for use via typing, you can key in your desired commands to TinS using the keyboard.
-Then, press the <button>Enter</button> to confirm your command and instruct TinS to execute them.
 
 ### How to use the User Guide
 * If you **have not installed TinS** or **are new to TinS**, [Quick Start](#quick-start) will guide you through the
   process of installing TinS and provide you with a brief introduction to TinS. 
 * If you are **a more advanced user of TinS**, the [Features](#features) section contains detailed information of what 
   features TinS has to offer. Embedded in this section is also tips on how you can maximize your efficiency while using
-  TinS. 
-* If you are **encountering an issue** with TinS, the [Frequently Asked Question](#frequently-asked-question) section
-  might be helpful for you.
+  TinS.
 
 <div style="page-break-after: always;"></div>
 
@@ -734,3 +728,13 @@ E.g. <code>event find na/Technical Interview st/20/03/2023 1400</code></td>
 </tr>
 
 </table>
+
+##Acknowledgements
+* The Intern's Ship is written in Java 11.
+* The Intern's Ship uses the following libraries: [JavaFX](https://openjfx.io/),
+  [Jackson](https://github.com/FasterXML/jackson), [Junit5](https://github.com/junit-team/junit5)
+* The Intern's Ship is adapted from [addressbook-level3](https://github.com/se-edu/addressbook-level3)
+* The Intern's Ship - User Guide references the following projects: 
+  [addressbook-level4](https://github.com/se-edu/addressbook-level4),
+  [InternBuddy](https://github.com/AY2223S2-CS2103T-T14-3/tp/blob/master/docs/UserGuide.md) (for Markdown Formatting
+  and Information, Tip and Warning Box)
