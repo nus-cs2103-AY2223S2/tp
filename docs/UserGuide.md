@@ -75,8 +75,10 @@ Here is an scenario example usage using <u>VMS start up sample data</u> immediat
 
 1. A patient calls, he provides information that his name is **Tan Xiao Ming**, born on **1999 April 15**, blood type **A+**, allergic to nothing and has already taken **Dose 1 (Moderna)**. From your clinic phone, the number is **97643158**. The following command will add this patient into the system:
 ```text
-patient add --n Tan Xiao Ming --p 97643158 --d 1999-04-15 --b A+ --v Dose 1 (Moderna)
+patient add --n Tan Xiao Ming --p 97643158 --d 1999-04-15 \
+        --b A+ --v Dose 1 (Moderna)
 ```
+<sub>:clipboard: <code>patient add --n Tan Xiao Ming --p 97643158 --d 1999-04-15 --b A+ --v Dose 1 (Moderna)</code></sub>
 2. He mentions that he wishes to take **Dose 2 (Pfizer)** on **2024 March 5th at 1600**. You clinic's average vaccination appointment take roughly about 30mins. From step 2, it is shown that Xiao Ming has an ID of **7** as well. The following command will attempt to schedule an appointment for him:
 ```text
 appointment add --p 7 --v Dose 2 (Pfizer) --s 2024-3-5 1600 --e 2024-3-5 1630
@@ -86,6 +88,10 @@ appointment add --p 7 --v Dose 2 (Pfizer) --s 2024-3-5 1600 --e 2024-3-5 1630
 appointment add --p 7 --v 4 --s 2024-3-5 1600 --e 2024-3-5 1630
 ```
 4. The appointment get successfully added and you inform him that you have schedule the appointment for him.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **INFO**: The backslash character (`\`) in step 1 is just for presentation purposes. Only the text after the clipboard (:clipboard:) should be copied and paste into VMS. See <a href="#CLI-presentation-format">CLI presentation format</a> for more information.
+</div>
 
 With this, VMS has automated the validation of patient's appointment scheduling, making your receptionist duties easier!
 
@@ -110,6 +116,7 @@ This example also highlights the adaptive nature of VMS CLI syntax from steps 2 
   <pre>
   appointment add --p <var>PATIENT_ID</var> --s <var>START_TIME</var> --e <var>END_TIME</var> --v <var>VAX_NAME</var>
   </pre>
+  For CLI input examples, a clipboard (:clipboard:) will follow which represents the copy and paste version.
 * **Square brackets** (`[` and `]`) around arguments indicate that the argument is _optional_. For example,
   <br><code>[--n <var>NEW_NAME</var>]</code> would mean that <wbr><code>--n <var>NEW_NAME</var></code> is optional.
 * **Three dots with no space** (`...`) <u>after</u> arguments indicates that multiple of the same type of argument can be repeated. For example <wbr><code>[--r <var>REQUIREMENT</var>]...</code> would mean that <code>--r <var>REQUIREMENT</var></code> can appear multiple times.
@@ -409,7 +416,11 @@ patient add --n <var>PATIENT_NAME</var> --p <var>PHONE</var> --d <var>DATE_OF_BI
 ##### Example
 
 ```text
-patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+ --a catfur --a pollen --v covax
+patient add --n John Doe --p 98765432 --d 2001-03-19 \
+    --b B+ --a catfur --a pollen --v covax
+```
+
+```text
 patient add --n John Doe --p 98765432 --d 2001-03-19 --b B+
 ```
 
@@ -561,7 +572,7 @@ patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ \
     --a dogfur --a fern --v norovax
 ```
 
-Copy and paste: `patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax`
+<sub>:clipboard: : <code>patient edit 7 --n John Deere --p 98765432 --d 2001-03-19 --b B+ --a dogfur --a fern --v norovax</code></sub>
 
 Output:
 
@@ -579,8 +590,7 @@ Setting patient's allergies and vaccination details, values prior will be overri
 patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ \
     --a nofur --a grass --v protovax --set true
 ```
-
-Copy and paste: `patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --a grass --v protovax --set true`
+<sub>:clipboard: : <code>patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --a grass --v protovax --set true</code></sub>
 
 Output:
 
@@ -731,6 +741,14 @@ For example, to add the same vaccination as in the <a href="#vaccination-add-exa
 4. `vaccination edit ABC VAX --i ALC-0315, ALC-0159`
 5. `vaccination edit ABC VAX --h NONE::ABC`
 
+<span id="vax-filter-no-reset-usage">**Using `find` to improve efficiency**</span><br>
+If the name of the vaccination is long, one can use the vaccination's [`find`](#find---finds-a-vaccination) to filter down to that vaccination and then use indexing to refer to that vaccination while editing. This step can be done before adding or editing the vaccination. So to perform the same action as before one can execute the following sequence of commands:
+
+1. `vaccination find ABC VAX`
+2. `vaccination add ABC VAX`
+3. `vaccination edit 1 --g ABC, VACCINATION`
+4. The remaining follow a similar pattern by replacing `ABC VAX` with `1`.
+
 </div>
 
 <h5 id="vaccination-add-example">Example</h5>
@@ -744,7 +762,7 @@ vaccination add ABC VAX --g ABC, VACCINATION \
     --h NONE::ABC
 ```
 
-Copy and paste: `vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --i ALC-0315, ALC-0159 --h NONE::ABC`
+<sub>:clipboard: : <code>vaccination add ABC VAX --g ABC, VACCINATION --lal 5 --ual 50 --i ALC-0315, ALC-0159 --h NONE::ABC</code></sub>
 
 Output:
 
@@ -812,6 +830,14 @@ However, the following will not:
 * `Dose 1` - Missing a `dose`.
 * `1 Dose Dose` - Wrong order.
 * `Dose dose` - Missing `1`.
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Filter does not reset on `add` or `edit`**
+
+The filters applied by the last `find` command will not be resetting by vaccination's `add` or `edit` commands. Vaccinations added or edited by might not show up on the vaccination list panel. This is intended to allow for a more efficient `edit`. See <a href="#vax-filter-no-reset-usage">here</a> on how one can utilize this feature.
+
+To reset the filters applied, use the vaccination's [`list`](#list---lists-all-vaccination) command.
+</div>
 
 ##### Syntax
 
@@ -1452,3 +1478,9 @@ On top of the type restrictions of the parameters, if these restrictions are vio
 At the moment, VMS does not offer a quick CLI way to delete/edit specific elements in such lists. However, this is a <u>planned feature</u> in future updates!
 
 A work around this is to **edit the data files directly**.
+
+### I added a vaccination but it does not appear in the the vaccination list panel.
+
+The filters applied from your last [`find`](#find---finds-a-vaccination) command are most likely still active. Use vaccination's [`list`](#list---lists-all-vaccination) command to clear the filters.
+
+This feature is intended to increase the efficiency of vaccination's [`edit`](#edit---edit-a-vaccination). Specifically the referring to vaccinations by indexes. You can learn more about this <a href="#vax-filter-no-reset-usage">here</a>.
