@@ -143,7 +143,7 @@ Example:
 
 `list` returns
 ```shell
-  listed all food
+  Listed all food items!
 ```
 
 ### Edit a food: `edit`
@@ -296,7 +296,7 @@ Vegetables
 ```
 
 ### Listing all foods by their tag(s) : `listbytag`
-Shows a list of all food item in WIFE by specified tag(s).
+Shows a list of all food items in WIFE by specified tag(s).
 
 Format: `listbytag n/TAG NAME [n/TAG NAME]...`
 
