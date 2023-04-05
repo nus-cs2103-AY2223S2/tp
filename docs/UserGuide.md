@@ -82,7 +82,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 
 #### Adding a person: `add`
 
-Adds a person to the address book and adds existing event to this person if event index is specified.
+Adds a person to the address book and adds existing event tag to this person if event index is specified.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`
 
@@ -110,14 +110,14 @@ Format: `list`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [evt/EVENT INDEX]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [evt/EVENT_INDEX]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the tags will be added to the existing tags of the person i.e adding of tags is cumulative.
-* You can remove all the person’s event tags by typing `evt/` without
-    specifying any event index after it.
+* When editing event tags, the event tags will be added to the existing event tags of the person i.e. adding of event tags is cumulative.
+* You can remove all the person’s event tags by typing `evt/` only without specifying any event index after it. 
+* Either the addition of event tags or the removal of event tags can be done at a time, i.e. removal and addition of event tags cannot be done in a single command. For example, `evt/ evt/2` cannot be recognised as removing all the event tags and adding event at event index 2 and `evt/2 evt/` cannot be recognised as adding event at event index 2 then removing all the event tags. 
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -190,7 +190,7 @@ Examples:
 
 #### Listing persons from an event: `listevcontact`
 
-Shows a list of persons in the address book whose event set contains the specified event.
+Shows a list of persons in the address book who have the specified event tag tied to them.
 
 Format: `listevcontact EVENT_INDEX`
 
@@ -199,7 +199,7 @@ Format: `listevcontact EVENT_INDEX`
 * The event index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listevent` followed by `listevcontact 2` lists all the persons whose event set contains the 2nd event in the event list.
+* `listevent` followed by `listevcontact 2` lists all the persons whose event tags contains the 2nd event in the event list.
 
 #### Sorting events: `sortevent`
 
@@ -330,7 +330,7 @@ Action | Format, Examples
 **List All Contacts and Events** | `listall`
 **List Contact** | `list`
 **List Event** | `listevent`
-**List Contact From event** | `listevcontact`
+**List Contact From Event** | `listevcontact`
 **Help** | `help`
 **Sort Event** | `sortevent SORT_TYPE` <br> e.g., `sortevent c`
 
