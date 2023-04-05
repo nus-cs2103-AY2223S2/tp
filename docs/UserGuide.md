@@ -5,13 +5,22 @@ title: User Guide
 
 ![Logo](images/LogoWordmark.png)
 
-Le Tracker is a desktop application that focuses on tracking lecture watch progress. Designed for NUS students who are fast typists, it seeks to address the problem of students losing track of their watch progress, especially for students falling behind on multiple lectures.
+## Welcome to **Le Tracker**!
 
-Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs by providing features such as the ability view the overall lecture progress of a module and the ability to tag each lecture with keywords (such as the topic or difficulty of the lecture) that allow for easy filtering when prioritising. These features help students stay organized and keep track of their progress more effectively.
+> “The tragedy in life doesn’t lie in not reaching your goal. The tragedy lies in having no goal to reach.” - Benjamin E. Mays
+
+School is hard. With numerous modules to juggle and endless topics to master, being a student can feel overwhelming at times. But does this *truly* need to be the case?
+
+We believe that with a little help, content mastery is **more than achievable**.
+> “You don't actually do a project; you can only do action steps related to it. When enough of the right action steps have been taken, some situation will have been created that matches your initial picture of the outcome closely enough that you can call it "done.”
+― David Allen, Getting Things Done: The Art of Stress-Free Productivity
+
+**Le Tracker** makes it easy to measure your overall study progress by tracking how much lecture content you have covered across various modules. **More** than just a simple to-do list app, **Le Tracker** blends the **efficiency** of a command line interface with the **elegance** of modern graphical user interface.
+
+Now it's time to **CONQUER** the semester!
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
 - [Command Syntax](#command-syntax)
 - [Argument Formats](#argument-formats)
@@ -78,14 +87,16 @@ Unlike a traditional to-do list app, Le Tracker is tailored to meet these needs 
 2. Press `Enter` to execute a command.\
    For example, typing "help" and pressing `Enter` will open the help window.
 
-### Nav
-Current Context Indicator:
-
+### A Brief Guide to Navigation
 ![ContextLabel](images/ContextLabelScreenshot.png)
+**Context Indicator** - Displays which context you are currently working at.
 
-How to navigate through the hierarchy:
+Navigating to different contexts:
 
 ![NavDiagram](images/NavDiagram.png)
+
+For more information on **navigation**, please view the [navigation section](#navigation).
+
 =======
 ### Tutorials and Examples
 
