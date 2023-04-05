@@ -174,7 +174,8 @@ Adds a new event.
 
 **Note**:
 - `NAME` should only contain alphanumeric characters and spaces.
-- `RATE` must be a positive number and below 1,000,000.
+- `RATE` must be a positive number
+- `RATE` must be below 1,000,000.
 - `ADDRESS` can be in any form, "John's House".
 - Both `START_TIME` and `END_TIME` must have the format `dd-MM-yyyy HH:mm`.
 
