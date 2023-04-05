@@ -19,15 +19,17 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT" >
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-      <Label fx:id="name" text="Welcome to ExecutivePro v1.3" styleClass="scroll-pane-big-label" />
-      </HBox>
+
+<!--      <HBox spacing="5" alignment="CENTER_LEFT" >-->
+<!--        <Label fx:id="id" styleClass="cell_big_label">-->
+<!--          <minWidth>-->
+<!--            &lt;!&ndash; Ensures that the label text is never truncated &ndash;&gt;-->
+<!--            <Region fx:constant="USE_PREF_SIZE" />-->
+<!--          </minWidth>-->
+<!--        </Label>-->
+<!--        <Label fx:id="name" text="Welcome to ExecutivePro" styleClass="scroll-pane-big-label" />-->
+<!--      </HBox>-->
+      <Label fx:id="name" text="Welcome to ExecutivePro" styleClass="scroll-pane-big-label" />
       <FlowPane fx:id="tags"/>
       <Label fx:id="phone" styleClass="scroll-pane-small-label" />
       <Label fx:id="employeeId" styleClass="scroll-pane-small-label"  />

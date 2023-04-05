@@ -79,7 +79,9 @@ public class PersonListPanel extends UiPart<Region> {
             @Override
             public void onChanged(Change<? extends Employee> change) {
                 Employee employee = personListView.getSelectionModel().getSelectedItem();
-                setInformation(employee);
+                if (employee != null) {
+                    setInformation(employee);
+                }
             }
         });
     }
@@ -128,7 +130,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new PersonCard(employee, getIndex() + 1).getRoot());
-                setInformation(employee);
+
             }
         }
     }
