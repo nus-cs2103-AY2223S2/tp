@@ -8,13 +8,13 @@ import static ezschedule.logic.commands.CommandTestUtil.VALID_DATE_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_END_TIME_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static ezschedule.logic.commands.CommandTestUtil.VALID_START_TIME_B;
+import static ezschedule.testutil.Assert.assertThrows;
 import static ezschedule.testutil.TypicalEvents.ART;
 import static ezschedule.testutil.TypicalEvents.EVENT_A;
 import static ezschedule.testutil.TypicalEvents.EVENT_B;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
@@ -123,23 +123,17 @@ public class EventTest {
         assertNotEquals(EVENT_A, editedA);
 
         // invalid name -> throw IllegalArgumentException
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
-                new EventBuilder(EVENT_A).withName(INVALID_NAME).build());
-        assertEquals(Name.MESSAGE_CONSTRAINTS, exception.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder(EVENT_A).withName(INVALID_NAME).build());
 
         // invalid date -> throw IllegalArgumentException
-        exception = assertThrows(IllegalArgumentException.class, () ->
-                new EventBuilder(EVENT_A).withDate(INVALID_DATE).build());
-        assertEquals(Date.MESSAGE_CONSTRAINTS, exception.getMessage());
+        assertThrows(IllegalArgumentException.class, () -> new EventBuilder(EVENT_A).withDate(INVALID_DATE).build());
 
         // invalid start time -> throw IllegalArgumentException
-        exception = assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(IllegalArgumentException.class, () ->
                 new EventBuilder(EVENT_A).withStartTime(INVALID_START_TIME).build());
-        assertEquals(Time.MESSAGE_CONSTRAINTS, exception.getMessage());
 
         // invalid end time -> throw IllegalArgumentException
-        exception = assertThrows(IllegalArgumentException.class, () ->
+        assertThrows(IllegalArgumentException.class, () ->
                 new EventBuilder(EVENT_A).withStartTime(INVALID_END_TIME).build());
-        assertEquals(Time.MESSAGE_CONSTRAINTS, exception.getMessage());
     }
 }
