@@ -63,7 +63,8 @@ I also wrote most of the frontmatter.
 
 I wrote the section explaining how [fuzzy search is
 implemented](https://ay2223s2-cs2103t-w14-1.github.io/tp/DeveloperGuide.html#fuzzy-searching).
-I also wrote most of the frontmatter.
+I also wrote the instructions for manual testing as well as most of the
+frontmatter.
 
 **Code reviews**
 
