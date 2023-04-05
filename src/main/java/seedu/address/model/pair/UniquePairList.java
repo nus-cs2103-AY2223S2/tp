@@ -3,6 +3,7 @@ package seedu.address.model.pair;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.pair.exceptions.DuplicatePairException;
 import seedu.address.model.pair.exceptions.PairNotFoundException;
+import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Volunteer;
+import seedu.address.model.person.information.Nric;
 
 /**
  * A list of pairs that enforces uniqueness between its elements and does not allow nulls.
@@ -121,6 +125,43 @@ public class UniquePairList implements Iterable<Pair> {
      */
     public ObservableList<Pair> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Gets list of volunteers paired with a specified elderly.
+     * {@code elderlyNric} must not be null.
+     *
+     * @param elderlyNric Nric of the specified elderly
+     * @return List of volunteers paired with the specified elderly.
+     */
+    public List<Volunteer> getPairedVolunteers(Nric elderlyNric) {
+        requireNonNull(elderlyNric);
+        ArrayList<Volunteer> results = new ArrayList<>();
+        for (Pair pair : this) {
+            if (pair.getElderly().getNric().equals(elderlyNric)) {
+                results.add(pair.getVolunteer());
+            }
+        }
+        return results;
+    }
+
+    /**
+     * Gets list of elderly paired with a specified volunteer.
+     * Returns the full list of elderly if {@code volunteerNric} is null.
+     *
+     * @param volunteerNric Nric of the specified volunteer
+     * @return List of elderly paired with the specified volunteer.
+     */
+    public List<Elderly> getPairedElderly(Nric volunteerNric) {
+        requireNonNull(volunteerNric);
+        ArrayList<Elderly> results = new ArrayList<>();
+        for (Pair pair : this) {
+            if (pair.getVolunteer().getNric().equals(volunteerNric)) {
+                results.add(pair.getElderly());
+            }
+        }
+        return results;
+
     }
 
     @Override

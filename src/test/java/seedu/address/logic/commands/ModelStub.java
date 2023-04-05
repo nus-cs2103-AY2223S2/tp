@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.nio.file.Path;
+import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -83,17 +84,12 @@ class ModelStub implements Model {
     }
 
     @Override
-    public void addPair(Nric elderlyNric, Nric volunteerNric) {
+    public Pair addPair(Nric elderlyNric, Nric volunteerNric) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public boolean hasPair(Pair pair) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void deletePair(Pair target) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -199,12 +195,12 @@ class ModelStub implements Model {
     }
 
     @Override
-    public boolean checkIsSuitableRegion(Nric elderlyNric, Nric volunteerNric) {
+    public boolean check(Elderly elderly, BiFunction<Elderly, Volunteer, Boolean>predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
+    public boolean check(Volunteer volunteer, BiFunction<Elderly, Volunteer, Boolean> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 }

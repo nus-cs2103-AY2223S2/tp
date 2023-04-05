@@ -54,7 +54,6 @@ public class FriendlyLinkTest {
         FriendlyLink newData = getTypicalFriendlyLink();
         friendlyLink.resetFriendlyLinkData(newData);
         assertEquals(newData, friendlyLink);
-        // TODO: check if reset data resets the pair list.
     }
 
     @Test

@@ -17,10 +17,14 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_CHARLIE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REGION_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalElderly.ALICE;
 import static seedu.address.testutil.TypicalElderly.AMY;
 import static seedu.address.testutil.TypicalPairs.PAIR1;
 import static seedu.address.testutil.TypicalPairs.PAIR2;
 import static seedu.address.testutil.TypicalVolunteers.BOB;
+import static seedu.address.testutil.TypicalVolunteers.DANIEL;
+
+import java.util.function.BiFunction;
 
 import org.junit.jupiter.api.Test;
 
@@ -58,7 +62,7 @@ public class AddPairCommandTest {
 
     @Test
     public void execute_pairAcceptedByModel_addSuccessful() throws Exception {
-        Pair validPair = new PairBuilder().build();
+        Pair validPair = new PairBuilder().withElderly(ALICE).withVolunteer(DANIEL).build();
         Elderly elderly = validPair.getElderly();
         Volunteer volunteer = validPair.getVolunteer();
         ModelStubAcceptingPairAdded modelStub = new ModelStubAcceptingPairAdded(elderly, volunteer);
@@ -202,11 +206,12 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public void addPair(Nric elderlyNric, Nric volunteerNric) {
+        public Pair addPair(Nric elderlyNric, Nric volunteerNric) {
             if (pair.getElderly().getNric().equals(elderlyNric)
                 && pair.getVolunteer().getNric().equals(volunteerNric)) {
                 throw new DuplicatePairException();
             }
+            return pair;
         }
 
     }
@@ -232,7 +237,7 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public void addPair(Nric elderlyNric, Nric volunteerNric) {
+        public Pair addPair(Nric elderlyNric, Nric volunteerNric) {
             if (!elderlyNric.equals(elderly.getNric())) {
                 throw new ElderlyNotFoundException();
             } else if (!volunteerNric.equals(volunteer.getNric())) {
@@ -242,7 +247,8 @@ public class AddPairCommandTest {
                     && pair.getVolunteer().getNric().equals(volunteerNric)) {
                 throw new DuplicatePairException();
             }
-            this.pair = new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric));
+            pair = new Pair(getElderly(elderlyNric), getVolunteer(volunteerNric));
+            return pair;
         }
 
         @Override
@@ -261,12 +267,12 @@ public class AddPairCommandTest {
         }
 
         @Override
-        public boolean checkIsSuitableRegion(Nric elderlyNric, Nric volunteerNric) {
+        public boolean check(Elderly elderly, BiFunction<Elderly, Volunteer, Boolean> predicate) {
             return true;
         }
 
         @Override
-        public boolean checkHasSuitableAvailableDates(Nric elderlyNric, Nric volunteerNric) {
+        public boolean check(Volunteer volunteer, BiFunction<Elderly, Volunteer, Boolean> predicate) {
             return true;
         }
     }

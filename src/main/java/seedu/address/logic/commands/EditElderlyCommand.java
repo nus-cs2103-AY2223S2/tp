@@ -32,6 +32,7 @@ import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.person.Elderly;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.information.Nric;
 
 /**
@@ -122,10 +123,10 @@ public class EditElderlyCommand extends Command {
         model.updateFilteredElderlyList(predicate);
 
         String finalMessage = String.format(MESSAGE_EDIT_ELDERLY_SUCCESS, editedElderly);
-        if (!model.checkIsSuitableRegion(editedElderly.getNric(), null)) {
+        if (!model.check(editedElderly, Person::isSuitableRegion)) {
             finalMessage += MESSAGE_WARNING_REGION;
         }
-        if (!model.checkHasSuitableAvailableDates(editedElderly.getNric(), null)) {
+        if (!model.check(editedElderly, Person::hasSuitableAvailableDates)) {
             finalMessage += MESSAGE_WARNING_AVAILABLE_DATES;
         }
 

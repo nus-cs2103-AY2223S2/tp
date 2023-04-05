@@ -219,7 +219,6 @@ public class ModelManagerTest {
         assertTrue(modelManager.hasPair(PAIR1));
     }
 
-
     @Test
     public void setPair_nullPair_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setPair(null, null));
@@ -264,6 +263,7 @@ public class ModelManagerTest {
 
         // different types -> returns false
         assertNotEquals(5, modelManager);
+        assertNotEquals(modelManager, "hello");
 
         // different friendlyLink -> returns false
         assertNotEquals(modelManager, new ModelManagerBuilder()

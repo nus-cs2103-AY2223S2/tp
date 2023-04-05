@@ -59,6 +59,9 @@ public class PairTest {
         // different type -> returns false
         assertNotEquals(5, PAIR1);
 
+        // different type -> returns false
+        assertNotEquals(PAIR1, 5);
+
         // different pair -> returns false
         assertNotEquals(PAIR1, PAIR2);
 

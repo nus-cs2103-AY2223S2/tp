@@ -48,6 +48,14 @@ public class Pair {
                 && getVolunteer().isSamePerson(otherPair.getVolunteer());
     }
 
+    public boolean checkRegion() {
+        return elderly.isSuitableRegion(volunteer);
+    }
+
+    public boolean checkAvailableDates() {
+        return elderly.hasSuitableAvailableDates(volunteer);
+    }
+
     /**
      * Returns true if both pairs have the same elderly and volunteer.
      * This defines a stronger notion of equality between two pairs.

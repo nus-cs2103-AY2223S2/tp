@@ -31,6 +31,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.util.EditDescriptor;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.Volunteer;
 import seedu.address.model.person.information.Nric;
 
@@ -123,10 +124,10 @@ public class EditVolunteerCommand extends Command {
         model.updateFilteredVolunteerList(predicate);
 
         String finalMessage = String.format(MESSAGE_EDIT_VOLUNTEER_SUCCESS, editedVolunteer);
-        if (!model.checkIsSuitableRegion(null, editedVolunteer.getNric())) {
+        if (!model.check(editedVolunteer, Person::isSuitableRegion)) {
             finalMessage += MESSAGE_WARNING_REGION;
         }
-        if (!model.checkHasSuitableAvailableDates(null, editedVolunteer.getNric())) {
+        if (!model.check(editedVolunteer, Person::hasSuitableAvailableDates)) {
             finalMessage += MESSAGE_WARNING_AVAILABLE_DATES;
         }
 

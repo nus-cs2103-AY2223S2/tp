@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -150,6 +151,19 @@ public class UniquePersonList<T extends Person> implements Iterable<T> {
      */
     public ObservableList<T> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Creates and returns a copy of persons in the list as a Java List.
+     *
+     * @return Full list of persons.
+     */
+    public List<T> asList() {
+        ArrayList<T> result = new ArrayList<>();
+        for (T person : this) {
+            result.add(person);
+        }
+        return result;
     }
 
     @Override

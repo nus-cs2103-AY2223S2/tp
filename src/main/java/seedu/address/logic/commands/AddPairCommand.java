@@ -17,6 +17,7 @@ import java.util.Objects;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
+import seedu.address.model.pair.Pair;
 import seedu.address.model.pair.exceptions.DuplicatePairException;
 import seedu.address.model.person.exceptions.ElderlyNotFoundException;
 import seedu.address.model.person.exceptions.VolunteerNotFoundException;
@@ -66,11 +67,11 @@ public class AddPairCommand extends Command {
         requireNonNull(model);
         try {
             String finalMessage = String.format(MESSAGE_ADD_PAIR_SUCCESS, elderlyNric, volunteerNric);
-            model.addPair(elderlyNric, volunteerNric);
-            if (!model.checkIsSuitableRegion(elderlyNric, volunteerNric)) {
+            Pair pair = model.addPair(elderlyNric, volunteerNric);
+            if (!pair.checkRegion()) {
                 finalMessage += MESSAGE_WARNING_REGION;
             }
-            if (!model.checkHasSuitableAvailableDates(elderlyNric, volunteerNric)) {
+            if (!pair.checkAvailableDates()) {
                 finalMessage += MESSAGE_WARNING_AVAILABLE_DATES;
             }
             return new CommandResult(finalMessage);
@@ -80,8 +81,6 @@ public class AddPairCommand extends Command {
             throw new CommandException(String.format(MESSAGE_VOLUNTEER_NOT_FOUND, volunteerNric));
         } catch (DuplicatePairException e) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PAIR, elderlyNric, volunteerNric));
-        } catch (IllegalArgumentException e) {
-            throw new CommandException(e.getMessage());
         }
     }
 
