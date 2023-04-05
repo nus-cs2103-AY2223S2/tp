@@ -7,9 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_COMMS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TO_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_TO_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRENCE;
@@ -95,10 +97,16 @@ public class CommandTestUtil {
     public static final String END_DATETIME_DESC_2 = " " + PREFIX_END_DATE_TIME + VALID_END_DATETIME_2;
     public static final String RECURRENCE_DESC_1 = " " + PREFIX_RECURRENCE + VALID_RECURRENCE_1;
     public static final String RECURRENCE_DESC_2 = " " + PREFIX_RECURRENCE + VALID_RECURRENCE_2;
+    public static final String PERSON_TAG_DESC_1 = " " + PREFIX_PERSON_TO_TAG + VALID_NAME_AMY;
+    public static final String PERSON_TAG_DESC_2 = " " + PREFIX_PERSON_TO_TAG + VALID_NAME_BOB;
+    public static final String EVENT_TAG_DESC_1 = " " + PREFIX_EVENT_TO_TAG + "1";
+    public static final String EVENT_TAG_DESC_2 = " " + PREFIX_EVENT_TO_TAG + "2";
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " \n\t"; // blank description not allowed
     public static final String INVALID_START_DATETIME_DESC = " " + PREFIX_START_DATE_TIME + "2023/01/01 0000"; // forward slash not allowed
     public static final String INVALID_END_DATETIME_DESC = " " + PREFIX_END_DATE_TIME + "2023-01-01 00:00"; // colon not allowed
     public static final String INVALID_RECURRENCE_DESC = " " + PREFIX_RECURRENCE + "hourly";
+    public static final String INVALID_PERSON_TAG_DESC = " " + PREFIX_PERSON_TO_TAG + "James&";
+    public static final String INVALID_EVENT_TAG_DESC = " " + PREFIX_EVENT_TO_TAG + " \n\t";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
