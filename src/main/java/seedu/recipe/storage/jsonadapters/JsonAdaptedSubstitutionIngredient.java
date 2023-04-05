@@ -17,12 +17,20 @@ import seedu.recipe.model.recipe.ingredient.Ingredient;
 public class JsonAdaptedSubstitutionIngredient {
     private final String ingredientName;
 
+    /**
+     * Constructs an instance of this class around a String obtained from the JSON file.
+     * @param ingredientName The Ingredient Name to populate this instance with.
+     */
     @JsonCreator
     public JsonAdaptedSubstitutionIngredient(String ingredientName) {
         requireNonNull(ingredientName);
         this.ingredientName = ingredientName;
     }
 
+    /**
+     * Constructs an instance of this class around an Ingredient obtained from a Recipe instance.
+     * @param ingredient The substitution Ingredient used in the Recipe instance.
+     */
     public JsonAdaptedSubstitutionIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
         ingredientName = ingredient.getName();

@@ -1,7 +1,6 @@
 package seedu.recipe.storage.jsonadapters;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.recipe.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 import java.util.HashMap;

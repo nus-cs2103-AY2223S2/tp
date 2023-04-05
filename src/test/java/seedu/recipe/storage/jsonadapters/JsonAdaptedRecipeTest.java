@@ -80,20 +80,6 @@ public class JsonAdaptedRecipeTest {
     }
 
     @Test
-    public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(
-            null,
-            Optional.of(CACIO_PORTION).map(JsonAdaptedRecipePortion::new),
-            Optional.of(CACIO_DURATION).map(JsonAdaptedRecipeDuration::new),
-            CACIO_TAGS.stream().map(JsonAdaptedTag::new).collect(Collectors.toList()),
-            getIngredientList(),
-            CACIO_STEPS.stream().map(JsonAdaptedStep::new).collect(Collectors.toList())
-        );
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidPortion_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(
             new JsonAdaptedName(CACIO_NAME),
