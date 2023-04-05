@@ -655,39 +655,6 @@ Format: `exit`
 
 <div style="page-break-after: always;"></div>
 
-### Saving your Internship Data
-
-Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
-in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
-where you placed `internbuddy.json`. There is no need to save manually.
-
-<div markdown="span" class="alert alert-primary">
-
-:information_source: **Info:** The file location of `internbuddy.json` is stated in the
-<a href="#exploring-the-graphical-user-interface">Status Bar</a> of the GUI.
-</div>
-
-
-### Loading the Data
-
-InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
-manually.
-* If `internbuddy.json` is missing, InternBuddy will start with a new data file containing the sample internship
-  entries.
-* If the content in `internbuddy.json` was altered and as a result has invalid format, InternBuddy will start with an
-  empty data file.
-
-<div markdown="span" class="alert alert-danger">
-
-:warning: **Warning:**  Starting with an empty data file means that all internship entries previously stored in
-InternBuddy will no longer be present. This is equivalent to a data wipeout. Therefore, we advise against tampering
-with the content in `internbuddy.json` unless you are confident in doing so. If you are interested, you can refer to
-[Appendix B](#appendix-b-customising-the-data-file) for instructions on how to do so.
-
-</div>
-
-<div style="page-break-after: always;"></div>
-
 [//]: # (@@author kohkaixun)
 ### Navigating through Past Commands
 
@@ -711,7 +678,40 @@ Example:
 - Suppose InternBuddy has just been launched again and the inputs `delete 1`, `clear` and `blah` are entered into InternBuddy in this order.
     - Pressing the up arrow key once will cause the text box to be filled with the most recent input, which is `blah`. Pressing the up arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to fill the text box.
     - Pressing the down arrow key next will cause `clear` to disappear and the next least recent input, which is `blah`, to fill the text box again.
-    - Finally, pressing the down arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to appear in the text box again.
+        - Finally, pressing the down arrow key again will cause `blah` to disappear and the next most recent input, which is `clear`, to appear in the text box again.
+
+### Saving your Internship Data
+
+          Your internship data for InternBuddy are saved automatically after any command that changes the data. The data are saved
+          in a file `internbuddy.json` which is located in a subfolder `data` in the [home folder](#quick-start)
+          where you placed `internbuddy.json`. There is no need to save manually.
+
+<div markdown="span" class="alert alert-primary">
+
+          :information_source: **Info:** The file location of `internbuddy.json` is stated in the
+          <a href="#exploring-the-graphical-user-interface">Status Bar</a> of the GUI.
+</div>
+
+
+### Loading the Data
+
+          InternBuddy data is loaded from `internbuddy.json` automatically at the beginning of each run. There is no need to load
+          manually.
+* If `internbuddy.json` is missing, InternBuddy will start with a new data file containing the sample internship
+          entries.
+* If the content in `internbuddy.json` was altered and as a result has invalid format, InternBuddy will start with an
+          empty data file.
+
+<div markdown="span" class="alert alert-danger">
+
+          :warning: **Warning:**  Starting with an empty data file means that all internship entries previously stored in
+          InternBuddy will no longer be present. This is equivalent to a data wipeout. Therefore, we advise against tampering
+          with the content in `internbuddy.json` unless you are confident in doing so. If you are interested, you can refer to
+      [Appendix B](#appendix-b-customising-the-data-file) for instructions on how to do so.
+
+</div>
+
+<div style="page-break-after: always;"></div>
 
 
 ## **FAQ**
