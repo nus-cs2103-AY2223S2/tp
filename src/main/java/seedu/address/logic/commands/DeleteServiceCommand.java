@@ -23,7 +23,7 @@ public class DeleteServiceCommand extends RedoableCommand {
 
     public static final String MESSAGE_DELETE_SERVICE_SUCCESS = "Deleted Service: %1$s";
 
-    public static final String MESSAGE_SERVICE_NOT_FOUND = "Deleted Service: %1$s";
+    public static final String MESSAGE_SERVICE_NOT_FOUND = "Service not found";
 
     public static final Service SERVICE_DOES_NOT_EXIST = null;
 
@@ -47,7 +47,7 @@ public class DeleteServiceCommand extends RedoableCommand {
 
         model.deleteService(serviceToDeletes);
         IdGenerator.setServiceIdUnused(id);
-        return new CommandResult(String.format(MESSAGE_DELETE_SERVICE_SUCCESS, serviceToDeletes), Tab.SERVICES);
+        return new CommandResult(String.format(MESSAGE_DELETE_SERVICE_SUCCESS, serviceToDeletes.getId()), Tab.SERVICES);
     }
 
     @Override

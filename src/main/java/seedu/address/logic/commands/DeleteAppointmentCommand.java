@@ -45,7 +45,7 @@ public class DeleteAppointmentCommand extends RedoableCommand {
 
         model.deleteAppointment(appointmentToDelete);
         IdGenerator.setAppointmentIdUnused(id);
-        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete),
+        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, id),
                 Tab.APPOINTMENTS);
     }
 

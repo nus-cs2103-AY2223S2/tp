@@ -47,7 +47,7 @@ public class DeleteCustomerCommand extends RedoableCommand {
 
         model.deleteCustomer(customerToDelete);
         IdGenerator.setCustomerIdUnused(id);
-        return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, customerToDelete), Tab.CUSTOMERS);
+        return new CommandResult(String.format(MESSAGE_DELETE_CUSTOMER_SUCCESS, id), Tab.CUSTOMERS);
     }
 
     @Override

@@ -89,6 +89,10 @@ public class EditVehicleCommand extends RedoableCommand {
                 .filter(c -> c.getId() == vehicleToEdit.getOwnerId())
                 .findFirst().orElseThrow();
             prevOwner.removeVehicle(vehicleToEdit);
+
+            System.out.println(vehicleToEdit.getOwnerId());
+            System.out.println(editedVehicle.getOwnerId());
+
             Customer newOwner = model.getFilteredCustomerList().stream()
                 .filter(c -> c.getId() == editedVehicle.getOwnerId())
                 .findFirst().orElseThrow();

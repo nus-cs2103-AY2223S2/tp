@@ -47,7 +47,7 @@ public class DeleteTechnicianCommand extends RedoableCommand {
 
         model.deleteTechnician(technicianToDelete);
         IdGenerator.setStaffIdUnused(id);
-        return new CommandResult(String.format(MESSAGE_DELETE_TECHNICIAN_SUCCESS, technicianToDelete), Tab.TECHNICIANS);
+        return new CommandResult(String.format(MESSAGE_DELETE_TECHNICIAN_SUCCESS, id), Tab.TECHNICIANS);
     }
 
     @Override
