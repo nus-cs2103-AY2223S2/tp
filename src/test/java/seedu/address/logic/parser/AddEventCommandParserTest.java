@@ -1,17 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.AddEventCommand;
-import seedu.address.logic.commands.EditEventCommand;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.OneTimeEvent;
-import seedu.address.model.event.RecurringEvent;
-import seedu.address.model.event.fields.DateTime;
-import seedu.address.model.event.fields.Description;
-import seedu.address.model.event.fields.Recurrence;
-
-import java.util.Set;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_1;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_2;
@@ -32,6 +20,18 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRENCE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATETIME_1;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.AddEventCommand;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.OneTimeEvent;
+import seedu.address.model.event.RecurringEvent;
+import seedu.address.model.event.fields.DateTime;
+import seedu.address.model.event.fields.Description;
+import seedu.address.model.event.fields.Recurrence;
 
 class AddEventCommandParserTest {
 
