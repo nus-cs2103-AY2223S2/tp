@@ -210,7 +210,7 @@ on the Projects tab, Mycelium will automatically display the Clients tab.
 
 ### Creating a client contact: `c`
 
-To create a new client contact, you can use the **`c`** command followed by the client's name and email. 
+To create a new client contact, you can use the **`c`** command followed by the client's name and email.
 The year of birth, platform source, and mobile number can also be added as optional arguments.
 Once successfully created, the interface will display the new client's name and email.
 
@@ -236,7 +236,7 @@ Once successfully created, the interface will display the new client's name and 
 <div markdown="span" class="alert alert-danger">
 :warning: Mycelium does not accommodate 'extreme' inputs (e.g., a client name or email with 1000 characters)
 at this version. This will be added in a future version. Meanwhile, you can limit the characters of each field
-to your screen size and resize if needed to see the full text. 
+to your screen size and resize if needed to see the full text.
 </div>
 
 **Example**
@@ -282,7 +282,7 @@ Deleted Client: Alice Baker (alice_baker@bakers.com)
 
 ### Updating a client: `uc`
 
-To update an existing client contact, you can use the **`uc`** command 
+To update an existing client contact, you can use the **`uc`** command
 followed by the client's email address.
 You can then add one or more optional arguments to specify the updated information such as the client's new name, email, year of birth, platform source, or mobile number.
 The interface will display the updated client's name and email once the update is successful.
@@ -369,7 +369,7 @@ If the project is added successfully, a message confirming the addition will be 
 <div markdown="span" class="alert alert-danger">
 :warning: Mycelium does not accommodate 'extreme' inputs (e.g., a project name or description with 1000 characters)
 at this version. This will be added in a future version. Meanwhile, you can limit the characters of each field
-to your screen size and resize if needed to see the full text. 
+to your screen size and resize if needed to see the full text.
 </div>
 
 
@@ -677,7 +677,7 @@ This shortcut allows you toggle the command box between **search mode** and **co
 
 In **command mode**, the input in the command box is used to execute the command.
 
-In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
+In **search mode**, the command box is highlighted teal and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
 
 If you have a project or client selected, pressing (ENTER) in **search mode** switches back to **command mode** and appends the name or email of the selected project or client to the command box respectively. This is useful if you want to quickly reference a project or client in your command.
 
