@@ -90,6 +90,29 @@ public class IdDataMapTest {
 
 
     @Test
+    public void addAndDeleteTest() {
+        /*
+         * Test ensures that ID increases on an add operation after the recently added
+         * element was deleted immediately
+         */
+
+        // element to ensure that map is not empty
+        // first so 0
+        idMap.add(0);
+
+        // second so 1
+        int idDel = idMap.add(1).getId();
+        idMap.remove(idDel);
+
+        // third so 2
+        int idNext = idMap.add(2).getId();
+
+        assertEquals(1, idDel);
+        assertEquals(2, idNext);
+    }
+
+
+    @Test
     public void setValues_withinLimit_valuesAdded() {
         ArrayList<Integer> values = new ArrayList<>();
         for (int i = 0; i < TESTING_LIMIT; i++) {
