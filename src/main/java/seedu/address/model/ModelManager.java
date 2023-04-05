@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -116,18 +117,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson, OfficeConnectModel officeConnectModel) {
+    public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
-        focusPerson(target, officeConnectModel);
     }
 
     @Override
     public void focusPerson(Person personToFocus, OfficeConnectModel officeConnectModel) {
         updateFilteredPersonList(person -> person.getId().equals(personToFocus.getId()));
-        List<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager()
-            .filter(assign -> assign.getPersonId().equals(personToFocus.getId()));
+        List<AssignTask> assignTasks = new ArrayList<>(officeConnectModel.getAssignTaskModelManager()
+            .filter(assign -> assign.getPersonId().equals(personToFocus.getId())));
 
         officeConnectModel.updateTaskModelManagerFilteredItemList(task -> assignTasks.stream()
             .anyMatch(assign -> assign.getTaskId().equals(task.getId())));
@@ -156,15 +155,15 @@ public class ModelManager implements Model {
         return addressBook.getPersonList().filtered(predicate);
     }
 
-    @Override
-    public void setPeopleTasks(OfficeConnectModel officeConnectModel) {
-        for (Person person : addressBook.getPersonList()) {
-            List<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager()
-                .filter(a -> a.getPersonId().equals(person.getId()));
-            person.setTasks(officeConnectModel.getTaskModelManager()
-                .filter(t -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(t.getId()))));
-        }
-    }
+    // @Override
+    // public void setPeopleTasks(OfficeConnectModel officeConnectModel) {
+    //     for (Person person : addressBook.getPersonList()) {
+    //         List<AssignTask> assignTasks = officeConnectModel.getAssignTaskModelManager()
+    //             .filter(a -> a.getPersonId().equals(person.getId()));
+    //         person.setTasks(officeConnectModel.getTaskModelManager()
+    //             .filter(t -> assignTasks.stream().anyMatch(a -> a.getTaskId().equals(t.getId()))));
+    //     }
+    // }
 
     @Override
     public boolean equals(Object obj) {

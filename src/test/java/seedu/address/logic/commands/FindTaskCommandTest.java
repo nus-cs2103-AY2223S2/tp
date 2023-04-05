@@ -32,10 +32,10 @@ public class FindTaskCommandTest {
 
     private final OfficeConnectModel officeConnectModel = new OfficeConnectModel(
             new RepositoryModelManager<>(getTypicalTaskRepository()),
-            new RepositoryModelManager<>(new Repository<AssignTask>()));
+            new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
     private final OfficeConnectModel expectedOfficeConnectModel = new OfficeConnectModel(new
             RepositoryModelManager<>(officeConnectModel.getTaskModelManager().getReadOnlyRepository()),
-            new RepositoryModelManager<>(new Repository<AssignTask>()));
+            new RepositoryModelManager<>(new Repository<AssignTask>()), new ModelManager());
 
     @Test
     public void equals() {

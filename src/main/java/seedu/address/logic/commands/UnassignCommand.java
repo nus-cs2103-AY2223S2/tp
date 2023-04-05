@@ -53,11 +53,12 @@ public class UnassignCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Person person = model.getFilterPerson(personIndex.getZeroBased());
-        Task task = officeConnectModel.deleteAssignment(person, taskIndex.getZeroBased());
-        model.updateFilteredPersonList(p -> p.getId().equals(person.getId()));
+        Person personToUnassign = model.getFilterPerson(personIndex.getZeroBased());
+        Task taskToUnassign = officeConnectModel.getTaskModelManager().getFilterItem(taskIndex.getZeroBased());
+
+        Task task = officeConnectModel.deleteAssignment(personToUnassign, taskToUnassign);
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-            person.getName(), task.getTitle()));
+            personToUnassign.getName(), task.getTitle()));
     }
 
     @Override

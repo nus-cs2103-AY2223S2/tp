@@ -22,6 +22,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.ModelManager;
 import seedu.address.model.OfficeConnectModel;
 import seedu.address.model.Repository;
 import seedu.address.model.RepositoryModelManager;
@@ -32,17 +34,17 @@ public class DeleteTaskCommandTest {
 
     private final OfficeConnectModel model = new OfficeConnectModel(
         new RepositoryModelManager<>(getTypicalTaskRepository()),
-        new RepositoryModelManager<>(getPersonTaskRepository()));
+        new RepositoryModelManager<>(getPersonTaskRepository()), new ModelManager());
     private final OfficeConnectModel expectedModel = new OfficeConnectModel(new
         RepositoryModelManager<>(model.getTaskModelManager().getReadOnlyRepository()),
-        new RepositoryModelManager<>(model.getAssignTaskModelManager().getReadOnlyRepository()));
+        new RepositoryModelManager<>(model.getAssignTaskModelManager().getReadOnlyRepository()), new ModelManager());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIndexUnfilteredList_success() throws CommandException {
         Task taskToDelete = model.getTaskModelManagerFilteredItemList().get(INDEX_FIRST.getZeroBased());
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
-        expectedModel.deleteTaskModelManagerItem(taskToDelete);
+        expectedModel.deleteTask(taskToDelete);
         assertTaskCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
 
@@ -55,7 +57,7 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_success() throws CommandException {
         showTaskAtIndex(model, INDEX_FIRST);
 
         Task taskToDelete = model.getTaskModelManagerFilteredItemList().get(INDEX_FIRST.getZeroBased());
@@ -63,7 +65,7 @@ public class DeleteTaskCommandTest {
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        expectedModel.deleteTaskModelManagerItem(taskToDelete);
+        expectedModel.deleteTask(taskToDelete);
         showNoTask(expectedModel);
 
         assertTaskCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
@@ -85,17 +87,14 @@ public class DeleteTaskCommandTest {
     }
 
     @Test
-    public void execute_checkDeletionOfAssignments_success() {
+    public void execute_checkDeletionOfAssignments_success() throws CommandException {
         Task taskToDelete = model.getTaskModelManagerFilteredItemList().get(INDEX_FIRST.getZeroBased());
-        AssignTask assignmentToDelete1 = new AssignTask(ALICE.getId(), SEND_EMAIL_TO_CLIENT.getId());
-        AssignTask assignmentToDelete2 = new AssignTask(DANIEL.getId(), SEND_EMAIL_TO_CLIENT.getId());
+
 
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST);
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS, taskToDelete);
 
-        expectedModel.deleteTaskModelManagerItem(taskToDelete);
-        expectedModel.deleteAssignTaskModelManagerItem(assignmentToDelete1);
-        expectedModel.deleteAssignTaskModelManagerItem(assignmentToDelete2);
+        expectedModel.deleteTask(taskToDelete);
 
         assertAssignTaskCommandSuccess(deleteTaskCommand, model, expectedMessage, expectedModel);
     }
