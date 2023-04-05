@@ -21,10 +21,10 @@ public class SemYearTest {
 
     @Test
     public void isValidSemYear() {
-        // null email
+        // null semyear
         assertThrows(NullPointerException.class, () -> SemYear.isValidSemYear(null));
 
-        // blank email
+        // blank semyear
         assertFalse(SemYear.isValidSemYear("")); // empty string
         assertFalse(SemYear.isValidSemYear(" ")); // spaces only
 
@@ -33,12 +33,17 @@ public class SemYearTest {
         assertFalse(SemYear.isValidSemYear("Y2"));
         assertFalse(SemYear.isValidSemYear("S1"));
 
-        // invalid parts
+        // invalid semyear
         assertFalse(SemYear.isValidSemYear("Y1_S1"));
+        assertFalse(SemYear.isValidSemYear("Y6S1")); // beyond max year
+        assertFalse(SemYear.isValidSemYear("Y1S3")); // beyond max sem
+        assertFalse(SemYear.isValidSemYear("Y1ST3")); // beyond max sem (special term)
 
-
-        // valid email
+        // valid semyear
+        assertTrue(SemYear.isValidSemYear("Y0S1"));
+        assertTrue(SemYear.isValidSemYear("Y0ST1"));
         assertTrue(SemYear.isValidSemYear("Y1S1"));
+        assertTrue(SemYear.isValidSemYear("Y1ST1"));
         assertTrue(SemYear.isValidSemYear("Y3S2"));
         assertTrue(SemYear.isValidSemYear("Y4S2"));
         assertTrue(SemYear.isValidSemYear("Y2S1"));

@@ -21,21 +21,23 @@ public class CodePrefixTest {
 
     @Test
     public void isValidCodePrefix() {
-        // null name
+        // null code prefix
         assertThrows(NullPointerException.class, () -> CodePrefix.isValidCodePrefix(null));
 
-        // invalid name
+        // invalid code prefixes
         assertFalse(CodePrefix.isValidCodePrefix("")); // empty string
         assertFalse(CodePrefix.isValidCodePrefix(" ")); // spaces only
         assertFalse(CodePrefix.isValidCodePrefix("^")); // only non-alphanumeric characters
         assertFalse(CodePrefix.isValidCodePrefix("peter*")); // contains non-alphanumeric characters
 
-        // valid name
+        // valid code prefixes
         assertTrue(CodePrefix.isValidCodePrefix("CS"));
+        assertTrue(CodePrefix.isValidCodePrefix("cs")); // small letters
         assertTrue(CodePrefix.isValidCodePrefix("MA"));
         assertTrue(CodePrefix.isValidCodePrefix("ST"));
         assertTrue(CodePrefix.isValidCodePrefix("GEA")); // long prefix
         assertTrue(CodePrefix.isValidCodePrefix("GEC")); // long prefix
         assertTrue(CodePrefix.isValidCodePrefix("GESS")); // longer prefix
+        assertTrue(CodePrefix.isValidCodePrefix("gEsS")); // mix of small and big letters
     }
 }
