@@ -92,7 +92,7 @@ public class EditCommandParserTest {
         // invalid type followed by valid timeSlot
         //Commented out because resource can be anything
         // assertParseFailure(parser, "1" + INVALID_TYPE_DESC
-                // + TIMESLOT_DESC_CS3230, Resource.MESSAGE_CONSTRAINTS);
+        //      + TIMESLOT_DESC_CS3230, Resource.MESSAGE_CONSTRAINTS);
 
         // valid type followed by invalid type. The test case for invalid type followed by valid type
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
