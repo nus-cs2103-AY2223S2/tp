@@ -21,6 +21,10 @@ import seedu.library.model.bookmark.Title;
 import seedu.library.model.tag.Tag;
 
 public class ParserUtilTest {
+    public static final String INVALID_TITLE_LENGTH = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+            + "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     private static final String INVALID_TITLE = " ";
     private static final String INVALID_PROGRESS = "+651234";
     private static final String INVALID_AUTHOR = " ";
@@ -65,6 +69,11 @@ public class ParserUtilTest {
     @Test
     public void parseTitle_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
+    }
+
+    @Test
+    public void parseTitle_invalidLength_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE_LENGTH));
     }
 
     @Test
