@@ -282,7 +282,7 @@ Given below is an example usage scenario when a user enter `patient add --n John
 
 Note that `Allergies` and `Vaccines` are optional, so the user does not need to include `--a ` or `--v` if the it is not applicable.
 
-The activity diagram below illustrates the workflow of patient `AddCommand` that is described above.
+The activity diagram below summarises the action when the patient `AddCommand` is executed.
 
 <img src="images/patient/AddPatientActivityDiagram.png" width="550" />
 
@@ -303,7 +303,7 @@ Given below is an example usage scenario when a user enter `patient list` as a c
 3. `PatientParser` will invoke `ListCommandParser`, which will create `ListCommand` directly as they do not use any args.
 4. When `ListCommand#execute` is called, `model#updateFilteredPatientList` will be called to update the list with the `PREDICATE_SHOW_ALL_PATIENTS` to display all Patients.
 
-The activity diagram below illustrates the workflow of patient `ListCommand` that is described above.
+The activity diagram below summarises the action when the patient `ListCommand` is executed.
 
 <img src="images/patient/ListPatientsActivityDiagram.png" width="550" />
 
@@ -340,7 +340,7 @@ Given below is an example usage scenario when a user enter `patient find --n Joh
     3. The different predicates will be added into a `List<Predicate<Patient>>` and passed to `model#setPatientFilters` to display the filtered Patients.
     4. `FindCommand` will then return `CommandMessage` to indicate it's success and the number of patients found.
 
-The activity diagram below illustrates the workflow of patient `FindCommand` that is described above.
+The activity diagram below summarises the action when the patient `FindCommand` is executed.
 
 <img src="images/patient/FindPatientActivityDiagram.png" width="550" />
 
@@ -375,7 +375,7 @@ Given below is an example usage scenario when a user enter `patient edit 5 --n J
     3. Then `model#setPatient` will be called to add the new Patient into the model.
     4. `EditCommand` will then return `CommandMessage` to indicate it's success.
 
-The activity diagram below illustrates the workflow of patient `EditCommand` that is described above.
+The activity diagram below summarises the action when the patient `EditCommand` is executed.
 
 <img src="images/patient/EditPatientActivityDiagram.png" width="550" />
 
@@ -400,6 +400,9 @@ Given below is an example usage scenario when a user enter `patient delete 5` as
 The activity diagram below summarises the action when the patient `DeleteCommand` is executed.
 
 <img src="images/patient/DeletePatientActivityDiagram.png" width="550" />
+
+Given below is an sequence diagram that illustrates the **Deleting a Patient** mechanism behaves at every step.
+
 <img src="images/patient/DeletePatientSequenceDiagram.png" width="550" />
 
 #### Clearing Patients
@@ -415,7 +418,7 @@ Given below is an example usage scenario when a user enter `patient clear` as a 
 3. `PatientParser` will invoke `ClearCommand` which will create `ClearCommand` as they do not use any args.
 4. When `ClearCommand#execute` is called, `model#setPatientManager` will be called to update the list a new PatientManger() with no patients.
 
-The activity diagram below illustrates the workflow of patient `ClearCommand` that is described above.
+The activity diagram below summarises the action when the patient `ClearCommand` is executed.
 
 <img src="images/patient/ClearPatientActivityDiagram.png" width="550" />
 
