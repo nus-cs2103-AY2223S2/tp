@@ -91,4 +91,13 @@ public class SortStudentCommand extends Command {
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortStudentCommand) // instanceof handles nulls
+                && this.metric == (((SortStudentCommand) other).getMetric()) // state check
+                && this.group == ((SortStudentCommand) other).getGroup()
+                && this.isIncreasing == ((SortStudentCommand) other).getIsIncreasing();
+    }
 }
