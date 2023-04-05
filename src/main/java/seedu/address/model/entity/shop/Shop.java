@@ -306,6 +306,7 @@ public class Shop implements ReadOnlyShop {
             }
             this.customers.removeIf(c -> c.getId() == customerId);
             logger.info(String.format("Customer %d removed", customerId));
+            IdGenerator.setCustomerIdUnused(customerId);
         } catch (VehicleNotFoundException | AppointmentNotFoundException e) {
             logger.severe(e.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
@@ -321,6 +322,7 @@ public class Shop implements ReadOnlyShop {
             this.getCustomer(toRemove.getOwnerId()).removeVehicle(toRemove);
             this.vehicles.removeIf(v -> v.getId() == vehicleId);
             logger.info(String.format("Vehicle %d removed", vehicleId));
+            IdGenerator.setVehicleIdUnused(vehicleId);
         } catch (ServiceNotFoundException | CustomerNotFoundException e) {
             logger.severe(e.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
@@ -336,6 +338,7 @@ public class Shop implements ReadOnlyShop {
             }
             this.appointments.removeIf(a -> a.getId() == appointmentId);
             logger.info(String.format("Appointment %d removed", appointmentId));
+            IdGenerator.setAppointmentIdUnused(appointmentId);
         } catch (CustomerNotFoundException | TechnicianNotFoundException e) {
             logger.severe(e.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
@@ -360,6 +363,7 @@ public class Shop implements ReadOnlyShop {
             }
             this.services.removeIf(s -> s.getId() == serviceId);
             logger.info(String.format("Service %d removed", serviceId));
+            IdGenerator.setServiceIdUnused(serviceId);
         } catch (VehicleNotFoundException | TechnicianNotFoundException ex) {
             logger.severe(ex.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
@@ -377,6 +381,7 @@ public class Shop implements ReadOnlyShop {
             }
             this.removeTechnician(techId);
             logger.info("Technician %d removed");
+            IdGenerator.setStaffIdUnused(techId);
         } catch (ServiceNotFoundException | AppointmentNotFoundException e) {
             logger.severe(e.getMessage());
             throw new RuntimeException(MSG_RUNTIME_ERROR);
