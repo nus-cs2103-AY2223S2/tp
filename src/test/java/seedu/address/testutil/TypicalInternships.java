@@ -22,7 +22,7 @@ import seedu.address.model.documents.ResumeLink;
 public class TypicalInternships {
     public static final InternshipApplication META = new InternshipBuilder().withCompanyName("Meta")
             .withJobTitle("Software Tester")
-            .withContact(new Contact(new Phone("33333333"), new Email("example@meta.com"))).build();
+            .withContact(new Contact(new Phone("55555555"), new Email("meta@example.com"))).build();
     public static final InternshipApplication BANK_OF_AMERICA = new InternshipBuilder()
             .withCompanyName("Bank of America").withJobTitle("Software Engineer").build();
     public static final InternshipApplication ALICE = new InternshipBuilder().withCompanyName("Alice Wonder")
