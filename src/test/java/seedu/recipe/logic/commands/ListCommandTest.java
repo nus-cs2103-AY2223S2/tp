@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.recipe.model.Model;
 import seedu.recipe.model.ModelManager;
+import seedu.recipe.model.RecipeBook;
 import seedu.recipe.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
 public class ListCommandTest {
-
     private Model model;
     private Model expectedModel;
 
@@ -35,5 +35,12 @@ public class ListCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         showRecipeAtIndex(model, INDEX_FIRST_RECIPE);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_emptyList_message() {
+        model.setRecipeBook(new RecipeBook());
+        expectedModel.setRecipeBook(new RecipeBook());
+        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_EMPTY, expectedModel);
     }
 }
