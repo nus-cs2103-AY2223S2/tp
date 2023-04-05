@@ -588,11 +588,19 @@ If there was no item originally selected, then the last item in the list will be
 
 ### (CTRL+F) Search
 
-This shortcut allows you toggle the command box between **search mode** and **command mode** (default).
+This shortcut allows you toggle the command box between **search mode** and
+**command mode** (default). More information about the functionality of
+**search mode** can be found [below](#fuzzy-search).
 
 In **command mode**, the input in the command box is used to execute the command.
 
 In **search mode**, the command box is highlighted light blue and the input is used to *interactively* search for the closest matching project or client by name in the **Entity panel only**. *Interactively* would mean that the search results are updated in the projects and client list as you type. On entering **search mode**, the Entity panel will be put into focus automatically.
+
+Your existing input while in **command mode** will be cached when you switch to
+**search mode**. It is then restored when you switch back to **command mode**.
+Similarly, your existing input while in **search mode** will be cached when
+switching to **command mode**, and restored when switching back to **search
+mode**.
 
 <div markdown="span" class="alert alert-danger">
 :warning: You cannot execute any commands while in **search mode**. Similarly,
