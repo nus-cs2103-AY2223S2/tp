@@ -62,7 +62,7 @@ A GUI similar to the one below should appear in a few seconds.
 Take note how the app below contains some sample data. This may not be the case if it's your first time using Wingman.
 </div>
 
-<img src = "images/UG-index-reference.png" width="2032" alt="Wingman home page">
+<img src = "images/UG-start.png" width="2032">
 
 (If you encounter any issues during installation, please head over to our [FAQ](#faq) section to troubleshoot.)
 
@@ -96,11 +96,11 @@ mode XYZ
 
 where XYZ can be any of the modes described above (i.e. `crew`, `flight`, `location`, `pilot`, `plane`).
 
-<img src="images/ModeCrewLanding.jpg" width="2032" alt="Switching to mode crew">
+Upon successfully switching to a mode, Wingman will display the current mode's name in the status bar in the bottom left
+corner of the window. The window also displays a list for each resource, to aid you in keeping track of links between 
+resources.
 
-As shown in the image above, upon successfully switching to a mode, Wingman will display the current mode's name in the
-status bar in the bottom left corner of the window. The window also displays a list for each resource, to aid you in
-keeping track of links between resources.
+<img src="images/ug/UG-mode.jpg" width="2032">
 
 ### Command Formatting
 
@@ -166,6 +166,11 @@ for each attribute as shown in the following examples.
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 <strong>Note:</strong> The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
+
+If the command is valid, upon pressing enter, your application window will be updated as shown below.
+The response box describes the addition that was made and the new entity should be displayed in the left list.
+
+<img src="images/ug/UG-add.jpg" width="2032">
 
 ##### Crew mode: `add /n name /r rank`
 
@@ -266,12 +271,6 @@ Output:
 Added A380.
 ```
 
-If the command is valid, upon pressing enter, your application window will be updated as shown below.
-The response box describes the addition that was made and the new entity should be displayed in the left list.
-
-<img src="images/AddSuccessPage.jpg" width="2032" alt="Successful plane addition page">
-
-
 <div style="page-break-after: always;"></div>
 
 #### **2. Deleting a resource**
@@ -294,11 +293,11 @@ Required input value:
 
 The index number of a resource entity is the number next to its entry in the displayed list.
 
+<img src="images/ug/UG-index.jpg" width="2032">
+
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 <strong>Note:</strong> Remember that indexing starts from 1.
 </div>
-
-[//]: # (add screenshot of the indexing here)
 
 Example in `plane` mode:
 
@@ -343,9 +342,7 @@ entity in the database.
 
 If the command is valid, Wingman will return a response confirming the link that has been made, as shown below:
 
-[//]: # (replace this image with the new UI)
-
-[//]: # (<img src="images/LinkLocationSuccess.jpg" width="2032" alt="Successful link of plane to location">)
+<img src="images/ug/UG-linklocation.jpg" width="2032">
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 <strong>Note:</strong> The prefixes vary across different modes. Refer to the examples below for more clarity.
@@ -362,7 +359,7 @@ Example:
 
 ```
 Input:
-linklocation /lo 1 /cr 2
+linklocation /lo 1 /cr 1
 
 Output: 
 Linked Cabin Service Director John Smith to Tokyo.
@@ -397,7 +394,7 @@ Example:
 
 ```
 Input:
-linklocation /lo 1 /pi 2
+linklocation /lo 1 /pi 1
 
 Output: 
 Linked Cadet Amelia Earhart to Tokyo.
@@ -414,7 +411,7 @@ Example:
 
 ```
 Input:
-linklocation /lo 1 /pl 2
+linklocation /lo 1 /pl 1
 
 Output: 
 Linked A380 to Tokyo.
@@ -449,7 +446,7 @@ location entity in the database.
 
 If the command is valid, Wingman will return a response confirming the link that has been undone, as shown below:
 
-[//]: # (add screenshot here)
+<img src="images/ug/UG-unlinklocation.jpg" width="2032">
 
 <div style="border: 0px solid #ccc; background-color: #d9edff; color: darkblue; padding: 10px; margin-bottom: 10px;">
 <strong>Note:</strong>s The prefixes vary across different modes. Refer to the examples below for more clarity.
@@ -466,7 +463,7 @@ Example:
 
 ```
 Input:
-unlinklocation /lo 1 /cr 2
+unlinklocation /lo 1 /cr 1
 
 Output: 
 Unlinked Cabin Service Director John Smith from Tokyo.
@@ -482,11 +479,9 @@ Required prefixes:
 
 Example:
 
-[//]: # (check if the command actually works like this or not)
-
 ```
 Input:
-unlinklocation /fl 1 /from 1 /to 2
+unlinklocation /fl 1 /from 1 /to 1
 
 Output: 
 Unlinked Tokyo, Paris from SQ230.
@@ -503,7 +498,7 @@ Example:
 
 ```
 Input:
-unlinklocation /lo 1 /pi 2
+unlinklocation /lo 1 /pi 1
 
 Output: 
 Unlinked Cadet Amelia Earhart from Tokyo.
@@ -520,7 +515,7 @@ Example:
 
 ```
 Input:
-unlinklocation /lo 1 /pl 2
+unlinklocation /lo 1 /pl 1
 
 Output: 
 Unlinked A380 from Tokyo.
@@ -562,9 +557,9 @@ the database.
 <strong>Note:</strong> The prefixes vary across different modes. Refer to the examples below for more clarity.
 </div>
 
-If the command is valid, Wingman will return a response confirming the link that has been undone, as shown below:
+If the command is valid, Wingman will return a response confirming the link that has been made, as shown below:
 
-[//]: # (add screenshot here)
+<img src="images/ug/UG-linkflight.jpg" width="2032">
 
 ##### Crew mode:
 
@@ -590,7 +585,7 @@ Example:
 
 ```
 Input:
-linkflight /fl 1 /csd 2
+linkflight /fl 1 /csd 1
 
 Output: 
 Linked Cabin Service Director John Smith to SQ230.
@@ -616,7 +611,7 @@ Example:
 
 ```
 Input:
-linkflight /fl 1 /pf 2
+linkflight /fl 1 /pf 1
 
 Output: 
 Linked Cadet Amelia Earhart to SQ230.
@@ -633,7 +628,7 @@ Example:
 
 ```
 Input:
-linkflight /fl 1 /pl 2
+linkflight /fl 1 /pl 1
 
 Output: 
 Linked A380 to SQ230.
@@ -677,7 +672,7 @@ in the database.
 
 If the command is valid, Wingman will return a response confirming the link that has been undone, as shown below:
 
-[//]: # (add screenshot here)
+<img src="images/ug/UG-unlinkflight.jpg" width="2032">
 
 ##### Crew mode:
 
@@ -703,7 +698,7 @@ Example:
 
 ```
 Input:
-unlinkflight /fl 1 /csd 2
+unlinkflight /fl 1 /csd 1
 
 Output: 
 Unlinked Cabin Service Director John Smith from SQ230.
@@ -729,7 +724,7 @@ Example:
 
 ```
 Input:
-unlinkflight /fl 1 /csd 2
+unlinkflight /fl 1 /pf 1
 
 Output: 
 Unlinked Cadet Amelia Earhart from SQ230.
@@ -772,8 +767,6 @@ example, if you are currently in `plane` mode, then this command will check whet
 to any flights or not and indicate its availability.
 
 This command has **NO** variation across the modes.
-
-[//]: # (add screenshot of the indexing here)
 
 Example in `plane` mode:
 
