@@ -30,8 +30,11 @@ import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_CLASS_ANY = "1A";
     public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_CLASS_AMY = "1A";
+    public static final String VALID_CLASS_BOB = "1B";
+    public static final String VALID_INDEX_AMY = "11";
+    public static final String VALID_INDEX_BOB = "12";
     public static final String VALID_AGE_AMY = "20";
     public static final String VALID_AGE_BOB = "21";
     public static final String VALID_PHONE_AMY = "11111111";
