@@ -102,7 +102,7 @@ Format: `add t/TITLE d/DESCRIPTION i/INGREDIENT... s/STEP... [tag/TAG]...`
 
 Below shows how you can add an *Orange juice* recipe.
 <p align="center" width="100%">
-    <img src="images/annotated/addCommand.svg" width="80%">
+    <img src="images/annotated/addCommand.svg" width="100%">
 </p>
 
 
@@ -136,7 +136,7 @@ Format: `edit RECIPE_NUMBER [t/TITLE] [d/DESCRIPTION] [i/INGREDIENT] [s/STEP] [t
 
 Below shows how you can edit the ingredients of the first recipe with CookHub.
 <p align="center" width="100%">
-    <img src="images/annotated/editCommand.svg" width="80%">
+    <img src="images/annotated/editCommand.svg" width="100%">
 </p>
 
 Example:
@@ -165,7 +165,7 @@ Format: `delete RECIPE_NUMBER`
 
 - Below shows how you can delete the first recipe in CookHub.
 <p align="center" width="100%">
-    <img src="images/annotated/deleteCommand.svg" width="80%">
+    <img src="images/annotated/deleteCommand.svg" width="100%">
 </p>
 
 
@@ -229,7 +229,7 @@ Format: `find [r/RECIPE] [t/TITLE] [s/STEP] [i/INGREDIENT] [tag/TAG]`
 
 Below shows how you can find for eggs in your recipe book with CookHub.
 <p align="center" width="100%">
-    <img src="images/annotated/findCommand.svg" width="80%">
+    <img src="images/annotated/findCommand.svg" width="100%">
 </p>
 
 Examples:
@@ -294,7 +294,7 @@ Format: `sort ORDER`
 
 Below shows how you can sort your recipe book in ascending order.
 <p align="center" width="100%">
-    <img src="images/annotated/sortCommand.svg" width="80%">
+    <img src="images/annotated/sortCommand.svg" width="100%">
 </p>
 Example: 
 
@@ -319,7 +319,7 @@ Format: `groceries RECIPE_NUMBER, ...`
 
 Below shows how you can get a list of groceries to cook for recipes 1, 3 and 4.
 <p align="center" width="100%">
-    <img src="images/annotated/groceriesCommand.svg" width="80%">
+    <img src="images/annotated/groceriesCommand.svg" width="100%">
 </p>
 
 Example: `groceries 1,3,4`
@@ -343,7 +343,7 @@ Format: `fp COMPARATOR PRICE`
 
 Below shows how you can filter for all recipes with prices *less than 4.50*.
 <p align="center" width="100%">
-    <img src="images/annotated/fpCommand.svg" width="80%">
+    <img src="images/annotated/fpCommand.svg" width="100%">
 </p>
 
 Example: 
@@ -369,7 +369,7 @@ Format: `star RECIPE_NUMBER`
 
 Below shows how you can add the first recipe to your favourites.
 <p align="center" width="100%">
-    <img src="images/annotated/starCommand.svg" width="80%">
+    <img src="images/annotated/starCommand.svg" width="100%">
 </p>
 
 Examples:
@@ -399,7 +399,7 @@ Format: `unstar RECIPE_NUMBER`
 
 Below shows you can remove the first recipe from your favourites.
 <p align="center" width="100%">
-    <img src="images/annotated/unstarCommand.svg" width="80%">
+    <img src="images/annotated/unstarCommand.svg" width="100%">
 </p>
 
 Examples:
