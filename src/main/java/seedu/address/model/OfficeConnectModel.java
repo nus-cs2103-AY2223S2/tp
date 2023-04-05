@@ -156,7 +156,6 @@ public class OfficeConnectModel {
     public void setTask(Task target, Task editedTask) {
         taskModelManager.setItem(target, editedTask);
         updatePersonsOnTaskChanged(editedTask);
-
     }
 
     private void updatePersonsOnTaskChanged(Task task) {
@@ -279,4 +278,8 @@ public class OfficeConnectModel {
         personModelManger.deletePerson(personToDelete);
     }
 
+    public void setPerson(Person personToEdit, Person editedPerson) {
+        personModelManger.setPerson(personToEdit, editedPerson);
+        updateTaskOnPersonChanged(editedPerson);
+    }
 }
