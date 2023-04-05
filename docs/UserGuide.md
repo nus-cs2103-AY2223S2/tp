@@ -20,13 +20,13 @@ title: User Guide
       2. [Sorting roles](#sorting-roles)
          1. [Sorting a role by deadline `deadline`](#sorting-by-deadline-deadline)
          2. [Sorting a role by salary `salary`](#sorting-by-salary-salary)
-         3. [Viewing a role `view`](#viewing-a-role-view)
-   4. [General Commands](#general-commands)
+   4. [Viewing more details of a role `view`](#viewing-more-details-of-a-role-view)
+   5. [General Commands](#general-commands)
       1. [List all roles `list`](#list-list)
       2. [Clear all roles `clear`](#clear-clear)
-      3. [Help (Display command format) `help`](#help-help)
+      3. [Help `help`](#help-help)
       4. [Exit TechTrack `exit`](#exit-exit)
-   5. [Editing raw data](#editing-raw-data)
+   6. [Editing raw data](#editing-raw-data)
 4. [FAQ](#faq)
 5. [Command Summary](#command-summary)
 
@@ -55,7 +55,7 @@ Here is what TechTrack can store per role:
 | `No`     | t      | TAG                  | The string must contain at least one alphanumeric character or space. <br/>If the string consists of only one character, it cannot be a space.<br/>Note: Editing a role's tag to a space character removes the tag from that role |
 | `Yes`     | w      | WEBSITE              | Must be in www.(Any Characters).com                                                                                                                                                                                               |
 | `Yes`    | jd     | JOB DESCRIPTION      | The string must contain at least one non-space character.                                                                                                                                                                         |
-| `Yes`    | $      | SALARY               | Positive number with up to two decimal points. Must not be padded with leading zeroes (e.g., 001000.00).                                                                                                                          |
+| `Yes`    | $      | SALARY               | Must be a positive whole number that is larger than 0.                                                                                                                                                                            |
 | `Yes`    | d      | APPLICATION DEADLINE | Follows YYYY-MM-DD format and must not be over current date.                                                                                                                                                                      |
 | `Yes`    | x      | EXPERIENCE REQUIRED  | The string must contain at least one non-space character.                                                                                                                                                                         
 
@@ -74,13 +74,31 @@ Here is what TechTrack can store per role:
 
 This section guides you on how to utilise features available in TechTrack.
 
-
 **The features of TechTrack can be split into 3 main categories:**
 
 * [Creating Role Info](#creating-role-info)
 * [Viewing Role Info](#viewing-role-info)
 * [General Commands](#general-commands)
 
+**Notes about the command format:**
+
+* Words in `UPPER_CASE` and surrounded by `{}` are the parameters to be supplied by the user.
+  e.g. in `add n/{NAME}`, `{NAME}` is a parameter which can be used as `add n/Software Engineer`.
+
+* Items in square brackets are optional.
+  e.g `n/{NAME} [t/TAG]` can be used as `n/Software Engineer t/BigTech` or as `n/John Doe`.
+
+* Items with `…`​ after them can be used multiple times including zero times.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Tech`, `t/Applied t/InvitedForInterview` etc.
+
+* Parameters can be in any order.
+  e.g. if the command specifies `n/{NAME} c/{CONTACT}`, `n/{NAME} c/{CONTACT}` is also acceptable.
+
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
+  e.g. if you specify `c/12341234 c/56785678`, only `c/56785678` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 # Creating Role Info
 The commands in this segment are focused on creating, editing and removing data to and from the application.
@@ -94,16 +112,10 @@ These commands are:
 
 Adds a role to TechTrack.
 
-Format: `add {Prefix}/{Parameter}…​`
+Format: `add n/{NAME} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} $/{SALARY} d/{DEADLINE} x/{EXPERIENCE}` 
 
-Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year `
-
-- Adding multiple similar parameters will take the details of latter command.
-
-   Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year n/Frontend Developer`
-   
-   In this case, the name 'Software Engineering' will be replaced by 'Frontend Developer'. As such, users will only be able
-   to add one role at a time.
+Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com
+jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
 
 💡 **Note:** Refer to the attributes of a role [here](#what-is-a-role)
 
@@ -112,7 +124,15 @@ Edit any parameters of a preexisting role.
 
 💡 **Note:** The user must provide at least one parameter to edit!
 
-Format: `edit {index} {Prefix}/{Parameter}…​`
+Format: `edit {index} [n/{name}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{JOB DESCRIPTION}] [t/{TAG}]... [w/{WEBSITE}]
+[$/{SALARY}] [d/{DEADLINE}] [x/{EXPERIENCE}]`
+
+* Edits the role at the specified `{INDEX}`. The index refers to the index number shown in the displayed role list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the role will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it.
 
 Example 1:
 
@@ -125,9 +145,13 @@ User executes command: `edit 1 n/Software Engineer`.
 💡 **Note:** Refer to the attributes of a role [here](#what-is-a-role)
 
 ### Deleting a role: `delete`
-Deletes the role from the current list of roles. Uses a 1-based index.
+Deletes the role from the current list of roles.
 
 Format: `delete {index}`
+
+* Deletes the role at the specified `{INDEX}`. 
+The index refers to the index number shown in the displayed role list. 
+The index **must be a positive integer** 1, 2, 3, …​
 
 Example: `delete 1`
 
@@ -144,14 +168,24 @@ These commands are:
 * [Sorting roles](#sorting-roles)
   * [Sorting a role by deadline](#sorting-by-deadline-deadline)
   * [Sorting a role by salary](#sorting-by-salary-salary)
-  * [Viewing a role](#viewing-a-role-view)
+* [Viewing more details of a role](#viewing-more-details-of-a-role-view)
 
 ## Finding roles
 
-### Find roles by Name: `name`
-Searches for roles with the provided names. If multiple keywords inputted, there may be multiple results that contains these key words.
+The commands in this section returns roles where a certain attribute contains the given keywords. The property
+differs based on the command (e.g., `name {keyword}` will search for roles based on their `name`).
 
-Format: `name {keywords}...`
+* The search is case-insensitive. e.g `software` will match `Software`
+* The order of the keywords does not matter. e.g. `Software Engineer` will match `Engineer Software`
+* Only the name is searched.
+* Only full words will be matched e.g. `Soft` will not match `Software`
+* Roles matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Software Analyst` will return `Investment Analyst`, `Software Developer`
+
+### Find roles by Name: `name`
+Searches for roles whose name contains any of the given keywords.
+
+Format: `name {keyword} [{more keywords}]...`
 
 Example: `name analyst engineer data`
 
@@ -161,26 +195,31 @@ Example: `name analyst engineer data`
 
 
 ### Find roles by Company: `company`
-Searches for roles with the provided companies.
+Searches for roles whose company contains any of the given keywords.
 
-Format: `company {keywords}...`
+Format: `company {keyword} [{more keywords}]...`
 
 Example: `company Google`
 
 ![Company](images/UICommandImages/CompanyCommand1.png)
 
 ### Find roles by Tag: `tag`
-Searches for roles with the provided tag.
+Searches for roles whose tags contain any of the given keywords.
 
-Format: `tag {keyword}`
+Format: `tag {keyword} [{more keywords}]...`
 
 Example: `tag frontend`
 
 ![Tag](images/UICommandImages/TagCommand0.png)
 
 ## Sorting roles
+The commands in this role sorts the **entire role list** based on an attribute, which differs per command.
+For example, using the command `name SWE` followed by `deadline asc` would sort the filtered list of roles
+in ascending order by deadline. Afterwards, using the `list` command would display the original role list in its 
+newly sorted order.
+
 ### Sorting by Deadline: `deadline`
-Sort roles based on deadline, in ascending/descending orderParser.
+Sort roles based on deadline in ascending or descending order.
 
 Format: `deadline asc/desc`
 
@@ -191,7 +230,7 @@ Example 2: `deadline desc`
 ![Deadline](images/UICommandImages/DeadlineCommand2.png)
 
 ### Sorting by Salary: `salary`
-Sort roles based on salary, in ascending/descending orderParser. For ascending, the role with the lowest salary will be displayed at the top, while for descending, the role with the highest salary will be displayed at the top.
+Sort roles based on salary in ascending or descending order.
 
 Format: `salary asc/desc`
 
@@ -201,8 +240,11 @@ Example 1: `salary asc`
 Example 2: `salary desc`
 ![Salary](images/UICommandImages/SalaryCommand2.png)
 
-### Viewing a role: `view`
-Displays more details about a particular role.
+### Viewing more details of a role: `view`
+The view command allows users to view more detailed information about a specific role. While the list of role cards 
+on the left side of the GUI only displays key information such as the role's name, company, salary, deadline, and 
+required experience, the view command generates a graphic on the right side of the GUI that presents additional 
+details of the selected role.
 
 Format: `view {index}`
 
@@ -212,7 +254,7 @@ Format: `view {index}`
 
 * [List all roles](#list-list)
 * [Clear all roles](#clear-clear)
-* [Help (Display command format)](#help-help)
+* [Help](#help-help)
 * [Exit TechTrack](#exit-exit)
 
 ### List: `list`
@@ -238,6 +280,7 @@ You can directly edit TechTrack's data file after running and exiting the app.
 
 ## FAQ
 Q: How do I transfer my data to another Computer?
+
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TechTrack home folder.
 
 ## Command Summary
