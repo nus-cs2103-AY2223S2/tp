@@ -139,7 +139,6 @@ public class ExportManagerTest {
             Files.createDirectory(TEMP_FOLDER);
         } catch (IOException e) {
             //do nothing
-            //TODO: Exit this test class
         }
     }
 
