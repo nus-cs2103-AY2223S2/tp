@@ -84,8 +84,8 @@ Given below are my contributions to the project.
   * Updated README.md and index.md [\#59](https://github.com/AY2223S2-CS2103T-W15-4/tp/issues/59).
 
 * **Community**:
-  * PRs reviewed : [\#145](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/145), [\#157](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/157), [\#173](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/173).
-  * Reported bugs and suggestions for other teams in PE-D : [PE-D Issues for Group W16-1](https://github.com/laihuiqi/ped/issues).
+  * PRs reviewed (with non-trivial review comments): [\#145](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/145), [\#157](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/157), [\#173](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/173), [\#266](https://github.com/AY2223S2-CS2103T-W15-4/tp/pull/266).
+  * Reported bugs and suggestions for other teams in PE-D: [PE-D Issues for Group W16-1](https://github.com/laihuiqi/ped/issues).
 
 * **Tools**:
   * Java 11 and JavaFX
