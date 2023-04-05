@@ -18,6 +18,14 @@ public class AddStudentToEventCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Student at specified index added to event";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + " cannot be recognized!";
+    public static final String MESSAGE_STUDENT_INDEX_TOO_SMALL = "The student index you"
+            + " have entered cannot be 0 or less";
+    public static final String MESSAGE_STUDENT_INDEX_TOO_BIG = "The student index you have entered cannot be bigger"
+            + "than the size of the student list within the event";
+    public static final String MESSAGE_EVENT_INDEX_TOO_SMALL = "The event index you have entered cannot be"
+            + "0 or less";
+    public static final String MESSAGE_EVENT_INDEX_TOO_BIG = "The event index you have entered cannot be"
+            + "bigger than the size of the specified event list";
     public static final String TUTORIAL_STRING = PREFIX_TUTORIAL.getPrefix();
     public static final String LAB_STRING = PREFIX_LAB.getPrefix();
     public static final String CONSULTATION_STRING = PREFIX_CONSULTATION.getPrefix();
@@ -42,16 +50,38 @@ public class AddStudentToEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException, ParseException {
         requireNonNull(model);
-
-        if (this.eventType.equals(TUTORIAL_STRING)) {
+        if (studentIndex.getZeroBased() < 0) {
+            throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_SMALL);
+        }
+        if (studentIndex.getZeroBased() >= model.getFilteredPersonList().size()) {
+            throw new CommandException(MESSAGE_STUDENT_INDEX_TOO_BIG);
+        }
+        if (eventIndex.getZeroBased() < 0) {
+            throw new CommandException(MESSAGE_EVENT_INDEX_TOO_SMALL);
+        }
+        switch (eventType) {
+        case "Tutorial/":
+            if (eventIndex.getZeroBased() >= model.getFilteredTutorialList().size()) {
+                throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
+            }
             model.addStudentToTutorial(this.studentIndex, this.eventIndex);
-        } else if (this.eventType.equals(LAB_STRING)) {
+            break;
+        case "Lab/":
+            if (eventIndex.getZeroBased() >= model.getFilteredLabList().size()) {
+                throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
+            }
             model.addStudentToLab(this.studentIndex, this.eventIndex);
-        } else if (this.eventType.equals(CONSULTATION_STRING)) {
+            break;
+        case "Consultation/":
+            if (eventIndex.getZeroBased() >= model.getFilteredConsultationList().size()) {
+                throw new CommandException(MESSAGE_EVENT_INDEX_TOO_BIG);
+            }
             model.addStudentToConsultation(this.studentIndex, this.eventIndex);
-        } else {
+            break;
+        default:
             throw new CommandException(MESSAGE_EVENT_TYPE_NOT_RECOGNIZED);
         }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS),
                 false, false, false, true);
     }
