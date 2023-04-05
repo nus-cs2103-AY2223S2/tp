@@ -6,8 +6,8 @@ title: User Guide
 Duke Driver is a desktop app for managing delivery jobs and contacts. If you are looking to perform better at your delivery job, Duke Driver can assist you to finish your daily tasks more efficiently, according to your requirements.
 
 ## Table of Content 
+* Table of Contents
 {:toc}
-
 
 --------------------------------------------------------------------------------------------------------------------
 ## How to use this guide?
@@ -224,7 +224,7 @@ Format: Click on `Delivery Job System` in menu bar > `Import Jobs` > select a fi
 * File **must be a CSV file**.
 * There must be a header row as the first row will be skipped when file is parsed.
 * These columns `Recipient`	`Sender` `Delivery date`	`Delivery slot`	`Price`	`Description`	`Recipient`	`Recipient's Name`	`Recipient's Phone`	`Recipient's Email`	`Recipient's Address`	`Recipient's Tag`	`Sender's	Name`	`Sender's Phone`	`Sender's Email`	`Sender's Address`	`Sender's Tag` must exist.
-  * The optional details may be empty cells. e.g. `Sender's Tag` may be empty.
+* The optional details may be empty cells. e.g. `Sender's Tag` may be empty.
 * If recipient/ sender does not already exist in customer address book i.e. new customer, recipient/ sender will also be added into the address book.
 
 ### 2.3. Listing all jobs : `list_job`
@@ -240,6 +240,15 @@ Simply click on the corresponding button to sort and filter jobs.
 
 ![sort filter job](images/listJobSortFilter.png)
 
+### 2.3.2. View details of a specific job
+Simply double-click on the job card in job list to view its details in the right half of Main Window.
+
+To hide/un-hide the contact details of the chosen job, simply click on the Lock Button.
+
+![hide_contact_detail](images/hideDetail.png)
+![unhide_contact_detail](images/unhideDetail.png)
+
+
 
 ### 2.4 Edit job : `edit_job`
 
@@ -247,7 +256,7 @@ Edit a selected job by Index or Job id.
 
 Format: `edit_job INDEX [si/SENDER_ID] [ri/RECEIPIENT_ID] [date/DELIVERY_DATE] [slot/DELIVERY_SLOT] [earn/EARNING] [done/t | f]`
 
-Alternative: Click on the delivery job > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button
+Alternative: Double-lick on the delivery job to view its detail > Click on the middle pen button ![pen](images/penbutton.png) on top right hand corner > Make changes > Click on `Edit Job` button
 
 
 * Existing values will be overwritten by the input values.
@@ -284,7 +293,7 @@ Deletes the job identified by the job ID. Support `del` key in job list.
 
 Format: `delete_job JOB_ID`
 
-Alternative: Click on the delivery job > Click on the right bin button ![delete](images/deletebutton.png) on top right hand corner
+Alternative: Double-lick on the delivery job you want to delete to view its detail > Click on the right bin button ![delete](images/deletebutton.png) on top right hand corner
 
 * The job ID must be **valid**.
 
@@ -302,7 +311,7 @@ Format: `com_job JOB_ID` / `uncom_job JOB_ID`
 Alternative 1: Scroll to the job and click on the circle on the left, which a tick will appear in to show completion. Click again to uncomplete the job.
 ![checked](images/Checked.png)
 
-Alternative 2: Click on the delivery job > Click on the left tick button ![complete](images/completebutton.png) on top right hand corner. Click on the button again to uncomplete job.
+Alternative 2: Double-click on the delivery job to view its details > Click on the left tick button ![complete](images/completebutton.png) on top right hand corner. Click on the button again to uncomplete job.
 
 Example:
 * `com_job ALBE29E66F`
