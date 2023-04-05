@@ -44,6 +44,8 @@ public class TaskEditCommand extends TaskCommand {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
     public static final String MESSAGE_BAD_TANK_INDEX = "The given tank index is invalid.";
+    public static final String MESSAGE_CANNOT_EDIT_REMINDER = "You cannot edit feeding reminders!"
+            + " Leave it to Fish Ahoy!";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -71,6 +73,10 @@ public class TaskEditCommand extends TaskCommand {
         }
 
         Task taskToEdit = lastShownTasks.get(index.getZeroBased());
+        if (taskToEdit.getIsReminder()) {
+            throw new CommandException(MESSAGE_CANNOT_EDIT_REMINDER);
+        }
+
         try {
             editTaskDescriptor.updateTankInstance(model);
         } catch (IndexOutOfBoundsException e) {
