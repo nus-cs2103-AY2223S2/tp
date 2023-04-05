@@ -52,8 +52,8 @@ public class CreateExamCommandParser implements Parser<CreateExamCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 CreateExamCommand.MESSAGE_USAGE));
         }
-        LocalDateTime startTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_STARTTIME).get());
-        LocalDateTime endTime = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_ENDTIME).get());
+        LocalDateTime startTime = ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_STARTTIME).get());
+        LocalDateTime endTime = ParserUtil.parseEndTime(argMultimap.getValue(PREFIX_ENDTIME).get());
         List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
 
         Double weightage = null;

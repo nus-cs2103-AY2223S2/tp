@@ -77,4 +77,8 @@ public class Messages {
     public static final String MESSAGE_EMPTY_DEADLINE = "Deadline cannot be empty!";
     public static final Object MESSAGE_ONLY_ONE_STATUS = "Only one status is allowed!";
     public static final Object MESSAGE_EMPTY_STATUS = "Status cannot be empty!";
+    public static final String MESSAGE_CONTAIN_STUDENT_NAME = "There is at least one existing student "
+            + "whose name contains \"%s\".";
+    public static final String MESSAGE_EXTENDED_STUDENT_NAME = "There is at least one existing student "
+            + "whose name is contained in \"%s\".";
 }
