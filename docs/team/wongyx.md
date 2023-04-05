@@ -9,4 +9,10 @@ MyLib is a desktop bookmarking application used for keeping track of books a use
 
 Given below are my contributions to the project.
 
-* to be added soon
+* Change Find command to accept different optional fields
+* Update BookmarkContainsPredicate to check for different fields
+* Update test cases for FindCommandParser
+* Create test cases for RatingTest
+* Update User Guide on Find command and related items
+* Update Developers Guide on Find command and related items
+* Restrict Title to only accept up to 180 characters
