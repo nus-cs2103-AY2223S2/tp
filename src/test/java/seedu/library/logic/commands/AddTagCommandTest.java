@@ -174,7 +174,7 @@ public class AddTagCommandTest {
         }
 
         @Override
-        boolean tagInUse(Tag target) {
+        public boolean tagInUse(Tag target) {
             throw new AssertionError("This method should not be called.");
         }
 
