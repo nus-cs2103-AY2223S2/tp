@@ -46,8 +46,8 @@
       "companyEmail" : "googlehires@gmail.com",
       "status" : "Interested",
       "role" : "Software Engineer",
-      "taskDescription" : null,
-      "taskDeadline" : null,
+      "taskDescription" : "Online Assessment",
+      "taskDeadline" : "31-12-2023",
       "tagged" : [ "highSalary" ]
     } ]
 }
