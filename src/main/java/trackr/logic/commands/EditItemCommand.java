@@ -24,8 +24,7 @@ public abstract class EditItemCommand<T extends Item> extends Command {
     public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited %s: %s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This %1$s already exists in the %1$s list.";
-    public static final String MESSAGE_NO_MENU_ITEM = "No such item in your menu. "
-        + "If you'd like to have this order in the list, please add it to the menu first before trying again.";
+    public static final String MESSAGE_NO_MENU_ITEM = "No such item in your menu.";
 
     private final ModelEnum modelEnum;
     private final Index index;
