@@ -90,7 +90,7 @@ Parameters:
 `s/`: Start time of the event  
 `e/`: End time of the event
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-warning">
 :information_source: **Note:**  
 Name/Description is alphanumeric only.  
 Start time should come before end time.  
@@ -112,7 +112,7 @@ Parameters:
 `d/`: Ending date of recurrence for the event in `YYYY-MM-DD` format  
 `every/`: Recur factor to recur the event, given by `day/week/month`
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-warning">
 :information_source: **Note:**  
 Event must first exist in the scheduler.  
 Recurring of events not existing in scheduler is not allowed.  
@@ -136,7 +136,7 @@ Parameters:
 `s/`: Start time of the event  
 `e/`: End time of the event
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-warning">
 :information_source: **Note:** At least one field must be provided.
 </div>
 
@@ -196,7 +196,7 @@ Parameters:
 `n/`: Name or description of event  
 `d/`: Date of the event
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-warning">
 :information_source: **Note:** At least one field must be provided.
 </div>
 
