@@ -406,7 +406,7 @@ Currently,
 
 <div style="page-break-after: always"></div>
 
----
+
 
 # 6. Documentation, Testing, and Other Guides
 
@@ -417,6 +417,8 @@ Currently,
 * [DevOps guide](DevOps.md)
 
 ---
+
+<div style="page-break-after: always"></div>
 
 #7. Instructions for Manual Testing
 
@@ -480,6 +482,8 @@ testers are expected to do more *exploratory* testing.
 2. _{ more test cases …​ }_
 
 ---
+
+<div style="page-break-after: always"></div>
 
 # 8. Requirements
 
@@ -674,6 +678,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 11. Should not have any hard-to-test features or features that make it hard-to-test.
 
 ---
+
+<div style="page-break-after: always"></div>
 
 # 9. Glossary
 
