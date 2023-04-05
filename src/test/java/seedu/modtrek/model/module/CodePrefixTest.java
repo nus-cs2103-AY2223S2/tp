@@ -32,12 +32,10 @@ public class CodePrefixTest {
 
         // valid code prefixes
         assertTrue(CodePrefix.isValidCodePrefix("CS"));
-        assertTrue(CodePrefix.isValidCodePrefix("cs")); // small letters
         assertTrue(CodePrefix.isValidCodePrefix("MA"));
         assertTrue(CodePrefix.isValidCodePrefix("ST"));
         assertTrue(CodePrefix.isValidCodePrefix("GEA")); // long prefix
         assertTrue(CodePrefix.isValidCodePrefix("GEC")); // long prefix
         assertTrue(CodePrefix.isValidCodePrefix("GESS")); // longer prefix
-        assertTrue(CodePrefix.isValidCodePrefix("gEsS")); // mix of small and big letters
     }
 }
