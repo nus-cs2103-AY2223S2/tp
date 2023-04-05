@@ -147,5 +147,10 @@ public interface Model {
      * The tag must exist in the tag list.
      */
     void deleteTag(Tag target);
+
+    /**
+     * Returns true if the {@code target} is in use by a bookmark.
+     */
+    boolean tagInUse(Tag target);
 }
 
