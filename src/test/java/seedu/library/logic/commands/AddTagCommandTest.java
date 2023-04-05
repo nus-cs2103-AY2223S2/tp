@@ -41,7 +41,6 @@ public class AddTagCommandTest {
         CommandResult commandResult = new AddTagCommand(validTags).execute(modelStub);
 
         assertEquals(String.format(AddTagCommand.MESSAGE_SUCCESS, validTags), commandResult.getFeedbackToUser());
-        System.out.println(modelStub.tagsAdded);
         assertEquals(checkValidTags, modelStub.tagsAdded);
     }
 
