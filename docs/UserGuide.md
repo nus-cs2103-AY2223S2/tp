@@ -451,7 +451,7 @@ Examples:
 
 ### 7.3.1. Adding a leave: `aetl`
 
-Adds a person's leave on a specifc day for SudoHr to track. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is added and its information will be displayed on the leave view.
+Adds a person's leave on a specifc day for SudoHr to track. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is added and its information will be displayed on the leave window.
 
 Format: `aetl eid/EMPLOYEE_ID d/DATE`
 
@@ -471,7 +471,7 @@ Examples:
 
 ### 7.3.2. Adding all leaves in range : `aelr`
 
-Adds an employee's leave from the start date to an end date inclusive for SudoHr to track. The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their information will be displayed on the leave view.
+Adds an employee's leave from the start date to an end date inclusive for SudoHr to track. The end date can at most be 6 days away from the start date. The dates on which the leaves are added and their information will be displayed on the leave window.
 
 Format: `aelr eid/EMPLOYEE_ID s/START_DATE e/END_DATE`
 
@@ -493,7 +493,7 @@ Examples:
 
 
 ### 7.3.3. Deleting a leave: `defl`
-Delete a employee's leave on a specific date. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is removed and its information will be displayed on the leave view.
+Delete a employee's leave on a specific date. The contact information of other employees taking leave on the same day will be displayed. The date on which the leave is removed and its information will be displayed on the leave window.
 
 Format: `defl eid/EMPLOYEE_ID d/DATE`
 
