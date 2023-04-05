@@ -352,7 +352,7 @@ You can now see that Bob's list of **modules taken** has been updated to contain
 (enter `view m` if you're not on the _modules_ tab).
 
 <div class="span" class="alert alert-success">
-:bulb: <b>Tip:</b> You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you can be viewing Bob's contacts as you add modules). However, switching to _modules_ tab will definitely make it easy for you to edit <b>modules taken</b>!
+  :bulb: <b>Tip:</b> You do not have to be on <em>modules</em> tab to edit it as long as you are viewing the correct person (i.e. you can be viewing Bob's contacts as you add modules). However, switching to <em>modules</em> tab will definitely make it easy for you to edit <b>modules taken</b>!
 </div>
 
 If you want to save the hassle of editing _modules_ only after adding a person, you can include them in the initial
@@ -397,7 +397,7 @@ The pre-existing contacts that come when you first launch are just some examples
 Now, you may enter `clear` in the command box to clear all contacts and start off with a fresh database.
 
 <div class="span" class="alert alert-danger"> 
-:exclamation: <b>Caution:</b> Be careful not to accidentally enter the `clear` command, it will not ask twice before wiping your database!
+  :exclamation: <b>Caution:</b> Be careful not to accidentally enter the <code>clear</code> command, it will not ask twice before wiping your database!
 </div>
 
 If you need more info on the usage of each command, you can refer to the relevant sections below. 
