@@ -44,7 +44,7 @@ this user guide for more information, or to external websites to learn more!
 
 ## Quick start
 
-TeachMeSenpai has been designed to work for all Operating Systems!
+TeachMeSenpai has been designed to work for all Operating Systems/computers!
 
 <p align=center>
     <img alt="TeachMeSenpai upon launch" src="images/user-guide/sample_GUI.jpg" />
@@ -67,7 +67,7 @@ TeachMeSenpai has several important components as part of its display. Here is a
   <img alt="Main window components" src="images/user-guide/mainwindow-components.jpg" />
 </p>
 
-<h3 style="color:LightGray"><b>Menu bar</b></h3>
+<h3 style="color:Gray"><b>Menu bar</b></h3>
 * Clicking `FILE` will give you the option to exit the app
 * Clicking `HELP` will show `HELP F1`, clicking it will provide you a link to this User Guide!
 
@@ -122,14 +122,14 @@ so feel free to adjust the app however you like!
 - If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken. \\
   _(eg. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken)_
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored. \\
+- Extraneous words for commands that do not take in parameters (such as `help`, `list`, `redo`, `undo`, `show`, `exit` and `clear`) will be ignored. \\
   _(eg. if the command specifies `help 123`, it will be interpreted as `help`)_
 
 </div>
 
 ## Parameter descriptions
 
-Firstly, parameters are the inputs/information you have to enter together with their respective commands in the command line when using TeachMeSenpai!
+Firstly, parameters are the inputs/information you have to fill in together with their respective commands in the command line when using TeachMeSenpai!
 
 Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
 
@@ -166,7 +166,7 @@ Here is an exhaustive table for you to refer to if you're unsure of what to inpu
 TeachMeSenpai has a lot of features for you to experiment with, however we understand that it might take some getting used to. Hence, we've
 included an autocompletion feature!
 Start typing the first letters of a command to get shadow-like autocomplete suggestions. 
-The format of the suggested arguments are as described in the [**Guide on using Features**](#guide-on-using-features).
+The format of the suggested parameters are as described in the [**Guide on using Features**](#guide-on-using-features).
 
 <div markdown="span" class="alert alert-info">**:information_source: Tip:** You can press the `TAB` to fill in the next suggested word!
 </div>
@@ -505,6 +505,18 @@ TeachMeSenpai data are saved in the hard disk automatically after any command th
 [↑ Back to top](#table-of-contents)
 
 ---
+
+## Glossary
+
+| Term             | Details                                                                               | Examples                                                                                                                                                                                                                                                  |
+|------------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Command          | Instructions for TeachMeSenpai to execute/carry out                                   | [Features](#features) like [`add`](#adding-a-student-add), are all commands TeachMeSenpai can execute                                                                                                                                                     |
+| Index            | The number displayed next to the student entry's name after `list` is used            | 1. Alex Yeoh, 1 would be the index for Alex Yeoh                                                                                                                                                                                                          |
+| Operating System | Also known as (OS) of the computer, managers the software and hardware on the computer | <div align=center> - </div>                                                                                                                                                                                                                               |
+| Parameter        | Parameters are information TeachMeSenpai requires you to fill in<br/>                 | `STUDENT_NAME`, `PHONE_NUMBER` are parameters you have to fill in. Relevant information to fill in could be Shaun and 999 respectively. <br/> You may refer to the [Parameter descriptions](#parameter-descriptions) for more specifications and examples | 
+| Prefix           | Indicators for commands. Always ends with a slash `/` and comes before a paramter     | `n/` is the prefix for parameter `STUDENT_NAME` which could be a name like Shaun.                                                                                                                                                                         |
+| Remark           | Notes or things to take note of for a student                                         | "Not good in Japanese", "Has not submitted MC" etc.                                                                                                                                                                                                       |
+
 
 # Command summary
 
