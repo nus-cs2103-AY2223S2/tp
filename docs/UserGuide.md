@@ -205,7 +205,7 @@ Use this command to favourite it so that you have easy access to it!
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-  * `INDEX` must be a **positive integer** and (must be greater than 0).
+  * `INDEX` must be a **positive integer** (must be greater than 0).
 
 Here's how NeoBook would look like after you favourite a contact!
 ![Fav](images/userguide/fav.png)
