@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.fish.Fish;
 import seedu.address.model.tank.Tank;
 import seedu.address.model.tank.readings.AmmoniaLevel;
@@ -395,6 +396,11 @@ public class ModelManager implements Model {
     public void updateFilteredTankList(Predicate<Tank> predicate) {
         requireNonNull(predicate);
         filteredTanks.setPredicate(predicate);
+    }
+
+    @Override
+    public Tank getTankFromIndex(Index index) {
+        return filteredTanks.get(index.getZeroBased());
     }
 
     //=========== Feeding reminders =============================================================

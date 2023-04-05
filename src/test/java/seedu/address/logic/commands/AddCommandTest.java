@@ -265,6 +265,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Tank getTankFromIndex(Index index) {
+            return null;
+        }
+
+        @Override
         public ArrayList<TaskFeedingReminder> executeFeedingReminderInitModel() {
             //TODO tests
             return null;
