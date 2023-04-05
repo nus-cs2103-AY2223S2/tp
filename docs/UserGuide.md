@@ -62,6 +62,14 @@ Example:
   necessary basic information that are the user's name, year/course, phone number, email, address. Optional fields are tags,
   for which there are commitment/cca tags, module tags and lastly the general tags for users to enter non-specific typed tags.
 
+#### Function for each tag:
+
+`Tag`: This tag can be anything in general, such as relationship or staying on campus.
+
+`Commitment tag`: This tag contains all the NUS CCAs that a person has joined. 
+
+`Module tag`: This tag contains all modules that a person is taking in this semester.
+
 Example (with the addition of tags):
 * `add n/Shenghan s/Year2 Computer Science p/99999999 e/david@gmail.com a/punngol place 696a #12-348 t/developer ct/soccer
   mt/cs2103` 
