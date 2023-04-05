@@ -52,7 +52,7 @@ Here is what TechTrack can store per role:
 | `Yes`    | c      | CONTACT              | Numeric characters only. At least 3 numeric characters.                                                                                                                                                                           |
 | `Yes`    | e      | EMAIL                | Must follow a valid email format. See below for more information.                                                                                                                                                                 |
 | `Yes`    | coy    | COMPANY              | The string must contain at least one non-space character.                                                                                                                                                                         |
-| `No`     | t      | TAG                  | The string must contain at least one alphanumeric character or space. <br/>If the string consists of only one character, it cannot be a space.<br/>Note: Editing a role's tag to a space character removes the tag from that role |
+| `No`     | t      | TAG                  | The string must contain at least one alphanumeric character or space. <br/>If the string consists of only one character, it cannot be a space. Allow for multiple tags. (More information below.) <br/>Note: Editing a role's tag to a space character removes the tag from that role |
 | `Yes`     | w      | WEBSITE              | Must be in www.(Any Characters).com                                                                                                                                                                                               |
 | `Yes`    | jd     | JOB DESCRIPTION      | The string must contain at least one non-space character.                                                                                                                                                                         |
 | `Yes`    | $      | SALARY               | Positive number with up to two decimal points. Must not be padded with leading zeroes (e.g., 001000.00).                                                                                                                          |
@@ -69,6 +69,12 @@ Here is what TechTrack can store per role:
     * have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
 💡 **Note:** TechTrack does not allow users to store duplicate Roles. Roles are considered duplicates if they have the same NAME and COMPANY (both are case-sensitive).
+
+**Tag Format**
+* Allows for multiple tags. See the image below.
+![image](https://user-images.githubusercontent.com/87350229/230013630-5db19ac7-1d15-41f2-896e-eef97011f009.png)
+
+
 
 # Features
 
