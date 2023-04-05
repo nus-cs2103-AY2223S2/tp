@@ -688,6 +688,23 @@ testers are expected to do more *exploratory* testing.
           - Testing for: Index specified results in command failure
           - Expected: List does not update. Error details shown in the status message.
 
+### Favouriting/Unfavouriting a contact
+
+### Selecting a contact
+
+
+
+## Events-related
+
+### Adding an event
+
+### Deleting an event
+
+### Editing an event
+
+### Tagging/Untagging a contact to an event
+
+
 ## User-related
 ### Editing data of User
 1. Edit data of User specified in Me tab.
@@ -732,6 +749,10 @@ testers are expected to do more *exploratory* testing.
         1. Test case 1: `dark`
             - Testing for: Successful command execution
             - Expected: UI updates to dark mode
+
+
+### Moving to another tab in NeoBook
+
 
 ### Saving data
 
