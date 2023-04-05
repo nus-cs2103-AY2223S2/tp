@@ -10,31 +10,37 @@ optimizing storage and organization of food items in a refrigerator, thereby red
 improving the efficiency of grocery shopping.
 
 --------------------------------------------------------------------------------------------------------------------
-* Table of Contents
+## Table of Contents
   * [Quick Start](#quick-start)
-  * [Trying out your first command](#trying-out-your-first-command!)
+  * [Trying out your first command](#trying-out-your-first-command)
   * [Features](#features)
-    * [Add a food](#adding-a-food-add)
-    * [Listing all food items](#listing-all-food-items--list)
-    * [Edit a food](#edit-a-food-edit)
-    * [Find a food](#find-a-food-find)
-    * [Increase the quantity of a food](#increasing-the-quantity-of-a-food-inc)
-    * [Decrease the quantity of a food](#decreasing-the-quantity-of-a-food-dec)
-    * [Delete a food](#delete-a-food-delete)
-    * [Create a tag](#create-a-new-tag-createtag)
-    * [Tag a food](#tag-a-food-tag)
-    * [Untag a food](#untag-a-food-untag)
-    * [List all tags](#list-all-tags-listtag)
-    * [Listing all foods by their tags](#listing-all-foods-by-their-tags--listbytag)
-    * [Delete foods by their tags](#delete-foods-by-their-tags--delbytag)
-    * [Delete tags](#delete-tags--deltag)
-    * [Getting Help](#getting-help-help)
-    * [Clearing WIFE](#clearing-wife--clear)
-    * [Exit the program](#exit-the-program--exit)
-    * [Saving the data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
+    * [Food-related features](#food-related-features)
+      * [Add a food](#adding-a-food-add)
+      * [Listing all food items](#listing-all-food-items--list)
+      * [Edit a food](#edit-a-food-edit)
+      * [Find a food](#find-a-food-find)
+      * [Increase the quantity of a food](#increasing-the-quantity-of-a-food-inc)
+      * [Decrease the quantity of a food](#decreasing-the-quantity-of-a-food-dec)
+      * [Delete a food](#delete-a-food-delete)
+    * [Tag-related features](#tag-related-features)
+      * [Create a tag](#create-a-new-tag-createtag)
+      * [Tag a food](#tag-a-food-tag)
+      * [Untag a food](#untag-a-food-untag)
+      * [List all tags](#list-all-tags-listtag)
+      * [Listing all foods by their tags](#listing-all-foods-by-their-tags--listbytag)
+      * [Delete foods by their tags](#delete-foods-by-their-tags--delbytag)
+      * [Delete tags](#delete-tags--deltag)
+    * [General features](#general-features)
+      * [Getting Help](#getting-help-help)
+      * [Clearing WIFE](#clearing-wife--clear)
+      * [Exit the program](#exit-the-program--exit)
+      * [Saving the data](#saving-the-data)
+      * [Editing the data file](#editing-the-data-file)
   * [FAQ](#faq)
-  * [Command Summary](#food-commands)
+  * [Command Summary](#command-summary)
+    * [Food Commands](#food-commands)
+    * [Tag Commands](#tag-commands)
+    * [General Commands](#general-commands)
   * [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -78,6 +84,7 @@ To see what the command format means, you can refer to the [Features](#features)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -105,7 +112,7 @@ To see what the command format means, you can refer to the [Features](#features)
 </div>
 
 
-## Food-related Commands
+## Food-related Features
 
 ### Add a food: `add`
 Add a new food into WIFE. (This is the command when you tried out your first command!)
@@ -213,7 +220,7 @@ Deleted Food: MEIJI MILK (expires on 05-04-2023)
 
 ![DeleteFood](images/UG/DeleteFood.png)
 
-## Tag-related Commands
+## Tag-related Features
 
 ### Create a new tag: `createtag`
 
@@ -345,7 +352,7 @@ Examples:
 Food items are being sorted by their expiry dates.
 ```
 
-## General Commands
+## General Features
 
 ### Getting help: `help`
 
@@ -436,6 +443,7 @@ There is no support for mobile devices yet.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
 ## Command summary
 
 ### Food Commands
