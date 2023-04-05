@@ -155,6 +155,9 @@ public class StudentEditCommand extends StudentCommand {
                 editedStudent.getStudentClass(), editedStudent.getIndexNumber()));
     }
 
+    /**
+     * Creates and returns a {@code Student} with the details of {@code student}
+     */
     public Student createEditedStudent(Student student) {
         if (Name.isDefaultName(newName.fullName)) {
             this.newName = student.getName();
