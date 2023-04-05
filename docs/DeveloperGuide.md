@@ -5,39 +5,59 @@ title: Developer Guide
 
 # Welcome to ConnectUS!
 
-ConnectUS is the ultimate **contact management system** for your everyday needs. If you're an NUS School of Computing (SoC) student, this app is for you. With ConnectUS, you can **easily connect with people** without the anxiety of _remembering who you met where_ holding you back from socialising.
+ConnectUS is a **contact management system** that enables NUS School of Computing (SoC) students to better manage their contact information. Users can leverage on ConnectUS' **contact management system** to view and edit their contact information. The **tagging system** also helps users better organize their contact information according to their needs.
 
-We're focused on:
-- **Efficiency**: Optimized for use via a Command Line Interface (CLI), you can **easily view and edit your contacts** at your fingertips with ConnectUS.
-- **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **easily navigate through your contact information** to find exactly what you need to **connect** with others.
+ConnectUS focuses on:
+- **Efficiency**: Optimized for use via a Command Line Interface (CLI), **easily view and edit contacts** with the **contact management system**.
+- **User-friendliness**: With the benefits of having a Graphical User Interface (GUI), **users can easily navigate through contact information** to find exactly what they need to **connect** with others.
 
-This User Guide will provide you with an in-depth documentation for you to easily integrate ConnectUS into your daily life. It covers **step-by-step instructions** on setting up ConnectUS, core ConnectUS features and commands, and a glossary for definitions of terms used in ConnectUS.
+This Developer Guide provides an in-depth documentation on how ConnectUS is designed and implemented. It covers high-level details such as the architecture of ConnectUS, to detailed specifications on smaller pieces of the design such as how commands are implemented. It also includes a glossary for definitions of terms used in ConnectUS.
 
-So what are you waiting for? Get ready to **Connect** with others and let **US** handle the rest!
+You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 
 ---
 
 <div style="page-break-after: always"></div>
 
-* Table of Contents
-{:toc}
+# Table of Contents
 
---------------------------------------------------------------------------------------------------------------------
+- [1. Preface](#1-preface)
+  - [1.1 Acknowledgements](#11-acknowledgements)
+  - [1.2 Setting Up, Getting Started](#12-setting-up-getting-started)
 
-# **Acknowledgements**
 
-- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-- This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+---
 
-- Libraries used in this project: [Jackson](https://github.com/FasterXML/jackson) for Storage, [JavaFX](https://openjfx.io/) for UI,  [JUnit5](https://github.com/junit-team/junit5) for Testing.
+<div style="page-break-after: always"></div>
 
---------------------------------------------------------------------------------------------------------------------
+# 1. Preface
 
-# **Setting up, getting started**
+
+## 1.1 Acknowledgements
+
+ConnectUS is a brownfield software project based on [AddressBook Level-3](https://se-education.org/addressbook-level3/) created by the [SE-EDU initiative](https://se-education.org), as part of the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s2.github.io/website/index.html) by SoC at the National University of Singapore (NUS).
+
+This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info. 
+
+Java libraries used in this project: 
+* [Jackson](https://github.com/FasterXML/jackson) for Storage,
+* [JavaFX](https://openjfx.io/) for UI,
+* [JUnit5](https://github.com/junit-team/junit5) for Testing.
+
+---
+
+## 1.2 Setting Up, Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
+
+<div style="page-break-after: always"></div>
+
+# 2. How to Use the Developer Guide
+
+
+
 
 # **Design**
 
@@ -168,7 +188,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.connectus.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # **Implementation**
 
@@ -286,9 +306,9 @@ We plan to address and fix all the current constraints mentioned above in the ne
 
 <div style="page-break-after: always"></div>
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+# **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -296,11 +316,11 @@ We plan to address and fix all the current constraints mentioned above in the ne
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-## **Appendix: Requirements**
+# **Appendix A: Requirements**
 
-### Product scope
+## Product scope
 
 **Target user profile**:
 
@@ -315,7 +335,7 @@ We plan to address and fix all the current constraints mentioned above in the ne
 **Value proposition**: As students, we meet people everywhere, in CCAs, modules, events etc, and we may lose track of important information of people we network with. ConnectUS provides a platform for Computing students to easily manage their friends information, saving time and effort as users can access this information at their fingertips.
 
 
-### User stories
+## User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -356,7 +376,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user with friends from other schools         | add school tags to a person                                             | remember which school they are from                                                       |
 | `*`      | user with friends from companies             | add company tags to a person                                            | remember which company they are from                                                      |
 
-### Use cases
+## Use cases
 
 (For all use cases below, the **System** is `ConnectUS` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -476,7 +496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
-### Non-Functional Requirements
+## Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 contacts without a noticeable sluggishness in performance for typical usage.
@@ -490,7 +510,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. Should be packaged into a single JAR file not exceeding 100MB.
 11. Should not have any hard-to-test features or features that make it hard-to-test.
 
-### Glossary
+## Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **CLI**: A command line interface (CLI) is a text-based user interface (UI) used to run programs, manage computer files and interact with the computer.
@@ -504,7 +524,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+# **Appendix B: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -513,7 +533,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+## Launch and shutdown
 
 1. Initial launch
 
@@ -530,7 +550,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Adding a contact:
+## Adding a contact:
 1. Adding a contact with just name and email
     1. Prerequisites: None
    2. Test case: `add n/JohnDoe e/email@example.com`<br>
@@ -540,7 +560,7 @@ testers are expected to do more *exploratory* testing.
    4. _{ more test cases …​ }_
 
 
-### Deleting a contact
+## Deleting a contact
 
 1. Deleting a contact while all persons are being shown
 
@@ -557,7 +577,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+## Saving data
 
 1. Dealing with missing/corrupted data files
 
