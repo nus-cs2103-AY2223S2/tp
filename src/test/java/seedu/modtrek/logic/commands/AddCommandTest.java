@@ -145,6 +145,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Predicate<Module> getPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public TreeMap<? extends Object, ObservableList<Module>> getModuleGroups() {
             throw new AssertionError("This method should not be called.");
         }

@@ -3,7 +3,6 @@ package seedu.modtrek.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.modtrek.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import static seedu.modtrek.testutil.Assert.assertThrows;
 import static seedu.modtrek.testutil.TypicalModules.CS1101S;
 import static seedu.modtrek.testutil.TypicalModules.MA2002;
@@ -117,7 +116,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentDegreeProgression, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        modelManager.updateFilteredModuleList(modelManager.getPredicate());
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
