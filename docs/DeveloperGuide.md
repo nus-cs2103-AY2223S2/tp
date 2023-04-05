@@ -861,7 +861,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-- 1c. The module the user is attempting to add is already in Le Tracker.
+- 1c. The module the user is attempting to add has the same module code as a module already in Le Tracker.
   - 1c1. Le Tracker shows an error message.
 
     Use case ends.
@@ -908,12 +908,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 1a. The module does not exist.
+- 1a. The module that is suppose to contain the lecture does not exist.
   - 1a1. Le Tracker shows an error message.
 
     Use case ends.
 
-- 1b. The lecture does not exist.
+- 1b. The lecture to add the video to does not exist.
   - 1b1. Le Tracker shows an error message.
 
     Use case ends.
@@ -937,122 +937,109 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list out all modules.
-2. Le Tracker shows a list of all modules.
-3. User requests to edit a module and specifies the updated details for the module.
-4. Le Tracker edits the module.
+1. User requests to edit a module and specifies the updated details for the module.
+2. Le Tracker edits the module.
 
    Use case ends.
 
 **Extensions**
 
-- 2a. The list is empty.
+- 1a. The module the user is requesting to edit does not exist.
+  - 1a1. Le Tracker shows an error message.
 
-  Use case ends.
+    Use case ends.
 
-- 3a. The module the user is requesting to edit does not exist.
-  - 3a1. Le Tracker shows an error message.
+- 1b. The user does not enter any updated details.
+  - 1b1. Le Tracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
-- 3b. The user does not enter any updated details.
-  - 3b1. Le Tracker shows an error message.
+- 1c. One or more of the updated details specified is invalid.
+  - 1c1. Le Tracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
-- 3c. One or more of the updated details specified is invalid.
-  - 3c1. Le Tracker shows an error message.
+- 1d. The resulting edited module has the same module code as another module in Le Tracker.
+  - 1d1. Le Tracker shows an error message.
 
-    Use case resumes at step 2.
-
-- 3d. The resulting edited module is already in Le Tracker.
-  - 3d1. Le Tracker shows an error message.
-
-    Use case resumes at step 2.
+    Use case ends.
 
 **Use case: Edit a lecture**
 
 **MSS**
 
-1. User requests to list out all lectures of the module he/she wants to edit a lecture of.
-2. Le Tracker shows a list of all lectures of the module.
-3. User requests to add a lecture to the module and specifies the updated details of the lecture.
-4. Le Tracker adds the lecture.
+1. User requests to edit a lecture of a module and specifies the updated details of the lecture.
+2. Le Tracker adds the lecture.
 
    Use case ends.
 
 **Extensions**
 
-- 1a. The module does not exist.
+- 1a. The module that is suppose to contain the lecture to edit does not exist.
   - 1a1. Le Tracker shows an error message.
 
     Use case ends.
 
-- 2a. The list is empty.
+- 1b. The lecture the user is requesting to edit does not exist.
+  - 1b1. Le Tracker shows an error message.
 
-  Use case ends.
+    Use case ends.
 
-- 3a. The lecture the user is requesting to edit does not exist.
-  - 3a1. Le Tracker shows an error message.
+- 1c. The user does not enter any updated details.
+  - 1c1. Le Tracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
-- 3b. The user does not enter any updated details.
-  - 3b1. Le Tracker shows an error message.
+- 1d. One or more of the updated details specified is invalid.
+  - 1d1. Le Tracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
-- 3c. One or more of the updated details specified is invalid.
-  - 3c1. Le Tracker shows an error message.
+- 1e. The resulting edited lecture has the same name as another lecture in the module.
+  - 1e1. Le Tracker shows an error message.
 
-    Use case resumes at step 2.
-
-- 3d. The resulting edited lecture is already in the module.
-  - 3d1. Le Tracker shows an error message.
-
-    Use case resumes at step 2.
+    Use case ends.
 
 **Use case: Edit a video**
 
 **MSS**
 
-1. User requests to list out all videos of the lecture he/she wants to edit a video of.
-2. Le Tracker shows a list of all videos of the lecture.
-3. User requests to add a video to the lecture and specifies the updated details of the video.
-4. Le Tracker adds the lecture.
+1. User requests to edit a video of a lecture belonging to a module and specifies the updated details of the video.
+2. Le Tracker adds the lecture.
 
    Use case ends.
 
 **Extensions**
 
-- 1a. The lecture does not exist.
+- 1a. The module that is suppose to contain the lecture does not exist.
   - 1a1. Le Tracker shows an error message.
 
     Use case ends.
 
-- 2a. The list is empty.
+- 1b. The lecture that is suppose to contain the video to edit does not exist.
+  - 1b1. Le Tracker shows an error message.
 
-  Use case ends.
+    Use case ends.
 
-- 3a. The video the user is requesting to edit does not exist.
-  - 3a1. Le Tracker shows an error message.
+- 1c. The video the user is requesting to edit does not exist.
+  - 1c1. Le Tracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
-- 3b. The user does not enter any updated details.
-  - 3b1. Le Tracker shows an error message.
+- 1d. The user does not enter any updated details.
+  - 1d1. Le Tracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
-- 3c. One or more of the updated details specified is invalid.
-  - 3c1. Le Tracker shows an error message.
+- 1e. One or more of the updated details specified is invalid.
+  - 1e1. Le Tracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
-- 3d. The resulting edited video is already in the lecture.
-  - 3d1. Le Tracker shows an error message.
+- 1f. The resulting edited video has the same name as another video in the lecture.
+  - 1f1. Le Tracker shows an error message.
 
-    Use case resumes at step 2.
+    Use case ends.
 
 **Use case: Mark/Unmark a video**
 
