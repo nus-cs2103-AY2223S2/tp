@@ -23,9 +23,9 @@ This user guide will help you get up to speed in no time!
 - [User Interface](#user-interface)
 - [Quick Start](#quick-start)
 - [Features](#features)
-  <details>
+  <!-- <details>
     <summary>Click to expand</summary>
-
+   -->
     * [Add a Contact](#add-a-contact)
     * [Clear all Events](#clear-all-events)
     * [Create New Event](#create-new-event)
@@ -40,7 +40,8 @@ This user guide will help you get up to speed in no time!
     * [View Total Revenue](#view-total-revenue)
     * [View Upcoming Events](#view-upcoming-events)
     * [Saving data](#saving-data)
-    </details>
+<!-- 
+    </details> -->
 - [FAQ](#faq)
 - [Features Summary](#features-summary)
 
