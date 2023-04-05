@@ -409,7 +409,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean removeNoteFromTutorial(Index index, String nameOfEvent) {
         for (Tutorial tut : tutorials) {
             if (tut.hasMatchByName(nameOfEvent)) {
-                return tut.removeNote(tut.getNoteList().get(index.getZeroBased()));
+                try {
+                    return tut.removeNote(index.getZeroBased());
+                } catch (IndexOutOfBoundsException e) {
+                    return false;
+                }
             }
         }
         return false;
@@ -423,7 +427,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean removeNoteFromLab(Index index, String nameOfEvent) {
         for (Lab lab : labs) {
             if (lab.hasMatchByName(nameOfEvent)) {
-                return lab.removeNote(lab.getNoteList().get(index.getZeroBased()));
+                try {
+                    return lab.removeNote(index.getZeroBased());
+                } catch (IndexOutOfBoundsException e) {
+                    return false;
+                }
             }
         }
         return false;
@@ -437,7 +445,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean removeNoteFromConsultation(Index index, String nameOfEvent) {
         for (Consultation consultation : consultations) {
             if (consultation.hasMatchByName(nameOfEvent)) {
-                return consultation.removeNote(consultation.getNoteList().get(index.getZeroBased()));
+                try {
+                    return consultation.removeNote(index.getZeroBased());
+                } catch (IndexOutOfBoundsException e) {
+                    return false;
+                }
             }
         }
         return false;
@@ -453,6 +465,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             if (consultation.hasMatchByName(nameOfEvent)) {
                 return consultation.setNote(note, index);
             }
+
         }
         return false;
     }

@@ -86,7 +86,7 @@ public class NoteList {
      * Removes the specified note
      * @param note The note to remove from the list
      */
-    public boolean remove(Note note) {
+    public boolean remove(Note note) throws NullPointerException {
         requireNonNull(note);
         return getNotes().remove(note);
     }
@@ -95,9 +95,10 @@ public class NoteList {
      * Removes the indexed note
      * @param index Integer for index
      */
-    public Note remove(int index) throws IndexOutOfBoundsException {
+    public boolean remove(int index) throws IndexOutOfBoundsException {
         requireNonNull(index);
-        return getNotes().remove(index);
+        getNotes().remove(index);
+        return true;
     }
 
     /**

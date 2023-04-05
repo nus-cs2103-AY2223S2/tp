@@ -154,6 +154,7 @@ public class Lab extends Event {
         return super.removeNote(note);
     }
 
+
     /**
      * Checks for the same lab by comparing name and date
      *

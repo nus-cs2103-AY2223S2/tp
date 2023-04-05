@@ -283,7 +283,19 @@ public abstract class Event {
     }
 
     public boolean removeNote(Note note) {
-        return notes.remove(note);
+        try {
+            return notes.remove(note);
+        } catch (NullPointerException e) {
+            return false;
+        }
+    }
+
+    public boolean removeNote(int index) {
+        try {
+            return notes.remove(index);
+        } catch (IndexOutOfBoundsException e) {
+            return false;
+        }
     }
 
     /**

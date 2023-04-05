@@ -18,7 +18,7 @@ public class AddNoteToEventCommand extends Command {
             + "type/Tutorial";
 
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
-            + " cannot be recognized! Please enter command containing Tutorial, Lab, or Consultation";
+            + " cannot be recognized! Please enter type such as Tutorial, Lab, or Consultation";
     public static final String MESSAGE_EVENT_NAME_NOT_FOUND = "The event name %1$s is not found in the list!";
 
     public static final String TUTORIAL_STRING = "Tutorial";
