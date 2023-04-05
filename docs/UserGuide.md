@@ -438,7 +438,9 @@ If your changes to the data file makes its format invalid, SportSync will discar
 
 * **Pay rate**: The amount of fees paid by the athlete per session.
 * **Session**: A training period for athletes, conducted by a coach.
+* **Session List**: A list of training sessions.
 * **Athlete**: A person being trained by a coach.
+* **Contact List**: A list of athletes and their contact details.
 * **Coach**: A person who trains and directs athletes or a team.
 * **Attendance**: A record of the presence (or absence) of an athlete in a session.
 * **Tag**: A label attached to an athlete in SportSync, used to group them together for easier management.
@@ -464,7 +466,7 @@ If your changes to the data file makes its format invalid, SportSync will discar
 | **Add Tags to Athlete**         | `add-tag INDEX t/TAGNAME [MORE_TAGS]…​` <br> e.g. `add-tag 2 t/Private t/New`                                                               |
 | **Remove Tags from Athlete**    | `remove-tag INDEX t/TAGNAME [MORE_TAGS]…​` <br> e.g. `remove-tag 2 t/Private`                                                               |
 | **Show Athletes with Tags**     | `show TAGNAME [MORE_TAGS]…​`<br> e.g. `show Hall Varsity`                                                                                   |
-| **Create Session**              | `create-session n/NAME s/SESSION l/LOCATION`<br> e.g., `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2`               |
+| **Create Session**              | `create-session n/NAME s/SESSION l/LOCATION`<br> e.g. `create-session n/Hall s/10-03-2022 10:00 to 10-03-2022 11:00 l/MPSH2`                |
 | **Delete Session**              | `delete-session INDEX`<br> e.g. `delete-session 3`                                                                                          |
 | **Edit Session**                | `session-edit INDEX [n/NAME] [s/SESSION] [l/LOCATION]`<br> e.g. `session-edit 2 n/Hall`                                                     |
 | **Mark Athlete Attendance**     | `mark INDEX n/ATHLETE_NAME` <br> e.g. `mark 1 n/John Doe`                                                                                   |
