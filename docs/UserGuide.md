@@ -134,20 +134,20 @@ Thank you for choosing CoDoc, and we hope you have a pleasant experience :+1:
     </td>
   </tr>
   <tr>
-    <td><strong>:information_source: Note</strong></td>
+    <td><div markdown="span" class="alert alert-info"><strong>:information_source: Note</strong></div></td>
     <td>
       To inform you of relevant information that might be useful to take note of as a user.
     </td>
   </tr>
   <tr>
-    <td><strong>:bulb: Tip</strong></td>
+    <td><div markdown="span" class="alert alert-success"><strong>:bulb: Tip</strong></div></td>
     <td>
       To provide you with relevant suggestions on how to use the commands as well as address potential confusions when using
       these commands, so you will be able to better understand how the commands work.
     </td>
   </tr>
   <tr>
-    <td><strong>:exclamation: Caution</strong></td>
+    <td><div markdown="span" class="alert alert-danger"><strong>:exclamation: Caution</strong></div></td>
     <td>
       To inform you of some unintended or unexpected consequences that may occur when you use the commands, so you will be
       able to use them appropriately.
@@ -430,8 +430,6 @@ If you need more info on the usage of each command, you can refer to the relevan
 ## Commands
 
 Here is a list of available commands and its details.
-
-<br>
 
 ### 1. Viewing help : `help`
 
