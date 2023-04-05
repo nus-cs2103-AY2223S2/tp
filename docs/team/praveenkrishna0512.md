@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Krishnamoorthi Praveen's Project Portfolio Page
+title: Praveen's Project Portfolio Page
 ---
 
 ### Docedex
@@ -13,15 +13,6 @@ streamline your hospital management processes.
 - Store and edit information about your patients and doctors
 - Track the status of your patients and doctors
 - Assign patients to doctors upon triaging
-
-On top of these functionalities, we believe that patient management must be **efficient**.
-Therefore, Docedex is **optimized for** use via a **Command Line Interface (CLI)**
-while still having the benefits of a **Graphical User Interface (GUI).**
-If you type fast, Docedex can get your hospital management tasks done faster
-than current GUI apps in the industry.
-
-* Table of Contents
-{:toc}
 
 ### Summary of Contributions
 
@@ -74,31 +65,23 @@ Development
 - Led project management for milestone v1.3
 - Captured bugs within the application and alerting team members
 - Reviewed pull requests from team members
+- Provided links through Telegram to important information related to 
+project development.
 
 #### Review/mentoring contributions
 
 Here are some of the PRs that I have reviewed
 - https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/228
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/185
 - https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/180
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/164
 - https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/163
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/142
 - https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/141
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/128
 - https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/127
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/126
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/125
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/102
 - https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/97
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/86
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/79
 - https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/76
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/73
-- https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/49
 - https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/48
 - https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/46
 - https://github.com/AY2223S2-CS2103T-F12-1/tp/pull/17
 
-Here are some ways through which I have aided my team members
-- Provided links through Telegram to important information.
+For a full view of all PRs I have reviewed, please head to our
+[Pull Requests](https://github.com/AY2223S2-CS2103T-F12-1/tp/pulls)
+page within our GitHub repository.
