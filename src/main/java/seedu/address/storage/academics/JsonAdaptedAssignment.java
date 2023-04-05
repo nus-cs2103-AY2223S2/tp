@@ -1,8 +1,11 @@
 package seedu.address.storage.academics;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -25,7 +28,8 @@ abstract class JsonAdaptedAssignment implements JsonAdapted<Assignment> {
      * Constructs a {@code JsonAdaptedAssignment} with the given {@code assignmentName}.
      */
     @JsonCreator
-    public JsonAdaptedAssignment(String assignmentName, String deadline, int weightage, int score) {
+    public JsonAdaptedAssignment(@JsonProperty("name") String assignmentName, @JsonProperty("deadline") String deadline,
+                                 @JsonProperty("weightage") int weightage, @JsonProperty("score") int score) {
         this.assignmentName = assignmentName;
         this.deadline = deadline;
         this.weightage = weightage;
@@ -36,25 +40,40 @@ abstract class JsonAdaptedAssignment implements JsonAdapted<Assignment> {
      * Converts a given {@code Assignment} into this class for Jackson use.
      */
     public JsonAdaptedAssignment(Assignment source) {
-        this.assignmentName = source.getAssignmentName();
-        if (source.getDeadline() != null) {
-            this.deadline = source.getDeadline().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        } else {
-            this.deadline = "No Deadline";
-        }
-        this.weightage = source.getWeightage();
-        this.score = source.getScore();
+        this(source.getAssignmentName(), JsonAdaptedAssignment.parseDeadline(source.getDeadline()),
+            source.getWeightage(), source.getScore());
     }
 
-    @JsonValue
+    /**
+     * Converts a given {@code LocalDate} into a String for Jackson use.
+     */
+    private static String parseDeadline(LocalDate deadline) {
+        if (deadline == null) {
+            return "no deadline";
+        }
+        return deadline.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+    }
+
+    /**
+     * Returns the assignment name of the assignment.
+     * @return assignment name of the assignment.
+     */
     public String getAssignmentName() {
         return assignmentName;
     }
 
+    /**
+     * Returns the deadline of the assignment.
+     * @return deadline of the assignment.
+     */
     public String getDeadline() {
         return deadline;
     }
 
+    /**
+     * Returns the weightage of the assignment.
+     * @return weightage of the assignment.
+     */
     public int getWeightage() {
         return weightage;
     }
