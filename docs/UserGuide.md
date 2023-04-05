@@ -3,12 +3,18 @@ layout: page
 title: User Guide
 ---
 
-Pied Piper is a user-friendly task management application tailored for computing students. The app helps them stay organised, collaborate with peers, and prepare for real-world situations by simulating performance reviews. Key features include creating tasks, assigning tasks to team members, setting due dates, rating tasks out of 5, and providing feedback through comments. Ideal for personal projects and team collaboration, Pied Piper aims to improve productivity and equip computing students with valuable skills for their future careers.
+Pied Piper is a user-friendly task management application tailored for current and future university student leaders. 
+The app helps them stay organised and prepare for real-world situations by helping them manage project groups, and 
+simulate the real world review system. Key features include creating tasks, assigning tasks to team members, setting 
+due dates, rating completed tasks out of 5, and providing feedback through comments. The ability to seamlessly toggle 
+between a person list and task list also helps team leaders easily identify each team members' roles and their assigned 
+task to complete. Ideal for personal projects and team collaboration, Pied Piper aims to improve productivity and equip 
+university students with valuable skills for their future careers.
+
+--------------------------------------------------------------------------------------------------------------------
 
 * Table of Contents
   {:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
