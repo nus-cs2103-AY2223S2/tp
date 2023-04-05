@@ -20,8 +20,9 @@ public class AddCommand extends Command {
     public static final String COMMAND_DESCRIPTION = "Adds the contact of a person to the address book.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. \n"
-            + "Required Parameters: " + PREFIX_NAME + "NAME " + PREFIX_PHONE + "PHONE \n"
+            + "Required Parameters: " + PREFIX_NAME + "NAME\n"
             + "Optional Parameters: "
+            + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
