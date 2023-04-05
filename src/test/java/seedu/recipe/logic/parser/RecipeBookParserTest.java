@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.recipe.testutil.Assert.assertThrows;
-import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,8 +52,8 @@ public class RecipeBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_RECIPE.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_RECIPE), command);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class RecipeBookParserTest {
         recipe.setDuration(RecipeDuration.of("15 min"));
         RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder(recipe).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-            + INDEX_FIRST_PERSON.getOneBased() + " "
+            + INDEX_FIRST_RECIPE.getOneBased() + " "
             + RecipeUtil.getEditRecipeDescriptorDetails(
             descriptor));
         // assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor).toString(), command.toString());

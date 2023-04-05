@@ -4,8 +4,8 @@ import static seedu.recipe.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.recipe.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.recipe.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.recipe.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.recipe.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
+import static seedu.recipe.testutil.TypicalIndexes.INDEX_THIRD_RECIPE;
 
 import org.junit.jupiter.api.Test;
 
@@ -91,7 +91,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_RECIPE;
         // String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
         // EditCommand.EditRecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withPhone(VALID_PHONE_BOB)
         //      .withEmail(VALID_EMAIL_AMY).build();
@@ -160,7 +160,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_RECIPE;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         RecipeDescriptor descriptor = new EditRecipeDescriptorBuilder().withTags().build();
