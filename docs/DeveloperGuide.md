@@ -24,7 +24,46 @@ You can use this guide to help maintain, upgrade, and evolve ConnectUS.
 - [1. Preface](#1-preface)
   - [1.1 Acknowledgements](#11-acknowledgements)
   - [1.2 Setting Up, Getting Started](#12-setting-up-getting-started)
-
+- [2. How to Use the Developer Guide](#2-how-to-use-the-developer-guide)
+  - [2.1 Notation](#21-notation)
+  - [2.2 Navigation](#22-navigation)
+- [3. Design](#3-design)
+  - [3.1 Architecture](#31-architecture)
+  - [3.2 UI Component](#32-ui-component)
+  - [3.3 Logic Component](#33-logic-component)
+  - [3.4 Model Component](#34-model-component)
+  - [3.5 Storage Component](#35-storage-component)
+  - [3.6 Common Classes](#36-common-classes)
+- [4. Implementation](#4-implementation)
+  - [4.1 Add Command](#41-add-command)
+  - [4.2 Edit Command](#42-edit-command)
+  - [4.3 Delete Command](#43-delete-command)
+  - [4.4 Help Command](#44-help-command)
+  - [4.5 Adding Additional Tags Command](#45-adding-additional-tags-command)
+  - [4.6 Deleting Individual Tags Command](#46-deleting-individual-tags-command)
+  - [4.7 Search Command](#47-search-command)
+  - [4.8 Upcoming Birthdays Command](#48-upcoming-birthdays-command)
+  - [4.9 Open Command](#49-open-command)
+- [5. Planned Enhancements](#5-planned-enhancements)
+  - [5.1 Improve Edit Command](#51-improve-edit-command)
+  - [5.2 Better Information Field Validation](#52-better-information-field-validation)
+  - [5.3 More Language Support](#53-more-language-support)
+  - [5.4 More Social Media Support](#54-more-social-media-support)
+  - [5.5 Improve UI](#55-improve-ui)
+  - [5.6 Improve Tag Deletion Command](#56-improve-tag-deletion-command)
+  - [5.7 Improve Consistency of Command Feedback](#57-improve-consistency-of-command-feedback)
+- [6.Documentation, Testing, and Other Guides ](#6-documentation-testing-and-other-guides)
+- [7. Instructions for Manual Testing](#7-instructions-for-manual-testing)
+  - [7.1 Launch and Shutdown](#71-launch-and-shutdown)
+  - [7.2 Adding a Contact](#72-adding-a-contact)
+  - [7.3 Deleting a Contact](#73-deleting-a-contact)
+  - [7.4 Saving Data](#74-saving-data)
+- [8. Requirements](#8-requirements)
+  - [8.1 Product Scope](#81-product-scope)
+  - [8.2 User Stories](#82-user-stories)
+  - [8.3 Use Cases](#83-use-cases)
+  - [8.4 Non-Functional Requirements](#84-non-functional-requirements)
+- [9. Glossary](#9-glossary)
 
 ---
 
@@ -75,11 +114,11 @@ The Developer Guide has six main sections:
 1. [Design](#3-design)
 2. [Implementation](#4-implementation)
 3. [Planned Enhancements](#5-planned-enhancements)
-4. [Documentation, Testing, and Other Guides](#6-documentation-logging-testing-configuration-dev-ops)
+4. [Documentation, Testing, and Other Guides](#6-documentation-testing-and-other-guides)
 5. [Instructions for Manual Testing](#7-instructions-for-manual-testing)
 6. [Requirements](#8-requirements)
 
-- If you are a **developer**, the first four sections will be most applicable to you. [Design](#3-design) gives you a high-level overview of how ConnectUS is structured, and the key components of ConnectUs. [Implementation](#4-implementation) addresses how the features in ConnectUS are implemented. [Planned Enhancements](#5-planned-enhancements) provides insights on known bugs and issues in the latest release of ConnectUS, and plans we have to address and fix these issues. Finally, [Documentation, Testing, and Other Guides](#6-documentation-logging-testing-configuration-dev-ops) provides guides on creating documentation, logging, testing, configuring, and DevOps for ConnectUS.
+- If you are a **developer**, the first four sections will be most applicable to you. [Design](#3-design) gives you a high-level overview of how ConnectUS is structured, and information on the key components of ConnectUS. [Implementation](#4-implementation) addresses how the features in ConnectUS are implemented. [Planned Enhancements](#5-planned-enhancements) provides insights on known bugs and issues in the latest release of ConnectUS, and plans we have to address and fix these issues. Finally, [Documentation, Testing, and Other Guides](#6-documentation-testing-and-other-guides) provides guides on creating documentation, logging, testing, configuring, and DevOps for ConnectUS.
 
 - If you are a **tester**, the [Instructions for Manual Testing](#7-instructions-for-manual-testing) will provide you with a guide for testing. It covers how to launch and shut down the application, as well as how to test some commands in ConnectUS.
 
@@ -87,7 +126,13 @@ The Developer Guide has six main sections:
 
 - Refer to the [Glossary](#9-glossary) for definitions of terms used in ConnectUS.
 
+---
+
+<div style="page-break-after: always"></div>
+
 # 3. Design
+
+This section will provide you with a high-level overview of how ConnectUS is structured, as well as information on the key components of ConnectUS.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -273,13 +318,15 @@ The following sequence diagram shows how the `informationFields` are parsed by `
 
 ## 4.4 Help Command
 
-## 4.5 Adding Additional Tags
+## 4.5 Adding Additional Tags Command
 
-## 4.6 Deleting Individual Tags
+## 4.6 Deleting Individual Tags Command
 
 ## 4.7 Search Command
 
 ## 4.8 Upcoming Birthdays Command
+
+## 4.9 Open Command
 
 # 5. Planned Enhancements
 
@@ -331,6 +378,27 @@ As we are aware that some students studying in NUS SoC may have other forms of s
 
 We plan to address and fix all the current constraints mentioned above in the next iteration of this product (V1.5).
 
+## 5.5 Improve UI
+
+There are some known issues with the current UI.
+
+For example, our testers have noted that:
+* The feedback box is too small, and is unable to show the full feedback message without long scrolling.
+* The scroll bar sometimes jumps and changes in size randomly.
+* There is an amount of space on the right side of the contact card that is not being utilized.
+
+We plan to address and improve our UI in V1.6.
+
+## 5.6 Improve Tag Deletion Command
+
+Currently, the `delete-t` command can only delete tags one at a time. This may be inefficient if a users wants to delete multiple tags of differing tag types, especially if said user has contacts with many assigned tags.
+
+We plan to address this constraint in the next iteration of this product (V1.5).
+
+## 5.7 Improve Consistency of Command Feedback
+
+Currently, 
+
 
 [↑ Back to top of section](#5-planned-enhancements)
 
@@ -340,7 +408,7 @@ We plan to address and fix all the current constraints mentioned above in the ne
 
 ---
 
-# 6. Documentation, logging, testing, configuration, dev-ops
+# 6. Documentation, Testing, and Other Guides
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
