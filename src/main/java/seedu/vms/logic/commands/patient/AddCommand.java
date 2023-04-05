@@ -39,7 +39,7 @@ public class AddCommand extends Command {
             + DELIMITER + PREFIX_DOB + " 2001-03-19 "
             + DELIMITER + PREFIX_BLOODTYPE + " B+ "
             + DELIMITER + PREFIX_ALLERGY + " cat fur "
-            + DELIMITER + PREFIX_ALLERGY + " pollen"
+            + DELIMITER + PREFIX_ALLERGY + " pollen "
             + DELIMITER + PREFIX_VACCINATION + " covax";
 
     public static final String MESSAGE_SUCCESS = "New patient added: %1$s";

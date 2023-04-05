@@ -403,7 +403,7 @@ Output:
 
 #### `find` - Locate a patient
 
-Finds patients whose names contain any of the given keywords. You can also include flags to search based on the patient's attributes. If no flags are given, the search string given will be assumed to be searching the patient's name. Multiple flags can be used concurrently!
+Finds patients whose names contain the given keywords. You can also include flags to search based on the patient's attributes. If no flags are given, the search string given will be assumed to be searching the patient's name. Multiple flags can be used concurrently! At least one flag or `PATIENT_NAME` must be present.
 
 ##### Syntax
 
@@ -501,7 +501,7 @@ Output:
 Setting patient's allergies and vaccination details, values prior will be overridden
 
 ```text
-patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --set true --a grass --v protovax --set true
+patient edit 7 --n John Der --p 98765432 --d 2001-03-19 --b B+ --a nofur --a grass --v protovax --set true
 ```
 
 Output:
