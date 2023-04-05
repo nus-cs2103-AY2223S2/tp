@@ -1,5 +1,7 @@
 package seedu.ultron.model.opening;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.ultron.commons.util.AppUtil.checkArgument;
 
@@ -49,7 +51,8 @@ public class Position {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
-                && fullPosition.equals(((Position) other).fullPosition)); // state check
+                && fullPosition.replaceAll(" ", "").equalsIgnoreCase(
+                        ((Position) other).fullPosition.replaceAll(" ", ""))); // state check
     }
 
     @Override

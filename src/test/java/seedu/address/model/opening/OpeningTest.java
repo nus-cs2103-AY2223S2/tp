@@ -51,23 +51,23 @@ public class OpeningTest {
                 .withPosition(VALID_POSITION_GOOGLE).build();
         assertFalse(SHOPEE.isSameOpening(editedShopee));
 
-        // company differs in case, all other attributes same -> returns false
+        // company differs in case, all other attributes same -> returns true
         Opening editedGoogle = new OpeningBuilder(GOOGLE).withCompany(VALID_COMPANY_GOOGLE.toLowerCase()).build();
-        assertFalse(GOOGLE.isSameOpening(editedGoogle));
+        assertTrue(GOOGLE.isSameOpening(editedGoogle));
 
-        // company differs in case, all other attributes same -> returns false
+        // company differs in case, all other attributes same -> returns true
         editedGoogle = new OpeningBuilder(GOOGLE).withPosition(VALID_POSITION_GOOGLE.toLowerCase()).build();
-        assertFalse(GOOGLE.isSameOpening(editedGoogle));
+        assertTrue(GOOGLE.isSameOpening(editedGoogle));
 
-        // company has trailing spaces, all other attributes same -> returns false
+        // company has trailing spaces, all other attributes same -> returns true
         String companyWithTrailingSpaces = VALID_COMPANY_GOOGLE + " ";
         editedGoogle = new OpeningBuilder(GOOGLE).withCompany(companyWithTrailingSpaces).build();
-        assertFalse(GOOGLE.isSameOpening(editedGoogle));
+        assertTrue(GOOGLE.isSameOpening(editedGoogle));
 
-        // position has trailing spaces, all other attributes same -> returns false
+        // position has trailing spaces, all other attributes same -> returns true
         String positionWithTrailingSpaces = VALID_POSITION_GOOGLE + " ";
         editedGoogle = new OpeningBuilder(GOOGLE).withPosition(positionWithTrailingSpaces).build();
-        assertFalse(GOOGLE.isSameOpening(editedGoogle));
+        assertTrue(GOOGLE.isSameOpening(editedGoogle));
     }
 
     @Test
