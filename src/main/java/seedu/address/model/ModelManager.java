@@ -314,14 +314,14 @@ public class ModelManager implements Model {
         updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
-    /**
-     * Checks if shop already has vehicle
-     *
-     * @param vehicleId Vehicle ID to check against
-     */
     @Override
     public boolean hasVehicle(int vehicleId) {
         return this.shop.hasVehicle(vehicleId);
+    }
+
+    @Override
+    public boolean hasVehicle(Vehicle vehicle) {
+        return this.shop.hasVehicle(vehicle);
     }
 
     @Override

@@ -181,11 +181,18 @@ public interface Model {
     void addVehicle(int customerId, Vehicle vehicle);
 
     /**
-     * Checks if shop already has vehicle
+     * Checks if shop already has vehicle using id
      *
      * @param vehicleId Vehicle ID to check against
      */
     boolean hasVehicle(int vehicleId);
+
+    /**
+     * Checks if shop already has vehicle using plate numbers
+     *
+     * @param vehicle Vehicle to check against
+     */
+    boolean hasVehicle(Vehicle vehicle);
 
     void deleteVehicle(Vehicle target);
 
