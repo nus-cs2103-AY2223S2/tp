@@ -37,8 +37,9 @@ public class TagNameTest {
         // null tag name
         assertThrows(NullPointerException.class, () -> TagName.isValidTagName(null));
 
-        assertTrue(TagName.isValidTagName("notlengthy"));
-        assertFalse(TagName.isValidTagName("thistagnameiswaytoolong"));
+        assertTrue(TagName.isValidTagName("notlengthy")); // not lengthy name
+        assertTrue(TagName.isValidTagName("abcdefghijklmno")); // upper bound length
+        assertFalse(TagName.isValidTagName("thistagnameiswaytoolong")); // lengthy name
         assertFalse(TagName.isValidTagName("symb@l"));
         assertFalse(TagName.isValidTagName(""));
     }
