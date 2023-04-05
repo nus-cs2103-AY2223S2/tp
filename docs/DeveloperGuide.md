@@ -222,6 +222,25 @@ displayed over each other.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Planned Enhancements**
+### User Interface
+- **Problem:** Let's say that a user selected a patient, before using the
+[`list-doc` command](./UserGuide.md#listing-all-doctors). Note that the `list-doc` command does not involve
+selection of patient cards. In this case, the user interface does not clear the selection on the previously
+selected card. However, all the doctors are listed on the GUI, as requested by the user through `list-doc`.
+Therefore, there may be confusion as to whether the listed doctors are assigned to the previously selected
+patient or not. (Note: This problem exists if you select a doctor and then enter `list-ptn` too)
+  - **Solution:** The list commands will clear any selection of patient or doctor cards.
+- **Problem:** Let's say that a user adds a doctor using the
+[`add-doc` command](./UserGuide.md#adding-a-doctor). Docedex will automatically select the newly
+added doctor as detailed [here](./UserGuide.md#note-about-selecting-doctors-or-patients).
+In doing so, the patients list disappears, as the newly added doctor has no assigned patients.
+However, this may be confusing to some, as there is no visual feedback that the patients list
+is reflecting the newly added doctor's assigned patients. Therefore, some users have confused
+this behaviour with all patients being deleted. (Note: This problem exists if you add a patient instead too)
+  - **Solution:** The title of the patients list will be updated to display "XXX's Patients", where XXX is the
+name of the newly added doctor. The same fix will be done for the title of the doctors list to support
+a similar behaviour when adding patients.
 
 ## **Appendix: Requirements**
 
@@ -353,7 +372,7 @@ Actor: User
 5. The average time required to boot up the application should be under 5 seconds.
 6. Feedback from Docedex should be displayed within 2 seconds of the user's input.
 7. The file size of the application's `jar` should not exceed 100MB.
-8. Should utilize less than 300MB of memory when in use.
+8. Should utilize less than 2GB of memory when in use.
 
 ### Glossary
 
