@@ -4,9 +4,11 @@ title: User Guide
 ---
 ## About TeachMeSenpai
 
-TeachMeSenpai is a **desktop app targeted at teaching assistants who have many students to keep track of.** It is tailored to assist the user in monitoring their students' progress, and details.
+TeachMeSenpai is a **desktop app targeted at NUS teaching assistants who have many students to keep track of.** It is tailored to assist you in monitoring your students' progress, and details.
 
-As a teaching assistant, you can easily view and edit your student's details on the go. Tailored to fast-typist, TeachMeSenpai is built around a **Command Line Interface (CLI)**, complete with an **autocomplete** feature
+As a teaching assistant, you can add all your students' particulars, make notes about them, quickly navigate through your long list of students and so much more!
+If using our app seems daunting to you at first, don't worry, we even have an [autocomplete feature](#autocompletion) to guide you through every step of the way!
+Tailored to fast-typist, TeachMeSenpai is built around a **Command Line Interface (CLI)**, complete with an **autocomplete** feature
 to help you manage your students quicker than a traditional point-and-click app can.
 
 ## About this User Guide
@@ -89,19 +91,19 @@ Firstly, parameters are the inputs/information you have to enter together with t
 
 Here is an exhaustive table for you to refer to if you're unsure of what to input when using the various [features](#features) below this section!
 
-| Parameter         | Meaning                                                                              | Notes                                                                                                                                                                                                                                 |
-|-------------------|--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `ADDRESS`         | Address of the student                                                               | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                               |
-| `EDUCATION_LEVEL` | Education level of the student                                                       | Can contains numbers and multiple letters/words.                                                                                                                                                                                      |
-| `EMAIL`           | Email address of the student                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contains letters and numbers <br/> 5. Should not contain any spacings |
-| `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list) | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                            |
-| `KEYWORD`         | The word you would like to [`find`](#findfilter-students-find) by                    | Can contain letters and/or numbers.                                                                                                                                                                                                   |
-| `MODULE`          | The module you're teaching the student                                               | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the module will be removed by the app                                                                                                 |
-| `PHONE_NUMBER`    | Phone number of the student                                                          | 1. Must only contains numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
-| `REMARK`          | Your notes or remarks on the student                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                  |
-| `STUDENT_NAME`    | Name of the student                                                                  | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name will be removed by the app                                                                                                   |
-| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add)    | Must be a single word containing alphanumeric characters                                                                                                                                                                              |
-| `TELEGRAM`        | Telegram handle of the student                                                       | Must begin with "@". Can only contain uppercase and lowercase alphabets, digits (0-9) and underscores. Minimum length is 5 characters.                                                                                                |
+| Parameter         | Meaning                                                                              | Notes                                                                                                                                                                                                                                |
+|-------------------|--------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `ADDRESS`         | Address of the student                                                               | Can contain numbers, symbols and multiple letters/words                                                                                                                                                                              |
+| `EDUCATION_LEVEL` | Education level of the student                                                       | Can contain numbers and multiple letters/words                                                                                                                                                                                       |
+| `EMAIL`           | Email address of the student                                                         | 1. Follow the format local-part@domain <br/> 2. Must contains `@` symbol <br/> 3. Must not start with a non-alphanumeric character (eg. . , ' " @) <br/> 4. Can contain letters and numbers <br/> 5. Should not contain any spacings |
+| `INDEX`           | The number next to the student entry upon using [`list`](#listing-all-students-list) | Must be a positive number (eg. 1, 2, 3...)                                                                                                                                                                                           |
+| `KEYWORD`         | The word you would like to [`find`](#findfilter-students-find) by                    | Can only contain letters and/or numbers                                                                                                                                                                                              |
+| `MODULE`          | The module you're teaching the student                                               | 1. Can only contains alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the module given will be removed by the app                                                                                          |
+| `PHONE_NUMBER`    | Phone number of the student                                                          | 1. Must only contain numbers <br/>  2. Must be at least 3 numbers long                                                                                                                                                               |
+| `REMARK`          | Your notes or remarks on the student                                                 | Can contain any combination of words, numbers and special characters                                                                                                                                                                 |
+| `STUDENT_NAME`    | Name of the student                                                                  | 1. Can only contain alphanumeric characters and/or spaces <br/> 2. Any whitespaces in front of the name given will be removed by the app                                                                                             |
+| `TAG`             | Qualities of the student you'd like to be shown as a [tag](#adding-a-student-add)    | Must be a single word containing alphanumeric characters only                                                                                                                                                                        |
+| `TELEGRAM`        | Telegram handle of the student                                                       | 1. Must begin with "@"<br/> 2. Can only contain uppercase and lowercase alphabets, digits (0-9), and underscores<br/> 3. Minimum length is 5 characters                                                                              |
 
 <div markdown="block" class="alert alert-info">
 
@@ -167,7 +169,7 @@ Exits the program.
 
 ### Listing all students: `list`
 
-Shows a list of the saved all students. This is useful for displaying the full list after using commands that modifies the list _(eg. [`find`](#findfilter-students-findfilter))_.
+Shows a list of all students. This is useful for displaying the full list after using commands that modifies the list _(eg. [`find`](#findfilter-students-findfilter))_.
 
 > Format: `list`
 
@@ -274,6 +276,12 @@ Examples:
     <br><i><b>Above:</b> After entering <code>remark</code> command</i>
 </p>
 
+<div markdown="block" class="alert alert-info">
+
+:bulb: **Note:** Notice that remarks on the student list panel (right panel) are truncated to make your student list more succinct :)
+To view the remarks in detail, you may use the [`show`](#showing-a-students-remark-show) feature!
+</div>
+
 [↑ Back to top](#table-of-contents)
 
 ---
@@ -281,7 +289,7 @@ Examples:
 
 ### Showing a student's remark: `show`
 
-Show the remark of the specified student. Useful for when the remark is too long to be displayed in the student list.
+Displays all the details, including the full remark of a specified student. This is useful for when the remark is too long to be displayed fully in the student list panel.
 
 > Format: `show INDEX`
 
@@ -305,13 +313,13 @@ Examples:
 
 ### Find/filter students: `find`/`filter`
 
-Finds entries of students based on a keyword in the field that you want.
+Finds students based on a keyword in the field that you want.
 
-The `find` and `filter` command allows you to match keywords or partial keywords with the entries, for example:
+The `find` and `filter` commands allow you to match keywords or partial keywords with the entries, for example:
 
-`find n/Sh` displays the students with names which contain `sh` in them, such as `Shaun` or `Amresh`. This applies to all fields EXCEPT tags and modules, where you will have to enter and find them by the tags and modules in full.
+`find n/Sh` displays the students with names which contain `Sh` (case-insensitive) in them, such as `Shaun` or `Amresh`. This applies to all fields EXCEPT tags and modules, where you will have to enter the keywords in full.
 
-The `find` command allows you to hone in on an entry that matches **all** your `FIELD` and `KEYWORDS`, but `filter` will also show you those who match with **at least one** of the criteria.
+The `find` command allows you to zoom in on an entry that matches **all** your `FIELD` and `KEYWORDS`, but `filter` will also show you those who match with **at least one** of the criteria.
 
 > Format: \\
 > `find FIELD... KEYWORDS...` \\

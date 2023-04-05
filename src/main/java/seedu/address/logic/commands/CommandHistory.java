@@ -35,6 +35,7 @@ public class CommandHistory {
     public void updateAsModifyingHistory(String lastExecutedCommand) {
         requireNonNull(lastExecutedCommand);
         commandList.add(lastExecutedCommand);
+
         int outdatedCommandIndex = currentVersionPointer + 1;
         commandList.subList(outdatedCommandIndex, commandList.size());
         currentVersionPointer++;
