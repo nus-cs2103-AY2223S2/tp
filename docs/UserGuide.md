@@ -114,8 +114,13 @@ Adds a role to TechTrack.
 
 Format: `add n/{NAME} c/{CONTACT} e/{EMAIL} coy/{COMPANY} jd/{JOB DESCRIPTION} [t/{TAG}]... w/{WEBSITE} $/{SALARY} d/{DEADLINE} x/{EXPERIENCE}` 
 
-Example: `add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com
+
+Example: Adding a new role to a fresh installation of TechTrack
+
+`add n/Software Engineer c/98765432 e/google@example.com coy/Google t/Java t/Golang w/www.google.com 
 jd/Data Engineering team - penultimate students preferred $/4000 d/2023-10-20 x/Javascript - 1 Year`
+
+![AddCommand](images/UICommandImages/AddCommand0.png)
 
 💡 **Note:** Refer to the attributes of a role [here](#what-is-a-role)
 
@@ -134,13 +139,15 @@ Format: `edit {index} [n/{NAME}] [c/{CONTACT}] [e/{EMAIL}] [coy/{COMPANY}] [jd/{
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 
-Example 1:
+Examples:
 
-![image](https://user-images.githubusercontent.com/87350229/229332390-1f1cd42e-8123-4308-ae39-9f7f8e2a1041.png)
+* `edit 1 n/Software Engineer` Changes the name of the 1st role to "Software Developer"
 
-User executes command: `edit 1 n/Software Engineer`.
+![EditCommand0](images/UICommandImages/EditCommand0.png)
 
-![image](https://user-images.githubusercontent.com/87350229/229332413-cc41c3f9-ed0d-4d62-9ba1-fcd942220cf6.png)
+* `edit 2 coy/Meta t/ ` Changes the company of the 2nd role to "Meta" and removes all tags.
+
+![EditCommand1](images/UICommandImages/EditCommand1.png)
 
 💡 **Note:** Refer to the attributes of a role [here](#what-is-a-role)
 
