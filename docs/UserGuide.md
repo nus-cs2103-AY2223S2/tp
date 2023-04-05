@@ -78,10 +78,10 @@ If you need to switch to a new device, you can also export and import your previ
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `clear`, and `switch`) will be ignored.<br>
+* <span style="background-color: #FFFF00">Extraneous parameters for commands that do not take in parameters (including `help`, `list`, `exit`, `clear`, and `switch`) will be ignored.</span><br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Command words are case-insensitive.<br>
@@ -91,7 +91,7 @@ If you need to switch to a new device, you can also export and import your previ
 
 ### 1. Viewing help: `help`
 
-Prompts the help page link.
+Prompts the help page link together with a brief user guide that explain what commands are  provided in MATHUTORING. For more detailed information such as how to use the syntax, please refer to the help page.
 
 <img width="796" alt="Screenshot 2023-03-30 at 3 37 34 PM" src="https://user-images.githubusercontent.com/97392685/228764298-dccce25c-662f-41c6-9c91-6db2a8b44df7.png">
 
@@ -111,6 +111,9 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/948372948`
 * `add n/Betsy Crowe t/primary c/83927482 e/betsycrowe@example.com a/Downtown p/1234567 t/primary3`
 
+<div markdown="span" class="alert alert-warning">:exclamation:
+<span style="color:red; font-weight: bold">Caution:</span> In order to avoid potential confusion, we do not allow any student to have the same name regardless of the letter cases (e.g. Harry, HARRY, harry are deemed as same name). If you wish to add in a student who has the same name as an existing student in the student list, consider append a index number after the student's name to distinguish them.
+</div>
 
 ### 3. Viewing student contacts as a list: `list`
 
