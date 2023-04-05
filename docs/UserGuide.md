@@ -15,7 +15,7 @@ PlanEase is a **desktop app tailored for event planners to organise and manage t
 
 2. Download the latest [planease.jar](https://github.com/AY2223S2-CS2103-W16-3/tp/releases/tag/v1.3).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your PlanEase application.
+3. Copy the file to a local folder you want to use as the _home folder_ for your PlanEase application.
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar planease.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
@@ -87,7 +87,8 @@ Adds a person to the address book and adds existing event to this person if even
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [evt/EVENT_INDEX]…​`
 
 * Person name cannot exceed 50 characters.
-* Person name is restricted to alphanumeric characters. 
+* Person name is restricted to alphanumeric characters.
+* Phone number has no character limits to allow any types of phone numbers.
 * The event index refers to the index number shown in the displayed event list.
 * The event index **must be a positive integer** 1, 2, 3, …​
 
@@ -151,8 +152,8 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* Entering these 2 commands consecutively (`list` followed by `delete 2`) deletes the 2nd person in the address book.
+* Entering these 2 commands consecutively (`find Betsy` followed by `delete 1`) deletes the 1st person in the results of the `find` command.
 
 ### Event Features
 
@@ -215,7 +216,7 @@ Format: `sortevent SORT_TYPE`
 * There must be at least 2 events in the current event list to sort the event list.
 
 Examples:
-* `listevent` followed by `sortevent c` sorts all the events in the address book based on their start date times in ascending order.
+* Entering these 2 commands consecutively (`listevent` followed by `sortevent c`) sorts all the events in the address book based on their start date times in ascending order.
 
 #### Editing an event : `editevent`
 
@@ -304,6 +305,12 @@ AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Note
+
+* Some long text may be truncated by the app.
 
 --------------------------------------------------------------------------------------------------------------------
 
