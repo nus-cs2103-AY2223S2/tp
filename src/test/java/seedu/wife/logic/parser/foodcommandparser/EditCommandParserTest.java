@@ -34,7 +34,6 @@ import seedu.wife.logic.commands.foodcommands.EditCommand.EditFoodDescriptor;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
-import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
 import seedu.wife.testutil.EditFoodDescriptorBuilder;
 
 public class EditCommandParserTest {

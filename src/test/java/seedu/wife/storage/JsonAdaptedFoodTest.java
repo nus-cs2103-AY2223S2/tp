@@ -16,7 +16,6 @@ import seedu.wife.model.food.ExpiryDate;
 import seedu.wife.model.food.Name;
 import seedu.wife.model.food.Quantity;
 import seedu.wife.model.food.Unit;
-import seedu.wife.model.food.foodvalidator.ExpiryDateValidator;
 
 public class JsonAdaptedFoodTest {
     private static final String INVALID_NAME = "M@iji";
