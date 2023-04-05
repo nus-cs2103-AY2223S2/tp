@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 
 
 /**
- * Represents a Dateline in the Tech track.
+ * Represents a Role's deadline in the role book.
  * Guarantees: immutable; is valid as declared in {@link #isValidDeadline(String)}
  */
 public class Deadline {

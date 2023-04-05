@@ -36,8 +36,8 @@ public class MainWindow extends UiPart<Stage> {
             + "\n3. delete {index}"
             + "\n4. view {index}"
             + "\n5. name {keyword}"
-            + "\n6. salary asc/desc"
-            + "\n7. deadline asc/desc"
+            + "\n6. salary {asc/desc}"
+            + "\n7. deadline {asc/desc}"
             + "\n8. company {company}"
             + "\n9. tag {tag}"
             + "\n10. list"
@@ -46,9 +46,6 @@ public class MainWindow extends UiPart<Stage> {
             + "\n13. exit";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
-
-    // Message received when starting the app
-    private String initMessage;
 
     private Stage primaryStage;
     private Logic logic;
@@ -76,13 +73,12 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic, String initMessage) {
+    public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.initMessage = initMessage;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -138,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
         roleListPanelPlaceholder.getChildren().add(roleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
-        resultDisplay.place(StringDisplay.of(initMessage + "\n\n" + COMMANDS_MESSAGE));
+        resultDisplay.place(StringDisplay.of(COMMANDS_MESSAGE));
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getRoleBookFilePath());

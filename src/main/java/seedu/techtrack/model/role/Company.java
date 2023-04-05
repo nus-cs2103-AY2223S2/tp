@@ -4,15 +4,15 @@ import static java.util.Objects.requireNonNull;
 import static seedu.techtrack.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Company's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Represents a Role's company in the role book.
+ * Guarantees: immutable; is valid as declared in {@link #isValidCompany(String)}
  */
 public class Company {
 
     public static final String MESSAGE_CONSTRAINTS = "Companies can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the company must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
@@ -22,16 +22,16 @@ public class Company {
     /**
      * Constructs an {@code Company}.
      *
-     * @param address A valid address.
+     * @param company A valid company.
      */
-    public Company(String address) {
-        requireNonNull(address);
-        checkArgument(isValidCompany(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Company(String company) {
+        requireNonNull(company);
+        checkArgument(isValidCompany(company), MESSAGE_CONSTRAINTS);
+        value = company;
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid company.
      */
     public static boolean isValidCompany(String test) {
         return test.matches(VALIDATION_REGEX);

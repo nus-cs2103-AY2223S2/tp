@@ -11,12 +11,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.techtrack.commons.exceptions.IllegalValueException;
 import seedu.techtrack.model.role.Company;
+import seedu.techtrack.model.role.Contact;
 import seedu.techtrack.model.role.Deadline;
 import seedu.techtrack.model.role.Email;
 import seedu.techtrack.model.role.Experience;
 import seedu.techtrack.model.role.JobDescription;
 import seedu.techtrack.model.role.Name;
-import seedu.techtrack.model.role.Phone;
 import seedu.techtrack.model.role.Role;
 import seedu.techtrack.model.role.Salary;
 import seedu.techtrack.model.role.Website;
@@ -30,7 +30,7 @@ class JsonAdaptedRole {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Role's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String contact;
     private final String email;
     private final String company;
     private final String jobDescription;
@@ -45,7 +45,7 @@ class JsonAdaptedRole {
      */
     @JsonCreator
 
-    public JsonAdaptedRole(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedRole(@JsonProperty("name") String name, @JsonProperty("phone") String contact,
                 @JsonProperty("email") String email, @JsonProperty("address") String company,
                 @JsonProperty("JobDescription") String jd, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                 @JsonProperty("website") String website,
@@ -53,7 +53,7 @@ class JsonAdaptedRole {
                            @JsonProperty("experience") String experience) {
 
         this.name = name;
-        this.phone = phone;
+        this.contact = contact;
         this.email = email;
         this.company = company;
         this.jobDescription = jd;
@@ -71,7 +71,7 @@ class JsonAdaptedRole {
      */
     public JsonAdaptedRole(Role source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        contact = source.getContact().value;
         email = source.getEmail().value;
         company = source.getCompany().value;
         jobDescription = source.getJobDescription().value;
@@ -103,13 +103,13 @@ class JsonAdaptedRole {
         }
         final Name modelName = new Name(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (contact == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Contact.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Contact.isValidContact(contact)) {
+            throw new IllegalValueException(Contact.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final Contact modelContact = new Contact(contact);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -173,7 +173,7 @@ class JsonAdaptedRole {
         }
         final Experience modelExperience = new Experience(experience);
 
-        return new Role(modelName, modelPhone, modelEmail, modelCompany, modelJobDescription, modelTags,
+        return new Role(modelName, modelContact, modelEmail, modelCompany, modelJobDescription, modelTags,
                 modelWebsite, modelSalary, modelDeadline, modelExperience);
     }
 
