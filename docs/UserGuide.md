@@ -227,7 +227,7 @@ _Details coming soon ..._
 
 ### Adding a client: `add`
 
-Adds a client to the list of client profiles.
+To add a client to your list of client profiles.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
@@ -236,9 +236,14 @@ Examples:
 - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 - `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+<div markdown="span" class="alert alert-warning">:book:
+<b>Note:</b>
+To add a policy to the client, please refer to <a href="#policy-management">Policy Management</a>
+</div>
+
 ### Selecting a client: `select`
 
-Selects a client to display on the client dashboard, as well as their corresponding policies on the policy dashboard.
+To select a particular client from your clientele to display on your client dashboard, as well as their corresponding policies on your policy dashboard.
 
 Format: `select INDEX`
 
@@ -250,13 +255,13 @@ Examples:
 
 ### Listing all clients: `list`
 
-Shows a list of all client profiles.
+To show a list of your client profiles.
 
 Format: `list`
 
 ### Editing a client : `edit`
 
-Edits an existing client in the list of client profiles.
+To edit an existing client from your list of client profiles.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
@@ -278,9 +283,15 @@ Examples:
 If you accidentally edited a client's information, you can use the <code>undo</code>  command to retrieve the previous information.
 </div>
 
+<div markdown="span" class="alert alert-warning">:book:
+<b>Note:</b>
+To edit a policy, please refer to <a href="#policy-management">Policy Management</a>
+</div>
+
+
 ### Filtering clients by name: `find`
 
-Finds clients whose names contain any of the given keywords.
+To find one of your client whose name contains any of the given keywords.
 
 Format: `find KEYWORD \[MORE_KEYWORDS\]`
 
@@ -301,7 +312,7 @@ Examples:
 
 ### Deleting a client : `delete`
 
-Deletes the specified client from the list of client profiles.
+To delete one of your specified client from your clientele.
 
 Format: `delete INDEX`
 
@@ -317,12 +328,16 @@ Examples:
 <div markdown="span" class="alert alert-warning">:exclamation: <b>Note:</b>
 If you accidentally delete a client, you can use the <code>undo</code>  command to retrieve the deleted client.
 </div>
+<div markdown="span" class="alert alert-warning">:book:
+<b>Note:</b>
+To delete a policy, please refer to <a href="#policy-management">Policy Management</a>
+</div>
 
 ### Sorting clients by their email : `sortClientEmail`
 
 Format: `sortClientEmail INDEX`
 
-* Sort list of clients based on their email
+* Sorts your list of clients based on their email
 * The index refers to whether sorting will be done in ascending order or descending order
 * The index can be any number
 
@@ -335,7 +350,7 @@ Examples:
 
 Format: `sortClientName INDEX`
 
-* Sort list of clients based on their name
+* Sorts your list of clients based on their name
 * The index refers to whether sorting will be done in ascending order or descending order
 * The index can be any number
 
@@ -348,7 +363,7 @@ Examples:
 
 Format: `sortClientPhone INDEX`
 
-* Sort list of clients based on their phone number
+* Sorts your list of clients based on their phone number
 * The index refers to whether sorting will be done in ascending order or descending order
 * The index can be any number
 
@@ -381,7 +396,7 @@ Using Advis.io, you can add, edit, delete, and view the policies for your client
 
 ### Adding a policy : `addPolicy`
 
-Adds a policy to a specific client
+To add a policy to one of your specified client.
 
 Format: `addPolicy INDEX pn/POLICY_NAME pd/START_DATE pp/PREMIUM pf/FREQUENCY`
 
@@ -406,6 +421,8 @@ You will then be able to view the policies on the right side under 'Policies'
 ![addpolicy.png](images/addpolicy.png)
 
 ### Editing a policy : `editPolicy`
+
+To edit one of your specified policy from one of your client in your clientale. 
 
 Format: `editPolicy INDEX pi/POLICY_INDEX [pn/POLICY_NAME] [pd/START_DATE] [pp/PREMIUM] [pf/FREQUENCY`]
 
@@ -432,7 +449,7 @@ If you accidentally edit a policy, you can use the <code>undo</code>  command to
 
 ### Deleting a policy `deletePolicy`
 
-Deletes the indexed policy from a specific client
+To delete one of your specified policy from one of your clientale. 
 
 Format: `deletePolicy INDEX pi/POLICY_INDEX`
 
@@ -465,7 +482,7 @@ Using Advis.io, you can add, delete and view the appointments for your clients v
 
 ### Adding an appointment: `addApt`
 
-Adds an appointment to a specific client
+To add an appointment to one your specified client.
 
 Format: `addApt INDEX an/APPOINTMENT_NAME ad/MEETUP_DATE`
 
@@ -478,7 +495,7 @@ You will then be able to view the appointments under
 
 ### Deleting an appointment: `deleteApt`
 
-Deletes an appointment from a specific client
+To delete one of the appointment from a specific client.
 
 Format: `deleteApt INDEX`
 
