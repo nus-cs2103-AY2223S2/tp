@@ -17,8 +17,8 @@ public class EditNoteCommand extends Command {
             + " content/updated-note name/name-of-event type/type-of-event";
     public static final String MESSAGE_EXAMPLE = "editNote index/1 content/this is my updated notes name/"
             + "tutorial 1 type/Tutorial";
-    public static final String MESSAGE_NOTE_INDEX_NOT_FOUND = "The note index %1$s is not found in your " +
-            "specified event %2$s!";
+    public static final String MESSAGE_NOTE_INDEX_NOT_FOUND = "The note index %1$s is not found in your "
+            + "specified event %2$s!";
     public static final String MESSAGE_EVENT_TYPE_NOT_RECOGNIZED = "The event type that you have entered"
             + " cannot be recognized! Please enter command containing Tutorial, Lab, or Consultation";
     public static final String MESSAGE_EDIT_NOTE_SUCCESS = "Edited note: %1$s";
