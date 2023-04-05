@@ -53,9 +53,7 @@ public class ReviewCommandParser implements Parser<ReviewCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         ReviewCommand.MESSAGE_USAGE), pe);
             }
-        }
-
-        if (argMultimap.getValue(REVIEW_UPPER_EASY_FLAG).isPresent()) {
+        } else if (argMultimap.getValue(REVIEW_UPPER_EASY_FLAG).isPresent()) {
             difficulties.add(EASY);
             try {
                 ParserUtil.parseEmptyInput(argMultimap.getValue(REVIEW_UPPER_EASY_FLAG).get());
@@ -73,9 +71,7 @@ public class ReviewCommandParser implements Parser<ReviewCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         ReviewCommand.MESSAGE_USAGE), pe);
             }
-        }
-
-        if (argMultimap.getValue(REVIEW_UPPER_MEDIUM_FLAG).isPresent()) {
+        } else if (argMultimap.getValue(REVIEW_UPPER_MEDIUM_FLAG).isPresent()) {
             difficulties.add(MEDIUM);
             try {
                 ParserUtil.parseEmptyInput(argMultimap.getValue(REVIEW_UPPER_MEDIUM_FLAG).get());
@@ -93,9 +89,7 @@ public class ReviewCommandParser implements Parser<ReviewCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         ReviewCommand.MESSAGE_USAGE), pe);
             }
-        }
-
-        if (argMultimap.getValue(REVIEW_UPPER_HARD_FLAG).isPresent()) {
+        } else if (argMultimap.getValue(REVIEW_UPPER_HARD_FLAG).isPresent()) {
             difficulties.add(HARD);
             try {
                 ParserUtil.parseEmptyInput(argMultimap.getValue(REVIEW_UPPER_HARD_FLAG).get());
