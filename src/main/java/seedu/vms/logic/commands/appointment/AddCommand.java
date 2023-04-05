@@ -85,7 +85,7 @@ public class AddCommand extends Command {
         // Checks if patient manager contains the given index
         Map<Integer, IdData<Patient>> patientList = model.getPatientManager().getMapView();
         if (!patientList.containsKey(patientId.getZeroBased())) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_ID);
         }
 
         // Checks for no existing next appointment

@@ -95,7 +95,7 @@ public class EditCommand extends Command {
         Map<Integer, IdData<Patient>> lastShownList = model.getFilteredPatientList();
 
         if (!lastShownList.containsKey(index.getZeroBased())) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_ID);
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased()).getValue();
