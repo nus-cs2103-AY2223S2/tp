@@ -726,11 +726,62 @@ Exit the application.
 
 ### Export Data
 
-<!-- TODO: fill this in -->
+> `export {file_name} [/overwrite]`
+
+Export all modules progress to a JSON-format file. 
+
+- <span style="color:#e46c0a">`file_name`</span> : The name of the file to export the modules progress to
+  - May specify the file's directory (:exclamation: this location must be relative to Le Tracker's default 
+    saving directory at `[JAR file location]/data`)
+  - The file `file_name` must not coincide with Le Tracker's current tracker file. The 
+    default tracker file is `[JAR file location]data/letracker.json`
+  - If `/overwrite` is not specified, the file `file_name` must not exist in the saving directory
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite all data in 
+  the file `file_name` with the current modules progress in Le Tracker
+  - If the file `file_name` exists, it must allow reading and writing operations
+  - If the file `file_name` exists, it must be of JSON format
+  - If the file `file_name` does not exist, the flag `/overwrite` will be ignored
+
+Examples: 
+
+- `export hello.json`
+
+- `export /../../haha.json /overwrite`
 
 ### Import Data
 
-<!-- TODO: fill this in -->
+> `import {file_name} [/mod {module_1}[, {module_2}[, {module_3}, ...]]] [/overwrite]`
+
+Import modules progress from a JSON-format file to the current tracker.
+
+- <span style="color:#e46c0a">`file_name`</span> : The name of the file to export the modules progress from
+  - May specify the file's directory (:exclamation: this location must be relative to Le Tracker's default
+    saving directory at `[JAR file location]/data`)
+  - Must exist in the specified directory. (:exclamation: If not specified, the default saving directory is `
+    [JAR file location]/data`)
+  - Must allow reading and writing operations
+  - Must be of JSON format
+  - Must contain only modules progress
+- <span style="color:#e46c0a">`module_1, module_2, ...`</span> : If specified, Le Tracker will only import progress 
+  of these modules from the file `file_name`
+  - If unspecified, Le Tracker will import progress of all modules in the file `file_name`
+  - If `overwrite` is not specified, `module_1, module_2, ...` must not exist in the current tracker 
+  - Must belong to existing modules in the file `file_name` (:exclamation: Module matching is case sensitive)
+  - Repeated modules in user's input (if any) will be ignored
+- <span style="color:#e46c0a">`/overwrite`</span> : If specified, Le Tracker will overwrite existing modules 
+  progress with the progress of the imported modules, provided they have the same code (:exclamation: Module matching is case sensitive)
+  - If the imported modules do not exist in the current tracker, the flag `overwrite` will be ignored
+
+Examples:
+
+- `import hello.json`
+
+- `import /../../haha.json /overwrite`
+
+- `import hehe.json /mod CS2040, MA2401`
+
+- `import hihi.json /mod EG2310 /overwrite`
+
 
 ---
 
@@ -746,7 +797,8 @@ Exit the application.
 
 ## Warning
 
-:warning: If your changes to the data file makes its format invalid, Le Tracker will discard all data and start with an empty data file at the next run.
+:warning: If your changes to the tracker data file makes its format invalid, Le Tracker will discard all data and 
+start with an empty data file at the next run.
 
 ---
 
