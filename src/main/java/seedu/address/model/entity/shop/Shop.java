@@ -379,7 +379,7 @@ public class Shop implements ReadOnlyShop {
             for (int i : toRemove.getAppointmentIds()) {
                 this.getAppointment(i).removeTechnician(toRemove.getId());
             }
-            this.removeTechnician(techId);
+            this.technicians.removeIf(t -> t.getId() == techId);
             logger.info("Technician %d removed");
             IdGenerator.setStaffIdUnused(techId);
         } catch (ServiceNotFoundException | AppointmentNotFoundException e) {
@@ -430,7 +430,7 @@ public class Shop implements ReadOnlyShop {
         Service service = this.getService(serviceId);
         Technician technician = this.getTechnician(techId);
         service.removeTechnician(technician);
-        logger.info(String.format("Technician %d removed from service %d", techId, serviceId));
+        logger.info(String.format("Technician %d unassigned from service %d", techId, serviceId));
     }
 
     public void removeTechnicianFromAppointment(int techId, int appointmentId)
@@ -438,7 +438,7 @@ public class Shop implements ReadOnlyShop {
         Appointment appointment = this.getAppointment(appointmentId);
         Technician technician = this.getTechnician(techId);
         appointment.removeTechnician(techId);
-        logger.info(String.format("Technician %d removed from appointment %d", techId, appointmentId));
+        logger.info(String.format("Technician %d unassigned from appointment %d", techId, appointmentId));
     }
 
     // Edit --------------------------------------------------------------------------------------------------
