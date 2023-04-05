@@ -22,7 +22,7 @@ public class ListEvContactCommand extends Command {
             + "Parameters: EVENT_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_LIST_EVENT_CONTACT_SUCCESS = "Listed all contacts from the event : %1$s";
+    public static final String MESSAGE_LIST_EVENT_CONTACT_SUCCESS = "Listed all contacts from the event: %1$s";
 
     private final Index targetIndex;
     private EventSetContainsEventPredicate predicate;

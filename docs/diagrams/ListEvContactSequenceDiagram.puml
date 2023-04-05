@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+skinparam DefaultFontSize 50
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -71,9 +72,6 @@ deactivate CommandResult
 
 ListEvContactCommand --> LogicManager : result
 deactivate ListEvContactCommand
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-ListEvContactCommand -[hidden]-> LogicManager
-destroy ListEvContactCommand
 
 [<--LogicManager
 deactivate LogicManager

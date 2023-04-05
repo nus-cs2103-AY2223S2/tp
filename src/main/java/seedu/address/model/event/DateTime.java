@@ -12,7 +12,8 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "Date times should follow this format: DD-MM-YYYY HH:mm and only values within valid range are allowed.";
+            "Date times should follow this format: DD-MM-YYYY HH:mm and "
+            + "only values within valid range are allowed (start date time cannot be after the end date time).";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     public final LocalDateTime dateTime;
 

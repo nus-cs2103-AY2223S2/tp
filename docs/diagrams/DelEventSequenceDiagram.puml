@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+skinparam DefaultFontSize 40
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -34,7 +35,7 @@ create DelEventCommand
 DelEventCommandParser -> DelEventCommand
 activate DelEventCommand
 
-DelEventCommand --> DelEventCommandParser : d
+DelEventCommand --> DelEventCommandParser
 deactivate DelEventCommand
 
 DelEventCommandParser --> AddressBookParser : d

@@ -47,7 +47,7 @@ Person *--> Email
 Person *--> Address
 
 AddressBook *--> "1" UniqueEventList
-UniqueEventList --> "~* all" Event
+UniqueEventList -----> "~* all" Event
 Event *--> EventName
 Event *--> "2" DateTime
 
@@ -57,6 +57,6 @@ Address -[hidden]right-> Email
 
 EventName -[hidden]right-> DateTime
 
-ModelManager -->"~* filtered" Person
+ModelManager ---->"~* filtered" Person
 ModelManager ----->"~* filtered" Event
 @enduml

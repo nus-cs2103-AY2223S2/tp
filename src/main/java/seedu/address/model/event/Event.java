@@ -80,9 +80,9 @@ public class Event {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Start Date Time: ")
+                .append(", Start Date Time: ")
                 .append(getStartDateTime())
-                .append("; End Date Time: ")
+                .append(", End Date Time: ")
                 .append(getEndDateTime());
 
         return builder.toString();
