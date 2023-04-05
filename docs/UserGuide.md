@@ -3,30 +3,28 @@ layout: page
 title: User Guide
 ---
 <!-- omit in toc -->
-## Docedex
+## Welcome to Docedex
 
 ***Taking control of hospital administrative management is just a few keystrokes away!***
 
 Docedex is a **desktop application** built for **medical administrative assistants**
 to manage doctors and patients within clinics.
 
-Here's a quick snapshot of how Docedex can help you
+Here's a **quick snapshot** of how Docedex can help you
 streamline your hospital management processes.
 - Store and edit information about your patients and doctors
 - Track the status of your patients and doctors
 - Assign patients to doctors upon triaging
 
-On top of these functionalities, we believe that patient management must be efficient.
+On top of these functionalities, we believe that patient management must be **efficient**.
 Therefore, Docedex is **optimized for** use via a **Command Line Interface (CLI)**
 while still having the benefits of a **Graphical User Interface (GUI).**
 If you type fast, Docedex can get your hospital management tasks done faster
 than current GUI apps in the industry.
 
-![NewUi](images/NewUi.png)
+**If you are new here**, visit our [quick start](#quick-start) guide to onboard onto Docedex smoothly!
 
-<!-- omit in toc -->
-### If you are new here
-Visit [quick start](#quick-start) to onboard onto Docedex smoothly!
+![NewUi](images/NewUi.png)
 
 <!-- omit in toc -->
 ## Table of Contents
@@ -68,6 +66,34 @@ Visit [quick start](#quick-start) to onboard onto Docedex smoothly!
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+Here are some descriptions of the words we use throughout the User Guide
+
+## Navigating the Graphical User Interface (GUI)
+
+### Quick Orientation
+
+### Note about selecting doctors or patients
+
+**Selecting doctors or patients through commands**
+
+Certain commands involve the selection of doctors and patients immediately after
+they are entered.
+
+For example, when you type in the `add-doc` command, Docedex will automatically select
+the newly added doctor and display their details to you. This gives the user (you!) 
+a nice visual feedback that the command is successful.
+
+However, when selecting a new doctor, the patients list will be cleared, as it 
+displays the patients assigned to the selected doctor.
+
+**Unselecting doctors or patients**
+
+Unselecting doctors and patients is currently not supported in Docedex. If you wish to
+look through all the doctors and patients in Docedex, please use the
+[`list-doc`](#listing-all-doctors) and [`list-ptn`](#listing-all-patients) commands instead.
 
 ## Notes about the command format
 
