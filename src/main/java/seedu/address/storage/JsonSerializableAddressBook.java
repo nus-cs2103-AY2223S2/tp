@@ -87,7 +87,7 @@ class JsonSerializableAddressBook {
         }
         for (JsonAdaptedLab jsonAdaptedLab : labs) {
             Lab lab = jsonAdaptedLab.toModelType();
-            ParserUtil.MASTER_TIME.add(new LocalDateTime[]{lab.getDate(), lab.getDate().plusHours(1)});
+            ParserUtil.MASTER_TIME.add(new LocalDateTime[]{lab.getDate(), lab.getDate().plusHours(2)});
             if (addressBook.hasLab(lab)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_LAB);
             }

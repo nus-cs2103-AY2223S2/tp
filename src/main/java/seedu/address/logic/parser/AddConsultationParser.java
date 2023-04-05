@@ -67,7 +67,7 @@ public class AddConsultationParser implements Parser<AddConsultationCommand> {
         //Checks for date availability when no date prefix is stated
         if (!argMultimap.getValue(PREFIX_DATE).isPresent()) {
             if (ParserUtil.isBusy(new LocalDateTime[]{consultation.getDate(), consultation.getDate().plusHours(1)})) {
-                throw new ParseException("You are already busy during this period");
+                throw new ParseException("You are already busy during that period");
             } else {
                 ParserUtil.makeBusy(new LocalDateTime[]{consultation.getDate(), consultation.getDate().plusHours(1)});
             }
