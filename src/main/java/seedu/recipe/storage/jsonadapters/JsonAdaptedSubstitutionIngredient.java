@@ -1,5 +1,7 @@
 package seedu.recipe.storage.jsonadapters;
 
+import static java.util.Objects.requireNonNull;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -17,10 +19,12 @@ public class JsonAdaptedSubstitutionIngredient {
 
     @JsonCreator
     public JsonAdaptedSubstitutionIngredient(String ingredientName) {
+        requireNonNull(ingredientName);
         this.ingredientName = ingredientName;
     }
 
     public JsonAdaptedSubstitutionIngredient(Ingredient ingredient) {
+        requireNonNull(ingredient);
         ingredientName = ingredient.getName();
     }
 

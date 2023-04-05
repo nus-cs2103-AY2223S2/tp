@@ -42,4 +42,12 @@ public class JsonAdaptedTagTest {
         JsonAdaptedTag adaptedTag = new JsonAdaptedTag(INVALID_TAG_NAME);
         assertThrows(IllegalValueException.class, adaptedTag::toModelType);
     }
+
+    @Test
+    public void constructorNullTag_error() {
+        String nullString = null;
+        Tag nullTag = null;
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedTag(nullString));
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedTag(nullTag));
+    }
 }

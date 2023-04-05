@@ -42,4 +42,12 @@ public class JsonAdaptedRecipeDurationTest {
         JsonAdaptedRecipeDuration adaptedDuration = new JsonAdaptedRecipeDuration(-1, JSON_ADAPTED_TIME_UNIT);
         assertThrows(IllegalValueException.class, adaptedDuration::toModelType);
     }
+
+    @Test
+    public void constructor_nullDuration_error() {
+        JsonAdaptedTimeUnit nullUnit = null;
+        RecipeDuration nullDuration = null;
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedRecipeDuration(0, nullUnit));
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedRecipeDuration(nullDuration));
+    }
 }

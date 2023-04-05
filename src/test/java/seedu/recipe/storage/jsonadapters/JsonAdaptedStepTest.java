@@ -38,5 +38,12 @@ public class JsonAdaptedStepTest {
         assertThrows(IllegalValueException.class, adaptedStep::toModelType);
     }
 
+    @Test
+    public void constructorNullStep_error() {
+        String nullName = null;
+        Step nullStep = null;
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedStep(nullName));
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedStep(nullStep));
+    }
 }
 

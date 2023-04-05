@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import seedu.recipe.commons.exceptions.IllegalValueException;
 import seedu.recipe.model.recipe.unit.TimeUnit;
 
+import java.sql.Time;
+
 //@@author alson001
 public class JsonAdaptedTimeUnitTest {
     private static final String VALID_UNIT = "hour";
@@ -41,8 +43,9 @@ public class JsonAdaptedTimeUnitTest {
     }
 
     @Test
-    public void toModelType_nullUnit_error() {
-        assertThrows(NullPointerException.class, () ->
-            new JsonAdaptedTimeUnit(NULL_UNIT).toModelType());
+    public void constructorNullUnit_error() {
+        TimeUnit nullTimeUnit = null;
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedTimeUnit(NULL_UNIT));
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedTimeUnit(nullTimeUnit));
     }
 }

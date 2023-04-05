@@ -35,8 +35,11 @@ public class JsonAdaptedPortionUnitTest {
     }
 
     @Test
-    public void toModelType_nullUnit_error() {
+    public void constructor_nullUnit_error() {
+        PortionUnit nullUnit = null;
         assertThrows(NullPointerException.class, () ->
-            new JsonAdaptedTimeUnit(NULL_UNIT).toModelType());
+            new JsonAdaptedPortionUnit(NULL_UNIT));
+        assertThrows(NullPointerException.class, () ->
+            new JsonAdaptedPortionUnit(nullUnit));
     }
 }

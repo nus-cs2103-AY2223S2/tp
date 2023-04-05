@@ -194,4 +194,10 @@ public class JsonAdaptedRecipeTest {
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 
+    @Test
+    public void constructor_nullRecipe_error() {
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedRecipe(null,
+            Optional.empty(), Optional.empty(), List.of(), List.of(), List.of()));
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedRecipe(null));
+    }
 }

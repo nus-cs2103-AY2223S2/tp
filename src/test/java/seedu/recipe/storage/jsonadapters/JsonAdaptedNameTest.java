@@ -14,6 +14,7 @@ import seedu.recipe.model.recipe.Name;
 public class JsonAdaptedNameTest {
     private static final String VALID_NAME = "Cheeseburger";
     private static final String INVALID_NAME = "Burger#Fried";
+    private static final String NULL_NAME = null;
 
     @Test
     public void constructor_validStringName_returnsJsonAdaptedName() {
@@ -37,5 +38,16 @@ public class JsonAdaptedNameTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedName jsonAdaptedName = new JsonAdaptedName(INVALID_NAME);
         assertThrows(IllegalValueException.class, jsonAdaptedName::toModelType);
+    }
+
+    @Test
+    public void constructorNullName_error() {
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedName(NULL_NAME));
+    }
+
+    @Test
+    public void constructorNullRecipeName_error() {
+        Name nullName = null;
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedName(nullName));
     }
 }

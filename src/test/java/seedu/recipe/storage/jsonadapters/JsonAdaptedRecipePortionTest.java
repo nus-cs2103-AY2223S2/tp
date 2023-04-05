@@ -51,4 +51,10 @@ public class JsonAdaptedRecipePortionTest {
             new JsonAdaptedRecipePortion(4, 2, new JsonAdaptedPortionUnit("serving"));
         assertThrows(IllegalValueException.class, adapted::toModelType);
     }
+
+    @Test
+    public void constructor_nullPortion_error() {
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedRecipePortion(4, 2, null));
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedRecipePortion(null));
+    }
 }

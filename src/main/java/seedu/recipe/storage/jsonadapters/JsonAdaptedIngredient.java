@@ -1,5 +1,8 @@
 package seedu.recipe.storage.jsonadapters;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.recipe.commons.util.AppUtil.checkArgument;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +26,8 @@ import seedu.recipe.model.recipe.ingredient.IngredientQuantity;
  */
 @JsonInclude(Include.NON_NULL)
 public class JsonAdaptedIngredient {
+    private static final String MESSAGE_CONSTRAINTS = "The Ingredient Name in the JSON file cannot be null or empty";
+
     @JsonProperty("ingredientName")
     private final String ingredientName;
 
@@ -53,6 +58,9 @@ public class JsonAdaptedIngredient {
         @JsonProperty("remarks") List<String> remarks,
         @JsonProperty("substitutions") List<JsonAdaptedSubstitutionIngredient> substitutions
     ) {
+        //Validate that it at least contains a name that is non-null or empty
+        requireNonNull(ingredientName);
+
         this.ingredientName = ingredientName;
         this.commonName = commonName;
         this.ingredientQuantity = ingredientQuantity;
@@ -69,6 +77,8 @@ public class JsonAdaptedIngredient {
      * Converts a given {@code IngredientBuilder} into this class for Jackson use.
      */
     public JsonAdaptedIngredient(Ingredient ingredient, IngredientInformation info) {
+        requireNonNull(ingredient);
+        requireNonNull(info);
         ingredientName = ingredient.getName();
         commonName = Optional.of(ingredient.getCommonName()).filter(i -> i.length() != 0).orElse(null);
         ingredientQuantity = info.getQuantity().map(Object::toString).orElse(null);

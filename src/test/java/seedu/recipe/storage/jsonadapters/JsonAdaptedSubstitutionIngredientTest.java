@@ -42,4 +42,12 @@ public class JsonAdaptedSubstitutionIngredientTest {
         JsonAdaptedSubstitutionIngredient ingredient = new JsonAdaptedSubstitutionIngredient(INVALID_INGREDIENT_NAME);
         assertThrows(IllegalArgumentException.class, ingredient::toModelType);
     }
+
+    @Test
+    public void constructor_nullName_error() {
+        String nullString = null;
+        Ingredient nullIngredient = null;
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedSubstitutionIngredient(nullString));
+        assertThrows(NullPointerException.class, () -> new JsonAdaptedSubstitutionIngredient(nullIngredient));
+    }
 }
