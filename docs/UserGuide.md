@@ -205,7 +205,7 @@ Use this command to favourite it so that you have easy access to it!
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-  * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer** (must be greater than 0).
 
 Here's how NeoBook would look like after you favourite a contact!
 ![Fav](images/userguide/fav.png)
@@ -227,7 +227,7 @@ Use this command to unfavourite it!
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-  * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer** and (must be greater than 0).
 
 [Back To Contents](#table-of-contents)
 <hr style="border:2px solid gray">
@@ -245,8 +245,8 @@ Use this command to edit his/her details easily!
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the contact you wish to edit in the current displayed list.
-  * `INDEX` must be a **positive integer**.
-* At least one field must be provided.
+  * `INDEX` must be a **positive integer** (must be greater than 0).
+* All the fields are optional. However, at least one field must be provided.
 
 For the following fields, they are considered a `FieldGroup`.
 * Modules
@@ -325,6 +325,7 @@ When using edit, the command looks for each parameter in the `FieldGroup`:
 | mt     | Mods Taken                      | Yes       |
 | f      | Faculty                         | Yes       |
 | g      | Gender                          | Yes       |
+| r      | Race                            | Yes       |
 | t      | Tags                            | Yes       |
 | c      | Preferred Communication Channel | Yes       |
 
@@ -341,7 +342,7 @@ More examples:
 
 Want to narrow down your displayed contacts to a certain few?
 
-Use this command to find contacts by specifying the fiegit lds and corresponding keywords you wish to search!
+Use this command to find contacts by specifying the fields and corresponding keywords you wish to search!
 
 **Syntax:**
 
@@ -391,6 +392,7 @@ in the corresponding field, the person will be returned.
     * Cannot return:
       * A person whose name is 'Caleb' but has a phone number of '98765432'
       * A person whose name is 'Joshua' even though his phone number is '91234567'
+* At least one field must be provided.
 
 
 [Back To Contents](#table-of-contents)
@@ -408,7 +410,7 @@ Use this command to expand and view more information about the selected contact.
 
 _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to view more information on.
-    * `INDEX` must be a positive integer.
+    * `INDEX` must be a **positive integer** (must be greater than 0). 
 
 _Examples:_
 * `select 1` expands the details of the first contact in your list.
@@ -429,7 +431,7 @@ Use this command to delete the specified contact from your NeoBook.
 
 _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the contact you wish to delete in the current displayed list.
-  * `INDEX` must be a **positive integer**.
+  * `INDEX` must be a **positive integer** (must be greater than 0).
 
 _Examples:_
 * `list` followed by `delete 2` deletes the 2nd person in the displayed list.
@@ -560,7 +562,7 @@ Use this command to delete the specified event from your NeoBook.
 
 _Here are some important requirements for you to take note:_
 * `INDEX` refers to the index of the Event you wish to delete in the current displayed Events List.
-    * `INDEX` must be a **positive integer**.
+    * `INDEX` must be a **positive integer** (must be greater than 0).
 
 _Examples:_
 * `delevent 2` deletes the event tagged to Index 2 in your NeoBook's Event List.
@@ -581,7 +583,7 @@ Use this command to edit the specified event in your NeoBook.
 _Here are some important requirements for you to take note:_
 
 * `INDEX` refers to the index of the event you wish to edit in the current displayed list.
-    * `INDEX` must be a **positive integer**.
+    * `INDEX` must be a **positive integer** (must be greater than 0).
 * At least one field must be provided.
 
 | Prefix | Name of Field                 | Optional? |
@@ -614,6 +616,16 @@ _Here are some important requirements for you to take note:_
 * NAME is the name of the person you want to tag to the event.
   * NAME is **case_sensitive**.
   * NAME must be the name of a contact already registered in NeoBook
+Examples:
+* Suppose you have an Event at `INDEX 3` with `DESCRIPTION: Hackathon Meeting`, `START DATE & TIME: 2023-05-04 1400`,
+`END DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` 
+
+![img.png](images/UntaggedEvent.png)
+
+`tagpersonevent et/4 pt/Baljeet FF` Tags Baljeet FF to this Weekly Hackathon Meeting.
+
+![img_1.png](images/TaggedEvent.png)
+
 
 _For more advanced users_
 * Be careful when directly editing the tagged contacts in `userdata.json`.
@@ -640,6 +652,16 @@ _Here are some important requirements for you to take note:_
     * NAME is **case_sensitive**.
     * NAME must be the name of a contact already registered in NeoBook and
 tagged to that event.
+
+Examples:
+* Suppose you have an Event at `INDEX 3` with `DESCRIPTION: Hackathon Meeting`, `START DATE & TIME: 2023-05-04 1400`,
+  `END DATE & TIME: 2023-05-04 1600`, `RECURRENCE INTERVAL: WEEKLY` and `Baljeet FF` tagged to this Event.
+
+![img_1.png](images/TaggedEvent.png)
+
+`untagpersonevent et/4 pt/Baljeet FF` untags Baljeet FF from this Weekly Hackathon Meeting.
+
+![img.png](images/UntaggedEvent.png)
 
 _For more advanced users_
 * Be careful when directly editing the tagged contacts in `userdata.json`.
