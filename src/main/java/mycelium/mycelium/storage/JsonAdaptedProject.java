@@ -17,7 +17,7 @@ import mycelium.mycelium.model.util.NonEmptyString;
 /**
  * Jackson friendly version of {@link Project}.
  */
-public class JsonAdaptedProject extends JsonAdaptedEntity{
+public class JsonAdaptedProject extends JsonAdaptedEntity {
     private static final String ENTITY_NAME = "Project";
     private final String name;
     private final ProjectStatus status;
@@ -71,10 +71,10 @@ public class JsonAdaptedProject extends JsonAdaptedEntity{
      * @throws IllegalValueException if some null fields exist
      */
     public Project toModelType() throws IllegalValueException {
-        nullCheck(name != null, "name");
-        nullCheck(status != null, "status");
-        nullCheck(clientEmail != null, "clientEmail");
-        nullCheck(acceptedOn != null, "acceptedOn");
+        nullCheck(name, "name");
+        nullCheck(status, "status");
+        nullCheck(clientEmail, "clientEmail");
+        nullCheck(acceptedOn, "acceptedOn");
         // NOTE: it is okay for the deadline and description to be null
         return new Project(NonEmptyString.of(name),
             status,

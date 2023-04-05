@@ -2,6 +2,9 @@ package mycelium.mycelium.storage;
 
 import mycelium.mycelium.commons.exceptions.IllegalValueException;
 
+/**
+ * Represents a generic entity that can be stored in JSON.
+ */
 public abstract class JsonAdaptedEntity {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "%s's %s field is missing!";
     private String entityName;
