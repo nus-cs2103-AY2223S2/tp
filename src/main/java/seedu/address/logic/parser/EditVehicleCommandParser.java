@@ -45,10 +45,10 @@ public class EditVehicleCommandParser implements Parser<EditVehicleCommand> {
         editVehicleDescriptor.setId(ParserUtil.parseInt(argMultimap.getValue(PREFIX_INTERNAL_ID).get()));
 
         if (argMultimap.getValue(PREFIX_PLATE_NUM).isPresent()) {
-            editVehicleDescriptor.setPlateNumber(argMultimap.getValue(PREFIX_PLATE_NUM).get());
+            editVehicleDescriptor.setPlateNumber(ParserUtil.parseString(argMultimap.getValue(PREFIX_PLATE_NUM).get()));
         }
         if (argMultimap.getValue(PREFIX_BRAND).isPresent()) {
-            editVehicleDescriptor.setBrand(argMultimap.getValue(PREFIX_BRAND).get());
+            editVehicleDescriptor.setBrand(ParserUtil.parseString(argMultimap.getValue(PREFIX_BRAND).get()));
         }
         if (argMultimap.getValue(PREFIX_CUSTOMER_ID).isPresent()) {
             editVehicleDescriptor.setOwnerId(Integer.parseInt(argMultimap.getValue(PREFIX_CUSTOMER_ID).get()));
@@ -58,7 +58,7 @@ public class EditVehicleCommandParser implements Parser<EditVehicleCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_VEHICLE_COLOR).isPresent()) {
-            editVehicleDescriptor.setColor(argMultimap.getValue(PREFIX_VEHICLE_COLOR).get());
+            editVehicleDescriptor.setColor(ParserUtil.parseString(argMultimap.getValue(PREFIX_VEHICLE_COLOR).get()));
         }
 
         if (!editVehicleDescriptor.isAnyFieldEdited()) {

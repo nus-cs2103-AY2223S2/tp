@@ -44,6 +44,7 @@ public class EditServiceCommandParser implements Parser<EditServiceCommand> {
             editServiceDescriptor.setVehicleId(ParserUtil.parseInt(argMultimap.getValue(PREFIX_VEHICLE_ID).get()));
         }
 
+        // start
         if (argMultimap.getValue(PREFIX_SERVICE_START).isPresent()) {
             editServiceDescriptor.setEntryDate(ParserUtil.parseDate(
                     argMultimap.getValue(PREFIX_SERVICE_START).get()));

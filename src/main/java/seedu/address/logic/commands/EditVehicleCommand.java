@@ -44,7 +44,7 @@ public class EditVehicleCommand extends RedoableCommand {
             + PREFIX_PLATE_NUM + "SBA1234A "
             + PREFIX_VEHICLE_COLOR + "blue";
 
-    public static final String MESSAGE_EDIT_VEHICLE_SUCCESS = "Edited vehicle: %1$s";
+    public static final String MESSAGE_EDIT_VEHICLE_SUCCESS = "Edited vehicle: %d";
 
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer %d does not exist.";
