@@ -8,6 +8,10 @@ import trackr.model.commons.Deadline;
  */
 public class TaskDeadline extends Deadline {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "Task deadline should only contain numeric values in the format \"DD/MM/YYYY\" and it should not be blank.";
+
+
     /**
      * Constructs a {@code TaskDeadline}.
      *

@@ -11,7 +11,6 @@ import trackr.commons.core.index.Index;
 import trackr.commons.util.StringUtil;
 import trackr.logic.parser.exceptions.ParseException;
 import trackr.model.TabEnum;
-import trackr.model.commons.Deadline;
 import trackr.model.commons.Name;
 import trackr.model.commons.Tag;
 import trackr.model.menu.ItemCost;
@@ -168,7 +167,7 @@ public class ParserUtil {
         requireNonNull(taskName);
         String trimmedTaskName = taskName.trim();
         if (!TaskName.isValidName(trimmedTaskName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
         }
         return new TaskName(trimmedTaskName);
     }
@@ -183,7 +182,7 @@ public class ParserUtil {
         requireNonNull(taskDeadline);
         String trimmedTaskDeadline = taskDeadline.trim();
         if (!TaskDeadline.isValidDeadline(trimmedTaskDeadline)) {
-            throw new ParseException(String.format(Deadline.MESSAGE_CONSTRAINTS, "Task"));
+            throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
         }
         return new TaskDeadline(trimmedTaskDeadline);
     }
@@ -218,7 +217,7 @@ public class ParserUtil {
         requireNonNull(itemName);
         String trimmedItemName = itemName.trim();
         if (!ItemName.isValidName(trimmedItemName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ItemName.MESSAGE_CONSTRAINTS);
         }
         return new ItemName(trimmedItemName);
     }
@@ -280,7 +279,7 @@ public class ParserUtil {
         requireNonNull(orderDeadline);
         String trimmedOrderDeadline = orderDeadline.trim();
         if (!OrderDeadline.isValidDeadline(trimmedOrderDeadline)) {
-            throw new ParseException(String.format(Deadline.MESSAGE_CONSTRAINTS, "Order"));
+            throw new ParseException(String.format(OrderDeadline.MESSAGE_CONSTRAINTS, "Order"));
         }
         return new OrderDeadline(trimmedOrderDeadline);
     }

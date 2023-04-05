@@ -1,6 +1,7 @@
 package trackr.model.task;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import trackr.model.commons.Status;
 
@@ -11,11 +12,22 @@ import trackr.model.commons.Status;
 public class TaskStatus extends Status {
 
     public static final HashMap<String, String> STATUSES;
+    public static final String STATUS_MESSAGE;
+    public static final String MESSAGE_CONSTRAINTS;
 
     static {
         STATUSES = new HashMap<>();
         STATUSES.put("N", "Not Done");
         STATUSES.put("D", "Done");
+
+        StringBuilder statusMessageBuilder = new StringBuilder();
+        for (Map.Entry<String, String> entry : STATUSES.entrySet()) {
+            statusMessageBuilder.append(String.format(" `%s` or `%s` for %s,", entry.getKey(),
+                    entry.getKey().toLowerCase(), entry.getValue()));
+        }
+        STATUS_MESSAGE =
+                statusMessageBuilder.deleteCharAt(statusMessageBuilder.length() - 1).append(".").toString();
+        MESSAGE_CONSTRAINTS = String.format(Status.MESSAGE_CONSTRAINTS_FORMAT, "Task", STATUS_MESSAGE);
     }
 
     /**

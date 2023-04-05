@@ -12,8 +12,7 @@ import java.util.Map.Entry;
  */
 public abstract class Status {
 
-    public static final String MESSAGE_CONSTRAINTS = "%s status should only be %s";
-    private final String validationRegex;
+    public static final String MESSAGE_CONSTRAINTS_FORMAT = "%s status should only be %s";
     private final HashMap<String, String> statuses = new HashMap<>();
 
     private final String status;
@@ -28,17 +27,8 @@ public abstract class Status {
             this.statuses.put(entry.getKey().toUpperCase(), entry.getValue());
         }
 
-        StringBuilder statusMessageBuilder = new StringBuilder();
-        for (Entry<String, String> entry : this.statuses.entrySet()) {
-            statusMessageBuilder.append(String.format(" `%s` or `%s` for %s,", entry.getKey(),
-                    entry.getKey().toLowerCase(), entry.getValue()));
-        }
-        String statusMessage =
-                statusMessageBuilder.deleteCharAt(statusMessageBuilder.length() - 1).append(".").toString();
-
-        this.validationRegex = String.format("^[%s]$",
-                this.statuses.keySet().stream().reduce("", (t, e) -> t + e + e.toLowerCase()));
-        checkArgument(isValidStatus(status, statuses), String.format(MESSAGE_CONSTRAINTS, type, statusMessage));
+        checkArgument(isValidStatus(status, statuses),
+                String.format(MESSAGE_CONSTRAINTS_FORMAT, type, getStatusMessage()));
         this.status = status.toUpperCase();
     }
 
@@ -49,6 +39,21 @@ public abstract class Status {
         String validationRegex = String.format("^[%s]$",
                 statuses.keySet().stream().reduce("", (t, e) -> t + e + e.toLowerCase()));
         return test.matches(validationRegex);
+    }
+
+    /**
+     * Returns a string that represents the types of valid statuses.
+     */
+    public String getStatusMessage() {
+        StringBuilder statusMessageBuilder = new StringBuilder();
+        for (Entry<String, String> entry : this.statuses.entrySet()) {
+            statusMessageBuilder.append(String.format(" `%s` or `%s` for %s,", entry.getKey(),
+                    entry.getKey().toLowerCase(), entry.getValue()));
+        }
+        String statusMessage =
+                statusMessageBuilder.deleteCharAt(statusMessageBuilder.length() - 1).append(".").toString();
+
+        return statusMessage;
     }
 
     /**
