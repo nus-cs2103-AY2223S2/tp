@@ -57,7 +57,7 @@ class SexTest {
 
     @Test
     public void isValidSexTest() {
-        String emptyInput = "INSERT STUDENT SEX HERE!";
+        String emptyInput = "Insert student sex here!";
         assertTrue(Sex.isDefaultSex(emptyInput));
         assertFalse(Sex.isDefaultSex(male1));
         assertTrue(male1.matches(Sex.VALIDATION_REGEX));
