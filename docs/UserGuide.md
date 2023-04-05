@@ -344,7 +344,7 @@ Tag successfully deleted:
 [Healthy]
 ```
 
-### Checking expiry of tag(s) : `expiry`
+### Checking expiry of food items : `expiry`
 
 Sorts by expiry date and displays all food items.
 
@@ -361,7 +361,7 @@ Food items are being sorted by their expiry dates.
 
 ### Getting help: `help`
 
-The dynamic `helps` functionality provides general help as well as command specific help that includes command formats and example usages.
+The dynamic `help` functionality provides general help as well as command specific help that includes command formats and example usages.
 It appears as a separate help window.
 
 Format: `help [COMMAND_NAME]` where `COMMAND_NAME` may be omitted to view general help
