@@ -139,6 +139,14 @@ public abstract class StorageModel<T> implements ReadOnlyStorageModel<T> {
     }
 
 
+    /**
+     * Resets the ID count.
+     */
+    public void resetIdCount() {
+        dataMap.resetIdCount();
+    }
+
+
     // ===== ReadOnlyStorageModel overrides
 
 

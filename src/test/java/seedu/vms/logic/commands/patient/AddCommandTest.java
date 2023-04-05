@@ -333,6 +333,12 @@ public class AddCommandTest {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'deleteVaccination'");
         }
+
+        @Override
+        public void resetPatientIds() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'resetPatientIds'");
+        }
     }
 
     /**

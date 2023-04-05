@@ -286,4 +286,10 @@ public class VaxTypeModelStub implements Model {
         throw new UnsupportedOperationException("Unimplemented method 'deletePatient'");
     }
 
+    @Override
+    public void resetPatientIds() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'resetPatientIds'");
+    }
+
 }

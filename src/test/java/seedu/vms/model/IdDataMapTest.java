@@ -96,19 +96,15 @@ public class IdDataMapTest {
          * element was deleted immediately
          */
 
-        // element to ensure that map is not empty
         // first so 0
-        idMap.add(0);
-
-        // second so 1
-        int idDel = idMap.add(1).getId();
+        int idDel = idMap.add(0).getId();
         idMap.remove(idDel);
 
-        // third so 2
+        // second so 1
         int idNext = idMap.add(2).getId();
 
-        assertEquals(1, idDel);
-        assertEquals(2, idNext);
+        assertEquals(0, idDel);
+        assertEquals(1, idNext);
     }
 
 

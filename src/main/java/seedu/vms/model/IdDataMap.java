@@ -103,10 +103,15 @@ public class IdDataMap<T> {
      */
     public ValueChange<IdData<T>> remove(int id) {
         IdData<T> removedData = internalMap.remove(id);
-        if (internalMap.isEmpty()) {
-            nextId = 0;
-        }
         return new ValueChange<>(removedData, null);
+    }
+
+
+    /**
+     * Resets the ID count.
+     */
+    public void resetIdCount() {
+        nextId = 0;
     }
 
 
