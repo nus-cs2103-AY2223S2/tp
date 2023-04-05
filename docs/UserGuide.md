@@ -233,7 +233,7 @@ Examples:
 
 Edits a student's remarks.
 
-> Format: `remark INDEX`
+> Format: `remark INDEX [REMARK]`
 
 With `remark` you can type your desired remarks and notes into the popup text box! The text box can take in 
 multiple sentences, paragraphs etc. When you are done, you can simply press `Ctrl` + `S`
@@ -247,7 +247,7 @@ The current version of TeachMeSenpai requires you to close the remark text box b
 
 Examples:
 
-- `remark 2'
+- `remark 2`
 
 <p align=center>
     <img alt="remark before" src="images/user-guide/remark_before.jpg" />

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 // import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 
 import seedu.address.commons.core.index.Index;
@@ -23,7 +24,7 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         requireNonNull(args);
         assert !args.isBlank() : "'args' should not be blank";
 
-        String[] splitArr = args.stripLeading().split(" +", 2);
+        String[] splitArr = args.stripLeading().split("\\s+", 2);
         String indexStr = splitArr[0];
         Remark remark = splitArr.length != 2
             ? null
@@ -32,8 +33,11 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(indexStr); //argMultimap.getPreamble());
-        } catch (IllegalValueException | IndexOutOfBoundsException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), e);
+        } catch (IllegalValueException ive) {
+            if (ive.getMessage().equals(ParserUtil.MESSAGE_INVALID_INDEX)) {
+                throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ive);
+            }
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), ive);
         }
 
         return new RemarkCommand(index, remark);

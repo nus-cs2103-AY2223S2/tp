@@ -24,16 +24,16 @@ public class RemarkWindow extends UiPart<Stage> {
     private TextArea textArea;
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new RemarkWindow.
      *
-     * @param root Stage to use as the root of the HelpWindow.
+     * @param root Stage to use as the root of the RemarkWindow.
      */
     public RemarkWindow(Stage root) {
         super(FXML, root);
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new RemarkWindow.
      */
     public RemarkWindow() {
         this(new Stage());
@@ -75,21 +75,21 @@ public class RemarkWindow extends UiPart<Stage> {
 
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the remark window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the remark window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the remark window.
      */
     public void focus() {
         getRoot().requestFocus();
