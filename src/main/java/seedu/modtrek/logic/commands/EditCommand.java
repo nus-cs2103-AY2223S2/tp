@@ -66,7 +66,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Module> lastShownList = model.getFilteredModuleList();
+        ObservableList<Module> lastShownList = model.getDegreeProgression().getModuleList();
 
         //should change this to a better way to retrieve module (possibly HashSet for modules?)
         Module moduleToEdit = new Module(code);
