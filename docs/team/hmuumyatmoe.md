@@ -12,12 +12,21 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add tasks to a task list and edit existing tasks.
     * What it does:
-      * Allows the user to add tasks with task description, deadline of task and completion status (DONE / NOT DONE) of task.
+      * Allows users to add tasks with task description, deadline of task and completion status (DONE / NOT DONE) of task.
       * Allows users to edit existing tasks so that they can keep tasks details correct and up to date.
     * Justification: This feature improves the product significantly because home business owners has a lot of tasks (such as ordering supplies, making deliveries) to deal with
       and the app provides a convenient way to record down and get an overview of their tasks.
     * Highlights: -
     * Credits: Code is adapted from [AddressBook-Level3 project](https://github.com/nus-cs2103-AY2223S2/tp) created by the [SE-EDU initiative](https://se-education.org)
+
+* **New Feature**: Added the ability to sort orders and tasks according to a given criteria.
+  * What it does:
+    * Allows users to sort tasks according to a given criteria (Task Name, Task Deadline, Task Status, Time added, Task Status and Deadline).
+    * Allows users to sort orders according to a given criteria (Task Name, Task Deadline, Task Status, Time added, Task Status and Deadline).
+  * Justification: This feature improves the product significantly because home business owners has a lot of orders and tasks and may wish to quickly find out
+    which orders or tasks are more urgent. This feature provides a convenient way for the home business owners to find out which orders or tasks are more urgent.
+  * Highlights: -
+
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s2.github.io/tp-dashboard/?search=hmuumyatmoe&breakdown=true)
 
