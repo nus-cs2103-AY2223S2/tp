@@ -102,18 +102,18 @@ Without further ado, let's get started!
    By default, it should be stored in the images folder as mentioned [here](#images). <br><br>
 2. Attributes: General particulars of a student/parent. <br>
    For example, name, phone number, email address etc. <br><br>
-3. Parameters: The actual information of a student/parent <br>
+3. Parameters: The actual information of a student/parent. <br>
    For example, Tan Ah Kow, 91234567 etc. <br><br>
-4. CCA: Co-curricular activities <br><br>
-5. CLI: Command Line Interface <br><br>
+4. CCA: Co-curricular activities. <br><br>
+5. CLI: Command Line Interface. <br><br>
 6. Hard disk: Non-volatile data storage device, your OS's storage in short. <br><br>
 7. JSON: JavaScript Object Notation, open standard file format for storing text. <br>
-   Examples of other commonly known file formats: `.TXT`, `.DOC`, `.PDF`, `.XLS`, `.HTML` etc <br><br>
+   Examples of other commonly known file formats: `.TXT`, `.DOC`, `.PDF`, `.XLS`, `.HTML` etc. <br><br>
 8. LMS: Learning Management System, application used by schools to provide students a platform to access their lessons materials online. <br>
-   Examples of LMS: Canvas, LumiNUS, Blackboard, Google Classroom, Quizlet <br><br>
-9. NOK: Next-of-kin, could be either blood related family members or guardian <br><br>
-10. OS: Operating System <br>
-   Examples of OS: Windows, Linux, Mac etc <br><br>
+   Examples of LMS: Canvas, LumiNUS, Blackboard, Google Classroom, Quizlet. <br><br>
+9. NOK: Next-of-kin, could be either blood related family members or guardian. <br><br>
+10. OS: Operating System. <br>
+   Examples of OS: Windows, Linux, Mac etc. <br><br>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -131,16 +131,21 @@ This section aims to provide a brief overview of the features available in Power
 ### Legend
 * Command lines supplied by the teachers are case-sensitive. You need to ensure that you have typed the command in the correct case.
   e.g. in the list feature, you can call it via this method:
-  `student 5A list`.
+  `student 5A list`. <br><br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the teachers.
-  e.g. in `…add <NAME>...`, `NAME` is a parameter which can be used as `…add John…`.
+  e.g. in `…add <NAME>...`, `NAME` is a parameter which can be used as `…add John…`. <br><br>
 
 * Items in `<>` brackets are the values that the teachers should fill in and is compulsory.
-  e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`.
+  e.g. in `…add <NAME>…` , `NAME` is a parameter that needs to be included, can be used as `…add John…`. <br><br>
 
 * All items in the square brackets are OPTIONAL.
-  e.g. in `…add…[..c/[CCA].. ]...` , `CCA` is an optional parameter that need not be given by the teachers and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…`.
+  e.g. in `…add…[..c/[CCA].. ]...` , `CCA` is an optional parameter that need not be given by the teachers and can be skipped, can be used as `…add…`  or `…add…c/Mathematics Club nok/…`. <br><br>
+
+* `Names` **SHOULD NOT** have **NUMBERS**. Current version of PowerConnect **ALLOWS NUMBERS** in **NAMES** but will be patched in future releases of PowerConnect!<br><br>
+
+* You **SHOULD** choose **VALID** values for `Age` although you are **NOT LIMITED** to setting it to **0** or other nonsensical values like **999**.<br>
+
 
 * Student Particulars:
   * Compulsory:
@@ -260,12 +265,18 @@ Examples:
 * A Default Image of a question mark will be displayed. <br>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
-1. You cannot create two students of the same index number and same class.
-2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get bound to the matching parent.
-3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update.
-Please delete the student and add without the image source path.
-4. If you have entered the `ABSOLUTE PATH TO IMAGE`, note that once the image changes location, the picture will not render properly.
-It is recommended to store the images using the folder [method](#images) instead.
+1. You cannot create two students of the same index number and same class. <br>
+2. Upon creation of a student, a new parent is also created if the parent does not exist based on the particulars given for the parent. Otherwise, the student will get bound to the matching parent. <br>
+3. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update. <br>
+Please delete the student and add without the image source path. <br>
+4. If you have entered the `ABSOLUTE PATH TO IMAGE`, note that once the image changes location, the picture will not render properly. <br>
+It is recommended to store the images using the folder [method](#images) instead. <br>
+5. `Student` and `Parent/NOK` `Names` **SHOULD NOT** have **NUMBERS**. Current version of PowerConnect **ALLOWS NUMBERS** in **NAMES** but will be patched in future releases of PowerConnect! <br>
+6. You **SHOULD** choose **VALID** values for `Age` although you are **NOT LIMITED** to setting it to **0** or other nonsensical values like **999**. <br>
+7. As we **ALLOW** you to create `CCA` containing **numbers** due to our beliefs that **CCAs* could have **numbers**, it is **HENCE** reliant on you to ensure the field for `CCA` is keyed in correctly. <br>
+8. By default, `Attendance` is set to `F`, representing **ABSENT**. <br>
+9. Current version of PowerConnect **DOES NOT** allow you to set attendance of `Student` to be `Absent` once marked `Present`. This will be patched in future implementations! <br>
+10. Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis.
 
 </div>
 
@@ -298,6 +309,11 @@ This date can be set to: <br>
 * T (Indicates that the student was present today) <br>
 * F (Default when adding student) <br>
 * Specific date (Used when you want to update the attendance of the student in the past)<br><br>
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+Attendance information displayed in the application is `Attendance` for **TODAY's** date and will be reset on a **DAILY** basis. Hence, updating `Attendance` for past dates will not be reflected in the application. It is however still be **SAVED** in PowerConnect. Future releases will futher improve the `Attendance` feature, allowing teachers to view **PAST** attendances. <br><br>
+Current version of PowerConnect **DOES NOT** allow you to set attendance of `Student` to be `Absent` once marked `Present`. This will be patched in future implementations! Future release of PowerConnect will also provide you with a wider range of attendance **TYPES* to choose from for a particular `Student`'s attendance, such as `Late`, `Left school early`, `On MC`. <br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -443,6 +459,10 @@ Examples:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
 If you want to change the parent for this student only, please kindly fill in the **NEW** parent/NOK **NAME**, **PHONE NUMBER** and **RELATIONSHIP**. <br><br>
 If you want to update all students under this student's parent, please kindly use the [PARENT EDIT COMMAND](#editparent) instead!!! <br><br>
+`Student` and `Parent/NOK` `Names` **SHOULD NOT** have **NUMBERS**. Current version of PowerConnect **ALLOWS NUMBERS** in **NAMES** but will be patched in future releases of PowerConnect! <br><br>
+You **SHOULD** choose **VALID** values for `Age` although you are **NOT LIMITED** to setting it to **0** or other nonsensical values like **999**.<br><br>
+As we **ALLOW** you to create `CCA` containing **numbers** due to our beliefs that **CCAs* could have **numbers**, it is **HENCE** reliant on you to ensure the field for `CCA` is keyed in correctly.<br><br>
+Current version of PowerConnect **DOES NOT** allow you to set attendance of `Student` to be `Absent` once marked `Present`. This will be patched in future implementations! <br><br>
 </div>
 
 [Back to Table of Contents](#table-of-contents)
@@ -525,6 +545,17 @@ Examples of Full Command:
 **Expected outcome:**
 * `New parent added:`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
+1. You cannot create two parents with the same `phone number`. <br>
+2. If the image does not exist, the default image will be shown and if you choose to update the image using the folder [method](#images), it will not update. <br>
+Please delete the student and add without the image source path. <br>
+3. If you have entered the `ABSOLUTE PATH TO IMAGE`, note that once the image changes location, the picture will not render properly. <br>
+It is recommended to store the images using the folder [method](#images) instead. <br>
+4. `Student` and `Parent/NOK` `Names` **SHOULD NOT** have **NUMBERS**. Current version of PowerConnect **ALLOWS NUMBERS** in **NAMES** but will be patched in future releases of PowerConnect! <br>
+5. You **SHOULD** choose **VALID** values for `Age` although you are **NOT LIMITED** to setting it to **0** or other nonsensical values like **999**.
+
+</div>
+
 [Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
@@ -566,6 +597,11 @@ Examples of Full Command:
 **Expected Outcome:**
 * `Edited Parent: Tan Ah Niu; Phone: 65656565…`
 * `Edited Parent: Tan Ah Niu; Parent Age: 31; Address: Blk 245 Ang Mo Kio Avenue 1 #11-800 S(560245); Image Path: C://; Parent Email: tanahcow@gmail.com; Parent Phone: 91234567…` <br><br>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** <br>
+`Student` and `Parent/NOK` `Names` **SHOULD NOT** have **NUMBERS**. Current version of PowerConnect **ALLOWS NUMBERS** in **NAMES** but will be patched in future releases of PowerConnect! <br><br>
+You **SHOULD** choose **VALID** values for `Age` although you are **NOT LIMITED** to setting it to **0** or other nonsensical values like **999**.<br><br>
+</div>
 
 [Back to Table of Contents](#table-of-contents)
 
