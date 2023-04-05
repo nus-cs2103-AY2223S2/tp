@@ -9,8 +9,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Author {
     public static final String VALIDATION_REGEX = "[^\\s].*";
-    public static final String MESSAGE_CONSTRAINTS = "Authors' names should only contain alphanumeric characters and spaces,"
-            + " and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Authors' names should only contain alphanumeric characters "
+            + "and spaces," + " and it should not be blank";
     public final String name;
 
     /**
