@@ -46,7 +46,7 @@ public class TagCommand extends Command {
      */
     public static final String MESSAGE_REMOVE_TAG_SUCCESS = "Removed tag from Module: %1$s";
 
-    public static final String MESSAGE_MISSING_PREFIX = "Missing tag prefix /t.\n"
+    public static final String MESSAGE_MISSING_PREFIX = "Missing tag prefix /t.\n\n"
             + "Example: tag cs2109s include /t CSF /t CSBD";
     public static final String MESSAGE_TAG_MODULE_FAIL = "Module %1$s is not yet added.";
 
