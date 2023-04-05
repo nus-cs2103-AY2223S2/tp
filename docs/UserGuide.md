@@ -53,6 +53,14 @@ AutoM8 is a **desktop app for an auto repair shop, optimized for use via a Comma
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes command GUI behaviors:**<br>
+
+* Using entity specific commands (e.g. commandX, where command is a specific operation such as add, edit, etc and X is a specific entity such as customer, vehicle etc) will help you navigate to the respective tabs (e.g. A successful `addvehicle` command will navigate you to the Vehicles tab)
+
+</div>
+
 ---
 
 ### Add
@@ -80,11 +88,13 @@ Format: `addservicetech s/SERVICE_ID t/TECHNICIAN_ID`
 Example: `addservicetech s/1 t/3`
 
 ### Adding a vehicle: `addvehicle`
-Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID.
+Adds a vehicle of specified type (i.e. motorbike, car) to the system and assigns a unique vehicle ID. 
 
-Format: `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID t/TYPE`
+Format: `addvehicle p/PLATE_NUMBER b/BRAND c/CUSTOMER_ID cl/COLOR t/TYPE`
 
-Example: `addvehicle p/SBA1234A b/Toyota c/1 t/car`
+Examples: 
+* `addvehicle p/SBA1234A b/Toyota c/1 cl/red t/car`
+* `addvehicle p/SBG5678B b/Honda c/2 cl/blue t/motorbike`
 
 ### Adding a vehicle part: `addpart`
 Adds a vehicle part to the system.
@@ -130,10 +140,15 @@ Example: `addappointmenttech a/1 t/2`
 ---
 ### List/Sort
 
-### Listing all vehicles/customers/parts/appointments: `list`
-Shows all vehicles/customers/parts/appointments.
+### Listing all vehicles/customers/parts/appointments/services/technicians: `list`
+Shows all vehicles/customers/parts/appointments/services/technicians and helps navigate you to the respective tab.
 
-Format: `list(vehicles/customers/parts/appointments/services/technicians)`
+We also have a global `list` command. The "list" command helps to display all entities in their respective tabs while staying on the current tab. Just keep in mind that it doesn't switch tabs for you, so you'll need to do that manually by clicking or using the specific `listX` commands available to help you navigate to the respective tabs.
+
+Format: 
+* `list(vehicles/customers/parts/appointments/services/technicians)` 
+* `list`
+  
 
 Examples:
 * `listvehicles`
@@ -312,9 +327,6 @@ to be updated
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-Command summary may be using outdated syntax please refer to guide above
-</div>
 
 | Action                                                  | Format, Examples                                                                                                                                                                |
 |---------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

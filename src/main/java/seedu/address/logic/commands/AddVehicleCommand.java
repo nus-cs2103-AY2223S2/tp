@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.service.Vehicle;
 
 /**
- * Manages adding vehicles
+ * Adds a vehicle to the shop
  */
 public class AddVehicleCommand extends RedoableCommand {
     public static final String COMMAND_WORD = "addvehicle";
@@ -32,15 +32,13 @@ public class AddVehicleCommand extends RedoableCommand {
             + PREFIX_VEHICLE_TYPE + "4wd ";
 
     public static final String MESSAGE_SUCCESS = "New vehicle added: %1$s";
-    public static final String MESSAGE_DUPLICATE_VEHICLE = "This vechicle already registered";
+    public static final String MESSAGE_DUPLICATE_VEHICLE = "This vehicle is already registered";
     public static final String MESSAGE_CUSTOMER_NOT_FOUND = "Customer not registered";
 
     private final Vehicle toAdd;
 
     /**
-     * Constructs command that adds vehicle to the model
-     *
-     * @param vehicle Customer to be added
+     * Creates an AddCommand to add the specified {@code Vehicle}
      */
     public AddVehicleCommand(Vehicle vehicle) {
         this.toAdd = vehicle;
@@ -60,7 +58,7 @@ public class AddVehicleCommand extends RedoableCommand {
             IdGenerator.setVehicleIdUnused(toAdd.getId());
             throw new CommandException(MESSAGE_CUSTOMER_NOT_FOUND);
         }
-        if (model.hasVehicle(toAdd.getId())) {
+        if (model.hasVehicle(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_VEHICLE);
         }
 
