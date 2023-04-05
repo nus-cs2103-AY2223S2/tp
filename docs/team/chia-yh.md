@@ -33,6 +33,8 @@ Given below are my contributions to the project.
   * Highlights: `VALIDATION_REGEX` and `isValid*` methods for fields ensure validity of inputs stored in `Project` instance (does not guarantee that `ProjectRepoHost` or `ProjectRepoName` exist, only that they are valid); `Project` instances are stored in an additional list in the `socket.json` data file, with its own copies of the `Person` instances that are members of the `Project`; references to the `Person` instances are restored upon reading in the `socket.json` data file
   * Credits: *{-}*
 
+<div style="page-break-after: always;"></div>
+
 * **New Feature**: `deletepj` command to delete existing projects [\#150](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/150)
   * What it does: Allows users to delete existing projects
   * Justification: Users are able to remove finished projects from `SOCket`
@@ -45,9 +47,10 @@ Given below are my contributions to the project.
   * Set up the GitHub [team organization](https://github.com/AY2223S2-CS2103T-T12-4)/[repository](https://github.com/AY2223S2-CS2103T-T12-4/tp)
   * Set up and helped maintain the [issue tracker](https://github.com/AY2223S2-CS2103T-T12-4/tp/issues)
   * Set up GitHub Projects to manage [User Stories](https://github.com/orgs/AY2223S2-CS2103T-T12-4/projects/2)
-  * Updated [README](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/README.md) page to match project [\#43](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/43)
+  * Updated [README.md](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/README.md) to match project [\#43](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/43)
+  * Updated [index.md](https://github.com/AY2223S2-CS2103T-T12-4/tp/blob/master/docs/index.md) to match project [#174](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/174) 
   * Set up milestones for [v1.1](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/1), [v1.2](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/2), [v1.2b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/5), [v1.3](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/3), [v1.3b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/6), [v1.4](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/4)
-  * Closed milestones [v1.1](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/1), [v1.2](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/2), [v1.2b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/5)
+  * Closed milestones [v1.1](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/1), [v1.2](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/2), [v1.2b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/5), [v1.3](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/3), [v1.3b](https://github.com/AY2223S2-CS2103T-T12-4/tp/milestone/6)
 
 * **Enhancements to existing features**:
   * Updated `Person` class with new fields utilising newly added classes, modify behavior to allow fields to be empty [\#76](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/76)
@@ -62,19 +65,20 @@ Given below are my contributions to the project.
     * Added documentation for the features `add` and `edit` [\#44](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/44)
     * Did minor tweaks to existing documentation [\#44](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/44)
     * Added documentation for the features `undo` and `redo` [\#104](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/104)
+    * Added "Introduction", "About this User Guide" sections, split "Features" into "General Commands", "Contact Commands" and "Project Commands" [\#177](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/177)
   * Developer Guide:
     * Added documentation for target user profile, value proposition, user stories [\#53](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/53)
     * Added use cases `UC01`, `UC02`, `UC09` [\#54](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/54)
     * Updated glossary [\#55](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/55)
-    * Updated non-functional requirements [\#56](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/56)
+    * Updated non-functional requirements [\#56](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/56), [\#184](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/184)
     * Updated implementation of `undo`/`redo` and credit proposed implementation in `AB-3` [\#106](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/106)
     * Updated existing UML diagrams to reflect changes in implementation of `Model` and `Storage` architectures, current implementation of `undo` and `redo`, as well as changes from code refactoring [\#164](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/164)
+    * Added introduction, documentation for implementation of `Project` feature [\#184](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/184)
+    * Added use case `UC21` [\#184](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/184)
+    * Added UML sequence diagram to show how updates are made to the associated `Project` object when updates are made to `Person` objects [\#184](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/184)
+    * Updated "Appendix: Instructions for manual testing" with instructions for testing `add`, `edit`, `deletepj`, Saving data [\#191](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/191)
+    * Added "Appendix: Planned Enhancements" with planned enhancements to validation for `Name`, `Phone` fields and overdue checks for `ProjectDeadline` [\#249](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/249)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): `to be added soon`
-  * Contributed to forum discussions (examples: `to be added soon`)
-  * Reported bugs and suggestions for other teams in the class (examples: `to be added soon`)
-  * Some parts of the history feature I added was adopted by several other classmates (`to be added soon`)
-
-* **Tools**:
-  * `to be added soon`
+  * PRs reviewed (with non-trivial review comments): [\#78](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/78), [\#85](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/85), [\#88](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/88), [\#91](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/91), [\#100](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/100), [\#157](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/157), [\#169](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/169), [\#171](https://github.com/AY2223S2-CS2103T-T12-4/tp/pull/171)
+  * Reported bugs and suggestions for other teams in the class (examples: [\#158](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/158), [\#170](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/170), [\#177](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/177), [\#198](https://github.com/AY2223S2-CS2103T-W09-2/tp/issues/198))
