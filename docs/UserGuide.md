@@ -81,7 +81,7 @@ regarding the use of the GUI.
 
 ### Quick Orientation
 
-**ATTACH IMAGE HERE**
+![GuiOrientation](images/gui-display-annotated.png)
 
 Here is a quick summary of each GUI component within Docedex.
 
@@ -97,6 +97,7 @@ Here is a quick summary of each GUI component within Docedex.
 | **Information Card**  | Displays all information about a selected doctor or patient.                                                                                                                                                                                                                |
 | **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                  |
 
+
 ### Note about the GUI
 
 **Selecting doctors or patients through commands**
@@ -110,6 +111,7 @@ a nice visual feedback that the command is successful.
 
 However, when selecting a new doctor, the patients list will be cleared, as it 
 displays the patients assigned to the selected doctor.
+
 
 **Unselecting doctors or patients**
 
