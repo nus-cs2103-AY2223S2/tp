@@ -594,9 +594,12 @@ Want to see all your contacts? Display everyone stored in Codoc with the list co
 
 `list`<br>
 
+<div class="span" class="alert alert-success">
 💡 **Tip:** Use this command to revert back to the original list after performing the `find` command to shorten the list displayed.
-> * `list`
-> ![result for list](images/UiList.png)
+</div>
+
+* `list`
+![result for list](images/UiList.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -610,15 +613,20 @@ E.g. `delete 1` will delete the current person at index 1 as shown in the list p
 
 `delete <INDEX>`<br>
 
-> * `delete 6` deletes Betsy Crowe who was at index 6
-> ![Delete Betsy](images/UiDelete.png)
+* `delete 6` deletes Betsy Crowe who was at index 6
+![Delete Betsy](images/UiDelete.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
 ### 8. Clearing all entries : `clear`
-`clear`<br>
-> * :warning: Clears **all** entries from CoDoc.<br>
-> ![Clear](images/UiClear.png)
+
+`clear`
+
+<div class="span" class="alert alert-danger">
+:warning: Clears **all** entries from CoDoc.
+</div>
+
+![Clear](images/UiClear.png)
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -627,7 +635,7 @@ E.g. `delete 1` will delete the current person at index 1 as shown in the list p
 Want to quit? Use exit command to exit the program! <br>
 Equivalent to clicking the close button via the GUI. <br>
 
->`exit`<br>
+`exit`<br>
 
 [Scroll back to *Table of Contents*](#table-of-contents)
 
@@ -735,13 +743,13 @@ _Details coming soon ..._
 | Actions                          | Description                                                                                                                                 |
 |----------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | Add a person                     | add n/Bob Sim y/2 c/1 e/e0823741@nus.edu g/bobabob l/linkedin.com/in/bom-sim-086g93847 m/ay2223s2 CS2103T m/AY2223S2 cs2101 s/python s/java |
-| Clear all persons                | clear                                                                                                                                       |
-| Delete person at index 3         | delete 3                                                                                                                                    |
+| View contact                     | view 3                                                                                                                                      |
+| View tab                         | view c, view m, view s                                                                                                                      |
 | Edit contact in the right panel  | edit n/David m+/AY2223S2 CS2109S s-/python                                                                                                  |
 | Find by attributes               | find n/David c/Computer Science m/CS2109S s/java                                                                                            |
 | List the full list of contacts   | list                                                                                                                                        |
-| View contact                     | view 3                                                                                                                                      |
-| View tab                         | view c, view m, view s                                                                                                                      |
+| Delete person at index 3         | delete 3                                                                                                                                    |
+| Clear all persons                | clear                                                                                                                                       |
 | View user guide and command list | help                                                                                                                                        |
 
 [Scroll back to *Table of Contents*](#table-of-contents)
