@@ -10,6 +10,7 @@ _EZ-Schedule_ is a desktop application for managing and scheduling of events,
 optimized for use via a Command Line Interface (CLI)
 while still providing an easy way to visualize all events through a Graphical User Interface (GUI).
 
+
 ## Summary of Contributions
 
 ### Code contributed
@@ -64,3 +65,14 @@ to be added soon
 ## Contribution Highlights
 to be added soon  
 [Add InvalidDateException to CommandBox](https://github.com/AY2223S2-CS2103-W17-3/tp/pull/189)
+
+<div style="page-break-after: always;"></div>
+
+## Contributions to the Developer Guide (Extracts)
+Reproduce the parts in the Developer Guide that you wrote. 
+Alternatively, you can show the various diagrams you contributed.
+
+<div style="page-break-after: always;"></div>
+
+## Contributions to the User Guide (Extracts)
+Reproduce the parts in the User Guide that you wrote.
