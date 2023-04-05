@@ -1,5 +1,7 @@
 package seedu.address.ui.lesson;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -11,13 +13,12 @@ import seedu.address.ui.UiPart;
  * A UI component that displays information of a {@code Person}.
  */
 public class LessonCard extends UiPart<Region> {
+    private static final DateTimeFormatter PRINT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
     private static final String FXML = "LessonListCard.fxml";
     private static final String DOT = ". ";
 
     @FXML
     private HBox cardPane;
-    @FXML
-    private Label id;
     @FXML
     private Label title;
     @FXML
@@ -33,10 +34,9 @@ public class LessonCard extends UiPart<Region> {
      */
     public LessonCard(Lesson lesson, int id) {
         super(FXML);
-        this.id.setText(id + DOT);
         title.setText(lesson.getTitle());
-        startTime.setText(lesson.getStartTimeString());
-        endTime.setText(lesson.getEndTimeString());
+        startTime.setText(lesson.getStartTime().format(PRINT_FORMATTER));
+        endTime.setText(lesson.getEndTime().format(PRINT_FORMATTER));
     }
 
     @Override
@@ -51,8 +51,7 @@ public class LessonCard extends UiPart<Region> {
         }
         // state check
         LessonCard card = (LessonCard) other;
-        return id.getText().equals(card.id.getText())
-                && title.getText().equals(card.title.getText())
+        return title.getText().equals(card.title.getText())
                 && startTime.getText().equals(card.startTime.getText())
                 && endTime.getText().equals(card.endTime.getText());
     }
