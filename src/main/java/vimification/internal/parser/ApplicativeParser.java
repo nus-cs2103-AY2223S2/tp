@@ -546,6 +546,14 @@ public final class ApplicativeParser<T> {
         return fromRunner(input -> run(input).or(() -> that.<T>cast().run(input)));
     }
 
+    /**
+     * Runs this parser, then runs the other parsers multiple times. The results are collected into
+     * a list.
+     *
+     * @param that the other parser
+     * @return a parser that runs this parser once and the other parser multiple times, then
+     *         collects the results into a list.
+     */
     public ApplicativeParser<List<T>> thenMany(ApplicativeParser<? extends T> that) {
         return fromRunner(input -> run(input).map(pair -> {
             ApplicativeParser<T> parser = that.cast();
@@ -564,22 +572,60 @@ public final class ApplicativeParser<T> {
         }));
     }
 
+    /**
+     * Runs this parser one or more times, and collects the results into a list.
+     *
+     * @return a parser that runs this parser one or more times
+     */
     public ApplicativeParser<List<T>> many1() {
         return thenMany(this);
     }
 
+    /**
+     * Runs this parser zero or more times, and collects the results into a list.
+     *
+     * @return a parser that runs this parser zero or more times
+     */
     public ApplicativeParser<List<T>> many() {
         return many1().orElse(ArrayList::new);
     }
 
+    /**
+     * Runs this parser one or more times, separated by running the other parsers between
+     * consecutive runs. The results of the other parser will be discarded, and the results of this
+     * parser will be collected into a single list.
+     *
+     * @param <U> the type of the other parser result
+     * @param that the other parser
+     * @return a parser that runs this parser one or more times, separated by running the other
+     *         parser
+     */
     public <U> ApplicativeParser<List<T>> sepBy1(ApplicativeParser<U> that) {
         return thenMany(that.takeNext(this));
     }
 
+    /**
+     * Runs this parser zero or more times, separated by running the other parsers between
+     * consecutive runs. The results of the other parser will be discarded, and the results of this
+     * parser will be collected into a single list.
+     *
+     * @param <U> the type of the other parser result
+     * @param that the other parser
+     * @return a parser that runs this parser zero or more times, separated by running the other
+     *         parser
+     */
     public <U> ApplicativeParser<List<T>> sepBy(ApplicativeParser<U> that) {
         return sepBy1(that).orElse(ArrayList::new);
     }
 
+    /**
+     * Replaces the result of this parser with the given value.
+     *
+     * @param <U> type of the given value
+     * @param otherValue the given value
+     * @return a parser that discards the result of this parser, and replaces it with the given
+     *         value
+     */
     public <U> ApplicativeParser<U> constMap(U otherValue) {
         return fromRunner(input -> run(input).map(pair -> {
             StringView nextInput = pair.getFirst();
@@ -587,6 +633,14 @@ public final class ApplicativeParser<T> {
         }));
     }
 
+    /**
+     * Replaces the result of this parser with a new value. The value will be lazily produced.
+     *
+     * @param <U> type of the new value
+     * @param supplier a supplier that will produce the new value, when necessary
+     * @return a parser that discards the result of this parser, and replaces it with the new value
+     *         (if this parser succeeds)
+     */
     public <U> ApplicativeParser<U> constMap(Supplier<? extends U> supplier) {
         return fromRunner(input -> run(input).map(pair -> {
             StringView nextInput = pair.getFirst();
@@ -595,10 +649,25 @@ public final class ApplicativeParser<T> {
         }));
     }
 
+    /**
+     * Returns a parser that succeeds if this parser succeeds, and returns the given value if this
+     * parser fails.
+     *
+     * @param otherValue the given value
+     * @return a parser that succeeds if this parser succeeds, and returns the given value otherwise
+     */
     public ApplicativeParser<T> orElse(T otherValue) {
         return fromRunner(input -> run(input).or(() -> Optional.of(Pair.of(input, otherValue))));
     }
 
+    /**
+     * Returns a parser that succeeds if this parser succeeds, produces and returns another value if
+     * this parser fails.
+     *
+     * @param supplier a supplier that will produce a value when necessary
+     * @return a parser that succeeds if this parser succeeds, produces and returns another value
+     *         otherwise
+     */
     public ApplicativeParser<T> orElse(Supplier<? extends T> supplier) {
         return fromRunner(input -> run(input).or(() -> {
             T otherValue = supplier.get();
@@ -606,6 +675,14 @@ public final class ApplicativeParser<T> {
         }));
     }
 
+    /**
+     * Returns a parser that will call the visiter with the result of this parser to create some
+     * side effects. The visiter will not be called if this parser fails. The result of this parser
+     * will not be modified.
+     *
+     * @param visiter the visiter to be called
+     * @return a parser that will call the visiter if this parser succeeds
+     */
     public ApplicativeParser<T> visit(Consumer<? super T> visiter) {
         return fromRunner(input -> run(input).map(pair -> {
             T value = pair.getSecond();
@@ -614,6 +691,14 @@ public final class ApplicativeParser<T> {
         }));
     }
 
+    /**
+     * Returns a parser that will call the consumer with the result of this parser to create some
+     * side effects. The consumer will not be called if this parser fails. The result of this parser
+     * will be discarded.
+     *
+     * @param consumer the consumer to be called
+     * @return a parser that will call the consumer if this parser succeeds
+     */
     public ApplicativeParser<Void> consume(Consumer<? super T> consumer) {
         return fromRunner(input -> run(input).map(pair -> {
             StringView nextInput = pair.getFirst();
@@ -623,6 +708,12 @@ public final class ApplicativeParser<T> {
         }));
     }
 
+    /**
+     * Returns a parser that optionally runs this parser. If this parser succeeds, the result will
+     * be discarded, otherwise, the returned parser will not consume any input.
+     *
+     * @return a parser that optionally runs this parser
+     */
     public ApplicativeParser<Void> optional() {
         return fromRunner(input -> run(input).map(pair -> {
             StringView nextInput = pair.getFirst();
@@ -633,6 +724,9 @@ public final class ApplicativeParser<T> {
     /**
      * Returns a new parser that throws an exception (immediately) if this parser fails. The thrown
      * exception will stop a parsing pipeline.
+     * <p>
+     * This method should be used with care, as some other methods will retry with another execution
+     * path if this parser fails. Using this method prevents that behavior.
      *
      * @param errorMessage the error message of the exception
      * @return a new parser that throws if this parser fails
