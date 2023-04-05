@@ -861,7 +861,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-- 1c. The module the user is attempting to add has the same module code as a module already in Le Tracker.
+- 1c. The module to be added is a duplicate of an existing module in Le Tracker.
   - 1c1. Le Tracker shows an error message.
 
     Use case ends.
@@ -892,7 +892,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-- 1d. The lecture the user is attempting to add has the same name as a lecture already in the module.
+- 1d. The lecture to be added is a duplicate of an existing lecture in the module.
   - 1d1. Le Tracker shows an error message.
 
     Use case ends.
@@ -928,7 +928,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-- 1e. The video the user is attempting to add has the same name as a video already in the lecture.
+- 1e. The video to be added is a duplicate of an existing video in the lecture.
   - 1e1. Le Tracker shows an error message.
 
     Use case ends.
@@ -959,7 +959,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-- 1d. The resulting edited module has the same module code as another module in Le Tracker.
+- 1d. The resulting edited module is a duplicate of another module in Le Tracker.
   - 1d1. Le Tracker shows an error message.
 
     Use case ends.
@@ -995,7 +995,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-- 1e. The resulting edited lecture has the same name as another lecture in the module.
+- 1e. The resulting edited lecture is a duplicate of another lecture in the module.
   - 1e1. Le Tracker shows an error message.
 
     Use case ends.
@@ -1036,7 +1036,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-- 1f. The resulting edited video has the same name as another video in the lecture.
+- 1f. The resulting edited video is a duplicate of another video in the lecture.
   - 1f1. Le Tracker shows an error message.
 
     Use case ends.
