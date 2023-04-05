@@ -23,6 +23,13 @@ public class EventCatalogueBuilder {
         return this;
     }
 
+    public EventCatalogueBuilder withEvent(Event[] events) {
+        for (Event event : events) {
+            eventCatalogue.addEvent(event);
+        }
+        return this;
+    }
+
     public EventCatalogue build() {
         return eventCatalogue;
     }
