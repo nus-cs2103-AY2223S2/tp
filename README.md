@@ -9,23 +9,21 @@
 
 ## Value Proposition:
 #### In order for NUS computing students to function effectively and productively in university
-It is important for them to keep track of:
+It is important for them to keep track of: 
 
 - Lecturers and their contact details
 - Tutors/teaching assistants and their contact details
 - Locations of classes
-- Online links provided by lecturer and tutors where slides or other resources are uploaded (Eg. Canvas, Google Drive,
-Coursemology)
+- Online links provided by lecturer and tutors where slides or other resources are uploaded (Eg. Canvas, Google Drive) 
 - Deadlines for handing in assignments
 - Lecture and tutorial timings
-- Exam timings
+- Exam timings 
 
  ## Example usages:
-  * `add n/CS2101 t/Tutorial e/Tuesday 10:00 12:00 a/COM1-0117 s/Prof Cyrus Lee r/UG DG Peer Review c/www.youtube.com`
-  * `add n/CS2103T t/Lecture s/Prof Damith r/Can attend online :)`
-  * `delete 2`
-  * `edit 3 a/COM3 c/www.google.com`
-  * `sort timeslot`
+  * add n/CS2101 t/Tutorial e/280323 10:00 a/COM1-0117 s/Prof Cyrus Lee r/UG DG Peer Review c/www.youtube.com
+  * add n/CS2103T t/Lecture s/Prof Damith r/Can attend online :)
+  * delete 2
+  * edit 3 a/COM3 c/www.google.com
 
 ## Project Website
 https://ay2223s2-cs2103t-w10-1.github.io/tp/

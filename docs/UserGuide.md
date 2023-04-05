@@ -41,7 +41,6 @@ This guide serves to help NUS computing students familiarise themselves with the
 * [**Glossary**](#glossary)
 * [**FAQ**](#faq)
 * [**Command summary**](#command-summary)
-
 --------------------------------------------------------------------------------------------------------------------
 ## Before you read
 
