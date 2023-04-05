@@ -26,7 +26,7 @@ public class AddEmployeeToLeaveFromToCommand extends Command {
     public static final String COMMAND_WORD = "aelr";
 
     public static final String DATE_CONSTRAINTS = "The end date cannot be before the start date.\n"
-            + "The end date can be at most 6 days after start date.";
+            + "The end date must be at most 6 days after start date.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an employee's leave on days from the start date to end date inclusive in SudoHR .\n"
