@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -54,9 +53,10 @@ public class EditDoctorCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditDoctorCommand.MESSAGE_USAGE);
+            String.format("%s\n%s", ParserUtil.MESSAGE_INVALID_INDEX, EditDoctorCommand.MESSAGE_USAGE);
 
     private EditDoctorCommandParser parser = new EditDoctorCommandParser();
+
 
     @Test
     public void parse_missingParts_failure() {

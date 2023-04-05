@@ -3,20 +3,28 @@ layout: page
 title: User Guide
 ---
 <!-- omit in toc -->
-### Welcome to Docedex, your solution to doctor and patient management <!-- omit in toc -->
+## Welcome to Docedex
 
-Docedex is a **desktop application** is built for **administrative assistants** to manage patients within clinics.
+***Taking control of hospital administrative management is just a few keystrokes away!***
 
-Docedex is **optimized for** use via a **Command Line Interface (CLI)** while still having the benefits of a **Graphical User Interface (GUI).** If you type fast, Docédex can get your patient management tasks done faster than traditional GUI apps.
+Docedex is a **desktop application** built for **medical administrative assistants**
+to manage doctors and patients within clinics.
 
-Unlike your traditional contact management application, keep track of patients' **health information**, their **doctors** and much more.
+Here's a **quick snapshot** of how Docedex can help you
+streamline your hospital management processes.
+- Store and edit information about your patients and doctors
+- Track the status of your patients and doctors
+- Assign patients to doctors upon triaging
 
-With Docedex, taking control of patient management is just a few keystrokes away!
+On top of these functionalities, we believe that patient management must be **efficient**.
+Therefore, Docedex is **optimized for** use via a **Command Line Interface (CLI)**
+while still having the benefits of a **Graphical User Interface (GUI).**
+If you type fast, Docedex can get your hospital management tasks done faster
+than current GUI apps in the industry.
 
+**If you are new here**, visit our [quick start](#quick-start) guide to onboard onto Docedex smoothly!
 
 ![NewUi](images/NewUi.png)
-
-For **new users** visit [quick start](#quick-start).
 
 <!-- omit in toc -->
 ## Table of Contents
@@ -51,13 +59,67 @@ For **new users** visit [quick start](#quick-start).
    - You should notice the GUI of the application pop up.<br>
    ![NewUi](images/NewUi.png)
 
-6. Refer to the [Docedex Tutorial](#docedex-tutorial) to learn how to use the application quickly.
+5. Learn more about navigating the GUI [here](#navigating-the-graphical-user-interface-gui).
 
-7. Refer to the [Features](#features) section for details of each command.
+6. Learn how to use the application quickly through our tutorial [here](#docedex-tutorial).
+
+7. Learn more about the details of each command at our Features section [here](#features).
 
 [Scroll back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Glossary
+
+Here are some descriptions of the words we use throughout the User Guide
+
+## Navigating the Graphical User Interface (GUI)
+
+Docedex comes with a GUI to allow for a nice visual feedback for our users. Here
+is a quick runthrough of the different sections of our GUI, as well as some notes
+regarding the use of the GUI.
+
+### Quick Orientation
+
+![GuiOrientation](images/gui-display-annotated.png)
+
+Here is a quick summary of each GUI component within Docedex.
+
+| **Name of component** | **Description**                                                                                                                                                                                                                                                             |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Menu Bar**          | Contains dropdown menu options for the Docedex application.                                                                                                                                                                                                                 |
+| **Command Box**       | Allows users to enter Docedex commands.                                                                                                                                                                                                                                     |
+| **Result Display**    | Provides CLI-based feedback upon a user command.<br/>Allows users to see if their command was successful or not.<br/>Provides error messages to guide user on how to use Docedex commands.                                                                                  |
+| **Doctor List**       | Shows a list of **Doctor Cards**. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all doctors in Docedex.<br/><br/>Upon selection of a Patient Card, this list will filter to show doctors assigned to said patient.  |
+| **Doctor Card**       | Displays key information about a doctor, such as name, phone number, email and tags.                                                                                                                                                                                        |
+| **Patient List**      | Shows a list of **Patient Cards**. This list can be manipulated through commands.<br/><br/>Upon starting the app, this list will reflect all patients in Docedex.<br/><br/>Upon selection of a Doctor Card, this list will filter to show patients assigned to said doctor. |
+| **Patient Card**      | Displays key information about a patient, such as name, phone number, email and tags.                                                                                                                                                                                       |
+| **Information Card**  | Displays all information about a selected doctor or patient.                                                                                                                                                                                                                |
+| **Footer**            | Shows the location of the Docedex storage.                                                                                                                                                                                                                                  |
+
+
+### Note about the GUI
+
+**Selecting doctors or patients through commands**
+
+Certain commands involve the selection of doctors and patients immediately after
+they are entered.
+
+For example, when you type in the `add-doc` command, Docedex will automatically select
+the newly added doctor and display their details to you. This gives the user (you!) 
+a nice visual feedback that the command is successful.
+
+However, when selecting a new doctor, the patients list will be cleared, as it 
+displays the patients assigned to the selected doctor.
+
+
+**Unselecting doctors or patients**
+
+Unselecting doctors and patients is currently not supported in Docedex. If you wish to
+look through all the doctors and patients in Docedex, please use the
+[`list-doc`](#listing-all-doctors) and [`list-ptn`](#listing-all-patients) commands instead.
+
+[Scroll back to Table of Contents](#table-of-contents)
 
 ## Notes about the command format
 
