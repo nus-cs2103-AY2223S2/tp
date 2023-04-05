@@ -7,6 +7,13 @@ title: Francis' Project Portfolio Page
 
 An increasing number of vaccinations now have more complicated prerequisites to take them, and Vaccination Management System (VMS) aims to make this validation easier. **VMS is a desktop application for validating and keeping track of vaccination appointments**; its operations are **optimized for fast typists who prefer using a Command Line Interface (CLI)** while maintaining the benefits of a Graphical User Interface (GUI).
 
+Given below are my contributions to the project
+
+* **New Feature**: Refactor person code into patient and updated its attributes
+  * What it does: Patients now have Blood Type, Date of Birth, Allergies, and Vaccinations. New and attributes important to a patient at a vaccination center. Removed address and email fields.
+  * Justification: 
+  * Highlights: Our product needs to be used by a vaccine center, this are the attributes that would be more important for one to keep track of.
+  
 * **New Feature**: To be added soon
   * What it does: magna netus fames id nisl tempor commodo conubia luctus vivamus convallis sit elit tortor porta quis dui ac est feugiat
   * Justification: magna netus fames id nisl tempor commodo conubia luctus vivamus convallis sit elit tortor porta quis dui ac est feugiat
