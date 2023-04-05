@@ -313,17 +313,17 @@ The execution process of `clear` is demonstrated by the sequence diagram below.
 
 Given below is a step-wise explanation on `clear` mechanism's behaviour.
 
-Step 1. Parsing
+Step 1. Parsing <br/>
 The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `clear`.
 
-Step 2. Execution
+Step 2. Execution <br/>
 `ClearCommand#execute` is called with `model` instance. It attempts to get full list of `Internship Applications` by `Model#getSortedFilteredInternshipList`.
 If the application list is currently not empty, `Model#setInternEase` empties the application list by replacing it with a new InternEase instance while `Model#addAllInternshipToCache` adds the entire list into the cacheList.
 
-Step 3. Result
+Step 3. Result <br/>
 The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
->**NOTE:**
+>**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
 
 #### Why is it implemented this way
@@ -340,13 +340,13 @@ The `clear_by` feature enables user to clear the internship applications in batc
 In `Logic` interface, `ClearByCommand` extends `Command` with a `ClearByCommand#execute` functionality. The parsing process is facilitated by both the `InternEaseParser#parse` and `ClearByCommandParser#parse`.
 
 The workflow of a `clear_by` command during its execution is shown by the activity diagram below:
-![ClearByActivityDiagram](images/ClearByActivityDiagram.png)
-Group - Company Name
-![GroupCompanyName](images/GroupCompanyName.png) 
-Group - Job Title
-![GroupJobTitle](images/GroupJobTitle.png) 
-GROUP - Status
-![GroupStatus](images/GroupStatus.png)
+![ClearByActivityDiagram](images/ClearByActivityDiagram.png) <br/>
+Group - Company Name <br/>
+![GroupCompanyName](images/GroupCompanyName.png) <br/>
+Group - Job Title <br/>
+![GroupJobTitle](images/GroupJobTitle.png) <br/>
+Group - Status <br/>
+![GroupStatus](images/GroupStatus.png) <br/>
 
 There are 3 constructors `ClearByCommand::new` provided for 3 different cases stated below : 
 
@@ -372,18 +372,18 @@ The execution process of `Clear_by` is demonstrated by the sequence diagram belo
 
 Given below is a step-wise explanation on `clear_by` mechanism's behaviour.
 
-Step 1. Parsing
+Step 1. Parsing <br/>
     The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `clear_by`, it will then be passed to `ClearByCommandParser#parse`.
     The `PREFIX` in the argument will then be investigated. Different constructor of `ClearByCommand` object will be using based on the `PREFIX`.
 
-Step 2. Execution
+Step 2. Execution <br/>
     `ClearByCommand#execute` is called with `model` instance. It attempts to get full list of `Internship Applications` by `Model#getSortedFilteredInternshipList`. Then, the list is filtered by `ClearByCommand#getFilteredList` to filter out the applications to be cleared.
     The size of the list-to-clear is checked before an iteration to `Model#deleteInternship` and `Model#addInternshipToCache`. The cleared items are stored in the cacheList to support `RevertCommand` in current InternEase session.
     
-Step 3. Result
+Step 3. Result <br/>
     The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
->**NOTE:** 
+>**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
 
 #### Why is it implemented this way
@@ -412,18 +412,18 @@ The execution process of `delete` is demonstrated by the sequence diagram below.
 
 Given below is a step-wise explanation on `delete` mechanism's behaviour.
 
-Step 1. Parsing
+Step 1. Parsing <br/>
 The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `delete`, it will then be passed to `DeleteCommandParser#parse`.
 The `INDEX` in the argument will then be investigated.
 
-Step 2. Execution
+Step 2. Execution <br/>
 `DeleteCommand#execute` is called with `model` instance. It attempts to get full list of `Internship Applications` by `Model#getSortedFilteredInternshipList`. The `INDEX` is checked against the size of the current Internship Application to ensure that it is within the desired range.
 The `internshipToDelete` is retrieved from the filteredList and deleted from the model by `Model#deleteInternship`. The deleted item is stored in the cacheList to support `RevertCommand` and `RevertAllCommand` in the current InternEase session.
 
-Step 3. Result
+Step 3. Result <br/>
 The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
->**NOTE:**
+>**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
 
 #### Why is it implemented this way
@@ -449,17 +449,17 @@ The execution process of `revert` is demonstrated by the activity diagram below.
 
 Given below is a step-wise explanation on `revert` mechanism's behaviour.
 
-Step 1. Parsing
+Step 1. Parsing <br/>
 The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `revert`.
 
-Step 2. Execution
+Step 2. Execution <br/>
 `RevertCommand#execute` is called with `model` instance. It attempts to get full list of `cached Internship Applications` by `Model#getCachedInternshipList`. 
 The `most recent cached Internship Application` is retrieved from the cacheList and deleted from it by `Model#getAndRemoveCachedApplication`. The retrieved item is added back to the end of the internship application list by `Model#addApplication`.
 
-Step 3. Result
+Step 3. Result <br/>
 The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
->**NOTE:**
+>**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
 
 #### Why is it implemented this way
@@ -492,17 +492,17 @@ The execution process of `revert_all` is demonstrated by the sequence diagram be
 
 Given below is a step-wise explanation on `revert_all` mechanism's behaviour.
 
-Step 1. Parsing
+Step 1. Parsing <br/>
 The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `revert_all`.
 
-Step 2. Execution
+Step 2. Execution <br/>
 `RevertAllCommand#execute` is called with `model` instance. It attempts to get full list of `cached Internship Applications` by `Model#getCachedInternshipList`.
 If the cacheList is currently not empty, `Model#setEmptyInternshipCacheList` empties the cacheList while `Model#addApplications` adds the entire list to the end of the current internship application list.
 
-Step 3. Result
+Step 3. Result <br/>
 The result model is saved. A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `InternshipListPanel` is refreshed with a `ResultDialog` displaying the execution message for 5 seconds.
 
->**NOTE:**
+>**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
 
 #### Why is it implemented this way
@@ -522,17 +522,17 @@ The execution process of `exit` is demonstrated by the sequence diagram below.
 
 Given below is a step-wise explanation on `exit` mechanism's behaviour.
 
-Step 1. Parsing
+Step 1. Parsing <br/>
 The user input in the `CommandBox` will trigger `CommandBox#execute`, will result in the command word processing in `InternEaseParser#parse`. If the `COMMAND.WORD` matches `exit`.
 
-Step 2. Execution
+Step 2. Execution <br/>
 `ExitCommand#execute` is called with `model` instance. It directly returns a command result with `exit` parameter being set to `True`. 
 
-Step 3. Result
+Step 3. Result <br/>
 A `CommandResult` with execution result message is returned until the `MainWindow#execute`. The `ResultDialog` displays the execution message for 5 seconds.
 `MainWindow#handleExit` handle the exit operation by recording current gui settings and hiding all the opened windows. The InternEase software shuts down eventually.
 
->**NOTE:**
+>**NOTE:** <br/>
 > Error handling: Any error message resulted in the midst of execution will be displayed as a `ResultDialog` and current execution terminates immediately.
 
 #### Why is it implemented this way
@@ -587,21 +587,21 @@ adding a new internship application. This prevents the `AddCommand` from getting
 * **Alternative 2:** Adding interview date as an attribute in the `InternshipApplication` class.
     * Pros: Easier than implement.
     * Cons: More conflicts will occur if someone else is working on the `InternshipApplication` class at the same time.
-    * 
 
 ### Side Features
 **All the side features share similar execution paths as their respective main features execution logic, only minor changes are applied.**
 
-For example, the main differences in these features are on the specific functions used to carry out the execution and the specific lists used to store the relevant items.
-    * `Task` is a combination of `Todo` and `Note`.
-    * `TodoList` or `NoteList` are used instead of `InternshipApplicationList`, and other relevant data structure.
-    * Methods with `Todo` or `Note` are used instead of `Application` or `Internship` (e.g., updateFiltered`Todo`List and updateFiltered`Note`List are used instead of updateFiltered`Internship`List).
-    * CacheList is not applicable.
-    * All the commands (include main features) can be executed in any of the panels. It will automatically switch to the related panel and display the results after every execution.
-    # All commands need to go through the `TaskParser` after being processed in the `InternEaseParser`.
-    * For GUI settings, `Todo` uses `TodoListPanel`, `Note` uses `NoteListPanel`, while `Task` uses `MixedPanel`.
+For example, the main differences in these features are on the specific functions used to carry out the execution and the specific lists used to store the relevant items. <br/>
+  - `Task` is a combination of `Todo` and `Note`.<br/>
+  - `TodoList` or `NoteList` are used instead of `InternshipApplicationList`, and other relevant data structure.<br/>
+  - Methods with `Todo` or `Note` are used instead of `Application` or `Internship` (e.g., updateFiltered`Todo`List and updateFiltered`Note`List are used instead of updateFiltered`Internship`List).<br/>
+  - CacheList is not applicable.<br/>
+  - All the commands (include main features) can be executed in any of the panels. It will automatically switch to the related panel and display the results after every execution.<br/>
+  - All commands need to go through the `TaskParser` after being processed in the `InternEaseParser`.<br/>
+  - For GUI settings, `Todo` uses `TodoListPanel`, `Note` uses `NoteListPanel`, while `Task` uses `MixedPanel`.<br/>
 
 
+  
 ### Task related features
 
 ### Find Task feature
@@ -610,7 +610,7 @@ For example, the main differences in these features are on the specific function
 The `FindTaskFeature` provides searching function on `Todo` and `Note` with keywords.
 The execution of `FindTaskCommand` is similar to `FindCommand` except it takes no prefix(purely keywords) and it searches on `InternshipTodo` company name and `Note` content.
 
-The execution process of `find_task` is demonstrated by the sequence diagram below.
+The execution process of `find_task` is demonstrated by the sequence diagram below.<br/>
 ![FindTaskSequenceDiagram](images/FindTaskSequenceDiagram.png)
 
 #### Why is it implemented this way
@@ -625,7 +625,7 @@ application to be more effective.
 The `ListTaskFeature` lists both `TodoList` and `NoteList` all together in a single panel (mixed panel).
 The execution of `ListTaskCommand` is similar to `ListCommand`.
 
-The execution process of `list_task` is demonstrated by the activity diagram below.
+The execution process of `list_task` is demonstrated by the activity diagram below.<br/>
 ![ListTaskActivityDiagram](images/ListTaskActivityDiagram.png)
 
 #### Why is it implemented this way
@@ -641,7 +641,7 @@ By implementing the listing of both `TodoList` and `NoteList` together, user can
 The `AddTodoFeature` enables the adding of new `InternshipTodo` instance into the current `TodoList`.
 The execution of `AddTodoCommand` is similar to `AddCommand`, the main difference is `AddTodoCommand` comes with an extra mandatory attribute of `ApplicaionDeadline`.
 
-The execution process of `add_todo` is demonstrated by the activity diagram below.
+The execution process of `add_todo` is demonstrated by the activity diagram below.<br/>
 ![AddTodoActivityDiagram](images/AddTodoActivityDiagram.png)
 
 
@@ -651,7 +651,7 @@ The execution process of `add_todo` is demonstrated by the activity diagram belo
 The `ClearTodoFeature` clears the entire `TodoList`.
 The execution of `ClearTodoCommand` is similar to `ClearCommand`. However, cacheList is not available for `InternshipTodo` so this operation is irreversible.
 
-The execution process of `clear_todo` is demonstrated by the activity diagram below.
+The execution process of `clear_todo` is demonstrated by the activity diagram below.<br/>
 ![ClearTodoActivityDiagram](images/ClearTodoActivityDiagram.png)
 
 
@@ -661,7 +661,7 @@ The execution process of `clear_todo` is demonstrated by the activity diagram be
 The `DeleteTodoFeature` deletes the specified `InternshipTodo` entry respective to the INDEX stated in the command.
 The execution of `DeleteTodoCommand` is similar to `DeleteCommand`. However, cacheList is not available for `InternshipTodo` so this operation is irreversible.
 
-The execution process of `delete_todo` is demonstrated by the activity diagram below.
+The execution process of `delete_todo` is demonstrated by the activity diagram below.<br/>
 ![DeleteTodoActivityDiagram](images/DeleteTodoActivityDiagram.png)
 
 
@@ -671,7 +671,7 @@ The execution process of `delete_todo` is demonstrated by the activity diagram b
 The `EditDeadlineFeature` enables user to edit the deadline of an `InternshipTodo` with INDEX specified in the command.
 The execution of `EditDeadlineCommand` is similar to `EditStatusCommand`, but it edits the `ApplicationDeadline` for the respective `InternshipTodo`.
 
-The execution process of `edit_deadline` is demonstrated by the sequence diagram below.
+The execution process of `edit_deadline` is demonstrated by the sequence diagram below.<br/>
 ![EditDeadlineSequenceDiagram](images/EditDeadlineSequenceDiagram.png)
 
 
@@ -681,7 +681,7 @@ The execution process of `edit_deadline` is demonstrated by the sequence diagram
 The `EditContentFeature` enables user to edit the note content of an `InternshipTodo` with INDEX specified in the command.
 The execution of `EditNoteContentCommand` is similar to `EditStatusCommand`, but it edits the `NoteContent` for the respective `InternshipTodo`.
 
-The execution process of `edit_content` is demonstrated by the sequence diagram below.
+The execution process of `edit_content` is demonstrated by the sequence diagram below.<br/>
 ![EditNoteContentSequenceDiagram](images/EditNoteContentSequenceDiagram.png)
 
 
@@ -691,13 +691,13 @@ The execution process of `edit_content` is demonstrated by the sequence diagram 
 The `ListTodoFeature` lists current `TodoList` in the `TodoListPanel`.
 The execution of `ListTodoCommand` is similar to `ListCommand`.
 
-The execution process of `list_todo` is demonstrated by the activity diagram below.
+The execution process of `list_todo` is demonstrated by the activity diagram below.<br/>
 ![ListTodoActivityDiagram](images/ListTodoActivityDiagram.png)
 
 
 ### Note related features
 
-An overview of `Note` package is shown below.
+An overview of `Note` package is shown below.<br/>
 ![NoteOverviewDiagram](images/NoteOverviewDiagram.png)
 
 
