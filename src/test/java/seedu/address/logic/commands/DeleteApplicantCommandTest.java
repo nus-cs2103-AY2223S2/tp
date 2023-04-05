@@ -82,7 +82,7 @@ public class DeleteApplicantCommandTest {
         ).build());
 
         String expectedMessage = String.format(DeleteApplicantCommand.MESSAGE_SUCCESS,
-                VALID_APPLICANT_NAME_BENEDICT,
+                VALID_BENEDICT_2_NAME_WITH_ID,
                 originalListing.getTitle().fullTitle);
 
         assertCommandSuccess(deleteApplicantCommand, model, expectedMessage, expectedModel);
