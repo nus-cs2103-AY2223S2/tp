@@ -1,5 +1,14 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalListings.getTypicalListingBook;
+
+import java.util.ArrayList;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.ListingBook;
 import seedu.address.model.Model;
@@ -9,15 +18,6 @@ import seedu.address.model.applicant.Applicant;
 import seedu.address.model.listing.Listing;
 import seedu.address.testutil.ApplicantBuilder;
 import seedu.address.testutil.ListingBuilder;
-
-import java.util.ArrayList;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalListings.getTypicalListingBook;
 
 public class UndoCommandTest {
     private Model model;
