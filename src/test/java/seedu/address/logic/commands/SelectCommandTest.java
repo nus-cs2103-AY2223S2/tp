@@ -15,6 +15,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.client.Client;
 
 class SelectCommandTest {
 
@@ -23,9 +24,9 @@ class SelectCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         SelectCommand selectCommand = new SelectCommand(INDEX_FIRST_CLIENT);
-
+        Client selectedClient = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
         CommandResult expectedCommandResult =
-                new CommandResult(String.format(SelectCommand.MESSAGE_SELECT_CLIENT_SUCCESS, INDEX_FIRST_CLIENT));
+                new CommandResult(String.format(SelectCommand.MESSAGE_SELECT_CLIENT_SUCCESS, selectedClient));
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
