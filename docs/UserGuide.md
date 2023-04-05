@@ -270,12 +270,12 @@ Data list contains all of your respective data labelled out in full. The layout 
 
 * Orders
 
-Orders contains order information, with their data represented by their respective cards.
+`Orders` contains order information, with their data represented by their respective cards.
 
 Order Card consists of the following components:
 
 1. Index of the order
-2. Name of the order item (Menu item name)
+2. Name of the order item (which should correspond to its respective Menu item name)
 3. Quantity of order item
 4. Deadline for delivery of the order
 5. Status of the order item
@@ -290,7 +290,7 @@ Order Card consists of the following components:
 
 * Tasks
 
-Tasks contains task information, with their data represented by their respective cards.
+`Tasks` contains task information, with their data represented by their respective cards.
 
 Task Card consists of the following components:
 
@@ -306,9 +306,9 @@ Task Card consists of the following components:
 
 * Contacts
 
-Contacts contains supplier information, with their data represented by their respective cards.
+`Contacts` contains supplier information, with their data represented by their respective cards.
 
-Supplier Card consists of the following components:
+Supplier Contact Card consists of the following components:
 
 1. Index of the supplier
 2. Name of the supplier
@@ -324,7 +324,7 @@ Supplier Card consists of the following components:
 
 * Menu
 
-Menu contains menu items, with their data represented by their respective cards.
+`Menu` contains menu items, with their data represented by their respective cards.
 
 Menu Item Card consists of the following components:
 
@@ -356,7 +356,9 @@ Menu Item Card consists of the following components:
   e.g. in `add_supplier n/NAME`, you fill in the `NAME` parameter with the supplier name (i.e. `add_supplier n/John Doe`).
 
 * Prefixes of the parameters must be in lower-case and are case-sensitive.<br>
-  e.g. `n/` in `add_s n/NAME` is case-sensitive (i.e. `N/` is an invalid prefix).
+  e.g. `n/` in `add_s n/NAME` is case-sensitive<br>
+* :heavy_check_mark: `n/` is a valid prefix.<br>
+  :x: `N/` is an invalid prefix.<br>
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -451,7 +453,9 @@ Syntax: `add_order on/ORDER_ITEM q/QUANTITY d/DEADLINE n/CUSTOMER_NAME a/CUSTOME
   * `D` or `d` for `Delivered`
 * If no status is provided, it is **defaulted** to `Not Delivered`.
 
-* All `ORDER_ITEM` **must** match a menu item in the menu.
+* All `ORDER_ITEM` **must** match a menu item in the menu.<br>
+  i.e. If `ORDER_ITEM` does not match any of the existing menu items, you need to add it as a menu item first.<br>
+  You can find out how to add a menu item [here](#214-adding-a-menu-item-add_item)
 
 </div>
 
@@ -564,7 +568,7 @@ Syntax: `add_item n/ITEM_NAME pr/PRICE c/COST`
 
 ## 2.2 Edit
 
-Editing of an information to the specific list. Below are the specific edit commands for supplier, order, task and menu item.
+Editing of an information in a specific list. Below are the specific edit commands for supplier, order, task and menu item.
 
 <div markdown="block" class="alert alert-tip">
 
@@ -573,22 +577,23 @@ Editing of an information to the specific list. Below are the specific edit comm
 * Edits the information at the specified `INDEX`.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * All existing values will be replaced with the new values given.
+* At least one of the fields (e.g. `n/NAME`) must be specified.
 
 </div>
 
 <div markdown="span" class="alert alert-danger">
 
-:exclamation: **Danger**<br><br>
+:exclamation: **Danger**<br>
 
 Editing of information is one-way (i.e. You cannot revert your command).<br>
 
 We are working to have an undo feature in the future. Sorry for the inconvenience caused.
 
-</div>
+</div><br>
 
 ### 2.2.1 Editing a supplier: `edit_supplier`
 
-Edit an existing supplier’s information.
+Edits an existing supplier’s information.
 
 Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -607,7 +612,7 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 :clipboard: **Example 1: Standard command removing tags**
 
 * `edit_supplier 1 n/Johnny p/90138482 t/`<br>
-  Edits the **first** supplier information with the following details:
+  Edits the **first** supplier information (shown on screen) with the following details:
   * Supplier Name: `Johnny`
   * Phone Number: `90138482`
   * Tags: Empty
@@ -615,7 +620,7 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 :clipboard: **Example 2: Shortcut command replacing tags**
 
 * `edit_s 3 t/Supplies Flour e/mark@example.com`<br>
-  Edits the **third** supplier information with the following details:
+  Edits the **third** supplier information (shown on screen) with the following details:
   * Email: `mark@example.com`
   * Tags: `Supplies Flour`
 
@@ -623,7 +628,7 @@ Syntax: `edit_supplier INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…
 
 ### 2.2.2 Editing an order: `edit_order`
 
-Edit an existing order’s information.
+Edits an existing order’s information.
 
 Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_NAME] [a/CUSTOMER_ADDRESS] [p/CUSTOMER_PHONE_NUMBER] [s/STATUS]`
 
@@ -643,14 +648,14 @@ Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_
 :clipboard: **Example 1: Standard command**
 
 * `edit_order 1 p/91234567 d/05/05/2024`<br>
-  Edits the **first** order information with the following details:
+  Edits the **first** order information (shown on screen) with the following details:
   * Customer Phone Number: `91234567`
   * Deadline: `05/05/2024`
 
 :clipboard: **Example 2: Shortcut command updating status**
 
 * `edit_o 3 q/20 s/I`<br>
-  Edits the **third** order information with the following details:
+  Edits the **third** order information (shown on screen) with the following details:
   * Quantity: `3`
   * Status: `In Progress`
 
@@ -658,7 +663,7 @@ Syntax: `edit_order INDEX [on/ORDER_ITEM] [q/QUANTITY] [d/DEADLINE] [n/CUSTOMER_
 
 ### 2.2.3 Editing a task: `edit_task`
 
-Edit an existing task’s information.
+Edits an existing task’s information.
 
 Syntax: `edit_task INDEX [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 
@@ -677,13 +682,13 @@ Syntax: `edit_task INDEX [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 :clipboard: **Example 1: Standard command**
 
 * `edit_task 1 n/Get creamer`<br>
-  Edits the **first** task information with the following details:
+  Edits the **first** task information (shown on screen) with the following details:
   * Task Name: `Get creamer`
 
 :clipboard: **Example 2: Shortcut command updating status**
 
 * `edit_t 3 d/31/12/2024 s/N`<br>
-  Edits the **third** task information with the following details:
+  Edits the **third** task information (shown on screen) with the following details:
   * Deadline: `31/12/2024`
   * Status: `Not Done`
 
@@ -691,7 +696,7 @@ Syntax: `edit_task INDEX [n/TASK_NAME] [d/DEADLINE] [s/STATUS]`
 
 ### 2.2.4 Editing a menu item: `edit_item`
 
-Edit an existing menu item’s information.
+Edits an existing menu item’s information.
 
 Syntax: `edit_item INDEX [n/ITEM_NAME] [pr/PRICE] [c/COST]`
 
