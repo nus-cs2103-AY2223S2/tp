@@ -186,13 +186,14 @@ Examples:
 
 ### Prescribing patient’s medication : `prescribe`
 
-Prescribes medication to a patient, noting the medication's name and cost.
+* Prescribes medication to a patient, noting the medication's name and cost.
+  * If the patient is already prescribed to that medication, its cost is updated to the new value instead.
 
 Format: `prescribe ic/NRIC m/MEDICATION c/COST`
 
 Examples:
-*  `prescribe m/paracetamol ic/S1234567X c/10` Prescribes paracetamol the patient of IC S1234567X at a cost of $10
-*  `prescribe m/Cough Syrup ic/S1234567X c/0.1` Prescribes cough syrup to the patient of IC S1234567X at a cost of $0.10
+*  `prescribe m/paracetamol ic/S1234567X c/0.7` Prescribes paracetamol the patient of IC S1234567X at a cost of $0.7
+*  `prescribe m/Cough Syrup ic/S1234567X c/10.7` Prescribes cough syrup to the patient of IC S1234567X at a cost of $0.10
 
 ![Prescribe](images/Prescribe.png)
 
