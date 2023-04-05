@@ -28,18 +28,17 @@ import seedu.address.model.person.student.UniqueStudentList;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final Parents parents;
+    private Parents parents;
     private final PcClass pcClass;
     private final UserPrefs userPrefs;
 
     private FilteredList<Student> filteredStudents;
 
-    private final FilteredList<Parent> filteredParents;
+    private FilteredList<Parent> filteredParents;
 
     /**
      * Initializes a ModelManager with the given PowerConnect and userPrefs.
      */
-
     public ModelManager(ReadOnlyPcClass readOnlyPcClass, ReadOnlyParents readOnlyParents, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(readOnlyParents, readOnlyPcClass, userPrefs);
 
@@ -52,6 +51,33 @@ public class ModelManager implements Model {
         this.parents = new Parents(readOnlyParents);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
+        filteredParents = new FilteredList<>(this.parents.getParentList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given PowerConnect and userPrefs.
+     */
+    public ModelManager(ReadOnlyPcClass readOnlyPcClass, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(readOnlyPcClass, userPrefs);
+        logger.fine("Initializing with classes: " + readOnlyPcClass
+                + " and user prefs " + userPrefs);
+        this.pcClass = new PcClass(readOnlyPcClass);
+        this.userPrefs = new UserPrefs(userPrefs);
+        filteredStudents = new FilteredList<>(Class.getAllStudents().asUnmodifiableObservableList());
+    }
+
+    /**
+     * Initializes a ModelManager with the given addressBook and userPrefs.
+     */
+    public ModelManager(ReadOnlyParents readOnlyParents, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(readOnlyParents, userPrefs);
+
+        logger.fine("parents: " + readOnlyParents
+                + " and user prefs " + userPrefs);
+
+        this.pcClass = null;
+        this.parents = new Parents(readOnlyParents);
+        this.userPrefs = new UserPrefs(userPrefs);
         filteredParents = new FilteredList<>(this.parents.getParentList());
     }
 

@@ -30,8 +30,12 @@ PowerConnect is optimized for use via a Command Line Interface (CLI) while still
 5. [Proposed Features](#proposed-features)
    1. [Undo/redo feature](#proposed-undoredo-feature)
    2. [Data archiving](#proposed-data-archiving)
-6. [Documentation, Logging, Testing, Configuration, Dev-ops](#documentation-logging-testing-configuration-dev-ops)
-7. [Appendix](#appendix-requirements)
+6. [Planned Enhancements](#planned-enhancements)
+   1. [Enhancement 1 - Name Fix](#enhancement-1-name-fix)
+   2. [Enhancement 2 - Age Fix](#enhancement-2-age-fix)
+   3. [Enhancement 3 - Attendance Fix](#enhancement-3-attendance-fix)
+7. [Documentation, Logging, Testing, Configuration, Dev-ops](#documentation-logging-testing-configuration-dev-ops)
+8. [Appendix](#appendix-requirements)
    1. [Appendix-Requirements](#appendix-requirements)
       1. [Product Scope](#product-scope)
       2. [User Stories](#user-stories)
@@ -50,6 +54,7 @@ PowerConnect is optimized for use via a Command Line Interface (CLI) while still
    2. [Appendix-Instructions for Manual Testing](#appendix-instructions-for-manual-testing)
       1. [Launch and Shutdown](#launch-and-shutdown)
       2. [Saving data](#saving-data)
+   3. [Appendix-Effort](#effort)
 
 <div style="page-break-after: always;"></div>
 
@@ -662,6 +667,59 @@ _{Explain here how the data archiving feature will be implemented}_
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<a name = "planned-enhancements"/>
+
+## Planned Enhancements
+
+<a name = "enhancement-1-name-fix"/>
+
+#### Enhancement 1: Name Fix
+Bug Report: [PE-D][Tester B] Edit Student: name can be numbers, Issue #179
+
+Feature Flaw: User is able to input numbers into `Student`'s `Name` and `Parent/NOK`'s `Name`
+
+Fix: Update `Name.java` file's line 19 code such that it will **ONLY** accept alphabets and spacing.
+```
+From:
+public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
+To:
+public static final String VALIDATION_REGEX = "[\\p{Alpha}][\\p{Alpha} ]*";
+```
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "enhancement-2-age-fix"/>
+
+#### Enhancement 2: Age Fix
+Bug Report: [PE-D][Tester B] Edit student: age can be 0 or any extreme value, Issue #178
+
+Feature Flaw: User is able to input `Age` values like `0` or `999` when logically speaking, there wouldn't be anyone with those `Age` values. Current implementation is self-reliant on users to provide **APPROPRIATE** values.
+
+Fix: Update `Age.java` file such that it **DOES NOT** allow values like `0` and has a **SOFT CAP** of 200 as current longest lifespan of humans is only 122 years. Even after **50 years**, there shouldn't be anyone who **EXCEEDS** this soft cap value.
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+<a name = "enhancement-3-attendance-fix"/>
+
+#### Enhancement 3: Attendance Fix
+Bug Report: [PE-D][Tester C] Unclear options for marking students as absent, Issues #174, #166, #162
+
+Feature Flaw: User is unable to set `Attendance` of a `Student` to be `Absent` once he/she is marked as `Present.
+
+Fix: Update `Attendance` feature such that it allows users to set it to `Absent` and other statuses set by users, such as `Late`, `Left Home Early`, `On medical leave` and reflects the correct displaying message as well in future releases.
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 <a name = "documentation-logging-testing-configuration-dev-ops"/>
 
 ## **Documentation, Logging, Testing, Configuration, Dev-ops**
@@ -1173,3 +1231,24 @@ Testers **SHOULD NOT** change directory name for `/data/images/`, **ANY CHANGE**
 [Back to Table of Contents](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------
+<a name = "effort" />
+
+### Appendix: Effort
+The hardest part of the project was modifying the whole storage class to fit our model correctly. As we created both
+students and parents that inherited from persons, the AB3 model storage could not fit our model correctly. As such, we had
+to overhaul the whole storage package and we also supported class functionality for students which made things even harder.<br>
+
+We also made linkages between parents and students to better model the relationship between students and parents. This was
+quite time consuming as we had to make sure each command we implemented adjusted this relationship accordingly. 
+
+The UI package also took us quite a while as we were not really familiar with JavaFX and we had to make sure the information 
+displays correctly especially with expanding number of information (tests/homework)
+
+The novelty of giving users both the option to specify an image path or use the images folder method to store images for students
+or parents also took us some time as we were unsure to hard code the location or not. 
+
+[Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+--------------------------------------------------------------------------------------------------------------------

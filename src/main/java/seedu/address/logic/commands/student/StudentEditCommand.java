@@ -231,8 +231,8 @@ public class StudentEditCommand extends StudentCommand {
         newParent = editParent(parentToSet, newParent, model);
         model.setParent(parentToSet, newParent);
         student.setParent(newParent);
-        return student;
-*/
+        return student;*/
+
         ObservableList<Parent> parents = model.getFilteredParentList();
         if (student.getParentNumber() == oldStudent.getParentNumber()) { // Parent phone number did not change
             if (student.getParentName() != oldStudent.getParentName()) { // Parent changed his/her name

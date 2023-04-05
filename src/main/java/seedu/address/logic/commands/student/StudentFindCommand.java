@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.person.Class;
-import seedu.address.model.person.student.NameContainsKeywordsPredicate;
+import seedu.address.model.person.student.StudentNameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all students in address book whose name contains any of the argument keywords.
@@ -19,7 +19,7 @@ public class StudentFindCommand extends StudentCommand {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final StudentNameContainsKeywordsPredicate predicate;
     private final Class studentClass;
 
     /**
@@ -27,7 +27,7 @@ public class StudentFindCommand extends StudentCommand {
      * @param studentClass
      * @param predicate
      */
-    public StudentFindCommand(String studentClass, NameContainsKeywordsPredicate predicate) {
+    public StudentFindCommand(String studentClass, StudentNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
         this.studentClass = Class.of(studentClass);
     }
