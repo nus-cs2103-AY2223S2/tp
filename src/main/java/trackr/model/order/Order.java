@@ -10,6 +10,7 @@ import trackr.model.item.Item;
 import trackr.model.menu.ItemCost;
 import trackr.model.menu.ItemName;
 import trackr.model.menu.ItemPrice;
+import trackr.model.menu.ItemProfit;
 import trackr.model.menu.ItemSellingPrice;
 import trackr.model.menu.MenuItem;
 import trackr.model.person.Customer;
@@ -131,7 +132,7 @@ public class Order extends Item {
         return timeAdded;
     }
 
-    public ItemPrice getTotalProfit() {
+    public ItemProfit getTotalProfit() {
         return OrderUtil.getTotalProfit(orderQuantity, orderItem);
     }
 

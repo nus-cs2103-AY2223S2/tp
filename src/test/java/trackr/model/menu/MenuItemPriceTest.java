@@ -37,12 +37,15 @@ public class MenuItemPriceTest {
         assertFalse(ItemPrice.isValidPrice("10 10")); // contains spaces
         assertFalse(ItemPrice.isValidPrice("10,10")); // comma instead of decimal
         assertFalse(ItemPrice.isValidPrice("10.000")); // more than 2 decimal places
+        assertFalse(ItemPrice.isValidPrice("-10.00")); // more than 2 decimal places
+
+
 
         // valid price
         assertTrue(ItemPrice.isValidPrice("1")); // no decimal places
         assertTrue(ItemPrice.isValidPrice("1.0")); // exactly 1 decimal places
         assertTrue(ItemPrice.isValidPrice("1.00")); // exactly 2 decimal places
-        assertTrue(ItemPrice.isValidPrice("999999.00"));
+        assertTrue(ItemPrice.isValidPrice("999993123123123131322131239.00")); //large number
     }
 
     @Test
