@@ -52,4 +52,14 @@ public class RelationshipTest {
         assertTrue(testRls1.toString().equals(rls1)); // Comparing "mother" with "mother"
         assertFalse(testRls1.toString().equals(rls2)); // Comparing "father" with "mother"
     }
+
+    @Test
+    public void isValidRelationshipTest() {
+        String rls1 = "mother";
+        String rls2 = "Insert parent relationship to student here!";
+        assertTrue(Relationship.isDefaultRelationship(rls2));
+        assertFalse(Relationship.isDefaultRelationship(rls1));
+        assertTrue(rls1.matches(Relationship.VALIDATION_REGEX));
+        assertFalse("".matches(Relationship.VALIDATION_REGEX));
+    }
 }

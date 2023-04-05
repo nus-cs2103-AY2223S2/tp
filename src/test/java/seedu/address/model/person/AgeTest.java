@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.model.person.parent.Relationship;
 
 public class AgeTest {
     private String validAge1 = "0";
@@ -54,5 +55,16 @@ public class AgeTest {
         Age testAge1 = new Age(validAge1);
         assertTrue(testAge1.toString().equals(validAge1)); // Comparing "0" with "0"
         assertFalse(testAge1.toString().equals(validAge2)); // Comparing "57" with "0"
+    }
+
+    @Test
+    public void isValidAgeTest() {
+        String age1 = "Insert parent age here!";
+        String age2 = "Insert student age here!";
+        assertTrue(Age.isDefaultAge(age2));
+        assertTrue(Age.isDefaultAge(age1));
+        assertFalse(Age.isDefaultAge(validAge1));
+        assertTrue(validAge1.matches(Age.VALIDATION_REGEX));
+        assertFalse(invalidAge1.matches(Age.VALIDATION_REGEX));
     }
 }

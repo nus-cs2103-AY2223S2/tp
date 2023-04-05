@@ -26,7 +26,7 @@ public class Sex {
         requireNonNull(sex);
         checkArgument(isValidSex(sex), MESSAGE_CONSTRAINTS);
         if (isDefaultSex(sex)) {
-            value = "Insert student sex Here!";
+            value = "Insert student sex here!";
             return;
         }
         value = sex;
