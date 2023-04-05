@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RoleBookParser" as RoleBookParser LOGIC_COLOR
+participant ":NameCommandParser" as NameCommandParser LOGIC_COLOR
+participant ":NameCommand" as NameCommand LOGIC_COLOR
+participant ":NameContainsKeywordsPredicate" as NameContainsKeywordsPredicate LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("name Software")
+activate LogicManager
+
+LogicManager -> RoleBookParser : parseCommand("name Software")
+activate RoleBookParser
+
+create NameCommandParser
+RoleBookParser -> NameCommandParser
+activate NameCommandParser
+
+NameCommandParser --> RoleBookParser
+deactivate NameCommandParser
+
+RoleBookParser -> NameCommandParser : parse("Software")
+activate NameCommandParser
+
+create NameCommand
+NameCommandParser -> NameCommand
+activate NameCommand
+
+NameCommand --> NameCommandParser
+deactivate NameCommand
+
+create NameContainsKeywordsPredicate
+NameCommand -> NameContainsKeywordsPredicate
+activate NameContainsKeywordsPredicate
+
+NameContainsKeywordsPredicate --> NameCommand
+deactivate NameContainsKeywordsPredicate
+
+
+NameCommandParser --> RoleBookParser
+deactivate NameCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+NameCommandParser -[hidden]-> RoleBookParser
+destroy NameCommandParser
+
+RoleBookParser --> LogicManager
+deactivate RoleBookParser
+
+
+LogicManager -> NameCommand : execute(model)
+activate NameCommand
+
+
+NameCommand -> Model : updateFilteredRoleList()
+activate Model
+
+Model --> NameCommand
+deactivate Model
+
+create CommandResult
+NameCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> NameCommand
+deactivate CommandResult
+
+NameCommand --> LogicManager
+deactivate NameCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
