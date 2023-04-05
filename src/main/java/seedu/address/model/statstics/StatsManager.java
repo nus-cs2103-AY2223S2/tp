@@ -9,7 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.Model;
-import seedu.address.model.person.InternshipStatus;
+import seedu.address.model.application.InternshipStatus;
 
 /**
  * The main manager of statistics of the internship application status.

@@ -9,7 +9,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
-import seedu.address.model.person.InternshipApplicationAttribute;
+import seedu.address.model.application.InternshipApplicationAttribute;
 
 /**
  * Represents a link to a resume in the internship application.

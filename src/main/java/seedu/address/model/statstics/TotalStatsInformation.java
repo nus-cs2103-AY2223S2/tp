@@ -3,7 +3,7 @@ package seedu.address.model.statstics;
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.InternshipApplication;
+import seedu.address.model.application.InternshipApplication;
 
 /**
  * Encapsulates the statistics information for total number of application added.

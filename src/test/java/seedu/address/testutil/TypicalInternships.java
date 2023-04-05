@@ -5,14 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipStatus;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Phone;
 import seedu.address.model.documents.CoverLetterLink;
 import seedu.address.model.documents.Documents;
 import seedu.address.model.documents.ResumeLink;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
 
 /**
  * A utility class containing a list of {@code InternshipApplication} objects to be used in tests.

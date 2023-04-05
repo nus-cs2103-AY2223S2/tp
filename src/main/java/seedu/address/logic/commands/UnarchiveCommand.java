@@ -10,21 +10,21 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.application.CompanyName;
+import seedu.address.model.application.InternshipApplication;
+import seedu.address.model.application.InternshipStatus;
+import seedu.address.model.application.InterviewDate;
+import seedu.address.model.application.JobTitle;
+import seedu.address.model.application.Location;
+import seedu.address.model.application.Note;
+import seedu.address.model.application.ProgrammingLanguage;
+import seedu.address.model.application.Qualification;
+import seedu.address.model.application.Rating;
+import seedu.address.model.application.Reflection;
+import seedu.address.model.application.Review;
+import seedu.address.model.application.Salary;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.documents.Documents;
-import seedu.address.model.person.CompanyName;
-import seedu.address.model.person.InternshipApplication;
-import seedu.address.model.person.InternshipStatus;
-import seedu.address.model.person.InterviewDate;
-import seedu.address.model.person.JobTitle;
-import seedu.address.model.person.Location;
-import seedu.address.model.person.Note;
-import seedu.address.model.person.ProgrammingLanguage;
-import seedu.address.model.person.Qualification;
-import seedu.address.model.person.Rating;
-import seedu.address.model.person.Reflection;
-import seedu.address.model.person.Review;
-import seedu.address.model.person.Salary;
 
 /**
  * Unarchives an internship application identified using it's displayed index from the list of internship applications.
@@ -41,6 +41,7 @@ public class UnarchiveCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2";
 
     public static final String MESSAGE_ARCHIVE_APPLICATION_SUCCESS = "Unarchived Application: %1$s";
+    public static final String MESSAGE_APPLICATION_NOT_ARCHIVED = "Application is not currently archived!";
 
     private final Index targetIndex;
 
@@ -65,6 +66,11 @@ public class UnarchiveCommand extends Command {
         }
 
         InternshipApplication internshipToUnarchive = lastShownList.get(targetIndex.getZeroBased());
+
+        if (!internshipToUnarchive.isArchived()) {
+            throw new CommandException(MESSAGE_APPLICATION_NOT_ARCHIVED);
+        }
+
         InternshipApplication archivedApplication = createdUnarchivedApplication(internshipToUnarchive);
 
         model.setApplication(internshipToUnarchive, archivedApplication);
