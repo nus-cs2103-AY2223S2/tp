@@ -64,7 +64,7 @@ We have provided a quick tutorial on how to [download and install](#download-and
 how to make sense of the [interface](#navigation), as well as how to [properly use each command](#codoc-tutorial-your-first-steps). 
 
 <div class="span" class="alert alert-info">
-:information_source: <b>Note:</b> It is important to note that the command summary is meant for experienced users who happen to forget the commands. **All first time users** are recommended to read through the **entire user guide**.
+:information_source: <b>Note:</b> It is important to note that the command summary is meant for experienced users who happen to forget the commands. <b>All first time users</b> are recommended to read through the <b>entire user guide</b>.
 </div>
 
 If you are proficient with the command types and are looking for a quick summary of our commands, you may jump to our [Command Summary](#command-summary) that contains relevant examples.
@@ -303,7 +303,7 @@ His _contact_ details will then be shown in the **Info Panel**.
 You may try loading another person's details by using different _index_ (e.g. `view 2`). 
 
 <div class="span" class="alert alert-success">
-:bulb: **Tip**: CoDoc also supports GUI, so you can just click the person in the list to view his details.
+:bulb: <b>Tip:</b> CoDoc also supports GUI, so you can just click the person in the list to view his details.
 </div>
 
 <br>
@@ -323,7 +323,7 @@ You can enter `view s` as well to view Bob's _skills_ to see a similar empty lis
 contact information.
 
 <div class="span" class="alert alert-success">
-:bulb: **Tips**: CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
+:bulb: <b>Tips:</b> CoDoc also supports GUI, so you can click on the name of different tabs to switch between tabs.
 </div>
 
 **Related:** [Viewing a person/Changing tabs: `view`](#2-viewing-a-person)
@@ -352,9 +352,9 @@ You can now see that Bob's list of **modules taken** has been updated to contain
 (enter `view m` if you're not on the _modules_ tab).
 
 <div class="span" class="alert alert-success">
-:bulb: **Tip**: You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you
+:bulb: <b>Tip:</b> You do not have to be on _modules_ tab to edit it as long as you are viewing the correct person (i.e. you
  can be viewing Bob's contacts as you add modules). However, switching to _modules_ tab will definitely make it easy
- for you to edit **modules taken**!
+ for you to edit <b>modules taken</b>!
 </div>
 
 If you want to save the hassle of editing _modules_ only after adding a person, you can include them in the initial
@@ -399,7 +399,7 @@ The pre-existing contacts that come when you first launch are just some examples
 Now, you may enter `clear` in the command box to clear all contacts and start off with a fresh database.
 
 <div class="span" class="alert alert-danger"> 
-:exclamation: **Caution**: Be careful not to accidentally enter the `clear` command, it will not ask twice before wiping your database!
+:exclamation: <b>Caution:</b> Be careful not to accidentally enter the `clear` command, it will not ask twice before wiping your database!
 </div>
 
 If you need more info on the usage of each command, you can refer to the relevant sections below. 
@@ -473,7 +473,7 @@ Once the person has been created, the result display will show a confirmation me
   - skills are case-sensitive and does not allow duplicates
 
 <div markdown="span" class="alert alert-success">
-:bulb: **Tip:** A person can have any number of [OPTIONAL/PARAMETER] (including 0)
+:bulb: <b>Tip:</b> A person can have any number of [OPTIONAL/PARAMETER] (including 0)
 </div>
 
 **Examples:**
@@ -506,7 +506,7 @@ If `s` is specified, the tab on the right will switch to the **skills** that the
 - s (e.g. `view s`)
 
 <div class="span" class="alert alert-success">
-:bulb: **Tip:** If the right panel is showing a person's module, changing the person by typing `view 3` for example, will result in the right panel displaying the module tab of the person at index 3. The same applies for skills.
+:bulb: <b>Tip:</b> If the right panel is showing a person's module, changing the person by typing `view 3` for example, will result in the right panel displaying the module tab of the person at index 3. The same applies for skills.
 </div>
 
 **Examples:**
@@ -529,7 +529,7 @@ At least one of the optional fields must be provided.
 - You can remove all the person’s skills by typing `s/` without specifying any skills after it
 
 <div class="span" class="alert alert-danger">
-:warning: **Caution:** Existing values will be <b><u>overwritten</u></b> by the input values during the use of `m/` or `s/`.<br/>
+:warning: <b>Caution:</b> Existing values will be <b><u>overwritten</u></b> by the input values during the use of `m/` or `s/`.<br/>
 Use `m+/` or `s+/` to <b><u>append</u></b> information or `m-/` or `s-/` to <b><u>delete</u></b> information instead.
 </div>
 
@@ -555,7 +555,7 @@ Use `m+/` or `s+/` to <b><u>append</u></b> information or `m-/` or `s-/` to <b><
   - skills are case-sensitive and does not allow duplicates
 
 <div class="span" class="alert alert-success">
-:bulb: **Tip:** If `s/` or `m/` is present in the edit command, this will take precedence over `s+/ s-/ m+/ m-/`.
+:bulb: <b>Tip:</b> If `s/` or `m/` is present in the edit command, this will take precedence over `s+/ s-/ m+/ m-/`.
 </div>
 
 **Examples:**
@@ -581,16 +581,16 @@ Want to find people with certain qualities? Use find command to find people that
 * n/NAME (e.g. `find n/Jo` will load all people whose names contain `Jo` such as `Jo`, `John`, `Joleen`.
 * y/YEAR (e.g. `find y/2` will load all persons who are in `year 2`)
 * c/COURSE (e.g. `find c/Computer` will load all people enrolled in `Computer Engineering` and `Computer Science`)
-    * <div class="span" class="alert alert-info">:information_source: **Note:** This is different from `add` and `edit` which uses c/COURSE_INDEX. To find out why, refer to our [faq](#faq)</div>
+    * <div class="span" class="alert alert-info">:information_source: <b>Note:</b> This is different from `add` and `edit` which uses c/COURSE_INDEX. To find out why, refer to our [faq](#faq)</div>
 * m/MODULES (e.g. `find m/CS2103` will load all person with `CS2103` including `CS2103T` and `CS2103R`)
   * m/ACADEMIC_YEAR MODULES (e.g. `find m/AY2223S1 CS2103` will load all person with `AY2223S1 CS2103` including `AY2223S1 CS2103T` and `AY2223S1 CS2103R` in their module list)
-  * <div class="span" class="alert alert-success">:bulb: **Tip:** You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
+  * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> You can input as many MODULES and ACADEMIC_YEAR MODULES as you want separated by a space.</div>
   * For example,  `find m/cs1101 cs1231 AY2223S1 cs2040 AY2223S2 cs2090 cs3230` will load all person that have taken
     * `CS1101`, `CS1231` regardless of academic year
     * `CS2040` in `AY2223S1`
     * `CS2090`, `CS3230` in `AY2223S2`
 * s/SKILLS (e.g. `find s/java` will load all person that contains `java` in their skill list such as `java` and `javascript`)
-    * <div class="span" class="alert alert-success">:bulb: **Tip:** Similar to m/MODULES you can add in as many skills as you want separated by a space.</div>
+    * <div class="span" class="alert alert-success">:bulb: <b>Tip:</b> Similar to m/MODULES you can add in as many skills as you want separated by a space.</div>
  
 
 **Examples:**
@@ -607,7 +607,7 @@ Want to see all your contacts? Display everyone stored in Codoc with the list co
 `list`<br>
 
 <div class="span" class="alert alert-success">
-:bulb: **Tip:** Use this command to revert back to the original list after performing the `find` command to shorten the list displayed.
+:bulb: <b>Tip:</b> Use this command to revert back to the original list after performing the `find` command to shorten the list displayed.
 </div>
 
 * `list`
@@ -635,7 +635,7 @@ E.g. `delete 1` will delete the current person at index 1 as shown in the list p
 `clear`
 
 <div class="span" class="alert alert-danger">
-:danger: Clears **all** entries from CoDoc.
+:danger: <b>Caution:</b> Clears <b>all</b> entries from CoDoc.
 </div>
 
 ![Clear](images/UiClear.png)
