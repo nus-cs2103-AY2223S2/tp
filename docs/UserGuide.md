@@ -34,7 +34,7 @@ improving the efficiency of grocery shopping.
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
   * [FAQ](#faq)
-  * [Command Summary](#command-summary)
+  * [Command Summary](#food-commands)
   * [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ improving the efficiency of grocery shopping.
 
 1. Ensure you have [Java `11`](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above installed in your Computer.
 
-2. Download the latest `wife.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-1/tp/releases/tag/v1.3(trial)).
+2. Download the latest `wife.jar` from [here](https://github.com/AY2223S2-CS2103T-T11-1/tp/releases).
 
 3. Double-click on the application to run WIFE!
 
