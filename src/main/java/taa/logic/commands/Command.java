@@ -2,7 +2,6 @@ package taa.logic.commands;
 
 import taa.logic.commands.exceptions.CommandException;
 import taa.model.Model;
-import taa.model.assignment.exceptions.AssignmentException;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.

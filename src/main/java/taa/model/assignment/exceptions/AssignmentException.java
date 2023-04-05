@@ -1,6 +1,5 @@
 package taa.model.assignment.exceptions;
 
-import taa.logic.commands.exceptions.CommandException;
 import taa.model.assignment.Assignment;
 
 /**
