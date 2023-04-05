@@ -19,6 +19,7 @@ import seedu.sprint.model.application.exceptions.DuplicateApplicationException;
  */
 @JsonRootName(value = "internshipbook")
 class JsonSerializableInternshipBook {
+    public static final String MESSAGE_DUPLICATE_APPLICATION = "Operation would result in duplicate entries.";
 
     private final List<JsonAdaptedApplication> jsonAdaptedApplications = new ArrayList<>();
 
