@@ -1,9 +1,9 @@
 package seedu.internship.storage;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.time.LocalDateTime;
 
 import seedu.internship.commons.exceptions.IllegalValueException;
 import seedu.internship.commons.util.DateTimeUtil;

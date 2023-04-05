@@ -2,6 +2,8 @@ package seedu.internship.logic.parser.event;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+
 import seedu.internship.commons.core.index.Index;
 import seedu.internship.commons.util.DateTimeUtil;
 import seedu.internship.commons.util.StringUtil;
@@ -11,8 +13,6 @@ import seedu.internship.model.event.End;
 import seedu.internship.model.event.EventDescription;
 import seedu.internship.model.event.Name;
 import seedu.internship.model.event.Start;
-
-import java.time.LocalDateTime;
 
 /**
  * Contains utility methods used for parsing strings in the various EventParser classes.
