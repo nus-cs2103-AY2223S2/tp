@@ -633,7 +633,7 @@ E.g. `delete 1` will delete the current person at index 1 as shown in the list p
 `clear`
 
 <div class="span" class="alert alert-danger">
-:danger: <b>Caution:</b> Clears <b>all</b> entries from CoDoc.
+:exclamation: <b>Caution:</b> Clears <b>all</b> entries from CoDoc.
 </div>
 
 ![Clear](images/UiClear.png)
